@@ -22,6 +22,12 @@ module WhopSDK
       #   @return [String, nil]
       required :external_identifier, String, nil?: true
 
+      # @!attribute gallery_images
+      #   The gallery images for this product, ordered by position.
+      #
+      #   @return [Array<WhopSDK::Models::ProductListItem::GalleryImage>]
+      required :gallery_images, -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::ProductListItem::GalleryImage] }
+
       # @!attribute headline
       #   A short marketing headline displayed prominently on the product's product page.
       #
@@ -82,7 +88,7 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::Visibility]
       required :visibility, enum: -> { WhopSDK::Visibility }
 
-      # @!method initialize(id:, created_at:, external_identifier:, headline:, member_count:, metadata:, published_reviews_count:, route:, title:, updated_at:, verified:, visibility:)
+      # @!method initialize(id:, created_at:, external_identifier:, gallery_images:, headline:, member_count:, metadata:, published_reviews_count:, route:, title:, updated_at:, verified:, visibility:)
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::ProductListItem} for more details.
       #
@@ -94,6 +100,8 @@ module WhopSDK
       #   @param created_at [Time] The datetime the product was created.
       #
       #   @param external_identifier [String, nil] External identifier for the product. Providing it on a product creation endpoint
+      #
+      #   @param gallery_images [Array<WhopSDK::Models::ProductListItem::GalleryImage>] The gallery images for this product, ordered by position.
       #
       #   @param headline [String, nil] A short marketing headline displayed prominently on the product's product page.
       #
@@ -112,6 +120,43 @@ module WhopSDK
       #   @param verified [Boolean] Whether this company has been verified by Whop's trust and safety team.
       #
       #   @param visibility [Symbol, WhopSDK::Models::Visibility] Controls whether the product is visible to customers. When set to 'hidden', the
+
+      class GalleryImage < WhopSDK::Internal::Type::BaseModel
+        # @!attribute id
+        #   Represents a unique identifier that is Base64 obfuscated. It is often used to
+        #   refetch an object or as key for a cache. The ID type appears in a JSON response
+        #   as a String; however, it is not intended to be human-readable. When expected as
+        #   an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+        #   input value will be accepted as an ID.
+        #
+        #   @return [String]
+        required :id, String
+
+        # @!attribute content_type
+        #   Uploaded file MIME type, such as image/jpeg, video/mp4, or audio/mpeg.
+        #
+        #   @return [String, nil]
+        required :content_type, String, nil?: true
+
+        # @!attribute url
+        #   A pre-optimized URL for rendering this attachment on the client. This should be
+        #   used for displaying attachments in apps.
+        #
+        #   @return [String, nil]
+        required :url, String, nil?: true
+
+        # @!method initialize(id:, content_type:, url:)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::ProductListItem::GalleryImage} for more details.
+        #
+        #   Represents an image attachment
+        #
+        #   @param id [String] Represents a unique identifier that is Base64 obfuscated. It is often used to re
+        #
+        #   @param content_type [String, nil] Uploaded file MIME type, such as image/jpeg, video/mp4, or audio/mpeg.
+        #
+        #   @param url [String, nil] A pre-optimized URL for rendering this attachment on the client. This should be
+      end
     end
   end
 end

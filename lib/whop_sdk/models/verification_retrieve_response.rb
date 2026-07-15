@@ -90,10 +90,11 @@ module WhopSDK
 
       # @!attribute status
       #   Current verification state. `not_started` before any session has been created;
-      #   `pending` while a session is in progress; `action_required` when items in
-      #   `requested_information` need answers before review can continue; `approved` once
-      #   verification succeeds; `rejected` if it fails. Call the Create Verification
-      #   endpoint again to start a new session.
+      #   `pending` while a session is in progress and needs the user's input;
+      #   `processing` while the provider reviews submitted documents — nothing to do but
+      #   wait; `action_required` when items in `requested_information` need answers
+      #   before review can continue; `approved` once verification succeeds; `rejected` if
+      #   it fails. Call the Create Verification endpoint again to start a new session.
       #
       #   @return [Symbol, WhopSDK::Models::VerificationRetrieveResponse::Status, nil]
       optional :status, enum: -> { WhopSDK::Models::VerificationRetrieveResponse::Status }
@@ -377,10 +378,11 @@ module WhopSDK
       end
 
       # Current verification state. `not_started` before any session has been created;
-      # `pending` while a session is in progress; `action_required` when items in
-      # `requested_information` need answers before review can continue; `approved` once
-      # verification succeeds; `rejected` if it fails. Call the Create Verification
-      # endpoint again to start a new session.
+      # `pending` while a session is in progress and needs the user's input;
+      # `processing` while the provider reviews submitted documents — nothing to do but
+      # wait; `action_required` when items in `requested_information` need answers
+      # before review can continue; `approved` once verification succeeds; `rejected` if
+      # it fails. Call the Create Verification endpoint again to start a new session.
       #
       # @see WhopSDK::Models::VerificationRetrieveResponse#status
       module Status
@@ -388,6 +390,7 @@ module WhopSDK
 
         NOT_STARTED = :not_started
         PENDING = :pending
+        PROCESSING = :processing
         APPROVED = :approved
         REJECTED = :rejected
         ACTION_REQUIRED = :action_required

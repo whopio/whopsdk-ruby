@@ -139,6 +139,15 @@ module WhopSDK
           sig { params(business_structure: String).void }
           attr_writer :business_structure
 
+          # The business ID number of the company, as appropriate for the company's country.
+          # Examples are an Employer Identification Number (EIN) in the US, a Business
+          # Number in Canada, or a Company Number in the UK.
+          sig { returns(T.nilable(String)) }
+          attr_reader :business_tax_identification_number
+
+          sig { params(business_tax_identification_number: String).void }
+          attr_writer :business_tax_identification_number
+
           # Business website URL. Whop store pages are not accepted.
           sig { returns(T.nilable(String)) }
           attr_reader :business_website
@@ -233,7 +242,10 @@ module WhopSDK
           sig { params(phone: String).void }
           attr_writer :phone
 
-          # SSN or ITIN. Tokenized in transit and never stored raw.
+          # The government-issued ID number of the person being verified — the individual
+          # for a KYC verification, or the business representative for a KYB verification —
+          # as appropriate for their country. Examples are a Social Security Number (SSN) in
+          # the US, or a Social Insurance Number in Canada.
           sig { returns(T.nilable(String)) }
           attr_reader :tax_identification_number
 
@@ -254,6 +266,7 @@ module WhopSDK
                 WhopSDK::VerificationCreateParams::Body::Individual::Address::OrHash,
               business_name: String,
               business_structure: String,
+              business_tax_identification_number: String,
               business_website: String,
               country: String,
               date_of_birth: String,
@@ -276,6 +289,10 @@ module WhopSDK
             # vary by country of incorporation — see
             # [Business structures](/developer/verification/business-structures).
             business_structure: nil,
+            # The business ID number of the company, as appropriate for the company's country.
+            # Examples are an Employer Identification Number (EIN) in the US, a Business
+            # Number in Canada, or a Company Number in the UK.
+            business_tax_identification_number: nil,
             # Business website URL. Whop store pages are not accepted.
             business_website: nil,
             # Two-letter ISO 3166-1 country code, for example `US`, `DE`, or `GB`.
@@ -303,7 +320,10 @@ module WhopSDK
             kind: nil,
             last_name: nil,
             phone: nil,
-            # SSN or ITIN. Tokenized in transit and never stored raw.
+            # The government-issued ID number of the person being verified — the individual
+            # for a KYC verification, or the business representative for a KYB verification —
+            # as appropriate for their country. Examples are a Social Security Number (SSN) in
+            # the US, or a Social Insurance Number in Canada.
             tax_identification_number: nil
           )
           end
@@ -315,6 +335,7 @@ module WhopSDK
                   WhopSDK::VerificationCreateParams::Body::Individual::Address,
                 business_name: String,
                 business_structure: String,
+                business_tax_identification_number: String,
                 business_website: String,
                 country: String,
                 date_of_birth: String,
@@ -545,6 +566,15 @@ module WhopSDK
           sig { params(business_structure: String).void }
           attr_writer :business_structure
 
+          # The business ID number of the company, as appropriate for the company's country.
+          # Examples are an Employer Identification Number (EIN) in the US, a Business
+          # Number in Canada, or a Company Number in the UK.
+          sig { returns(T.nilable(String)) }
+          attr_reader :business_tax_identification_number
+
+          sig { params(business_tax_identification_number: String).void }
+          attr_writer :business_tax_identification_number
+
           # Business website URL. Whop store pages are not accepted.
           sig { returns(T.nilable(String)) }
           attr_reader :business_website
@@ -584,7 +614,10 @@ module WhopSDK
           sig { params(place_of_incorporation: String).void }
           attr_writer :place_of_incorporation
 
-          # EIN. Tokenized in transit and never stored raw.
+          # The government-issued ID number of the person being verified — the individual
+          # for a KYC verification, or the business representative for a KYB verification —
+          # as appropriate for their country. Examples are a Social Security Number (SSN) in
+          # the US, or a Social Insurance Number in Canada.
           sig { returns(T.nilable(String)) }
           attr_reader :tax_identification_number
 
@@ -600,6 +633,7 @@ module WhopSDK
                 WhopSDK::VerificationCreateParams::Body::Business::Address::OrHash,
               business_name: String,
               business_structure: String,
+              business_tax_identification_number: String,
               business_website: String,
               country: String,
               kind:
@@ -616,6 +650,10 @@ module WhopSDK
             # `sole_proprietorship`. Supported values vary by country of incorporation — see
             # [Business structures](/developer/verification/business-structures).
             business_structure: nil,
+            # The business ID number of the company, as appropriate for the company's country.
+            # Examples are an Employer Identification Number (EIN) in the US, a Business
+            # Number in Canada, or a Company Number in the UK.
+            business_tax_identification_number: nil,
             # Business website URL. Whop store pages are not accepted.
             business_website: nil,
             # Country of incorporation as a two-letter ISO 3166-1 country code.
@@ -624,7 +662,10 @@ module WhopSDK
             kind: nil,
             # State or region where the business is incorporated.
             place_of_incorporation: nil,
-            # EIN. Tokenized in transit and never stored raw.
+            # The government-issued ID number of the person being verified — the individual
+            # for a KYC verification, or the business representative for a KYB verification —
+            # as appropriate for their country. Examples are a Social Security Number (SSN) in
+            # the US, or a Social Insurance Number in Canada.
             tax_identification_number: nil
           )
           end
@@ -636,6 +677,7 @@ module WhopSDK
                   WhopSDK::VerificationCreateParams::Body::Business::Address,
                 business_name: String,
                 business_structure: String,
+                business_tax_identification_number: String,
                 business_website: String,
                 country: String,
                 kind:

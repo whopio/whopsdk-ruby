@@ -5,6 +5,7 @@ module WhopSDK
         id: String,
         created_at: Time,
         external_identifier: String?,
+        gallery_images: ::Array[WhopSDK::ProductListItem::GalleryImage],
         headline: String?,
         member_count: Integer,
         metadata: ::Hash[Symbol, top]?,
@@ -22,6 +23,8 @@ module WhopSDK
       attr_accessor created_at: Time
 
       attr_accessor external_identifier: String?
+
+      attr_accessor gallery_images: ::Array[WhopSDK::ProductListItem::GalleryImage]
 
       attr_accessor headline: String?
 
@@ -45,6 +48,7 @@ module WhopSDK
         id: String,
         created_at: Time,
         external_identifier: String?,
+        gallery_images: ::Array[WhopSDK::ProductListItem::GalleryImage],
         headline: String?,
         member_count: Integer,
         metadata: ::Hash[Symbol, top]?,
@@ -60,6 +64,7 @@ module WhopSDK
         id: String,
         created_at: Time,
         external_identifier: String?,
+        gallery_images: ::Array[WhopSDK::ProductListItem::GalleryImage],
         headline: String?,
         member_count: Integer,
         metadata: ::Hash[Symbol, top]?,
@@ -70,6 +75,24 @@ module WhopSDK
         verified: bool,
         visibility: WhopSDK::Models::visibility
       }
+
+      type gallery_image = { id: String, content_type: String?, url: String? }
+
+      class GalleryImage < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor content_type: String?
+
+        attr_accessor url: String?
+
+        def initialize: (
+          id: String,
+          content_type: String?,
+          url: String?
+        ) -> void
+
+        def to_hash: -> { id: String, content_type: String?, url: String? }
+      end
     end
   end
 end

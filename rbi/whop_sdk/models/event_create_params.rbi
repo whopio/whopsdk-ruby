@@ -15,8 +15,12 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :account_id
 
-      # The type of conversion or engagement event
-      sig { returns(WhopSDK::EventCreateParams::EventName::OrSymbol) }
+      # The type of event.
+      #
+      # Use a standard event (lead, submit_application, contact, complete_registration,
+      # schedule, view_content, add_to_cart) or pass your own name directly for a custom
+      # event.
+      sig { returns(String) }
       attr_accessor :event_name
 
       # The channel where an event originated
@@ -101,7 +105,7 @@ module WhopSDK
       sig do
         params(
           account_id: String,
-          event_name: WhopSDK::EventCreateParams::EventName::OrSymbol,
+          event_name: String,
           action_source:
             T.nilable(WhopSDK::EventCreateParams::ActionSource::OrSymbol),
           context: T.nilable(WhopSDK::EventCreateParams::Context::OrHash),
@@ -125,7 +129,11 @@ module WhopSDK
       def self.new(
         # The account to associate with this event.
         account_id:,
-        # The type of conversion or engagement event
+        # The type of event.
+        #
+        # Use a standard event (lead, submit_application, contact, complete_registration,
+        # schedule, view_content, add_to_cart) or pass your own name directly for a custom
+        # event.
         event_name:,
         # The channel where an event originated
         action_source: nil,
@@ -168,7 +176,7 @@ module WhopSDK
         override.returns(
           {
             account_id: String,
-            event_name: WhopSDK::EventCreateParams::EventName::OrSymbol,
+            event_name: String,
             action_source:
               T.nilable(WhopSDK::EventCreateParams::ActionSource::OrSymbol),
             context: T.nilable(WhopSDK::EventCreateParams::Context),
@@ -191,52 +199,6 @@ module WhopSDK
         )
       end
       def to_hash
-      end
-
-      # The type of conversion or engagement event
-      module EventName
-        extend WhopSDK::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias { T.all(Symbol, WhopSDK::EventCreateParams::EventName) }
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        LEAD = T.let(:lead, WhopSDK::EventCreateParams::EventName::TaggedSymbol)
-        SUBMIT_APPLICATION =
-          T.let(
-            :submit_application,
-            WhopSDK::EventCreateParams::EventName::TaggedSymbol
-          )
-        CONTACT =
-          T.let(:contact, WhopSDK::EventCreateParams::EventName::TaggedSymbol)
-        COMPLETE_REGISTRATION =
-          T.let(
-            :complete_registration,
-            WhopSDK::EventCreateParams::EventName::TaggedSymbol
-          )
-        SCHEDULE =
-          T.let(:schedule, WhopSDK::EventCreateParams::EventName::TaggedSymbol)
-        VIEW_CONTENT =
-          T.let(
-            :view_content,
-            WhopSDK::EventCreateParams::EventName::TaggedSymbol
-          )
-        ADD_TO_CART =
-          T.let(
-            :add_to_cart,
-            WhopSDK::EventCreateParams::EventName::TaggedSymbol
-          )
-        CUSTOM =
-          T.let(:custom, WhopSDK::EventCreateParams::EventName::TaggedSymbol)
-        PAGE = T.let(:page, WhopSDK::EventCreateParams::EventName::TaggedSymbol)
-
-        sig do
-          override.returns(
-            T::Array[WhopSDK::EventCreateParams::EventName::TaggedSymbol]
-          )
-        end
-        def self.values
-        end
       end
 
       # The channel where an event originated

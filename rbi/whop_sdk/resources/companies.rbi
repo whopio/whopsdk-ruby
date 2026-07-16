@@ -14,6 +14,7 @@ module WhopSDK
       sig do
         params(
           title: String,
+          country: T.nilable(WhopSDK::CompanyCreateParams::Country::OrSymbol),
           description: T.nilable(String),
           email: T.nilable(String),
           logo: T.nilable(WhopSDK::CompanyCreateParams::Logo::OrHash),
@@ -26,6 +27,8 @@ module WhopSDK
       def create(
         # The display name of the company shown to customers.
         title:,
+        # The available countries on the platform
+        country: nil,
         # A promotional pitch displayed to potential customers on the company's store
         # page.
         description: nil,

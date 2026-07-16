@@ -15,9 +15,11 @@ module WhopSDK
       # - `company:create`
       # - `company:basic:read`
       #
-      # @overload create(title:, description: nil, email: nil, logo: nil, metadata: nil, parent_company_id: nil, send_customer_emails: nil, request_options: {})
+      # @overload create(title:, country: nil, description: nil, email: nil, logo: nil, metadata: nil, parent_company_id: nil, send_customer_emails: nil, request_options: {})
       #
       # @param title [String] The display name of the company shown to customers.
+      #
+      # @param country [Symbol, WhopSDK::Models::CompanyCreateParams::Country, nil] The available countries on the platform
       #
       # @param description [String, nil] A promotional pitch displayed to potential customers on the company's store page
       #

@@ -3,6 +3,7 @@ module WhopSDK
     class Companies
       def create: (
         title: String,
+        ?country: WhopSDK::Models::CompanyCreateParams::country?,
         ?description: String?,
         ?email: String?,
         ?logo: WhopSDK::CompanyCreateParams::Logo?,

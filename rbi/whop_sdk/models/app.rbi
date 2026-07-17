@@ -464,6 +464,11 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :file_url
 
+        # A URL to download the compressed source code archive that produced this build.
+        # Null if the build was uploaded without a source archive.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :source_url
+
         # The current review status of this build.
         sig { returns(WhopSDK::AppBuildStatuses::TaggedSymbol) }
         attr_accessor :status
@@ -475,6 +480,7 @@ module WhopSDK
             id: String,
             checksum: String,
             file_url: String,
+            source_url: T.nilable(String),
             status: WhopSDK::AppBuildStatuses::OrSymbol
           ).returns(T.attached_class)
         end
@@ -486,6 +492,9 @@ module WhopSDK
           checksum:,
           # A URL to download the app build as a .zip archive.
           file_url:,
+          # A URL to download the compressed source code archive that produced this build.
+          # Null if the build was uploaded without a source archive.
+          source_url:,
           # The current review status of this build.
           status:
         )
@@ -497,6 +506,7 @@ module WhopSDK
               id: String,
               checksum: String,
               file_url: String,
+              source_url: T.nilable(String),
               status: WhopSDK::AppBuildStatuses::TaggedSymbol
             }
           )

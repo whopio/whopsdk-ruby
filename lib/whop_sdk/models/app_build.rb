@@ -47,6 +47,13 @@ module WhopSDK
       #   @return [String, nil]
       required :review_message, String, nil?: true
 
+      # @!attribute source_url
+      #   A URL to download the compressed source code archive that produced this build.
+      #   Null if the build was uploaded without a source archive.
+      #
+      #   @return [String, nil]
+      required :source_url, String, nil?: true
+
       # @!attribute status
       #   The current review status of this build.
       #
@@ -59,7 +66,7 @@ module WhopSDK
       #   @return [Array<Symbol, WhopSDK::Models::AppViewType>]
       required :supported_app_view_types, -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::AppViewType] }
 
-      # @!method initialize(id:, checksum:, created_at:, file_url:, is_production:, platform:, review_message:, status:, supported_app_view_types:)
+      # @!method initialize(id:, checksum:, created_at:, file_url:, is_production:, platform:, review_message:, source_url:, status:, supported_app_view_types:)
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::AppBuild} for more details.
       #
@@ -79,6 +86,8 @@ module WhopSDK
       #   @param platform [Symbol, WhopSDK::Models::AppBuildPlatforms] The target platform for this build.
       #
       #   @param review_message [String, nil] Feedback from the reviewer explaining why the build was rejected. Null if the bu
+      #
+      #   @param source_url [String, nil] A URL to download the compressed source code archive that produced this build. N
       #
       #   @param status [Symbol, WhopSDK::Models::AppBuildStatuses] The current review status of this build.
       #

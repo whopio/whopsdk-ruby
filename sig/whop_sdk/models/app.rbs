@@ -191,6 +191,7 @@ module WhopSDK
           id: String,
           checksum: String,
           file_url: String,
+          source_url: String?,
           status: WhopSDK::Models::app_build_statuses
         }
 
@@ -201,12 +202,15 @@ module WhopSDK
 
         attr_accessor file_url: String
 
+        attr_accessor source_url: String?
+
         attr_accessor status: WhopSDK::Models::app_build_statuses
 
         def initialize: (
           id: String,
           checksum: String,
           file_url: String,
+          source_url: String?,
           status: WhopSDK::Models::app_build_statuses
         ) -> void
 
@@ -214,6 +218,7 @@ module WhopSDK
           id: String,
           checksum: String,
           file_url: String,
+          source_url: String?,
           status: WhopSDK::Models::app_build_statuses
         }
       end

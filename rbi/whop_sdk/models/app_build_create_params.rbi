@@ -42,6 +42,21 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :app_id
 
+      # An optional compressed archive (.zip or .gz) of the source code that produced
+      # this build, stored alongside the build so it can be downloaded later.
+      sig do
+        returns(T.nilable(WhopSDK::AppBuildCreateParams::SourceAttachment))
+      end
+      attr_reader :source_attachment
+
+      sig do
+        params(
+          source_attachment:
+            T.nilable(WhopSDK::AppBuildCreateParams::SourceAttachment::OrHash)
+        ).void
+      end
+      attr_writer :source_attachment
+
       # The view types this build supports. A build can support multiple view types but
       # should only list the ones its code implements.
       sig { returns(T.nilable(T::Array[WhopSDK::AppViewType::OrSymbol])) }
@@ -54,6 +69,8 @@ module WhopSDK
           platform: WhopSDK::AppBuildPlatforms::OrSymbol,
           ai_prompt_id: T.nilable(String),
           app_id: T.nilable(String),
+          source_attachment:
+            T.nilable(WhopSDK::AppBuildCreateParams::SourceAttachment::OrHash),
           supported_app_view_types:
             T.nilable(T::Array[WhopSDK::AppViewType::OrSymbol]),
           request_options: WhopSDK::RequestOptions::OrHash
@@ -74,6 +91,9 @@ module WhopSDK
         # The unique identifier of the app to create the build for. Defaults to the app
         # associated with the current API key.
         app_id: nil,
+        # An optional compressed archive (.zip or .gz) of the source code that produced
+        # this build, stored alongside the build so it can be downloaded later.
+        source_attachment: nil,
         # The view types this build supports. A build can support multiple view types but
         # should only list the ones its code implements.
         supported_app_view_types: nil,
@@ -89,6 +109,8 @@ module WhopSDK
             platform: WhopSDK::AppBuildPlatforms::OrSymbol,
             ai_prompt_id: T.nilable(String),
             app_id: T.nilable(String),
+            source_attachment:
+              T.nilable(WhopSDK::AppBuildCreateParams::SourceAttachment),
             supported_app_view_types:
               T.nilable(T::Array[WhopSDK::AppViewType::OrSymbol]),
             request_options: WhopSDK::RequestOptions
@@ -114,6 +136,33 @@ module WhopSDK
         # The build file to upload. For iOS and Android, this should be a .zip archive
         # containing a main_js_bundle.hbc file and an optional assets folder. For web,
         # this should be a JavaScript file or a .zip archive of the hosted site.
+        sig { params(id: String).returns(T.attached_class) }
+        def self.new(
+          # The ID of an existing file object.
+          id:
+        )
+        end
+
+        sig { override.returns({ id: String }) }
+        def to_hash
+        end
+      end
+
+      class SourceAttachment < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              WhopSDK::AppBuildCreateParams::SourceAttachment,
+              WhopSDK::Internal::AnyHash
+            )
+          end
+
+        # The ID of an existing file object.
+        sig { returns(String) }
+        attr_accessor :id
+
+        # An optional compressed archive (.zip or .gz) of the source code that produced
+        # this build, stored alongside the build so it can be downloaded later.
         sig { params(id: String).returns(T.attached_class) }
         def self.new(
           # The ID of an existing file object.

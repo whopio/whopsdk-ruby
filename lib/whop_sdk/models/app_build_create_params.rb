@@ -41,6 +41,13 @@ module WhopSDK
       #   @return [String, nil]
       optional :app_id, String, nil?: true
 
+      # @!attribute source_attachment
+      #   An optional compressed archive (.zip or .gz) of the source code that produced
+      #   this build, stored alongside the build so it can be downloaded later.
+      #
+      #   @return [WhopSDK::Models::AppBuildCreateParams::SourceAttachment, nil]
+      optional :source_attachment, -> { WhopSDK::AppBuildCreateParams::SourceAttachment }, nil?: true
+
       # @!attribute supported_app_view_types
       #   The view types this build supports. A build can support multiple view types but
       #   should only list the ones its code implements.
@@ -50,7 +57,7 @@ module WhopSDK
                -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::AppViewType] },
                nil?: true
 
-      # @!method initialize(attachment:, checksum:, platform:, ai_prompt_id: nil, app_id: nil, supported_app_view_types: nil, request_options: {})
+      # @!method initialize(attachment:, checksum:, platform:, ai_prompt_id: nil, app_id: nil, source_attachment: nil, supported_app_view_types: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::AppBuildCreateParams} for more details.
       #
@@ -63,6 +70,8 @@ module WhopSDK
       #   @param ai_prompt_id [String, nil] The identifier of the AI prompt that generated this build, if applicable.
       #
       #   @param app_id [String, nil] The unique identifier of the app to create the build for. Defaults to the app as
+      #
+      #   @param source_attachment [WhopSDK::Models::AppBuildCreateParams::SourceAttachment, nil] An optional compressed archive (.zip or .gz) of the source code that produced th
       #
       #   @param supported_app_view_types [Array<Symbol, WhopSDK::Models::AppViewType>, nil] The view types this build supports. A build can support multiple view types but
       #
@@ -79,6 +88,20 @@ module WhopSDK
         #   The build file to upload. For iOS and Android, this should be a .zip archive
         #   containing a main_js_bundle.hbc file and an optional assets folder. For web,
         #   this should be a JavaScript file or a .zip archive of the hosted site.
+        #
+        #   @param id [String] The ID of an existing file object.
+      end
+
+      class SourceAttachment < WhopSDK::Internal::Type::BaseModel
+        # @!attribute id
+        #   The ID of an existing file object.
+        #
+        #   @return [String]
+        required :id, String
+
+        # @!method initialize(id:)
+        #   An optional compressed archive (.zip or .gz) of the source code that produced
+        #   this build, stored alongside the build so it can be downloaded later.
         #
         #   @param id [String] The ID of an existing file object.
       end

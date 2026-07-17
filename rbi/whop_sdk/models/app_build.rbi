@@ -36,6 +36,11 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :review_message
 
+      # A URL to download the compressed source code archive that produced this build.
+      # Null if the build was uploaded without a source archive.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :source_url
+
       # The current review status of this build.
       sig { returns(WhopSDK::AppBuildStatuses::TaggedSymbol) }
       attr_accessor :status
@@ -55,6 +60,7 @@ module WhopSDK
           is_production: T::Boolean,
           platform: WhopSDK::AppBuildPlatforms::OrSymbol,
           review_message: T.nilable(String),
+          source_url: T.nilable(String),
           status: WhopSDK::AppBuildStatuses::OrSymbol,
           supported_app_view_types: T::Array[WhopSDK::AppViewType::OrSymbol]
         ).returns(T.attached_class)
@@ -76,6 +82,9 @@ module WhopSDK
         # Feedback from the reviewer explaining why the build was rejected. Null if the
         # build has not been reviewed or was approved.
         review_message:,
+        # A URL to download the compressed source code archive that produced this build.
+        # Null if the build was uploaded without a source archive.
+        source_url:,
         # The current review status of this build.
         status:,
         # The list of view types this build supports, as declared by the developer.
@@ -93,6 +102,7 @@ module WhopSDK
             is_production: T::Boolean,
             platform: WhopSDK::AppBuildPlatforms::TaggedSymbol,
             review_message: T.nilable(String),
+            source_url: T.nilable(String),
             status: WhopSDK::AppBuildStatuses::TaggedSymbol,
             supported_app_view_types:
               T::Array[WhopSDK::AppViewType::TaggedSymbol]

@@ -21,6 +21,7 @@ class WhopSDK::Test::Resources::AppBuildsTest < WhopSDK::Test::ResourceTest
         is_production: WhopSDK::Internal::Type::Boolean,
         platform: WhopSDK::AppBuildPlatforms,
         review_message: String | nil,
+        source_url: String | nil,
         status: WhopSDK::AppBuildStatuses,
         supported_app_view_types: ^(WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::AppViewType])
       }
@@ -45,6 +46,7 @@ class WhopSDK::Test::Resources::AppBuildsTest < WhopSDK::Test::ResourceTest
         is_production: WhopSDK::Internal::Type::Boolean,
         platform: WhopSDK::AppBuildPlatforms,
         review_message: String | nil,
+        source_url: String | nil,
         status: WhopSDK::AppBuildStatuses,
         supported_app_view_types: ^(WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::AppViewType])
       }
@@ -76,6 +78,7 @@ class WhopSDK::Test::Resources::AppBuildsTest < WhopSDK::Test::ResourceTest
         is_production: WhopSDK::Internal::Type::Boolean,
         platform: WhopSDK::AppBuildPlatforms,
         review_message: String | nil,
+        source_url: String | nil,
         status: WhopSDK::AppBuildStatuses,
         supported_app_view_types: ^(WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::AppViewType])
       }
@@ -100,6 +103,7 @@ class WhopSDK::Test::Resources::AppBuildsTest < WhopSDK::Test::ResourceTest
         is_production: WhopSDK::Internal::Type::Boolean,
         platform: WhopSDK::AppBuildPlatforms,
         review_message: String | nil,
+        source_url: String | nil,
         status: WhopSDK::AppBuildStatuses,
         supported_app_view_types: ^(WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::AppViewType])
       }

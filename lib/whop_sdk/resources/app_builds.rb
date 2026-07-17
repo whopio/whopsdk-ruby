@@ -14,7 +14,7 @@ module WhopSDK
       #
       # - `developer:manage_builds`
       #
-      # @overload create(attachment:, checksum:, platform:, ai_prompt_id: nil, app_id: nil, supported_app_view_types: nil, request_options: {})
+      # @overload create(attachment:, checksum:, platform:, ai_prompt_id: nil, app_id: nil, source_attachment: nil, supported_app_view_types: nil, request_options: {})
       #
       # @param attachment [WhopSDK::Models::AppBuildCreateParams::Attachment] The build file to upload. For iOS and Android, this should be a .zip archive con
       #
@@ -25,6 +25,8 @@ module WhopSDK
       # @param ai_prompt_id [String, nil] The identifier of the AI prompt that generated this build, if applicable.
       #
       # @param app_id [String, nil] The unique identifier of the app to create the build for. Defaults to the app as
+      #
+      # @param source_attachment [WhopSDK::Models::AppBuildCreateParams::SourceAttachment, nil] An optional compressed archive (.zip or .gz) of the source code that produced th
       #
       # @param supported_app_view_types [Array<Symbol, WhopSDK::Models::AppViewType>, nil] The view types this build supports. A build can support multiple view types but
       #

@@ -7,6 +7,7 @@ module WhopSDK
         platform: WhopSDK::Models::app_build_platforms,
         ai_prompt_id: String?,
         app_id: String?,
+        source_attachment: WhopSDK::AppBuildCreateParams::SourceAttachment?,
         supported_app_view_types: ::Array[WhopSDK::Models::app_view_type]?
       }
       & WhopSDK::Internal::Type::request_parameters
@@ -25,6 +26,8 @@ module WhopSDK
 
       attr_accessor app_id: String?
 
+      attr_accessor source_attachment: WhopSDK::AppBuildCreateParams::SourceAttachment?
+
       attr_accessor supported_app_view_types: ::Array[WhopSDK::Models::app_view_type]?
 
       def initialize: (
@@ -33,6 +36,7 @@ module WhopSDK
         platform: WhopSDK::Models::app_build_platforms,
         ?ai_prompt_id: String?,
         ?app_id: String?,
+        ?source_attachment: WhopSDK::AppBuildCreateParams::SourceAttachment?,
         ?supported_app_view_types: ::Array[WhopSDK::Models::app_view_type]?,
         ?request_options: WhopSDK::request_opts
       ) -> void
@@ -43,6 +47,7 @@ module WhopSDK
         platform: WhopSDK::Models::app_build_platforms,
         ai_prompt_id: String?,
         app_id: String?,
+        source_attachment: WhopSDK::AppBuildCreateParams::SourceAttachment?,
         supported_app_view_types: ::Array[WhopSDK::Models::app_view_type]?,
         request_options: WhopSDK::RequestOptions
       }
@@ -50,6 +55,16 @@ module WhopSDK
       type attachment = { id: String }
 
       class Attachment < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        def initialize: (id: String) -> void
+
+        def to_hash: -> { id: String }
+      end
+
+      type source_attachment = { id: String }
+
+      class SourceAttachment < WhopSDK::Internal::Type::BaseModel
         attr_accessor id: String
 
         def initialize: (id: String) -> void

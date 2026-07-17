@@ -9,6 +9,7 @@ module WhopSDK
         is_production: bool,
         platform: WhopSDK::Models::app_build_platforms,
         review_message: String?,
+        source_url: String?,
         status: WhopSDK::Models::app_build_statuses,
         supported_app_view_types: ::Array[WhopSDK::Models::app_view_type]
       }
@@ -28,6 +29,8 @@ module WhopSDK
 
       attr_accessor review_message: String?
 
+      attr_accessor source_url: String?
+
       attr_accessor status: WhopSDK::Models::app_build_statuses
 
       attr_accessor supported_app_view_types: ::Array[WhopSDK::Models::app_view_type]
@@ -40,6 +43,7 @@ module WhopSDK
         is_production: bool,
         platform: WhopSDK::Models::app_build_platforms,
         review_message: String?,
+        source_url: String?,
         status: WhopSDK::Models::app_build_statuses,
         supported_app_view_types: ::Array[WhopSDK::Models::app_view_type]
       ) -> void
@@ -52,6 +56,7 @@ module WhopSDK
         is_production: bool,
         platform: WhopSDK::Models::app_build_platforms,
         review_message: String?,
+        source_url: String?,
         status: WhopSDK::Models::app_build_statuses,
         supported_app_view_types: ::Array[WhopSDK::Models::app_view_type]
       }

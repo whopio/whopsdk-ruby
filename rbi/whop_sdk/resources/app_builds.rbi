@@ -17,6 +17,8 @@ module WhopSDK
           platform: WhopSDK::AppBuildPlatforms::OrSymbol,
           ai_prompt_id: T.nilable(String),
           app_id: T.nilable(String),
+          source_attachment:
+            T.nilable(WhopSDK::AppBuildCreateParams::SourceAttachment::OrHash),
           supported_app_view_types:
             T.nilable(T::Array[WhopSDK::AppViewType::OrSymbol]),
           request_options: WhopSDK::RequestOptions::OrHash
@@ -37,6 +39,9 @@ module WhopSDK
         # The unique identifier of the app to create the build for. Defaults to the app
         # associated with the current API key.
         app_id: nil,
+        # An optional compressed archive (.zip or .gz) of the source code that produced
+        # this build, stored alongside the build so it can be downloaded later.
+        source_attachment: nil,
         # The view types this build supports. A build can support multiple view types but
         # should only list the ones its code implements.
         supported_app_view_types: nil,

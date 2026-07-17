@@ -13,7 +13,7 @@ module WhopSDK
       #
       # - `bounty:create`
       #
-      # @overload create(base_unit_amount:, currency:, description:, title:, accepted_submissions_limit: nil, allowed_country_codes: nil, business_goal_type: nil, experience_id: nil, origin_account_id: nil, post_markdown_content: nil, post_title: nil, scheduled_frequency: nil, scheduled_publish_at: nil, scheduled_timezone: nil, request_options: {})
+      # @overload create(base_unit_amount:, currency:, description:, title:, accepted_submissions_limit: nil, allowed_country_codes: nil, business_goal_type: nil, experience_id: nil, minimum_total_verified_clip_duration_seconds: nil, origin_account_id: nil, post_markdown_content: nil, post_title: nil, scheduled_frequency: nil, scheduled_publish_at: nil, scheduled_timezone: nil, request_options: {})
       #
       # @param base_unit_amount [Float] The amount paid to each approved submission. The total bounty pool funded is thi
       #
@@ -30,6 +30,8 @@ module WhopSDK
       # @param business_goal_type [Symbol, WhopSDK::Models::BountyCreateParams::BusinessGoalType, nil] What the poster is trying to accomplish with a workforce bounty. Used for produc
       #
       # @param experience_id [String, nil] An optional experience to scope the bounty to.
+      #
+      # @param minimum_total_verified_clip_duration_seconds [Integer, nil] Data capture bounties only: the minimum total server-verified clip duration in s
       #
       # @param origin_account_id [String, nil] The user (user*\*) or company (biz*\*) tag whose balance funds this bounty pool.
       # D

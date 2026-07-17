@@ -10,6 +10,7 @@ module WhopSDK
         allowed_country_codes: ::Array[String]?,
         business_goal_type: WhopSDK::Models::BountyCreateParams::business_goal_type?,
         experience_id: String?,
+        minimum_total_verified_clip_duration_seconds: Integer?,
         origin_account_id: String?,
         post_markdown_content: String?,
         post_title: String?,
@@ -39,6 +40,8 @@ module WhopSDK
 
       attr_accessor experience_id: String?
 
+      attr_accessor minimum_total_verified_clip_duration_seconds: Integer?
+
       attr_accessor origin_account_id: String?
 
       attr_accessor post_markdown_content: String?
@@ -60,6 +63,7 @@ module WhopSDK
         ?allowed_country_codes: ::Array[String]?,
         ?business_goal_type: WhopSDK::Models::BountyCreateParams::business_goal_type?,
         ?experience_id: String?,
+        ?minimum_total_verified_clip_duration_seconds: Integer?,
         ?origin_account_id: String?,
         ?post_markdown_content: String?,
         ?post_title: String?,
@@ -78,6 +82,7 @@ module WhopSDK
         allowed_country_codes: ::Array[String]?,
         business_goal_type: WhopSDK::Models::BountyCreateParams::business_goal_type?,
         experience_id: String?,
+        minimum_total_verified_clip_duration_seconds: Integer?,
         origin_account_id: String?,
         post_markdown_content: String?,
         post_title: String?,
@@ -93,6 +98,7 @@ module WhopSDK
         | :owned_account_growth
         | :ugc_content
         | :local_activation
+        | :data_capture
         | :other
 
       module BusinessGoalType
@@ -103,6 +109,7 @@ module WhopSDK
         OWNED_ACCOUNT_GROWTH: :owned_account_growth
         UGC_CONTENT: :ugc_content
         LOCAL_ACTIVATION: :local_activation
+        DATA_CAPTURE: :data_capture
         OTHER: :other
 
         def self?.values: -> ::Array[WhopSDK::Models::BountyCreateParams::business_goal_type]

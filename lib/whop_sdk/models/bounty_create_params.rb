@@ -61,6 +61,13 @@ module WhopSDK
       #   @return [String, nil]
       optional :experience_id, String, nil?: true
 
+      # @!attribute minimum_total_verified_clip_duration_seconds
+      #   Data capture bounties only: the minimum total server-verified clip duration in
+      #   seconds. Defaults to 3600 and must be a whole number of hours between 1 and 12.
+      #
+      #   @return [Integer, nil]
+      optional :minimum_total_verified_clip_duration_seconds, Integer, nil?: true
+
       # @!attribute origin_account_id
       #   The user (user*\*) or company (biz*\*) tag whose balance funds this bounty pool.
       #   Defaults to the requester's personal balance when omitted. The requester must be
@@ -103,7 +110,7 @@ module WhopSDK
       #   @return [String, nil]
       optional :scheduled_timezone, String, nil?: true
 
-      # @!method initialize(base_unit_amount:, currency:, description:, title:, accepted_submissions_limit: nil, allowed_country_codes: nil, business_goal_type: nil, experience_id: nil, origin_account_id: nil, post_markdown_content: nil, post_title: nil, scheduled_frequency: nil, scheduled_publish_at: nil, scheduled_timezone: nil, request_options: {})
+      # @!method initialize(base_unit_amount:, currency:, description:, title:, accepted_submissions_limit: nil, allowed_country_codes: nil, business_goal_type: nil, experience_id: nil, minimum_total_verified_clip_duration_seconds: nil, origin_account_id: nil, post_markdown_content: nil, post_title: nil, scheduled_frequency: nil, scheduled_publish_at: nil, scheduled_timezone: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::BountyCreateParams} for more details.
       #
@@ -122,6 +129,8 @@ module WhopSDK
       #   @param business_goal_type [Symbol, WhopSDK::Models::BountyCreateParams::BusinessGoalType, nil] What the poster is trying to accomplish with a workforce bounty. Used for produc
       #
       #   @param experience_id [String, nil] An optional experience to scope the bounty to.
+      #
+      #   @param minimum_total_verified_clip_duration_seconds [Integer, nil] Data capture bounties only: the minimum total server-verified clip duration in s
       #
       #   @param origin_account_id [String, nil] The user (user*\*) or company (biz*\*) tag whose balance funds this bounty pool.
       #   D
@@ -148,6 +157,7 @@ module WhopSDK
         OWNED_ACCOUNT_GROWTH = :owned_account_growth
         UGC_CONTENT = :ugc_content
         LOCAL_ACTIVATION = :local_activation
+        DATA_CAPTURE = :data_capture
         OTHER = :other
 
         # @!method self.values

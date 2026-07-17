@@ -20,6 +20,7 @@ module WhopSDK
           business_goal_type:
             T.nilable(WhopSDK::BountyCreateParams::BusinessGoalType::OrSymbol),
           experience_id: T.nilable(String),
+          minimum_total_verified_clip_duration_seconds: T.nilable(Integer),
           origin_account_id: T.nilable(String),
           post_markdown_content: T.nilable(String),
           post_title: T.nilable(String),
@@ -55,6 +56,9 @@ module WhopSDK
         business_goal_type: nil,
         # An optional experience to scope the bounty to.
         experience_id: nil,
+        # Data capture bounties only: the minimum total server-verified clip duration in
+        # seconds. Defaults to 3600 and must be a whole number of hours between 1 and 12.
+        minimum_total_verified_clip_duration_seconds: nil,
         # The user (user*\*) or company (biz*\*) tag whose balance funds this bounty pool.
         # Defaults to the requester's personal balance when omitted. The requester must be
         # the user themself or an owner/admin of the company.

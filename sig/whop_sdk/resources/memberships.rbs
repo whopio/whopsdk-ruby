@@ -45,6 +45,7 @@ module WhopSDK
 
       def pause: (
         String id,
+        ?resumes_at: Time?,
         ?void_payments: bool?,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Membership

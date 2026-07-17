@@ -200,9 +200,11 @@ module WhopSDK
       # - `member:email:read`
       # - `member:basic:read`
       #
-      # @overload pause(id, void_payments: nil, request_options: {})
+      # @overload pause(id, resumes_at: nil, void_payments: nil, request_options: {})
       #
       # @param id [String] The unique identifier of the membership to pause.
+      #
+      # @param resumes_at [Time, nil] When the membership should automatically resume payment collection. If not provi
       #
       # @param void_payments [Boolean, nil] Whether to void any outstanding past-due payments on this membership, preventing
       #

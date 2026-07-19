@@ -26,6 +26,7 @@ module WhopSDK
       COINFLOW = T.let(:coinflow, WhopSDK::PaymentProvider::TaggedSymbol)
       SEQURA = T.let(:sequra, WhopSDK::PaymentProvider::TaggedSymbol)
       DLOCAL = T.let(:dlocal, WhopSDK::PaymentProvider::TaggedSymbol)
+      MASSPAY = T.let(:masspay, WhopSDK::PaymentProvider::TaggedSymbol)
 
       sig { override.returns(T::Array[WhopSDK::PaymentProvider::TaggedSymbol]) }
       def self.values

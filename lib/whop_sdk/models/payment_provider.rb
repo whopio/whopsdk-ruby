@@ -21,6 +21,7 @@ module WhopSDK
       COINFLOW = :coinflow
       SEQURA = :sequra
       DLOCAL = :dlocal
+      MASSPAY = :masspay
 
       # @!method self.values
       #   @return [Array<Symbol>]

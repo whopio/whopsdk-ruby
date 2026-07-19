@@ -19,6 +19,7 @@ module WhopSDK
       BACS_DEBIT = :bacs_debit
       BANCOLOMBIA = :bancolombia
       BANCONTACT = :bancontact
+      BANK_WIRE = :bank_wire
       BILLIE = :billie
       BIZUM = :bizum
       BLIK = :blik

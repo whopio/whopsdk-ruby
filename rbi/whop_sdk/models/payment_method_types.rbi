@@ -26,6 +26,7 @@ module WhopSDK
       BANCOLOMBIA =
         T.let(:bancolombia, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       BANCONTACT = T.let(:bancontact, WhopSDK::PaymentMethodTypes::TaggedSymbol)
+      BANK_WIRE = T.let(:bank_wire, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       BILLIE = T.let(:billie, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       BIZUM = T.let(:bizum, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       BLIK = T.let(:blik, WhopSDK::PaymentMethodTypes::TaggedSymbol)

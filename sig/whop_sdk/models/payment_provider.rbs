@@ -16,6 +16,7 @@ module WhopSDK
       | :coinflow
       | :sequra
       | :dlocal
+      | :masspay
 
     module PaymentProvider
       extend WhopSDK::Internal::Type::Enum
@@ -35,6 +36,7 @@ module WhopSDK
       COINFLOW: :coinflow
       SEQURA: :sequra
       DLOCAL: :dlocal
+      MASSPAY: :masspay
 
       def self?.values: -> ::Array[WhopSDK::Models::payment_provider]
     end

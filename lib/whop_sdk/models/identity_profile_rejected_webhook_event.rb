@@ -136,6 +136,23 @@ module WhopSDK
         required :linked_companies,
                  -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::IdentityProfileRejectedWebhookEvent::Data::LinkedCompany] }
 
+        # @!attribute payout_status
+        #   Progress of payout-account setup for this profile, independent of holds.
+        #   `connected` means onboarding is complete; a `connected` status paired with
+        #   `payouts_enabled: false` indicates an active account restriction rather than
+        #   incomplete setup.
+        #
+        #   @return [Symbol, WhopSDK::Models::PayoutAccountCalculatedStatuses]
+        required :payout_status, enum: -> { WhopSDK::PayoutAccountCalculatedStatuses }
+
+        # @!attribute payouts_enabled
+        #   Whether this profile can receive payouts right now. True only when payout
+        #   onboarding is complete and no payout holds are active on the linked account.
+        #   Treat this as the single source of truth for payout readiness.
+        #
+        #   @return [Boolean]
+        required :payouts_enabled, WhopSDK::Internal::Type::Boolean
+
         # @!attribute personal_address
         #   Residential address reported by the identity provider. Present on `individual`
         #   profiles.
@@ -178,7 +195,7 @@ module WhopSDK
         required :verifications,
                  -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::IdentityProfileRejectedWebhookEvent::Data::Verification] }
 
-        # @!method initialize(id:, business_address:, business_name:, business_structure:, country:, created_at:, date_of_birth:, email:, first_name:, last_name:, linked_companies:, personal_address:, phone:, profile_type:, status:, updated_at:, verifications:)
+        # @!method initialize(id:, business_address:, business_name:, business_structure:, country:, created_at:, date_of_birth:, email:, first_name:, last_name:, linked_companies:, payout_status:, payouts_enabled:, personal_address:, phone:, profile_type:, status:, updated_at:, verifications:)
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::IdentityProfileRejectedWebhookEvent::Data} for more details.
         #
@@ -206,6 +223,10 @@ module WhopSDK
         #   @param last_name [String, nil] Individual's last name.
         #
         #   @param linked_companies [Array<WhopSDK::Models::IdentityProfileRejectedWebhookEvent::Data::LinkedCompany>] The companies this identity profile is currently linked to. Only populated for d
+        #
+        #   @param payout_status [Symbol, WhopSDK::Models::PayoutAccountCalculatedStatuses] Progress of payout-account setup for this profile, independent of holds. `connec
+        #
+        #   @param payouts_enabled [Boolean] Whether this profile can receive payouts right now. True only when payout onboar
         #
         #   @param personal_address [WhopSDK::Models::IdentityProfileRejectedWebhookEvent::Data::PersonalAddress, nil] Residential address reported by the identity provider. Present on `individual` p
         #

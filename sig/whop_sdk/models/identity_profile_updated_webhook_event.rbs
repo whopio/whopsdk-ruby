@@ -54,6 +54,8 @@ module WhopSDK
           first_name: String?,
           last_name: String?,
           linked_companies: ::Array[WhopSDK::IdentityProfileUpdatedWebhookEvent::Data::LinkedCompany],
+          payout_status: WhopSDK::Models::payout_account_calculated_statuses,
+          payouts_enabled: bool,
           personal_address: WhopSDK::IdentityProfileUpdatedWebhookEvent::Data::PersonalAddress?,
           phone: String?,
           profile_type: String,
@@ -85,6 +87,10 @@ module WhopSDK
 
         attr_accessor linked_companies: ::Array[WhopSDK::IdentityProfileUpdatedWebhookEvent::Data::LinkedCompany]
 
+        attr_accessor payout_status: WhopSDK::Models::payout_account_calculated_statuses
+
+        attr_accessor payouts_enabled: bool
+
         attr_accessor personal_address: WhopSDK::IdentityProfileUpdatedWebhookEvent::Data::PersonalAddress?
 
         attr_accessor phone: String?
@@ -109,6 +115,8 @@ module WhopSDK
           first_name: String?,
           last_name: String?,
           linked_companies: ::Array[WhopSDK::IdentityProfileUpdatedWebhookEvent::Data::LinkedCompany],
+          payout_status: WhopSDK::Models::payout_account_calculated_statuses,
+          payouts_enabled: bool,
           personal_address: WhopSDK::IdentityProfileUpdatedWebhookEvent::Data::PersonalAddress?,
           phone: String?,
           profile_type: String,
@@ -129,6 +137,8 @@ module WhopSDK
           first_name: String?,
           last_name: String?,
           linked_companies: ::Array[WhopSDK::IdentityProfileUpdatedWebhookEvent::Data::LinkedCompany],
+          payout_status: WhopSDK::Models::payout_account_calculated_statuses,
+          payouts_enabled: bool,
           personal_address: WhopSDK::IdentityProfileUpdatedWebhookEvent::Data::PersonalAddress?,
           phone: String?,
           profile_type: String,

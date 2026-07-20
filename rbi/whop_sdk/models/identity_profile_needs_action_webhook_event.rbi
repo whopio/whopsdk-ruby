@@ -169,6 +169,19 @@ module WhopSDK
         end
         attr_accessor :linked_companies
 
+        # Progress of payout-account setup for this profile, independent of holds.
+        # `connected` means onboarding is complete; a `connected` status paired with
+        # `payouts_enabled: false` indicates an active account restriction rather than
+        # incomplete setup.
+        sig { returns(WhopSDK::PayoutAccountCalculatedStatuses::TaggedSymbol) }
+        attr_accessor :payout_status
+
+        # Whether this profile can receive payouts right now. True only when payout
+        # onboarding is complete and no payout holds are active on the linked account.
+        # Treat this as the single source of truth for payout readiness.
+        sig { returns(T::Boolean) }
+        attr_accessor :payouts_enabled
+
         # Residential address reported by the identity provider. Present on `individual`
         # profiles.
         sig do
@@ -243,6 +256,8 @@ module WhopSDK
               T::Array[
                 WhopSDK::IdentityProfileNeedsActionWebhookEvent::Data::LinkedCompany::OrHash
               ],
+            payout_status: WhopSDK::PayoutAccountCalculatedStatuses::OrSymbol,
+            payouts_enabled: T::Boolean,
             personal_address:
               T.nilable(
                 WhopSDK::IdentityProfileNeedsActionWebhookEvent::Data::PersonalAddress::OrHash
@@ -290,6 +305,15 @@ module WhopSDK
           # OAuth scope (a single identity can be linked to companies the calling platform
           # is not entitled to see).
           linked_companies:,
+          # Progress of payout-account setup for this profile, independent of holds.
+          # `connected` means onboarding is complete; a `connected` status paired with
+          # `payouts_enabled: false` indicates an active account restriction rather than
+          # incomplete setup.
+          payout_status:,
+          # Whether this profile can receive payouts right now. True only when payout
+          # onboarding is complete and no payout holds are active on the linked account.
+          # Treat this as the single source of truth for payout readiness.
+          payouts_enabled:,
           # Residential address reported by the identity provider. Present on `individual`
           # profiles.
           personal_address:,
@@ -328,6 +352,9 @@ module WhopSDK
                 T::Array[
                   WhopSDK::IdentityProfileNeedsActionWebhookEvent::Data::LinkedCompany
                 ],
+              payout_status:
+                WhopSDK::PayoutAccountCalculatedStatuses::TaggedSymbol,
+              payouts_enabled: T::Boolean,
               personal_address:
                 T.nilable(
                   WhopSDK::IdentityProfileNeedsActionWebhookEvent::Data::PersonalAddress

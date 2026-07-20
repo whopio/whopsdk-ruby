@@ -221,8 +221,10 @@ module WhopSDK
       attr_accessor :refunded_at
 
       # True when the payment status is `open` and its membership is in one of the
-      # retry-eligible states (`active`, `trialing`, `completed`, or `past_due`);
-      # otherwise false. Used to decide if Whop can attempt the charge again.
+      # retry-eligible states (`active`, `trialing`, `completed`, or `past_due`), or
+      # when it is a failed initial billing-engine payment on a `drafted` membership
+      # with an unlimited-stock plan; otherwise false. Used to decide if Whop can
+      # attempt the charge again.
       sig { returns(T::Boolean) }
       attr_accessor :retryable
 
@@ -429,8 +431,10 @@ module WhopSDK
         # When the payment was refunded (if applicable).
         refunded_at:,
         # True when the payment status is `open` and its membership is in one of the
-        # retry-eligible states (`active`, `trialing`, `completed`, or `past_due`);
-        # otherwise false. Used to decide if Whop can attempt the charge again.
+        # retry-eligible states (`active`, `trialing`, `completed`, or `past_due`), or
+        # when it is a failed initial billing-engine payment on a `drafted` membership
+        # with an unlimited-stock plan; otherwise false. Used to decide if Whop can
+        # attempt the charge again.
         retryable:,
         # The three-letter ISO currency code for this payment (e.g., 'usd', 'eur').
         settlement_currency:,

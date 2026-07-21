@@ -49,6 +49,13 @@ module WhopSDK
       #   @return [Float]
       required :markup_fee, Float
 
+      # @!attribute payout_request_id
+      #   The id of the payout request (returned by POST /payouts) that this withdrawal
+      #   settles. Null unless the withdrawal originated from a stablecoin payout.
+      #
+      #   @return [String, nil]
+      required :payout_request_id, String, nil?: true
+
       # @!attribute speed
       #   The processing speed selected for this withdrawal ('standard' or 'instant').
       #
@@ -62,7 +69,7 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::WithdrawalStatus]
       required :status, enum: -> { WhopSDK::WithdrawalStatus }
 
-      # @!method initialize(id:, amount:, created_at:, currency:, fee_amount:, fee_type:, markup_fee:, speed:, status:)
+      # @!method initialize(id:, amount:, created_at:, currency:, fee_amount:, fee_type:, markup_fee:, payout_request_id:, speed:, status:)
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::WithdrawalListResponse} for more details.
       #
@@ -82,6 +89,8 @@ module WhopSDK
       #   @param fee_type [Symbol, WhopSDK::Models::WithdrawalFeeTypes, nil] The different fee types for a withdrawal.
       #
       #   @param markup_fee [Float] An additional markup fee charged for the withdrawal, in the same currency as the
+      #
+      #   @param payout_request_id [String, nil] The id of the payout request (returned by POST /payouts) that this withdrawal se
       #
       #   @param speed [Symbol, WhopSDK::Models::WithdrawalSpeeds] The processing speed selected for this withdrawal ('standard' or 'instant').
       #

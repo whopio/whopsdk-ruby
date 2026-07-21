@@ -60,6 +60,11 @@ module WhopSDK
       sig { returns(Float) }
       attr_accessor :markup_fee
 
+      # The id of the payout request (returned by POST /payouts) that this withdrawal
+      # settles. Null unless the withdrawal originated from a stablecoin payout.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :payout_request_id
+
       # The saved payout destination used for this withdrawal (e.g., a bank account or
       # PayPal address). Null if no payout token was used.
       sig { returns(T.nilable(WhopSDK::Withdrawal::PayoutToken)) }
@@ -101,6 +106,7 @@ module WhopSDK
           fee_type: T.nilable(WhopSDK::WithdrawalFeeTypes::OrSymbol),
           ledger_account: WhopSDK::Withdrawal::LedgerAccount::OrHash,
           markup_fee: Float,
+          payout_request_id: T.nilable(String),
           payout_token: T.nilable(WhopSDK::Withdrawal::PayoutToken::OrHash),
           speed: WhopSDK::WithdrawalSpeeds::OrSymbol,
           status: WhopSDK::WithdrawalStatus::OrSymbol,
@@ -135,6 +141,9 @@ module WhopSDK
         # An additional markup fee charged for the withdrawal, in the same currency as the
         # withdrawal amount. Only applies to platform accounts using Whop Rails.
         markup_fee:,
+        # The id of the payout request (returned by POST /payouts) that this withdrawal
+        # settles. Null unless the withdrawal originated from a stablecoin payout.
+        payout_request_id:,
         # The saved payout destination used for this withdrawal (e.g., a bank account or
         # PayPal address). Null if no payout token was used.
         payout_token:,
@@ -163,6 +172,7 @@ module WhopSDK
             fee_type: T.nilable(WhopSDK::WithdrawalFeeTypes::TaggedSymbol),
             ledger_account: WhopSDK::Withdrawal::LedgerAccount,
             markup_fee: Float,
+            payout_request_id: T.nilable(String),
             payout_token: T.nilable(WhopSDK::Withdrawal::PayoutToken),
             speed: WhopSDK::WithdrawalSpeeds::TaggedSymbol,
             status: WhopSDK::WithdrawalStatus::TaggedSymbol,

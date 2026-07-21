@@ -9,6 +9,7 @@ module WhopSDK
         fee_amount: Float,
         fee_type: WhopSDK::Models::withdrawal_fee_types?,
         markup_fee: Float,
+        payout_request_id: String?,
         speed: WhopSDK::Models::withdrawal_speeds,
         status: WhopSDK::Models::withdrawal_status
       }
@@ -28,6 +29,8 @@ module WhopSDK
 
       attr_accessor markup_fee: Float
 
+      attr_accessor payout_request_id: String?
+
       attr_accessor speed: WhopSDK::Models::withdrawal_speeds
 
       attr_accessor status: WhopSDK::Models::withdrawal_status
@@ -40,6 +43,7 @@ module WhopSDK
         fee_amount: Float,
         fee_type: WhopSDK::Models::withdrawal_fee_types?,
         markup_fee: Float,
+        payout_request_id: String?,
         speed: WhopSDK::Models::withdrawal_speeds,
         status: WhopSDK::Models::withdrawal_status
       ) -> void
@@ -52,6 +56,7 @@ module WhopSDK
         fee_amount: Float,
         fee_type: WhopSDK::Models::withdrawal_fee_types?,
         markup_fee: Float,
+        payout_request_id: String?,
         speed: WhopSDK::Models::withdrawal_speeds,
         status: WhopSDK::Models::withdrawal_status
       }

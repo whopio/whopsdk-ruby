@@ -25,6 +25,7 @@ class WhopSDK::Test::Resources::WithdrawalsTest < WhopSDK::Test::ResourceTest
         fee_type: WhopSDK::WithdrawalFeeTypes | nil,
         ledger_account: WhopSDK::Withdrawal::LedgerAccount,
         markup_fee: Float,
+        payout_request_id: String | nil,
         payout_token: WhopSDK::Withdrawal::PayoutToken | nil,
         speed: WhopSDK::WithdrawalSpeeds,
         status: WhopSDK::WithdrawalStatus,
@@ -55,6 +56,7 @@ class WhopSDK::Test::Resources::WithdrawalsTest < WhopSDK::Test::ResourceTest
         fee_type: WhopSDK::WithdrawalFeeTypes | nil,
         ledger_account: WhopSDK::Withdrawal::LedgerAccount,
         markup_fee: Float,
+        payout_request_id: String | nil,
         payout_token: WhopSDK::Withdrawal::PayoutToken | nil,
         speed: WhopSDK::WithdrawalSpeeds,
         status: WhopSDK::WithdrawalStatus,
@@ -88,6 +90,7 @@ class WhopSDK::Test::Resources::WithdrawalsTest < WhopSDK::Test::ResourceTest
         fee_amount: Float,
         fee_type: WhopSDK::WithdrawalFeeTypes | nil,
         markup_fee: Float,
+        payout_request_id: String | nil,
         speed: WhopSDK::WithdrawalSpeeds,
         status: WhopSDK::WithdrawalStatus
       }

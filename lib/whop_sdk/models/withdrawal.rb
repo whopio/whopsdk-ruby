@@ -75,6 +75,13 @@ module WhopSDK
       #   @return [Float]
       required :markup_fee, Float
 
+      # @!attribute payout_request_id
+      #   The id of the payout request (returned by POST /payouts) that this withdrawal
+      #   settles. Null unless the withdrawal originated from a stablecoin payout.
+      #
+      #   @return [String, nil]
+      required :payout_request_id, String, nil?: true
+
       # @!attribute payout_token
       #   The saved payout destination used for this withdrawal (e.g., a bank account or
       #   PayPal address). Null if no payout token was used.
@@ -102,7 +109,7 @@ module WhopSDK
       #   @return [String, nil]
       required :trace_code, String, nil?: true
 
-      # @!method initialize(id:, amount:, created_at:, currency:, error_code:, error_message:, estimated_availability:, fee_amount:, fee_type:, ledger_account:, markup_fee:, payout_token:, speed:, status:, trace_code:)
+      # @!method initialize(id:, amount:, created_at:, currency:, error_code:, error_message:, estimated_availability:, fee_amount:, fee_type:, ledger_account:, markup_fee:, payout_request_id:, payout_token:, speed:, status:, trace_code:)
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::Withdrawal} for more details.
       #
@@ -130,6 +137,8 @@ module WhopSDK
       #   @param ledger_account [WhopSDK::Models::Withdrawal::LedgerAccount] The ledger account from which the withdrawal funds are sourced.
       #
       #   @param markup_fee [Float] An additional markup fee charged for the withdrawal, in the same currency as the
+      #
+      #   @param payout_request_id [String, nil] The id of the payout request (returned by POST /payouts) that this withdrawal se
       #
       #   @param payout_token [WhopSDK::Models::Withdrawal::PayoutToken, nil] The saved payout destination used for this withdrawal (e.g., a bank account or P
       #

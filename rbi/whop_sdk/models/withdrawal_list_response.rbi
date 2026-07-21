@@ -42,6 +42,11 @@ module WhopSDK
       sig { returns(Float) }
       attr_accessor :markup_fee
 
+      # The id of the payout request (returned by POST /payouts) that this withdrawal
+      # settles. Null unless the withdrawal originated from a stablecoin payout.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :payout_request_id
+
       # The processing speed selected for this withdrawal ('standard' or 'instant').
       sig { returns(WhopSDK::WithdrawalSpeeds::TaggedSymbol) }
       attr_accessor :speed
@@ -62,6 +67,7 @@ module WhopSDK
           fee_amount: Float,
           fee_type: T.nilable(WhopSDK::WithdrawalFeeTypes::OrSymbol),
           markup_fee: Float,
+          payout_request_id: T.nilable(String),
           speed: WhopSDK::WithdrawalSpeeds::OrSymbol,
           status: WhopSDK::WithdrawalStatus::OrSymbol
         ).returns(T.attached_class)
@@ -84,6 +90,9 @@ module WhopSDK
         # An additional markup fee charged for the withdrawal, in the same currency as the
         # withdrawal amount. Only applies to platform accounts using Whop Rails.
         markup_fee:,
+        # The id of the payout request (returned by POST /payouts) that this withdrawal
+        # settles. Null unless the withdrawal originated from a stablecoin payout.
+        payout_request_id:,
         # The processing speed selected for this withdrawal ('standard' or 'instant').
         speed:,
         # The computed lifecycle status of the withdrawal, accounting for the state of
@@ -102,6 +111,7 @@ module WhopSDK
             fee_amount: Float,
             fee_type: T.nilable(WhopSDK::WithdrawalFeeTypes::TaggedSymbol),
             markup_fee: Float,
+            payout_request_id: T.nilable(String),
             speed: WhopSDK::WithdrawalSpeeds::TaggedSymbol,
             status: WhopSDK::WithdrawalStatus::TaggedSymbol
           }

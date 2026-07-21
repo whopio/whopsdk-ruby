@@ -243,7 +243,8 @@ module WhopSDK
           }
         end
 
-        type status = :not_started | :pending | :approved | :rejected
+        type status =
+          :not_started | :pending | :approved | :rejected | :action_required
 
         module Status
           extend WhopSDK::Internal::Type::Enum
@@ -252,6 +253,7 @@ module WhopSDK
           PENDING: :pending
           APPROVED: :approved
           REJECTED: :rejected
+          ACTION_REQUIRED: :action_required
 
           def self?.values: -> ::Array[WhopSDK::Models::IdentityProfileUpdatedWebhookEvent::Data::status]
         end

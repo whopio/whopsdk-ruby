@@ -212,7 +212,10 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :profile_type
 
-        # Derived verification status across all linked verifications.
+        # Derived verification status across all linked verifications. Returns
+        # `action_required` whenever the profile has an open request for information
+        # (whether a verification, payout, or audit RFI) — i.e. the merchant must submit
+        # something before it is in good standing.
         sig do
           returns(
             WhopSDK::IdentityProfileRejectedWebhookEvent::Data::Status::TaggedSymbol
@@ -322,7 +325,10 @@ module WhopSDK
           phone:,
           # Whether this is an 'individual' or 'business' profile.
           profile_type:,
-          # Derived verification status across all linked verifications.
+          # Derived verification status across all linked verifications. Returns
+          # `action_required` whenever the profile has an open request for information
+          # (whether a verification, payout, or audit RFI) — i.e. the merchant must submit
+          # something before it is in good standing.
           status:,
           # When the identity profile was last synced from a verification.
           updated_at:,
@@ -561,7 +567,10 @@ module WhopSDK
           end
         end
 
-        # Derived verification status across all linked verifications.
+        # Derived verification status across all linked verifications. Returns
+        # `action_required` whenever the profile has an open request for information
+        # (whether a verification, payout, or audit RFI) — i.e. the merchant must submit
+        # something before it is in good standing.
         module Status
           extend WhopSDK::Internal::Type::Enum
 
@@ -592,6 +601,11 @@ module WhopSDK
           REJECTED =
             T.let(
               :rejected,
+              WhopSDK::IdentityProfileRejectedWebhookEvent::Data::Status::TaggedSymbol
+            )
+          ACTION_REQUIRED =
+            T.let(
+              :action_required,
               WhopSDK::IdentityProfileRejectedWebhookEvent::Data::Status::TaggedSymbol
             )
 

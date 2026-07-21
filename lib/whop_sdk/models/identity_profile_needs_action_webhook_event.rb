@@ -176,7 +176,10 @@ module WhopSDK
         required :profile_type, String
 
         # @!attribute status
-        #   Derived verification status across all linked verifications.
+        #   Derived verification status across all linked verifications. Returns
+        #   `action_required` whenever the profile has an open request for information
+        #   (whether a verification, payout, or audit RFI) — i.e. the merchant must submit
+        #   something before it is in good standing.
         #
         #   @return [Symbol, WhopSDK::Models::IdentityProfileNeedsActionWebhookEvent::Data::Status]
         required :status, enum: -> { WhopSDK::IdentityProfileNeedsActionWebhookEvent::Data::Status }
@@ -235,7 +238,7 @@ module WhopSDK
         #
         #   @param profile_type [String] Whether this is an 'individual' or 'business' profile.
         #
-        #   @param status [Symbol, WhopSDK::Models::IdentityProfileNeedsActionWebhookEvent::Data::Status] Derived verification status across all linked verifications.
+        #   @param status [Symbol, WhopSDK::Models::IdentityProfileNeedsActionWebhookEvent::Data::Status] Derived verification status across all linked verifications. Returns `action_req
         #
         #   @param updated_at [Time] When the identity profile was last synced from a verification.
         #
@@ -373,7 +376,10 @@ module WhopSDK
           #   @param state [String, nil] The state of the address.
         end
 
-        # Derived verification status across all linked verifications.
+        # Derived verification status across all linked verifications. Returns
+        # `action_required` whenever the profile has an open request for information
+        # (whether a verification, payout, or audit RFI) — i.e. the merchant must submit
+        # something before it is in good standing.
         #
         # @see WhopSDK::Models::IdentityProfileNeedsActionWebhookEvent::Data#status
         module Status
@@ -383,6 +389,7 @@ module WhopSDK
           PENDING = :pending
           APPROVED = :approved
           REJECTED = :rejected
+          ACTION_REQUIRED = :action_required
 
           # @!method self.values
           #   @return [Array<Symbol>]

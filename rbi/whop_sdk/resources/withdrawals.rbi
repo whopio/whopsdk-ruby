@@ -15,6 +15,7 @@ module WhopSDK
           amount: Float,
           company_id: String,
           currency: WhopSDK::Currency::OrSymbol,
+          idempotency_key: T.nilable(String),
           payout_method_id: T.nilable(String),
           platform_covers_fees: T.nilable(T::Boolean),
           statement_descriptor: T.nilable(String),
@@ -28,6 +29,9 @@ module WhopSDK
         company_id:,
         # The currency that is being withdrawn.
         currency:,
+        # A client-generated key that makes retries safe. Retrying with the same key
+        # returns the original withdrawal instead of creating a second one.
+        idempotency_key: nil,
         # The ID of the payout method to use for the withdrawal.
         payout_method_id: nil,
         # Whether the platform covers the payout fees.

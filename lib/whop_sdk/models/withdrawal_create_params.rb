@@ -25,6 +25,13 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::Currency]
       required :currency, enum: -> { WhopSDK::Currency }
 
+      # @!attribute idempotency_key
+      #   A client-generated key that makes retries safe. Retrying with the same key
+      #   returns the original withdrawal instead of creating a second one.
+      #
+      #   @return [String, nil]
+      optional :idempotency_key, String, nil?: true
+
       # @!attribute payout_method_id
       #   The ID of the payout method to use for the withdrawal.
       #
@@ -44,7 +51,7 @@ module WhopSDK
       #   @return [String, nil]
       optional :statement_descriptor, String, nil?: true
 
-      # @!method initialize(amount:, company_id:, currency:, payout_method_id: nil, platform_covers_fees: nil, statement_descriptor: nil, request_options: {})
+      # @!method initialize(amount:, company_id:, currency:, idempotency_key: nil, payout_method_id: nil, platform_covers_fees: nil, statement_descriptor: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::WithdrawalCreateParams} for more details.
       #
@@ -53,6 +60,8 @@ module WhopSDK
       #   @param company_id [String] The ID of the company to withdraw from.
       #
       #   @param currency [Symbol, WhopSDK::Models::Currency] The currency that is being withdrawn.
+      #
+      #   @param idempotency_key [String, nil] A client-generated key that makes retries safe. Retrying with the same key retur
       #
       #   @param payout_method_id [String, nil] The ID of the payout method to use for the withdrawal.
       #

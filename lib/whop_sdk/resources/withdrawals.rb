@@ -14,13 +14,15 @@ module WhopSDK
       # - `payout:withdraw_funds`
       # - `payout:destination:read`
       #
-      # @overload create(amount:, company_id:, currency:, payout_method_id: nil, platform_covers_fees: nil, statement_descriptor: nil, request_options: {})
+      # @overload create(amount:, company_id:, currency:, idempotency_key: nil, payout_method_id: nil, platform_covers_fees: nil, statement_descriptor: nil, request_options: {})
       #
       # @param amount [Float] The amount to withdraw in the specified currency
       #
       # @param company_id [String] The ID of the company to withdraw from.
       #
       # @param currency [Symbol, WhopSDK::Models::Currency] The currency that is being withdrawn.
+      #
+      # @param idempotency_key [String, nil] A client-generated key that makes retries safe. Retrying with the same key retur
       #
       # @param payout_method_id [String, nil] The ID of the payout method to use for the withdrawal.
       #

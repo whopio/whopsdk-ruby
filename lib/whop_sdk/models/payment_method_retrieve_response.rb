@@ -158,7 +158,14 @@ module WhopSDK
           #   @return [String, nil]
           required :last4, String, nil?: true
 
-          # @!method initialize(brand:, exp_month:, exp_year:, last4:)
+          # @!attribute three_ds_verified
+          #   Whether this card was verified with 3D Secure, either when it was saved or on a
+          #   payment that used it.
+          #
+          #   @return [Boolean]
+          required :three_ds_verified, WhopSDK::Internal::Type::Boolean
+
+          # @!method initialize(brand:, exp_month:, exp_year:, last4:, three_ds_verified:)
           #   Some parameter documentations has been truncated, see
           #   {WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Card} for
           #   more details.
@@ -173,6 +180,8 @@ module WhopSDK
           #   @param exp_year [Integer, nil] The two-digit expiration year of the card (e.g., 27 for 2027). Null if not avail
           #
           #   @param last4 [String, nil] The last four digits of the card number. Null if not available.
+          #
+          #   @param three_ds_verified [Boolean] Whether this card was verified with 3D Secure, either when it was saved or on a
         end
       end
 

@@ -84,7 +84,8 @@ module WhopSDK
             brand: WhopSDK::Models::card_brands?,
             exp_month: Integer?,
             exp_year: Integer?,
-            :last4 => String?
+            :last4 => String?,
+            three_ds_verified: bool
           }
 
         class Card < WhopSDK::Internal::Type::BaseModel
@@ -96,18 +97,22 @@ module WhopSDK
 
           attr_accessor last4: String?
 
+          attr_accessor three_ds_verified: bool
+
           def initialize: (
             brand: WhopSDK::Models::card_brands?,
             exp_month: Integer?,
             exp_year: Integer?,
-            last4: String?
+            last4: String?,
+            three_ds_verified: bool
           ) -> void
 
           def to_hash: -> {
             brand: WhopSDK::Models::card_brands?,
             exp_month: Integer?,
             exp_year: Integer?,
-            :last4 => String?
+            :last4 => String?,
+            three_ds_verified: bool
           }
         end
       end

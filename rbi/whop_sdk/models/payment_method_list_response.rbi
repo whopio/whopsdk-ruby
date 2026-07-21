@@ -208,6 +208,11 @@ module WhopSDK
           sig { returns(T.nilable(String)) }
           attr_accessor :last4
 
+          # Whether this card was verified with 3D Secure, either when it was saved or on a
+          # payment that used it.
+          sig { returns(T::Boolean) }
+          attr_accessor :three_ds_verified
+
           # The card-specific details for this payment method, including brand, last four
           # digits, and expiration.
           sig do
@@ -215,7 +220,8 @@ module WhopSDK
               brand: T.nilable(WhopSDK::CardBrands::OrSymbol),
               exp_month: T.nilable(Integer),
               exp_year: T.nilable(Integer),
-              last4: T.nilable(String)
+              last4: T.nilable(String),
+              three_ds_verified: T::Boolean
             ).returns(T.attached_class)
           end
           def self.new(
@@ -227,7 +233,10 @@ module WhopSDK
             # available.
             exp_year:,
             # The last four digits of the card number. Null if not available.
-            last4:
+            last4:,
+            # Whether this card was verified with 3D Secure, either when it was saved or on a
+            # payment that used it.
+            three_ds_verified:
           )
           end
 
@@ -237,7 +246,8 @@ module WhopSDK
                 brand: T.nilable(WhopSDK::CardBrands::TaggedSymbol),
                 exp_month: T.nilable(Integer),
                 exp_year: T.nilable(Integer),
-                last4: T.nilable(String)
+                last4: T.nilable(String),
+                three_ds_verified: T::Boolean
               }
             )
           end

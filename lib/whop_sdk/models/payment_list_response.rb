@@ -78,6 +78,14 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::Currency]
       required :currency, enum: -> { WhopSDK::Currency }
 
+      # @!attribute customer_phone
+      #   Phone number the customer provided at checkout, or their verified phone number
+      #   when your checkout requires phone verification. `null` when no phone number was
+      #   collected.
+      #
+      #   @return [String, nil]
+      required :customer_phone, String, nil?: true
+
       # @!attribute dispute_alerted_at
       #   When an alert came in that this transaction will be disputed
       #
@@ -269,7 +277,7 @@ module WhopSDK
       #   @return [Boolean]
       required :voidable, WhopSDK::Internal::Type::Boolean
 
-      # @!method initialize(id:, amount_after_fees:, application_fee:, auto_refunded:, billing_address:, billing_reason:, card_brand:, card_last4:, checkout_configuration_id:, company:, created_at:, currency:, dispute_alerted_at:, failure_message:, last_payment_attempt:, member:, membership:, metadata:, next_payment_attempt:, paid_at:, payment_method:, payment_method_type:, payments_failed:, plan:, product:, promo_code:, refundable:, refunded_amount:, refunded_at:, retryable:, settlement_currency:, shipping_address:, status:, substatus:, subtotal:, tax_amount:, tax_behavior:, total:, updated_at:, usd_total:, user:, voidable:)
+      # @!method initialize(id:, amount_after_fees:, application_fee:, auto_refunded:, billing_address:, billing_reason:, card_brand:, card_last4:, checkout_configuration_id:, company:, created_at:, currency:, customer_phone:, dispute_alerted_at:, failure_message:, last_payment_attempt:, member:, membership:, metadata:, next_payment_attempt:, paid_at:, payment_method:, payment_method_type:, payments_failed:, plan:, product:, promo_code:, refundable:, refunded_amount:, refunded_at:, retryable:, settlement_currency:, shipping_address:, status:, substatus:, subtotal:, tax_amount:, tax_behavior:, total:, updated_at:, usd_total:, user:, voidable:)
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::PaymentListResponse} for more details.
       #
@@ -299,6 +307,8 @@ module WhopSDK
       #   @param created_at [Time] The datetime the payment was created.
       #
       #   @param currency [Symbol, WhopSDK::Models::Currency] The three-letter ISO currency code for this payment (e.g., 'usd', 'eur').
+      #
+      #   @param customer_phone [String, nil] Phone number the customer provided at checkout, or their verified phone number w
       #
       #   @param dispute_alerted_at [Time, nil] When an alert came in that this transaction will be disputed
       #

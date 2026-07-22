@@ -14,6 +14,7 @@ module WhopSDK
         company: WhopSDK::Models::PaymentListResponse::Company?,
         created_at: Time,
         currency: WhopSDK::Models::currency,
+        customer_phone: String?,
         dispute_alerted_at: Time?,
         failure_message: String?,
         last_payment_attempt: Time?,
@@ -70,6 +71,8 @@ module WhopSDK
       attr_accessor created_at: Time
 
       attr_accessor currency: WhopSDK::Models::currency
+
+      attr_accessor customer_phone: String?
 
       attr_accessor dispute_alerted_at: Time?
 
@@ -144,6 +147,7 @@ module WhopSDK
         company: WhopSDK::Models::PaymentListResponse::Company?,
         created_at: Time,
         currency: WhopSDK::Models::currency,
+        customer_phone: String?,
         dispute_alerted_at: Time?,
         failure_message: String?,
         last_payment_attempt: Time?,
@@ -189,6 +193,7 @@ module WhopSDK
         company: WhopSDK::Models::PaymentListResponse::Company?,
         created_at: Time,
         currency: WhopSDK::Models::currency,
+        customer_phone: String?,
         dispute_alerted_at: Time?,
         failure_message: String?,
         last_payment_attempt: Time?,

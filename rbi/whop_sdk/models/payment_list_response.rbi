@@ -93,6 +93,12 @@ module WhopSDK
       sig { returns(WhopSDK::Currency::TaggedSymbol) }
       attr_accessor :currency
 
+      # Phone number the customer provided at checkout, or their verified phone number
+      # when your checkout requires phone verification. `null` when no phone number was
+      # collected.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :customer_phone
+
       # When an alert came in that this transaction will be disputed
       sig { returns(T.nilable(Time)) }
       attr_accessor :dispute_alerted_at
@@ -323,6 +329,7 @@ module WhopSDK
             T.nilable(WhopSDK::Models::PaymentListResponse::Company::OrHash),
           created_at: Time,
           currency: WhopSDK::Currency::OrSymbol,
+          customer_phone: T.nilable(String),
           dispute_alerted_at: T.nilable(Time),
           failure_message: T.nilable(String),
           last_payment_attempt: T.nilable(Time),
@@ -392,6 +399,10 @@ module WhopSDK
         created_at:,
         # The three-letter ISO currency code for this payment (e.g., 'usd', 'eur').
         currency:,
+        # Phone number the customer provided at checkout, or their verified phone number
+        # when your checkout requires phone verification. `null` when no phone number was
+        # collected.
+        customer_phone:,
         # When an alert came in that this transaction will be disputed
         dispute_alerted_at:,
         # If the payment failed, the reason for the failure.
@@ -483,6 +494,7 @@ module WhopSDK
             company: T.nilable(WhopSDK::Models::PaymentListResponse::Company),
             created_at: Time,
             currency: WhopSDK::Currency::TaggedSymbol,
+            customer_phone: T.nilable(String),
             dispute_alerted_at: T.nilable(Time),
             failure_message: T.nilable(String),
             last_payment_attempt: T.nilable(Time),

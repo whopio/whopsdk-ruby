@@ -103,6 +103,9 @@ module WhopSDK
         )
       end
 
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::WebhookListParams} for more details.
+      #
       # Returns a paginated list of webhook endpoints configured for a company, ordered
       # by most recently created.
       #
@@ -110,11 +113,13 @@ module WhopSDK
       #
       # - `developer:manage_webhook`
       #
-      # @overload list(company_id:, after: nil, before: nil, first: nil, last: nil, request_options: {})
+      # @overload list(company_id:, after: nil, app_id: nil, before: nil, first: nil, last: nil, request_options: {})
       #
       # @param company_id [String] The unique identifier of the company to list webhooks for.
       #
       # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
+      #
+      # @param app_id [String, nil] Only return webhooks attached to this app. Omit to list the company's own webhoo
       #
       # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
       #

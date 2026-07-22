@@ -10,7 +10,8 @@ module WhopSDK
         events: ::Array[WhopSDK::Models::webhook_event],
         resource_id: String,
         testable_events: ::Array[WhopSDK::Models::webhook_event],
-        url: String
+        url: String,
+        webhook_secret: String
       }
 
     class Webhook < WhopSDK::Internal::Type::BaseModel
@@ -32,6 +33,8 @@ module WhopSDK
 
       attr_accessor url: String
 
+      attr_accessor webhook_secret: String
+
       def initialize: (
         id: String,
         api_version: WhopSDK::Models::api_version,
@@ -41,7 +44,8 @@ module WhopSDK
         events: ::Array[WhopSDK::Models::webhook_event],
         resource_id: String,
         testable_events: ::Array[WhopSDK::Models::webhook_event],
-        url: String
+        url: String,
+        webhook_secret: String
       ) -> void
 
       def to_hash: -> {
@@ -53,7 +57,8 @@ module WhopSDK
         events: ::Array[WhopSDK::Models::webhook_event],
         resource_id: String,
         testable_events: ::Array[WhopSDK::Models::webhook_event],
-        url: String
+        url: String,
+        webhook_secret: String
       }
     end
   end

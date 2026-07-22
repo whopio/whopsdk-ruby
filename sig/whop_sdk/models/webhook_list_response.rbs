@@ -8,7 +8,9 @@ module WhopSDK
         created_at: Time,
         enabled: bool,
         events: ::Array[WhopSDK::Models::webhook_event],
-        url: String
+        resource_id: String,
+        url: String,
+        webhook_secret: String
       }
 
     class WebhookListResponse < WhopSDK::Internal::Type::BaseModel
@@ -24,7 +26,11 @@ module WhopSDK
 
       attr_accessor events: ::Array[WhopSDK::Models::webhook_event]
 
+      attr_accessor resource_id: String
+
       attr_accessor url: String
+
+      attr_accessor webhook_secret: String
 
       def initialize: (
         id: String,
@@ -33,7 +39,9 @@ module WhopSDK
         created_at: Time,
         enabled: bool,
         events: ::Array[WhopSDK::Models::webhook_event],
-        url: String
+        resource_id: String,
+        url: String,
+        webhook_secret: String
       ) -> void
 
       def to_hash: -> {
@@ -43,7 +51,9 @@ module WhopSDK
         created_at: Time,
         enabled: bool,
         events: ::Array[WhopSDK::Models::webhook_event],
-        url: String
+        resource_id: String,
+        url: String,
+        webhook_secret: String
       }
     end
   end

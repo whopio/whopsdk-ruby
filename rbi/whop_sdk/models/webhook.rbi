@@ -44,6 +44,12 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :url
 
+      # The secret key used to sign webhook payloads for verification. Include this in
+      # your HMAC validation logic. Returned on the create response and to interactive
+      # dashboard sessions; empty for API-key and OAuth callers on later reads.
+      sig { returns(String) }
+      attr_accessor :webhook_secret
+
       # A webhook endpoint that receives event notifications for a company via HTTP
       # POST.
       sig do
@@ -56,7 +62,8 @@ module WhopSDK
           events: T::Array[WhopSDK::WebhookEvent::OrSymbol],
           resource_id: String,
           testable_events: T::Array[WhopSDK::WebhookEvent::OrSymbol],
-          url: String
+          url: String,
+          webhook_secret: String
         ).returns(T.attached_class)
       end
       def self.new(
@@ -79,7 +86,11 @@ module WhopSDK
         # The subset of subscribed event types that support sending test payloads.
         testable_events:,
         # The destination URL where webhook payloads are delivered via HTTP POST.
-        url:
+        url:,
+        # The secret key used to sign webhook payloads for verification. Include this in
+        # your HMAC validation logic. Returned on the create response and to interactive
+        # dashboard sessions; empty for API-key and OAuth callers on later reads.
+        webhook_secret:
       )
       end
 
@@ -94,7 +105,8 @@ module WhopSDK
             events: T::Array[WhopSDK::WebhookEvent::TaggedSymbol],
             resource_id: String,
             testable_events: T::Array[WhopSDK::WebhookEvent::TaggedSymbol],
-            url: String
+            url: String,
+            webhook_secret: String
           }
         )
       end

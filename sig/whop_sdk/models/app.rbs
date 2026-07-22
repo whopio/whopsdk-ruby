@@ -9,15 +9,19 @@ module WhopSDK
         company: WhopSDK::App::Company,
         creator: WhopSDK::App::Creator,
         dashboard_path: String?,
+        default_api_key: WhopSDK::App::DefaultAPIKey?,
         description: String?,
         discover_path: String?,
         domain_id: String,
         experience_path: String?,
         hosted_url: String?,
         icon: WhopSDK::App::Icon?,
+        marketplace_status: WhopSDK::Models::App::marketplace_status?,
         name: String,
+        oauth_client_type: WhopSDK::Models::App::oauth_client_type,
         openapi_path: String?,
         origin: String?,
+        product_id: String?,
         production_web_build: WhopSDK::App::ProductionWebBuild?,
         redirect_uris: ::Array[String],
         requested_permissions: ::Array[WhopSDK::App::RequestedPermission],
@@ -44,6 +48,8 @@ module WhopSDK
 
       attr_accessor dashboard_path: String?
 
+      attr_accessor default_api_key: WhopSDK::App::DefaultAPIKey?
+
       attr_accessor description: String?
 
       attr_accessor discover_path: String?
@@ -56,11 +62,17 @@ module WhopSDK
 
       attr_accessor icon: WhopSDK::App::Icon?
 
+      attr_accessor marketplace_status: WhopSDK::Models::App::marketplace_status?
+
       attr_accessor name: String
+
+      attr_accessor oauth_client_type: WhopSDK::Models::App::oauth_client_type
 
       attr_accessor openapi_path: String?
 
       attr_accessor origin: String?
+
+      attr_accessor product_id: String?
 
       attr_accessor production_web_build: WhopSDK::App::ProductionWebBuild?
 
@@ -88,15 +100,19 @@ module WhopSDK
         company: WhopSDK::App::Company,
         creator: WhopSDK::App::Creator,
         dashboard_path: String?,
+        default_api_key: WhopSDK::App::DefaultAPIKey?,
         description: String?,
         discover_path: String?,
         domain_id: String,
         experience_path: String?,
         hosted_url: String?,
         icon: WhopSDK::App::Icon?,
+        marketplace_status: WhopSDK::Models::App::marketplace_status?,
         name: String,
+        oauth_client_type: WhopSDK::Models::App::oauth_client_type,
         openapi_path: String?,
         origin: String?,
+        product_id: String?,
         production_web_build: WhopSDK::App::ProductionWebBuild?,
         redirect_uris: ::Array[String],
         requested_permissions: ::Array[WhopSDK::App::RequestedPermission],
@@ -116,15 +132,19 @@ module WhopSDK
         company: WhopSDK::App::Company,
         creator: WhopSDK::App::Creator,
         dashboard_path: String?,
+        default_api_key: WhopSDK::App::DefaultAPIKey?,
         description: String?,
         discover_path: String?,
         domain_id: String,
         experience_path: String?,
         hosted_url: String?,
         icon: WhopSDK::App::Icon?,
+        marketplace_status: WhopSDK::Models::App::marketplace_status?,
         name: String,
+        oauth_client_type: WhopSDK::Models::App::oauth_client_type,
         openapi_path: String?,
         origin: String?,
+        product_id: String?,
         production_web_build: WhopSDK::App::ProductionWebBuild?,
         redirect_uris: ::Array[String],
         requested_permissions: ::Array[WhopSDK::App::RequestedPermission],
@@ -176,6 +196,38 @@ module WhopSDK
         def to_hash: -> { id: String, name: String?, username: String }
       end
 
+      type default_api_key =
+        {
+          id: String,
+          name: String?,
+          obfuscated_secret_key: String,
+          secret_key: String?
+        }
+
+      class DefaultAPIKey < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor name: String?
+
+        attr_accessor obfuscated_secret_key: String
+
+        attr_accessor secret_key: String?
+
+        def initialize: (
+          id: String,
+          name: String?,
+          obfuscated_secret_key: String,
+          secret_key: String?
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          name: String?,
+          obfuscated_secret_key: String,
+          secret_key: String?
+        }
+      end
+
       type icon = { url: String? }
 
       class Icon < WhopSDK::Internal::Type::BaseModel
@@ -184,6 +236,30 @@ module WhopSDK
         def initialize: (url: String?) -> void
 
         def to_hash: -> { url: String? }
+      end
+
+      type marketplace_status =
+        :not_available | :pending_review | :live_marketplace
+
+      module MarketplaceStatus
+        extend WhopSDK::Internal::Type::Enum
+
+        NOT_AVAILABLE: :not_available
+        PENDING_REVIEW: :pending_review
+        LIVE_MARKETPLACE: :live_marketplace
+
+        def self?.values: -> ::Array[WhopSDK::Models::App::marketplace_status]
+      end
+
+      type oauth_client_type = :public | :confidential
+
+      module OAuthClientType
+        extend WhopSDK::Internal::Type::Enum
+
+        PUBLIC: :public
+        CONFIDENTIAL: :confidential
+
+        def self?.values: -> ::Array[WhopSDK::Models::App::oauth_client_type]
       end
 
       type production_web_build =

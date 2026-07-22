@@ -100,6 +100,7 @@ module WhopSDK
         params(
           company_id: String,
           after: T.nilable(String),
+          app_id: T.nilable(String),
           before: T.nilable(String),
           first: T.nilable(Integer),
           last: T.nilable(Integer),
@@ -113,6 +114,9 @@ module WhopSDK
         company_id:,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
+        # Only return webhooks attached to this app. Omit to list the company's own
+        # webhooks.
+        app_id: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
         # Returns the first _n_ elements from the list.

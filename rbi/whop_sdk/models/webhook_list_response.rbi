@@ -37,9 +37,19 @@ module WhopSDK
       sig { returns(T::Array[WhopSDK::WebhookEvent::TaggedSymbol]) }
       attr_accessor :events
 
+      # The ID of the resource (company or product) this webhook is attached to.
+      sig { returns(String) }
+      attr_accessor :resource_id
+
       # The destination URL where webhook payloads are delivered via HTTP POST.
       sig { returns(String) }
       attr_accessor :url
+
+      # The secret key used to sign webhook payloads for verification. Include this in
+      # your HMAC validation logic. Returned on the create response and to interactive
+      # dashboard sessions; empty for API-key and OAuth callers on later reads.
+      sig { returns(String) }
+      attr_accessor :webhook_secret
 
       # A webhook endpoint that receives event notifications for a company via HTTP
       # POST.
@@ -51,7 +61,9 @@ module WhopSDK
           created_at: Time,
           enabled: T::Boolean,
           events: T::Array[WhopSDK::WebhookEvent::OrSymbol],
-          url: String
+          resource_id: String,
+          url: String,
+          webhook_secret: String
         ).returns(T.attached_class)
       end
       def self.new(
@@ -69,8 +81,14 @@ module WhopSDK
         enabled:,
         # The list of event types this webhook is subscribed to.
         events:,
+        # The ID of the resource (company or product) this webhook is attached to.
+        resource_id:,
         # The destination URL where webhook payloads are delivered via HTTP POST.
-        url:
+        url:,
+        # The secret key used to sign webhook payloads for verification. Include this in
+        # your HMAC validation logic. Returned on the create response and to interactive
+        # dashboard sessions; empty for API-key and OAuth callers on later reads.
+        webhook_secret:
       )
       end
 
@@ -83,7 +101,9 @@ module WhopSDK
             created_at: Time,
             enabled: T::Boolean,
             events: T::Array[WhopSDK::WebhookEvent::TaggedSymbol],
-            url: String
+            resource_id: String,
+            url: String,
+            webhook_secret: String
           }
         )
       end

@@ -42,13 +42,27 @@ module WhopSDK
       #   @return [Array<Symbol, WhopSDK::Models::WebhookEvent>]
       required :events, -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::WebhookEvent] }
 
+      # @!attribute resource_id
+      #   The ID of the resource (company or product) this webhook is attached to.
+      #
+      #   @return [String]
+      required :resource_id, String
+
       # @!attribute url
       #   The destination URL where webhook payloads are delivered via HTTP POST.
       #
       #   @return [String]
       required :url, String
 
-      # @!method initialize(id:, api_version:, child_resource_events:, created_at:, enabled:, events:, url:)
+      # @!attribute webhook_secret
+      #   The secret key used to sign webhook payloads for verification. Include this in
+      #   your HMAC validation logic. Returned on the create response and to interactive
+      #   dashboard sessions; empty for API-key and OAuth callers on later reads.
+      #
+      #   @return [String]
+      required :webhook_secret, String
+
+      # @!method initialize(id:, api_version:, child_resource_events:, created_at:, enabled:, events:, resource_id:, url:, webhook_secret:)
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::WebhookListResponse} for more details.
       #
@@ -67,7 +81,11 @@ module WhopSDK
       #
       #   @param events [Array<Symbol, WhopSDK::Models::WebhookEvent>] The list of event types this webhook is subscribed to.
       #
+      #   @param resource_id [String] The ID of the resource (company or product) this webhook is attached to.
+      #
       #   @param url [String] The destination URL where webhook payloads are delivered via HTTP POST.
+      #
+      #   @param webhook_secret [String] The secret key used to sign webhook payloads for verification. Include this in y
     end
   end
 end

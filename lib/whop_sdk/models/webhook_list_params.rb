@@ -19,6 +19,13 @@ module WhopSDK
       #   @return [String, nil]
       optional :after, String, nil?: true
 
+      # @!attribute app_id
+      #   Only return webhooks attached to this app. Omit to list the company's own
+      #   webhooks.
+      #
+      #   @return [String, nil]
+      optional :app_id, String, nil?: true
+
       # @!attribute before
       #   Returns the elements in the list that come before the specified cursor.
       #
@@ -37,10 +44,15 @@ module WhopSDK
       #   @return [Integer, nil]
       optional :last, Integer, nil?: true
 
-      # @!method initialize(company_id:, after: nil, before: nil, first: nil, last: nil, request_options: {})
+      # @!method initialize(company_id:, after: nil, app_id: nil, before: nil, first: nil, last: nil, request_options: {})
+      #   Some parameter documentations has been truncated, see
+      #   {WhopSDK::Models::WebhookListParams} for more details.
+      #
       #   @param company_id [String] The unique identifier of the company to list webhooks for.
       #
       #   @param after [String, nil] Returns the elements in the list that come after the specified cursor.
+      #
+      #   @param app_id [String, nil] Only return webhooks attached to this app. Omit to list the company's own webhoo
       #
       #   @param before [String, nil] Returns the elements in the list that come before the specified cursor.
       #

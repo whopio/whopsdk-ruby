@@ -47,7 +47,8 @@ class WhopSDK::Test::Resources::WebhooksTest < WhopSDK::Test::ResourceTest
         events: ^(WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::WebhookEvent]),
         resource_id: String,
         testable_events: ^(WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::WebhookEvent]),
-        url: String
+        url: String,
+        webhook_secret: String
       }
     end
   end
@@ -71,7 +72,8 @@ class WhopSDK::Test::Resources::WebhooksTest < WhopSDK::Test::ResourceTest
         events: ^(WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::WebhookEvent]),
         resource_id: String,
         testable_events: ^(WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::WebhookEvent]),
-        url: String
+        url: String,
+        webhook_secret: String
       }
     end
   end
@@ -100,7 +102,9 @@ class WhopSDK::Test::Resources::WebhooksTest < WhopSDK::Test::ResourceTest
         created_at: Time,
         enabled: WhopSDK::Internal::Type::Boolean,
         events: ^(WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::WebhookEvent]),
-        url: String
+        resource_id: String,
+        url: String,
+        webhook_secret: String
       }
     end
   end

@@ -4,6 +4,7 @@ module WhopSDK
       {
         company_id: String,
         after: String?,
+        app_id: String?,
         before: String?,
         first: Integer?,
         last: Integer?
@@ -18,6 +19,8 @@ module WhopSDK
 
       attr_accessor after: String?
 
+      attr_accessor app_id: String?
+
       attr_accessor before: String?
 
       attr_accessor first: Integer?
@@ -27,6 +30,7 @@ module WhopSDK
       def initialize: (
         company_id: String,
         ?after: String?,
+        ?app_id: String?,
         ?before: String?,
         ?first: Integer?,
         ?last: Integer?,
@@ -36,6 +40,7 @@ module WhopSDK
       def to_hash: -> {
         company_id: String,
         after: String?,
+        app_id: String?,
         before: String?,
         first: Integer?,
         last: Integer?,

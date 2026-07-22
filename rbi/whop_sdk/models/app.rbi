@@ -47,6 +47,19 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :dashboard_path
 
+      # The app's default API key, used to authenticate requests on behalf of this app.
+      # Null if the app has no default key. Requires the 'developer:manage_api_key'
+      # permission.
+      sig { returns(T.nilable(WhopSDK::App::DefaultAPIKey)) }
+      attr_reader :default_api_key
+
+      sig do
+        params(
+          default_api_key: T.nilable(WhopSDK::App::DefaultAPIKey::OrHash)
+        ).void
+      end
+      attr_writer :default_api_key
+
       # A written description of what this app does, displayed on the app store listing
       # page. Null if no description has been set.
       sig { returns(T.nilable(String)) }
@@ -82,10 +95,19 @@ module WhopSDK
       sig { params(icon: T.nilable(WhopSDK::App::Icon::OrHash)).void }
       attr_writer :icon
 
+      # The available marketplace statuses to choose from.
+      sig { returns(T.nilable(WhopSDK::App::MarketplaceStatus::TaggedSymbol)) }
+      attr_accessor :marketplace_status
+
       # The display name of this app shown on the app store and in experience
       # navigation. Maximum 30 characters.
       sig { returns(String) }
       attr_accessor :name
+
+      # How this app authenticates when exchanging OAuth authorization and refresh
+      # grants.
+      sig { returns(WhopSDK::App::OAuthClientType::TaggedSymbol) }
+      attr_accessor :oauth_client_type
 
       # The URL path template for a specific view of this app, appended to the base
       # domain (e.g., '/experiences/[experienceId]'). Null if the specified view type is
@@ -97,6 +119,14 @@ module WhopSDK
       # 'https://myapp.apps.whop.com'). Null if no proxy domain is configured.
       sig { returns(T.nilable(String)) }
       attr_accessor :origin
+
+      # Represents a unique identifier that is Base64 obfuscated. It is often used to
+      # refetch an object or as key for a cache. The ID type appears in a JSON response
+      # as a String; however, it is not intended to be human-readable. When expected as
+      # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+      # input value will be accepted as an ID.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :product_id
 
       # The approved app build currently served to users on web. Null if no production
       # build is deployed for web.
@@ -168,15 +198,20 @@ module WhopSDK
           company: WhopSDK::App::Company::OrHash,
           creator: WhopSDK::App::Creator::OrHash,
           dashboard_path: T.nilable(String),
+          default_api_key: T.nilable(WhopSDK::App::DefaultAPIKey::OrHash),
           description: T.nilable(String),
           discover_path: T.nilable(String),
           domain_id: String,
           experience_path: T.nilable(String),
           hosted_url: T.nilable(String),
           icon: T.nilable(WhopSDK::App::Icon::OrHash),
+          marketplace_status:
+            T.nilable(WhopSDK::App::MarketplaceStatus::OrSymbol),
           name: String,
+          oauth_client_type: WhopSDK::App::OAuthClientType::OrSymbol,
           openapi_path: T.nilable(String),
           origin: T.nilable(String),
+          product_id: T.nilable(String),
           production_web_build:
             T.nilable(WhopSDK::App::ProductionWebBuild::OrHash),
           redirect_uris: T::Array[String],
@@ -210,6 +245,10 @@ module WhopSDK
         # domain (e.g., '/experiences/[experienceId]'). Null if the specified view type is
         # not configured.
         dashboard_path:,
+        # The app's default API key, used to authenticate requests on behalf of this app.
+        # Null if the app has no default key. Requires the 'developer:manage_api_key'
+        # permission.
+        default_api_key:,
         # A written description of what this app does, displayed on the app store listing
         # page. Null if no description has been set.
         description:,
@@ -230,9 +269,14 @@ module WhopSDK
         # The icon image for this app, displayed on the app store, product pages,
         # checkout, and as the default icon for experiences using this app.
         icon:,
+        # The available marketplace statuses to choose from.
+        marketplace_status:,
         # The display name of this app shown on the app store and in experience
         # navigation. Maximum 30 characters.
         name:,
+        # How this app authenticates when exchanging OAuth authorization and refresh
+        # grants.
+        oauth_client_type:,
         # The URL path template for a specific view of this app, appended to the base
         # domain (e.g., '/experiences/[experienceId]'). Null if the specified view type is
         # not configured.
@@ -240,6 +284,12 @@ module WhopSDK
         # The full origin URL for this app's proxied domain (e.g.,
         # 'https://myapp.apps.whop.com'). Null if no proxy domain is configured.
         origin:,
+        # Represents a unique identifier that is Base64 obfuscated. It is often used to
+        # refetch an object or as key for a cache. The ID type appears in a JSON response
+        # as a String; however, it is not intended to be human-readable. When expected as
+        # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+        # input value will be accepted as an ID.
+        product_id:,
         # The approved app build currently served to users on web. Null if no production
         # build is deployed for web.
         production_web_build:,
@@ -283,15 +333,20 @@ module WhopSDK
             company: WhopSDK::App::Company,
             creator: WhopSDK::App::Creator,
             dashboard_path: T.nilable(String),
+            default_api_key: T.nilable(WhopSDK::App::DefaultAPIKey),
             description: T.nilable(String),
             discover_path: T.nilable(String),
             domain_id: String,
             experience_path: T.nilable(String),
             hosted_url: T.nilable(String),
             icon: T.nilable(WhopSDK::App::Icon),
+            marketplace_status:
+              T.nilable(WhopSDK::App::MarketplaceStatus::TaggedSymbol),
             name: String,
+            oauth_client_type: WhopSDK::App::OAuthClientType::TaggedSymbol,
             openapi_path: T.nilable(String),
             origin: T.nilable(String),
+            product_id: T.nilable(String),
             production_web_build: T.nilable(WhopSDK::App::ProductionWebBuild),
             redirect_uris: T::Array[String],
             requested_permissions: T::Array[WhopSDK::App::RequestedPermission],
@@ -421,6 +476,71 @@ module WhopSDK
         end
       end
 
+      class DefaultAPIKey < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(WhopSDK::App::DefaultAPIKey, WhopSDK::Internal::AnyHash)
+          end
+
+        # The unique identifier for the authorized api key.
+        sig { returns(String) }
+        attr_accessor :id
+
+        # A user set name to identify an API key
+        sig { returns(T.nilable(String)) }
+        attr_accessor :name
+
+        # A masked version of the secret key used to authenticate requests. This is so
+        # that the owner can easily identify which key it is without being shown the full
+        # secret.
+        sig { returns(String) }
+        attr_accessor :obfuscated_secret_key
+
+        # The secret key used to authenticate requests. This is only available if the
+        # current actor would have been able to create this api key.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :secret_key
+
+        # The app's default API key, used to authenticate requests on behalf of this app.
+        # Null if the app has no default key. Requires the 'developer:manage_api_key'
+        # permission.
+        sig do
+          params(
+            id: String,
+            name: T.nilable(String),
+            obfuscated_secret_key: String,
+            secret_key: T.nilable(String)
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The unique identifier for the authorized api key.
+          id:,
+          # A user set name to identify an API key
+          name:,
+          # A masked version of the secret key used to authenticate requests. This is so
+          # that the owner can easily identify which key it is without being shown the full
+          # secret.
+          obfuscated_secret_key:,
+          # The secret key used to authenticate requests. This is only available if the
+          # current actor would have been able to create this api key.
+          secret_key:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              id: String,
+              name: T.nilable(String),
+              obfuscated_secret_key: String,
+              secret_key: T.nilable(String)
+            }
+          )
+        end
+        def to_hash
+        end
+      end
+
       class Icon < WhopSDK::Internal::Type::BaseModel
         OrHash =
           T.type_alias { T.any(WhopSDK::App::Icon, WhopSDK::Internal::AnyHash) }
@@ -442,6 +562,55 @@ module WhopSDK
 
         sig { override.returns({ url: T.nilable(String) }) }
         def to_hash
+        end
+      end
+
+      # The available marketplace statuses to choose from.
+      module MarketplaceStatus
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias { T.all(Symbol, WhopSDK::App::MarketplaceStatus) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        NOT_AVAILABLE =
+          T.let(:not_available, WhopSDK::App::MarketplaceStatus::TaggedSymbol)
+        PENDING_REVIEW =
+          T.let(:pending_review, WhopSDK::App::MarketplaceStatus::TaggedSymbol)
+        LIVE_MARKETPLACE =
+          T.let(
+            :live_marketplace,
+            WhopSDK::App::MarketplaceStatus::TaggedSymbol
+          )
+
+        sig do
+          override.returns(
+            T::Array[WhopSDK::App::MarketplaceStatus::TaggedSymbol]
+          )
+        end
+        def self.values
+        end
+      end
+
+      # How this app authenticates when exchanging OAuth authorization and refresh
+      # grants.
+      module OAuthClientType
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias { T.all(Symbol, WhopSDK::App::OAuthClientType) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        PUBLIC = T.let(:public, WhopSDK::App::OAuthClientType::TaggedSymbol)
+        CONFIDENTIAL =
+          T.let(:confidential, WhopSDK::App::OAuthClientType::TaggedSymbol)
+
+        sig do
+          override.returns(
+            T::Array[WhopSDK::App::OAuthClientType::TaggedSymbol]
+          )
+        end
+        def self.values
         end
       end
 

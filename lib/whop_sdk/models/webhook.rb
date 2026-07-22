@@ -60,7 +60,15 @@ module WhopSDK
       #   @return [String]
       required :url, String
 
-      # @!method initialize(id:, api_version:, child_resource_events:, created_at:, enabled:, events:, resource_id:, testable_events:, url:)
+      # @!attribute webhook_secret
+      #   The secret key used to sign webhook payloads for verification. Include this in
+      #   your HMAC validation logic. Returned on the create response and to interactive
+      #   dashboard sessions; empty for API-key and OAuth callers on later reads.
+      #
+      #   @return [String]
+      required :webhook_secret, String
+
+      # @!method initialize(id:, api_version:, child_resource_events:, created_at:, enabled:, events:, resource_id:, testable_events:, url:, webhook_secret:)
       #   Some parameter documentations has been truncated, see {WhopSDK::Models::Webhook}
       #   for more details.
       #
@@ -84,6 +92,8 @@ module WhopSDK
       #   @param testable_events [Array<Symbol, WhopSDK::Models::WebhookEvent>] The subset of subscribed event types that support sending test payloads.
       #
       #   @param url [String] The destination URL where webhook payloads are delivered via HTTP POST.
+      #
+      #   @param webhook_secret [String] The secret key used to sign webhook payloads for verification. Include this in y
     end
   end
 end

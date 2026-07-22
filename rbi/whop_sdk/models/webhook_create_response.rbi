@@ -50,7 +50,8 @@ module WhopSDK
       attr_accessor :url
 
       # The secret key used to sign webhook payloads for verification. Include this in
-      # your HMAC validation logic.
+      # your HMAC validation logic. Returned on the create response and to interactive
+      # dashboard sessions; empty for API-key and OAuth callers on later reads.
       sig { returns(String) }
       attr_accessor :webhook_secret
 
@@ -92,7 +93,8 @@ module WhopSDK
         # The destination URL where webhook payloads are delivered via HTTP POST.
         url:,
         # The secret key used to sign webhook payloads for verification. Include this in
-        # your HMAC validation logic.
+        # your HMAC validation logic. Returned on the create response and to interactive
+        # dashboard sessions; empty for API-key and OAuth callers on later reads.
         webhook_secret:
       )
       end

@@ -50,6 +50,14 @@ module WhopSDK
       #   @return [String, nil]
       required :dashboard_path, String, nil?: true
 
+      # @!attribute default_api_key
+      #   The app's default API key, used to authenticate requests on behalf of this app.
+      #   Null if the app has no default key. Requires the 'developer:manage_api_key'
+      #   permission.
+      #
+      #   @return [WhopSDK::Models::App::DefaultAPIKey, nil]
+      required :default_api_key, -> { WhopSDK::App::DefaultAPIKey }, nil?: true
+
       # @!attribute description
       #   A written description of what this app does, displayed on the app store listing
       #   page. Null if no description has been set.
@@ -94,12 +102,25 @@ module WhopSDK
       #   @return [WhopSDK::Models::App::Icon, nil]
       required :icon, -> { WhopSDK::App::Icon }, nil?: true
 
+      # @!attribute marketplace_status
+      #   The available marketplace statuses to choose from.
+      #
+      #   @return [Symbol, WhopSDK::Models::App::MarketplaceStatus, nil]
+      required :marketplace_status, enum: -> { WhopSDK::App::MarketplaceStatus }, nil?: true
+
       # @!attribute name
       #   The display name of this app shown on the app store and in experience
       #   navigation. Maximum 30 characters.
       #
       #   @return [String]
       required :name, String
+
+      # @!attribute oauth_client_type
+      #   How this app authenticates when exchanging OAuth authorization and refresh
+      #   grants.
+      #
+      #   @return [Symbol, WhopSDK::Models::App::OAuthClientType]
+      required :oauth_client_type, enum: -> { WhopSDK::App::OAuthClientType }
 
       # @!attribute openapi_path
       #   The URL path template for a specific view of this app, appended to the base
@@ -115,6 +136,16 @@ module WhopSDK
       #
       #   @return [String, nil]
       required :origin, String, nil?: true
+
+      # @!attribute product_id
+      #   Represents a unique identifier that is Base64 obfuscated. It is often used to
+      #   refetch an object or as key for a cache. The ID type appears in a JSON response
+      #   as a String; however, it is not intended to be human-readable. When expected as
+      #   an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+      #   input value will be accepted as an ID.
+      #
+      #   @return [String, nil]
+      required :product_id, String, nil?: true
 
       # @!attribute production_web_build
       #   The approved app build currently served to users on web. Null if no production
@@ -183,7 +214,7 @@ module WhopSDK
       #   @return [Boolean]
       required :verified, WhopSDK::Internal::Type::Boolean
 
-      # @!method initialize(id:, api_key:, app_type:, base_url:, company:, creator:, dashboard_path:, description:, discover_path:, domain_id:, experience_path:, hosted_url:, icon:, name:, openapi_path:, origin:, production_web_build:, redirect_uris:, requested_permissions:, route:, secrets:, skills_path:, stats:, status:, verified:)
+      # @!method initialize(id:, api_key:, app_type:, base_url:, company:, creator:, dashboard_path:, default_api_key:, description:, discover_path:, domain_id:, experience_path:, hosted_url:, icon:, marketplace_status:, name:, oauth_client_type:, openapi_path:, origin:, product_id:, production_web_build:, redirect_uris:, requested_permissions:, route:, secrets:, skills_path:, stats:, status:, verified:)
       #   Some parameter documentations has been truncated, see {WhopSDK::Models::App} for
       #   more details.
       #
@@ -204,6 +235,8 @@ module WhopSDK
       #
       #   @param dashboard_path [String, nil] The URL path template for a specific view of this app, appended to the base doma
       #
+      #   @param default_api_key [WhopSDK::Models::App::DefaultAPIKey, nil] The app's default API key, used to authenticate requests on behalf of this app.
+      #
       #   @param description [String, nil] A written description of what this app does, displayed on the app store listing
       #
       #   @param discover_path [String, nil] The URL path template for a specific view of this app, appended to the base doma
@@ -216,11 +249,17 @@ module WhopSDK
       #
       #   @param icon [WhopSDK::Models::App::Icon, nil] The icon image for this app, displayed on the app store, product pages, checkout
       #
+      #   @param marketplace_status [Symbol, WhopSDK::Models::App::MarketplaceStatus, nil] The available marketplace statuses to choose from.
+      #
       #   @param name [String] The display name of this app shown on the app store and in experience navigation
+      #
+      #   @param oauth_client_type [Symbol, WhopSDK::Models::App::OAuthClientType] How this app authenticates when exchanging OAuth authorization and refresh grant
       #
       #   @param openapi_path [String, nil] The URL path template for a specific view of this app, appended to the base doma
       #
       #   @param origin [String, nil] The full origin URL for this app's proxied domain (e.g., 'https://myapp.apps.who
+      #
+      #   @param product_id [String, nil] Represents a unique identifier that is Base64 obfuscated. It is often used to re
       #
       #   @param production_web_build [WhopSDK::Models::App::ProductionWebBuild, nil] The approved app build currently served to users on web. Null if no production b
       #
@@ -323,6 +362,52 @@ module WhopSDK
         #   @param username [String] The user's unique username shown on their public profile.
       end
 
+      # @see WhopSDK::Models::App#default_api_key
+      class DefaultAPIKey < WhopSDK::Internal::Type::BaseModel
+        # @!attribute id
+        #   The unique identifier for the authorized api key.
+        #
+        #   @return [String]
+        required :id, String
+
+        # @!attribute name
+        #   A user set name to identify an API key
+        #
+        #   @return [String, nil]
+        required :name, String, nil?: true
+
+        # @!attribute obfuscated_secret_key
+        #   A masked version of the secret key used to authenticate requests. This is so
+        #   that the owner can easily identify which key it is without being shown the full
+        #   secret.
+        #
+        #   @return [String]
+        required :obfuscated_secret_key, String
+
+        # @!attribute secret_key
+        #   The secret key used to authenticate requests. This is only available if the
+        #   current actor would have been able to create this api key.
+        #
+        #   @return [String, nil]
+        required :secret_key, String, nil?: true
+
+        # @!method initialize(id:, name:, obfuscated_secret_key:, secret_key:)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::App::DefaultAPIKey} for more details.
+        #
+        #   The app's default API key, used to authenticate requests on behalf of this app.
+        #   Null if the app has no default key. Requires the 'developer:manage_api_key'
+        #   permission.
+        #
+        #   @param id [String] The unique identifier for the authorized api key.
+        #
+        #   @param name [String, nil] A user set name to identify an API key
+        #
+        #   @param obfuscated_secret_key [String] A masked version of the secret key used to authenticate requests. This is so tha
+        #
+        #   @param secret_key [String, nil] The secret key used to authenticate requests. This is only available if the curr
+      end
+
       # @see WhopSDK::Models::App#icon
       class Icon < WhopSDK::Internal::Type::BaseModel
         # @!attribute url
@@ -340,6 +425,34 @@ module WhopSDK
         #   checkout, and as the default icon for experiences using this app.
         #
         #   @param url [String, nil] A pre-optimized URL for rendering this attachment on the client. This should be
+      end
+
+      # The available marketplace statuses to choose from.
+      #
+      # @see WhopSDK::Models::App#marketplace_status
+      module MarketplaceStatus
+        extend WhopSDK::Internal::Type::Enum
+
+        NOT_AVAILABLE = :not_available
+        PENDING_REVIEW = :pending_review
+        LIVE_MARKETPLACE = :live_marketplace
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
+
+      # How this app authenticates when exchanging OAuth authorization and refresh
+      # grants.
+      #
+      # @see WhopSDK::Models::App#oauth_client_type
+      module OAuthClientType
+        extend WhopSDK::Internal::Type::Enum
+
+        PUBLIC = :public
+        CONFIDENTIAL = :confidential
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
       # @see WhopSDK::Models::App#production_web_build

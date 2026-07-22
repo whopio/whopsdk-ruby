@@ -76,6 +76,7 @@ module WhopSDK
         BILLING_PERCENTAGE_FEE = :billing_percentage_fee
         REVSHARE_PERCENTAGE_FEE = :revshare_percentage_fee
         APPLICATION_FEE = :application_fee
+        HIGH_RISK_MERCHANT_FEE = :high_risk_merchant_fee
 
         # @!method self.values
         #   @return [Array<Symbol>]

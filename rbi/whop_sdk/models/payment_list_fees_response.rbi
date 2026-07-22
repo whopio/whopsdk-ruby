@@ -228,6 +228,11 @@ module WhopSDK
             :application_fee,
             WhopSDK::Models::PaymentListFeesResponse::Type::TaggedSymbol
           )
+        HIGH_RISK_MERCHANT_FEE =
+          T.let(
+            :high_risk_merchant_fee,
+            WhopSDK::Models::PaymentListFeesResponse::Type::TaggedSymbol
+          )
 
         sig do
           override.returns(

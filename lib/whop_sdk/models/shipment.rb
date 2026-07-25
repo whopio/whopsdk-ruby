@@ -9,12 +9,6 @@ module WhopSDK
       #   @return [String]
       required :id, String
 
-      # @!attribute carrier
-      #   The shipping carrier responsible for delivering this shipment.
-      #
-      #   @return [Symbol, WhopSDK::Models::ShipmentCarrier]
-      required :carrier, enum: -> { WhopSDK::ShipmentCarrier }
-
       # @!attribute created_at
       #   The datetime the shipment was created.
       #
@@ -66,7 +60,7 @@ module WhopSDK
       #   @return [Time]
       required :updated_at, Time
 
-      # @!method initialize(id:, carrier:, created_at:, delivery_estimate:, payment:, service:, status:, substatus:, tracking_code:, updated_at:)
+      # @!method initialize(id:, created_at:, delivery_estimate:, payment:, service:, status:, substatus:, tracking_code:, updated_at:)
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::Shipment} for more details.
       #
@@ -74,8 +68,6 @@ module WhopSDK
       #   tracking information.
       #
       #   @param id [String] The unique identifier for the shipment.
-      #
-      #   @param carrier [Symbol, WhopSDK::Models::ShipmentCarrier] The shipping carrier responsible for delivering this shipment.
       #
       #   @param created_at [Time] The datetime the shipment was created.
       #

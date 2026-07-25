@@ -20,7 +20,6 @@ class WhopSDK::Test::Resources::ShipmentsTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
-        carrier: WhopSDK::ShipmentCarrier,
         created_at: Time,
         delivery_estimate: Time | nil,
         payment: WhopSDK::Shipment::Payment | nil,
@@ -45,7 +44,6 @@ class WhopSDK::Test::Resources::ShipmentsTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
-        carrier: WhopSDK::ShipmentCarrier,
         created_at: Time,
         delivery_estimate: Time | nil,
         payment: WhopSDK::Shipment::Payment | nil,
@@ -77,7 +75,6 @@ class WhopSDK::Test::Resources::ShipmentsTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       row => {
         id: String,
-        carrier: WhopSDK::ShipmentCarrier,
         created_at: Time,
         delivery_estimate: Time | nil,
         payment: WhopSDK::Models::ShipmentListResponse::Payment | nil,

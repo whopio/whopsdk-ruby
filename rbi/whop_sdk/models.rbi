@@ -652,8 +652,6 @@ module WhopSDK
 
   Shipment = WhopSDK::Models::Shipment
 
-  ShipmentCarrier = WhopSDK::Models::ShipmentCarrier
-
   ShipmentCreateParams = WhopSDK::Models::ShipmentCreateParams
 
   ShipmentListParams = WhopSDK::Models::ShipmentListParams

@@ -15,10 +15,6 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :id
 
-      # The shipping carrier responsible for delivering this shipment.
-      sig { returns(WhopSDK::ShipmentCarrier::TaggedSymbol) }
-      attr_accessor :carrier
-
       # The datetime the shipment was created.
       sig { returns(Time) }
       attr_accessor :created_at
@@ -67,7 +63,6 @@ module WhopSDK
       sig do
         params(
           id: String,
-          carrier: WhopSDK::ShipmentCarrier::OrSymbol,
           created_at: Time,
           delivery_estimate: T.nilable(Time),
           payment:
@@ -82,8 +77,6 @@ module WhopSDK
       def self.new(
         # The unique identifier for the shipment.
         id:,
-        # The shipping carrier responsible for delivering this shipment.
-        carrier:,
         # The datetime the shipment was created.
         created_at:,
         # The estimated delivery date for this shipment. Null if the carrier has not
@@ -110,7 +103,6 @@ module WhopSDK
         override.returns(
           {
             id: String,
-            carrier: WhopSDK::ShipmentCarrier::TaggedSymbol,
             created_at: Time,
             delivery_estimate: T.nilable(Time),
             payment: T.nilable(WhopSDK::Models::ShipmentListResponse::Payment),

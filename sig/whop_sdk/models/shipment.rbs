@@ -3,7 +3,6 @@ module WhopSDK
     type shipment =
       {
         id: String,
-        carrier: WhopSDK::Models::shipment_carrier,
         created_at: Time,
         delivery_estimate: Time?,
         payment: WhopSDK::Shipment::Payment?,
@@ -16,8 +15,6 @@ module WhopSDK
 
     class Shipment < WhopSDK::Internal::Type::BaseModel
       attr_accessor id: String
-
-      attr_accessor carrier: WhopSDK::Models::shipment_carrier
 
       attr_accessor created_at: Time
 
@@ -37,7 +34,6 @@ module WhopSDK
 
       def initialize: (
         id: String,
-        carrier: WhopSDK::Models::shipment_carrier,
         created_at: Time,
         delivery_estimate: Time?,
         payment: WhopSDK::Shipment::Payment?,
@@ -50,7 +46,6 @@ module WhopSDK
 
       def to_hash: -> {
         id: String,
-        carrier: WhopSDK::Models::shipment_carrier,
         created_at: Time,
         delivery_estimate: Time?,
         payment: WhopSDK::Shipment::Payment?,

@@ -15,6 +15,7 @@ module WhopSDK
       | :abandoned
       | :review
       | :action_required
+      | :manual_review
 
     module VerificationStatus
       extend WhopSDK::Internal::Type::Enum
@@ -33,6 +34,7 @@ module WhopSDK
       ABANDONED: :abandoned
       REVIEW: :review
       ACTION_REQUIRED: :action_required
+      MANUAL_REVIEW: :manual_review
 
       def self?.values: -> ::Array[WhopSDK::Models::verification_status]
     end

@@ -29,6 +29,8 @@ module WhopSDK
       REVIEW = T.let(:review, WhopSDK::VerificationStatus::TaggedSymbol)
       ACTION_REQUIRED =
         T.let(:action_required, WhopSDK::VerificationStatus::TaggedSymbol)
+      MANUAL_REVIEW =
+        T.let(:manual_review, WhopSDK::VerificationStatus::TaggedSymbol)
 
       sig do
         override.returns(T::Array[WhopSDK::VerificationStatus::TaggedSymbol])

@@ -20,6 +20,7 @@ module WhopSDK
       ABANDONED = :abandoned
       REVIEW = :review
       ACTION_REQUIRED = :action_required
+      MANUAL_REVIEW = :manual_review
 
       # @!method self.values
       #   @return [Array<Symbol>]

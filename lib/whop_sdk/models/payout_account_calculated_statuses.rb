@@ -12,7 +12,10 @@ module WhopSDK
       ACTION_REQUIRED = :action_required
       PENDING_VERIFICATION = :pending_verification
       VERIFICATION_FAILED = :verification_failed
+      MANUAL_REVIEW = :manual_review
+      DENIED = :denied
       NOT_STARTED = :not_started
+      BLOCKED_BY_PARENT = :blocked_by_parent
 
       # @!method self.values
       #   @return [Array<Symbol>]

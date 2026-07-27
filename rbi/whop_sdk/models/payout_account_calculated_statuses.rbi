@@ -33,9 +33,21 @@ module WhopSDK
           :verification_failed,
           WhopSDK::PayoutAccountCalculatedStatuses::TaggedSymbol
         )
+      MANUAL_REVIEW =
+        T.let(
+          :manual_review,
+          WhopSDK::PayoutAccountCalculatedStatuses::TaggedSymbol
+        )
+      DENIED =
+        T.let(:denied, WhopSDK::PayoutAccountCalculatedStatuses::TaggedSymbol)
       NOT_STARTED =
         T.let(
           :not_started,
+          WhopSDK::PayoutAccountCalculatedStatuses::TaggedSymbol
+        )
+      BLOCKED_BY_PARENT =
+        T.let(
+          :blocked_by_parent,
           WhopSDK::PayoutAccountCalculatedStatuses::TaggedSymbol
         )
 

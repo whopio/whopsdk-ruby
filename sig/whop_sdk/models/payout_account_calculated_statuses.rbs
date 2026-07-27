@@ -6,7 +6,10 @@ module WhopSDK
       | :action_required
       | :pending_verification
       | :verification_failed
+      | :manual_review
+      | :denied
       | :not_started
+      | :blocked_by_parent
 
     module PayoutAccountCalculatedStatuses
       extend WhopSDK::Internal::Type::Enum
@@ -16,7 +19,10 @@ module WhopSDK
       ACTION_REQUIRED: :action_required
       PENDING_VERIFICATION: :pending_verification
       VERIFICATION_FAILED: :verification_failed
+      MANUAL_REVIEW: :manual_review
+      DENIED: :denied
       NOT_STARTED: :not_started
+      BLOCKED_BY_PARENT: :blocked_by_parent
 
       def self?.values: -> ::Array[WhopSDK::Models::payout_account_calculated_statuses]
     end

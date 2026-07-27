@@ -20,6 +20,12 @@ module WhopSDK
       sig { returns(T.nilable(WhopSDK::CancelOptions::TaggedSymbol)) }
       attr_accessor :cancel_option
 
+      # The state of a membership after a customer provides a cancelation reason.
+      sig do
+        returns(T.nilable(WhopSDK::Membership::CancelationStatus::TaggedSymbol))
+      end
+      attr_accessor :cancelation_status
+
       # The time the customer initiated cancellation of this membership. As a Unix
       # timestamp. Null if the membership has not been canceled.
       sig { returns(T.nilable(Time)) }
@@ -55,6 +61,16 @@ module WhopSDK
       # at the time of purchase.
       sig { returns(T::Array[WhopSDK::Membership::CustomFieldResponse]) }
       attr_accessor :custom_field_responses
+
+      # The recurring renewal price for this membership, formatted with currency symbol
+      # and billing interval. Null if the membership is not recurring.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :formatted_renewal_price
+
+      # The amount the customer paid when first purchasing this membership, formatted
+      # with currency symbol.
+      sig { returns(String) }
+      attr_accessor :initial_price_paid
 
       # The time the user first joined the company associated with this membership. As a
       # Unix timestamp. Null if the member record does not exist.
@@ -150,6 +166,8 @@ module WhopSDK
           id: String,
           cancel_at_period_end: T::Boolean,
           cancel_option: T.nilable(WhopSDK::CancelOptions::OrSymbol),
+          cancelation_status:
+            T.nilable(WhopSDK::Membership::CancelationStatus::OrSymbol),
           canceled_at: T.nilable(Time),
           cancellation_reason: T.nilable(String),
           checkout_configuration_id: T.nilable(String),
@@ -158,6 +176,8 @@ module WhopSDK
           currency: T.nilable(WhopSDK::Currency::OrSymbol),
           custom_field_responses:
             T::Array[WhopSDK::Membership::CustomFieldResponse::OrHash],
+          formatted_renewal_price: T.nilable(String),
+          initial_price_paid: String,
           joined_at: T.nilable(Time),
           license_key: T.nilable(String),
           manage_url: T.nilable(String),
@@ -183,6 +203,8 @@ module WhopSDK
         # The different reasons a user can choose for why they are canceling their
         # membership.
         cancel_option:,
+        # The state of a membership after a customer provides a cancelation reason.
+        cancelation_status:,
         # The time the customer initiated cancellation of this membership. As a Unix
         # timestamp. Null if the membership has not been canceled.
         canceled_at:,
@@ -202,6 +224,12 @@ module WhopSDK
         # The customer's responses to custom checkout questions configured on the product
         # at the time of purchase.
         custom_field_responses:,
+        # The recurring renewal price for this membership, formatted with currency symbol
+        # and billing interval. Null if the membership is not recurring.
+        formatted_renewal_price:,
+        # The amount the customer paid when first purchasing this membership, formatted
+        # with currency symbol.
+        initial_price_paid:,
         # The time the user first joined the company associated with this membership. As a
         # Unix timestamp. Null if the member record does not exist.
         joined_at:,
@@ -249,6 +277,8 @@ module WhopSDK
             id: String,
             cancel_at_period_end: T::Boolean,
             cancel_option: T.nilable(WhopSDK::CancelOptions::TaggedSymbol),
+            cancelation_status:
+              T.nilable(WhopSDK::Membership::CancelationStatus::TaggedSymbol),
             canceled_at: T.nilable(Time),
             cancellation_reason: T.nilable(String),
             checkout_configuration_id: T.nilable(String),
@@ -257,6 +287,8 @@ module WhopSDK
             currency: T.nilable(WhopSDK::Currency::TaggedSymbol),
             custom_field_responses:
               T::Array[WhopSDK::Membership::CustomFieldResponse],
+            formatted_renewal_price: T.nilable(String),
+            initial_price_paid: String,
             joined_at: T.nilable(Time),
             license_key: T.nilable(String),
             manage_url: T.nilable(String),
@@ -275,6 +307,33 @@ module WhopSDK
         )
       end
       def to_hash
+      end
+
+      # The state of a membership after a customer provides a cancelation reason.
+      module CancelationStatus
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias { T.all(Symbol, WhopSDK::Membership::CancelationStatus) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        WON_BACK =
+          T.let(:won_back, WhopSDK::Membership::CancelationStatus::TaggedSymbol)
+        LEFT =
+          T.let(:left, WhopSDK::Membership::CancelationStatus::TaggedSymbol)
+        CANCELING =
+          T.let(
+            :canceling,
+            WhopSDK::Membership::CancelationStatus::TaggedSymbol
+          )
+
+        sig do
+          override.returns(
+            T::Array[WhopSDK::Membership::CancelationStatus::TaggedSymbol]
+          )
+        end
+        def self.values
+        end
       end
 
       class Company < WhopSDK::Internal::Type::BaseModel
@@ -514,6 +573,11 @@ module WhopSDK
         sig { returns(T.nilable(String)) }
         attr_accessor :name
 
+        # The URL of the user's profile picture. Use profilePicture for the full
+        # attachment object.
+        sig { returns(String) }
+        attr_accessor :profile_pic
+
         # The user's unique username shown on their public profile.
         sig { returns(String) }
         attr_accessor :username
@@ -524,6 +588,7 @@ module WhopSDK
             id: String,
             email: T.nilable(String),
             name: T.nilable(String),
+            profile_pic: String,
             username: String
           ).returns(T.attached_class)
         end
@@ -535,6 +600,9 @@ module WhopSDK
           email:,
           # The user's display name shown on their public profile.
           name:,
+          # The URL of the user's profile picture. Use profilePicture for the full
+          # attachment object.
+          profile_pic:,
           # The user's unique username shown on their public profile.
           username:
         )
@@ -546,6 +614,7 @@ module WhopSDK
               id: String,
               email: T.nilable(String),
               name: T.nilable(String),
+              profile_pic: String,
               username: String
             }
           )

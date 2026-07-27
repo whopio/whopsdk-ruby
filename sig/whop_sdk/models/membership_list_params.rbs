@@ -5,11 +5,14 @@ module WhopSDK
         after: String?,
         before: String?,
         cancel_options: ::Array[WhopSDK::Models::cancel_options]?,
+        cancelation_status: WhopSDK::Models::MembershipListParams::cancelation_status?,
         company_id: String?,
         created_after: Time?,
         created_before: Time?,
         direction: WhopSDK::Models::direction?,
         first: Integer?,
+        has_cancelation_reason: bool?,
+        include_text_only_cancelation_reasons: bool?,
         last: Integer?,
         order: WhopSDK::Models::MembershipListParams::order?,
         plan_ids: ::Array[String]?,
@@ -30,6 +33,8 @@ module WhopSDK
 
       attr_accessor cancel_options: ::Array[WhopSDK::Models::cancel_options]?
 
+      attr_accessor cancelation_status: WhopSDK::Models::MembershipListParams::cancelation_status?
+
       attr_accessor company_id: String?
 
       attr_accessor created_after: Time?
@@ -39,6 +44,10 @@ module WhopSDK
       attr_accessor direction: WhopSDK::Models::direction?
 
       attr_accessor first: Integer?
+
+      attr_accessor has_cancelation_reason: bool?
+
+      attr_accessor include_text_only_cancelation_reasons: bool?
 
       attr_accessor last: Integer?
 
@@ -58,11 +67,14 @@ module WhopSDK
         ?after: String?,
         ?before: String?,
         ?cancel_options: ::Array[WhopSDK::Models::cancel_options]?,
+        ?cancelation_status: WhopSDK::Models::MembershipListParams::cancelation_status?,
         ?company_id: String?,
         ?created_after: Time?,
         ?created_before: Time?,
         ?direction: WhopSDK::Models::direction?,
         ?first: Integer?,
+        ?has_cancelation_reason: bool?,
+        ?include_text_only_cancelation_reasons: bool?,
         ?last: Integer?,
         ?order: WhopSDK::Models::MembershipListParams::order?,
         ?plan_ids: ::Array[String]?,
@@ -77,11 +89,14 @@ module WhopSDK
         after: String?,
         before: String?,
         cancel_options: ::Array[WhopSDK::Models::cancel_options]?,
+        cancelation_status: WhopSDK::Models::MembershipListParams::cancelation_status?,
         company_id: String?,
         created_after: Time?,
         created_before: Time?,
         direction: WhopSDK::Models::direction?,
         first: Integer?,
+        has_cancelation_reason: bool?,
+        include_text_only_cancelation_reasons: bool?,
         last: Integer?,
         order: WhopSDK::Models::MembershipListParams::order?,
         plan_ids: ::Array[String]?,
@@ -91,6 +106,18 @@ module WhopSDK
         user_ids: ::Array[String]?,
         request_options: WhopSDK::RequestOptions
       }
+
+      type cancelation_status = :won_back | :left | :canceling
+
+      module CancelationStatus
+        extend WhopSDK::Internal::Type::Enum
+
+        WON_BACK: :won_back
+        LEFT: :left
+        CANCELING: :canceling
+
+        def self?.values: -> ::Array[WhopSDK::Models::MembershipListParams::cancelation_status]
+      end
 
       type order =
         :id | :created_at | :status | :canceled_at | :date_joined | :total_spend

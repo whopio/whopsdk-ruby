@@ -27,6 +27,12 @@ module WhopSDK
                -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::CancelOptions] },
                nil?: true
 
+      # @!attribute cancelation_status
+      #   The state of a membership after a customer provides a cancelation reason.
+      #
+      #   @return [Symbol, WhopSDK::Models::MembershipListParams::CancelationStatus, nil]
+      optional :cancelation_status, enum: -> { WhopSDK::MembershipListParams::CancelationStatus }, nil?: true
+
       # @!attribute company_id
       #   The unique identifier of the company to list memberships for. Required when
       #   using an API key.
@@ -57,6 +63,20 @@ module WhopSDK
       #
       #   @return [Integer, nil]
       optional :first, Integer, nil?: true
+
+      # @!attribute has_cancelation_reason
+      #   Filter memberships by whether they have a structured or free-text cancellation
+      #   reason.
+      #
+      #   @return [Boolean, nil]
+      optional :has_cancelation_reason, WhopSDK::Internal::Type::Boolean, nil?: true
+
+      # @!attribute include_text_only_cancelation_reasons
+      #   When filtering by the other cancellation option, also include memberships that
+      #   only have a free-text cancellation reason.
+      #
+      #   @return [Boolean, nil]
+      optional :include_text_only_cancelation_reasons, WhopSDK::Internal::Type::Boolean, nil?: true
 
       # @!attribute last
       #   Returns the last _n_ elements from the list.
@@ -100,7 +120,7 @@ module WhopSDK
       #   @return [Array<String>, nil]
       optional :user_ids, WhopSDK::Internal::Type::ArrayOf[String], nil?: true
 
-      # @!method initialize(after: nil, before: nil, cancel_options: nil, company_id: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, order: nil, plan_ids: nil, product_ids: nil, promo_code_ids: nil, statuses: nil, user_ids: nil, request_options: {})
+      # @!method initialize(after: nil, before: nil, cancel_options: nil, cancelation_status: nil, company_id: nil, created_after: nil, created_before: nil, direction: nil, first: nil, has_cancelation_reason: nil, include_text_only_cancelation_reasons: nil, last: nil, order: nil, plan_ids: nil, product_ids: nil, promo_code_ids: nil, statuses: nil, user_ids: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::MembershipListParams} for more details.
       #
@@ -109,6 +129,8 @@ module WhopSDK
       #   @param before [String, nil] Returns the elements in the list that come before the specified cursor.
       #
       #   @param cancel_options [Array<Symbol, WhopSDK::Models::CancelOptions>, nil] Filter to only memberships matching these cancellation reasons.
+      #
+      #   @param cancelation_status [Symbol, WhopSDK::Models::MembershipListParams::CancelationStatus, nil] The state of a membership after a customer provides a cancelation reason.
       #
       #   @param company_id [String, nil] The unique identifier of the company to list memberships for. Required when usin
       #
@@ -119,6 +141,10 @@ module WhopSDK
       #   @param direction [Symbol, WhopSDK::Models::Direction, nil] The direction of the sort.
       #
       #   @param first [Integer, nil] Returns the first _n_ elements from the list.
+      #
+      #   @param has_cancelation_reason [Boolean, nil] Filter memberships by whether they have a structured or free-text cancellation r
+      #
+      #   @param include_text_only_cancelation_reasons [Boolean, nil] When filtering by the other cancellation option, also include memberships that o
       #
       #   @param last [Integer, nil] Returns the last _n_ elements from the list.
       #
@@ -135,6 +161,18 @@ module WhopSDK
       #   @param user_ids [Array<String>, nil] Filter to only memberships belonging to these user identifiers.
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
+
+      # The state of a membership after a customer provides a cancelation reason.
+      module CancelationStatus
+        extend WhopSDK::Internal::Type::Enum
+
+        WON_BACK = :won_back
+        LEFT = :left
+        CANCELING = :canceling
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
 
       # Which columns can be used to sort.
       module Order

@@ -73,13 +73,15 @@ module WhopSDK
       # - `member:basic:read`
       # - `member:email:read`
       #
-      # @overload list(after: nil, before: nil, cancel_options: nil, company_id: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, order: nil, plan_ids: nil, product_ids: nil, promo_code_ids: nil, statuses: nil, user_ids: nil, request_options: {})
+      # @overload list(after: nil, before: nil, cancel_options: nil, cancelation_status: nil, company_id: nil, created_after: nil, created_before: nil, direction: nil, first: nil, has_cancelation_reason: nil, include_text_only_cancelation_reasons: nil, last: nil, order: nil, plan_ids: nil, product_ids: nil, promo_code_ids: nil, statuses: nil, user_ids: nil, request_options: {})
       #
       # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
       # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
       #
       # @param cancel_options [Array<Symbol, WhopSDK::Models::CancelOptions>, nil] Filter to only memberships matching these cancellation reasons.
+      #
+      # @param cancelation_status [Symbol, WhopSDK::Models::MembershipListParams::CancelationStatus, nil] The state of a membership after a customer provides a cancelation reason.
       #
       # @param company_id [String, nil] The unique identifier of the company to list memberships for. Required when usin
       #
@@ -90,6 +92,10 @@ module WhopSDK
       # @param direction [Symbol, WhopSDK::Models::Direction, nil] The direction of the sort.
       #
       # @param first [Integer, nil] Returns the first _n_ elements from the list.
+      #
+      # @param has_cancelation_reason [Boolean, nil] Filter memberships by whether they have a structured or free-text cancellation r
+      #
+      # @param include_text_only_cancelation_reasons [Boolean, nil] When filtering by the other cancellation option, also include memberships that o
       #
       # @param last [Integer, nil] Returns the last _n_ elements from the list.
       #

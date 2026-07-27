@@ -5,6 +5,7 @@ module WhopSDK
         id: String,
         cancel_at_period_end: bool,
         cancel_option: WhopSDK::Models::cancel_options?,
+        cancelation_status: WhopSDK::Models::Membership::cancelation_status?,
         canceled_at: Time?,
         cancellation_reason: String?,
         checkout_configuration_id: String?,
@@ -12,6 +13,8 @@ module WhopSDK
         created_at: Time,
         currency: WhopSDK::Models::currency?,
         custom_field_responses: ::Array[WhopSDK::Membership::CustomFieldResponse],
+        formatted_renewal_price: String?,
+        initial_price_paid: String,
         joined_at: Time?,
         license_key: String?,
         manage_url: String?,
@@ -35,6 +38,8 @@ module WhopSDK
 
       attr_accessor cancel_option: WhopSDK::Models::cancel_options?
 
+      attr_accessor cancelation_status: WhopSDK::Models::Membership::cancelation_status?
+
       attr_accessor canceled_at: Time?
 
       attr_accessor cancellation_reason: String?
@@ -48,6 +53,10 @@ module WhopSDK
       attr_accessor currency: WhopSDK::Models::currency?
 
       attr_accessor custom_field_responses: ::Array[WhopSDK::Membership::CustomFieldResponse]
+
+      attr_accessor formatted_renewal_price: String?
+
+      attr_accessor initial_price_paid: String
 
       attr_accessor joined_at: Time?
 
@@ -81,6 +90,7 @@ module WhopSDK
         id: String,
         cancel_at_period_end: bool,
         cancel_option: WhopSDK::Models::cancel_options?,
+        cancelation_status: WhopSDK::Models::Membership::cancelation_status?,
         canceled_at: Time?,
         cancellation_reason: String?,
         checkout_configuration_id: String?,
@@ -88,6 +98,8 @@ module WhopSDK
         created_at: Time,
         currency: WhopSDK::Models::currency?,
         custom_field_responses: ::Array[WhopSDK::Membership::CustomFieldResponse],
+        formatted_renewal_price: String?,
+        initial_price_paid: String,
         joined_at: Time?,
         license_key: String?,
         manage_url: String?,
@@ -108,6 +120,7 @@ module WhopSDK
         id: String,
         cancel_at_period_end: bool,
         cancel_option: WhopSDK::Models::cancel_options?,
+        cancelation_status: WhopSDK::Models::Membership::cancelation_status?,
         canceled_at: Time?,
         cancellation_reason: String?,
         checkout_configuration_id: String?,
@@ -115,6 +128,8 @@ module WhopSDK
         created_at: Time,
         currency: WhopSDK::Models::currency?,
         custom_field_responses: ::Array[WhopSDK::Membership::CustomFieldResponse],
+        formatted_renewal_price: String?,
+        initial_price_paid: String,
         joined_at: Time?,
         license_key: String?,
         manage_url: String?,
@@ -130,6 +145,18 @@ module WhopSDK
         updated_at: Time,
         user: WhopSDK::Membership::User?
       }
+
+      type cancelation_status = :won_back | :left | :canceling
+
+      module CancelationStatus
+        extend WhopSDK::Internal::Type::Enum
+
+        WON_BACK: :won_back
+        LEFT: :left
+        CANCELING: :canceling
+
+        def self?.values: -> ::Array[WhopSDK::Models::Membership::cancelation_status]
+      end
 
       type company = { id: String, title: String }
 
@@ -214,7 +241,13 @@ module WhopSDK
       end
 
       type user =
-        { id: String, email: String?, name: String?, username: String }
+        {
+          id: String,
+          email: String?,
+          name: String?,
+          profile_pic: String,
+          username: String
+        }
 
       class User < WhopSDK::Internal::Type::BaseModel
         attr_accessor id: String
@@ -223,12 +256,15 @@ module WhopSDK
 
         attr_accessor name: String?
 
+        attr_accessor profile_pic: String
+
         attr_accessor username: String
 
         def initialize: (
           id: String,
           email: String?,
           name: String?,
+          profile_pic: String,
           username: String
         ) -> void
 
@@ -236,6 +272,7 @@ module WhopSDK
           id: String,
           email: String?,
           name: String?,
+          profile_pic: String,
           username: String
         }
       end

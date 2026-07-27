@@ -23,6 +23,12 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::CancelOptions, nil]
       required :cancel_option, enum: -> { WhopSDK::CancelOptions }, nil?: true
 
+      # @!attribute cancelation_status
+      #   The state of a membership after a customer provides a cancelation reason.
+      #
+      #   @return [Symbol, WhopSDK::Models::Membership::CancelationStatus, nil]
+      required :cancelation_status, enum: -> { WhopSDK::Membership::CancelationStatus }, nil?: true
+
       # @!attribute canceled_at
       #   The time the customer initiated cancellation of this membership. As a Unix
       #   timestamp. Null if the membership has not been canceled.
@@ -70,6 +76,20 @@ module WhopSDK
       #   @return [Array<WhopSDK::Models::Membership::CustomFieldResponse>]
       required :custom_field_responses,
                -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::Membership::CustomFieldResponse] }
+
+      # @!attribute formatted_renewal_price
+      #   The recurring renewal price for this membership, formatted with currency symbol
+      #   and billing interval. Null if the membership is not recurring.
+      #
+      #   @return [String, nil]
+      required :formatted_renewal_price, String, nil?: true
+
+      # @!attribute initial_price_paid
+      #   The amount the customer paid when first purchasing this membership, formatted
+      #   with currency symbol.
+      #
+      #   @return [String]
+      required :initial_price_paid, String
 
       # @!attribute joined_at
       #   The time the user first joined the company associated with this membership. As a
@@ -165,7 +185,7 @@ module WhopSDK
       #   @return [WhopSDK::Models::Membership::User, nil]
       required :user, -> { WhopSDK::Membership::User }, nil?: true
 
-      # @!method initialize(id:, cancel_at_period_end:, cancel_option:, canceled_at:, cancellation_reason:, checkout_configuration_id:, company:, created_at:, currency:, custom_field_responses:, joined_at:, license_key:, manage_url:, member:, metadata:, payment_collection_paused:, plan:, product:, promo_code:, renewal_period_end:, renewal_period_start:, status:, updated_at:, user:)
+      # @!method initialize(id:, cancel_at_period_end:, cancel_option:, cancelation_status:, canceled_at:, cancellation_reason:, checkout_configuration_id:, company:, created_at:, currency:, custom_field_responses:, formatted_renewal_price:, initial_price_paid:, joined_at:, license_key:, manage_url:, member:, metadata:, payment_collection_paused:, plan:, product:, promo_code:, renewal_period_end:, renewal_period_start:, status:, updated_at:, user:)
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::Membership} for more details.
       #
@@ -177,6 +197,8 @@ module WhopSDK
       #   @param cancel_at_period_end [Boolean] Whether this membership is set to cancel at the end of the current billing cycle
       #
       #   @param cancel_option [Symbol, WhopSDK::Models::CancelOptions, nil] The different reasons a user can choose for why they are canceling their members
+      #
+      #   @param cancelation_status [Symbol, WhopSDK::Models::Membership::CancelationStatus, nil] The state of a membership after a customer provides a cancelation reason.
       #
       #   @param canceled_at [Time, nil] The time the customer initiated cancellation of this membership. As a Unix times
       #
@@ -191,6 +213,10 @@ module WhopSDK
       #   @param currency [Symbol, WhopSDK::Models::Currency, nil] The available currencies on the platform
       #
       #   @param custom_field_responses [Array<WhopSDK::Models::Membership::CustomFieldResponse>] The customer's responses to custom checkout questions configured on the product
+      #
+      #   @param formatted_renewal_price [String, nil] The recurring renewal price for this membership, formatted with currency symbol
+      #
+      #   @param initial_price_paid [String] The amount the customer paid when first purchasing this membership, formatted wi
       #
       #   @param joined_at [Time, nil] The time the user first joined the company associated with this membership. As a
       #
@@ -219,6 +245,20 @@ module WhopSDK
       #   @param updated_at [Time] The datetime the membership was last updated.
       #
       #   @param user [WhopSDK::Models::Membership::User, nil] The user who owns this membership. Null if the user account has been deleted.
+
+      # The state of a membership after a customer provides a cancelation reason.
+      #
+      # @see WhopSDK::Models::Membership#cancelation_status
+      module CancelationStatus
+        extend WhopSDK::Internal::Type::Enum
+
+        WON_BACK = :won_back
+        LEFT = :left
+        CANCELING = :canceling
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
 
       # @see WhopSDK::Models::Membership#company
       class Company < WhopSDK::Internal::Type::BaseModel
@@ -385,13 +425,20 @@ module WhopSDK
         #   @return [String, nil]
         required :name, String, nil?: true
 
+        # @!attribute profile_pic
+        #   The URL of the user's profile picture. Use profilePicture for the full
+        #   attachment object.
+        #
+        #   @return [String]
+        required :profile_pic, String
+
         # @!attribute username
         #   The user's unique username shown on their public profile.
         #
         #   @return [String]
         required :username, String
 
-        # @!method initialize(id:, email:, name:, username:)
+        # @!method initialize(id:, email:, name:, profile_pic:, username:)
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::Membership::User} for more details.
         #
@@ -402,6 +449,8 @@ module WhopSDK
         #   @param email [String, nil] The user's email address. Requires the member:email:read permission to access. N
         #
         #   @param name [String, nil] The user's display name shown on their public profile.
+        #
+        #   @param profile_pic [String] The URL of the user's profile picture. Use profilePicture for the full attachmen
         #
         #   @param username [String] The user's unique username shown on their public profile.
       end

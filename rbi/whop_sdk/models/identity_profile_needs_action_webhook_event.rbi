@@ -593,6 +593,11 @@ module WhopSDK
               :pending,
               WhopSDK::IdentityProfileNeedsActionWebhookEvent::Data::Status::TaggedSymbol
             )
+          MANUAL_REVIEW =
+            T.let(
+              :manual_review,
+              WhopSDK::IdentityProfileNeedsActionWebhookEvent::Data::Status::TaggedSymbol
+            )
           APPROVED =
             T.let(
               :approved,

@@ -386,6 +386,7 @@ module WhopSDK
 
           NOT_STARTED = :not_started
           PENDING = :pending
+          MANUAL_REVIEW = :manual_review
           APPROVED = :approved
           REJECTED = :rejected
           ACTION_REQUIRED = :action_required

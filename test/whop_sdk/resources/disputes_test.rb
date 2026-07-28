@@ -34,6 +34,7 @@ class WhopSDK::Test::Resources::DisputesTest < WhopSDK::Test::ResourceTest
         product: WhopSDK::Dispute::Product | nil,
         product_description: String | nil,
         reason: String | nil,
+        reason_code: String | nil,
         refund_policy_attachment: WhopSDK::Dispute::RefundPolicyAttachment | nil,
         refund_policy_disclosure: String | nil,
         refund_refusal_explanation: String | nil,
@@ -74,6 +75,7 @@ class WhopSDK::Test::Resources::DisputesTest < WhopSDK::Test::ResourceTest
         plan: WhopSDK::Models::DisputeListResponse::Plan | nil,
         product: WhopSDK::Models::DisputeListResponse::Product | nil,
         reason: String | nil,
+        reason_code: String | nil,
         status: WhopSDK::DisputeStatuses,
         visa_rdr: WhopSDK::Internal::Type::Boolean
       }
@@ -111,6 +113,7 @@ class WhopSDK::Test::Resources::DisputesTest < WhopSDK::Test::ResourceTest
         product: WhopSDK::Dispute::Product | nil,
         product_description: String | nil,
         reason: String | nil,
+        reason_code: String | nil,
         refund_policy_attachment: WhopSDK::Dispute::RefundPolicyAttachment | nil,
         refund_policy_disclosure: String | nil,
         refund_refusal_explanation: String | nil,
@@ -153,6 +156,7 @@ class WhopSDK::Test::Resources::DisputesTest < WhopSDK::Test::ResourceTest
         product: WhopSDK::Dispute::Product | nil,
         product_description: String | nil,
         reason: String | nil,
+        reason_code: String | nil,
         refund_policy_attachment: WhopSDK::Dispute::RefundPolicyAttachment | nil,
         refund_policy_disclosure: String | nil,
         refund_refusal_explanation: String | nil,

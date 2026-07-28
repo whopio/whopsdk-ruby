@@ -13,6 +13,7 @@ module WhopSDK
         plan: WhopSDK::Models::DisputeListResponse::Plan?,
         product: WhopSDK::Models::DisputeListResponse::Product?,
         reason: String?,
+        reason_code: String?,
         status: WhopSDK::Models::dispute_statuses,
         visa_rdr: bool
       }
@@ -40,6 +41,8 @@ module WhopSDK
 
       attr_accessor reason: String?
 
+      attr_accessor reason_code: String?
+
       attr_accessor status: WhopSDK::Models::dispute_statuses
 
       attr_accessor visa_rdr: bool
@@ -56,6 +59,7 @@ module WhopSDK
         plan: WhopSDK::Models::DisputeListResponse::Plan?,
         product: WhopSDK::Models::DisputeListResponse::Product?,
         reason: String?,
+        reason_code: String?,
         status: WhopSDK::Models::dispute_statuses,
         visa_rdr: bool
       ) -> void
@@ -72,6 +76,7 @@ module WhopSDK
         plan: WhopSDK::Models::DisputeListResponse::Plan?,
         product: WhopSDK::Models::DisputeListResponse::Product?,
         reason: String?,
+        reason_code: String?,
         status: WhopSDK::Models::dispute_statuses,
         visa_rdr: bool
       }

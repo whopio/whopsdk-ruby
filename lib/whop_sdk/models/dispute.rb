@@ -139,6 +139,13 @@ module WhopSDK
       #   @return [String, nil]
       required :reason, String, nil?: true
 
+      # @!attribute reason_code
+      #   The card network reason code for the dispute. Null when the payment processor
+      #   did not provide one.
+      #
+      #   @return [String, nil]
+      required :reason_code, String, nil?: true
+
       # @!attribute refund_policy_attachment
       #   The refund policy document uploaded as dispute evidence. Null if no refund
       #   policy has been provided.
@@ -188,7 +195,7 @@ module WhopSDK
       #   @return [Boolean]
       required :visa_rdr, WhopSDK::Internal::Type::Boolean
 
-      # @!method initialize(id:, access_activity_log:, amount:, billing_address:, cancellation_policy_attachment:, cancellation_policy_disclosure:, company:, created_at:, currency:, customer_communication_attachment:, customer_email_address:, customer_name:, editable:, needs_response_by:, notes:, payment:, plan:, product:, product_description:, reason:, refund_policy_attachment:, refund_policy_disclosure:, refund_refusal_explanation:, service_date:, status:, uncategorized_attachment:, visa_rdr:)
+      # @!method initialize(id:, access_activity_log:, amount:, billing_address:, cancellation_policy_attachment:, cancellation_policy_disclosure:, company:, created_at:, currency:, customer_communication_attachment:, customer_email_address:, customer_name:, editable:, needs_response_by:, notes:, payment:, plan:, product:, product_description:, reason:, reason_code:, refund_policy_attachment:, refund_policy_disclosure:, refund_refusal_explanation:, service_date:, status:, uncategorized_attachment:, visa_rdr:)
       #   Some parameter documentations has been truncated, see {WhopSDK::Models::Dispute}
       #   for more details.
       #
@@ -234,6 +241,8 @@ module WhopSDK
       #   @param product_description [String, nil] A description of the product or service provided, submitted as dispute evidence.
       #
       #   @param reason [String, nil] A human-readable reason for the dispute.
+      #
+      #   @param reason_code [String, nil] The card network reason code for the dispute. Null when the payment processor di
       #
       #   @param refund_policy_attachment [WhopSDK::Models::Dispute::RefundPolicyAttachment, nil] The refund policy document uploaded as dispute evidence. Null if no refund polic
       #

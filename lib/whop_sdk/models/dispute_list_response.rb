@@ -73,6 +73,13 @@ module WhopSDK
       #   @return [String, nil]
       required :reason, String, nil?: true
 
+      # @!attribute reason_code
+      #   The card network reason code for the dispute. Null when the payment processor
+      #   did not provide one.
+      #
+      #   @return [String, nil]
+      required :reason_code, String, nil?: true
+
       # @!attribute status
       #   The current status of the dispute lifecycle, such as needs_response,
       #   under_review, won, or lost.
@@ -87,7 +94,7 @@ module WhopSDK
       #   @return [Boolean]
       required :visa_rdr, WhopSDK::Internal::Type::Boolean
 
-      # @!method initialize(id:, amount:, company:, created_at:, currency:, editable:, needs_response_by:, payment:, plan:, product:, reason:, status:, visa_rdr:)
+      # @!method initialize(id:, amount:, company:, created_at:, currency:, editable:, needs_response_by:, payment:, plan:, product:, reason:, reason_code:, status:, visa_rdr:)
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::DisputeListResponse} for more details.
       #
@@ -115,6 +122,8 @@ module WhopSDK
       #   @param product [WhopSDK::Models::DisputeListResponse::Product, nil] The product associated with the disputed payment. Null if the dispute is not lin
       #
       #   @param reason [String, nil] A human-readable reason for the dispute.
+      #
+      #   @param reason_code [String, nil] The card network reason code for the dispute. Null when the payment processor di
       #
       #   @param status [Symbol, WhopSDK::Models::DisputeStatuses] The current status of the dispute lifecycle, such as needs_response, under_revie
       #

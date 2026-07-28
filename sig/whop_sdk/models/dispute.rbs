@@ -22,6 +22,7 @@ module WhopSDK
         product: WhopSDK::Dispute::Product?,
         product_description: String?,
         reason: String?,
+        reason_code: String?,
         refund_policy_attachment: WhopSDK::Dispute::RefundPolicyAttachment?,
         refund_policy_disclosure: String?,
         refund_refusal_explanation: String?,
@@ -72,6 +73,8 @@ module WhopSDK
 
       attr_accessor reason: String?
 
+      attr_accessor reason_code: String?
+
       attr_accessor refund_policy_attachment: WhopSDK::Dispute::RefundPolicyAttachment?
 
       attr_accessor refund_policy_disclosure: String?
@@ -107,6 +110,7 @@ module WhopSDK
         product: WhopSDK::Dispute::Product?,
         product_description: String?,
         reason: String?,
+        reason_code: String?,
         refund_policy_attachment: WhopSDK::Dispute::RefundPolicyAttachment?,
         refund_policy_disclosure: String?,
         refund_refusal_explanation: String?,
@@ -137,6 +141,7 @@ module WhopSDK
         product: WhopSDK::Dispute::Product?,
         product_description: String?,
         reason: String?,
+        reason_code: String?,
         refund_policy_attachment: WhopSDK::Dispute::RefundPolicyAttachment?,
         refund_policy_disclosure: String?,
         refund_refusal_explanation: String?,

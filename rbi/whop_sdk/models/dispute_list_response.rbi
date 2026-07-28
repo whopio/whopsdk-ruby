@@ -89,6 +89,11 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :reason
 
+      # The card network reason code for the dispute. Null when the payment processor
+      # did not provide one.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :reason_code
+
       # The current status of the dispute lifecycle, such as needs_response,
       # under_review, won, or lost.
       sig { returns(WhopSDK::DisputeStatuses::TaggedSymbol) }
@@ -117,6 +122,7 @@ module WhopSDK
           product:
             T.nilable(WhopSDK::Models::DisputeListResponse::Product::OrHash),
           reason: T.nilable(String),
+          reason_code: T.nilable(String),
           status: WhopSDK::DisputeStatuses::OrSymbol,
           visa_rdr: T::Boolean
         ).returns(T.attached_class)
@@ -147,6 +153,9 @@ module WhopSDK
         product:,
         # A human-readable reason for the dispute.
         reason:,
+        # The card network reason code for the dispute. Null when the payment processor
+        # did not provide one.
+        reason_code:,
         # The current status of the dispute lifecycle, such as needs_response,
         # under_review, won, or lost.
         status:,
@@ -170,6 +179,7 @@ module WhopSDK
             plan: T.nilable(WhopSDK::Models::DisputeListResponse::Plan),
             product: T.nilable(WhopSDK::Models::DisputeListResponse::Product),
             reason: T.nilable(String),
+            reason_code: T.nilable(String),
             status: WhopSDK::DisputeStatuses::TaggedSymbol,
             visa_rdr: T::Boolean
           }

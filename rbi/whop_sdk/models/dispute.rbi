@@ -127,6 +127,11 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :reason
 
+      # The card network reason code for the dispute. Null when the payment processor
+      # did not provide one.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :reason_code
+
       # The refund policy document uploaded as dispute evidence. Null if no refund
       # policy has been provided.
       sig { returns(T.nilable(WhopSDK::Dispute::RefundPolicyAttachment)) }
@@ -206,6 +211,7 @@ module WhopSDK
           product: T.nilable(WhopSDK::Dispute::Product::OrHash),
           product_description: T.nilable(String),
           reason: T.nilable(String),
+          reason_code: T.nilable(String),
           refund_policy_attachment:
             T.nilable(WhopSDK::Dispute::RefundPolicyAttachment::OrHash),
           refund_policy_disclosure: T.nilable(String),
@@ -269,6 +275,9 @@ module WhopSDK
         product_description:,
         # A human-readable reason for the dispute.
         reason:,
+        # The card network reason code for the dispute. Null when the payment processor
+        # did not provide one.
+        reason_code:,
         # The refund policy document uploaded as dispute evidence. Null if no refund
         # policy has been provided.
         refund_policy_attachment:,
@@ -318,6 +327,7 @@ module WhopSDK
             product: T.nilable(WhopSDK::Dispute::Product),
             product_description: T.nilable(String),
             reason: T.nilable(String),
+            reason_code: T.nilable(String),
             refund_policy_attachment:
               T.nilable(WhopSDK::Dispute::RefundPolicyAttachment),
             refund_policy_disclosure: T.nilable(String),

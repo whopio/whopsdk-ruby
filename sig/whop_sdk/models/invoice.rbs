@@ -3,23 +3,43 @@ module WhopSDK
     type invoice =
       {
         id: String,
+        automatically_finalizes_at: Time?,
+        charge_buyer_fee: bool,
+        collection_method: WhopSDK::Models::collection_method,
+        company: WhopSDK::Invoice::Company,
         created_at: Time,
         current_plan: WhopSDK::Invoice::CurrentPlan,
+        customer_name: String?,
         due_date: Time?,
         email_address: String?,
         fetch_invoice_token: String,
         line_items: ::Array[WhopSDK::Invoice::LineItem],
+        mailing_address: WhopSDK::Invoice::MailingAddress?,
         number: String,
+        pay_online_url: String?,
+        product: WhopSDK::Invoice::Product,
         status: WhopSDK::Models::invoice_status,
+        subscription_billing_anchor_at: Time?,
+        updated_at: Time,
         user: WhopSDK::Invoice::User?
       }
 
     class Invoice < WhopSDK::Internal::Type::BaseModel
       attr_accessor id: String
 
+      attr_accessor automatically_finalizes_at: Time?
+
+      attr_accessor charge_buyer_fee: bool
+
+      attr_accessor collection_method: WhopSDK::Models::collection_method
+
+      attr_accessor company: WhopSDK::Invoice::Company
+
       attr_accessor created_at: Time
 
       attr_accessor current_plan: WhopSDK::Invoice::CurrentPlan
+
+      attr_accessor customer_name: String?
 
       attr_accessor due_date: Time?
 
@@ -29,42 +49,83 @@ module WhopSDK
 
       attr_accessor line_items: ::Array[WhopSDK::Invoice::LineItem]
 
+      attr_accessor mailing_address: WhopSDK::Invoice::MailingAddress?
+
       attr_accessor number: String
 
+      attr_accessor pay_online_url: String?
+
+      attr_accessor product: WhopSDK::Invoice::Product
+
       attr_accessor status: WhopSDK::Models::invoice_status
+
+      attr_accessor subscription_billing_anchor_at: Time?
+
+      attr_accessor updated_at: Time
 
       attr_accessor user: WhopSDK::Invoice::User?
 
       def initialize: (
         id: String,
+        automatically_finalizes_at: Time?,
+        charge_buyer_fee: bool,
+        collection_method: WhopSDK::Models::collection_method,
+        company: WhopSDK::Invoice::Company,
         created_at: Time,
         current_plan: WhopSDK::Invoice::CurrentPlan,
+        customer_name: String?,
         due_date: Time?,
         email_address: String?,
         fetch_invoice_token: String,
         line_items: ::Array[WhopSDK::Invoice::LineItem],
+        mailing_address: WhopSDK::Invoice::MailingAddress?,
         number: String,
+        pay_online_url: String?,
+        product: WhopSDK::Invoice::Product,
         status: WhopSDK::Models::invoice_status,
+        subscription_billing_anchor_at: Time?,
+        updated_at: Time,
         user: WhopSDK::Invoice::User?
       ) -> void
 
       def to_hash: -> {
         id: String,
+        automatically_finalizes_at: Time?,
+        charge_buyer_fee: bool,
+        collection_method: WhopSDK::Models::collection_method,
+        company: WhopSDK::Invoice::Company,
         created_at: Time,
         current_plan: WhopSDK::Invoice::CurrentPlan,
+        customer_name: String?,
         due_date: Time?,
         email_address: String?,
         fetch_invoice_token: String,
         line_items: ::Array[WhopSDK::Invoice::LineItem],
+        mailing_address: WhopSDK::Invoice::MailingAddress?,
         number: String,
+        pay_online_url: String?,
+        product: WhopSDK::Invoice::Product,
         status: WhopSDK::Models::invoice_status,
+        subscription_billing_anchor_at: Time?,
+        updated_at: Time,
         user: WhopSDK::Invoice::User?
       }
+
+      type company = { id: String }
+
+      class Company < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        def initialize: (id: String) -> void
+
+        def to_hash: -> { id: String }
+      end
 
       type current_plan =
         {
           id: String,
           currency: WhopSDK::Models::currency,
+          description: String?,
           formatted_price: String
         }
 
@@ -73,17 +134,21 @@ module WhopSDK
 
         attr_accessor currency: WhopSDK::Models::currency
 
+        attr_accessor description: String?
+
         attr_accessor formatted_price: String
 
         def initialize: (
           id: String,
           currency: WhopSDK::Models::currency,
+          description: String?,
           formatted_price: String
         ) -> void
 
         def to_hash: -> {
           id: String,
           currency: WhopSDK::Models::currency,
+          description: String?,
           formatted_price: String
         }
       end
@@ -125,18 +190,95 @@ module WhopSDK
         }
       end
 
-      type user = { id: String, name: String?, username: String }
+      type mailing_address =
+        {
+          city: String?,
+          country: String?,
+          :line1 => String?,
+          :line2 => String?,
+          name: String?,
+          phone: String?,
+          postal_code: String?,
+          state: String?
+        }
+
+      class MailingAddress < WhopSDK::Internal::Type::BaseModel
+        attr_accessor city: String?
+
+        attr_accessor country: String?
+
+        attr_accessor line1: String?
+
+        attr_accessor line2: String?
+
+        attr_accessor name: String?
+
+        attr_accessor phone: String?
+
+        attr_accessor postal_code: String?
+
+        attr_accessor state: String?
+
+        def initialize: (
+          city: String?,
+          country: String?,
+          line1: String?,
+          line2: String?,
+          name: String?,
+          phone: String?,
+          postal_code: String?,
+          state: String?
+        ) -> void
+
+        def to_hash: -> {
+          city: String?,
+          country: String?,
+          :line1 => String?,
+          :line2 => String?,
+          name: String?,
+          phone: String?,
+          postal_code: String?,
+          state: String?
+        }
+      end
+
+      type product = { id: String, title: String }
+
+      class Product < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor title: String
+
+        def initialize: (id: String, title: String) -> void
+
+        def to_hash: -> { id: String, title: String }
+      end
+
+      type user =
+        { id: String, email: String?, name: String?, username: String }
 
       class User < WhopSDK::Internal::Type::BaseModel
         attr_accessor id: String
+
+        attr_accessor email: String?
 
         attr_accessor name: String?
 
         attr_accessor username: String
 
-        def initialize: (id: String, name: String?, username: String) -> void
+        def initialize: (
+          id: String,
+          email: String?,
+          name: String?,
+          username: String
+        ) -> void
 
-        def to_hash: -> { id: String, name: String?, username: String }
+        def to_hash: -> {
+          id: String,
+          email: String?,
+          name: String?,
+          username: String
+        }
       end
     end
   end

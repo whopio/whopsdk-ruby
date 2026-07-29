@@ -23,14 +23,24 @@ class WhopSDK::Test::Resources::InvoicesTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
+        automatically_finalizes_at: Time | nil,
+        charge_buyer_fee: WhopSDK::Internal::Type::Boolean,
+        collection_method: WhopSDK::CollectionMethod,
+        company: WhopSDK::Invoice::Company,
         created_at: Time,
         current_plan: WhopSDK::Invoice::CurrentPlan,
+        customer_name: String | nil,
         due_date: Time | nil,
         email_address: String | nil,
         fetch_invoice_token: String,
         line_items: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Invoice::LineItem]),
+        mailing_address: WhopSDK::Invoice::MailingAddress | nil,
         number: String,
+        pay_online_url: String | nil,
+        product: WhopSDK::Invoice::Product,
         status: WhopSDK::InvoiceStatus,
+        subscription_billing_anchor_at: Time | nil,
+        updated_at: Time,
         user: WhopSDK::Invoice::User | nil
       }
     end
@@ -48,14 +58,24 @@ class WhopSDK::Test::Resources::InvoicesTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
+        automatically_finalizes_at: Time | nil,
+        charge_buyer_fee: WhopSDK::Internal::Type::Boolean,
+        collection_method: WhopSDK::CollectionMethod,
+        company: WhopSDK::Invoice::Company,
         created_at: Time,
         current_plan: WhopSDK::Invoice::CurrentPlan,
+        customer_name: String | nil,
         due_date: Time | nil,
         email_address: String | nil,
         fetch_invoice_token: String,
         line_items: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Invoice::LineItem]),
+        mailing_address: WhopSDK::Invoice::MailingAddress | nil,
         number: String,
+        pay_online_url: String | nil,
+        product: WhopSDK::Invoice::Product,
         status: WhopSDK::InvoiceStatus,
+        subscription_billing_anchor_at: Time | nil,
+        updated_at: Time,
         user: WhopSDK::Invoice::User | nil
       }
     end
@@ -73,14 +93,24 @@ class WhopSDK::Test::Resources::InvoicesTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
+        automatically_finalizes_at: Time | nil,
+        charge_buyer_fee: WhopSDK::Internal::Type::Boolean,
+        collection_method: WhopSDK::CollectionMethod,
+        company: WhopSDK::Invoice::Company,
         created_at: Time,
         current_plan: WhopSDK::Invoice::CurrentPlan,
+        customer_name: String | nil,
         due_date: Time | nil,
         email_address: String | nil,
         fetch_invoice_token: String,
         line_items: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Invoice::LineItem]),
+        mailing_address: WhopSDK::Invoice::MailingAddress | nil,
         number: String,
+        pay_online_url: String | nil,
+        product: WhopSDK::Invoice::Product,
         status: WhopSDK::InvoiceStatus,
+        subscription_billing_anchor_at: Time | nil,
+        updated_at: Time,
         user: WhopSDK::Invoice::User | nil
       }
     end

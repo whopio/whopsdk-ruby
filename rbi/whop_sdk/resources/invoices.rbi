@@ -10,6 +10,7 @@ module WhopSDK
       # Required permissions:
       #
       # - `invoice:create`
+      # - `member:email:read`
       sig do
         params(
           body:
@@ -32,6 +33,7 @@ module WhopSDK
       # Required permissions:
       #
       # - `invoice:basic:read`
+      # - `member:email:read`
       sig do
         params(
           id: String,
@@ -50,6 +52,7 @@ module WhopSDK
       # Required permissions:
       #
       # - `invoice:update`
+      # - `member:email:read`
       sig do
         params(
           id: String,

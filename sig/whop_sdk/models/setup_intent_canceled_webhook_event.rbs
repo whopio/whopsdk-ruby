@@ -4,6 +4,7 @@ module WhopSDK
       {
         id: String,
         api_version: :v1,
+        api_version_date: String?,
         data: WhopSDK::SetupIntent,
         timestamp: Time,
         type: :"setup_intent.canceled",
@@ -15,6 +16,8 @@ module WhopSDK
 
       attr_accessor api_version: :v1
 
+      attr_accessor api_version_date: String?
+
       attr_accessor data: WhopSDK::SetupIntent
 
       attr_accessor timestamp: Time
@@ -25,6 +28,7 @@ module WhopSDK
 
       def initialize: (
         id: String,
+        api_version_date: String?,
         data: WhopSDK::SetupIntent,
         timestamp: Time,
         ?company_id: String?,
@@ -35,6 +39,7 @@ module WhopSDK
       def to_hash: -> {
         id: String,
         api_version: :v1,
+        api_version_date: String?,
         data: WhopSDK::SetupIntent,
         timestamp: Time,
         type: :"setup_intent.canceled",

@@ -4,6 +4,7 @@ module WhopSDK
       def create: (
         url: String,
         ?api_version: WhopSDK::Models::api_version?,
+        ?api_version_date: String?,
         ?child_resource_events: bool?,
         ?enabled: bool?,
         ?events: ::Array[WhopSDK::Models::webhook_event]?,
@@ -19,6 +20,7 @@ module WhopSDK
       def update: (
         String id,
         ?api_version: WhopSDK::Models::api_version?,
+        ?api_version_date: String?,
         ?child_resource_events: bool?,
         ?enabled: bool?,
         ?events: ::Array[WhopSDK::Models::webhook_event]?,

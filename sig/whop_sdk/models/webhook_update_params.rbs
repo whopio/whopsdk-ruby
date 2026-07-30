@@ -4,6 +4,7 @@ module WhopSDK
       {
         id: String,
         api_version: WhopSDK::Models::api_version?,
+        api_version_date: String?,
         child_resource_events: bool?,
         enabled: bool?,
         events: ::Array[WhopSDK::Models::webhook_event]?,
@@ -19,6 +20,8 @@ module WhopSDK
 
       attr_accessor api_version: WhopSDK::Models::api_version?
 
+      attr_accessor api_version_date: String?
+
       attr_accessor child_resource_events: bool?
 
       attr_accessor enabled: bool?
@@ -30,6 +33,7 @@ module WhopSDK
       def initialize: (
         id: String,
         ?api_version: WhopSDK::Models::api_version?,
+        ?api_version_date: String?,
         ?child_resource_events: bool?,
         ?enabled: bool?,
         ?events: ::Array[WhopSDK::Models::webhook_event]?,
@@ -40,6 +44,7 @@ module WhopSDK
       def to_hash: -> {
         id: String,
         api_version: WhopSDK::Models::api_version?,
+        api_version_date: String?,
         child_resource_events: bool?,
         enabled: bool?,
         events: ::Array[WhopSDK::Models::webhook_event]?,

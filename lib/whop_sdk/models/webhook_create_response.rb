@@ -16,6 +16,15 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::APIVersion]
       required :api_version, enum: -> { WhopSDK::APIVersion }
 
+      # @!attribute api_version_date
+      #   The dated API version (Api-Version-Date) that v1 payloads for this endpoint are
+      #   pinned to: events serialize exactly like a REST read at this version (the native
+      #   serializer where the resource has one). Null when unpinned — legacy (v2/v5)
+      #   webhooks, and v1 webhooks on the legacy payload shape.
+      #
+      #   @return [String, nil]
+      required :api_version_date, String, nil?: true
+
       # @!attribute child_resource_events
       #   Whether events are sent for child resources. For example, if the webhook is on a
       #   company, enabling this sends events only from the company's sub-merchants (child
@@ -68,7 +77,7 @@ module WhopSDK
       #   @return [String]
       required :webhook_secret, String
 
-      # @!method initialize(id:, api_version:, child_resource_events:, created_at:, enabled:, events:, resource_id:, testable_events:, url:, webhook_secret:)
+      # @!method initialize(id:, api_version:, api_version_date:, child_resource_events:, created_at:, enabled:, events:, resource_id:, testable_events:, url:, webhook_secret:)
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::WebhookCreateResponse} for more details.
       #
@@ -78,6 +87,8 @@ module WhopSDK
       #   @param id [String] The unique identifier for the webhook.
       #
       #   @param api_version [Symbol, WhopSDK::Models::APIVersion] The API version used to format payloads sent to this webhook endpoint.
+      #
+      #   @param api_version_date [String, nil] The dated API version (Api-Version-Date) that v1 payloads for this endpoint are
       #
       #   @param child_resource_events [Boolean] Whether events are sent for child resources. For example, if the webhook is on a
       #

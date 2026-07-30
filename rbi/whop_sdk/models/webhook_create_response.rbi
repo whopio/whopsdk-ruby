@@ -19,6 +19,13 @@ module WhopSDK
       sig { returns(WhopSDK::APIVersion::TaggedSymbol) }
       attr_accessor :api_version
 
+      # The dated API version (Api-Version-Date) that v1 payloads for this endpoint are
+      # pinned to: events serialize exactly like a REST read at this version (the native
+      # serializer where the resource has one). Null when unpinned — legacy (v2/v5)
+      # webhooks, and v1 webhooks on the legacy payload shape.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :api_version_date
+
       # Whether events are sent for child resources. For example, if the webhook is on a
       # company, enabling this sends events only from the company's sub-merchants (child
       # companies).
@@ -61,6 +68,7 @@ module WhopSDK
         params(
           id: String,
           api_version: WhopSDK::APIVersion::OrSymbol,
+          api_version_date: T.nilable(String),
           child_resource_events: T::Boolean,
           created_at: Time,
           enabled: T::Boolean,
@@ -76,6 +84,11 @@ module WhopSDK
         id:,
         # The API version used to format payloads sent to this webhook endpoint.
         api_version:,
+        # The dated API version (Api-Version-Date) that v1 payloads for this endpoint are
+        # pinned to: events serialize exactly like a REST read at this version (the native
+        # serializer where the resource has one). Null when unpinned — legacy (v2/v5)
+        # webhooks, and v1 webhooks on the legacy payload shape.
+        api_version_date:,
         # Whether events are sent for child resources. For example, if the webhook is on a
         # company, enabling this sends events only from the company's sub-merchants (child
         # companies).
@@ -104,6 +117,7 @@ module WhopSDK
           {
             id: String,
             api_version: WhopSDK::APIVersion::TaggedSymbol,
+            api_version_date: T.nilable(String),
             child_resource_events: T::Boolean,
             created_at: Time,
             enabled: T::Boolean,

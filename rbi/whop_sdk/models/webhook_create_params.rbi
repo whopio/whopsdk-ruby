@@ -19,6 +19,13 @@ module WhopSDK
       sig { returns(T.nilable(WhopSDK::APIVersion::OrSymbol)) }
       attr_accessor :api_version
 
+      # The dated API version (Api-Version-Date) the webhook's payloads are pinned to:
+      # events serialize exactly like a REST read at this version (the native serializer
+      # where the resource has one). Only applies to v1 webhooks. Omit to leave the
+      # webhook unpinned on the legacy payload shape.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :api_version_date
+
       # Whether or not to send events for child resources. For example, if the webhook
       # is created for a Company, enabling this will only send events from the Company's
       # sub-merchants (child companies).
@@ -41,6 +48,7 @@ module WhopSDK
         params(
           url: String,
           api_version: T.nilable(WhopSDK::APIVersion::OrSymbol),
+          api_version_date: T.nilable(String),
           child_resource_events: T.nilable(T::Boolean),
           enabled: T.nilable(T::Boolean),
           events: T.nilable(T::Array[WhopSDK::WebhookEvent::OrSymbol]),
@@ -53,6 +61,11 @@ module WhopSDK
         url:,
         # The different API versions
         api_version: nil,
+        # The dated API version (Api-Version-Date) the webhook's payloads are pinned to:
+        # events serialize exactly like a REST read at this version (the native serializer
+        # where the resource has one). Only applies to v1 webhooks. Omit to leave the
+        # webhook unpinned on the legacy payload shape.
+        api_version_date: nil,
         # Whether or not to send events for child resources. For example, if the webhook
         # is created for a Company, enabling this will only send events from the Company's
         # sub-merchants (child companies).
@@ -72,6 +85,7 @@ module WhopSDK
           {
             url: String,
             api_version: T.nilable(WhopSDK::APIVersion::OrSymbol),
+            api_version_date: T.nilable(String),
             child_resource_events: T.nilable(T::Boolean),
             enabled: T.nilable(T::Boolean),
             events: T.nilable(T::Array[WhopSDK::WebhookEvent::OrSymbol]),

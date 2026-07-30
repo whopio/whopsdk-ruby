@@ -19,6 +19,10 @@ module WhopSDK
       sig { returns(Symbol) }
       attr_accessor :api_version
 
+      # The dated API version (Api-Version-Date) the payload is serialized to
+      sig { returns(T.nilable(String)) }
+      attr_accessor :api_version_date
+
       # An identity verification session used to confirm a person or entity's identity
       # for payout account eligibility.
       sig { returns(WhopSDK::VerificationSucceededWebhookEvent::Data) }
@@ -46,6 +50,7 @@ module WhopSDK
       sig do
         params(
           id: String,
+          api_version_date: T.nilable(String),
           data: WhopSDK::VerificationSucceededWebhookEvent::Data::OrHash,
           timestamp: Time,
           company_id: T.nilable(String),
@@ -56,6 +61,8 @@ module WhopSDK
       def self.new(
         # A unique ID for every single webhook request
         id:,
+        # The dated API version (Api-Version-Date) the payload is serialized to
+        api_version_date:,
         # An identity verification session used to confirm a person or entity's identity
         # for payout account eligibility.
         data:,
@@ -75,6 +82,7 @@ module WhopSDK
           {
             id: String,
             api_version: Symbol,
+            api_version_date: T.nilable(String),
             data: WhopSDK::VerificationSucceededWebhookEvent::Data,
             timestamp: Time,
             type: Symbol,

@@ -19,6 +19,10 @@ module WhopSDK
       sig { returns(Symbol) }
       attr_accessor :api_version
 
+      # The dated API version (Api-Version-Date) the payload is serialized to
+      sig { returns(T.nilable(String)) }
+      attr_accessor :api_version_date
+
       # A membership represents an active relationship between a user and a product. It
       # tracks the user's access, billing status, and renewal schedule.
       sig { returns(WhopSDK::Membership) }
@@ -42,6 +46,7 @@ module WhopSDK
       sig do
         params(
           id: String,
+          api_version_date: T.nilable(String),
           data: WhopSDK::Membership::OrHash,
           timestamp: Time,
           company_id: T.nilable(String),
@@ -52,6 +57,8 @@ module WhopSDK
       def self.new(
         # A unique ID for every single webhook request
         id:,
+        # The dated API version (Api-Version-Date) the payload is serialized to
+        api_version_date:,
         # A membership represents an active relationship between a user and a product. It
         # tracks the user's access, billing status, and renewal schedule.
         data:,
@@ -71,6 +78,7 @@ module WhopSDK
           {
             id: String,
             api_version: Symbol,
+            api_version_date: T.nilable(String),
             data: WhopSDK::Membership,
             timestamp: Time,
             type: Symbol,

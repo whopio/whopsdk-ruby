@@ -19,6 +19,10 @@ module WhopSDK
       sig { returns(Symbol) }
       attr_accessor :api_version
 
+      # The dated API version (Api-Version-Date) the payload is serialized to
+      sig { returns(T.nilable(String)) }
+      attr_accessor :api_version_date
+
       # An invoice represents an itemized bill sent by a company to a customer for a
       # specific product and plan, tracking the amount owed, due date, and payment
       # status.
@@ -43,6 +47,7 @@ module WhopSDK
       sig do
         params(
           id: String,
+          api_version_date: T.nilable(String),
           data: WhopSDK::Invoice::OrHash,
           timestamp: Time,
           company_id: T.nilable(String),
@@ -53,6 +58,8 @@ module WhopSDK
       def self.new(
         # A unique ID for every single webhook request
         id:,
+        # The dated API version (Api-Version-Date) the payload is serialized to
+        api_version_date:,
         # An invoice represents an itemized bill sent by a company to a customer for a
         # specific product and plan, tracking the amount owed, due date, and payment
         # status.
@@ -73,6 +80,7 @@ module WhopSDK
           {
             id: String,
             api_version: Symbol,
+            api_version_date: T.nilable(String),
             data: WhopSDK::Invoice,
             timestamp: Time,
             type: Symbol,

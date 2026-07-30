@@ -13,11 +13,13 @@ module WhopSDK
       #
       # - `developer:manage_webhook`
       #
-      # @overload create(url:, api_version: nil, child_resource_events: nil, enabled: nil, events: nil, resource_id: nil, request_options: {})
+      # @overload create(url:, api_version: nil, api_version_date: nil, child_resource_events: nil, enabled: nil, events: nil, resource_id: nil, request_options: {})
       #
       # @param url [String] The URL to send the webhook to.
       #
       # @param api_version [Symbol, WhopSDK::Models::APIVersion, nil] The different API versions
+      #
+      # @param api_version_date [String, nil] The dated API version (Api-Version-Date) the webhook's payloads are pinned to: e
       #
       # @param child_resource_events [Boolean, nil] Whether or not to send events for child resources. For example, if the webhook i
       #
@@ -67,17 +69,22 @@ module WhopSDK
         )
       end
 
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::WebhookUpdateParams} for more details.
+      #
       # Updates a webhook
       #
       # Required permissions:
       #
       # - `developer:manage_webhook`
       #
-      # @overload update(id, api_version: nil, child_resource_events: nil, enabled: nil, events: nil, url: nil, request_options: {})
+      # @overload update(id, api_version: nil, api_version_date: nil, child_resource_events: nil, enabled: nil, events: nil, url: nil, request_options: {})
       #
       # @param id [String] The ID of the Webhook to update
       #
       # @param api_version [Symbol, WhopSDK::Models::APIVersion, nil] The different API versions
+      #
+      # @param api_version_date [String, nil] The dated API version (Api-Version-Date) to pin this webhook's payloads to: even
       #
       # @param child_resource_events [Boolean, nil] Whether or not to send events for child resources.
       #

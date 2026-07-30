@@ -18,6 +18,13 @@ module WhopSDK
       sig { returns(T.nilable(WhopSDK::APIVersion::OrSymbol)) }
       attr_accessor :api_version
 
+      # The dated API version (Api-Version-Date) to pin this webhook's payloads to:
+      # events serialize exactly like a REST read at this version (the native serializer
+      # where the resource has one). Only applies to v1 webhooks. Pass null to unpin,
+      # returning to the legacy payload shape.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :api_version_date
+
       # Whether or not to send events for child resources.
       sig { returns(T.nilable(T::Boolean)) }
       attr_accessor :child_resource_events
@@ -38,6 +45,7 @@ module WhopSDK
         params(
           id: String,
           api_version: T.nilable(WhopSDK::APIVersion::OrSymbol),
+          api_version_date: T.nilable(String),
           child_resource_events: T.nilable(T::Boolean),
           enabled: T.nilable(T::Boolean),
           events: T.nilable(T::Array[WhopSDK::WebhookEvent::OrSymbol]),
@@ -49,6 +57,11 @@ module WhopSDK
         id:,
         # The different API versions
         api_version: nil,
+        # The dated API version (Api-Version-Date) to pin this webhook's payloads to:
+        # events serialize exactly like a REST read at this version (the native serializer
+        # where the resource has one). Only applies to v1 webhooks. Pass null to unpin,
+        # returning to the legacy payload shape.
+        api_version_date: nil,
         # Whether or not to send events for child resources.
         child_resource_events: nil,
         # Whether or not the webhook is enabled.
@@ -66,6 +79,7 @@ module WhopSDK
           {
             id: String,
             api_version: T.nilable(WhopSDK::APIVersion::OrSymbol),
+            api_version_date: T.nilable(String),
             child_resource_events: T.nilable(T::Boolean),
             enabled: T.nilable(T::Boolean),
             events: T.nilable(T::Array[WhopSDK::WebhookEvent::OrSymbol]),

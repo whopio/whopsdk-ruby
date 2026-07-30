@@ -19,6 +19,10 @@ module WhopSDK
       sig { returns(Symbol) }
       attr_accessor :api_version
 
+      # The dated API version (Api-Version-Date) the payload is serialized to
+      sig { returns(T.nilable(String)) }
+      attr_accessor :api_version_date
+
       sig { returns(WhopSDK::ChatMessageCreatedWebhookEvent::Data) }
       attr_reader :data
 
@@ -42,6 +46,7 @@ module WhopSDK
       sig do
         params(
           id: String,
+          api_version_date: T.nilable(String),
           data: WhopSDK::ChatMessageCreatedWebhookEvent::Data::OrHash,
           timestamp: Time,
           company_id: T.nilable(String),
@@ -52,6 +57,8 @@ module WhopSDK
       def self.new(
         # A unique ID for every single webhook request
         id:,
+        # The dated API version (Api-Version-Date) the payload is serialized to
+        api_version_date:,
         data:,
         # The timestamp in ISO 8601 format that the webhook was sent at on the server
         timestamp:,
@@ -69,6 +76,7 @@ module WhopSDK
           {
             id: String,
             api_version: Symbol,
+            api_version_date: T.nilable(String),
             data: WhopSDK::ChatMessageCreatedWebhookEvent::Data,
             timestamp: Time,
             type: Symbol,

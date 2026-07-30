@@ -13,19 +13,19 @@ module WhopSDK
       #   when WhopSDK::InvoiceMarkedUncollectibleWebhookEvent
       #     puts(unwrap_webhook_event.api_version)
       #   when WhopSDK::InvoicePaidWebhookEvent
-      #     puts(unwrap_webhook_event.data)
+      #     puts(unwrap_webhook_event.api_version_date)
       #   else
       #     puts(unwrap_webhook_event)
       #   end
       #
       # @example
       #   case unwrap_webhook_event
-      #   in {type: :"invoice.created", id: id, api_version: api_version, data: data}
+      #   in {type: :"invoice.created", id: id, api_version: api_version, api_version_date: api_version_date}
       #     puts(id)
-      #   in {type: :"invoice.marked_uncollectible", id: id, api_version: api_version, data: data}
+      #   in {type: :"invoice.marked_uncollectible", id: id, api_version: api_version, api_version_date: api_version_date}
       #     puts(api_version)
-      #   in {type: :"invoice.paid", id: id, api_version: api_version, data: data}
-      #     puts(data)
+      #   in {type: :"invoice.paid", id: id, api_version: api_version, api_version_date: api_version_date}
+      #     puts(api_version_date)
       #   else
       #     puts(unwrap_webhook_event)
       #   end

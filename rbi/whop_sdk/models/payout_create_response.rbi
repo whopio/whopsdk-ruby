@@ -321,6 +321,11 @@ module WhopSDK
             :in_transit,
             WhopSDK::Models::PayoutCreateResponse::Status::TaggedSymbol
           )
+        DENIED =
+          T.let(
+            :denied,
+            WhopSDK::Models::PayoutCreateResponse::Status::TaggedSymbol
+          )
         COMPLETED =
           T.let(
             :completed,

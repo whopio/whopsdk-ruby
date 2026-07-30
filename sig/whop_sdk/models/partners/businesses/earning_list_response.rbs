@@ -1,0 +1,288 @@
+module WhopSDK
+  module Models
+    module Partners
+      module Businesses
+        type earning_list_response =
+          {
+            id: String?,
+            account: WhopSDK::Models::Partners::Businesses::EarningListResponse::Account?,
+            cancelation_reason: String?,
+            commission_amount_usd: String?,
+            created_at: Time,
+            financial_activity: ::Array[WhopSDK::Models::Partners::Businesses::EarningListResponse::FinancialActivity]?,
+            object: WhopSDK::Models::Partners::Businesses::EarningListResponse::object,
+            payout_at: Time?,
+            payout_percentage: Float?,
+            product: WhopSDK::Models::Partners::Businesses::EarningListResponse::Product?,
+            resource: WhopSDK::Models::Partners::Businesses::EarningListResponse::Resource?,
+            second_tier: bool,
+            status: WhopSDK::Models::Partners::Businesses::EarningListResponse::status,
+            transaction_amount_usd: String
+          }
+
+        class EarningListResponse < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String?
+
+          attr_accessor account: WhopSDK::Models::Partners::Businesses::EarningListResponse::Account?
+
+          attr_accessor cancelation_reason: String?
+
+          attr_accessor commission_amount_usd: String?
+
+          attr_accessor created_at: Time
+
+          attr_accessor financial_activity: ::Array[WhopSDK::Models::Partners::Businesses::EarningListResponse::FinancialActivity]?
+
+          attr_accessor object: WhopSDK::Models::Partners::Businesses::EarningListResponse::object
+
+          attr_accessor payout_at: Time?
+
+          attr_accessor payout_percentage: Float?
+
+          attr_accessor product: WhopSDK::Models::Partners::Businesses::EarningListResponse::Product?
+
+          attr_accessor resource: WhopSDK::Models::Partners::Businesses::EarningListResponse::Resource?
+
+          attr_accessor second_tier: bool
+
+          attr_accessor status: WhopSDK::Models::Partners::Businesses::EarningListResponse::status
+
+          attr_accessor transaction_amount_usd: String
+
+          def initialize: (
+            id: String?,
+            account: WhopSDK::Models::Partners::Businesses::EarningListResponse::Account?,
+            cancelation_reason: String?,
+            commission_amount_usd: String?,
+            created_at: Time,
+            financial_activity: ::Array[WhopSDK::Models::Partners::Businesses::EarningListResponse::FinancialActivity]?,
+            object: WhopSDK::Models::Partners::Businesses::EarningListResponse::object,
+            payout_at: Time?,
+            payout_percentage: Float?,
+            product: WhopSDK::Models::Partners::Businesses::EarningListResponse::Product?,
+            resource: WhopSDK::Models::Partners::Businesses::EarningListResponse::Resource?,
+            second_tier: bool,
+            status: WhopSDK::Models::Partners::Businesses::EarningListResponse::status,
+            transaction_amount_usd: String
+          ) -> void
+
+          def to_hash: -> {
+            id: String?,
+            account: WhopSDK::Models::Partners::Businesses::EarningListResponse::Account?,
+            cancelation_reason: String?,
+            commission_amount_usd: String?,
+            created_at: Time,
+            financial_activity: ::Array[WhopSDK::Models::Partners::Businesses::EarningListResponse::FinancialActivity]?,
+            object: WhopSDK::Models::Partners::Businesses::EarningListResponse::object,
+            payout_at: Time?,
+            payout_percentage: Float?,
+            product: WhopSDK::Models::Partners::Businesses::EarningListResponse::Product?,
+            resource: WhopSDK::Models::Partners::Businesses::EarningListResponse::Resource?,
+            second_tier: bool,
+            status: WhopSDK::Models::Partners::Businesses::EarningListResponse::status,
+            transaction_amount_usd: String
+          }
+
+          type account =
+            { id: String, logo_url: String?, route: String, title: String }
+
+          class Account < WhopSDK::Internal::Type::BaseModel
+            attr_accessor id: String
+
+            attr_accessor logo_url: String?
+
+            attr_accessor route: String
+
+            attr_accessor title: String
+
+            def initialize: (
+              id: String,
+              logo_url: String?,
+              route: String,
+              title: String
+            ) -> void
+
+            def to_hash: -> {
+              id: String,
+              logo_url: String?,
+              route: String,
+              title: String
+            }
+          end
+
+          type financial_activity =
+            {
+              amount: String,
+              amount_usd: String,
+              category: String?,
+              created_at: Time?,
+              currency: String,
+              type: WhopSDK::Models::Partners::Businesses::EarningListResponse::FinancialActivity::type_
+            }
+
+          class FinancialActivity < WhopSDK::Internal::Type::BaseModel
+            attr_accessor amount: String
+
+            attr_accessor amount_usd: String
+
+            attr_accessor category: String?
+
+            attr_accessor created_at: Time?
+
+            attr_accessor currency: String
+
+            attr_accessor type: WhopSDK::Models::Partners::Businesses::EarningListResponse::FinancialActivity::type_
+
+            def initialize: (
+              amount: String,
+              amount_usd: String,
+              category: String?,
+              created_at: Time?,
+              currency: String,
+              type: WhopSDK::Models::Partners::Businesses::EarningListResponse::FinancialActivity::type_
+            ) -> void
+
+            def to_hash: -> {
+              amount: String,
+              amount_usd: String,
+              category: String?,
+              created_at: Time?,
+              currency: String,
+              type: WhopSDK::Models::Partners::Businesses::EarningListResponse::FinancialActivity::type_
+            }
+
+            type type_ = :income | :expense
+
+            module Type
+              extend WhopSDK::Internal::Type::Enum
+
+              INCOME: :income
+              EXPENSE: :expense
+
+              def self?.values: -> ::Array[WhopSDK::Models::Partners::Businesses::EarningListResponse::FinancialActivity::type_]
+            end
+          end
+
+          type object = :partner_business_earning
+
+          module Object
+            extend WhopSDK::Internal::Type::Enum
+
+            PARTNER_BUSINESS_EARNING: :partner_business_earning
+
+            def self?.values: -> ::Array[WhopSDK::Models::Partners::Businesses::EarningListResponse::object]
+          end
+
+          type product = { id: String, route: String, title: String }
+
+          class Product < WhopSDK::Internal::Type::BaseModel
+            attr_accessor id: String
+
+            attr_accessor route: String
+
+            attr_accessor title: String
+
+            def initialize: (id: String, route: String, title: String) -> void
+
+            def to_hash: -> { id: String, route: String, title: String }
+          end
+
+          type resource =
+            {
+              id: String,
+              alternative_payment_method: WhopSDK::Models::Partners::Businesses::EarningListResponse::Resource::AlternativePaymentMethod?,
+              brand: String?,
+              created_at: Time,
+              currency: String,
+              :last4 => String?,
+              object: WhopSDK::Models::Partners::Businesses::EarningListResponse::Resource::object,
+              payment_method_type: String?,
+              processor: String?
+            }
+
+          class Resource < WhopSDK::Internal::Type::BaseModel
+            attr_accessor id: String
+
+            attr_accessor alternative_payment_method: WhopSDK::Models::Partners::Businesses::EarningListResponse::Resource::AlternativePaymentMethod?
+
+            attr_accessor brand: String?
+
+            attr_accessor created_at: Time
+
+            attr_accessor currency: String
+
+            attr_accessor last4: String?
+
+            attr_accessor object: WhopSDK::Models::Partners::Businesses::EarningListResponse::Resource::object
+
+            attr_accessor payment_method_type: String?
+
+            attr_accessor processor: String?
+
+            def initialize: (
+              id: String,
+              alternative_payment_method: WhopSDK::Models::Partners::Businesses::EarningListResponse::Resource::AlternativePaymentMethod?,
+              brand: String?,
+              created_at: Time,
+              currency: String,
+              last4: String?,
+              object: WhopSDK::Models::Partners::Businesses::EarningListResponse::Resource::object,
+              payment_method_type: String?,
+              processor: String?
+            ) -> void
+
+            def to_hash: -> {
+              id: String,
+              alternative_payment_method: WhopSDK::Models::Partners::Businesses::EarningListResponse::Resource::AlternativePaymentMethod?,
+              brand: String?,
+              created_at: Time,
+              currency: String,
+              :last4 => String?,
+              object: WhopSDK::Models::Partners::Businesses::EarningListResponse::Resource::object,
+              payment_method_type: String?,
+              processor: String?
+            }
+
+            type alternative_payment_method =
+              { image_url: String?, name: String }
+
+            class AlternativePaymentMethod < WhopSDK::Internal::Type::BaseModel
+              attr_accessor image_url: String?
+
+              attr_accessor name: String
+
+              def initialize: (image_url: String?, name: String) -> void
+
+              def to_hash: -> { image_url: String?, name: String }
+            end
+
+            type object = :receipt
+
+            module Object
+              extend WhopSDK::Internal::Type::Enum
+
+              RECEIPT: :receipt
+
+              def self?.values: -> ::Array[WhopSDK::Models::Partners::Businesses::EarningListResponse::Resource::object]
+            end
+          end
+
+          type status =
+            :awaiting_settlement | :pending | :completed | :canceled | :reversed
+
+          module Status
+            extend WhopSDK::Internal::Type::Enum
+
+            AWAITING_SETTLEMENT: :awaiting_settlement
+            PENDING: :pending
+            COMPLETED: :completed
+            CANCELED: :canceled
+            REVERSED: :reversed
+
+            def self?.values: -> ::Array[WhopSDK::Models::Partners::Businesses::EarningListResponse::status]
+          end
+        end
+      end
+    end
+  end
+end

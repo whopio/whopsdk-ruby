@@ -1,0 +1,33 @@
+module WhopSDK
+  module Resources
+    class Partners
+      class Businesses
+        attr_reader earnings: WhopSDK::Resources::Partners::Businesses::Earnings
+
+        def retrieve: (
+          String id,
+          ?request_options: WhopSDK::request_opts
+        ) -> WhopSDK::Models::Partners::BusinessRetrieveResponse
+
+        def list: (
+          ?after: String,
+          ?before: String,
+          ?created_after: String,
+          ?created_before: String,
+          ?direction: WhopSDK::Models::Partners::BusinessListParams::direction,
+          ?first: Integer,
+          ?has_earnings: bool,
+          ?last: Integer,
+          ?order: WhopSDK::Models::Partners::BusinessListParams::order,
+          ?referred_user_id: String,
+          ?referred_username: String,
+          ?status: WhopSDK::Models::Partners::BusinessListParams::status,
+          ?tier: WhopSDK::Models::Partners::BusinessListParams::tier,
+          ?request_options: WhopSDK::request_opts
+        ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::Partners::BusinessListResponse]
+
+        def initialize: (client: WhopSDK::Client) -> void
+      end
+    end
+  end
+end

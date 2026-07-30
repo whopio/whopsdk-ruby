@@ -148,6 +148,13 @@ module WhopSDK
       sig { returns(T.nilable(Float)) }
       attr_accessor :desired_cost_per_result
 
+      # Detailed targeting: { interests: [{id, name}], behaviors: [{id, name}],
+      # demographics: [{id, name, type}] } where demographics type is one of
+      # life_events, industries, income, family_statuses. Incompatible with
+      # demographics.automatic (Advantage+) and Special Ad Category campaigns.
+      sig { returns(T.anything) }
+      attr_accessor :detailed_targeting
+
       # Device targeting: platforms and operating systems.
       sig { returns(T.anything) }
       attr_accessor :devices
@@ -209,8 +216,10 @@ module WhopSDK
       sig { returns(Float) }
       attr_accessor :reach
 
-      # Geo targeting: include/exclude countries, regions (ISO 3166-2 states, e.g.
-      # US-CA), cities, zips.
+      # Geo targeting: include/exclude countries, country_groups (include-only Meta
+      # groups like worldwide — global reach), regions (ISO 3166-2 states, e.g. US-CA),
+      # cities, zips, and custom_locations (pin + radius: { latitude, longitude, radius,
+      # distance_unit, name }).
       sig { returns(T.anything) }
       attr_accessor :regions
 
@@ -317,6 +326,7 @@ module WhopSDK
           delivery_status: WhopSDK::AdGroup::DeliveryStatus::OrSymbol,
           demographics: T.anything,
           desired_cost_per_result: T.nilable(Float),
+          detailed_targeting: T.anything,
           devices: T.anything,
           dynamic_creative: T::Boolean,
           ends_at: T.nilable(String),
@@ -429,6 +439,11 @@ module WhopSDK
         demographics:,
         # Target/cap cost for average_target / maximum_target.
         desired_cost_per_result:,
+        # Detailed targeting: { interests: [{id, name}], behaviors: [{id, name}],
+        # demographics: [{id, name, type}] } where demographics type is one of
+        # life_events, industries, income, family_statuses. Incompatible with
+        # demographics.automatic (Advantage+) and Special Ad Category campaigns.
+        detailed_targeting:,
         # Device targeting: platforms and operating systems.
         devices:,
         # Whether ads within this ad group have their creatives and copy dynamically AB
@@ -458,8 +473,10 @@ module WhopSDK
         purchases:,
         # The number of unique people who saw this.
         reach:,
-        # Geo targeting: include/exclude countries, regions (ISO 3166-2 states, e.g.
-        # US-CA), cities, zips.
+        # Geo targeting: include/exclude countries, country_groups (include-only Meta
+        # groups like worldwide — global reach), regions (ISO 3166-2 states, e.g. US-CA),
+        # cities, zips, and custom_locations (pin + radius: { latitude, longitude, radius,
+        # distance_unit, name }).
         regions:,
         # The Whop pixel conversion event whose attributed count represents results — the
         # optimization goal, or the highest-volume attributed event for campaigns that
@@ -536,6 +553,7 @@ module WhopSDK
             delivery_status: WhopSDK::AdGroup::DeliveryStatus::TaggedSymbol,
             demographics: T.anything,
             desired_cost_per_result: T.nilable(Float),
+            detailed_targeting: T.anything,
             devices: T.anything,
             dynamic_creative: T::Boolean,
             ends_at: T.nilable(String),

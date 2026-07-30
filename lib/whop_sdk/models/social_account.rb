@@ -10,6 +10,13 @@ module WhopSDK
       #   @return [String]
       required :id, String
 
+      # @!attribute error
+      #   Why this social account currently can't be used for advertising — a failed share
+      #   or a Meta-side restriction. Null when the account is healthy.
+      #
+      #   @return [String, nil]
+      required :error, String, nil?: true
+
       # @!attribute external_id
       #   The platform-specific ID for this social account.
       #
@@ -59,11 +66,13 @@ module WhopSDK
       #   @return [Boolean]
       required :verified, WhopSDK::Internal::Type::Boolean
 
-      # @!method initialize(id:, external_id:, name:, platform:, profile_picture_url:, scopes:, url:, username:, verified:)
+      # @!method initialize(id:, error:, external_id:, name:, platform:, profile_picture_url:, scopes:, url:, username:, verified:)
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::SocialAccount} for more details.
       #
       #   @param id [String] Unique identifier for the social account.
+      #
+      #   @param error [String, nil] Why this social account currently can't be used for advertising — a failed share
       #
       #   @param external_id [String, nil] The platform-specific ID for this social account.
       #

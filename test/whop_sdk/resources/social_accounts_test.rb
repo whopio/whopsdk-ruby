@@ -15,6 +15,7 @@ class WhopSDK::Test::Resources::SocialAccountsTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
+        error: String | nil,
         external_id: String | nil,
         name: String | nil,
         platform: WhopSDK::SocialAccount::Platform,
@@ -46,6 +47,7 @@ class WhopSDK::Test::Resources::SocialAccountsTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       row => {
         id: String,
+        error: String | nil,
         external_id: String | nil,
         name: String | nil,
         platform: WhopSDK::SocialAccount::Platform,

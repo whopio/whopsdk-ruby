@@ -11,6 +11,7 @@ module WhopSDK
         conversion_location: WhopSDK::Models::AdGroupCreateParams::conversion_location,
         demographics: top,
         desired_cost_per_result: Float,
+        detailed_targeting: top,
         devices: top,
         dynamic_creative: bool,
         ends_at: String,
@@ -68,6 +69,10 @@ module WhopSDK
       attr_reader desired_cost_per_result: Float?
 
       def desired_cost_per_result=: (Float) -> Float
+
+      attr_reader detailed_targeting: top?
+
+      def detailed_targeting=: (top) -> top
 
       attr_reader devices: top?
 
@@ -135,6 +140,7 @@ module WhopSDK
         ?conversion_location: WhopSDK::Models::AdGroupCreateParams::conversion_location,
         ?demographics: top,
         ?desired_cost_per_result: Float,
+        ?detailed_targeting: top,
         ?devices: top,
         ?dynamic_creative: bool,
         ?ends_at: String,
@@ -161,6 +167,7 @@ module WhopSDK
         conversion_location: WhopSDK::Models::AdGroupCreateParams::conversion_location,
         demographics: top,
         desired_cost_per_result: Float,
+        detailed_targeting: top,
         devices: top,
         dynamic_creative: bool,
         ends_at: String,

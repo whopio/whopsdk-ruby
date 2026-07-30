@@ -147,6 +147,30 @@ module WhopSDK
         )
       end
 
+      # Lists the recommended actions computed for the user: personal suggestions (e.g.
+      # start a business or become an affiliate) pooled with the highest-impact actions
+      # across the accounts the user owns. Business actions are tagged with their
+      # `account_id`/`account_name`; personal actions leave those `null`. Self-only:
+      # `id` must be `me` or the authenticated user's own tag/username.
+      #
+      # @overload recommend_actions(id, request_options: {})
+      #
+      # @param id [String] `me`, or the authenticated user's own `user_` tag or username.
+      #
+      # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [WhopSDK::Models::UserRecommendActionsResponse]
+      #
+      # @see WhopSDK::Models::UserRecommendActionsParams
+      def recommend_actions(id, params = {})
+        @client.request(
+          method: :get,
+          path: ["users/%1$s/recommend_actions", id],
+          model: WhopSDK::Models::UserRecommendActionsResponse,
+          options: params[:request_options]
+        )
+      end
+
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::UserUpdateMeParams} for more details.
       #

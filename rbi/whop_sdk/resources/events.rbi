@@ -14,7 +14,7 @@ module WhopSDK
       sig do
         params(
           account_id: String,
-          event_name: WhopSDK::EventCreateParams::EventName::OrSymbol,
+          event_name: String,
           action_source:
             T.nilable(WhopSDK::EventCreateParams::ActionSource::OrSymbol),
           context: T.nilable(WhopSDK::EventCreateParams::Context::OrHash),
@@ -38,7 +38,11 @@ module WhopSDK
       def create(
         # The account to associate with this event.
         account_id:,
-        # The type of conversion or engagement event
+        # The type of event.
+        #
+        # Use a standard event (lead, submit_application, contact, complete_registration,
+        # schedule, view_content, add_to_cart) or pass your own name directly for a custom
+        # event.
         event_name:,
         # The channel where an event originated
         action_source: nil,

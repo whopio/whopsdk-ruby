@@ -33,7 +33,7 @@ module WhopSDK
       required :type, const: :"chat.reaction.created"
 
       # @!attribute company_id
-      #   The company ID that this webhook event is associated with
+      #   The account ID that this webhook event is associated with
       #
       #   @return [String, nil]
       optional :company_id, String, nil?: true
@@ -45,7 +45,7 @@ module WhopSDK
       #
       #   @param timestamp [Time] The timestamp in ISO 8601 format that the webhook was sent at on the server
       #
-      #   @param company_id [String, nil] The company ID that this webhook event is associated with
+      #   @param company_id [String, nil] The account ID that this webhook event is associated with
       #
       #   @param api_version [Symbol, :v1] The API version for this webhook
       #

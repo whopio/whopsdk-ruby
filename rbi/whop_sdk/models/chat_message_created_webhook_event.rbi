@@ -35,7 +35,7 @@ module WhopSDK
       sig { returns(Symbol) }
       attr_accessor :type
 
-      # The company ID that this webhook event is associated with
+      # The account ID that this webhook event is associated with
       sig { returns(T.nilable(String)) }
       attr_accessor :company_id
 
@@ -55,7 +55,7 @@ module WhopSDK
         data:,
         # The timestamp in ISO 8601 format that the webhook was sent at on the server
         timestamp:,
-        # The company ID that this webhook event is associated with
+        # The account ID that this webhook event is associated with
         company_id: nil,
         # The API version for this webhook
         api_version: :v1,

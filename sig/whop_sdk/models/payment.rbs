@@ -43,6 +43,7 @@ module WhopSDK
         settlement_amount: Float,
         settlement_currency: WhopSDK::Models::currency,
         settlement_exchange_rate: Float?,
+        settlement_time_at: Time?,
         shipping_address: WhopSDK::Payment::ShippingAddress?,
         status: WhopSDK::Models::receipt_status?,
         substatus: WhopSDK::Models::friendly_receipt_status,
@@ -141,6 +142,8 @@ module WhopSDK
 
       attr_accessor settlement_exchange_rate: Float?
 
+      attr_accessor settlement_time_at: Time?
+
       attr_accessor shipping_address: WhopSDK::Payment::ShippingAddress?
 
       attr_accessor status: WhopSDK::Models::receipt_status?
@@ -209,6 +212,7 @@ module WhopSDK
         settlement_amount: Float,
         settlement_currency: WhopSDK::Models::currency,
         settlement_exchange_rate: Float?,
+        settlement_time_at: Time?,
         shipping_address: WhopSDK::Payment::ShippingAddress?,
         status: WhopSDK::Models::receipt_status?,
         substatus: WhopSDK::Models::friendly_receipt_status,
@@ -266,6 +270,7 @@ module WhopSDK
         settlement_amount: Float,
         settlement_currency: WhopSDK::Models::currency,
         settlement_exchange_rate: Float?,
+        settlement_time_at: Time?,
         shipping_address: WhopSDK::Payment::ShippingAddress?,
         status: WhopSDK::Models::receipt_status?,
         substatus: WhopSDK::Models::friendly_receipt_status,

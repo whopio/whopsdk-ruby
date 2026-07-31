@@ -236,6 +236,13 @@ module WhopSDK
       sig { returns(T.nilable(Float)) }
       attr_accessor :settlement_exchange_rate
 
+      # When this payment's funds post to the company's available balance, at midnight
+      # UTC. Known at payment time and never changes. The
+      # `ledger_account.funds_available` webhook carries the same `settlement_time_at`
+      # when that batch posts — match them to know these funds are now withdrawable.
+      sig { returns(T.nilable(Time)) }
+      attr_accessor :settlement_time_at
+
       # The shipping address provided by the customer for physical goods. Null if no
       # shipping address was collected.
       sig { returns(T.nilable(WhopSDK::Payment::ShippingAddress)) }
@@ -348,6 +355,7 @@ module WhopSDK
           settlement_amount: Float,
           settlement_currency: WhopSDK::Currency::OrSymbol,
           settlement_exchange_rate: T.nilable(Float),
+          settlement_time_at: T.nilable(Time),
           shipping_address:
             T.nilable(WhopSDK::Payment::ShippingAddress::OrHash),
           status: T.nilable(WhopSDK::ReceiptStatus::OrSymbol),
@@ -470,6 +478,11 @@ module WhopSDK
         settlement_currency:,
         # Deprecated. Always returns null.
         settlement_exchange_rate:,
+        # When this payment's funds post to the company's available balance, at midnight
+        # UTC. Known at payment time and never changes. The
+        # `ledger_account.funds_available` webhook carries the same `settlement_time_at`
+        # when that batch posts — match them to know these funds are now withdrawable.
+        settlement_time_at:,
         # The shipping address provided by the customer for physical goods. Null if no
         # shipping address was collected.
         shipping_address:,
@@ -548,6 +561,7 @@ module WhopSDK
             settlement_amount: Float,
             settlement_currency: WhopSDK::Currency::TaggedSymbol,
             settlement_exchange_rate: T.nilable(Float),
+            settlement_time_at: T.nilable(Time),
             shipping_address: T.nilable(WhopSDK::Payment::ShippingAddress),
             status: T.nilable(WhopSDK::ReceiptStatus::TaggedSymbol),
             substatus: WhopSDK::FriendlyReceiptStatus::TaggedSymbol,

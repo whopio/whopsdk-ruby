@@ -107,6 +107,14 @@ module WhopSDK
                  -> { WhopSDK::LedgerAccountFundsAvailableWebhookEvent::Data::PayoutAccountDetails },
                  nil?: true
 
+        # @!attribute settlement_time_at
+        #   The settlement batch most recently posted to this account's available balance,
+        #   at midnight UTC. Every payment settling in that batch carries the same
+        #   `settlement_time_at`.
+        #
+        #   @return [Time, nil]
+        required :settlement_time_at, Time, nil?: true
+
         # @!attribute transfer_fee
         #   The fee for transfers, if applicable.
         #
@@ -121,7 +129,11 @@ module WhopSDK
                  -> { WhopSDK::LedgerAccountFundsAvailableWebhookEvent::Data::TreasuryBalance },
                  nil?: true
 
-        # @!method initialize(id:, balances:, ledger_type:, owner:, payments_approval_status:, payout_account_details:, transfer_fee:, treasury_balance:)
+        # @!method initialize(id:, balances:, ledger_type:, owner:, payments_approval_status:, payout_account_details:, settlement_time_at:, transfer_fee:, treasury_balance:)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::LedgerAccountFundsAvailableWebhookEvent::Data} for more
+        #   details.
+        #
         #   A ledger account represents a financial account on Whop that can hold many
         #   balances.
         #
@@ -136,6 +148,8 @@ module WhopSDK
         #   @param payments_approval_status [Symbol, WhopSDK::Models::LedgerAccountFundsAvailableWebhookEvent::Data::PaymentsApprovalStatus, nil] The different approval statuses an account can have.
         #
         #   @param payout_account_details [WhopSDK::Models::LedgerAccountFundsAvailableWebhookEvent::Data::PayoutAccountDetails, nil] The payout account associated with the LedgerAccount, if any.
+        #
+        #   @param settlement_time_at [Time, nil] The settlement batch most recently posted to this account's available balance, a
         #
         #   @param transfer_fee [Float, nil] The fee for transfers, if applicable.
         #

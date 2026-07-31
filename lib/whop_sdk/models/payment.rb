@@ -273,6 +273,15 @@ module WhopSDK
       #   @return [Float, nil]
       required :settlement_exchange_rate, Float, nil?: true
 
+      # @!attribute settlement_time_at
+      #   When this payment's funds post to the company's available balance, at midnight
+      #   UTC. Known at payment time and never changes. The
+      #   `ledger_account.funds_available` webhook carries the same `settlement_time_at`
+      #   when that batch posts — match them to know these funds are now withdrawable.
+      #
+      #   @return [Time, nil]
+      required :settlement_time_at, Time, nil?: true
+
       # @!attribute shipping_address
       #   The shipping address provided by the customer for physical goods. Null if no
       #   shipping address was collected.
@@ -354,7 +363,7 @@ module WhopSDK
       #   @return [Boolean]
       required :voidable, WhopSDK::Internal::Type::Boolean
 
-      # @!method initialize(id:, amount_after_fees:, application_fee:, auto_refunded:, billing_address:, billing_reason:, card_brand:, card_last4:, checkout_configuration_id:, company:, created_at:, currency:, customer_phone:, dispute_alerted_at:, disputes:, failure_message:, financing_installments_count:, financing_transactions:, last_payment_attempt:, member:, membership:, metadata:, next_payment_attempt:, paid_at:, payment_method:, payment_method_type:, payments_failed:, plan:, product:, promo_code:, refundable:, refunded_amount:, refunded_at:, refunds:, resolutions:, retryable:, risk_score:, risk_signals:, settlement_amount:, settlement_currency:, settlement_exchange_rate:, shipping_address:, status:, substatus:, subtotal:, tax_amount:, tax_behavior:, tax_refunded_amount:, three_ds_verified:, total:, updated_at:, usd_total:, user:, voidable:)
+      # @!method initialize(id:, amount_after_fees:, application_fee:, auto_refunded:, billing_address:, billing_reason:, card_brand:, card_last4:, checkout_configuration_id:, company:, created_at:, currency:, customer_phone:, dispute_alerted_at:, disputes:, failure_message:, financing_installments_count:, financing_transactions:, last_payment_attempt:, member:, membership:, metadata:, next_payment_attempt:, paid_at:, payment_method:, payment_method_type:, payments_failed:, plan:, product:, promo_code:, refundable:, refunded_amount:, refunded_at:, refunds:, resolutions:, retryable:, risk_score:, risk_signals:, settlement_amount:, settlement_currency:, settlement_exchange_rate:, settlement_time_at:, shipping_address:, status:, substatus:, subtotal:, tax_amount:, tax_behavior:, tax_refunded_amount:, three_ds_verified:, total:, updated_at:, usd_total:, user:, voidable:)
       #   Some parameter documentations has been truncated, see {WhopSDK::Models::Payment}
       #   for more details.
       #
@@ -442,6 +451,8 @@ module WhopSDK
       #   @param settlement_currency [Symbol, WhopSDK::Models::Currency] The three-letter ISO currency code for this payment (e.g., 'usd', 'eur').
       #
       #   @param settlement_exchange_rate [Float, nil] Deprecated. Always returns null.
+      #
+      #   @param settlement_time_at [Time, nil] When this payment's funds post to the company's available balance, at midnight U
       #
       #   @param shipping_address [WhopSDK::Models::Payment::ShippingAddress, nil] The shipping address provided by the customer for physical goods. Null if no shi
       #

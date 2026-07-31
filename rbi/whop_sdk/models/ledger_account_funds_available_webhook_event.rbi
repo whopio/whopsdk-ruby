@@ -164,6 +164,12 @@ module WhopSDK
         end
         attr_writer :payout_account_details
 
+        # The settlement batch most recently posted to this account's available balance,
+        # at midnight UTC. Every payment settling in that batch carries the same
+        # `settlement_time_at`.
+        sig { returns(T.nilable(Time)) }
+        attr_accessor :settlement_time_at
+
         # The fee for transfers, if applicable.
         sig { returns(T.nilable(Float)) }
         attr_accessor :transfer_fee
@@ -214,6 +220,7 @@ module WhopSDK
               T.nilable(
                 WhopSDK::LedgerAccountFundsAvailableWebhookEvent::Data::PayoutAccountDetails::OrHash
               ),
+            settlement_time_at: T.nilable(Time),
             transfer_fee: T.nilable(Float),
             treasury_balance:
               T.nilable(
@@ -234,6 +241,10 @@ module WhopSDK
           payments_approval_status:,
           # The payout account associated with the LedgerAccount, if any.
           payout_account_details:,
+          # The settlement batch most recently posted to this account's available balance,
+          # at midnight UTC. Every payment settling in that batch carries the same
+          # `settlement_time_at`.
+          settlement_time_at:,
           # The fee for transfers, if applicable.
           transfer_fee:,
           # The balance cache associated with the account by currency.
@@ -263,6 +274,7 @@ module WhopSDK
                 T.nilable(
                   WhopSDK::LedgerAccountFundsAvailableWebhookEvent::Data::PayoutAccountDetails
                 ),
+              settlement_time_at: T.nilable(Time),
               transfer_fee: T.nilable(Float),
               treasury_balance:
                 T.nilable(

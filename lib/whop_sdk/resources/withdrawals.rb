@@ -14,7 +14,7 @@ module WhopSDK
       # - `payout:withdraw_funds`
       # - `payout:destination:read`
       #
-      # @overload create(amount:, company_id:, currency:, idempotency_key: nil, payout_method_id: nil, platform_covers_fees: nil, statement_descriptor: nil, request_options: {})
+      # @overload create(amount:, company_id:, currency:, idempotency_key: nil, payout_method_id: nil, platform_covers_fees: nil, speed: nil, statement_descriptor: nil, request_options: {})
       #
       # @param amount [Float] The amount to withdraw in the specified currency
       #
@@ -27,6 +27,8 @@ module WhopSDK
       # @param payout_method_id [String, nil] The ID of the payout method to use for the withdrawal.
       #
       # @param platform_covers_fees [Boolean, nil] Whether the platform covers the payout fees.
+      #
+      # @param speed [Symbol, WhopSDK::Models::WithdrawalSpeeds, nil] The different speeds of withdrawals
       #
       # @param statement_descriptor [String, nil] Custom statement descriptor for the withdrawal. Must be between 5 and 22 charact
       #

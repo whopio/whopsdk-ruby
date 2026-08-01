@@ -8,6 +8,7 @@ module WhopSDK
         idempotency_key: String?,
         payout_method_id: String?,
         platform_covers_fees: bool?,
+        speed: WhopSDK::Models::withdrawal_speeds?,
         statement_descriptor: String?
       }
       & WhopSDK::Internal::Type::request_parameters
@@ -28,6 +29,8 @@ module WhopSDK
 
       attr_accessor platform_covers_fees: bool?
 
+      attr_accessor speed: WhopSDK::Models::withdrawal_speeds?
+
       attr_accessor statement_descriptor: String?
 
       def initialize: (
@@ -37,6 +40,7 @@ module WhopSDK
         ?idempotency_key: String?,
         ?payout_method_id: String?,
         ?platform_covers_fees: bool?,
+        ?speed: WhopSDK::Models::withdrawal_speeds?,
         ?statement_descriptor: String?,
         ?request_options: WhopSDK::request_opts
       ) -> void
@@ -48,6 +52,7 @@ module WhopSDK
         idempotency_key: String?,
         payout_method_id: String?,
         platform_covers_fees: bool?,
+        speed: WhopSDK::Models::withdrawal_speeds?,
         statement_descriptor: String?,
         request_options: WhopSDK::RequestOptions
       }

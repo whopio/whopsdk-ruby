@@ -36,6 +36,10 @@ module WhopSDK
       sig { returns(T.nilable(T::Boolean)) }
       attr_accessor :platform_covers_fees
 
+      # The different speeds of withdrawals
+      sig { returns(T.nilable(WhopSDK::WithdrawalSpeeds::OrSymbol)) }
+      attr_accessor :speed
+
       # Custom statement descriptor for the withdrawal. Must be between 5 and 22
       # characters and contain only alphanumeric characters.
       sig { returns(T.nilable(String)) }
@@ -49,6 +53,7 @@ module WhopSDK
           idempotency_key: T.nilable(String),
           payout_method_id: T.nilable(String),
           platform_covers_fees: T.nilable(T::Boolean),
+          speed: T.nilable(WhopSDK::WithdrawalSpeeds::OrSymbol),
           statement_descriptor: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
@@ -67,6 +72,8 @@ module WhopSDK
         payout_method_id: nil,
         # Whether the platform covers the payout fees.
         platform_covers_fees: nil,
+        # The different speeds of withdrawals
+        speed: nil,
         # Custom statement descriptor for the withdrawal. Must be between 5 and 22
         # characters and contain only alphanumeric characters.
         statement_descriptor: nil,
@@ -83,6 +90,7 @@ module WhopSDK
             idempotency_key: T.nilable(String),
             payout_method_id: T.nilable(String),
             platform_covers_fees: T.nilable(T::Boolean),
+            speed: T.nilable(WhopSDK::WithdrawalSpeeds::OrSymbol),
             statement_descriptor: T.nilable(String),
             request_options: WhopSDK::RequestOptions
           }

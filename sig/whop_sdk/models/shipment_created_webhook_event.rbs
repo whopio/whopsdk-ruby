@@ -1,0 +1,50 @@
+module WhopSDK
+  module Models
+    type shipment_created_webhook_event =
+      {
+        id: String,
+        api_version: :v1,
+        api_version_date: String?,
+        data: WhopSDK::Shipment,
+        timestamp: Time,
+        type: :"shipment.created",
+        company_id: String?
+      }
+
+    class ShipmentCreatedWebhookEvent < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor api_version: :v1
+
+      attr_accessor api_version_date: String?
+
+      attr_accessor data: WhopSDK::Shipment
+
+      attr_accessor timestamp: Time
+
+      attr_accessor type: :"shipment.created"
+
+      attr_accessor company_id: String?
+
+      def initialize: (
+        id: String,
+        api_version_date: String?,
+        data: WhopSDK::Shipment,
+        timestamp: Time,
+        ?company_id: String?,
+        ?api_version: :v1,
+        ?type: :"shipment.created"
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        api_version: :v1,
+        api_version_date: String?,
+        data: WhopSDK::Shipment,
+        timestamp: Time,
+        type: :"shipment.created",
+        company_id: String?
+      }
+    end
+  end
+end

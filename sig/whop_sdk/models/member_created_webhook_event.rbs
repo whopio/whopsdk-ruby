@@ -1,0 +1,168 @@
+module WhopSDK
+  module Models
+    type member_created_webhook_event =
+      {
+        id: String,
+        api_version: :v1,
+        api_version_date: String?,
+        data: WhopSDK::MemberCreatedWebhookEvent::Data,
+        timestamp: Time,
+        type: :"member.created",
+        company_id: String?
+      }
+
+    class MemberCreatedWebhookEvent < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor api_version: :v1
+
+      attr_accessor api_version_date: String?
+
+      attr_accessor data: WhopSDK::MemberCreatedWebhookEvent::Data
+
+      attr_accessor timestamp: Time
+
+      attr_accessor type: :"member.created"
+
+      attr_accessor company_id: String?
+
+      def initialize: (
+        id: String,
+        api_version_date: String?,
+        data: WhopSDK::MemberCreatedWebhookEvent::Data,
+        timestamp: Time,
+        ?company_id: String?,
+        ?api_version: :v1,
+        ?type: :"member.created"
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        api_version: :v1,
+        api_version_date: String?,
+        data: WhopSDK::MemberCreatedWebhookEvent::Data,
+        timestamp: Time,
+        type: :"member.created",
+        company_id: String?
+      }
+
+      type data =
+        {
+          id: String,
+          access_level: WhopSDK::Models::access_level,
+          company: WhopSDK::MemberCreatedWebhookEvent::Data::Company,
+          company_token_balance: Float,
+          created_at: Time,
+          joined_at: Time,
+          most_recent_action: WhopSDK::Models::member_most_recent_actions?,
+          most_recent_action_at: Time?,
+          phone: String?,
+          status: WhopSDK::Models::member_statuses,
+          updated_at: Time,
+          usd_total_spent: Float,
+          user: WhopSDK::MemberCreatedWebhookEvent::Data::User?
+        }
+
+      class Data < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor access_level: WhopSDK::Models::access_level
+
+        attr_accessor company: WhopSDK::MemberCreatedWebhookEvent::Data::Company
+
+        attr_accessor company_token_balance: Float
+
+        attr_accessor created_at: Time
+
+        attr_accessor joined_at: Time
+
+        attr_accessor most_recent_action: WhopSDK::Models::member_most_recent_actions?
+
+        attr_accessor most_recent_action_at: Time?
+
+        attr_accessor phone: String?
+
+        attr_accessor status: WhopSDK::Models::member_statuses
+
+        attr_accessor updated_at: Time
+
+        attr_accessor usd_total_spent: Float
+
+        attr_accessor user: WhopSDK::MemberCreatedWebhookEvent::Data::User?
+
+        def initialize: (
+          id: String,
+          access_level: WhopSDK::Models::access_level,
+          company: WhopSDK::MemberCreatedWebhookEvent::Data::Company,
+          company_token_balance: Float,
+          created_at: Time,
+          joined_at: Time,
+          most_recent_action: WhopSDK::Models::member_most_recent_actions?,
+          most_recent_action_at: Time?,
+          phone: String?,
+          status: WhopSDK::Models::member_statuses,
+          updated_at: Time,
+          usd_total_spent: Float,
+          user: WhopSDK::MemberCreatedWebhookEvent::Data::User?
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          access_level: WhopSDK::Models::access_level,
+          company: WhopSDK::MemberCreatedWebhookEvent::Data::Company,
+          company_token_balance: Float,
+          created_at: Time,
+          joined_at: Time,
+          most_recent_action: WhopSDK::Models::member_most_recent_actions?,
+          most_recent_action_at: Time?,
+          phone: String?,
+          status: WhopSDK::Models::member_statuses,
+          updated_at: Time,
+          usd_total_spent: Float,
+          user: WhopSDK::MemberCreatedWebhookEvent::Data::User?
+        }
+
+        type company = { id: String, route: String, title: String }
+
+        class Company < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor route: String
+
+          attr_accessor title: String
+
+          def initialize: (id: String, route: String, title: String) -> void
+
+          def to_hash: -> { id: String, route: String, title: String }
+        end
+
+        type user =
+          { id: String, email: String?, name: String?, username: String }
+
+        class User < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor email: String?
+
+          attr_accessor name: String?
+
+          attr_accessor username: String
+
+          def initialize: (
+            id: String,
+            email: String?,
+            name: String?,
+            username: String
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            email: String?,
+            name: String?,
+            username: String
+          }
+        end
+      end
+    end
+  end
+end

@@ -62,6 +62,11 @@ module WhopSDK
       | WhopSDK::LedgerAccountFundsAvailableWebhookEvent
       | WhopSDK::WithdrawalCreatedWebhookEvent
       | WhopSDK::WithdrawalUpdatedWebhookEvent
+      | WhopSDK::CardTransactionCreatedWebhookEvent
+      | WhopSDK::CardTransactionUpdatedWebhookEvent
+      | WhopSDK::CardTransactionCompletedWebhookEvent
+      | WhopSDK::CardTransactionDeclinedWebhookEvent
+      | WhopSDK::CardTransactionReversedWebhookEvent
       | WhopSDK::CourseLessonInteractionCompletedWebhookEvent
       | WhopSDK::PayoutMethodCreatedWebhookEvent
       | WhopSDK::VerificationSucceededWebhookEvent
@@ -78,6 +83,9 @@ module WhopSDK
       | WhopSDK::ProductDeletedWebhookEvent
       | WhopSDK::ProductPublishedWebhookEvent
       | WhopSDK::ProductUnpublishedWebhookEvent
+      | WhopSDK::ShipmentCreatedWebhookEvent
+      | WhopSDK::ShipmentUpdatedWebhookEvent
+      | WhopSDK::MemberCreatedWebhookEvent
       | WhopSDK::ChatMessageCreatedWebhookEvent
       | WhopSDK::ChatReactionCreatedWebhookEvent
       | WhopSDK::PaymentCreatedWebhookEvent

@@ -51,10 +51,25 @@ module WhopSDK
           :"ledger_account.funds_available",
           WhopSDK::WebhookEvent::TaggedSymbol
         )
+      DEPOSIT_SUCCEEDED =
+        T.let(:"deposit.succeeded", WhopSDK::WebhookEvent::TaggedSymbol)
       WITHDRAWAL_CREATED =
         T.let(:"withdrawal.created", WhopSDK::WebhookEvent::TaggedSymbol)
       WITHDRAWAL_UPDATED =
         T.let(:"withdrawal.updated", WhopSDK::WebhookEvent::TaggedSymbol)
+      CARD_TRANSACTION_CREATED =
+        T.let(:"card_transaction.created", WhopSDK::WebhookEvent::TaggedSymbol)
+      CARD_TRANSACTION_UPDATED =
+        T.let(:"card_transaction.updated", WhopSDK::WebhookEvent::TaggedSymbol)
+      CARD_TRANSACTION_COMPLETED =
+        T.let(
+          :"card_transaction.completed",
+          WhopSDK::WebhookEvent::TaggedSymbol
+        )
+      CARD_TRANSACTION_DECLINED =
+        T.let(:"card_transaction.declined", WhopSDK::WebhookEvent::TaggedSymbol)
+      CARD_TRANSACTION_REVERSED =
+        T.let(:"card_transaction.reversed", WhopSDK::WebhookEvent::TaggedSymbol)
       COURSE_LESSON_INTERACTION_COMPLETED =
         T.let(
           :"course_lesson_interaction.completed",
@@ -105,6 +120,15 @@ module WhopSDK
         T.let(:"product.published", WhopSDK::WebhookEvent::TaggedSymbol)
       PRODUCT_UNPUBLISHED =
         T.let(:"product.unpublished", WhopSDK::WebhookEvent::TaggedSymbol)
+      PLAN_CREATED = T.let(:"plan.created", WhopSDK::WebhookEvent::TaggedSymbol)
+      PLAN_UPDATED = T.let(:"plan.updated", WhopSDK::WebhookEvent::TaggedSymbol)
+      PLAN_DELETED = T.let(:"plan.deleted", WhopSDK::WebhookEvent::TaggedSymbol)
+      SHIPMENT_CREATED =
+        T.let(:"shipment.created", WhopSDK::WebhookEvent::TaggedSymbol)
+      SHIPMENT_UPDATED =
+        T.let(:"shipment.updated", WhopSDK::WebhookEvent::TaggedSymbol)
+      MEMBER_CREATED =
+        T.let(:"member.created", WhopSDK::WebhookEvent::TaggedSymbol)
       CHAT_MESSAGE_CREATED =
         T.let(:"chat.message.created", WhopSDK::WebhookEvent::TaggedSymbol)
       CHAT_REACTION_CREATED =

@@ -133,6 +133,16 @@ module WhopSDK
 
   CardBrands = WhopSDK::Models::CardBrands
 
+  CardTransactionCompletedWebhookEvent = WhopSDK::Models::CardTransactionCompletedWebhookEvent
+
+  CardTransactionCreatedWebhookEvent = WhopSDK::Models::CardTransactionCreatedWebhookEvent
+
+  CardTransactionDeclinedWebhookEvent = WhopSDK::Models::CardTransactionDeclinedWebhookEvent
+
+  CardTransactionReversedWebhookEvent = WhopSDK::Models::CardTransactionReversedWebhookEvent
+
+  CardTransactionUpdatedWebhookEvent = WhopSDK::Models::CardTransactionUpdatedWebhookEvent
+
   ChatChannel = WhopSDK::Models::ChatChannel
 
   ChatChannelListParams = WhopSDK::Models::ChatChannelListParams
@@ -444,6 +454,8 @@ module WhopSDK
 
   LessonVisibilities = WhopSDK::Models::LessonVisibilities
 
+  MemberCreatedWebhookEvent = WhopSDK::Models::MemberCreatedWebhookEvent
+
   MemberListParams = WhopSDK::Models::MemberListParams
 
   MemberMostRecentActions = WhopSDK::Models::MemberMostRecentActions
@@ -661,6 +673,8 @@ module WhopSDK
 
   Shipment = WhopSDK::Models::Shipment
 
+  ShipmentCreatedWebhookEvent = WhopSDK::Models::ShipmentCreatedWebhookEvent
+
   ShipmentCreateParams = WhopSDK::Models::ShipmentCreateParams
 
   ShipmentListParams = WhopSDK::Models::ShipmentListParams
@@ -670,6 +684,8 @@ module WhopSDK
   ShipmentStatus = WhopSDK::Models::ShipmentStatus
 
   ShipmentSubstatus = WhopSDK::Models::ShipmentSubstatus
+
+  ShipmentUpdatedWebhookEvent = WhopSDK::Models::ShipmentUpdatedWebhookEvent
 
   SocialLinkWebsites = WhopSDK::Models::SocialLinkWebsites
 

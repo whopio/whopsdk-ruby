@@ -73,6 +73,11 @@ module WhopSDK
       | WhopSDK::ResolutionCenterCaseCreatedWebhookEvent
       | WhopSDK::ResolutionCenterCaseUpdatedWebhookEvent
       | WhopSDK::ResolutionCenterCaseDecidedWebhookEvent
+      | WhopSDK::ProductCreatedWebhookEvent
+      | WhopSDK::ProductUpdatedWebhookEvent
+      | WhopSDK::ProductDeletedWebhookEvent
+      | WhopSDK::ProductPublishedWebhookEvent
+      | WhopSDK::ProductUnpublishedWebhookEvent
       | WhopSDK::ChatMessageCreatedWebhookEvent
       | WhopSDK::ChatReactionCreatedWebhookEvent
       | WhopSDK::PaymentCreatedWebhookEvent

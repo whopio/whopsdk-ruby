@@ -539,7 +539,11 @@ module WhopSDK
 
   Product = WhopSDK::Models::Product
 
+  ProductCreatedWebhookEvent = WhopSDK::Models::ProductCreatedWebhookEvent
+
   ProductCreateParams = WhopSDK::Models::ProductCreateParams
+
+  ProductDeletedWebhookEvent = WhopSDK::Models::ProductDeletedWebhookEvent
 
   ProductDeleteParams = WhopSDK::Models::ProductDeleteParams
 
@@ -547,7 +551,14 @@ module WhopSDK
 
   ProductListParams = WhopSDK::Models::ProductListParams
 
+  ProductPublishedWebhookEvent = WhopSDK::Models::ProductPublishedWebhookEvent
+
   ProductRetrieveParams = WhopSDK::Models::ProductRetrieveParams
+
+  ProductUnpublishedWebhookEvent =
+    WhopSDK::Models::ProductUnpublishedWebhookEvent
+
+  ProductUpdatedWebhookEvent = WhopSDK::Models::ProductUpdatedWebhookEvent
 
   ProductUpdateParams = WhopSDK::Models::ProductUpdateParams
 

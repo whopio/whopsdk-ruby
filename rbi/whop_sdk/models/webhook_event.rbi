@@ -95,6 +95,16 @@ module WhopSDK
           :"resolution_center_case.decided",
           WhopSDK::WebhookEvent::TaggedSymbol
         )
+      PRODUCT_CREATED =
+        T.let(:"product.created", WhopSDK::WebhookEvent::TaggedSymbol)
+      PRODUCT_UPDATED =
+        T.let(:"product.updated", WhopSDK::WebhookEvent::TaggedSymbol)
+      PRODUCT_DELETED =
+        T.let(:"product.deleted", WhopSDK::WebhookEvent::TaggedSymbol)
+      PRODUCT_PUBLISHED =
+        T.let(:"product.published", WhopSDK::WebhookEvent::TaggedSymbol)
+      PRODUCT_UNPUBLISHED =
+        T.let(:"product.unpublished", WhopSDK::WebhookEvent::TaggedSymbol)
       CHAT_MESSAGE_CREATED =
         T.let(:"chat.message.created", WhopSDK::WebhookEvent::TaggedSymbol)
       CHAT_REACTION_CREATED =

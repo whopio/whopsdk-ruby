@@ -18,6 +18,8 @@ module WhopSDK
       ENTRY_APPROVED = :"entry.approved"
       ENTRY_DENIED = :"entry.denied"
       ENTRY_DELETED = :"entry.deleted"
+      EXPORT_COMPLETED = :"export.completed"
+      EXPORT_FAILED = :"export.failed"
       SETUP_INTENT_REQUIRES_ACTION = :"setup_intent.requires_action"
       SETUP_INTENT_SUCCEEDED = :"setup_intent.succeeded"
       SETUP_INTENT_CANCELED = :"setup_intent.canceled"

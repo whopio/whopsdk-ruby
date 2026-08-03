@@ -37,6 +37,10 @@ module WhopSDK
       ENTRY_DENIED = T.let(:"entry.denied", WhopSDK::WebhookEvent::TaggedSymbol)
       ENTRY_DELETED =
         T.let(:"entry.deleted", WhopSDK::WebhookEvent::TaggedSymbol)
+      EXPORT_COMPLETED =
+        T.let(:"export.completed", WhopSDK::WebhookEvent::TaggedSymbol)
+      EXPORT_FAILED =
+        T.let(:"export.failed", WhopSDK::WebhookEvent::TaggedSymbol)
       SETUP_INTENT_REQUIRES_ACTION =
         T.let(
           :"setup_intent.requires_action",

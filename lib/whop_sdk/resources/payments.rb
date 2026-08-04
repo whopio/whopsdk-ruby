@@ -22,6 +22,7 @@ module WhopSDK
       # - `member:basic:read`
       # - `member:phone:read`
       # - `promo_code:basic:read`
+      # - `shipment:basic:read`
       # - `payment:dispute:read`
       # - `payment:resolution_center_case:read`
       #
@@ -56,6 +57,7 @@ module WhopSDK
       # - `member:basic:read`
       # - `member:phone:read`
       # - `promo_code:basic:read`
+      # - `shipment:basic:read`
       # - `payment:dispute:read`
       # - `payment:resolution_center_case:read`
       #
@@ -92,6 +94,7 @@ module WhopSDK
       # - `member:basic:read`
       # - `member:phone:read`
       # - `promo_code:basic:read`
+      # - `shipment:basic:read`
       #
       # @overload list(after: nil, before: nil, billing_reasons: nil, checkout_configuration_ids: nil, company_id: nil, created_after: nil, created_before: nil, currencies: nil, direction: nil, first: nil, include_free: nil, last: nil, order: nil, plan_ids: nil, product_ids: nil, query: nil, statuses: nil, substatuses: nil, updated_after: nil, updated_before: nil, request_options: {})
       #
@@ -205,6 +208,7 @@ module WhopSDK
       # - `member:basic:read`
       # - `member:phone:read`
       # - `promo_code:basic:read`
+      # - `shipment:basic:read`
       # - `payment:dispute:read`
       # - `payment:resolution_center_case:read`
       #
@@ -242,6 +246,7 @@ module WhopSDK
       # - `member:basic:read`
       # - `member:phone:read`
       # - `promo_code:basic:read`
+      # - `shipment:basic:read`
       # - `payment:dispute:read`
       # - `payment:resolution_center_case:read`
       #
@@ -275,6 +280,7 @@ module WhopSDK
       # - `member:basic:read`
       # - `member:phone:read`
       # - `promo_code:basic:read`
+      # - `shipment:basic:read`
       # - `payment:dispute:read`
       # - `payment:resolution_center_case:read`
       #

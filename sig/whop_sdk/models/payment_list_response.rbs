@@ -21,6 +21,7 @@ module WhopSDK
         member: WhopSDK::Models::PaymentListResponse::Member?,
         membership: WhopSDK::Models::PaymentListResponse::Membership?,
         metadata: ::Hash[Symbol, top]?,
+        needs_tracking: bool?,
         next_payment_attempt: Time?,
         paid_at: Time?,
         payment_method: WhopSDK::Models::PaymentListResponse::PaymentMethod?,
@@ -34,6 +35,7 @@ module WhopSDK
         refunded_at: Time?,
         retryable: bool,
         settlement_currency: WhopSDK::Models::currency,
+        shipment: WhopSDK::Models::PaymentListResponse::Shipment?,
         shipping_address: WhopSDK::Models::PaymentListResponse::ShippingAddress?,
         status: WhopSDK::Models::receipt_status?,
         substatus: WhopSDK::Models::friendly_receipt_status,
@@ -86,6 +88,8 @@ module WhopSDK
 
       attr_accessor metadata: ::Hash[Symbol, top]?
 
+      attr_accessor needs_tracking: bool?
+
       attr_accessor next_payment_attempt: Time?
 
       attr_accessor paid_at: Time?
@@ -111,6 +115,8 @@ module WhopSDK
       attr_accessor retryable: bool
 
       attr_accessor settlement_currency: WhopSDK::Models::currency
+
+      attr_accessor shipment: WhopSDK::Models::PaymentListResponse::Shipment?
 
       attr_accessor shipping_address: WhopSDK::Models::PaymentListResponse::ShippingAddress?
 
@@ -154,6 +160,7 @@ module WhopSDK
         member: WhopSDK::Models::PaymentListResponse::Member?,
         membership: WhopSDK::Models::PaymentListResponse::Membership?,
         metadata: ::Hash[Symbol, top]?,
+        needs_tracking: bool?,
         next_payment_attempt: Time?,
         paid_at: Time?,
         payment_method: WhopSDK::Models::PaymentListResponse::PaymentMethod?,
@@ -167,6 +174,7 @@ module WhopSDK
         refunded_at: Time?,
         retryable: bool,
         settlement_currency: WhopSDK::Models::currency,
+        shipment: WhopSDK::Models::PaymentListResponse::Shipment?,
         shipping_address: WhopSDK::Models::PaymentListResponse::ShippingAddress?,
         status: WhopSDK::Models::receipt_status?,
         substatus: WhopSDK::Models::friendly_receipt_status,
@@ -200,6 +208,7 @@ module WhopSDK
         member: WhopSDK::Models::PaymentListResponse::Member?,
         membership: WhopSDK::Models::PaymentListResponse::Membership?,
         metadata: ::Hash[Symbol, top]?,
+        needs_tracking: bool?,
         next_payment_attempt: Time?,
         paid_at: Time?,
         payment_method: WhopSDK::Models::PaymentListResponse::PaymentMethod?,
@@ -213,6 +222,7 @@ module WhopSDK
         refunded_at: Time?,
         retryable: bool,
         settlement_currency: WhopSDK::Models::currency,
+        shipment: WhopSDK::Models::PaymentListResponse::Shipment?,
         shipping_address: WhopSDK::Models::PaymentListResponse::ShippingAddress?,
         status: WhopSDK::Models::receipt_status?,
         substatus: WhopSDK::Models::friendly_receipt_status,
@@ -526,6 +536,43 @@ module WhopSDK
           code: String?,
           number_of_intervals: Integer?,
           promo_type: WhopSDK::Models::promo_type
+        }
+      end
+
+      type shipment =
+        {
+          id: String,
+          carrier: String?,
+          status: WhopSDK::Models::shipment_status,
+          tracking_number: String,
+          tracking_url: String
+        }
+
+      class Shipment < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor carrier: String?
+
+        attr_accessor status: WhopSDK::Models::shipment_status
+
+        attr_accessor tracking_number: String
+
+        attr_accessor tracking_url: String
+
+        def initialize: (
+          id: String,
+          carrier: String?,
+          status: WhopSDK::Models::shipment_status,
+          tracking_number: String,
+          tracking_url: String
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          carrier: String?,
+          status: WhopSDK::Models::shipment_status,
+          tracking_number: String,
+          tracking_url: String
         }
       end
 

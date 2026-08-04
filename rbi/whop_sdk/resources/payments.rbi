@@ -22,6 +22,7 @@ module WhopSDK
       # - `member:basic:read`
       # - `member:phone:read`
       # - `promo_code:basic:read`
+      # - `shipment:basic:read`
       # - `payment:dispute:read`
       # - `payment:resolution_center_case:read`
       sig do
@@ -54,6 +55,7 @@ module WhopSDK
       # - `member:basic:read`
       # - `member:phone:read`
       # - `promo_code:basic:read`
+      # - `shipment:basic:read`
       # - `payment:dispute:read`
       # - `payment:resolution_center_case:read`
       sig do
@@ -81,6 +83,7 @@ module WhopSDK
       # - `member:basic:read`
       # - `member:phone:read`
       # - `promo_code:basic:read`
+      # - `shipment:basic:read`
       sig do
         params(
           after: T.nilable(String),
@@ -204,6 +207,7 @@ module WhopSDK
       # - `member:basic:read`
       # - `member:phone:read`
       # - `promo_code:basic:read`
+      # - `shipment:basic:read`
       # - `payment:dispute:read`
       # - `payment:resolution_center_case:read`
       sig do
@@ -236,6 +240,7 @@ module WhopSDK
       # - `member:basic:read`
       # - `member:phone:read`
       # - `promo_code:basic:read`
+      # - `shipment:basic:read`
       # - `payment:dispute:read`
       # - `payment:resolution_center_case:read`
       sig do
@@ -263,6 +268,7 @@ module WhopSDK
       # - `member:basic:read`
       # - `member:phone:read`
       # - `promo_code:basic:read`
+      # - `shipment:basic:read`
       # - `payment:dispute:read`
       # - `payment:resolution_center_case:read`
       sig do

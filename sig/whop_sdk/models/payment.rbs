@@ -24,6 +24,7 @@ module WhopSDK
         member: WhopSDK::Payment::Member?,
         membership: WhopSDK::Payment::Membership?,
         metadata: ::Hash[Symbol, top]?,
+        needs_tracking: bool?,
         next_payment_attempt: Time?,
         paid_at: Time?,
         payment_method: WhopSDK::Payment::PaymentMethod?,
@@ -44,6 +45,7 @@ module WhopSDK
         settlement_currency: WhopSDK::Models::currency,
         settlement_exchange_rate: Float?,
         settlement_time_at: Time?,
+        shipment: WhopSDK::Payment::Shipment?,
         shipping_address: WhopSDK::Payment::ShippingAddress?,
         status: WhopSDK::Models::receipt_status?,
         substatus: WhopSDK::Models::friendly_receipt_status,
@@ -104,6 +106,8 @@ module WhopSDK
 
       attr_accessor metadata: ::Hash[Symbol, top]?
 
+      attr_accessor needs_tracking: bool?
+
       attr_accessor next_payment_attempt: Time?
 
       attr_accessor paid_at: Time?
@@ -143,6 +147,8 @@ module WhopSDK
       attr_accessor settlement_exchange_rate: Float?
 
       attr_accessor settlement_time_at: Time?
+
+      attr_accessor shipment: WhopSDK::Payment::Shipment?
 
       attr_accessor shipping_address: WhopSDK::Payment::ShippingAddress?
 
@@ -193,6 +199,7 @@ module WhopSDK
         member: WhopSDK::Payment::Member?,
         membership: WhopSDK::Payment::Membership?,
         metadata: ::Hash[Symbol, top]?,
+        needs_tracking: bool?,
         next_payment_attempt: Time?,
         paid_at: Time?,
         payment_method: WhopSDK::Payment::PaymentMethod?,
@@ -213,6 +220,7 @@ module WhopSDK
         settlement_currency: WhopSDK::Models::currency,
         settlement_exchange_rate: Float?,
         settlement_time_at: Time?,
+        shipment: WhopSDK::Payment::Shipment?,
         shipping_address: WhopSDK::Payment::ShippingAddress?,
         status: WhopSDK::Models::receipt_status?,
         substatus: WhopSDK::Models::friendly_receipt_status,
@@ -251,6 +259,7 @@ module WhopSDK
         member: WhopSDK::Payment::Member?,
         membership: WhopSDK::Payment::Membership?,
         metadata: ::Hash[Symbol, top]?,
+        needs_tracking: bool?,
         next_payment_attempt: Time?,
         paid_at: Time?,
         payment_method: WhopSDK::Payment::PaymentMethod?,
@@ -271,6 +280,7 @@ module WhopSDK
         settlement_currency: WhopSDK::Models::currency,
         settlement_exchange_rate: Float?,
         settlement_time_at: Time?,
+        shipment: WhopSDK::Payment::Shipment?,
         shipping_address: WhopSDK::Payment::ShippingAddress?,
         status: WhopSDK::Models::receipt_status?,
         substatus: WhopSDK::Models::friendly_receipt_status,
@@ -833,6 +843,43 @@ module WhopSDK
           merchant_response_actions: ::Array[WhopSDK::Models::resolution_center_case_merchant_response],
           platform_response_actions: ::Array[WhopSDK::Models::resolution_center_case_platform_response],
           status: WhopSDK::Models::resolution_center_case_status
+        }
+      end
+
+      type shipment =
+        {
+          id: String,
+          carrier: String?,
+          status: WhopSDK::Models::shipment_status,
+          tracking_number: String,
+          tracking_url: String
+        }
+
+      class Shipment < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor carrier: String?
+
+        attr_accessor status: WhopSDK::Models::shipment_status
+
+        attr_accessor tracking_number: String
+
+        attr_accessor tracking_url: String
+
+        def initialize: (
+          id: String,
+          carrier: String?,
+          status: WhopSDK::Models::shipment_status,
+          tracking_number: String,
+          tracking_url: String
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          carrier: String?,
+          status: WhopSDK::Models::shipment_status,
+          tracking_number: String,
+          tracking_url: String
         }
       end
 

@@ -144,6 +144,13 @@ module WhopSDK
       #   @return [Hash{Symbol=>Object}, nil]
       required :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown], nil?: true
 
+      # @!attribute needs_tracking
+      #   Whether this payment is holding funds until the order ships and has no tracking
+      #   number yet.
+      #
+      #   @return [Boolean, nil]
+      required :needs_tracking, WhopSDK::Internal::Type::Boolean, nil?: true
+
       # @!attribute next_payment_attempt
       #   The time of the next schedule payment retry.
       #
@@ -282,6 +289,12 @@ module WhopSDK
       #   @return [Time, nil]
       required :settlement_time_at, Time, nil?: true
 
+      # @!attribute shipment
+      #   The shipment attached to this payment.
+      #
+      #   @return [WhopSDK::Models::Payment::Shipment, nil]
+      required :shipment, -> { WhopSDK::Payment::Shipment }, nil?: true
+
       # @!attribute shipping_address
       #   The shipping address provided by the customer for physical goods. Null if no
       #   shipping address was collected.
@@ -363,7 +376,7 @@ module WhopSDK
       #   @return [Boolean]
       required :voidable, WhopSDK::Internal::Type::Boolean
 
-      # @!method initialize(id:, amount_after_fees:, application_fee:, auto_refunded:, billing_address:, billing_reason:, card_brand:, card_last4:, checkout_configuration_id:, company:, created_at:, currency:, customer_phone:, dispute_alerted_at:, disputes:, failure_message:, financing_installments_count:, financing_transactions:, last_payment_attempt:, member:, membership:, metadata:, next_payment_attempt:, paid_at:, payment_method:, payment_method_type:, payments_failed:, plan:, product:, promo_code:, refundable:, refunded_amount:, refunded_at:, refunds:, resolutions:, retryable:, risk_score:, risk_signals:, settlement_amount:, settlement_currency:, settlement_exchange_rate:, settlement_time_at:, shipping_address:, status:, substatus:, subtotal:, tax_amount:, tax_behavior:, tax_refunded_amount:, three_ds_verified:, total:, updated_at:, usd_total:, user:, voidable:)
+      # @!method initialize(id:, amount_after_fees:, application_fee:, auto_refunded:, billing_address:, billing_reason:, card_brand:, card_last4:, checkout_configuration_id:, company:, created_at:, currency:, customer_phone:, dispute_alerted_at:, disputes:, failure_message:, financing_installments_count:, financing_transactions:, last_payment_attempt:, member:, membership:, metadata:, needs_tracking:, next_payment_attempt:, paid_at:, payment_method:, payment_method_type:, payments_failed:, plan:, product:, promo_code:, refundable:, refunded_amount:, refunded_at:, refunds:, resolutions:, retryable:, risk_score:, risk_signals:, settlement_amount:, settlement_currency:, settlement_exchange_rate:, settlement_time_at:, shipment:, shipping_address:, status:, substatus:, subtotal:, tax_amount:, tax_behavior:, tax_refunded_amount:, three_ds_verified:, total:, updated_at:, usd_total:, user:, voidable:)
       #   Some parameter documentations has been truncated, see {WhopSDK::Models::Payment}
       #   for more details.
       #
@@ -414,6 +427,8 @@ module WhopSDK
       #
       #   @param metadata [Hash{Symbol=>Object}, nil] The custom metadata stored on this payment. This will be copied over to the chec
       #
+      #   @param needs_tracking [Boolean, nil] Whether this payment is holding funds until the order ships and has no tracking
+      #
       #   @param next_payment_attempt [Time, nil] The time of the next schedule payment retry.
       #
       #   @param paid_at [Time, nil] The time at which this payment was successfully collected. Null if the payment h
@@ -453,6 +468,8 @@ module WhopSDK
       #   @param settlement_exchange_rate [Float, nil] Deprecated. Always returns null.
       #
       #   @param settlement_time_at [Time, nil] When this payment's funds post to the company's available balance, at midnight U
+      #
+      #   @param shipment [WhopSDK::Models::Payment::Shipment, nil] The shipment attached to this payment.
       #
       #   @param shipping_address [WhopSDK::Models::Payment::ShippingAddress, nil] The shipping address provided by the customer for physical goods. Null if no shi
       #
@@ -1203,6 +1220,56 @@ module WhopSDK
         #   @param platform_response_actions [Array<Symbol, WhopSDK::Models::ResolutionCenterCasePlatformResponse>] The list of actions currently available to the Whop platform for moderating this
         #
         #   @param status [Symbol, WhopSDK::Models::ResolutionCenterCaseStatus] The current status of the resolution case, indicating which party needs to respo
+      end
+
+      # @see WhopSDK::Models::Payment#shipment
+      class Shipment < WhopSDK::Internal::Type::BaseModel
+        # @!attribute id
+        #   The unique identifier for the shipment.
+        #
+        #   @return [String]
+        required :id, String
+
+        # @!attribute carrier
+        #   The shipping carrier detected for this shipment. Null until a tracking update
+        #   identifies it.
+        #
+        #   @return [String, nil]
+        required :carrier, String, nil?: true
+
+        # @!attribute status
+        #   The current delivery status of this shipment.
+        #
+        #   @return [Symbol, WhopSDK::Models::ShipmentStatus]
+        required :status, enum: -> { WhopSDK::ShipmentStatus }
+
+        # @!attribute tracking_number
+        #   The carrier-assigned tracking number used to look up shipment progress.
+        #
+        #   @return [String]
+        required :tracking_number, String
+
+        # @!attribute tracking_url
+        #   A customer-facing URL to track this shipment's progress.
+        #
+        #   @return [String]
+        required :tracking_url, String
+
+        # @!method initialize(id:, carrier:, status:, tracking_number:, tracking_url:)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::Payment::Shipment} for more details.
+        #
+        #   The shipment attached to this payment.
+        #
+        #   @param id [String] The unique identifier for the shipment.
+        #
+        #   @param carrier [String, nil] The shipping carrier detected for this shipment. Null until a tracking update id
+        #
+        #   @param status [Symbol, WhopSDK::Models::ShipmentStatus] The current delivery status of this shipment.
+        #
+        #   @param tracking_number [String] The carrier-assigned tracking number used to look up shipment progress.
+        #
+        #   @param tracking_url [String] A customer-facing URL to track this shipment's progress.
       end
 
       # @see WhopSDK::Models::Payment#shipping_address

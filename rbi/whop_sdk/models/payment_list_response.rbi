@@ -142,6 +142,11 @@ module WhopSDK
       sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
       attr_accessor :metadata
 
+      # Whether this payment is holding funds until the order ships and has no tracking
+      # number yet.
+      sig { returns(T.nilable(T::Boolean)) }
+      attr_accessor :needs_tracking
+
       # The time of the next schedule payment retry.
       sig { returns(T.nilable(Time)) }
       attr_accessor :next_payment_attempt
@@ -237,6 +242,18 @@ module WhopSDK
       # The three-letter ISO currency code for this payment (e.g., 'usd', 'eur').
       sig { returns(WhopSDK::Currency::TaggedSymbol) }
       attr_accessor :settlement_currency
+
+      # The shipment attached to this payment.
+      sig { returns(T.nilable(WhopSDK::Models::PaymentListResponse::Shipment)) }
+      attr_reader :shipment
+
+      sig do
+        params(
+          shipment:
+            T.nilable(WhopSDK::Models::PaymentListResponse::Shipment::OrHash)
+        ).void
+      end
+      attr_writer :shipment
 
       # The shipping address provided by the customer for physical goods. Null if no
       # shipping address was collected.
@@ -338,6 +355,7 @@ module WhopSDK
           membership:
             T.nilable(WhopSDK::Models::PaymentListResponse::Membership::OrHash),
           metadata: T.nilable(T::Hash[Symbol, T.anything]),
+          needs_tracking: T.nilable(T::Boolean),
           next_payment_attempt: T.nilable(Time),
           paid_at: T.nilable(Time),
           payment_method:
@@ -356,6 +374,8 @@ module WhopSDK
           refunded_at: T.nilable(Time),
           retryable: T::Boolean,
           settlement_currency: WhopSDK::Currency::OrSymbol,
+          shipment:
+            T.nilable(WhopSDK::Models::PaymentListResponse::Shipment::OrHash),
           shipping_address:
             T.nilable(
               WhopSDK::Models::PaymentListResponse::ShippingAddress::OrHash
@@ -416,6 +436,9 @@ module WhopSDK
         # The custom metadata stored on this payment. This will be copied over to the
         # checkout configuration for which this payment was made
         metadata:,
+        # Whether this payment is holding funds until the order ships and has no tracking
+        # number yet.
+        needs_tracking:,
         # The time of the next schedule payment retry.
         next_payment_attempt:,
         # The time at which this payment was successfully collected. Null if the payment
@@ -449,6 +472,8 @@ module WhopSDK
         retryable:,
         # The three-letter ISO currency code for this payment (e.g., 'usd', 'eur').
         settlement_currency:,
+        # The shipment attached to this payment.
+        shipment:,
         # The shipping address provided by the customer for physical goods. Null if no
         # shipping address was collected.
         shipping_address:,
@@ -502,6 +527,7 @@ module WhopSDK
             membership:
               T.nilable(WhopSDK::Models::PaymentListResponse::Membership),
             metadata: T.nilable(T::Hash[Symbol, T.anything]),
+            needs_tracking: T.nilable(T::Boolean),
             next_payment_attempt: T.nilable(Time),
             paid_at: T.nilable(Time),
             payment_method:
@@ -518,6 +544,7 @@ module WhopSDK
             refunded_at: T.nilable(Time),
             retryable: T::Boolean,
             settlement_currency: WhopSDK::Currency::TaggedSymbol,
+            shipment: T.nilable(WhopSDK::Models::PaymentListResponse::Shipment),
             shipping_address:
               T.nilable(WhopSDK::Models::PaymentListResponse::ShippingAddress),
             status: T.nilable(WhopSDK::ReceiptStatus::TaggedSymbol),
@@ -1164,6 +1191,76 @@ module WhopSDK
               code: T.nilable(String),
               number_of_intervals: T.nilable(Integer),
               promo_type: WhopSDK::PromoType::TaggedSymbol
+            }
+          )
+        end
+        def to_hash
+        end
+      end
+
+      class Shipment < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              WhopSDK::Models::PaymentListResponse::Shipment,
+              WhopSDK::Internal::AnyHash
+            )
+          end
+
+        # The unique identifier for the shipment.
+        sig { returns(String) }
+        attr_accessor :id
+
+        # The shipping carrier detected for this shipment. Null until a tracking update
+        # identifies it.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :carrier
+
+        # The current delivery status of this shipment.
+        sig { returns(WhopSDK::ShipmentStatus::TaggedSymbol) }
+        attr_accessor :status
+
+        # The carrier-assigned tracking number used to look up shipment progress.
+        sig { returns(String) }
+        attr_accessor :tracking_number
+
+        # A customer-facing URL to track this shipment's progress.
+        sig { returns(String) }
+        attr_accessor :tracking_url
+
+        # The shipment attached to this payment.
+        sig do
+          params(
+            id: String,
+            carrier: T.nilable(String),
+            status: WhopSDK::ShipmentStatus::OrSymbol,
+            tracking_number: String,
+            tracking_url: String
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The unique identifier for the shipment.
+          id:,
+          # The shipping carrier detected for this shipment. Null until a tracking update
+          # identifies it.
+          carrier:,
+          # The current delivery status of this shipment.
+          status:,
+          # The carrier-assigned tracking number used to look up shipment progress.
+          tracking_number:,
+          # A customer-facing URL to track this shipment's progress.
+          tracking_url:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              id: String,
+              carrier: T.nilable(String),
+              status: WhopSDK::ShipmentStatus::TaggedSymbol,
+              tracking_number: String,
+              tracking_url: String
             }
           )
         end

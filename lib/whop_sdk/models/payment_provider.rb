@@ -22,6 +22,7 @@ module WhopSDK
       SEQURA = :sequra
       DLOCAL = :dlocal
       MASSPAY = :masspay
+      BRAINTREE = :braintree
 
       # @!method self.values
       #   @return [Array<Symbol>]

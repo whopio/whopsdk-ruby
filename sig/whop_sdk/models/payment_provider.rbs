@@ -17,6 +17,7 @@ module WhopSDK
       | :sequra
       | :dlocal
       | :masspay
+      | :braintree
 
     module PaymentProvider
       extend WhopSDK::Internal::Type::Enum
@@ -37,6 +38,7 @@ module WhopSDK
       SEQURA: :sequra
       DLOCAL: :dlocal
       MASSPAY: :masspay
+      BRAINTREE: :braintree
 
       def self?.values: -> ::Array[WhopSDK::Models::payment_provider]
     end

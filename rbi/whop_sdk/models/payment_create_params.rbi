@@ -15,8 +15,10 @@ module WhopSDK
       sig do
         returns(
           T.any(
-            WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlan,
-            WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanID
+            WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanAndConfirmationToken,
+            WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanAndMemberID,
+            WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanIDAndConfirmationToken,
+            WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanIDAndMemberID
           )
         )
       end
@@ -26,8 +28,10 @@ module WhopSDK
         params(
           body:
             T.any(
-              WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlan::OrHash,
-              WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanID::OrHash
+              WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanAndConfirmationToken::OrHash,
+              WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanAndMemberID::OrHash,
+              WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanIDAndConfirmationToken::OrHash,
+              WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanIDAndMemberID::OrHash
             ),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
@@ -44,8 +48,10 @@ module WhopSDK
           {
             body:
               T.any(
-                WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlan,
-                WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanID
+                WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanAndConfirmationToken,
+                WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanAndMemberID,
+                WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanIDAndConfirmationToken,
+                WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanIDAndMemberID
               ),
             request_options: WhopSDK::RequestOptions
           }
@@ -61,16 +67,18 @@ module WhopSDK
         Variants =
           T.type_alias do
             T.any(
-              WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlan,
-              WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanID
+              WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanAndConfirmationToken,
+              WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanAndMemberID,
+              WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanIDAndConfirmationToken,
+              WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanIDAndMemberID
             )
           end
 
-        class CreatePaymentInputWithPlan < WhopSDK::Internal::Type::BaseModel
+        class CreatePaymentInputWithPlanAndConfirmationToken < WhopSDK::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlan,
+                WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanAndConfirmationToken,
                 WhopSDK::Internal::AnyHash
               )
             end
@@ -79,19 +87,19 @@ module WhopSDK
           sig { returns(String) }
           attr_accessor :company_id
 
-          # The ID of the member to create the payment for.
+          # A confirmation token ID (ctok\_) describing a payment method the buyer just
+          # supplied. Provide this INSTEAD of member_id and payment_method_id to charge a
+          # method that is not yet on file — the buyer is resolved from the token's billing
+          # email, or from `email`. The buyer may still have a step to complete (3DS, a
+          # redirect, linking a bank); poll the payment's status endpoint for what to do
+          # next.
           sig { returns(String) }
-          attr_accessor :member_id
-
-          # The ID of the payment method to use for the payment. It must be connected to the
-          # Member being charged.
-          sig { returns(String) }
-          attr_accessor :payment_method_id
+          attr_accessor :confirmation_token
 
           # Pass this object to create a new plan for this payment
           sig do
             returns(
-              WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlan::Plan
+              WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanAndConfirmationToken::Plan
             )
           end
           attr_reader :plan
@@ -99,14 +107,26 @@ module WhopSDK
           sig do
             params(
               plan:
-                WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlan::Plan::OrHash
+                WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanAndConfirmationToken::Plan::OrHash
             ).void
           end
           attr_writer :plan
 
+          # Overrides the buyer email carried on the confirmation token, resolving or
+          # creating the Whop user the payment belongs to. Ignored when the confirmation
+          # token was created by a signed-in buyer, and unless confirmation_token is
+          # provided.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :email
+
           # Custom metadata to attach to the payment.
           sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
           attr_accessor :metadata
+
+          # The ID of the payment method to use for the payment. It must be connected to the
+          # Member being charged. Required unless confirmation_token is provided.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :payment_method_id
 
           # The ID of an active promo code to apply to this payment. The promo code must
           # belong to the company and be valid for the plan being purchased. The plan must
@@ -114,34 +134,58 @@ module WhopSDK
           sig { returns(T.nilable(String)) }
           attr_accessor :promo_code_id
 
+          # Where the buyer continues after completing an off-site step. Must be an absolute
+          # https URL without credentials, at most 2,048 characters. Editable until they
+          # return — see the payment's update endpoint. Ignored unless confirmation_token is
+          # provided.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :return_url
+
           # Autogenerated input type of CreatePayment
           sig do
             params(
               company_id: String,
-              member_id: String,
-              payment_method_id: String,
+              confirmation_token: String,
               plan:
-                WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlan::Plan::OrHash,
+                WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanAndConfirmationToken::Plan::OrHash,
+              email: T.nilable(String),
               metadata: T.nilable(T::Hash[Symbol, T.anything]),
-              promo_code_id: T.nilable(String)
+              payment_method_id: T.nilable(String),
+              promo_code_id: T.nilable(String),
+              return_url: T.nilable(String)
             ).returns(T.attached_class)
           end
           def self.new(
             # The ID of the company to create the payment for.
             company_id:,
-            # The ID of the member to create the payment for.
-            member_id:,
-            # The ID of the payment method to use for the payment. It must be connected to the
-            # Member being charged.
-            payment_method_id:,
+            # A confirmation token ID (ctok\_) describing a payment method the buyer just
+            # supplied. Provide this INSTEAD of member_id and payment_method_id to charge a
+            # method that is not yet on file — the buyer is resolved from the token's billing
+            # email, or from `email`. The buyer may still have a step to complete (3DS, a
+            # redirect, linking a bank); poll the payment's status endpoint for what to do
+            # next.
+            confirmation_token:,
             # Pass this object to create a new plan for this payment
             plan:,
+            # Overrides the buyer email carried on the confirmation token, resolving or
+            # creating the Whop user the payment belongs to. Ignored when the confirmation
+            # token was created by a signed-in buyer, and unless confirmation_token is
+            # provided.
+            email: nil,
             # Custom metadata to attach to the payment.
             metadata: nil,
+            # The ID of the payment method to use for the payment. It must be connected to the
+            # Member being charged. Required unless confirmation_token is provided.
+            payment_method_id: nil,
             # The ID of an active promo code to apply to this payment. The promo code must
             # belong to the company and be valid for the plan being purchased. The plan must
             # be attached to a product — promo codes are not eligible for one-off purchases.
-            promo_code_id: nil
+            promo_code_id: nil,
+            # Where the buyer continues after completing an off-site step. Must be an absolute
+            # https URL without credentials, at most 2,048 characters. Editable until they
+            # return — see the payment's update endpoint. Ignored unless confirmation_token is
+            # provided.
+            return_url: nil
           )
           end
 
@@ -149,12 +193,14 @@ module WhopSDK
             override.returns(
               {
                 company_id: String,
-                member_id: String,
-                payment_method_id: String,
+                confirmation_token: String,
                 plan:
-                  WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlan::Plan,
+                  WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanAndConfirmationToken::Plan,
+                email: T.nilable(String),
                 metadata: T.nilable(T::Hash[Symbol, T.anything]),
-                promo_code_id: T.nilable(String)
+                payment_method_id: T.nilable(String),
+                promo_code_id: T.nilable(String),
+                return_url: T.nilable(String)
               }
             )
           end
@@ -165,7 +211,7 @@ module WhopSDK
             OrHash =
               T.type_alias do
                 T.any(
-                  WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlan::Plan,
+                  WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanAndConfirmationToken::Plan,
                   WhopSDK::Internal::AnyHash
                 )
               end
@@ -218,7 +264,7 @@ module WhopSDK
             sig do
               returns(
                 T.nilable(
-                  WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlan::Plan::Product
+                  WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanAndConfirmationToken::Plan::Product
                 )
               )
             end
@@ -228,7 +274,7 @@ module WhopSDK
               params(
                 product:
                   T.nilable(
-                    WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlan::Plan::Product::OrHash
+                    WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanAndConfirmationToken::Plan::Product::OrHash
                   )
               ).void
             end
@@ -269,7 +315,7 @@ module WhopSDK
                 plan_type: T.nilable(WhopSDK::PlanType::OrSymbol),
                 product:
                   T.nilable(
-                    WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlan::Plan::Product::OrHash
+                    WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanAndConfirmationToken::Plan::Product::OrHash
                   ),
                 product_id: T.nilable(String),
                 renewal_price: T.nilable(Float),
@@ -335,7 +381,7 @@ module WhopSDK
                   plan_type: T.nilable(WhopSDK::PlanType::OrSymbol),
                   product:
                     T.nilable(
-                      WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlan::Plan::Product
+                      WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanAndConfirmationToken::Plan::Product
                     ),
                   product_id: T.nilable(String),
                   renewal_price: T.nilable(Float),
@@ -352,7 +398,7 @@ module WhopSDK
               OrHash =
                 T.type_alias do
                   T.any(
-                    WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlan::Plan::Product,
+                    WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanAndConfirmationToken::Plan::Product,
                     WhopSDK::Internal::AnyHash
                   )
                 end
@@ -487,11 +533,11 @@ module WhopSDK
           end
         end
 
-        class CreatePaymentInputWithPlanID < WhopSDK::Internal::Type::BaseModel
+        class CreatePaymentInputWithPlanAndMemberID < WhopSDK::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanID,
+                WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanAndMemberID,
                 WhopSDK::Internal::AnyHash
               )
             end
@@ -500,22 +546,42 @@ module WhopSDK
           sig { returns(String) }
           attr_accessor :company_id
 
-          # The ID of the member to create the payment for.
+          # The ID of the member to create the payment for. Required unless
+          # confirmation_token is provided.
           sig { returns(String) }
           attr_accessor :member_id
 
-          # The ID of the payment method to use for the payment. It must be connected to the
-          # Member being charged.
-          sig { returns(String) }
-          attr_accessor :payment_method_id
+          # Pass this object to create a new plan for this payment
+          sig do
+            returns(
+              WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanAndMemberID::Plan
+            )
+          end
+          attr_reader :plan
 
-          # An ID of an existing plan to use for the payment.
-          sig { returns(String) }
-          attr_accessor :plan_id
+          sig do
+            params(
+              plan:
+                WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanAndMemberID::Plan::OrHash
+            ).void
+          end
+          attr_writer :plan
+
+          # Overrides the buyer email carried on the confirmation token, resolving or
+          # creating the Whop user the payment belongs to. Ignored when the confirmation
+          # token was created by a signed-in buyer, and unless confirmation_token is
+          # provided.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :email
 
           # Custom metadata to attach to the payment.
           sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
           attr_accessor :metadata
+
+          # The ID of the payment method to use for the payment. It must be connected to the
+          # Member being charged. Required unless confirmation_token is provided.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :payment_method_id
 
           # The ID of an active promo code to apply to this payment. The promo code must
           # belong to the company and be valid for the plan being purchased. The plan must
@@ -523,33 +589,54 @@ module WhopSDK
           sig { returns(T.nilable(String)) }
           attr_accessor :promo_code_id
 
+          # Where the buyer continues after completing an off-site step. Must be an absolute
+          # https URL without credentials, at most 2,048 characters. Editable until they
+          # return — see the payment's update endpoint. Ignored unless confirmation_token is
+          # provided.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :return_url
+
           # Autogenerated input type of CreatePayment
           sig do
             params(
               company_id: String,
               member_id: String,
-              payment_method_id: String,
-              plan_id: String,
+              plan:
+                WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanAndMemberID::Plan::OrHash,
+              email: T.nilable(String),
               metadata: T.nilable(T::Hash[Symbol, T.anything]),
-              promo_code_id: T.nilable(String)
+              payment_method_id: T.nilable(String),
+              promo_code_id: T.nilable(String),
+              return_url: T.nilable(String)
             ).returns(T.attached_class)
           end
           def self.new(
             # The ID of the company to create the payment for.
             company_id:,
-            # The ID of the member to create the payment for.
+            # The ID of the member to create the payment for. Required unless
+            # confirmation_token is provided.
             member_id:,
-            # The ID of the payment method to use for the payment. It must be connected to the
-            # Member being charged.
-            payment_method_id:,
-            # An ID of an existing plan to use for the payment.
-            plan_id:,
+            # Pass this object to create a new plan for this payment
+            plan:,
+            # Overrides the buyer email carried on the confirmation token, resolving or
+            # creating the Whop user the payment belongs to. Ignored when the confirmation
+            # token was created by a signed-in buyer, and unless confirmation_token is
+            # provided.
+            email: nil,
             # Custom metadata to attach to the payment.
             metadata: nil,
+            # The ID of the payment method to use for the payment. It must be connected to the
+            # Member being charged. Required unless confirmation_token is provided.
+            payment_method_id: nil,
             # The ID of an active promo code to apply to this payment. The promo code must
             # belong to the company and be valid for the plan being purchased. The plan must
             # be attached to a product — promo codes are not eligible for one-off purchases.
-            promo_code_id: nil
+            promo_code_id: nil,
+            # Where the buyer continues after completing an off-site step. Must be an absolute
+            # https URL without credentials, at most 2,048 characters. Editable until they
+            # return — see the payment's update endpoint. Ignored unless confirmation_token is
+            # provided.
+            return_url: nil
           )
           end
 
@@ -558,10 +645,570 @@ module WhopSDK
               {
                 company_id: String,
                 member_id: String,
-                payment_method_id: String,
-                plan_id: String,
+                plan:
+                  WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanAndMemberID::Plan,
+                email: T.nilable(String),
                 metadata: T.nilable(T::Hash[Symbol, T.anything]),
-                promo_code_id: T.nilable(String)
+                payment_method_id: T.nilable(String),
+                promo_code_id: T.nilable(String),
+                return_url: T.nilable(String)
+              }
+            )
+          end
+          def to_hash
+          end
+
+          class Plan < WhopSDK::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanAndMemberID::Plan,
+                  WhopSDK::Internal::AnyHash
+                )
+              end
+
+            # The respective currency identifier for the plan.
+            sig { returns(WhopSDK::Currency::OrSymbol) }
+            attr_accessor :currency
+
+            # The application fee amount collected by the platform from this connected
+            # account. Provided as a number in dollars (e.g., 5.00 for $5.00). Must be less
+            # than the total payment amount. Only valid for connected accounts with a parent
+            # company.
+            sig { returns(T.nilable(Float)) }
+            attr_accessor :application_fee_amount
+
+            # The interval in days at which the plan charges (renewal plans). For example, 30
+            # for monthly billing.
+            sig { returns(T.nilable(Integer)) }
+            attr_accessor :billing_period
+
+            # The description of the plan.
+            sig { returns(T.nilable(String)) }
+            attr_accessor :description
+
+            # The number of days until the membership expires and revokes access (expiration
+            # plans). For example, 365 for one year.
+            sig { returns(T.nilable(Integer)) }
+            attr_accessor :expiration_days
+
+            # Whether to force the creation of a new plan even if one with the same attributes
+            # already exists.
+            sig { returns(T.nilable(T::Boolean)) }
+            attr_accessor :force_create_new_plan
+
+            # An additional amount charged upon first purchase. Provided as a number in the
+            # specified currency. Eg: 10.43 for $10.43 USD.
+            sig { returns(T.nilable(Float)) }
+            attr_accessor :initial_price
+
+            # A personal description or notes section for the business.
+            sig { returns(T.nilable(String)) }
+            attr_accessor :internal_notes
+
+            # The type of plan that can be attached to a product
+            sig { returns(T.nilable(WhopSDK::PlanType::OrSymbol)) }
+            attr_accessor :plan_type
+
+            # Pass this object to create a new product for this plan. We will use the product
+            # external identifier to find or create an existing product.
+            sig do
+              returns(
+                T.nilable(
+                  WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanAndMemberID::Plan::Product
+                )
+              )
+            end
+            attr_reader :product
+
+            sig do
+              params(
+                product:
+                  T.nilable(
+                    WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanAndMemberID::Plan::Product::OrHash
+                  )
+              ).void
+            end
+            attr_writer :product
+
+            # The product the plan is related to. Either this or product is required.
+            sig { returns(T.nilable(String)) }
+            attr_accessor :product_id
+
+            # The amount the customer is charged every billing period. Provided as a number in
+            # the specified currency. Eg: 10.43 for $10.43 USD.
+            sig { returns(T.nilable(Float)) }
+            attr_accessor :renewal_price
+
+            # The title of the plan. This will be visible on the product page to customers.
+            sig { returns(T.nilable(String)) }
+            attr_accessor :title
+
+            # The number of free trial days added before a renewal plan.
+            sig { returns(T.nilable(Integer)) }
+            attr_accessor :trial_period_days
+
+            # Visibility of a resource
+            sig { returns(T.nilable(WhopSDK::Visibility::OrSymbol)) }
+            attr_accessor :visibility
+
+            # Pass this object to create a new plan for this payment
+            sig do
+              params(
+                currency: WhopSDK::Currency::OrSymbol,
+                application_fee_amount: T.nilable(Float),
+                billing_period: T.nilable(Integer),
+                description: T.nilable(String),
+                expiration_days: T.nilable(Integer),
+                force_create_new_plan: T.nilable(T::Boolean),
+                initial_price: T.nilable(Float),
+                internal_notes: T.nilable(String),
+                plan_type: T.nilable(WhopSDK::PlanType::OrSymbol),
+                product:
+                  T.nilable(
+                    WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanAndMemberID::Plan::Product::OrHash
+                  ),
+                product_id: T.nilable(String),
+                renewal_price: T.nilable(Float),
+                title: T.nilable(String),
+                trial_period_days: T.nilable(Integer),
+                visibility: T.nilable(WhopSDK::Visibility::OrSymbol)
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # The respective currency identifier for the plan.
+              currency:,
+              # The application fee amount collected by the platform from this connected
+              # account. Provided as a number in dollars (e.g., 5.00 for $5.00). Must be less
+              # than the total payment amount. Only valid for connected accounts with a parent
+              # company.
+              application_fee_amount: nil,
+              # The interval in days at which the plan charges (renewal plans). For example, 30
+              # for monthly billing.
+              billing_period: nil,
+              # The description of the plan.
+              description: nil,
+              # The number of days until the membership expires and revokes access (expiration
+              # plans). For example, 365 for one year.
+              expiration_days: nil,
+              # Whether to force the creation of a new plan even if one with the same attributes
+              # already exists.
+              force_create_new_plan: nil,
+              # An additional amount charged upon first purchase. Provided as a number in the
+              # specified currency. Eg: 10.43 for $10.43 USD.
+              initial_price: nil,
+              # A personal description or notes section for the business.
+              internal_notes: nil,
+              # The type of plan that can be attached to a product
+              plan_type: nil,
+              # Pass this object to create a new product for this plan. We will use the product
+              # external identifier to find or create an existing product.
+              product: nil,
+              # The product the plan is related to. Either this or product is required.
+              product_id: nil,
+              # The amount the customer is charged every billing period. Provided as a number in
+              # the specified currency. Eg: 10.43 for $10.43 USD.
+              renewal_price: nil,
+              # The title of the plan. This will be visible on the product page to customers.
+              title: nil,
+              # The number of free trial days added before a renewal plan.
+              trial_period_days: nil,
+              # Visibility of a resource
+              visibility: nil
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  currency: WhopSDK::Currency::OrSymbol,
+                  application_fee_amount: T.nilable(Float),
+                  billing_period: T.nilable(Integer),
+                  description: T.nilable(String),
+                  expiration_days: T.nilable(Integer),
+                  force_create_new_plan: T.nilable(T::Boolean),
+                  initial_price: T.nilable(Float),
+                  internal_notes: T.nilable(String),
+                  plan_type: T.nilable(WhopSDK::PlanType::OrSymbol),
+                  product:
+                    T.nilable(
+                      WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanAndMemberID::Plan::Product
+                    ),
+                  product_id: T.nilable(String),
+                  renewal_price: T.nilable(Float),
+                  title: T.nilable(String),
+                  trial_period_days: T.nilable(Integer),
+                  visibility: T.nilable(WhopSDK::Visibility::OrSymbol)
+                }
+              )
+            end
+            def to_hash
+            end
+
+            class Product < WhopSDK::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanAndMemberID::Plan::Product,
+                    WhopSDK::Internal::AnyHash
+                  )
+                end
+
+              # A unique ID used to find or create a product. When provided during creation, we
+              # will look for an existing product with this external identifier — if found, it
+              # will be updated; otherwise, a new product will be created.
+              sig { returns(String) }
+              attr_accessor :external_identifier
+
+              # The title of the product.
+              sig { returns(String) }
+              attr_accessor :title
+
+              # Whether or not to collect shipping information at checkout from the customer.
+              sig { returns(T.nilable(T::Boolean)) }
+              attr_accessor :collect_shipping_address
+
+              # The custom statement descriptor for the product i.e. WHOP\*SPORTS, must be
+              # between 5 and 22 characters, contain at least one letter, and not contain any of
+              # the following characters: <, >, \, ', "
+              sig { returns(T.nilable(String)) }
+              attr_accessor :custom_statement_descriptor
+
+              # A written description of the product.
+              sig { returns(T.nilable(String)) }
+              attr_accessor :description
+
+              # The percentage of the revenue that goes to the global affiliate program.
+              sig { returns(T.nilable(Float)) }
+              attr_accessor :global_affiliate_percentage
+
+              # The different statuses of the global affiliate program for a product.
+              sig do
+                returns(T.nilable(WhopSDK::GlobalAffiliateStatus::OrSymbol))
+              end
+              attr_accessor :global_affiliate_status
+
+              # The headline of the product.
+              sig { returns(T.nilable(String)) }
+              attr_accessor :headline
+
+              # The ID of the product tax code to apply to this product.
+              sig { returns(T.nilable(String)) }
+              attr_accessor :product_tax_code_id
+
+              # The URL to redirect the customer to after a purchase.
+              sig { returns(T.nilable(String)) }
+              attr_accessor :redirect_purchase_url
+
+              # The route of the product.
+              sig { returns(T.nilable(String)) }
+              attr_accessor :route
+
+              # Visibility of a resource
+              sig { returns(T.nilable(WhopSDK::Visibility::OrSymbol)) }
+              attr_accessor :visibility
+
+              # Pass this object to create a new product for this plan. We will use the product
+              # external identifier to find or create an existing product.
+              sig do
+                params(
+                  external_identifier: String,
+                  title: String,
+                  collect_shipping_address: T.nilable(T::Boolean),
+                  custom_statement_descriptor: T.nilable(String),
+                  description: T.nilable(String),
+                  global_affiliate_percentage: T.nilable(Float),
+                  global_affiliate_status:
+                    T.nilable(WhopSDK::GlobalAffiliateStatus::OrSymbol),
+                  headline: T.nilable(String),
+                  product_tax_code_id: T.nilable(String),
+                  redirect_purchase_url: T.nilable(String),
+                  route: T.nilable(String),
+                  visibility: T.nilable(WhopSDK::Visibility::OrSymbol)
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                # A unique ID used to find or create a product. When provided during creation, we
+                # will look for an existing product with this external identifier — if found, it
+                # will be updated; otherwise, a new product will be created.
+                external_identifier:,
+                # The title of the product.
+                title:,
+                # Whether or not to collect shipping information at checkout from the customer.
+                collect_shipping_address: nil,
+                # The custom statement descriptor for the product i.e. WHOP\*SPORTS, must be
+                # between 5 and 22 characters, contain at least one letter, and not contain any of
+                # the following characters: <, >, \, ', "
+                custom_statement_descriptor: nil,
+                # A written description of the product.
+                description: nil,
+                # The percentage of the revenue that goes to the global affiliate program.
+                global_affiliate_percentage: nil,
+                # The different statuses of the global affiliate program for a product.
+                global_affiliate_status: nil,
+                # The headline of the product.
+                headline: nil,
+                # The ID of the product tax code to apply to this product.
+                product_tax_code_id: nil,
+                # The URL to redirect the customer to after a purchase.
+                redirect_purchase_url: nil,
+                # The route of the product.
+                route: nil,
+                # Visibility of a resource
+                visibility: nil
+              )
+              end
+
+              sig do
+                override.returns(
+                  {
+                    external_identifier: String,
+                    title: String,
+                    collect_shipping_address: T.nilable(T::Boolean),
+                    custom_statement_descriptor: T.nilable(String),
+                    description: T.nilable(String),
+                    global_affiliate_percentage: T.nilable(Float),
+                    global_affiliate_status:
+                      T.nilable(WhopSDK::GlobalAffiliateStatus::OrSymbol),
+                    headline: T.nilable(String),
+                    product_tax_code_id: T.nilable(String),
+                    redirect_purchase_url: T.nilable(String),
+                    route: T.nilable(String),
+                    visibility: T.nilable(WhopSDK::Visibility::OrSymbol)
+                  }
+                )
+              end
+              def to_hash
+              end
+            end
+          end
+        end
+
+        class CreatePaymentInputWithPlanIDAndConfirmationToken < WhopSDK::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanIDAndConfirmationToken,
+                WhopSDK::Internal::AnyHash
+              )
+            end
+
+          # The ID of the company to create the payment for.
+          sig { returns(String) }
+          attr_accessor :company_id
+
+          # A confirmation token ID (ctok\_) describing a payment method the buyer just
+          # supplied. Provide this INSTEAD of member_id and payment_method_id to charge a
+          # method that is not yet on file — the buyer is resolved from the token's billing
+          # email, or from `email`. The buyer may still have a step to complete (3DS, a
+          # redirect, linking a bank); poll the payment's status endpoint for what to do
+          # next.
+          sig { returns(String) }
+          attr_accessor :confirmation_token
+
+          # An ID of an existing plan to use for the payment.
+          sig { returns(String) }
+          attr_accessor :plan_id
+
+          # Overrides the buyer email carried on the confirmation token, resolving or
+          # creating the Whop user the payment belongs to. Ignored when the confirmation
+          # token was created by a signed-in buyer, and unless confirmation_token is
+          # provided.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :email
+
+          # Custom metadata to attach to the payment.
+          sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
+          attr_accessor :metadata
+
+          # The ID of the payment method to use for the payment. It must be connected to the
+          # Member being charged. Required unless confirmation_token is provided.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :payment_method_id
+
+          # The ID of an active promo code to apply to this payment. The promo code must
+          # belong to the company and be valid for the plan being purchased. The plan must
+          # be attached to a product — promo codes are not eligible for one-off purchases.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :promo_code_id
+
+          # Where the buyer continues after completing an off-site step. Must be an absolute
+          # https URL without credentials, at most 2,048 characters. Editable until they
+          # return — see the payment's update endpoint. Ignored unless confirmation_token is
+          # provided.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :return_url
+
+          # Autogenerated input type of CreatePayment
+          sig do
+            params(
+              company_id: String,
+              confirmation_token: String,
+              plan_id: String,
+              email: T.nilable(String),
+              metadata: T.nilable(T::Hash[Symbol, T.anything]),
+              payment_method_id: T.nilable(String),
+              promo_code_id: T.nilable(String),
+              return_url: T.nilable(String)
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # The ID of the company to create the payment for.
+            company_id:,
+            # A confirmation token ID (ctok\_) describing a payment method the buyer just
+            # supplied. Provide this INSTEAD of member_id and payment_method_id to charge a
+            # method that is not yet on file — the buyer is resolved from the token's billing
+            # email, or from `email`. The buyer may still have a step to complete (3DS, a
+            # redirect, linking a bank); poll the payment's status endpoint for what to do
+            # next.
+            confirmation_token:,
+            # An ID of an existing plan to use for the payment.
+            plan_id:,
+            # Overrides the buyer email carried on the confirmation token, resolving or
+            # creating the Whop user the payment belongs to. Ignored when the confirmation
+            # token was created by a signed-in buyer, and unless confirmation_token is
+            # provided.
+            email: nil,
+            # Custom metadata to attach to the payment.
+            metadata: nil,
+            # The ID of the payment method to use for the payment. It must be connected to the
+            # Member being charged. Required unless confirmation_token is provided.
+            payment_method_id: nil,
+            # The ID of an active promo code to apply to this payment. The promo code must
+            # belong to the company and be valid for the plan being purchased. The plan must
+            # be attached to a product — promo codes are not eligible for one-off purchases.
+            promo_code_id: nil,
+            # Where the buyer continues after completing an off-site step. Must be an absolute
+            # https URL without credentials, at most 2,048 characters. Editable until they
+            # return — see the payment's update endpoint. Ignored unless confirmation_token is
+            # provided.
+            return_url: nil
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                company_id: String,
+                confirmation_token: String,
+                plan_id: String,
+                email: T.nilable(String),
+                metadata: T.nilable(T::Hash[Symbol, T.anything]),
+                payment_method_id: T.nilable(String),
+                promo_code_id: T.nilable(String),
+                return_url: T.nilable(String)
+              }
+            )
+          end
+          def to_hash
+          end
+        end
+
+        class CreatePaymentInputWithPlanIDAndMemberID < WhopSDK::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanIDAndMemberID,
+                WhopSDK::Internal::AnyHash
+              )
+            end
+
+          # The ID of the company to create the payment for.
+          sig { returns(String) }
+          attr_accessor :company_id
+
+          # The ID of the member to create the payment for. Required unless
+          # confirmation_token is provided.
+          sig { returns(String) }
+          attr_accessor :member_id
+
+          # An ID of an existing plan to use for the payment.
+          sig { returns(String) }
+          attr_accessor :plan_id
+
+          # Overrides the buyer email carried on the confirmation token, resolving or
+          # creating the Whop user the payment belongs to. Ignored when the confirmation
+          # token was created by a signed-in buyer, and unless confirmation_token is
+          # provided.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :email
+
+          # Custom metadata to attach to the payment.
+          sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
+          attr_accessor :metadata
+
+          # The ID of the payment method to use for the payment. It must be connected to the
+          # Member being charged. Required unless confirmation_token is provided.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :payment_method_id
+
+          # The ID of an active promo code to apply to this payment. The promo code must
+          # belong to the company and be valid for the plan being purchased. The plan must
+          # be attached to a product — promo codes are not eligible for one-off purchases.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :promo_code_id
+
+          # Where the buyer continues after completing an off-site step. Must be an absolute
+          # https URL without credentials, at most 2,048 characters. Editable until they
+          # return — see the payment's update endpoint. Ignored unless confirmation_token is
+          # provided.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :return_url
+
+          # Autogenerated input type of CreatePayment
+          sig do
+            params(
+              company_id: String,
+              member_id: String,
+              plan_id: String,
+              email: T.nilable(String),
+              metadata: T.nilable(T::Hash[Symbol, T.anything]),
+              payment_method_id: T.nilable(String),
+              promo_code_id: T.nilable(String),
+              return_url: T.nilable(String)
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # The ID of the company to create the payment for.
+            company_id:,
+            # The ID of the member to create the payment for. Required unless
+            # confirmation_token is provided.
+            member_id:,
+            # An ID of an existing plan to use for the payment.
+            plan_id:,
+            # Overrides the buyer email carried on the confirmation token, resolving or
+            # creating the Whop user the payment belongs to. Ignored when the confirmation
+            # token was created by a signed-in buyer, and unless confirmation_token is
+            # provided.
+            email: nil,
+            # Custom metadata to attach to the payment.
+            metadata: nil,
+            # The ID of the payment method to use for the payment. It must be connected to the
+            # Member being charged. Required unless confirmation_token is provided.
+            payment_method_id: nil,
+            # The ID of an active promo code to apply to this payment. The promo code must
+            # belong to the company and be valid for the plan being purchased. The plan must
+            # be attached to a product — promo codes are not eligible for one-off purchases.
+            promo_code_id: nil,
+            # Where the buyer continues after completing an off-site step. Must be an absolute
+            # https URL without credentials, at most 2,048 characters. Editable until they
+            # return — see the payment's update endpoint. Ignored unless confirmation_token is
+            # provided.
+            return_url: nil
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                company_id: String,
+                member_id: String,
+                plan_id: String,
+                email: T.nilable(String),
+                metadata: T.nilable(T::Hash[Symbol, T.anything]),
+                payment_method_id: T.nilable(String),
+                promo_code_id: T.nilable(String),
+                return_url: T.nilable(String)
               }
             )
           end

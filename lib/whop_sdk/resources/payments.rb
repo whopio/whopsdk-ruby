@@ -27,7 +27,7 @@ module WhopSDK
       #
       # @overload create(body:, request_options: {})
       #
-      # @param body [WhopSDK::Models::PaymentCreateParams::Body::CreatePaymentInputWithPlan, WhopSDK::Models::PaymentCreateParams::Body::CreatePaymentInputWithPlanID] Parameters for CreatePayment
+      # @param body [WhopSDK::Models::PaymentCreateParams::Body::CreatePaymentInputWithPlanAndConfirmationToken, WhopSDK::Models::PaymentCreateParams::Body::CreatePaymentInputWithPlanAndMemberID, WhopSDK::Models::PaymentCreateParams::Body::CreatePaymentInputWithPlanIDAndConfirmationToken, WhopSDK::Models::PaymentCreateParams::Body::CreatePaymentInputWithPlanIDAndMemberID] Parameters for CreatePayment
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

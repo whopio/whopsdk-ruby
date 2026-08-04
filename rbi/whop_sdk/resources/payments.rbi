@@ -28,8 +28,10 @@ module WhopSDK
         params(
           body:
             T.any(
-              WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlan::OrHash,
-              WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanID::OrHash
+              WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanAndConfirmationToken::OrHash,
+              WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanAndMemberID::OrHash,
+              WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanIDAndConfirmationToken::OrHash,
+              WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanIDAndMemberID::OrHash
             ),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Payment)

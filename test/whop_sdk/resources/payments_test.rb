@@ -10,8 +10,7 @@ class WhopSDK::Test::Resources::PaymentsTest < WhopSDK::Test::ResourceTest
       @whop.payments.create(
         body: {
           company_id: "biz_xxxxxxxxxxxxxx",
-          member_id: "mber_xxxxxxxxxxxxx",
-          payment_method_id: "pmt_xxxxxxxxxxxxxx",
+          confirmation_token: "confirmation_token",
           plan: {currency: :usd}
         }
       )

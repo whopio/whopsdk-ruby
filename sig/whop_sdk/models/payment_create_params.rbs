@@ -21,51 +21,63 @@ module WhopSDK
       }
 
       type body =
-        WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlan
-        | WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanID
+        WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanAndConfirmationToken
+        | WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanAndMemberID
+        | WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanIDAndConfirmationToken
+        | WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanIDAndMemberID
 
       module Body
         extend WhopSDK::Internal::Type::Union
 
-        type create_payment_input_with_plan =
+        type create_payment_input_with_plan_and_confirmation_token =
           {
             company_id: String,
-            member_id: String,
-            payment_method_id: String,
-            plan: WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlan::Plan,
+            confirmation_token: String,
+            plan: WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanAndConfirmationToken::Plan,
+            email: String?,
             metadata: ::Hash[Symbol, top]?,
-            promo_code_id: String?
+            payment_method_id: String?,
+            promo_code_id: String?,
+            return_url: String?
           }
 
-        class CreatePaymentInputWithPlan < WhopSDK::Internal::Type::BaseModel
+        class CreatePaymentInputWithPlanAndConfirmationToken < WhopSDK::Internal::Type::BaseModel
           attr_accessor company_id: String
 
-          attr_accessor member_id: String
+          attr_accessor confirmation_token: String
 
-          attr_accessor payment_method_id: String
+          attr_accessor plan: WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanAndConfirmationToken::Plan
 
-          attr_accessor plan: WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlan::Plan
+          attr_accessor email: String?
 
           attr_accessor metadata: ::Hash[Symbol, top]?
 
+          attr_accessor payment_method_id: String?
+
           attr_accessor promo_code_id: String?
+
+          attr_accessor return_url: String?
 
           def initialize: (
             company_id: String,
-            member_id: String,
-            payment_method_id: String,
-            plan: WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlan::Plan,
+            confirmation_token: String,
+            plan: WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanAndConfirmationToken::Plan,
+            ?email: String?,
             ?metadata: ::Hash[Symbol, top]?,
-            ?promo_code_id: String?
+            ?payment_method_id: String?,
+            ?promo_code_id: String?,
+            ?return_url: String?
           ) -> void
 
           def to_hash: -> {
             company_id: String,
-            member_id: String,
-            payment_method_id: String,
-            plan: WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlan::Plan,
+            confirmation_token: String,
+            plan: WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanAndConfirmationToken::Plan,
+            email: String?,
             metadata: ::Hash[Symbol, top]?,
-            promo_code_id: String?
+            payment_method_id: String?,
+            promo_code_id: String?,
+            return_url: String?
           }
 
           type plan =
@@ -79,7 +91,7 @@ module WhopSDK
               initial_price: Float?,
               internal_notes: String?,
               plan_type: WhopSDK::Models::plan_type?,
-              product: WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlan::Plan::Product?,
+              product: WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanAndConfirmationToken::Plan::Product?,
               product_id: String?,
               renewal_price: Float?,
               title: String?,
@@ -106,7 +118,7 @@ module WhopSDK
 
             attr_accessor plan_type: WhopSDK::Models::plan_type?
 
-            attr_accessor product: WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlan::Plan::Product?
+            attr_accessor product: WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanAndConfirmationToken::Plan::Product?
 
             attr_accessor product_id: String?
 
@@ -128,7 +140,7 @@ module WhopSDK
               ?initial_price: Float?,
               ?internal_notes: String?,
               ?plan_type: WhopSDK::Models::plan_type?,
-              ?product: WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlan::Plan::Product?,
+              ?product: WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanAndConfirmationToken::Plan::Product?,
               ?product_id: String?,
               ?renewal_price: Float?,
               ?title: String?,
@@ -146,7 +158,7 @@ module WhopSDK
               initial_price: Float?,
               internal_notes: String?,
               plan_type: WhopSDK::Models::plan_type?,
-              product: WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlan::Plan::Product?,
+              product: WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanAndConfirmationToken::Plan::Product?,
               product_id: String?,
               renewal_price: Float?,
               title: String?,
@@ -228,45 +240,318 @@ module WhopSDK
           end
         end
 
-        type create_payment_input_with_plan_id =
+        type create_payment_input_with_plan_and_member_id =
           {
             company_id: String,
             member_id: String,
-            payment_method_id: String,
-            plan_id: String,
+            plan: WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanAndMemberID::Plan,
+            email: String?,
             metadata: ::Hash[Symbol, top]?,
-            promo_code_id: String?
+            payment_method_id: String?,
+            promo_code_id: String?,
+            return_url: String?
           }
 
-        class CreatePaymentInputWithPlanID < WhopSDK::Internal::Type::BaseModel
+        class CreatePaymentInputWithPlanAndMemberID < WhopSDK::Internal::Type::BaseModel
           attr_accessor company_id: String
 
           attr_accessor member_id: String
 
-          attr_accessor payment_method_id: String
+          attr_accessor plan: WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanAndMemberID::Plan
 
-          attr_accessor plan_id: String
+          attr_accessor email: String?
 
           attr_accessor metadata: ::Hash[Symbol, top]?
 
+          attr_accessor payment_method_id: String?
+
           attr_accessor promo_code_id: String?
+
+          attr_accessor return_url: String?
 
           def initialize: (
             company_id: String,
             member_id: String,
-            payment_method_id: String,
-            plan_id: String,
+            plan: WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanAndMemberID::Plan,
+            ?email: String?,
             ?metadata: ::Hash[Symbol, top]?,
-            ?promo_code_id: String?
+            ?payment_method_id: String?,
+            ?promo_code_id: String?,
+            ?return_url: String?
           ) -> void
 
           def to_hash: -> {
             company_id: String,
             member_id: String,
-            payment_method_id: String,
-            plan_id: String,
+            plan: WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanAndMemberID::Plan,
+            email: String?,
             metadata: ::Hash[Symbol, top]?,
-            promo_code_id: String?
+            payment_method_id: String?,
+            promo_code_id: String?,
+            return_url: String?
+          }
+
+          type plan =
+            {
+              currency: WhopSDK::Models::currency,
+              application_fee_amount: Float?,
+              billing_period: Integer?,
+              description: String?,
+              expiration_days: Integer?,
+              force_create_new_plan: bool?,
+              initial_price: Float?,
+              internal_notes: String?,
+              plan_type: WhopSDK::Models::plan_type?,
+              product: WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanAndMemberID::Plan::Product?,
+              product_id: String?,
+              renewal_price: Float?,
+              title: String?,
+              trial_period_days: Integer?,
+              visibility: WhopSDK::Models::visibility?
+            }
+
+          class Plan < WhopSDK::Internal::Type::BaseModel
+            attr_accessor currency: WhopSDK::Models::currency
+
+            attr_accessor application_fee_amount: Float?
+
+            attr_accessor billing_period: Integer?
+
+            attr_accessor description: String?
+
+            attr_accessor expiration_days: Integer?
+
+            attr_accessor force_create_new_plan: bool?
+
+            attr_accessor initial_price: Float?
+
+            attr_accessor internal_notes: String?
+
+            attr_accessor plan_type: WhopSDK::Models::plan_type?
+
+            attr_accessor product: WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanAndMemberID::Plan::Product?
+
+            attr_accessor product_id: String?
+
+            attr_accessor renewal_price: Float?
+
+            attr_accessor title: String?
+
+            attr_accessor trial_period_days: Integer?
+
+            attr_accessor visibility: WhopSDK::Models::visibility?
+
+            def initialize: (
+              currency: WhopSDK::Models::currency,
+              ?application_fee_amount: Float?,
+              ?billing_period: Integer?,
+              ?description: String?,
+              ?expiration_days: Integer?,
+              ?force_create_new_plan: bool?,
+              ?initial_price: Float?,
+              ?internal_notes: String?,
+              ?plan_type: WhopSDK::Models::plan_type?,
+              ?product: WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanAndMemberID::Plan::Product?,
+              ?product_id: String?,
+              ?renewal_price: Float?,
+              ?title: String?,
+              ?trial_period_days: Integer?,
+              ?visibility: WhopSDK::Models::visibility?
+            ) -> void
+
+            def to_hash: -> {
+              currency: WhopSDK::Models::currency,
+              application_fee_amount: Float?,
+              billing_period: Integer?,
+              description: String?,
+              expiration_days: Integer?,
+              force_create_new_plan: bool?,
+              initial_price: Float?,
+              internal_notes: String?,
+              plan_type: WhopSDK::Models::plan_type?,
+              product: WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanAndMemberID::Plan::Product?,
+              product_id: String?,
+              renewal_price: Float?,
+              title: String?,
+              trial_period_days: Integer?,
+              visibility: WhopSDK::Models::visibility?
+            }
+
+            type product =
+              {
+                external_identifier: String,
+                title: String,
+                collect_shipping_address: bool?,
+                custom_statement_descriptor: String?,
+                description: String?,
+                global_affiliate_percentage: Float?,
+                global_affiliate_status: WhopSDK::Models::global_affiliate_status?,
+                headline: String?,
+                product_tax_code_id: String?,
+                redirect_purchase_url: String?,
+                route: String?,
+                visibility: WhopSDK::Models::visibility?
+              }
+
+            class Product < WhopSDK::Internal::Type::BaseModel
+              attr_accessor external_identifier: String
+
+              attr_accessor title: String
+
+              attr_accessor collect_shipping_address: bool?
+
+              attr_accessor custom_statement_descriptor: String?
+
+              attr_accessor description: String?
+
+              attr_accessor global_affiliate_percentage: Float?
+
+              attr_accessor global_affiliate_status: WhopSDK::Models::global_affiliate_status?
+
+              attr_accessor headline: String?
+
+              attr_accessor product_tax_code_id: String?
+
+              attr_accessor redirect_purchase_url: String?
+
+              attr_accessor route: String?
+
+              attr_accessor visibility: WhopSDK::Models::visibility?
+
+              def initialize: (
+                external_identifier: String,
+                title: String,
+                ?collect_shipping_address: bool?,
+                ?custom_statement_descriptor: String?,
+                ?description: String?,
+                ?global_affiliate_percentage: Float?,
+                ?global_affiliate_status: WhopSDK::Models::global_affiliate_status?,
+                ?headline: String?,
+                ?product_tax_code_id: String?,
+                ?redirect_purchase_url: String?,
+                ?route: String?,
+                ?visibility: WhopSDK::Models::visibility?
+              ) -> void
+
+              def to_hash: -> {
+                external_identifier: String,
+                title: String,
+                collect_shipping_address: bool?,
+                custom_statement_descriptor: String?,
+                description: String?,
+                global_affiliate_percentage: Float?,
+                global_affiliate_status: WhopSDK::Models::global_affiliate_status?,
+                headline: String?,
+                product_tax_code_id: String?,
+                redirect_purchase_url: String?,
+                route: String?,
+                visibility: WhopSDK::Models::visibility?
+              }
+            end
+          end
+        end
+
+        type create_payment_input_with_plan_id_and_confirmation_token =
+          {
+            company_id: String,
+            confirmation_token: String,
+            plan_id: String,
+            email: String?,
+            metadata: ::Hash[Symbol, top]?,
+            payment_method_id: String?,
+            promo_code_id: String?,
+            return_url: String?
+          }
+
+        class CreatePaymentInputWithPlanIDAndConfirmationToken < WhopSDK::Internal::Type::BaseModel
+          attr_accessor company_id: String
+
+          attr_accessor confirmation_token: String
+
+          attr_accessor plan_id: String
+
+          attr_accessor email: String?
+
+          attr_accessor metadata: ::Hash[Symbol, top]?
+
+          attr_accessor payment_method_id: String?
+
+          attr_accessor promo_code_id: String?
+
+          attr_accessor return_url: String?
+
+          def initialize: (
+            company_id: String,
+            confirmation_token: String,
+            plan_id: String,
+            ?email: String?,
+            ?metadata: ::Hash[Symbol, top]?,
+            ?payment_method_id: String?,
+            ?promo_code_id: String?,
+            ?return_url: String?
+          ) -> void
+
+          def to_hash: -> {
+            company_id: String,
+            confirmation_token: String,
+            plan_id: String,
+            email: String?,
+            metadata: ::Hash[Symbol, top]?,
+            payment_method_id: String?,
+            promo_code_id: String?,
+            return_url: String?
+          }
+        end
+
+        type create_payment_input_with_plan_id_and_member_id =
+          {
+            company_id: String,
+            member_id: String,
+            plan_id: String,
+            email: String?,
+            metadata: ::Hash[Symbol, top]?,
+            payment_method_id: String?,
+            promo_code_id: String?,
+            return_url: String?
+          }
+
+        class CreatePaymentInputWithPlanIDAndMemberID < WhopSDK::Internal::Type::BaseModel
+          attr_accessor company_id: String
+
+          attr_accessor member_id: String
+
+          attr_accessor plan_id: String
+
+          attr_accessor email: String?
+
+          attr_accessor metadata: ::Hash[Symbol, top]?
+
+          attr_accessor payment_method_id: String?
+
+          attr_accessor promo_code_id: String?
+
+          attr_accessor return_url: String?
+
+          def initialize: (
+            company_id: String,
+            member_id: String,
+            plan_id: String,
+            ?email: String?,
+            ?metadata: ::Hash[Symbol, top]?,
+            ?payment_method_id: String?,
+            ?promo_code_id: String?,
+            ?return_url: String?
+          ) -> void
+
+          def to_hash: -> {
+            company_id: String,
+            member_id: String,
+            plan_id: String,
+            email: String?,
+            metadata: ::Hash[Symbol, top]?,
+            payment_method_id: String?,
+            promo_code_id: String?,
+            return_url: String?
           }
         end
 

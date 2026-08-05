@@ -174,6 +174,7 @@ module WhopSDK
         EXCEEDED_ACCOUNT_LIMIT = :exceeded_account_limit
         EXPIRED_QUOTE = :expired_quote
         GENERIC_PAYOUT_ERROR = :generic_payout_error
+        JUNK_FAILURE_REASON = :junk_failure_reason
         TECHNICAL_PROBLEM = :technical_problem
         IDENTIFICATION_NUMBER_INVALID = :identification_number_invalid
         INVALID_ACCOUNT_NUMBER = :invalid_account_number

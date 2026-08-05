@@ -273,6 +273,11 @@ module WhopSDK
             :generic_payout_error,
             WhopSDK::Withdrawal::ErrorCode::TaggedSymbol
           )
+        JUNK_FAILURE_REASON =
+          T.let(
+            :junk_failure_reason,
+            WhopSDK::Withdrawal::ErrorCode::TaggedSymbol
+          )
         TECHNICAL_PROBLEM =
           T.let(
             :technical_problem,

@@ -38,6 +38,11 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :name
 
+      # Whether Whop app notifications are enabled for this experience. Webhooks still
+      # fire.
+      sig { returns(T.nilable(T::Boolean)) }
+      attr_accessor :notifications_enabled
+
       # The unique identifier of the section to place the experience in.
       sig { returns(T.nilable(String)) }
       attr_accessor :section_id
@@ -49,6 +54,7 @@ module WhopSDK
           is_public: T.nilable(T::Boolean),
           logo: T.nilable(WhopSDK::ExperienceCreateParams::Logo::OrHash),
           name: T.nilable(String),
+          notifications_enabled: T.nilable(T::Boolean),
           section_id: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
@@ -64,6 +70,9 @@ module WhopSDK
         logo: nil,
         # The display name of the experience. Defaults to the app's name if not provided.
         name: nil,
+        # Whether Whop app notifications are enabled for this experience. Webhooks still
+        # fire.
+        notifications_enabled: nil,
         # The unique identifier of the section to place the experience in.
         section_id: nil,
         request_options: {}
@@ -78,6 +87,7 @@ module WhopSDK
             is_public: T.nilable(T::Boolean),
             logo: T.nilable(WhopSDK::ExperienceCreateParams::Logo),
             name: T.nilable(String),
+            notifications_enabled: T.nilable(T::Boolean),
             section_id: T.nilable(String),
             request_options: WhopSDK::RequestOptions
           }

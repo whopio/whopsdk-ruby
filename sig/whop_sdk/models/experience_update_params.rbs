@@ -7,6 +7,7 @@ module WhopSDK
         is_public: bool?,
         logo: WhopSDK::ExperienceUpdateParams::Logo?,
         name: String?,
+        notifications_enabled: bool?,
         order: String?,
         section_id: String?
       }
@@ -26,6 +27,8 @@ module WhopSDK
 
       attr_accessor name: String?
 
+      attr_accessor notifications_enabled: bool?
+
       attr_accessor order: String?
 
       attr_accessor section_id: String?
@@ -36,6 +39,7 @@ module WhopSDK
         ?is_public: bool?,
         ?logo: WhopSDK::ExperienceUpdateParams::Logo?,
         ?name: String?,
+        ?notifications_enabled: bool?,
         ?order: String?,
         ?section_id: String?,
         ?request_options: WhopSDK::request_opts
@@ -47,6 +51,7 @@ module WhopSDK
         is_public: bool?,
         logo: WhopSDK::ExperienceUpdateParams::Logo?,
         name: String?,
+        notifications_enabled: bool?,
         order: String?,
         section_id: String?,
         request_options: WhopSDK::RequestOptions

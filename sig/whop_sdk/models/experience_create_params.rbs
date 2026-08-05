@@ -7,6 +7,7 @@ module WhopSDK
         is_public: bool?,
         logo: WhopSDK::ExperienceCreateParams::Logo?,
         name: String?,
+        notifications_enabled: bool?,
         section_id: String?
       }
       & WhopSDK::Internal::Type::request_parameters
@@ -25,6 +26,8 @@ module WhopSDK
 
       attr_accessor name: String?
 
+      attr_accessor notifications_enabled: bool?
+
       attr_accessor section_id: String?
 
       def initialize: (
@@ -33,6 +36,7 @@ module WhopSDK
         ?is_public: bool?,
         ?logo: WhopSDK::ExperienceCreateParams::Logo?,
         ?name: String?,
+        ?notifications_enabled: bool?,
         ?section_id: String?,
         ?request_options: WhopSDK::request_opts
       ) -> void
@@ -43,6 +47,7 @@ module WhopSDK
         is_public: bool?,
         logo: WhopSDK::ExperienceCreateParams::Logo?,
         name: String?,
+        notifications_enabled: bool?,
         section_id: String?,
         request_options: WhopSDK::RequestOptions
       }

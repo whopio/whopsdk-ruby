@@ -36,6 +36,13 @@ module WhopSDK
       #   @return [String, nil]
       optional :name, String, nil?: true
 
+      # @!attribute notifications_enabled
+      #   Whether Whop app notifications are enabled for this experience. Webhooks still
+      #   fire.
+      #
+      #   @return [Boolean, nil]
+      optional :notifications_enabled, WhopSDK::Internal::Type::Boolean, nil?: true
+
       # @!attribute order
       #   The position of the experience within its section for display ordering.
       #
@@ -48,7 +55,10 @@ module WhopSDK
       #   @return [String, nil]
       optional :section_id, String, nil?: true
 
-      # @!method initialize(id:, access_level: nil, is_public: nil, logo: nil, name: nil, order: nil, section_id: nil, request_options: {})
+      # @!method initialize(id:, access_level: nil, is_public: nil, logo: nil, name: nil, notifications_enabled: nil, order: nil, section_id: nil, request_options: {})
+      #   Some parameter documentations has been truncated, see
+      #   {WhopSDK::Models::ExperienceUpdateParams} for more details.
+      #
       #   @param id [String]
       #
       #   @param access_level [Symbol, WhopSDK::Models::ExperienceUpdateParams::AccessLevel, nil] The different access levels for experiences (PUBLIC IS NEVER USED ANYMORE).
@@ -58,6 +68,8 @@ module WhopSDK
       #   @param logo [WhopSDK::Models::ExperienceUpdateParams::Logo, nil] A logo image displayed alongside the experience name.
       #
       #   @param name [String, nil] The display name of the experience.
+      #
+      #   @param notifications_enabled [Boolean, nil] Whether Whop app notifications are enabled for this experience. Webhooks still f
       #
       #   @param order [String, nil] The position of the experience within its section for display ordering.
       #

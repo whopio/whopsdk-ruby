@@ -37,13 +37,23 @@ module WhopSDK
       #   @return [String, nil]
       optional :name, String, nil?: true
 
+      # @!attribute notifications_enabled
+      #   Whether Whop app notifications are enabled for this experience. Webhooks still
+      #   fire.
+      #
+      #   @return [Boolean, nil]
+      optional :notifications_enabled, WhopSDK::Internal::Type::Boolean, nil?: true
+
       # @!attribute section_id
       #   The unique identifier of the section to place the experience in.
       #
       #   @return [String, nil]
       optional :section_id, String, nil?: true
 
-      # @!method initialize(app_id:, company_id:, is_public: nil, logo: nil, name: nil, section_id: nil, request_options: {})
+      # @!method initialize(app_id:, company_id:, is_public: nil, logo: nil, name: nil, notifications_enabled: nil, section_id: nil, request_options: {})
+      #   Some parameter documentations has been truncated, see
+      #   {WhopSDK::Models::ExperienceCreateParams} for more details.
+      #
       #   @param app_id [String] The unique identifier of the app that powers this experience.
       #
       #   @param company_id [String] The unique identifier of the company to create this experience for.
@@ -53,6 +63,8 @@ module WhopSDK
       #   @param logo [WhopSDK::Models::ExperienceCreateParams::Logo, nil] A logo image displayed alongside the experience name.
       #
       #   @param name [String, nil] The display name of the experience. Defaults to the app's name if not provided.
+      #
+      #   @param notifications_enabled [Boolean, nil] Whether Whop app notifications are enabled for this experience. Webhooks still f
       #
       #   @param section_id [String, nil] The unique identifier of the section to place the experience in.
       #

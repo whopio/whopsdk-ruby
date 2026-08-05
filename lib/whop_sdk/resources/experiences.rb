@@ -4,11 +4,14 @@ module WhopSDK
   module Resources
     # Experiences
     class Experiences
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::ExperienceCreateParams} for more details.
+      #
       # Required permissions:
       #
       # - `experience:create`
       #
-      # @overload create(app_id:, company_id:, is_public: nil, logo: nil, name: nil, section_id: nil, request_options: {})
+      # @overload create(app_id:, company_id:, is_public: nil, logo: nil, name: nil, notifications_enabled: nil, section_id: nil, request_options: {})
       #
       # @param app_id [String] The unique identifier of the app that powers this experience.
       #
@@ -19,6 +22,8 @@ module WhopSDK
       # @param logo [WhopSDK::Models::ExperienceCreateParams::Logo, nil] A logo image displayed alongside the experience name.
       #
       # @param name [String, nil] The display name of the experience. Defaults to the app's name if not provided.
+      #
+      # @param notifications_enabled [Boolean, nil] Whether Whop app notifications are enabled for this experience. Webhooks still f
       #
       # @param section_id [String, nil] The unique identifier of the section to place the experience in.
       #
@@ -58,11 +63,14 @@ module WhopSDK
         )
       end
 
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::ExperienceUpdateParams} for more details.
+      #
       # Required permissions:
       #
       # - `experience:update`
       #
-      # @overload update(id, access_level: nil, is_public: nil, logo: nil, name: nil, order: nil, section_id: nil, request_options: {})
+      # @overload update(id, access_level: nil, is_public: nil, logo: nil, name: nil, notifications_enabled: nil, order: nil, section_id: nil, request_options: {})
       #
       # @param id [String] The unique identifier of the experience to update.
       #
@@ -73,6 +81,8 @@ module WhopSDK
       # @param logo [WhopSDK::Models::ExperienceUpdateParams::Logo, nil] A logo image displayed alongside the experience name.
       #
       # @param name [String, nil] The display name of the experience.
+      #
+      # @param notifications_enabled [Boolean, nil] Whether Whop app notifications are enabled for this experience. Webhooks still f
       #
       # @param order [String, nil] The position of the experience within its section for display ordering.
       #

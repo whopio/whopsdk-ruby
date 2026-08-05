@@ -25,6 +25,8 @@ module WhopSDK
       SETUP_INTENT_CANCELED = :"setup_intent.canceled"
       LEDGER_ACCOUNT_FUNDS_AVAILABLE = :"ledger_account.funds_available"
       DEPOSIT_SUCCEEDED = :"deposit.succeeded"
+      TRANSFER_CREATED = :"transfer.created"
+      TRANSFER_COMPLETED = :"transfer.completed"
       WITHDRAWAL_CREATED = :"withdrawal.created"
       WITHDRAWAL_UPDATED = :"withdrawal.updated"
       CARD_TRANSACTION_CREATED = :"card_transaction.created"

@@ -99,6 +99,16 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :customer_phone
 
+      # The reason a payment was declined.
+      sig do
+        returns(
+          T.nilable(
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        )
+      end
+      attr_accessor :decline_code
+
       # When an alert came in that this transaction will be disputed
       sig { returns(T.nilable(Time)) }
       attr_accessor :dispute_alerted_at
@@ -347,6 +357,10 @@ module WhopSDK
           created_at: Time,
           currency: WhopSDK::Currency::OrSymbol,
           customer_phone: T.nilable(String),
+          decline_code:
+            T.nilable(
+              WhopSDK::Models::PaymentListResponse::DeclineCode::OrSymbol
+            ),
           dispute_alerted_at: T.nilable(Time),
           failure_message: T.nilable(String),
           last_payment_attempt: T.nilable(Time),
@@ -423,6 +437,8 @@ module WhopSDK
         # when your checkout requires phone verification. `null` when no phone number was
         # collected.
         customer_phone:,
+        # The reason a payment was declined.
+        decline_code:,
         # When an alert came in that this transaction will be disputed
         dispute_alerted_at:,
         # If the payment failed, the reason for the failure.
@@ -520,6 +536,10 @@ module WhopSDK
             created_at: Time,
             currency: WhopSDK::Currency::TaggedSymbol,
             customer_phone: T.nilable(String),
+            decline_code:
+              T.nilable(
+                WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+              ),
             dispute_alerted_at: T.nilable(Time),
             failure_message: T.nilable(String),
             last_payment_attempt: T.nilable(Time),
@@ -762,6 +782,458 @@ module WhopSDK
 
         sig { override.returns({ id: String, route: String, title: String }) }
         def to_hash
+        end
+      end
+
+      # The reason a payment was declined.
+      module DeclineCode
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias do
+            T.all(Symbol, WhopSDK::Models::PaymentListResponse::DeclineCode)
+          end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        INSUFFICIENT_FUNDS =
+          T.let(
+            :insufficient_funds,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        LOST_CARD =
+          T.let(
+            :lost_card,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        STOLEN_CARD =
+          T.let(
+            :stolen_card,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        EXPIRED_CARD =
+          T.let(
+            :expired_card,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        SUSPECTED_FRAUD =
+          T.let(
+            :suspected_fraud,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        INVALID_CARD_NUMBER =
+          T.let(
+            :invalid_card_number,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        INVALID_CVC =
+          T.let(
+            :invalid_cvc,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        INVALID_CVC_OR_EXPIRATION =
+          T.let(
+            :invalid_cvc_or_expiration,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        INCORRECT_PIN =
+          T.let(
+            :incorrect_pin,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        AUTHENTICATION_REQUIRED =
+          T.let(
+            :authentication_required,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        CARD_NOT_SUPPORTED =
+          T.let(
+            :card_not_supported,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        CURRENCY_NOT_SUPPORTED =
+          T.let(
+            :currency_not_supported,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        DUPLICATE_TRANSACTION =
+          T.let(
+            :duplicate_transaction,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        GENERIC_DECLINE =
+          T.let(
+            :generic_decline,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        INVALID_ACCOUNT =
+          T.let(
+            :invalid_account,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        INVALID_AMOUNT =
+          T.let(
+            :invalid_amount,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        PROCESSING_ERROR =
+          T.let(
+            :processing_error,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        RESTRICTED_CARD =
+          T.let(
+            :restricted_card,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        CARD_VELOCITY_EXCEEDED =
+          T.let(
+            :card_velocity_exceeded,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        CONTACT_ISSUER =
+          T.let(
+            :contact_issuer,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        BANK_DECLINED =
+          T.let(
+            :bank_declined,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        REGULATORY_BLOCKED =
+          T.let(
+            :regulatory_blocked,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        TRANSACTION_NOT_PERMITTED =
+          T.let(
+            :transaction_not_permitted,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        TRANSACTION_STOPPED =
+          T.let(
+            :transaction_stopped,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        CARD_TYPE_NOT_SUPPORTED =
+          T.let(
+            :card_type_not_supported,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        ISSUER_NOT_FOUND =
+          T.let(
+            :issuer_not_found,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        CLOSED_ACCOUNT =
+          T.let(
+            :closed_account,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        ISSUER_UNAVAILABLE =
+          T.let(
+            :issuer_unavailable,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        INVALID_ZIP =
+          T.let(
+            :invalid_zip,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        INVALID_EXPIRY_MONTH =
+          T.let(
+            :invalid_expiry_month,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        INVALID_EXPIRY_YEAR =
+          T.let(
+            :invalid_expiry_year,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        INVALID_EXPIRY =
+          T.let(
+            :invalid_expiry,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        INVALID_TRANSACTION =
+          T.let(
+            :invalid_transaction,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        CANNOT_AUTHORIZE =
+          T.let(
+            :cannot_authorize,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        PIN_REQUIRED =
+          T.let(
+            :pin_required,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        PIN_TRY_EXCEEDED =
+          T.let(
+            :pin_try_exceeded,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        PROVIDER_DECLINED =
+          T.let(
+            :provider_declined,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        HIGH_RISK =
+          T.let(
+            :high_risk,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        TEST_MODE_DECLINE =
+          T.let(
+            :test_mode_decline,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        MERCHANT_BLACKLIST =
+          T.let(
+            :merchant_blacklist,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        REENTER_TRANSACTION =
+          T.let(
+            :reenter_transaction,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        INVALID_PIN =
+          T.let(
+            :invalid_pin,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        PIN_REQUIRED_AS =
+          T.let(
+            :pin_required_as,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        WITHDRAWAL_COUNT_LIMIT_EXCEEDED =
+          T.let(
+            :withdrawal_count_limit_exceeded,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        INVALID_COUNTRY =
+          T.let(
+            :invalid_country,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        ISSUER_ERROR =
+          T.let(
+            :issuer_error,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        INVALID_CARD_HOLDER_NAME =
+          T.let(
+            :invalid_card_holder_name,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        NO_ACCOUNTS =
+          T.let(
+            :no_accounts,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        TRANSACTION_CANCELLED =
+          T.let(
+            :transaction_cancelled,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        THREE_D_SECURE_SUCCESS =
+          T.let(
+            :three_d_secure_success,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        THREE_D_SECURE_CANCELED =
+          T.let(
+            :three_d_secure_canceled,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        THREE_D_SECURE_INVALID_CARD_NUMBER =
+          T.let(
+            :three_d_secure_invalid_card_number,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        THREE_D_SECURE_GENERIC_ERROR =
+          T.let(
+            :three_d_secure_generic_error,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        THREE_D_SECURE_TIMEOUT =
+          T.let(
+            :three_d_secure_timeout,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        THREE_D_SECURE_FAILED =
+          T.let(
+            :three_d_secure_failed,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        THREE_D_SECURE_CARD_NOT_ENROLLED =
+          T.let(
+            :three_d_secure_card_not_enrolled,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        THREE_D_SECURE_FRAUD =
+          T.let(
+            :three_d_secure_fraud,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        THREE_D_SECURE_TOO_MANY_ATTEMPTS =
+          T.let(
+            :three_d_secure_too_many_attempts,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        THREE_D_SECURE_REJECTED_BY_BANK =
+          T.let(
+            :three_d_secure_rejected_by_bank,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        THREE_D_SECURE_REPORTED_LOST_OR_STOLEN =
+          T.let(
+            :three_d_secure_reported_lost_or_stolen,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        BLOCKED_BY_CARDHOLDER =
+          T.let(
+            :blocked_by_cardholder,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        TEST_MODE_TEST_CARD =
+          T.let(
+            :test_mode_test_card,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        TRY_AGAIN_LATER =
+          T.let(
+            :try_again_later,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        TRANSACTION_NOT_ALLOWED =
+          T.let(
+            :transaction_not_allowed,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        BANK_INSUFFICIENT_FUNDS =
+          T.let(
+            :bank_insufficient_funds,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        BANK_ACCOUNT_NOT_FOUND =
+          T.let(
+            :bank_account_not_found,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        BANK_ACCOUNT_CLOSED =
+          T.let(
+            :bank_account_closed,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        BANK_ACCOUNT_FROZEN =
+          T.let(
+            :bank_account_frozen,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        BANK_INVALID_ROUTING_NUMBER =
+          T.let(
+            :bank_invalid_routing_number,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        BANK_NON_TRANSACTION_ACCOUNT =
+          T.let(
+            :bank_non_transaction_account,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        BANK_AUTHORIZATION_REVOKED =
+          T.let(
+            :bank_authorization_revoked,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        BANK_PAYMENT_STOPPED =
+          T.let(
+            :bank_payment_stopped,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        BANK_NOT_AUTHORIZED =
+          T.let(
+            :bank_not_authorized,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        BANK_ACCOUNT_HOLDER_DECEASED =
+          T.let(
+            :bank_account_holder_deceased,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        BANK_DUPLICATE =
+          T.let(
+            :bank_duplicate,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        BANK_AMOUNT_ERROR =
+          T.let(
+            :bank_amount_error,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        BANK_REGULATORY_BLOCKED =
+          T.let(
+            :bank_regulatory_blocked,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        BANK_DETAILS_INVALID =
+          T.let(
+            :bank_details_invalid,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        BANK_PROCESSING_ERROR =
+          T.let(
+            :bank_processing_error,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        BANK_GENERIC_DECLINE =
+          T.let(
+            :bank_generic_decline,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        SEPA_INVALID_IBAN =
+          T.let(
+            :sepa_invalid_iban,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        SEPA_NO_MANDATE =
+          T.let(
+            :sepa_no_mandate,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        SEPA_MANDATE_DATA_INVALID =
+          T.let(
+            :sepa_mandate_data_invalid,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        SEPA_DISPUTED =
+          T.let(
+            :sepa_disputed,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        SEPA_REFUSED_BY_CUSTOMER =
+          T.let(
+            :sepa_refused_by_customer,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+        SEPA_GENERIC_DECLINE =
+          T.let(
+            :sepa_generic_decline,
+            WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+          )
+
+        sig do
+          override.returns(
+            T::Array[
+              WhopSDK::Models::PaymentListResponse::DeclineCode::TaggedSymbol
+            ]
+          )
+        end
+        def self.values
         end
       end
 

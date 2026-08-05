@@ -15,6 +15,7 @@ module WhopSDK
         created_at: Time,
         currency: WhopSDK::Models::currency,
         customer_phone: String?,
+        decline_code: WhopSDK::Models::PaymentListResponse::decline_code?,
         dispute_alerted_at: Time?,
         failure_message: String?,
         last_payment_attempt: Time?,
@@ -75,6 +76,8 @@ module WhopSDK
       attr_accessor currency: WhopSDK::Models::currency
 
       attr_accessor customer_phone: String?
+
+      attr_accessor decline_code: WhopSDK::Models::PaymentListResponse::decline_code?
 
       attr_accessor dispute_alerted_at: Time?
 
@@ -154,6 +157,7 @@ module WhopSDK
         created_at: Time,
         currency: WhopSDK::Models::currency,
         customer_phone: String?,
+        decline_code: WhopSDK::Models::PaymentListResponse::decline_code?,
         dispute_alerted_at: Time?,
         failure_message: String?,
         last_payment_attempt: Time?,
@@ -202,6 +206,7 @@ module WhopSDK
         created_at: Time,
         currency: WhopSDK::Models::currency,
         customer_phone: String?,
+        decline_code: WhopSDK::Models::PaymentListResponse::decline_code?,
         dispute_alerted_at: Time?,
         failure_message: String?,
         last_payment_attempt: Time?,
@@ -337,6 +342,187 @@ module WhopSDK
         def initialize: (id: String, route: String, title: String) -> void
 
         def to_hash: -> { id: String, route: String, title: String }
+      end
+
+      type decline_code =
+        :insufficient_funds
+        | :lost_card
+        | :stolen_card
+        | :expired_card
+        | :suspected_fraud
+        | :invalid_card_number
+        | :invalid_cvc
+        | :invalid_cvc_or_expiration
+        | :incorrect_pin
+        | :authentication_required
+        | :card_not_supported
+        | :currency_not_supported
+        | :duplicate_transaction
+        | :generic_decline
+        | :invalid_account
+        | :invalid_amount
+        | :processing_error
+        | :restricted_card
+        | :card_velocity_exceeded
+        | :contact_issuer
+        | :bank_declined
+        | :regulatory_blocked
+        | :transaction_not_permitted
+        | :transaction_stopped
+        | :card_type_not_supported
+        | :issuer_not_found
+        | :closed_account
+        | :issuer_unavailable
+        | :invalid_zip
+        | :invalid_expiry_month
+        | :invalid_expiry_year
+        | :invalid_expiry
+        | :invalid_transaction
+        | :cannot_authorize
+        | :pin_required
+        | :pin_try_exceeded
+        | :provider_declined
+        | :high_risk
+        | :test_mode_decline
+        | :merchant_blacklist
+        | :reenter_transaction
+        | :invalid_pin
+        | :pin_required_as
+        | :withdrawal_count_limit_exceeded
+        | :invalid_country
+        | :issuer_error
+        | :invalid_card_holder_name
+        | :no_accounts
+        | :transaction_cancelled
+        | :three_d_secure_success
+        | :three_d_secure_canceled
+        | :three_d_secure_invalid_card_number
+        | :three_d_secure_generic_error
+        | :three_d_secure_timeout
+        | :three_d_secure_failed
+        | :three_d_secure_card_not_enrolled
+        | :three_d_secure_fraud
+        | :three_d_secure_too_many_attempts
+        | :three_d_secure_rejected_by_bank
+        | :three_d_secure_reported_lost_or_stolen
+        | :blocked_by_cardholder
+        | :test_mode_test_card
+        | :try_again_later
+        | :transaction_not_allowed
+        | :bank_insufficient_funds
+        | :bank_account_not_found
+        | :bank_account_closed
+        | :bank_account_frozen
+        | :bank_invalid_routing_number
+        | :bank_non_transaction_account
+        | :bank_authorization_revoked
+        | :bank_payment_stopped
+        | :bank_not_authorized
+        | :bank_account_holder_deceased
+        | :bank_duplicate
+        | :bank_amount_error
+        | :bank_regulatory_blocked
+        | :bank_details_invalid
+        | :bank_processing_error
+        | :bank_generic_decline
+        | :sepa_invalid_iban
+        | :sepa_no_mandate
+        | :sepa_mandate_data_invalid
+        | :sepa_disputed
+        | :sepa_refused_by_customer
+        | :sepa_generic_decline
+
+      module DeclineCode
+        extend WhopSDK::Internal::Type::Enum
+
+        INSUFFICIENT_FUNDS: :insufficient_funds
+        LOST_CARD: :lost_card
+        STOLEN_CARD: :stolen_card
+        EXPIRED_CARD: :expired_card
+        SUSPECTED_FRAUD: :suspected_fraud
+        INVALID_CARD_NUMBER: :invalid_card_number
+        INVALID_CVC: :invalid_cvc
+        INVALID_CVC_OR_EXPIRATION: :invalid_cvc_or_expiration
+        INCORRECT_PIN: :incorrect_pin
+        AUTHENTICATION_REQUIRED: :authentication_required
+        CARD_NOT_SUPPORTED: :card_not_supported
+        CURRENCY_NOT_SUPPORTED: :currency_not_supported
+        DUPLICATE_TRANSACTION: :duplicate_transaction
+        GENERIC_DECLINE: :generic_decline
+        INVALID_ACCOUNT: :invalid_account
+        INVALID_AMOUNT: :invalid_amount
+        PROCESSING_ERROR: :processing_error
+        RESTRICTED_CARD: :restricted_card
+        CARD_VELOCITY_EXCEEDED: :card_velocity_exceeded
+        CONTACT_ISSUER: :contact_issuer
+        BANK_DECLINED: :bank_declined
+        REGULATORY_BLOCKED: :regulatory_blocked
+        TRANSACTION_NOT_PERMITTED: :transaction_not_permitted
+        TRANSACTION_STOPPED: :transaction_stopped
+        CARD_TYPE_NOT_SUPPORTED: :card_type_not_supported
+        ISSUER_NOT_FOUND: :issuer_not_found
+        CLOSED_ACCOUNT: :closed_account
+        ISSUER_UNAVAILABLE: :issuer_unavailable
+        INVALID_ZIP: :invalid_zip
+        INVALID_EXPIRY_MONTH: :invalid_expiry_month
+        INVALID_EXPIRY_YEAR: :invalid_expiry_year
+        INVALID_EXPIRY: :invalid_expiry
+        INVALID_TRANSACTION: :invalid_transaction
+        CANNOT_AUTHORIZE: :cannot_authorize
+        PIN_REQUIRED: :pin_required
+        PIN_TRY_EXCEEDED: :pin_try_exceeded
+        PROVIDER_DECLINED: :provider_declined
+        HIGH_RISK: :high_risk
+        TEST_MODE_DECLINE: :test_mode_decline
+        MERCHANT_BLACKLIST: :merchant_blacklist
+        REENTER_TRANSACTION: :reenter_transaction
+        INVALID_PIN: :invalid_pin
+        PIN_REQUIRED_AS: :pin_required_as
+        WITHDRAWAL_COUNT_LIMIT_EXCEEDED: :withdrawal_count_limit_exceeded
+        INVALID_COUNTRY: :invalid_country
+        ISSUER_ERROR: :issuer_error
+        INVALID_CARD_HOLDER_NAME: :invalid_card_holder_name
+        NO_ACCOUNTS: :no_accounts
+        TRANSACTION_CANCELLED: :transaction_cancelled
+        THREE_D_SECURE_SUCCESS: :three_d_secure_success
+        THREE_D_SECURE_CANCELED: :three_d_secure_canceled
+        THREE_D_SECURE_INVALID_CARD_NUMBER: :three_d_secure_invalid_card_number
+        THREE_D_SECURE_GENERIC_ERROR: :three_d_secure_generic_error
+        THREE_D_SECURE_TIMEOUT: :three_d_secure_timeout
+        THREE_D_SECURE_FAILED: :three_d_secure_failed
+        THREE_D_SECURE_CARD_NOT_ENROLLED: :three_d_secure_card_not_enrolled
+        THREE_D_SECURE_FRAUD: :three_d_secure_fraud
+        THREE_D_SECURE_TOO_MANY_ATTEMPTS: :three_d_secure_too_many_attempts
+        THREE_D_SECURE_REJECTED_BY_BANK: :three_d_secure_rejected_by_bank
+        THREE_D_SECURE_REPORTED_LOST_OR_STOLEN: :three_d_secure_reported_lost_or_stolen
+        BLOCKED_BY_CARDHOLDER: :blocked_by_cardholder
+        TEST_MODE_TEST_CARD: :test_mode_test_card
+        TRY_AGAIN_LATER: :try_again_later
+        TRANSACTION_NOT_ALLOWED: :transaction_not_allowed
+        BANK_INSUFFICIENT_FUNDS: :bank_insufficient_funds
+        BANK_ACCOUNT_NOT_FOUND: :bank_account_not_found
+        BANK_ACCOUNT_CLOSED: :bank_account_closed
+        BANK_ACCOUNT_FROZEN: :bank_account_frozen
+        BANK_INVALID_ROUTING_NUMBER: :bank_invalid_routing_number
+        BANK_NON_TRANSACTION_ACCOUNT: :bank_non_transaction_account
+        BANK_AUTHORIZATION_REVOKED: :bank_authorization_revoked
+        BANK_PAYMENT_STOPPED: :bank_payment_stopped
+        BANK_NOT_AUTHORIZED: :bank_not_authorized
+        BANK_ACCOUNT_HOLDER_DECEASED: :bank_account_holder_deceased
+        BANK_DUPLICATE: :bank_duplicate
+        BANK_AMOUNT_ERROR: :bank_amount_error
+        BANK_REGULATORY_BLOCKED: :bank_regulatory_blocked
+        BANK_DETAILS_INVALID: :bank_details_invalid
+        BANK_PROCESSING_ERROR: :bank_processing_error
+        BANK_GENERIC_DECLINE: :bank_generic_decline
+        SEPA_INVALID_IBAN: :sepa_invalid_iban
+        SEPA_NO_MANDATE: :sepa_no_mandate
+        SEPA_MANDATE_DATA_INVALID: :sepa_mandate_data_invalid
+        SEPA_DISPUTED: :sepa_disputed
+        SEPA_REFUSED_BY_CUSTOMER: :sepa_refused_by_customer
+        SEPA_GENERIC_DECLINE: :sepa_generic_decline
+
+        def self?.values: -> ::Array[WhopSDK::Models::PaymentListResponse::decline_code]
       end
 
       type member = { id: String, phone: String? }

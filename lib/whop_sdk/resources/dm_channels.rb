@@ -10,13 +10,15 @@ module WhopSDK
       # Create a new DM channel between two or more users, optionally scoped to a
       # specific company. Returns the existing channel if one already exists.
       #
-      # @overload create(with_user_ids:, company_id: nil, custom_name: nil, request_options: {})
+      # @overload create(with_user_ids:, company_id: nil, custom_name: nil, notifications_enabled: nil, request_options: {})
       #
       # @param with_user_ids [Array<String>] The list of user identifiers to include in the DM channel. Each entry can be an
       #
       # @param company_id [String, nil] The unique identifier of the company to scope this DM channel to. When set, the
       #
       # @param custom_name [String, nil] A custom display name for the DM channel. For example, 'Project Discussion'.
+      #
+      # @param notifications_enabled [Boolean, nil] Whether Whop app notifications are enabled for this direct message channel. Webh
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

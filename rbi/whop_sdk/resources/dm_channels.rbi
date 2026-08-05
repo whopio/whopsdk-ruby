@@ -11,6 +11,7 @@ module WhopSDK
           with_user_ids: T::Array[String],
           company_id: T.nilable(String),
           custom_name: T.nilable(String),
+          notifications_enabled: T.nilable(T::Boolean),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::DmChannel)
       end
@@ -23,6 +24,9 @@ module WhopSDK
         company_id: nil,
         # A custom display name for the DM channel. For example, 'Project Discussion'.
         custom_name: nil,
+        # Whether Whop app notifications are enabled for this direct message channel.
+        # Webhooks still fire.
+        notifications_enabled: nil,
         request_options: {}
       )
       end

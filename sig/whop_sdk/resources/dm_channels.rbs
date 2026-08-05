@@ -5,6 +5,7 @@ module WhopSDK
         with_user_ids: ::Array[String],
         ?company_id: String?,
         ?custom_name: String?,
+        ?notifications_enabled: bool?,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::DmChannel
 

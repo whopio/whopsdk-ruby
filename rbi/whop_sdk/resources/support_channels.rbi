@@ -15,6 +15,7 @@ module WhopSDK
           company_id: String,
           user_id: String,
           custom_name: T.nilable(String),
+          notifications_enabled: T.nilable(T::Boolean),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::SupportChannel)
       end
@@ -26,6 +27,9 @@ module WhopSDK
         user_id:,
         # Optional custom display name for the support channel.
         custom_name: nil,
+        # Whether Whop app notifications are enabled for this support channel. Webhooks
+        # still fire.
+        notifications_enabled: nil,
         request_options: {}
       )
       end

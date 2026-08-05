@@ -26,7 +26,14 @@ module WhopSDK
       #   @return [String, nil]
       optional :custom_name, String, nil?: true
 
-      # @!method initialize(company_id:, user_id:, custom_name: nil, request_options: {})
+      # @!attribute notifications_enabled
+      #   Whether Whop app notifications are enabled for this support channel. Webhooks
+      #   still fire.
+      #
+      #   @return [Boolean, nil]
+      optional :notifications_enabled, WhopSDK::Internal::Type::Boolean, nil?: true
+
+      # @!method initialize(company_id:, user_id:, custom_name: nil, notifications_enabled: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::SupportChannelCreateParams} for more details.
       #
@@ -35,6 +42,8 @@ module WhopSDK
       #   @param user_id [String] The user ID (e.g. 'user_xxxxx') or username of the customer to open a support ch
       #
       #   @param custom_name [String, nil] Optional custom display name for the support channel.
+      #
+      #   @param notifications_enabled [Boolean, nil] Whether Whop app notifications are enabled for this support channel. Webhooks st
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
     end

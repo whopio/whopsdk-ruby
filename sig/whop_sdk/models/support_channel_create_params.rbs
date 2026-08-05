@@ -1,7 +1,12 @@
 module WhopSDK
   module Models
     type support_channel_create_params =
-      { company_id: String, user_id: String, custom_name: String? }
+      {
+        company_id: String,
+        user_id: String,
+        custom_name: String?,
+        notifications_enabled: bool?
+      }
       & WhopSDK::Internal::Type::request_parameters
 
     class SupportChannelCreateParams < WhopSDK::Internal::Type::BaseModel
@@ -14,10 +19,13 @@ module WhopSDK
 
       attr_accessor custom_name: String?
 
+      attr_accessor notifications_enabled: bool?
+
       def initialize: (
         company_id: String,
         user_id: String,
         ?custom_name: String?,
+        ?notifications_enabled: bool?,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
@@ -25,6 +33,7 @@ module WhopSDK
         company_id: String,
         user_id: String,
         custom_name: String?,
+        notifications_enabled: bool?,
         request_options: WhopSDK::RequestOptions
       }
     end

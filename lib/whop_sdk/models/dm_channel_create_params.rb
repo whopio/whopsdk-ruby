@@ -27,7 +27,14 @@ module WhopSDK
       #   @return [String, nil]
       optional :custom_name, String, nil?: true
 
-      # @!method initialize(with_user_ids:, company_id: nil, custom_name: nil, request_options: {})
+      # @!attribute notifications_enabled
+      #   Whether Whop app notifications are enabled for this direct message channel.
+      #   Webhooks still fire.
+      #
+      #   @return [Boolean, nil]
+      optional :notifications_enabled, WhopSDK::Internal::Type::Boolean, nil?: true
+
+      # @!method initialize(with_user_ids:, company_id: nil, custom_name: nil, notifications_enabled: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::DmChannelCreateParams} for more details.
       #
@@ -36,6 +43,8 @@ module WhopSDK
       #   @param company_id [String, nil] The unique identifier of the company to scope this DM channel to. When set, the
       #
       #   @param custom_name [String, nil] A custom display name for the DM channel. For example, 'Project Discussion'.
+      #
+      #   @param notifications_enabled [Boolean, nil] Whether Whop app notifications are enabled for this direct message channel. Webh
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
     end

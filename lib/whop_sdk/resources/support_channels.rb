@@ -14,13 +14,15 @@ module WhopSDK
       #
       # - `support_chat:create`
       #
-      # @overload create(company_id:, user_id:, custom_name: nil, request_options: {})
+      # @overload create(company_id:, user_id:, custom_name: nil, notifications_enabled: nil, request_options: {})
       #
       # @param company_id [String] The unique identifier of the company to create the support channel in.
       #
       # @param user_id [String] The user ID (e.g. 'user_xxxxx') or username of the customer to open a support ch
       #
       # @param custom_name [String, nil] Optional custom display name for the support channel.
+      #
+      # @param notifications_enabled [Boolean, nil] Whether Whop app notifications are enabled for this support channel. Webhooks st
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

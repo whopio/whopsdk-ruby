@@ -25,11 +25,17 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :custom_name
 
+      # Whether Whop app notifications are enabled for this direct message channel.
+      # Webhooks still fire.
+      sig { returns(T.nilable(T::Boolean)) }
+      attr_accessor :notifications_enabled
+
       sig do
         params(
           with_user_ids: T::Array[String],
           company_id: T.nilable(String),
           custom_name: T.nilable(String),
+          notifications_enabled: T.nilable(T::Boolean),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -42,6 +48,9 @@ module WhopSDK
         company_id: nil,
         # A custom display name for the DM channel. For example, 'Project Discussion'.
         custom_name: nil,
+        # Whether Whop app notifications are enabled for this direct message channel.
+        # Webhooks still fire.
+        notifications_enabled: nil,
         request_options: {}
       )
       end
@@ -52,6 +61,7 @@ module WhopSDK
             with_user_ids: T::Array[String],
             company_id: T.nilable(String),
             custom_name: T.nilable(String),
+            notifications_enabled: T.nilable(T::Boolean),
             request_options: WhopSDK::RequestOptions
           }
         )

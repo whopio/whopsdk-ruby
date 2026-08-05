@@ -9,6 +9,8 @@ module WhopSDK
         billing_address: WhopSDK::Payment::BillingAddress?,
         billing_reason: WhopSDK::Models::billing_reasons?,
         card_brand: WhopSDK::Models::card_brands?,
+        card_exp_month: Integer?,
+        card_exp_year: Integer?,
         :card_last4 => String?,
         checkout_configuration_id: String?,
         company: WhopSDK::Payment::Company?,
@@ -75,6 +77,10 @@ module WhopSDK
       attr_accessor billing_reason: WhopSDK::Models::billing_reasons?
 
       attr_accessor card_brand: WhopSDK::Models::card_brands?
+
+      attr_accessor card_exp_month: Integer?
+
+      attr_accessor card_exp_year: Integer?
 
       attr_accessor card_last4: String?
 
@@ -184,6 +190,8 @@ module WhopSDK
         billing_address: WhopSDK::Payment::BillingAddress?,
         billing_reason: WhopSDK::Models::billing_reasons?,
         card_brand: WhopSDK::Models::card_brands?,
+        card_exp_month: Integer?,
+        card_exp_year: Integer?,
         card_last4: String?,
         checkout_configuration_id: String?,
         company: WhopSDK::Payment::Company?,
@@ -244,6 +252,8 @@ module WhopSDK
         billing_address: WhopSDK::Payment::BillingAddress?,
         billing_reason: WhopSDK::Models::billing_reasons?,
         card_brand: WhopSDK::Models::card_brands?,
+        card_exp_month: Integer?,
+        card_exp_year: Integer?,
         :card_last4 => String?,
         checkout_configuration_id: String?,
         company: WhopSDK::Payment::Company?,

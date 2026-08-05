@@ -45,6 +45,22 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::CardBrands, nil]
       required :card_brand, enum: -> { WhopSDK::CardBrands }, nil?: true
 
+      # @!attribute card_exp_month
+      #   The expiration month (1-12) of the card used for this payment. Falls back to the
+      #   declined card on failed payments with no saved card. Null when the payment was
+      #   not made with a card or the expiry is unavailable.
+      #
+      #   @return [Integer, nil]
+      required :card_exp_month, Integer, nil?: true
+
+      # @!attribute card_exp_year
+      #   The four-digit expiration year of the card used for this payment. Falls back to
+      #   the declined card on failed payments with no saved card. Null when the payment
+      #   was not made with a card or the expiry is unavailable.
+      #
+      #   @return [Integer, nil]
+      required :card_exp_year, Integer, nil?: true
+
       # @!attribute card_last4
       #   The last four digits of the card used to make this payment. Null if the payment
       #   was not made with a card.
@@ -376,7 +392,7 @@ module WhopSDK
       #   @return [Boolean]
       required :voidable, WhopSDK::Internal::Type::Boolean
 
-      # @!method initialize(id:, amount_after_fees:, application_fee:, auto_refunded:, billing_address:, billing_reason:, card_brand:, card_last4:, checkout_configuration_id:, company:, created_at:, currency:, customer_phone:, dispute_alerted_at:, disputes:, failure_message:, financing_installments_count:, financing_transactions:, last_payment_attempt:, member:, membership:, metadata:, needs_tracking:, next_payment_attempt:, paid_at:, payment_method:, payment_method_type:, payments_failed:, plan:, product:, promo_code:, refundable:, refunded_amount:, refunded_at:, refunds:, resolutions:, retryable:, risk_score:, risk_signals:, settlement_amount:, settlement_currency:, settlement_exchange_rate:, settlement_time_at:, shipment:, shipping_address:, status:, substatus:, subtotal:, tax_amount:, tax_behavior:, tax_refunded_amount:, three_ds_verified:, total:, updated_at:, usd_total:, user:, voidable:)
+      # @!method initialize(id:, amount_after_fees:, application_fee:, auto_refunded:, billing_address:, billing_reason:, card_brand:, card_exp_month:, card_exp_year:, card_last4:, checkout_configuration_id:, company:, created_at:, currency:, customer_phone:, dispute_alerted_at:, disputes:, failure_message:, financing_installments_count:, financing_transactions:, last_payment_attempt:, member:, membership:, metadata:, needs_tracking:, next_payment_attempt:, paid_at:, payment_method:, payment_method_type:, payments_failed:, plan:, product:, promo_code:, refundable:, refunded_amount:, refunded_at:, refunds:, resolutions:, retryable:, risk_score:, risk_signals:, settlement_amount:, settlement_currency:, settlement_exchange_rate:, settlement_time_at:, shipment:, shipping_address:, status:, substatus:, subtotal:, tax_amount:, tax_behavior:, tax_refunded_amount:, three_ds_verified:, total:, updated_at:, usd_total:, user:, voidable:)
       #   Some parameter documentations has been truncated, see {WhopSDK::Models::Payment}
       #   for more details.
       #
@@ -396,6 +412,10 @@ module WhopSDK
       #   @param billing_reason [Symbol, WhopSDK::Models::BillingReasons, nil] The reason why a specific payment was billed
       #
       #   @param card_brand [Symbol, WhopSDK::Models::CardBrands, nil] Possible card brands that a payment token can have
+      #
+      #   @param card_exp_month [Integer, nil] The expiration month (1-12) of the card used for this payment. Falls back to the
+      #
+      #   @param card_exp_year [Integer, nil] The four-digit expiration year of the card used for this payment. Falls back to
       #
       #   @param card_last4 [String, nil] The last four digits of the card used to make this payment. Null if the payment
       #

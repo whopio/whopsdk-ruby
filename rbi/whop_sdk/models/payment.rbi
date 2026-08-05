@@ -48,6 +48,18 @@ module WhopSDK
       sig { returns(T.nilable(WhopSDK::CardBrands::TaggedSymbol)) }
       attr_accessor :card_brand
 
+      # The expiration month (1-12) of the card used for this payment. Falls back to the
+      # declined card on failed payments with no saved card. Null when the payment was
+      # not made with a card or the expiry is unavailable.
+      sig { returns(T.nilable(Integer)) }
+      attr_accessor :card_exp_month
+
+      # The four-digit expiration year of the card used for this payment. Falls back to
+      # the declined card on failed payments with no saved card. Null when the payment
+      # was not made with a card or the expiry is unavailable.
+      sig { returns(T.nilable(Integer)) }
+      attr_accessor :card_exp_year
+
       # The last four digits of the card used to make this payment. Null if the payment
       # was not made with a card.
       sig { returns(T.nilable(String)) }
@@ -333,6 +345,8 @@ module WhopSDK
           billing_address: T.nilable(WhopSDK::Payment::BillingAddress::OrHash),
           billing_reason: T.nilable(WhopSDK::BillingReasons::OrSymbol),
           card_brand: T.nilable(WhopSDK::CardBrands::OrSymbol),
+          card_exp_month: T.nilable(Integer),
+          card_exp_year: T.nilable(Integer),
           card_last4: T.nilable(String),
           checkout_configuration_id: T.nilable(String),
           company: T.nilable(WhopSDK::Payment::Company::OrHash),
@@ -403,6 +417,14 @@ module WhopSDK
         billing_reason:,
         # Possible card brands that a payment token can have
         card_brand:,
+        # The expiration month (1-12) of the card used for this payment. Falls back to the
+        # declined card on failed payments with no saved card. Null when the payment was
+        # not made with a card or the expiry is unavailable.
+        card_exp_month:,
+        # The four-digit expiration year of the card used for this payment. Falls back to
+        # the declined card on failed payments with no saved card. Null when the payment
+        # was not made with a card or the expiry is unavailable.
+        card_exp_year:,
         # The last four digits of the card used to make this payment. Null if the payment
         # was not made with a card.
         card_last4:,
@@ -546,6 +568,8 @@ module WhopSDK
             billing_address: T.nilable(WhopSDK::Payment::BillingAddress),
             billing_reason: T.nilable(WhopSDK::BillingReasons::TaggedSymbol),
             card_brand: T.nilable(WhopSDK::CardBrands::TaggedSymbol),
+            card_exp_month: T.nilable(Integer),
+            card_exp_year: T.nilable(Integer),
             card_last4: T.nilable(String),
             checkout_configuration_id: T.nilable(String),
             company: T.nilable(WhopSDK::Payment::Company),

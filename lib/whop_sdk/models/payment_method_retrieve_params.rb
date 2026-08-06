@@ -14,14 +14,14 @@ module WhopSDK
 
       # @!attribute company_id
       #   The unique identifier of the company. Provide either this or member_id, not
-      #   both.
+      #   both. Omit both to address your own saved payment methods.
       #
       #   @return [String, nil]
       optional :company_id, String, nil?: true
 
       # @!attribute member_id
       #   The unique identifier of the member. Provide either this or company_id, not
-      #   both.
+      #   both. Omit both to address your own saved payment methods.
       #
       #   @return [String, nil]
       optional :member_id, String, nil?: true

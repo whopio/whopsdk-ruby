@@ -21,7 +21,7 @@ module WhopSDK
 
       # @!attribute company_id
       #   The unique identifier of the company. Provide either this or member_id, not
-      #   both.
+      #   both. Omit both to address your own saved payment methods.
       #
       #   @return [String, nil]
       optional :company_id, String, nil?: true
@@ -57,7 +57,8 @@ module WhopSDK
       optional :last, Integer, nil?: true
 
       # @!attribute member_id
-      #   The unique identifier of the member to list payment methods for.
+      #   The unique identifier of the member to list payment methods for. Omit this and
+      #   company_id to list your own saved payment methods.
       #
       #   @return [String, nil]
       optional :member_id, String, nil?: true
@@ -82,7 +83,7 @@ module WhopSDK
       #
       #   @param last [Integer, nil] Returns the last _n_ elements from the list.
       #
-      #   @param member_id [String, nil] The unique identifier of the member to list payment methods for.
+      #   @param member_id [String, nil] The unique identifier of the member to list payment methods for. Omit this and c
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
     end

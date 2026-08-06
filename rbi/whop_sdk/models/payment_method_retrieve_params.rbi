@@ -18,12 +18,12 @@ module WhopSDK
       attr_accessor :id
 
       # The unique identifier of the company. Provide either this or member_id, not
-      # both.
+      # both. Omit both to address your own saved payment methods.
       sig { returns(T.nilable(String)) }
       attr_accessor :company_id
 
       # The unique identifier of the member. Provide either this or company_id, not
-      # both.
+      # both. Omit both to address your own saved payment methods.
       sig { returns(T.nilable(String)) }
       attr_accessor :member_id
 
@@ -38,10 +38,10 @@ module WhopSDK
       def self.new(
         id:,
         # The unique identifier of the company. Provide either this or member_id, not
-        # both.
+        # both. Omit both to address your own saved payment methods.
         company_id: nil,
         # The unique identifier of the member. Provide either this or company_id, not
-        # both.
+        # both. Omit both to address your own saved payment methods.
         member_id: nil,
         request_options: {}
       )

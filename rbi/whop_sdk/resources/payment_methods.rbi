@@ -4,7 +4,8 @@ module WhopSDK
   module Resources
     # Payment methods
     class PaymentMethods
-      # Retrieves the details of an existing payment method.
+      # Retrieves the details of an existing payment method. Addresses a member's wallet
+      # when member_id or company_id is given, otherwise your own.
       #
       # Required permissions:
       #
@@ -21,19 +22,19 @@ module WhopSDK
         # The unique identifier of the payment method.
         id,
         # The unique identifier of the company. Provide either this or member_id, not
-        # both.
+        # both. Omit both to address your own saved payment methods.
         company_id: nil,
         # The unique identifier of the member. Provide either this or company_id, not
-        # both.
+        # both. Omit both to address your own saved payment methods.
         member_id: nil,
         request_options: {}
       )
       end
 
-      # Returns a paginated list of payment methods for a member or company, with
-      # optional filtering by creation date. A payment method is a stored representation
-      # of how a customer intends to pay, such as a card, bank account, or digital
-      # wallet.
+      # Returns a paginated list of payment methods for a member or company, or for the
+      # authenticated user when neither is given, with optional filtering by creation
+      # date. A payment method is a stored representation of how a customer intends to
+      # pay, such as a card, bank account, or digital wallet.
       #
       # Required permissions:
       #
@@ -62,7 +63,7 @@ module WhopSDK
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
         # The unique identifier of the company. Provide either this or member_id, not
-        # both.
+        # both. Omit both to address your own saved payment methods.
         company_id: nil,
         # Only return payment methods created after this timestamp.
         created_after: nil,
@@ -74,7 +75,8 @@ module WhopSDK
         first: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
-        # The unique identifier of the member to list payment methods for.
+        # The unique identifier of the member to list payment methods for. Omit this and
+        # company_id to list your own saved payment methods.
         member_id: nil,
         request_options: {}
       )

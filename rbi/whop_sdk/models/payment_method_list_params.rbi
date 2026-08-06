@@ -20,7 +20,7 @@ module WhopSDK
       attr_accessor :before
 
       # The unique identifier of the company. Provide either this or member_id, not
-      # both.
+      # both. Omit both to address your own saved payment methods.
       sig { returns(T.nilable(String)) }
       attr_accessor :company_id
 
@@ -44,7 +44,8 @@ module WhopSDK
       sig { returns(T.nilable(Integer)) }
       attr_accessor :last
 
-      # The unique identifier of the member to list payment methods for.
+      # The unique identifier of the member to list payment methods for. Omit this and
+      # company_id to list your own saved payment methods.
       sig { returns(T.nilable(String)) }
       attr_accessor :member_id
 
@@ -68,7 +69,7 @@ module WhopSDK
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
         # The unique identifier of the company. Provide either this or member_id, not
-        # both.
+        # both. Omit both to address your own saved payment methods.
         company_id: nil,
         # Only return payment methods created after this timestamp.
         created_after: nil,
@@ -80,7 +81,8 @@ module WhopSDK
         first: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
-        # The unique identifier of the member to list payment methods for.
+        # The unique identifier of the member to list payment methods for. Omit this and
+        # company_id to list your own saved payment methods.
         member_id: nil,
         request_options: {}
       )

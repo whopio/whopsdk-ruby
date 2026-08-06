@@ -114,6 +114,7 @@ module WhopSDK
         | :generic_payout_error
         | :junk_failure_reason
         | :technical_problem
+        | :provider_temporarily_unavailable
         | :identification_number_invalid
         | :invalid_account_number
         | :invalid_bank_code
@@ -167,6 +168,7 @@ module WhopSDK
         GENERIC_PAYOUT_ERROR: :generic_payout_error
         JUNK_FAILURE_REASON: :junk_failure_reason
         TECHNICAL_PROBLEM: :technical_problem
+        PROVIDER_TEMPORARILY_UNAVAILABLE: :provider_temporarily_unavailable
         IDENTIFICATION_NUMBER_INVALID: :identification_number_invalid
         INVALID_ACCOUNT_NUMBER: :invalid_account_number
         INVALID_BANK_CODE: :invalid_bank_code

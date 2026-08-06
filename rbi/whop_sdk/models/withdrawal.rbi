@@ -283,6 +283,11 @@ module WhopSDK
             :technical_problem,
             WhopSDK::Withdrawal::ErrorCode::TaggedSymbol
           )
+        PROVIDER_TEMPORARILY_UNAVAILABLE =
+          T.let(
+            :provider_temporarily_unavailable,
+            WhopSDK::Withdrawal::ErrorCode::TaggedSymbol
+          )
         IDENTIFICATION_NUMBER_INVALID =
           T.let(
             :identification_number_invalid,

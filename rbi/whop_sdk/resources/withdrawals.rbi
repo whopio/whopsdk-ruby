@@ -15,6 +15,7 @@ module WhopSDK
           amount: Float,
           company_id: String,
           currency: WhopSDK::Currency::OrSymbol,
+          acknowledge_bank_warning: T.nilable(T::Boolean),
           idempotency_key: T.nilable(String),
           payout_method_id: T.nilable(String),
           platform_covers_fees: T.nilable(T::Boolean),
@@ -30,6 +31,10 @@ module WhopSDK
         company_id:,
         # The currency that is being withdrawn.
         currency:,
+        # Set to true to continue when the bank could not confirm the account holder's
+        # name. The withdrawal is refused without it so the creator can fix the account or
+        # link their bank first.
+        acknowledge_bank_warning: nil,
         # A client-generated key that makes retries safe. Retrying with the same key
         # returns the original withdrawal instead of creating a second one.
         idempotency_key: nil,

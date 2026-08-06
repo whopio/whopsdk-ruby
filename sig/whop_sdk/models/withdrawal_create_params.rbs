@@ -5,6 +5,7 @@ module WhopSDK
         amount: Float,
         company_id: String,
         currency: WhopSDK::Models::currency,
+        acknowledge_bank_warning: bool?,
         idempotency_key: String?,
         payout_method_id: String?,
         platform_covers_fees: bool?,
@@ -23,6 +24,8 @@ module WhopSDK
 
       attr_accessor currency: WhopSDK::Models::currency
 
+      attr_accessor acknowledge_bank_warning: bool?
+
       attr_accessor idempotency_key: String?
 
       attr_accessor payout_method_id: String?
@@ -37,6 +40,7 @@ module WhopSDK
         amount: Float,
         company_id: String,
         currency: WhopSDK::Models::currency,
+        ?acknowledge_bank_warning: bool?,
         ?idempotency_key: String?,
         ?payout_method_id: String?,
         ?platform_covers_fees: bool?,
@@ -49,6 +53,7 @@ module WhopSDK
         amount: Float,
         company_id: String,
         currency: WhopSDK::Models::currency,
+        acknowledge_bank_warning: bool?,
         idempotency_key: String?,
         payout_method_id: String?,
         platform_covers_fees: bool?,

@@ -13,6 +13,7 @@ module WhopSDK
       B2C_APP = T.let(:b2c_app, WhopSDK::AppType::TaggedSymbol)
       COMPANY_APP = T.let(:company_app, WhopSDK::AppType::TaggedSymbol)
       COMPONENT = T.let(:component, WhopSDK::AppType::TaggedSymbol)
+      WEBSITE = T.let(:website, WhopSDK::AppType::TaggedSymbol)
 
       sig { override.returns(T::Array[WhopSDK::AppType::TaggedSymbol]) }
       def self.values

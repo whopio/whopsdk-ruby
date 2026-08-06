@@ -1,6 +1,6 @@
 module WhopSDK
   module Models
-    type app_type = :b2b_app | :b2c_app | :company_app | :component
+    type app_type = :b2b_app | :b2c_app | :company_app | :component | :website
 
     module AppType
       extend WhopSDK::Internal::Type::Enum
@@ -9,6 +9,7 @@ module WhopSDK
       B2C_APP: :b2c_app
       COMPANY_APP: :company_app
       COMPONENT: :component
+      WEBSITE: :website
 
       def self?.values: -> ::Array[WhopSDK::Models::app_type]
     end

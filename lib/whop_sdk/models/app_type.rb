@@ -10,6 +10,7 @@ module WhopSDK
       B2C_APP = :b2c_app
       COMPANY_APP = :company_app
       COMPONENT = :component
+      WEBSITE = :website
 
       # @!method self.values
       #   @return [Array<Symbol>]

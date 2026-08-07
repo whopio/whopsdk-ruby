@@ -4,9 +4,6 @@ module WhopSDK
       :ad_nrt
       | :ao_tin
       | :ar_cuit
-      | :ar_cuil
-      | :ar_dni
-      | :ar_passport
       | :al_tin
       | :am_tin
       | :aw_tin
@@ -124,9 +121,6 @@ module WhopSDK
       AD_NRT: :ad_nrt
       AO_TIN: :ao_tin
       AR_CUIT: :ar_cuit
-      AR_CUIL: :ar_cuil
-      AR_DNI: :ar_dni
-      AR_PASSPORT: :ar_passport
       AL_TIN: :al_tin
       AM_TIN: :am_tin
       AW_TIN: :aw_tin

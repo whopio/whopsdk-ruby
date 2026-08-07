@@ -55,6 +55,8 @@ module WhopSDK
           :"ledger_account.funds_available",
           WhopSDK::WebhookEvent::TaggedSymbol
         )
+      SWAP_COMPLETED =
+        T.let(:"swap.completed", WhopSDK::WebhookEvent::TaggedSymbol)
       DEPOSIT_SUCCEEDED =
         T.let(:"deposit.succeeded", WhopSDK::WebhookEvent::TaggedSymbol)
       TRANSFER_CREATED =
@@ -78,6 +80,19 @@ module WhopSDK
         T.let(:"card_transaction.declined", WhopSDK::WebhookEvent::TaggedSymbol)
       CARD_TRANSACTION_REVERSED =
         T.let(:"card_transaction.reversed", WhopSDK::WebhookEvent::TaggedSymbol)
+      CARD_CREATED = T.let(:"card.created", WhopSDK::WebhookEvent::TaggedSymbol)
+      CARD_UPDATED = T.let(:"card.updated", WhopSDK::WebhookEvent::TaggedSymbol)
+      CARD_FROZEN = T.let(:"card.frozen", WhopSDK::WebhookEvent::TaggedSymbol)
+      CARD_CANCELED =
+        T.let(:"card.canceled", WhopSDK::WebhookEvent::TaggedSymbol)
+      CARD_APPLICATION_CREATED =
+        T.let(:"card_application.created", WhopSDK::WebhookEvent::TaggedSymbol)
+      CARD_APPLICATION_UPDATED =
+        T.let(:"card_application.updated", WhopSDK::WebhookEvent::TaggedSymbol)
+      CARD_APPLICATION_APPROVED =
+        T.let(:"card_application.approved", WhopSDK::WebhookEvent::TaggedSymbol)
+      CARD_APPLICATION_DENIED =
+        T.let(:"card_application.denied", WhopSDK::WebhookEvent::TaggedSymbol)
       COURSE_LESSON_INTERACTION_COMPLETED =
         T.let(
           :"course_lesson_interaction.completed",

@@ -12,6 +12,10 @@ module WhopSDK
       AD_NRT = T.let(:ad_nrt, WhopSDK::TaxIdentifierType::TaggedSymbol)
       AO_TIN = T.let(:ao_tin, WhopSDK::TaxIdentifierType::TaggedSymbol)
       AR_CUIT = T.let(:ar_cuit, WhopSDK::TaxIdentifierType::TaggedSymbol)
+      AR_CUIL = T.let(:ar_cuil, WhopSDK::TaxIdentifierType::TaggedSymbol)
+      AR_DNI = T.let(:ar_dni, WhopSDK::TaxIdentifierType::TaggedSymbol)
+      AR_PASSPORT =
+        T.let(:ar_passport, WhopSDK::TaxIdentifierType::TaggedSymbol)
       AL_TIN = T.let(:al_tin, WhopSDK::TaxIdentifierType::TaggedSymbol)
       AM_TIN = T.let(:am_tin, WhopSDK::TaxIdentifierType::TaggedSymbol)
       AW_TIN = T.let(:aw_tin, WhopSDK::TaxIdentifierType::TaggedSymbol)

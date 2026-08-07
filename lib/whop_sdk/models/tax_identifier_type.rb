@@ -9,6 +9,9 @@ module WhopSDK
       AD_NRT = :ad_nrt
       AO_TIN = :ao_tin
       AR_CUIT = :ar_cuit
+      AR_CUIL = :ar_cuil
+      AR_DNI = :ar_dni
+      AR_PASSPORT = :ar_passport
       AL_TIN = :al_tin
       AM_TIN = :am_tin
       AW_TIN = :aw_tin

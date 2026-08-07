@@ -24,7 +24,7 @@ module WhopSDK
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod, WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod, WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod, WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod, WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod, WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod]
+      # @return [WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod, WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod, WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod, WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod, WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod, WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod, WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod]
       #
       # @see WhopSDK::Models::PaymentMethodRetrieveParams
       def retrieve(id, params = {})
@@ -51,7 +51,7 @@ module WhopSDK
       #
       # - `member:payment_methods:read`
       #
-      # @overload list(after: nil, before: nil, company_id: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, member_id: nil, request_options: {})
+      # @overload list(after: nil, before: nil, company_id: nil, created_after: nil, created_before: nil, direction: nil, first: nil, future_usage: nil, last: nil, member_id: nil, request_options: {})
       #
       # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
@@ -67,13 +67,15 @@ module WhopSDK
       #
       # @param first [Integer, nil] Returns the first _n_ elements from the list.
       #
+      # @param future_usage [Symbol, WhopSDK::Models::PaymentMethodListParams::FutureUsage, nil] How a payment method will be charged after the buyer leaves — the same vocabular
+      #
       # @param last [Integer, nil] Returns the last _n_ elements from the list.
       #
       # @param member_id [String, nil] The unique identifier of the member to list payment methods for. Omit this and c
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [WhopSDK::Internal::CursorPage<WhopSDK::Models::PaymentMethodListResponse::BasePaymentMethod, WhopSDK::Models::PaymentMethodListResponse::CardPaymentMethod, WhopSDK::Models::PaymentMethodListResponse::UsBankAccountPaymentMethod, WhopSDK::Models::PaymentMethodListResponse::CashappPaymentMethod, WhopSDK::Models::PaymentMethodListResponse::IdealPaymentMethod, WhopSDK::Models::PaymentMethodListResponse::SepaDebitPaymentMethod>]
+      # @return [WhopSDK::Internal::CursorPage<WhopSDK::Models::PaymentMethodListResponse::BasePaymentMethod, WhopSDK::Models::PaymentMethodListResponse::CardPaymentMethod, WhopSDK::Models::PaymentMethodListResponse::UsBankAccountPaymentMethod, WhopSDK::Models::PaymentMethodListResponse::CashappPaymentMethod, WhopSDK::Models::PaymentMethodListResponse::IdealPaymentMethod, WhopSDK::Models::PaymentMethodListResponse::SepaDebitPaymentMethod, WhopSDK::Models::PaymentMethodListResponse::PlatformBalancePaymentMethod>]
       #
       # @see WhopSDK::Models::PaymentMethodListParams
       def list(params = {})

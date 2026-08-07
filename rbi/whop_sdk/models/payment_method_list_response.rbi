@@ -14,7 +14,8 @@ module WhopSDK
             WhopSDK::Models::PaymentMethodListResponse::UsBankAccountPaymentMethod,
             WhopSDK::Models::PaymentMethodListResponse::CashappPaymentMethod,
             WhopSDK::Models::PaymentMethodListResponse::IdealPaymentMethod,
-            WhopSDK::Models::PaymentMethodListResponse::SepaDebitPaymentMethod
+            WhopSDK::Models::PaymentMethodListResponse::SepaDebitPaymentMethod,
+            WhopSDK::Models::PaymentMethodListResponse::PlatformBalancePaymentMethod
           )
         end
 
@@ -835,6 +836,203 @@ module WhopSDK
             )
           end
           def to_hash
+          end
+        end
+      end
+
+      class PlatformBalancePaymentMethod < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              WhopSDK::Models::PaymentMethodListResponse::PlatformBalancePaymentMethod,
+              WhopSDK::Internal::AnyHash
+            )
+          end
+
+        # Represents a unique identifier that is Base64 obfuscated. It is often used to
+        # refetch an object or as key for a cache. The ID type appears in a JSON response
+        # as a String; however, it is not intended to be human-readable. When expected as
+        # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+        # input value will be accepted as an ID.
+        sig { returns(String) }
+        attr_accessor :id
+
+        # The time of the event in ISO 8601 UTC format with millisecond precision
+        sig { returns(Time) }
+        attr_accessor :created_at
+
+        # The type of payment instrument stored on file (e.g., card, us_bank_account,
+        # cashapp, ideal, sepa_debit).
+        sig { returns(WhopSDK::PaymentMethodTypes::TaggedSymbol) }
+        attr_accessor :payment_method_type
+
+        # What is available to spend, and whether the account may spend it.
+        sig do
+          returns(
+            WhopSDK::Models::PaymentMethodListResponse::PlatformBalancePaymentMethod::PlatformBalance
+          )
+        end
+        attr_reader :platform_balance
+
+        sig do
+          params(
+            platform_balance:
+              WhopSDK::Models::PaymentMethodListResponse::PlatformBalancePaymentMethod::PlatformBalance::OrHash
+          ).void
+        end
+        attr_writer :platform_balance
+
+        # The typename of this object
+        sig { returns(Symbol) }
+        attr_accessor :typename
+
+        # The buyer's Whop balance, offered as a payment method. Charged by naming its
+        # ledger id on a `saved` confirmation token — it is a live wallet, not a stored
+        # credential, so it cannot be vaulted or charged off-session.
+        sig do
+          params(
+            id: String,
+            created_at: Time,
+            payment_method_type: WhopSDK::PaymentMethodTypes::OrSymbol,
+            platform_balance:
+              WhopSDK::Models::PaymentMethodListResponse::PlatformBalancePaymentMethod::PlatformBalance::OrHash,
+            typename: Symbol
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # Represents a unique identifier that is Base64 obfuscated. It is often used to
+          # refetch an object or as key for a cache. The ID type appears in a JSON response
+          # as a String; however, it is not intended to be human-readable. When expected as
+          # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+          # input value will be accepted as an ID.
+          id:,
+          # The time of the event in ISO 8601 UTC format with millisecond precision
+          created_at:,
+          # The type of payment instrument stored on file (e.g., card, us_bank_account,
+          # cashapp, ideal, sepa_debit).
+          payment_method_type:,
+          # What is available to spend, and whether the account may spend it.
+          platform_balance:,
+          # The typename of this object
+          typename: :PlatformBalancePaymentMethod
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              id: String,
+              created_at: Time,
+              payment_method_type: WhopSDK::PaymentMethodTypes::TaggedSymbol,
+              platform_balance:
+                WhopSDK::Models::PaymentMethodListResponse::PlatformBalancePaymentMethod::PlatformBalance,
+              typename: Symbol
+            }
+          )
+        end
+        def to_hash
+        end
+
+        class PlatformBalance < WhopSDK::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                WhopSDK::Models::PaymentMethodListResponse::PlatformBalancePaymentMethod::PlatformBalance,
+                WhopSDK::Internal::AnyHash
+              )
+            end
+
+          # Available amount per currency. Read from the balance cache, so it is indicative
+          # — the charge revalidates against settled funds and may still refuse.
+          sig do
+            returns(
+              T::Array[
+                WhopSDK::Models::PaymentMethodListResponse::PlatformBalancePaymentMethod::PlatformBalance::Balance
+              ]
+            )
+          end
+          attr_accessor :balances
+
+          # Whether this balance can pay right now, which here means only whether it holds
+          # funds — an account blocked from spending is not listed at all. A zero balance is
+          # still returned so a client can show it as an option the buyer could top up.
+          sig { returns(T::Boolean) }
+          attr_accessor :spendable
+
+          # What is available to spend, and whether the account may spend it.
+          sig do
+            params(
+              balances:
+                T::Array[
+                  WhopSDK::Models::PaymentMethodListResponse::PlatformBalancePaymentMethod::PlatformBalance::Balance::OrHash
+                ],
+              spendable: T::Boolean
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # Available amount per currency. Read from the balance cache, so it is indicative
+            # — the charge revalidates against settled funds and may still refuse.
+            balances:,
+            # Whether this balance can pay right now, which here means only whether it holds
+            # funds — an account blocked from spending is not listed at all. A zero balance is
+            # still returned so a client can show it as an option the buyer could top up.
+            spendable:
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                balances:
+                  T::Array[
+                    WhopSDK::Models::PaymentMethodListResponse::PlatformBalancePaymentMethod::PlatformBalance::Balance
+                  ],
+                spendable: T::Boolean
+              }
+            )
+          end
+          def to_hash
+          end
+
+          class Balance < WhopSDK::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  WhopSDK::Models::PaymentMethodListResponse::PlatformBalancePaymentMethod::PlatformBalance::Balance,
+                  WhopSDK::Internal::AnyHash
+                )
+              end
+
+            # The available amount in this currency.
+            sig { returns(Float) }
+            attr_accessor :amount
+
+            # The currency this amount is held in.
+            sig { returns(WhopSDK::Currency::TaggedSymbol) }
+            attr_accessor :currency
+
+            # An available balance in one currency.
+            sig do
+              params(
+                amount: Float,
+                currency: WhopSDK::Currency::OrSymbol
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # The available amount in this currency.
+              amount:,
+              # The currency this amount is held in.
+              currency:
+            )
+            end
+
+            sig do
+              override.returns(
+                { amount: Float, currency: WhopSDK::Currency::TaggedSymbol }
+              )
+            end
+            def to_hash
+            end
           end
         end
       end

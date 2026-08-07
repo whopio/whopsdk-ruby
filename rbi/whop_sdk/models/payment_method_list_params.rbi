@@ -40,6 +40,15 @@ module WhopSDK
       sig { returns(T.nilable(Integer)) }
       attr_accessor :first
 
+      # How a payment method will be charged after the buyer leaves — the same
+      # vocabulary as a confirmation token's setup_future_usage.
+      sig do
+        returns(
+          T.nilable(WhopSDK::PaymentMethodListParams::FutureUsage::OrSymbol)
+        )
+      end
+      attr_accessor :future_usage
+
       # Returns the last _n_ elements from the list.
       sig { returns(T.nilable(Integer)) }
       attr_accessor :last
@@ -58,6 +67,8 @@ module WhopSDK
           created_before: T.nilable(Time),
           direction: T.nilable(WhopSDK::Direction::OrSymbol),
           first: T.nilable(Integer),
+          future_usage:
+            T.nilable(WhopSDK::PaymentMethodListParams::FutureUsage::OrSymbol),
           last: T.nilable(Integer),
           member_id: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
@@ -79,6 +90,9 @@ module WhopSDK
         direction: nil,
         # Returns the first _n_ elements from the list.
         first: nil,
+        # How a payment method will be charged after the buyer leaves — the same
+        # vocabulary as a confirmation token's setup_future_usage.
+        future_usage: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
         # The unique identifier of the member to list payment methods for. Omit this and
@@ -98,6 +112,10 @@ module WhopSDK
             created_before: T.nilable(Time),
             direction: T.nilable(WhopSDK::Direction::OrSymbol),
             first: T.nilable(Integer),
+            future_usage:
+              T.nilable(
+                WhopSDK::PaymentMethodListParams::FutureUsage::OrSymbol
+              ),
             last: T.nilable(Integer),
             member_id: T.nilable(String),
             request_options: WhopSDK::RequestOptions
@@ -105,6 +123,39 @@ module WhopSDK
         )
       end
       def to_hash
+      end
+
+      # How a payment method will be charged after the buyer leaves — the same
+      # vocabulary as a confirmation token's setup_future_usage.
+      module FutureUsage
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias do
+            T.all(Symbol, WhopSDK::PaymentMethodListParams::FutureUsage)
+          end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        OFF_SESSION =
+          T.let(
+            :off_session,
+            WhopSDK::PaymentMethodListParams::FutureUsage::TaggedSymbol
+          )
+        ON_SESSION =
+          T.let(
+            :on_session,
+            WhopSDK::PaymentMethodListParams::FutureUsage::TaggedSymbol
+          )
+
+        sig do
+          override.returns(
+            T::Array[
+              WhopSDK::PaymentMethodListParams::FutureUsage::TaggedSymbol
+            ]
+          )
+        end
+        def self.values
+        end
       end
     end
   end

@@ -50,6 +50,13 @@ module WhopSDK
       #   @return [Integer, nil]
       optional :first, Integer, nil?: true
 
+      # @!attribute future_usage
+      #   How a payment method will be charged after the buyer leaves — the same
+      #   vocabulary as a confirmation token's setup_future_usage.
+      #
+      #   @return [Symbol, WhopSDK::Models::PaymentMethodListParams::FutureUsage, nil]
+      optional :future_usage, enum: -> { WhopSDK::PaymentMethodListParams::FutureUsage }, nil?: true
+
       # @!attribute last
       #   Returns the last _n_ elements from the list.
       #
@@ -63,7 +70,7 @@ module WhopSDK
       #   @return [String, nil]
       optional :member_id, String, nil?: true
 
-      # @!method initialize(after: nil, before: nil, company_id: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, member_id: nil, request_options: {})
+      # @!method initialize(after: nil, before: nil, company_id: nil, created_after: nil, created_before: nil, direction: nil, first: nil, future_usage: nil, last: nil, member_id: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::PaymentMethodListParams} for more details.
       #
@@ -81,11 +88,25 @@ module WhopSDK
       #
       #   @param first [Integer, nil] Returns the first _n_ elements from the list.
       #
+      #   @param future_usage [Symbol, WhopSDK::Models::PaymentMethodListParams::FutureUsage, nil] How a payment method will be charged after the buyer leaves — the same vocabular
+      #
       #   @param last [Integer, nil] Returns the last _n_ elements from the list.
       #
       #   @param member_id [String, nil] The unique identifier of the member to list payment methods for. Omit this and c
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
+
+      # How a payment method will be charged after the buyer leaves — the same
+      # vocabulary as a confirmation token's setup_future_usage.
+      module FutureUsage
+        extend WhopSDK::Internal::Type::Enum
+
+        OFF_SESSION = :off_session
+        ON_SESSION = :on_session
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
     end
   end
 end

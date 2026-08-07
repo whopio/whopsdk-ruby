@@ -7,6 +7,7 @@ module WhopSDK
       | WhopSDK::Models::PaymentMethodListResponse::CashappPaymentMethod
       | WhopSDK::Models::PaymentMethodListResponse::IdealPaymentMethod
       | WhopSDK::Models::PaymentMethodListResponse::SepaDebitPaymentMethod
+      | WhopSDK::Models::PaymentMethodListResponse::PlatformBalancePaymentMethod
 
     module PaymentMethodListResponse
       extend WhopSDK::Internal::Type::Union
@@ -341,6 +342,83 @@ module WhopSDK
             country: String?,
             :last4 => String?
           }
+        end
+      end
+
+      type platform_balance_payment_method =
+        {
+          id: String,
+          created_at: Time,
+          payment_method_type: WhopSDK::Models::payment_method_types,
+          platform_balance: WhopSDK::Models::PaymentMethodListResponse::PlatformBalancePaymentMethod::PlatformBalance,
+          typename: :PlatformBalancePaymentMethod
+        }
+
+      class PlatformBalancePaymentMethod < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor created_at: Time
+
+        attr_accessor payment_method_type: WhopSDK::Models::payment_method_types
+
+        attr_accessor platform_balance: WhopSDK::Models::PaymentMethodListResponse::PlatformBalancePaymentMethod::PlatformBalance
+
+        attr_accessor typename: :PlatformBalancePaymentMethod
+
+        def initialize: (
+          id: String,
+          created_at: Time,
+          payment_method_type: WhopSDK::Models::payment_method_types,
+          platform_balance: WhopSDK::Models::PaymentMethodListResponse::PlatformBalancePaymentMethod::PlatformBalance,
+          ?typename: :PlatformBalancePaymentMethod
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          created_at: Time,
+          payment_method_type: WhopSDK::Models::payment_method_types,
+          platform_balance: WhopSDK::Models::PaymentMethodListResponse::PlatformBalancePaymentMethod::PlatformBalance,
+          typename: :PlatformBalancePaymentMethod
+        }
+
+        type platform_balance =
+          {
+            balances: ::Array[WhopSDK::Models::PaymentMethodListResponse::PlatformBalancePaymentMethod::PlatformBalance::Balance],
+            spendable: bool
+          }
+
+        class PlatformBalance < WhopSDK::Internal::Type::BaseModel
+          attr_accessor balances: ::Array[WhopSDK::Models::PaymentMethodListResponse::PlatformBalancePaymentMethod::PlatformBalance::Balance]
+
+          attr_accessor spendable: bool
+
+          def initialize: (
+            balances: ::Array[WhopSDK::Models::PaymentMethodListResponse::PlatformBalancePaymentMethod::PlatformBalance::Balance],
+            spendable: bool
+          ) -> void
+
+          def to_hash: -> {
+            balances: ::Array[WhopSDK::Models::PaymentMethodListResponse::PlatformBalancePaymentMethod::PlatformBalance::Balance],
+            spendable: bool
+          }
+
+          type balance = { amount: Float, currency: WhopSDK::Models::currency }
+
+          class Balance < WhopSDK::Internal::Type::BaseModel
+            attr_accessor amount: Float
+
+            attr_accessor currency: WhopSDK::Models::currency
+
+            def initialize: (
+              amount: Float,
+              currency: WhopSDK::Models::currency
+            ) -> void
+
+            def to_hash: -> {
+              amount: Float,
+              currency: WhopSDK::Models::currency
+            }
+          end
         end
       end
 

@@ -20,6 +20,7 @@ class WhopSDK::Test::Resources::PaymentMethodsTest < WhopSDK::Test::ResourceTest
       in WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod
       in WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod
       in WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod
+      in WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod
       end
     end
 
@@ -61,6 +62,13 @@ class WhopSDK::Test::Resources::PaymentMethodsTest < WhopSDK::Test::ResourceTest
         payment_method_type: WhopSDK::PaymentMethodTypes,
         sepa_debit: WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod::SepaDebit
       }
+      in {
+        typename: :PlatformBalancePaymentMethod,
+        id: String,
+        created_at: Time,
+        payment_method_type: WhopSDK::PaymentMethodTypes,
+        platform_balance: WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::PlatformBalance
+      }
       end
     end
   end
@@ -89,6 +97,7 @@ class WhopSDK::Test::Resources::PaymentMethodsTest < WhopSDK::Test::ResourceTest
       in WhopSDK::Models::PaymentMethodListResponse::CashappPaymentMethod
       in WhopSDK::Models::PaymentMethodListResponse::IdealPaymentMethod
       in WhopSDK::Models::PaymentMethodListResponse::SepaDebitPaymentMethod
+      in WhopSDK::Models::PaymentMethodListResponse::PlatformBalancePaymentMethod
       end
     end
 
@@ -129,6 +138,13 @@ class WhopSDK::Test::Resources::PaymentMethodsTest < WhopSDK::Test::ResourceTest
         created_at: Time,
         payment_method_type: WhopSDK::PaymentMethodTypes,
         sepa_debit: WhopSDK::Models::PaymentMethodListResponse::SepaDebitPaymentMethod::SepaDebit
+      }
+      in {
+        typename: :PlatformBalancePaymentMethod,
+        id: String,
+        created_at: Time,
+        payment_method_type: WhopSDK::PaymentMethodTypes,
+        platform_balance: WhopSDK::Models::PaymentMethodListResponse::PlatformBalancePaymentMethod::PlatformBalance
       }
       end
     end

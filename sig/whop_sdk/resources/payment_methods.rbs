@@ -16,6 +16,7 @@ module WhopSDK
         ?created_before: Time?,
         ?direction: WhopSDK::Models::direction?,
         ?first: Integer?,
+        ?future_usage: WhopSDK::Models::PaymentMethodListParams::future_usage?,
         ?last: Integer?,
         ?member_id: String?,
         ?request_options: WhopSDK::request_opts

@@ -9,6 +9,7 @@ module WhopSDK
         created_before: Time?,
         direction: WhopSDK::Models::direction?,
         first: Integer?,
+        future_usage: WhopSDK::Models::PaymentMethodListParams::future_usage?,
         last: Integer?,
         member_id: String?
       }
@@ -32,6 +33,8 @@ module WhopSDK
 
       attr_accessor first: Integer?
 
+      attr_accessor future_usage: WhopSDK::Models::PaymentMethodListParams::future_usage?
+
       attr_accessor last: Integer?
 
       attr_accessor member_id: String?
@@ -44,6 +47,7 @@ module WhopSDK
         ?created_before: Time?,
         ?direction: WhopSDK::Models::direction?,
         ?first: Integer?,
+        ?future_usage: WhopSDK::Models::PaymentMethodListParams::future_usage?,
         ?last: Integer?,
         ?member_id: String?,
         ?request_options: WhopSDK::request_opts
@@ -57,10 +61,22 @@ module WhopSDK
         created_before: Time?,
         direction: WhopSDK::Models::direction?,
         first: Integer?,
+        future_usage: WhopSDK::Models::PaymentMethodListParams::future_usage?,
         last: Integer?,
         member_id: String?,
         request_options: WhopSDK::RequestOptions
       }
+
+      type future_usage = :off_session | :on_session
+
+      module FutureUsage
+        extend WhopSDK::Internal::Type::Enum
+
+        OFF_SESSION: :off_session
+        ON_SESSION: :on_session
+
+        def self?.values: -> ::Array[WhopSDK::Models::PaymentMethodListParams::future_usage]
+      end
     end
   end
 end

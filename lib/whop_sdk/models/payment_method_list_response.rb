@@ -29,6 +29,10 @@ module WhopSDK
       # A saved SEPA Direct Debit payment method, including the bank code, country, and last four IBAN digits.
       variant :SepaDebitPaymentMethod, -> { WhopSDK::Models::PaymentMethodListResponse::SepaDebitPaymentMethod }
 
+      # The buyer's Whop balance, offered as a payment method. Charged by naming its ledger id on a `saved` confirmation token — it is a live wallet, not a stored credential, so it cannot be vaulted or charged off-session.
+      variant :PlatformBalancePaymentMethod,
+              -> { WhopSDK::Models::PaymentMethodListResponse::PlatformBalancePaymentMethod }
+
       class BasePaymentMethod < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
         #   Represents a unique identifier that is Base64 obfuscated. It is often used to
@@ -541,8 +545,116 @@ module WhopSDK
         end
       end
 
+      class PlatformBalancePaymentMethod < WhopSDK::Internal::Type::BaseModel
+        # @!attribute id
+        #   Represents a unique identifier that is Base64 obfuscated. It is often used to
+        #   refetch an object or as key for a cache. The ID type appears in a JSON response
+        #   as a String; however, it is not intended to be human-readable. When expected as
+        #   an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+        #   input value will be accepted as an ID.
+        #
+        #   @return [String]
+        required :id, String
+
+        # @!attribute created_at
+        #   The time of the event in ISO 8601 UTC format with millisecond precision
+        #
+        #   @return [Time]
+        required :created_at, Time
+
+        # @!attribute payment_method_type
+        #   The type of payment instrument stored on file (e.g., card, us_bank_account,
+        #   cashapp, ideal, sepa_debit).
+        #
+        #   @return [Symbol, WhopSDK::Models::PaymentMethodTypes]
+        required :payment_method_type, enum: -> { WhopSDK::PaymentMethodTypes }
+
+        # @!attribute platform_balance
+        #   What is available to spend, and whether the account may spend it.
+        #
+        #   @return [WhopSDK::Models::PaymentMethodListResponse::PlatformBalancePaymentMethod::PlatformBalance]
+        required :platform_balance,
+                 -> { WhopSDK::Models::PaymentMethodListResponse::PlatformBalancePaymentMethod::PlatformBalance }
+
+        # @!attribute typename
+        #   The typename of this object
+        #
+        #   @return [Symbol, :PlatformBalancePaymentMethod]
+        required :typename, const: :PlatformBalancePaymentMethod
+
+        # @!method initialize(id:, created_at:, payment_method_type:, platform_balance:, typename: :PlatformBalancePaymentMethod)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::PaymentMethodListResponse::PlatformBalancePaymentMethod} for
+        #   more details.
+        #
+        #   The buyer's Whop balance, offered as a payment method. Charged by naming its
+        #   ledger id on a `saved` confirmation token — it is a live wallet, not a stored
+        #   credential, so it cannot be vaulted or charged off-session.
+        #
+        #   @param id [String] Represents a unique identifier that is Base64 obfuscated. It is often used to re
+        #
+        #   @param created_at [Time] The time of the event in ISO 8601 UTC format with millisecond precision
+        #
+        #   @param payment_method_type [Symbol, WhopSDK::Models::PaymentMethodTypes] The type of payment instrument stored on file (e.g., card, us_bank_account, cash
+        #
+        #   @param platform_balance [WhopSDK::Models::PaymentMethodListResponse::PlatformBalancePaymentMethod::PlatformBalance] What is available to spend, and whether the account may spend it.
+        #
+        #   @param typename [Symbol, :PlatformBalancePaymentMethod] The typename of this object
+
+        # @see WhopSDK::Models::PaymentMethodListResponse::PlatformBalancePaymentMethod#platform_balance
+        class PlatformBalance < WhopSDK::Internal::Type::BaseModel
+          # @!attribute balances
+          #   Available amount per currency. Read from the balance cache, so it is indicative
+          #   — the charge revalidates against settled funds and may still refuse.
+          #
+          #   @return [Array<WhopSDK::Models::PaymentMethodListResponse::PlatformBalancePaymentMethod::PlatformBalance::Balance>]
+          required :balances,
+                   -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::Models::PaymentMethodListResponse::PlatformBalancePaymentMethod::PlatformBalance::Balance] }
+
+          # @!attribute spendable
+          #   Whether this balance can pay right now, which here means only whether it holds
+          #   funds — an account blocked from spending is not listed at all. A zero balance is
+          #   still returned so a client can show it as an option the buyer could top up.
+          #
+          #   @return [Boolean]
+          required :spendable, WhopSDK::Internal::Type::Boolean
+
+          # @!method initialize(balances:, spendable:)
+          #   Some parameter documentations has been truncated, see
+          #   {WhopSDK::Models::PaymentMethodListResponse::PlatformBalancePaymentMethod::PlatformBalance}
+          #   for more details.
+          #
+          #   What is available to spend, and whether the account may spend it.
+          #
+          #   @param balances [Array<WhopSDK::Models::PaymentMethodListResponse::PlatformBalancePaymentMethod::PlatformBalance::Balance>] Available amount per currency. Read from the balance cache, so it is indicative
+          #
+          #   @param spendable [Boolean] Whether this balance can pay right now, which here means only whether it holds f
+
+          class Balance < WhopSDK::Internal::Type::BaseModel
+            # @!attribute amount
+            #   The available amount in this currency.
+            #
+            #   @return [Float]
+            required :amount, Float
+
+            # @!attribute currency
+            #   The currency this amount is held in.
+            #
+            #   @return [Symbol, WhopSDK::Models::Currency]
+            required :currency, enum: -> { WhopSDK::Currency }
+
+            # @!method initialize(amount:, currency:)
+            #   An available balance in one currency.
+            #
+            #   @param amount [Float] The available amount in this currency.
+            #
+            #   @param currency [Symbol, WhopSDK::Models::Currency] The currency this amount is held in.
+          end
+        end
+      end
+
       # @!method self.variants
-      #   @return [Array(WhopSDK::Models::PaymentMethodListResponse::BasePaymentMethod, WhopSDK::Models::PaymentMethodListResponse::CardPaymentMethod, WhopSDK::Models::PaymentMethodListResponse::UsBankAccountPaymentMethod, WhopSDK::Models::PaymentMethodListResponse::CashappPaymentMethod, WhopSDK::Models::PaymentMethodListResponse::IdealPaymentMethod, WhopSDK::Models::PaymentMethodListResponse::SepaDebitPaymentMethod)]
+      #   @return [Array(WhopSDK::Models::PaymentMethodListResponse::BasePaymentMethod, WhopSDK::Models::PaymentMethodListResponse::CardPaymentMethod, WhopSDK::Models::PaymentMethodListResponse::UsBankAccountPaymentMethod, WhopSDK::Models::PaymentMethodListResponse::CashappPaymentMethod, WhopSDK::Models::PaymentMethodListResponse::IdealPaymentMethod, WhopSDK::Models::PaymentMethodListResponse::SepaDebitPaymentMethod, WhopSDK::Models::PaymentMethodListResponse::PlatformBalancePaymentMethod)]
     end
   end
 end

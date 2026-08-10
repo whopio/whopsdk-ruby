@@ -391,6 +391,13 @@ module WhopSDK
       #   @return [WhopSDK::Models::Payment::User, nil]
       required :user, -> { WhopSDK::Payment::User }, nil?: true
 
+      # @!attribute verification_checks
+      #   The issuer's address and card security code check results for this payment. Null
+      #   when the processor returned none.
+      #
+      #   @return [WhopSDK::Models::Payment::VerificationChecks, nil]
+      required :verification_checks, -> { WhopSDK::Payment::VerificationChecks }, nil?: true
+
       # @!attribute voidable
       #   True when the payment is tied to a membership in `past_due`, the payment status
       #   is `open`, and the processor allows voiding payments; otherwise false.
@@ -398,7 +405,7 @@ module WhopSDK
       #   @return [Boolean]
       required :voidable, WhopSDK::Internal::Type::Boolean
 
-      # @!method initialize(id:, amount_after_fees:, application_fee:, auto_refunded:, billing_address:, billing_reason:, card_brand:, card_exp_month:, card_exp_year:, card_last4:, checkout_configuration_id:, company:, created_at:, currency:, customer_phone:, decline_code:, dispute_alerted_at:, disputes:, failure_message:, financing_installments_count:, financing_transactions:, last_payment_attempt:, member:, membership:, metadata:, needs_tracking:, next_payment_attempt:, paid_at:, payment_method:, payment_method_type:, payments_failed:, plan:, product:, promo_code:, refundable:, refunded_amount:, refunded_at:, refunds:, resolutions:, retryable:, risk_score:, risk_signals:, settlement_amount:, settlement_currency:, settlement_exchange_rate:, settlement_time_at:, shipment:, shipping_address:, status:, substatus:, subtotal:, tax_amount:, tax_behavior:, tax_refunded_amount:, three_ds_verified:, total:, updated_at:, usd_total:, user:, voidable:)
+      # @!method initialize(id:, amount_after_fees:, application_fee:, auto_refunded:, billing_address:, billing_reason:, card_brand:, card_exp_month:, card_exp_year:, card_last4:, checkout_configuration_id:, company:, created_at:, currency:, customer_phone:, decline_code:, dispute_alerted_at:, disputes:, failure_message:, financing_installments_count:, financing_transactions:, last_payment_attempt:, member:, membership:, metadata:, needs_tracking:, next_payment_attempt:, paid_at:, payment_method:, payment_method_type:, payments_failed:, plan:, product:, promo_code:, refundable:, refunded_amount:, refunded_at:, refunds:, resolutions:, retryable:, risk_score:, risk_signals:, settlement_amount:, settlement_currency:, settlement_exchange_rate:, settlement_time_at:, shipment:, shipping_address:, status:, substatus:, subtotal:, tax_amount:, tax_behavior:, tax_refunded_amount:, three_ds_verified:, total:, updated_at:, usd_total:, user:, verification_checks:, voidable:)
       #   Some parameter documentations has been truncated, see {WhopSDK::Models::Payment}
       #   for more details.
       #
@@ -522,6 +529,8 @@ module WhopSDK
       #   @param usd_total [Float, nil] The total in USD to show to the creator (excluding buyer fees).
       #
       #   @param user [WhopSDK::Models::Payment::User, nil] The user that made this payment.
+      #
+      #   @param verification_checks [WhopSDK::Models::Payment::VerificationChecks, nil] The issuer's address and card security code check results for this payment. Null
       #
       #   @param voidable [Boolean] True when the payment is tied to a membership in `past_due`, the payment status
 
@@ -1500,6 +1509,51 @@ module WhopSDK
         #   @param name [String, nil] The user's display name shown on their public profile.
         #
         #   @param username [String] The user's unique username shown on their public profile.
+      end
+
+      # @see WhopSDK::Models::Payment#verification_checks
+      class VerificationChecks < WhopSDK::Internal::Type::BaseModel
+        # @!attribute address_line1
+        #   Whether the billing street address the customer entered matched the address the
+        #   issuer has on file.
+        #
+        #   @return [String, nil]
+        required :address_line1, String, nil?: true
+
+        # @!attribute card_holder_name
+        #   Whether the cardholder name the customer entered matched the name the issuer has
+        #   on file.
+        #
+        #   @return [String, nil]
+        required :card_holder_name, String, nil?: true
+
+        # @!attribute card_security_code
+        #   Whether the CVV / CVC the customer entered matched the card.
+        #
+        #   @return [String, nil]
+        required :card_security_code, String, nil?: true
+
+        # @!attribute zip_code
+        #   Whether the billing postal code the customer entered matched the postal code the
+        #   issuer has on file.
+        #
+        #   @return [String, nil]
+        required :zip_code, String, nil?: true
+
+        # @!method initialize(address_line1:, card_holder_name:, card_security_code:, zip_code:)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::Payment::VerificationChecks} for more details.
+        #
+        #   The issuer's address and card security code check results for this payment. Null
+        #   when the processor returned none.
+        #
+        #   @param address_line1 [String, nil] Whether the billing street address the customer entered matched the address the
+        #
+        #   @param card_holder_name [String, nil] Whether the cardholder name the customer entered matched the name the issuer has
+        #
+        #   @param card_security_code [String, nil] Whether the CVV / CVC the customer entered matched the card.
+        #
+        #   @param zip_code [String, nil] Whether the billing postal code the customer entered matched the postal code the
       end
     end
   end

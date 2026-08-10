@@ -61,6 +61,7 @@ module WhopSDK
         updated_at: Time,
         usd_total: Float?,
         user: WhopSDK::Payment::User?,
+        verification_checks: WhopSDK::Payment::VerificationChecks?,
         voidable: bool
       }
 
@@ -183,6 +184,8 @@ module WhopSDK
 
       attr_accessor user: WhopSDK::Payment::User?
 
+      attr_accessor verification_checks: WhopSDK::Payment::VerificationChecks?
+
       attr_accessor voidable: bool
 
       def initialize: (
@@ -245,6 +248,7 @@ module WhopSDK
         updated_at: Time,
         usd_total: Float?,
         user: WhopSDK::Payment::User?,
+        verification_checks: WhopSDK::Payment::VerificationChecks?,
         voidable: bool
       ) -> void
 
@@ -308,6 +312,7 @@ module WhopSDK
         updated_at: Time,
         usd_total: Float?,
         user: WhopSDK::Payment::User?,
+        verification_checks: WhopSDK::Payment::VerificationChecks?,
         voidable: bool
       }
 
@@ -1150,6 +1155,38 @@ module WhopSDK
           email: String?,
           name: String?,
           username: String
+        }
+      end
+
+      type verification_checks =
+        {
+          :address_line1 => String?,
+          card_holder_name: String?,
+          card_security_code: String?,
+          zip_code: String?
+        }
+
+      class VerificationChecks < WhopSDK::Internal::Type::BaseModel
+        attr_accessor address_line1: String?
+
+        attr_accessor card_holder_name: String?
+
+        attr_accessor card_security_code: String?
+
+        attr_accessor zip_code: String?
+
+        def initialize: (
+          address_line1: String?,
+          card_holder_name: String?,
+          card_security_code: String?,
+          zip_code: String?
+        ) -> void
+
+        def to_hash: -> {
+          :address_line1 => String?,
+          card_holder_name: String?,
+          card_security_code: String?,
+          zip_code: String?
         }
       end
     end

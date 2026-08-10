@@ -80,6 +80,7 @@ class WhopSDK::Test::Resources::PaymentsTest < WhopSDK::Test::ResourceTest
         updated_at: Time,
         usd_total: Float | nil,
         user: WhopSDK::Payment::User | nil,
+        verification_checks: WhopSDK::Payment::VerificationChecks | nil,
         voidable: WhopSDK::Internal::Type::Boolean
       }
     end
@@ -155,6 +156,7 @@ class WhopSDK::Test::Resources::PaymentsTest < WhopSDK::Test::ResourceTest
         updated_at: Time,
         usd_total: Float | nil,
         user: WhopSDK::Payment::User | nil,
+        verification_checks: WhopSDK::Payment::VerificationChecks | nil,
         voidable: WhopSDK::Internal::Type::Boolean
       }
     end
@@ -324,6 +326,7 @@ class WhopSDK::Test::Resources::PaymentsTest < WhopSDK::Test::ResourceTest
         updated_at: Time,
         usd_total: Float | nil,
         user: WhopSDK::Payment::User | nil,
+        verification_checks: WhopSDK::Payment::VerificationChecks | nil,
         voidable: WhopSDK::Internal::Type::Boolean
       }
     end
@@ -399,6 +402,7 @@ class WhopSDK::Test::Resources::PaymentsTest < WhopSDK::Test::ResourceTest
         updated_at: Time,
         usd_total: Float | nil,
         user: WhopSDK::Payment::User | nil,
+        verification_checks: WhopSDK::Payment::VerificationChecks | nil,
         voidable: WhopSDK::Internal::Type::Boolean
       }
     end
@@ -474,6 +478,7 @@ class WhopSDK::Test::Resources::PaymentsTest < WhopSDK::Test::ResourceTest
         updated_at: Time,
         usd_total: Float | nil,
         user: WhopSDK::Payment::User | nil,
+        verification_checks: WhopSDK::Payment::VerificationChecks | nil,
         voidable: WhopSDK::Internal::Type::Boolean
       }
     end

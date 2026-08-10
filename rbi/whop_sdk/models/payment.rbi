@@ -333,6 +333,19 @@ module WhopSDK
       sig { params(user: T.nilable(WhopSDK::Payment::User::OrHash)).void }
       attr_writer :user
 
+      # The issuer's address and card security code check results for this payment. Null
+      # when the processor returned none.
+      sig { returns(T.nilable(WhopSDK::Payment::VerificationChecks)) }
+      attr_reader :verification_checks
+
+      sig do
+        params(
+          verification_checks:
+            T.nilable(WhopSDK::Payment::VerificationChecks::OrHash)
+        ).void
+      end
+      attr_writer :verification_checks
+
       # True when the payment is tied to a membership in `past_due`, the payment status
       # is `open`, and the processor allows voiding payments; otherwise false.
       sig { returns(T::Boolean) }
@@ -404,6 +417,8 @@ module WhopSDK
           updated_at: Time,
           usd_total: T.nilable(Float),
           user: T.nilable(WhopSDK::Payment::User::OrHash),
+          verification_checks:
+            T.nilable(WhopSDK::Payment::VerificationChecks::OrHash),
           voidable: T::Boolean
         ).returns(T.attached_class)
       end
@@ -559,6 +574,9 @@ module WhopSDK
         usd_total:,
         # The user that made this payment.
         user:,
+        # The issuer's address and card security code check results for this payment. Null
+        # when the processor returned none.
+        verification_checks:,
         # True when the payment is tied to a membership in `past_due`, the payment status
         # is `open`, and the processor allows voiding payments; otherwise false.
         voidable:
@@ -630,6 +648,8 @@ module WhopSDK
             updated_at: Time,
             usd_total: T.nilable(Float),
             user: T.nilable(WhopSDK::Payment::User),
+            verification_checks:
+              T.nilable(WhopSDK::Payment::VerificationChecks),
             voidable: T::Boolean
           }
         )
@@ -2318,6 +2338,73 @@ module WhopSDK
               email: T.nilable(String),
               name: T.nilable(String),
               username: String
+            }
+          )
+        end
+        def to_hash
+        end
+      end
+
+      class VerificationChecks < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              WhopSDK::Payment::VerificationChecks,
+              WhopSDK::Internal::AnyHash
+            )
+          end
+
+        # Whether the billing street address the customer entered matched the address the
+        # issuer has on file.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :address_line1
+
+        # Whether the cardholder name the customer entered matched the name the issuer has
+        # on file.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :card_holder_name
+
+        # Whether the CVV / CVC the customer entered matched the card.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :card_security_code
+
+        # Whether the billing postal code the customer entered matched the postal code the
+        # issuer has on file.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :zip_code
+
+        # The issuer's address and card security code check results for this payment. Null
+        # when the processor returned none.
+        sig do
+          params(
+            address_line1: T.nilable(String),
+            card_holder_name: T.nilable(String),
+            card_security_code: T.nilable(String),
+            zip_code: T.nilable(String)
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # Whether the billing street address the customer entered matched the address the
+          # issuer has on file.
+          address_line1:,
+          # Whether the cardholder name the customer entered matched the name the issuer has
+          # on file.
+          card_holder_name:,
+          # Whether the CVV / CVC the customer entered matched the card.
+          card_security_code:,
+          # Whether the billing postal code the customer entered matched the postal code the
+          # issuer has on file.
+          zip_code:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              address_line1: T.nilable(String),
+              card_holder_name: T.nilable(String),
+              card_security_code: T.nilable(String),
+              zip_code: T.nilable(String)
             }
           )
         end

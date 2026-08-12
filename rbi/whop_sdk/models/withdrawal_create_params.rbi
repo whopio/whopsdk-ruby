@@ -24,8 +24,9 @@ module WhopSDK
       attr_accessor :currency
 
       # Set to true to continue when the bank could not confirm the account holder's
-      # name. The withdrawal is refused without it so the creator can fix the account or
-      # link their bank first.
+      # name, or false to be refused in that case so the creator can fix the account or
+      # link their bank first. Omitting the argument skips the warning gate — a client
+      # that cannot show the warning keeps its pre-gate behavior.
       sig { returns(T.nilable(T::Boolean)) }
       attr_accessor :acknowledge_bank_warning
 
@@ -73,8 +74,9 @@ module WhopSDK
         # The currency that is being withdrawn.
         currency:,
         # Set to true to continue when the bank could not confirm the account holder's
-        # name. The withdrawal is refused without it so the creator can fix the account or
-        # link their bank first.
+        # name, or false to be refused in that case so the creator can fix the account or
+        # link their bank first. Omitting the argument skips the warning gate — a client
+        # that cannot show the warning keeps its pre-gate behavior.
         acknowledge_bank_warning: nil,
         # A client-generated key that makes retries safe. Retrying with the same key
         # returns the original withdrawal instead of creating a second one.

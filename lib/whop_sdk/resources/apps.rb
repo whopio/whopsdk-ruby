@@ -14,6 +14,7 @@ module WhopSDK
       #
       # - `developer:create_app`
       # - `developer:manage_api_key`
+      # - `developer:basic:read`
       # - `developer:update_app`
       #
       # @overload create(company_id:, name:, base_url: nil, icon: nil, redirect_uris: nil, route: nil, request_options: {})
@@ -46,6 +47,7 @@ module WhopSDK
       # Required permissions:
       #
       # - `developer:manage_api_key`
+      # - `developer:basic:read`
       # - `developer:update_app`
       #
       # @overload retrieve(id, request_options: {})
@@ -76,6 +78,7 @@ module WhopSDK
       #
       # - `developer:update_app`
       # - `developer:manage_api_key`
+      # - `developer:basic:read`
       #
       # @overload update(id, app_store_description: nil, app_type: nil, base_url: nil, dashboard_path: nil, description: nil, discover_path: nil, experience_path: nil, icon: nil, name: nil, oauth_client_type: nil, openapi_path: nil, redirect_uris: nil, required_scopes: nil, route: nil, secrets: nil, skills_path: nil, status: nil, request_options: {})
       #

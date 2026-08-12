@@ -14,6 +14,7 @@ module WhopSDK
       APP_MANAGER = :app_manager
       SUPPORT = :support
       MANAGER = :manager
+      WORKFORCE = :workforce
       CUSTOM = :custom
 
       # @!method self.values

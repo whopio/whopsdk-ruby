@@ -155,7 +155,6 @@ class WhopSDK::Test::Resources::AppsTest < WhopSDK::Test::ResourceTest
       row => {
         id: String,
         app_type: WhopSDK::AppType,
-        base_url: String | nil,
         company: WhopSDK::Models::AppListResponse::Company,
         creator: WhopSDK::Models::AppListResponse::Creator,
         dashboard_path: String | nil,

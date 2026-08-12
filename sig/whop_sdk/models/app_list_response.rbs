@@ -4,7 +4,6 @@ module WhopSDK
       {
         id: String,
         app_type: WhopSDK::Models::app_type,
-        base_url: String?,
         company: WhopSDK::Models::AppListResponse::Company,
         creator: WhopSDK::Models::AppListResponse::Creator,
         dashboard_path: String?,
@@ -27,8 +26,6 @@ module WhopSDK
       attr_accessor id: String
 
       attr_accessor app_type: WhopSDK::Models::app_type
-
-      attr_accessor base_url: String?
 
       attr_accessor company: WhopSDK::Models::AppListResponse::Company
 
@@ -65,7 +62,6 @@ module WhopSDK
       def initialize: (
         id: String,
         app_type: WhopSDK::Models::app_type,
-        base_url: String?,
         company: WhopSDK::Models::AppListResponse::Company,
         creator: WhopSDK::Models::AppListResponse::Creator,
         dashboard_path: String?,
@@ -87,7 +83,6 @@ module WhopSDK
       def to_hash: -> {
         id: String,
         app_type: WhopSDK::Models::app_type,
-        base_url: String?,
         company: WhopSDK::Models::AppListResponse::Company,
         creator: WhopSDK::Models::AppListResponse::Creator,
         dashboard_path: String?,

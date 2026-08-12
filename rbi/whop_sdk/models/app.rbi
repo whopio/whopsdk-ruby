@@ -22,8 +22,9 @@ module WhopSDK
       sig { returns(WhopSDK::AppType::TaggedSymbol) }
       attr_accessor :app_type
 
-      # The production base URL where the app is hosted. Null if no base URL is
-      # configured.
+      # The production base URL where the app is hosted. `null` if no base URL is
+      # configured, or if the caller lacks the `developer:basic:read` permission on the
+      # app's account.
       sig { returns(T.nilable(String)) }
       attr_accessor :base_url
 
@@ -234,8 +235,9 @@ module WhopSDK
         # The target audience classification for this app (e.g., 'b2b_app', 'b2c_app',
         # 'company_app', 'component').
         app_type:,
-        # The production base URL where the app is hosted. Null if no base URL is
-        # configured.
+        # The production base URL where the app is hosted. `null` if no base URL is
+        # configured, or if the caller lacks the `developer:basic:read` permission on the
+        # app's account.
         base_url:,
         # The company that owns and publishes this app.
         company:,

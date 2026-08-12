@@ -21,6 +21,7 @@ module WhopSDK
         T.let(:app_manager, WhopSDK::AuthorizedUserRoles::TaggedSymbol)
       SUPPORT = T.let(:support, WhopSDK::AuthorizedUserRoles::TaggedSymbol)
       MANAGER = T.let(:manager, WhopSDK::AuthorizedUserRoles::TaggedSymbol)
+      WORKFORCE = T.let(:workforce, WhopSDK::AuthorizedUserRoles::TaggedSymbol)
       CUSTOM = T.let(:custom, WhopSDK::AuthorizedUserRoles::TaggedSymbol)
 
       sig do

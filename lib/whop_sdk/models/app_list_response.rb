@@ -17,13 +17,6 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::AppType]
       required :app_type, enum: -> { WhopSDK::AppType }
 
-      # @!attribute base_url
-      #   The production base URL where the app is hosted. Null if no base URL is
-      #   configured.
-      #
-      #   @return [String, nil]
-      required :base_url, String, nil?: true
-
       # @!attribute company
       #   The company that owns and publishes this app.
       #
@@ -140,7 +133,7 @@ module WhopSDK
       #   @return [Boolean]
       required :verified, WhopSDK::Internal::Type::Boolean
 
-      # @!method initialize(id:, app_type:, base_url:, company:, creator:, dashboard_path:, description:, discover_path:, domain_id:, experience_path:, hosted_url:, icon:, name:, openapi_path:, origin:, route:, skills_path:, status:, verified:)
+      # @!method initialize(id:, app_type:, company:, creator:, dashboard_path:, description:, discover_path:, domain_id:, experience_path:, hosted_url:, icon:, name:, openapi_path:, origin:, route:, skills_path:, status:, verified:)
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::AppListResponse} for more details.
       #
@@ -150,8 +143,6 @@ module WhopSDK
       #   @param id [String] The unique identifier for the app.
       #
       #   @param app_type [Symbol, WhopSDK::Models::AppType] The target audience classification for this app (e.g., 'b2b_app', 'b2c_app', 'co
-      #
-      #   @param base_url [String, nil] The production base URL where the app is hosted. Null if no base URL is configur
       #
       #   @param company [WhopSDK::Models::AppListResponse::Company] The company that owns and publishes this app.
       #

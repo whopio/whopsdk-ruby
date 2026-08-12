@@ -11,6 +11,7 @@ module WhopSDK
       #
       # - `developer:create_app`
       # - `developer:manage_api_key`
+      # - `developer:basic:read`
       # - `developer:update_app`
       sig do
         params(
@@ -49,6 +50,7 @@ module WhopSDK
       # Required permissions:
       #
       # - `developer:manage_api_key`
+      # - `developer:basic:read`
       # - `developer:update_app`
       sig do
         params(
@@ -70,6 +72,7 @@ module WhopSDK
       #
       # - `developer:update_app`
       # - `developer:manage_api_key`
+      # - `developer:basic:read`
       sig do
         params(
           id: String,

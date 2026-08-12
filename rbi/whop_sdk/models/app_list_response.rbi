@@ -17,11 +17,6 @@ module WhopSDK
       sig { returns(WhopSDK::AppType::TaggedSymbol) }
       attr_accessor :app_type
 
-      # The production base URL where the app is hosted. Null if no base URL is
-      # configured.
-      sig { returns(T.nilable(String)) }
-      attr_accessor :base_url
-
       # The company that owns and publishes this app.
       sig { returns(WhopSDK::Models::AppListResponse::Company) }
       attr_reader :company
@@ -129,7 +124,6 @@ module WhopSDK
         params(
           id: String,
           app_type: WhopSDK::AppType::OrSymbol,
-          base_url: T.nilable(String),
           company: WhopSDK::Models::AppListResponse::Company::OrHash,
           creator: WhopSDK::Models::AppListResponse::Creator::OrHash,
           dashboard_path: T.nilable(String),
@@ -154,9 +148,6 @@ module WhopSDK
         # The target audience classification for this app (e.g., 'b2b_app', 'b2c_app',
         # 'company_app', 'component').
         app_type:,
-        # The production base URL where the app is hosted. Null if no base URL is
-        # configured.
-        base_url:,
         # The company that owns and publishes this app.
         company:,
         # The user who created and owns the company that published this app.
@@ -217,7 +208,6 @@ module WhopSDK
           {
             id: String,
             app_type: WhopSDK::AppType::TaggedSymbol,
-            base_url: T.nilable(String),
             company: WhopSDK::Models::AppListResponse::Company,
             creator: WhopSDK::Models::AppListResponse::Creator,
             dashboard_path: T.nilable(String),

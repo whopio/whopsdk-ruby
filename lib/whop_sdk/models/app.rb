@@ -24,8 +24,9 @@ module WhopSDK
       required :app_type, enum: -> { WhopSDK::AppType }
 
       # @!attribute base_url
-      #   The production base URL where the app is hosted. Null if no base URL is
-      #   configured.
+      #   The production base URL where the app is hosted. `null` if no base URL is
+      #   configured, or if the caller lacks the `developer:basic:read` permission on the
+      #   app's account.
       #
       #   @return [String, nil]
       required :base_url, String, nil?: true
@@ -227,7 +228,7 @@ module WhopSDK
       #
       #   @param app_type [Symbol, WhopSDK::Models::AppType] The target audience classification for this app (e.g., 'b2b_app', 'b2c_app', 'co
       #
-      #   @param base_url [String, nil] The production base URL where the app is hosted. Null if no base URL is configur
+      #   @param base_url [String, nil] The production base URL where the app is hosted. `null` if no base URL is config
       #
       #   @param company [WhopSDK::Models::App::Company] The company that owns and publishes this app.
       #

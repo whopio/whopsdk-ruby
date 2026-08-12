@@ -91,9 +91,9 @@ module WhopSDK
 
           # @!attribute return_url
           #   Where the buyer continues after completing an off-site step. Must be an absolute
-          #   https URL without credentials, at most 2,048 characters. Editable until they
-          #   return — see the payment's update endpoint. Ignored unless confirmation_token is
-          #   provided.
+          #   https URL without credentials (http is allowed for localhost), at most 2,048
+          #   characters. Editable until they return — see the payment's update endpoint.
+          #   Ignored unless confirmation_token is provided.
           #
           #   @return [String, nil]
           optional :return_url, String, nil?: true
@@ -430,9 +430,9 @@ module WhopSDK
 
           # @!attribute return_url
           #   Where the buyer continues after completing an off-site step. Must be an absolute
-          #   https URL without credentials, at most 2,048 characters. Editable until they
-          #   return — see the payment's update endpoint. Ignored unless confirmation_token is
-          #   provided.
+          #   https URL without credentials (http is allowed for localhost), at most 2,048
+          #   characters. Editable until they return — see the payment's update endpoint.
+          #   Ignored unless confirmation_token is provided.
           #
           #   @return [String, nil]
           optional :return_url, String, nil?: true
@@ -772,9 +772,9 @@ module WhopSDK
 
           # @!attribute return_url
           #   Where the buyer continues after completing an off-site step. Must be an absolute
-          #   https URL without credentials, at most 2,048 characters. Editable until they
-          #   return — see the payment's update endpoint. Ignored unless confirmation_token is
-          #   provided.
+          #   https URL without credentials (http is allowed for localhost), at most 2,048
+          #   characters. Editable until they return — see the payment's update endpoint.
+          #   Ignored unless confirmation_token is provided.
           #
           #   @return [String, nil]
           optional :return_url, String, nil?: true
@@ -856,9 +856,9 @@ module WhopSDK
 
           # @!attribute return_url
           #   Where the buyer continues after completing an off-site step. Must be an absolute
-          #   https URL without credentials, at most 2,048 characters. Editable until they
-          #   return — see the payment's update endpoint. Ignored unless confirmation_token is
-          #   provided.
+          #   https URL without credentials (http is allowed for localhost), at most 2,048
+          #   characters. Editable until they return — see the payment's update endpoint.
+          #   Ignored unless confirmation_token is provided.
           #
           #   @return [String, nil]
           optional :return_url, String, nil?: true

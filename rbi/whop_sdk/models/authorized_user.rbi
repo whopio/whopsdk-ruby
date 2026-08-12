@@ -30,8 +30,8 @@ module WhopSDK
       sig { params(user: WhopSDK::AuthorizedUser::User::OrHash).void }
       attr_writer :user
 
-      # A user who has been granted administrative access to manage a company's
-      # dashboard and settings.
+      # A user who belongs to a company's team with access determined by their assigned
+      # role.
       sig do
         params(
           id: String,

@@ -12,10 +12,9 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :id
 
-      # The access level of the product member. If its admin, the member is an
-      # authorized user of the company. If its customer, the member has a valid
-      # membership to any product on the company. If its no_access, the member does not
-      # have access to the product.
+      # The member's content access level. `admin` means their team role grants
+      # administrative content access, `customer` means they hold a valid product
+      # membership, and `no_access` means they cannot access company content.
       sig { returns(WhopSDK::AccessLevel::TaggedSymbol) }
       attr_accessor :access_level
 
@@ -89,10 +88,9 @@ module WhopSDK
       def self.new(
         # The unique identifier for the company member.
         id:,
-        # The access level of the product member. If its admin, the member is an
-        # authorized user of the company. If its customer, the member has a valid
-        # membership to any product on the company. If its no_access, the member does not
-        # have access to the product.
+        # The member's content access level. `admin` means their team role grants
+        # administrative content access, `customer` means they hold a valid product
+        # membership, and `no_access` means they cannot access company content.
         access_level:,
         # The member's token balance for this company. Computed live from the ledger, not
         # from a cache.

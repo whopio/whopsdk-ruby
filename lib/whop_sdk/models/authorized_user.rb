@@ -29,8 +29,8 @@ module WhopSDK
       required :user, -> { WhopSDK::AuthorizedUser::User }
 
       # @!method initialize(id:, company:, role:, user:)
-      #   A user who has been granted administrative access to manage a company's
-      #   dashboard and settings.
+      #   A user who belongs to a company's team with access determined by their assigned
+      #   role.
       #
       #   @param id [String] The unique identifier for the authorized user.
       #

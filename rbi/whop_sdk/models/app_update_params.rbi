@@ -22,8 +22,8 @@ module WhopSDK
       sig { returns(T.nilable(WhopSDK::AppType::OrSymbol)) }
       attr_accessor :app_type
 
-      # The base production URL where the app is hosted, such as
-      # 'https://myapp.example.com'.
+      # The base production URL where the app is hosted. Pass null to take the app proxy
+      # offline.
       sig { returns(T.nilable(String)) }
       attr_accessor :base_url
 
@@ -134,8 +134,8 @@ module WhopSDK
         app_store_description: nil,
         # The type of end-user an app is built for
         app_type: nil,
-        # The base production URL where the app is hosted, such as
-        # 'https://myapp.example.com'.
+        # The base production URL where the app is hosted. Pass null to take the app proxy
+        # offline.
         base_url: nil,
         # The URL path for the company dashboard view of the app, such as '/dashboard'.
         dashboard_path: nil,

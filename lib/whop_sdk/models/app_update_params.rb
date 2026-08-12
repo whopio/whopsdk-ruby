@@ -25,8 +25,8 @@ module WhopSDK
       optional :app_type, enum: -> { WhopSDK::AppType }, nil?: true
 
       # @!attribute base_url
-      #   The base production URL where the app is hosted, such as
-      #   'https://myapp.example.com'.
+      #   The base production URL where the app is hosted. Pass null to take the app proxy
+      #   offline.
       #
       #   @return [String, nil]
       optional :base_url, String, nil?: true
@@ -134,7 +134,7 @@ module WhopSDK
       #
       #   @param app_type [Symbol, WhopSDK::Models::AppType, nil] The type of end-user an app is built for
       #
-      #   @param base_url [String, nil] The base production URL where the app is hosted, such as 'https://myapp.example.
+      #   @param base_url [String, nil] The base production URL where the app is hosted. Pass null to take the app proxy
       #
       #   @param dashboard_path [String, nil] The URL path for the company dashboard view of the app, such as '/dashboard'.
       #

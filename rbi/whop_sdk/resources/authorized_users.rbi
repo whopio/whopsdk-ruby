@@ -13,7 +13,7 @@ module WhopSDK
       sig do
         params(
           company_id: String,
-          role: WhopSDK::AuthorizedUserRoles::OrSymbol,
+          role: WhopSDK::AuthorizedUserCreateParams::Role::OrSymbol,
           user_id: String,
           elevation:
             T.nilable(WhopSDK::AuthorizedUserCreateParams::Elevation::OrHash),

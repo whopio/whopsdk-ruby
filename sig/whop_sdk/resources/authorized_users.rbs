@@ -3,7 +3,7 @@ module WhopSDK
     class AuthorizedUsers
       def create: (
         company_id: String,
-        role: WhopSDK::Models::authorized_user_roles,
+        role: WhopSDK::Models::AuthorizedUserCreateParams::role,
         user_id: String,
         ?elevation: WhopSDK::AuthorizedUserCreateParams::Elevation?,
         ?send_emails: bool?,

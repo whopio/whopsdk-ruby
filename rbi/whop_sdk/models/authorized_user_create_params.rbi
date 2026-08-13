@@ -17,7 +17,7 @@ module WhopSDK
 
       # The role to assign to the authorized user within the company. Supported roles:
       # 'moderator', 'sales_manager'.
-      sig { returns(WhopSDK::AuthorizedUserRoles::OrSymbol) }
+      sig { returns(WhopSDK::AuthorizedUserCreateParams::Role::OrSymbol) }
       attr_accessor :role
 
       # The ID of the user to add as an authorized user.
@@ -43,7 +43,7 @@ module WhopSDK
       sig do
         params(
           company_id: String,
-          role: WhopSDK::AuthorizedUserRoles::OrSymbol,
+          role: WhopSDK::AuthorizedUserCreateParams::Role::OrSymbol,
           user_id: String,
           elevation:
             T.nilable(WhopSDK::AuthorizedUserCreateParams::Elevation::OrHash),
@@ -71,7 +71,7 @@ module WhopSDK
         override.returns(
           {
             company_id: String,
-            role: WhopSDK::AuthorizedUserRoles::OrSymbol,
+            role: WhopSDK::AuthorizedUserCreateParams::Role::OrSymbol,
             user_id: String,
             elevation:
               T.nilable(WhopSDK::AuthorizedUserCreateParams::Elevation),
@@ -81,6 +81,46 @@ module WhopSDK
         )
       end
       def to_hash
+      end
+
+      # The role to assign to the authorized user within the company. Supported roles:
+      # 'moderator', 'sales_manager'.
+      module Role
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias do
+            T.all(Symbol, WhopSDK::AuthorizedUserCreateParams::Role)
+          end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        OWNER =
+          T.let(:owner, WhopSDK::AuthorizedUserCreateParams::Role::TaggedSymbol)
+        ADMIN =
+          T.let(:admin, WhopSDK::AuthorizedUserCreateParams::Role::TaggedSymbol)
+        SALES_MANAGER =
+          T.let(
+            :sales_manager,
+            WhopSDK::AuthorizedUserCreateParams::Role::TaggedSymbol
+          )
+        MODERATOR =
+          T.let(
+            :moderator,
+            WhopSDK::AuthorizedUserCreateParams::Role::TaggedSymbol
+          )
+        ADVERTISER =
+          T.let(
+            :advertiser,
+            WhopSDK::AuthorizedUserCreateParams::Role::TaggedSymbol
+          )
+
+        sig do
+          override.returns(
+            T::Array[WhopSDK::AuthorizedUserCreateParams::Role::TaggedSymbol]
+          )
+        end
+        def self.values
+        end
       end
 
       class Elevation < WhopSDK::Internal::Type::BaseModel

@@ -18,7 +18,7 @@ module WhopSDK
       #
       # @param company_id [String] The ID of the company to add the authorized user to.
       #
-      # @param role [Symbol, WhopSDK::Models::AuthorizedUserRoles] The role to assign to the authorized user within the company. Supported roles: '
+      # @param role [Symbol, WhopSDK::Models::AuthorizedUserCreateParams::Role] The role to assign to the authorized user within the company. Supported roles: '
       #
       # @param user_id [String] The ID of the user to add as an authorized user.
       #

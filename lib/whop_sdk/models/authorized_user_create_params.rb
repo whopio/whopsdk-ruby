@@ -17,8 +17,8 @@ module WhopSDK
       #   The role to assign to the authorized user within the company. Supported roles:
       #   'moderator', 'sales_manager'.
       #
-      #   @return [Symbol, WhopSDK::Models::AuthorizedUserRoles]
-      required :role, enum: -> { WhopSDK::AuthorizedUserRoles }
+      #   @return [Symbol, WhopSDK::Models::AuthorizedUserCreateParams::Role]
+      required :role, enum: -> { WhopSDK::AuthorizedUserCreateParams::Role }
 
       # @!attribute user_id
       #   The ID of the user to add as an authorized user.
@@ -44,7 +44,7 @@ module WhopSDK
       #
       #   @param company_id [String] The ID of the company to add the authorized user to.
       #
-      #   @param role [Symbol, WhopSDK::Models::AuthorizedUserRoles] The role to assign to the authorized user within the company. Supported roles: '
+      #   @param role [Symbol, WhopSDK::Models::AuthorizedUserCreateParams::Role] The role to assign to the authorized user within the company. Supported roles: '
       #
       #   @param user_id [String] The ID of the user to add as an authorized user.
       #
@@ -53,6 +53,21 @@ module WhopSDK
       #   @param send_emails [Boolean, nil] Whether to send notification emails to the user on creation.
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
+
+      # The role to assign to the authorized user within the company. Supported roles:
+      # 'moderator', 'sales_manager'.
+      module Role
+        extend WhopSDK::Internal::Type::Enum
+
+        OWNER = :owner
+        ADMIN = :admin
+        SALES_MANAGER = :sales_manager
+        MODERATOR = :moderator
+        ADVERTISER = :advertiser
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
 
       class Elevation < WhopSDK::Internal::Type::BaseModel
         # @!attribute authenticator_data

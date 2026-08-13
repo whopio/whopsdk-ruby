@@ -3,7 +3,7 @@ module WhopSDK
     type authorized_user_create_params =
       {
         company_id: String,
-        role: WhopSDK::Models::authorized_user_roles,
+        role: WhopSDK::Models::AuthorizedUserCreateParams::role,
         user_id: String,
         elevation: WhopSDK::AuthorizedUserCreateParams::Elevation?,
         send_emails: bool?
@@ -16,7 +16,7 @@ module WhopSDK
 
       attr_accessor company_id: String
 
-      attr_accessor role: WhopSDK::Models::authorized_user_roles
+      attr_accessor role: WhopSDK::Models::AuthorizedUserCreateParams::role
 
       attr_accessor user_id: String
 
@@ -26,7 +26,7 @@ module WhopSDK
 
       def initialize: (
         company_id: String,
-        role: WhopSDK::Models::authorized_user_roles,
+        role: WhopSDK::Models::AuthorizedUserCreateParams::role,
         user_id: String,
         ?elevation: WhopSDK::AuthorizedUserCreateParams::Elevation?,
         ?send_emails: bool?,
@@ -35,12 +35,26 @@ module WhopSDK
 
       def to_hash: -> {
         company_id: String,
-        role: WhopSDK::Models::authorized_user_roles,
+        role: WhopSDK::Models::AuthorizedUserCreateParams::role,
         user_id: String,
         elevation: WhopSDK::AuthorizedUserCreateParams::Elevation?,
         send_emails: bool?,
         request_options: WhopSDK::RequestOptions
       }
+
+      type role = :owner | :admin | :sales_manager | :moderator | :advertiser
+
+      module Role
+        extend WhopSDK::Internal::Type::Enum
+
+        OWNER: :owner
+        ADMIN: :admin
+        SALES_MANAGER: :sales_manager
+        MODERATOR: :moderator
+        ADVERTISER: :advertiser
+
+        def self?.values: -> ::Array[WhopSDK::Models::AuthorizedUserCreateParams::role]
+      end
 
       type elevation =
         {

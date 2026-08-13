@@ -32,6 +32,7 @@ class WhopSDK::Test::Resources::PaymentMethodsTest < WhopSDK::Test::ResourceTest
         id: String,
         card: WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Card,
         created_at: Time,
+        has_payer_document: WhopSDK::Internal::Type::Boolean,
         payment_method_type: WhopSDK::PaymentMethodTypes
       }
       in {
@@ -109,6 +110,7 @@ class WhopSDK::Test::Resources::PaymentMethodsTest < WhopSDK::Test::ResourceTest
         id: String,
         card: WhopSDK::Models::PaymentMethodListResponse::CardPaymentMethod::Card,
         created_at: Time,
+        has_payer_document: WhopSDK::Internal::Type::Boolean,
         payment_method_type: WhopSDK::PaymentMethodTypes
       }
       in {

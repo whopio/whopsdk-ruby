@@ -49,6 +49,7 @@ module WhopSDK
           id: String,
           card: WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Card,
           created_at: Time,
+          has_payer_document: bool,
           payment_method_type: WhopSDK::Models::payment_method_types,
           typename: :CardPaymentMethod
         }
@@ -60,6 +61,8 @@ module WhopSDK
 
         attr_accessor created_at: Time
 
+        attr_accessor has_payer_document: bool
+
         attr_accessor payment_method_type: WhopSDK::Models::payment_method_types
 
         attr_accessor typename: :CardPaymentMethod
@@ -68,6 +71,7 @@ module WhopSDK
           id: String,
           card: WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Card,
           created_at: Time,
+          has_payer_document: bool,
           payment_method_type: WhopSDK::Models::payment_method_types,
           ?typename: :CardPaymentMethod
         ) -> void
@@ -76,6 +80,7 @@ module WhopSDK
           id: String,
           card: WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Card,
           created_at: Time,
+          has_payer_document: bool,
           payment_method_type: WhopSDK::Models::payment_method_types,
           typename: :CardPaymentMethod
         }

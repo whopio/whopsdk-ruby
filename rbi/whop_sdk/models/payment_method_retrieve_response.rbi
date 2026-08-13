@@ -127,6 +127,11 @@ module WhopSDK
         sig { returns(Time) }
         attr_accessor :created_at
 
+        # Whether this card has the payer identity document required by its payment
+        # provider.
+        sig { returns(T::Boolean) }
+        attr_accessor :has_payer_document
+
         # The type of payment instrument stored on file (e.g., card, us_bank_account,
         # cashapp, ideal, sepa_debit).
         sig { returns(WhopSDK::PaymentMethodTypes::TaggedSymbol) }
@@ -144,6 +149,7 @@ module WhopSDK
             card:
               WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Card::OrHash,
             created_at: Time,
+            has_payer_document: T::Boolean,
             payment_method_type: WhopSDK::PaymentMethodTypes::OrSymbol,
             typename: Symbol
           ).returns(T.attached_class)
@@ -160,6 +166,9 @@ module WhopSDK
           card:,
           # The time of the event in ISO 8601 UTC format with millisecond precision
           created_at:,
+          # Whether this card has the payer identity document required by its payment
+          # provider.
+          has_payer_document:,
           # The type of payment instrument stored on file (e.g., card, us_bank_account,
           # cashapp, ideal, sepa_debit).
           payment_method_type:,
@@ -175,6 +184,7 @@ module WhopSDK
               card:
                 WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Card,
               created_at: Time,
+              has_payer_document: T::Boolean,
               payment_method_type: WhopSDK::PaymentMethodTypes::TaggedSymbol,
               typename: Symbol
             }

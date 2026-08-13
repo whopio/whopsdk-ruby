@@ -103,6 +103,13 @@ module WhopSDK
         #   @return [Time]
         required :created_at, Time
 
+        # @!attribute has_payer_document
+        #   Whether this card has the payer identity document required by its payment
+        #   provider.
+        #
+        #   @return [Boolean]
+        required :has_payer_document, WhopSDK::Internal::Type::Boolean
+
         # @!attribute payment_method_type
         #   The type of payment instrument stored on file (e.g., card, us_bank_account,
         #   cashapp, ideal, sepa_debit).
@@ -116,7 +123,7 @@ module WhopSDK
         #   @return [Symbol, :CardPaymentMethod]
         required :typename, const: :CardPaymentMethod
 
-        # @!method initialize(id:, card:, created_at:, payment_method_type:, typename: :CardPaymentMethod)
+        # @!method initialize(id:, card:, created_at:, has_payer_document:, payment_method_type:, typename: :CardPaymentMethod)
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::PaymentMethodListResponse::CardPaymentMethod} for more
         #   details.
@@ -129,6 +136,8 @@ module WhopSDK
         #   @param card [WhopSDK::Models::PaymentMethodListResponse::CardPaymentMethod::Card] The card-specific details for this payment method, including brand, last four di
         #
         #   @param created_at [Time] The time of the event in ISO 8601 UTC format with millisecond precision
+        #
+        #   @param has_payer_document [Boolean] Whether this card has the payer identity document required by its payment provid
         #
         #   @param payment_method_type [Symbol, WhopSDK::Models::PaymentMethodTypes] The type of payment instrument stored on file (e.g., card, us_bank_account, cash
         #

@@ -7,9 +7,12 @@ module WhopSDK
       # Send a new message in an experience chat, DM, or group chat channel. Supports
       # text content, attachments, polls, and replies.
       #
-      # Required permissions:
+      # Required permissions (one of):
       #
       # - `chat:message:create`
+      # - `dms:message:manage`
+      # - `livestream:chat:write`
+      # - `support_chat:message:create`
       sig do
         params(
           channel_id: String,
@@ -46,9 +49,12 @@ module WhopSDK
 
       # Retrieves the details of an existing message.
       #
-      # Required permissions:
+      # Required permissions (one of):
       #
       # - `chat:read`
+      # - `dms:read`
+      # - `livestream:chat:read`
+      # - `support_chat:read`
       sig do
         params(
           id: String,
@@ -64,6 +70,13 @@ module WhopSDK
 
       # Edit the content, attachments, or pinned status of an existing message in an
       # experience chat, DM, or group chat channel.
+      #
+      # Required permissions (one of):
+      #
+      # - `chat:message:create`
+      # - `dms:message:manage`
+      # - `livestream:chat:write`
+      # - `support_chat:message:create`
       sig do
         params(
           id: String,
@@ -94,9 +107,11 @@ module WhopSDK
       # Returns a paginated list of messages within a specific experience chat, DM, or
       # group chat channel, sorted by creation time.
       #
-      # Required permissions:
+      # Required permissions (one of):
       #
       # - `chat:read`
+      # - `dms:read`
+      # - `support_chat:read`
       sig do
         params(
           channel_id: String,
@@ -130,9 +145,12 @@ module WhopSDK
       # Permanently delete a message from an experience chat, DM, or group chat channel.
       # Only the message author or a channel admin can delete a message.
       #
-      # Required permissions:
+      # Required permissions (one of):
       #
-      # - `chat:message:create`
+      # - `chat:message:create` and `chat:read`
+      # - `dms:message:manage` and `dms:read`
+      # - `livestream:chat:write` and `livestream:chat:read`
+      # - `support_chat:message:create` and `support_chat:read`
       sig do
         params(
           id: String,

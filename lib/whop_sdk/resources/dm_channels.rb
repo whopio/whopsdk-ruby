@@ -10,6 +10,10 @@ module WhopSDK
       # Create a new DM channel between two or more users, optionally scoped to a
       # specific company. Returns the existing channel if one already exists.
       #
+      # Required permissions:
+      #
+      # - `dms:channel:manage`
+      #
       # @overload create(with_user_ids:, company_id: nil, custom_name: nil, notifications_enabled: nil, request_options: {})
       #
       # @param with_user_ids [Array<String>] The list of user identifiers to include in the DM channel. Each entry can be an
@@ -38,9 +42,10 @@ module WhopSDK
 
       # Retrieves the details of an existing DM channel.
       #
-      # Required permissions:
+      # Required permissions (one of):
       #
       # - `dms:read`
+      # - `support_chat:read`
       #
       # @overload retrieve(id, request_options: {})
       #
@@ -66,9 +71,10 @@ module WhopSDK
       # Update the settings of an existing DM channel, such as its display name. Only an
       # admin of the channel can perform this action.
       #
-      # Required permissions:
+      # Required permissions (one of):
       #
       # - `dms:channel:manage`
+      # - `support_chat:create`
       #
       # @overload update(id, custom_name: nil, request_options: {})
       #
@@ -135,9 +141,10 @@ module WhopSDK
       # Permanently delete a DM channel and all of its messages. Only an admin of the
       # channel can perform this action.
       #
-      # Required permissions:
+      # Required permissions (one of):
       #
       # - `dms:channel:manage`
+      # - `support_chat:create`
       #
       # @overload delete(id, request_options: {})
       #

@@ -6,6 +6,10 @@ module WhopSDK
     class DmChannels
       # Create a new DM channel between two or more users, optionally scoped to a
       # specific company. Returns the existing channel if one already exists.
+      #
+      # Required permissions:
+      #
+      # - `dms:channel:manage`
       sig do
         params(
           with_user_ids: T::Array[String],
@@ -33,9 +37,10 @@ module WhopSDK
 
       # Retrieves the details of an existing DM channel.
       #
-      # Required permissions:
+      # Required permissions (one of):
       #
       # - `dms:read`
+      # - `support_chat:read`
       sig do
         params(
           id: String,
@@ -52,9 +57,10 @@ module WhopSDK
       # Update the settings of an existing DM channel, such as its display name. Only an
       # admin of the channel can perform this action.
       #
-      # Required permissions:
+      # Required permissions (one of):
       #
       # - `dms:channel:manage`
+      # - `support_chat:create`
       sig do
         params(
           id: String,
@@ -108,9 +114,10 @@ module WhopSDK
       # Permanently delete a DM channel and all of its messages. Only an admin of the
       # channel can perform this action.
       #
-      # Required permissions:
+      # Required permissions (one of):
       #
       # - `dms:channel:manage`
+      # - `support_chat:create`
       sig do
         params(
           id: String,

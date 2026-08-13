@@ -7,9 +7,13 @@ module WhopSDK
       # Add an emoji reaction or poll vote to a message or forum post. In forums, the
       # reaction is always a like.
       #
-      # Required permissions:
+      # Required permissions (one of):
       #
       # - `chat:read`
+      # - `dms:read`
+      # - `forum:read`
+      # - `livestream:chat:read`
+      # - `support_chat:read`
       sig do
         params(
           resource_id: String,
@@ -33,9 +37,13 @@ module WhopSDK
 
       # Retrieves the details of an existing reaction.
       #
-      # Required permissions:
+      # Required permissions (one of):
       #
       # - `chat:read`
+      # - `dms:read`
+      # - `forum:read`
+      # - `livestream:chat:read`
+      # - `support_chat:read`
       sig do
         params(
           id: String,
@@ -52,9 +60,13 @@ module WhopSDK
       # Returns a paginated list of emoji reactions on a specific message or forum post,
       # sorted by most recent.
       #
-      # Required permissions:
+      # Required permissions (one of):
       #
       # - `chat:read`
+      # - `dms:read`
+      # - `forum:read`
+      # - `livestream:chat:read`
+      # - `support_chat:read`
       sig do
         params(
           resource_id: String,
@@ -85,9 +97,13 @@ module WhopSDK
       # Remove an emoji reaction from a message or forum post. Only the reaction author
       # or a channel admin can remove a reaction.
       #
-      # Required permissions:
+      # Required permissions (one of):
       #
       # - `chat:read`
+      # - `dms:read`
+      # - `forum:read`
+      # - `livestream:chat:read`
+      # - `support_chat:read`
       sig do
         params(
           id: String,

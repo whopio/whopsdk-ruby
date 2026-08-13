@@ -7,9 +7,10 @@ module WhopSDK
       # Add a new user to an existing DM channel. Only an admin of the channel can add
       # members.
       #
-      # Required permissions:
+      # Required permissions (one of):
       #
-      # - `dms:channel:manage`
+      # - `dms:message:manage`
+      # - `support_chat:message:create`
       sig do
         params(
           channel_id: String,
@@ -29,9 +30,10 @@ module WhopSDK
 
       # Retrieves the details of an existing DM member.
       #
-      # Required permissions:
+      # Required permissions (one of):
       #
       # - `dms:read`
+      # - `support_chat:read`
       sig do
         params(
           id: String,
@@ -48,9 +50,10 @@ module WhopSDK
       # Update a DM channel member's settings, such as their notification preferences or
       # membership status.
       #
-      # Required permissions:
+      # Required permissions (one of):
       #
-      # - `dms:channel:manage`
+      # - `dms:read`
+      # - `support_chat:read`
       sig do
         params(
           id: String,
@@ -74,9 +77,10 @@ module WhopSDK
       # Returns a paginated list of members in a specific DM channel, sorted by the date
       # they were added.
       #
-      # Required permissions:
+      # Required permissions (one of):
       #
       # - `dms:read`
+      # - `support_chat:read`
       sig do
         params(
           channel_id: String,
@@ -107,9 +111,10 @@ module WhopSDK
       # Remove a user from a DM channel. An admin can remove any member, and a member
       # can remove themselves.
       #
-      # Required permissions:
+      # Required permissions (one of):
       #
-      # - `dms:channel:manage`
+      # - `dms:read`
+      # - `support_chat:read`
       sig do
         params(
           id: String,

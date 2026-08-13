@@ -10,9 +10,12 @@ module WhopSDK
       # Send a new message in an experience chat, DM, or group chat channel. Supports
       # text content, attachments, polls, and replies.
       #
-      # Required permissions:
+      # Required permissions (one of):
       #
       # - `chat:message:create`
+      # - `dms:message:manage`
+      # - `livestream:chat:write`
+      # - `support_chat:message:create`
       #
       # @overload create(channel_id:, content:, attachments: nil, auto_detect_links: nil, poll: nil, replying_to_message_id: nil, request_options: {})
       #
@@ -46,9 +49,12 @@ module WhopSDK
 
       # Retrieves the details of an existing message.
       #
-      # Required permissions:
+      # Required permissions (one of):
       #
       # - `chat:read`
+      # - `dms:read`
+      # - `livestream:chat:read`
+      # - `support_chat:read`
       #
       # @overload retrieve(id, request_options: {})
       #
@@ -73,6 +79,13 @@ module WhopSDK
       #
       # Edit the content, attachments, or pinned status of an existing message in an
       # experience chat, DM, or group chat channel.
+      #
+      # Required permissions (one of):
+      #
+      # - `chat:message:create`
+      # - `dms:message:manage`
+      # - `livestream:chat:write`
+      # - `support_chat:message:create`
       #
       # @overload update(id, attachments: nil, content: nil, is_pinned: nil, request_options: {})
       #
@@ -104,9 +117,11 @@ module WhopSDK
       # Returns a paginated list of messages within a specific experience chat, DM, or
       # group chat channel, sorted by creation time.
       #
-      # Required permissions:
+      # Required permissions (one of):
       #
       # - `chat:read`
+      # - `dms:read`
+      # - `support_chat:read`
       #
       # @overload list(channel_id:, after: nil, before: nil, direction: nil, first: nil, last: nil, request_options: {})
       #
@@ -143,9 +158,12 @@ module WhopSDK
       # Permanently delete a message from an experience chat, DM, or group chat channel.
       # Only the message author or a channel admin can delete a message.
       #
-      # Required permissions:
+      # Required permissions (one of):
       #
-      # - `chat:message:create`
+      # - `chat:message:create` and `chat:read`
+      # - `dms:message:manage` and `dms:read`
+      # - `livestream:chat:write` and `livestream:chat:read`
+      # - `support_chat:message:create` and `support_chat:read`
       #
       # @overload delete(id, request_options: {})
       #

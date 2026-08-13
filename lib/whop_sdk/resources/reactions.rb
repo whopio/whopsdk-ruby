@@ -10,9 +10,13 @@ module WhopSDK
       # Add an emoji reaction or poll vote to a message or forum post. In forums, the
       # reaction is always a like.
       #
-      # Required permissions:
+      # Required permissions (one of):
       #
       # - `chat:read`
+      # - `dms:read`
+      # - `forum:read`
+      # - `livestream:chat:read`
+      # - `support_chat:read`
       #
       # @overload create(resource_id:, emoji: nil, poll_option_id: nil, request_options: {})
       #
@@ -40,9 +44,13 @@ module WhopSDK
 
       # Retrieves the details of an existing reaction.
       #
-      # Required permissions:
+      # Required permissions (one of):
       #
       # - `chat:read`
+      # - `dms:read`
+      # - `forum:read`
+      # - `livestream:chat:read`
+      # - `support_chat:read`
       #
       # @overload retrieve(id, request_options: {})
       #
@@ -65,9 +73,13 @@ module WhopSDK
       # Returns a paginated list of emoji reactions on a specific message or forum post,
       # sorted by most recent.
       #
-      # Required permissions:
+      # Required permissions (one of):
       #
       # - `chat:read`
+      # - `dms:read`
+      # - `forum:read`
+      # - `livestream:chat:read`
+      # - `support_chat:read`
       #
       # @overload list(resource_id:, after: nil, before: nil, first: nil, last: nil, request_options: {})
       #
@@ -105,9 +117,13 @@ module WhopSDK
       # Remove an emoji reaction from a message or forum post. Only the reaction author
       # or a channel admin can remove a reaction.
       #
-      # Required permissions:
+      # Required permissions (one of):
       #
       # - `chat:read`
+      # - `dms:read`
+      # - `forum:read`
+      # - `livestream:chat:read`
+      # - `support_chat:read`
       #
       # @overload delete(id, emoji: nil, request_options: {})
       #

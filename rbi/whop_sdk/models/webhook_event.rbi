@@ -152,6 +152,11 @@ module WhopSDK
         T.let(:"shipment.updated", WhopSDK::WebhookEvent::TaggedSymbol)
       MEMBER_CREATED =
         T.let(:"member.created", WhopSDK::WebhookEvent::TaggedSymbol)
+      AD_CAMPAIGN_PAYMENT_FAILED =
+        T.let(
+          :"ad_campaign.payment_failed",
+          WhopSDK::WebhookEvent::TaggedSymbol
+        )
       CHAT_MESSAGE_CREATED =
         T.let(:"chat.message.created", WhopSDK::WebhookEvent::TaggedSymbol)
       CHAT_REACTION_CREATED =

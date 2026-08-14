@@ -63,6 +63,8 @@ module WhopSDK
         T.let(:"transfer.created", WhopSDK::WebhookEvent::TaggedSymbol)
       TRANSFER_COMPLETED =
         T.let(:"transfer.completed", WhopSDK::WebhookEvent::TaggedSymbol)
+      TRANSFER_FAILED =
+        T.let(:"transfer.failed", WhopSDK::WebhookEvent::TaggedSymbol)
       WITHDRAWAL_CREATED =
         T.let(:"withdrawal.created", WhopSDK::WebhookEvent::TaggedSymbol)
       WITHDRAWAL_UPDATED =

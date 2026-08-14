@@ -28,6 +28,7 @@ module WhopSDK
       DEPOSIT_SUCCEEDED = :"deposit.succeeded"
       TRANSFER_CREATED = :"transfer.created"
       TRANSFER_COMPLETED = :"transfer.completed"
+      TRANSFER_FAILED = :"transfer.failed"
       WITHDRAWAL_CREATED = :"withdrawal.created"
       WITHDRAWAL_UPDATED = :"withdrawal.updated"
       CARD_TRANSACTION_CREATED = :"card_transaction.created"

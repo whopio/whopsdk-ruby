@@ -24,6 +24,20 @@ module WhopSDK
       #   @return [Array<WhopSDK::Models::Course::Chapter>]
       required :chapters, -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::Course::Chapter] }
 
+      # @!attribute chapters_count
+      #   The total number of chapters in this course, including chapters whose lessons
+      #   are all hidden from the current user.
+      #
+      #   @return [Integer]
+      required :chapters_count, Integer
+
+      # @!attribute completed_lessons_count
+      #   The number of lessons in this course that the current user has marked as
+      #   completed. Zero when the request is not made on behalf of a user.
+      #
+      #   @return [Integer]
+      required :completed_lessons_count, Integer
+
       # @!attribute cover_image
       #   The URL of the course cover image shown on preview cards. Null if no cover image
       #   has been uploaded.
@@ -52,6 +66,21 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::Languages]
       required :language, enum: -> { WhopSDK::Languages }
 
+      # @!attribute latest_lesson_created_at
+      #   The creation timestamp of the most recently added lesson visible to the current
+      #   user. Null if the course has no lessons.
+      #
+      #   @return [Time, nil]
+      required :latest_lesson_created_at, Time, nil?: true
+
+      # @!attribute lesson_unlock_days
+      #   The distinct drip schedules, in days after the course start, of lessons visible
+      #   to the current user. Combine with startedAt to work out which have unlocked.
+      #   Empty when the user has not started the course or no lesson is on a schedule.
+      #
+      #   @return [Array<Integer>]
+      required :lesson_unlock_days, WhopSDK::Internal::Type::ArrayOf[Integer]
+
       # @!attribute order
       #   The sort position of this course within its parent experience, as a decimal for
       #   flexible ordering.
@@ -65,6 +94,21 @@ module WhopSDK
       #
       #   @return [Boolean]
       required :require_completing_lessons_in_order, WhopSDK::Internal::Type::Boolean
+
+      # @!attribute resume_lesson
+      #   The lesson the current user should continue from: their first incomplete lesson,
+      #   or the first lesson when they have finished the course, have not started it, or
+      #   can edit it. Null if the course has no lessons.
+      #
+      #   @return [WhopSDK::Models::Course::ResumeLesson, nil]
+      required :resume_lesson, -> { WhopSDK::Course::ResumeLesson }, nil?: true
+
+      # @!attribute started_at
+      #   The earliest time the current user is known to have started this course. Null if
+      #   they have not started it. Drip unlock schedules are measured from this point.
+      #
+      #   @return [Time, nil]
+      required :started_at, Time, nil?: true
 
       # @!attribute tagline
       #   A short marketing tagline displayed beneath the course title. Null if no tagline
@@ -86,6 +130,19 @@ module WhopSDK
       #   @return [String, nil]
       required :title, String, nil?: true
 
+      # @!attribute total_duration_seconds
+      #   The combined duration in seconds of every hosted video across the lessons
+      #   visible to the current user.
+      #
+      #   @return [Integer]
+      required :total_duration_seconds, Integer
+
+      # @!attribute total_lessons_count
+      #   The number of lessons in this course visible to the current user.
+      #
+      #   @return [Integer]
+      required :total_lessons_count, Integer
+
       # @!attribute updated_at
       #   The datetime the course was last updated.
       #
@@ -99,7 +156,7 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::CourseVisibilities]
       required :visibility, enum: -> { WhopSDK::CourseVisibilities }
 
-      # @!method initialize(id:, certificate_after_completion_enabled:, chapters:, cover_image:, created_at:, description:, language:, order:, require_completing_lessons_in_order:, tagline:, thumbnail:, title:, updated_at:, visibility:)
+      # @!method initialize(id:, certificate_after_completion_enabled:, chapters:, chapters_count:, completed_lessons_count:, cover_image:, created_at:, description:, language:, latest_lesson_created_at:, lesson_unlock_days:, order:, require_completing_lessons_in_order:, resume_lesson:, started_at:, tagline:, thumbnail:, title:, total_duration_seconds:, total_lessons_count:, updated_at:, visibility:)
       #   Some parameter documentations has been truncated, see {WhopSDK::Models::Course}
       #   for more details.
       #
@@ -112,6 +169,10 @@ module WhopSDK
       #
       #   @param chapters [Array<WhopSDK::Models::Course::Chapter>] An ordered list of all chapters in this course, sorted by their display position
       #
+      #   @param chapters_count [Integer] The total number of chapters in this course, including chapters whose lessons ar
+      #
+      #   @param completed_lessons_count [Integer] The number of lessons in this course that the current user has marked as complet
+      #
       #   @param cover_image [String, nil] The URL of the course cover image shown on preview cards. Null if no cover image
       #
       #   @param created_at [Time] The datetime the course was created.
@@ -120,15 +181,27 @@ module WhopSDK
       #
       #   @param language [Symbol, WhopSDK::Models::Languages] The spoken language of the video content, used to generate accurate closed capti
       #
+      #   @param latest_lesson_created_at [Time, nil] The creation timestamp of the most recently added lesson visible to the current
+      #
+      #   @param lesson_unlock_days [Array<Integer>] The distinct drip schedules, in days after the course start, of lessons visible
+      #
       #   @param order [String] The sort position of this course within its parent experience, as a decimal for
       #
       #   @param require_completing_lessons_in_order [Boolean] Whether students must complete each lesson sequentially before advancing to the
+      #
+      #   @param resume_lesson [WhopSDK::Models::Course::ResumeLesson, nil] The lesson the current user should continue from: their first incomplete lesson,
+      #
+      #   @param started_at [Time, nil] The earliest time the current user is known to have started this course. Null if
       #
       #   @param tagline [String, nil] A short marketing tagline displayed beneath the course title. Null if no tagline
       #
       #   @param thumbnail [WhopSDK::Models::Course::Thumbnail, nil] The thumbnail image displayed on course cards and previews. Null if no thumbnail
       #
       #   @param title [String, nil] The display name of the course shown to students. Null if no title has been set.
+      #
+      #   @param total_duration_seconds [Integer] The combined duration in seconds of every hosted video across the lessons visibl
+      #
+      #   @param total_lessons_count [Integer] The number of lessons in this course visible to the current user.
       #
       #   @param updated_at [Time] The datetime the course was last updated.
       #
@@ -284,6 +357,22 @@ module WhopSDK
             #   @param signed_thumbnail_playback_token [String, nil] The signed thumbnail playback token of the Mux asset
           end
         end
+      end
+
+      # @see WhopSDK::Models::Course#resume_lesson
+      class ResumeLesson < WhopSDK::Internal::Type::BaseModel
+        # @!attribute id
+        #   The unique identifier for the lesson.
+        #
+        #   @return [String]
+        required :id, String
+
+        # @!method initialize(id:)
+        #   The lesson the current user should continue from: their first incomplete lesson,
+        #   or the first lesson when they have finished the course, have not started it, or
+        #   can edit it. Null if the course has no lessons.
+        #
+        #   @param id [String] The unique identifier for the lesson.
       end
 
       # @see WhopSDK::Models::Course#thumbnail

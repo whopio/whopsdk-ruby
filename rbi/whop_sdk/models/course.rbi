@@ -20,6 +20,16 @@ module WhopSDK
       sig { returns(T::Array[WhopSDK::Course::Chapter]) }
       attr_accessor :chapters
 
+      # The total number of chapters in this course, including chapters whose lessons
+      # are all hidden from the current user.
+      sig { returns(Integer) }
+      attr_accessor :chapters_count
+
+      # The number of lessons in this course that the current user has marked as
+      # completed. Zero when the request is not made on behalf of a user.
+      sig { returns(Integer) }
+      attr_accessor :completed_lessons_count
+
       # The URL of the course cover image shown on preview cards. Null if no cover image
       # has been uploaded.
       sig { returns(T.nilable(String)) }
@@ -40,6 +50,17 @@ module WhopSDK
       sig { returns(WhopSDK::Languages::TaggedSymbol) }
       attr_accessor :language
 
+      # The creation timestamp of the most recently added lesson visible to the current
+      # user. Null if the course has no lessons.
+      sig { returns(T.nilable(Time)) }
+      attr_accessor :latest_lesson_created_at
+
+      # The distinct drip schedules, in days after the course start, of lessons visible
+      # to the current user. Combine with startedAt to work out which have unlocked.
+      # Empty when the user has not started the course or no lesson is on a schedule.
+      sig { returns(T::Array[Integer]) }
+      attr_accessor :lesson_unlock_days
+
       # The sort position of this course within its parent experience, as a decimal for
       # flexible ordering.
       sig { returns(String) }
@@ -49,6 +70,24 @@ module WhopSDK
       # next one.
       sig { returns(T::Boolean) }
       attr_accessor :require_completing_lessons_in_order
+
+      # The lesson the current user should continue from: their first incomplete lesson,
+      # or the first lesson when they have finished the course, have not started it, or
+      # can edit it. Null if the course has no lessons.
+      sig { returns(T.nilable(WhopSDK::Course::ResumeLesson)) }
+      attr_reader :resume_lesson
+
+      sig do
+        params(
+          resume_lesson: T.nilable(WhopSDK::Course::ResumeLesson::OrHash)
+        ).void
+      end
+      attr_writer :resume_lesson
+
+      # The earliest time the current user is known to have started this course. Null if
+      # they have not started it. Drip unlock schedules are measured from this point.
+      sig { returns(T.nilable(Time)) }
+      attr_accessor :started_at
 
       # A short marketing tagline displayed beneath the course title. Null if no tagline
       # has been set.
@@ -69,6 +108,15 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :title
 
+      # The combined duration in seconds of every hosted video across the lessons
+      # visible to the current user.
+      sig { returns(Integer) }
+      attr_accessor :total_duration_seconds
+
+      # The number of lessons in this course visible to the current user.
+      sig { returns(Integer) }
+      attr_accessor :total_lessons_count
+
       # The datetime the course was last updated.
       sig { returns(Time) }
       attr_accessor :updated_at
@@ -85,15 +133,23 @@ module WhopSDK
           id: String,
           certificate_after_completion_enabled: T.nilable(T::Boolean),
           chapters: T::Array[WhopSDK::Course::Chapter::OrHash],
+          chapters_count: Integer,
+          completed_lessons_count: Integer,
           cover_image: T.nilable(String),
           created_at: Time,
           description: T.nilable(String),
           language: WhopSDK::Languages::OrSymbol,
+          latest_lesson_created_at: T.nilable(Time),
+          lesson_unlock_days: T::Array[Integer],
           order: String,
           require_completing_lessons_in_order: T::Boolean,
+          resume_lesson: T.nilable(WhopSDK::Course::ResumeLesson::OrHash),
+          started_at: T.nilable(Time),
           tagline: T.nilable(String),
           thumbnail: T.nilable(WhopSDK::Course::Thumbnail::OrHash),
           title: T.nilable(String),
+          total_duration_seconds: Integer,
+          total_lessons_count: Integer,
           updated_at: Time,
           visibility: WhopSDK::CourseVisibilities::OrSymbol
         ).returns(T.attached_class)
@@ -107,6 +163,12 @@ module WhopSDK
         # An ordered list of all chapters in this course, sorted by their display
         # position.
         chapters:,
+        # The total number of chapters in this course, including chapters whose lessons
+        # are all hidden from the current user.
+        chapters_count:,
+        # The number of lessons in this course that the current user has marked as
+        # completed. Zero when the request is not made on behalf of a user.
+        completed_lessons_count:,
         # The URL of the course cover image shown on preview cards. Null if no cover image
         # has been uploaded.
         cover_image:,
@@ -119,12 +181,26 @@ module WhopSDK
         # captions. One of: en, es, it, pt, de, fr, pl, ru, nl, ca, tr, sv, uk, no, fi,
         # sk, el, cs, hr, da, ro, bg.
         language:,
+        # The creation timestamp of the most recently added lesson visible to the current
+        # user. Null if the course has no lessons.
+        latest_lesson_created_at:,
+        # The distinct drip schedules, in days after the course start, of lessons visible
+        # to the current user. Combine with startedAt to work out which have unlocked.
+        # Empty when the user has not started the course or no lesson is on a schedule.
+        lesson_unlock_days:,
         # The sort position of this course within its parent experience, as a decimal for
         # flexible ordering.
         order:,
         # Whether students must complete each lesson sequentially before advancing to the
         # next one.
         require_completing_lessons_in_order:,
+        # The lesson the current user should continue from: their first incomplete lesson,
+        # or the first lesson when they have finished the course, have not started it, or
+        # can edit it. Null if the course has no lessons.
+        resume_lesson:,
+        # The earliest time the current user is known to have started this course. Null if
+        # they have not started it. Drip unlock schedules are measured from this point.
+        started_at:,
         # A short marketing tagline displayed beneath the course title. Null if no tagline
         # has been set.
         tagline:,
@@ -133,6 +209,11 @@ module WhopSDK
         thumbnail:,
         # The display name of the course shown to students. Null if no title has been set.
         title:,
+        # The combined duration in seconds of every hosted video across the lessons
+        # visible to the current user.
+        total_duration_seconds:,
+        # The number of lessons in this course visible to the current user.
+        total_lessons_count:,
         # The datetime the course was last updated.
         updated_at:,
         # The visibility setting that controls whether this course appears to students.
@@ -147,15 +228,23 @@ module WhopSDK
             id: String,
             certificate_after_completion_enabled: T.nilable(T::Boolean),
             chapters: T::Array[WhopSDK::Course::Chapter],
+            chapters_count: Integer,
+            completed_lessons_count: Integer,
             cover_image: T.nilable(String),
             created_at: Time,
             description: T.nilable(String),
             language: WhopSDK::Languages::TaggedSymbol,
+            latest_lesson_created_at: T.nilable(Time),
+            lesson_unlock_days: T::Array[Integer],
             order: String,
             require_completing_lessons_in_order: T::Boolean,
+            resume_lesson: T.nilable(WhopSDK::Course::ResumeLesson),
+            started_at: T.nilable(Time),
             tagline: T.nilable(String),
             thumbnail: T.nilable(WhopSDK::Course::Thumbnail),
             title: T.nilable(String),
+            total_duration_seconds: Integer,
+            total_lessons_count: Integer,
             updated_at: Time,
             visibility: WhopSDK::CourseVisibilities::TaggedSymbol
           }
@@ -410,6 +499,31 @@ module WhopSDK
             def to_hash
             end
           end
+        end
+      end
+
+      class ResumeLesson < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(WhopSDK::Course::ResumeLesson, WhopSDK::Internal::AnyHash)
+          end
+
+        # The unique identifier for the lesson.
+        sig { returns(String) }
+        attr_accessor :id
+
+        # The lesson the current user should continue from: their first incomplete lesson,
+        # or the first lesson when they have finished the course, have not started it, or
+        # can edit it. Null if the course has no lessons.
+        sig { params(id: String).returns(T.attached_class) }
+        def self.new(
+          # The unique identifier for the lesson.
+          id:
+        )
+        end
+
+        sig { override.returns({ id: String }) }
+        def to_hash
         end
       end
 

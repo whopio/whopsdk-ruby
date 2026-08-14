@@ -4,15 +4,23 @@ module WhopSDK
       {
         id: String,
         certificate_after_completion_enabled: bool?,
+        chapters_count: Integer,
+        completed_lessons_count: Integer,
         cover_image: String?,
         created_at: Time,
         description: String?,
         language: WhopSDK::Models::languages,
+        latest_lesson_created_at: Time?,
+        lesson_unlock_days: ::Array[Integer],
         order: String,
         require_completing_lessons_in_order: bool,
+        resume_lesson: WhopSDK::Models::CourseListResponse::ResumeLesson?,
+        started_at: Time?,
         tagline: String?,
         thumbnail: WhopSDK::Models::CourseListResponse::Thumbnail?,
         title: String?,
+        total_duration_seconds: Integer,
+        total_lessons_count: Integer,
         updated_at: Time,
         visibility: WhopSDK::Models::course_visibilities
       }
@@ -22,6 +30,10 @@ module WhopSDK
 
       attr_accessor certificate_after_completion_enabled: bool?
 
+      attr_accessor chapters_count: Integer
+
+      attr_accessor completed_lessons_count: Integer
+
       attr_accessor cover_image: String?
 
       attr_accessor created_at: Time
@@ -30,15 +42,27 @@ module WhopSDK
 
       attr_accessor language: WhopSDK::Models::languages
 
+      attr_accessor latest_lesson_created_at: Time?
+
+      attr_accessor lesson_unlock_days: ::Array[Integer]
+
       attr_accessor order: String
 
       attr_accessor require_completing_lessons_in_order: bool
+
+      attr_accessor resume_lesson: WhopSDK::Models::CourseListResponse::ResumeLesson?
+
+      attr_accessor started_at: Time?
 
       attr_accessor tagline: String?
 
       attr_accessor thumbnail: WhopSDK::Models::CourseListResponse::Thumbnail?
 
       attr_accessor title: String?
+
+      attr_accessor total_duration_seconds: Integer
+
+      attr_accessor total_lessons_count: Integer
 
       attr_accessor updated_at: Time
 
@@ -47,15 +71,23 @@ module WhopSDK
       def initialize: (
         id: String,
         certificate_after_completion_enabled: bool?,
+        chapters_count: Integer,
+        completed_lessons_count: Integer,
         cover_image: String?,
         created_at: Time,
         description: String?,
         language: WhopSDK::Models::languages,
+        latest_lesson_created_at: Time?,
+        lesson_unlock_days: ::Array[Integer],
         order: String,
         require_completing_lessons_in_order: bool,
+        resume_lesson: WhopSDK::Models::CourseListResponse::ResumeLesson?,
+        started_at: Time?,
         tagline: String?,
         thumbnail: WhopSDK::Models::CourseListResponse::Thumbnail?,
         title: String?,
+        total_duration_seconds: Integer,
+        total_lessons_count: Integer,
         updated_at: Time,
         visibility: WhopSDK::Models::course_visibilities
       ) -> void
@@ -63,18 +95,36 @@ module WhopSDK
       def to_hash: -> {
         id: String,
         certificate_after_completion_enabled: bool?,
+        chapters_count: Integer,
+        completed_lessons_count: Integer,
         cover_image: String?,
         created_at: Time,
         description: String?,
         language: WhopSDK::Models::languages,
+        latest_lesson_created_at: Time?,
+        lesson_unlock_days: ::Array[Integer],
         order: String,
         require_completing_lessons_in_order: bool,
+        resume_lesson: WhopSDK::Models::CourseListResponse::ResumeLesson?,
+        started_at: Time?,
         tagline: String?,
         thumbnail: WhopSDK::Models::CourseListResponse::Thumbnail?,
         title: String?,
+        total_duration_seconds: Integer,
+        total_lessons_count: Integer,
         updated_at: Time,
         visibility: WhopSDK::Models::course_visibilities
       }
+
+      type resume_lesson = { id: String }
+
+      class ResumeLesson < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        def initialize: (id: String) -> void
+
+        def to_hash: -> { id: String }
+      end
 
       type thumbnail =
         {

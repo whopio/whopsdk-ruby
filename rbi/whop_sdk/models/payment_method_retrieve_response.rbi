@@ -40,6 +40,24 @@ module WhopSDK
         sig { returns(Time) }
         attr_accessor :created_at
 
+        # Every rendition of the icon to display this payment method with. A saved card
+        # carries its brand's icon (Visa, Mastercard, ...) rather than the generic card
+        # art.
+        sig do
+          returns(
+            WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod::Icons
+          )
+        end
+        attr_reader :icons
+
+        sig do
+          params(
+            icons:
+              WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod::Icons::OrHash
+          ).void
+        end
+        attr_writer :icons
+
         # The type of payment instrument stored on file (e.g., card, us_bank_account,
         # cashapp, ideal, sepa_debit).
         sig { returns(WhopSDK::PaymentMethodTypes::TaggedSymbol) }
@@ -54,6 +72,8 @@ module WhopSDK
           params(
             id: String,
             created_at: Time,
+            icons:
+              WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod::Icons::OrHash,
             payment_method_type: WhopSDK::PaymentMethodTypes::OrSymbol,
             typename: Symbol
           ).returns(T.attached_class)
@@ -67,6 +87,10 @@ module WhopSDK
           id:,
           # The time of the event in ISO 8601 UTC format with millisecond precision
           created_at:,
+          # Every rendition of the icon to display this payment method with. A saved card
+          # carries its brand's icon (Visa, Mastercard, ...) rather than the generic card
+          # art.
+          icons:,
           # The type of payment instrument stored on file (e.g., card, us_bank_account,
           # cashapp, ideal, sepa_debit).
           payment_method_type:,
@@ -80,12 +104,472 @@ module WhopSDK
             {
               id: String,
               created_at: Time,
+              icons:
+                WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod::Icons,
               payment_method_type: WhopSDK::PaymentMethodTypes::TaggedSymbol,
               typename: Symbol
             }
           )
         end
         def to_hash
+        end
+
+        class Icons < WhopSDK::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod::Icons,
+                WhopSDK::Internal::AnyHash
+              )
+            end
+
+          # The credit-card-proportioned tile (48x30).
+          sig do
+            returns(
+              WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod::Icons::Card
+            )
+          end
+          attr_reader :card
+
+          sig do
+            params(
+              card:
+                WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod::Icons::Card::OrHash
+            ).void
+          end
+          attr_writer :card
+
+          # The square tile (32x32).
+          sig do
+            returns(
+              WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod::Icons::Square
+            )
+          end
+          attr_reader :square
+
+          sig do
+            params(
+              square:
+                WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod::Icons::Square::OrHash
+            ).void
+          end
+          attr_writer :square
+
+          # Every rendition of the icon to display this payment method with. A saved card
+          # carries its brand's icon (Visa, Mastercard, ...) rather than the generic card
+          # art.
+          sig do
+            params(
+              card:
+                WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod::Icons::Card::OrHash,
+              square:
+                WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod::Icons::Square::OrHash
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # The credit-card-proportioned tile (48x30).
+            card:,
+            # The square tile (32x32).
+            square:
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                card:
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod::Icons::Card,
+                square:
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod::Icons::Square
+              }
+            )
+          end
+          def to_hash
+          end
+
+          class Card < WhopSDK::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod::Icons::Card,
+                  WhopSDK::Internal::AnyHash
+                )
+              end
+
+            # The colorway for dark surfaces.
+            sig do
+              returns(
+                WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod::Icons::Card::Dark
+              )
+            end
+            attr_reader :dark
+
+            sig do
+              params(
+                dark:
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod::Icons::Card::Dark::OrHash
+              ).void
+            end
+            attr_writer :dark
+
+            # The colorway for light surfaces.
+            sig do
+              returns(
+                WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod::Icons::Card::Light
+              )
+            end
+            attr_reader :light
+
+            sig do
+              params(
+                light:
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod::Icons::Card::Light::OrHash
+              ).void
+            end
+            attr_writer :light
+
+            # The credit-card-proportioned tile (48x30).
+            sig do
+              params(
+                dark:
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod::Icons::Card::Dark::OrHash,
+                light:
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod::Icons::Card::Light::OrHash
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # The colorway for dark surfaces.
+              dark:,
+              # The colorway for light surfaces.
+              light:
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  dark:
+                    WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod::Icons::Card::Dark,
+                  light:
+                    WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod::Icons::Card::Light
+                }
+              )
+            end
+            def to_hash
+            end
+
+            class Dark < WhopSDK::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod::Icons::Card::Dark,
+                    WhopSDK::Internal::AnyHash
+                  )
+                end
+
+              # Raster fallback at the shape's native size.
+              sig { returns(String) }
+              attr_accessor :png_1x
+
+              # Raster fallback at double density.
+              sig { returns(String) }
+              attr_accessor :png_2x
+
+              # Raster fallback at quadruple density.
+              sig { returns(String) }
+              attr_accessor :png_4x
+
+              # The vector file. Prefer this everywhere SVG renders.
+              sig { returns(String) }
+              attr_accessor :svg
+
+              # The colorway for dark surfaces.
+              sig do
+                params(
+                  png_1x: String,
+                  png_2x: String,
+                  png_4x: String,
+                  svg: String
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                # Raster fallback at the shape's native size.
+                png_1x:,
+                # Raster fallback at double density.
+                png_2x:,
+                # Raster fallback at quadruple density.
+                png_4x:,
+                # The vector file. Prefer this everywhere SVG renders.
+                svg:
+              )
+              end
+
+              sig do
+                override.returns(
+                  {
+                    png_1x: String,
+                    png_2x: String,
+                    png_4x: String,
+                    svg: String
+                  }
+                )
+              end
+              def to_hash
+              end
+            end
+
+            class Light < WhopSDK::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod::Icons::Card::Light,
+                    WhopSDK::Internal::AnyHash
+                  )
+                end
+
+              # Raster fallback at the shape's native size.
+              sig { returns(String) }
+              attr_accessor :png_1x
+
+              # Raster fallback at double density.
+              sig { returns(String) }
+              attr_accessor :png_2x
+
+              # Raster fallback at quadruple density.
+              sig { returns(String) }
+              attr_accessor :png_4x
+
+              # The vector file. Prefer this everywhere SVG renders.
+              sig { returns(String) }
+              attr_accessor :svg
+
+              # The colorway for light surfaces.
+              sig do
+                params(
+                  png_1x: String,
+                  png_2x: String,
+                  png_4x: String,
+                  svg: String
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                # Raster fallback at the shape's native size.
+                png_1x:,
+                # Raster fallback at double density.
+                png_2x:,
+                # Raster fallback at quadruple density.
+                png_4x:,
+                # The vector file. Prefer this everywhere SVG renders.
+                svg:
+              )
+              end
+
+              sig do
+                override.returns(
+                  {
+                    png_1x: String,
+                    png_2x: String,
+                    png_4x: String,
+                    svg: String
+                  }
+                )
+              end
+              def to_hash
+              end
+            end
+          end
+
+          class Square < WhopSDK::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod::Icons::Square,
+                  WhopSDK::Internal::AnyHash
+                )
+              end
+
+            # The colorway for dark surfaces.
+            sig do
+              returns(
+                WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod::Icons::Square::Dark
+              )
+            end
+            attr_reader :dark
+
+            sig do
+              params(
+                dark:
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod::Icons::Square::Dark::OrHash
+              ).void
+            end
+            attr_writer :dark
+
+            # The colorway for light surfaces.
+            sig do
+              returns(
+                WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod::Icons::Square::Light
+              )
+            end
+            attr_reader :light
+
+            sig do
+              params(
+                light:
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod::Icons::Square::Light::OrHash
+              ).void
+            end
+            attr_writer :light
+
+            # The square tile (32x32).
+            sig do
+              params(
+                dark:
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod::Icons::Square::Dark::OrHash,
+                light:
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod::Icons::Square::Light::OrHash
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # The colorway for dark surfaces.
+              dark:,
+              # The colorway for light surfaces.
+              light:
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  dark:
+                    WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod::Icons::Square::Dark,
+                  light:
+                    WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod::Icons::Square::Light
+                }
+              )
+            end
+            def to_hash
+            end
+
+            class Dark < WhopSDK::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod::Icons::Square::Dark,
+                    WhopSDK::Internal::AnyHash
+                  )
+                end
+
+              # Raster fallback at the shape's native size.
+              sig { returns(String) }
+              attr_accessor :png_1x
+
+              # Raster fallback at double density.
+              sig { returns(String) }
+              attr_accessor :png_2x
+
+              # Raster fallback at quadruple density.
+              sig { returns(String) }
+              attr_accessor :png_4x
+
+              # The vector file. Prefer this everywhere SVG renders.
+              sig { returns(String) }
+              attr_accessor :svg
+
+              # The colorway for dark surfaces.
+              sig do
+                params(
+                  png_1x: String,
+                  png_2x: String,
+                  png_4x: String,
+                  svg: String
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                # Raster fallback at the shape's native size.
+                png_1x:,
+                # Raster fallback at double density.
+                png_2x:,
+                # Raster fallback at quadruple density.
+                png_4x:,
+                # The vector file. Prefer this everywhere SVG renders.
+                svg:
+              )
+              end
+
+              sig do
+                override.returns(
+                  {
+                    png_1x: String,
+                    png_2x: String,
+                    png_4x: String,
+                    svg: String
+                  }
+                )
+              end
+              def to_hash
+              end
+            end
+
+            class Light < WhopSDK::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod::Icons::Square::Light,
+                    WhopSDK::Internal::AnyHash
+                  )
+                end
+
+              # Raster fallback at the shape's native size.
+              sig { returns(String) }
+              attr_accessor :png_1x
+
+              # Raster fallback at double density.
+              sig { returns(String) }
+              attr_accessor :png_2x
+
+              # Raster fallback at quadruple density.
+              sig { returns(String) }
+              attr_accessor :png_4x
+
+              # The vector file. Prefer this everywhere SVG renders.
+              sig { returns(String) }
+              attr_accessor :svg
+
+              # The colorway for light surfaces.
+              sig do
+                params(
+                  png_1x: String,
+                  png_2x: String,
+                  png_4x: String,
+                  svg: String
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                # Raster fallback at the shape's native size.
+                png_1x:,
+                # Raster fallback at double density.
+                png_2x:,
+                # Raster fallback at quadruple density.
+                png_4x:,
+                # The vector file. Prefer this everywhere SVG renders.
+                svg:
+              )
+              end
+
+              sig do
+                override.returns(
+                  {
+                    png_1x: String,
+                    png_2x: String,
+                    png_4x: String,
+                    svg: String
+                  }
+                )
+              end
+              def to_hash
+              end
+            end
+          end
         end
       end
 
@@ -132,6 +616,24 @@ module WhopSDK
         sig { returns(T::Boolean) }
         attr_accessor :has_payer_document
 
+        # Every rendition of the icon to display this payment method with. A saved card
+        # carries its brand's icon (Visa, Mastercard, ...) rather than the generic card
+        # art.
+        sig do
+          returns(
+            WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Icons
+          )
+        end
+        attr_reader :icons
+
+        sig do
+          params(
+            icons:
+              WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Icons::OrHash
+          ).void
+        end
+        attr_writer :icons
+
         # The type of payment instrument stored on file (e.g., card, us_bank_account,
         # cashapp, ideal, sepa_debit).
         sig { returns(WhopSDK::PaymentMethodTypes::TaggedSymbol) }
@@ -150,6 +652,8 @@ module WhopSDK
               WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Card::OrHash,
             created_at: Time,
             has_payer_document: T::Boolean,
+            icons:
+              WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Icons::OrHash,
             payment_method_type: WhopSDK::PaymentMethodTypes::OrSymbol,
             typename: Symbol
           ).returns(T.attached_class)
@@ -169,6 +673,10 @@ module WhopSDK
           # Whether this card has the payer identity document required by its payment
           # provider.
           has_payer_document:,
+          # Every rendition of the icon to display this payment method with. A saved card
+          # carries its brand's icon (Visa, Mastercard, ...) rather than the generic card
+          # art.
+          icons:,
           # The type of payment instrument stored on file (e.g., card, us_bank_account,
           # cashapp, ideal, sepa_debit).
           payment_method_type:,
@@ -185,6 +693,8 @@ module WhopSDK
                 WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Card,
               created_at: Time,
               has_payer_document: T::Boolean,
+              icons:
+                WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Icons,
               payment_method_type: WhopSDK::PaymentMethodTypes::TaggedSymbol,
               typename: Symbol
             }
@@ -265,6 +775,464 @@ module WhopSDK
           def to_hash
           end
         end
+
+        class Icons < WhopSDK::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Icons,
+                WhopSDK::Internal::AnyHash
+              )
+            end
+
+          # The credit-card-proportioned tile (48x30).
+          sig do
+            returns(
+              WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Icons::Card
+            )
+          end
+          attr_reader :card
+
+          sig do
+            params(
+              card:
+                WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Icons::Card::OrHash
+            ).void
+          end
+          attr_writer :card
+
+          # The square tile (32x32).
+          sig do
+            returns(
+              WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Icons::Square
+            )
+          end
+          attr_reader :square
+
+          sig do
+            params(
+              square:
+                WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Icons::Square::OrHash
+            ).void
+          end
+          attr_writer :square
+
+          # Every rendition of the icon to display this payment method with. A saved card
+          # carries its brand's icon (Visa, Mastercard, ...) rather than the generic card
+          # art.
+          sig do
+            params(
+              card:
+                WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Icons::Card::OrHash,
+              square:
+                WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Icons::Square::OrHash
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # The credit-card-proportioned tile (48x30).
+            card:,
+            # The square tile (32x32).
+            square:
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                card:
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Icons::Card,
+                square:
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Icons::Square
+              }
+            )
+          end
+          def to_hash
+          end
+
+          class Card < WhopSDK::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Icons::Card,
+                  WhopSDK::Internal::AnyHash
+                )
+              end
+
+            # The colorway for dark surfaces.
+            sig do
+              returns(
+                WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Icons::Card::Dark
+              )
+            end
+            attr_reader :dark
+
+            sig do
+              params(
+                dark:
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Icons::Card::Dark::OrHash
+              ).void
+            end
+            attr_writer :dark
+
+            # The colorway for light surfaces.
+            sig do
+              returns(
+                WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Icons::Card::Light
+              )
+            end
+            attr_reader :light
+
+            sig do
+              params(
+                light:
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Icons::Card::Light::OrHash
+              ).void
+            end
+            attr_writer :light
+
+            # The credit-card-proportioned tile (48x30).
+            sig do
+              params(
+                dark:
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Icons::Card::Dark::OrHash,
+                light:
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Icons::Card::Light::OrHash
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # The colorway for dark surfaces.
+              dark:,
+              # The colorway for light surfaces.
+              light:
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  dark:
+                    WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Icons::Card::Dark,
+                  light:
+                    WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Icons::Card::Light
+                }
+              )
+            end
+            def to_hash
+            end
+
+            class Dark < WhopSDK::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Icons::Card::Dark,
+                    WhopSDK::Internal::AnyHash
+                  )
+                end
+
+              # Raster fallback at the shape's native size.
+              sig { returns(String) }
+              attr_accessor :png_1x
+
+              # Raster fallback at double density.
+              sig { returns(String) }
+              attr_accessor :png_2x
+
+              # Raster fallback at quadruple density.
+              sig { returns(String) }
+              attr_accessor :png_4x
+
+              # The vector file. Prefer this everywhere SVG renders.
+              sig { returns(String) }
+              attr_accessor :svg
+
+              # The colorway for dark surfaces.
+              sig do
+                params(
+                  png_1x: String,
+                  png_2x: String,
+                  png_4x: String,
+                  svg: String
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                # Raster fallback at the shape's native size.
+                png_1x:,
+                # Raster fallback at double density.
+                png_2x:,
+                # Raster fallback at quadruple density.
+                png_4x:,
+                # The vector file. Prefer this everywhere SVG renders.
+                svg:
+              )
+              end
+
+              sig do
+                override.returns(
+                  {
+                    png_1x: String,
+                    png_2x: String,
+                    png_4x: String,
+                    svg: String
+                  }
+                )
+              end
+              def to_hash
+              end
+            end
+
+            class Light < WhopSDK::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Icons::Card::Light,
+                    WhopSDK::Internal::AnyHash
+                  )
+                end
+
+              # Raster fallback at the shape's native size.
+              sig { returns(String) }
+              attr_accessor :png_1x
+
+              # Raster fallback at double density.
+              sig { returns(String) }
+              attr_accessor :png_2x
+
+              # Raster fallback at quadruple density.
+              sig { returns(String) }
+              attr_accessor :png_4x
+
+              # The vector file. Prefer this everywhere SVG renders.
+              sig { returns(String) }
+              attr_accessor :svg
+
+              # The colorway for light surfaces.
+              sig do
+                params(
+                  png_1x: String,
+                  png_2x: String,
+                  png_4x: String,
+                  svg: String
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                # Raster fallback at the shape's native size.
+                png_1x:,
+                # Raster fallback at double density.
+                png_2x:,
+                # Raster fallback at quadruple density.
+                png_4x:,
+                # The vector file. Prefer this everywhere SVG renders.
+                svg:
+              )
+              end
+
+              sig do
+                override.returns(
+                  {
+                    png_1x: String,
+                    png_2x: String,
+                    png_4x: String,
+                    svg: String
+                  }
+                )
+              end
+              def to_hash
+              end
+            end
+          end
+
+          class Square < WhopSDK::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Icons::Square,
+                  WhopSDK::Internal::AnyHash
+                )
+              end
+
+            # The colorway for dark surfaces.
+            sig do
+              returns(
+                WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Icons::Square::Dark
+              )
+            end
+            attr_reader :dark
+
+            sig do
+              params(
+                dark:
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Icons::Square::Dark::OrHash
+              ).void
+            end
+            attr_writer :dark
+
+            # The colorway for light surfaces.
+            sig do
+              returns(
+                WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Icons::Square::Light
+              )
+            end
+            attr_reader :light
+
+            sig do
+              params(
+                light:
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Icons::Square::Light::OrHash
+              ).void
+            end
+            attr_writer :light
+
+            # The square tile (32x32).
+            sig do
+              params(
+                dark:
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Icons::Square::Dark::OrHash,
+                light:
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Icons::Square::Light::OrHash
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # The colorway for dark surfaces.
+              dark:,
+              # The colorway for light surfaces.
+              light:
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  dark:
+                    WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Icons::Square::Dark,
+                  light:
+                    WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Icons::Square::Light
+                }
+              )
+            end
+            def to_hash
+            end
+
+            class Dark < WhopSDK::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Icons::Square::Dark,
+                    WhopSDK::Internal::AnyHash
+                  )
+                end
+
+              # Raster fallback at the shape's native size.
+              sig { returns(String) }
+              attr_accessor :png_1x
+
+              # Raster fallback at double density.
+              sig { returns(String) }
+              attr_accessor :png_2x
+
+              # Raster fallback at quadruple density.
+              sig { returns(String) }
+              attr_accessor :png_4x
+
+              # The vector file. Prefer this everywhere SVG renders.
+              sig { returns(String) }
+              attr_accessor :svg
+
+              # The colorway for dark surfaces.
+              sig do
+                params(
+                  png_1x: String,
+                  png_2x: String,
+                  png_4x: String,
+                  svg: String
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                # Raster fallback at the shape's native size.
+                png_1x:,
+                # Raster fallback at double density.
+                png_2x:,
+                # Raster fallback at quadruple density.
+                png_4x:,
+                # The vector file. Prefer this everywhere SVG renders.
+                svg:
+              )
+              end
+
+              sig do
+                override.returns(
+                  {
+                    png_1x: String,
+                    png_2x: String,
+                    png_4x: String,
+                    svg: String
+                  }
+                )
+              end
+              def to_hash
+              end
+            end
+
+            class Light < WhopSDK::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Icons::Square::Light,
+                    WhopSDK::Internal::AnyHash
+                  )
+                end
+
+              # Raster fallback at the shape's native size.
+              sig { returns(String) }
+              attr_accessor :png_1x
+
+              # Raster fallback at double density.
+              sig { returns(String) }
+              attr_accessor :png_2x
+
+              # Raster fallback at quadruple density.
+              sig { returns(String) }
+              attr_accessor :png_4x
+
+              # The vector file. Prefer this everywhere SVG renders.
+              sig { returns(String) }
+              attr_accessor :svg
+
+              # The colorway for light surfaces.
+              sig do
+                params(
+                  png_1x: String,
+                  png_2x: String,
+                  png_4x: String,
+                  svg: String
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                # Raster fallback at the shape's native size.
+                png_1x:,
+                # Raster fallback at double density.
+                png_2x:,
+                # Raster fallback at quadruple density.
+                png_4x:,
+                # The vector file. Prefer this everywhere SVG renders.
+                svg:
+              )
+              end
+
+              sig do
+                override.returns(
+                  {
+                    png_1x: String,
+                    png_2x: String,
+                    png_4x: String,
+                    svg: String
+                  }
+                )
+              end
+              def to_hash
+              end
+            end
+          end
+        end
       end
 
       class UsBankAccountPaymentMethod < WhopSDK::Internal::Type::BaseModel
@@ -287,6 +1255,24 @@ module WhopSDK
         # The time of the event in ISO 8601 UTC format with millisecond precision
         sig { returns(Time) }
         attr_accessor :created_at
+
+        # Every rendition of the icon to display this payment method with. A saved card
+        # carries its brand's icon (Visa, Mastercard, ...) rather than the generic card
+        # art.
+        sig do
+          returns(
+            WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod::Icons
+          )
+        end
+        attr_reader :icons
+
+        sig do
+          params(
+            icons:
+              WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod::Icons::OrHash
+          ).void
+        end
+        attr_writer :icons
 
         # The type of payment instrument stored on file (e.g., card, us_bank_account,
         # cashapp, ideal, sepa_debit).
@@ -320,6 +1306,8 @@ module WhopSDK
           params(
             id: String,
             created_at: Time,
+            icons:
+              WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod::Icons::OrHash,
             payment_method_type: WhopSDK::PaymentMethodTypes::OrSymbol,
             us_bank_account:
               WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod::UsBankAccount::OrHash,
@@ -335,6 +1323,10 @@ module WhopSDK
           id:,
           # The time of the event in ISO 8601 UTC format with millisecond precision
           created_at:,
+          # Every rendition of the icon to display this payment method with. A saved card
+          # carries its brand's icon (Visa, Mastercard, ...) rather than the generic card
+          # art.
+          icons:,
           # The type of payment instrument stored on file (e.g., card, us_bank_account,
           # cashapp, ideal, sepa_debit).
           payment_method_type:,
@@ -351,6 +1343,8 @@ module WhopSDK
             {
               id: String,
               created_at: Time,
+              icons:
+                WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod::Icons,
               payment_method_type: WhopSDK::PaymentMethodTypes::TaggedSymbol,
               typename: Symbol,
               us_bank_account:
@@ -359,6 +1353,464 @@ module WhopSDK
           )
         end
         def to_hash
+        end
+
+        class Icons < WhopSDK::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod::Icons,
+                WhopSDK::Internal::AnyHash
+              )
+            end
+
+          # The credit-card-proportioned tile (48x30).
+          sig do
+            returns(
+              WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod::Icons::Card
+            )
+          end
+          attr_reader :card
+
+          sig do
+            params(
+              card:
+                WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod::Icons::Card::OrHash
+            ).void
+          end
+          attr_writer :card
+
+          # The square tile (32x32).
+          sig do
+            returns(
+              WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod::Icons::Square
+            )
+          end
+          attr_reader :square
+
+          sig do
+            params(
+              square:
+                WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod::Icons::Square::OrHash
+            ).void
+          end
+          attr_writer :square
+
+          # Every rendition of the icon to display this payment method with. A saved card
+          # carries its brand's icon (Visa, Mastercard, ...) rather than the generic card
+          # art.
+          sig do
+            params(
+              card:
+                WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod::Icons::Card::OrHash,
+              square:
+                WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod::Icons::Square::OrHash
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # The credit-card-proportioned tile (48x30).
+            card:,
+            # The square tile (32x32).
+            square:
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                card:
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod::Icons::Card,
+                square:
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod::Icons::Square
+              }
+            )
+          end
+          def to_hash
+          end
+
+          class Card < WhopSDK::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod::Icons::Card,
+                  WhopSDK::Internal::AnyHash
+                )
+              end
+
+            # The colorway for dark surfaces.
+            sig do
+              returns(
+                WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod::Icons::Card::Dark
+              )
+            end
+            attr_reader :dark
+
+            sig do
+              params(
+                dark:
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod::Icons::Card::Dark::OrHash
+              ).void
+            end
+            attr_writer :dark
+
+            # The colorway for light surfaces.
+            sig do
+              returns(
+                WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod::Icons::Card::Light
+              )
+            end
+            attr_reader :light
+
+            sig do
+              params(
+                light:
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod::Icons::Card::Light::OrHash
+              ).void
+            end
+            attr_writer :light
+
+            # The credit-card-proportioned tile (48x30).
+            sig do
+              params(
+                dark:
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod::Icons::Card::Dark::OrHash,
+                light:
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod::Icons::Card::Light::OrHash
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # The colorway for dark surfaces.
+              dark:,
+              # The colorway for light surfaces.
+              light:
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  dark:
+                    WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod::Icons::Card::Dark,
+                  light:
+                    WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod::Icons::Card::Light
+                }
+              )
+            end
+            def to_hash
+            end
+
+            class Dark < WhopSDK::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod::Icons::Card::Dark,
+                    WhopSDK::Internal::AnyHash
+                  )
+                end
+
+              # Raster fallback at the shape's native size.
+              sig { returns(String) }
+              attr_accessor :png_1x
+
+              # Raster fallback at double density.
+              sig { returns(String) }
+              attr_accessor :png_2x
+
+              # Raster fallback at quadruple density.
+              sig { returns(String) }
+              attr_accessor :png_4x
+
+              # The vector file. Prefer this everywhere SVG renders.
+              sig { returns(String) }
+              attr_accessor :svg
+
+              # The colorway for dark surfaces.
+              sig do
+                params(
+                  png_1x: String,
+                  png_2x: String,
+                  png_4x: String,
+                  svg: String
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                # Raster fallback at the shape's native size.
+                png_1x:,
+                # Raster fallback at double density.
+                png_2x:,
+                # Raster fallback at quadruple density.
+                png_4x:,
+                # The vector file. Prefer this everywhere SVG renders.
+                svg:
+              )
+              end
+
+              sig do
+                override.returns(
+                  {
+                    png_1x: String,
+                    png_2x: String,
+                    png_4x: String,
+                    svg: String
+                  }
+                )
+              end
+              def to_hash
+              end
+            end
+
+            class Light < WhopSDK::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod::Icons::Card::Light,
+                    WhopSDK::Internal::AnyHash
+                  )
+                end
+
+              # Raster fallback at the shape's native size.
+              sig { returns(String) }
+              attr_accessor :png_1x
+
+              # Raster fallback at double density.
+              sig { returns(String) }
+              attr_accessor :png_2x
+
+              # Raster fallback at quadruple density.
+              sig { returns(String) }
+              attr_accessor :png_4x
+
+              # The vector file. Prefer this everywhere SVG renders.
+              sig { returns(String) }
+              attr_accessor :svg
+
+              # The colorway for light surfaces.
+              sig do
+                params(
+                  png_1x: String,
+                  png_2x: String,
+                  png_4x: String,
+                  svg: String
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                # Raster fallback at the shape's native size.
+                png_1x:,
+                # Raster fallback at double density.
+                png_2x:,
+                # Raster fallback at quadruple density.
+                png_4x:,
+                # The vector file. Prefer this everywhere SVG renders.
+                svg:
+              )
+              end
+
+              sig do
+                override.returns(
+                  {
+                    png_1x: String,
+                    png_2x: String,
+                    png_4x: String,
+                    svg: String
+                  }
+                )
+              end
+              def to_hash
+              end
+            end
+          end
+
+          class Square < WhopSDK::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod::Icons::Square,
+                  WhopSDK::Internal::AnyHash
+                )
+              end
+
+            # The colorway for dark surfaces.
+            sig do
+              returns(
+                WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod::Icons::Square::Dark
+              )
+            end
+            attr_reader :dark
+
+            sig do
+              params(
+                dark:
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod::Icons::Square::Dark::OrHash
+              ).void
+            end
+            attr_writer :dark
+
+            # The colorway for light surfaces.
+            sig do
+              returns(
+                WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod::Icons::Square::Light
+              )
+            end
+            attr_reader :light
+
+            sig do
+              params(
+                light:
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod::Icons::Square::Light::OrHash
+              ).void
+            end
+            attr_writer :light
+
+            # The square tile (32x32).
+            sig do
+              params(
+                dark:
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod::Icons::Square::Dark::OrHash,
+                light:
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod::Icons::Square::Light::OrHash
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # The colorway for dark surfaces.
+              dark:,
+              # The colorway for light surfaces.
+              light:
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  dark:
+                    WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod::Icons::Square::Dark,
+                  light:
+                    WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod::Icons::Square::Light
+                }
+              )
+            end
+            def to_hash
+            end
+
+            class Dark < WhopSDK::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod::Icons::Square::Dark,
+                    WhopSDK::Internal::AnyHash
+                  )
+                end
+
+              # Raster fallback at the shape's native size.
+              sig { returns(String) }
+              attr_accessor :png_1x
+
+              # Raster fallback at double density.
+              sig { returns(String) }
+              attr_accessor :png_2x
+
+              # Raster fallback at quadruple density.
+              sig { returns(String) }
+              attr_accessor :png_4x
+
+              # The vector file. Prefer this everywhere SVG renders.
+              sig { returns(String) }
+              attr_accessor :svg
+
+              # The colorway for dark surfaces.
+              sig do
+                params(
+                  png_1x: String,
+                  png_2x: String,
+                  png_4x: String,
+                  svg: String
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                # Raster fallback at the shape's native size.
+                png_1x:,
+                # Raster fallback at double density.
+                png_2x:,
+                # Raster fallback at quadruple density.
+                png_4x:,
+                # The vector file. Prefer this everywhere SVG renders.
+                svg:
+              )
+              end
+
+              sig do
+                override.returns(
+                  {
+                    png_1x: String,
+                    png_2x: String,
+                    png_4x: String,
+                    svg: String
+                  }
+                )
+              end
+              def to_hash
+              end
+            end
+
+            class Light < WhopSDK::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod::Icons::Square::Light,
+                    WhopSDK::Internal::AnyHash
+                  )
+                end
+
+              # Raster fallback at the shape's native size.
+              sig { returns(String) }
+              attr_accessor :png_1x
+
+              # Raster fallback at double density.
+              sig { returns(String) }
+              attr_accessor :png_2x
+
+              # Raster fallback at quadruple density.
+              sig { returns(String) }
+              attr_accessor :png_4x
+
+              # The vector file. Prefer this everywhere SVG renders.
+              sig { returns(String) }
+              attr_accessor :svg
+
+              # The colorway for light surfaces.
+              sig do
+                params(
+                  png_1x: String,
+                  png_2x: String,
+                  png_4x: String,
+                  svg: String
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                # Raster fallback at the shape's native size.
+                png_1x:,
+                # Raster fallback at double density.
+                png_2x:,
+                # Raster fallback at quadruple density.
+                png_4x:,
+                # The vector file. Prefer this everywhere SVG renders.
+                svg:
+              )
+              end
+
+              sig do
+                override.returns(
+                  {
+                    png_1x: String,
+                    png_2x: String,
+                    png_4x: String,
+                    svg: String
+                  }
+                )
+              end
+              def to_hash
+              end
+            end
+          end
         end
 
         class UsBankAccount < WhopSDK::Internal::Type::BaseModel
@@ -449,6 +1901,24 @@ module WhopSDK
         sig { returns(Time) }
         attr_accessor :created_at
 
+        # Every rendition of the icon to display this payment method with. A saved card
+        # carries its brand's icon (Visa, Mastercard, ...) rather than the generic card
+        # art.
+        sig do
+          returns(
+            WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod::Icons
+          )
+        end
+        attr_reader :icons
+
+        sig do
+          params(
+            icons:
+              WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod::Icons::OrHash
+          ).void
+        end
+        attr_writer :icons
+
         # The type of payment instrument stored on file (e.g., card, us_bank_account,
         # cashapp, ideal, sepa_debit).
         sig { returns(WhopSDK::PaymentMethodTypes::TaggedSymbol) }
@@ -466,6 +1936,8 @@ module WhopSDK
             cashapp:
               WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod::Cashapp::OrHash,
             created_at: Time,
+            icons:
+              WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod::Icons::OrHash,
             payment_method_type: WhopSDK::PaymentMethodTypes::OrSymbol,
             typename: Symbol
           ).returns(T.attached_class)
@@ -482,6 +1954,10 @@ module WhopSDK
           cashapp:,
           # The time of the event in ISO 8601 UTC format with millisecond precision
           created_at:,
+          # Every rendition of the icon to display this payment method with. A saved card
+          # carries its brand's icon (Visa, Mastercard, ...) rather than the generic card
+          # art.
+          icons:,
           # The type of payment instrument stored on file (e.g., card, us_bank_account,
           # cashapp, ideal, sepa_debit).
           payment_method_type:,
@@ -497,6 +1973,8 @@ module WhopSDK
               cashapp:
                 WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod::Cashapp,
               created_at: Time,
+              icons:
+                WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod::Icons,
               payment_method_type: WhopSDK::PaymentMethodTypes::TaggedSymbol,
               typename: Symbol
             }
@@ -548,6 +2026,464 @@ module WhopSDK
           def to_hash
           end
         end
+
+        class Icons < WhopSDK::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod::Icons,
+                WhopSDK::Internal::AnyHash
+              )
+            end
+
+          # The credit-card-proportioned tile (48x30).
+          sig do
+            returns(
+              WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod::Icons::Card
+            )
+          end
+          attr_reader :card
+
+          sig do
+            params(
+              card:
+                WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod::Icons::Card::OrHash
+            ).void
+          end
+          attr_writer :card
+
+          # The square tile (32x32).
+          sig do
+            returns(
+              WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod::Icons::Square
+            )
+          end
+          attr_reader :square
+
+          sig do
+            params(
+              square:
+                WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod::Icons::Square::OrHash
+            ).void
+          end
+          attr_writer :square
+
+          # Every rendition of the icon to display this payment method with. A saved card
+          # carries its brand's icon (Visa, Mastercard, ...) rather than the generic card
+          # art.
+          sig do
+            params(
+              card:
+                WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod::Icons::Card::OrHash,
+              square:
+                WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod::Icons::Square::OrHash
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # The credit-card-proportioned tile (48x30).
+            card:,
+            # The square tile (32x32).
+            square:
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                card:
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod::Icons::Card,
+                square:
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod::Icons::Square
+              }
+            )
+          end
+          def to_hash
+          end
+
+          class Card < WhopSDK::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod::Icons::Card,
+                  WhopSDK::Internal::AnyHash
+                )
+              end
+
+            # The colorway for dark surfaces.
+            sig do
+              returns(
+                WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod::Icons::Card::Dark
+              )
+            end
+            attr_reader :dark
+
+            sig do
+              params(
+                dark:
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod::Icons::Card::Dark::OrHash
+              ).void
+            end
+            attr_writer :dark
+
+            # The colorway for light surfaces.
+            sig do
+              returns(
+                WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod::Icons::Card::Light
+              )
+            end
+            attr_reader :light
+
+            sig do
+              params(
+                light:
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod::Icons::Card::Light::OrHash
+              ).void
+            end
+            attr_writer :light
+
+            # The credit-card-proportioned tile (48x30).
+            sig do
+              params(
+                dark:
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod::Icons::Card::Dark::OrHash,
+                light:
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod::Icons::Card::Light::OrHash
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # The colorway for dark surfaces.
+              dark:,
+              # The colorway for light surfaces.
+              light:
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  dark:
+                    WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod::Icons::Card::Dark,
+                  light:
+                    WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod::Icons::Card::Light
+                }
+              )
+            end
+            def to_hash
+            end
+
+            class Dark < WhopSDK::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod::Icons::Card::Dark,
+                    WhopSDK::Internal::AnyHash
+                  )
+                end
+
+              # Raster fallback at the shape's native size.
+              sig { returns(String) }
+              attr_accessor :png_1x
+
+              # Raster fallback at double density.
+              sig { returns(String) }
+              attr_accessor :png_2x
+
+              # Raster fallback at quadruple density.
+              sig { returns(String) }
+              attr_accessor :png_4x
+
+              # The vector file. Prefer this everywhere SVG renders.
+              sig { returns(String) }
+              attr_accessor :svg
+
+              # The colorway for dark surfaces.
+              sig do
+                params(
+                  png_1x: String,
+                  png_2x: String,
+                  png_4x: String,
+                  svg: String
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                # Raster fallback at the shape's native size.
+                png_1x:,
+                # Raster fallback at double density.
+                png_2x:,
+                # Raster fallback at quadruple density.
+                png_4x:,
+                # The vector file. Prefer this everywhere SVG renders.
+                svg:
+              )
+              end
+
+              sig do
+                override.returns(
+                  {
+                    png_1x: String,
+                    png_2x: String,
+                    png_4x: String,
+                    svg: String
+                  }
+                )
+              end
+              def to_hash
+              end
+            end
+
+            class Light < WhopSDK::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod::Icons::Card::Light,
+                    WhopSDK::Internal::AnyHash
+                  )
+                end
+
+              # Raster fallback at the shape's native size.
+              sig { returns(String) }
+              attr_accessor :png_1x
+
+              # Raster fallback at double density.
+              sig { returns(String) }
+              attr_accessor :png_2x
+
+              # Raster fallback at quadruple density.
+              sig { returns(String) }
+              attr_accessor :png_4x
+
+              # The vector file. Prefer this everywhere SVG renders.
+              sig { returns(String) }
+              attr_accessor :svg
+
+              # The colorway for light surfaces.
+              sig do
+                params(
+                  png_1x: String,
+                  png_2x: String,
+                  png_4x: String,
+                  svg: String
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                # Raster fallback at the shape's native size.
+                png_1x:,
+                # Raster fallback at double density.
+                png_2x:,
+                # Raster fallback at quadruple density.
+                png_4x:,
+                # The vector file. Prefer this everywhere SVG renders.
+                svg:
+              )
+              end
+
+              sig do
+                override.returns(
+                  {
+                    png_1x: String,
+                    png_2x: String,
+                    png_4x: String,
+                    svg: String
+                  }
+                )
+              end
+              def to_hash
+              end
+            end
+          end
+
+          class Square < WhopSDK::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod::Icons::Square,
+                  WhopSDK::Internal::AnyHash
+                )
+              end
+
+            # The colorway for dark surfaces.
+            sig do
+              returns(
+                WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod::Icons::Square::Dark
+              )
+            end
+            attr_reader :dark
+
+            sig do
+              params(
+                dark:
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod::Icons::Square::Dark::OrHash
+              ).void
+            end
+            attr_writer :dark
+
+            # The colorway for light surfaces.
+            sig do
+              returns(
+                WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod::Icons::Square::Light
+              )
+            end
+            attr_reader :light
+
+            sig do
+              params(
+                light:
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod::Icons::Square::Light::OrHash
+              ).void
+            end
+            attr_writer :light
+
+            # The square tile (32x32).
+            sig do
+              params(
+                dark:
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod::Icons::Square::Dark::OrHash,
+                light:
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod::Icons::Square::Light::OrHash
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # The colorway for dark surfaces.
+              dark:,
+              # The colorway for light surfaces.
+              light:
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  dark:
+                    WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod::Icons::Square::Dark,
+                  light:
+                    WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod::Icons::Square::Light
+                }
+              )
+            end
+            def to_hash
+            end
+
+            class Dark < WhopSDK::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod::Icons::Square::Dark,
+                    WhopSDK::Internal::AnyHash
+                  )
+                end
+
+              # Raster fallback at the shape's native size.
+              sig { returns(String) }
+              attr_accessor :png_1x
+
+              # Raster fallback at double density.
+              sig { returns(String) }
+              attr_accessor :png_2x
+
+              # Raster fallback at quadruple density.
+              sig { returns(String) }
+              attr_accessor :png_4x
+
+              # The vector file. Prefer this everywhere SVG renders.
+              sig { returns(String) }
+              attr_accessor :svg
+
+              # The colorway for dark surfaces.
+              sig do
+                params(
+                  png_1x: String,
+                  png_2x: String,
+                  png_4x: String,
+                  svg: String
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                # Raster fallback at the shape's native size.
+                png_1x:,
+                # Raster fallback at double density.
+                png_2x:,
+                # Raster fallback at quadruple density.
+                png_4x:,
+                # The vector file. Prefer this everywhere SVG renders.
+                svg:
+              )
+              end
+
+              sig do
+                override.returns(
+                  {
+                    png_1x: String,
+                    png_2x: String,
+                    png_4x: String,
+                    svg: String
+                  }
+                )
+              end
+              def to_hash
+              end
+            end
+
+            class Light < WhopSDK::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod::Icons::Square::Light,
+                    WhopSDK::Internal::AnyHash
+                  )
+                end
+
+              # Raster fallback at the shape's native size.
+              sig { returns(String) }
+              attr_accessor :png_1x
+
+              # Raster fallback at double density.
+              sig { returns(String) }
+              attr_accessor :png_2x
+
+              # Raster fallback at quadruple density.
+              sig { returns(String) }
+              attr_accessor :png_4x
+
+              # The vector file. Prefer this everywhere SVG renders.
+              sig { returns(String) }
+              attr_accessor :svg
+
+              # The colorway for light surfaces.
+              sig do
+                params(
+                  png_1x: String,
+                  png_2x: String,
+                  png_4x: String,
+                  svg: String
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                # Raster fallback at the shape's native size.
+                png_1x:,
+                # Raster fallback at double density.
+                png_2x:,
+                # Raster fallback at quadruple density.
+                png_4x:,
+                # The vector file. Prefer this everywhere SVG renders.
+                svg:
+              )
+              end
+
+              sig do
+                override.returns(
+                  {
+                    png_1x: String,
+                    png_2x: String,
+                    png_4x: String,
+                    svg: String
+                  }
+                )
+              end
+              def to_hash
+              end
+            end
+          end
+        end
       end
 
       class IdealPaymentMethod < WhopSDK::Internal::Type::BaseModel
@@ -570,6 +2506,24 @@ module WhopSDK
         # The time of the event in ISO 8601 UTC format with millisecond precision
         sig { returns(Time) }
         attr_accessor :created_at
+
+        # Every rendition of the icon to display this payment method with. A saved card
+        # carries its brand's icon (Visa, Mastercard, ...) rather than the generic card
+        # art.
+        sig do
+          returns(
+            WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod::Icons
+          )
+        end
+        attr_reader :icons
+
+        sig do
+          params(
+            icons:
+              WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod::Icons::OrHash
+          ).void
+        end
+        attr_writer :icons
 
         # The iDEAL-specific details for this payment method, including bank name and BIC.
         sig do
@@ -601,6 +2555,8 @@ module WhopSDK
           params(
             id: String,
             created_at: Time,
+            icons:
+              WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod::Icons::OrHash,
             ideal:
               WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod::Ideal::OrHash,
             payment_method_type: WhopSDK::PaymentMethodTypes::OrSymbol,
@@ -616,6 +2572,10 @@ module WhopSDK
           id:,
           # The time of the event in ISO 8601 UTC format with millisecond precision
           created_at:,
+          # Every rendition of the icon to display this payment method with. A saved card
+          # carries its brand's icon (Visa, Mastercard, ...) rather than the generic card
+          # art.
+          icons:,
           # The iDEAL-specific details for this payment method, including bank name and BIC.
           ideal:,
           # The type of payment instrument stored on file (e.g., card, us_bank_account,
@@ -631,6 +2591,8 @@ module WhopSDK
             {
               id: String,
               created_at: Time,
+              icons:
+                WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod::Icons,
               ideal:
                 WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod::Ideal,
               payment_method_type: WhopSDK::PaymentMethodTypes::TaggedSymbol,
@@ -639,6 +2601,464 @@ module WhopSDK
           )
         end
         def to_hash
+        end
+
+        class Icons < WhopSDK::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod::Icons,
+                WhopSDK::Internal::AnyHash
+              )
+            end
+
+          # The credit-card-proportioned tile (48x30).
+          sig do
+            returns(
+              WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod::Icons::Card
+            )
+          end
+          attr_reader :card
+
+          sig do
+            params(
+              card:
+                WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod::Icons::Card::OrHash
+            ).void
+          end
+          attr_writer :card
+
+          # The square tile (32x32).
+          sig do
+            returns(
+              WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod::Icons::Square
+            )
+          end
+          attr_reader :square
+
+          sig do
+            params(
+              square:
+                WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod::Icons::Square::OrHash
+            ).void
+          end
+          attr_writer :square
+
+          # Every rendition of the icon to display this payment method with. A saved card
+          # carries its brand's icon (Visa, Mastercard, ...) rather than the generic card
+          # art.
+          sig do
+            params(
+              card:
+                WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod::Icons::Card::OrHash,
+              square:
+                WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod::Icons::Square::OrHash
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # The credit-card-proportioned tile (48x30).
+            card:,
+            # The square tile (32x32).
+            square:
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                card:
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod::Icons::Card,
+                square:
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod::Icons::Square
+              }
+            )
+          end
+          def to_hash
+          end
+
+          class Card < WhopSDK::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod::Icons::Card,
+                  WhopSDK::Internal::AnyHash
+                )
+              end
+
+            # The colorway for dark surfaces.
+            sig do
+              returns(
+                WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod::Icons::Card::Dark
+              )
+            end
+            attr_reader :dark
+
+            sig do
+              params(
+                dark:
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod::Icons::Card::Dark::OrHash
+              ).void
+            end
+            attr_writer :dark
+
+            # The colorway for light surfaces.
+            sig do
+              returns(
+                WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod::Icons::Card::Light
+              )
+            end
+            attr_reader :light
+
+            sig do
+              params(
+                light:
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod::Icons::Card::Light::OrHash
+              ).void
+            end
+            attr_writer :light
+
+            # The credit-card-proportioned tile (48x30).
+            sig do
+              params(
+                dark:
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod::Icons::Card::Dark::OrHash,
+                light:
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod::Icons::Card::Light::OrHash
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # The colorway for dark surfaces.
+              dark:,
+              # The colorway for light surfaces.
+              light:
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  dark:
+                    WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod::Icons::Card::Dark,
+                  light:
+                    WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod::Icons::Card::Light
+                }
+              )
+            end
+            def to_hash
+            end
+
+            class Dark < WhopSDK::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod::Icons::Card::Dark,
+                    WhopSDK::Internal::AnyHash
+                  )
+                end
+
+              # Raster fallback at the shape's native size.
+              sig { returns(String) }
+              attr_accessor :png_1x
+
+              # Raster fallback at double density.
+              sig { returns(String) }
+              attr_accessor :png_2x
+
+              # Raster fallback at quadruple density.
+              sig { returns(String) }
+              attr_accessor :png_4x
+
+              # The vector file. Prefer this everywhere SVG renders.
+              sig { returns(String) }
+              attr_accessor :svg
+
+              # The colorway for dark surfaces.
+              sig do
+                params(
+                  png_1x: String,
+                  png_2x: String,
+                  png_4x: String,
+                  svg: String
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                # Raster fallback at the shape's native size.
+                png_1x:,
+                # Raster fallback at double density.
+                png_2x:,
+                # Raster fallback at quadruple density.
+                png_4x:,
+                # The vector file. Prefer this everywhere SVG renders.
+                svg:
+              )
+              end
+
+              sig do
+                override.returns(
+                  {
+                    png_1x: String,
+                    png_2x: String,
+                    png_4x: String,
+                    svg: String
+                  }
+                )
+              end
+              def to_hash
+              end
+            end
+
+            class Light < WhopSDK::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod::Icons::Card::Light,
+                    WhopSDK::Internal::AnyHash
+                  )
+                end
+
+              # Raster fallback at the shape's native size.
+              sig { returns(String) }
+              attr_accessor :png_1x
+
+              # Raster fallback at double density.
+              sig { returns(String) }
+              attr_accessor :png_2x
+
+              # Raster fallback at quadruple density.
+              sig { returns(String) }
+              attr_accessor :png_4x
+
+              # The vector file. Prefer this everywhere SVG renders.
+              sig { returns(String) }
+              attr_accessor :svg
+
+              # The colorway for light surfaces.
+              sig do
+                params(
+                  png_1x: String,
+                  png_2x: String,
+                  png_4x: String,
+                  svg: String
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                # Raster fallback at the shape's native size.
+                png_1x:,
+                # Raster fallback at double density.
+                png_2x:,
+                # Raster fallback at quadruple density.
+                png_4x:,
+                # The vector file. Prefer this everywhere SVG renders.
+                svg:
+              )
+              end
+
+              sig do
+                override.returns(
+                  {
+                    png_1x: String,
+                    png_2x: String,
+                    png_4x: String,
+                    svg: String
+                  }
+                )
+              end
+              def to_hash
+              end
+            end
+          end
+
+          class Square < WhopSDK::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod::Icons::Square,
+                  WhopSDK::Internal::AnyHash
+                )
+              end
+
+            # The colorway for dark surfaces.
+            sig do
+              returns(
+                WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod::Icons::Square::Dark
+              )
+            end
+            attr_reader :dark
+
+            sig do
+              params(
+                dark:
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod::Icons::Square::Dark::OrHash
+              ).void
+            end
+            attr_writer :dark
+
+            # The colorway for light surfaces.
+            sig do
+              returns(
+                WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod::Icons::Square::Light
+              )
+            end
+            attr_reader :light
+
+            sig do
+              params(
+                light:
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod::Icons::Square::Light::OrHash
+              ).void
+            end
+            attr_writer :light
+
+            # The square tile (32x32).
+            sig do
+              params(
+                dark:
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod::Icons::Square::Dark::OrHash,
+                light:
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod::Icons::Square::Light::OrHash
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # The colorway for dark surfaces.
+              dark:,
+              # The colorway for light surfaces.
+              light:
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  dark:
+                    WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod::Icons::Square::Dark,
+                  light:
+                    WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod::Icons::Square::Light
+                }
+              )
+            end
+            def to_hash
+            end
+
+            class Dark < WhopSDK::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod::Icons::Square::Dark,
+                    WhopSDK::Internal::AnyHash
+                  )
+                end
+
+              # Raster fallback at the shape's native size.
+              sig { returns(String) }
+              attr_accessor :png_1x
+
+              # Raster fallback at double density.
+              sig { returns(String) }
+              attr_accessor :png_2x
+
+              # Raster fallback at quadruple density.
+              sig { returns(String) }
+              attr_accessor :png_4x
+
+              # The vector file. Prefer this everywhere SVG renders.
+              sig { returns(String) }
+              attr_accessor :svg
+
+              # The colorway for dark surfaces.
+              sig do
+                params(
+                  png_1x: String,
+                  png_2x: String,
+                  png_4x: String,
+                  svg: String
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                # Raster fallback at the shape's native size.
+                png_1x:,
+                # Raster fallback at double density.
+                png_2x:,
+                # Raster fallback at quadruple density.
+                png_4x:,
+                # The vector file. Prefer this everywhere SVG renders.
+                svg:
+              )
+              end
+
+              sig do
+                override.returns(
+                  {
+                    png_1x: String,
+                    png_2x: String,
+                    png_4x: String,
+                    svg: String
+                  }
+                )
+              end
+              def to_hash
+              end
+            end
+
+            class Light < WhopSDK::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod::Icons::Square::Light,
+                    WhopSDK::Internal::AnyHash
+                  )
+                end
+
+              # Raster fallback at the shape's native size.
+              sig { returns(String) }
+              attr_accessor :png_1x
+
+              # Raster fallback at double density.
+              sig { returns(String) }
+              attr_accessor :png_2x
+
+              # Raster fallback at quadruple density.
+              sig { returns(String) }
+              attr_accessor :png_4x
+
+              # The vector file. Prefer this everywhere SVG renders.
+              sig { returns(String) }
+              attr_accessor :svg
+
+              # The colorway for light surfaces.
+              sig do
+                params(
+                  png_1x: String,
+                  png_2x: String,
+                  png_4x: String,
+                  svg: String
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                # Raster fallback at the shape's native size.
+                png_1x:,
+                # Raster fallback at double density.
+                png_2x:,
+                # Raster fallback at quadruple density.
+                png_4x:,
+                # The vector file. Prefer this everywhere SVG renders.
+                svg:
+              )
+              end
+
+              sig do
+                override.returns(
+                  {
+                    png_1x: String,
+                    png_2x: String,
+                    png_4x: String,
+                    svg: String
+                  }
+                )
+              end
+              def to_hash
+              end
+            end
+          end
         end
 
         class Ideal < WhopSDK::Internal::Type::BaseModel
@@ -707,6 +3127,24 @@ module WhopSDK
         sig { returns(Time) }
         attr_accessor :created_at
 
+        # Every rendition of the icon to display this payment method with. A saved card
+        # carries its brand's icon (Visa, Mastercard, ...) rather than the generic card
+        # art.
+        sig do
+          returns(
+            WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod::Icons
+          )
+        end
+        attr_reader :icons
+
+        sig do
+          params(
+            icons:
+              WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod::Icons::OrHash
+          ).void
+        end
+        attr_writer :icons
+
         # The type of payment instrument stored on file (e.g., card, us_bank_account,
         # cashapp, ideal, sepa_debit).
         sig { returns(WhopSDK::PaymentMethodTypes::TaggedSymbol) }
@@ -739,6 +3177,8 @@ module WhopSDK
           params(
             id: String,
             created_at: Time,
+            icons:
+              WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod::Icons::OrHash,
             payment_method_type: WhopSDK::PaymentMethodTypes::OrSymbol,
             sepa_debit:
               WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod::SepaDebit::OrHash,
@@ -754,6 +3194,10 @@ module WhopSDK
           id:,
           # The time of the event in ISO 8601 UTC format with millisecond precision
           created_at:,
+          # Every rendition of the icon to display this payment method with. A saved card
+          # carries its brand's icon (Visa, Mastercard, ...) rather than the generic card
+          # art.
+          icons:,
           # The type of payment instrument stored on file (e.g., card, us_bank_account,
           # cashapp, ideal, sepa_debit).
           payment_method_type:,
@@ -770,6 +3214,8 @@ module WhopSDK
             {
               id: String,
               created_at: Time,
+              icons:
+                WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod::Icons,
               payment_method_type: WhopSDK::PaymentMethodTypes::TaggedSymbol,
               sepa_debit:
                 WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod::SepaDebit,
@@ -778,6 +3224,464 @@ module WhopSDK
           )
         end
         def to_hash
+        end
+
+        class Icons < WhopSDK::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod::Icons,
+                WhopSDK::Internal::AnyHash
+              )
+            end
+
+          # The credit-card-proportioned tile (48x30).
+          sig do
+            returns(
+              WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod::Icons::Card
+            )
+          end
+          attr_reader :card
+
+          sig do
+            params(
+              card:
+                WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod::Icons::Card::OrHash
+            ).void
+          end
+          attr_writer :card
+
+          # The square tile (32x32).
+          sig do
+            returns(
+              WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod::Icons::Square
+            )
+          end
+          attr_reader :square
+
+          sig do
+            params(
+              square:
+                WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod::Icons::Square::OrHash
+            ).void
+          end
+          attr_writer :square
+
+          # Every rendition of the icon to display this payment method with. A saved card
+          # carries its brand's icon (Visa, Mastercard, ...) rather than the generic card
+          # art.
+          sig do
+            params(
+              card:
+                WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod::Icons::Card::OrHash,
+              square:
+                WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod::Icons::Square::OrHash
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # The credit-card-proportioned tile (48x30).
+            card:,
+            # The square tile (32x32).
+            square:
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                card:
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod::Icons::Card,
+                square:
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod::Icons::Square
+              }
+            )
+          end
+          def to_hash
+          end
+
+          class Card < WhopSDK::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod::Icons::Card,
+                  WhopSDK::Internal::AnyHash
+                )
+              end
+
+            # The colorway for dark surfaces.
+            sig do
+              returns(
+                WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod::Icons::Card::Dark
+              )
+            end
+            attr_reader :dark
+
+            sig do
+              params(
+                dark:
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod::Icons::Card::Dark::OrHash
+              ).void
+            end
+            attr_writer :dark
+
+            # The colorway for light surfaces.
+            sig do
+              returns(
+                WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod::Icons::Card::Light
+              )
+            end
+            attr_reader :light
+
+            sig do
+              params(
+                light:
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod::Icons::Card::Light::OrHash
+              ).void
+            end
+            attr_writer :light
+
+            # The credit-card-proportioned tile (48x30).
+            sig do
+              params(
+                dark:
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod::Icons::Card::Dark::OrHash,
+                light:
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod::Icons::Card::Light::OrHash
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # The colorway for dark surfaces.
+              dark:,
+              # The colorway for light surfaces.
+              light:
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  dark:
+                    WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod::Icons::Card::Dark,
+                  light:
+                    WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod::Icons::Card::Light
+                }
+              )
+            end
+            def to_hash
+            end
+
+            class Dark < WhopSDK::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod::Icons::Card::Dark,
+                    WhopSDK::Internal::AnyHash
+                  )
+                end
+
+              # Raster fallback at the shape's native size.
+              sig { returns(String) }
+              attr_accessor :png_1x
+
+              # Raster fallback at double density.
+              sig { returns(String) }
+              attr_accessor :png_2x
+
+              # Raster fallback at quadruple density.
+              sig { returns(String) }
+              attr_accessor :png_4x
+
+              # The vector file. Prefer this everywhere SVG renders.
+              sig { returns(String) }
+              attr_accessor :svg
+
+              # The colorway for dark surfaces.
+              sig do
+                params(
+                  png_1x: String,
+                  png_2x: String,
+                  png_4x: String,
+                  svg: String
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                # Raster fallback at the shape's native size.
+                png_1x:,
+                # Raster fallback at double density.
+                png_2x:,
+                # Raster fallback at quadruple density.
+                png_4x:,
+                # The vector file. Prefer this everywhere SVG renders.
+                svg:
+              )
+              end
+
+              sig do
+                override.returns(
+                  {
+                    png_1x: String,
+                    png_2x: String,
+                    png_4x: String,
+                    svg: String
+                  }
+                )
+              end
+              def to_hash
+              end
+            end
+
+            class Light < WhopSDK::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod::Icons::Card::Light,
+                    WhopSDK::Internal::AnyHash
+                  )
+                end
+
+              # Raster fallback at the shape's native size.
+              sig { returns(String) }
+              attr_accessor :png_1x
+
+              # Raster fallback at double density.
+              sig { returns(String) }
+              attr_accessor :png_2x
+
+              # Raster fallback at quadruple density.
+              sig { returns(String) }
+              attr_accessor :png_4x
+
+              # The vector file. Prefer this everywhere SVG renders.
+              sig { returns(String) }
+              attr_accessor :svg
+
+              # The colorway for light surfaces.
+              sig do
+                params(
+                  png_1x: String,
+                  png_2x: String,
+                  png_4x: String,
+                  svg: String
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                # Raster fallback at the shape's native size.
+                png_1x:,
+                # Raster fallback at double density.
+                png_2x:,
+                # Raster fallback at quadruple density.
+                png_4x:,
+                # The vector file. Prefer this everywhere SVG renders.
+                svg:
+              )
+              end
+
+              sig do
+                override.returns(
+                  {
+                    png_1x: String,
+                    png_2x: String,
+                    png_4x: String,
+                    svg: String
+                  }
+                )
+              end
+              def to_hash
+              end
+            end
+          end
+
+          class Square < WhopSDK::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod::Icons::Square,
+                  WhopSDK::Internal::AnyHash
+                )
+              end
+
+            # The colorway for dark surfaces.
+            sig do
+              returns(
+                WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod::Icons::Square::Dark
+              )
+            end
+            attr_reader :dark
+
+            sig do
+              params(
+                dark:
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod::Icons::Square::Dark::OrHash
+              ).void
+            end
+            attr_writer :dark
+
+            # The colorway for light surfaces.
+            sig do
+              returns(
+                WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod::Icons::Square::Light
+              )
+            end
+            attr_reader :light
+
+            sig do
+              params(
+                light:
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod::Icons::Square::Light::OrHash
+              ).void
+            end
+            attr_writer :light
+
+            # The square tile (32x32).
+            sig do
+              params(
+                dark:
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod::Icons::Square::Dark::OrHash,
+                light:
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod::Icons::Square::Light::OrHash
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # The colorway for dark surfaces.
+              dark:,
+              # The colorway for light surfaces.
+              light:
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  dark:
+                    WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod::Icons::Square::Dark,
+                  light:
+                    WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod::Icons::Square::Light
+                }
+              )
+            end
+            def to_hash
+            end
+
+            class Dark < WhopSDK::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod::Icons::Square::Dark,
+                    WhopSDK::Internal::AnyHash
+                  )
+                end
+
+              # Raster fallback at the shape's native size.
+              sig { returns(String) }
+              attr_accessor :png_1x
+
+              # Raster fallback at double density.
+              sig { returns(String) }
+              attr_accessor :png_2x
+
+              # Raster fallback at quadruple density.
+              sig { returns(String) }
+              attr_accessor :png_4x
+
+              # The vector file. Prefer this everywhere SVG renders.
+              sig { returns(String) }
+              attr_accessor :svg
+
+              # The colorway for dark surfaces.
+              sig do
+                params(
+                  png_1x: String,
+                  png_2x: String,
+                  png_4x: String,
+                  svg: String
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                # Raster fallback at the shape's native size.
+                png_1x:,
+                # Raster fallback at double density.
+                png_2x:,
+                # Raster fallback at quadruple density.
+                png_4x:,
+                # The vector file. Prefer this everywhere SVG renders.
+                svg:
+              )
+              end
+
+              sig do
+                override.returns(
+                  {
+                    png_1x: String,
+                    png_2x: String,
+                    png_4x: String,
+                    svg: String
+                  }
+                )
+              end
+              def to_hash
+              end
+            end
+
+            class Light < WhopSDK::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod::Icons::Square::Light,
+                    WhopSDK::Internal::AnyHash
+                  )
+                end
+
+              # Raster fallback at the shape's native size.
+              sig { returns(String) }
+              attr_accessor :png_1x
+
+              # Raster fallback at double density.
+              sig { returns(String) }
+              attr_accessor :png_2x
+
+              # Raster fallback at quadruple density.
+              sig { returns(String) }
+              attr_accessor :png_4x
+
+              # The vector file. Prefer this everywhere SVG renders.
+              sig { returns(String) }
+              attr_accessor :svg
+
+              # The colorway for light surfaces.
+              sig do
+                params(
+                  png_1x: String,
+                  png_2x: String,
+                  png_4x: String,
+                  svg: String
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                # Raster fallback at the shape's native size.
+                png_1x:,
+                # Raster fallback at double density.
+                png_2x:,
+                # Raster fallback at quadruple density.
+                png_4x:,
+                # The vector file. Prefer this everywhere SVG renders.
+                svg:
+              )
+              end
+
+              sig do
+                override.returns(
+                  {
+                    png_1x: String,
+                    png_2x: String,
+                    png_4x: String,
+                    svg: String
+                  }
+                )
+              end
+              def to_hash
+              end
+            end
+          end
         end
 
         class SepaDebit < WhopSDK::Internal::Type::BaseModel
@@ -871,6 +3775,24 @@ module WhopSDK
         sig { returns(Time) }
         attr_accessor :created_at
 
+        # Every rendition of the icon to display this payment method with. A saved card
+        # carries its brand's icon (Visa, Mastercard, ...) rather than the generic card
+        # art.
+        sig do
+          returns(
+            WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::Icons
+          )
+        end
+        attr_reader :icons
+
+        sig do
+          params(
+            icons:
+              WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::Icons::OrHash
+          ).void
+        end
+        attr_writer :icons
+
         # The type of payment instrument stored on file (e.g., card, us_bank_account,
         # cashapp, ideal, sepa_debit).
         sig { returns(WhopSDK::PaymentMethodTypes::TaggedSymbol) }
@@ -903,6 +3825,8 @@ module WhopSDK
           params(
             id: String,
             created_at: Time,
+            icons:
+              WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::Icons::OrHash,
             payment_method_type: WhopSDK::PaymentMethodTypes::OrSymbol,
             platform_balance:
               WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::PlatformBalance::OrHash,
@@ -918,6 +3842,10 @@ module WhopSDK
           id:,
           # The time of the event in ISO 8601 UTC format with millisecond precision
           created_at:,
+          # Every rendition of the icon to display this payment method with. A saved card
+          # carries its brand's icon (Visa, Mastercard, ...) rather than the generic card
+          # art.
+          icons:,
           # The type of payment instrument stored on file (e.g., card, us_bank_account,
           # cashapp, ideal, sepa_debit).
           payment_method_type:,
@@ -933,6 +3861,8 @@ module WhopSDK
             {
               id: String,
               created_at: Time,
+              icons:
+                WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::Icons,
               payment_method_type: WhopSDK::PaymentMethodTypes::TaggedSymbol,
               platform_balance:
                 WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::PlatformBalance,
@@ -941,6 +3871,464 @@ module WhopSDK
           )
         end
         def to_hash
+        end
+
+        class Icons < WhopSDK::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::Icons,
+                WhopSDK::Internal::AnyHash
+              )
+            end
+
+          # The credit-card-proportioned tile (48x30).
+          sig do
+            returns(
+              WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::Icons::Card
+            )
+          end
+          attr_reader :card
+
+          sig do
+            params(
+              card:
+                WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::Icons::Card::OrHash
+            ).void
+          end
+          attr_writer :card
+
+          # The square tile (32x32).
+          sig do
+            returns(
+              WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::Icons::Square
+            )
+          end
+          attr_reader :square
+
+          sig do
+            params(
+              square:
+                WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::Icons::Square::OrHash
+            ).void
+          end
+          attr_writer :square
+
+          # Every rendition of the icon to display this payment method with. A saved card
+          # carries its brand's icon (Visa, Mastercard, ...) rather than the generic card
+          # art.
+          sig do
+            params(
+              card:
+                WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::Icons::Card::OrHash,
+              square:
+                WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::Icons::Square::OrHash
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # The credit-card-proportioned tile (48x30).
+            card:,
+            # The square tile (32x32).
+            square:
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                card:
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::Icons::Card,
+                square:
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::Icons::Square
+              }
+            )
+          end
+          def to_hash
+          end
+
+          class Card < WhopSDK::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::Icons::Card,
+                  WhopSDK::Internal::AnyHash
+                )
+              end
+
+            # The colorway for dark surfaces.
+            sig do
+              returns(
+                WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::Icons::Card::Dark
+              )
+            end
+            attr_reader :dark
+
+            sig do
+              params(
+                dark:
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::Icons::Card::Dark::OrHash
+              ).void
+            end
+            attr_writer :dark
+
+            # The colorway for light surfaces.
+            sig do
+              returns(
+                WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::Icons::Card::Light
+              )
+            end
+            attr_reader :light
+
+            sig do
+              params(
+                light:
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::Icons::Card::Light::OrHash
+              ).void
+            end
+            attr_writer :light
+
+            # The credit-card-proportioned tile (48x30).
+            sig do
+              params(
+                dark:
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::Icons::Card::Dark::OrHash,
+                light:
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::Icons::Card::Light::OrHash
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # The colorway for dark surfaces.
+              dark:,
+              # The colorway for light surfaces.
+              light:
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  dark:
+                    WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::Icons::Card::Dark,
+                  light:
+                    WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::Icons::Card::Light
+                }
+              )
+            end
+            def to_hash
+            end
+
+            class Dark < WhopSDK::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::Icons::Card::Dark,
+                    WhopSDK::Internal::AnyHash
+                  )
+                end
+
+              # Raster fallback at the shape's native size.
+              sig { returns(String) }
+              attr_accessor :png_1x
+
+              # Raster fallback at double density.
+              sig { returns(String) }
+              attr_accessor :png_2x
+
+              # Raster fallback at quadruple density.
+              sig { returns(String) }
+              attr_accessor :png_4x
+
+              # The vector file. Prefer this everywhere SVG renders.
+              sig { returns(String) }
+              attr_accessor :svg
+
+              # The colorway for dark surfaces.
+              sig do
+                params(
+                  png_1x: String,
+                  png_2x: String,
+                  png_4x: String,
+                  svg: String
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                # Raster fallback at the shape's native size.
+                png_1x:,
+                # Raster fallback at double density.
+                png_2x:,
+                # Raster fallback at quadruple density.
+                png_4x:,
+                # The vector file. Prefer this everywhere SVG renders.
+                svg:
+              )
+              end
+
+              sig do
+                override.returns(
+                  {
+                    png_1x: String,
+                    png_2x: String,
+                    png_4x: String,
+                    svg: String
+                  }
+                )
+              end
+              def to_hash
+              end
+            end
+
+            class Light < WhopSDK::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::Icons::Card::Light,
+                    WhopSDK::Internal::AnyHash
+                  )
+                end
+
+              # Raster fallback at the shape's native size.
+              sig { returns(String) }
+              attr_accessor :png_1x
+
+              # Raster fallback at double density.
+              sig { returns(String) }
+              attr_accessor :png_2x
+
+              # Raster fallback at quadruple density.
+              sig { returns(String) }
+              attr_accessor :png_4x
+
+              # The vector file. Prefer this everywhere SVG renders.
+              sig { returns(String) }
+              attr_accessor :svg
+
+              # The colorway for light surfaces.
+              sig do
+                params(
+                  png_1x: String,
+                  png_2x: String,
+                  png_4x: String,
+                  svg: String
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                # Raster fallback at the shape's native size.
+                png_1x:,
+                # Raster fallback at double density.
+                png_2x:,
+                # Raster fallback at quadruple density.
+                png_4x:,
+                # The vector file. Prefer this everywhere SVG renders.
+                svg:
+              )
+              end
+
+              sig do
+                override.returns(
+                  {
+                    png_1x: String,
+                    png_2x: String,
+                    png_4x: String,
+                    svg: String
+                  }
+                )
+              end
+              def to_hash
+              end
+            end
+          end
+
+          class Square < WhopSDK::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::Icons::Square,
+                  WhopSDK::Internal::AnyHash
+                )
+              end
+
+            # The colorway for dark surfaces.
+            sig do
+              returns(
+                WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::Icons::Square::Dark
+              )
+            end
+            attr_reader :dark
+
+            sig do
+              params(
+                dark:
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::Icons::Square::Dark::OrHash
+              ).void
+            end
+            attr_writer :dark
+
+            # The colorway for light surfaces.
+            sig do
+              returns(
+                WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::Icons::Square::Light
+              )
+            end
+            attr_reader :light
+
+            sig do
+              params(
+                light:
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::Icons::Square::Light::OrHash
+              ).void
+            end
+            attr_writer :light
+
+            # The square tile (32x32).
+            sig do
+              params(
+                dark:
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::Icons::Square::Dark::OrHash,
+                light:
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::Icons::Square::Light::OrHash
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # The colorway for dark surfaces.
+              dark:,
+              # The colorway for light surfaces.
+              light:
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  dark:
+                    WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::Icons::Square::Dark,
+                  light:
+                    WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::Icons::Square::Light
+                }
+              )
+            end
+            def to_hash
+            end
+
+            class Dark < WhopSDK::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::Icons::Square::Dark,
+                    WhopSDK::Internal::AnyHash
+                  )
+                end
+
+              # Raster fallback at the shape's native size.
+              sig { returns(String) }
+              attr_accessor :png_1x
+
+              # Raster fallback at double density.
+              sig { returns(String) }
+              attr_accessor :png_2x
+
+              # Raster fallback at quadruple density.
+              sig { returns(String) }
+              attr_accessor :png_4x
+
+              # The vector file. Prefer this everywhere SVG renders.
+              sig { returns(String) }
+              attr_accessor :svg
+
+              # The colorway for dark surfaces.
+              sig do
+                params(
+                  png_1x: String,
+                  png_2x: String,
+                  png_4x: String,
+                  svg: String
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                # Raster fallback at the shape's native size.
+                png_1x:,
+                # Raster fallback at double density.
+                png_2x:,
+                # Raster fallback at quadruple density.
+                png_4x:,
+                # The vector file. Prefer this everywhere SVG renders.
+                svg:
+              )
+              end
+
+              sig do
+                override.returns(
+                  {
+                    png_1x: String,
+                    png_2x: String,
+                    png_4x: String,
+                    svg: String
+                  }
+                )
+              end
+              def to_hash
+              end
+            end
+
+            class Light < WhopSDK::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::Icons::Square::Light,
+                    WhopSDK::Internal::AnyHash
+                  )
+                end
+
+              # Raster fallback at the shape's native size.
+              sig { returns(String) }
+              attr_accessor :png_1x
+
+              # Raster fallback at double density.
+              sig { returns(String) }
+              attr_accessor :png_2x
+
+              # Raster fallback at quadruple density.
+              sig { returns(String) }
+              attr_accessor :png_4x
+
+              # The vector file. Prefer this everywhere SVG renders.
+              sig { returns(String) }
+              attr_accessor :svg
+
+              # The colorway for light surfaces.
+              sig do
+                params(
+                  png_1x: String,
+                  png_2x: String,
+                  png_4x: String,
+                  svg: String
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                # Raster fallback at the shape's native size.
+                png_1x:,
+                # Raster fallback at double density.
+                png_2x:,
+                # Raster fallback at quadruple density.
+                png_4x:,
+                # The vector file. Prefer this everywhere SVG renders.
+                svg:
+              )
+              end
+
+              sig do
+                override.returns(
+                  {
+                    png_1x: String,
+                    png_2x: String,
+                    png_4x: String,
+                    svg: String
+                  }
+                )
+              end
+              def to_hash
+              end
+            end
+          end
         end
 
         class PlatformBalance < WhopSDK::Internal::Type::BaseModel

@@ -51,6 +51,14 @@ module WhopSDK
         #   @return [Time]
         required :created_at, Time
 
+        # @!attribute icons
+        #   Every rendition of the icon to display this payment method with. A saved card
+        #   carries its brand's icon (Visa, Mastercard, ...) rather than the generic card
+        #   art.
+        #
+        #   @return [WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod::Icons]
+        required :icons, -> { WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod::Icons }
+
         # @!attribute payment_method_type
         #   The type of payment instrument stored on file (e.g., card, us_bank_account,
         #   cashapp, ideal, sepa_debit).
@@ -64,7 +72,7 @@ module WhopSDK
         #   @return [Symbol, :BasePaymentMethod]
         required :typename, const: :BasePaymentMethod
 
-        # @!method initialize(id:, created_at:, payment_method_type:, typename: :BasePaymentMethod)
+        # @!method initialize(id:, created_at:, icons:, payment_method_type:, typename: :BasePaymentMethod)
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod} for more
         #   details.
@@ -75,9 +83,235 @@ module WhopSDK
         #
         #   @param created_at [Time] The time of the event in ISO 8601 UTC format with millisecond precision
         #
+        #   @param icons [WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod::Icons] Every rendition of the icon to display this payment method with. A saved card ca
+        #
         #   @param payment_method_type [Symbol, WhopSDK::Models::PaymentMethodTypes] The type of payment instrument stored on file (e.g., card, us_bank_account, cash
         #
         #   @param typename [Symbol, :BasePaymentMethod] The typename of this object
+
+        # @see WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod#icons
+        class Icons < WhopSDK::Internal::Type::BaseModel
+          # @!attribute card
+          #   The credit-card-proportioned tile (48x30).
+          #
+          #   @return [WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod::Icons::Card]
+          required :card, -> { WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod::Icons::Card }
+
+          # @!attribute square
+          #   The square tile (32x32).
+          #
+          #   @return [WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod::Icons::Square]
+          required :square, -> { WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod::Icons::Square }
+
+          # @!method initialize(card:, square:)
+          #   Every rendition of the icon to display this payment method with. A saved card
+          #   carries its brand's icon (Visa, Mastercard, ...) rather than the generic card
+          #   art.
+          #
+          #   @param card [WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod::Icons::Card] The credit-card-proportioned tile (48x30).
+          #
+          #   @param square [WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod::Icons::Square] The square tile (32x32).
+
+          # @see WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod::Icons#card
+          class Card < WhopSDK::Internal::Type::BaseModel
+            # @!attribute dark
+            #   The colorway for dark surfaces.
+            #
+            #   @return [WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod::Icons::Card::Dark]
+            required :dark,
+                     -> { WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod::Icons::Card::Dark }
+
+            # @!attribute light
+            #   The colorway for light surfaces.
+            #
+            #   @return [WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod::Icons::Card::Light]
+            required :light,
+                     -> { WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod::Icons::Card::Light }
+
+            # @!method initialize(dark:, light:)
+            #   The credit-card-proportioned tile (48x30).
+            #
+            #   @param dark [WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod::Icons::Card::Dark] The colorway for dark surfaces.
+            #
+            #   @param light [WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod::Icons::Card::Light] The colorway for light surfaces.
+
+            # @see WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod::Icons::Card#dark
+            class Dark < WhopSDK::Internal::Type::BaseModel
+              # @!attribute png_1x
+              #   Raster fallback at the shape's native size.
+              #
+              #   @return [String]
+              required :png_1x, String
+
+              # @!attribute png_2x
+              #   Raster fallback at double density.
+              #
+              #   @return [String]
+              required :png_2x, String
+
+              # @!attribute png_4x
+              #   Raster fallback at quadruple density.
+              #
+              #   @return [String]
+              required :png_4x, String
+
+              # @!attribute svg
+              #   The vector file. Prefer this everywhere SVG renders.
+              #
+              #   @return [String]
+              required :svg, String
+
+              # @!method initialize(png_1x:, png_2x:, png_4x:, svg:)
+              #   The colorway for dark surfaces.
+              #
+              #   @param png_1x [String] Raster fallback at the shape's native size.
+              #
+              #   @param png_2x [String] Raster fallback at double density.
+              #
+              #   @param png_4x [String] Raster fallback at quadruple density.
+              #
+              #   @param svg [String] The vector file. Prefer this everywhere SVG renders.
+            end
+
+            # @see WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod::Icons::Card#light
+            class Light < WhopSDK::Internal::Type::BaseModel
+              # @!attribute png_1x
+              #   Raster fallback at the shape's native size.
+              #
+              #   @return [String]
+              required :png_1x, String
+
+              # @!attribute png_2x
+              #   Raster fallback at double density.
+              #
+              #   @return [String]
+              required :png_2x, String
+
+              # @!attribute png_4x
+              #   Raster fallback at quadruple density.
+              #
+              #   @return [String]
+              required :png_4x, String
+
+              # @!attribute svg
+              #   The vector file. Prefer this everywhere SVG renders.
+              #
+              #   @return [String]
+              required :svg, String
+
+              # @!method initialize(png_1x:, png_2x:, png_4x:, svg:)
+              #   The colorway for light surfaces.
+              #
+              #   @param png_1x [String] Raster fallback at the shape's native size.
+              #
+              #   @param png_2x [String] Raster fallback at double density.
+              #
+              #   @param png_4x [String] Raster fallback at quadruple density.
+              #
+              #   @param svg [String] The vector file. Prefer this everywhere SVG renders.
+            end
+          end
+
+          # @see WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod::Icons#square
+          class Square < WhopSDK::Internal::Type::BaseModel
+            # @!attribute dark
+            #   The colorway for dark surfaces.
+            #
+            #   @return [WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod::Icons::Square::Dark]
+            required :dark,
+                     -> { WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod::Icons::Square::Dark }
+
+            # @!attribute light
+            #   The colorway for light surfaces.
+            #
+            #   @return [WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod::Icons::Square::Light]
+            required :light,
+                     -> { WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod::Icons::Square::Light }
+
+            # @!method initialize(dark:, light:)
+            #   The square tile (32x32).
+            #
+            #   @param dark [WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod::Icons::Square::Dark] The colorway for dark surfaces.
+            #
+            #   @param light [WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod::Icons::Square::Light] The colorway for light surfaces.
+
+            # @see WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod::Icons::Square#dark
+            class Dark < WhopSDK::Internal::Type::BaseModel
+              # @!attribute png_1x
+              #   Raster fallback at the shape's native size.
+              #
+              #   @return [String]
+              required :png_1x, String
+
+              # @!attribute png_2x
+              #   Raster fallback at double density.
+              #
+              #   @return [String]
+              required :png_2x, String
+
+              # @!attribute png_4x
+              #   Raster fallback at quadruple density.
+              #
+              #   @return [String]
+              required :png_4x, String
+
+              # @!attribute svg
+              #   The vector file. Prefer this everywhere SVG renders.
+              #
+              #   @return [String]
+              required :svg, String
+
+              # @!method initialize(png_1x:, png_2x:, png_4x:, svg:)
+              #   The colorway for dark surfaces.
+              #
+              #   @param png_1x [String] Raster fallback at the shape's native size.
+              #
+              #   @param png_2x [String] Raster fallback at double density.
+              #
+              #   @param png_4x [String] Raster fallback at quadruple density.
+              #
+              #   @param svg [String] The vector file. Prefer this everywhere SVG renders.
+            end
+
+            # @see WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod::Icons::Square#light
+            class Light < WhopSDK::Internal::Type::BaseModel
+              # @!attribute png_1x
+              #   Raster fallback at the shape's native size.
+              #
+              #   @return [String]
+              required :png_1x, String
+
+              # @!attribute png_2x
+              #   Raster fallback at double density.
+              #
+              #   @return [String]
+              required :png_2x, String
+
+              # @!attribute png_4x
+              #   Raster fallback at quadruple density.
+              #
+              #   @return [String]
+              required :png_4x, String
+
+              # @!attribute svg
+              #   The vector file. Prefer this everywhere SVG renders.
+              #
+              #   @return [String]
+              required :svg, String
+
+              # @!method initialize(png_1x:, png_2x:, png_4x:, svg:)
+              #   The colorway for light surfaces.
+              #
+              #   @param png_1x [String] Raster fallback at the shape's native size.
+              #
+              #   @param png_2x [String] Raster fallback at double density.
+              #
+              #   @param png_4x [String] Raster fallback at quadruple density.
+              #
+              #   @param svg [String] The vector file. Prefer this everywhere SVG renders.
+            end
+          end
+        end
       end
 
       class CardPaymentMethod < WhopSDK::Internal::Type::BaseModel
@@ -111,6 +345,14 @@ module WhopSDK
         #   @return [Boolean]
         required :has_payer_document, WhopSDK::Internal::Type::Boolean
 
+        # @!attribute icons
+        #   Every rendition of the icon to display this payment method with. A saved card
+        #   carries its brand's icon (Visa, Mastercard, ...) rather than the generic card
+        #   art.
+        #
+        #   @return [WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Icons]
+        required :icons, -> { WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Icons }
+
         # @!attribute payment_method_type
         #   The type of payment instrument stored on file (e.g., card, us_bank_account,
         #   cashapp, ideal, sepa_debit).
@@ -124,7 +366,7 @@ module WhopSDK
         #   @return [Symbol, :CardPaymentMethod]
         required :typename, const: :CardPaymentMethod
 
-        # @!method initialize(id:, card:, created_at:, has_payer_document:, payment_method_type:, typename: :CardPaymentMethod)
+        # @!method initialize(id:, card:, created_at:, has_payer_document:, icons:, payment_method_type:, typename: :CardPaymentMethod)
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod} for more
         #   details.
@@ -139,6 +381,8 @@ module WhopSDK
         #   @param created_at [Time] The time of the event in ISO 8601 UTC format with millisecond precision
         #
         #   @param has_payer_document [Boolean] Whether this card has the payer identity document required by its payment provid
+        #
+        #   @param icons [WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Icons] Every rendition of the icon to display this payment method with. A saved card ca
         #
         #   @param payment_method_type [Symbol, WhopSDK::Models::PaymentMethodTypes] The type of payment instrument stored on file (e.g., card, us_bank_account, cash
         #
@@ -196,6 +440,230 @@ module WhopSDK
           #
           #   @param three_ds_verified [Boolean] Whether this card was verified with 3D Secure, either when it was saved or on a
         end
+
+        # @see WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod#icons
+        class Icons < WhopSDK::Internal::Type::BaseModel
+          # @!attribute card
+          #   The credit-card-proportioned tile (48x30).
+          #
+          #   @return [WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Icons::Card]
+          required :card, -> { WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Icons::Card }
+
+          # @!attribute square
+          #   The square tile (32x32).
+          #
+          #   @return [WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Icons::Square]
+          required :square, -> { WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Icons::Square }
+
+          # @!method initialize(card:, square:)
+          #   Every rendition of the icon to display this payment method with. A saved card
+          #   carries its brand's icon (Visa, Mastercard, ...) rather than the generic card
+          #   art.
+          #
+          #   @param card [WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Icons::Card] The credit-card-proportioned tile (48x30).
+          #
+          #   @param square [WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Icons::Square] The square tile (32x32).
+
+          # @see WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Icons#card
+          class Card < WhopSDK::Internal::Type::BaseModel
+            # @!attribute dark
+            #   The colorway for dark surfaces.
+            #
+            #   @return [WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Icons::Card::Dark]
+            required :dark,
+                     -> { WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Icons::Card::Dark }
+
+            # @!attribute light
+            #   The colorway for light surfaces.
+            #
+            #   @return [WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Icons::Card::Light]
+            required :light,
+                     -> { WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Icons::Card::Light }
+
+            # @!method initialize(dark:, light:)
+            #   The credit-card-proportioned tile (48x30).
+            #
+            #   @param dark [WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Icons::Card::Dark] The colorway for dark surfaces.
+            #
+            #   @param light [WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Icons::Card::Light] The colorway for light surfaces.
+
+            # @see WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Icons::Card#dark
+            class Dark < WhopSDK::Internal::Type::BaseModel
+              # @!attribute png_1x
+              #   Raster fallback at the shape's native size.
+              #
+              #   @return [String]
+              required :png_1x, String
+
+              # @!attribute png_2x
+              #   Raster fallback at double density.
+              #
+              #   @return [String]
+              required :png_2x, String
+
+              # @!attribute png_4x
+              #   Raster fallback at quadruple density.
+              #
+              #   @return [String]
+              required :png_4x, String
+
+              # @!attribute svg
+              #   The vector file. Prefer this everywhere SVG renders.
+              #
+              #   @return [String]
+              required :svg, String
+
+              # @!method initialize(png_1x:, png_2x:, png_4x:, svg:)
+              #   The colorway for dark surfaces.
+              #
+              #   @param png_1x [String] Raster fallback at the shape's native size.
+              #
+              #   @param png_2x [String] Raster fallback at double density.
+              #
+              #   @param png_4x [String] Raster fallback at quadruple density.
+              #
+              #   @param svg [String] The vector file. Prefer this everywhere SVG renders.
+            end
+
+            # @see WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Icons::Card#light
+            class Light < WhopSDK::Internal::Type::BaseModel
+              # @!attribute png_1x
+              #   Raster fallback at the shape's native size.
+              #
+              #   @return [String]
+              required :png_1x, String
+
+              # @!attribute png_2x
+              #   Raster fallback at double density.
+              #
+              #   @return [String]
+              required :png_2x, String
+
+              # @!attribute png_4x
+              #   Raster fallback at quadruple density.
+              #
+              #   @return [String]
+              required :png_4x, String
+
+              # @!attribute svg
+              #   The vector file. Prefer this everywhere SVG renders.
+              #
+              #   @return [String]
+              required :svg, String
+
+              # @!method initialize(png_1x:, png_2x:, png_4x:, svg:)
+              #   The colorway for light surfaces.
+              #
+              #   @param png_1x [String] Raster fallback at the shape's native size.
+              #
+              #   @param png_2x [String] Raster fallback at double density.
+              #
+              #   @param png_4x [String] Raster fallback at quadruple density.
+              #
+              #   @param svg [String] The vector file. Prefer this everywhere SVG renders.
+            end
+          end
+
+          # @see WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Icons#square
+          class Square < WhopSDK::Internal::Type::BaseModel
+            # @!attribute dark
+            #   The colorway for dark surfaces.
+            #
+            #   @return [WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Icons::Square::Dark]
+            required :dark,
+                     -> { WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Icons::Square::Dark }
+
+            # @!attribute light
+            #   The colorway for light surfaces.
+            #
+            #   @return [WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Icons::Square::Light]
+            required :light,
+                     -> { WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Icons::Square::Light }
+
+            # @!method initialize(dark:, light:)
+            #   The square tile (32x32).
+            #
+            #   @param dark [WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Icons::Square::Dark] The colorway for dark surfaces.
+            #
+            #   @param light [WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Icons::Square::Light] The colorway for light surfaces.
+
+            # @see WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Icons::Square#dark
+            class Dark < WhopSDK::Internal::Type::BaseModel
+              # @!attribute png_1x
+              #   Raster fallback at the shape's native size.
+              #
+              #   @return [String]
+              required :png_1x, String
+
+              # @!attribute png_2x
+              #   Raster fallback at double density.
+              #
+              #   @return [String]
+              required :png_2x, String
+
+              # @!attribute png_4x
+              #   Raster fallback at quadruple density.
+              #
+              #   @return [String]
+              required :png_4x, String
+
+              # @!attribute svg
+              #   The vector file. Prefer this everywhere SVG renders.
+              #
+              #   @return [String]
+              required :svg, String
+
+              # @!method initialize(png_1x:, png_2x:, png_4x:, svg:)
+              #   The colorway for dark surfaces.
+              #
+              #   @param png_1x [String] Raster fallback at the shape's native size.
+              #
+              #   @param png_2x [String] Raster fallback at double density.
+              #
+              #   @param png_4x [String] Raster fallback at quadruple density.
+              #
+              #   @param svg [String] The vector file. Prefer this everywhere SVG renders.
+            end
+
+            # @see WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Icons::Square#light
+            class Light < WhopSDK::Internal::Type::BaseModel
+              # @!attribute png_1x
+              #   Raster fallback at the shape's native size.
+              #
+              #   @return [String]
+              required :png_1x, String
+
+              # @!attribute png_2x
+              #   Raster fallback at double density.
+              #
+              #   @return [String]
+              required :png_2x, String
+
+              # @!attribute png_4x
+              #   Raster fallback at quadruple density.
+              #
+              #   @return [String]
+              required :png_4x, String
+
+              # @!attribute svg
+              #   The vector file. Prefer this everywhere SVG renders.
+              #
+              #   @return [String]
+              required :svg, String
+
+              # @!method initialize(png_1x:, png_2x:, png_4x:, svg:)
+              #   The colorway for light surfaces.
+              #
+              #   @param png_1x [String] Raster fallback at the shape's native size.
+              #
+              #   @param png_2x [String] Raster fallback at double density.
+              #
+              #   @param png_4x [String] Raster fallback at quadruple density.
+              #
+              #   @param svg [String] The vector file. Prefer this everywhere SVG renders.
+            end
+          end
+        end
       end
 
       class UsBankAccountPaymentMethod < WhopSDK::Internal::Type::BaseModel
@@ -214,6 +682,14 @@ module WhopSDK
         #
         #   @return [Time]
         required :created_at, Time
+
+        # @!attribute icons
+        #   Every rendition of the icon to display this payment method with. A saved card
+        #   carries its brand's icon (Visa, Mastercard, ...) rather than the generic card
+        #   art.
+        #
+        #   @return [WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod::Icons]
+        required :icons, -> { WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod::Icons }
 
         # @!attribute payment_method_type
         #   The type of payment instrument stored on file (e.g., card, us_bank_account,
@@ -236,7 +712,7 @@ module WhopSDK
         required :us_bank_account,
                  -> { WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod::UsBankAccount }
 
-        # @!method initialize(id:, created_at:, payment_method_type:, us_bank_account:, typename: :UsBankAccountPaymentMethod)
+        # @!method initialize(id:, created_at:, icons:, payment_method_type:, us_bank_account:, typename: :UsBankAccountPaymentMethod)
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod} for
         #   more details.
@@ -248,11 +724,239 @@ module WhopSDK
         #
         #   @param created_at [Time] The time of the event in ISO 8601 UTC format with millisecond precision
         #
+        #   @param icons [WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod::Icons] Every rendition of the icon to display this payment method with. A saved card ca
+        #
         #   @param payment_method_type [Symbol, WhopSDK::Models::PaymentMethodTypes] The type of payment instrument stored on file (e.g., card, us_bank_account, cash
         #
         #   @param us_bank_account [WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod::UsBankAccount] The bank account-specific details for this payment method, including bank name a
         #
         #   @param typename [Symbol, :UsBankAccountPaymentMethod] The typename of this object
+
+        # @see WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod#icons
+        class Icons < WhopSDK::Internal::Type::BaseModel
+          # @!attribute card
+          #   The credit-card-proportioned tile (48x30).
+          #
+          #   @return [WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod::Icons::Card]
+          required :card,
+                   -> { WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod::Icons::Card }
+
+          # @!attribute square
+          #   The square tile (32x32).
+          #
+          #   @return [WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod::Icons::Square]
+          required :square,
+                   -> { WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod::Icons::Square }
+
+          # @!method initialize(card:, square:)
+          #   Every rendition of the icon to display this payment method with. A saved card
+          #   carries its brand's icon (Visa, Mastercard, ...) rather than the generic card
+          #   art.
+          #
+          #   @param card [WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod::Icons::Card] The credit-card-proportioned tile (48x30).
+          #
+          #   @param square [WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod::Icons::Square] The square tile (32x32).
+
+          # @see WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod::Icons#card
+          class Card < WhopSDK::Internal::Type::BaseModel
+            # @!attribute dark
+            #   The colorway for dark surfaces.
+            #
+            #   @return [WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod::Icons::Card::Dark]
+            required :dark,
+                     -> { WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod::Icons::Card::Dark }
+
+            # @!attribute light
+            #   The colorway for light surfaces.
+            #
+            #   @return [WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod::Icons::Card::Light]
+            required :light,
+                     -> { WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod::Icons::Card::Light }
+
+            # @!method initialize(dark:, light:)
+            #   The credit-card-proportioned tile (48x30).
+            #
+            #   @param dark [WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod::Icons::Card::Dark] The colorway for dark surfaces.
+            #
+            #   @param light [WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod::Icons::Card::Light] The colorway for light surfaces.
+
+            # @see WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod::Icons::Card#dark
+            class Dark < WhopSDK::Internal::Type::BaseModel
+              # @!attribute png_1x
+              #   Raster fallback at the shape's native size.
+              #
+              #   @return [String]
+              required :png_1x, String
+
+              # @!attribute png_2x
+              #   Raster fallback at double density.
+              #
+              #   @return [String]
+              required :png_2x, String
+
+              # @!attribute png_4x
+              #   Raster fallback at quadruple density.
+              #
+              #   @return [String]
+              required :png_4x, String
+
+              # @!attribute svg
+              #   The vector file. Prefer this everywhere SVG renders.
+              #
+              #   @return [String]
+              required :svg, String
+
+              # @!method initialize(png_1x:, png_2x:, png_4x:, svg:)
+              #   The colorway for dark surfaces.
+              #
+              #   @param png_1x [String] Raster fallback at the shape's native size.
+              #
+              #   @param png_2x [String] Raster fallback at double density.
+              #
+              #   @param png_4x [String] Raster fallback at quadruple density.
+              #
+              #   @param svg [String] The vector file. Prefer this everywhere SVG renders.
+            end
+
+            # @see WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod::Icons::Card#light
+            class Light < WhopSDK::Internal::Type::BaseModel
+              # @!attribute png_1x
+              #   Raster fallback at the shape's native size.
+              #
+              #   @return [String]
+              required :png_1x, String
+
+              # @!attribute png_2x
+              #   Raster fallback at double density.
+              #
+              #   @return [String]
+              required :png_2x, String
+
+              # @!attribute png_4x
+              #   Raster fallback at quadruple density.
+              #
+              #   @return [String]
+              required :png_4x, String
+
+              # @!attribute svg
+              #   The vector file. Prefer this everywhere SVG renders.
+              #
+              #   @return [String]
+              required :svg, String
+
+              # @!method initialize(png_1x:, png_2x:, png_4x:, svg:)
+              #   The colorway for light surfaces.
+              #
+              #   @param png_1x [String] Raster fallback at the shape's native size.
+              #
+              #   @param png_2x [String] Raster fallback at double density.
+              #
+              #   @param png_4x [String] Raster fallback at quadruple density.
+              #
+              #   @param svg [String] The vector file. Prefer this everywhere SVG renders.
+            end
+          end
+
+          # @see WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod::Icons#square
+          class Square < WhopSDK::Internal::Type::BaseModel
+            # @!attribute dark
+            #   The colorway for dark surfaces.
+            #
+            #   @return [WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod::Icons::Square::Dark]
+            required :dark,
+                     -> { WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod::Icons::Square::Dark }
+
+            # @!attribute light
+            #   The colorway for light surfaces.
+            #
+            #   @return [WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod::Icons::Square::Light]
+            required :light,
+                     -> { WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod::Icons::Square::Light }
+
+            # @!method initialize(dark:, light:)
+            #   The square tile (32x32).
+            #
+            #   @param dark [WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod::Icons::Square::Dark] The colorway for dark surfaces.
+            #
+            #   @param light [WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod::Icons::Square::Light] The colorway for light surfaces.
+
+            # @see WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod::Icons::Square#dark
+            class Dark < WhopSDK::Internal::Type::BaseModel
+              # @!attribute png_1x
+              #   Raster fallback at the shape's native size.
+              #
+              #   @return [String]
+              required :png_1x, String
+
+              # @!attribute png_2x
+              #   Raster fallback at double density.
+              #
+              #   @return [String]
+              required :png_2x, String
+
+              # @!attribute png_4x
+              #   Raster fallback at quadruple density.
+              #
+              #   @return [String]
+              required :png_4x, String
+
+              # @!attribute svg
+              #   The vector file. Prefer this everywhere SVG renders.
+              #
+              #   @return [String]
+              required :svg, String
+
+              # @!method initialize(png_1x:, png_2x:, png_4x:, svg:)
+              #   The colorway for dark surfaces.
+              #
+              #   @param png_1x [String] Raster fallback at the shape's native size.
+              #
+              #   @param png_2x [String] Raster fallback at double density.
+              #
+              #   @param png_4x [String] Raster fallback at quadruple density.
+              #
+              #   @param svg [String] The vector file. Prefer this everywhere SVG renders.
+            end
+
+            # @see WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod::Icons::Square#light
+            class Light < WhopSDK::Internal::Type::BaseModel
+              # @!attribute png_1x
+              #   Raster fallback at the shape's native size.
+              #
+              #   @return [String]
+              required :png_1x, String
+
+              # @!attribute png_2x
+              #   Raster fallback at double density.
+              #
+              #   @return [String]
+              required :png_2x, String
+
+              # @!attribute png_4x
+              #   Raster fallback at quadruple density.
+              #
+              #   @return [String]
+              required :png_4x, String
+
+              # @!attribute svg
+              #   The vector file. Prefer this everywhere SVG renders.
+              #
+              #   @return [String]
+              required :svg, String
+
+              # @!method initialize(png_1x:, png_2x:, png_4x:, svg:)
+              #   The colorway for light surfaces.
+              #
+              #   @param png_1x [String] Raster fallback at the shape's native size.
+              #
+              #   @param png_2x [String] Raster fallback at double density.
+              #
+              #   @param png_4x [String] Raster fallback at quadruple density.
+              #
+              #   @param svg [String] The vector file. Prefer this everywhere SVG renders.
+            end
+          end
+        end
 
         # @see WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod#us_bank_account
         class UsBankAccount < WhopSDK::Internal::Type::BaseModel
@@ -310,6 +1014,14 @@ module WhopSDK
         #   @return [Time]
         required :created_at, Time
 
+        # @!attribute icons
+        #   Every rendition of the icon to display this payment method with. A saved card
+        #   carries its brand's icon (Visa, Mastercard, ...) rather than the generic card
+        #   art.
+        #
+        #   @return [WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod::Icons]
+        required :icons, -> { WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod::Icons }
+
         # @!attribute payment_method_type
         #   The type of payment instrument stored on file (e.g., card, us_bank_account,
         #   cashapp, ideal, sepa_debit).
@@ -323,7 +1035,7 @@ module WhopSDK
         #   @return [Symbol, :CashappPaymentMethod]
         required :typename, const: :CashappPaymentMethod
 
-        # @!method initialize(id:, cashapp:, created_at:, payment_method_type:, typename: :CashappPaymentMethod)
+        # @!method initialize(id:, cashapp:, created_at:, icons:, payment_method_type:, typename: :CashappPaymentMethod)
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod} for more
         #   details.
@@ -336,6 +1048,8 @@ module WhopSDK
         #   @param cashapp [WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod::Cashapp] The Cash App-specific details for this payment method, including cashtag and buy
         #
         #   @param created_at [Time] The time of the event in ISO 8601 UTC format with millisecond precision
+        #
+        #   @param icons [WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod::Icons] Every rendition of the icon to display this payment method with. A saved card ca
         #
         #   @param payment_method_type [Symbol, WhopSDK::Models::PaymentMethodTypes] The type of payment instrument stored on file (e.g., card, us_bank_account, cash
         #
@@ -368,6 +1082,231 @@ module WhopSDK
           #
           #   @param cashtag [String, nil] The public cashtag handle of the buyer on Cash App. Null if not available.
         end
+
+        # @see WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod#icons
+        class Icons < WhopSDK::Internal::Type::BaseModel
+          # @!attribute card
+          #   The credit-card-proportioned tile (48x30).
+          #
+          #   @return [WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod::Icons::Card]
+          required :card, -> { WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod::Icons::Card }
+
+          # @!attribute square
+          #   The square tile (32x32).
+          #
+          #   @return [WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod::Icons::Square]
+          required :square,
+                   -> { WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod::Icons::Square }
+
+          # @!method initialize(card:, square:)
+          #   Every rendition of the icon to display this payment method with. A saved card
+          #   carries its brand's icon (Visa, Mastercard, ...) rather than the generic card
+          #   art.
+          #
+          #   @param card [WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod::Icons::Card] The credit-card-proportioned tile (48x30).
+          #
+          #   @param square [WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod::Icons::Square] The square tile (32x32).
+
+          # @see WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod::Icons#card
+          class Card < WhopSDK::Internal::Type::BaseModel
+            # @!attribute dark
+            #   The colorway for dark surfaces.
+            #
+            #   @return [WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod::Icons::Card::Dark]
+            required :dark,
+                     -> { WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod::Icons::Card::Dark }
+
+            # @!attribute light
+            #   The colorway for light surfaces.
+            #
+            #   @return [WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod::Icons::Card::Light]
+            required :light,
+                     -> { WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod::Icons::Card::Light }
+
+            # @!method initialize(dark:, light:)
+            #   The credit-card-proportioned tile (48x30).
+            #
+            #   @param dark [WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod::Icons::Card::Dark] The colorway for dark surfaces.
+            #
+            #   @param light [WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod::Icons::Card::Light] The colorway for light surfaces.
+
+            # @see WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod::Icons::Card#dark
+            class Dark < WhopSDK::Internal::Type::BaseModel
+              # @!attribute png_1x
+              #   Raster fallback at the shape's native size.
+              #
+              #   @return [String]
+              required :png_1x, String
+
+              # @!attribute png_2x
+              #   Raster fallback at double density.
+              #
+              #   @return [String]
+              required :png_2x, String
+
+              # @!attribute png_4x
+              #   Raster fallback at quadruple density.
+              #
+              #   @return [String]
+              required :png_4x, String
+
+              # @!attribute svg
+              #   The vector file. Prefer this everywhere SVG renders.
+              #
+              #   @return [String]
+              required :svg, String
+
+              # @!method initialize(png_1x:, png_2x:, png_4x:, svg:)
+              #   The colorway for dark surfaces.
+              #
+              #   @param png_1x [String] Raster fallback at the shape's native size.
+              #
+              #   @param png_2x [String] Raster fallback at double density.
+              #
+              #   @param png_4x [String] Raster fallback at quadruple density.
+              #
+              #   @param svg [String] The vector file. Prefer this everywhere SVG renders.
+            end
+
+            # @see WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod::Icons::Card#light
+            class Light < WhopSDK::Internal::Type::BaseModel
+              # @!attribute png_1x
+              #   Raster fallback at the shape's native size.
+              #
+              #   @return [String]
+              required :png_1x, String
+
+              # @!attribute png_2x
+              #   Raster fallback at double density.
+              #
+              #   @return [String]
+              required :png_2x, String
+
+              # @!attribute png_4x
+              #   Raster fallback at quadruple density.
+              #
+              #   @return [String]
+              required :png_4x, String
+
+              # @!attribute svg
+              #   The vector file. Prefer this everywhere SVG renders.
+              #
+              #   @return [String]
+              required :svg, String
+
+              # @!method initialize(png_1x:, png_2x:, png_4x:, svg:)
+              #   The colorway for light surfaces.
+              #
+              #   @param png_1x [String] Raster fallback at the shape's native size.
+              #
+              #   @param png_2x [String] Raster fallback at double density.
+              #
+              #   @param png_4x [String] Raster fallback at quadruple density.
+              #
+              #   @param svg [String] The vector file. Prefer this everywhere SVG renders.
+            end
+          end
+
+          # @see WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod::Icons#square
+          class Square < WhopSDK::Internal::Type::BaseModel
+            # @!attribute dark
+            #   The colorway for dark surfaces.
+            #
+            #   @return [WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod::Icons::Square::Dark]
+            required :dark,
+                     -> { WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod::Icons::Square::Dark }
+
+            # @!attribute light
+            #   The colorway for light surfaces.
+            #
+            #   @return [WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod::Icons::Square::Light]
+            required :light,
+                     -> { WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod::Icons::Square::Light }
+
+            # @!method initialize(dark:, light:)
+            #   The square tile (32x32).
+            #
+            #   @param dark [WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod::Icons::Square::Dark] The colorway for dark surfaces.
+            #
+            #   @param light [WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod::Icons::Square::Light] The colorway for light surfaces.
+
+            # @see WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod::Icons::Square#dark
+            class Dark < WhopSDK::Internal::Type::BaseModel
+              # @!attribute png_1x
+              #   Raster fallback at the shape's native size.
+              #
+              #   @return [String]
+              required :png_1x, String
+
+              # @!attribute png_2x
+              #   Raster fallback at double density.
+              #
+              #   @return [String]
+              required :png_2x, String
+
+              # @!attribute png_4x
+              #   Raster fallback at quadruple density.
+              #
+              #   @return [String]
+              required :png_4x, String
+
+              # @!attribute svg
+              #   The vector file. Prefer this everywhere SVG renders.
+              #
+              #   @return [String]
+              required :svg, String
+
+              # @!method initialize(png_1x:, png_2x:, png_4x:, svg:)
+              #   The colorway for dark surfaces.
+              #
+              #   @param png_1x [String] Raster fallback at the shape's native size.
+              #
+              #   @param png_2x [String] Raster fallback at double density.
+              #
+              #   @param png_4x [String] Raster fallback at quadruple density.
+              #
+              #   @param svg [String] The vector file. Prefer this everywhere SVG renders.
+            end
+
+            # @see WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod::Icons::Square#light
+            class Light < WhopSDK::Internal::Type::BaseModel
+              # @!attribute png_1x
+              #   Raster fallback at the shape's native size.
+              #
+              #   @return [String]
+              required :png_1x, String
+
+              # @!attribute png_2x
+              #   Raster fallback at double density.
+              #
+              #   @return [String]
+              required :png_2x, String
+
+              # @!attribute png_4x
+              #   Raster fallback at quadruple density.
+              #
+              #   @return [String]
+              required :png_4x, String
+
+              # @!attribute svg
+              #   The vector file. Prefer this everywhere SVG renders.
+              #
+              #   @return [String]
+              required :svg, String
+
+              # @!method initialize(png_1x:, png_2x:, png_4x:, svg:)
+              #   The colorway for light surfaces.
+              #
+              #   @param png_1x [String] Raster fallback at the shape's native size.
+              #
+              #   @param png_2x [String] Raster fallback at double density.
+              #
+              #   @param png_4x [String] Raster fallback at quadruple density.
+              #
+              #   @param svg [String] The vector file. Prefer this everywhere SVG renders.
+            end
+          end
+        end
       end
 
       class IdealPaymentMethod < WhopSDK::Internal::Type::BaseModel
@@ -386,6 +1325,14 @@ module WhopSDK
         #
         #   @return [Time]
         required :created_at, Time
+
+        # @!attribute icons
+        #   Every rendition of the icon to display this payment method with. A saved card
+        #   carries its brand's icon (Visa, Mastercard, ...) rather than the generic card
+        #   art.
+        #
+        #   @return [WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod::Icons]
+        required :icons, -> { WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod::Icons }
 
         # @!attribute ideal
         #   The iDEAL-specific details for this payment method, including bank name and BIC.
@@ -406,7 +1353,7 @@ module WhopSDK
         #   @return [Symbol, :IdealPaymentMethod]
         required :typename, const: :IdealPaymentMethod
 
-        # @!method initialize(id:, created_at:, ideal:, payment_method_type:, typename: :IdealPaymentMethod)
+        # @!method initialize(id:, created_at:, icons:, ideal:, payment_method_type:, typename: :IdealPaymentMethod)
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod} for more
         #   details.
@@ -417,11 +1364,237 @@ module WhopSDK
         #
         #   @param created_at [Time] The time of the event in ISO 8601 UTC format with millisecond precision
         #
+        #   @param icons [WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod::Icons] Every rendition of the icon to display this payment method with. A saved card ca
+        #
         #   @param ideal [WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod::Ideal] The iDEAL-specific details for this payment method, including bank name and BIC.
         #
         #   @param payment_method_type [Symbol, WhopSDK::Models::PaymentMethodTypes] The type of payment instrument stored on file (e.g., card, us_bank_account, cash
         #
         #   @param typename [Symbol, :IdealPaymentMethod] The typename of this object
+
+        # @see WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod#icons
+        class Icons < WhopSDK::Internal::Type::BaseModel
+          # @!attribute card
+          #   The credit-card-proportioned tile (48x30).
+          #
+          #   @return [WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod::Icons::Card]
+          required :card, -> { WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod::Icons::Card }
+
+          # @!attribute square
+          #   The square tile (32x32).
+          #
+          #   @return [WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod::Icons::Square]
+          required :square, -> { WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod::Icons::Square }
+
+          # @!method initialize(card:, square:)
+          #   Every rendition of the icon to display this payment method with. A saved card
+          #   carries its brand's icon (Visa, Mastercard, ...) rather than the generic card
+          #   art.
+          #
+          #   @param card [WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod::Icons::Card] The credit-card-proportioned tile (48x30).
+          #
+          #   @param square [WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod::Icons::Square] The square tile (32x32).
+
+          # @see WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod::Icons#card
+          class Card < WhopSDK::Internal::Type::BaseModel
+            # @!attribute dark
+            #   The colorway for dark surfaces.
+            #
+            #   @return [WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod::Icons::Card::Dark]
+            required :dark,
+                     -> { WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod::Icons::Card::Dark }
+
+            # @!attribute light
+            #   The colorway for light surfaces.
+            #
+            #   @return [WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod::Icons::Card::Light]
+            required :light,
+                     -> { WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod::Icons::Card::Light }
+
+            # @!method initialize(dark:, light:)
+            #   The credit-card-proportioned tile (48x30).
+            #
+            #   @param dark [WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod::Icons::Card::Dark] The colorway for dark surfaces.
+            #
+            #   @param light [WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod::Icons::Card::Light] The colorway for light surfaces.
+
+            # @see WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod::Icons::Card#dark
+            class Dark < WhopSDK::Internal::Type::BaseModel
+              # @!attribute png_1x
+              #   Raster fallback at the shape's native size.
+              #
+              #   @return [String]
+              required :png_1x, String
+
+              # @!attribute png_2x
+              #   Raster fallback at double density.
+              #
+              #   @return [String]
+              required :png_2x, String
+
+              # @!attribute png_4x
+              #   Raster fallback at quadruple density.
+              #
+              #   @return [String]
+              required :png_4x, String
+
+              # @!attribute svg
+              #   The vector file. Prefer this everywhere SVG renders.
+              #
+              #   @return [String]
+              required :svg, String
+
+              # @!method initialize(png_1x:, png_2x:, png_4x:, svg:)
+              #   The colorway for dark surfaces.
+              #
+              #   @param png_1x [String] Raster fallback at the shape's native size.
+              #
+              #   @param png_2x [String] Raster fallback at double density.
+              #
+              #   @param png_4x [String] Raster fallback at quadruple density.
+              #
+              #   @param svg [String] The vector file. Prefer this everywhere SVG renders.
+            end
+
+            # @see WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod::Icons::Card#light
+            class Light < WhopSDK::Internal::Type::BaseModel
+              # @!attribute png_1x
+              #   Raster fallback at the shape's native size.
+              #
+              #   @return [String]
+              required :png_1x, String
+
+              # @!attribute png_2x
+              #   Raster fallback at double density.
+              #
+              #   @return [String]
+              required :png_2x, String
+
+              # @!attribute png_4x
+              #   Raster fallback at quadruple density.
+              #
+              #   @return [String]
+              required :png_4x, String
+
+              # @!attribute svg
+              #   The vector file. Prefer this everywhere SVG renders.
+              #
+              #   @return [String]
+              required :svg, String
+
+              # @!method initialize(png_1x:, png_2x:, png_4x:, svg:)
+              #   The colorway for light surfaces.
+              #
+              #   @param png_1x [String] Raster fallback at the shape's native size.
+              #
+              #   @param png_2x [String] Raster fallback at double density.
+              #
+              #   @param png_4x [String] Raster fallback at quadruple density.
+              #
+              #   @param svg [String] The vector file. Prefer this everywhere SVG renders.
+            end
+          end
+
+          # @see WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod::Icons#square
+          class Square < WhopSDK::Internal::Type::BaseModel
+            # @!attribute dark
+            #   The colorway for dark surfaces.
+            #
+            #   @return [WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod::Icons::Square::Dark]
+            required :dark,
+                     -> { WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod::Icons::Square::Dark }
+
+            # @!attribute light
+            #   The colorway for light surfaces.
+            #
+            #   @return [WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod::Icons::Square::Light]
+            required :light,
+                     -> { WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod::Icons::Square::Light }
+
+            # @!method initialize(dark:, light:)
+            #   The square tile (32x32).
+            #
+            #   @param dark [WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod::Icons::Square::Dark] The colorway for dark surfaces.
+            #
+            #   @param light [WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod::Icons::Square::Light] The colorway for light surfaces.
+
+            # @see WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod::Icons::Square#dark
+            class Dark < WhopSDK::Internal::Type::BaseModel
+              # @!attribute png_1x
+              #   Raster fallback at the shape's native size.
+              #
+              #   @return [String]
+              required :png_1x, String
+
+              # @!attribute png_2x
+              #   Raster fallback at double density.
+              #
+              #   @return [String]
+              required :png_2x, String
+
+              # @!attribute png_4x
+              #   Raster fallback at quadruple density.
+              #
+              #   @return [String]
+              required :png_4x, String
+
+              # @!attribute svg
+              #   The vector file. Prefer this everywhere SVG renders.
+              #
+              #   @return [String]
+              required :svg, String
+
+              # @!method initialize(png_1x:, png_2x:, png_4x:, svg:)
+              #   The colorway for dark surfaces.
+              #
+              #   @param png_1x [String] Raster fallback at the shape's native size.
+              #
+              #   @param png_2x [String] Raster fallback at double density.
+              #
+              #   @param png_4x [String] Raster fallback at quadruple density.
+              #
+              #   @param svg [String] The vector file. Prefer this everywhere SVG renders.
+            end
+
+            # @see WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod::Icons::Square#light
+            class Light < WhopSDK::Internal::Type::BaseModel
+              # @!attribute png_1x
+              #   Raster fallback at the shape's native size.
+              #
+              #   @return [String]
+              required :png_1x, String
+
+              # @!attribute png_2x
+              #   Raster fallback at double density.
+              #
+              #   @return [String]
+              required :png_2x, String
+
+              # @!attribute png_4x
+              #   Raster fallback at quadruple density.
+              #
+              #   @return [String]
+              required :png_4x, String
+
+              # @!attribute svg
+              #   The vector file. Prefer this everywhere SVG renders.
+              #
+              #   @return [String]
+              required :svg, String
+
+              # @!method initialize(png_1x:, png_2x:, png_4x:, svg:)
+              #   The colorway for light surfaces.
+              #
+              #   @param png_1x [String] Raster fallback at the shape's native size.
+              #
+              #   @param png_2x [String] Raster fallback at double density.
+              #
+              #   @param png_4x [String] Raster fallback at quadruple density.
+              #
+              #   @param svg [String] The vector file. Prefer this everywhere SVG renders.
+            end
+          end
+        end
 
         # @see WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod#ideal
         class Ideal < WhopSDK::Internal::Type::BaseModel
@@ -469,6 +1642,14 @@ module WhopSDK
         #   @return [Time]
         required :created_at, Time
 
+        # @!attribute icons
+        #   Every rendition of the icon to display this payment method with. A saved card
+        #   carries its brand's icon (Visa, Mastercard, ...) rather than the generic card
+        #   art.
+        #
+        #   @return [WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod::Icons]
+        required :icons, -> { WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod::Icons }
+
         # @!attribute payment_method_type
         #   The type of payment instrument stored on file (e.g., card, us_bank_account,
         #   cashapp, ideal, sepa_debit).
@@ -490,7 +1671,7 @@ module WhopSDK
         #   @return [Symbol, :SepaDebitPaymentMethod]
         required :typename, const: :SepaDebitPaymentMethod
 
-        # @!method initialize(id:, created_at:, payment_method_type:, sepa_debit:, typename: :SepaDebitPaymentMethod)
+        # @!method initialize(id:, created_at:, icons:, payment_method_type:, sepa_debit:, typename: :SepaDebitPaymentMethod)
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod} for
         #   more details.
@@ -502,11 +1683,238 @@ module WhopSDK
         #
         #   @param created_at [Time] The time of the event in ISO 8601 UTC format with millisecond precision
         #
+        #   @param icons [WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod::Icons] Every rendition of the icon to display this payment method with. A saved card ca
+        #
         #   @param payment_method_type [Symbol, WhopSDK::Models::PaymentMethodTypes] The type of payment instrument stored on file (e.g., card, us_bank_account, cash
         #
         #   @param sepa_debit [WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod::SepaDebit] The SEPA Direct Debit-specific details for this payment method, including bank c
         #
         #   @param typename [Symbol, :SepaDebitPaymentMethod] The typename of this object
+
+        # @see WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod#icons
+        class Icons < WhopSDK::Internal::Type::BaseModel
+          # @!attribute card
+          #   The credit-card-proportioned tile (48x30).
+          #
+          #   @return [WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod::Icons::Card]
+          required :card, -> { WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod::Icons::Card }
+
+          # @!attribute square
+          #   The square tile (32x32).
+          #
+          #   @return [WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod::Icons::Square]
+          required :square,
+                   -> { WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod::Icons::Square }
+
+          # @!method initialize(card:, square:)
+          #   Every rendition of the icon to display this payment method with. A saved card
+          #   carries its brand's icon (Visa, Mastercard, ...) rather than the generic card
+          #   art.
+          #
+          #   @param card [WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod::Icons::Card] The credit-card-proportioned tile (48x30).
+          #
+          #   @param square [WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod::Icons::Square] The square tile (32x32).
+
+          # @see WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod::Icons#card
+          class Card < WhopSDK::Internal::Type::BaseModel
+            # @!attribute dark
+            #   The colorway for dark surfaces.
+            #
+            #   @return [WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod::Icons::Card::Dark]
+            required :dark,
+                     -> { WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod::Icons::Card::Dark }
+
+            # @!attribute light
+            #   The colorway for light surfaces.
+            #
+            #   @return [WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod::Icons::Card::Light]
+            required :light,
+                     -> { WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod::Icons::Card::Light }
+
+            # @!method initialize(dark:, light:)
+            #   The credit-card-proportioned tile (48x30).
+            #
+            #   @param dark [WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod::Icons::Card::Dark] The colorway for dark surfaces.
+            #
+            #   @param light [WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod::Icons::Card::Light] The colorway for light surfaces.
+
+            # @see WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod::Icons::Card#dark
+            class Dark < WhopSDK::Internal::Type::BaseModel
+              # @!attribute png_1x
+              #   Raster fallback at the shape's native size.
+              #
+              #   @return [String]
+              required :png_1x, String
+
+              # @!attribute png_2x
+              #   Raster fallback at double density.
+              #
+              #   @return [String]
+              required :png_2x, String
+
+              # @!attribute png_4x
+              #   Raster fallback at quadruple density.
+              #
+              #   @return [String]
+              required :png_4x, String
+
+              # @!attribute svg
+              #   The vector file. Prefer this everywhere SVG renders.
+              #
+              #   @return [String]
+              required :svg, String
+
+              # @!method initialize(png_1x:, png_2x:, png_4x:, svg:)
+              #   The colorway for dark surfaces.
+              #
+              #   @param png_1x [String] Raster fallback at the shape's native size.
+              #
+              #   @param png_2x [String] Raster fallback at double density.
+              #
+              #   @param png_4x [String] Raster fallback at quadruple density.
+              #
+              #   @param svg [String] The vector file. Prefer this everywhere SVG renders.
+            end
+
+            # @see WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod::Icons::Card#light
+            class Light < WhopSDK::Internal::Type::BaseModel
+              # @!attribute png_1x
+              #   Raster fallback at the shape's native size.
+              #
+              #   @return [String]
+              required :png_1x, String
+
+              # @!attribute png_2x
+              #   Raster fallback at double density.
+              #
+              #   @return [String]
+              required :png_2x, String
+
+              # @!attribute png_4x
+              #   Raster fallback at quadruple density.
+              #
+              #   @return [String]
+              required :png_4x, String
+
+              # @!attribute svg
+              #   The vector file. Prefer this everywhere SVG renders.
+              #
+              #   @return [String]
+              required :svg, String
+
+              # @!method initialize(png_1x:, png_2x:, png_4x:, svg:)
+              #   The colorway for light surfaces.
+              #
+              #   @param png_1x [String] Raster fallback at the shape's native size.
+              #
+              #   @param png_2x [String] Raster fallback at double density.
+              #
+              #   @param png_4x [String] Raster fallback at quadruple density.
+              #
+              #   @param svg [String] The vector file. Prefer this everywhere SVG renders.
+            end
+          end
+
+          # @see WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod::Icons#square
+          class Square < WhopSDK::Internal::Type::BaseModel
+            # @!attribute dark
+            #   The colorway for dark surfaces.
+            #
+            #   @return [WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod::Icons::Square::Dark]
+            required :dark,
+                     -> { WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod::Icons::Square::Dark }
+
+            # @!attribute light
+            #   The colorway for light surfaces.
+            #
+            #   @return [WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod::Icons::Square::Light]
+            required :light,
+                     -> { WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod::Icons::Square::Light }
+
+            # @!method initialize(dark:, light:)
+            #   The square tile (32x32).
+            #
+            #   @param dark [WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod::Icons::Square::Dark] The colorway for dark surfaces.
+            #
+            #   @param light [WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod::Icons::Square::Light] The colorway for light surfaces.
+
+            # @see WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod::Icons::Square#dark
+            class Dark < WhopSDK::Internal::Type::BaseModel
+              # @!attribute png_1x
+              #   Raster fallback at the shape's native size.
+              #
+              #   @return [String]
+              required :png_1x, String
+
+              # @!attribute png_2x
+              #   Raster fallback at double density.
+              #
+              #   @return [String]
+              required :png_2x, String
+
+              # @!attribute png_4x
+              #   Raster fallback at quadruple density.
+              #
+              #   @return [String]
+              required :png_4x, String
+
+              # @!attribute svg
+              #   The vector file. Prefer this everywhere SVG renders.
+              #
+              #   @return [String]
+              required :svg, String
+
+              # @!method initialize(png_1x:, png_2x:, png_4x:, svg:)
+              #   The colorway for dark surfaces.
+              #
+              #   @param png_1x [String] Raster fallback at the shape's native size.
+              #
+              #   @param png_2x [String] Raster fallback at double density.
+              #
+              #   @param png_4x [String] Raster fallback at quadruple density.
+              #
+              #   @param svg [String] The vector file. Prefer this everywhere SVG renders.
+            end
+
+            # @see WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod::Icons::Square#light
+            class Light < WhopSDK::Internal::Type::BaseModel
+              # @!attribute png_1x
+              #   Raster fallback at the shape's native size.
+              #
+              #   @return [String]
+              required :png_1x, String
+
+              # @!attribute png_2x
+              #   Raster fallback at double density.
+              #
+              #   @return [String]
+              required :png_2x, String
+
+              # @!attribute png_4x
+              #   Raster fallback at quadruple density.
+              #
+              #   @return [String]
+              required :png_4x, String
+
+              # @!attribute svg
+              #   The vector file. Prefer this everywhere SVG renders.
+              #
+              #   @return [String]
+              required :svg, String
+
+              # @!method initialize(png_1x:, png_2x:, png_4x:, svg:)
+              #   The colorway for light surfaces.
+              #
+              #   @param png_1x [String] Raster fallback at the shape's native size.
+              #
+              #   @param png_2x [String] Raster fallback at double density.
+              #
+              #   @param png_4x [String] Raster fallback at quadruple density.
+              #
+              #   @param svg [String] The vector file. Prefer this everywhere SVG renders.
+            end
+          end
+        end
 
         # @see WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod#sepa_debit
         class SepaDebit < WhopSDK::Internal::Type::BaseModel
@@ -573,6 +1981,15 @@ module WhopSDK
         #   @return [Time]
         required :created_at, Time
 
+        # @!attribute icons
+        #   Every rendition of the icon to display this payment method with. A saved card
+        #   carries its brand's icon (Visa, Mastercard, ...) rather than the generic card
+        #   art.
+        #
+        #   @return [WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::Icons]
+        required :icons,
+                 -> { WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::Icons }
+
         # @!attribute payment_method_type
         #   The type of payment instrument stored on file (e.g., card, us_bank_account,
         #   cashapp, ideal, sepa_debit).
@@ -593,7 +2010,7 @@ module WhopSDK
         #   @return [Symbol, :PlatformBalancePaymentMethod]
         required :typename, const: :PlatformBalancePaymentMethod
 
-        # @!method initialize(id:, created_at:, payment_method_type:, platform_balance:, typename: :PlatformBalancePaymentMethod)
+        # @!method initialize(id:, created_at:, icons:, payment_method_type:, platform_balance:, typename: :PlatformBalancePaymentMethod)
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod}
         #   for more details.
@@ -606,11 +2023,239 @@ module WhopSDK
         #
         #   @param created_at [Time] The time of the event in ISO 8601 UTC format with millisecond precision
         #
+        #   @param icons [WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::Icons] Every rendition of the icon to display this payment method with. A saved card ca
+        #
         #   @param payment_method_type [Symbol, WhopSDK::Models::PaymentMethodTypes] The type of payment instrument stored on file (e.g., card, us_bank_account, cash
         #
         #   @param platform_balance [WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::PlatformBalance] What is available to spend, and whether the account may spend it.
         #
         #   @param typename [Symbol, :PlatformBalancePaymentMethod] The typename of this object
+
+        # @see WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod#icons
+        class Icons < WhopSDK::Internal::Type::BaseModel
+          # @!attribute card
+          #   The credit-card-proportioned tile (48x30).
+          #
+          #   @return [WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::Icons::Card]
+          required :card,
+                   -> { WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::Icons::Card }
+
+          # @!attribute square
+          #   The square tile (32x32).
+          #
+          #   @return [WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::Icons::Square]
+          required :square,
+                   -> { WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::Icons::Square }
+
+          # @!method initialize(card:, square:)
+          #   Every rendition of the icon to display this payment method with. A saved card
+          #   carries its brand's icon (Visa, Mastercard, ...) rather than the generic card
+          #   art.
+          #
+          #   @param card [WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::Icons::Card] The credit-card-proportioned tile (48x30).
+          #
+          #   @param square [WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::Icons::Square] The square tile (32x32).
+
+          # @see WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::Icons#card
+          class Card < WhopSDK::Internal::Type::BaseModel
+            # @!attribute dark
+            #   The colorway for dark surfaces.
+            #
+            #   @return [WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::Icons::Card::Dark]
+            required :dark,
+                     -> { WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::Icons::Card::Dark }
+
+            # @!attribute light
+            #   The colorway for light surfaces.
+            #
+            #   @return [WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::Icons::Card::Light]
+            required :light,
+                     -> { WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::Icons::Card::Light }
+
+            # @!method initialize(dark:, light:)
+            #   The credit-card-proportioned tile (48x30).
+            #
+            #   @param dark [WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::Icons::Card::Dark] The colorway for dark surfaces.
+            #
+            #   @param light [WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::Icons::Card::Light] The colorway for light surfaces.
+
+            # @see WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::Icons::Card#dark
+            class Dark < WhopSDK::Internal::Type::BaseModel
+              # @!attribute png_1x
+              #   Raster fallback at the shape's native size.
+              #
+              #   @return [String]
+              required :png_1x, String
+
+              # @!attribute png_2x
+              #   Raster fallback at double density.
+              #
+              #   @return [String]
+              required :png_2x, String
+
+              # @!attribute png_4x
+              #   Raster fallback at quadruple density.
+              #
+              #   @return [String]
+              required :png_4x, String
+
+              # @!attribute svg
+              #   The vector file. Prefer this everywhere SVG renders.
+              #
+              #   @return [String]
+              required :svg, String
+
+              # @!method initialize(png_1x:, png_2x:, png_4x:, svg:)
+              #   The colorway for dark surfaces.
+              #
+              #   @param png_1x [String] Raster fallback at the shape's native size.
+              #
+              #   @param png_2x [String] Raster fallback at double density.
+              #
+              #   @param png_4x [String] Raster fallback at quadruple density.
+              #
+              #   @param svg [String] The vector file. Prefer this everywhere SVG renders.
+            end
+
+            # @see WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::Icons::Card#light
+            class Light < WhopSDK::Internal::Type::BaseModel
+              # @!attribute png_1x
+              #   Raster fallback at the shape's native size.
+              #
+              #   @return [String]
+              required :png_1x, String
+
+              # @!attribute png_2x
+              #   Raster fallback at double density.
+              #
+              #   @return [String]
+              required :png_2x, String
+
+              # @!attribute png_4x
+              #   Raster fallback at quadruple density.
+              #
+              #   @return [String]
+              required :png_4x, String
+
+              # @!attribute svg
+              #   The vector file. Prefer this everywhere SVG renders.
+              #
+              #   @return [String]
+              required :svg, String
+
+              # @!method initialize(png_1x:, png_2x:, png_4x:, svg:)
+              #   The colorway for light surfaces.
+              #
+              #   @param png_1x [String] Raster fallback at the shape's native size.
+              #
+              #   @param png_2x [String] Raster fallback at double density.
+              #
+              #   @param png_4x [String] Raster fallback at quadruple density.
+              #
+              #   @param svg [String] The vector file. Prefer this everywhere SVG renders.
+            end
+          end
+
+          # @see WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::Icons#square
+          class Square < WhopSDK::Internal::Type::BaseModel
+            # @!attribute dark
+            #   The colorway for dark surfaces.
+            #
+            #   @return [WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::Icons::Square::Dark]
+            required :dark,
+                     -> { WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::Icons::Square::Dark }
+
+            # @!attribute light
+            #   The colorway for light surfaces.
+            #
+            #   @return [WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::Icons::Square::Light]
+            required :light,
+                     -> { WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::Icons::Square::Light }
+
+            # @!method initialize(dark:, light:)
+            #   The square tile (32x32).
+            #
+            #   @param dark [WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::Icons::Square::Dark] The colorway for dark surfaces.
+            #
+            #   @param light [WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::Icons::Square::Light] The colorway for light surfaces.
+
+            # @see WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::Icons::Square#dark
+            class Dark < WhopSDK::Internal::Type::BaseModel
+              # @!attribute png_1x
+              #   Raster fallback at the shape's native size.
+              #
+              #   @return [String]
+              required :png_1x, String
+
+              # @!attribute png_2x
+              #   Raster fallback at double density.
+              #
+              #   @return [String]
+              required :png_2x, String
+
+              # @!attribute png_4x
+              #   Raster fallback at quadruple density.
+              #
+              #   @return [String]
+              required :png_4x, String
+
+              # @!attribute svg
+              #   The vector file. Prefer this everywhere SVG renders.
+              #
+              #   @return [String]
+              required :svg, String
+
+              # @!method initialize(png_1x:, png_2x:, png_4x:, svg:)
+              #   The colorway for dark surfaces.
+              #
+              #   @param png_1x [String] Raster fallback at the shape's native size.
+              #
+              #   @param png_2x [String] Raster fallback at double density.
+              #
+              #   @param png_4x [String] Raster fallback at quadruple density.
+              #
+              #   @param svg [String] The vector file. Prefer this everywhere SVG renders.
+            end
+
+            # @see WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::Icons::Square#light
+            class Light < WhopSDK::Internal::Type::BaseModel
+              # @!attribute png_1x
+              #   Raster fallback at the shape's native size.
+              #
+              #   @return [String]
+              required :png_1x, String
+
+              # @!attribute png_2x
+              #   Raster fallback at double density.
+              #
+              #   @return [String]
+              required :png_2x, String
+
+              # @!attribute png_4x
+              #   Raster fallback at quadruple density.
+              #
+              #   @return [String]
+              required :png_4x, String
+
+              # @!attribute svg
+              #   The vector file. Prefer this everywhere SVG renders.
+              #
+              #   @return [String]
+              required :svg, String
+
+              # @!method initialize(png_1x:, png_2x:, png_4x:, svg:)
+              #   The colorway for light surfaces.
+              #
+              #   @param png_1x [String] Raster fallback at the shape's native size.
+              #
+              #   @param png_2x [String] Raster fallback at double density.
+              #
+              #   @param png_4x [String] Raster fallback at quadruple density.
+              #
+              #   @param svg [String] The vector file. Prefer this everywhere SVG renders.
+            end
+          end
+        end
 
         # @see WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod#platform_balance
         class PlatformBalance < WhopSDK::Internal::Type::BaseModel

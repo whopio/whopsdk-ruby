@@ -26,19 +26,27 @@ class WhopSDK::Test::Resources::PaymentMethodsTest < WhopSDK::Test::ResourceTest
 
     assert_pattern do
       case response
-      in {typename: :BasePaymentMethod, id: String, created_at: Time, payment_method_type: WhopSDK::PaymentMethodTypes}
+      in {
+        typename: :BasePaymentMethod,
+        id: String,
+        created_at: Time,
+        icons: WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod::Icons,
+        payment_method_type: WhopSDK::PaymentMethodTypes
+      }
       in {
         typename: :CardPaymentMethod,
         id: String,
         card: WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Card,
         created_at: Time,
         has_payer_document: WhopSDK::Internal::Type::Boolean,
+        icons: WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Icons,
         payment_method_type: WhopSDK::PaymentMethodTypes
       }
       in {
         typename: :UsBankAccountPaymentMethod,
         id: String,
         created_at: Time,
+        icons: WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod::Icons,
         payment_method_type: WhopSDK::PaymentMethodTypes,
         us_bank_account: WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod::UsBankAccount
       }
@@ -47,12 +55,14 @@ class WhopSDK::Test::Resources::PaymentMethodsTest < WhopSDK::Test::ResourceTest
         id: String,
         cashapp: WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod::Cashapp,
         created_at: Time,
+        icons: WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod::Icons,
         payment_method_type: WhopSDK::PaymentMethodTypes
       }
       in {
         typename: :IdealPaymentMethod,
         id: String,
         created_at: Time,
+        icons: WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod::Icons,
         ideal: WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod::Ideal,
         payment_method_type: WhopSDK::PaymentMethodTypes
       }
@@ -60,6 +70,7 @@ class WhopSDK::Test::Resources::PaymentMethodsTest < WhopSDK::Test::ResourceTest
         typename: :SepaDebitPaymentMethod,
         id: String,
         created_at: Time,
+        icons: WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod::Icons,
         payment_method_type: WhopSDK::PaymentMethodTypes,
         sepa_debit: WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod::SepaDebit
       }
@@ -67,6 +78,7 @@ class WhopSDK::Test::Resources::PaymentMethodsTest < WhopSDK::Test::ResourceTest
         typename: :PlatformBalancePaymentMethod,
         id: String,
         created_at: Time,
+        icons: WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::Icons,
         payment_method_type: WhopSDK::PaymentMethodTypes,
         platform_balance: WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::PlatformBalance
       }
@@ -104,19 +116,27 @@ class WhopSDK::Test::Resources::PaymentMethodsTest < WhopSDK::Test::ResourceTest
 
     assert_pattern do
       case row
-      in {typename: :BasePaymentMethod, id: String, created_at: Time, payment_method_type: WhopSDK::PaymentMethodTypes}
+      in {
+        typename: :BasePaymentMethod,
+        id: String,
+        created_at: Time,
+        icons: WhopSDK::Models::PaymentMethodListResponse::BasePaymentMethod::Icons,
+        payment_method_type: WhopSDK::PaymentMethodTypes
+      }
       in {
         typename: :CardPaymentMethod,
         id: String,
         card: WhopSDK::Models::PaymentMethodListResponse::CardPaymentMethod::Card,
         created_at: Time,
         has_payer_document: WhopSDK::Internal::Type::Boolean,
+        icons: WhopSDK::Models::PaymentMethodListResponse::CardPaymentMethod::Icons,
         payment_method_type: WhopSDK::PaymentMethodTypes
       }
       in {
         typename: :UsBankAccountPaymentMethod,
         id: String,
         created_at: Time,
+        icons: WhopSDK::Models::PaymentMethodListResponse::UsBankAccountPaymentMethod::Icons,
         payment_method_type: WhopSDK::PaymentMethodTypes,
         us_bank_account: WhopSDK::Models::PaymentMethodListResponse::UsBankAccountPaymentMethod::UsBankAccount
       }
@@ -125,12 +145,14 @@ class WhopSDK::Test::Resources::PaymentMethodsTest < WhopSDK::Test::ResourceTest
         id: String,
         cashapp: WhopSDK::Models::PaymentMethodListResponse::CashappPaymentMethod::Cashapp,
         created_at: Time,
+        icons: WhopSDK::Models::PaymentMethodListResponse::CashappPaymentMethod::Icons,
         payment_method_type: WhopSDK::PaymentMethodTypes
       }
       in {
         typename: :IdealPaymentMethod,
         id: String,
         created_at: Time,
+        icons: WhopSDK::Models::PaymentMethodListResponse::IdealPaymentMethod::Icons,
         ideal: WhopSDK::Models::PaymentMethodListResponse::IdealPaymentMethod::Ideal,
         payment_method_type: WhopSDK::PaymentMethodTypes
       }
@@ -138,6 +160,7 @@ class WhopSDK::Test::Resources::PaymentMethodsTest < WhopSDK::Test::ResourceTest
         typename: :SepaDebitPaymentMethod,
         id: String,
         created_at: Time,
+        icons: WhopSDK::Models::PaymentMethodListResponse::SepaDebitPaymentMethod::Icons,
         payment_method_type: WhopSDK::PaymentMethodTypes,
         sepa_debit: WhopSDK::Models::PaymentMethodListResponse::SepaDebitPaymentMethod::SepaDebit
       }
@@ -145,6 +168,7 @@ class WhopSDK::Test::Resources::PaymentMethodsTest < WhopSDK::Test::ResourceTest
         typename: :PlatformBalancePaymentMethod,
         id: String,
         created_at: Time,
+        icons: WhopSDK::Models::PaymentMethodListResponse::PlatformBalancePaymentMethod::Icons,
         payment_method_type: WhopSDK::PaymentMethodTypes,
         platform_balance: WhopSDK::Models::PaymentMethodListResponse::PlatformBalancePaymentMethod::PlatformBalance
       }

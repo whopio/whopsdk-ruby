@@ -149,6 +149,14 @@ module WhopSDK
       #   @return [Time, nil]
       required :paid_at, Time, nil?: true
 
+      # @!attribute payment_instrument
+      #   The instrument this payment was made with, shaped for display: the method type,
+      #   a buyer-facing name, the standard icon set, and the card facts when it was a
+      #   card. Null when the receipt names no payment method.
+      #
+      #   @return [WhopSDK::Models::PaymentListResponse::PaymentInstrument, nil]
+      required :payment_instrument, -> { WhopSDK::Models::PaymentListResponse::PaymentInstrument }, nil?: true
+
       # @!attribute payment_method
       #   The tokenized payment method reference used for this payment. Null if no token
       #   was used.
@@ -296,7 +304,7 @@ module WhopSDK
       #   @return [Boolean]
       required :voidable, WhopSDK::Internal::Type::Boolean
 
-      # @!method initialize(id:, amount_after_fees:, application_fee:, auto_refunded:, billing_address:, billing_reason:, card_brand:, card_last4:, checkout_configuration_id:, company:, created_at:, currency:, customer_phone:, decline_code:, dispute_alerted_at:, failure_message:, last_payment_attempt:, member:, membership:, metadata:, needs_tracking:, next_payment_attempt:, paid_at:, payment_method:, payment_method_type:, payments_failed:, plan:, product:, promo_code:, refundable:, refunded_amount:, refunded_at:, retryable:, settlement_currency:, shipment:, shipping_address:, status:, substatus:, subtotal:, tax_amount:, tax_behavior:, total:, updated_at:, usd_total:, user:, voidable:)
+      # @!method initialize(id:, amount_after_fees:, application_fee:, auto_refunded:, billing_address:, billing_reason:, card_brand:, card_last4:, checkout_configuration_id:, company:, created_at:, currency:, customer_phone:, decline_code:, dispute_alerted_at:, failure_message:, last_payment_attempt:, member:, membership:, metadata:, needs_tracking:, next_payment_attempt:, paid_at:, payment_instrument:, payment_method:, payment_method_type:, payments_failed:, plan:, product:, promo_code:, refundable:, refunded_amount:, refunded_at:, retryable:, settlement_currency:, shipment:, shipping_address:, status:, substatus:, subtotal:, tax_amount:, tax_behavior:, total:, updated_at:, usd_total:, user:, voidable:)
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::PaymentListResponse} for more details.
       #
@@ -348,6 +356,8 @@ module WhopSDK
       #   @param next_payment_attempt [Time, nil] The time of the next schedule payment retry.
       #
       #   @param paid_at [Time, nil] The time at which this payment was successfully collected. Null if the payment h
+      #
+      #   @param payment_instrument [WhopSDK::Models::PaymentListResponse::PaymentInstrument, nil] The instrument this payment was made with, shaped for display: the method type,
       #
       #   @param payment_method [WhopSDK::Models::PaymentListResponse::PaymentMethod, nil] The tokenized payment method reference used for this payment. Null if no token w
       #
@@ -688,6 +698,304 @@ module WhopSDK
         #   @param phone_number [String, nil] The phone number associated with this membership.
         #
         #   @param status [Symbol, WhopSDK::Models::MembershipStatus] The state of the membership.
+      end
+
+      # @see WhopSDK::Models::PaymentListResponse#payment_instrument
+      class PaymentInstrument < WhopSDK::Internal::Type::BaseModel
+        # @!attribute card
+        #   Card payments only: the card's network and last four.
+        #
+        #   @return [WhopSDK::Models::PaymentListResponse::PaymentInstrument::Card, nil]
+        required :card, -> { WhopSDK::Models::PaymentListResponse::PaymentInstrument::Card }, nil?: true
+
+        # @!attribute display_name
+        #   Buyer-facing instrument name — "Visa •••• 4242" when the card surfaced, else the
+        #   method's own name ("Klarna").
+        #
+        #   @return [String]
+        required :display_name, String
+
+        # @!attribute icons
+        #   The standard icon set: square and card shapes, each in light and dark colorways.
+        #
+        #   @return [WhopSDK::Models::PaymentListResponse::PaymentInstrument::Icons]
+        required :icons, -> { WhopSDK::Models::PaymentListResponse::PaymentInstrument::Icons }
+
+        # @!attribute installment_count
+        #   Installment methods only: how many payments the charge splits into. Data, not
+        #   copy — compose and translate the label client-side.
+        #
+        #   @return [Integer, nil]
+        required :installment_count, Integer, nil?: true
+
+        # @!attribute payment_method_type
+        #   The payment method type identifier, e.g. `card`, `klarna`, `apple_pay`.
+        #
+        #   @return [String]
+        required :payment_method_type, String
+
+        # @!method initialize(card:, display_name:, icons:, installment_count:, payment_method_type:)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::PaymentListResponse::PaymentInstrument} for more details.
+        #
+        #   The instrument this payment was made with, shaped for display: the method type,
+        #   a buyer-facing name, the standard icon set, and the card facts when it was a
+        #   card. Null when the receipt names no payment method.
+        #
+        #   @param card [WhopSDK::Models::PaymentListResponse::PaymentInstrument::Card, nil] Card payments only: the card's network and last four.
+        #
+        #   @param display_name [String] Buyer-facing instrument name — "Visa •••• 4242" when the card surfaced, else the
+        #
+        #   @param icons [WhopSDK::Models::PaymentListResponse::PaymentInstrument::Icons] The standard icon set: square and card shapes, each in light and dark colorways.
+        #
+        #   @param installment_count [Integer, nil] Installment methods only: how many payments the charge splits into. Data, not co
+        #
+        #   @param payment_method_type [String] The payment method type identifier, e.g. `card`, `klarna`, `apple_pay`.
+
+        # @see WhopSDK::Models::PaymentListResponse::PaymentInstrument#card
+        class Card < WhopSDK::Internal::Type::BaseModel
+          # @!attribute brand
+          #   The network identifier (`visa`, `amex`, …), matching `card.networks` entries and
+          #   saved card payment methods.
+          #
+          #   @return [String]
+          required :brand, String
+
+          # @!attribute last4
+          #   The card's last four digits, when captured.
+          #
+          #   @return [String, nil]
+          required :last4, String, nil?: true
+
+          # @!method initialize(brand:, last4:)
+          #   Some parameter documentations has been truncated, see
+          #   {WhopSDK::Models::PaymentListResponse::PaymentInstrument::Card} for more
+          #   details.
+          #
+          #   Card payments only: the card's network and last four.
+          #
+          #   @param brand [String] The network identifier (`visa`, `amex`, …), matching `card.networks` entries and
+          #
+          #   @param last4 [String, nil] The card's last four digits, when captured.
+        end
+
+        # @see WhopSDK::Models::PaymentListResponse::PaymentInstrument#icons
+        class Icons < WhopSDK::Internal::Type::BaseModel
+          # @!attribute card
+          #   The credit-card-proportioned tile (48x30).
+          #
+          #   @return [WhopSDK::Models::PaymentListResponse::PaymentInstrument::Icons::Card]
+          required :card, -> { WhopSDK::Models::PaymentListResponse::PaymentInstrument::Icons::Card }
+
+          # @!attribute square
+          #   The square tile (32x32).
+          #
+          #   @return [WhopSDK::Models::PaymentListResponse::PaymentInstrument::Icons::Square]
+          required :square, -> { WhopSDK::Models::PaymentListResponse::PaymentInstrument::Icons::Square }
+
+          # @!method initialize(card:, square:)
+          #   The standard icon set: square and card shapes, each in light and dark colorways.
+          #
+          #   @param card [WhopSDK::Models::PaymentListResponse::PaymentInstrument::Icons::Card] The credit-card-proportioned tile (48x30).
+          #
+          #   @param square [WhopSDK::Models::PaymentListResponse::PaymentInstrument::Icons::Square] The square tile (32x32).
+
+          # @see WhopSDK::Models::PaymentListResponse::PaymentInstrument::Icons#card
+          class Card < WhopSDK::Internal::Type::BaseModel
+            # @!attribute dark
+            #   The colorway for dark surfaces.
+            #
+            #   @return [WhopSDK::Models::PaymentListResponse::PaymentInstrument::Icons::Card::Dark]
+            required :dark, -> { WhopSDK::Models::PaymentListResponse::PaymentInstrument::Icons::Card::Dark }
+
+            # @!attribute light
+            #   The colorway for light surfaces.
+            #
+            #   @return [WhopSDK::Models::PaymentListResponse::PaymentInstrument::Icons::Card::Light]
+            required :light, -> { WhopSDK::Models::PaymentListResponse::PaymentInstrument::Icons::Card::Light }
+
+            # @!method initialize(dark:, light:)
+            #   The credit-card-proportioned tile (48x30).
+            #
+            #   @param dark [WhopSDK::Models::PaymentListResponse::PaymentInstrument::Icons::Card::Dark] The colorway for dark surfaces.
+            #
+            #   @param light [WhopSDK::Models::PaymentListResponse::PaymentInstrument::Icons::Card::Light] The colorway for light surfaces.
+
+            # @see WhopSDK::Models::PaymentListResponse::PaymentInstrument::Icons::Card#dark
+            class Dark < WhopSDK::Internal::Type::BaseModel
+              # @!attribute png_1x
+              #   Raster fallback at the shape's native size.
+              #
+              #   @return [String]
+              required :png_1x, String
+
+              # @!attribute png_2x
+              #   Raster fallback at double density.
+              #
+              #   @return [String]
+              required :png_2x, String
+
+              # @!attribute png_4x
+              #   Raster fallback at quadruple density.
+              #
+              #   @return [String]
+              required :png_4x, String
+
+              # @!attribute svg
+              #   The vector file. Prefer this everywhere SVG renders.
+              #
+              #   @return [String]
+              required :svg, String
+
+              # @!method initialize(png_1x:, png_2x:, png_4x:, svg:)
+              #   The colorway for dark surfaces.
+              #
+              #   @param png_1x [String] Raster fallback at the shape's native size.
+              #
+              #   @param png_2x [String] Raster fallback at double density.
+              #
+              #   @param png_4x [String] Raster fallback at quadruple density.
+              #
+              #   @param svg [String] The vector file. Prefer this everywhere SVG renders.
+            end
+
+            # @see WhopSDK::Models::PaymentListResponse::PaymentInstrument::Icons::Card#light
+            class Light < WhopSDK::Internal::Type::BaseModel
+              # @!attribute png_1x
+              #   Raster fallback at the shape's native size.
+              #
+              #   @return [String]
+              required :png_1x, String
+
+              # @!attribute png_2x
+              #   Raster fallback at double density.
+              #
+              #   @return [String]
+              required :png_2x, String
+
+              # @!attribute png_4x
+              #   Raster fallback at quadruple density.
+              #
+              #   @return [String]
+              required :png_4x, String
+
+              # @!attribute svg
+              #   The vector file. Prefer this everywhere SVG renders.
+              #
+              #   @return [String]
+              required :svg, String
+
+              # @!method initialize(png_1x:, png_2x:, png_4x:, svg:)
+              #   The colorway for light surfaces.
+              #
+              #   @param png_1x [String] Raster fallback at the shape's native size.
+              #
+              #   @param png_2x [String] Raster fallback at double density.
+              #
+              #   @param png_4x [String] Raster fallback at quadruple density.
+              #
+              #   @param svg [String] The vector file. Prefer this everywhere SVG renders.
+            end
+          end
+
+          # @see WhopSDK::Models::PaymentListResponse::PaymentInstrument::Icons#square
+          class Square < WhopSDK::Internal::Type::BaseModel
+            # @!attribute dark
+            #   The colorway for dark surfaces.
+            #
+            #   @return [WhopSDK::Models::PaymentListResponse::PaymentInstrument::Icons::Square::Dark]
+            required :dark, -> { WhopSDK::Models::PaymentListResponse::PaymentInstrument::Icons::Square::Dark }
+
+            # @!attribute light
+            #   The colorway for light surfaces.
+            #
+            #   @return [WhopSDK::Models::PaymentListResponse::PaymentInstrument::Icons::Square::Light]
+            required :light, -> { WhopSDK::Models::PaymentListResponse::PaymentInstrument::Icons::Square::Light }
+
+            # @!method initialize(dark:, light:)
+            #   The square tile (32x32).
+            #
+            #   @param dark [WhopSDK::Models::PaymentListResponse::PaymentInstrument::Icons::Square::Dark] The colorway for dark surfaces.
+            #
+            #   @param light [WhopSDK::Models::PaymentListResponse::PaymentInstrument::Icons::Square::Light] The colorway for light surfaces.
+
+            # @see WhopSDK::Models::PaymentListResponse::PaymentInstrument::Icons::Square#dark
+            class Dark < WhopSDK::Internal::Type::BaseModel
+              # @!attribute png_1x
+              #   Raster fallback at the shape's native size.
+              #
+              #   @return [String]
+              required :png_1x, String
+
+              # @!attribute png_2x
+              #   Raster fallback at double density.
+              #
+              #   @return [String]
+              required :png_2x, String
+
+              # @!attribute png_4x
+              #   Raster fallback at quadruple density.
+              #
+              #   @return [String]
+              required :png_4x, String
+
+              # @!attribute svg
+              #   The vector file. Prefer this everywhere SVG renders.
+              #
+              #   @return [String]
+              required :svg, String
+
+              # @!method initialize(png_1x:, png_2x:, png_4x:, svg:)
+              #   The colorway for dark surfaces.
+              #
+              #   @param png_1x [String] Raster fallback at the shape's native size.
+              #
+              #   @param png_2x [String] Raster fallback at double density.
+              #
+              #   @param png_4x [String] Raster fallback at quadruple density.
+              #
+              #   @param svg [String] The vector file. Prefer this everywhere SVG renders.
+            end
+
+            # @see WhopSDK::Models::PaymentListResponse::PaymentInstrument::Icons::Square#light
+            class Light < WhopSDK::Internal::Type::BaseModel
+              # @!attribute png_1x
+              #   Raster fallback at the shape's native size.
+              #
+              #   @return [String]
+              required :png_1x, String
+
+              # @!attribute png_2x
+              #   Raster fallback at double density.
+              #
+              #   @return [String]
+              required :png_2x, String
+
+              # @!attribute png_4x
+              #   Raster fallback at quadruple density.
+              #
+              #   @return [String]
+              required :png_4x, String
+
+              # @!attribute svg
+              #   The vector file. Prefer this everywhere SVG renders.
+              #
+              #   @return [String]
+              required :svg, String
+
+              # @!method initialize(png_1x:, png_2x:, png_4x:, svg:)
+              #   The colorway for light surfaces.
+              #
+              #   @param png_1x [String] Raster fallback at the shape's native size.
+              #
+              #   @param png_2x [String] Raster fallback at double density.
+              #
+              #   @param png_4x [String] Raster fallback at quadruple density.
+              #
+              #   @param svg [String] The vector file. Prefer this everywhere SVG renders.
+            end
+          end
+        end
       end
 
       # @see WhopSDK::Models::PaymentListResponse#payment_method

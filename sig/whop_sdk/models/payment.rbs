@@ -30,6 +30,7 @@ module WhopSDK
         needs_tracking: bool?,
         next_payment_attempt: Time?,
         paid_at: Time?,
+        payment_instrument: WhopSDK::Payment::PaymentInstrument?,
         payment_method: WhopSDK::Payment::PaymentMethod?,
         payment_method_type: WhopSDK::Models::payment_method_types?,
         payments_failed: Integer?,
@@ -121,6 +122,8 @@ module WhopSDK
       attr_accessor next_payment_attempt: Time?
 
       attr_accessor paid_at: Time?
+
+      attr_accessor payment_instrument: WhopSDK::Payment::PaymentInstrument?
 
       attr_accessor payment_method: WhopSDK::Payment::PaymentMethod?
 
@@ -217,6 +220,7 @@ module WhopSDK
         needs_tracking: bool?,
         next_payment_attempt: Time?,
         paid_at: Time?,
+        payment_instrument: WhopSDK::Payment::PaymentInstrument?,
         payment_method: WhopSDK::Payment::PaymentMethod?,
         payment_method_type: WhopSDK::Models::payment_method_types?,
         payments_failed: Integer?,
@@ -281,6 +285,7 @@ module WhopSDK
         needs_tracking: bool?,
         next_payment_attempt: Time?,
         paid_at: Time?,
+        payment_instrument: WhopSDK::Payment::PaymentInstrument?,
         payment_method: WhopSDK::Payment::PaymentMethod?,
         payment_method_type: WhopSDK::Models::payment_method_types?,
         payments_failed: Integer?,
@@ -790,6 +795,249 @@ module WhopSDK
           phone_number: String?,
           status: WhopSDK::Models::membership_status
         }
+      end
+
+      type payment_instrument =
+        {
+          card: WhopSDK::Payment::PaymentInstrument::Card?,
+          display_name: String,
+          icons: WhopSDK::Payment::PaymentInstrument::Icons,
+          installment_count: Integer?,
+          payment_method_type: String
+        }
+
+      class PaymentInstrument < WhopSDK::Internal::Type::BaseModel
+        attr_accessor card: WhopSDK::Payment::PaymentInstrument::Card?
+
+        attr_accessor display_name: String
+
+        attr_accessor icons: WhopSDK::Payment::PaymentInstrument::Icons
+
+        attr_accessor installment_count: Integer?
+
+        attr_accessor payment_method_type: String
+
+        def initialize: (
+          card: WhopSDK::Payment::PaymentInstrument::Card?,
+          display_name: String,
+          icons: WhopSDK::Payment::PaymentInstrument::Icons,
+          installment_count: Integer?,
+          payment_method_type: String
+        ) -> void
+
+        def to_hash: -> {
+          card: WhopSDK::Payment::PaymentInstrument::Card?,
+          display_name: String,
+          icons: WhopSDK::Payment::PaymentInstrument::Icons,
+          installment_count: Integer?,
+          payment_method_type: String
+        }
+
+        type card = { brand: String, :last4 => String? }
+
+        class Card < WhopSDK::Internal::Type::BaseModel
+          attr_accessor brand: String
+
+          attr_accessor last4: String?
+
+          def initialize: (brand: String, last4: String?) -> void
+
+          def to_hash: -> { brand: String, :last4 => String? }
+        end
+
+        type icons =
+          {
+            card: WhopSDK::Payment::PaymentInstrument::Icons::Card,
+            square: WhopSDK::Payment::PaymentInstrument::Icons::Square
+          }
+
+        class Icons < WhopSDK::Internal::Type::BaseModel
+          attr_accessor card: WhopSDK::Payment::PaymentInstrument::Icons::Card
+
+          attr_accessor square: WhopSDK::Payment::PaymentInstrument::Icons::Square
+
+          def initialize: (
+            card: WhopSDK::Payment::PaymentInstrument::Icons::Card,
+            square: WhopSDK::Payment::PaymentInstrument::Icons::Square
+          ) -> void
+
+          def to_hash: -> {
+            card: WhopSDK::Payment::PaymentInstrument::Icons::Card,
+            square: WhopSDK::Payment::PaymentInstrument::Icons::Square
+          }
+
+          type card =
+            {
+              dark: WhopSDK::Payment::PaymentInstrument::Icons::Card::Dark,
+              light: WhopSDK::Payment::PaymentInstrument::Icons::Card::Light
+            }
+
+          class Card < WhopSDK::Internal::Type::BaseModel
+            attr_accessor dark: WhopSDK::Payment::PaymentInstrument::Icons::Card::Dark
+
+            attr_accessor light: WhopSDK::Payment::PaymentInstrument::Icons::Card::Light
+
+            def initialize: (
+              dark: WhopSDK::Payment::PaymentInstrument::Icons::Card::Dark,
+              light: WhopSDK::Payment::PaymentInstrument::Icons::Card::Light
+            ) -> void
+
+            def to_hash: -> {
+              dark: WhopSDK::Payment::PaymentInstrument::Icons::Card::Dark,
+              light: WhopSDK::Payment::PaymentInstrument::Icons::Card::Light
+            }
+
+            type dark =
+              {
+                :png_1x => String,
+                :png_2x => String,
+                :png_4x => String,
+                svg: String
+              }
+
+            class Dark < WhopSDK::Internal::Type::BaseModel
+              attr_accessor png_1x: String
+
+              attr_accessor png_2x: String
+
+              attr_accessor png_4x: String
+
+              attr_accessor svg: String
+
+              def initialize: (
+                png_1x: String,
+                png_2x: String,
+                png_4x: String,
+                svg: String
+              ) -> void
+
+              def to_hash: -> {
+                :png_1x => String,
+                :png_2x => String,
+                :png_4x => String,
+                svg: String
+              }
+            end
+
+            type light =
+              {
+                :png_1x => String,
+                :png_2x => String,
+                :png_4x => String,
+                svg: String
+              }
+
+            class Light < WhopSDK::Internal::Type::BaseModel
+              attr_accessor png_1x: String
+
+              attr_accessor png_2x: String
+
+              attr_accessor png_4x: String
+
+              attr_accessor svg: String
+
+              def initialize: (
+                png_1x: String,
+                png_2x: String,
+                png_4x: String,
+                svg: String
+              ) -> void
+
+              def to_hash: -> {
+                :png_1x => String,
+                :png_2x => String,
+                :png_4x => String,
+                svg: String
+              }
+            end
+          end
+
+          type square =
+            {
+              dark: WhopSDK::Payment::PaymentInstrument::Icons::Square::Dark,
+              light: WhopSDK::Payment::PaymentInstrument::Icons::Square::Light
+            }
+
+          class Square < WhopSDK::Internal::Type::BaseModel
+            attr_accessor dark: WhopSDK::Payment::PaymentInstrument::Icons::Square::Dark
+
+            attr_accessor light: WhopSDK::Payment::PaymentInstrument::Icons::Square::Light
+
+            def initialize: (
+              dark: WhopSDK::Payment::PaymentInstrument::Icons::Square::Dark,
+              light: WhopSDK::Payment::PaymentInstrument::Icons::Square::Light
+            ) -> void
+
+            def to_hash: -> {
+              dark: WhopSDK::Payment::PaymentInstrument::Icons::Square::Dark,
+              light: WhopSDK::Payment::PaymentInstrument::Icons::Square::Light
+            }
+
+            type dark =
+              {
+                :png_1x => String,
+                :png_2x => String,
+                :png_4x => String,
+                svg: String
+              }
+
+            class Dark < WhopSDK::Internal::Type::BaseModel
+              attr_accessor png_1x: String
+
+              attr_accessor png_2x: String
+
+              attr_accessor png_4x: String
+
+              attr_accessor svg: String
+
+              def initialize: (
+                png_1x: String,
+                png_2x: String,
+                png_4x: String,
+                svg: String
+              ) -> void
+
+              def to_hash: -> {
+                :png_1x => String,
+                :png_2x => String,
+                :png_4x => String,
+                svg: String
+              }
+            end
+
+            type light =
+              {
+                :png_1x => String,
+                :png_2x => String,
+                :png_4x => String,
+                svg: String
+              }
+
+            class Light < WhopSDK::Internal::Type::BaseModel
+              attr_accessor png_1x: String
+
+              attr_accessor png_2x: String
+
+              attr_accessor png_4x: String
+
+              attr_accessor svg: String
+
+              def initialize: (
+                png_1x: String,
+                png_2x: String,
+                png_4x: String,
+                svg: String
+              ) -> void
+
+              def to_hash: -> {
+                :png_1x => String,
+                :png_2x => String,
+                :png_4x => String,
+                svg: String
+              }
+            end
+          end
+        end
       end
 
       type payment_method =

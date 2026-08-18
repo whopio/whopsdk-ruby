@@ -63,6 +63,7 @@ module WhopSDK
       M_PESA = :m_pesa
       MERCADO_PAGO = :mercado_pago
       MOBILEPAY = :mobilepay
+      MODO = :modo
       MONDU = :mondu
       MULTIBANCO = :multibanco
       NAVER_PAY = :naver_pay
@@ -89,6 +90,7 @@ module WhopSDK
       PLATFORM_BALANCE = :platform_balance
       PROMPTPAY = :promptpay
       QRIS = :qris
+      RAPIPAGO = :rapipago
       RECHNUNG = :rechnung
       REVOLUT_PAY = :revolut_pay
       SAMSUNG_PAY = :samsung_pay

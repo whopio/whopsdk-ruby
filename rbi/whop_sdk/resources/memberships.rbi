@@ -56,27 +56,25 @@ module WhopSDK
       # - `member:email:read`
       sig do
         params(
-          after: T.nilable(String),
-          before: T.nilable(String),
-          cancel_options: T.nilable(T::Array[WhopSDK::CancelOptions::OrSymbol]),
+          after: String,
+          before: String,
+          cancel_options: T::Array[WhopSDK::CancelOptions::OrSymbol],
           cancelation_status:
-            T.nilable(
-              WhopSDK::MembershipListParams::CancelationStatus::OrSymbol
-            ),
-          company_id: T.nilable(String),
-          created_after: T.nilable(Time),
-          created_before: T.nilable(Time),
-          direction: T.nilable(WhopSDK::Direction::OrSymbol),
-          first: T.nilable(Integer),
-          has_cancelation_reason: T.nilable(T::Boolean),
-          include_text_only_cancelation_reasons: T.nilable(T::Boolean),
-          last: T.nilable(Integer),
-          order: T.nilable(WhopSDK::MembershipListParams::Order::OrSymbol),
-          plan_ids: T.nilable(T::Array[String]),
-          product_ids: T.nilable(T::Array[String]),
-          promo_code_ids: T.nilable(T::Array[String]),
-          statuses: T.nilable(T::Array[WhopSDK::MembershipStatus::OrSymbol]),
-          user_ids: T.nilable(T::Array[String]),
+            WhopSDK::MembershipListParams::CancelationStatus::OrSymbol,
+          company_id: String,
+          created_after: Time,
+          created_before: Time,
+          direction: WhopSDK::Direction::OrSymbol,
+          first: Integer,
+          has_cancelation_reason: T::Boolean,
+          include_text_only_cancelation_reasons: T::Boolean,
+          last: Integer,
+          order: WhopSDK::MembershipListParams::Order::OrSymbol,
+          plan_ids: T::Array[String],
+          product_ids: T::Array[String],
+          promo_code_ids: T::Array[String],
+          statuses: T::Array[WhopSDK::MembershipStatus::OrSymbol],
+          user_ids: T::Array[String],
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(
           WhopSDK::Internal::CursorPage[WhopSDK::Models::MembershipListResponse]
@@ -89,7 +87,7 @@ module WhopSDK
         before: nil,
         # Filter to only memberships matching these cancellation reasons.
         cancel_options: nil,
-        # The state of a membership after a customer provides a cancelation reason.
+        # Filter memberships by whether the customer is canceling, left, or was won back.
         cancelation_status: nil,
         # The unique identifier of the company to list memberships for. Required when
         # using an API key.
@@ -98,7 +96,7 @@ module WhopSDK
         created_after: nil,
         # Only return memberships created before this timestamp.
         created_before: nil,
-        # The direction of the sort.
+        # The sort direction for results. Defaults to descending.
         direction: nil,
         # Returns the first _n_ elements from the list.
         first: nil,
@@ -110,7 +108,7 @@ module WhopSDK
         include_text_only_cancelation_reasons: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
-        # Which columns can be used to sort.
+        # The field to sort results by. Null uses the default sort order.
         order: nil,
         # Filter to only memberships belonging to these plan identifiers.
         plan_ids: nil,

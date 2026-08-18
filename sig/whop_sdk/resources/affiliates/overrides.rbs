@@ -26,11 +26,11 @@ module WhopSDK
 
         def list: (
           String id,
-          ?after: String?,
-          ?before: String?,
-          ?first: Integer?,
-          ?last: Integer?,
-          ?override_type: WhopSDK::Models::Affiliates::affiliate_override_roles?,
+          ?after: String,
+          ?before: String,
+          ?first: Integer,
+          ?last: Integer,
+          ?override_type: WhopSDK::Models::Affiliates::affiliate_override_roles,
           ?request_options: WhopSDK::request_opts
         ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::Affiliates::OverrideListResponse]
 

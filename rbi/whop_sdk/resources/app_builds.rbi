@@ -76,14 +76,14 @@ module WhopSDK
       sig do
         params(
           app_id: String,
-          after: T.nilable(String),
-          before: T.nilable(String),
-          created_after: T.nilable(Time),
-          created_before: T.nilable(Time),
-          first: T.nilable(Integer),
-          last: T.nilable(Integer),
-          platform: T.nilable(WhopSDK::AppBuildPlatforms::OrSymbol),
-          status: T.nilable(WhopSDK::AppBuildStatuses::OrSymbol),
+          after: String,
+          before: String,
+          created_after: Time,
+          created_before: Time,
+          first: Integer,
+          last: Integer,
+          platform: WhopSDK::AppBuildPlatforms::OrSymbol,
+          status: WhopSDK::AppBuildStatuses::OrSymbol,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(
           WhopSDK::Internal::CursorPage[WhopSDK::Models::AppBuildListResponse]
@@ -104,9 +104,9 @@ module WhopSDK
         first: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
-        # The different platforms an app build can target.
+        # Filter builds by target platform.
         platform: nil,
-        # The different statuses an AppBuild can be in.
+        # Filter builds by review status.
         status: nil,
         request_options: {}
       )

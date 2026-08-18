@@ -23,19 +23,19 @@ module WhopSDK
       #
       # @param to [Time] Inclusive end of the reporting window.
       #
-      # @param ad_campaign_ids [Array<String>, nil] Scope the report to these ad campaigns (max 100); stats are summed across them.
+      # @param ad_campaign_ids [Array<String>] Scope the report to these ad campaigns (max 100); stats are summed across them.
       #
-      # @param ad_group_ids [Array<String>, nil] Scope the report to these ad groups (max 100); stats are summed across them. Mut
+      # @param ad_group_ids [Array<String>] Scope the report to these ad groups (max 100); stats are summed across them. Mut
       #
-      # @param ad_ids [Array<String>, nil] Scope the report to these ads (max 100); stats are summed across them. Mutually
+      # @param ad_ids [Array<String>] Scope the report to these ads (max 100); stats are summed across them. Mutually
       #
-      # @param breakdown [Symbol, WhopSDK::Models::AdReportRetrieveParams::Breakdown, nil] Entity level to group an ad report by.
+      # @param breakdown [Symbol, WhopSDK::Models::AdReportRetrieveParams::Breakdown] Entity level to break down the report by. When set, `breakdown` on the response
       #
-      # @param company_id [String, nil] The unique identifier of a company. Mutually exclusive with `adCampaignIds`, `ad
+      # @param company_id [String] The unique identifier of a company. Mutually exclusive with `adCampaignIds`, `ad
       #
-      # @param currency [String, nil] ISO 4217 currency code to report `spend` in. Defaults to the company's ads repor
+      # @param currency [String] ISO 4217 currency code to report `spend` in. Defaults to the company's ads repor
       #
-      # @param granularity [Symbol, WhopSDK::Models::Granularities, nil] Bucket size for external ad stat rows.
+      # @param granularity [Symbol, WhopSDK::Models::Granularities] Bucket grain for the per-bucket `granularity` time series. Omit (`null`) for sum
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

@@ -17,52 +17,52 @@ module WhopSDK
       #   Returns the elements in the list that come after the specified cursor.
       #
       #   @return [String, nil]
-      optional :after, String, nil?: true
+      optional :after, String
 
       # @!attribute before
       #   Returns the elements in the list that come before the specified cursor.
       #
       #   @return [String, nil]
-      optional :before, String, nil?: true
+      optional :before, String
 
       # @!attribute first
       #   Returns the first _n_ elements from the list.
       #
       #   @return [Integer, nil]
-      optional :first, Integer, nil?: true
+      optional :first, Integer
 
       # @!attribute last
       #   Returns the last _n_ elements from the list.
       #
       #   @return [Integer, nil]
-      optional :last, Integer, nil?: true
+      optional :last, Integer
 
       # @!attribute transaction_type
-      #   The type of token transaction
+      #   Filter transactions by type.
       #
       #   @return [Symbol, WhopSDK::Models::CompanyTokenTransactionType, nil]
-      optional :transaction_type, enum: -> { WhopSDK::CompanyTokenTransactionType }, nil?: true
+      optional :transaction_type, enum: -> { WhopSDK::CompanyTokenTransactionType }
 
       # @!attribute user_id
       #   Filter transactions to only those involving this specific user.
       #
       #   @return [String, nil]
-      optional :user_id, String, nil?: true
+      optional :user_id, String
 
       # @!method initialize(company_id:, after: nil, before: nil, first: nil, last: nil, transaction_type: nil, user_id: nil, request_options: {})
       #   @param company_id [String] The unique identifier of the company to list token transactions for.
       #
-      #   @param after [String, nil] Returns the elements in the list that come after the specified cursor.
+      #   @param after [String] Returns the elements in the list that come after the specified cursor.
       #
-      #   @param before [String, nil] Returns the elements in the list that come before the specified cursor.
+      #   @param before [String] Returns the elements in the list that come before the specified cursor.
       #
-      #   @param first [Integer, nil] Returns the first _n_ elements from the list.
+      #   @param first [Integer] Returns the first _n_ elements from the list.
       #
-      #   @param last [Integer, nil] Returns the last _n_ elements from the list.
+      #   @param last [Integer] Returns the last _n_ elements from the list.
       #
-      #   @param transaction_type [Symbol, WhopSDK::Models::CompanyTokenTransactionType, nil] The type of token transaction
+      #   @param transaction_type [Symbol, WhopSDK::Models::CompanyTokenTransactionType] Filter transactions by type.
       #
-      #   @param user_id [String, nil] Filter transactions to only those involving this specific user.
+      #   @param user_id [String] Filter transactions to only those involving this specific user.
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
     end

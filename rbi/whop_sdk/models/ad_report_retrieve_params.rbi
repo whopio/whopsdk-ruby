@@ -22,51 +22,82 @@ module WhopSDK
       # Scope the report to these ad campaigns (max 100); stats are summed across them.
       # Mutually exclusive with `companyId`, `adGroupIds`, and `adIds`.
       sig { returns(T.nilable(T::Array[String])) }
-      attr_accessor :ad_campaign_ids
+      attr_reader :ad_campaign_ids
+
+      sig { params(ad_campaign_ids: T::Array[String]).void }
+      attr_writer :ad_campaign_ids
 
       # Scope the report to these ad groups (max 100); stats are summed across them.
       # Mutually exclusive with `companyId`, `adCampaignIds`, and `adIds`.
       sig { returns(T.nilable(T::Array[String])) }
-      attr_accessor :ad_group_ids
+      attr_reader :ad_group_ids
+
+      sig { params(ad_group_ids: T::Array[String]).void }
+      attr_writer :ad_group_ids
 
       # Scope the report to these ads (max 100); stats are summed across them. Mutually
       # exclusive with `companyId`, `adCampaignIds`, and `adGroupIds`.
       sig { returns(T.nilable(T::Array[String])) }
-      attr_accessor :ad_ids
+      attr_reader :ad_ids
 
-      # Entity level to group an ad report by.
+      sig { params(ad_ids: T::Array[String]).void }
+      attr_writer :ad_ids
+
+      # Entity level to break down the report by. When set, `breakdown` on the response
+      # contains one row per entity at the requested level inside the requested scope.
+      # `ad` returns one row per ad, `ad_group` per ad group, `campaign` per ad
+      # campaign. The breakdown level must be at or below the scope (e.g. `adId` cannot
+      # be broken down by `campaign`). The `summary` totals are unaffected.
       sig do
         returns(T.nilable(WhopSDK::AdReportRetrieveParams::Breakdown::OrSymbol))
       end
-      attr_accessor :breakdown
+      attr_reader :breakdown
+
+      sig do
+        params(
+          breakdown: WhopSDK::AdReportRetrieveParams::Breakdown::OrSymbol
+        ).void
+      end
+      attr_writer :breakdown
 
       # The unique identifier of a company. Mutually exclusive with `adCampaignIds`,
       # `adGroupIds`, and `adIds`. Use with `breakdown` to fan out across every
       # campaign, ad group, or ad in the company without paging.
       sig { returns(T.nilable(String)) }
-      attr_accessor :company_id
+      attr_reader :company_id
+
+      sig { params(company_id: String).void }
+      attr_writer :company_id
 
       # ISO 4217 currency code to report `spend` in. Defaults to the company's ads
       # reporting currency.
       sig { returns(T.nilable(String)) }
-      attr_accessor :currency
+      attr_reader :currency
 
-      # Bucket size for external ad stat rows.
+      sig { params(currency: String).void }
+      attr_writer :currency
+
+      # Bucket grain for the per-bucket `granularity` time series. Omit (`null`) for
+      # summary-only. `hourly`/`daily` max 90 days, `weekly` max 366 days, `monthly` max
+      # 4 years. The `summary` totals are unaffected. With `breakdown`, each row gets
+      # its own series at the same grain.
       sig { returns(T.nilable(WhopSDK::Granularities::OrSymbol)) }
-      attr_accessor :granularity
+      attr_reader :granularity
+
+      sig { params(granularity: WhopSDK::Granularities::OrSymbol).void }
+      attr_writer :granularity
 
       sig do
         params(
           from: Time,
           to: Time,
-          ad_campaign_ids: T.nilable(T::Array[String]),
-          ad_group_ids: T.nilable(T::Array[String]),
-          ad_ids: T.nilable(T::Array[String]),
-          breakdown:
-            T.nilable(WhopSDK::AdReportRetrieveParams::Breakdown::OrSymbol),
-          company_id: T.nilable(String),
-          currency: T.nilable(String),
-          granularity: T.nilable(WhopSDK::Granularities::OrSymbol),
+          ad_campaign_ids: T::Array[String],
+          ad_group_ids: T::Array[String],
+          ad_ids: T::Array[String],
+          breakdown: WhopSDK::AdReportRetrieveParams::Breakdown::OrSymbol,
+          company_id: String,
+          currency: String,
+          granularity: WhopSDK::Granularities::OrSymbol,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -84,7 +115,11 @@ module WhopSDK
         # Scope the report to these ads (max 100); stats are summed across them. Mutually
         # exclusive with `companyId`, `adCampaignIds`, and `adGroupIds`.
         ad_ids: nil,
-        # Entity level to group an ad report by.
+        # Entity level to break down the report by. When set, `breakdown` on the response
+        # contains one row per entity at the requested level inside the requested scope.
+        # `ad` returns one row per ad, `ad_group` per ad group, `campaign` per ad
+        # campaign. The breakdown level must be at or below the scope (e.g. `adId` cannot
+        # be broken down by `campaign`). The `summary` totals are unaffected.
         breakdown: nil,
         # The unique identifier of a company. Mutually exclusive with `adCampaignIds`,
         # `adGroupIds`, and `adIds`. Use with `breakdown` to fan out across every
@@ -93,7 +128,10 @@ module WhopSDK
         # ISO 4217 currency code to report `spend` in. Defaults to the company's ads
         # reporting currency.
         currency: nil,
-        # Bucket size for external ad stat rows.
+        # Bucket grain for the per-bucket `granularity` time series. Omit (`null`) for
+        # summary-only. `hourly`/`daily` max 90 days, `weekly` max 366 days, `monthly` max
+        # 4 years. The `summary` totals are unaffected. With `breakdown`, each row gets
+        # its own series at the same grain.
         granularity: nil,
         request_options: {}
       )
@@ -104,14 +142,13 @@ module WhopSDK
           {
             from: Time,
             to: Time,
-            ad_campaign_ids: T.nilable(T::Array[String]),
-            ad_group_ids: T.nilable(T::Array[String]),
-            ad_ids: T.nilable(T::Array[String]),
-            breakdown:
-              T.nilable(WhopSDK::AdReportRetrieveParams::Breakdown::OrSymbol),
-            company_id: T.nilable(String),
-            currency: T.nilable(String),
-            granularity: T.nilable(WhopSDK::Granularities::OrSymbol),
+            ad_campaign_ids: T::Array[String],
+            ad_group_ids: T::Array[String],
+            ad_ids: T::Array[String],
+            breakdown: WhopSDK::AdReportRetrieveParams::Breakdown::OrSymbol,
+            company_id: String,
+            currency: String,
+            granularity: WhopSDK::Granularities::OrSymbol,
             request_options: WhopSDK::RequestOptions
           }
         )
@@ -119,7 +156,11 @@ module WhopSDK
       def to_hash
       end
 
-      # Entity level to group an ad report by.
+      # Entity level to break down the report by. When set, `breakdown` on the response
+      # contains one row per entity at the requested level inside the requested scope.
+      # `ad` returns one row per ad, `ad_group` per ad group, `campaign` per ad
+      # campaign. The breakdown level must be at or below the scope (e.g. `adId` cannot
+      # be broken down by `campaign`). The `summary` totals are unaffected.
       module Breakdown
         extend WhopSDK::Internal::Type::Enum
 

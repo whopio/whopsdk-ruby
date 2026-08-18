@@ -176,25 +176,25 @@ module WhopSDK
       #
       # @param company_id [String] The unique identifier of the company to list products for.
       #
-      # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
+      # @param after [String] Returns the elements in the list that come after the specified cursor.
       #
-      # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
+      # @param before [String] Returns the elements in the list that come before the specified cursor.
       #
-      # @param created_after [Time, nil] Only return products created after this timestamp.
+      # @param created_after [Time] Only return products created after this timestamp.
       #
-      # @param created_before [Time, nil] Only return products created before this timestamp.
+      # @param created_before [Time] Only return products created before this timestamp.
       #
-      # @param direction [Symbol, WhopSDK::Models::Direction, nil] The direction of the sort.
+      # @param direction [Symbol, WhopSDK::Models::Direction] The sort direction for results. Defaults to descending.
       #
-      # @param first [Integer, nil] Returns the first _n_ elements from the list.
+      # @param first [Integer] Returns the first _n_ elements from the list.
       #
-      # @param last [Integer, nil] Returns the last _n_ elements from the list.
+      # @param last [Integer] Returns the last _n_ elements from the list.
       #
-      # @param order [Symbol, WhopSDK::Models::ProductListParams::Order, nil] The ways a relation of AccessPasses can be ordered
+      # @param order [Symbol, WhopSDK::Models::ProductListParams::Order] The field to sort results by. Defaults to created_at.
       #
-      # @param product_types [Array<Symbol, WhopSDK::Models::AccessPassType>, nil] Filter to only products matching these type classifications.
+      # @param product_types [Array<Symbol, WhopSDK::Models::AccessPassType>] Filter to only products matching these type classifications.
       #
-      # @param visibilities [Array<Symbol, WhopSDK::Models::VisibilityFilter>, nil] Filter to only products matching these visibility states.
+      # @param visibilities [Array<Symbol, WhopSDK::Models::VisibilityFilter>] Filter to only products matching these visibility states.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

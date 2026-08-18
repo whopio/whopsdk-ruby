@@ -17,47 +17,71 @@ module WhopSDK
 
       # Returns the elements in the list that come after the specified cursor.
       sig { returns(T.nilable(String)) }
-      attr_accessor :after
+      attr_reader :after
+
+      sig { params(after: String).void }
+      attr_writer :after
 
       # Returns the elements in the list that come before the specified cursor.
       sig { returns(T.nilable(String)) }
-      attr_accessor :before
+      attr_reader :before
+
+      sig { params(before: String).void }
+      attr_writer :before
 
       # Only return reviews created after this timestamp.
       sig { returns(T.nilable(Time)) }
-      attr_accessor :created_after
+      attr_reader :created_after
+
+      sig { params(created_after: Time).void }
+      attr_writer :created_after
 
       # Only return reviews created before this timestamp.
       sig { returns(T.nilable(Time)) }
-      attr_accessor :created_before
+      attr_reader :created_before
+
+      sig { params(created_before: Time).void }
+      attr_writer :created_before
 
       # Returns the first _n_ elements from the list.
       sig { returns(T.nilable(Integer)) }
-      attr_accessor :first
+      attr_reader :first
+
+      sig { params(first: Integer).void }
+      attr_writer :first
 
       # Returns the last _n_ elements from the list.
       sig { returns(T.nilable(Integer)) }
-      attr_accessor :last
+      attr_reader :last
+
+      sig { params(last: Integer).void }
+      attr_writer :last
 
       # The maximum star rating to include in results, from 1 to 5 inclusive.
       sig { returns(T.nilable(Integer)) }
-      attr_accessor :max_stars
+      attr_reader :max_stars
+
+      sig { params(max_stars: Integer).void }
+      attr_writer :max_stars
 
       # The minimum star rating to include in results, from 1 to 5 inclusive.
       sig { returns(T.nilable(Integer)) }
-      attr_accessor :min_stars
+      attr_reader :min_stars
+
+      sig { params(min_stars: Integer).void }
+      attr_writer :min_stars
 
       sig do
         params(
           product_id: String,
-          after: T.nilable(String),
-          before: T.nilable(String),
-          created_after: T.nilable(Time),
-          created_before: T.nilable(Time),
-          first: T.nilable(Integer),
-          last: T.nilable(Integer),
-          max_stars: T.nilable(Integer),
-          min_stars: T.nilable(Integer),
+          after: String,
+          before: String,
+          created_after: Time,
+          created_before: Time,
+          first: Integer,
+          last: Integer,
+          max_stars: Integer,
+          min_stars: Integer,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -88,14 +112,14 @@ module WhopSDK
         override.returns(
           {
             product_id: String,
-            after: T.nilable(String),
-            before: T.nilable(String),
-            created_after: T.nilable(Time),
-            created_before: T.nilable(Time),
-            first: T.nilable(Integer),
-            last: T.nilable(Integer),
-            max_stars: T.nilable(Integer),
-            min_stars: T.nilable(Integer),
+            after: String,
+            before: String,
+            created_after: Time,
+            created_before: Time,
+            first: Integer,
+            last: Integer,
+            max_stars: Integer,
+            min_stars: Integer,
             request_options: WhopSDK::RequestOptions
           }
         )

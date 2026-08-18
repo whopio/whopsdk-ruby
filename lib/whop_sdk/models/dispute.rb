@@ -438,6 +438,14 @@ module WhopSDK
         #   @return [Time, nil]
         required :paid_at, Time, nil?: true
 
+        # @!attribute payment_instrument
+        #   The instrument this payment was made with, shaped for display: the method type,
+        #   a buyer-facing name, the standard icon set, and the card facts when it was a
+        #   card. Null when the receipt names no payment method.
+        #
+        #   @return [WhopSDK::Models::Dispute::Payment::PaymentInstrument, nil]
+        required :payment_instrument, -> { WhopSDK::Dispute::Payment::PaymentInstrument }, nil?: true
+
         # @!attribute payment_method_type
         #   The different types of payment methods that can be used.
         #
@@ -468,7 +476,7 @@ module WhopSDK
         #   @return [WhopSDK::Models::Dispute::Payment::User, nil]
         required :user, -> { WhopSDK::Dispute::Payment::User }, nil?: true
 
-        # @!method initialize(id:, billing_reason:, card_brand:, card_last4:, created_at:, currency:, dispute_alerted_at:, member:, membership:, paid_at:, payment_method_type:, subtotal:, total:, usd_total:, user:)
+        # @!method initialize(id:, billing_reason:, card_brand:, card_last4:, created_at:, currency:, dispute_alerted_at:, member:, membership:, paid_at:, payment_instrument:, payment_method_type:, subtotal:, total:, usd_total:, user:)
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::Dispute::Payment} for more details.
         #
@@ -493,6 +501,8 @@ module WhopSDK
         #   @param membership [WhopSDK::Models::Dispute::Payment::Membership, nil] The membership attached to this payment.
         #
         #   @param paid_at [Time, nil] The time at which this payment was successfully collected. Null if the payment h
+        #
+        #   @param payment_instrument [WhopSDK::Models::Dispute::Payment::PaymentInstrument, nil] The instrument this payment was made with, shaped for display: the method type,
         #
         #   @param payment_method_type [Symbol, WhopSDK::Models::PaymentMethodTypes, nil] The different types of payment methods that can be used.
         #
@@ -546,6 +556,115 @@ module WhopSDK
           #   @param id [String] The unique identifier for the membership.
           #
           #   @param status [Symbol, WhopSDK::Models::MembershipStatus] The state of the membership.
+        end
+
+        # @see WhopSDK::Models::Dispute::Payment#payment_instrument
+        class PaymentInstrument < WhopSDK::Internal::Type::BaseModel
+          # @!attribute display_name
+          #   Buyer-facing instrument name — "Visa •••• 4242" when the card surfaced, else the
+          #   method's own name ("Klarna").
+          #
+          #   @return [String]
+          required :display_name, String
+
+          # @!attribute icons
+          #   The standard icon set: square and card shapes, each in light and dark colorways.
+          #
+          #   @return [WhopSDK::Models::Dispute::Payment::PaymentInstrument::Icons]
+          required :icons, -> { WhopSDK::Dispute::Payment::PaymentInstrument::Icons }
+
+          # @!attribute installment_count
+          #   Installment methods only: how many payments the charge splits into. Data, not
+          #   copy — compose and translate the label client-side.
+          #
+          #   @return [Integer, nil]
+          required :installment_count, Integer, nil?: true
+
+          # @!attribute payment_method_type
+          #   The payment method type identifier, e.g. `card`, `klarna`, `apple_pay`.
+          #
+          #   @return [String]
+          required :payment_method_type, String
+
+          # @!method initialize(display_name:, icons:, installment_count:, payment_method_type:)
+          #   Some parameter documentations has been truncated, see
+          #   {WhopSDK::Models::Dispute::Payment::PaymentInstrument} for more details.
+          #
+          #   The instrument this payment was made with, shaped for display: the method type,
+          #   a buyer-facing name, the standard icon set, and the card facts when it was a
+          #   card. Null when the receipt names no payment method.
+          #
+          #   @param display_name [String] Buyer-facing instrument name — "Visa •••• 4242" when the card surfaced, else the
+          #
+          #   @param icons [WhopSDK::Models::Dispute::Payment::PaymentInstrument::Icons] The standard icon set: square and card shapes, each in light and dark colorways.
+          #
+          #   @param installment_count [Integer, nil] Installment methods only: how many payments the charge splits into. Data, not co
+          #
+          #   @param payment_method_type [String] The payment method type identifier, e.g. `card`, `klarna`, `apple_pay`.
+
+          # @see WhopSDK::Models::Dispute::Payment::PaymentInstrument#icons
+          class Icons < WhopSDK::Internal::Type::BaseModel
+            # @!attribute square
+            #   The square tile (32x32).
+            #
+            #   @return [WhopSDK::Models::Dispute::Payment::PaymentInstrument::Icons::Square]
+            required :square, -> { WhopSDK::Dispute::Payment::PaymentInstrument::Icons::Square }
+
+            # @!method initialize(square:)
+            #   The standard icon set: square and card shapes, each in light and dark colorways.
+            #
+            #   @param square [WhopSDK::Models::Dispute::Payment::PaymentInstrument::Icons::Square] The square tile (32x32).
+
+            # @see WhopSDK::Models::Dispute::Payment::PaymentInstrument::Icons#square
+            class Square < WhopSDK::Internal::Type::BaseModel
+              # @!attribute dark
+              #   The colorway for dark surfaces.
+              #
+              #   @return [WhopSDK::Models::Dispute::Payment::PaymentInstrument::Icons::Square::Dark]
+              required :dark, -> { WhopSDK::Dispute::Payment::PaymentInstrument::Icons::Square::Dark }
+
+              # @!attribute light
+              #   The colorway for light surfaces.
+              #
+              #   @return [WhopSDK::Models::Dispute::Payment::PaymentInstrument::Icons::Square::Light]
+              required :light, -> { WhopSDK::Dispute::Payment::PaymentInstrument::Icons::Square::Light }
+
+              # @!method initialize(dark:, light:)
+              #   The square tile (32x32).
+              #
+              #   @param dark [WhopSDK::Models::Dispute::Payment::PaymentInstrument::Icons::Square::Dark] The colorway for dark surfaces.
+              #
+              #   @param light [WhopSDK::Models::Dispute::Payment::PaymentInstrument::Icons::Square::Light] The colorway for light surfaces.
+
+              # @see WhopSDK::Models::Dispute::Payment::PaymentInstrument::Icons::Square#dark
+              class Dark < WhopSDK::Internal::Type::BaseModel
+                # @!attribute svg
+                #   The vector file. Prefer this everywhere SVG renders.
+                #
+                #   @return [String]
+                required :svg, String
+
+                # @!method initialize(svg:)
+                #   The colorway for dark surfaces.
+                #
+                #   @param svg [String] The vector file. Prefer this everywhere SVG renders.
+              end
+
+              # @see WhopSDK::Models::Dispute::Payment::PaymentInstrument::Icons::Square#light
+              class Light < WhopSDK::Internal::Type::BaseModel
+                # @!attribute svg
+                #   The vector file. Prefer this everywhere SVG renders.
+                #
+                #   @return [String]
+                required :svg, String
+
+                # @!method initialize(svg:)
+                #   The colorway for light surfaces.
+                #
+                #   @param svg [String] The vector file. Prefer this everywhere SVG renders.
+              end
+            end
+          end
         end
 
         # @see WhopSDK::Models::Dispute::Payment#user

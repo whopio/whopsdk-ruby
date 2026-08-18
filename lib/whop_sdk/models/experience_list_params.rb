@@ -17,68 +17,68 @@ module WhopSDK
       #   Returns the elements in the list that come after the specified cursor.
       #
       #   @return [String, nil]
-      optional :after, String, nil?: true
+      optional :after, String
 
       # @!attribute app_id
       #   Filter to only experiences powered by this app identifier.
       #
       #   @return [String, nil]
-      optional :app_id, String, nil?: true
+      optional :app_id, String
 
       # @!attribute before
       #   Returns the elements in the list that come before the specified cursor.
       #
       #   @return [String, nil]
-      optional :before, String, nil?: true
+      optional :before, String
 
       # @!attribute created_after
       #   Only return experiences created after this timestamp.
       #
       #   @return [Time, nil]
-      optional :created_after, Time, nil?: true
+      optional :created_after, Time
 
       # @!attribute created_before
       #   Only return experiences created before this timestamp.
       #
       #   @return [Time, nil]
-      optional :created_before, Time, nil?: true
+      optional :created_before, Time
 
       # @!attribute first
       #   Returns the first _n_ elements from the list.
       #
       #   @return [Integer, nil]
-      optional :first, Integer, nil?: true
+      optional :first, Integer
 
       # @!attribute last
       #   Returns the last _n_ elements from the list.
       #
       #   @return [Integer, nil]
-      optional :last, Integer, nil?: true
+      optional :last, Integer
 
       # @!attribute product_id
       #   Filter to only experiences attached to this product identifier.
       #
       #   @return [String, nil]
-      optional :product_id, String, nil?: true
+      optional :product_id, String
 
       # @!method initialize(company_id:, after: nil, app_id: nil, before: nil, created_after: nil, created_before: nil, first: nil, last: nil, product_id: nil, request_options: {})
       #   @param company_id [String] The unique identifier of the company to list experiences for.
       #
-      #   @param after [String, nil] Returns the elements in the list that come after the specified cursor.
+      #   @param after [String] Returns the elements in the list that come after the specified cursor.
       #
-      #   @param app_id [String, nil] Filter to only experiences powered by this app identifier.
+      #   @param app_id [String] Filter to only experiences powered by this app identifier.
       #
-      #   @param before [String, nil] Returns the elements in the list that come before the specified cursor.
+      #   @param before [String] Returns the elements in the list that come before the specified cursor.
       #
-      #   @param created_after [Time, nil] Only return experiences created after this timestamp.
+      #   @param created_after [Time] Only return experiences created after this timestamp.
       #
-      #   @param created_before [Time, nil] Only return experiences created before this timestamp.
+      #   @param created_before [Time] Only return experiences created before this timestamp.
       #
-      #   @param first [Integer, nil] Returns the first _n_ elements from the list.
+      #   @param first [Integer] Returns the first _n_ elements from the list.
       #
-      #   @param last [Integer, nil] Returns the last _n_ elements from the list.
+      #   @param last [Integer] Returns the last _n_ elements from the list.
       #
-      #   @param product_id [String, nil] Filter to only experiences attached to this product identifier.
+      #   @param product_id [String] Filter to only experiences attached to this product identifier.
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
     end

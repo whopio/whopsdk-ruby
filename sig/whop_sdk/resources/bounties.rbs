@@ -26,13 +26,13 @@ module WhopSDK
       ) -> WhopSDK::Models::BountyRetrieveResponse
 
       def list: (
-        ?after: String?,
-        ?before: String?,
-        ?direction: WhopSDK::Models::direction?,
-        ?experience_id: String?,
-        ?first: Integer?,
-        ?last: Integer?,
-        ?status: WhopSDK::Models::BountyListParams::status?,
+        ?after: String,
+        ?before: String,
+        ?direction: WhopSDK::Models::direction,
+        ?experience_id: String,
+        ?first: Integer,
+        ?last: Integer,
+        ?status: WhopSDK::Models::BountyListParams::status,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::BountyListResponse]
 

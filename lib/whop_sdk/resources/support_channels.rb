@@ -76,23 +76,23 @@ module WhopSDK
       #
       # @overload list(after: nil, before: nil, company_id: nil, direction: nil, first: nil, last: nil, open_: nil, order: nil, view: nil, request_options: {})
       #
-      # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
+      # @param after [String] Returns the elements in the list that come after the specified cursor.
       #
-      # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
+      # @param before [String] Returns the elements in the list that come before the specified cursor.
       #
-      # @param company_id [String, nil] The unique identifier of the company to list support channels for. Includes chan
+      # @param company_id [String] The unique identifier of the company to list support channels for. Includes chan
       #
-      # @param direction [Symbol, WhopSDK::Models::Direction, nil] The direction of the sort.
+      # @param direction [Symbol, WhopSDK::Models::Direction] The sort direction for the results. Use 'asc' for oldest first or 'desc' for new
       #
-      # @param first [Integer, nil] Returns the first _n_ elements from the list.
+      # @param first [Integer] Returns the first _n_ elements from the list.
       #
-      # @param last [Integer, nil] Returns the last _n_ elements from the list.
+      # @param last [Integer] Returns the last _n_ elements from the list.
       #
-      # @param open_ [Boolean, nil] Whether to filter by open or resolved support channels. Set to true to only retu
+      # @param open_ [Boolean] Whether to filter by open or resolved support channels. Set to true to only retu
       #
-      # @param order [Symbol, WhopSDK::Models::SupportChannelListParams::Order, nil] Sort options for message channels
+      # @param order [Symbol, WhopSDK::Models::SupportChannelListParams::Order] The field to sort the support channels by, such as creation date or last message
       #
-      # @param view [Symbol, WhopSDK::Models::SupportChannelListParams::View, nil] The perspective to filter support channels by.
+      # @param view [Symbol, WhopSDK::Models::SupportChannelListParams::View] Filter support channels by the authenticated user's role. Defaults to admin. Whe
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

@@ -97,14 +97,14 @@ module WhopSDK
       sig do
         params(
           company_id: String,
-          after: T.nilable(String),
-          app_id: T.nilable(String),
-          before: T.nilable(String),
-          created_after: T.nilable(Time),
-          created_before: T.nilable(Time),
-          first: T.nilable(Integer),
-          last: T.nilable(Integer),
-          product_id: T.nilable(String),
+          after: String,
+          app_id: String,
+          before: String,
+          created_after: Time,
+          created_before: Time,
+          first: Integer,
+          last: Integer,
+          product_id: String,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(
           WhopSDK::Internal::CursorPage[WhopSDK::Models::ExperienceListResponse]

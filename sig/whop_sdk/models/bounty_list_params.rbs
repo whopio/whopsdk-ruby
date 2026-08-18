@@ -2,13 +2,13 @@ module WhopSDK
   module Models
     type bounty_list_params =
       {
-        after: String?,
-        before: String?,
-        direction: WhopSDK::Models::direction?,
-        experience_id: String?,
-        first: Integer?,
-        last: Integer?,
-        status: WhopSDK::Models::BountyListParams::status?
+        after: String,
+        before: String,
+        direction: WhopSDK::Models::direction,
+        experience_id: String,
+        first: Integer,
+        last: Integer,
+        status: WhopSDK::Models::BountyListParams::status
       }
       & WhopSDK::Internal::Type::request_parameters
 
@@ -16,39 +16,55 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      attr_accessor after: String?
+      attr_reader after: String?
 
-      attr_accessor before: String?
+      def after=: (String) -> String
 
-      attr_accessor direction: WhopSDK::Models::direction?
+      attr_reader before: String?
 
-      attr_accessor experience_id: String?
+      def before=: (String) -> String
 
-      attr_accessor first: Integer?
+      attr_reader direction: WhopSDK::Models::direction?
 
-      attr_accessor last: Integer?
+      def direction=: (WhopSDK::Models::direction) -> WhopSDK::Models::direction
 
-      attr_accessor status: WhopSDK::Models::BountyListParams::status?
+      attr_reader experience_id: String?
+
+      def experience_id=: (String) -> String
+
+      attr_reader first: Integer?
+
+      def first=: (Integer) -> Integer
+
+      attr_reader last: Integer?
+
+      def last=: (Integer) -> Integer
+
+      attr_reader status: WhopSDK::Models::BountyListParams::status?
+
+      def status=: (
+        WhopSDK::Models::BountyListParams::status
+      ) -> WhopSDK::Models::BountyListParams::status
 
       def initialize: (
-        ?after: String?,
-        ?before: String?,
-        ?direction: WhopSDK::Models::direction?,
-        ?experience_id: String?,
-        ?first: Integer?,
-        ?last: Integer?,
-        ?status: WhopSDK::Models::BountyListParams::status?,
+        ?after: String,
+        ?before: String,
+        ?direction: WhopSDK::Models::direction,
+        ?experience_id: String,
+        ?first: Integer,
+        ?last: Integer,
+        ?status: WhopSDK::Models::BountyListParams::status,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
       def to_hash: -> {
-        after: String?,
-        before: String?,
-        direction: WhopSDK::Models::direction?,
-        experience_id: String?,
-        first: Integer?,
-        last: Integer?,
-        status: WhopSDK::Models::BountyListParams::status?,
+        after: String,
+        before: String,
+        direction: WhopSDK::Models::direction,
+        experience_id: String,
+        first: Integer,
+        last: Integer,
+        status: WhopSDK::Models::BountyListParams::status,
         request_options: WhopSDK::RequestOptions
       }
 

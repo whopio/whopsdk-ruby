@@ -91,19 +91,19 @@ module WhopSDK
       #
       # @overload list(after: nil, before: nil, direction: nil, experience_id: nil, first: nil, last: nil, status: nil, request_options: {})
       #
-      # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
+      # @param after [String] Returns the elements in the list that come after the specified cursor.
       #
-      # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
+      # @param before [String] Returns the elements in the list that come before the specified cursor.
       #
-      # @param direction [Symbol, WhopSDK::Models::Direction, nil] The direction of the sort.
+      # @param direction [Symbol, WhopSDK::Models::Direction] Sort direction. Defaults to descending.
       #
-      # @param experience_id [String, nil] The experience to list bounties for. When omitted, returns bounties with no expe
+      # @param experience_id [String] The experience to list bounties for. When omitted, returns bounties with no expe
       #
-      # @param first [Integer, nil] Returns the first _n_ elements from the list.
+      # @param first [Integer] Returns the first _n_ elements from the list.
       #
-      # @param last [Integer, nil] Returns the last _n_ elements from the list.
+      # @param last [Integer] Returns the last _n_ elements from the list.
       #
-      # @param status [Symbol, WhopSDK::Models::BountyListParams::Status, nil] The available bounty statuses to choose from.
+      # @param status [Symbol, WhopSDK::Models::BountyListParams::Status] Filter bounties by status.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

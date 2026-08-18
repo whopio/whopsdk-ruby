@@ -35,14 +35,14 @@ module WhopSDK
       ) -> WhopSDK::Company
 
       def list: (
-        ?after: String?,
-        ?before: String?,
-        ?created_after: Time?,
-        ?created_before: Time?,
-        ?direction: WhopSDK::Models::direction?,
-        ?first: Integer?,
-        ?last: Integer?,
-        ?parent_company_id: String?,
+        ?after: String,
+        ?before: String,
+        ?created_after: Time,
+        ?created_before: Time,
+        ?direction: WhopSDK::Models::direction,
+        ?first: Integer,
+        ?last: Integer,
+        ?parent_company_id: String,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::CompanyListResponse]
 

@@ -17,47 +17,71 @@ module WhopSDK
 
       # Returns the elements in the list that come after the specified cursor.
       sig { returns(T.nilable(String)) }
-      attr_accessor :after
+      attr_reader :after
+
+      sig { params(after: String).void }
+      attr_writer :after
 
       # Returns the elements in the list that come before the specified cursor.
       sig { returns(T.nilable(String)) }
-      attr_accessor :before
+      attr_reader :before
 
-      # The direction of the sort.
+      sig { params(before: String).void }
+      attr_writer :before
+
+      # The sort direction for results. Defaults to descending.
       sig { returns(T.nilable(WhopSDK::Direction::OrSymbol)) }
-      attr_accessor :direction
+      attr_reader :direction
+
+      sig { params(direction: WhopSDK::Direction::OrSymbol).void }
+      attr_writer :direction
 
       # Returns the first _n_ elements from the list.
       sig { returns(T.nilable(Integer)) }
-      attr_accessor :first
+      attr_reader :first
+
+      sig { params(first: Integer).void }
+      attr_writer :first
 
       # Returns the last _n_ elements from the list.
       sig { returns(T.nilable(Integer)) }
-      attr_accessor :last
+      attr_reader :last
 
-      # Which columns can be used to sort.
+      sig { params(last: Integer).void }
+      attr_writer :last
+
+      # The field to sort results by.
       sig { returns(T.nilable(WhopSDK::AffiliateListParams::Order::OrSymbol)) }
-      attr_accessor :order
+      attr_reader :order
+
+      sig { params(order: WhopSDK::AffiliateListParams::Order::OrSymbol).void }
+      attr_writer :order
 
       # Search affiliates by username.
       sig { returns(T.nilable(String)) }
-      attr_accessor :query
+      attr_reader :query
 
-      # Statuses for resources
+      sig { params(query: String).void }
+      attr_writer :query
+
+      # Filter by affiliate status (active or archived).
       sig { returns(T.nilable(WhopSDK::Status::OrSymbol)) }
-      attr_accessor :status
+      attr_reader :status
+
+      sig { params(status: WhopSDK::Status::OrSymbol).void }
+      attr_writer :status
 
       sig do
         params(
           company_id: String,
-          after: T.nilable(String),
-          before: T.nilable(String),
-          direction: T.nilable(WhopSDK::Direction::OrSymbol),
-          first: T.nilable(Integer),
-          last: T.nilable(Integer),
-          order: T.nilable(WhopSDK::AffiliateListParams::Order::OrSymbol),
-          query: T.nilable(String),
-          status: T.nilable(WhopSDK::Status::OrSymbol),
+          after: String,
+          before: String,
+          direction: WhopSDK::Direction::OrSymbol,
+          first: Integer,
+          last: Integer,
+          order: WhopSDK::AffiliateListParams::Order::OrSymbol,
+          query: String,
+          status: WhopSDK::Status::OrSymbol,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -68,17 +92,17 @@ module WhopSDK
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
-        # The direction of the sort.
+        # The sort direction for results. Defaults to descending.
         direction: nil,
         # Returns the first _n_ elements from the list.
         first: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
-        # Which columns can be used to sort.
+        # The field to sort results by.
         order: nil,
         # Search affiliates by username.
         query: nil,
-        # Statuses for resources
+        # Filter by affiliate status (active or archived).
         status: nil,
         request_options: {}
       )
@@ -88,14 +112,14 @@ module WhopSDK
         override.returns(
           {
             company_id: String,
-            after: T.nilable(String),
-            before: T.nilable(String),
-            direction: T.nilable(WhopSDK::Direction::OrSymbol),
-            first: T.nilable(Integer),
-            last: T.nilable(Integer),
-            order: T.nilable(WhopSDK::AffiliateListParams::Order::OrSymbol),
-            query: T.nilable(String),
-            status: T.nilable(WhopSDK::Status::OrSymbol),
+            after: String,
+            before: String,
+            direction: WhopSDK::Direction::OrSymbol,
+            first: Integer,
+            last: Integer,
+            order: WhopSDK::AffiliateListParams::Order::OrSymbol,
+            query: String,
+            status: WhopSDK::Status::OrSymbol,
             request_options: WhopSDK::RequestOptions
           }
         )
@@ -103,7 +127,7 @@ module WhopSDK
       def to_hash
       end
 
-      # Which columns can be used to sort.
+      # The field to sort results by.
       module Order
         extend WhopSDK::Internal::Type::Enum
 

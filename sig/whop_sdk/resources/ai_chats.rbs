@@ -25,11 +25,11 @@ module WhopSDK
       ) -> WhopSDK::AIChat
 
       def list: (
-        ?after: String?,
-        ?before: String?,
-        ?first: Integer?,
-        ?last: Integer?,
-        ?only_active_crons: bool?,
+        ?after: String,
+        ?before: String,
+        ?first: Integer,
+        ?last: Integer,
+        ?only_active_crons: bool,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::AIChatListResponse]
 

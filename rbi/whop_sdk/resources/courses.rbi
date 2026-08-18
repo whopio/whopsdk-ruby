@@ -131,12 +131,12 @@ module WhopSDK
       # - `courses:read`
       sig do
         params(
-          after: T.nilable(String),
-          before: T.nilable(String),
-          company_id: T.nilable(String),
-          experience_id: T.nilable(String),
-          first: T.nilable(Integer),
-          last: T.nilable(Integer),
+          after: String,
+          before: String,
+          company_id: String,
+          experience_id: String,
+          first: Integer,
+          last: Integer,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(
           WhopSDK::Internal::CursorPage[WhopSDK::Models::CourseListResponse]

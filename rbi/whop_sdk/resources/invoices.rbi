@@ -121,19 +121,18 @@ module WhopSDK
       # - `invoice:basic:read`
       sig do
         params(
-          after: T.nilable(String),
-          before: T.nilable(String),
-          collection_methods:
-            T.nilable(T::Array[WhopSDK::CollectionMethod::OrSymbol]),
-          company_id: T.nilable(String),
-          created_after: T.nilable(Time),
-          created_before: T.nilable(Time),
-          direction: T.nilable(WhopSDK::Direction::OrSymbol),
-          first: T.nilable(Integer),
-          last: T.nilable(Integer),
-          order: T.nilable(WhopSDK::InvoiceListParams::Order::OrSymbol),
-          product_ids: T.nilable(T::Array[String]),
-          statuses: T.nilable(T::Array[WhopSDK::InvoiceStatus::OrSymbol]),
+          after: String,
+          before: String,
+          collection_methods: T::Array[WhopSDK::CollectionMethod::OrSymbol],
+          company_id: String,
+          created_after: Time,
+          created_before: Time,
+          direction: WhopSDK::Direction::OrSymbol,
+          first: Integer,
+          last: Integer,
+          order: WhopSDK::InvoiceListParams::Order::OrSymbol,
+          product_ids: T::Array[String],
+          statuses: T::Array[WhopSDK::InvoiceStatus::OrSymbol],
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Internal::CursorPage[WhopSDK::InvoiceListItem])
       end
@@ -150,13 +149,13 @@ module WhopSDK
         created_after: nil,
         # Only return invoices created before this timestamp.
         created_before: nil,
-        # The direction of the sort.
+        # The sort direction for ordering results, either ascending or descending.
         direction: nil,
         # Returns the first _n_ elements from the list.
         first: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
-        # Which columns can be used to sort.
+        # The field to order results by, such as creation date or due date.
         order: nil,
         # Filter invoices to only those associated with these specific product
         # identifiers.

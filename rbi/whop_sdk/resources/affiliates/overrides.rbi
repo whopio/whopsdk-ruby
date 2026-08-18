@@ -98,12 +98,12 @@ module WhopSDK
         sig do
           params(
             id: String,
-            after: T.nilable(String),
-            before: T.nilable(String),
-            first: T.nilable(Integer),
-            last: T.nilable(Integer),
+            after: String,
+            before: String,
+            first: Integer,
+            last: Integer,
             override_type:
-              T.nilable(WhopSDK::Affiliates::AffiliateOverrideRoles::OrSymbol),
+              WhopSDK::Affiliates::AffiliateOverrideRoles::OrSymbol,
             request_options: WhopSDK::RequestOptions::OrHash
           ).returns(
             WhopSDK::Internal::CursorPage[
@@ -122,7 +122,7 @@ module WhopSDK
           first: nil,
           # Returns the last _n_ elements from the list.
           last: nil,
-          # The role of an affiliate override (standard or rev_share)
+          # Filter by override type (standard or rev_share).
           override_type: nil,
           request_options: {}
         )

@@ -138,21 +138,21 @@ module WhopSDK
       #
       # @overload list(after: nil, before: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, parent_company_id: nil, request_options: {})
       #
-      # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
+      # @param after [String] Returns the elements in the list that come after the specified cursor.
       #
-      # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
+      # @param before [String] Returns the elements in the list that come before the specified cursor.
       #
-      # @param created_after [Time, nil] Only return companies created after this timestamp.
+      # @param created_after [Time] Only return companies created after this timestamp.
       #
-      # @param created_before [Time, nil] Only return companies created before this timestamp.
+      # @param created_before [Time] Only return companies created before this timestamp.
       #
-      # @param direction [Symbol, WhopSDK::Models::Direction, nil] The direction of the sort.
+      # @param direction [Symbol, WhopSDK::Models::Direction] The sort direction for results. Defaults to descending.
       #
-      # @param first [Integer, nil] Returns the first _n_ elements from the list.
+      # @param first [Integer] Returns the first _n_ elements from the list.
       #
-      # @param last [Integer, nil] Returns the last _n_ elements from the list.
+      # @param last [Integer] Returns the last _n_ elements from the list.
       #
-      # @param parent_company_id [String, nil] The unique identifier of the parent platform company. When provided, lists conne
+      # @param parent_company_id [String] The unique identifier of the parent platform company. When provided, lists conne
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

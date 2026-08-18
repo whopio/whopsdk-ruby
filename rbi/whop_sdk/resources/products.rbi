@@ -209,17 +209,16 @@ module WhopSDK
       sig do
         params(
           company_id: String,
-          after: T.nilable(String),
-          before: T.nilable(String),
-          created_after: T.nilable(Time),
-          created_before: T.nilable(Time),
-          direction: T.nilable(WhopSDK::Direction::OrSymbol),
-          first: T.nilable(Integer),
-          last: T.nilable(Integer),
-          order: T.nilable(WhopSDK::ProductListParams::Order::OrSymbol),
-          product_types: T.nilable(T::Array[WhopSDK::AccessPassType::OrSymbol]),
-          visibilities:
-            T.nilable(T::Array[WhopSDK::VisibilityFilter::OrSymbol]),
+          after: String,
+          before: String,
+          created_after: Time,
+          created_before: Time,
+          direction: WhopSDK::Direction::OrSymbol,
+          first: Integer,
+          last: Integer,
+          order: WhopSDK::ProductListParams::Order::OrSymbol,
+          product_types: T::Array[WhopSDK::AccessPassType::OrSymbol],
+          visibilities: T::Array[WhopSDK::VisibilityFilter::OrSymbol],
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Internal::CursorPage[WhopSDK::ProductListItem])
       end
@@ -234,13 +233,13 @@ module WhopSDK
         created_after: nil,
         # Only return products created before this timestamp.
         created_before: nil,
-        # The direction of the sort.
+        # The sort direction for results. Defaults to descending.
         direction: nil,
         # Returns the first _n_ elements from the list.
         first: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
-        # The ways a relation of AccessPasses can be ordered
+        # The field to sort results by. Defaults to created_at.
         order: nil,
         # Filter to only products matching these type classifications.
         product_types: nil,

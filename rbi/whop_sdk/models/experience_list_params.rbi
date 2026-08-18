@@ -17,47 +17,71 @@ module WhopSDK
 
       # Returns the elements in the list that come after the specified cursor.
       sig { returns(T.nilable(String)) }
-      attr_accessor :after
+      attr_reader :after
+
+      sig { params(after: String).void }
+      attr_writer :after
 
       # Filter to only experiences powered by this app identifier.
       sig { returns(T.nilable(String)) }
-      attr_accessor :app_id
+      attr_reader :app_id
+
+      sig { params(app_id: String).void }
+      attr_writer :app_id
 
       # Returns the elements in the list that come before the specified cursor.
       sig { returns(T.nilable(String)) }
-      attr_accessor :before
+      attr_reader :before
+
+      sig { params(before: String).void }
+      attr_writer :before
 
       # Only return experiences created after this timestamp.
       sig { returns(T.nilable(Time)) }
-      attr_accessor :created_after
+      attr_reader :created_after
+
+      sig { params(created_after: Time).void }
+      attr_writer :created_after
 
       # Only return experiences created before this timestamp.
       sig { returns(T.nilable(Time)) }
-      attr_accessor :created_before
+      attr_reader :created_before
+
+      sig { params(created_before: Time).void }
+      attr_writer :created_before
 
       # Returns the first _n_ elements from the list.
       sig { returns(T.nilable(Integer)) }
-      attr_accessor :first
+      attr_reader :first
+
+      sig { params(first: Integer).void }
+      attr_writer :first
 
       # Returns the last _n_ elements from the list.
       sig { returns(T.nilable(Integer)) }
-      attr_accessor :last
+      attr_reader :last
+
+      sig { params(last: Integer).void }
+      attr_writer :last
 
       # Filter to only experiences attached to this product identifier.
       sig { returns(T.nilable(String)) }
-      attr_accessor :product_id
+      attr_reader :product_id
+
+      sig { params(product_id: String).void }
+      attr_writer :product_id
 
       sig do
         params(
           company_id: String,
-          after: T.nilable(String),
-          app_id: T.nilable(String),
-          before: T.nilable(String),
-          created_after: T.nilable(Time),
-          created_before: T.nilable(Time),
-          first: T.nilable(Integer),
-          last: T.nilable(Integer),
-          product_id: T.nilable(String),
+          after: String,
+          app_id: String,
+          before: String,
+          created_after: Time,
+          created_before: Time,
+          first: Integer,
+          last: Integer,
+          product_id: String,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -88,14 +112,14 @@ module WhopSDK
         override.returns(
           {
             company_id: String,
-            after: T.nilable(String),
-            app_id: T.nilable(String),
-            before: T.nilable(String),
-            created_after: T.nilable(Time),
-            created_before: T.nilable(Time),
-            first: T.nilable(Integer),
-            last: T.nilable(Integer),
-            product_id: T.nilable(String),
+            after: String,
+            app_id: String,
+            before: String,
+            created_after: Time,
+            created_before: Time,
+            first: Integer,
+            last: Integer,
+            product_id: String,
             request_options: WhopSDK::RequestOptions
           }
         )

@@ -142,27 +142,27 @@ module WhopSDK
       #
       # @overload list(after: nil, app_type: nil, before: nil, company_id: nil, direction: nil, first: nil, last: nil, order: nil, query: nil, verified_apps_only: nil, view_type: nil, request_options: {})
       #
-      # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
+      # @param after [String] Returns the elements in the list that come after the specified cursor.
       #
-      # @param app_type [Symbol, WhopSDK::Models::AppType, nil] The type of end-user an app is built for
+      # @param app_type [Symbol, WhopSDK::Models::AppType] Filter apps by the type of end-user they are built for, such as consumer or busi
       #
-      # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
+      # @param before [String] Returns the elements in the list that come before the specified cursor.
       #
-      # @param company_id [String, nil] Filter apps to only those created by this company, starting with 'biz\_'.
+      # @param company_id [String] Filter apps to only those created by this company, starting with 'biz\_'.
       #
-      # @param direction [Symbol, WhopSDK::Models::Direction, nil] The direction of the sort.
+      # @param direction [Symbol, WhopSDK::Models::Direction] The sort direction for results. Accepted values: asc, desc.
       #
-      # @param first [Integer, nil] Returns the first _n_ elements from the list.
+      # @param first [Integer] Returns the first _n_ elements from the list.
       #
-      # @param last [Integer, nil] Returns the last _n_ elements from the list.
+      # @param last [Integer] Returns the last _n_ elements from the list.
       #
-      # @param order [Symbol, WhopSDK::Models::AppListParams::Order, nil] The order to fetch the apps in for discovery.
+      # @param order [Symbol, WhopSDK::Models::AppListParams::Order] The field to sort apps by. Defaults to discoverable_at descending, showing the m
       #
-      # @param query [String, nil] A search string to filter apps by name, such as 'chat' or 'analytics'.
+      # @param query [String] A search string to filter apps by name, such as 'chat' or 'analytics'.
       #
-      # @param verified_apps_only [Boolean, nil] Whether to only return apps that have been verified by Whop. Useful for populati
+      # @param verified_apps_only [Boolean] Whether to only return apps that have been verified by Whop. Useful for populati
       #
-      # @param view_type [Symbol, WhopSDK::Models::AppViewType, nil] The different types of an app view
+      # @param view_type [Symbol, WhopSDK::Models::AppViewType] Filter apps to only those supporting a specific view type, such as 'dashboard' o
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

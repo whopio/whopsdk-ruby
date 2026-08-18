@@ -73,17 +73,17 @@ module WhopSDK
       #
       # @param company_id [String] The unique identifier of the company to list token transactions for.
       #
-      # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
+      # @param after [String] Returns the elements in the list that come after the specified cursor.
       #
-      # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
+      # @param before [String] Returns the elements in the list that come before the specified cursor.
       #
-      # @param first [Integer, nil] Returns the first _n_ elements from the list.
+      # @param first [Integer] Returns the first _n_ elements from the list.
       #
-      # @param last [Integer, nil] Returns the last _n_ elements from the list.
+      # @param last [Integer] Returns the last _n_ elements from the list.
       #
-      # @param transaction_type [Symbol, WhopSDK::Models::CompanyTokenTransactionType, nil] The type of token transaction
+      # @param transaction_type [Symbol, WhopSDK::Models::CompanyTokenTransactionType] Filter transactions by type.
       #
-      # @param user_id [String, nil] Filter transactions to only those involving this specific user.
+      # @param user_id [String] Filter transactions to only those involving this specific user.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

@@ -11,98 +11,102 @@ module WhopSDK
       #   Returns the elements in the list that come after the specified cursor.
       #
       #   @return [String, nil]
-      optional :after, String, nil?: true
+      optional :after, String
 
       # @!attribute app_type
-      #   The type of end-user an app is built for
+      #   Filter apps by the type of end-user they are built for, such as consumer or
+      #   business.
       #
       #   @return [Symbol, WhopSDK::Models::AppType, nil]
-      optional :app_type, enum: -> { WhopSDK::AppType }, nil?: true
+      optional :app_type, enum: -> { WhopSDK::AppType }
 
       # @!attribute before
       #   Returns the elements in the list that come before the specified cursor.
       #
       #   @return [String, nil]
-      optional :before, String, nil?: true
+      optional :before, String
 
       # @!attribute company_id
       #   Filter apps to only those created by this company, starting with 'biz\_'.
       #
       #   @return [String, nil]
-      optional :company_id, String, nil?: true
+      optional :company_id, String
 
       # @!attribute direction
-      #   The direction of the sort.
+      #   The sort direction for results. Accepted values: asc, desc.
       #
       #   @return [Symbol, WhopSDK::Models::Direction, nil]
-      optional :direction, enum: -> { WhopSDK::Direction }, nil?: true
+      optional :direction, enum: -> { WhopSDK::Direction }
 
       # @!attribute first
       #   Returns the first _n_ elements from the list.
       #
       #   @return [Integer, nil]
-      optional :first, Integer, nil?: true
+      optional :first, Integer
 
       # @!attribute last
       #   Returns the last _n_ elements from the list.
       #
       #   @return [Integer, nil]
-      optional :last, Integer, nil?: true
+      optional :last, Integer
 
       # @!attribute order
-      #   The order to fetch the apps in for discovery.
+      #   The field to sort apps by. Defaults to discoverable_at descending, showing the
+      #   most recently published apps first.
       #
       #   @return [Symbol, WhopSDK::Models::AppListParams::Order, nil]
-      optional :order, enum: -> { WhopSDK::AppListParams::Order }, nil?: true
+      optional :order, enum: -> { WhopSDK::AppListParams::Order }
 
       # @!attribute query
       #   A search string to filter apps by name, such as 'chat' or 'analytics'.
       #
       #   @return [String, nil]
-      optional :query, String, nil?: true
+      optional :query, String
 
       # @!attribute verified_apps_only
       #   Whether to only return apps that have been verified by Whop. Useful for
       #   populating a featured apps section.
       #
       #   @return [Boolean, nil]
-      optional :verified_apps_only, WhopSDK::Internal::Type::Boolean, nil?: true
+      optional :verified_apps_only, WhopSDK::Internal::Type::Boolean
 
       # @!attribute view_type
-      #   The different types of an app view
+      #   Filter apps to only those supporting a specific view type, such as 'dashboard'
+      #   or 'hub'.
       #
       #   @return [Symbol, WhopSDK::Models::AppViewType, nil]
-      optional :view_type, enum: -> { WhopSDK::AppViewType }, nil?: true
+      optional :view_type, enum: -> { WhopSDK::AppViewType }
 
       # @!method initialize(after: nil, app_type: nil, before: nil, company_id: nil, direction: nil, first: nil, last: nil, order: nil, query: nil, verified_apps_only: nil, view_type: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::AppListParams} for more details.
       #
-      #   @param after [String, nil] Returns the elements in the list that come after the specified cursor.
+      #   @param after [String] Returns the elements in the list that come after the specified cursor.
       #
-      #   @param app_type [Symbol, WhopSDK::Models::AppType, nil] The type of end-user an app is built for
+      #   @param app_type [Symbol, WhopSDK::Models::AppType] Filter apps by the type of end-user they are built for, such as consumer or busi
       #
-      #   @param before [String, nil] Returns the elements in the list that come before the specified cursor.
+      #   @param before [String] Returns the elements in the list that come before the specified cursor.
       #
-      #   @param company_id [String, nil] Filter apps to only those created by this company, starting with 'biz\_'.
+      #   @param company_id [String] Filter apps to only those created by this company, starting with 'biz\_'.
       #
-      #   @param direction [Symbol, WhopSDK::Models::Direction, nil] The direction of the sort.
+      #   @param direction [Symbol, WhopSDK::Models::Direction] The sort direction for results. Accepted values: asc, desc.
       #
-      #   @param first [Integer, nil] Returns the first _n_ elements from the list.
+      #   @param first [Integer] Returns the first _n_ elements from the list.
       #
-      #   @param last [Integer, nil] Returns the last _n_ elements from the list.
+      #   @param last [Integer] Returns the last _n_ elements from the list.
       #
-      #   @param order [Symbol, WhopSDK::Models::AppListParams::Order, nil] The order to fetch the apps in for discovery.
+      #   @param order [Symbol, WhopSDK::Models::AppListParams::Order] The field to sort apps by. Defaults to discoverable_at descending, showing the m
       #
-      #   @param query [String, nil] A search string to filter apps by name, such as 'chat' or 'analytics'.
+      #   @param query [String] A search string to filter apps by name, such as 'chat' or 'analytics'.
       #
-      #   @param verified_apps_only [Boolean, nil] Whether to only return apps that have been verified by Whop. Useful for populati
+      #   @param verified_apps_only [Boolean] Whether to only return apps that have been verified by Whop. Useful for populati
       #
-      #   @param view_type [Symbol, WhopSDK::Models::AppViewType, nil] The different types of an app view
+      #   @param view_type [Symbol, WhopSDK::Models::AppViewType] Filter apps to only those supporting a specific view type, such as 'dashboard' o
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
 
-      # The order to fetch the apps in for discovery.
+      # The field to sort apps by. Defaults to discoverable_at descending, showing the
+      # most recently published apps first.
       module Order
         extend WhopSDK::Internal::Type::Enum
 

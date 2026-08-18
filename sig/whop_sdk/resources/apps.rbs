@@ -39,17 +39,17 @@ module WhopSDK
       ) -> WhopSDK::App
 
       def list: (
-        ?after: String?,
-        ?app_type: WhopSDK::Models::app_type?,
-        ?before: String?,
-        ?company_id: String?,
-        ?direction: WhopSDK::Models::direction?,
-        ?first: Integer?,
-        ?last: Integer?,
-        ?order: WhopSDK::Models::AppListParams::order?,
-        ?query: String?,
-        ?verified_apps_only: bool?,
-        ?view_type: WhopSDK::Models::app_view_type?,
+        ?after: String,
+        ?app_type: WhopSDK::Models::app_type,
+        ?before: String,
+        ?company_id: String,
+        ?direction: WhopSDK::Models::direction,
+        ?first: Integer,
+        ?last: Integer,
+        ?order: WhopSDK::Models::AppListParams::order,
+        ?query: String,
+        ?verified_apps_only: bool,
+        ?view_type: WhopSDK::Models::app_view_type,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::AppListResponse]
 

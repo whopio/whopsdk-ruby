@@ -20,10 +20,10 @@ module WhopSDK
 
       def list: (
         course_id: String,
-        ?after: String?,
-        ?before: String?,
-        ?first: Integer?,
-        ?last: Integer?,
+        ?after: String,
+        ?before: String,
+        ?first: Integer,
+        ?last: Integer,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::CourseChapterListResponse]
 

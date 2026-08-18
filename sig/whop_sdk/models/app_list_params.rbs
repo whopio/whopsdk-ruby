@@ -2,17 +2,17 @@ module WhopSDK
   module Models
     type app_list_params =
       {
-        after: String?,
-        app_type: WhopSDK::Models::app_type?,
-        before: String?,
-        company_id: String?,
-        direction: WhopSDK::Models::direction?,
-        first: Integer?,
-        last: Integer?,
-        order: WhopSDK::Models::AppListParams::order?,
-        query: String?,
-        verified_apps_only: bool?,
-        view_type: WhopSDK::Models::app_view_type?
+        after: String,
+        app_type: WhopSDK::Models::app_type,
+        before: String,
+        company_id: String,
+        direction: WhopSDK::Models::direction,
+        first: Integer,
+        last: Integer,
+        order: WhopSDK::Models::AppListParams::order,
+        query: String,
+        verified_apps_only: bool,
+        view_type: WhopSDK::Models::app_view_type
       }
       & WhopSDK::Internal::Type::request_parameters
 
@@ -20,55 +20,81 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      attr_accessor after: String?
+      attr_reader after: String?
 
-      attr_accessor app_type: WhopSDK::Models::app_type?
+      def after=: (String) -> String
 
-      attr_accessor before: String?
+      attr_reader app_type: WhopSDK::Models::app_type?
 
-      attr_accessor company_id: String?
+      def app_type=: (WhopSDK::Models::app_type) -> WhopSDK::Models::app_type
 
-      attr_accessor direction: WhopSDK::Models::direction?
+      attr_reader before: String?
 
-      attr_accessor first: Integer?
+      def before=: (String) -> String
 
-      attr_accessor last: Integer?
+      attr_reader company_id: String?
 
-      attr_accessor order: WhopSDK::Models::AppListParams::order?
+      def company_id=: (String) -> String
 
-      attr_accessor query: String?
+      attr_reader direction: WhopSDK::Models::direction?
 
-      attr_accessor verified_apps_only: bool?
+      def direction=: (WhopSDK::Models::direction) -> WhopSDK::Models::direction
 
-      attr_accessor view_type: WhopSDK::Models::app_view_type?
+      attr_reader first: Integer?
+
+      def first=: (Integer) -> Integer
+
+      attr_reader last: Integer?
+
+      def last=: (Integer) -> Integer
+
+      attr_reader order: WhopSDK::Models::AppListParams::order?
+
+      def order=: (
+        WhopSDK::Models::AppListParams::order
+      ) -> WhopSDK::Models::AppListParams::order
+
+      attr_reader query: String?
+
+      def query=: (String) -> String
+
+      attr_reader verified_apps_only: bool?
+
+      def verified_apps_only=: (bool) -> bool
+
+      attr_reader view_type: WhopSDK::Models::app_view_type?
+
+      def view_type=: (
+        WhopSDK::Models::app_view_type
+      ) -> WhopSDK::Models::app_view_type
 
       def initialize: (
-        ?after: String?,
-        ?app_type: WhopSDK::Models::app_type?,
-        ?before: String?,
-        ?company_id: String?,
-        ?direction: WhopSDK::Models::direction?,
-        ?first: Integer?,
-        ?last: Integer?,
-        ?order: WhopSDK::Models::AppListParams::order?,
-        ?query: String?,
-        ?verified_apps_only: bool?,
-        ?view_type: WhopSDK::Models::app_view_type?,
+        ?after: String,
+        ?app_type: WhopSDK::Models::app_type,
+        ?before: String,
+        ?company_id: String,
+        ?direction: WhopSDK::Models::direction,
+        ?first: Integer,
+        ?last: Integer,
+        ?order: WhopSDK::Models::AppListParams::order,
+        ?query: String,
+        ?verified_apps_only: bool,
+        ?view_type: WhopSDK::Models::app_view_type,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
       def to_hash: -> {
-        after: String?,
-        app_type: WhopSDK::Models::app_type?,
-        before: String?,
-        company_id: String?,
-        direction: WhopSDK::Models::direction?,
-        first: Integer?,
-        last: Integer?,
-        order: WhopSDK::Models::AppListParams::order?,
-        query: String?,
-        verified_apps_only: bool?,
-        view_type: WhopSDK::Models::app_view_type?,
+        after: String,
+        app_type: WhopSDK::Models::app_type,
+        before: String,
+        company_id: String,
+        direction: WhopSDK::Models::direction,
+        first: Integer,
+        last: Integer,
+        order: WhopSDK::Models::AppListParams::order,
+        query: String,
+        verified_apps_only: bool,
+        view_type: WhopSDK::Models::app_view_type,
         request_options: WhopSDK::RequestOptions
       }
 

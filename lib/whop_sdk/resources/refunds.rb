@@ -42,25 +42,25 @@ module WhopSDK
       #
       # @overload list(after: nil, before: nil, company_id: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, payment_id: nil, user_id: nil, request_options: {})
       #
-      # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
+      # @param after [String] Returns the elements in the list that come after the specified cursor.
       #
-      # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
+      # @param before [String] Returns the elements in the list that come before the specified cursor.
       #
-      # @param company_id [String, nil] Filter refunds to only those belonging to this company.
+      # @param company_id [String] Filter refunds to only those belonging to this company.
       #
-      # @param created_after [Time, nil] Only return refunds created after this timestamp.
+      # @param created_after [Time] Only return refunds created after this timestamp.
       #
-      # @param created_before [Time, nil] Only return refunds created before this timestamp.
+      # @param created_before [Time] Only return refunds created before this timestamp.
       #
-      # @param direction [Symbol, WhopSDK::Models::Direction, nil] The direction of the sort.
+      # @param direction [Symbol, WhopSDK::Models::Direction] The sort direction for ordering results, either ascending or descending.
       #
-      # @param first [Integer, nil] Returns the first _n_ elements from the list.
+      # @param first [Integer] Returns the first _n_ elements from the list.
       #
-      # @param last [Integer, nil] Returns the last _n_ elements from the list.
+      # @param last [Integer] Returns the last _n_ elements from the list.
       #
-      # @param payment_id [String, nil] Filter refunds to only those associated with this specific payment.
+      # @param payment_id [String] Filter refunds to only those associated with this specific payment.
       #
-      # @param user_id [String, nil] Filter refunds to only those associated with this specific user.
+      # @param user_id [String] Filter refunds to only those associated with this specific user.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

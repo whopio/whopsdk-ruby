@@ -3,14 +3,14 @@ module WhopSDK
     type checkout_configuration_list_params =
       {
         company_id: String,
-        after: String?,
-        before: String?,
-        created_after: Time?,
-        created_before: Time?,
-        direction: WhopSDK::Models::direction?,
-        first: Integer?,
-        last: Integer?,
-        plan_id: String?
+        after: String,
+        before: String,
+        created_after: Time,
+        created_before: Time,
+        direction: WhopSDK::Models::direction,
+        first: Integer,
+        last: Integer,
+        plan_id: String
       }
       & WhopSDK::Internal::Type::request_parameters
 
@@ -20,45 +20,61 @@ module WhopSDK
 
       attr_accessor company_id: String
 
-      attr_accessor after: String?
+      attr_reader after: String?
 
-      attr_accessor before: String?
+      def after=: (String) -> String
 
-      attr_accessor created_after: Time?
+      attr_reader before: String?
 
-      attr_accessor created_before: Time?
+      def before=: (String) -> String
 
-      attr_accessor direction: WhopSDK::Models::direction?
+      attr_reader created_after: Time?
 
-      attr_accessor first: Integer?
+      def created_after=: (Time) -> Time
 
-      attr_accessor last: Integer?
+      attr_reader created_before: Time?
 
-      attr_accessor plan_id: String?
+      def created_before=: (Time) -> Time
+
+      attr_reader direction: WhopSDK::Models::direction?
+
+      def direction=: (WhopSDK::Models::direction) -> WhopSDK::Models::direction
+
+      attr_reader first: Integer?
+
+      def first=: (Integer) -> Integer
+
+      attr_reader last: Integer?
+
+      def last=: (Integer) -> Integer
+
+      attr_reader plan_id: String?
+
+      def plan_id=: (String) -> String
 
       def initialize: (
         company_id: String,
-        ?after: String?,
-        ?before: String?,
-        ?created_after: Time?,
-        ?created_before: Time?,
-        ?direction: WhopSDK::Models::direction?,
-        ?first: Integer?,
-        ?last: Integer?,
-        ?plan_id: String?,
+        ?after: String,
+        ?before: String,
+        ?created_after: Time,
+        ?created_before: Time,
+        ?direction: WhopSDK::Models::direction,
+        ?first: Integer,
+        ?last: Integer,
+        ?plan_id: String,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
       def to_hash: -> {
         company_id: String,
-        after: String?,
-        before: String?,
-        created_after: Time?,
-        created_before: Time?,
-        direction: WhopSDK::Models::direction?,
-        first: Integer?,
-        last: Integer?,
-        plan_id: String?,
+        after: String,
+        before: String,
+        created_after: Time,
+        created_before: Time,
+        direction: WhopSDK::Models::direction,
+        first: Integer,
+        last: Integer,
+        plan_id: String,
         request_options: WhopSDK::RequestOptions
       }
     end

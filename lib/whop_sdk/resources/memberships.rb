@@ -75,41 +75,41 @@ module WhopSDK
       #
       # @overload list(after: nil, before: nil, cancel_options: nil, cancelation_status: nil, company_id: nil, created_after: nil, created_before: nil, direction: nil, first: nil, has_cancelation_reason: nil, include_text_only_cancelation_reasons: nil, last: nil, order: nil, plan_ids: nil, product_ids: nil, promo_code_ids: nil, statuses: nil, user_ids: nil, request_options: {})
       #
-      # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
+      # @param after [String] Returns the elements in the list that come after the specified cursor.
       #
-      # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
+      # @param before [String] Returns the elements in the list that come before the specified cursor.
       #
-      # @param cancel_options [Array<Symbol, WhopSDK::Models::CancelOptions>, nil] Filter to only memberships matching these cancellation reasons.
+      # @param cancel_options [Array<Symbol, WhopSDK::Models::CancelOptions>] Filter to only memberships matching these cancellation reasons.
       #
-      # @param cancelation_status [Symbol, WhopSDK::Models::MembershipListParams::CancelationStatus, nil] The state of a membership after a customer provides a cancelation reason.
+      # @param cancelation_status [Symbol, WhopSDK::Models::MembershipListParams::CancelationStatus] Filter memberships by whether the customer is canceling, left, or was won back.
       #
-      # @param company_id [String, nil] The unique identifier of the company to list memberships for. Required when usin
+      # @param company_id [String] The unique identifier of the company to list memberships for. Required when usin
       #
-      # @param created_after [Time, nil] Only return memberships created after this timestamp.
+      # @param created_after [Time] Only return memberships created after this timestamp.
       #
-      # @param created_before [Time, nil] Only return memberships created before this timestamp.
+      # @param created_before [Time] Only return memberships created before this timestamp.
       #
-      # @param direction [Symbol, WhopSDK::Models::Direction, nil] The direction of the sort.
+      # @param direction [Symbol, WhopSDK::Models::Direction] The sort direction for results. Defaults to descending.
       #
-      # @param first [Integer, nil] Returns the first _n_ elements from the list.
+      # @param first [Integer] Returns the first _n_ elements from the list.
       #
-      # @param has_cancelation_reason [Boolean, nil] Filter memberships by whether they have a structured or free-text cancellation r
+      # @param has_cancelation_reason [Boolean] Filter memberships by whether they have a structured or free-text cancellation r
       #
-      # @param include_text_only_cancelation_reasons [Boolean, nil] When filtering by the other cancellation option, also include memberships that o
+      # @param include_text_only_cancelation_reasons [Boolean] When filtering by the other cancellation option, also include memberships that o
       #
-      # @param last [Integer, nil] Returns the last _n_ elements from the list.
+      # @param last [Integer] Returns the last _n_ elements from the list.
       #
-      # @param order [Symbol, WhopSDK::Models::MembershipListParams::Order, nil] Which columns can be used to sort.
+      # @param order [Symbol, WhopSDK::Models::MembershipListParams::Order] The field to sort results by. Null uses the default sort order.
       #
-      # @param plan_ids [Array<String>, nil] Filter to only memberships belonging to these plan identifiers.
+      # @param plan_ids [Array<String>] Filter to only memberships belonging to these plan identifiers.
       #
-      # @param product_ids [Array<String>, nil] Filter to only memberships belonging to these product identifiers.
+      # @param product_ids [Array<String>] Filter to only memberships belonging to these product identifiers.
       #
-      # @param promo_code_ids [Array<String>, nil] Filter to only memberships that used these promo code identifiers.
+      # @param promo_code_ids [Array<String>] Filter to only memberships that used these promo code identifiers.
       #
-      # @param statuses [Array<Symbol, WhopSDK::Models::MembershipStatus>, nil] Filter to only memberships matching these statuses.
+      # @param statuses [Array<Symbol, WhopSDK::Models::MembershipStatus>] Filter to only memberships matching these statuses.
       #
-      # @param user_ids [Array<String>, nil] Filter to only memberships belonging to these user identifiers.
+      # @param user_ids [Array<String>] Filter to only memberships belonging to these user identifiers.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

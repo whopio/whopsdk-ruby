@@ -11,102 +11,158 @@ module WhopSDK
           T.any(WhopSDK::MemberListParams, WhopSDK::Internal::AnyHash)
         end
 
-      # The access level a given user (or company) has to a product or company.
+      # Filter members by their current access level to the product.
       sig { returns(T.nilable(WhopSDK::AccessLevel::OrSymbol)) }
-      attr_accessor :access_level
+      attr_reader :access_level
+
+      sig { params(access_level: WhopSDK::AccessLevel::OrSymbol).void }
+      attr_writer :access_level
 
       # Returns the elements in the list that come after the specified cursor.
       sig { returns(T.nilable(String)) }
-      attr_accessor :after
+      attr_reader :after
+
+      sig { params(after: String).void }
+      attr_writer :after
 
       # Returns the elements in the list that come before the specified cursor.
       sig { returns(T.nilable(String)) }
-      attr_accessor :before
+      attr_reader :before
+
+      sig { params(before: String).void }
+      attr_writer :before
 
       # The unique identifier of the company to list members for.
       sig { returns(T.nilable(String)) }
-      attr_accessor :company_id
+      attr_reader :company_id
+
+      sig { params(company_id: String).void }
+      attr_writer :company_id
 
       # Only return members created after this timestamp.
       sig { returns(T.nilable(Time)) }
-      attr_accessor :created_after
+      attr_reader :created_after
+
+      sig { params(created_after: Time).void }
+      attr_writer :created_after
 
       # Only return members created before this timestamp.
       sig { returns(T.nilable(Time)) }
-      attr_accessor :created_before
+      attr_reader :created_before
 
-      # The direction of the sort.
+      sig { params(created_before: Time).void }
+      attr_writer :created_before
+
+      # The sort direction for results. Defaults to descending.
       sig { returns(T.nilable(WhopSDK::Direction::OrSymbol)) }
-      attr_accessor :direction
+      attr_reader :direction
+
+      sig { params(direction: WhopSDK::Direction::OrSymbol).void }
+      attr_writer :direction
 
       # Returns the first _n_ elements from the list.
       sig { returns(T.nilable(Integer)) }
-      attr_accessor :first
+      attr_reader :first
+
+      sig { params(first: Integer).void }
+      attr_writer :first
 
       # Returns the last _n_ elements from the list.
       sig { returns(T.nilable(Integer)) }
-      attr_accessor :last
+      attr_reader :last
+
+      sig { params(last: Integer).void }
+      attr_writer :last
 
       # Filter members by their most recent activity type.
       sig do
         returns(T.nilable(T::Array[WhopSDK::MemberMostRecentActions::OrSymbol]))
       end
-      attr_accessor :most_recent_actions
+      attr_reader :most_recent_actions
 
-      # Which columns can be used to sort.
+      sig do
+        params(
+          most_recent_actions:
+            T::Array[WhopSDK::MemberMostRecentActions::OrSymbol]
+        ).void
+      end
+      attr_writer :most_recent_actions
+
+      # The column to sort members by, such as creation date or revenue.
       sig { returns(T.nilable(WhopSDK::MemberListParams::Order::OrSymbol)) }
-      attr_accessor :order
+      attr_reader :order
+
+      sig { params(order: WhopSDK::MemberListParams::Order::OrSymbol).void }
+      attr_writer :order
 
       # Filter members to only those subscribed to these specific plans.
       sig { returns(T.nilable(T::Array[String])) }
-      attr_accessor :plan_ids
+      attr_reader :plan_ids
+
+      sig { params(plan_ids: T::Array[String]).void }
+      attr_writer :plan_ids
 
       # Filter members to only those belonging to these specific products.
       sig { returns(T.nilable(T::Array[String])) }
-      attr_accessor :product_ids
+      attr_reader :product_ids
+
+      sig { params(product_ids: T::Array[String]).void }
+      attr_writer :product_ids
 
       # Filter members to only those who used these specific promo codes.
       sig { returns(T.nilable(T::Array[String])) }
-      attr_accessor :promo_code_ids
+      attr_reader :promo_code_ids
+
+      sig { params(promo_code_ids: T::Array[String]).void }
+      attr_writer :promo_code_ids
 
       # Search members by name, username, or email. Email filtering requires the
       # member:email:read permission.
       sig { returns(T.nilable(String)) }
-      attr_accessor :query
+      attr_reader :query
+
+      sig { params(query: String).void }
+      attr_writer :query
 
       # Filter members by their current subscription status.
       sig { returns(T.nilable(T::Array[WhopSDK::MemberStatuses::OrSymbol])) }
-      attr_accessor :statuses
+      attr_reader :statuses
+
+      sig { params(statuses: T::Array[WhopSDK::MemberStatuses::OrSymbol]).void }
+      attr_writer :statuses
 
       # Filter members to only those matching these specific user identifiers.
       sig { returns(T.nilable(T::Array[String])) }
-      attr_accessor :user_ids
+      attr_reader :user_ids
+
+      sig { params(user_ids: T::Array[String]).void }
+      attr_writer :user_ids
 
       sig do
         params(
-          access_level: T.nilable(WhopSDK::AccessLevel::OrSymbol),
-          after: T.nilable(String),
-          before: T.nilable(String),
-          company_id: T.nilable(String),
-          created_after: T.nilable(Time),
-          created_before: T.nilable(Time),
-          direction: T.nilable(WhopSDK::Direction::OrSymbol),
-          first: T.nilable(Integer),
-          last: T.nilable(Integer),
+          access_level: WhopSDK::AccessLevel::OrSymbol,
+          after: String,
+          before: String,
+          company_id: String,
+          created_after: Time,
+          created_before: Time,
+          direction: WhopSDK::Direction::OrSymbol,
+          first: Integer,
+          last: Integer,
           most_recent_actions:
-            T.nilable(T::Array[WhopSDK::MemberMostRecentActions::OrSymbol]),
-          order: T.nilable(WhopSDK::MemberListParams::Order::OrSymbol),
-          plan_ids: T.nilable(T::Array[String]),
-          product_ids: T.nilable(T::Array[String]),
-          promo_code_ids: T.nilable(T::Array[String]),
-          query: T.nilable(String),
-          statuses: T.nilable(T::Array[WhopSDK::MemberStatuses::OrSymbol]),
-          user_ids: T.nilable(T::Array[String]),
+            T::Array[WhopSDK::MemberMostRecentActions::OrSymbol],
+          order: WhopSDK::MemberListParams::Order::OrSymbol,
+          plan_ids: T::Array[String],
+          product_ids: T::Array[String],
+          promo_code_ids: T::Array[String],
+          query: String,
+          statuses: T::Array[WhopSDK::MemberStatuses::OrSymbol],
+          user_ids: T::Array[String],
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
-        # The access level a given user (or company) has to a product or company.
+        # Filter members by their current access level to the product.
         access_level: nil,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
@@ -118,7 +174,7 @@ module WhopSDK
         created_after: nil,
         # Only return members created before this timestamp.
         created_before: nil,
-        # The direction of the sort.
+        # The sort direction for results. Defaults to descending.
         direction: nil,
         # Returns the first _n_ elements from the list.
         first: nil,
@@ -126,7 +182,7 @@ module WhopSDK
         last: nil,
         # Filter members by their most recent activity type.
         most_recent_actions: nil,
-        # Which columns can be used to sort.
+        # The column to sort members by, such as creation date or revenue.
         order: nil,
         # Filter members to only those subscribed to these specific plans.
         plan_ids: nil,
@@ -148,24 +204,24 @@ module WhopSDK
       sig do
         override.returns(
           {
-            access_level: T.nilable(WhopSDK::AccessLevel::OrSymbol),
-            after: T.nilable(String),
-            before: T.nilable(String),
-            company_id: T.nilable(String),
-            created_after: T.nilable(Time),
-            created_before: T.nilable(Time),
-            direction: T.nilable(WhopSDK::Direction::OrSymbol),
-            first: T.nilable(Integer),
-            last: T.nilable(Integer),
+            access_level: WhopSDK::AccessLevel::OrSymbol,
+            after: String,
+            before: String,
+            company_id: String,
+            created_after: Time,
+            created_before: Time,
+            direction: WhopSDK::Direction::OrSymbol,
+            first: Integer,
+            last: Integer,
             most_recent_actions:
-              T.nilable(T::Array[WhopSDK::MemberMostRecentActions::OrSymbol]),
-            order: T.nilable(WhopSDK::MemberListParams::Order::OrSymbol),
-            plan_ids: T.nilable(T::Array[String]),
-            product_ids: T.nilable(T::Array[String]),
-            promo_code_ids: T.nilable(T::Array[String]),
-            query: T.nilable(String),
-            statuses: T.nilable(T::Array[WhopSDK::MemberStatuses::OrSymbol]),
-            user_ids: T.nilable(T::Array[String]),
+              T::Array[WhopSDK::MemberMostRecentActions::OrSymbol],
+            order: WhopSDK::MemberListParams::Order::OrSymbol,
+            plan_ids: T::Array[String],
+            product_ids: T::Array[String],
+            promo_code_ids: T::Array[String],
+            query: String,
+            statuses: T::Array[WhopSDK::MemberStatuses::OrSymbol],
+            user_ids: T::Array[String],
             request_options: WhopSDK::RequestOptions
           }
         )
@@ -173,7 +229,7 @@ module WhopSDK
       def to_hash
       end
 
-      # Which columns can be used to sort.
+      # The column to sort members by, such as creation date or revenue.
       module Order
         extend WhopSDK::Internal::Type::Enum
 

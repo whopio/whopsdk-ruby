@@ -115,11 +115,11 @@ module WhopSDK
       sig do
         params(
           channel_id: String,
-          after: T.nilable(String),
-          before: T.nilable(String),
-          direction: T.nilable(WhopSDK::Direction::OrSymbol),
-          first: T.nilable(Integer),
-          last: T.nilable(Integer),
+          after: String,
+          before: String,
+          direction: WhopSDK::Direction::OrSymbol,
+          first: Integer,
+          last: Integer,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(
           WhopSDK::Internal::CursorPage[WhopSDK::Models::MessageListResponse]
@@ -132,7 +132,8 @@ module WhopSDK
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
-        # The direction of the sort.
+        # The sort direction for messages by creation time. Use 'asc' for oldest first or
+        # 'desc' for newest first.
         direction: nil,
         # Returns the first _n_ elements from the list.
         first: nil,

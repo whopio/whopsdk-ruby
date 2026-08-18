@@ -153,17 +153,17 @@ module WhopSDK
       # by company, type, view support, and search query.
       sig do
         params(
-          after: T.nilable(String),
-          app_type: T.nilable(WhopSDK::AppType::OrSymbol),
-          before: T.nilable(String),
-          company_id: T.nilable(String),
-          direction: T.nilable(WhopSDK::Direction::OrSymbol),
-          first: T.nilable(Integer),
-          last: T.nilable(Integer),
-          order: T.nilable(WhopSDK::AppListParams::Order::OrSymbol),
-          query: T.nilable(String),
-          verified_apps_only: T.nilable(T::Boolean),
-          view_type: T.nilable(WhopSDK::AppViewType::OrSymbol),
+          after: String,
+          app_type: WhopSDK::AppType::OrSymbol,
+          before: String,
+          company_id: String,
+          direction: WhopSDK::Direction::OrSymbol,
+          first: Integer,
+          last: Integer,
+          order: WhopSDK::AppListParams::Order::OrSymbol,
+          query: String,
+          verified_apps_only: T::Boolean,
+          view_type: WhopSDK::AppViewType::OrSymbol,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(
           WhopSDK::Internal::CursorPage[WhopSDK::Models::AppListResponse]
@@ -172,26 +172,29 @@ module WhopSDK
       def list(
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
-        # The type of end-user an app is built for
+        # Filter apps by the type of end-user they are built for, such as consumer or
+        # business.
         app_type: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
         # Filter apps to only those created by this company, starting with 'biz\_'.
         company_id: nil,
-        # The direction of the sort.
+        # The sort direction for results. Accepted values: asc, desc.
         direction: nil,
         # Returns the first _n_ elements from the list.
         first: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
-        # The order to fetch the apps in for discovery.
+        # The field to sort apps by. Defaults to discoverable_at descending, showing the
+        # most recently published apps first.
         order: nil,
         # A search string to filter apps by name, such as 'chat' or 'analytics'.
         query: nil,
         # Whether to only return apps that have been verified by Whop. Useful for
         # populating a featured apps section.
         verified_apps_only: nil,
-        # The different types of an app view
+        # Filter apps to only those supporting a specific view type, such as 'dashboard'
+        # or 'hub'.
         view_type: nil,
         request_options: {}
       )

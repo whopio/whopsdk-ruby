@@ -2,11 +2,11 @@ module WhopSDK
   module Models
     type dm_channel_list_params =
       {
-        after: String?,
-        before: String?,
-        company_id: String?,
-        first: Integer?,
-        last: Integer?
+        after: String,
+        before: String,
+        company_id: String,
+        first: Integer,
+        last: Integer
       }
       & WhopSDK::Internal::Type::request_parameters
 
@@ -14,31 +14,41 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      attr_accessor after: String?
+      attr_reader after: String?
 
-      attr_accessor before: String?
+      def after=: (String) -> String
 
-      attr_accessor company_id: String?
+      attr_reader before: String?
 
-      attr_accessor first: Integer?
+      def before=: (String) -> String
 
-      attr_accessor last: Integer?
+      attr_reader company_id: String?
+
+      def company_id=: (String) -> String
+
+      attr_reader first: Integer?
+
+      def first=: (Integer) -> Integer
+
+      attr_reader last: Integer?
+
+      def last=: (Integer) -> Integer
 
       def initialize: (
-        ?after: String?,
-        ?before: String?,
-        ?company_id: String?,
-        ?first: Integer?,
-        ?last: Integer?,
+        ?after: String,
+        ?before: String,
+        ?company_id: String,
+        ?first: Integer,
+        ?last: Integer,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
       def to_hash: -> {
-        after: String?,
-        before: String?,
-        company_id: String?,
-        first: Integer?,
-        last: Integer?,
+        after: String,
+        before: String,
+        company_id: String,
+        first: Integer,
+        last: Integer,
         request_options: WhopSDK::RequestOptions
       }
     end

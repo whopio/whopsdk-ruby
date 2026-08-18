@@ -20,37 +20,56 @@ module WhopSDK
 
         # Returns the elements in the list that come after the specified cursor.
         sig { returns(T.nilable(String)) }
-        attr_accessor :after
+        attr_reader :after
+
+        sig { params(after: String).void }
+        attr_writer :after
 
         # Returns the elements in the list that come before the specified cursor.
         sig { returns(T.nilable(String)) }
-        attr_accessor :before
+        attr_reader :before
+
+        sig { params(before: String).void }
+        attr_writer :before
 
         # Returns the first _n_ elements from the list.
         sig { returns(T.nilable(Integer)) }
-        attr_accessor :first
+        attr_reader :first
+
+        sig { params(first: Integer).void }
+        attr_writer :first
 
         # Returns the last _n_ elements from the list.
         sig { returns(T.nilable(Integer)) }
-        attr_accessor :last
+        attr_reader :last
 
-        # The role of an affiliate override (standard or rev_share)
+        sig { params(last: Integer).void }
+        attr_writer :last
+
+        # Filter by override type (standard or rev_share).
         sig do
           returns(
             T.nilable(WhopSDK::Affiliates::AffiliateOverrideRoles::OrSymbol)
           )
         end
-        attr_accessor :override_type
+        attr_reader :override_type
+
+        sig do
+          params(
+            override_type: WhopSDK::Affiliates::AffiliateOverrideRoles::OrSymbol
+          ).void
+        end
+        attr_writer :override_type
 
         sig do
           params(
             id: String,
-            after: T.nilable(String),
-            before: T.nilable(String),
-            first: T.nilable(Integer),
-            last: T.nilable(Integer),
+            after: String,
+            before: String,
+            first: Integer,
+            last: Integer,
             override_type:
-              T.nilable(WhopSDK::Affiliates::AffiliateOverrideRoles::OrSymbol),
+              WhopSDK::Affiliates::AffiliateOverrideRoles::OrSymbol,
             request_options: WhopSDK::RequestOptions::OrHash
           ).returns(T.attached_class)
         end
@@ -64,7 +83,7 @@ module WhopSDK
           first: nil,
           # Returns the last _n_ elements from the list.
           last: nil,
-          # The role of an affiliate override (standard or rev_share)
+          # Filter by override type (standard or rev_share).
           override_type: nil,
           request_options: {}
         )
@@ -74,14 +93,12 @@ module WhopSDK
           override.returns(
             {
               id: String,
-              after: T.nilable(String),
-              before: T.nilable(String),
-              first: T.nilable(Integer),
-              last: T.nilable(Integer),
+              after: String,
+              before: String,
+              first: Integer,
+              last: Integer,
               override_type:
-                T.nilable(
-                  WhopSDK::Affiliates::AffiliateOverrideRoles::OrSymbol
-                ),
+                WhopSDK::Affiliates::AffiliateOverrideRoles::OrSymbol,
               request_options: WhopSDK::RequestOptions
             }
           )

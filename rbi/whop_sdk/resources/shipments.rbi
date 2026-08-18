@@ -60,13 +60,13 @@ module WhopSDK
       # - `payment:basic:read`
       sig do
         params(
-          after: T.nilable(String),
-          before: T.nilable(String),
-          company_id: T.nilable(String),
-          first: T.nilable(Integer),
-          last: T.nilable(Integer),
-          payment_id: T.nilable(String),
-          user_id: T.nilable(String),
+          after: String,
+          before: String,
+          company_id: String,
+          first: Integer,
+          last: Integer,
+          payment_id: String,
+          user_id: String,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(
           WhopSDK::Internal::CursorPage[WhopSDK::Models::ShipmentListResponse]

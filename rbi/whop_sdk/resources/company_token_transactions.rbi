@@ -62,13 +62,12 @@ module WhopSDK
       sig do
         params(
           company_id: String,
-          after: T.nilable(String),
-          before: T.nilable(String),
-          first: T.nilable(Integer),
-          last: T.nilable(Integer),
-          transaction_type:
-            T.nilable(WhopSDK::CompanyTokenTransactionType::OrSymbol),
-          user_id: T.nilable(String),
+          after: String,
+          before: String,
+          first: Integer,
+          last: Integer,
+          transaction_type: WhopSDK::CompanyTokenTransactionType::OrSymbol,
+          user_id: String,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(
           WhopSDK::Internal::CursorPage[
@@ -87,7 +86,7 @@ module WhopSDK
         first: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
-        # The type of token transaction
+        # Filter transactions by type.
         transaction_type: nil,
         # Filter transactions to only those involving this specific user.
         user_id: nil,

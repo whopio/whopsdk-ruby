@@ -18,7 +18,7 @@ module WhopSDK
       #   reaction.
       #
       #   @return [String, nil]
-      optional :emoji, String, nil?: true
+      optional :emoji, String
 
       # @!method initialize(id:, emoji: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
@@ -26,7 +26,7 @@ module WhopSDK
       #
       #   @param id [String]
       #
-      #   @param emoji [String, nil] The emoji to remove, in shortcode or unicode format. For example, ':heart:' or a
+      #   @param emoji [String] The emoji to remove, in shortcode or unicode format. For example, ':heart:' or a
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
     end

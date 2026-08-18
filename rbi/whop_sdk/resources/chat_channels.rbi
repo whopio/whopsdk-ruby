@@ -71,11 +71,11 @@ module WhopSDK
       sig do
         params(
           company_id: String,
-          after: T.nilable(String),
-          before: T.nilable(String),
-          first: T.nilable(Integer),
-          last: T.nilable(Integer),
-          product_id: T.nilable(String),
+          after: String,
+          before: String,
+          first: Integer,
+          last: Integer,
+          product_id: String,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(
           WhopSDK::Internal::CursorPage[

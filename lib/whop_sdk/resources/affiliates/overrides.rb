@@ -117,15 +117,15 @@ module WhopSDK
         #
         # @param id [String] The affiliate ID.
         #
-        # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
+        # @param after [String] Returns the elements in the list that come after the specified cursor.
         #
-        # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
+        # @param before [String] Returns the elements in the list that come before the specified cursor.
         #
-        # @param first [Integer, nil] Returns the first _n_ elements from the list.
+        # @param first [Integer] Returns the first _n_ elements from the list.
         #
-        # @param last [Integer, nil] Returns the last _n_ elements from the list.
+        # @param last [Integer] Returns the last _n_ elements from the list.
         #
-        # @param override_type [Symbol, WhopSDK::Models::Affiliates::AffiliateOverrideRoles, nil] The role of an affiliate override (standard or rev_share)
+        # @param override_type [Symbol, WhopSDK::Models::Affiliates::AffiliateOverrideRoles] Filter by override type (standard or rev_share).
         #
         # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
         #

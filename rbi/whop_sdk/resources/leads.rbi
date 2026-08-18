@@ -103,13 +103,13 @@ module WhopSDK
       sig do
         params(
           company_id: String,
-          after: T.nilable(String),
-          before: T.nilable(String),
-          created_after: T.nilable(Time),
-          created_before: T.nilable(Time),
-          first: T.nilable(Integer),
-          last: T.nilable(Integer),
-          product_ids: T.nilable(T::Array[String]),
+          after: String,
+          before: String,
+          created_after: Time,
+          created_before: Time,
+          first: Integer,
+          last: Integer,
+          product_ids: T::Array[String],
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(
           WhopSDK::Internal::CursorPage[WhopSDK::Models::LeadListResponse]

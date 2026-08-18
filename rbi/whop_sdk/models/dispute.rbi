@@ -576,6 +576,20 @@ module WhopSDK
         sig { returns(T.nilable(Time)) }
         attr_accessor :paid_at
 
+        # The instrument this payment was made with, shaped for display: the method type,
+        # a buyer-facing name, the standard icon set, and the card facts when it was a
+        # card. Null when the receipt names no payment method.
+        sig { returns(T.nilable(WhopSDK::Dispute::Payment::PaymentInstrument)) }
+        attr_reader :payment_instrument
+
+        sig do
+          params(
+            payment_instrument:
+              T.nilable(WhopSDK::Dispute::Payment::PaymentInstrument::OrHash)
+          ).void
+        end
+        attr_writer :payment_instrument
+
         # The different types of payment methods that can be used.
         sig { returns(T.nilable(WhopSDK::PaymentMethodTypes::TaggedSymbol)) }
         attr_accessor :payment_method_type
@@ -615,6 +629,8 @@ module WhopSDK
             membership:
               T.nilable(WhopSDK::Dispute::Payment::Membership::OrHash),
             paid_at: T.nilable(Time),
+            payment_instrument:
+              T.nilable(WhopSDK::Dispute::Payment::PaymentInstrument::OrHash),
             payment_method_type:
               T.nilable(WhopSDK::PaymentMethodTypes::OrSymbol),
             subtotal: T.nilable(Float),
@@ -646,6 +662,10 @@ module WhopSDK
           # The time at which this payment was successfully collected. Null if the payment
           # has not yet succeeded. As a Unix timestamp.
           paid_at:,
+          # The instrument this payment was made with, shaped for display: the method type,
+          # a buyer-facing name, the standard icon set, and the card facts when it was a
+          # card. Null when the receipt names no payment method.
+          payment_instrument:,
           # The different types of payment methods that can be used.
           payment_method_type:,
           # The subtotal to show to the creator (excluding buyer fees).
@@ -672,6 +692,8 @@ module WhopSDK
               member: T.nilable(WhopSDK::Dispute::Payment::Member),
               membership: T.nilable(WhopSDK::Dispute::Payment::Membership),
               paid_at: T.nilable(Time),
+              payment_instrument:
+                T.nilable(WhopSDK::Dispute::Payment::PaymentInstrument),
               payment_method_type:
                 T.nilable(WhopSDK::PaymentMethodTypes::TaggedSymbol),
               subtotal: T.nilable(Float),
@@ -758,6 +780,254 @@ module WhopSDK
             )
           end
           def to_hash
+          end
+        end
+
+        class PaymentInstrument < WhopSDK::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                WhopSDK::Dispute::Payment::PaymentInstrument,
+                WhopSDK::Internal::AnyHash
+              )
+            end
+
+          # Buyer-facing instrument name — "Visa •••• 4242" when the card surfaced, else the
+          # method's own name ("Klarna").
+          sig { returns(String) }
+          attr_accessor :display_name
+
+          # The standard icon set: square and card shapes, each in light and dark colorways.
+          sig { returns(WhopSDK::Dispute::Payment::PaymentInstrument::Icons) }
+          attr_reader :icons
+
+          sig do
+            params(
+              icons: WhopSDK::Dispute::Payment::PaymentInstrument::Icons::OrHash
+            ).void
+          end
+          attr_writer :icons
+
+          # Installment methods only: how many payments the charge splits into. Data, not
+          # copy — compose and translate the label client-side.
+          sig { returns(T.nilable(Integer)) }
+          attr_accessor :installment_count
+
+          # The payment method type identifier, e.g. `card`, `klarna`, `apple_pay`.
+          sig { returns(String) }
+          attr_accessor :payment_method_type
+
+          # The instrument this payment was made with, shaped for display: the method type,
+          # a buyer-facing name, the standard icon set, and the card facts when it was a
+          # card. Null when the receipt names no payment method.
+          sig do
+            params(
+              display_name: String,
+              icons:
+                WhopSDK::Dispute::Payment::PaymentInstrument::Icons::OrHash,
+              installment_count: T.nilable(Integer),
+              payment_method_type: String
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # Buyer-facing instrument name — "Visa •••• 4242" when the card surfaced, else the
+            # method's own name ("Klarna").
+            display_name:,
+            # The standard icon set: square and card shapes, each in light and dark colorways.
+            icons:,
+            # Installment methods only: how many payments the charge splits into. Data, not
+            # copy — compose and translate the label client-side.
+            installment_count:,
+            # The payment method type identifier, e.g. `card`, `klarna`, `apple_pay`.
+            payment_method_type:
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                display_name: String,
+                icons: WhopSDK::Dispute::Payment::PaymentInstrument::Icons,
+                installment_count: T.nilable(Integer),
+                payment_method_type: String
+              }
+            )
+          end
+          def to_hash
+          end
+
+          class Icons < WhopSDK::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  WhopSDK::Dispute::Payment::PaymentInstrument::Icons,
+                  WhopSDK::Internal::AnyHash
+                )
+              end
+
+            # The square tile (32x32).
+            sig do
+              returns(
+                WhopSDK::Dispute::Payment::PaymentInstrument::Icons::Square
+              )
+            end
+            attr_reader :square
+
+            sig do
+              params(
+                square:
+                  WhopSDK::Dispute::Payment::PaymentInstrument::Icons::Square::OrHash
+              ).void
+            end
+            attr_writer :square
+
+            # The standard icon set: square and card shapes, each in light and dark colorways.
+            sig do
+              params(
+                square:
+                  WhopSDK::Dispute::Payment::PaymentInstrument::Icons::Square::OrHash
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # The square tile (32x32).
+              square:
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  square:
+                    WhopSDK::Dispute::Payment::PaymentInstrument::Icons::Square
+                }
+              )
+            end
+            def to_hash
+            end
+
+            class Square < WhopSDK::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    WhopSDK::Dispute::Payment::PaymentInstrument::Icons::Square,
+                    WhopSDK::Internal::AnyHash
+                  )
+                end
+
+              # The colorway for dark surfaces.
+              sig do
+                returns(
+                  WhopSDK::Dispute::Payment::PaymentInstrument::Icons::Square::Dark
+                )
+              end
+              attr_reader :dark
+
+              sig do
+                params(
+                  dark:
+                    WhopSDK::Dispute::Payment::PaymentInstrument::Icons::Square::Dark::OrHash
+                ).void
+              end
+              attr_writer :dark
+
+              # The colorway for light surfaces.
+              sig do
+                returns(
+                  WhopSDK::Dispute::Payment::PaymentInstrument::Icons::Square::Light
+                )
+              end
+              attr_reader :light
+
+              sig do
+                params(
+                  light:
+                    WhopSDK::Dispute::Payment::PaymentInstrument::Icons::Square::Light::OrHash
+                ).void
+              end
+              attr_writer :light
+
+              # The square tile (32x32).
+              sig do
+                params(
+                  dark:
+                    WhopSDK::Dispute::Payment::PaymentInstrument::Icons::Square::Dark::OrHash,
+                  light:
+                    WhopSDK::Dispute::Payment::PaymentInstrument::Icons::Square::Light::OrHash
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                # The colorway for dark surfaces.
+                dark:,
+                # The colorway for light surfaces.
+                light:
+              )
+              end
+
+              sig do
+                override.returns(
+                  {
+                    dark:
+                      WhopSDK::Dispute::Payment::PaymentInstrument::Icons::Square::Dark,
+                    light:
+                      WhopSDK::Dispute::Payment::PaymentInstrument::Icons::Square::Light
+                  }
+                )
+              end
+              def to_hash
+              end
+
+              class Dark < WhopSDK::Internal::Type::BaseModel
+                OrHash =
+                  T.type_alias do
+                    T.any(
+                      WhopSDK::Dispute::Payment::PaymentInstrument::Icons::Square::Dark,
+                      WhopSDK::Internal::AnyHash
+                    )
+                  end
+
+                # The vector file. Prefer this everywhere SVG renders.
+                sig { returns(String) }
+                attr_accessor :svg
+
+                # The colorway for dark surfaces.
+                sig { params(svg: String).returns(T.attached_class) }
+                def self.new(
+                  # The vector file. Prefer this everywhere SVG renders.
+                  svg:
+                )
+                end
+
+                sig { override.returns({ svg: String }) }
+                def to_hash
+                end
+              end
+
+              class Light < WhopSDK::Internal::Type::BaseModel
+                OrHash =
+                  T.type_alias do
+                    T.any(
+                      WhopSDK::Dispute::Payment::PaymentInstrument::Icons::Square::Light,
+                      WhopSDK::Internal::AnyHash
+                    )
+                  end
+
+                # The vector file. Prefer this everywhere SVG renders.
+                sig { returns(String) }
+                attr_accessor :svg
+
+                # The colorway for light surfaces.
+                sig { params(svg: String).returns(T.attached_class) }
+                def self.new(
+                  # The vector file. Prefer this everywhere SVG renders.
+                  svg:
+                )
+                end
+
+                sig { override.returns({ svg: String }) }
+                def to_hash
+                end
+              end
+            end
           end
         end
 

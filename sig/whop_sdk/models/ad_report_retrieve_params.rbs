@@ -4,13 +4,13 @@ module WhopSDK
       {
         from: Time,
         to: Time,
-        ad_campaign_ids: ::Array[String]?,
-        ad_group_ids: ::Array[String]?,
-        ad_ids: ::Array[String]?,
-        breakdown: WhopSDK::Models::AdReportRetrieveParams::breakdown?,
-        company_id: String?,
-        currency: String?,
-        granularity: WhopSDK::Models::granularities?
+        ad_campaign_ids: ::Array[String],
+        ad_group_ids: ::Array[String],
+        ad_ids: ::Array[String],
+        breakdown: WhopSDK::Models::AdReportRetrieveParams::breakdown,
+        company_id: String,
+        currency: String,
+        granularity: WhopSDK::Models::granularities
       }
       & WhopSDK::Internal::Type::request_parameters
 
@@ -22,43 +22,61 @@ module WhopSDK
 
       attr_accessor to: Time
 
-      attr_accessor ad_campaign_ids: ::Array[String]?
+      attr_reader ad_campaign_ids: ::Array[String]?
 
-      attr_accessor ad_group_ids: ::Array[String]?
+      def ad_campaign_ids=: (::Array[String]) -> ::Array[String]
 
-      attr_accessor ad_ids: ::Array[String]?
+      attr_reader ad_group_ids: ::Array[String]?
 
-      attr_accessor breakdown: WhopSDK::Models::AdReportRetrieveParams::breakdown?
+      def ad_group_ids=: (::Array[String]) -> ::Array[String]
 
-      attr_accessor company_id: String?
+      attr_reader ad_ids: ::Array[String]?
 
-      attr_accessor currency: String?
+      def ad_ids=: (::Array[String]) -> ::Array[String]
 
-      attr_accessor granularity: WhopSDK::Models::granularities?
+      attr_reader breakdown: WhopSDK::Models::AdReportRetrieveParams::breakdown?
+
+      def breakdown=: (
+        WhopSDK::Models::AdReportRetrieveParams::breakdown
+      ) -> WhopSDK::Models::AdReportRetrieveParams::breakdown
+
+      attr_reader company_id: String?
+
+      def company_id=: (String) -> String
+
+      attr_reader currency: String?
+
+      def currency=: (String) -> String
+
+      attr_reader granularity: WhopSDK::Models::granularities?
+
+      def granularity=: (
+        WhopSDK::Models::granularities
+      ) -> WhopSDK::Models::granularities
 
       def initialize: (
         from: Time,
         to: Time,
-        ?ad_campaign_ids: ::Array[String]?,
-        ?ad_group_ids: ::Array[String]?,
-        ?ad_ids: ::Array[String]?,
-        ?breakdown: WhopSDK::Models::AdReportRetrieveParams::breakdown?,
-        ?company_id: String?,
-        ?currency: String?,
-        ?granularity: WhopSDK::Models::granularities?,
+        ?ad_campaign_ids: ::Array[String],
+        ?ad_group_ids: ::Array[String],
+        ?ad_ids: ::Array[String],
+        ?breakdown: WhopSDK::Models::AdReportRetrieveParams::breakdown,
+        ?company_id: String,
+        ?currency: String,
+        ?granularity: WhopSDK::Models::granularities,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
       def to_hash: -> {
         from: Time,
         to: Time,
-        ad_campaign_ids: ::Array[String]?,
-        ad_group_ids: ::Array[String]?,
-        ad_ids: ::Array[String]?,
-        breakdown: WhopSDK::Models::AdReportRetrieveParams::breakdown?,
-        company_id: String?,
-        currency: String?,
-        granularity: WhopSDK::Models::granularities?,
+        ad_campaign_ids: ::Array[String],
+        ad_group_ids: ::Array[String],
+        ad_ids: ::Array[String],
+        breakdown: WhopSDK::Models::AdReportRetrieveParams::breakdown,
+        company_id: String,
+        currency: String,
+        granularity: WhopSDK::Models::granularities,
         request_options: WhopSDK::RequestOptions
       }
 

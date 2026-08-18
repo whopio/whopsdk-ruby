@@ -101,23 +101,23 @@ module WhopSDK
       #
       # @param company_id [String] The unique identifier of the company to list promo codes for.
       #
-      # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
+      # @param after [String] Returns the elements in the list that come after the specified cursor.
       #
-      # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
+      # @param before [String] Returns the elements in the list that come before the specified cursor.
       #
-      # @param created_after [Time, nil] Only return promo codes created after this timestamp.
+      # @param created_after [Time] Only return promo codes created after this timestamp.
       #
-      # @param created_before [Time, nil] Only return promo codes created before this timestamp.
+      # @param created_before [Time] Only return promo codes created before this timestamp.
       #
-      # @param first [Integer, nil] Returns the first _n_ elements from the list.
+      # @param first [Integer] Returns the first _n_ elements from the list.
       #
-      # @param last [Integer, nil] Returns the last _n_ elements from the list.
+      # @param last [Integer] Returns the last _n_ elements from the list.
       #
-      # @param plan_ids [Array<String>, nil] Filter to only promo codes scoped to these plan identifiers.
+      # @param plan_ids [Array<String>] Filter to only promo codes scoped to these plan identifiers.
       #
-      # @param product_ids [Array<String>, nil] Filter to only promo codes scoped to these product identifiers.
+      # @param product_ids [Array<String>] Filter to only promo codes scoped to these product identifiers.
       #
-      # @param status [Symbol, WhopSDK::Models::PromoCodeStatus, nil] Statuses for promo codes
+      # @param status [Symbol, WhopSDK::Models::PromoCodeStatus] Filter to only promo codes matching this status.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

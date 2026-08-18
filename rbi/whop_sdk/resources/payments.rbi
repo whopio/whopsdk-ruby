@@ -86,28 +86,26 @@ module WhopSDK
       # - `shipment:basic:read`
       sig do
         params(
-          after: T.nilable(String),
-          before: T.nilable(String),
-          billing_reasons:
-            T.nilable(T::Array[WhopSDK::BillingReasons::OrSymbol]),
-          checkout_configuration_ids: T.nilable(T::Array[String]),
-          company_id: T.nilable(String),
-          created_after: T.nilable(Time),
-          created_before: T.nilable(Time),
-          currencies: T.nilable(T::Array[WhopSDK::Currency::OrSymbol]),
-          direction: T.nilable(WhopSDK::Direction::OrSymbol),
-          first: T.nilable(Integer),
-          include_free: T.nilable(T::Boolean),
-          last: T.nilable(Integer),
-          order: T.nilable(WhopSDK::PaymentListParams::Order::OrSymbol),
-          plan_ids: T.nilable(T::Array[String]),
-          product_ids: T.nilable(T::Array[String]),
-          query: T.nilable(String),
-          statuses: T.nilable(T::Array[WhopSDK::ReceiptStatus::OrSymbol]),
-          substatuses:
-            T.nilable(T::Array[WhopSDK::FriendlyReceiptStatus::OrSymbol]),
-          updated_after: T.nilable(Time),
-          updated_before: T.nilable(Time),
+          after: String,
+          before: String,
+          billing_reasons: T::Array[WhopSDK::BillingReasons::OrSymbol],
+          checkout_configuration_ids: T::Array[String],
+          company_id: String,
+          created_after: Time,
+          created_before: Time,
+          currencies: T::Array[WhopSDK::Currency::OrSymbol],
+          direction: WhopSDK::Direction::OrSymbol,
+          first: Integer,
+          include_free: T::Boolean,
+          last: Integer,
+          order: WhopSDK::PaymentListParams::Order::OrSymbol,
+          plan_ids: T::Array[String],
+          product_ids: T::Array[String],
+          query: String,
+          statuses: T::Array[WhopSDK::ReceiptStatus::OrSymbol],
+          substatuses: T::Array[WhopSDK::FriendlyReceiptStatus::OrSymbol],
+          updated_after: Time,
+          updated_before: Time,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(
           WhopSDK::Internal::CursorPage[WhopSDK::Models::PaymentListResponse]
@@ -130,7 +128,7 @@ module WhopSDK
         created_before: nil,
         # Filter payments by their currency code.
         currencies: nil,
-        # The direction of the sort.
+        # The sort direction for ordering results, either ascending or descending.
         direction: nil,
         # Returns the first _n_ elements from the list.
         first: nil,
@@ -138,7 +136,7 @@ module WhopSDK
         include_free: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
-        # The order to sort the results by.
+        # The field to order results by, such as creation date.
         order: nil,
         # Filter payments to only those associated with these specific plan identifiers.
         plan_ids: nil,
@@ -169,10 +167,10 @@ module WhopSDK
       sig do
         params(
           id: String,
-          after: T.nilable(String),
-          before: T.nilable(String),
-          first: T.nilable(Integer),
-          last: T.nilable(Integer),
+          after: String,
+          before: String,
+          first: Integer,
+          last: Integer,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(
           WhopSDK::Internal::CursorPage[

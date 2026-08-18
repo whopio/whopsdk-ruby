@@ -33,17 +33,17 @@ module WhopSDK
       sig do
         params(
           company_id: String,
-          after: T.nilable(String),
-          before: T.nilable(String),
-          created_after: T.nilable(Time),
-          created_before: T.nilable(Time),
-          direction: T.nilable(WhopSDK::Direction::OrSymbol),
-          first: T.nilable(Integer),
-          last: T.nilable(Integer),
-          order: T.nilable(WhopSDK::EntryListParams::Order::OrSymbol),
-          plan_ids: T.nilable(T::Array[String]),
-          product_ids: T.nilable(T::Array[String]),
-          statuses: T.nilable(T::Array[WhopSDK::EntryStatus::OrSymbol]),
+          after: String,
+          before: String,
+          created_after: Time,
+          created_before: Time,
+          direction: WhopSDK::Direction::OrSymbol,
+          first: Integer,
+          last: Integer,
+          order: WhopSDK::EntryListParams::Order::OrSymbol,
+          plan_ids: T::Array[String],
+          product_ids: T::Array[String],
+          statuses: T::Array[WhopSDK::EntryStatus::OrSymbol],
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(
           WhopSDK::Internal::CursorPage[WhopSDK::Models::EntryListResponse]
@@ -60,13 +60,13 @@ module WhopSDK
         created_after: nil,
         # Only return entries created before this timestamp.
         created_before: nil,
-        # The direction of the sort.
+        # The sort direction for results. Defaults to descending.
         direction: nil,
         # Returns the first _n_ elements from the list.
         first: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
-        # Which columns can be used to sort.
+        # The column to sort waitlist entries by. Defaults to creation date.
         order: nil,
         # Filter entries to only those for specific plans.
         plan_ids: nil,

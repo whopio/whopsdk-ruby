@@ -17,12 +17,15 @@ module WhopSDK
       # The ID of the company the authorized user belongs to. Optional if the authorized
       # user ID is provided.
       sig { returns(T.nilable(String)) }
-      attr_accessor :company_id
+      attr_reader :company_id
+
+      sig { params(company_id: String).void }
+      attr_writer :company_id
 
       sig do
         params(
           id: String,
-          company_id: T.nilable(String),
+          company_id: String,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -39,7 +42,7 @@ module WhopSDK
         override.returns(
           {
             id: String,
-            company_id: T.nilable(String),
+            company_id: String,
             request_options: WhopSDK::RequestOptions
           }
         )

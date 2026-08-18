@@ -91,11 +91,11 @@ module WhopSDK
       # Returns a paginated list of AI chat threads for the current authenticated user.
       sig do
         params(
-          after: T.nilable(String),
-          before: T.nilable(String),
-          first: T.nilable(Integer),
-          last: T.nilable(Integer),
-          only_active_crons: T.nilable(T::Boolean),
+          after: String,
+          before: String,
+          first: Integer,
+          last: Integer,
+          only_active_crons: T::Boolean,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(
           WhopSDK::Internal::CursorPage[WhopSDK::Models::AIChatListResponse]

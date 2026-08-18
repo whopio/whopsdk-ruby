@@ -100,13 +100,13 @@ module WhopSDK
       # no experience.
       sig do
         params(
-          after: T.nilable(String),
-          before: T.nilable(String),
-          direction: T.nilable(WhopSDK::Direction::OrSymbol),
-          experience_id: T.nilable(String),
-          first: T.nilable(Integer),
-          last: T.nilable(Integer),
-          status: T.nilable(WhopSDK::BountyListParams::Status::OrSymbol),
+          after: String,
+          before: String,
+          direction: WhopSDK::Direction::OrSymbol,
+          experience_id: String,
+          first: Integer,
+          last: Integer,
+          status: WhopSDK::BountyListParams::Status::OrSymbol,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(
           WhopSDK::Internal::CursorPage[WhopSDK::Models::BountyListResponse]
@@ -117,7 +117,7 @@ module WhopSDK
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
-        # The direction of the sort.
+        # Sort direction. Defaults to descending.
         direction: nil,
         # The experience to list bounties for. When omitted, returns bounties with no
         # experience.
@@ -126,7 +126,7 @@ module WhopSDK
         first: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
-        # The available bounty statuses to choose from.
+        # Filter bounties by status.
         status: nil,
         request_options: {}
       )

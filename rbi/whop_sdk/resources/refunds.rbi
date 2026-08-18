@@ -35,16 +35,16 @@ module WhopSDK
       # - `payment:basic:read`
       sig do
         params(
-          after: T.nilable(String),
-          before: T.nilable(String),
-          company_id: T.nilable(String),
-          created_after: T.nilable(Time),
-          created_before: T.nilable(Time),
-          direction: T.nilable(WhopSDK::Direction::OrSymbol),
-          first: T.nilable(Integer),
-          last: T.nilable(Integer),
-          payment_id: T.nilable(String),
-          user_id: T.nilable(String),
+          after: String,
+          before: String,
+          company_id: String,
+          created_after: Time,
+          created_before: Time,
+          direction: WhopSDK::Direction::OrSymbol,
+          first: Integer,
+          last: Integer,
+          payment_id: String,
+          user_id: String,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(
           WhopSDK::Internal::CursorPage[WhopSDK::Models::RefundListResponse]
@@ -61,7 +61,7 @@ module WhopSDK
         created_after: nil,
         # Only return refunds created before this timestamp.
         created_before: nil,
-        # The direction of the sort.
+        # The sort direction for ordering results, either ascending or descending.
         direction: nil,
         # Returns the first _n_ elements from the list.
         first: nil,

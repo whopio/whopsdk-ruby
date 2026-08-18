@@ -24,13 +24,13 @@ module WhopSDK
 
       def list: (
         company_id: String,
-        ?after: String?,
-        ?before: String?,
-        ?created_after: Time?,
-        ?created_before: Time?,
-        ?first: Integer?,
-        ?last: Integer?,
-        ?product_ids: ::Array[String]?,
+        ?after: String,
+        ?before: String,
+        ?created_after: Time,
+        ?created_before: Time,
+        ?first: Integer,
+        ?last: Integer,
+        ?product_ids: ::Array[String],
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::LeadListResponse]
 

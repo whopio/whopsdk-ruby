@@ -17,32 +17,48 @@ module WhopSDK
 
       # Returns the elements in the list that come after the specified cursor.
       sig { returns(T.nilable(String)) }
-      attr_accessor :after
+      attr_reader :after
+
+      sig { params(after: String).void }
+      attr_writer :after
 
       # Returns the elements in the list that come before the specified cursor.
       sig { returns(T.nilable(String)) }
-      attr_accessor :before
+      attr_reader :before
 
-      # The direction of the sort.
+      sig { params(before: String).void }
+      attr_writer :before
+
+      # The sort direction for messages by creation time. Use 'asc' for oldest first or
+      # 'desc' for newest first.
       sig { returns(T.nilable(WhopSDK::Direction::OrSymbol)) }
-      attr_accessor :direction
+      attr_reader :direction
+
+      sig { params(direction: WhopSDK::Direction::OrSymbol).void }
+      attr_writer :direction
 
       # Returns the first _n_ elements from the list.
       sig { returns(T.nilable(Integer)) }
-      attr_accessor :first
+      attr_reader :first
+
+      sig { params(first: Integer).void }
+      attr_writer :first
 
       # Returns the last _n_ elements from the list.
       sig { returns(T.nilable(Integer)) }
-      attr_accessor :last
+      attr_reader :last
+
+      sig { params(last: Integer).void }
+      attr_writer :last
 
       sig do
         params(
           channel_id: String,
-          after: T.nilable(String),
-          before: T.nilable(String),
-          direction: T.nilable(WhopSDK::Direction::OrSymbol),
-          first: T.nilable(Integer),
-          last: T.nilable(Integer),
+          after: String,
+          before: String,
+          direction: WhopSDK::Direction::OrSymbol,
+          first: Integer,
+          last: Integer,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -53,7 +69,8 @@ module WhopSDK
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
-        # The direction of the sort.
+        # The sort direction for messages by creation time. Use 'asc' for oldest first or
+        # 'desc' for newest first.
         direction: nil,
         # Returns the first _n_ elements from the list.
         first: nil,
@@ -67,11 +84,11 @@ module WhopSDK
         override.returns(
           {
             channel_id: String,
-            after: T.nilable(String),
-            before: T.nilable(String),
-            direction: T.nilable(WhopSDK::Direction::OrSymbol),
-            first: T.nilable(Integer),
-            last: T.nilable(Integer),
+            after: String,
+            before: String,
+            direction: WhopSDK::Direction::OrSymbol,
+            first: Integer,
+            last: Integer,
             request_options: WhopSDK::RequestOptions
           }
         )

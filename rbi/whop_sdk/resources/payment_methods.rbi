@@ -13,8 +13,8 @@ module WhopSDK
       sig do
         params(
           id: String,
-          company_id: T.nilable(String),
-          member_id: T.nilable(String),
+          company_id: String,
+          member_id: String,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Models::PaymentMethodRetrieveResponse::Variants)
       end
@@ -41,29 +41,25 @@ module WhopSDK
       # - `member:payment_methods:read`
       sig do
         params(
-          after: T.nilable(String),
-          before: T.nilable(String),
-          broken: T.nilable(T::Boolean),
-          card_brands: T.nilable(T::Array[WhopSDK::CardBrands::OrSymbol]),
+          after: String,
+          before: String,
+          broken: T::Boolean,
+          card_brands: T::Array[WhopSDK::CardBrands::OrSymbol],
           card_funding_types:
-            T.nilable(
-              T::Array[
-                WhopSDK::PaymentMethodListParams::CardFundingType::OrSymbol
-              ]
-            ),
-          company_id: T.nilable(String),
-          created_after: T.nilable(Time),
-          created_before: T.nilable(Time),
-          direction: T.nilable(WhopSDK::Direction::OrSymbol),
-          expired: T.nilable(T::Boolean),
-          first: T.nilable(Integer),
-          future_usage:
-            T.nilable(WhopSDK::PaymentMethodListParams::FutureUsage::OrSymbol),
-          has_payer_document: T.nilable(T::Boolean),
-          last: T.nilable(Integer),
-          member_id: T.nilable(String),
-          payment_method_types:
-            T.nilable(T::Array[WhopSDK::PaymentMethodTypes::OrSymbol]),
+            T::Array[
+              WhopSDK::PaymentMethodListParams::CardFundingType::OrSymbol
+            ],
+          company_id: String,
+          created_after: Time,
+          created_before: Time,
+          direction: WhopSDK::Direction::OrSymbol,
+          expired: T::Boolean,
+          first: Integer,
+          future_usage: WhopSDK::PaymentMethodListParams::FutureUsage::OrSymbol,
+          has_payer_document: T::Boolean,
+          last: Integer,
+          member_id: String,
+          payment_method_types: T::Array[WhopSDK::PaymentMethodTypes::OrSymbol],
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(
           WhopSDK::Internal::CursorPage[
@@ -92,15 +88,17 @@ module WhopSDK
         created_after: nil,
         # Only return payment methods created before this timestamp.
         created_before: nil,
-        # The direction of the sort.
+        # The sort direction for ordering results, either ascending or descending.
         direction: nil,
         # Filter by expiry. Only a card can expire, so `false` keeps every payment method
         # that is not past its expiration month and `true` returns expired cards alone.
         expired: nil,
         # Returns the first _n_ elements from the list.
         first: nil,
-        # How a payment method will be charged after the buyer leaves — the same
-        # vocabulary as a confirmation token's setup_future_usage.
+        # Only return methods that can be charged this way after the buyer leaves. A
+        # checkout that renews should pass `off_session`, which drops the buyer's platform
+        # balance — a balance settles against the ledger at the time of purchase and
+        # cannot be charged later.
         future_usage: nil,
         # Filter cards by whether they carry the payer identity document their payment
         # provider requires. Payment methods that are not cards are unaffected.

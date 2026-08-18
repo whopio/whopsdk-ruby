@@ -13,88 +13,127 @@ module WhopSDK
 
       # Returns the elements in the list that come after the specified cursor.
       sig { returns(T.nilable(String)) }
-      attr_accessor :after
+      attr_reader :after
 
-      # The type of end-user an app is built for
+      sig { params(after: String).void }
+      attr_writer :after
+
+      # Filter apps by the type of end-user they are built for, such as consumer or
+      # business.
       sig { returns(T.nilable(WhopSDK::AppType::OrSymbol)) }
-      attr_accessor :app_type
+      attr_reader :app_type
+
+      sig { params(app_type: WhopSDK::AppType::OrSymbol).void }
+      attr_writer :app_type
 
       # Returns the elements in the list that come before the specified cursor.
       sig { returns(T.nilable(String)) }
-      attr_accessor :before
+      attr_reader :before
+
+      sig { params(before: String).void }
+      attr_writer :before
 
       # Filter apps to only those created by this company, starting with 'biz\_'.
       sig { returns(T.nilable(String)) }
-      attr_accessor :company_id
+      attr_reader :company_id
 
-      # The direction of the sort.
+      sig { params(company_id: String).void }
+      attr_writer :company_id
+
+      # The sort direction for results. Accepted values: asc, desc.
       sig { returns(T.nilable(WhopSDK::Direction::OrSymbol)) }
-      attr_accessor :direction
+      attr_reader :direction
+
+      sig { params(direction: WhopSDK::Direction::OrSymbol).void }
+      attr_writer :direction
 
       # Returns the first _n_ elements from the list.
       sig { returns(T.nilable(Integer)) }
-      attr_accessor :first
+      attr_reader :first
+
+      sig { params(first: Integer).void }
+      attr_writer :first
 
       # Returns the last _n_ elements from the list.
       sig { returns(T.nilable(Integer)) }
-      attr_accessor :last
+      attr_reader :last
 
-      # The order to fetch the apps in for discovery.
+      sig { params(last: Integer).void }
+      attr_writer :last
+
+      # The field to sort apps by. Defaults to discoverable_at descending, showing the
+      # most recently published apps first.
       sig { returns(T.nilable(WhopSDK::AppListParams::Order::OrSymbol)) }
-      attr_accessor :order
+      attr_reader :order
+
+      sig { params(order: WhopSDK::AppListParams::Order::OrSymbol).void }
+      attr_writer :order
 
       # A search string to filter apps by name, such as 'chat' or 'analytics'.
       sig { returns(T.nilable(String)) }
-      attr_accessor :query
+      attr_reader :query
+
+      sig { params(query: String).void }
+      attr_writer :query
 
       # Whether to only return apps that have been verified by Whop. Useful for
       # populating a featured apps section.
       sig { returns(T.nilable(T::Boolean)) }
-      attr_accessor :verified_apps_only
+      attr_reader :verified_apps_only
 
-      # The different types of an app view
+      sig { params(verified_apps_only: T::Boolean).void }
+      attr_writer :verified_apps_only
+
+      # Filter apps to only those supporting a specific view type, such as 'dashboard'
+      # or 'hub'.
       sig { returns(T.nilable(WhopSDK::AppViewType::OrSymbol)) }
-      attr_accessor :view_type
+      attr_reader :view_type
+
+      sig { params(view_type: WhopSDK::AppViewType::OrSymbol).void }
+      attr_writer :view_type
 
       sig do
         params(
-          after: T.nilable(String),
-          app_type: T.nilable(WhopSDK::AppType::OrSymbol),
-          before: T.nilable(String),
-          company_id: T.nilable(String),
-          direction: T.nilable(WhopSDK::Direction::OrSymbol),
-          first: T.nilable(Integer),
-          last: T.nilable(Integer),
-          order: T.nilable(WhopSDK::AppListParams::Order::OrSymbol),
-          query: T.nilable(String),
-          verified_apps_only: T.nilable(T::Boolean),
-          view_type: T.nilable(WhopSDK::AppViewType::OrSymbol),
+          after: String,
+          app_type: WhopSDK::AppType::OrSymbol,
+          before: String,
+          company_id: String,
+          direction: WhopSDK::Direction::OrSymbol,
+          first: Integer,
+          last: Integer,
+          order: WhopSDK::AppListParams::Order::OrSymbol,
+          query: String,
+          verified_apps_only: T::Boolean,
+          view_type: WhopSDK::AppViewType::OrSymbol,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
-        # The type of end-user an app is built for
+        # Filter apps by the type of end-user they are built for, such as consumer or
+        # business.
         app_type: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
         # Filter apps to only those created by this company, starting with 'biz\_'.
         company_id: nil,
-        # The direction of the sort.
+        # The sort direction for results. Accepted values: asc, desc.
         direction: nil,
         # Returns the first _n_ elements from the list.
         first: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
-        # The order to fetch the apps in for discovery.
+        # The field to sort apps by. Defaults to discoverable_at descending, showing the
+        # most recently published apps first.
         order: nil,
         # A search string to filter apps by name, such as 'chat' or 'analytics'.
         query: nil,
         # Whether to only return apps that have been verified by Whop. Useful for
         # populating a featured apps section.
         verified_apps_only: nil,
-        # The different types of an app view
+        # Filter apps to only those supporting a specific view type, such as 'dashboard'
+        # or 'hub'.
         view_type: nil,
         request_options: {}
       )
@@ -103,17 +142,17 @@ module WhopSDK
       sig do
         override.returns(
           {
-            after: T.nilable(String),
-            app_type: T.nilable(WhopSDK::AppType::OrSymbol),
-            before: T.nilable(String),
-            company_id: T.nilable(String),
-            direction: T.nilable(WhopSDK::Direction::OrSymbol),
-            first: T.nilable(Integer),
-            last: T.nilable(Integer),
-            order: T.nilable(WhopSDK::AppListParams::Order::OrSymbol),
-            query: T.nilable(String),
-            verified_apps_only: T.nilable(T::Boolean),
-            view_type: T.nilable(WhopSDK::AppViewType::OrSymbol),
+            after: String,
+            app_type: WhopSDK::AppType::OrSymbol,
+            before: String,
+            company_id: String,
+            direction: WhopSDK::Direction::OrSymbol,
+            first: Integer,
+            last: Integer,
+            order: WhopSDK::AppListParams::Order::OrSymbol,
+            query: String,
+            verified_apps_only: T::Boolean,
+            view_type: WhopSDK::AppViewType::OrSymbol,
             request_options: WhopSDK::RequestOptions
           }
         )
@@ -121,7 +160,8 @@ module WhopSDK
       def to_hash
       end
 
-      # The order to fetch the apps in for discovery.
+      # The field to sort apps by. Defaults to discoverable_at descending, showing the
+      # most recently published apps first.
       module Order
         extend WhopSDK::Internal::Type::Enum
 

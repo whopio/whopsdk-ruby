@@ -39,21 +39,21 @@ module WhopSDK
       #
       # @overload list(after: nil, before: nil, completed: nil, course_id: nil, first: nil, last: nil, lesson_id: nil, user_id: nil, request_options: {})
       #
-      # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
+      # @param after [String] Returns the elements in the list that come after the specified cursor.
       #
-      # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
+      # @param before [String] Returns the elements in the list that come before the specified cursor.
       #
-      # @param completed [Boolean, nil] Whether to filter for completed or in-progress lesson interactions.
+      # @param completed [Boolean] Whether to filter for completed or in-progress lesson interactions.
       #
-      # @param course_id [String, nil] The unique identifier of the course to filter interactions for.
+      # @param course_id [String] The unique identifier of the course to filter interactions for.
       #
-      # @param first [Integer, nil] Returns the first _n_ elements from the list.
+      # @param first [Integer] Returns the first _n_ elements from the list.
       #
-      # @param last [Integer, nil] Returns the last _n_ elements from the list.
+      # @param last [Integer] Returns the last _n_ elements from the list.
       #
-      # @param lesson_id [String, nil] The unique identifier of the lesson to filter interactions for.
+      # @param lesson_id [String] The unique identifier of the lesson to filter interactions for.
       #
-      # @param user_id [String, nil] The unique identifier of the user to filter lesson interactions for.
+      # @param user_id [String] The unique identifier of the user to filter lesson interactions for.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

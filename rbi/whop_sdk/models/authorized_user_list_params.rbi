@@ -13,52 +13,79 @@ module WhopSDK
 
       # Returns the elements in the list that come after the specified cursor.
       sig { returns(T.nilable(String)) }
-      attr_accessor :after
+      attr_reader :after
+
+      sig { params(after: String).void }
+      attr_writer :after
 
       # Returns the elements in the list that come before the specified cursor.
       sig { returns(T.nilable(String)) }
-      attr_accessor :before
+      attr_reader :before
+
+      sig { params(before: String).void }
+      attr_writer :before
 
       # The unique identifier of the company to list authorized users for.
       sig { returns(T.nilable(String)) }
-      attr_accessor :company_id
+      attr_reader :company_id
+
+      sig { params(company_id: String).void }
+      attr_writer :company_id
 
       # Only return authorized users created after this timestamp.
       sig { returns(T.nilable(Time)) }
-      attr_accessor :created_after
+      attr_reader :created_after
+
+      sig { params(created_after: Time).void }
+      attr_writer :created_after
 
       # Only return authorized users created before this timestamp.
       sig { returns(T.nilable(Time)) }
-      attr_accessor :created_before
+      attr_reader :created_before
+
+      sig { params(created_before: Time).void }
+      attr_writer :created_before
 
       # Returns the first _n_ elements from the list.
       sig { returns(T.nilable(Integer)) }
-      attr_accessor :first
+      attr_reader :first
+
+      sig { params(first: Integer).void }
+      attr_writer :first
 
       # Returns the last _n_ elements from the list.
       sig { returns(T.nilable(Integer)) }
-      attr_accessor :last
+      attr_reader :last
 
-      # Possible roles an authorized user can have
+      sig { params(last: Integer).void }
+      attr_writer :last
+
+      # Filter authorized users by their assigned role within the company.
       sig { returns(T.nilable(WhopSDK::AuthorizedUserRoles::OrSymbol)) }
-      attr_accessor :role
+      attr_reader :role
+
+      sig { params(role: WhopSDK::AuthorizedUserRoles::OrSymbol).void }
+      attr_writer :role
 
       # Filter results to a specific user to check if they are an authorized team
       # member.
       sig { returns(T.nilable(String)) }
-      attr_accessor :user_id
+      attr_reader :user_id
+
+      sig { params(user_id: String).void }
+      attr_writer :user_id
 
       sig do
         params(
-          after: T.nilable(String),
-          before: T.nilable(String),
-          company_id: T.nilable(String),
-          created_after: T.nilable(Time),
-          created_before: T.nilable(Time),
-          first: T.nilable(Integer),
-          last: T.nilable(Integer),
-          role: T.nilable(WhopSDK::AuthorizedUserRoles::OrSymbol),
-          user_id: T.nilable(String),
+          after: String,
+          before: String,
+          company_id: String,
+          created_after: Time,
+          created_before: Time,
+          first: Integer,
+          last: Integer,
+          role: WhopSDK::AuthorizedUserRoles::OrSymbol,
+          user_id: String,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -77,7 +104,7 @@ module WhopSDK
         first: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
-        # Possible roles an authorized user can have
+        # Filter authorized users by their assigned role within the company.
         role: nil,
         # Filter results to a specific user to check if they are an authorized team
         # member.
@@ -89,15 +116,15 @@ module WhopSDK
       sig do
         override.returns(
           {
-            after: T.nilable(String),
-            before: T.nilable(String),
-            company_id: T.nilable(String),
-            created_after: T.nilable(Time),
-            created_before: T.nilable(Time),
-            first: T.nilable(Integer),
-            last: T.nilable(Integer),
-            role: T.nilable(WhopSDK::AuthorizedUserRoles::OrSymbol),
-            user_id: T.nilable(String),
+            after: String,
+            before: String,
+            company_id: String,
+            created_after: Time,
+            created_before: Time,
+            first: Integer,
+            last: Integer,
+            role: WhopSDK::AuthorizedUserRoles::OrSymbol,
+            user_id: String,
             request_options: WhopSDK::RequestOptions
           }
         )

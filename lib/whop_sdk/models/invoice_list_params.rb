@@ -11,108 +11,106 @@ module WhopSDK
       #   Returns the elements in the list that come after the specified cursor.
       #
       #   @return [String, nil]
-      optional :after, String, nil?: true
+      optional :after, String
 
       # @!attribute before
       #   Returns the elements in the list that come before the specified cursor.
       #
       #   @return [String, nil]
-      optional :before, String, nil?: true
+      optional :before, String
 
       # @!attribute collection_methods
       #   Filter invoices by their collection method.
       #
       #   @return [Array<Symbol, WhopSDK::Models::CollectionMethod>, nil]
-      optional :collection_methods,
-               -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::CollectionMethod] },
-               nil?: true
+      optional :collection_methods, -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::CollectionMethod] }
 
       # @!attribute company_id
       #   The unique identifier of the company to list invoices for.
       #
       #   @return [String, nil]
-      optional :company_id, String, nil?: true
+      optional :company_id, String
 
       # @!attribute created_after
       #   Only return invoices created after this timestamp.
       #
       #   @return [Time, nil]
-      optional :created_after, Time, nil?: true
+      optional :created_after, Time
 
       # @!attribute created_before
       #   Only return invoices created before this timestamp.
       #
       #   @return [Time, nil]
-      optional :created_before, Time, nil?: true
+      optional :created_before, Time
 
       # @!attribute direction
-      #   The direction of the sort.
+      #   The sort direction for ordering results, either ascending or descending.
       #
       #   @return [Symbol, WhopSDK::Models::Direction, nil]
-      optional :direction, enum: -> { WhopSDK::Direction }, nil?: true
+      optional :direction, enum: -> { WhopSDK::Direction }
 
       # @!attribute first
       #   Returns the first _n_ elements from the list.
       #
       #   @return [Integer, nil]
-      optional :first, Integer, nil?: true
+      optional :first, Integer
 
       # @!attribute last
       #   Returns the last _n_ elements from the list.
       #
       #   @return [Integer, nil]
-      optional :last, Integer, nil?: true
+      optional :last, Integer
 
       # @!attribute order
-      #   Which columns can be used to sort.
+      #   The field to order results by, such as creation date or due date.
       #
       #   @return [Symbol, WhopSDK::Models::InvoiceListParams::Order, nil]
-      optional :order, enum: -> { WhopSDK::InvoiceListParams::Order }, nil?: true
+      optional :order, enum: -> { WhopSDK::InvoiceListParams::Order }
 
       # @!attribute product_ids
       #   Filter invoices to only those associated with these specific product
       #   identifiers.
       #
       #   @return [Array<String>, nil]
-      optional :product_ids, WhopSDK::Internal::Type::ArrayOf[String], nil?: true
+      optional :product_ids, WhopSDK::Internal::Type::ArrayOf[String]
 
       # @!attribute statuses
       #   Filter invoices by their current status.
       #
       #   @return [Array<Symbol, WhopSDK::Models::InvoiceStatus>, nil]
-      optional :statuses, -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::InvoiceStatus] }, nil?: true
+      optional :statuses, -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::InvoiceStatus] }
 
       # @!method initialize(after: nil, before: nil, collection_methods: nil, company_id: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, order: nil, product_ids: nil, statuses: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::InvoiceListParams} for more details.
       #
-      #   @param after [String, nil] Returns the elements in the list that come after the specified cursor.
+      #   @param after [String] Returns the elements in the list that come after the specified cursor.
       #
-      #   @param before [String, nil] Returns the elements in the list that come before the specified cursor.
+      #   @param before [String] Returns the elements in the list that come before the specified cursor.
       #
-      #   @param collection_methods [Array<Symbol, WhopSDK::Models::CollectionMethod>, nil] Filter invoices by their collection method.
+      #   @param collection_methods [Array<Symbol, WhopSDK::Models::CollectionMethod>] Filter invoices by their collection method.
       #
-      #   @param company_id [String, nil] The unique identifier of the company to list invoices for.
+      #   @param company_id [String] The unique identifier of the company to list invoices for.
       #
-      #   @param created_after [Time, nil] Only return invoices created after this timestamp.
+      #   @param created_after [Time] Only return invoices created after this timestamp.
       #
-      #   @param created_before [Time, nil] Only return invoices created before this timestamp.
+      #   @param created_before [Time] Only return invoices created before this timestamp.
       #
-      #   @param direction [Symbol, WhopSDK::Models::Direction, nil] The direction of the sort.
+      #   @param direction [Symbol, WhopSDK::Models::Direction] The sort direction for ordering results, either ascending or descending.
       #
-      #   @param first [Integer, nil] Returns the first _n_ elements from the list.
+      #   @param first [Integer] Returns the first _n_ elements from the list.
       #
-      #   @param last [Integer, nil] Returns the last _n_ elements from the list.
+      #   @param last [Integer] Returns the last _n_ elements from the list.
       #
-      #   @param order [Symbol, WhopSDK::Models::InvoiceListParams::Order, nil] Which columns can be used to sort.
+      #   @param order [Symbol, WhopSDK::Models::InvoiceListParams::Order] The field to order results by, such as creation date or due date.
       #
-      #   @param product_ids [Array<String>, nil] Filter invoices to only those associated with these specific product identifiers
+      #   @param product_ids [Array<String>] Filter invoices to only those associated with these specific product identifiers
       #
-      #   @param statuses [Array<Symbol, WhopSDK::Models::InvoiceStatus>, nil] Filter invoices by their current status.
+      #   @param statuses [Array<Symbol, WhopSDK::Models::InvoiceStatus>] Filter invoices by their current status.
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
 
-      # Which columns can be used to sort.
+      # The field to order results by, such as creation date or due date.
       module Order
         extend WhopSDK::Internal::Type::Enum
 

@@ -8,14 +8,14 @@ module WhopSDK
 
       def list: (
         product_id: String,
-        ?after: String?,
-        ?before: String?,
-        ?created_after: Time?,
-        ?created_before: Time?,
-        ?first: Integer?,
-        ?last: Integer?,
-        ?max_stars: Integer?,
-        ?min_stars: Integer?,
+        ?after: String,
+        ?before: String,
+        ?created_after: Time,
+        ?created_before: Time,
+        ?first: Integer,
+        ?last: Integer,
+        ?max_stars: Integer,
+        ?min_stars: Integer,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::ReviewListResponse]
 

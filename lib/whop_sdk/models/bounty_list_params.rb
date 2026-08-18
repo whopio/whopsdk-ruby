@@ -11,66 +11,66 @@ module WhopSDK
       #   Returns the elements in the list that come after the specified cursor.
       #
       #   @return [String, nil]
-      optional :after, String, nil?: true
+      optional :after, String
 
       # @!attribute before
       #   Returns the elements in the list that come before the specified cursor.
       #
       #   @return [String, nil]
-      optional :before, String, nil?: true
+      optional :before, String
 
       # @!attribute direction
-      #   The direction of the sort.
+      #   Sort direction. Defaults to descending.
       #
       #   @return [Symbol, WhopSDK::Models::Direction, nil]
-      optional :direction, enum: -> { WhopSDK::Direction }, nil?: true
+      optional :direction, enum: -> { WhopSDK::Direction }
 
       # @!attribute experience_id
       #   The experience to list bounties for. When omitted, returns bounties with no
       #   experience.
       #
       #   @return [String, nil]
-      optional :experience_id, String, nil?: true
+      optional :experience_id, String
 
       # @!attribute first
       #   Returns the first _n_ elements from the list.
       #
       #   @return [Integer, nil]
-      optional :first, Integer, nil?: true
+      optional :first, Integer
 
       # @!attribute last
       #   Returns the last _n_ elements from the list.
       #
       #   @return [Integer, nil]
-      optional :last, Integer, nil?: true
+      optional :last, Integer
 
       # @!attribute status
-      #   The available bounty statuses to choose from.
+      #   Filter bounties by status.
       #
       #   @return [Symbol, WhopSDK::Models::BountyListParams::Status, nil]
-      optional :status, enum: -> { WhopSDK::BountyListParams::Status }, nil?: true
+      optional :status, enum: -> { WhopSDK::BountyListParams::Status }
 
       # @!method initialize(after: nil, before: nil, direction: nil, experience_id: nil, first: nil, last: nil, status: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::BountyListParams} for more details.
       #
-      #   @param after [String, nil] Returns the elements in the list that come after the specified cursor.
+      #   @param after [String] Returns the elements in the list that come after the specified cursor.
       #
-      #   @param before [String, nil] Returns the elements in the list that come before the specified cursor.
+      #   @param before [String] Returns the elements in the list that come before the specified cursor.
       #
-      #   @param direction [Symbol, WhopSDK::Models::Direction, nil] The direction of the sort.
+      #   @param direction [Symbol, WhopSDK::Models::Direction] Sort direction. Defaults to descending.
       #
-      #   @param experience_id [String, nil] The experience to list bounties for. When omitted, returns bounties with no expe
+      #   @param experience_id [String] The experience to list bounties for. When omitted, returns bounties with no expe
       #
-      #   @param first [Integer, nil] Returns the first _n_ elements from the list.
+      #   @param first [Integer] Returns the first _n_ elements from the list.
       #
-      #   @param last [Integer, nil] Returns the last _n_ elements from the list.
+      #   @param last [Integer] Returns the last _n_ elements from the list.
       #
-      #   @param status [Symbol, WhopSDK::Models::BountyListParams::Status, nil] The available bounty statuses to choose from.
+      #   @param status [Symbol, WhopSDK::Models::BountyListParams::Status] Filter bounties by status.
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
 
-      # The available bounty statuses to choose from.
+      # Filter bounties by status.
       module Status
         extend WhopSDK::Internal::Type::Enum
 

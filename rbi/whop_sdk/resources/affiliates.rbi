@@ -56,14 +56,14 @@ module WhopSDK
       sig do
         params(
           company_id: String,
-          after: T.nilable(String),
-          before: T.nilable(String),
-          direction: T.nilable(WhopSDK::Direction::OrSymbol),
-          first: T.nilable(Integer),
-          last: T.nilable(Integer),
-          order: T.nilable(WhopSDK::AffiliateListParams::Order::OrSymbol),
-          query: T.nilable(String),
-          status: T.nilable(WhopSDK::Status::OrSymbol),
+          after: String,
+          before: String,
+          direction: WhopSDK::Direction::OrSymbol,
+          first: Integer,
+          last: Integer,
+          order: WhopSDK::AffiliateListParams::Order::OrSymbol,
+          query: String,
+          status: WhopSDK::Status::OrSymbol,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(
           WhopSDK::Internal::CursorPage[WhopSDK::Models::AffiliateListResponse]
@@ -76,17 +76,17 @@ module WhopSDK
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
-        # The direction of the sort.
+        # The sort direction for results. Defaults to descending.
         direction: nil,
         # Returns the first _n_ elements from the list.
         first: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
-        # Which columns can be used to sort.
+        # The field to sort results by.
         order: nil,
         # Search affiliates by username.
         query: nil,
-        # Statuses for resources
+        # Filter by affiliate status (active or archived).
         status: nil,
         request_options: {}
       )

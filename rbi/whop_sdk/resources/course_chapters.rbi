@@ -73,10 +73,10 @@ module WhopSDK
       sig do
         params(
           course_id: String,
-          after: T.nilable(String),
-          before: T.nilable(String),
-          first: T.nilable(Integer),
-          last: T.nilable(Integer),
+          after: String,
+          before: String,
+          first: Integer,
+          last: Integer,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(
           WhopSDK::Internal::CursorPage[

@@ -2,14 +2,14 @@ module WhopSDK
   module Models
     type course_lesson_interaction_list_params =
       {
-        after: String?,
-        before: String?,
-        completed: bool?,
-        course_id: String?,
-        first: Integer?,
-        last: Integer?,
-        lesson_id: String?,
-        user_id: String?
+        after: String,
+        before: String,
+        completed: bool,
+        course_id: String,
+        first: Integer,
+        last: Integer,
+        lesson_id: String,
+        user_id: String
       }
       & WhopSDK::Internal::Type::request_parameters
 
@@ -17,43 +17,59 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      attr_accessor after: String?
+      attr_reader after: String?
 
-      attr_accessor before: String?
+      def after=: (String) -> String
 
-      attr_accessor completed: bool?
+      attr_reader before: String?
 
-      attr_accessor course_id: String?
+      def before=: (String) -> String
 
-      attr_accessor first: Integer?
+      attr_reader completed: bool?
 
-      attr_accessor last: Integer?
+      def completed=: (bool) -> bool
 
-      attr_accessor lesson_id: String?
+      attr_reader course_id: String?
 
-      attr_accessor user_id: String?
+      def course_id=: (String) -> String
+
+      attr_reader first: Integer?
+
+      def first=: (Integer) -> Integer
+
+      attr_reader last: Integer?
+
+      def last=: (Integer) -> Integer
+
+      attr_reader lesson_id: String?
+
+      def lesson_id=: (String) -> String
+
+      attr_reader user_id: String?
+
+      def user_id=: (String) -> String
 
       def initialize: (
-        ?after: String?,
-        ?before: String?,
-        ?completed: bool?,
-        ?course_id: String?,
-        ?first: Integer?,
-        ?last: Integer?,
-        ?lesson_id: String?,
-        ?user_id: String?,
+        ?after: String,
+        ?before: String,
+        ?completed: bool,
+        ?course_id: String,
+        ?first: Integer,
+        ?last: Integer,
+        ?lesson_id: String,
+        ?user_id: String,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
       def to_hash: -> {
-        after: String?,
-        before: String?,
-        completed: bool?,
-        course_id: String?,
-        first: Integer?,
-        last: Integer?,
-        lesson_id: String?,
-        user_id: String?,
+        after: String,
+        before: String,
+        completed: bool,
+        course_id: String,
+        first: Integer,
+        last: Integer,
+        lesson_id: String,
+        user_id: String,
         request_options: WhopSDK::RequestOptions
       }
     end

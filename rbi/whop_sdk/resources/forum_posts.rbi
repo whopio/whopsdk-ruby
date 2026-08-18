@@ -137,13 +137,13 @@ module WhopSDK
       sig do
         params(
           experience_id: String,
-          after: T.nilable(String),
-          before: T.nilable(String),
-          first: T.nilable(Integer),
-          include_bounty_anchors: T.nilable(T::Boolean),
-          last: T.nilable(Integer),
-          parent_id: T.nilable(String),
-          pinned: T.nilable(T::Boolean),
+          after: String,
+          before: String,
+          first: Integer,
+          include_bounty_anchors: T::Boolean,
+          last: Integer,
+          parent_id: String,
+          pinned: T::Boolean,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(
           WhopSDK::Internal::CursorPage[WhopSDK::Models::ForumPostListResponse]

@@ -17,14 +17,13 @@ module WhopSDK
         params(
           from: Time,
           to: Time,
-          ad_campaign_ids: T.nilable(T::Array[String]),
-          ad_group_ids: T.nilable(T::Array[String]),
-          ad_ids: T.nilable(T::Array[String]),
-          breakdown:
-            T.nilable(WhopSDK::AdReportRetrieveParams::Breakdown::OrSymbol),
-          company_id: T.nilable(String),
-          currency: T.nilable(String),
-          granularity: T.nilable(WhopSDK::Granularities::OrSymbol),
+          ad_campaign_ids: T::Array[String],
+          ad_group_ids: T::Array[String],
+          ad_ids: T::Array[String],
+          breakdown: WhopSDK::AdReportRetrieveParams::Breakdown::OrSymbol,
+          company_id: String,
+          currency: String,
+          granularity: WhopSDK::Granularities::OrSymbol,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Models::AdReportRetrieveResponse)
       end
@@ -42,7 +41,11 @@ module WhopSDK
         # Scope the report to these ads (max 100); stats are summed across them. Mutually
         # exclusive with `companyId`, `adCampaignIds`, and `adGroupIds`.
         ad_ids: nil,
-        # Entity level to group an ad report by.
+        # Entity level to break down the report by. When set, `breakdown` on the response
+        # contains one row per entity at the requested level inside the requested scope.
+        # `ad` returns one row per ad, `ad_group` per ad group, `campaign` per ad
+        # campaign. The breakdown level must be at or below the scope (e.g. `adId` cannot
+        # be broken down by `campaign`). The `summary` totals are unaffected.
         breakdown: nil,
         # The unique identifier of a company. Mutually exclusive with `adCampaignIds`,
         # `adGroupIds`, and `adIds`. Use with `breakdown` to fan out across every
@@ -51,7 +54,10 @@ module WhopSDK
         # ISO 4217 currency code to report `spend` in. Defaults to the company's ads
         # reporting currency.
         currency: nil,
-        # Bucket size for external ad stat rows.
+        # Bucket grain for the per-bucket `granularity` time series. Omit (`null`) for
+        # summary-only. `hourly`/`daily` max 90 days, `weekly` max 366 days, `monthly` max
+        # 4 years. The `summary` totals are unaffected. With `breakdown`, each row gets
+        # its own series at the same grain.
         granularity: nil,
         request_options: {}
       )

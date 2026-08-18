@@ -3,14 +3,14 @@ module WhopSDK
     type review_list_params =
       {
         product_id: String,
-        after: String?,
-        before: String?,
-        created_after: Time?,
-        created_before: Time?,
-        first: Integer?,
-        last: Integer?,
-        max_stars: Integer?,
-        min_stars: Integer?
+        after: String,
+        before: String,
+        created_after: Time,
+        created_before: Time,
+        first: Integer,
+        last: Integer,
+        max_stars: Integer,
+        min_stars: Integer
       }
       & WhopSDK::Internal::Type::request_parameters
 
@@ -20,45 +20,61 @@ module WhopSDK
 
       attr_accessor product_id: String
 
-      attr_accessor after: String?
+      attr_reader after: String?
 
-      attr_accessor before: String?
+      def after=: (String) -> String
 
-      attr_accessor created_after: Time?
+      attr_reader before: String?
 
-      attr_accessor created_before: Time?
+      def before=: (String) -> String
 
-      attr_accessor first: Integer?
+      attr_reader created_after: Time?
 
-      attr_accessor last: Integer?
+      def created_after=: (Time) -> Time
 
-      attr_accessor max_stars: Integer?
+      attr_reader created_before: Time?
 
-      attr_accessor min_stars: Integer?
+      def created_before=: (Time) -> Time
+
+      attr_reader first: Integer?
+
+      def first=: (Integer) -> Integer
+
+      attr_reader last: Integer?
+
+      def last=: (Integer) -> Integer
+
+      attr_reader max_stars: Integer?
+
+      def max_stars=: (Integer) -> Integer
+
+      attr_reader min_stars: Integer?
+
+      def min_stars=: (Integer) -> Integer
 
       def initialize: (
         product_id: String,
-        ?after: String?,
-        ?before: String?,
-        ?created_after: Time?,
-        ?created_before: Time?,
-        ?first: Integer?,
-        ?last: Integer?,
-        ?max_stars: Integer?,
-        ?min_stars: Integer?,
+        ?after: String,
+        ?before: String,
+        ?created_after: Time,
+        ?created_before: Time,
+        ?first: Integer,
+        ?last: Integer,
+        ?max_stars: Integer,
+        ?min_stars: Integer,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
       def to_hash: -> {
         product_id: String,
-        after: String?,
-        before: String?,
-        created_after: Time?,
-        created_before: Time?,
-        first: Integer?,
-        last: Integer?,
-        max_stars: Integer?,
-        min_stars: Integer?,
+        after: String,
+        before: String,
+        created_after: Time,
+        created_before: Time,
+        first: Integer,
+        last: Integer,
+        max_stars: Integer,
+        min_stars: Integer,
         request_options: WhopSDK::RequestOptions
       }
     end

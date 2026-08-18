@@ -2,11 +2,11 @@ module WhopSDK
   module Models
     type ai_chat_list_params =
       {
-        after: String?,
-        before: String?,
-        first: Integer?,
-        last: Integer?,
-        only_active_crons: bool?
+        after: String,
+        before: String,
+        first: Integer,
+        last: Integer,
+        only_active_crons: bool
       }
       & WhopSDK::Internal::Type::request_parameters
 
@@ -14,31 +14,41 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      attr_accessor after: String?
+      attr_reader after: String?
 
-      attr_accessor before: String?
+      def after=: (String) -> String
 
-      attr_accessor first: Integer?
+      attr_reader before: String?
 
-      attr_accessor last: Integer?
+      def before=: (String) -> String
 
-      attr_accessor only_active_crons: bool?
+      attr_reader first: Integer?
+
+      def first=: (Integer) -> Integer
+
+      attr_reader last: Integer?
+
+      def last=: (Integer) -> Integer
+
+      attr_reader only_active_crons: bool?
+
+      def only_active_crons=: (bool) -> bool
 
       def initialize: (
-        ?after: String?,
-        ?before: String?,
-        ?first: Integer?,
-        ?last: Integer?,
-        ?only_active_crons: bool?,
+        ?after: String,
+        ?before: String,
+        ?first: Integer,
+        ?last: Integer,
+        ?only_active_crons: bool,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
       def to_hash: -> {
-        after: String?,
-        before: String?,
-        first: Integer?,
-        last: Integer?,
-        only_active_crons: bool?,
+        after: String,
+        before: String,
+        first: Integer,
+        last: Integer,
+        only_active_crons: bool,
         request_options: WhopSDK::RequestOptions
       }
     end

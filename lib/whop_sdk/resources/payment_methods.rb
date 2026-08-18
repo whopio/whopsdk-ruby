@@ -18,9 +18,9 @@ module WhopSDK
       #
       # @param id [String] The unique identifier of the payment method.
       #
-      # @param company_id [String, nil] The unique identifier of the company. Provide either this or member_id, not both
+      # @param company_id [String] The unique identifier of the company. Provide either this or member_id, not both
       #
-      # @param member_id [String, nil] The unique identifier of the member. Provide either this or company_id, not both
+      # @param member_id [String] The unique identifier of the member. Provide either this or company_id, not both
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -53,37 +53,37 @@ module WhopSDK
       #
       # @overload list(after: nil, before: nil, broken: nil, card_brands: nil, card_funding_types: nil, company_id: nil, created_after: nil, created_before: nil, direction: nil, expired: nil, first: nil, future_usage: nil, has_payer_document: nil, last: nil, member_id: nil, payment_method_types: nil, request_options: {})
       #
-      # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
+      # @param after [String] Returns the elements in the list that come after the specified cursor.
       #
-      # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
+      # @param before [String] Returns the elements in the list that come before the specified cursor.
       #
-      # @param broken [Boolean, nil] Filter by whether the stored credential has permanently stopped charging, such a
+      # @param broken [Boolean] Filter by whether the stored credential has permanently stopped charging, such a
       #
-      # @param card_brands [Array<Symbol, WhopSDK::Models::CardBrands>, nil] Only return cards on these networks, such as the networks the seller accepts. Pa
+      # @param card_brands [Array<Symbol, WhopSDK::Models::CardBrands>] Only return cards on these networks, such as the networks the seller accepts. Pa
       #
-      # @param card_funding_types [Array<Symbol, WhopSDK::Models::PaymentMethodListParams::CardFundingType>, nil] Only return cards funded this way. A card whose funding could not be determined
+      # @param card_funding_types [Array<Symbol, WhopSDK::Models::PaymentMethodListParams::CardFundingType>] Only return cards funded this way. A card whose funding could not be determined
       #
-      # @param company_id [String, nil] The unique identifier of the company. Provide either this or member_id, not both
+      # @param company_id [String] The unique identifier of the company. Provide either this or member_id, not both
       #
-      # @param created_after [Time, nil] Only return payment methods created after this timestamp.
+      # @param created_after [Time] Only return payment methods created after this timestamp.
       #
-      # @param created_before [Time, nil] Only return payment methods created before this timestamp.
+      # @param created_before [Time] Only return payment methods created before this timestamp.
       #
-      # @param direction [Symbol, WhopSDK::Models::Direction, nil] The direction of the sort.
+      # @param direction [Symbol, WhopSDK::Models::Direction] The sort direction for ordering results, either ascending or descending.
       #
-      # @param expired [Boolean, nil] Filter by expiry. Only a card can expire, so `false` keeps every payment method
+      # @param expired [Boolean] Filter by expiry. Only a card can expire, so `false` keeps every payment method
       #
-      # @param first [Integer, nil] Returns the first _n_ elements from the list.
+      # @param first [Integer] Returns the first _n_ elements from the list.
       #
-      # @param future_usage [Symbol, WhopSDK::Models::PaymentMethodListParams::FutureUsage, nil] How a payment method will be charged after the buyer leaves — the same vocabular
+      # @param future_usage [Symbol, WhopSDK::Models::PaymentMethodListParams::FutureUsage] Only return methods that can be charged this way after the buyer leaves. A check
       #
-      # @param has_payer_document [Boolean, nil] Filter cards by whether they carry the payer identity document their payment pro
+      # @param has_payer_document [Boolean] Filter cards by whether they carry the payer identity document their payment pro
       #
-      # @param last [Integer, nil] Returns the last _n_ elements from the list.
+      # @param last [Integer] Returns the last _n_ elements from the list.
       #
-      # @param member_id [String, nil] The unique identifier of the member to list payment methods for. Omit this and c
+      # @param member_id [String] The unique identifier of the member to list payment methods for. Omit this and c
       #
-      # @param payment_method_types [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>, nil] Only return payment methods of these types. Pass the eligible `type` values from
+      # @param payment_method_types [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>] Only return payment methods of these types. Pass the eligible `type` values from
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

@@ -17,58 +17,91 @@ module WhopSDK
 
       # Returns the elements in the list that come after the specified cursor.
       sig { returns(T.nilable(String)) }
-      attr_accessor :after
+      attr_reader :after
+
+      sig { params(after: String).void }
+      attr_writer :after
 
       # Returns the elements in the list that come before the specified cursor.
       sig { returns(T.nilable(String)) }
-      attr_accessor :before
+      attr_reader :before
+
+      sig { params(before: String).void }
+      attr_writer :before
 
       # Only return products created after this timestamp.
       sig { returns(T.nilable(Time)) }
-      attr_accessor :created_after
+      attr_reader :created_after
+
+      sig { params(created_after: Time).void }
+      attr_writer :created_after
 
       # Only return products created before this timestamp.
       sig { returns(T.nilable(Time)) }
-      attr_accessor :created_before
+      attr_reader :created_before
 
-      # The direction of the sort.
+      sig { params(created_before: Time).void }
+      attr_writer :created_before
+
+      # The sort direction for results. Defaults to descending.
       sig { returns(T.nilable(WhopSDK::Direction::OrSymbol)) }
-      attr_accessor :direction
+      attr_reader :direction
+
+      sig { params(direction: WhopSDK::Direction::OrSymbol).void }
+      attr_writer :direction
 
       # Returns the first _n_ elements from the list.
       sig { returns(T.nilable(Integer)) }
-      attr_accessor :first
+      attr_reader :first
+
+      sig { params(first: Integer).void }
+      attr_writer :first
 
       # Returns the last _n_ elements from the list.
       sig { returns(T.nilable(Integer)) }
-      attr_accessor :last
+      attr_reader :last
 
-      # The ways a relation of AccessPasses can be ordered
+      sig { params(last: Integer).void }
+      attr_writer :last
+
+      # The field to sort results by. Defaults to created_at.
       sig { returns(T.nilable(WhopSDK::ProductListParams::Order::OrSymbol)) }
-      attr_accessor :order
+      attr_reader :order
+
+      sig { params(order: WhopSDK::ProductListParams::Order::OrSymbol).void }
+      attr_writer :order
 
       # Filter to only products matching these type classifications.
       sig { returns(T.nilable(T::Array[WhopSDK::AccessPassType::OrSymbol])) }
-      attr_accessor :product_types
+      attr_reader :product_types
+
+      sig do
+        params(product_types: T::Array[WhopSDK::AccessPassType::OrSymbol]).void
+      end
+      attr_writer :product_types
 
       # Filter to only products matching these visibility states.
       sig { returns(T.nilable(T::Array[WhopSDK::VisibilityFilter::OrSymbol])) }
-      attr_accessor :visibilities
+      attr_reader :visibilities
+
+      sig do
+        params(visibilities: T::Array[WhopSDK::VisibilityFilter::OrSymbol]).void
+      end
+      attr_writer :visibilities
 
       sig do
         params(
           company_id: String,
-          after: T.nilable(String),
-          before: T.nilable(String),
-          created_after: T.nilable(Time),
-          created_before: T.nilable(Time),
-          direction: T.nilable(WhopSDK::Direction::OrSymbol),
-          first: T.nilable(Integer),
-          last: T.nilable(Integer),
-          order: T.nilable(WhopSDK::ProductListParams::Order::OrSymbol),
-          product_types: T.nilable(T::Array[WhopSDK::AccessPassType::OrSymbol]),
-          visibilities:
-            T.nilable(T::Array[WhopSDK::VisibilityFilter::OrSymbol]),
+          after: String,
+          before: String,
+          created_after: Time,
+          created_before: Time,
+          direction: WhopSDK::Direction::OrSymbol,
+          first: Integer,
+          last: Integer,
+          order: WhopSDK::ProductListParams::Order::OrSymbol,
+          product_types: T::Array[WhopSDK::AccessPassType::OrSymbol],
+          visibilities: T::Array[WhopSDK::VisibilityFilter::OrSymbol],
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -83,13 +116,13 @@ module WhopSDK
         created_after: nil,
         # Only return products created before this timestamp.
         created_before: nil,
-        # The direction of the sort.
+        # The sort direction for results. Defaults to descending.
         direction: nil,
         # Returns the first _n_ elements from the list.
         first: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
-        # The ways a relation of AccessPasses can be ordered
+        # The field to sort results by. Defaults to created_at.
         order: nil,
         # Filter to only products matching these type classifications.
         product_types: nil,
@@ -103,18 +136,16 @@ module WhopSDK
         override.returns(
           {
             company_id: String,
-            after: T.nilable(String),
-            before: T.nilable(String),
-            created_after: T.nilable(Time),
-            created_before: T.nilable(Time),
-            direction: T.nilable(WhopSDK::Direction::OrSymbol),
-            first: T.nilable(Integer),
-            last: T.nilable(Integer),
-            order: T.nilable(WhopSDK::ProductListParams::Order::OrSymbol),
-            product_types:
-              T.nilable(T::Array[WhopSDK::AccessPassType::OrSymbol]),
-            visibilities:
-              T.nilable(T::Array[WhopSDK::VisibilityFilter::OrSymbol]),
+            after: String,
+            before: String,
+            created_after: Time,
+            created_before: Time,
+            direction: WhopSDK::Direction::OrSymbol,
+            first: Integer,
+            last: Integer,
+            order: WhopSDK::ProductListParams::Order::OrSymbol,
+            product_types: T::Array[WhopSDK::AccessPassType::OrSymbol],
+            visibilities: T::Array[WhopSDK::VisibilityFilter::OrSymbol],
             request_options: WhopSDK::RequestOptions
           }
         )
@@ -122,7 +153,7 @@ module WhopSDK
       def to_hash
       end
 
-      # The ways a relation of AccessPasses can be ordered
+      # The field to sort results by. Defaults to created_at.
       module Order
         extend WhopSDK::Internal::Type::Enum
 

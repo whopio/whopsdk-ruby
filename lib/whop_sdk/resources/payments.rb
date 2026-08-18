@@ -98,45 +98,45 @@ module WhopSDK
       #
       # @overload list(after: nil, before: nil, billing_reasons: nil, checkout_configuration_ids: nil, company_id: nil, created_after: nil, created_before: nil, currencies: nil, direction: nil, first: nil, include_free: nil, last: nil, order: nil, plan_ids: nil, product_ids: nil, query: nil, statuses: nil, substatuses: nil, updated_after: nil, updated_before: nil, request_options: {})
       #
-      # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
+      # @param after [String] Returns the elements in the list that come after the specified cursor.
       #
-      # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
+      # @param before [String] Returns the elements in the list that come before the specified cursor.
       #
-      # @param billing_reasons [Array<Symbol, WhopSDK::Models::BillingReasons>, nil] Filter payments by their billing reason.
+      # @param billing_reasons [Array<Symbol, WhopSDK::Models::BillingReasons>] Filter payments by their billing reason.
       #
-      # @param checkout_configuration_ids [Array<String>, nil] Only return payments from these checkout configurations.
+      # @param checkout_configuration_ids [Array<String>] Only return payments from these checkout configurations.
       #
-      # @param company_id [String, nil] The unique identifier of the company to list payments for.
+      # @param company_id [String] The unique identifier of the company to list payments for.
       #
-      # @param created_after [Time, nil] Only return payments created after this timestamp.
+      # @param created_after [Time] Only return payments created after this timestamp.
       #
-      # @param created_before [Time, nil] Only return payments created before this timestamp.
+      # @param created_before [Time] Only return payments created before this timestamp.
       #
-      # @param currencies [Array<Symbol, WhopSDK::Models::Currency>, nil] Filter payments by their currency code.
+      # @param currencies [Array<Symbol, WhopSDK::Models::Currency>] Filter payments by their currency code.
       #
-      # @param direction [Symbol, WhopSDK::Models::Direction, nil] The direction of the sort.
+      # @param direction [Symbol, WhopSDK::Models::Direction] The sort direction for ordering results, either ascending or descending.
       #
-      # @param first [Integer, nil] Returns the first _n_ elements from the list.
+      # @param first [Integer] Returns the first _n_ elements from the list.
       #
-      # @param include_free [Boolean, nil] Whether to include payments with a zero amount.
+      # @param include_free [Boolean] Whether to include payments with a zero amount.
       #
-      # @param last [Integer, nil] Returns the last _n_ elements from the list.
+      # @param last [Integer] Returns the last _n_ elements from the list.
       #
-      # @param order [Symbol, WhopSDK::Models::PaymentListParams::Order, nil] The order to sort the results by.
+      # @param order [Symbol, WhopSDK::Models::PaymentListParams::Order] The field to order results by, such as creation date.
       #
-      # @param plan_ids [Array<String>, nil] Filter payments to only those associated with these specific plan identifiers.
+      # @param plan_ids [Array<String>] Filter payments to only those associated with these specific plan identifiers.
       #
-      # @param product_ids [Array<String>, nil] Filter payments to only those associated with these specific product identifiers
+      # @param product_ids [Array<String>] Filter payments to only those associated with these specific product identifiers
       #
-      # @param query [String, nil] Search payments by user ID, membership ID, user email, name, or username. Email
+      # @param query [String] Search payments by user ID, membership ID, user email, name, or username. Email
       #
-      # @param statuses [Array<Symbol, WhopSDK::Models::ReceiptStatus>, nil] Filter payments by their current status.
+      # @param statuses [Array<Symbol, WhopSDK::Models::ReceiptStatus>] Filter payments by their current status.
       #
-      # @param substatuses [Array<Symbol, WhopSDK::Models::FriendlyReceiptStatus>, nil] Filter payments by their current substatus for more granular filtering.
+      # @param substatuses [Array<Symbol, WhopSDK::Models::FriendlyReceiptStatus>] Filter payments by their current substatus for more granular filtering.
       #
-      # @param updated_after [Time, nil] Only return payments last updated after this timestamp.
+      # @param updated_after [Time] Only return payments last updated after this timestamp.
       #
-      # @param updated_before [Time, nil] Only return payments last updated before this timestamp.
+      # @param updated_before [Time] Only return payments last updated before this timestamp.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -167,13 +167,13 @@ module WhopSDK
       #
       # @param id [String] The unique identifier of the payment to list fees for.
       #
-      # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
+      # @param after [String] Returns the elements in the list that come after the specified cursor.
       #
-      # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
+      # @param before [String] Returns the elements in the list that come before the specified cursor.
       #
-      # @param first [Integer, nil] Returns the first _n_ elements from the list.
+      # @param first [Integer] Returns the first _n_ elements from the list.
       #
-      # @param last [Integer, nil] Returns the last _n_ elements from the list.
+      # @param last [Integer] Returns the last _n_ elements from the list.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

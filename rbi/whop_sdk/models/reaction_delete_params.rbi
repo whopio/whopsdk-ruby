@@ -18,12 +18,15 @@ module WhopSDK
       # unicode emoji. Required when the id refers to a message or post instead of a
       # reaction.
       sig { returns(T.nilable(String)) }
-      attr_accessor :emoji
+      attr_reader :emoji
+
+      sig { params(emoji: String).void }
+      attr_writer :emoji
 
       sig do
         params(
           id: String,
-          emoji: T.nilable(String),
+          emoji: String,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -41,7 +44,7 @@ module WhopSDK
         override.returns(
           {
             id: String,
-            emoji: T.nilable(String),
+            emoji: String,
             request_options: WhopSDK::RequestOptions
           }
         )

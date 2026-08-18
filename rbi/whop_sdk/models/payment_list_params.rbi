@@ -13,112 +13,178 @@ module WhopSDK
 
       # Returns the elements in the list that come after the specified cursor.
       sig { returns(T.nilable(String)) }
-      attr_accessor :after
+      attr_reader :after
+
+      sig { params(after: String).void }
+      attr_writer :after
 
       # Returns the elements in the list that come before the specified cursor.
       sig { returns(T.nilable(String)) }
-      attr_accessor :before
+      attr_reader :before
+
+      sig { params(before: String).void }
+      attr_writer :before
 
       # Filter payments by their billing reason.
       sig { returns(T.nilable(T::Array[WhopSDK::BillingReasons::OrSymbol])) }
-      attr_accessor :billing_reasons
+      attr_reader :billing_reasons
+
+      sig do
+        params(
+          billing_reasons: T::Array[WhopSDK::BillingReasons::OrSymbol]
+        ).void
+      end
+      attr_writer :billing_reasons
 
       # Only return payments from these checkout configurations.
       sig { returns(T.nilable(T::Array[String])) }
-      attr_accessor :checkout_configuration_ids
+      attr_reader :checkout_configuration_ids
+
+      sig { params(checkout_configuration_ids: T::Array[String]).void }
+      attr_writer :checkout_configuration_ids
 
       # The unique identifier of the company to list payments for.
       sig { returns(T.nilable(String)) }
-      attr_accessor :company_id
+      attr_reader :company_id
+
+      sig { params(company_id: String).void }
+      attr_writer :company_id
 
       # Only return payments created after this timestamp.
       sig { returns(T.nilable(Time)) }
-      attr_accessor :created_after
+      attr_reader :created_after
+
+      sig { params(created_after: Time).void }
+      attr_writer :created_after
 
       # Only return payments created before this timestamp.
       sig { returns(T.nilable(Time)) }
-      attr_accessor :created_before
+      attr_reader :created_before
+
+      sig { params(created_before: Time).void }
+      attr_writer :created_before
 
       # Filter payments by their currency code.
       sig { returns(T.nilable(T::Array[WhopSDK::Currency::OrSymbol])) }
-      attr_accessor :currencies
+      attr_reader :currencies
 
-      # The direction of the sort.
+      sig { params(currencies: T::Array[WhopSDK::Currency::OrSymbol]).void }
+      attr_writer :currencies
+
+      # The sort direction for ordering results, either ascending or descending.
       sig { returns(T.nilable(WhopSDK::Direction::OrSymbol)) }
-      attr_accessor :direction
+      attr_reader :direction
+
+      sig { params(direction: WhopSDK::Direction::OrSymbol).void }
+      attr_writer :direction
 
       # Returns the first _n_ elements from the list.
       sig { returns(T.nilable(Integer)) }
-      attr_accessor :first
+      attr_reader :first
+
+      sig { params(first: Integer).void }
+      attr_writer :first
 
       # Whether to include payments with a zero amount.
       sig { returns(T.nilable(T::Boolean)) }
-      attr_accessor :include_free
+      attr_reader :include_free
+
+      sig { params(include_free: T::Boolean).void }
+      attr_writer :include_free
 
       # Returns the last _n_ elements from the list.
       sig { returns(T.nilable(Integer)) }
-      attr_accessor :last
+      attr_reader :last
 
-      # The order to sort the results by.
+      sig { params(last: Integer).void }
+      attr_writer :last
+
+      # The field to order results by, such as creation date.
       sig { returns(T.nilable(WhopSDK::PaymentListParams::Order::OrSymbol)) }
-      attr_accessor :order
+      attr_reader :order
+
+      sig { params(order: WhopSDK::PaymentListParams::Order::OrSymbol).void }
+      attr_writer :order
 
       # Filter payments to only those associated with these specific plan identifiers.
       sig { returns(T.nilable(T::Array[String])) }
-      attr_accessor :plan_ids
+      attr_reader :plan_ids
+
+      sig { params(plan_ids: T::Array[String]).void }
+      attr_writer :plan_ids
 
       # Filter payments to only those associated with these specific product
       # identifiers.
       sig { returns(T.nilable(T::Array[String])) }
-      attr_accessor :product_ids
+      attr_reader :product_ids
+
+      sig { params(product_ids: T::Array[String]).void }
+      attr_writer :product_ids
 
       # Search payments by user ID, membership ID, user email, name, or username. Email
       # filtering requires the member:email:read permission.
       sig { returns(T.nilable(String)) }
-      attr_accessor :query
+      attr_reader :query
+
+      sig { params(query: String).void }
+      attr_writer :query
 
       # Filter payments by their current status.
       sig { returns(T.nilable(T::Array[WhopSDK::ReceiptStatus::OrSymbol])) }
-      attr_accessor :statuses
+      attr_reader :statuses
+
+      sig { params(statuses: T::Array[WhopSDK::ReceiptStatus::OrSymbol]).void }
+      attr_writer :statuses
 
       # Filter payments by their current substatus for more granular filtering.
       sig do
         returns(T.nilable(T::Array[WhopSDK::FriendlyReceiptStatus::OrSymbol]))
       end
-      attr_accessor :substatuses
-
-      # Only return payments last updated after this timestamp.
-      sig { returns(T.nilable(Time)) }
-      attr_accessor :updated_after
-
-      # Only return payments last updated before this timestamp.
-      sig { returns(T.nilable(Time)) }
-      attr_accessor :updated_before
+      attr_reader :substatuses
 
       sig do
         params(
-          after: T.nilable(String),
-          before: T.nilable(String),
-          billing_reasons:
-            T.nilable(T::Array[WhopSDK::BillingReasons::OrSymbol]),
-          checkout_configuration_ids: T.nilable(T::Array[String]),
-          company_id: T.nilable(String),
-          created_after: T.nilable(Time),
-          created_before: T.nilable(Time),
-          currencies: T.nilable(T::Array[WhopSDK::Currency::OrSymbol]),
-          direction: T.nilable(WhopSDK::Direction::OrSymbol),
-          first: T.nilable(Integer),
-          include_free: T.nilable(T::Boolean),
-          last: T.nilable(Integer),
-          order: T.nilable(WhopSDK::PaymentListParams::Order::OrSymbol),
-          plan_ids: T.nilable(T::Array[String]),
-          product_ids: T.nilable(T::Array[String]),
-          query: T.nilable(String),
-          statuses: T.nilable(T::Array[WhopSDK::ReceiptStatus::OrSymbol]),
-          substatuses:
-            T.nilable(T::Array[WhopSDK::FriendlyReceiptStatus::OrSymbol]),
-          updated_after: T.nilable(Time),
-          updated_before: T.nilable(Time),
+          substatuses: T::Array[WhopSDK::FriendlyReceiptStatus::OrSymbol]
+        ).void
+      end
+      attr_writer :substatuses
+
+      # Only return payments last updated after this timestamp.
+      sig { returns(T.nilable(Time)) }
+      attr_reader :updated_after
+
+      sig { params(updated_after: Time).void }
+      attr_writer :updated_after
+
+      # Only return payments last updated before this timestamp.
+      sig { returns(T.nilable(Time)) }
+      attr_reader :updated_before
+
+      sig { params(updated_before: Time).void }
+      attr_writer :updated_before
+
+      sig do
+        params(
+          after: String,
+          before: String,
+          billing_reasons: T::Array[WhopSDK::BillingReasons::OrSymbol],
+          checkout_configuration_ids: T::Array[String],
+          company_id: String,
+          created_after: Time,
+          created_before: Time,
+          currencies: T::Array[WhopSDK::Currency::OrSymbol],
+          direction: WhopSDK::Direction::OrSymbol,
+          first: Integer,
+          include_free: T::Boolean,
+          last: Integer,
+          order: WhopSDK::PaymentListParams::Order::OrSymbol,
+          plan_ids: T::Array[String],
+          product_ids: T::Array[String],
+          query: String,
+          statuses: T::Array[WhopSDK::ReceiptStatus::OrSymbol],
+          substatuses: T::Array[WhopSDK::FriendlyReceiptStatus::OrSymbol],
+          updated_after: Time,
+          updated_before: Time,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -139,7 +205,7 @@ module WhopSDK
         created_before: nil,
         # Filter payments by their currency code.
         currencies: nil,
-        # The direction of the sort.
+        # The sort direction for ordering results, either ascending or descending.
         direction: nil,
         # Returns the first _n_ elements from the list.
         first: nil,
@@ -147,7 +213,7 @@ module WhopSDK
         include_free: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
-        # The order to sort the results by.
+        # The field to order results by, such as creation date.
         order: nil,
         # Filter payments to only those associated with these specific plan identifiers.
         plan_ids: nil,
@@ -172,28 +238,26 @@ module WhopSDK
       sig do
         override.returns(
           {
-            after: T.nilable(String),
-            before: T.nilable(String),
-            billing_reasons:
-              T.nilable(T::Array[WhopSDK::BillingReasons::OrSymbol]),
-            checkout_configuration_ids: T.nilable(T::Array[String]),
-            company_id: T.nilable(String),
-            created_after: T.nilable(Time),
-            created_before: T.nilable(Time),
-            currencies: T.nilable(T::Array[WhopSDK::Currency::OrSymbol]),
-            direction: T.nilable(WhopSDK::Direction::OrSymbol),
-            first: T.nilable(Integer),
-            include_free: T.nilable(T::Boolean),
-            last: T.nilable(Integer),
-            order: T.nilable(WhopSDK::PaymentListParams::Order::OrSymbol),
-            plan_ids: T.nilable(T::Array[String]),
-            product_ids: T.nilable(T::Array[String]),
-            query: T.nilable(String),
-            statuses: T.nilable(T::Array[WhopSDK::ReceiptStatus::OrSymbol]),
-            substatuses:
-              T.nilable(T::Array[WhopSDK::FriendlyReceiptStatus::OrSymbol]),
-            updated_after: T.nilable(Time),
-            updated_before: T.nilable(Time),
+            after: String,
+            before: String,
+            billing_reasons: T::Array[WhopSDK::BillingReasons::OrSymbol],
+            checkout_configuration_ids: T::Array[String],
+            company_id: String,
+            created_after: Time,
+            created_before: Time,
+            currencies: T::Array[WhopSDK::Currency::OrSymbol],
+            direction: WhopSDK::Direction::OrSymbol,
+            first: Integer,
+            include_free: T::Boolean,
+            last: Integer,
+            order: WhopSDK::PaymentListParams::Order::OrSymbol,
+            plan_ids: T::Array[String],
+            product_ids: T::Array[String],
+            query: String,
+            statuses: T::Array[WhopSDK::ReceiptStatus::OrSymbol],
+            substatuses: T::Array[WhopSDK::FriendlyReceiptStatus::OrSymbol],
+            updated_after: Time,
+            updated_before: Time,
             request_options: WhopSDK::RequestOptions
           }
         )
@@ -201,7 +265,7 @@ module WhopSDK
       def to_hash
       end
 
-      # The order to sort the results by.
+      # The field to order results by, such as creation date.
       module Order
         extend WhopSDK::Internal::Type::Enum
 

@@ -3,15 +3,15 @@ module WhopSDK
     type promo_code_list_params =
       {
         company_id: String,
-        after: String?,
-        before: String?,
-        created_after: Time?,
-        created_before: Time?,
-        first: Integer?,
-        last: Integer?,
-        plan_ids: ::Array[String]?,
-        product_ids: ::Array[String]?,
-        status: WhopSDK::Models::promo_code_status?
+        after: String,
+        before: String,
+        created_after: Time,
+        created_before: Time,
+        first: Integer,
+        last: Integer,
+        plan_ids: ::Array[String],
+        product_ids: ::Array[String],
+        status: WhopSDK::Models::promo_code_status
       }
       & WhopSDK::Internal::Type::request_parameters
 
@@ -21,49 +21,69 @@ module WhopSDK
 
       attr_accessor company_id: String
 
-      attr_accessor after: String?
+      attr_reader after: String?
 
-      attr_accessor before: String?
+      def after=: (String) -> String
 
-      attr_accessor created_after: Time?
+      attr_reader before: String?
 
-      attr_accessor created_before: Time?
+      def before=: (String) -> String
 
-      attr_accessor first: Integer?
+      attr_reader created_after: Time?
 
-      attr_accessor last: Integer?
+      def created_after=: (Time) -> Time
 
-      attr_accessor plan_ids: ::Array[String]?
+      attr_reader created_before: Time?
 
-      attr_accessor product_ids: ::Array[String]?
+      def created_before=: (Time) -> Time
 
-      attr_accessor status: WhopSDK::Models::promo_code_status?
+      attr_reader first: Integer?
+
+      def first=: (Integer) -> Integer
+
+      attr_reader last: Integer?
+
+      def last=: (Integer) -> Integer
+
+      attr_reader plan_ids: ::Array[String]?
+
+      def plan_ids=: (::Array[String]) -> ::Array[String]
+
+      attr_reader product_ids: ::Array[String]?
+
+      def product_ids=: (::Array[String]) -> ::Array[String]
+
+      attr_reader status: WhopSDK::Models::promo_code_status?
+
+      def status=: (
+        WhopSDK::Models::promo_code_status
+      ) -> WhopSDK::Models::promo_code_status
 
       def initialize: (
         company_id: String,
-        ?after: String?,
-        ?before: String?,
-        ?created_after: Time?,
-        ?created_before: Time?,
-        ?first: Integer?,
-        ?last: Integer?,
-        ?plan_ids: ::Array[String]?,
-        ?product_ids: ::Array[String]?,
-        ?status: WhopSDK::Models::promo_code_status?,
+        ?after: String,
+        ?before: String,
+        ?created_after: Time,
+        ?created_before: Time,
+        ?first: Integer,
+        ?last: Integer,
+        ?plan_ids: ::Array[String],
+        ?product_ids: ::Array[String],
+        ?status: WhopSDK::Models::promo_code_status,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
       def to_hash: -> {
         company_id: String,
-        after: String?,
-        before: String?,
-        created_after: Time?,
-        created_before: Time?,
-        first: Integer?,
-        last: Integer?,
-        plan_ids: ::Array[String]?,
-        product_ids: ::Array[String]?,
-        status: WhopSDK::Models::promo_code_status?,
+        after: String,
+        before: String,
+        created_after: Time,
+        created_before: Time,
+        first: Integer,
+        last: Integer,
+        plan_ids: ::Array[String],
+        product_ids: ::Array[String],
+        status: WhopSDK::Models::promo_code_status,
         request_options: WhopSDK::RequestOptions
       }
     end

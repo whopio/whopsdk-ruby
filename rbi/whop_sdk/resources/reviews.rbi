@@ -23,14 +23,14 @@ module WhopSDK
       sig do
         params(
           product_id: String,
-          after: T.nilable(String),
-          before: T.nilable(String),
-          created_after: T.nilable(Time),
-          created_before: T.nilable(Time),
-          first: T.nilable(Integer),
-          last: T.nilable(Integer),
-          max_stars: T.nilable(Integer),
-          min_stars: T.nilable(Integer),
+          after: String,
+          before: String,
+          created_after: Time,
+          created_before: Time,
+          first: Integer,
+          last: Integer,
+          max_stars: Integer,
+          min_stars: Integer,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(
           WhopSDK::Internal::CursorPage[WhopSDK::Models::ReviewListResponse]

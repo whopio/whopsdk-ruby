@@ -13,42 +13,63 @@ module WhopSDK
 
       # Returns the elements in the list that come after the specified cursor.
       sig { returns(T.nilable(String)) }
-      attr_accessor :after
+      attr_reader :after
+
+      sig { params(after: String).void }
+      attr_writer :after
 
       # Returns the elements in the list that come before the specified cursor.
       sig { returns(T.nilable(String)) }
-      attr_accessor :before
+      attr_reader :before
 
-      # The direction of the sort.
+      sig { params(before: String).void }
+      attr_writer :before
+
+      # Sort direction. Defaults to descending.
       sig { returns(T.nilable(WhopSDK::Direction::OrSymbol)) }
-      attr_accessor :direction
+      attr_reader :direction
+
+      sig { params(direction: WhopSDK::Direction::OrSymbol).void }
+      attr_writer :direction
 
       # The experience to list bounties for. When omitted, returns bounties with no
       # experience.
       sig { returns(T.nilable(String)) }
-      attr_accessor :experience_id
+      attr_reader :experience_id
+
+      sig { params(experience_id: String).void }
+      attr_writer :experience_id
 
       # Returns the first _n_ elements from the list.
       sig { returns(T.nilable(Integer)) }
-      attr_accessor :first
+      attr_reader :first
+
+      sig { params(first: Integer).void }
+      attr_writer :first
 
       # Returns the last _n_ elements from the list.
       sig { returns(T.nilable(Integer)) }
-      attr_accessor :last
+      attr_reader :last
 
-      # The available bounty statuses to choose from.
+      sig { params(last: Integer).void }
+      attr_writer :last
+
+      # Filter bounties by status.
       sig { returns(T.nilable(WhopSDK::BountyListParams::Status::OrSymbol)) }
-      attr_accessor :status
+      attr_reader :status
+
+      sig { params(status: WhopSDK::BountyListParams::Status::OrSymbol).void }
+      attr_writer :status
 
       sig do
         params(
-          after: T.nilable(String),
-          before: T.nilable(String),
-          direction: T.nilable(WhopSDK::Direction::OrSymbol),
-          experience_id: T.nilable(String),
-          first: T.nilable(Integer),
-          last: T.nilable(Integer),
-          status: T.nilable(WhopSDK::BountyListParams::Status::OrSymbol),
+          after: String,
+          before: String,
+          direction: WhopSDK::Direction::OrSymbol,
+          experience_id: String,
+          first: Integer,
+          last: Integer,
+          status: WhopSDK::BountyListParams::Status::OrSymbol,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -57,7 +78,7 @@ module WhopSDK
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
-        # The direction of the sort.
+        # Sort direction. Defaults to descending.
         direction: nil,
         # The experience to list bounties for. When omitted, returns bounties with no
         # experience.
@@ -66,7 +87,7 @@ module WhopSDK
         first: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
-        # The available bounty statuses to choose from.
+        # Filter bounties by status.
         status: nil,
         request_options: {}
       )
@@ -75,13 +96,13 @@ module WhopSDK
       sig do
         override.returns(
           {
-            after: T.nilable(String),
-            before: T.nilable(String),
-            direction: T.nilable(WhopSDK::Direction::OrSymbol),
-            experience_id: T.nilable(String),
-            first: T.nilable(Integer),
-            last: T.nilable(Integer),
-            status: T.nilable(WhopSDK::BountyListParams::Status::OrSymbol),
+            after: String,
+            before: String,
+            direction: WhopSDK::Direction::OrSymbol,
+            experience_id: String,
+            first: Integer,
+            last: Integer,
+            status: WhopSDK::BountyListParams::Status::OrSymbol,
             request_options: WhopSDK::RequestOptions
           }
         )
@@ -89,7 +110,7 @@ module WhopSDK
       def to_hash
       end
 
-      # The available bounty statuses to choose from.
+      # Filter bounties by status.
       module Status
         extend WhopSDK::Internal::Type::Enum
 

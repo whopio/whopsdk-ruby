@@ -65,15 +65,15 @@ module WhopSDK
       # - `member:email:read`
       sig do
         params(
-          after: T.nilable(String),
-          before: T.nilable(String),
-          company_id: T.nilable(String),
-          created_after: T.nilable(Time),
-          created_before: T.nilable(Time),
-          first: T.nilable(Integer),
-          last: T.nilable(Integer),
-          role: T.nilable(WhopSDK::AuthorizedUserRoles::OrSymbol),
-          user_id: T.nilable(String),
+          after: String,
+          before: String,
+          company_id: String,
+          created_after: Time,
+          created_before: Time,
+          first: Integer,
+          last: Integer,
+          role: WhopSDK::AuthorizedUserRoles::OrSymbol,
+          user_id: String,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(
           WhopSDK::Internal::CursorPage[
@@ -96,7 +96,7 @@ module WhopSDK
         first: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
-        # Possible roles an authorized user can have
+        # Filter authorized users by their assigned role within the company.
         role: nil,
         # Filter results to a specific user to check if they are an authorized team
         # member.
@@ -113,7 +113,7 @@ module WhopSDK
       sig do
         params(
           id: String,
-          company_id: T.nilable(String),
+          company_id: String,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T::Boolean)
       end

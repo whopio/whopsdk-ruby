@@ -34,31 +34,31 @@ module WhopSDK
       # - `member:phone:read`
       sig do
         params(
-          access_level: T.nilable(WhopSDK::AccessLevel::OrSymbol),
-          after: T.nilable(String),
-          before: T.nilable(String),
-          company_id: T.nilable(String),
-          created_after: T.nilable(Time),
-          created_before: T.nilable(Time),
-          direction: T.nilable(WhopSDK::Direction::OrSymbol),
-          first: T.nilable(Integer),
-          last: T.nilable(Integer),
+          access_level: WhopSDK::AccessLevel::OrSymbol,
+          after: String,
+          before: String,
+          company_id: String,
+          created_after: Time,
+          created_before: Time,
+          direction: WhopSDK::Direction::OrSymbol,
+          first: Integer,
+          last: Integer,
           most_recent_actions:
-            T.nilable(T::Array[WhopSDK::MemberMostRecentActions::OrSymbol]),
-          order: T.nilable(WhopSDK::MemberListParams::Order::OrSymbol),
-          plan_ids: T.nilable(T::Array[String]),
-          product_ids: T.nilable(T::Array[String]),
-          promo_code_ids: T.nilable(T::Array[String]),
-          query: T.nilable(String),
-          statuses: T.nilable(T::Array[WhopSDK::MemberStatuses::OrSymbol]),
-          user_ids: T.nilable(T::Array[String]),
+            T::Array[WhopSDK::MemberMostRecentActions::OrSymbol],
+          order: WhopSDK::MemberListParams::Order::OrSymbol,
+          plan_ids: T::Array[String],
+          product_ids: T::Array[String],
+          promo_code_ids: T::Array[String],
+          query: String,
+          statuses: T::Array[WhopSDK::MemberStatuses::OrSymbol],
+          user_ids: T::Array[String],
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(
           WhopSDK::Internal::CursorPage[WhopSDK::Models::MemberListResponse]
         )
       end
       def list(
-        # The access level a given user (or company) has to a product or company.
+        # Filter members by their current access level to the product.
         access_level: nil,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
@@ -70,7 +70,7 @@ module WhopSDK
         created_after: nil,
         # Only return members created before this timestamp.
         created_before: nil,
-        # The direction of the sort.
+        # The sort direction for results. Defaults to descending.
         direction: nil,
         # Returns the first _n_ elements from the list.
         first: nil,
@@ -78,7 +78,7 @@ module WhopSDK
         last: nil,
         # Filter members by their most recent activity type.
         most_recent_actions: nil,
-        # Which columns can be used to sort.
+        # The column to sort members by, such as creation date or revenue.
         order: nil,
         # Filter members to only those subscribed to these specific plans.
         plan_ids: nil,

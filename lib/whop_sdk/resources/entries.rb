@@ -41,27 +41,27 @@ module WhopSDK
       #
       # @param company_id [String] The unique identifier of the company to list waitlist entries for.
       #
-      # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
+      # @param after [String] Returns the elements in the list that come after the specified cursor.
       #
-      # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
+      # @param before [String] Returns the elements in the list that come before the specified cursor.
       #
-      # @param created_after [Time, nil] Only return entries created after this timestamp.
+      # @param created_after [Time] Only return entries created after this timestamp.
       #
-      # @param created_before [Time, nil] Only return entries created before this timestamp.
+      # @param created_before [Time] Only return entries created before this timestamp.
       #
-      # @param direction [Symbol, WhopSDK::Models::Direction, nil] The direction of the sort.
+      # @param direction [Symbol, WhopSDK::Models::Direction] The sort direction for results. Defaults to descending.
       #
-      # @param first [Integer, nil] Returns the first _n_ elements from the list.
+      # @param first [Integer] Returns the first _n_ elements from the list.
       #
-      # @param last [Integer, nil] Returns the last _n_ elements from the list.
+      # @param last [Integer] Returns the last _n_ elements from the list.
       #
-      # @param order [Symbol, WhopSDK::Models::EntryListParams::Order, nil] Which columns can be used to sort.
+      # @param order [Symbol, WhopSDK::Models::EntryListParams::Order] The column to sort waitlist entries by. Defaults to creation date.
       #
-      # @param plan_ids [Array<String>, nil] Filter entries to only those for specific plans.
+      # @param plan_ids [Array<String>] Filter entries to only those for specific plans.
       #
-      # @param product_ids [Array<String>, nil] Filter entries to only those for specific products.
+      # @param product_ids [Array<String>] Filter entries to only those for specific products.
       #
-      # @param statuses [Array<Symbol, WhopSDK::Models::EntryStatus>, nil] Filter entries by their current status.
+      # @param statuses [Array<Symbol, WhopSDK::Models::EntryStatus>] Filter entries by their current status.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

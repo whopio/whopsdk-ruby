@@ -35,13 +35,13 @@ module WhopSDK
 
       def list: (
         experience_id: String,
-        ?after: String?,
-        ?before: String?,
-        ?first: Integer?,
-        ?include_bounty_anchors: bool?,
-        ?last: Integer?,
-        ?parent_id: String?,
-        ?pinned: bool?,
+        ?after: String,
+        ?before: String,
+        ?first: Integer,
+        ?include_bounty_anchors: bool,
+        ?last: Integer,
+        ?parent_id: String,
+        ?pinned: bool,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::ForumPostListResponse]
 

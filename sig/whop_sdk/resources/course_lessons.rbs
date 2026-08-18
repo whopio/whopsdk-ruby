@@ -38,12 +38,12 @@ module WhopSDK
       ) -> WhopSDK::Lesson
 
       def list: (
-        ?after: String?,
-        ?before: String?,
-        ?chapter_id: String?,
-        ?course_id: String?,
-        ?first: Integer?,
-        ?last: Integer?,
+        ?after: String,
+        ?before: String,
+        ?chapter_id: String,
+        ?course_id: String,
+        ?first: Integer,
+        ?last: Integer,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::CourseLessonListResponse]
 

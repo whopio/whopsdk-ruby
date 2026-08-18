@@ -17,7 +17,7 @@ module WhopSDK
       #   user ID is provided.
       #
       #   @return [String, nil]
-      optional :company_id, String, nil?: true
+      optional :company_id, String
 
       # @!method initialize(id:, company_id: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
@@ -25,7 +25,7 @@ module WhopSDK
       #
       #   @param id [String]
       #
-      #   @param company_id [String, nil] The ID of the company the authorized user belongs to. Optional if the authorized
+      #   @param company_id [String] The ID of the company the authorized user belongs to. Optional if the authorized
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
     end

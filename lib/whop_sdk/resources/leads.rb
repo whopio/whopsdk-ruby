@@ -117,19 +117,19 @@ module WhopSDK
       #
       # @param company_id [String] The unique identifier of the company to list leads for.
       #
-      # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
+      # @param after [String] Returns the elements in the list that come after the specified cursor.
       #
-      # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
+      # @param before [String] Returns the elements in the list that come before the specified cursor.
       #
-      # @param created_after [Time, nil] Only return leads created after this timestamp.
+      # @param created_after [Time] Only return leads created after this timestamp.
       #
-      # @param created_before [Time, nil] Only return leads created before this timestamp.
+      # @param created_before [Time] Only return leads created before this timestamp.
       #
-      # @param first [Integer, nil] Returns the first _n_ elements from the list.
+      # @param first [Integer] Returns the first _n_ elements from the list.
       #
-      # @param last [Integer, nil] Returns the last _n_ elements from the list.
+      # @param last [Integer] Returns the last _n_ elements from the list.
       #
-      # @param product_ids [Array<String>, nil] Filter leads to only those associated with these specific product identifiers.
+      # @param product_ids [Array<String>] Filter leads to only those associated with these specific product identifiers.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

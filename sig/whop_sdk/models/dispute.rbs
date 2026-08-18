@@ -229,6 +229,7 @@ module WhopSDK
           member: WhopSDK::Dispute::Payment::Member?,
           membership: WhopSDK::Dispute::Payment::Membership?,
           paid_at: Time?,
+          payment_instrument: WhopSDK::Dispute::Payment::PaymentInstrument?,
           payment_method_type: WhopSDK::Models::payment_method_types?,
           subtotal: Float?,
           total: Float?,
@@ -257,6 +258,8 @@ module WhopSDK
 
         attr_accessor paid_at: Time?
 
+        attr_accessor payment_instrument: WhopSDK::Dispute::Payment::PaymentInstrument?
+
         attr_accessor payment_method_type: WhopSDK::Models::payment_method_types?
 
         attr_accessor subtotal: Float?
@@ -278,6 +281,7 @@ module WhopSDK
           member: WhopSDK::Dispute::Payment::Member?,
           membership: WhopSDK::Dispute::Payment::Membership?,
           paid_at: Time?,
+          payment_instrument: WhopSDK::Dispute::Payment::PaymentInstrument?,
           payment_method_type: WhopSDK::Models::payment_method_types?,
           subtotal: Float?,
           total: Float?,
@@ -296,6 +300,7 @@ module WhopSDK
           member: WhopSDK::Dispute::Payment::Member?,
           membership: WhopSDK::Dispute::Payment::Membership?,
           paid_at: Time?,
+          payment_instrument: WhopSDK::Dispute::Payment::PaymentInstrument?,
           payment_method_type: WhopSDK::Models::payment_method_types?,
           subtotal: Float?,
           total: Float?,
@@ -332,6 +337,97 @@ module WhopSDK
             id: String,
             status: WhopSDK::Models::membership_status
           }
+        end
+
+        type payment_instrument =
+          {
+            display_name: String,
+            icons: WhopSDK::Dispute::Payment::PaymentInstrument::Icons,
+            installment_count: Integer?,
+            payment_method_type: String
+          }
+
+        class PaymentInstrument < WhopSDK::Internal::Type::BaseModel
+          attr_accessor display_name: String
+
+          attr_accessor icons: WhopSDK::Dispute::Payment::PaymentInstrument::Icons
+
+          attr_accessor installment_count: Integer?
+
+          attr_accessor payment_method_type: String
+
+          def initialize: (
+            display_name: String,
+            icons: WhopSDK::Dispute::Payment::PaymentInstrument::Icons,
+            installment_count: Integer?,
+            payment_method_type: String
+          ) -> void
+
+          def to_hash: -> {
+            display_name: String,
+            icons: WhopSDK::Dispute::Payment::PaymentInstrument::Icons,
+            installment_count: Integer?,
+            payment_method_type: String
+          }
+
+          type icons =
+            {
+              square: WhopSDK::Dispute::Payment::PaymentInstrument::Icons::Square
+            }
+
+          class Icons < WhopSDK::Internal::Type::BaseModel
+            attr_accessor square: WhopSDK::Dispute::Payment::PaymentInstrument::Icons::Square
+
+            def initialize: (
+              square: WhopSDK::Dispute::Payment::PaymentInstrument::Icons::Square
+            ) -> void
+
+            def to_hash: -> {
+              square: WhopSDK::Dispute::Payment::PaymentInstrument::Icons::Square
+            }
+
+            type square =
+              {
+                dark: WhopSDK::Dispute::Payment::PaymentInstrument::Icons::Square::Dark,
+                light: WhopSDK::Dispute::Payment::PaymentInstrument::Icons::Square::Light
+              }
+
+            class Square < WhopSDK::Internal::Type::BaseModel
+              attr_accessor dark: WhopSDK::Dispute::Payment::PaymentInstrument::Icons::Square::Dark
+
+              attr_accessor light: WhopSDK::Dispute::Payment::PaymentInstrument::Icons::Square::Light
+
+              def initialize: (
+                dark: WhopSDK::Dispute::Payment::PaymentInstrument::Icons::Square::Dark,
+                light: WhopSDK::Dispute::Payment::PaymentInstrument::Icons::Square::Light
+              ) -> void
+
+              def to_hash: -> {
+                dark: WhopSDK::Dispute::Payment::PaymentInstrument::Icons::Square::Dark,
+                light: WhopSDK::Dispute::Payment::PaymentInstrument::Icons::Square::Light
+              }
+
+              type dark = { svg: String }
+
+              class Dark < WhopSDK::Internal::Type::BaseModel
+                attr_accessor svg: String
+
+                def initialize: (svg: String) -> void
+
+                def to_hash: -> { svg: String }
+              end
+
+              type light = { svg: String }
+
+              class Light < WhopSDK::Internal::Type::BaseModel
+                attr_accessor svg: String
+
+                def initialize: (svg: String) -> void
+
+                def to_hash: -> { svg: String }
+              end
+            end
+          end
         end
 
         type user =

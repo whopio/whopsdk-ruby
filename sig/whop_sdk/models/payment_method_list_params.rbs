@@ -2,22 +2,22 @@ module WhopSDK
   module Models
     type payment_method_list_params =
       {
-        after: String?,
-        before: String?,
-        broken: bool?,
-        card_brands: ::Array[WhopSDK::Models::card_brands]?,
-        card_funding_types: ::Array[WhopSDK::Models::PaymentMethodListParams::card_funding_type]?,
-        company_id: String?,
-        created_after: Time?,
-        created_before: Time?,
-        direction: WhopSDK::Models::direction?,
-        expired: bool?,
-        first: Integer?,
-        future_usage: WhopSDK::Models::PaymentMethodListParams::future_usage?,
-        has_payer_document: bool?,
-        last: Integer?,
-        member_id: String?,
-        payment_method_types: ::Array[WhopSDK::Models::payment_method_types]?
+        after: String,
+        before: String,
+        broken: bool,
+        card_brands: ::Array[WhopSDK::Models::card_brands],
+        card_funding_types: ::Array[WhopSDK::Models::PaymentMethodListParams::card_funding_type],
+        company_id: String,
+        created_after: Time,
+        created_before: Time,
+        direction: WhopSDK::Models::direction,
+        expired: bool,
+        first: Integer,
+        future_usage: WhopSDK::Models::PaymentMethodListParams::future_usage,
+        has_payer_document: bool,
+        last: Integer,
+        member_id: String,
+        payment_method_types: ::Array[WhopSDK::Models::payment_method_types]
       }
       & WhopSDK::Internal::Type::request_parameters
 
@@ -25,75 +25,115 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      attr_accessor after: String?
+      attr_reader after: String?
 
-      attr_accessor before: String?
+      def after=: (String) -> String
 
-      attr_accessor broken: bool?
+      attr_reader before: String?
 
-      attr_accessor card_brands: ::Array[WhopSDK::Models::card_brands]?
+      def before=: (String) -> String
 
-      attr_accessor card_funding_types: ::Array[WhopSDK::Models::PaymentMethodListParams::card_funding_type]?
+      attr_reader broken: bool?
 
-      attr_accessor company_id: String?
+      def broken=: (bool) -> bool
 
-      attr_accessor created_after: Time?
+      attr_reader card_brands: ::Array[WhopSDK::Models::card_brands]?
 
-      attr_accessor created_before: Time?
+      def card_brands=: (
+        ::Array[WhopSDK::Models::card_brands]
+      ) -> ::Array[WhopSDK::Models::card_brands]
 
-      attr_accessor direction: WhopSDK::Models::direction?
+      attr_reader card_funding_types: ::Array[WhopSDK::Models::PaymentMethodListParams::card_funding_type]?
 
-      attr_accessor expired: bool?
+      def card_funding_types=: (
+        ::Array[WhopSDK::Models::PaymentMethodListParams::card_funding_type]
+      ) -> ::Array[WhopSDK::Models::PaymentMethodListParams::card_funding_type]
 
-      attr_accessor first: Integer?
+      attr_reader company_id: String?
 
-      attr_accessor future_usage: WhopSDK::Models::PaymentMethodListParams::future_usage?
+      def company_id=: (String) -> String
 
-      attr_accessor has_payer_document: bool?
+      attr_reader created_after: Time?
 
-      attr_accessor last: Integer?
+      def created_after=: (Time) -> Time
 
-      attr_accessor member_id: String?
+      attr_reader created_before: Time?
 
-      attr_accessor payment_method_types: ::Array[WhopSDK::Models::payment_method_types]?
+      def created_before=: (Time) -> Time
+
+      attr_reader direction: WhopSDK::Models::direction?
+
+      def direction=: (WhopSDK::Models::direction) -> WhopSDK::Models::direction
+
+      attr_reader expired: bool?
+
+      def expired=: (bool) -> bool
+
+      attr_reader first: Integer?
+
+      def first=: (Integer) -> Integer
+
+      attr_reader future_usage: WhopSDK::Models::PaymentMethodListParams::future_usage?
+
+      def future_usage=: (
+        WhopSDK::Models::PaymentMethodListParams::future_usage
+      ) -> WhopSDK::Models::PaymentMethodListParams::future_usage
+
+      attr_reader has_payer_document: bool?
+
+      def has_payer_document=: (bool) -> bool
+
+      attr_reader last: Integer?
+
+      def last=: (Integer) -> Integer
+
+      attr_reader member_id: String?
+
+      def member_id=: (String) -> String
+
+      attr_reader payment_method_types: ::Array[WhopSDK::Models::payment_method_types]?
+
+      def payment_method_types=: (
+        ::Array[WhopSDK::Models::payment_method_types]
+      ) -> ::Array[WhopSDK::Models::payment_method_types]
 
       def initialize: (
-        ?after: String?,
-        ?before: String?,
-        ?broken: bool?,
-        ?card_brands: ::Array[WhopSDK::Models::card_brands]?,
-        ?card_funding_types: ::Array[WhopSDK::Models::PaymentMethodListParams::card_funding_type]?,
-        ?company_id: String?,
-        ?created_after: Time?,
-        ?created_before: Time?,
-        ?direction: WhopSDK::Models::direction?,
-        ?expired: bool?,
-        ?first: Integer?,
-        ?future_usage: WhopSDK::Models::PaymentMethodListParams::future_usage?,
-        ?has_payer_document: bool?,
-        ?last: Integer?,
-        ?member_id: String?,
-        ?payment_method_types: ::Array[WhopSDK::Models::payment_method_types]?,
+        ?after: String,
+        ?before: String,
+        ?broken: bool,
+        ?card_brands: ::Array[WhopSDK::Models::card_brands],
+        ?card_funding_types: ::Array[WhopSDK::Models::PaymentMethodListParams::card_funding_type],
+        ?company_id: String,
+        ?created_after: Time,
+        ?created_before: Time,
+        ?direction: WhopSDK::Models::direction,
+        ?expired: bool,
+        ?first: Integer,
+        ?future_usage: WhopSDK::Models::PaymentMethodListParams::future_usage,
+        ?has_payer_document: bool,
+        ?last: Integer,
+        ?member_id: String,
+        ?payment_method_types: ::Array[WhopSDK::Models::payment_method_types],
         ?request_options: WhopSDK::request_opts
       ) -> void
 
       def to_hash: -> {
-        after: String?,
-        before: String?,
-        broken: bool?,
-        card_brands: ::Array[WhopSDK::Models::card_brands]?,
-        card_funding_types: ::Array[WhopSDK::Models::PaymentMethodListParams::card_funding_type]?,
-        company_id: String?,
-        created_after: Time?,
-        created_before: Time?,
-        direction: WhopSDK::Models::direction?,
-        expired: bool?,
-        first: Integer?,
-        future_usage: WhopSDK::Models::PaymentMethodListParams::future_usage?,
-        has_payer_document: bool?,
-        last: Integer?,
-        member_id: String?,
-        payment_method_types: ::Array[WhopSDK::Models::payment_method_types]?,
+        after: String,
+        before: String,
+        broken: bool,
+        card_brands: ::Array[WhopSDK::Models::card_brands],
+        card_funding_types: ::Array[WhopSDK::Models::PaymentMethodListParams::card_funding_type],
+        company_id: String,
+        created_after: Time,
+        created_before: Time,
+        direction: WhopSDK::Models::direction,
+        expired: bool,
+        first: Integer,
+        future_usage: WhopSDK::Models::PaymentMethodListParams::future_usage,
+        has_payer_document: bool,
+        last: Integer,
+        member_id: String,
+        payment_method_types: ::Array[WhopSDK::Models::payment_method_types],
         request_options: WhopSDK::RequestOptions
       }
 

@@ -1,7 +1,7 @@
 module WhopSDK
   module Models
     type authorized_user_delete_params =
-      { id: String, company_id: String? }
+      { id: String, company_id: String }
       & WhopSDK::Internal::Type::request_parameters
 
     class AuthorizedUserDeleteParams < WhopSDK::Internal::Type::BaseModel
@@ -10,17 +10,19 @@ module WhopSDK
 
       attr_accessor id: String
 
-      attr_accessor company_id: String?
+      attr_reader company_id: String?
+
+      def company_id=: (String) -> String
 
       def initialize: (
         id: String,
-        ?company_id: String?,
+        ?company_id: String,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
       def to_hash: -> {
         id: String,
-        company_id: String?,
+        company_id: String,
         request_options: WhopSDK::RequestOptions
       }
     end

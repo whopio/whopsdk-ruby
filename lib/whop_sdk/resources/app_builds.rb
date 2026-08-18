@@ -81,21 +81,21 @@ module WhopSDK
       #
       # @param app_id [String] The unique identifier of the app to list builds for.
       #
-      # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
+      # @param after [String] Returns the elements in the list that come after the specified cursor.
       #
-      # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
+      # @param before [String] Returns the elements in the list that come before the specified cursor.
       #
-      # @param created_after [Time, nil] Only return builds created after this timestamp.
+      # @param created_after [Time] Only return builds created after this timestamp.
       #
-      # @param created_before [Time, nil] Only return builds created before this timestamp.
+      # @param created_before [Time] Only return builds created before this timestamp.
       #
-      # @param first [Integer, nil] Returns the first _n_ elements from the list.
+      # @param first [Integer] Returns the first _n_ elements from the list.
       #
-      # @param last [Integer, nil] Returns the last _n_ elements from the list.
+      # @param last [Integer] Returns the last _n_ elements from the list.
       #
-      # @param platform [Symbol, WhopSDK::Models::AppBuildPlatforms, nil] The different platforms an app build can target.
+      # @param platform [Symbol, WhopSDK::Models::AppBuildPlatforms] Filter builds by target platform.
       #
-      # @param status [Symbol, WhopSDK::Models::AppBuildStatuses, nil] The different statuses an AppBuild can be in.
+      # @param status [Symbol, WhopSDK::Models::AppBuildStatuses] Filter builds by review status.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

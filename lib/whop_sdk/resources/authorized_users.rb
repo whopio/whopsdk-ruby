@@ -80,23 +80,23 @@ module WhopSDK
       #
       # @overload list(after: nil, before: nil, company_id: nil, created_after: nil, created_before: nil, first: nil, last: nil, role: nil, user_id: nil, request_options: {})
       #
-      # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
+      # @param after [String] Returns the elements in the list that come after the specified cursor.
       #
-      # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
+      # @param before [String] Returns the elements in the list that come before the specified cursor.
       #
-      # @param company_id [String, nil] The unique identifier of the company to list authorized users for.
+      # @param company_id [String] The unique identifier of the company to list authorized users for.
       #
-      # @param created_after [Time, nil] Only return authorized users created after this timestamp.
+      # @param created_after [Time] Only return authorized users created after this timestamp.
       #
-      # @param created_before [Time, nil] Only return authorized users created before this timestamp.
+      # @param created_before [Time] Only return authorized users created before this timestamp.
       #
-      # @param first [Integer, nil] Returns the first _n_ elements from the list.
+      # @param first [Integer] Returns the first _n_ elements from the list.
       #
-      # @param last [Integer, nil] Returns the last _n_ elements from the list.
+      # @param last [Integer] Returns the last _n_ elements from the list.
       #
-      # @param role [Symbol, WhopSDK::Models::AuthorizedUserRoles, nil] Possible roles an authorized user can have
+      # @param role [Symbol, WhopSDK::Models::AuthorizedUserRoles] Filter authorized users by their assigned role within the company.
       #
-      # @param user_id [String, nil] Filter results to a specific user to check if they are an authorized team member
+      # @param user_id [String] Filter results to a specific user to check if they are an authorized team member
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -129,7 +129,7 @@ module WhopSDK
       #
       # @param id [String] The ID of the authorized user or user to remove.
       #
-      # @param company_id [String, nil] The ID of the company the authorized user belongs to. Optional if the authorized
+      # @param company_id [String] The ID of the company the authorized user belongs to. Optional if the authorized
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

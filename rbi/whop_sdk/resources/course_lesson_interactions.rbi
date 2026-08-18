@@ -32,14 +32,14 @@ module WhopSDK
       # - `course_analytics:read`
       sig do
         params(
-          after: T.nilable(String),
-          before: T.nilable(String),
-          completed: T.nilable(T::Boolean),
-          course_id: T.nilable(String),
-          first: T.nilable(Integer),
-          last: T.nilable(Integer),
-          lesson_id: T.nilable(String),
-          user_id: T.nilable(String),
+          after: String,
+          before: String,
+          completed: T::Boolean,
+          course_id: String,
+          first: Integer,
+          last: Integer,
+          lesson_id: String,
+          user_id: String,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(
           WhopSDK::Internal::CursorPage[

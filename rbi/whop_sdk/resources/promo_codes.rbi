@@ -105,15 +105,15 @@ module WhopSDK
       sig do
         params(
           company_id: String,
-          after: T.nilable(String),
-          before: T.nilable(String),
-          created_after: T.nilable(Time),
-          created_before: T.nilable(Time),
-          first: T.nilable(Integer),
-          last: T.nilable(Integer),
-          plan_ids: T.nilable(T::Array[String]),
-          product_ids: T.nilable(T::Array[String]),
-          status: T.nilable(WhopSDK::PromoCodeStatus::OrSymbol),
+          after: String,
+          before: String,
+          created_after: Time,
+          created_before: Time,
+          first: Integer,
+          last: Integer,
+          plan_ids: T::Array[String],
+          product_ids: T::Array[String],
+          status: WhopSDK::PromoCodeStatus::OrSymbol,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(
           WhopSDK::Internal::CursorPage[WhopSDK::Models::PromoCodeListResponse]
@@ -138,7 +138,7 @@ module WhopSDK
         plan_ids: nil,
         # Filter to only promo codes scoped to these product identifiers.
         product_ids: nil,
-        # Statuses for promo codes
+        # Filter to only promo codes matching this status.
         status: nil,
         request_options: {}
       )

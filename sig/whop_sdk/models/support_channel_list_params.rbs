@@ -2,15 +2,15 @@ module WhopSDK
   module Models
     type support_channel_list_params =
       {
-        after: String?,
-        before: String?,
-        company_id: String?,
-        direction: WhopSDK::Models::direction?,
-        first: Integer?,
-        last: Integer?,
-        open_: bool?,
-        order: WhopSDK::Models::SupportChannelListParams::order?,
-        view: WhopSDK::Models::SupportChannelListParams::view?
+        after: String,
+        before: String,
+        company_id: String,
+        direction: WhopSDK::Models::direction,
+        first: Integer,
+        last: Integer,
+        open_: bool,
+        order: WhopSDK::Models::SupportChannelListParams::order,
+        view: WhopSDK::Models::SupportChannelListParams::view
       }
       & WhopSDK::Internal::Type::request_parameters
 
@@ -18,47 +18,69 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      attr_accessor after: String?
+      attr_reader after: String?
 
-      attr_accessor before: String?
+      def after=: (String) -> String
 
-      attr_accessor company_id: String?
+      attr_reader before: String?
 
-      attr_accessor direction: WhopSDK::Models::direction?
+      def before=: (String) -> String
 
-      attr_accessor first: Integer?
+      attr_reader company_id: String?
 
-      attr_accessor last: Integer?
+      def company_id=: (String) -> String
 
-      attr_accessor open_: bool?
+      attr_reader direction: WhopSDK::Models::direction?
 
-      attr_accessor order: WhopSDK::Models::SupportChannelListParams::order?
+      def direction=: (WhopSDK::Models::direction) -> WhopSDK::Models::direction
 
-      attr_accessor view: WhopSDK::Models::SupportChannelListParams::view?
+      attr_reader first: Integer?
+
+      def first=: (Integer) -> Integer
+
+      attr_reader last: Integer?
+
+      def last=: (Integer) -> Integer
+
+      attr_reader open_: bool?
+
+      def open_=: (bool) -> bool
+
+      attr_reader order: WhopSDK::Models::SupportChannelListParams::order?
+
+      def order=: (
+        WhopSDK::Models::SupportChannelListParams::order
+      ) -> WhopSDK::Models::SupportChannelListParams::order
+
+      attr_reader view: WhopSDK::Models::SupportChannelListParams::view?
+
+      def view=: (
+        WhopSDK::Models::SupportChannelListParams::view
+      ) -> WhopSDK::Models::SupportChannelListParams::view
 
       def initialize: (
-        ?after: String?,
-        ?before: String?,
-        ?company_id: String?,
-        ?direction: WhopSDK::Models::direction?,
-        ?first: Integer?,
-        ?last: Integer?,
-        ?open_: bool?,
-        ?order: WhopSDK::Models::SupportChannelListParams::order?,
-        ?view: WhopSDK::Models::SupportChannelListParams::view?,
+        ?after: String,
+        ?before: String,
+        ?company_id: String,
+        ?direction: WhopSDK::Models::direction,
+        ?first: Integer,
+        ?last: Integer,
+        ?open_: bool,
+        ?order: WhopSDK::Models::SupportChannelListParams::order,
+        ?view: WhopSDK::Models::SupportChannelListParams::view,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
       def to_hash: -> {
-        after: String?,
-        before: String?,
-        company_id: String?,
-        direction: WhopSDK::Models::direction?,
-        first: Integer?,
-        last: Integer?,
-        open_: bool?,
-        order: WhopSDK::Models::SupportChannelListParams::order?,
-        view: WhopSDK::Models::SupportChannelListParams::view?,
+        after: String,
+        before: String,
+        company_id: String,
+        direction: WhopSDK::Models::direction,
+        first: Integer,
+        last: Integer,
+        open_: bool,
+        order: WhopSDK::Models::SupportChannelListParams::order,
+        view: WhopSDK::Models::SupportChannelListParams::view,
         request_options: WhopSDK::RequestOptions
       }
 

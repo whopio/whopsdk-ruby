@@ -111,21 +111,21 @@ module WhopSDK
       #
       # @param company_id [String] The unique identifier of the company to list experiences for.
       #
-      # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
+      # @param after [String] Returns the elements in the list that come after the specified cursor.
       #
-      # @param app_id [String, nil] Filter to only experiences powered by this app identifier.
+      # @param app_id [String] Filter to only experiences powered by this app identifier.
       #
-      # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
+      # @param before [String] Returns the elements in the list that come before the specified cursor.
       #
-      # @param created_after [Time, nil] Only return experiences created after this timestamp.
+      # @param created_after [Time] Only return experiences created after this timestamp.
       #
-      # @param created_before [Time, nil] Only return experiences created before this timestamp.
+      # @param created_before [Time] Only return experiences created before this timestamp.
       #
-      # @param first [Integer, nil] Returns the first _n_ elements from the list.
+      # @param first [Integer] Returns the first _n_ elements from the list.
       #
-      # @param last [Integer, nil] Returns the last _n_ elements from the list.
+      # @param last [Integer] Returns the last _n_ elements from the list.
       #
-      # @param product_id [String, nil] Filter to only experiences attached to this product identifier.
+      # @param product_id [String] Filter to only experiences attached to this product identifier.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

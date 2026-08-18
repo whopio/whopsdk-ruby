@@ -1,7 +1,7 @@
 module WhopSDK
   module Models
     type reaction_delete_params =
-      { id: String, emoji: String? }
+      { id: String, emoji: String }
       & WhopSDK::Internal::Type::request_parameters
 
     class ReactionDeleteParams < WhopSDK::Internal::Type::BaseModel
@@ -10,17 +10,19 @@ module WhopSDK
 
       attr_accessor id: String
 
-      attr_accessor emoji: String?
+      attr_reader emoji: String?
+
+      def emoji=: (String) -> String
 
       def initialize: (
         id: String,
-        ?emoji: String?,
+        ?emoji: String,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
       def to_hash: -> {
         id: String,
-        emoji: String?,
+        emoji: String,
         request_options: WhopSDK::RequestOptions
       }
     end

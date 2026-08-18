@@ -1,7 +1,7 @@
 module WhopSDK
   module Models
     type payment_method_retrieve_params =
-      { id: String, company_id: String?, member_id: String? }
+      { id: String, company_id: String, member_id: String }
       & WhopSDK::Internal::Type::request_parameters
 
     class PaymentMethodRetrieveParams < WhopSDK::Internal::Type::BaseModel
@@ -10,21 +10,25 @@ module WhopSDK
 
       attr_accessor id: String
 
-      attr_accessor company_id: String?
+      attr_reader company_id: String?
 
-      attr_accessor member_id: String?
+      def company_id=: (String) -> String
+
+      attr_reader member_id: String?
+
+      def member_id=: (String) -> String
 
       def initialize: (
         id: String,
-        ?company_id: String?,
-        ?member_id: String?,
+        ?company_id: String,
+        ?member_id: String,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
       def to_hash: -> {
         id: String,
-        company_id: String?,
-        member_id: String?,
+        company_id: String,
+        member_id: String,
         request_options: WhopSDK::RequestOptions
       }
     end

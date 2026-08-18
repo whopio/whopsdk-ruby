@@ -70,10 +70,10 @@ module WhopSDK
       sig do
         params(
           resource_id: String,
-          after: T.nilable(String),
-          before: T.nilable(String),
-          first: T.nilable(Integer),
-          last: T.nilable(Integer),
+          after: String,
+          before: String,
+          first: Integer,
+          last: Integer,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(
           WhopSDK::Internal::CursorPage[WhopSDK::Models::ReactionListResponse]
@@ -107,7 +107,7 @@ module WhopSDK
       sig do
         params(
           id: String,
-          emoji: T.nilable(String),
+          emoji: String,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T::Boolean)
       end

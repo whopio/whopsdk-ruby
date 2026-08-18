@@ -17,62 +17,95 @@ module WhopSDK
 
       # Returns the elements in the list that come after the specified cursor.
       sig { returns(T.nilable(String)) }
-      attr_accessor :after
+      attr_reader :after
+
+      sig { params(after: String).void }
+      attr_writer :after
 
       # Returns the elements in the list that come before the specified cursor.
       sig { returns(T.nilable(String)) }
-      attr_accessor :before
+      attr_reader :before
+
+      sig { params(before: String).void }
+      attr_writer :before
 
       # Only return entries created after this timestamp.
       sig { returns(T.nilable(Time)) }
-      attr_accessor :created_after
+      attr_reader :created_after
+
+      sig { params(created_after: Time).void }
+      attr_writer :created_after
 
       # Only return entries created before this timestamp.
       sig { returns(T.nilable(Time)) }
-      attr_accessor :created_before
+      attr_reader :created_before
 
-      # The direction of the sort.
+      sig { params(created_before: Time).void }
+      attr_writer :created_before
+
+      # The sort direction for results. Defaults to descending.
       sig { returns(T.nilable(WhopSDK::Direction::OrSymbol)) }
-      attr_accessor :direction
+      attr_reader :direction
+
+      sig { params(direction: WhopSDK::Direction::OrSymbol).void }
+      attr_writer :direction
 
       # Returns the first _n_ elements from the list.
       sig { returns(T.nilable(Integer)) }
-      attr_accessor :first
+      attr_reader :first
+
+      sig { params(first: Integer).void }
+      attr_writer :first
 
       # Returns the last _n_ elements from the list.
       sig { returns(T.nilable(Integer)) }
-      attr_accessor :last
+      attr_reader :last
 
-      # Which columns can be used to sort.
+      sig { params(last: Integer).void }
+      attr_writer :last
+
+      # The column to sort waitlist entries by. Defaults to creation date.
       sig { returns(T.nilable(WhopSDK::EntryListParams::Order::OrSymbol)) }
-      attr_accessor :order
+      attr_reader :order
+
+      sig { params(order: WhopSDK::EntryListParams::Order::OrSymbol).void }
+      attr_writer :order
 
       # Filter entries to only those for specific plans.
       sig { returns(T.nilable(T::Array[String])) }
-      attr_accessor :plan_ids
+      attr_reader :plan_ids
+
+      sig { params(plan_ids: T::Array[String]).void }
+      attr_writer :plan_ids
 
       # Filter entries to only those for specific products.
       sig { returns(T.nilable(T::Array[String])) }
-      attr_accessor :product_ids
+      attr_reader :product_ids
+
+      sig { params(product_ids: T::Array[String]).void }
+      attr_writer :product_ids
 
       # Filter entries by their current status.
       sig { returns(T.nilable(T::Array[WhopSDK::EntryStatus::OrSymbol])) }
-      attr_accessor :statuses
+      attr_reader :statuses
+
+      sig { params(statuses: T::Array[WhopSDK::EntryStatus::OrSymbol]).void }
+      attr_writer :statuses
 
       sig do
         params(
           company_id: String,
-          after: T.nilable(String),
-          before: T.nilable(String),
-          created_after: T.nilable(Time),
-          created_before: T.nilable(Time),
-          direction: T.nilable(WhopSDK::Direction::OrSymbol),
-          first: T.nilable(Integer),
-          last: T.nilable(Integer),
-          order: T.nilable(WhopSDK::EntryListParams::Order::OrSymbol),
-          plan_ids: T.nilable(T::Array[String]),
-          product_ids: T.nilable(T::Array[String]),
-          statuses: T.nilable(T::Array[WhopSDK::EntryStatus::OrSymbol]),
+          after: String,
+          before: String,
+          created_after: Time,
+          created_before: Time,
+          direction: WhopSDK::Direction::OrSymbol,
+          first: Integer,
+          last: Integer,
+          order: WhopSDK::EntryListParams::Order::OrSymbol,
+          plan_ids: T::Array[String],
+          product_ids: T::Array[String],
+          statuses: T::Array[WhopSDK::EntryStatus::OrSymbol],
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -87,13 +120,13 @@ module WhopSDK
         created_after: nil,
         # Only return entries created before this timestamp.
         created_before: nil,
-        # The direction of the sort.
+        # The sort direction for results. Defaults to descending.
         direction: nil,
         # Returns the first _n_ elements from the list.
         first: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
-        # Which columns can be used to sort.
+        # The column to sort waitlist entries by. Defaults to creation date.
         order: nil,
         # Filter entries to only those for specific plans.
         plan_ids: nil,
@@ -109,17 +142,17 @@ module WhopSDK
         override.returns(
           {
             company_id: String,
-            after: T.nilable(String),
-            before: T.nilable(String),
-            created_after: T.nilable(Time),
-            created_before: T.nilable(Time),
-            direction: T.nilable(WhopSDK::Direction::OrSymbol),
-            first: T.nilable(Integer),
-            last: T.nilable(Integer),
-            order: T.nilable(WhopSDK::EntryListParams::Order::OrSymbol),
-            plan_ids: T.nilable(T::Array[String]),
-            product_ids: T.nilable(T::Array[String]),
-            statuses: T.nilable(T::Array[WhopSDK::EntryStatus::OrSymbol]),
+            after: String,
+            before: String,
+            created_after: Time,
+            created_before: Time,
+            direction: WhopSDK::Direction::OrSymbol,
+            first: Integer,
+            last: Integer,
+            order: WhopSDK::EntryListParams::Order::OrSymbol,
+            plan_ids: T::Array[String],
+            product_ids: T::Array[String],
+            statuses: T::Array[WhopSDK::EntryStatus::OrSymbol],
             request_options: WhopSDK::RequestOptions
           }
         )
@@ -127,7 +160,7 @@ module WhopSDK
       def to_hash
       end
 
-      # Which columns can be used to sort.
+      # The column to sort waitlist entries by. Defaults to creation date.
       module Order
         extend WhopSDK::Internal::Type::Enum
 

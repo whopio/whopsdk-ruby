@@ -13,106 +13,167 @@ module WhopSDK
 
       # Returns the elements in the list that come after the specified cursor.
       sig { returns(T.nilable(String)) }
-      attr_accessor :after
+      attr_reader :after
+
+      sig { params(after: String).void }
+      attr_writer :after
 
       # Returns the elements in the list that come before the specified cursor.
       sig { returns(T.nilable(String)) }
-      attr_accessor :before
+      attr_reader :before
+
+      sig { params(before: String).void }
+      attr_writer :before
 
       # Filter to only memberships matching these cancellation reasons.
       sig { returns(T.nilable(T::Array[WhopSDK::CancelOptions::OrSymbol])) }
-      attr_accessor :cancel_options
+      attr_reader :cancel_options
 
-      # The state of a membership after a customer provides a cancelation reason.
+      sig do
+        params(cancel_options: T::Array[WhopSDK::CancelOptions::OrSymbol]).void
+      end
+      attr_writer :cancel_options
+
+      # Filter memberships by whether the customer is canceling, left, or was won back.
       sig do
         returns(
           T.nilable(WhopSDK::MembershipListParams::CancelationStatus::OrSymbol)
         )
       end
-      attr_accessor :cancelation_status
+      attr_reader :cancelation_status
+
+      sig do
+        params(
+          cancelation_status:
+            WhopSDK::MembershipListParams::CancelationStatus::OrSymbol
+        ).void
+      end
+      attr_writer :cancelation_status
 
       # The unique identifier of the company to list memberships for. Required when
       # using an API key.
       sig { returns(T.nilable(String)) }
-      attr_accessor :company_id
+      attr_reader :company_id
+
+      sig { params(company_id: String).void }
+      attr_writer :company_id
 
       # Only return memberships created after this timestamp.
       sig { returns(T.nilable(Time)) }
-      attr_accessor :created_after
+      attr_reader :created_after
+
+      sig { params(created_after: Time).void }
+      attr_writer :created_after
 
       # Only return memberships created before this timestamp.
       sig { returns(T.nilable(Time)) }
-      attr_accessor :created_before
+      attr_reader :created_before
 
-      # The direction of the sort.
+      sig { params(created_before: Time).void }
+      attr_writer :created_before
+
+      # The sort direction for results. Defaults to descending.
       sig { returns(T.nilable(WhopSDK::Direction::OrSymbol)) }
-      attr_accessor :direction
+      attr_reader :direction
+
+      sig { params(direction: WhopSDK::Direction::OrSymbol).void }
+      attr_writer :direction
 
       # Returns the first _n_ elements from the list.
       sig { returns(T.nilable(Integer)) }
-      attr_accessor :first
+      attr_reader :first
+
+      sig { params(first: Integer).void }
+      attr_writer :first
 
       # Filter memberships by whether they have a structured or free-text cancellation
       # reason.
       sig { returns(T.nilable(T::Boolean)) }
-      attr_accessor :has_cancelation_reason
+      attr_reader :has_cancelation_reason
+
+      sig { params(has_cancelation_reason: T::Boolean).void }
+      attr_writer :has_cancelation_reason
 
       # When filtering by the other cancellation option, also include memberships that
       # only have a free-text cancellation reason.
       sig { returns(T.nilable(T::Boolean)) }
-      attr_accessor :include_text_only_cancelation_reasons
+      attr_reader :include_text_only_cancelation_reasons
+
+      sig { params(include_text_only_cancelation_reasons: T::Boolean).void }
+      attr_writer :include_text_only_cancelation_reasons
 
       # Returns the last _n_ elements from the list.
       sig { returns(T.nilable(Integer)) }
-      attr_accessor :last
+      attr_reader :last
 
-      # Which columns can be used to sort.
+      sig { params(last: Integer).void }
+      attr_writer :last
+
+      # The field to sort results by. Null uses the default sort order.
       sig { returns(T.nilable(WhopSDK::MembershipListParams::Order::OrSymbol)) }
-      attr_accessor :order
+      attr_reader :order
+
+      sig { params(order: WhopSDK::MembershipListParams::Order::OrSymbol).void }
+      attr_writer :order
 
       # Filter to only memberships belonging to these plan identifiers.
       sig { returns(T.nilable(T::Array[String])) }
-      attr_accessor :plan_ids
+      attr_reader :plan_ids
+
+      sig { params(plan_ids: T::Array[String]).void }
+      attr_writer :plan_ids
 
       # Filter to only memberships belonging to these product identifiers.
       sig { returns(T.nilable(T::Array[String])) }
-      attr_accessor :product_ids
+      attr_reader :product_ids
+
+      sig { params(product_ids: T::Array[String]).void }
+      attr_writer :product_ids
 
       # Filter to only memberships that used these promo code identifiers.
       sig { returns(T.nilable(T::Array[String])) }
-      attr_accessor :promo_code_ids
+      attr_reader :promo_code_ids
+
+      sig { params(promo_code_ids: T::Array[String]).void }
+      attr_writer :promo_code_ids
 
       # Filter to only memberships matching these statuses.
       sig { returns(T.nilable(T::Array[WhopSDK::MembershipStatus::OrSymbol])) }
-      attr_accessor :statuses
+      attr_reader :statuses
+
+      sig do
+        params(statuses: T::Array[WhopSDK::MembershipStatus::OrSymbol]).void
+      end
+      attr_writer :statuses
 
       # Filter to only memberships belonging to these user identifiers.
       sig { returns(T.nilable(T::Array[String])) }
-      attr_accessor :user_ids
+      attr_reader :user_ids
+
+      sig { params(user_ids: T::Array[String]).void }
+      attr_writer :user_ids
 
       sig do
         params(
-          after: T.nilable(String),
-          before: T.nilable(String),
-          cancel_options: T.nilable(T::Array[WhopSDK::CancelOptions::OrSymbol]),
+          after: String,
+          before: String,
+          cancel_options: T::Array[WhopSDK::CancelOptions::OrSymbol],
           cancelation_status:
-            T.nilable(
-              WhopSDK::MembershipListParams::CancelationStatus::OrSymbol
-            ),
-          company_id: T.nilable(String),
-          created_after: T.nilable(Time),
-          created_before: T.nilable(Time),
-          direction: T.nilable(WhopSDK::Direction::OrSymbol),
-          first: T.nilable(Integer),
-          has_cancelation_reason: T.nilable(T::Boolean),
-          include_text_only_cancelation_reasons: T.nilable(T::Boolean),
-          last: T.nilable(Integer),
-          order: T.nilable(WhopSDK::MembershipListParams::Order::OrSymbol),
-          plan_ids: T.nilable(T::Array[String]),
-          product_ids: T.nilable(T::Array[String]),
-          promo_code_ids: T.nilable(T::Array[String]),
-          statuses: T.nilable(T::Array[WhopSDK::MembershipStatus::OrSymbol]),
-          user_ids: T.nilable(T::Array[String]),
+            WhopSDK::MembershipListParams::CancelationStatus::OrSymbol,
+          company_id: String,
+          created_after: Time,
+          created_before: Time,
+          direction: WhopSDK::Direction::OrSymbol,
+          first: Integer,
+          has_cancelation_reason: T::Boolean,
+          include_text_only_cancelation_reasons: T::Boolean,
+          last: Integer,
+          order: WhopSDK::MembershipListParams::Order::OrSymbol,
+          plan_ids: T::Array[String],
+          product_ids: T::Array[String],
+          promo_code_ids: T::Array[String],
+          statuses: T::Array[WhopSDK::MembershipStatus::OrSymbol],
+          user_ids: T::Array[String],
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -123,7 +184,7 @@ module WhopSDK
         before: nil,
         # Filter to only memberships matching these cancellation reasons.
         cancel_options: nil,
-        # The state of a membership after a customer provides a cancelation reason.
+        # Filter memberships by whether the customer is canceling, left, or was won back.
         cancelation_status: nil,
         # The unique identifier of the company to list memberships for. Required when
         # using an API key.
@@ -132,7 +193,7 @@ module WhopSDK
         created_after: nil,
         # Only return memberships created before this timestamp.
         created_before: nil,
-        # The direction of the sort.
+        # The sort direction for results. Defaults to descending.
         direction: nil,
         # Returns the first _n_ elements from the list.
         first: nil,
@@ -144,7 +205,7 @@ module WhopSDK
         include_text_only_cancelation_reasons: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
-        # Which columns can be used to sort.
+        # The field to sort results by. Null uses the default sort order.
         order: nil,
         # Filter to only memberships belonging to these plan identifiers.
         plan_ids: nil,
@@ -163,28 +224,25 @@ module WhopSDK
       sig do
         override.returns(
           {
-            after: T.nilable(String),
-            before: T.nilable(String),
-            cancel_options:
-              T.nilable(T::Array[WhopSDK::CancelOptions::OrSymbol]),
+            after: String,
+            before: String,
+            cancel_options: T::Array[WhopSDK::CancelOptions::OrSymbol],
             cancelation_status:
-              T.nilable(
-                WhopSDK::MembershipListParams::CancelationStatus::OrSymbol
-              ),
-            company_id: T.nilable(String),
-            created_after: T.nilable(Time),
-            created_before: T.nilable(Time),
-            direction: T.nilable(WhopSDK::Direction::OrSymbol),
-            first: T.nilable(Integer),
-            has_cancelation_reason: T.nilable(T::Boolean),
-            include_text_only_cancelation_reasons: T.nilable(T::Boolean),
-            last: T.nilable(Integer),
-            order: T.nilable(WhopSDK::MembershipListParams::Order::OrSymbol),
-            plan_ids: T.nilable(T::Array[String]),
-            product_ids: T.nilable(T::Array[String]),
-            promo_code_ids: T.nilable(T::Array[String]),
-            statuses: T.nilable(T::Array[WhopSDK::MembershipStatus::OrSymbol]),
-            user_ids: T.nilable(T::Array[String]),
+              WhopSDK::MembershipListParams::CancelationStatus::OrSymbol,
+            company_id: String,
+            created_after: Time,
+            created_before: Time,
+            direction: WhopSDK::Direction::OrSymbol,
+            first: Integer,
+            has_cancelation_reason: T::Boolean,
+            include_text_only_cancelation_reasons: T::Boolean,
+            last: Integer,
+            order: WhopSDK::MembershipListParams::Order::OrSymbol,
+            plan_ids: T::Array[String],
+            product_ids: T::Array[String],
+            promo_code_ids: T::Array[String],
+            statuses: T::Array[WhopSDK::MembershipStatus::OrSymbol],
+            user_ids: T::Array[String],
             request_options: WhopSDK::RequestOptions
           }
         )
@@ -192,7 +250,7 @@ module WhopSDK
       def to_hash
       end
 
-      # The state of a membership after a customer provides a cancelation reason.
+      # Filter memberships by whether the customer is canceling, left, or was won back.
       module CancelationStatus
         extend WhopSDK::Internal::Type::Enum
 
@@ -229,7 +287,7 @@ module WhopSDK
         end
       end
 
-      # Which columns can be used to sort.
+      # The field to sort results by. Null uses the default sort order.
       module Order
         extend WhopSDK::Internal::Type::Enum
 

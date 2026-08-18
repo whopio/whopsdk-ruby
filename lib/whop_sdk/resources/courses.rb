@@ -131,17 +131,17 @@ module WhopSDK
       #
       # @overload list(after: nil, before: nil, company_id: nil, experience_id: nil, first: nil, last: nil, request_options: {})
       #
-      # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
+      # @param after [String] Returns the elements in the list that come after the specified cursor.
       #
-      # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
+      # @param before [String] Returns the elements in the list that come before the specified cursor.
       #
-      # @param company_id [String, nil] The unique identifier of the company to list courses for.
+      # @param company_id [String] The unique identifier of the company to list courses for.
       #
-      # @param experience_id [String, nil] The unique identifier of the experience to list courses for.
+      # @param experience_id [String] The unique identifier of the experience to list courses for.
       #
-      # @param first [Integer, nil] Returns the first _n_ elements from the list.
+      # @param first [Integer] Returns the first _n_ elements from the list.
       #
-      # @param last [Integer, nil] Returns the last _n_ elements from the list.
+      # @param last [Integer] Returns the last _n_ elements from the list.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

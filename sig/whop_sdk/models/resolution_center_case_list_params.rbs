@@ -2,15 +2,15 @@ module WhopSDK
   module Models
     type resolution_center_case_list_params =
       {
-        after: String?,
-        before: String?,
-        company_id: String?,
-        created_after: Time?,
-        created_before: Time?,
-        direction: WhopSDK::Models::direction?,
-        first: Integer?,
-        last: Integer?,
-        statuses: ::Array[WhopSDK::Models::resolution_center_case_status]?
+        after: String,
+        before: String,
+        company_id: String,
+        created_after: Time,
+        created_before: Time,
+        direction: WhopSDK::Models::direction,
+        first: Integer,
+        last: Integer,
+        statuses: ::Array[WhopSDK::Models::resolution_center_case_status]
       }
       & WhopSDK::Internal::Type::request_parameters
 
@@ -18,47 +18,67 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      attr_accessor after: String?
+      attr_reader after: String?
 
-      attr_accessor before: String?
+      def after=: (String) -> String
 
-      attr_accessor company_id: String?
+      attr_reader before: String?
 
-      attr_accessor created_after: Time?
+      def before=: (String) -> String
 
-      attr_accessor created_before: Time?
+      attr_reader company_id: String?
 
-      attr_accessor direction: WhopSDK::Models::direction?
+      def company_id=: (String) -> String
 
-      attr_accessor first: Integer?
+      attr_reader created_after: Time?
 
-      attr_accessor last: Integer?
+      def created_after=: (Time) -> Time
 
-      attr_accessor statuses: ::Array[WhopSDK::Models::resolution_center_case_status]?
+      attr_reader created_before: Time?
+
+      def created_before=: (Time) -> Time
+
+      attr_reader direction: WhopSDK::Models::direction?
+
+      def direction=: (WhopSDK::Models::direction) -> WhopSDK::Models::direction
+
+      attr_reader first: Integer?
+
+      def first=: (Integer) -> Integer
+
+      attr_reader last: Integer?
+
+      def last=: (Integer) -> Integer
+
+      attr_reader statuses: ::Array[WhopSDK::Models::resolution_center_case_status]?
+
+      def statuses=: (
+        ::Array[WhopSDK::Models::resolution_center_case_status]
+      ) -> ::Array[WhopSDK::Models::resolution_center_case_status]
 
       def initialize: (
-        ?after: String?,
-        ?before: String?,
-        ?company_id: String?,
-        ?created_after: Time?,
-        ?created_before: Time?,
-        ?direction: WhopSDK::Models::direction?,
-        ?first: Integer?,
-        ?last: Integer?,
-        ?statuses: ::Array[WhopSDK::Models::resolution_center_case_status]?,
+        ?after: String,
+        ?before: String,
+        ?company_id: String,
+        ?created_after: Time,
+        ?created_before: Time,
+        ?direction: WhopSDK::Models::direction,
+        ?first: Integer,
+        ?last: Integer,
+        ?statuses: ::Array[WhopSDK::Models::resolution_center_case_status],
         ?request_options: WhopSDK::request_opts
       ) -> void
 
       def to_hash: -> {
-        after: String?,
-        before: String?,
-        company_id: String?,
-        created_after: Time?,
-        created_before: Time?,
-        direction: WhopSDK::Models::direction?,
-        first: Integer?,
-        last: Integer?,
-        statuses: ::Array[WhopSDK::Models::resolution_center_case_status]?,
+        after: String,
+        before: String,
+        company_id: String,
+        created_after: Time,
+        created_before: Time,
+        direction: WhopSDK::Models::direction,
+        first: Integer,
+        last: Integer,
+        statuses: ::Array[WhopSDK::Models::resolution_center_case_status],
         request_options: WhopSDK::RequestOptions
       }
     end

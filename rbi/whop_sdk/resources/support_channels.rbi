@@ -60,15 +60,15 @@ module WhopSDK
       # - `support_chat:read`
       sig do
         params(
-          after: T.nilable(String),
-          before: T.nilable(String),
-          company_id: T.nilable(String),
-          direction: T.nilable(WhopSDK::Direction::OrSymbol),
-          first: T.nilable(Integer),
-          last: T.nilable(Integer),
-          open_: T.nilable(T::Boolean),
-          order: T.nilable(WhopSDK::SupportChannelListParams::Order::OrSymbol),
-          view: T.nilable(WhopSDK::SupportChannelListParams::View::OrSymbol),
+          after: String,
+          before: String,
+          company_id: String,
+          direction: WhopSDK::Direction::OrSymbol,
+          first: Integer,
+          last: Integer,
+          open_: T::Boolean,
+          order: WhopSDK::SupportChannelListParams::Order::OrSymbol,
+          view: WhopSDK::SupportChannelListParams::View::OrSymbol,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(
           WhopSDK::Internal::CursorPage[
@@ -85,7 +85,8 @@ module WhopSDK
         # channels of child companies. When omitted, returns support channels across all
         # companies the user has access to.
         company_id: nil,
-        # The direction of the sort.
+        # The sort direction for the results. Use 'asc' for oldest first or 'desc' for
+        # newest first.
         direction: nil,
         # Returns the first _n_ elements from the list.
         first: nil,
@@ -94,9 +95,12 @@ module WhopSDK
         # Whether to filter by open or resolved support channels. Set to true to only
         # return channels awaiting a response, or false for resolved channels.
         open_: nil,
-        # Sort options for message channels
+        # The field to sort the support channels by, such as creation date or last message
+        # time.
         order: nil,
-        # The perspective to filter support channels by.
+        # Filter support channels by the authenticated user's role. Defaults to admin.
+        # When the caller is a company API key (no user), only admin-visible channels are
+        # returned.
         view: nil,
         request_options: {}
       )

@@ -26,11 +26,11 @@ module WhopSDK
 
       def list: (
         channel_id: String,
-        ?after: String?,
-        ?before: String?,
-        ?direction: WhopSDK::Models::direction?,
-        ?first: Integer?,
-        ?last: Integer?,
+        ?after: String,
+        ?before: String,
+        ?direction: WhopSDK::Models::direction,
+        ?first: Integer,
+        ?last: Integer,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::MessageListResponse]
 

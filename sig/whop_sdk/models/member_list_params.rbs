@@ -2,23 +2,23 @@ module WhopSDK
   module Models
     type member_list_params =
       {
-        access_level: WhopSDK::Models::access_level?,
-        after: String?,
-        before: String?,
-        company_id: String?,
-        created_after: Time?,
-        created_before: Time?,
-        direction: WhopSDK::Models::direction?,
-        first: Integer?,
-        last: Integer?,
-        most_recent_actions: ::Array[WhopSDK::Models::member_most_recent_actions]?,
-        order: WhopSDK::Models::MemberListParams::order?,
-        plan_ids: ::Array[String]?,
-        product_ids: ::Array[String]?,
-        promo_code_ids: ::Array[String]?,
-        query: String?,
-        statuses: ::Array[WhopSDK::Models::member_statuses]?,
-        user_ids: ::Array[String]?
+        access_level: WhopSDK::Models::access_level,
+        after: String,
+        before: String,
+        company_id: String,
+        created_after: Time,
+        created_before: Time,
+        direction: WhopSDK::Models::direction,
+        first: Integer,
+        last: Integer,
+        most_recent_actions: ::Array[WhopSDK::Models::member_most_recent_actions],
+        order: WhopSDK::Models::MemberListParams::order,
+        plan_ids: ::Array[String],
+        product_ids: ::Array[String],
+        promo_code_ids: ::Array[String],
+        query: String,
+        statuses: ::Array[WhopSDK::Models::member_statuses],
+        user_ids: ::Array[String]
       }
       & WhopSDK::Internal::Type::request_parameters
 
@@ -26,79 +26,121 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      attr_accessor access_level: WhopSDK::Models::access_level?
+      attr_reader access_level: WhopSDK::Models::access_level?
 
-      attr_accessor after: String?
+      def access_level=: (
+        WhopSDK::Models::access_level
+      ) -> WhopSDK::Models::access_level
 
-      attr_accessor before: String?
+      attr_reader after: String?
 
-      attr_accessor company_id: String?
+      def after=: (String) -> String
 
-      attr_accessor created_after: Time?
+      attr_reader before: String?
 
-      attr_accessor created_before: Time?
+      def before=: (String) -> String
 
-      attr_accessor direction: WhopSDK::Models::direction?
+      attr_reader company_id: String?
 
-      attr_accessor first: Integer?
+      def company_id=: (String) -> String
 
-      attr_accessor last: Integer?
+      attr_reader created_after: Time?
 
-      attr_accessor most_recent_actions: ::Array[WhopSDK::Models::member_most_recent_actions]?
+      def created_after=: (Time) -> Time
 
-      attr_accessor order: WhopSDK::Models::MemberListParams::order?
+      attr_reader created_before: Time?
 
-      attr_accessor plan_ids: ::Array[String]?
+      def created_before=: (Time) -> Time
 
-      attr_accessor product_ids: ::Array[String]?
+      attr_reader direction: WhopSDK::Models::direction?
 
-      attr_accessor promo_code_ids: ::Array[String]?
+      def direction=: (WhopSDK::Models::direction) -> WhopSDK::Models::direction
 
-      attr_accessor query: String?
+      attr_reader first: Integer?
 
-      attr_accessor statuses: ::Array[WhopSDK::Models::member_statuses]?
+      def first=: (Integer) -> Integer
 
-      attr_accessor user_ids: ::Array[String]?
+      attr_reader last: Integer?
+
+      def last=: (Integer) -> Integer
+
+      attr_reader most_recent_actions: ::Array[WhopSDK::Models::member_most_recent_actions]?
+
+      def most_recent_actions=: (
+        ::Array[WhopSDK::Models::member_most_recent_actions]
+      ) -> ::Array[WhopSDK::Models::member_most_recent_actions]
+
+      attr_reader order: WhopSDK::Models::MemberListParams::order?
+
+      def order=: (
+        WhopSDK::Models::MemberListParams::order
+      ) -> WhopSDK::Models::MemberListParams::order
+
+      attr_reader plan_ids: ::Array[String]?
+
+      def plan_ids=: (::Array[String]) -> ::Array[String]
+
+      attr_reader product_ids: ::Array[String]?
+
+      def product_ids=: (::Array[String]) -> ::Array[String]
+
+      attr_reader promo_code_ids: ::Array[String]?
+
+      def promo_code_ids=: (::Array[String]) -> ::Array[String]
+
+      attr_reader query: String?
+
+      def query=: (String) -> String
+
+      attr_reader statuses: ::Array[WhopSDK::Models::member_statuses]?
+
+      def statuses=: (
+        ::Array[WhopSDK::Models::member_statuses]
+      ) -> ::Array[WhopSDK::Models::member_statuses]
+
+      attr_reader user_ids: ::Array[String]?
+
+      def user_ids=: (::Array[String]) -> ::Array[String]
 
       def initialize: (
-        ?access_level: WhopSDK::Models::access_level?,
-        ?after: String?,
-        ?before: String?,
-        ?company_id: String?,
-        ?created_after: Time?,
-        ?created_before: Time?,
-        ?direction: WhopSDK::Models::direction?,
-        ?first: Integer?,
-        ?last: Integer?,
-        ?most_recent_actions: ::Array[WhopSDK::Models::member_most_recent_actions]?,
-        ?order: WhopSDK::Models::MemberListParams::order?,
-        ?plan_ids: ::Array[String]?,
-        ?product_ids: ::Array[String]?,
-        ?promo_code_ids: ::Array[String]?,
-        ?query: String?,
-        ?statuses: ::Array[WhopSDK::Models::member_statuses]?,
-        ?user_ids: ::Array[String]?,
+        ?access_level: WhopSDK::Models::access_level,
+        ?after: String,
+        ?before: String,
+        ?company_id: String,
+        ?created_after: Time,
+        ?created_before: Time,
+        ?direction: WhopSDK::Models::direction,
+        ?first: Integer,
+        ?last: Integer,
+        ?most_recent_actions: ::Array[WhopSDK::Models::member_most_recent_actions],
+        ?order: WhopSDK::Models::MemberListParams::order,
+        ?plan_ids: ::Array[String],
+        ?product_ids: ::Array[String],
+        ?promo_code_ids: ::Array[String],
+        ?query: String,
+        ?statuses: ::Array[WhopSDK::Models::member_statuses],
+        ?user_ids: ::Array[String],
         ?request_options: WhopSDK::request_opts
       ) -> void
 
       def to_hash: -> {
-        access_level: WhopSDK::Models::access_level?,
-        after: String?,
-        before: String?,
-        company_id: String?,
-        created_after: Time?,
-        created_before: Time?,
-        direction: WhopSDK::Models::direction?,
-        first: Integer?,
-        last: Integer?,
-        most_recent_actions: ::Array[WhopSDK::Models::member_most_recent_actions]?,
-        order: WhopSDK::Models::MemberListParams::order?,
-        plan_ids: ::Array[String]?,
-        product_ids: ::Array[String]?,
-        promo_code_ids: ::Array[String]?,
-        query: String?,
-        statuses: ::Array[WhopSDK::Models::member_statuses]?,
-        user_ids: ::Array[String]?,
+        access_level: WhopSDK::Models::access_level,
+        after: String,
+        before: String,
+        company_id: String,
+        created_after: Time,
+        created_before: Time,
+        direction: WhopSDK::Models::direction,
+        first: Integer,
+        last: Integer,
+        most_recent_actions: ::Array[WhopSDK::Models::member_most_recent_actions],
+        order: WhopSDK::Models::MemberListParams::order,
+        plan_ids: ::Array[String],
+        product_ids: ::Array[String],
+        promo_code_ids: ::Array[String],
+        query: String,
+        statuses: ::Array[WhopSDK::Models::member_statuses],
+        user_ids: ::Array[String],
         request_options: WhopSDK::RequestOptions
       }
 

@@ -93,14 +93,117 @@ module WhopSDK
         def to_hash: -> { id: String, title: String }
       end
 
-      type payment = { id: String }
+      type payment =
+        {
+          id: String,
+          payment_instrument: WhopSDK::Models::DisputeListResponse::Payment::PaymentInstrument?
+        }
 
       class Payment < WhopSDK::Internal::Type::BaseModel
         attr_accessor id: String
 
-        def initialize: (id: String) -> void
+        attr_accessor payment_instrument: WhopSDK::Models::DisputeListResponse::Payment::PaymentInstrument?
 
-        def to_hash: -> { id: String }
+        def initialize: (
+          id: String,
+          payment_instrument: WhopSDK::Models::DisputeListResponse::Payment::PaymentInstrument?
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          payment_instrument: WhopSDK::Models::DisputeListResponse::Payment::PaymentInstrument?
+        }
+
+        type payment_instrument =
+          {
+            display_name: String,
+            icons: WhopSDK::Models::DisputeListResponse::Payment::PaymentInstrument::Icons,
+            installment_count: Integer?,
+            payment_method_type: String
+          }
+
+        class PaymentInstrument < WhopSDK::Internal::Type::BaseModel
+          attr_accessor display_name: String
+
+          attr_accessor icons: WhopSDK::Models::DisputeListResponse::Payment::PaymentInstrument::Icons
+
+          attr_accessor installment_count: Integer?
+
+          attr_accessor payment_method_type: String
+
+          def initialize: (
+            display_name: String,
+            icons: WhopSDK::Models::DisputeListResponse::Payment::PaymentInstrument::Icons,
+            installment_count: Integer?,
+            payment_method_type: String
+          ) -> void
+
+          def to_hash: -> {
+            display_name: String,
+            icons: WhopSDK::Models::DisputeListResponse::Payment::PaymentInstrument::Icons,
+            installment_count: Integer?,
+            payment_method_type: String
+          }
+
+          type icons =
+            {
+              square: WhopSDK::Models::DisputeListResponse::Payment::PaymentInstrument::Icons::Square
+            }
+
+          class Icons < WhopSDK::Internal::Type::BaseModel
+            attr_accessor square: WhopSDK::Models::DisputeListResponse::Payment::PaymentInstrument::Icons::Square
+
+            def initialize: (
+              square: WhopSDK::Models::DisputeListResponse::Payment::PaymentInstrument::Icons::Square
+            ) -> void
+
+            def to_hash: -> {
+              square: WhopSDK::Models::DisputeListResponse::Payment::PaymentInstrument::Icons::Square
+            }
+
+            type square =
+              {
+                dark: WhopSDK::Models::DisputeListResponse::Payment::PaymentInstrument::Icons::Square::Dark,
+                light: WhopSDK::Models::DisputeListResponse::Payment::PaymentInstrument::Icons::Square::Light
+              }
+
+            class Square < WhopSDK::Internal::Type::BaseModel
+              attr_accessor dark: WhopSDK::Models::DisputeListResponse::Payment::PaymentInstrument::Icons::Square::Dark
+
+              attr_accessor light: WhopSDK::Models::DisputeListResponse::Payment::PaymentInstrument::Icons::Square::Light
+
+              def initialize: (
+                dark: WhopSDK::Models::DisputeListResponse::Payment::PaymentInstrument::Icons::Square::Dark,
+                light: WhopSDK::Models::DisputeListResponse::Payment::PaymentInstrument::Icons::Square::Light
+              ) -> void
+
+              def to_hash: -> {
+                dark: WhopSDK::Models::DisputeListResponse::Payment::PaymentInstrument::Icons::Square::Dark,
+                light: WhopSDK::Models::DisputeListResponse::Payment::PaymentInstrument::Icons::Square::Light
+              }
+
+              type dark = { svg: String }
+
+              class Dark < WhopSDK::Internal::Type::BaseModel
+                attr_accessor svg: String
+
+                def initialize: (svg: String) -> void
+
+                def to_hash: -> { svg: String }
+              end
+
+              type light = { svg: String }
+
+              class Light < WhopSDK::Internal::Type::BaseModel
+                attr_accessor svg: String
+
+                def initialize: (svg: String) -> void
+
+                def to_hash: -> { svg: String }
+              end
+            end
+          end
+        end
       end
 
       type plan = { id: String }

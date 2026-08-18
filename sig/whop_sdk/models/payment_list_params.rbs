@@ -2,26 +2,26 @@ module WhopSDK
   module Models
     type payment_list_params =
       {
-        after: String?,
-        before: String?,
-        billing_reasons: ::Array[WhopSDK::Models::billing_reasons]?,
-        checkout_configuration_ids: ::Array[String]?,
-        company_id: String?,
-        created_after: Time?,
-        created_before: Time?,
-        currencies: ::Array[WhopSDK::Models::currency]?,
-        direction: WhopSDK::Models::direction?,
-        first: Integer?,
-        include_free: bool?,
-        last: Integer?,
-        order: WhopSDK::Models::PaymentListParams::order?,
-        plan_ids: ::Array[String]?,
-        product_ids: ::Array[String]?,
-        query: String?,
-        statuses: ::Array[WhopSDK::Models::receipt_status]?,
-        substatuses: ::Array[WhopSDK::Models::friendly_receipt_status]?,
-        updated_after: Time?,
-        updated_before: Time?
+        after: String,
+        before: String,
+        billing_reasons: ::Array[WhopSDK::Models::billing_reasons],
+        checkout_configuration_ids: ::Array[String],
+        company_id: String,
+        created_after: Time,
+        created_before: Time,
+        currencies: ::Array[WhopSDK::Models::currency],
+        direction: WhopSDK::Models::direction,
+        first: Integer,
+        include_free: bool,
+        last: Integer,
+        order: WhopSDK::Models::PaymentListParams::order,
+        plan_ids: ::Array[String],
+        product_ids: ::Array[String],
+        query: String,
+        statuses: ::Array[WhopSDK::Models::receipt_status],
+        substatuses: ::Array[WhopSDK::Models::friendly_receipt_status],
+        updated_after: Time,
+        updated_before: Time
       }
       & WhopSDK::Internal::Type::request_parameters
 
@@ -29,91 +29,141 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      attr_accessor after: String?
+      attr_reader after: String?
 
-      attr_accessor before: String?
+      def after=: (String) -> String
 
-      attr_accessor billing_reasons: ::Array[WhopSDK::Models::billing_reasons]?
+      attr_reader before: String?
 
-      attr_accessor checkout_configuration_ids: ::Array[String]?
+      def before=: (String) -> String
 
-      attr_accessor company_id: String?
+      attr_reader billing_reasons: ::Array[WhopSDK::Models::billing_reasons]?
 
-      attr_accessor created_after: Time?
+      def billing_reasons=: (
+        ::Array[WhopSDK::Models::billing_reasons]
+      ) -> ::Array[WhopSDK::Models::billing_reasons]
 
-      attr_accessor created_before: Time?
+      attr_reader checkout_configuration_ids: ::Array[String]?
 
-      attr_accessor currencies: ::Array[WhopSDK::Models::currency]?
+      def checkout_configuration_ids=: (::Array[String]) -> ::Array[String]
 
-      attr_accessor direction: WhopSDK::Models::direction?
+      attr_reader company_id: String?
 
-      attr_accessor first: Integer?
+      def company_id=: (String) -> String
 
-      attr_accessor include_free: bool?
+      attr_reader created_after: Time?
 
-      attr_accessor last: Integer?
+      def created_after=: (Time) -> Time
 
-      attr_accessor order: WhopSDK::Models::PaymentListParams::order?
+      attr_reader created_before: Time?
 
-      attr_accessor plan_ids: ::Array[String]?
+      def created_before=: (Time) -> Time
 
-      attr_accessor product_ids: ::Array[String]?
+      attr_reader currencies: ::Array[WhopSDK::Models::currency]?
 
-      attr_accessor query: String?
+      def currencies=: (
+        ::Array[WhopSDK::Models::currency]
+      ) -> ::Array[WhopSDK::Models::currency]
 
-      attr_accessor statuses: ::Array[WhopSDK::Models::receipt_status]?
+      attr_reader direction: WhopSDK::Models::direction?
 
-      attr_accessor substatuses: ::Array[WhopSDK::Models::friendly_receipt_status]?
+      def direction=: (WhopSDK::Models::direction) -> WhopSDK::Models::direction
 
-      attr_accessor updated_after: Time?
+      attr_reader first: Integer?
 
-      attr_accessor updated_before: Time?
+      def first=: (Integer) -> Integer
+
+      attr_reader include_free: bool?
+
+      def include_free=: (bool) -> bool
+
+      attr_reader last: Integer?
+
+      def last=: (Integer) -> Integer
+
+      attr_reader order: WhopSDK::Models::PaymentListParams::order?
+
+      def order=: (
+        WhopSDK::Models::PaymentListParams::order
+      ) -> WhopSDK::Models::PaymentListParams::order
+
+      attr_reader plan_ids: ::Array[String]?
+
+      def plan_ids=: (::Array[String]) -> ::Array[String]
+
+      attr_reader product_ids: ::Array[String]?
+
+      def product_ids=: (::Array[String]) -> ::Array[String]
+
+      attr_reader query: String?
+
+      def query=: (String) -> String
+
+      attr_reader statuses: ::Array[WhopSDK::Models::receipt_status]?
+
+      def statuses=: (
+        ::Array[WhopSDK::Models::receipt_status]
+      ) -> ::Array[WhopSDK::Models::receipt_status]
+
+      attr_reader substatuses: ::Array[WhopSDK::Models::friendly_receipt_status]?
+
+      def substatuses=: (
+        ::Array[WhopSDK::Models::friendly_receipt_status]
+      ) -> ::Array[WhopSDK::Models::friendly_receipt_status]
+
+      attr_reader updated_after: Time?
+
+      def updated_after=: (Time) -> Time
+
+      attr_reader updated_before: Time?
+
+      def updated_before=: (Time) -> Time
 
       def initialize: (
-        ?after: String?,
-        ?before: String?,
-        ?billing_reasons: ::Array[WhopSDK::Models::billing_reasons]?,
-        ?checkout_configuration_ids: ::Array[String]?,
-        ?company_id: String?,
-        ?created_after: Time?,
-        ?created_before: Time?,
-        ?currencies: ::Array[WhopSDK::Models::currency]?,
-        ?direction: WhopSDK::Models::direction?,
-        ?first: Integer?,
-        ?include_free: bool?,
-        ?last: Integer?,
-        ?order: WhopSDK::Models::PaymentListParams::order?,
-        ?plan_ids: ::Array[String]?,
-        ?product_ids: ::Array[String]?,
-        ?query: String?,
-        ?statuses: ::Array[WhopSDK::Models::receipt_status]?,
-        ?substatuses: ::Array[WhopSDK::Models::friendly_receipt_status]?,
-        ?updated_after: Time?,
-        ?updated_before: Time?,
+        ?after: String,
+        ?before: String,
+        ?billing_reasons: ::Array[WhopSDK::Models::billing_reasons],
+        ?checkout_configuration_ids: ::Array[String],
+        ?company_id: String,
+        ?created_after: Time,
+        ?created_before: Time,
+        ?currencies: ::Array[WhopSDK::Models::currency],
+        ?direction: WhopSDK::Models::direction,
+        ?first: Integer,
+        ?include_free: bool,
+        ?last: Integer,
+        ?order: WhopSDK::Models::PaymentListParams::order,
+        ?plan_ids: ::Array[String],
+        ?product_ids: ::Array[String],
+        ?query: String,
+        ?statuses: ::Array[WhopSDK::Models::receipt_status],
+        ?substatuses: ::Array[WhopSDK::Models::friendly_receipt_status],
+        ?updated_after: Time,
+        ?updated_before: Time,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
       def to_hash: -> {
-        after: String?,
-        before: String?,
-        billing_reasons: ::Array[WhopSDK::Models::billing_reasons]?,
-        checkout_configuration_ids: ::Array[String]?,
-        company_id: String?,
-        created_after: Time?,
-        created_before: Time?,
-        currencies: ::Array[WhopSDK::Models::currency]?,
-        direction: WhopSDK::Models::direction?,
-        first: Integer?,
-        include_free: bool?,
-        last: Integer?,
-        order: WhopSDK::Models::PaymentListParams::order?,
-        plan_ids: ::Array[String]?,
-        product_ids: ::Array[String]?,
-        query: String?,
-        statuses: ::Array[WhopSDK::Models::receipt_status]?,
-        substatuses: ::Array[WhopSDK::Models::friendly_receipt_status]?,
-        updated_after: Time?,
-        updated_before: Time?,
+        after: String,
+        before: String,
+        billing_reasons: ::Array[WhopSDK::Models::billing_reasons],
+        checkout_configuration_ids: ::Array[String],
+        company_id: String,
+        created_after: Time,
+        created_before: Time,
+        currencies: ::Array[WhopSDK::Models::currency],
+        direction: WhopSDK::Models::direction,
+        first: Integer,
+        include_free: bool,
+        last: Integer,
+        order: WhopSDK::Models::PaymentListParams::order,
+        plan_ids: ::Array[String],
+        product_ids: ::Array[String],
+        query: String,
+        statuses: ::Array[WhopSDK::Models::receipt_status],
+        substatuses: ::Array[WhopSDK::Models::friendly_receipt_status],
+        updated_after: Time,
+        updated_before: Time,
         request_options: WhopSDK::RequestOptions
       }
 

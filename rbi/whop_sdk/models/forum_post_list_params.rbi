@@ -17,44 +17,65 @@ module WhopSDK
 
       # Returns the elements in the list that come after the specified cursor.
       sig { returns(T.nilable(String)) }
-      attr_accessor :after
+      attr_reader :after
+
+      sig { params(after: String).void }
+      attr_writer :after
 
       # Returns the elements in the list that come before the specified cursor.
       sig { returns(T.nilable(String)) }
-      attr_accessor :before
+      attr_reader :before
+
+      sig { params(before: String).void }
+      attr_writer :before
 
       # Returns the first _n_ elements from the list.
       sig { returns(T.nilable(Integer)) }
-      attr_accessor :first
+      attr_reader :first
+
+      sig { params(first: Integer).void }
+      attr_writer :first
 
       # Whether to include top-level bounty discussion anchors as rich forum items.
       sig { returns(T.nilable(T::Boolean)) }
-      attr_accessor :include_bounty_anchors
+      attr_reader :include_bounty_anchors
+
+      sig { params(include_bounty_anchors: T::Boolean).void }
+      attr_writer :include_bounty_anchors
 
       # Returns the last _n_ elements from the list.
       sig { returns(T.nilable(Integer)) }
-      attr_accessor :last
+      attr_reader :last
+
+      sig { params(last: Integer).void }
+      attr_writer :last
 
       # The unique identifier of a parent post to list comments for. When set, returns
       # replies to that post.
       sig { returns(T.nilable(String)) }
-      attr_accessor :parent_id
+      attr_reader :parent_id
+
+      sig { params(parent_id: String).void }
+      attr_writer :parent_id
 
       # Whether to filter for only pinned posts. Set to true to return only pinned
       # posts.
       sig { returns(T.nilable(T::Boolean)) }
-      attr_accessor :pinned
+      attr_reader :pinned
+
+      sig { params(pinned: T::Boolean).void }
+      attr_writer :pinned
 
       sig do
         params(
           experience_id: String,
-          after: T.nilable(String),
-          before: T.nilable(String),
-          first: T.nilable(Integer),
-          include_bounty_anchors: T.nilable(T::Boolean),
-          last: T.nilable(Integer),
-          parent_id: T.nilable(String),
-          pinned: T.nilable(T::Boolean),
+          after: String,
+          before: String,
+          first: Integer,
+          include_bounty_anchors: T::Boolean,
+          last: Integer,
+          parent_id: String,
+          pinned: T::Boolean,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -85,13 +106,13 @@ module WhopSDK
         override.returns(
           {
             experience_id: String,
-            after: T.nilable(String),
-            before: T.nilable(String),
-            first: T.nilable(Integer),
-            include_bounty_anchors: T.nilable(T::Boolean),
-            last: T.nilable(Integer),
-            parent_id: T.nilable(String),
-            pinned: T.nilable(T::Boolean),
+            after: String,
+            before: String,
+            first: Integer,
+            include_bounty_anchors: T::Boolean,
+            last: Integer,
+            parent_id: String,
+            pinned: T::Boolean,
             request_options: WhopSDK::RequestOptions
           }
         )

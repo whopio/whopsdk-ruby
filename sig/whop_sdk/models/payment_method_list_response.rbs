@@ -1800,21 +1800,35 @@ module WhopSDK
             spendable: bool
           }
 
-          type balance = { amount: Float, currency: WhopSDK::Models::currency }
+          type balance =
+            {
+              amount: String,
+              currency: WhopSDK::Models::currency,
+              decimals: Integer,
+              display_decimals: Integer
+            }
 
           class Balance < WhopSDK::Internal::Type::BaseModel
-            attr_accessor amount: Float
+            attr_accessor amount: String
 
             attr_accessor currency: WhopSDK::Models::currency
 
+            attr_accessor decimals: Integer
+
+            attr_accessor display_decimals: Integer
+
             def initialize: (
-              amount: Float,
-              currency: WhopSDK::Models::currency
+              amount: String,
+              currency: WhopSDK::Models::currency,
+              decimals: Integer,
+              display_decimals: Integer
             ) -> void
 
             def to_hash: -> {
-              amount: Float,
-              currency: WhopSDK::Models::currency
+              amount: String,
+              currency: WhopSDK::Models::currency,
+              decimals: Integer,
+              display_decimals: Integer
             }
           end
         end

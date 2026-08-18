@@ -4401,32 +4401,65 @@ module WhopSDK
                 )
               end
 
-            # The available amount in this currency.
-            sig { returns(Float) }
+            # The amount in major units, as an exact decimal string — `"10.00"` is ten
+            # dollars. A string so no float rounds it in transit.
+            sig { returns(String) }
             attr_accessor :amount
 
-            # The currency this amount is held in.
+            # Three-letter ISO 4217 currency code, lowercase.
             sig { returns(WhopSDK::Currency::TaggedSymbol) }
             attr_accessor :currency
 
-            # An available balance in one currency.
+            # How many decimal places the amount CARRIES — the precision the charge itself
+            # runs at.
+            sig { returns(Integer) }
+            attr_accessor :decimals
+
+            # How many decimal places to SHOW. Usually equal to `decimals`, and deliberately
+            # not always: COP is charged in centavos but written in whole pesos, so it is `2`
+            # and `0`. Format the number in your own locale using this.
+            sig { returns(Integer) }
+            attr_accessor :display_decimals
+
+            # An amount of money. Never a bare number, because a bare number cannot answer the
+            # two questions a client has to answer to render it: what currency is this, and
+            # how many digits do I write? The second is stated twice rather than derived,
+            # because the digits the amount CARRIES and the digits to SHOW differ in COP —
+            # charged in centavos, written in whole pesos. Formatting is deliberately left to
+            # the caller: the number belongs in the buyer's locale, and this API does not know
+            # it.
             sig do
               params(
-                amount: Float,
-                currency: WhopSDK::Currency::OrSymbol
+                amount: String,
+                currency: WhopSDK::Currency::OrSymbol,
+                decimals: Integer,
+                display_decimals: Integer
               ).returns(T.attached_class)
             end
             def self.new(
-              # The available amount in this currency.
+              # The amount in major units, as an exact decimal string — `"10.00"` is ten
+              # dollars. A string so no float rounds it in transit.
               amount:,
-              # The currency this amount is held in.
-              currency:
+              # Three-letter ISO 4217 currency code, lowercase.
+              currency:,
+              # How many decimal places the amount CARRIES — the precision the charge itself
+              # runs at.
+              decimals:,
+              # How many decimal places to SHOW. Usually equal to `decimals`, and deliberately
+              # not always: COP is charged in centavos but written in whole pesos, so it is `2`
+              # and `0`. Format the number in your own locale using this.
+              display_decimals:
             )
             end
 
             sig do
               override.returns(
-                { amount: Float, currency: WhopSDK::Currency::TaggedSymbol }
+                {
+                  amount: String,
+                  currency: WhopSDK::Currency::TaggedSymbol,
+                  decimals: Integer,
+                  display_decimals: Integer
+                }
               )
             end
             def to_hash

@@ -2272,23 +2272,53 @@ module WhopSDK
 
           class Balance < WhopSDK::Internal::Type::BaseModel
             # @!attribute amount
-            #   The available amount in this currency.
+            #   The amount in major units, as an exact decimal string — `"10.00"` is ten
+            #   dollars. A string so no float rounds it in transit.
             #
-            #   @return [Float]
-            required :amount, Float
+            #   @return [String]
+            required :amount, String
 
             # @!attribute currency
-            #   The currency this amount is held in.
+            #   Three-letter ISO 4217 currency code, lowercase.
             #
             #   @return [Symbol, WhopSDK::Models::Currency]
             required :currency, enum: -> { WhopSDK::Currency }
 
-            # @!method initialize(amount:, currency:)
-            #   An available balance in one currency.
+            # @!attribute decimals
+            #   How many decimal places the amount CARRIES — the precision the charge itself
+            #   runs at.
             #
-            #   @param amount [Float] The available amount in this currency.
+            #   @return [Integer]
+            required :decimals, Integer
+
+            # @!attribute display_decimals
+            #   How many decimal places to SHOW. Usually equal to `decimals`, and deliberately
+            #   not always: COP is charged in centavos but written in whole pesos, so it is `2`
+            #   and `0`. Format the number in your own locale using this.
             #
-            #   @param currency [Symbol, WhopSDK::Models::Currency] The currency this amount is held in.
+            #   @return [Integer]
+            required :display_decimals, Integer
+
+            # @!method initialize(amount:, currency:, decimals:, display_decimals:)
+            #   Some parameter documentations has been truncated, see
+            #   {WhopSDK::Models::PaymentMethodListResponse::PlatformBalancePaymentMethod::PlatformBalance::Balance}
+            #   for more details.
+            #
+            #   An amount of money. Never a bare number, because a bare number cannot answer the
+            #   two questions a client has to answer to render it: what currency is this, and
+            #   how many digits do I write? The second is stated twice rather than derived,
+            #   because the digits the amount CARRIES and the digits to SHOW differ in COP —
+            #   charged in centavos, written in whole pesos. Formatting is deliberately left to
+            #   the caller: the number belongs in the buyer's locale, and this API does not know
+            #   it.
+            #
+            #   @param amount [String] The amount in major units, as an exact decimal string — `"10.00"` is ten dollars
+            #
+            #   @param currency [Symbol, WhopSDK::Models::Currency] Three-letter ISO 4217 currency code, lowercase.
+            #
+            #   @param decimals [Integer] How many decimal places the amount CARRIES — the precision the charge itself run
+            #
+            #   @param display_decimals [Integer] How many decimal places to SHOW. Usually equal to `decimals`, and deliberately n
           end
         end
       end

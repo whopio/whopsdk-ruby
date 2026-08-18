@@ -294,6 +294,8 @@ module WhopSDK
             brand: WhopSDK::Models::card_brands?,
             exp_month: Integer?,
             exp_year: Integer?,
+            expired: bool,
+            funding_type: WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Card::funding_type?,
             :last4 => String?,
             three_ds_verified: bool
           }
@@ -305,6 +307,10 @@ module WhopSDK
 
           attr_accessor exp_year: Integer?
 
+          attr_accessor expired: bool
+
+          attr_accessor funding_type: WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Card::funding_type?
+
           attr_accessor last4: String?
 
           attr_accessor three_ds_verified: bool
@@ -313,6 +319,8 @@ module WhopSDK
             brand: WhopSDK::Models::card_brands?,
             exp_month: Integer?,
             exp_year: Integer?,
+            expired: bool,
+            funding_type: WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Card::funding_type?,
             last4: String?,
             three_ds_verified: bool
           ) -> void
@@ -321,9 +329,23 @@ module WhopSDK
             brand: WhopSDK::Models::card_brands?,
             exp_month: Integer?,
             exp_year: Integer?,
+            expired: bool,
+            funding_type: WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Card::funding_type?,
             :last4 => String?,
             three_ds_verified: bool
           }
+
+          type funding_type = :credit | :debit | :prepaid
+
+          module FundingType
+            extend WhopSDK::Internal::Type::Enum
+
+            CREDIT: :credit
+            DEBIT: :debit
+            PREPAID: :prepaid
+
+            def self?.values: -> ::Array[WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Card::funding_type]
+          end
         end
 
         type icons =

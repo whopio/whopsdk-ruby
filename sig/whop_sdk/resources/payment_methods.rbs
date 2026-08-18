@@ -11,14 +11,20 @@ module WhopSDK
       def list: (
         ?after: String?,
         ?before: String?,
+        ?broken: bool?,
+        ?card_brands: ::Array[WhopSDK::Models::card_brands]?,
+        ?card_funding_types: ::Array[WhopSDK::Models::PaymentMethodListParams::card_funding_type]?,
         ?company_id: String?,
         ?created_after: Time?,
         ?created_before: Time?,
         ?direction: WhopSDK::Models::direction?,
+        ?expired: bool?,
         ?first: Integer?,
         ?future_usage: WhopSDK::Models::PaymentMethodListParams::future_usage?,
+        ?has_payer_document: bool?,
         ?last: Integer?,
         ?member_id: String?,
+        ?payment_method_types: ::Array[WhopSDK::Models::payment_method_types]?,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::payment_method_list_response]
 

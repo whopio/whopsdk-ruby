@@ -725,6 +725,21 @@ module WhopSDK
           sig { returns(T.nilable(Integer)) }
           attr_accessor :exp_year
 
+          # Whether the card is past its expiration month. An expired card cannot take a new
+          # charge.
+          sig { returns(T::Boolean) }
+          attr_accessor :expired
+
+          # The funding types of a card
+          sig do
+            returns(
+              T.nilable(
+                WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Card::FundingType::TaggedSymbol
+              )
+            )
+          end
+          attr_accessor :funding_type
+
           # The last four digits of the card number. Null if not available.
           sig { returns(T.nilable(String)) }
           attr_accessor :last4
@@ -741,6 +756,11 @@ module WhopSDK
               brand: T.nilable(WhopSDK::CardBrands::OrSymbol),
               exp_month: T.nilable(Integer),
               exp_year: T.nilable(Integer),
+              expired: T::Boolean,
+              funding_type:
+                T.nilable(
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Card::FundingType::OrSymbol
+                ),
               last4: T.nilable(String),
               three_ds_verified: T::Boolean
             ).returns(T.attached_class)
@@ -753,6 +773,11 @@ module WhopSDK
             # The two-digit expiration year of the card (e.g., 27 for 2027). Null if not
             # available.
             exp_year:,
+            # Whether the card is past its expiration month. An expired card cannot take a new
+            # charge.
+            expired:,
+            # The funding types of a card
+            funding_type:,
             # The last four digits of the card number. Null if not available.
             last4:,
             # Whether this card was verified with 3D Secure, either when it was saved or on a
@@ -767,12 +792,57 @@ module WhopSDK
                 brand: T.nilable(WhopSDK::CardBrands::TaggedSymbol),
                 exp_month: T.nilable(Integer),
                 exp_year: T.nilable(Integer),
+                expired: T::Boolean,
+                funding_type:
+                  T.nilable(
+                    WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Card::FundingType::TaggedSymbol
+                  ),
                 last4: T.nilable(String),
                 three_ds_verified: T::Boolean
               }
             )
           end
           def to_hash
+          end
+
+          # The funding types of a card
+          module FundingType
+            extend WhopSDK::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(
+                  Symbol,
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Card::FundingType
+                )
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            CREDIT =
+              T.let(
+                :credit,
+                WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Card::FundingType::TaggedSymbol
+              )
+            DEBIT =
+              T.let(
+                :debit,
+                WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Card::FundingType::TaggedSymbol
+              )
+            PREPAID =
+              T.let(
+                :prepaid,
+                WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Card::FundingType::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Card::FundingType::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
+            end
           end
         end
 

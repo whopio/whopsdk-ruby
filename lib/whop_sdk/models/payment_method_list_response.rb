@@ -405,6 +405,21 @@ module WhopSDK
           #   @return [Integer, nil]
           required :exp_year, Integer, nil?: true
 
+          # @!attribute expired
+          #   Whether the card is past its expiration month. An expired card cannot take a new
+          #   charge.
+          #
+          #   @return [Boolean]
+          required :expired, WhopSDK::Internal::Type::Boolean
+
+          # @!attribute funding_type
+          #   The funding types of a card
+          #
+          #   @return [Symbol, WhopSDK::Models::PaymentMethodListResponse::CardPaymentMethod::Card::FundingType, nil]
+          required :funding_type,
+                   enum: -> { WhopSDK::Models::PaymentMethodListResponse::CardPaymentMethod::Card::FundingType },
+                   nil?: true
+
           # @!attribute last4
           #   The last four digits of the card number. Null if not available.
           #
@@ -418,7 +433,7 @@ module WhopSDK
           #   @return [Boolean]
           required :three_ds_verified, WhopSDK::Internal::Type::Boolean
 
-          # @!method initialize(brand:, exp_month:, exp_year:, last4:, three_ds_verified:)
+          # @!method initialize(brand:, exp_month:, exp_year:, expired:, funding_type:, last4:, three_ds_verified:)
           #   Some parameter documentations has been truncated, see
           #   {WhopSDK::Models::PaymentMethodListResponse::CardPaymentMethod::Card} for more
           #   details.
@@ -432,9 +447,27 @@ module WhopSDK
           #
           #   @param exp_year [Integer, nil] The two-digit expiration year of the card (e.g., 27 for 2027). Null if not avail
           #
+          #   @param expired [Boolean] Whether the card is past its expiration month. An expired card cannot take a new
+          #
+          #   @param funding_type [Symbol, WhopSDK::Models::PaymentMethodListResponse::CardPaymentMethod::Card::FundingType, nil] The funding types of a card
+          #
           #   @param last4 [String, nil] The last four digits of the card number. Null if not available.
           #
           #   @param three_ds_verified [Boolean] Whether this card was verified with 3D Secure, either when it was saved or on a
+
+          # The funding types of a card
+          #
+          # @see WhopSDK::Models::PaymentMethodListResponse::CardPaymentMethod::Card#funding_type
+          module FundingType
+            extend WhopSDK::Internal::Type::Enum
+
+            CREDIT = :credit
+            DEBIT = :debit
+            PREPAID = :prepaid
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
+          end
         end
 
         # @see WhopSDK::Models::PaymentMethodListResponse::CardPaymentMethod#icons

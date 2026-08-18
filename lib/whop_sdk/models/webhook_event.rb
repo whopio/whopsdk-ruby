@@ -6,6 +6,7 @@ module WhopSDK
     module WebhookEvent
       extend WhopSDK::Internal::Type::Enum
 
+      ACCOUNT_UPDATED = :"account.updated"
       INVOICE_CREATED = :"invoice.created"
       INVOICE_MARKED_UNCOLLECTIBLE = :"invoice.marked_uncollectible"
       INVOICE_PAID = :"invoice.paid"

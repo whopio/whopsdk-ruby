@@ -102,6 +102,14 @@ module WhopSDK
       #   @return [String, nil]
       required :pay_online_url, String, nil?: true
 
+      # @!attribute payment_processing
+      #   Whether a payment on this invoice is still clearing. True while a delayed
+      #   payment method such as ACH or SEPA settles, during which the invoice stays open
+      #   and is not marked past due.
+      #
+      #   @return [Boolean]
+      required :payment_processing, WhopSDK::Internal::Type::Boolean
+
       # @!attribute product
       #   The product that this invoice was generated for.
       #
@@ -134,7 +142,7 @@ module WhopSDK
       #   @return [WhopSDK::Models::Invoice::User, nil]
       required :user, -> { WhopSDK::Invoice::User }, nil?: true
 
-      # @!method initialize(id:, automatically_finalizes_at:, charge_buyer_fee:, collection_method:, company:, created_at:, current_plan:, customer_name:, due_date:, email_address:, fetch_invoice_token:, line_items:, mailing_address:, number:, pay_online_url:, product:, status:, subscription_billing_anchor_at:, updated_at:, user:)
+      # @!method initialize(id:, automatically_finalizes_at:, charge_buyer_fee:, collection_method:, company:, created_at:, current_plan:, customer_name:, due_date:, email_address:, fetch_invoice_token:, line_items:, mailing_address:, number:, pay_online_url:, payment_processing:, product:, status:, subscription_billing_anchor_at:, updated_at:, user:)
       #   Some parameter documentations has been truncated, see {WhopSDK::Models::Invoice}
       #   for more details.
       #
@@ -171,6 +179,8 @@ module WhopSDK
       #   @param number [String] The sequential invoice number for display purposes.
       #
       #   @param pay_online_url [String, nil] The checkout URL where the customer can pay this invoice online, with their emai
+      #
+      #   @param payment_processing [Boolean] Whether a payment on this invoice is still clearing. True while a delayed paymen
       #
       #   @param product [WhopSDK::Models::Invoice::Product] The product that this invoice was generated for.
       #

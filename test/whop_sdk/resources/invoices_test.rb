@@ -37,6 +37,7 @@ class WhopSDK::Test::Resources::InvoicesTest < WhopSDK::Test::ResourceTest
         mailing_address: WhopSDK::Invoice::MailingAddress | nil,
         number: String,
         pay_online_url: String | nil,
+        payment_processing: WhopSDK::Internal::Type::Boolean,
         product: WhopSDK::Invoice::Product,
         status: WhopSDK::InvoiceStatus,
         subscription_billing_anchor_at: Time | nil,
@@ -72,6 +73,7 @@ class WhopSDK::Test::Resources::InvoicesTest < WhopSDK::Test::ResourceTest
         mailing_address: WhopSDK::Invoice::MailingAddress | nil,
         number: String,
         pay_online_url: String | nil,
+        payment_processing: WhopSDK::Internal::Type::Boolean,
         product: WhopSDK::Invoice::Product,
         status: WhopSDK::InvoiceStatus,
         subscription_billing_anchor_at: Time | nil,
@@ -107,6 +109,7 @@ class WhopSDK::Test::Resources::InvoicesTest < WhopSDK::Test::ResourceTest
         mailing_address: WhopSDK::Invoice::MailingAddress | nil,
         number: String,
         pay_online_url: String | nil,
+        payment_processing: WhopSDK::Internal::Type::Boolean,
         product: WhopSDK::Invoice::Product,
         status: WhopSDK::InvoiceStatus,
         subscription_billing_anchor_at: Time | nil,
@@ -142,6 +145,7 @@ class WhopSDK::Test::Resources::InvoicesTest < WhopSDK::Test::ResourceTest
         fetch_invoice_token: String,
         line_items: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::InvoiceListItem::LineItem]),
         number: String,
+        payment_processing: WhopSDK::Internal::Type::Boolean,
         status: WhopSDK::InvoiceStatus,
         user: WhopSDK::InvoiceListItem::User | nil
       }

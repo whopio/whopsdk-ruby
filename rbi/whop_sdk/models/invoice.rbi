@@ -88,6 +88,12 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :pay_online_url
 
+      # Whether a payment on this invoice is still clearing. True while a delayed
+      # payment method such as ACH or SEPA settles, during which the invoice stays open
+      # and is not marked past due.
+      sig { returns(T::Boolean) }
+      attr_accessor :payment_processing
+
       # The product that this invoice was generated for.
       sig { returns(WhopSDK::Invoice::Product) }
       attr_reader :product
@@ -136,6 +142,7 @@ module WhopSDK
           mailing_address: T.nilable(WhopSDK::Invoice::MailingAddress::OrHash),
           number: String,
           pay_online_url: T.nilable(String),
+          payment_processing: T::Boolean,
           product: WhopSDK::Invoice::Product::OrHash,
           status: WhopSDK::InvoiceStatus::OrSymbol,
           subscription_billing_anchor_at: T.nilable(Time),
@@ -183,6 +190,10 @@ module WhopSDK
         # The checkout URL where the customer can pay this invoice online, with their
         # email address pre-filled and locked.
         pay_online_url:,
+        # Whether a payment on this invoice is still clearing. True while a delayed
+        # payment method such as ACH or SEPA settles, during which the invoice stays open
+        # and is not marked past due.
+        payment_processing:,
         # The product that this invoice was generated for.
         product:,
         # The current payment status of the invoice, such as draft, open, paid, or void.
@@ -216,6 +227,7 @@ module WhopSDK
             mailing_address: T.nilable(WhopSDK::Invoice::MailingAddress),
             number: String,
             pay_online_url: T.nilable(String),
+            payment_processing: T::Boolean,
             product: WhopSDK::Invoice::Product,
             status: WhopSDK::InvoiceStatus::TaggedSymbol,
             subscription_billing_anchor_at: T.nilable(Time),

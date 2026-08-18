@@ -54,6 +54,14 @@ module WhopSDK
       #   @return [String]
       required :number, String
 
+      # @!attribute payment_processing
+      #   Whether a payment on this invoice is still clearing. True while a delayed
+      #   payment method such as ACH or SEPA settles, during which the invoice stays open
+      #   and is not marked past due.
+      #
+      #   @return [Boolean]
+      required :payment_processing, WhopSDK::Internal::Type::Boolean
+
       # @!attribute status
       #   The current payment status of the invoice, such as draft, open, paid, or void.
       #
@@ -67,7 +75,7 @@ module WhopSDK
       #   @return [WhopSDK::Models::InvoiceListItem::User, nil]
       required :user, -> { WhopSDK::InvoiceListItem::User }, nil?: true
 
-      # @!method initialize(id:, created_at:, current_plan:, due_date:, email_address:, fetch_invoice_token:, line_items:, number:, status:, user:)
+      # @!method initialize(id:, created_at:, current_plan:, due_date:, email_address:, fetch_invoice_token:, line_items:, number:, payment_processing:, status:, user:)
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::InvoiceListItem} for more details.
       #
@@ -90,6 +98,8 @@ module WhopSDK
       #   @param line_items [Array<WhopSDK::Models::InvoiceListItem::LineItem>] Optional line items that break down the invoice total into individual charges.
       #
       #   @param number [String] The sequential invoice number for display purposes.
+      #
+      #   @param payment_processing [Boolean] Whether a payment on this invoice is still clearing. True while a delayed paymen
       #
       #   @param status [Symbol, WhopSDK::Models::InvoiceStatus] The current payment status of the invoice, such as draft, open, paid, or void.
       #

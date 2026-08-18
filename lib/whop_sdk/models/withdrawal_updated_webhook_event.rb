@@ -46,7 +46,14 @@ module WhopSDK
       #   @return [String, nil]
       optional :company_id, String, nil?: true
 
-      # @!method initialize(id:, api_version_date:, data:, timestamp:, company_id: nil, api_version: :v1, type: :"withdrawal.updated")
+      # @!attribute previous_attributes
+      #   For some `.updated` events, the old values of the payload fields that changed,
+      #   keyed by field name. Omitted when no capture is available for the event
+      #
+      #   @return [Object, nil]
+      optional :previous_attributes, WhopSDK::Internal::Type::Unknown
+
+      # @!method initialize(id:, api_version_date:, data:, timestamp:, company_id: nil, previous_attributes: nil, api_version: :v1, type: :"withdrawal.updated")
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::WithdrawalUpdatedWebhookEvent} for more details.
       #
@@ -59,6 +66,8 @@ module WhopSDK
       #   @param timestamp [Time] The timestamp in ISO 8601 format that the webhook was sent at on the server
       #
       #   @param company_id [String, nil] The account ID that this webhook event is associated with
+      #
+      #   @param previous_attributes [Object] For some `.updated` events, the old values of the payload fields that changed, k
       #
       #   @param api_version [Symbol, :v1] The API version for this webhook
       #

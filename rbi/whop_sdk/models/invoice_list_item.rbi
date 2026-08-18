@@ -48,6 +48,12 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :number
 
+      # Whether a payment on this invoice is still clearing. True while a delayed
+      # payment method such as ACH or SEPA settles, during which the invoice stays open
+      # and is not marked past due.
+      sig { returns(T::Boolean) }
+      attr_accessor :payment_processing
+
       # The current payment status of the invoice, such as draft, open, paid, or void.
       sig { returns(WhopSDK::InvoiceStatus::TaggedSymbol) }
       attr_accessor :status
@@ -75,6 +81,7 @@ module WhopSDK
           fetch_invoice_token: String,
           line_items: T::Array[WhopSDK::InvoiceListItem::LineItem::OrHash],
           number: String,
+          payment_processing: T::Boolean,
           status: WhopSDK::InvoiceStatus::OrSymbol,
           user: T.nilable(WhopSDK::InvoiceListItem::User::OrHash)
         ).returns(T.attached_class)
@@ -99,6 +106,10 @@ module WhopSDK
         line_items:,
         # The sequential invoice number for display purposes.
         number:,
+        # Whether a payment on this invoice is still clearing. True while a delayed
+        # payment method such as ACH or SEPA settles, during which the invoice stays open
+        # and is not marked past due.
+        payment_processing:,
         # The current payment status of the invoice, such as draft, open, paid, or void.
         status:,
         # The user this invoice is addressed to. Null if the user account has been
@@ -118,6 +129,7 @@ module WhopSDK
             fetch_invoice_token: String,
             line_items: T::Array[WhopSDK::InvoiceListItem::LineItem],
             number: String,
+            payment_processing: T::Boolean,
             status: WhopSDK::InvoiceStatus::TaggedSymbol,
             user: T.nilable(WhopSDK::InvoiceListItem::User)
           }

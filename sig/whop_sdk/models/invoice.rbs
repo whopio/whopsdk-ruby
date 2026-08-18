@@ -17,6 +17,7 @@ module WhopSDK
         mailing_address: WhopSDK::Invoice::MailingAddress?,
         number: String,
         pay_online_url: String?,
+        payment_processing: bool,
         product: WhopSDK::Invoice::Product,
         status: WhopSDK::Models::invoice_status,
         subscription_billing_anchor_at: Time?,
@@ -55,6 +56,8 @@ module WhopSDK
 
       attr_accessor pay_online_url: String?
 
+      attr_accessor payment_processing: bool
+
       attr_accessor product: WhopSDK::Invoice::Product
 
       attr_accessor status: WhopSDK::Models::invoice_status
@@ -81,6 +84,7 @@ module WhopSDK
         mailing_address: WhopSDK::Invoice::MailingAddress?,
         number: String,
         pay_online_url: String?,
+        payment_processing: bool,
         product: WhopSDK::Invoice::Product,
         status: WhopSDK::Models::invoice_status,
         subscription_billing_anchor_at: Time?,
@@ -104,6 +108,7 @@ module WhopSDK
         mailing_address: WhopSDK::Invoice::MailingAddress?,
         number: String,
         pay_online_url: String?,
+        payment_processing: bool,
         product: WhopSDK::Invoice::Product,
         status: WhopSDK::Models::invoice_status,
         subscription_billing_anchor_at: Time?,

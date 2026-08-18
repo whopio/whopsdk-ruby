@@ -40,6 +40,14 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :company_id
 
+      # For some `.updated` events, the old values of the payload fields that changed,
+      # keyed by field name. Omitted when no capture is available for the event
+      sig { returns(T.nilable(T.anything)) }
+      attr_reader :previous_attributes
+
+      sig { params(previous_attributes: T.anything).void }
+      attr_writer :previous_attributes
+
       sig do
         params(
           id: String,
@@ -47,6 +55,7 @@ module WhopSDK
           data: WhopSDK::Payment::OrHash,
           timestamp: Time,
           company_id: T.nilable(String),
+          previous_attributes: T.anything,
           api_version: Symbol,
           type: Symbol
         ).returns(T.attached_class)
@@ -63,6 +72,9 @@ module WhopSDK
         timestamp:,
         # The account ID that this webhook event is associated with
         company_id: nil,
+        # For some `.updated` events, the old values of the payload fields that changed,
+        # keyed by field name. Omitted when no capture is available for the event
+        previous_attributes: nil,
         # The API version for this webhook
         api_version: :v1,
         # The webhook event type
@@ -79,7 +91,8 @@ module WhopSDK
             data: WhopSDK::Payment,
             timestamp: Time,
             type: Symbol,
-            company_id: T.nilable(String)
+            company_id: T.nilable(String),
+            previous_attributes: T.anything
           }
         )
       end

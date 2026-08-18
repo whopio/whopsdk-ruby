@@ -9,6 +9,8 @@ module WhopSDK
       TaggedSymbol = T.type_alias { T.all(Symbol, WhopSDK::WebhookEvent) }
       OrSymbol = T.type_alias { T.any(Symbol, String) }
 
+      ACCOUNT_UPDATED =
+        T.let(:"account.updated", WhopSDK::WebhookEvent::TaggedSymbol)
       INVOICE_CREATED =
         T.let(:"invoice.created", WhopSDK::WebhookEvent::TaggedSymbol)
       INVOICE_MARKED_UNCOLLECTIBLE =

@@ -10,6 +10,7 @@ module WhopSDK
         fetch_invoice_token: String,
         line_items: ::Array[WhopSDK::InvoiceListItem::LineItem],
         number: String,
+        payment_processing: bool,
         status: WhopSDK::Models::invoice_status,
         user: WhopSDK::InvoiceListItem::User?
       }
@@ -31,6 +32,8 @@ module WhopSDK
 
       attr_accessor number: String
 
+      attr_accessor payment_processing: bool
+
       attr_accessor status: WhopSDK::Models::invoice_status
 
       attr_accessor user: WhopSDK::InvoiceListItem::User?
@@ -44,6 +47,7 @@ module WhopSDK
         fetch_invoice_token: String,
         line_items: ::Array[WhopSDK::InvoiceListItem::LineItem],
         number: String,
+        payment_processing: bool,
         status: WhopSDK::Models::invoice_status,
         user: WhopSDK::InvoiceListItem::User?
       ) -> void
@@ -57,6 +61,7 @@ module WhopSDK
         fetch_invoice_token: String,
         line_items: ::Array[WhopSDK::InvoiceListItem::LineItem],
         number: String,
+        payment_processing: bool,
         status: WhopSDK::Models::invoice_status,
         user: WhopSDK::InvoiceListItem::User?
       }

@@ -8,7 +8,8 @@ module WhopSDK
         data: WhopSDK::Entry,
         timestamp: Time,
         type: :"entry.deleted",
-        company_id: String?
+        company_id: String?,
+        previous_attributes: top
       }
 
     class EntryDeletedWebhookEvent < WhopSDK::Internal::Type::BaseModel
@@ -26,12 +27,17 @@ module WhopSDK
 
       attr_accessor company_id: String?
 
+      attr_reader previous_attributes: top?
+
+      def previous_attributes=: (top) -> top
+
       def initialize: (
         id: String,
         api_version_date: String?,
         data: WhopSDK::Entry,
         timestamp: Time,
         ?company_id: String?,
+        ?previous_attributes: top,
         ?api_version: :v1,
         ?type: :"entry.deleted"
       ) -> void
@@ -43,7 +49,8 @@ module WhopSDK
         data: WhopSDK::Entry,
         timestamp: Time,
         type: :"entry.deleted",
-        company_id: String?
+        company_id: String?,
+        previous_attributes: top
       }
     end
   end

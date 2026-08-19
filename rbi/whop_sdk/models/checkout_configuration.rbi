@@ -64,7 +64,7 @@ module WhopSDK
       attr_writer :plan
 
       # A URL you can send to customers to complete a checkout. It looks like
-      # `/checkout/ch_xxxx`
+      # `/checkout/plan_xxxx?session={id}`
       sig { returns(String) }
       attr_accessor :purchase_url
 
@@ -112,7 +112,7 @@ module WhopSDK
         # The plan to use for the checkout configuration
         plan:,
         # A URL you can send to customers to complete a checkout. It looks like
-        # `/checkout/ch_xxxx`
+        # `/checkout/plan_xxxx?session={id}`
         purchase_url:,
         # The URL to redirect the user to after the checkout configuration is created
         redirect_url:

@@ -87,7 +87,6 @@ module WhopSDK
       MERCADO_PAGO =
         T.let(:mercado_pago, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       MOBILEPAY = T.let(:mobilepay, WhopSDK::PaymentMethodTypes::TaggedSymbol)
-      MODO = T.let(:modo, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       MONDU = T.let(:mondu, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       MULTIBANCO = T.let(:multibanco, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       NAVER_PAY = T.let(:naver_pay, WhopSDK::PaymentMethodTypes::TaggedSymbol)
@@ -119,7 +118,6 @@ module WhopSDK
         T.let(:platform_balance, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       PROMPTPAY = T.let(:promptpay, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       QRIS = T.let(:qris, WhopSDK::PaymentMethodTypes::TaggedSymbol)
-      RAPIPAGO = T.let(:rapipago, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       RECHNUNG = T.let(:rechnung, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       REVOLUT_PAY =
         T.let(:revolut_pay, WhopSDK::PaymentMethodTypes::TaggedSymbol)

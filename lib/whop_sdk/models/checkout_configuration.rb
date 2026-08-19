@@ -57,7 +57,7 @@ module WhopSDK
 
       # @!attribute purchase_url
       #   A URL you can send to customers to complete a checkout. It looks like
-      #   `/checkout/plan_xxxx?session={id}`
+      #   `/checkout/ch_xxxx/`
       #
       #   @return [String]
       required :purchase_url, String

@@ -2274,6 +2274,11 @@ module WhopSDK
           sig { returns(T.nilable(Integer)) }
           attr_accessor :exp_year
 
+          # A stable identifier for the underlying card. Two payment methods with the same
+          # fingerprint are the same card. Null if not available.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :fingerprint
+
           # The last four digits of the card number. Null if not available.
           sig { returns(T.nilable(String)) }
           attr_accessor :last4
@@ -2284,6 +2289,7 @@ module WhopSDK
               brand: T.nilable(WhopSDK::CardBrands::OrSymbol),
               exp_month: T.nilable(Integer),
               exp_year: T.nilable(Integer),
+              fingerprint: T.nilable(String),
               last4: T.nilable(String)
             ).returns(T.attached_class)
           end
@@ -2295,6 +2301,9 @@ module WhopSDK
             # The two-digit expiration year of the card (e.g., 27 for 2027). Null if not
             # available.
             exp_year:,
+            # A stable identifier for the underlying card. Two payment methods with the same
+            # fingerprint are the same card. Null if not available.
+            fingerprint:,
             # The last four digits of the card number. Null if not available.
             last4:
           )
@@ -2306,6 +2315,7 @@ module WhopSDK
                 brand: T.nilable(WhopSDK::CardBrands::TaggedSymbol),
                 exp_month: T.nilable(Integer),
                 exp_year: T.nilable(Integer),
+                fingerprint: T.nilable(String),
                 last4: T.nilable(String)
               }
             )

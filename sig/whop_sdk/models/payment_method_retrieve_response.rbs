@@ -295,6 +295,7 @@ module WhopSDK
             exp_month: Integer?,
             exp_year: Integer?,
             expired: bool,
+            fingerprint: String?,
             funding_type: WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Card::funding_type?,
             :last4 => String?,
             three_ds_verified: bool
@@ -309,6 +310,8 @@ module WhopSDK
 
           attr_accessor expired: bool
 
+          attr_accessor fingerprint: String?
+
           attr_accessor funding_type: WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Card::funding_type?
 
           attr_accessor last4: String?
@@ -320,6 +323,7 @@ module WhopSDK
             exp_month: Integer?,
             exp_year: Integer?,
             expired: bool,
+            fingerprint: String?,
             funding_type: WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Card::funding_type?,
             last4: String?,
             three_ds_verified: bool
@@ -330,6 +334,7 @@ module WhopSDK
             exp_month: Integer?,
             exp_year: Integer?,
             expired: bool,
+            fingerprint: String?,
             funding_type: WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Card::funding_type?,
             :last4 => String?,
             three_ds_verified: bool
@@ -1803,24 +1808,66 @@ module WhopSDK
 
         type platform_balance =
           {
+            account: WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::PlatformBalance::Account?,
             balances: ::Array[WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::PlatformBalance::Balance],
             spendable: bool
           }
 
         class PlatformBalance < WhopSDK::Internal::Type::BaseModel
+          attr_accessor account: WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::PlatformBalance::Account?
+
           attr_accessor balances: ::Array[WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::PlatformBalance::Balance]
 
           attr_accessor spendable: bool
 
           def initialize: (
+            account: WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::PlatformBalance::Account?,
             balances: ::Array[WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::PlatformBalance::Balance],
             spendable: bool
           ) -> void
 
           def to_hash: -> {
+            account: WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::PlatformBalance::Account?,
             balances: ::Array[WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::PlatformBalance::Balance],
             spendable: bool
           }
+
+          type account =
+            {
+              id: String,
+              logo: WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::PlatformBalance::Account::Logo?,
+              title: String
+            }
+
+          class Account < WhopSDK::Internal::Type::BaseModel
+            attr_accessor id: String
+
+            attr_accessor logo: WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::PlatformBalance::Account::Logo?
+
+            attr_accessor title: String
+
+            def initialize: (
+              id: String,
+              logo: WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::PlatformBalance::Account::Logo?,
+              title: String
+            ) -> void
+
+            def to_hash: -> {
+              id: String,
+              logo: WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::PlatformBalance::Account::Logo?,
+              title: String
+            }
+
+            type logo = { url: String? }
+
+            class Logo < WhopSDK::Internal::Type::BaseModel
+              attr_accessor url: String?
+
+              def initialize: (url: String?) -> void
+
+              def to_hash: -> { url: String? }
+            end
+          end
 
           type balance =
             {

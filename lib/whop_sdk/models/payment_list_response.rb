@@ -1060,13 +1060,20 @@ module WhopSDK
           #   @return [Integer, nil]
           required :exp_year, Integer, nil?: true
 
+          # @!attribute fingerprint
+          #   A stable identifier for the underlying card. Two payment methods with the same
+          #   fingerprint are the same card. Null if not available.
+          #
+          #   @return [String, nil]
+          required :fingerprint, String, nil?: true
+
           # @!attribute last4
           #   The last four digits of the card number. Null if not available.
           #
           #   @return [String, nil]
           required :last4, String, nil?: true
 
-          # @!method initialize(brand:, exp_month:, exp_year:, last4:)
+          # @!method initialize(brand:, exp_month:, exp_year:, fingerprint:, last4:)
           #   Some parameter documentations has been truncated, see
           #   {WhopSDK::Models::PaymentListResponse::PaymentMethod::Card} for more details.
           #
@@ -1077,6 +1084,8 @@ module WhopSDK
           #   @param exp_month [Integer, nil] The two-digit expiration month of the card (1-12). Null if not available.
           #
           #   @param exp_year [Integer, nil] The two-digit expiration year of the card (e.g., 27 for 2027). Null if not avail
+          #
+          #   @param fingerprint [String, nil] A stable identifier for the underlying card. Two payment methods with the same f
           #
           #   @param last4 [String, nil] The last four digits of the card number. Null if not available.
         end

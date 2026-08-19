@@ -1076,6 +1076,7 @@ module WhopSDK
             brand: WhopSDK::Models::card_brands?,
             exp_month: Integer?,
             exp_year: Integer?,
+            fingerprint: String?,
             :last4 => String?
           }
 
@@ -1086,12 +1087,15 @@ module WhopSDK
 
           attr_accessor exp_year: Integer?
 
+          attr_accessor fingerprint: String?
+
           attr_accessor last4: String?
 
           def initialize: (
             brand: WhopSDK::Models::card_brands?,
             exp_month: Integer?,
             exp_year: Integer?,
+            fingerprint: String?,
             last4: String?
           ) -> void
 
@@ -1099,6 +1103,7 @@ module WhopSDK
             brand: WhopSDK::Models::card_brands?,
             exp_month: Integer?,
             exp_year: Integer?,
+            fingerprint: String?,
             :last4 => String?
           }
         end

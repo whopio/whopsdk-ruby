@@ -30,7 +30,7 @@ module WhopSDK
       variant :SepaDebitPaymentMethod,
               -> { WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod }
 
-      # The buyer's Whop balance, offered as a payment method. Charged by naming its ledger id on a `saved` confirmation token — it is a live wallet, not a stored credential, so it cannot be vaulted or charged off-session.
+      # A Whop balance the buyer can pay with — their own, or an account's they hold permission to spend. Charged by naming its ledger id on a `saved` confirmation token — it is a live wallet, not a stored credential, so it cannot be vaulted or charged off-session.
       variant :PlatformBalancePaymentMethod,
               -> { WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod }
 
@@ -416,6 +416,13 @@ module WhopSDK
           #   @return [Boolean]
           required :expired, WhopSDK::Internal::Type::Boolean
 
+          # @!attribute fingerprint
+          #   A stable identifier for the underlying card. Two payment methods with the same
+          #   fingerprint are the same card. Null if not available.
+          #
+          #   @return [String, nil]
+          required :fingerprint, String, nil?: true
+
           # @!attribute funding_type
           #   The funding types of a card
           #
@@ -437,7 +444,7 @@ module WhopSDK
           #   @return [Boolean]
           required :three_ds_verified, WhopSDK::Internal::Type::Boolean
 
-          # @!method initialize(brand:, exp_month:, exp_year:, expired:, funding_type:, last4:, three_ds_verified:)
+          # @!method initialize(brand:, exp_month:, exp_year:, expired:, fingerprint:, funding_type:, last4:, three_ds_verified:)
           #   Some parameter documentations has been truncated, see
           #   {WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Card} for
           #   more details.
@@ -452,6 +459,8 @@ module WhopSDK
           #   @param exp_year [Integer, nil] The two-digit expiration year of the card (e.g., 27 for 2027). Null if not avail
           #
           #   @param expired [Boolean] Whether the card is past its expiration month. An expired card cannot take a new
+          #
+          #   @param fingerprint [String, nil] A stable identifier for the underlying card. Two payment methods with the same f
           #
           #   @param funding_type [Symbol, WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Card::FundingType, nil] The funding types of a card
           #
@@ -2048,9 +2057,10 @@ module WhopSDK
         #   {WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod}
         #   for more details.
         #
-        #   The buyer's Whop balance, offered as a payment method. Charged by naming its
-        #   ledger id on a `saved` confirmation token — it is a live wallet, not a stored
-        #   credential, so it cannot be vaulted or charged off-session.
+        #   A Whop balance the buyer can pay with — their own, or an account's they hold
+        #   permission to spend. Charged by naming its ledger id on a `saved` confirmation
+        #   token — it is a live wallet, not a stored credential, so it cannot be vaulted or
+        #   charged off-session.
         #
         #   @param id [String] Represents a unique identifier that is Base64 obfuscated. It is often used to re
         #
@@ -2292,6 +2302,16 @@ module WhopSDK
 
         # @see WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod#platform_balance
         class PlatformBalance < WhopSDK::Internal::Type::BaseModel
+          # @!attribute account
+          #   The account whose wallet this is. Null for the buyer's own personal wallet. A
+          #   buyer sees an account's balance here when they hold permission to spend it, so a
+          #   list can hold several — their own and one per account they are on.
+          #
+          #   @return [WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::PlatformBalance::Account, nil]
+          required :account,
+                   -> { WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::PlatformBalance::Account },
+                   nil?: true
+
           # @!attribute balances
           #   Available amount per currency. Read from the balance cache, so it is indicative
           #   — the charge revalidates against settled funds and may still refuse.
@@ -2308,16 +2328,71 @@ module WhopSDK
           #   @return [Boolean]
           required :spendable, WhopSDK::Internal::Type::Boolean
 
-          # @!method initialize(balances:, spendable:)
+          # @!method initialize(account:, balances:, spendable:)
           #   Some parameter documentations has been truncated, see
           #   {WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::PlatformBalance}
           #   for more details.
           #
           #   What is available to spend, and whether the account may spend it.
           #
+          #   @param account [WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::PlatformBalance::Account, nil] The account whose wallet this is. Null for the buyer's own personal wallet. A bu
+          #
           #   @param balances [Array<WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::PlatformBalance::Balance>] Available amount per currency. Read from the balance cache, so it is indicative
           #
           #   @param spendable [Boolean] Whether this balance can pay right now, which here means only whether it holds f
+
+          # @see WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::PlatformBalance#account
+          class Account < WhopSDK::Internal::Type::BaseModel
+            # @!attribute id
+            #   The unique identifier for the company.
+            #
+            #   @return [String]
+            required :id, String
+
+            # @!attribute logo
+            #   The company's logo.
+            #
+            #   @return [WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::PlatformBalance::Account::Logo, nil]
+            required :logo,
+                     -> { WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::PlatformBalance::Account::Logo },
+                     nil?: true
+
+            # @!attribute title
+            #   The display name of the company shown to customers.
+            #
+            #   @return [String]
+            required :title, String
+
+            # @!method initialize(id:, logo:, title:)
+            #   The account whose wallet this is. Null for the buyer's own personal wallet. A
+            #   buyer sees an account's balance here when they hold permission to spend it, so a
+            #   list can hold several — their own and one per account they are on.
+            #
+            #   @param id [String] The unique identifier for the company.
+            #
+            #   @param logo [WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::PlatformBalance::Account::Logo, nil] The company's logo.
+            #
+            #   @param title [String] The display name of the company shown to customers.
+
+            # @see WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::PlatformBalance::Account#logo
+            class Logo < WhopSDK::Internal::Type::BaseModel
+              # @!attribute url
+              #   A pre-optimized URL for rendering this attachment on the client. This should be
+              #   used for displaying attachments in apps.
+              #
+              #   @return [String, nil]
+              required :url, String, nil?: true
+
+              # @!method initialize(url:)
+              #   Some parameter documentations has been truncated, see
+              #   {WhopSDK::Models::PaymentMethodRetrieveResponse::PlatformBalancePaymentMethod::PlatformBalance::Account::Logo}
+              #   for more details.
+              #
+              #   The company's logo.
+              #
+              #   @param url [String, nil] A pre-optimized URL for rendering this attachment on the client. This should be
+            end
+          end
 
           class Balance < WhopSDK::Internal::Type::BaseModel
             # @!attribute amount

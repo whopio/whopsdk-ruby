@@ -730,6 +730,11 @@ module WhopSDK
           sig { returns(T::Boolean) }
           attr_accessor :expired
 
+          # A stable identifier for the underlying card. Two payment methods with the same
+          # fingerprint are the same card. Null if not available.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :fingerprint
+
           # The funding types of a card
           sig do
             returns(
@@ -757,6 +762,7 @@ module WhopSDK
               exp_month: T.nilable(Integer),
               exp_year: T.nilable(Integer),
               expired: T::Boolean,
+              fingerprint: T.nilable(String),
               funding_type:
                 T.nilable(
                   WhopSDK::Models::PaymentMethodListResponse::CardPaymentMethod::Card::FundingType::OrSymbol
@@ -776,6 +782,9 @@ module WhopSDK
             # Whether the card is past its expiration month. An expired card cannot take a new
             # charge.
             expired:,
+            # A stable identifier for the underlying card. Two payment methods with the same
+            # fingerprint are the same card. Null if not available.
+            fingerprint:,
             # The funding types of a card
             funding_type:,
             # The last four digits of the card number. Null if not available.
@@ -793,6 +802,7 @@ module WhopSDK
                 exp_month: T.nilable(Integer),
                 exp_year: T.nilable(Integer),
                 expired: T::Boolean,
+                fingerprint: T.nilable(String),
                 funding_type:
                   T.nilable(
                     WhopSDK::Models::PaymentMethodListResponse::CardPaymentMethod::Card::FundingType::TaggedSymbol
@@ -3888,9 +3898,10 @@ module WhopSDK
         sig { returns(Symbol) }
         attr_accessor :typename
 
-        # The buyer's Whop balance, offered as a payment method. Charged by naming its
-        # ledger id on a `saved` confirmation token — it is a live wallet, not a stored
-        # credential, so it cannot be vaulted or charged off-session.
+        # A Whop balance the buyer can pay with — their own, or an account's they hold
+        # permission to spend. Charged by naming its ledger id on a `saved` confirmation
+        # token — it is a live wallet, not a stored credential, so it cannot be vaulted or
+        # charged off-session.
         sig do
           params(
             id: String,
@@ -4410,6 +4421,28 @@ module WhopSDK
               )
             end
 
+          # The account whose wallet this is. Null for the buyer's own personal wallet. A
+          # buyer sees an account's balance here when they hold permission to spend it, so a
+          # list can hold several — their own and one per account they are on.
+          sig do
+            returns(
+              T.nilable(
+                WhopSDK::Models::PaymentMethodListResponse::PlatformBalancePaymentMethod::PlatformBalance::Account
+              )
+            )
+          end
+          attr_reader :account
+
+          sig do
+            params(
+              account:
+                T.nilable(
+                  WhopSDK::Models::PaymentMethodListResponse::PlatformBalancePaymentMethod::PlatformBalance::Account::OrHash
+                )
+            ).void
+          end
+          attr_writer :account
+
           # Available amount per currency. Read from the balance cache, so it is indicative
           # — the charge revalidates against settled funds and may still refuse.
           sig do
@@ -4430,6 +4463,10 @@ module WhopSDK
           # What is available to spend, and whether the account may spend it.
           sig do
             params(
+              account:
+                T.nilable(
+                  WhopSDK::Models::PaymentMethodListResponse::PlatformBalancePaymentMethod::PlatformBalance::Account::OrHash
+                ),
               balances:
                 T::Array[
                   WhopSDK::Models::PaymentMethodListResponse::PlatformBalancePaymentMethod::PlatformBalance::Balance::OrHash
@@ -4438,6 +4475,10 @@ module WhopSDK
             ).returns(T.attached_class)
           end
           def self.new(
+            # The account whose wallet this is. Null for the buyer's own personal wallet. A
+            # buyer sees an account's balance here when they hold permission to spend it, so a
+            # list can hold several — their own and one per account they are on.
+            account:,
             # Available amount per currency. Read from the balance cache, so it is indicative
             # — the charge revalidates against settled funds and may still refuse.
             balances:,
@@ -4451,6 +4492,10 @@ module WhopSDK
           sig do
             override.returns(
               {
+                account:
+                  T.nilable(
+                    WhopSDK::Models::PaymentMethodListResponse::PlatformBalancePaymentMethod::PlatformBalance::Account
+                  ),
                 balances:
                   T::Array[
                     WhopSDK::Models::PaymentMethodListResponse::PlatformBalancePaymentMethod::PlatformBalance::Balance
@@ -4460,6 +4505,110 @@ module WhopSDK
             )
           end
           def to_hash
+          end
+
+          class Account < WhopSDK::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  WhopSDK::Models::PaymentMethodListResponse::PlatformBalancePaymentMethod::PlatformBalance::Account,
+                  WhopSDK::Internal::AnyHash
+                )
+              end
+
+            # The unique identifier for the company.
+            sig { returns(String) }
+            attr_accessor :id
+
+            # The company's logo.
+            sig do
+              returns(
+                T.nilable(
+                  WhopSDK::Models::PaymentMethodListResponse::PlatformBalancePaymentMethod::PlatformBalance::Account::Logo
+                )
+              )
+            end
+            attr_reader :logo
+
+            sig do
+              params(
+                logo:
+                  T.nilable(
+                    WhopSDK::Models::PaymentMethodListResponse::PlatformBalancePaymentMethod::PlatformBalance::Account::Logo::OrHash
+                  )
+              ).void
+            end
+            attr_writer :logo
+
+            # The display name of the company shown to customers.
+            sig { returns(String) }
+            attr_accessor :title
+
+            # The account whose wallet this is. Null for the buyer's own personal wallet. A
+            # buyer sees an account's balance here when they hold permission to spend it, so a
+            # list can hold several — their own and one per account they are on.
+            sig do
+              params(
+                id: String,
+                logo:
+                  T.nilable(
+                    WhopSDK::Models::PaymentMethodListResponse::PlatformBalancePaymentMethod::PlatformBalance::Account::Logo::OrHash
+                  ),
+                title: String
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # The unique identifier for the company.
+              id:,
+              # The company's logo.
+              logo:,
+              # The display name of the company shown to customers.
+              title:
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  id: String,
+                  logo:
+                    T.nilable(
+                      WhopSDK::Models::PaymentMethodListResponse::PlatformBalancePaymentMethod::PlatformBalance::Account::Logo
+                    ),
+                  title: String
+                }
+              )
+            end
+            def to_hash
+            end
+
+            class Logo < WhopSDK::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    WhopSDK::Models::PaymentMethodListResponse::PlatformBalancePaymentMethod::PlatformBalance::Account::Logo,
+                    WhopSDK::Internal::AnyHash
+                  )
+                end
+
+              # A pre-optimized URL for rendering this attachment on the client. This should be
+              # used for displaying attachments in apps.
+              sig { returns(T.nilable(String)) }
+              attr_accessor :url
+
+              # The company's logo.
+              sig { params(url: T.nilable(String)).returns(T.attached_class) }
+              def self.new(
+                # A pre-optimized URL for rendering this attachment on the client. This should be
+                # used for displaying attachments in apps.
+                url:
+              )
+              end
+
+              sig { override.returns({ url: T.nilable(String) }) }
+              def to_hash
+              end
+            end
           end
 
           class Balance < WhopSDK::Internal::Type::BaseModel

@@ -4,12 +4,12 @@ module WhopSDK
       def create: (
         body: WhopSDK::Models::PaymentCreateParams::body,
         ?request_options: WhopSDK::request_opts
-      ) -> WhopSDK::Payment
+      ) -> WhopSDK::Models::PaymentCreateResponse
 
       def retrieve: (
         String id,
         ?request_options: WhopSDK::request_opts
-      ) -> WhopSDK::Payment
+      ) -> WhopSDK::Models::PaymentRetrieveResponse
 
       def list: (
         ?after: String,

@@ -32,7 +32,7 @@ module WhopSDK
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [WhopSDK::Models::Payment]
+      # @return [WhopSDK::Models::PaymentCreateResponse]
       #
       # @see WhopSDK::Models::PaymentCreateParams
       def create(params)
@@ -41,7 +41,7 @@ module WhopSDK
           method: :post,
           path: "payments",
           body: parsed[:body],
-          model: WhopSDK::Payment,
+          model: WhopSDK::Models::PaymentCreateResponse,
           options: options
         )
       end
@@ -67,14 +67,14 @@ module WhopSDK
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [WhopSDK::Models::Payment]
+      # @return [WhopSDK::Models::PaymentRetrieveResponse]
       #
       # @see WhopSDK::Models::PaymentRetrieveParams
       def retrieve(id, params = {})
         @client.request(
           method: :get,
           path: ["payments/%1$s", id],
-          model: WhopSDK::Payment,
+          model: WhopSDK::Models::PaymentRetrieveResponse,
           options: params[:request_options]
         )
       end

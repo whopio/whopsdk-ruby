@@ -35,7 +35,7 @@ module WhopSDK
               WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanIDAndMemberID::OrHash
             ),
           request_options: WhopSDK::RequestOptions::OrHash
-        ).returns(WhopSDK::Payment)
+        ).returns(WhopSDK::Models::PaymentCreateResponse)
       end
       def create(
         # Parameters for CreatePayment
@@ -62,7 +62,7 @@ module WhopSDK
         params(
           id: String,
           request_options: WhopSDK::RequestOptions::OrHash
-        ).returns(WhopSDK::Payment)
+        ).returns(WhopSDK::Models::PaymentRetrieveResponse)
       end
       def retrieve(
         # The unique identifier of the payment.

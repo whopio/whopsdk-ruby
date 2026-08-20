@@ -40,11 +40,11 @@ module WhopSDK
       #   @return [Symbol, :"payment.succeeded"]
       required :type, const: :"payment.succeeded"
 
-      # @!attribute company_id
+      # @!attribute account_id
       #   The account ID that this webhook event is associated with
       #
       #   @return [String, nil]
-      optional :company_id, String, nil?: true
+      optional :account_id, String, nil?: true
 
       # @!attribute previous_attributes
       #   For some `.updated` events, the old values of the payload fields that changed,
@@ -53,7 +53,7 @@ module WhopSDK
       #   @return [Object, nil]
       optional :previous_attributes, WhopSDK::Internal::Type::Unknown
 
-      # @!method initialize(id:, api_version_date:, data:, timestamp:, company_id: nil, previous_attributes: nil, api_version: :v1, type: :"payment.succeeded")
+      # @!method initialize(id:, api_version_date:, data:, timestamp:, account_id: nil, previous_attributes: nil, api_version: :v1, type: :"payment.succeeded")
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::PaymentSucceededWebhookEvent} for more details.
       #
@@ -65,7 +65,7 @@ module WhopSDK
       #
       #   @param timestamp [Time] The timestamp in ISO 8601 format that the webhook was sent at on the server
       #
-      #   @param company_id [String, nil] The account ID that this webhook event is associated with
+      #   @param account_id [String, nil] The account ID that this webhook event is associated with
       #
       #   @param previous_attributes [Object] For some `.updated` events, the old values of the payload fields that changed, k
       #

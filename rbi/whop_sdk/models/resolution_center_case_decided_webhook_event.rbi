@@ -45,7 +45,7 @@ module WhopSDK
 
       # The account ID that this webhook event is associated with
       sig { returns(T.nilable(String)) }
-      attr_accessor :company_id
+      attr_accessor :account_id
 
       # For some `.updated` events, the old values of the payload fields that changed,
       # keyed by field name. Omitted when no capture is available for the event
@@ -61,7 +61,7 @@ module WhopSDK
           api_version_date: T.nilable(String),
           data: WhopSDK::ResolutionCenterCaseDecidedWebhookEvent::Data::OrHash,
           timestamp: Time,
-          company_id: T.nilable(String),
+          account_id: T.nilable(String),
           previous_attributes: T.anything,
           api_version: Symbol,
           type: Symbol
@@ -78,7 +78,7 @@ module WhopSDK
         # The timestamp in ISO 8601 format that the webhook was sent at on the server
         timestamp:,
         # The account ID that this webhook event is associated with
-        company_id: nil,
+        account_id: nil,
         # For some `.updated` events, the old values of the payload fields that changed,
         # keyed by field name. Omitted when no capture is available for the event
         previous_attributes: nil,
@@ -98,7 +98,7 @@ module WhopSDK
             data: WhopSDK::ResolutionCenterCaseDecidedWebhookEvent::Data,
             timestamp: Time,
             type: Symbol,
-            company_id: T.nilable(String),
+            account_id: T.nilable(String),
             previous_attributes: T.anything
           }
         )

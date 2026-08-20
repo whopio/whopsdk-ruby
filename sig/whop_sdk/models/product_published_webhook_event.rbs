@@ -8,7 +8,7 @@ module WhopSDK
         data: WhopSDK::Product,
         timestamp: Time,
         type: :"product.published",
-        company_id: String?,
+        account_id: String?,
         previous_attributes: top
       }
 
@@ -25,7 +25,7 @@ module WhopSDK
 
       attr_accessor type: :"product.published"
 
-      attr_accessor company_id: String?
+      attr_accessor account_id: String?
 
       attr_reader previous_attributes: top?
 
@@ -36,7 +36,7 @@ module WhopSDK
         api_version_date: String?,
         data: WhopSDK::Product,
         timestamp: Time,
-        ?company_id: String?,
+        ?account_id: String?,
         ?previous_attributes: top,
         ?api_version: :v1,
         ?type: :"product.published"
@@ -49,7 +49,7 @@ module WhopSDK
         data: WhopSDK::Product,
         timestamp: Time,
         type: :"product.published",
-        company_id: String?,
+        account_id: String?,
         previous_attributes: top
       }
     end

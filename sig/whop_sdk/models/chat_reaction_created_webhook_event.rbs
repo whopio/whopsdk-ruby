@@ -8,7 +8,7 @@ module WhopSDK
         data: WhopSDK::ChatReactionCreatedWebhookEvent::Data,
         timestamp: Time,
         type: :"chat.reaction.created",
-        company_id: String?,
+        account_id: String?,
         previous_attributes: top
       }
 
@@ -25,7 +25,7 @@ module WhopSDK
 
       attr_accessor type: :"chat.reaction.created"
 
-      attr_accessor company_id: String?
+      attr_accessor account_id: String?
 
       attr_reader previous_attributes: top?
 
@@ -36,7 +36,7 @@ module WhopSDK
         api_version_date: String?,
         data: WhopSDK::ChatReactionCreatedWebhookEvent::Data,
         timestamp: Time,
-        ?company_id: String?,
+        ?account_id: String?,
         ?previous_attributes: top,
         ?api_version: :v1,
         ?type: :"chat.reaction.created"
@@ -49,7 +49,7 @@ module WhopSDK
         data: WhopSDK::ChatReactionCreatedWebhookEvent::Data,
         timestamp: Time,
         type: :"chat.reaction.created",
-        company_id: String?,
+        account_id: String?,
         previous_attributes: top
       }
 

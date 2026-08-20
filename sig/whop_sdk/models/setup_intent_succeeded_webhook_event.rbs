@@ -8,7 +8,7 @@ module WhopSDK
         data: WhopSDK::SetupIntent,
         timestamp: Time,
         type: :"setup_intent.succeeded",
-        company_id: String?,
+        account_id: String?,
         previous_attributes: top
       }
 
@@ -25,7 +25,7 @@ module WhopSDK
 
       attr_accessor type: :"setup_intent.succeeded"
 
-      attr_accessor company_id: String?
+      attr_accessor account_id: String?
 
       attr_reader previous_attributes: top?
 
@@ -36,7 +36,7 @@ module WhopSDK
         api_version_date: String?,
         data: WhopSDK::SetupIntent,
         timestamp: Time,
-        ?company_id: String?,
+        ?account_id: String?,
         ?previous_attributes: top,
         ?api_version: :v1,
         ?type: :"setup_intent.succeeded"
@@ -49,7 +49,7 @@ module WhopSDK
         data: WhopSDK::SetupIntent,
         timestamp: Time,
         type: :"setup_intent.succeeded",
-        company_id: String?,
+        account_id: String?,
         previous_attributes: top
       }
     end

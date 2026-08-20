@@ -8,7 +8,7 @@ module WhopSDK
         data: WhopSDK::Payment,
         timestamp: Time,
         type: :"payment.pending",
-        company_id: String?,
+        account_id: String?,
         previous_attributes: top
       }
 
@@ -25,7 +25,7 @@ module WhopSDK
 
       attr_accessor type: :"payment.pending"
 
-      attr_accessor company_id: String?
+      attr_accessor account_id: String?
 
       attr_reader previous_attributes: top?
 
@@ -36,7 +36,7 @@ module WhopSDK
         api_version_date: String?,
         data: WhopSDK::Payment,
         timestamp: Time,
-        ?company_id: String?,
+        ?account_id: String?,
         ?previous_attributes: top,
         ?api_version: :v1,
         ?type: :"payment.pending"
@@ -49,7 +49,7 @@ module WhopSDK
         data: WhopSDK::Payment,
         timestamp: Time,
         type: :"payment.pending",
-        company_id: String?,
+        account_id: String?,
         previous_attributes: top
       }
     end

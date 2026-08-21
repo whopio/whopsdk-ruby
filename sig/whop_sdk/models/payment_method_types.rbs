@@ -2,6 +2,7 @@ module WhopSDK
   module Models
     type payment_method_types =
       :acss_debit
+      | :addi
       | :affirm
       | :afterpay_clearpay
       | :alipay
@@ -122,6 +123,7 @@ module WhopSDK
       extend WhopSDK::Internal::Type::Enum
 
       ACSS_DEBIT: :acss_debit
+      ADDI: :addi
       AFFIRM: :affirm
       AFTERPAY_CLEARPAY: :afterpay_clearpay
       ALIPAY: :alipay

@@ -7,6 +7,7 @@ module WhopSDK
       extend WhopSDK::Internal::Type::Enum
 
       ACSS_DEBIT = :acss_debit
+      ADDI = :addi
       AFFIRM = :affirm
       AFTERPAY_CLEARPAY = :afterpay_clearpay
       ALIPAY = :alipay

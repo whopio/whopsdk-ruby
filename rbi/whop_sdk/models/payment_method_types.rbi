@@ -10,6 +10,7 @@ module WhopSDK
       OrSymbol = T.type_alias { T.any(Symbol, String) }
 
       ACSS_DEBIT = T.let(:acss_debit, WhopSDK::PaymentMethodTypes::TaggedSymbol)
+      ADDI = T.let(:addi, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       AFFIRM = T.let(:affirm, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       AFTERPAY_CLEARPAY =
         T.let(:afterpay_clearpay, WhopSDK::PaymentMethodTypes::TaggedSymbol)

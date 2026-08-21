@@ -89,6 +89,13 @@ module WhopSDK
       #   @return [WhopSDK::Models::Invoice::MailingAddress, nil]
       required :mailing_address, -> { WhopSDK::Invoice::MailingAddress }, nil?: true
 
+      # @!attribute member
+      #   The member that the invoice was created for. Null when the invoice is addressed
+      #   to an email address with no member record behind it.
+      #
+      #   @return [WhopSDK::Models::Invoice::Member, nil]
+      required :member, -> { WhopSDK::Invoice::Member }, nil?: true
+
       # @!attribute number
       #   The sequential invoice number for display purposes.
       #
@@ -101,6 +108,14 @@ module WhopSDK
       #
       #   @return [String, nil]
       required :pay_online_url, String, nil?: true
+
+      # @!attribute payment
+      #   The payment that settled this invoice. Null while the invoice is unpaid, when
+      #   the invoice was marked paid manually, and on a subscription renewal invoice,
+      #   where the settling payment cannot yet be identified.
+      #
+      #   @return [WhopSDK::Models::Invoice::Payment, nil]
+      required :payment, -> { WhopSDK::Invoice::Payment }, nil?: true
 
       # @!attribute payment_processing
       #   Whether a payment on this invoice is still clearing. True while a delayed
@@ -142,7 +157,7 @@ module WhopSDK
       #   @return [WhopSDK::Models::Invoice::User, nil]
       required :user, -> { WhopSDK::Invoice::User }, nil?: true
 
-      # @!method initialize(id:, automatically_finalizes_at:, charge_buyer_fee:, collection_method:, company:, created_at:, current_plan:, customer_name:, due_date:, email_address:, fetch_invoice_token:, line_items:, mailing_address:, number:, pay_online_url:, payment_processing:, product:, status:, subscription_billing_anchor_at:, updated_at:, user:)
+      # @!method initialize(id:, automatically_finalizes_at:, charge_buyer_fee:, collection_method:, company:, created_at:, current_plan:, customer_name:, due_date:, email_address:, fetch_invoice_token:, line_items:, mailing_address:, member:, number:, pay_online_url:, payment:, payment_processing:, product:, status:, subscription_billing_anchor_at:, updated_at:, user:)
       #   Some parameter documentations has been truncated, see {WhopSDK::Models::Invoice}
       #   for more details.
       #
@@ -176,9 +191,13 @@ module WhopSDK
       #
       #   @param mailing_address [WhopSDK::Models::Invoice::MailingAddress, nil] The billing/mailing address associated with this invoice, if one was provided at
       #
+      #   @param member [WhopSDK::Models::Invoice::Member, nil] The member that the invoice was created for. Null when the invoice is addressed
+      #
       #   @param number [String] The sequential invoice number for display purposes.
       #
       #   @param pay_online_url [String, nil] The checkout URL where the customer can pay this invoice online, with their emai
+      #
+      #   @param payment [WhopSDK::Models::Invoice::Payment, nil] The payment that settled this invoice. Null while the invoice is unpaid, when th
       #
       #   @param payment_processing [Boolean] Whether a payment on this invoice is still clearing. True while a delayed paymen
       #
@@ -364,6 +383,37 @@ module WhopSDK
         #   @param postal_code [String, nil] The postal code of the address.
         #
         #   @param state [String, nil] The state of the address.
+      end
+
+      # @see WhopSDK::Models::Invoice#member
+      class Member < WhopSDK::Internal::Type::BaseModel
+        # @!attribute id
+        #   The unique identifier for the company member.
+        #
+        #   @return [String]
+        required :id, String
+
+        # @!method initialize(id:)
+        #   The member that the invoice was created for. Null when the invoice is addressed
+        #   to an email address with no member record behind it.
+        #
+        #   @param id [String] The unique identifier for the company member.
+      end
+
+      # @see WhopSDK::Models::Invoice#payment
+      class Payment < WhopSDK::Internal::Type::BaseModel
+        # @!attribute id
+        #   The unique identifier for the payment.
+        #
+        #   @return [String]
+        required :id, String
+
+        # @!method initialize(id:)
+        #   The payment that settled this invoice. Null while the invoice is unpaid, when
+        #   the invoice was marked paid manually, and on a subscription renewal invoice,
+        #   where the settling payment cannot yet be identified.
+        #
+        #   @param id [String] The unique identifier for the payment.
       end
 
       # @see WhopSDK::Models::Invoice#product

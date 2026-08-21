@@ -79,6 +79,14 @@ module WhopSDK
       end
       attr_writer :mailing_address
 
+      # The member that the invoice was created for. Null when the invoice is addressed
+      # to an email address with no member record behind it.
+      sig { returns(T.nilable(WhopSDK::Invoice::Member)) }
+      attr_reader :member
+
+      sig { params(member: T.nilable(WhopSDK::Invoice::Member::OrHash)).void }
+      attr_writer :member
+
       # The sequential invoice number for display purposes.
       sig { returns(String) }
       attr_accessor :number
@@ -87,6 +95,15 @@ module WhopSDK
       # email address pre-filled and locked.
       sig { returns(T.nilable(String)) }
       attr_accessor :pay_online_url
+
+      # The payment that settled this invoice. Null while the invoice is unpaid, when
+      # the invoice was marked paid manually, and on a subscription renewal invoice,
+      # where the settling payment cannot yet be identified.
+      sig { returns(T.nilable(WhopSDK::Invoice::Payment)) }
+      attr_reader :payment
+
+      sig { params(payment: T.nilable(WhopSDK::Invoice::Payment::OrHash)).void }
+      attr_writer :payment
 
       # Whether a payment on this invoice is still clearing. True while a delayed
       # payment method such as ACH or SEPA settles, during which the invoice stays open
@@ -140,8 +157,10 @@ module WhopSDK
           fetch_invoice_token: String,
           line_items: T::Array[WhopSDK::Invoice::LineItem::OrHash],
           mailing_address: T.nilable(WhopSDK::Invoice::MailingAddress::OrHash),
+          member: T.nilable(WhopSDK::Invoice::Member::OrHash),
           number: String,
           pay_online_url: T.nilable(String),
+          payment: T.nilable(WhopSDK::Invoice::Payment::OrHash),
           payment_processing: T::Boolean,
           product: WhopSDK::Invoice::Product::OrHash,
           status: WhopSDK::InvoiceStatus::OrSymbol,
@@ -185,11 +204,18 @@ module WhopSDK
         # The billing/mailing address associated with this invoice, if one was provided at
         # creation time.
         mailing_address:,
+        # The member that the invoice was created for. Null when the invoice is addressed
+        # to an email address with no member record behind it.
+        member:,
         # The sequential invoice number for display purposes.
         number:,
         # The checkout URL where the customer can pay this invoice online, with their
         # email address pre-filled and locked.
         pay_online_url:,
+        # The payment that settled this invoice. Null while the invoice is unpaid, when
+        # the invoice was marked paid manually, and on a subscription renewal invoice,
+        # where the settling payment cannot yet be identified.
+        payment:,
         # Whether a payment on this invoice is still clearing. True while a delayed
         # payment method such as ACH or SEPA settles, during which the invoice stays open
         # and is not marked past due.
@@ -225,8 +251,10 @@ module WhopSDK
             fetch_invoice_token: String,
             line_items: T::Array[WhopSDK::Invoice::LineItem],
             mailing_address: T.nilable(WhopSDK::Invoice::MailingAddress),
+            member: T.nilable(WhopSDK::Invoice::Member),
             number: String,
             pay_online_url: T.nilable(String),
+            payment: T.nilable(WhopSDK::Invoice::Payment),
             payment_processing: T::Boolean,
             product: WhopSDK::Invoice::Product,
             status: WhopSDK::InvoiceStatus::TaggedSymbol,
@@ -475,6 +503,55 @@ module WhopSDK
             }
           )
         end
+        def to_hash
+        end
+      end
+
+      class Member < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(WhopSDK::Invoice::Member, WhopSDK::Internal::AnyHash)
+          end
+
+        # The unique identifier for the company member.
+        sig { returns(String) }
+        attr_accessor :id
+
+        # The member that the invoice was created for. Null when the invoice is addressed
+        # to an email address with no member record behind it.
+        sig { params(id: String).returns(T.attached_class) }
+        def self.new(
+          # The unique identifier for the company member.
+          id:
+        )
+        end
+
+        sig { override.returns({ id: String }) }
+        def to_hash
+        end
+      end
+
+      class Payment < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(WhopSDK::Invoice::Payment, WhopSDK::Internal::AnyHash)
+          end
+
+        # The unique identifier for the payment.
+        sig { returns(String) }
+        attr_accessor :id
+
+        # The payment that settled this invoice. Null while the invoice is unpaid, when
+        # the invoice was marked paid manually, and on a subscription renewal invoice,
+        # where the settling payment cannot yet be identified.
+        sig { params(id: String).returns(T.attached_class) }
+        def self.new(
+          # The unique identifier for the payment.
+          id:
+        )
+        end
+
+        sig { override.returns({ id: String }) }
         def to_hash
         end
       end

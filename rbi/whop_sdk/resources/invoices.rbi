@@ -11,6 +11,8 @@ module WhopSDK
       #
       # - `invoice:create`
       # - `member:email:read`
+      # - `member:basic:read`
+      # - `payment:basic:read`
       sig do
         params(
           body:
@@ -34,6 +36,8 @@ module WhopSDK
       #
       # - `invoice:basic:read`
       # - `member:email:read`
+      # - `member:basic:read`
+      # - `payment:basic:read`
       sig do
         params(
           id: String,
@@ -53,6 +57,8 @@ module WhopSDK
       #
       # - `invoice:update`
       # - `member:email:read`
+      # - `member:basic:read`
+      # - `payment:basic:read`
       sig do
         params(
           id: String,

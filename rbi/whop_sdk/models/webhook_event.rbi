@@ -71,6 +71,8 @@ module WhopSDK
         T.let(:"withdrawal.created", WhopSDK::WebhookEvent::TaggedSymbol)
       WITHDRAWAL_UPDATED =
         T.let(:"withdrawal.updated", WhopSDK::WebhookEvent::TaggedSymbol)
+      WITHDRAWAL_REVERSED =
+        T.let(:"withdrawal.reversed", WhopSDK::WebhookEvent::TaggedSymbol)
       CARD_TRANSACTION_CREATED =
         T.let(:"card_transaction.created", WhopSDK::WebhookEvent::TaggedSymbol)
       CARD_TRANSACTION_UPDATED =

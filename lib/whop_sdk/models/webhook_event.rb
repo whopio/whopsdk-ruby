@@ -32,6 +32,7 @@ module WhopSDK
       TRANSFER_FAILED = :"transfer.failed"
       WITHDRAWAL_CREATED = :"withdrawal.created"
       WITHDRAWAL_UPDATED = :"withdrawal.updated"
+      WITHDRAWAL_REVERSED = :"withdrawal.reversed"
       CARD_TRANSACTION_CREATED = :"card_transaction.created"
       CARD_TRANSACTION_UPDATED = :"card_transaction.updated"
       CARD_TRANSACTION_COMPLETED = :"card_transaction.completed"

@@ -26,6 +26,7 @@ module WhopSDK
             WhopSDK::LedgerAccountFundsAvailableWebhookEvent,
             WhopSDK::WithdrawalCreatedWebhookEvent,
             WhopSDK::WithdrawalUpdatedWebhookEvent,
+            WhopSDK::WithdrawalReversedWebhookEvent,
             WhopSDK::CardTransactionCreatedWebhookEvent,
             WhopSDK::CardTransactionUpdatedWebhookEvent,
             WhopSDK::CardTransactionCompletedWebhookEvent,

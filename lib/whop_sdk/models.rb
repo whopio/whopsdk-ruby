@@ -753,6 +753,8 @@ module WhopSDK
 
   WithdrawalRetrieveParams = WhopSDK::Models::WithdrawalRetrieveParams
 
+  WithdrawalReversedWebhookEvent = WhopSDK::Models::WithdrawalReversedWebhookEvent
+
   WithdrawalSpeeds = WhopSDK::Models::WithdrawalSpeeds
 
   WithdrawalStatus = WhopSDK::Models::WithdrawalStatus

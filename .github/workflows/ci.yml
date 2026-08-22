@@ -1,34 +1,66 @@
 name: CI
+
+# Hand-written and listed in .fernignore. The Fern Ruby generator's own ci.yml carries a
+# tag-triggered `publish` job that runs `bundle install` in a job holding `id-token: write`
+# and then `gem push` — a second, unreviewed publish path that would also fire on the tag
+# publish-main.yml creates. Ruby is the only Fern language whose generated ci.yml does
+# that; the TypeScript and Python repos' generated ci.yml are compile+test only. This file
+# is that ci.yml with the publish job removed.
+
 on:
   push:
-    branches:
-      - '**'
-      - '!integrated/**'
-      - '!stl-preview-head/**'
-      - '!stl-preview-base/**'
-      - '!generated'
-      - '!codegen/**'
-      - 'codegen/stl/**'
+    branches: [main]
   pull_request:
-    branches-ignore:
-      - 'stl-preview-head/**'
-      - 'stl-preview-base/**'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  RUBY_VERSION: "3.3"
 
 jobs:
   lint:
-    timeout-minutes: 10
-    name: lint
     runs-on: ubuntu-latest
-    if: github.event_name == 'push' || github.event.pull_request.head.repo.fork
-
     steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@c4e5b1316158f92e3d49443a9d58b31d25ac0f8f # v1.306.0
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          bundler-cache: false
-      - run: |-
-          bundle install
+          persist-credentials: false
 
-      - name: Run lints
-        run: ./scripts/lint
+      - uses: ruby/setup-ruby@95ef2b042f9d7a56d8268cba8559e2842e2ad01b # v1.321.0
+        with:
+          ruby-version: ${{ env.RUBY_VERSION }}
+          bundler-cache: false
+
+      - run: bundle install
+
+      # scripts/lint is the pre-Fern tree's entry point (rubocop + steep + sorbet) and is
+      # pruned by the cutover; the Fern tree lints with rubocop alone.
+      - name: Lint
+        run: |
+          set -euo pipefail
+          if [ -x ./scripts/lint ]; then
+            ./scripts/lint
+          else
+            bundle exec rubocop
+          fi
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: ruby/setup-ruby@95ef2b042f9d7a56d8268cba8559e2842e2ad01b # v1.321.0
+        with:
+          ruby-version: ${{ env.RUBY_VERSION }}
+          bundler-cache: false
+
+      - run: bundle install
+
+      - name: Test
+        run: bundle exec rake test

@@ -58,6 +58,8 @@ module Whop_sdk
             end
           in ->(t) { t <= Integer }
             case value
+            when Float
+              return value == value.to_i ? value.to_i : value
             when Numeric, String, Time
               return value.to_i
             end

@@ -19,6 +19,26 @@
 # CHANGELOG.md predates the cutover and holds 41 Stainless releases. Fern does not write
 # one, so without this entry that history would disappear from the tree on the first
 # generated PR.
+#
+# lib/whop_sdk/helpers holds verify_user_token, the one hand-written helper in this SDK —
+# the x-whop-user-token verifier. It depends only on the standard library and the jwt gem,
+# never on generated client code, so it survives the client being replaced. This entry only
+# keeps the file: two things it needs are in Fern-owned files and are restored from the
+# generator config in whop-monorepo's sdks/fern/generators.yml, not from here.
+#
+#   - lib/whop_sdk.rb is regenerated, so the require_relative that loads the helper is lost.
+#     `requirePaths: [helpers/verify_user_token]` re-emits it as a File.exist?-guarded
+#     require_relative at the bottom of the generated lib/whop_sdk.rb.
+#   - whop_sdk.gemspec is regenerated, so `add_dependency "jwt"` is lost, the same way
+#     whopsdk-python's [user-tokens] extra does not survive. `extraDependencies: {jwt: ...}`
+#     re-declares it.
+#
+# Those two travel together. The helper does `require "jwt"` at load, so re-emitting the
+# require without the dependency turns a silently missing verifier into a LoadError on
+# `require "whop_sdk"` — the gem stops loading for everyone, not just user-token callers.
+# ci.yml asserts all three every run so a regeneration that drops any of them fails there
+# instead of on a caller's machine.
 .github/workflows/ci.yml
 .github/workflows/publish-main.yml
 CHANGELOG.md
+lib/whop_sdk/helpers

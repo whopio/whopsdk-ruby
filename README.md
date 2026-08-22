@@ -42,13 +42,9 @@ API reference documentation is available [here](https://docs.whop.com/api-refere
 
 To use this gem, install via Bundler by adding the following to your application's `Gemfile`:
 
-<!-- x-release-please-start-version -->
-
 ```ruby
-gem "whop_sdk", "~> 0.0.41"
+gem "whop_sdk"
 ```
-
-<!-- x-release-please-end -->
 
 ## Reference
 

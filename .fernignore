@@ -46,8 +46,17 @@
 # in 1.0.11. The patch tries the root first and falls back to page_info, so it stays correct
 # if the generator is fixed. Delete this entry and the file once fern-ruby-sdk emits the
 # nested lookup itself.
+#
+# lib/whop_sdk/internal/types/utils.rb is a patched copy of a generated file. The Ruby
+# generator maps every OpenAPI `number` to Integer — there is not one Float declaration in
+# the gem, and `format: float` in the spec does not change it — so Utils.coerce's `value.to_i`
+# silently truncated every decimal: initial_price 10.43 became 10, in both directions. The
+# patch returns a Float unchanged when it has a fractional part, and still normalises whole
+# floats to Integer so genuinely integral fields are unaffected. Delete this entry and the
+# file once fern-ruby-sdk maps `number` to Float.
 .github/workflows/ci.yml
 .github/workflows/publish-main.yml
 CHANGELOG.md
 lib/whop_sdk/helpers
 lib/whop_sdk/internal/iterators/cursor_page_iterator.rb
+lib/whop_sdk/internal/types/utils.rb

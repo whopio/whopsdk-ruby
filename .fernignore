@@ -1,0 +1,24 @@
+# Files Fern must not modify or delete when regenerating this repo.
+#
+# Fern prunes anything it did not generate, and it reads this file from the pull request's
+# base branch — so an entry only protects a file once it is on main.
+#
+# publish-main.yml is hand-written: it releases whop_sdk when a merge to main lands a
+# lib/whop_sdk/version.rb that is not yet on RubyGems. It is the only publish path, and it
+# authenticates with the GEM_HOST_API_KEY secret.
+#
+# ci.yml is hand-written for a security reason, not a stylistic one. The Fern Ruby
+# generator emits a ci.yml containing an unconditional `publish` job: it fires on any
+# refs/tags/* push — including the tag publish-main.yml creates — runs `bundle install`
+# in a job holding `id-token: write`, and ends in `gem push`. That is a second, unreviewed
+# publish path and a credential-minting hazard in the same job as third-party install
+# scripts. Ruby is the only Fern language that does this; the generated ci.yml in
+# whopsdk-typescript and whopsdk-python is compile+test only. Ours is the generated file
+# with the publish job removed.
+#
+# CHANGELOG.md predates the cutover and holds 41 Stainless releases. Fern does not write
+# one, so without this entry that history would disappear from the tree on the first
+# generated PR.
+.github/workflows/ci.yml
+.github/workflows/publish-main.yml
+CHANGELOG.md

@@ -1,0 +1,389 @@
+name: Release
+
+on:
+  push:
+    branches: [main]
+    paths: ["lib/whop_sdk/version.rb"]
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Build and check the gem without publishing"
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: publish-whop-sdk
+  cancel-in-progress: false
+
+env:
+  GEM_NAME: whop_sdk
+  VERSION_FILE: lib/whop_sdk/version.rb
+  RUBY_VERSION: "3.3"
+
+jobs:
+  decide:
+    # A workflow_dispatch can be fired from any ref, and the only-version-changed guard
+    # below only enforces on a push — so without this a release could be cut from a
+    # branch that never passed through main's pull-request ruleset.
+    if: github.event_name == 'pull_request' || github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    outputs:
+      release: ${{ steps.gate.outputs.release }}
+      dry: ${{ steps.gate.outputs.dry }}
+      version: ${{ steps.gate.outputs.version }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 2
+          persist-credentials: false
+
+      - uses: ruby/setup-ruby@95ef2b042f9d7a56d8268cba8559e2842e2ad01b # v1.321.0
+        with:
+          ruby-version: ${{ env.RUBY_VERSION }}
+          bundler-cache: false
+
+      # One file, used both by the self-test below and by the real comparison in the gate
+      # step, so the thing that is rehearsed cannot drift from the thing that decides.
+      - name: Write the version-regression guard
+        run: |
+          set -euo pipefail
+          cat > "${RUNNER_TEMP}/version_guard.rb" <<'RB'
+          candidate, latest = Gem::Version.new(ARGV.fetch(0)), Gem::Version.new(ARGV.fetch(1))
+          abort("#{candidate} is behind #{latest}") if candidate < latest
+          puts "#{candidate} is at or ahead of #{latest}"
+          RB
+
+      - name: Self-test the version-regression guard
+        run: |
+          set -euo pipefail
+          failures=0
+
+          check() {
+            if ruby "${RUNNER_TEMP}/version_guard.rb" "$1" "$2" >/dev/null 2>&1; then
+              actual=allow
+            else
+              actual=block
+            fi
+
+            if [ "$actual" = "$3" ]; then
+              echo "ok: $1 vs $2 -> $actual"
+            else
+              echo "::error::version guard: $1 vs $2 expected $3, got $actual"
+              failures=$((failures + 1))
+            fi
+          }
+
+          check 0.0.41 0.0.41 allow
+          check 0.0.42 0.0.41 allow
+          check 0.0.40 0.0.41 block
+          check 0.0.10 0.0.9 allow
+          check 0.0.9 0.0.10 block
+          check 0.0.42-rc.1 0.0.41 allow
+          check 0.0.42-rc.1 0.0.42 block
+          check 0.0.42 0.0.42-rc.1 allow
+
+          [ "$failures" -eq 0 ]
+
+      - name: Decide whether to release
+        id: gate
+        env:
+          EVENT: ${{ github.event_name }}
+          DRY_RUN: ${{ github.event.inputs.dry_run }}
+        run: |
+          set -euo pipefail
+
+          emit() { echo "$1=$2" >> "$GITHUB_OUTPUT"; }
+
+          if [ "$EVENT" = "pull_request" ] || [ "$DRY_RUN" = "true" ]; then
+            dry=true
+          else
+            dry=false
+          fi
+          emit dry "$dry"
+          echo "event=$EVENT dry=$dry"
+
+          # Every check below this line runs in both modes; only the consequence differs.
+          # A dry run that returned before them is how a Ruby SyntaxError in the
+          # regression guard and a secret name that does not exist both shipped green.
+          refuse() {
+            if [ "$dry" = "true" ]; then
+              echo "::warning::[dry] a real release would stop here: $*"
+              return 0
+            fi
+            echo "::error::$*"
+            exit 1
+          }
+
+          if [ ! -f "$VERSION_FILE" ]; then
+            echo "::notice::${VERSION_FILE} does not exist — this is not a tree this workflow can release."
+            emit release false
+            emit version ""
+            exit 0
+          fi
+
+          version=$(ruby -e 'print (File.read(ENV.fetch("VERSION_FILE"))[/VERSION\s*=\s*"([^"]+)"/, 1] || "")')
+
+          if [ -z "$version" ]; then
+            echo "::error::${VERSION_FILE} has no VERSION literal."
+            exit 1
+          fi
+
+          echo "${VERSION_FILE} version: $version"
+          emit version "$version"
+
+          if ! printf '%s' "$version" | grep -Eq '^[0-9]+\.[0-9]+\.[0-9]+([.-][0-9A-Za-z.]+)?$'; then
+            echo "::error::'$version' is not a version this workflow will publish."
+            exit 1
+          fi
+
+          if git rev-parse --verify --quiet HEAD^ >/dev/null; then
+            changed=$(git diff --name-only HEAD^ HEAD)
+            body=$(git diff -U0 HEAD^ HEAD -- "$VERSION_FILE" | grep -E '^[+-]' | grep -vE '^(\+\+\+|---)' || true)
+            other=$(printf '%s\n' "$body" | grep -cvE '^[+-]\s*VERSION = ' || true)
+
+            if [ "$changed" = "$VERSION_FILE" ] && [ "$other" -eq 0 ]; then
+              echo "HEAD changes ${VERSION_FILE}'s VERSION line and nothing else."
+            else
+              summary="a release push must change ${VERSION_FILE} and nothing else. Changed: $(printf '%s' "$changed" | tr '\n' ' ')"
+              if [ "$EVENT" = "push" ]; then
+                refuse "$summary"
+              else
+                echo "::notice::[$EVENT] this is not a release push, so the diff is informational: ${summary}"
+              fi
+            fi
+          else
+            echo "::notice::no HEAD^ to diff against; the only-version-changed check has nothing to compare."
+          fi
+
+          # The regression guard runs before the already-published check, as TypeScript's
+          # does. A branch generated before a release carries a stale version, and that
+          # version is by definition already on RubyGems — so checking existence first
+          # turns the exact case this guard exists for into a silent green no-op.
+          latest=$(curl -sS --fail "https://rubygems.org/api/v1/gems/${GEM_NAME}.json" \
+            | ruby -rjson -e 'print JSON.parse(STDIN.read).fetch("version")' || true)
+
+          if [ -z "$latest" ]; then
+            refuse "could not read the latest ${GEM_NAME} version from RubyGems."
+          else
+            echo "Latest on RubyGems: $latest"
+            if guard=$(ruby "${RUNNER_TEMP}/version_guard.rb" "$version" "$latest" 2>&1); then
+              echo "$guard"
+            else
+              refuse "${VERSION_FILE} is at ${version} but RubyGems already has ${latest}. This branch was generated before that release; regenerate it before merging. ($guard)"
+            fi
+          fi
+
+          status=$(curl -sS -o /dev/null -w '%{http_code}' \
+            "https://rubygems.org/api/v2/rubygems/${GEM_NAME}/versions/${version}.json")
+          echo "RubyGems returned HTTP ${status} for ${GEM_NAME} ${version}"
+
+          published=unknown
+          case "$status" in
+            200) published=yes ;;
+            404) published=no ;;
+            *)
+              refuse "RubyGems returned HTTP $status for ${GEM_NAME} ${version}; refusing to guess whether it is published."
+              ;;
+          esac
+
+          if [ "$dry" = "true" ]; then
+            echo "Dry run: building and checking the gem, publishing nothing."
+            emit release true
+            exit 0
+          fi
+
+          if [ "$published" = "yes" ]; then
+            echo "::notice::${GEM_NAME} ${version} is already on RubyGems; nothing to publish."
+            emit release false
+            exit 0
+          fi
+
+          emit release true
+
+  build:
+    needs: decide
+    if: needs.decide.outputs.release == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: ruby/setup-ruby@95ef2b042f9d7a56d8268cba8559e2842e2ad01b # v1.321.0
+        with:
+          ruby-version: ${{ env.RUBY_VERSION }}
+          bundler-cache: false
+
+      - name: Sync the version stamps
+        env:
+          VERSION: ${{ needs.decide.outputs.version }}
+        run: |
+          set -euo pipefail
+          ruby - "$VERSION" <<'RB'
+          version = ARGV.fetch(0)
+
+          version_file = ENV.fetch("VERSION_FILE")
+          text = File.read(version_file)
+          abort("::error::no VERSION literal found in #{version_file}") if text.scan(/VERSION\s*=\s*"[^"]*"/).empty?
+          File.write(version_file, text.sub(/(VERSION\s*=\s*")[^"]*/) { "#{Regexp.last_match(1)}#{version}" })
+          puts "stamped #{version_file}"
+
+          # X-Fern-SDK-Version is a generator constant ("0.0.1" in the generator bundle),
+          # not a stamp: fern generate --version does not touch it, so the published gem
+          # would report 0.0.1 on the wire. Carriers are found by the header name alone,
+          # never by a path; the rewrite still has to assume a separator, which is what
+          # the assertion after this script exists to catch.
+          carriers = Dir.glob("lib/**/*.rb").select { |path| File.read(path).include?("X-Fern-SDK-Version") }
+
+          if carriers.empty?
+            generated_by_fern = Dir.exist?(".fern") || File.exist?("lib/whop_sdk/internal/http/raw_client.rb")
+            if generated_by_fern
+              abort("::error::this is a Fern-generated tree but nothing under lib/ carries X-Fern-SDK-Version; the gem would ship reporting the generator's constant")
+            end
+            puts "no X-Fern-SDK-Version carrier under lib/ — pre-Fern tree, nothing to restamp"
+          else
+            carriers.each do |path|
+              source = File.read(path)
+              File.write(path, source.gsub(/(X-Fern-SDK-Version"?\s*(?::|=>)\s*")[^"]*/) { "#{Regexp.last_match(1)}#{version}" })
+              puts "stamped #{path}"
+            end
+          end
+          RB
+
+          # Syntax-agnostic: any line under lib/ that names the header and still carries a
+          # version-looking literal other than this one means the rewrite above missed —
+          # a generator switching ": " for " => " would otherwise ship a gem reporting 0.0.1.
+          stale=$(grep -rn 'X-Fern-SDK-Version' lib | grep -E '[0-9]+\.[0-9]+\.[0-9]+' | grep -Fv "$VERSION" || true)
+          if [ -n "$stale" ]; then
+            echo "::error::the source tree still reports a version other than ${VERSION}:"
+            printf '%s\n' "$stale"
+            exit 1
+          fi
+
+      - name: Build the gem
+        env:
+          VERSION: ${{ needs.decide.outputs.version }}
+        run: |
+          set -euo pipefail
+          mkdir -p pkg
+          gem build "${GEM_NAME}.gemspec" --output "pkg/${GEM_NAME}-${VERSION}.gem"
+          ls -l pkg
+
+      - name: Smoke-test the built gem
+        env:
+          VERSION: ${{ needs.decide.outputs.version }}
+        run: |
+          set -euo pipefail
+          export GEM_HOME=/tmp/smoke
+          gem install --no-document "pkg/${GEM_NAME}-${VERSION}.gem"
+          ruby -e '
+            gem_name, expected = ENV.fetch("GEM_NAME"), ENV.fetch("VERSION")
+            require gem_name
+            installed = Gem::Specification.find_by_name(gem_name).version.to_s
+            abort("gem reports #{installed}, expected #{expected}") unless installed == expected
+            namespace = Object.const_defined?(:Whop_sdk) ? Whop_sdk : WhopSDK
+            abort("#{namespace} has no Client") unless namespace.const_defined?(:Client)
+            puts "#{gem_name} #{installed} installs, loads and exposes #{namespace}::Client"
+          '
+
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: pkg
+          path: pkg/
+          if-no-files-found: error
+          retention-days: 7
+
+  publish:
+    needs: [decide, build]
+    if: needs.decide.outputs.release == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: pkg
+          path: pkg/
+
+      - uses: ruby/setup-ruby@95ef2b042f9d7a56d8268cba8559e2842e2ad01b # v1.321.0
+        with:
+          ruby-version: ${{ env.RUBY_VERSION }}
+          bundler-cache: false
+
+      # Runs in dry mode too, and takes the boolean rather than the secret so no dry run
+      # ever has the credential in its environment. GEM_HOST_API_KEY is the name gem push
+      # itself consumes, and the name already provisioned on this repository.
+      - name: Check the publish credential and the artifact
+        env:
+          HAS_KEY: ${{ secrets.GEM_HOST_API_KEY != '' }}
+          DRY: ${{ needs.decide.outputs.dry }}
+          VERSION: ${{ needs.decide.outputs.version }}
+        run: |
+          set -euo pipefail
+
+          gem_path="pkg/${GEM_NAME}-${VERSION}.gem"
+          if [ ! -f "$gem_path" ]; then
+            echo "::error::${gem_path} is not in the build artifact."
+            exit 1
+          fi
+          echo "artifact present: $(ls -l "$gem_path")"
+
+          if [ "$HAS_KEY" = "true" ]; then
+            echo "GEM_HOST_API_KEY is set on this repository."
+            exit 0
+          fi
+
+          if [ "$DRY" = "true" ]; then
+            echo "::warning::GEM_HOST_API_KEY is not visible to this run; a real release would stop here. (Fork pull requests never see secrets.)"
+            exit 0
+          fi
+
+          echo "::error::GEM_HOST_API_KEY is not set on this repository; the push would fail after the build."
+          exit 1
+
+      - name: Push the gem to RubyGems
+        if: needs.decide.outputs.dry == 'false'
+        env:
+          VERSION: ${{ needs.decide.outputs.version }}
+          GEM_HOST_API_KEY: ${{ secrets.GEM_HOST_API_KEY }}
+        run: |
+          set -euo pipefail
+          gem push "pkg/${GEM_NAME}-${VERSION}.gem"
+
+  tag:
+    needs: [decide, build, publish]
+    if: always() && needs.decide.outputs.dry == 'false' && needs.decide.outputs.version != ''
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Tag the published version
+        env:
+          VERSION: ${{ needs.decide.outputs.version }}
+        run: |
+          set -euo pipefail
+
+          status=$(curl -sS -o /dev/null -w '%{http_code}' \
+            "https://rubygems.org/api/v2/rubygems/${GEM_NAME}/versions/${VERSION}.json")
+          if [ "$status" != "200" ]; then
+            echo "::notice::${GEM_NAME} ${VERSION} is not on RubyGems (HTTP $status); nothing to tag."
+            exit 0
+          fi
+
+          if git ls-remote --exit-code --tags origin "refs/tags/v${VERSION}" >/dev/null 2>&1; then
+            echo "v${VERSION} is already tagged."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git tag -a "v${VERSION}" -m "whop_sdk ${VERSION}"
+
+          git push origin "refs/tags/v${VERSION}" || \
+            git ls-remote --exit-code --tags origin "refs/tags/v${VERSION}" >/dev/null

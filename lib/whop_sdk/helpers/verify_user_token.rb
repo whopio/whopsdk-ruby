@@ -77,9 +77,7 @@ module WhopSDK
           @last_refresh_attempt_at = monotonic_now
           response = Net::HTTP.get_response(URI(@url))
 
-          unless response.is_a?(Net::HTTPSuccess)
-            raise StandardError, "Failed to fetch JWKS from #{@url} (HTTP #{response.code})"
-          end
+          raise StandardError, "Failed to fetch JWKS from #{@url} (HTTP #{response.code})" unless response.is_a?(Net::HTTPSuccess)
 
           parsed = JSON.parse(response.body)
           @jwk_set = JWT::JWK::Set.new(parsed)
@@ -168,13 +166,9 @@ module WhopSDK
           verify_with_remote_jwks(token_string, jwks_url: jwks_url || DEFAULT_JWKS_URL)
         end
 
-        unless payload["sub"] && payload["aud"] && !payload["aud"].is_a?(Array)
-          raise StandardError, "Invalid user token provided to verifyUserToken"
-        end
+        raise StandardError, "Invalid user token provided to verifyUserToken" unless payload["sub"] && payload["aud"] && !payload["aud"].is_a?(Array)
 
-        if app_id && payload["aud"] != app_id
-          raise StandardError, "Invalid app id provided to verifyUserToken"
-        end
+        raise StandardError, "Invalid app id provided to verifyUserToken" if app_id && payload["aud"] != app_id
 
         UserTokenPayload.new(user_id: payload["sub"], app_id: payload["aud"])
       end

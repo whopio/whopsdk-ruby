@@ -161,10 +161,10 @@ module WhopSDK
         end
 
         payload = if public_key
-          verify_with_static_key(token_string, public_key: public_key)
-        else
-          verify_with_remote_jwks(token_string, jwks_url: jwks_url || DEFAULT_JWKS_URL)
-        end
+                    verify_with_static_key(token_string, public_key: public_key)
+                  else
+                    verify_with_remote_jwks(token_string, jwks_url: jwks_url || DEFAULT_JWKS_URL)
+                  end
 
         raise StandardError, "Invalid user token provided to verifyUserToken" unless payload["sub"] && payload["aud"] && !payload["aud"].is_a?(Array)
 

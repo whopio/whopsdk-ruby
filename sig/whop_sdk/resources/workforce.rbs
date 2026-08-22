@@ -1,9 +1,0 @@
-module WhopSDK
-  module Resources
-    class Workforce
-      attr_reader bounties: WhopSDK::Resources::Workforce::Bounties
-
-      def initialize: (client: WhopSDK::Client) -> void
-    end
-  end
-end

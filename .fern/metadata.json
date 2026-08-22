@@ -1,0 +1,20 @@
+{
+  "cliVersion": "5.90.1",
+  "generatorName": "fernapi/fern-ruby-sdk",
+  "generatorVersion": "1.23.2",
+  "generatorConfig": {
+    "moduleName": "whop_sdk",
+    "requirePaths": [
+      "helpers/verify_user_token"
+    ],
+    "extraDependencies": {
+      "jwt": ">= 2.7"
+    }
+  },
+  "originGitCommit": "f7d6f47c548e5487717569990f2526aea7971636",
+  "originGitCommitIsDirty": false,
+  "invokedBy": "ci",
+  "requestedVersion": "0.0.41",
+  "ciProvider": "unknown",
+  "sdkVersion": "0.0.41"
+}

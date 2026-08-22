@@ -1,5 +1,0 @@
-module WhopSDK
-  module Models
-    AuthorizedUserDeleteResponse: WhopSDK::Internal::Type::Converter
-  end
-end

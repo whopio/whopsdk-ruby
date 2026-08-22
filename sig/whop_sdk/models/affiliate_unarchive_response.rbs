@@ -1,5 +1,0 @@
-module WhopSDK
-  module Models
-    AffiliateUnarchiveResponse: WhopSDK::Internal::Type::Converter
-  end
-end

@@ -1,0 +1,43 @@
+# frozen_string_literal: true
+
+module Whop_sdk
+  module Verifications
+    module Types
+      class CreateVerificationsResponse < Internal::Types::Model
+        field :address, -> { Whop_sdk::Verifications::Types::CreateVerificationsResponseAddress }, optional: true, nullable: false
+
+        field :business_name, -> { String }, optional: true, nullable: false
+
+        field :business_structure, -> { String }, optional: true, nullable: false
+
+        field :country, -> { String }, optional: true, nullable: false
+
+        field :created_at, -> { String }, optional: true, nullable: false
+
+        field :date_of_birth, -> { String }, optional: true, nullable: false
+
+        field :email, -> { String }, optional: true, nullable: false
+
+        field :first_name, -> { String }, optional: true, nullable: false
+
+        field :id, -> { String }, optional: true, nullable: false
+
+        field :kind, -> { Whop_sdk::Verifications::Types::CreateVerificationsResponseKind }, optional: true, nullable: false
+
+        field :last_name, -> { String }, optional: true, nullable: false
+
+        field :phone, -> { String }, optional: true, nullable: false
+
+        field :requested_information, -> { Internal::Types::Array[Whop_sdk::Verifications::Types::CreateVerificationsResponseRequestedInformationItem] }, optional: true, nullable: false
+
+        field :required_documents, -> { Internal::Types::Array[Whop_sdk::Verifications::Types::CreateVerificationsResponseRequiredDocumentsItem] }, optional: true, nullable: false
+
+        field :session_url, -> { String }, optional: true, nullable: false
+
+        field :status, -> { Whop_sdk::Verifications::Types::CreateVerificationsResponseStatus }, optional: true, nullable: false
+
+        field :updated_at, -> { String }, optional: true, nullable: false
+      end
+    end
+  end
+end

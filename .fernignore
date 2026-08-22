@@ -38,7 +38,16 @@
 # `require "whop_sdk"` — the gem stops loading for everyone, not just user-token callers.
 # ci.yml asserts all three every run so a regeneration that drops any of them fails there
 # instead of on a caller's machine.
+#
+# lib/whop_sdk/internal/iterators/cursor_page_iterator.rb is a patched copy of a generated
+# file. The generated clients all pass cursor_field: :end_cursor, but the response models
+# declare end_cursor on page_info rather than at the root and Internal::Types::Model has no
+# method_missing — so the root lookup raised NoMethodError on the first page of every list
+# in 1.0.11. The patch tries the root first and falls back to page_info, so it stays correct
+# if the generator is fixed. Delete this entry and the file once fern-ruby-sdk emits the
+# nested lookup itself.
 .github/workflows/ci.yml
 .github/workflows/publish-main.yml
 CHANGELOG.md
 lib/whop_sdk/helpers
+lib/whop_sdk/internal/iterators/cursor_page_iterator.rb

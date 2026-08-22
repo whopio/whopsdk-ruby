@@ -55,8 +55,24 @@ module Whop_sdk
         else
           fetched_page = result
         end
-        @cursor = fetched_page.send(@cursor_field)
+        @cursor = extract_cursor(fetched_page)
         fetched_page
+      end
+
+      private
+
+      # The generated clients pass cursor_field: :end_cursor, but the response models
+      # declare end_cursor on page_info rather than at the root, and Internal::Types::Model
+      # has no method_missing — so the root lookup raises NoMethodError on the first page of
+      # every list. Remove this file from .fernignore once fern-ruby-sdk emits the nested
+      # lookup itself.
+      def extract_cursor(page)
+        return page.send(@cursor_field) if page.respond_to?(@cursor_field)
+
+        page_info = page.respond_to?(:page_info) ? page.page_info : nil
+        return page_info.send(@cursor_field) if page_info.respond_to?(@cursor_field)
+
+        nil
       end
     end
   end

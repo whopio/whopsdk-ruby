@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
 module Whop_sdk
-  VERSION = "0.0.41"
+  VERSION = "1.0.11"
 end

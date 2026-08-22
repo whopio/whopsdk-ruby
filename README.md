@@ -23,13 +23,9 @@ The REST API documentation can be found on [docs.whop.com](https://docs.whop.com
 
 To use this gem, install via Bundler by adding the following to your application's `Gemfile`:
 
-<!-- x-release-please-start-version -->
-
 ```ruby
-gem "whop_sdk", "~> 0.0.41"
+gem "whop_sdk"
 ```
-
-<!-- x-release-please-end -->
 
 ## Usage
 

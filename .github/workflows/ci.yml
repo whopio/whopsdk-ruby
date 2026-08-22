@@ -62,5 +62,40 @@ jobs:
 
       - run: bundle install
 
+      - name: Check the hand-written helper survived generation
+        env:
+          HELPER: lib/whop_sdk/helpers/verify_user_token.rb
+          GENERATOR_CONFIG: the ruby config in whop-monorepo sdks/fern/generators.yml
+        run: |
+          set -euo pipefail
+          failures=0
+
+          fail() {
+            echo "::error::$*"
+            failures=$((failures + 1))
+          }
+
+          if [ -f "$HELPER" ]; then
+            echo "ok: ${HELPER} is present"
+          else
+            fail "${HELPER} is gone. .fernignore lists lib/whop_sdk/helpers; if a regeneration removed it anyway, restore it before merging."
+          fi
+
+          if out=$(bundle exec ruby -Ilib -e 'require "whop_sdk"; WhopSDK::Helpers::VerifyUserToken.method(:verify_user_token!)' 2>&1); then
+            echo "ok: require \"whop_sdk\" reaches WhopSDK::Helpers::VerifyUserToken"
+          else
+            printf '%s\n' "$out"
+            fail "require \"whop_sdk\" no longer reaches WhopSDK::Helpers::VerifyUserToken. lib/whop_sdk.rb is generated, so .fernignore does not preserve its require_relative: set requirePaths: [helpers/verify_user_token] in ${GENERATOR_CONFIG}."
+          fi
+
+          if out=$(bundle exec ruby -e 'dep = Gem::Specification.load("whop_sdk.gemspec").dependencies.find { _1.name == "jwt" }; abort("whop_sdk.gemspec declares no jwt dependency") if dep.nil?; puts dep' 2>&1); then
+            printf '%s\n' "$out"
+          else
+            printf '%s\n' "$out"
+            fail "whop_sdk.gemspec no longer declares jwt. The helper requires jwt at load, so re-emitting the require without the dependency makes require \"whop_sdk\" raise LoadError for every caller: set extraDependencies: {jwt: <constraint>} in ${GENERATOR_CONFIG}."
+          fi
+
+          [ "$failures" -eq 0 ]
+
       - name: Test
         run: bundle exec rake test

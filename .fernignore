@@ -20,24 +20,36 @@
 # one, so without this entry that history would disappear from the tree on the first
 # generated PR.
 #
-# lib/whop_sdk/helpers holds verify_user_token, the one hand-written helper in this SDK —
-# the x-whop-user-token verifier. It depends only on the standard library and the jwt gem,
-# never on generated client code, so it survives the client being replaced. This entry only
-# keeps the file: two things it needs are in Fern-owned files and are restored from the
-# generator config in whop-monorepo's sdks/fern/generators.yml, not from here.
+# lib/whop_sdk/helpers holds the hand-written helpers in this SDK. Each depends only on the
+# standard library and one third-party gem, never on generated client code, so each survives
+# the client being replaced:
 #
-#   - lib/whop_sdk.rb is regenerated, so the require_relative that loads the helper is lost.
-#     `requirePaths: [helpers/verify_user_token]` re-emits it as a File.exist?-guarded
-#     require_relative at the bottom of the generated lib/whop_sdk.rb.
-#   - whop_sdk.gemspec is regenerated, so `add_dependency "jwt"` is lost, the same way
-#     whopsdk-python's [user-tokens] extra does not survive. `extraDependencies: {jwt: ...}`
-#     re-declares it.
+#   - verify_user_token — the x-whop-user-token verifier, on the jwt gem.
+#   - verify_webhook — the Standard Webhooks signature verifier, on the standardwebhooks gem.
+#     It restores the verification half of `client.webhooks.unwrap`, which the Stainless gem
+#     shipped through 0.0.41 and Fern cannot generate: Fern generates from OpenAPI paths and
+#     `unwrap` was never a path.
 #
-# Those two travel together. The helper does `require "jwt"` at load, so re-emitting the
-# require without the dependency turns a silently missing verifier into a LoadError on
-# `require "whop_sdk"` — the gem stops loading for everyone, not just user-token callers.
-# ci.yml asserts all three every run so a regeneration that drops any of them fails there
+# This entry only keeps the files. Two things each helper needs are in Fern-owned files and
+# are restored from the generator config in whop-monorepo's sdks/fern/generators.yml, not
+# from here.
+#
+#   - lib/whop_sdk.rb is regenerated, so the require_relative that loads a helper is lost.
+#     `requirePaths: [helpers/verify_user_token, helpers/verify_webhook]` re-emits them as
+#     File.exist?-guarded require_relatives at the bottom of the generated lib/whop_sdk.rb.
+#   - whop_sdk.gemspec is regenerated, so `add_dependency "jwt"` and
+#     `add_dependency "standardwebhooks"` are lost, the same way whopsdk-python's
+#     [user-tokens] extra does not survive. `extraDependencies: {jwt: ..., standardwebhooks: ...}`
+#     re-declares them.
+#
+# The two travel together, per helper. Each helper requires its gem at load, so re-emitting
+# the require without the dependency turns a silently missing helper into a LoadError on
+# `require "whop_sdk"` — the gem stops loading for everyone, not just that helper's callers.
+# ci.yml asserts all of it every run so a regeneration that drops any of it fails there
 # instead of on a caller's machine.
+#
+# test/unit/helpers holds those helpers' tests. Fern owns test/, so without this entry a
+# regeneration would prune them and the helpers would go untested rather than fail loudly.
 #
 # lib/whop_sdk/internal/iterators/cursor_page_iterator.rb is a patched copy of a generated
 # file. The generated clients all pass cursor_field: :end_cursor, but the response models
@@ -60,3 +72,4 @@ CHANGELOG.md
 lib/whop_sdk/helpers
 lib/whop_sdk/internal/iterators/cursor_page_iterator.rb
 lib/whop_sdk/internal/types/utils.rb
+test/unit/helpers

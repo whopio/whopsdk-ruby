@@ -3002,7 +3002,7 @@ require_relative "whop_sdk/environment"
 
 # Load user-defined files if present (e.g., for Sentry integration)
 # Files are loaded from lib/whop_sdk/ if they exist
-["whop_sdk/helpers/verify_user_token"].each do |relative_path|
+["whop_sdk/helpers/verify_user_token", "whop_sdk/helpers/verify_webhook"].each do |relative_path|
   absolute_path = File.join(__dir__, "#{relative_path}.rb")
   require_relative relative_path if File.exist?(absolute_path)
 end

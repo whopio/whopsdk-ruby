@@ -1,5 +1,0 @@
-module WhopSDK
-  module Models
-    AdDeleteResponse: WhopSDK::Internal::Type::Converter
-  end
-end

@@ -1,8 +1,29 @@
-# Whop Ruby API library
+# Whop Ruby Library
 
-The Whop Ruby library provides convenient access to the Whop REST API from any Ruby 3.2.0+ application. It ships with comprehensive types & docstrings in Yard, RBS, and RBI – [see below](https://github.com/whopio/whopsdk-ruby#Sorbet) for usage with Sorbet. The standard library's `net/http` is used as the HTTP transport, with connection pooling via the `connection_pool` gem.
+[![fern shield](https://img.shields.io/badge/%F0%9F%8C%BF-Built%20with%20Fern-brightgreen)](https://buildwithfern.com?utm_source=github&utm_medium=github&utm_campaign=readme&utm_source=https%3A%2F%2Fgithub.com%2Fwhopio%2Fwhopsdk-ruby)
 
-It is generated with [Stainless](https://www.stainless.com/).
+The Whop SDK gives you typed access to the Whop API. Pass your API key to the client explicitly — the SDK reads no environment variables, so a client built without a key sends unauthenticated requests and the API answers 401.
+
+
+## Table of Contents
+
+- [Mcp Server](#mcp-server)
+- [Documentation](#documentation)
+- [Installation](#installation)
+- [Reference](#reference)
+- [Usage](#usage)
+- [Advanced Concepts](#advanced-concepts)
+- [Sorbet](#sorbet)
+- [Versioning](#versioning)
+- [Requirements](#requirements)
+- [Environments](#environments)
+- [Errors](#errors)
+- [Advanced](#advanced)
+  - [Retries](#retries)
+  - [Timeouts](#timeouts)
+  - [Additional Headers](#additional-headers)
+  - [Additional Query Parameters](#additional-query-parameters)
+- [Contributing](#contributing)
 
 ## MCP Server
 
@@ -15,9 +36,7 @@ Use the Whop MCP Server to enable AI assistants to interact with this API, allow
 
 ## Documentation
 
-Documentation for releases of this gem can be found [on RubyDoc](https://gemdocs.org/gems/whop_sdk).
-
-The REST API documentation can be found on [docs.whop.com](https://docs.whop.com/apps).
+API reference documentation is available [here](https://docs.whop.com/api-reference).
 
 ## Installation
 
@@ -27,118 +46,21 @@ To use this gem, install via Bundler by adding the following to your application
 gem "whop_sdk"
 ```
 
+## Reference
+
+A full reference for this library is available [here](https://github.com/whopio/whopsdk-ruby/blob/HEAD/./reference.md).
+
 ## Usage
 
+Instantiate and use the client with the following:
+
 ```ruby
-require "bundler/setup"
 require "whop_sdk"
 
-whop = WhopSDK::Client.new(
-  api_key: ENV["WHOP_API_KEY"] # This is the default and can be omitted
-)
+client = Whop_sdk::Client.new(token: "<token>")
 
-page = whop.payments.list(company_id: "biz_xxxxxxxxxxxxxx")
-
-puts(page.id)
+client.access_tokens.create
 ```
-
-### Pagination
-
-List methods in the Whop API are paginated.
-
-This library provides auto-paginating iterators with each list response, so you do not have to request successive pages manually:
-
-```ruby
-page = whop.payments.list(company_id: "biz_xxxxxxxxxxxxxx")
-
-# Fetch single item from page.
-payment = page.data[0]
-puts(payment.id)
-
-# Automatically fetches more pages as needed.
-page.auto_paging_each do |payment|
-  puts(payment.id)
-end
-```
-
-Alternatively, you can use the `#next_page?` and `#next_page` methods for more granular control working with pages.
-
-```ruby
-if page.next_page?
-  new_page = page.next_page
-  puts(new_page.data[0].id)
-end
-```
-
-### Handling errors
-
-When the library is unable to connect to the API, or if the API returns a non-success status code (i.e., 4xx or 5xx response), a subclass of `WhopSDK::Errors::APIError` will be thrown:
-
-```ruby
-begin
-  payment = whop.payments.list(company_id: "biz_xxxxxxxxxxxxxx")
-rescue WhopSDK::Errors::APIConnectionError => e
-  puts("The server could not be reached")
-  puts(e.cause)  # an underlying Exception, likely raised within `net/http`
-rescue WhopSDK::Errors::RateLimitError => e
-  puts("A 429 status code was received; we should back off a bit.")
-rescue WhopSDK::Errors::APIStatusError => e
-  puts("Another non-200-range status code was received")
-  puts(e.status)
-end
-```
-
-Error codes are as follows:
-
-| Cause            | Error Type                 |
-| ---------------- | -------------------------- |
-| HTTP 400         | `BadRequestError`          |
-| HTTP 401         | `AuthenticationError`      |
-| HTTP 403         | `PermissionDeniedError`    |
-| HTTP 404         | `NotFoundError`            |
-| HTTP 409         | `ConflictError`            |
-| HTTP 422         | `UnprocessableEntityError` |
-| HTTP 429         | `RateLimitError`           |
-| HTTP >= 500      | `InternalServerError`      |
-| Other HTTP error | `APIStatusError`           |
-| Timeout          | `APITimeoutError`          |
-| Network error    | `APIConnectionError`       |
-
-### Retries
-
-Certain errors will be automatically retried 2 times by default, with a short exponential backoff.
-
-Connection errors (for example, due to a network connectivity problem), 408 Request Timeout, 409 Conflict, 429 Rate Limit, >=500 Internal errors, and timeouts will all be retried by default.
-
-You can use the `max_retries` option to configure or disable this:
-
-```ruby
-# Configure the default for all requests:
-whop = WhopSDK::Client.new(
-  max_retries: 0 # default is 2
-)
-
-# Or, configure per-request:
-whop.payments.list(company_id: "biz_xxxxxxxxxxxxxx", request_options: {max_retries: 5})
-```
-
-### Timeouts
-
-By default, requests will time out after 60 seconds. You can use the timeout option to configure or disable this:
-
-```ruby
-# Configure the default for all requests:
-whop = WhopSDK::Client.new(
-  timeout: nil # default is 60
-)
-
-# Or, configure per-request:
-whop.payments.list(company_id: "biz_xxxxxxxxxxxxxx", request_options: {timeout: 5})
-```
-
-On timeout, `WhopSDK::Errors::APITimeoutError` is raised.
-
-Note that requests that time out are retried by default.
 
 ## Advanced concepts
 
@@ -263,6 +185,135 @@ This package considers improvements to the (non-runtime) `*.rbi` and `*.rbs` typ
 
 Ruby 3.2.0 or higher.
 
+## Environments
+
+This SDK allows you to configure different environments or custom URLs for API requests. You can either use the predefined environments or specify your own custom URL.
+### Environments
+```ruby
+require "whop_sdk"
+
+whop_sdk = Whop_sdk::Client.new(
+    base_url: Whop_sdk::Environment::DEFAULT
+)
+```
+
+### Custom URL
+```ruby
+require "whop_sdk"
+
+client = Whop_sdk::Client.new(
+    base_url: "https://example.com"
+)
+```
+
+## Errors
+
+Failed API calls will raise errors that can be rescued from granularly.
+
+```ruby
+require "whop_sdk"
+
+client = Whop_sdk::Client.new(
+    base_url: "https://example.com"
+)
+
+begin
+    result = client.access_tokens.create
+rescue Whop_sdk::Errors::TimeoutError
+    puts "API didn't respond before our timeout elapsed"
+rescue Whop_sdk::Errors::ServiceUnavailableError
+    puts "API returned status 503, is probably overloaded, try again later"
+rescue Whop_sdk::Errors::ServerError
+    puts "API returned some other 5xx status, this is probably a bug"
+rescue Whop_sdk::Errors::ResponseError => e
+    puts "API returned an unexpected status other than 5xx: #{e.code} #{e.message}"
+rescue Whop_sdk::Errors::ApiError => e
+    puts "Some other error occurred when calling the API: #{e.message}"
+end
+```
+
+## Advanced
+
+### Retries
+
+The SDK is instrumented with automatic retries. A request will be retried as long as the request is deemed
+retryable and the number of retry attempts has not grown larger than the configured retry limit (default: 2).
+
+A request is deemed retryable when any of the following HTTP status codes is returned:
+
+- [408](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/408) (Timeout)
+- [429](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429) (Too Many Requests)
+- [5XX](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status#server_error_responses) (Internal Server Error)
+
+The `retryStatusCodes` configuration controls which [5XX](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status#server_error_responses) status codes are retried:
+
+- `legacy` (default): Retries `408`, `429`, `500`, `502`, `503`, `504`, `521`, `522`, `524`
+- `recommended`: Retries `408`, `429`, `502`, `503`, `504` only (excludes `500 Internal Server Error` to avoid retrying non-idempotent failures)
+
+Use the `max_retries` option to configure this behavior.
+
+```ruby
+require "whop_sdk"
+
+client = Whop_sdk::Client.new(
+    base_url: "https://example.com",
+    max_retries: 3  # Configure max retries (default is 2)
+)
+```
+
+### Timeouts
+
+The SDK defaults to a 60 second timeout. Use the `timeout` option to configure this behavior.
+
+```ruby
+require "whop_sdk"
+
+response = client.access_tokens.create(
+    ...,
+    timeout: 30  # 30 second timeout
+)
+```
+
+### Additional Headers
+
+If you would like to send additional headers as part of the request, use the `additional_headers` request option.
+
+```ruby
+require "whop_sdk"
+
+response = client.access_tokens.create(
+    ...,
+    request_options: {
+        additional_headers: {
+            "X-Custom-Header" => "custom-value"
+        }
+    }
+)
+```
+
+### Additional Query Parameters
+
+If you would like to send additional query parameters as part of the request, use the `additional_query_parameters` request option.
+
+```ruby
+require "whop_sdk"
+
+response = client.access_tokens.create(
+    ...,
+    request_options: {
+        additional_query_parameters: {
+            "custom_param" => "custom-value"
+        }
+    }
+)
+```
+
 ## Contributing
 
-See [the contributing documentation](https://github.com/whopio/whopsdk-ruby/tree/main/CONTRIBUTING.md).
+While we value open-source contributions to this SDK, this library is generated programmatically.
+Additions made directly to this library would have to be moved over to our generation code,
+otherwise they would be overwritten upon the next generated release. Feel free to open a PR as
+a proof of concept, but know that we will not be able to merge it as-is. We suggest opening
+an issue first to discuss with us!
+
+On the other hand, contributions to the README are always very welcome!

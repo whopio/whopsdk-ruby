@@ -1,5 +1,0 @@
-module WhopSDK
-  module Models
-    PlanDeleteResponse: WhopSDK::Internal::Type::Converter
-  end
-end

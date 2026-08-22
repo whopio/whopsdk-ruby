@@ -1,3 +1,0 @@
-module WhopSDK
-  VERSION: String
-end

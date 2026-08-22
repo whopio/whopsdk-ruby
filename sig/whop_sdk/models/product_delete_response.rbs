@@ -1,5 +1,0 @@
-module WhopSDK
-  module Models
-    ProductDeleteResponse: WhopSDK::Internal::Type::Converter
-  end
-end

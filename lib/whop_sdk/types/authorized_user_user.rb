@@ -1,0 +1,16 @@
+# frozen_string_literal: true
+
+module Whop_sdk
+  module Types
+    # The user account linked to this authorized user record.
+    class AuthorizedUserUser < Internal::Types::Model
+      field :email, -> { String }, optional: false, nullable: true
+
+      field :id, -> { String }, optional: false, nullable: false
+
+      field :name, -> { String }, optional: false, nullable: true
+
+      field :username, -> { String }, optional: false, nullable: false
+    end
+  end
+end

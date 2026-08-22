@@ -1,0 +1,12 @@
+# frozen_string_literal: true
+
+module Whop_sdk
+  module Types
+    module AdLeadFormFormType
+      extend Whop_sdk::Internal::Types::Enum
+
+      MORE_VOLUME = "more_volume"
+      HIGHER_INTENT = "higher_intent"
+    end
+  end
+end

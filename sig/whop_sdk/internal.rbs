@@ -1,9 +1,0 @@
-module WhopSDK
-  module Internal
-    extend WhopSDK::Internal::Util::SorbetRuntimeSupport
-
-    type file_input = Pathname | StringIO | IO | String | WhopSDK::FilePart
-
-    OMIT: Object
-  end
-end

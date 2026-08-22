@@ -1,137 +1,32 @@
-# yaml-language-server: $schema=https://www.rubyschema.org/rubocop.json
----
-# Explicitly disable pending cops for now. This is the default behaviour but
-# this avoids a large warning every time we run it.
-# Stop RuboCop nagging about rubocop-rake.
-# Ensure that RuboCop validates according to the lowest version of Ruby that we support.
+plugins:
+  - rubocop-minitest
+
 AllCops:
-  Exclude:
-    - "bin/*"
+  TargetRubyVersion: 3.3
   NewCops: enable
-  SuggestExtensions: false
-  TargetRubyVersion: 3.2
 
-# Whether MFA is required or not should be left to the token configuration.
-Gemspec/RequireMFA:
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Style/StringLiteralsInInterpolation:
+  EnforcedStyle: double_quotes
+
+Style/AccessModifierDeclarations:
   Enabled: false
 
-# Don't require this extra line break, it can be excessive.
-Layout/EmptyLineAfterGuardClause:
+Lint/ConstantDefinitionInBlock:
   Enabled: false
-
-# Don't leave complex assignment values hanging off to the right.
-Layout/EndAlignment:
-  EnforcedStyleAlignWith: variable
-
-Layout/FirstArrayElementLineBreak:
-  Enabled: true
-
-Layout/FirstHashElementLineBreak:
-  Enabled: true
-
-Layout/FirstMethodArgumentLineBreak:
-  Enabled: true
-
-Layout/FirstMethodParameterLineBreak:
-  Enabled: true
-
-# Set a reasonable line length; rely on other cops to correct long lines.
-Layout/LineLength:
-  AllowedPatterns:
-    - "^\\s*#.*$"
-    - ^require(_relative)?
-    - "WhopSDK::Internal::Type::BaseModel$"
-    - "^\\s*[A-Z0-9_]+ = :"
-    - "WhopSDK::(Models|Resources|Test)::"
-  Max: 110
-
-Layout/MultilineArrayLineBreaks:
-  Enabled: true
-
-# Start the assignment on the same line variable is mentioned.
-Layout/MultilineAssignmentLayout:
-  EnforcedStyle: same_line
-
-Layout/MultilineHashKeyLineBreaks:
-  Enabled: true
-
-Layout/MultilineMethodArgumentLineBreaks:
-  Enabled: true
-
-Layout/MultilineMethodParameterLineBreaks:
-  Enabled: true
-
-# Prefer compact hash literals.
-Layout/SpaceInsideHashLiteralBraces:
-  EnforcedStyle: no_space
-  Exclude:
-    - "**/*.rbi"
-
-Lint/BooleanSymbol:
-  Enabled: false
-
-# This option occasionally mangles identifier names
-Lint/DeprecatedConstants:
-  Exclude:
-    - "**/*.rbi"
-
-# We use pattern assertion in tests to ensure correctness.
-Lint/DuplicateMatchPattern:
-  Exclude:
-    - "test/**/*"
-
-# Fairly useful in tests for pattern assertions.
-Lint/EmptyInPattern:
-  Exclude:
-    - "test/**/*"
-
-Lint/MissingCopEnableDirective:
-  Exclude:
-    - "examples/**/*.rb"
-
-Lint/MissingSuper:
-  Exclude:
-    - "**/*.rbi"
-
-Lint/SymbolConversion:
-  Exclude:
-    - "**/*.rbi"
-
-# Disabled for safety reasons, this option changes code semantics.
-Lint/UnusedMethodArgument:
-  AutoCorrect: false
-
-# This option is prone to causing accidental bugs.
-Lint/UselessAssignment:
-  AutoCorrect: false
-  Exclude:
-    - "examples/**/*.rb"
 
 Metrics/AbcSize:
   Enabled: false
 
 Metrics/BlockLength:
-  AllowedPatterns:
-    - assert_pattern
-    - type_alias
-    - define_sorbet_constant!
-  Exclude:
-    - "**/*.rbi"
+  Enabled: false
 
 Metrics/ClassLength:
   Enabled: false
 
-Metrics/CollectionLiteralLength:
-  Exclude:
-    - "test/**/*"
-
-Metrics/CyclomaticComplexity:
-  Enabled: false
-
 Metrics/MethodLength:
-  Enabled: false
-
-Metrics/ModuleLength:
   Enabled: false
 
 Metrics/ParameterLists:
@@ -140,157 +35,69 @@ Metrics/ParameterLists:
 Metrics/PerceivedComplexity:
   Enabled: false
 
-Naming/AccessorMethodName:
+Metrics/CyclomaticComplexity:
   Enabled: false
 
-# Need to preserve block identifier for documentation.
-Naming/BlockForwarding:
+Metrics/ModuleLength:
   Enabled: false
 
-# Underscores are generally useful for disambiguation.
-Naming/ClassAndModuleCamelCase:
+Layout/LineLength:
   Enabled: false
-
-Naming/MethodParameterName:
-  Enabled: false
-
-Naming/PredicatePrefix:
-  Exclude:
-    - "**/*.rbi"
 
 Naming/VariableNumber:
-  Enabled: false
+  EnforcedStyle: normalcase
+  Severity: warning
 
-# Nothing wrong with inline private methods.
-Style/AccessModifierDeclarations:
-  Enabled: false
-
-Style/AccessorGrouping:
-  Exclude:
-    - "**/*.rbi"
-
-# Behaviour of alias_method is more predictable.
-Style/Alias:
-  EnforcedStyle: prefer_alias_method
-
-# And/or have confusing precedence, avoid them.
-Style/AndOr:
-  EnforcedStyle: always
-
-Style/ArgumentsForwarding:
-  Enabled: false
-
-Style/BisectedAttrAccessor:
-  Exclude:
-    - "**/*.rbi"
-
-# We prefer nested modules in lib/, but are currently using compact style for tests.
-Style/ClassAndModuleChildren:
-  Exclude:
-    - "test/**/*"
-
-Style/CommentAnnotation:
-  Enabled: false
-
-# We should go back and add these docs, but ignore for now.
 Style/Documentation:
   Enabled: false
 
-# Allow explicit empty elses, for clarity.
-Style/EmptyElse:
-  Enabled: false
-
-Style/EmptyMethod:
-  Exclude:
-    - "**/*.rbi"
-
-# We commonly use ENV['KEY'], it's OK.
-Style/FetchEnvVar:
-  Enabled: false
-
-# Just to be safe, ensure nobody is mutating our internal strings.
-Style/FrozenStringLiteralComment:
-  EnforcedStyle: always
-  Exclude:
-    - "**/*.rbi"
-
-# Nothing wrong with clear if statements.
-Style/IfUnlessModifier:
-  Enabled: false
-
-# Rubocop is pretty bad about mangling single line lambdas.
 Style/Lambda:
+  EnforcedStyle: literal
+
+Minitest/MultipleAssertions:
   Enabled: false
 
-# Prefer consistency in method calling syntax.
-Style/MethodCallWithArgsParentheses:
-  AllowedMethods:
-    - raise
-  Enabled: true
+Minitest/UselessAssertion:
+  Enabled: false
+
+# Dynamic snippets are code samples for documentation, not standalone Ruby files.
+Style/FrozenStringLiteralComment:
   Exclude:
-    - "**/*.gemspec"
+    - "dynamic-snippets/**/*"
 
-Style/MultilineBlockChain:
-  Enabled: false
-
-# Perfectly fine.
-Style/MultipleComparison:
-  Enabled: false
-
-Style/MutableConstant:
+# Indent hash elements 2 spaces from the start of the enclosing line rather than
+# aligning with the preceding paren or bracket. Generated code nests hashes inside
+# arrays and method calls; the "consistent" style is more readable there.
+Layout/FirstHashElementIndentation:
+  EnforcedStyle: consistent
   Exclude:
-    - "**/*.rbi"
+    - "dynamic-snippets/**/*"
 
-# Not all parameters should be named.
-Style/NumberedParameters:
-  Enabled: false
-
-Style/NumberedParametersLimit:
-  Max: 2
-
-# Reasonable to use brackets for errors with long messages.
-Style/RaiseArgs:
-  Enabled: false
-
-# Be explicit about `RuntimeError`s.
-Style/RedundantException:
-  Enabled: false
-
-Style/RedundantInitialize:
+# Match Layout/FirstHashElementIndentation: indent the first argument 2 spaces
+# from the start of the method call's line, regardless of parenthesis position.
+# Dynamic snippets are code samples, not standalone Ruby files; exclude them to
+# keep this config symmetric with Layout/FirstHashElementIndentation above.
+Layout/FirstArgumentIndentation:
+  EnforcedStyle: consistent
   Exclude:
-    - "**/*.rbi"
+    - "dynamic-snippets/**/*"
 
-Style/RedundantParentheses:
-  Exclude:
-    - "**/*.rbi"
-
-# Prefer slashes for regex literals.
-Style/RegexpLiteral:
-  EnforcedStyle: slashes
-
-# Allow explicit ifs, especially for imperative use.
-Style/SafeNavigation:
+# The generator emits non-idiomatic class names (e.g. Get_With_Query, JSON_)
+# derived from IR type names whose wire form contains underscores or digits.
+# Rubocop never auto-corrected these (naming cops have no autocorrecter), so
+# disabling the cop keeps CI green without changing customer output. Fixing at
+# source would rename public types across every existing SDK and therefore
+# requires a ruby-v2 major-version bump with a generator migration.
+Naming/ClassAndModuleCamelCase:
   Enabled: false
 
-Style/SignalException:
-  Exclude:
-    - Rakefile
-    - "**/*.rake"
-
-# We use these sparingly, where we anticipate future branches for the
-# inner conditional.
-Style/SoleNestedConditional:
+# Integer literals are emitted unformatted (e.g. 1000000, not 1_000_000).
+# Rubocop has an autocorrecter for this cop, but the only caller of integer
+# emission is the dynamic-snippets path, which feeds customer-facing surfaces:
+# (1) snippet markdown in reference docs, (2) dynamic-snippets/*.rb sample
+# files. Neither is rubocop-gated (markdown isn't Ruby, dynamic-snippets/**/*
+# is excluded above), so formatting integers there would change docs/dashboard
+# output without any rubocop benefit. Disabling the cop keeps integers raw
+# everywhere and avoids customer-visible diffs.
+Style/NumericLiterals:
   Enabled: false
-
-# Prefer double quotes so that interpolation can be easily added.
-Style/StringLiterals:
-  EnforcedStyle: double_quotes
-
-# Prefer explicit symbols for clarity; you can search for `:the_symbol`.
-Style/SymbolArray:
-  EnforcedStyle: brackets
-
-# This option makes examples harder to read for ruby novices.
-Style/SymbolProc:
-  Exclude:
-    - "examples/**/*.rb"

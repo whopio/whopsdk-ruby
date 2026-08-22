@@ -1,5 +1,0 @@
-module WhopSDK
-  module Models
-    MessageDeleteResponse: WhopSDK::Internal::Type::Converter
-  end
-end

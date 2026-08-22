@@ -1,0 +1,17 @@
+# Files Fern must not modify or delete when regenerating this repo.
+#
+# Fern owns the SDK source and its ci.yml, and prunes anything it did not generate — it
+# reads this file from the pull request's base branch, so an entry only protects a file
+# once it is on main.
+#
+# publish-main.yml is hand-written: it releases whop_sdk when a merge to main lands a
+# lib/whop_sdk/version.rb that is not yet on RubyGems. It is meant to be the only publish
+# path, and it authenticates with the RUBYGEMS_API_KEY secret.
+#
+# The Fern Ruby generator also writes a tag-triggered `gem push` job into the ci.yml it
+# owns, which fires on any refs/tags/* push — including the tag publish-main.yml creates —
+# and holds id-token: write while it runs `bundle install`. It authenticates with RubyGems
+# trusted publishing, so it is inert as long as no trusted publisher naming ci.yml exists.
+# Neutralising it properly means adding .github/workflows/ci.yml here alongside a
+# hand-written lint/test copy; see sdks/fern/README.md in whop-monorepo.
+.github/workflows/publish-main.yml

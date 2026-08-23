@@ -294,7 +294,7 @@ module WhopSDK
         required :total, Float
 
         # @!attribute unit_price
-        #   The unit price for this line item.
+        #   The unit price for this line item. Negative for a credit or deduction.
         #
         #   @return [Float]
         required :unit_price, Float
@@ -311,7 +311,7 @@ module WhopSDK
         #
         #   @param total [Float] The computed total for this line item (quantity \* unit_price).
         #
-        #   @param unit_price [Float] The unit price for this line item.
+        #   @param unit_price [Float] The unit price for this line item. Negative for a credit or deduction.
       end
 
       # @see WhopSDK::Models::Invoice#mailing_address

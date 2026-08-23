@@ -373,7 +373,7 @@ module WhopSDK
         sig { returns(Float) }
         attr_accessor :total
 
-        # The unit price for this line item.
+        # The unit price for this line item. Negative for a credit or deduction.
         sig { returns(Float) }
         attr_accessor :unit_price
 
@@ -397,7 +397,7 @@ module WhopSDK
           quantity:,
           # The computed total for this line item (quantity \* unit_price).
           total:,
-          # The unit price for this line item.
+          # The unit price for this line item. Negative for a credit or deduction.
           unit_price:
         )
         end

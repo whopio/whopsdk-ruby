@@ -57,7 +57,11 @@ module WhopSDK
       optional :email_address, String, nil?: true
 
       # @!attribute line_items
-      #   Line items that break down the invoice total.
+      #   Line items that break down the invoice total. When provided, the sum of
+      #   (quantity \* unit_price) for all items must equal the plan price. Individual
+      #   items may be negative to represent a credit, as long as the sum is not negative
+      #   and clears the currency's minimum charge. Pass an empty list to remove the
+      #   breakdown.
       #
       #   @return [Array<WhopSDK::Models::InvoiceUpdateParams::LineItem>, nil]
       optional :line_items,
@@ -121,7 +125,7 @@ module WhopSDK
       #
       #   @param email_address [String, nil] The email address of the customer.
       #
-      #   @param line_items [Array<WhopSDK::Models::InvoiceUpdateParams::LineItem>, nil] Line items that break down the invoice total.
+      #   @param line_items [Array<WhopSDK::Models::InvoiceUpdateParams::LineItem>, nil] Line items that break down the invoice total. When provided, the sum of (quantit
       #
       #   @param mailing_address_id [String, nil] The unique identifier of an existing mailing address to attach.
       #
@@ -231,7 +235,8 @@ module WhopSDK
 
         # @!attribute unit_price
         #   The unit price for this line item. Provided as a number in the specified
-        #   currency. Eg: 10.43 for $10.43
+        #   currency. Eg: 10.43 for $10.43. Negative values represent a credit or deduction,
+        #   as long as the line items still total a chargeable amount.
         #
         #   @return [Float]
         required :unit_price, Float

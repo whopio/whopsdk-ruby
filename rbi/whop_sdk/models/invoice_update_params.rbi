@@ -52,7 +52,11 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :email_address
 
-      # Line items that break down the invoice total.
+      # Line items that break down the invoice total. When provided, the sum of
+      # (quantity \* unit_price) for all items must equal the plan price. Individual
+      # items may be negative to represent a credit, as long as the sum is not negative
+      # and clears the currency's minimum charge. Pass an empty list to remove the
+      # breakdown.
       sig do
         returns(T.nilable(T::Array[WhopSDK::InvoiceUpdateParams::LineItem]))
       end
@@ -128,7 +132,11 @@ module WhopSDK
         due_date: nil,
         # The email address of the customer.
         email_address: nil,
-        # Line items that break down the invoice total.
+        # Line items that break down the invoice total. When provided, the sum of
+        # (quantity \* unit_price) for all items must equal the plan price. Individual
+        # items may be negative to represent a credit, as long as the sum is not negative
+        # and clears the currency's minimum charge. Pass an empty list to remove the
+        # breakdown.
         line_items: nil,
         # The unique identifier of an existing mailing address to attach.
         mailing_address_id: nil,
@@ -296,7 +304,8 @@ module WhopSDK
         attr_accessor :label
 
         # The unit price for this line item. Provided as a number in the specified
-        # currency. Eg: 10.43 for $10.43
+        # currency. Eg: 10.43 for $10.43. Negative values represent a credit or deduction,
+        # as long as the line items still total a chargeable amount.
         sig { returns(Float) }
         attr_accessor :unit_price
 
@@ -317,7 +326,8 @@ module WhopSDK
           # The label or description for this line item.
           label:,
           # The unit price for this line item. Provided as a number in the specified
-          # currency. Eg: 10.43 for $10.43
+          # currency. Eg: 10.43 for $10.43. Negative values represent a credit or deduction,
+          # as long as the line items still total a chargeable amount.
           unit_price:,
           # The quantity of this line item. Defaults to 1.
           quantity: nil

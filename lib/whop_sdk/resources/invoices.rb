@@ -91,7 +91,7 @@ module WhopSDK
       #
       # @param email_address [String, nil] The email address of the customer.
       #
-      # @param line_items [Array<WhopSDK::Models::InvoiceUpdateParams::LineItem>, nil] Line items that break down the invoice total.
+      # @param line_items [Array<WhopSDK::Models::InvoiceUpdateParams::LineItem>, nil] Line items that break down the invoice total. When provided, the sum of (quantit
       #
       # @param mailing_address_id [String, nil] The unique identifier of an existing mailing address to attach.
       #

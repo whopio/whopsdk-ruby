@@ -62,9 +62,12 @@ jobs:
 
       - run: bundle install
 
-      - name: Check the hand-written helper survived generation
+      - name: Check the hand-written helpers survived generation
         env:
-          HELPER: lib/whop_sdk/helpers/verify_user_token.rb
+          # name | entrypoint method | requirePaths entry | gem the helper requires at load
+          HELPERS: |
+            WhopSDK::Helpers::VerifyUserToken|verify_user_token!|helpers/verify_user_token|jwt
+            WhopSDK::Helpers::VerifyWebhook|unwrap|helpers/verify_webhook|standardwebhooks
           GENERATOR_CONFIG: the ruby config in whop-monorepo sdks/fern/generators.yml
         run: |
           set -euo pipefail
@@ -75,25 +78,30 @@ jobs:
             failures=$((failures + 1))
           }
 
-          if [ -f "$HELPER" ]; then
-            echo "ok: ${HELPER} is present"
-          else
-            fail "${HELPER} is gone. .fernignore lists lib/whop_sdk/helpers; if a regeneration removed it anyway, restore it before merging."
-          fi
+          while IFS='|' read -r constant method require_path gem; do
+            [ -n "$constant" ] || continue
+            helper="lib/whop_sdk/${require_path}.rb"
 
-          if out=$(bundle exec ruby -Ilib -e 'require "whop_sdk"; WhopSDK::Helpers::VerifyUserToken.method(:verify_user_token!)' 2>&1); then
-            echo "ok: require \"whop_sdk\" reaches WhopSDK::Helpers::VerifyUserToken"
-          else
-            printf '%s\n' "$out"
-            fail "require \"whop_sdk\" no longer reaches WhopSDK::Helpers::VerifyUserToken. lib/whop_sdk.rb is generated, so .fernignore does not preserve its require_relative: set requirePaths: [helpers/verify_user_token] in ${GENERATOR_CONFIG}."
-          fi
+            if [ -f "$helper" ]; then
+              echo "ok: ${helper} is present"
+            else
+              fail "${helper} is gone. .fernignore lists lib/whop_sdk/helpers; if a regeneration removed it anyway, restore it before merging."
+            fi
 
-          if out=$(bundle exec ruby -e 'dep = Gem::Specification.load("whop_sdk.gemspec").dependencies.find { _1.name == "jwt" }; abort("whop_sdk.gemspec declares no jwt dependency") if dep.nil?; puts dep' 2>&1); then
-            printf '%s\n' "$out"
-          else
-            printf '%s\n' "$out"
-            fail "whop_sdk.gemspec no longer declares jwt. The helper requires jwt at load, so re-emitting the require without the dependency makes require \"whop_sdk\" raise LoadError for every caller: set extraDependencies: {jwt: <constraint>} in ${GENERATOR_CONFIG}."
-          fi
+            if out=$(bundle exec ruby -Ilib -e "require \"whop_sdk\"; ${constant}.method(:${method})" 2>&1); then
+              echo "ok: require \"whop_sdk\" reaches ${constant}"
+            else
+              printf '%s\n' "$out"
+              fail "require \"whop_sdk\" no longer reaches ${constant}. lib/whop_sdk.rb is generated, so .fernignore does not preserve its require_relative: add ${require_path} to requirePaths in ${GENERATOR_CONFIG}."
+            fi
+
+            if out=$(bundle exec ruby -e "dep = Gem::Specification.load(\"whop_sdk.gemspec\").dependencies.find { _1.name == \"${gem}\" }; abort(\"whop_sdk.gemspec declares no ${gem} dependency\") if dep.nil?; puts dep" 2>&1); then
+              printf '%s\n' "$out"
+            else
+              printf '%s\n' "$out"
+              fail "whop_sdk.gemspec no longer declares ${gem}. ${constant} requires ${gem} at load, so re-emitting the require without the dependency makes require \"whop_sdk\" raise LoadError for every caller: set extraDependencies: {${gem}: <constraint>} in ${GENERATOR_CONFIG}."
+            fi
+          done <<< "$HELPERS"
 
           [ "$failures" -eq 0 ]
 

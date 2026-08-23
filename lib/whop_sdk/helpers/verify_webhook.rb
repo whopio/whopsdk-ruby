@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require "base64"
 require "json"
 require "standardwebhooks"
 
@@ -32,8 +33,9 @@ module WhopSDK
       # @param headers [Hash] The request headers. Only `webhook-id`,
       #   `webhook-timestamp` and `webhook-signature` are read, and the lookup
       #   is case-insensitive.
-      # @param key [String] The endpoint's signing secret, with or without the
-      #   `whsec_` prefix.
+      # @param key [String] The endpoint's signing secret, exactly as Whop
+      #   shows it — a `ws_`-prefixed string. Pass it verbatim; do not strip the
+      #   prefix and do not pre-encode it.
       # @return [Hash] The parsed body, with symbol keys.
       # @raise [ArgumentError] when `key` is missing or empty.
       # @raise [StandardWebhooks::WebhookVerificationError] when a signature
@@ -42,8 +44,26 @@ module WhopSDK
       def self.unwrap(payload, headers:, key:)
         raise ArgumentError, MISSING_KEY_MESSAGE if key.nil? || key.to_s.empty?
 
-        ::StandardWebhooks::Webhook.new(key).verify(payload, downcased_headers(headers))
+        ::StandardWebhooks::Webhook.new(hmac_key(key)).verify(payload, downcased_headers(headers))
         JSON.parse(payload, symbolize_names: true)
+      end
+
+      # Whop's backend HMACs with the *literal bytes* of the secret it issued
+      # (`WebhooksManager::SignWebhook` passes `webhook.webhook_secret` straight
+      # to `OpenSSL::HMAC`). `StandardWebhooks::Webhook` instead base64-decodes
+      # whatever it is handed to derive its key, so handing it the secret raw
+      # derives the wrong key and every genuine delivery fails to verify.
+      # Encoding here cancels that decode out, leaving exactly the bytes the
+      # backend signed with.
+      #
+      # The whole secret is encoded, prefix included, because the backend never
+      # strips a prefix either. That also disarms the library's own `whsec_`
+      # stripping: base64 output cannot begin with `whsec_`, since `_` is not in
+      # the base64 alphabet.
+      #
+      # @api private
+      def self.hmac_key(key)
+        Base64.strict_encode64(key.to_s)
       end
 
       # StandardWebhooks::Webhook#verify looks its three headers up by exact

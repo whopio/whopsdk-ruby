@@ -61,6 +61,13 @@ module WhopSDK
         #   @return [String]
         required :id, String
 
+        # @!attribute is_public
+        #   Whether this experience is publicly visible to all users, including those
+        #   without a membership.
+        #
+        #   @return [Boolean]
+        required :is_public, WhopSDK::Internal::Type::Boolean
+
         # @!attribute name
         #   The display name of this experience shown to users in the product navigation.
         #   Maximum 255 characters.
@@ -68,13 +75,15 @@ module WhopSDK
         #   @return [String]
         required :name, String
 
-        # @!method initialize(id:, name:)
+        # @!method initialize(id:, is_public:, name:)
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::Forum::Experience} for more details.
         #
         #   The parent experience that this forum belongs to.
         #
         #   @param id [String] The unique identifier for the experience.
+        #
+        #   @param is_public [Boolean] Whether this experience is publicly visible to all users, including those withou
         #
         #   @param name [String] The display name of this experience shown to users in the product navigation. Ma
       end

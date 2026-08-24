@@ -36,16 +36,18 @@ module WhopSDK
         who_can_post: WhopSDK::Models::who_can_post_types
       }
 
-      type experience = { id: String, name: String }
+      type experience = { id: String, is_public: bool, name: String }
 
       class Experience < WhopSDK::Internal::Type::BaseModel
         attr_accessor id: String
 
+        attr_accessor is_public: bool
+
         attr_accessor name: String
 
-        def initialize: (id: String, name: String) -> void
+        def initialize: (id: String, is_public: bool, name: String) -> void
 
-        def to_hash: -> { id: String, name: String }
+        def to_hash: -> { id: String, is_public: bool, name: String }
       end
     end
   end

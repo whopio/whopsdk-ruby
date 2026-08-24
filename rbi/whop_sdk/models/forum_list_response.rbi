@@ -95,23 +95,37 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
+        # Whether this experience is publicly visible to all users, including those
+        # without a membership.
+        sig { returns(T::Boolean) }
+        attr_accessor :is_public
+
         # The display name of this experience shown to users in the product navigation.
         # Maximum 255 characters.
         sig { returns(String) }
         attr_accessor :name
 
         # The parent experience that this forum belongs to.
-        sig { params(id: String, name: String).returns(T.attached_class) }
+        sig do
+          params(id: String, is_public: T::Boolean, name: String).returns(
+            T.attached_class
+          )
+        end
         def self.new(
           # The unique identifier for the experience.
           id:,
+          # Whether this experience is publicly visible to all users, including those
+          # without a membership.
+          is_public:,
           # The display name of this experience shown to users in the product navigation.
           # Maximum 255 characters.
           name:
         )
         end
 
-        sig { override.returns({ id: String, name: String }) }
+        sig do
+          override.returns({ id: String, is_public: T::Boolean, name: String })
+        end
         def to_hash
         end
       end

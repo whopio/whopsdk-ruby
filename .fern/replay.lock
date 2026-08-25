@@ -12,5 +12,11 @@ generations:
     cli_version: unknown
     generator_versions:
       fernapi/fern-ruby-sdk: 1.23.2
-current_generation: f41bb31550b9965a4b2a1631b94888c3ab205e32
+  - commit_sha: a95ffd10d7a72efb540bcdc0327172669f138488
+    tree_hash: bf484e9c20407812861dac6df9b760963d33bd30
+    timestamp: 2026-08-25T06:17:22.307Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-ruby-sdk: 1.23.2
+current_generation: a95ffd10d7a72efb540bcdc0327172669f138488
 patches: []

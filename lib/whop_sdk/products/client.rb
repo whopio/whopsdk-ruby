@@ -10,7 +10,7 @@ module Whop_sdk
         @client = client
       end
 
-      # Returns a paginated list of products belonging to an account.
+      # Returns a paginated list of products. Omit `account_id` to search the public marketplace.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -19,7 +19,12 @@ module Whop_sdk
       # @option request_options [Hash{String => Object}] :additional_query_parameters
       # @option request_options [Hash{String => Object}] :additional_body_parameters
       # @option request_options [Integer] :timeout_in_seconds
-      # @option params [String] :account_id
+      # @option params [String, nil] :account_id
+      # @option params [String, nil] :query
+      # @option params [String, nil] :marketplace_category_route
+      # @option params [Whop_sdk::Products::Types::ListProductsRequestPlanTypesItem, nil] :plan_types
+      # @option params [Integer, nil] :price_minimum
+      # @option params [Integer, nil] :price_maximum
       # @option params [String, nil] :visibilities
       # @option params [String, nil] :access_pass_types
       # @option params [String, nil] :labels
@@ -29,10 +34,11 @@ module Whop_sdk
       # @option params [String, nil] :after
       # @option params [Integer, nil] :last
       # @option params [String, nil] :before
+      # @option params [String, nil] :created_after
+      # @option params [String, nil] :created_before
       #
       # @example
       #   client.products.list(
-      #     account_id: "account_id",
       #     visibilities: ["visible"],
       #     access_pass_types: ["regular"]
       #   )
@@ -42,6 +48,11 @@ module Whop_sdk
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
         query_params = {}
         query_params["account_id"] = params[:account_id] if params.key?(:account_id)
+        query_params["query"] = params[:query] if params.key?(:query)
+        query_params["marketplace_category_route"] = params[:marketplace_category_route] if params.key?(:marketplace_category_route)
+        query_params["plan_types"] = params[:plan_types] if params.key?(:plan_types)
+        query_params["price_minimum"] = params[:price_minimum] if params.key?(:price_minimum)
+        query_params["price_maximum"] = params[:price_maximum] if params.key?(:price_maximum)
         query_params["visibilities"] = params[:visibilities] if params.key?(:visibilities)
         query_params["access_pass_types"] = params[:access_pass_types] if params.key?(:access_pass_types)
         query_params["labels"] = params[:labels] if params.key?(:labels)
@@ -51,6 +62,8 @@ module Whop_sdk
         query_params["after"] = params[:after] if params.key?(:after)
         query_params["last"] = params[:last] if params.key?(:last)
         query_params["before"] = params[:before] if params.key?(:before)
+        query_params["created_after"] = params[:created_after] if params.key?(:created_after)
+        query_params["created_before"] = params[:created_before] if params.key?(:created_before)
 
         Whop_sdk::Internal::CursorItemIterator.new(
           cursor_field: :end_cursor,
@@ -118,7 +131,7 @@ module Whop_sdk
         end
       end
 
-      # Retrieves the details of an existing product. This endpoint is publicly accessible.
+      # Retrieves a product. Public — no credentials.
       #
       # @param request_options [Hash]
       # @param params [Hash]

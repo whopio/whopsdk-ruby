@@ -3,7 +3,13 @@
 module Whop_sdk
   module Types
     class ProductListItem < Internal::Types::Model
+      field :account, -> { Internal::Types::Hash[String, Object] }, optional: false, nullable: true
+
       field :created_at, -> { String }, optional: false, nullable: false
+
+      field :default_plan, -> { Whop_sdk::Types::ProductPublicPlan }, optional: false, nullable: true
+
+      field :description, -> { String }, optional: false, nullable: true
 
       field :external_identifier, -> { String }, optional: false, nullable: true
 

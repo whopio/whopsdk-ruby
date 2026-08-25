@@ -6,6 +6,7 @@ module Whop_sdk
       module GetFinancialReportResponseRowsItemLineCategory
         extend Whop_sdk::Internal::Types::Enum
 
+        ACCELERATED_SETTLEMENT_FEE = "accelerated_settlement_fee"
         ACCOUNT_SETTLEMENT = "account_settlement"
         AD_BALANCE_FUNDING_RECEIPT = "ad_balance_funding_receipt"
         AD_BUDGET_RELEASE = "ad_budget_release"
@@ -171,6 +172,7 @@ module Whop_sdk
         PLATFORM_EARNING_SETTLEMENT = "platform_earning_settlement"
         PLATFORM_EARNING_UNRECONCILED_CLEARING = "platform_earning_unreconciled_clearing"
         PROMO_REVERSAL = "promo_reversal"
+        PSP_ACCELERATED_SETTLEMENT_FEE = "psp_accelerated_settlement_fee"
         PSP_ACCOUNT_UPDATER_FEE = "psp_account_updater_fee"
         PSP_ADJUSTED_PROCESSING_FEE = "psp_adjusted_processing_fee"
         PSP_AUTHENTICATION_FEE = "psp_authentication_fee"

@@ -4,7 +4,17 @@ module Whop_sdk
   module Products
     module Types
       class ListProductsRequest < Internal::Types::Model
-        field :account_id, -> { String }, optional: false, nullable: false
+        field :account_id, -> { String }, optional: true, nullable: false
+
+        field :query, -> { String }, optional: true, nullable: false
+
+        field :marketplace_category_route, -> { String }, optional: true, nullable: false
+
+        field :plan_types, -> { Whop_sdk::Products::Types::ListProductsRequestPlanTypesItem }, optional: true, nullable: false
+
+        field :price_minimum, -> { Integer }, optional: true, nullable: false
+
+        field :price_maximum, -> { Integer }, optional: true, nullable: false
 
         field :visibilities, -> { String }, optional: true, nullable: false
 
@@ -23,6 +33,10 @@ module Whop_sdk
         field :last, -> { Integer }, optional: true, nullable: false
 
         field :before, -> { String }, optional: true, nullable: false
+
+        field :created_after, -> { String }, optional: true, nullable: false
+
+        field :created_before, -> { String }, optional: true, nullable: false
       end
     end
   end

@@ -11,9 +11,13 @@ module Whop_sdk
 
       field :accepted_submissions_per_user_limit, -> { Integer }, optional: false, nullable: false
 
+      field :active_proof_livestream_feeds, -> { Internal::Types::Array[Whop_sdk::Types::BountyActiveLivestreamFeed] }, optional: false, nullable: false
+
       field :affiliate_share_amount, -> { Integer }, optional: false, nullable: false
 
       field :allowed_country_codes, -> { Internal::Types::Array[String] }, optional: false, nullable: false
+
+      field :awaiting_review_submissions_count, -> { Integer }, optional: false, nullable: false
 
       field :budget_amount, -> { Integer }, optional: false, nullable: false
 
@@ -26,6 +30,8 @@ module Whop_sdk
       field :created_at, -> { String }, optional: false, nullable: false
 
       field :currency, -> { Whop_sdk::Types::BountyCurrency }, optional: false, nullable: false
+
+      field :denied_submissions_count, -> { Integer }, optional: false, nullable: false
 
       field :description, -> { String }, optional: false, nullable: false
 

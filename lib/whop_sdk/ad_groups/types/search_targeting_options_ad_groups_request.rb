@@ -17,6 +17,8 @@ module Whop_sdk
         field :country, -> { String }, optional: true, nullable: false
 
         field :limit, -> { Integer }, optional: true, nullable: false
+
+        field :special_ad_categories, -> { Whop_sdk::AdGroups::Types::SearchTargetingOptionsAdGroupsRequestSpecialAdCategoriesItem }, optional: true, nullable: false
       end
     end
   end

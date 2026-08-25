@@ -81,3 +81,6 @@ lib/whop_sdk/helpers
 lib/whop_sdk/internal/iterators/cursor_page_iterator.rb
 lib/whop_sdk/internal/types/utils.rb
 test/unit/helpers
+.fern/replay.lock
+.fern/replay.yml
+.gitattributes

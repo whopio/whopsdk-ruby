@@ -21,6 +21,8 @@ module Whop_sdk
 
       field :object, -> { Whop_sdk::Types::LedgerActivityObject }, optional: false, nullable: false
 
+      field :payment, -> { Whop_sdk::Types::LedgerActivityPayment }, optional: true, nullable: false
+
       field :posted_at, -> { String }, optional: false, nullable: false
 
       field :resource, -> { Whop_sdk::Types::LedgerActivityResource }, optional: false, nullable: true

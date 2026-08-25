@@ -13,6 +13,8 @@ module Whop_sdk
 
       field :custom_statement_descriptor, -> { String }, optional: false, nullable: true
 
+      field :default_plan, -> { Whop_sdk::Types::ProductPublicPlan }, optional: false, nullable: true
+
       field :description, -> { String }, optional: false, nullable: true
 
       field :external_identifier, -> { String }, optional: false, nullable: true

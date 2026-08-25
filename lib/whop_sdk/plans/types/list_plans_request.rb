@@ -4,7 +4,7 @@ module Whop_sdk
   module Plans
     module Types
       class ListPlansRequest < Internal::Types::Model
-        field :account_id, -> { String }, optional: false, nullable: false
+        field :account_id, -> { String }, optional: true, nullable: false
 
         field :direction, -> { Whop_sdk::Plans::Types::ListPlansRequestDirection }, optional: true, nullable: false
 

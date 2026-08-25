@@ -161,7 +161,7 @@ jobs:
             exit 1
           fi
 
-          if git rev-parse --verify --quiet HEAD^ >/dev/null; then
+          if [ "$EVENT" = "push" ] && git rev-parse --verify --quiet HEAD^ >/dev/null; then
             changed=$(git diff --name-only HEAD^ HEAD)
             body=$(git diff -U0 HEAD^ HEAD -- "$VERSION_FILE" | grep -E '^[+-]' | grep -vE '^(\+\+\+|---)' || true)
             other=$(printf '%s\n' "$body" | grep -cvE '^[+-]\s*VERSION = ' || true)

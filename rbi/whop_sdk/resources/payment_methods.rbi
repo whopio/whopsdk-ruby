@@ -95,10 +95,10 @@ module WhopSDK
         expired: nil,
         # Returns the first _n_ elements from the list.
         first: nil,
-        # Only return methods that can be charged this way after the buyer leaves. A
-        # checkout that renews should pass `off_session`, which drops the buyer's platform
-        # balance — a balance settles against the ledger at the time of purchase and
-        # cannot be charged later.
+        # Only return methods that can be charged this way after the buyer leaves. Every
+        # stored credential answers either usage today, so this narrows nothing — it used
+        # to drop the buyer's platform balance, which now lists on its own endpoint
+        # instead of here.
         future_usage: nil,
         # Filter cards by whether they carry the payer identity document their payment
         # provider requires. Payment methods that are not cards are unaffected.

@@ -80,10 +80,10 @@ module WhopSDK
       optional :first, Integer
 
       # @!attribute future_usage
-      #   Only return methods that can be charged this way after the buyer leaves. A
-      #   checkout that renews should pass `off_session`, which drops the buyer's platform
-      #   balance — a balance settles against the ledger at the time of purchase and
-      #   cannot be charged later.
+      #   Only return methods that can be charged this way after the buyer leaves. Every
+      #   stored credential answers either usage today, so this narrows nothing — it used
+      #   to drop the buyer's platform balance, which now lists on its own endpoint
+      #   instead of here.
       #
       #   @return [Symbol, WhopSDK::Models::PaymentMethodListParams::FutureUsage, nil]
       optional :future_usage, enum: -> { WhopSDK::PaymentMethodListParams::FutureUsage }
@@ -142,7 +142,7 @@ module WhopSDK
       #
       #   @param first [Integer] Returns the first _n_ elements from the list.
       #
-      #   @param future_usage [Symbol, WhopSDK::Models::PaymentMethodListParams::FutureUsage] Only return methods that can be charged this way after the buyer leaves. A check
+      #   @param future_usage [Symbol, WhopSDK::Models::PaymentMethodListParams::FutureUsage] Only return methods that can be charged this way after the buyer leaves. Every s
       #
       #   @param has_payer_document [Boolean] Filter cards by whether they carry the payer identity document their payment pro
       #
@@ -166,10 +166,10 @@ module WhopSDK
         #   @return [Array<Symbol>]
       end
 
-      # Only return methods that can be charged this way after the buyer leaves. A
-      # checkout that renews should pass `off_session`, which drops the buyer's platform
-      # balance — a balance settles against the ledger at the time of purchase and
-      # cannot be charged later.
+      # Only return methods that can be charged this way after the buyer leaves. Every
+      # stored credential answers either usage today, so this narrows nothing — it used
+      # to drop the buyer's platform balance, which now lists on its own endpoint
+      # instead of here.
       module FutureUsage
         extend WhopSDK::Internal::Type::Enum
 

@@ -12,6 +12,8 @@ module Whop_sdk
 
         field :verified_apps_only, -> { Internal::Types::Boolean }, optional: true, nullable: false
 
+        field :recommended, -> { Internal::Types::Boolean }, optional: true, nullable: false
+
         field :query, -> { String }, optional: true, nullable: false
 
         field :order, -> { Whop_sdk::Apps::Types::ListAppsRequestOrder }, optional: true, nullable: false

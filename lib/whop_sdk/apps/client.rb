@@ -26,6 +26,7 @@ module Whop_sdk
       # @option params [Whop_sdk::Apps::Types::ListAppsRequestAppType, nil] :app_type
       # @option params [Whop_sdk::Apps::Types::ListAppsRequestViewType, nil] :view_type
       # @option params [Boolean, nil] :verified_apps_only
+      # @option params [Boolean, nil] :recommended
       # @option params [String, nil] :query
       # @option params [Whop_sdk::Apps::Types::ListAppsRequestOrder, nil] :order
       # @option params [Whop_sdk::Apps::Types::ListAppsRequestDirection, nil] :direction
@@ -45,6 +46,7 @@ module Whop_sdk
         query_params["app_type"] = params[:app_type] if params.key?(:app_type)
         query_params["view_type"] = params[:view_type] if params.key?(:view_type)
         query_params["verified_apps_only"] = params[:verified_apps_only] if params.key?(:verified_apps_only)
+        query_params["recommended"] = params[:recommended] if params.key?(:recommended)
         query_params["query"] = params[:query] if params.key?(:query)
         query_params["order"] = params[:order] if params.key?(:order)
         query_params["direction"] = params[:direction] if params.key?(:direction)

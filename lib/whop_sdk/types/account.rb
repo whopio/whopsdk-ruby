@@ -31,6 +31,8 @@ module Whop_sdk
 
       field :email, -> { String }, optional: false, nullable: true
 
+      field :eula, -> { Whop_sdk::Types::File }, optional: false, nullable: true
+
       field :home_preferences, -> { Internal::Types::Array[Whop_sdk::Types::AccountHomePreferencesItem] }, optional: false, nullable: false
 
       field :id, -> { String }, optional: false, nullable: false
@@ -61,6 +63,8 @@ module Whop_sdk
 
       field :payment_controls, -> { Whop_sdk::Types::AccountPaymentControls }, optional: false, nullable: true
 
+      field :privacy_policy, -> { Whop_sdk::Types::File }, optional: false, nullable: true
+
       field :product_tax_code, -> { Internal::Types::Hash[String, Object] }, optional: false, nullable: true
 
       field :recommended_actions, -> { Internal::Types::Array[Whop_sdk::Types::AccountRecommendedAction] }, optional: false, nullable: true
@@ -68,6 +72,8 @@ module Whop_sdk
       field :require2fa, -> { Internal::Types::Boolean }, optional: false, nullable: false, api_name: "require_2fa"
 
       field :required_actions, -> { Internal::Types::Array[Whop_sdk::Types::AccountRequiredAction] }, optional: false, nullable: true
+
+      field :return_policy, -> { Whop_sdk::Types::File }, optional: false, nullable: true
 
       field :route, -> { String }, optional: false, nullable: false
 
@@ -98,6 +104,8 @@ module Whop_sdk
       field :tax_remitted_by, -> { Whop_sdk::Types::AccountTaxRemittedBy }, optional: false, nullable: true
 
       field :tax_type, -> { Whop_sdk::Types::AccountTaxType }, optional: false, nullable: true
+
+      field :terms_of_service, -> { Whop_sdk::Types::File }, optional: false, nullable: true
 
       field :three_ds_level, -> { Whop_sdk::Types::AccountThreeDsLevel }, optional: false, nullable: true
 

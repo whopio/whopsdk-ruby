@@ -2743,6 +2743,14 @@ client.ad_groups.search_targeting_options(platform: "meta")
 <dl>
 <dd>
 
+**special_ad_categories:** `Whop_sdk::AdGroups::Types::SearchTargetingOptionsAdGroupsRequestSpecialAdCategoriesItem` — The campaign's declared special ad categories. Under `housing`, `employment`, or `financial_products` the ad platform allows interests only, drawn from a short approved list, so results are narrowed to what such a campaign can launch with and other kinds return nothing. Blank `query` browses that approved list instead of the usual fixed lists.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **request_options:** `Whop_sdk::AdGroups::RequestOptions` 
     
 </dd>
@@ -6296,6 +6304,14 @@ client.apps.list
 <dd>
 
 **verified_apps_only:** `Internal::Types::Boolean` — Whether to only return apps verified by Whop. Verified website templates — websites with a published web build — are included, even though websites are otherwise left out of app lists.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**recommended:** `Internal::Types::Boolean` — Only return apps Whop recommends (or, with `false`, only those it does not). The community blueprints gallery is the recommended slice of the public website list.
     
 </dd>
 </dl>
@@ -10357,6 +10373,173 @@ client.checkout_configurations.delete(id: "id")
 </dl>
 </details>
 
+## Checkout Sessions
+<details><summary><code>client.checkout_sessions.<a href="/lib/whop_sdk/checkout_sessions/client.rb">create</a>(request) -> Whop_sdk::Types::CheckoutSession</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Opens a checkout session. No credentials required. Pass exactly one of `items`, `checkout_configuration`, or `link`. The response includes `client_secret` once; later calls authenticate with it.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.checkout_sessions.create
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**affiliate_code:** `String` — The affiliate this checkout is attributed to. Write-once — set it here or never.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**attribution:** `Internal::Types::Hash[String, Object]` — String-to-string acquisition context. Recognized keys: `utm_source`, `utm_medium`, `utm_campaign`, `utm_term`, `utm_content`, `tracking_link_id`, `funnel_id`, `source`, `country`; anything else is dropped.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**checkout_configuration:** `String` — A seller's checkout configuration (`ch_…`) to open this checkout from. Its plan, mode, affiliate code, metadata, redirect URL, 3DS level and payment method configuration seed the session; anything you also send explicitly wins.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**items:** `Internal::Types::Array[Whop_sdk::CheckoutSessions::Types::CreateCheckoutSessionsRequestItemsItem]` — What the buyer is purchasing. Exactly one entry today — more are refused until multi-item checkout ships; the array shape is the forward contract. Alongside a `checkout_configuration` or `link` it may only name that mount's own plan, where it sets quantity.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**link:** `String` — Any checkout link the seller has shared, resolved for you: a plan ID, a checkout configuration ID, a vanity short link (send `page_route` with it), a membership transfer code, or a checkout link the seller handed out earlier. A link that is not a checkout link is refused with a coded message rather than a bare not-found.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**metadata:** `Internal::Types::Hash[String, String]` — Free-form string-to-string map, at most 40 keys. Whop never interprets it.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**mode:** `Whop_sdk::CheckoutSessions::Types::CreateCheckoutSessionsRequestMode` — Defaults to the checkout configuration's mode, then `payment`. `setup` sessions are not yet available and are refused.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**origin:** `String` — Where this checkout is being opened from — the scheme and host of your page, with no path (`https://shop.example.com`). Ignored when the request carries a browser `Origin` header, which is used instead. Recorded against the session as acquisition context.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page_route:** `String` — The product route a vanity `link` belongs to — the `pageRoute` in the seller's shared URL.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**password:** `String` — The password for a password-protected plan. Right, and the gate is cleared for the session's whole life; wrong or omitted, and the session still opens — it publishes a `custom_password` requirement, the answer arrives through update, and confirm refuses until it is right.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**promo_code:** `String` — A promo code to apply to the quote.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**return_url:** `String` — Where the buyer lands after an off-site payment step. Absolute https URL without credentials.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**top_up_membership:** `String` — An existing membership (`mem_…`) this checkout pays against instead of creating a new one — the buyer pays the plan's price again onto something they already own. Ownership is checked at confirm, against the buyer who confirms: a membership they do not own is refused as not found. Cannot accompany a membership transfer link.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**tracking_link_ids_by_account:** `Internal::Types::Hash[String, String]` — First-party tracking-link candidates keyed by account ID. Ignored outside Whop's hosted checkout; an explicit `attribution.tracking_link_id` wins.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Whop_sdk::CheckoutSessions::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Companies
 <details><summary><code>client.companies.<a href="/lib/whop_sdk/companies/client.rb">list</a>() -> Whop_sdk::Companies::Types::ListCompaniesResponse</code></summary>
 <dl>
@@ -14180,7 +14363,7 @@ client.disputes.update_evidence_dispute(id: "dspt_xxxxxxxxxxxxx")
 <dl>
 <dd>
 
-Replaces the full set of uploaded evidence documents on a dispute, beyond the four fixed evidence slots. Send the files as multipart file parts to upload and attach in one call, or reference files already stored by `id`/`direct_upload_id`. Send every document the packet should carry — up to 10, 10MB each and 25MB in total; an empty list removes them all. Accepted content types: application/pdf, application/json, image/jpeg, image/png, image/webp — any other type is rejected.
+Replaces the full set of uploaded evidence documents on a dispute, beyond the four fixed evidence slots. Upload files through `POST /files` and reference them by `id`, or send the files as multipart file parts to upload and attach in one call. Send every document the packet should carry — up to 10, 10MB each and 25MB in total; an empty list removes them all. Accepted content types: application/pdf, application/json, image/jpeg, image/png, image/webp — any other type is rejected.
 </dd>
 </dl>
 </dd>
@@ -16851,7 +17034,7 @@ client.exports.create(resource: "ad_campaigns")
 <dl>
 <dd>
 
-**filters:** `Internal::Types::Hash[String, Object]` — Resource-specific filters. For native REST resources (`payouts`, `transfers`, `memberships`) these are the resource's own list query params; for dashboard tables they mirror the dashboard table filters.
+**filters:** `Internal::Types::Hash[String, Object]` — Resource-specific filters. For native REST resources (`payouts`, `transfers`, `products`) these are the resource's own list query params; for dashboard tables they mirror the dashboard table filters.
     
 </dd>
 </dl>
@@ -17225,7 +17408,7 @@ client.fee_markups.delete(id: "id")
 </details>
 
 ## Files
-<details><summary><code>client.files.<a href="/lib/whop_sdk/files/client.rb">create</a>(request) -> Whop_sdk::Files::Types::CreateFilesResponse</code></summary>
+<details><summary><code>client.files.<a href="/lib/whop_sdk/files/client.rb">create</a>(request) -> Whop_sdk::Types::File</code></summary>
 <dl>
 <dd>
 
@@ -17237,7 +17420,7 @@ client.fee_markups.delete(id: "id")
 <dl>
 <dd>
 
-Create a new file record and receive a presigned URL for uploading content to S3.
+Creates a file and returns a presigned destination to upload its bytes to. PUT the bytes to `upload_url` (single-part), or to each of `multipart_upload_urls` and then call Complete File Multipart Upload. Once the bytes land the file becomes `ready`, and its ID can be attached wherever a file is accepted — account legal documents, dispute evidence documents.
 </dd>
 </dl>
 </dd>
@@ -17252,7 +17435,7 @@ Create a new file record and receive a presigned URL for uploading content to S3
 <dd>
 
 ```ruby
-client.files.create(filename: "filename")
+client.files.create(filename: "terms.pdf")
 ```
 </dd>
 </dl>
@@ -17267,7 +17450,7 @@ client.files.create(filename: "filename")
 <dl>
 <dd>
 
-**filename:** `String` — The name of the file including its extension (e.g., "photo.png" or "document.pdf").
+**byte_size:** `Integer` — The file's size in bytes. Required when `multipart` is `true`. Multipart uploads support at most 10,000 parts of 5MB each (about 50 GB).
     
 </dd>
 </dl>
@@ -17275,7 +17458,23 @@ client.files.create(filename: "filename")
 <dl>
 <dd>
 
-**visibility:** `Whop_sdk::Types::FileVisibility` — Controls whether the file is publicly accessible via CDN or requires authentication. Defaults to private.
+**filename:** `String` — The name of the file including its extension, e.g. `terms.pdf`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**multipart:** `Internal::Types::Boolean` — Upload the file in 5MB parts. Required for files larger than 5GB; useful above ~100MB. The file must be larger than 5MB.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**visibility:** `Whop_sdk::Files::Types::CreateFilesRequestVisibility` — `public` files are served via an unsigned CDN URL — use for assets anyone may see. `private` files are served via a signed, expiring URL — use for sensitive documents. Defaults to `private`.
     
 </dd>
 </dl>
@@ -17307,7 +17506,7 @@ client.files.create(filename: "filename")
 <dl>
 <dd>
 
-Retrieves the details of an existing file.
+Retrieves a file you uploaded — poll it after uploading the bytes to see `upload_status` become `ready`. Only the creator can retrieve a file this way; a file attached to another resource is read through that resource.
 </dd>
 </dl>
 </dd>
@@ -17322,7 +17521,7 @@ Retrieves the details of an existing file.
 <dd>
 
 ```ruby
-client.files.retrieve(id: "file_xxxxxxxxxxxxx")
+client.files.retrieve(id: "id")
 ```
 </dd>
 </dl>
@@ -17337,7 +17536,92 @@ client.files.retrieve(id: "file_xxxxxxxxxxxxx")
 <dl>
 <dd>
 
-**id:** `String` — The unique identifier of the file to retrieve.
+**id:** `String` — The unique identifier of the file, prefixed `file_`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Whop_sdk::Files::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.files.<a href="/lib/whop_sdk/files/client.rb">complete</a>(id:, request) -> Whop_sdk::Types::File</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Assembles the parts of a multipart upload after every part has been PUT to its presigned URL. Pass the `multipart_upload_id` from Create File and each part's `ETag` response header.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.files.complete(
+  id: "id",
+  multipart_parts: [{
+    etag: "etag-1",
+    part_number: 1
+  }],
+  multipart_upload_id: "upload-id"
+)
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — The unique identifier of the file, prefixed `file_`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**multipart_parts:** `Internal::Types::Array[Whop_sdk::Files::Types::CompleteFilesRequestMultipartPartsItem]` — Every uploaded part, in order.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**multipart_upload_id:** `String` — The ID of the multipart upload, returned by Create File.
     
 </dd>
 </dl>
@@ -19218,7 +19502,7 @@ client.invoices.update(id: "inv_xxxxxxxxxxxxxx")
 <dl>
 <dd>
 
-**line_items:** `Internal::Types::Array[Whop_sdk::Invoices::Types::UpdateInvoicesRequestLineItemsItem]` — Line items that break down the invoice total.
+**line_items:** `Internal::Types::Array[Whop_sdk::Invoices::Types::UpdateInvoicesRequestLineItemsItem]` — Line items that break down the invoice total. When provided, the sum of (quantity * unit_price) for all items must equal the plan price. Individual items may be negative to represent a credit, as long as the sum is not negative and clears the currency's minimum charge. Pass an empty list to remove the breakdown.
     
 </dd>
 </dl>
@@ -24966,7 +25250,7 @@ client.permissions.list(resource_id: "resource_id")
 <dl>
 <dd>
 
-Returns a paginated list of plans belonging to an account, with optional filtering by visibility, type, release method, and product.
+Returns a paginated list of plans. Omit `account_id` and pass `product_ids` to list a product's public buyable plans.
 </dd>
 </dl>
 </dd>
@@ -24982,7 +25266,6 @@ Returns a paginated list of plans belonging to an account, with optional filteri
 
 ```ruby
 client.plans.list(
-  account_id: "account_id",
   release_methods: ["buy_now"],
   visibilities: ["visible"],
   plan_types: ["renewal"],
@@ -25002,7 +25285,7 @@ client.plans.list(
 <dl>
 <dd>
 
-**account_id:** `String` — The unique identifier of the account to list plans for.
+**account_id:** `String` — The unique identifier of the account to list plans for. Required unless `product_ids` is provided for a public product-plan read.
     
 </dd>
 </dl>
@@ -25050,7 +25333,7 @@ client.plans.list(
 <dl>
 <dd>
 
-**product_ids:** `String` — Filter to only plans belonging to these product identifiers.
+**product_ids:** `String` — Filter to only plans belonging to these product identifiers. When `account_id` is omitted, this is required and the response is publicly readable: only visible, non-invoice plans are returned.
     
 </dd>
 </dl>
@@ -25871,7 +26154,7 @@ client.plans.calculate_tax(
 <dl>
 <dd>
 
-Returns a paginated list of products belonging to an account.
+Returns a paginated list of products. Omit `account_id` to search the public marketplace.
 </dd>
 </dl>
 </dd>
@@ -25887,7 +26170,6 @@ Returns a paginated list of products belonging to an account.
 
 ```ruby
 client.products.list(
-  account_id: "account_id",
   visibilities: ["visible"],
   access_pass_types: ["regular"]
 )
@@ -25905,7 +26187,7 @@ client.products.list(
 <dl>
 <dd>
 
-**account_id:** `String` — The unique identifier of the account to list products for.
+**account_id:** `String` — The unique identifier of the account to list products for. Omit to search the public marketplace.
     
 </dd>
 </dl>
@@ -25913,7 +26195,47 @@ client.products.list(
 <dl>
 <dd>
 
-**visibilities:** `String` — Filter to only products matching these visibility states.
+**query:** `String` — Ranked search against product title and headline. Omit to browse by recency.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**marketplace_category_route:** `String` — Only return marketplace products assigned to this category route, such as `trading`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**plan_types:** `Whop_sdk::Products::Types::ListProductsRequestPlanTypesItem` — Filter to products with a buyable plan of these billing models, such as `one_time` or `renewal`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**price_minimum:** `Integer` — Only return products whose advertised buyable plan has a displayed price of at least this amount. Recurring plans use renewal price.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**price_maximum:** `Integer` — Only return products whose advertised buyable plan has a displayed price of at most this amount. Recurring plans use renewal price.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**visibilities:** `String` — Filter to only products matching these visibility states. Ignored on the public marketplace list, which only returns visible products.
     
 </dd>
 </dl>
@@ -25945,7 +26267,7 @@ client.products.list(
 <dl>
 <dd>
 
-**order:** `String` — The field to sort results by. Defaults to created_at.
+**order:** `String` — The field to sort results by. Account lists default to `created_at`. Marketplace lists default to `discoverable_at` and accept `created_at` or `discoverable_at`. Cannot be combined with `query`.
     
 </dd>
 </dl>
@@ -25978,6 +26300,22 @@ client.products.list(
 <dd>
 
 **before:** `String` — A cursor; returns products before this position.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**created_after:** `String` — Only return products created after this ISO 8601 timestamp.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**created_before:** `String` — Only return products created before this ISO 8601 timestamp.
     
 </dd>
 </dl>
@@ -26215,7 +26553,7 @@ client.products.create(title: "Interior Deep Clean")
 <dl>
 <dd>
 
-Retrieves the details of an existing product. This endpoint is publicly accessible.
+Retrieves a product. Public — no credentials.
 </dd>
 </dl>
 </dd>

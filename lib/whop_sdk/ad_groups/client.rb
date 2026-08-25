@@ -186,6 +186,7 @@ module Whop_sdk
       # @option params [Whop_sdk::AdGroups::Types::SearchTargetingOptionsAdGroupsRequestLocationTypesItem, nil] :location_types
       # @option params [String, nil] :country
       # @option params [Integer, nil] :limit
+      # @option params [Whop_sdk::AdGroups::Types::SearchTargetingOptionsAdGroupsRequestSpecialAdCategoriesItem, nil] :special_ad_categories
       #
       # @example
       #   client.ad_groups.search_targeting_options(platform: "meta")
@@ -201,6 +202,7 @@ module Whop_sdk
         query_params["location_types"] = params[:location_types] if params.key?(:location_types)
         query_params["country"] = params[:country] if params.key?(:country)
         query_params["limit"] = params[:limit] if params.key?(:limit)
+        query_params["special_ad_categories"] = params[:special_ad_categories] if params.key?(:special_ad_categories)
 
         request = Whop_sdk::Internal::JSON::Request.new(
           base_url: request_options[:base_url],

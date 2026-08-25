@@ -6,6 +6,8 @@ module Whop_sdk
     class ForumListItemExperience < Internal::Types::Model
       field :id, -> { String }, optional: false, nullable: false
 
+      field :is_public, -> { Internal::Types::Boolean }, optional: false, nullable: false
+
       field :name, -> { String }, optional: false, nullable: false
     end
   end

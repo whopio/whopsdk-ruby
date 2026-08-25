@@ -10,8 +10,8 @@ module Whop_sdk
         @client = client
       end
 
-      # Returns a paginated list of plans belonging to an account, with optional filtering by visibility, type, release
-      # method, and product.
+      # Returns a paginated list of plans. Omit `account_id` and pass `product_ids` to list a product's public buyable
+      # plans.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -20,7 +20,7 @@ module Whop_sdk
       # @option request_options [Hash{String => Object}] :additional_query_parameters
       # @option request_options [Hash{String => Object}] :additional_body_parameters
       # @option request_options [Integer] :timeout_in_seconds
-      # @option params [String] :account_id
+      # @option params [String, nil] :account_id
       # @option params [Whop_sdk::Plans::Types::ListPlansRequestDirection, nil] :direction
       # @option params [Whop_sdk::Plans::Types::ListPlansRequestOrder, nil] :order
       # @option params [String, nil] :release_methods
@@ -36,7 +36,6 @@ module Whop_sdk
       #
       # @example
       #   client.plans.list(
-      #     account_id: "account_id",
       #     release_methods: ["buy_now"],
       #     visibilities: ["visible"],
       #     plan_types: ["renewal"],

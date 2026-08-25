@@ -6,6 +6,8 @@ module Whop_sdk
     class LedgerActivitySource < Internal::Types::Model
       field :amount_float, -> { Integer }, optional: true, nullable: false
 
+      field :card_brand, -> { String }, optional: true, nullable: false
+
       field :chain, -> { String }, optional: true, nullable: false
 
       field :claim_url, -> { String }, optional: true, nullable: false
@@ -23,6 +25,12 @@ module Whop_sdk
       field :object, -> { String }, optional: false, nullable: false
 
       field :payer_name, -> { String }, optional: true, nullable: false
+
+      field :payment_amount, -> { Whop_sdk::Types::Money }, optional: true, nullable: false
+
+      field :payment_method_type, -> { String }, optional: true, nullable: false
+
+      field :payment_processor, -> { String }, optional: true, nullable: false
 
       field :payout_destination, -> { Whop_sdk::Types::LedgerActivitySourcePayoutDestination }, optional: true, nullable: false
 

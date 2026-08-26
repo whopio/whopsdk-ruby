@@ -41,6 +41,10 @@ module WhopSDK
       | :jcblankapay
       | :cmi
       | :aura
+      | :accel
+      | :nyce
+      | :pulse
+      | :star
       | :unknown
 
     module CardBrands
@@ -86,6 +90,10 @@ module WhopSDK
       JCBLANKAPAY: :jcblankapay
       CMI: :cmi
       AURA: :aura
+      ACCEL: :accel
+      NYCE: :nyce
+      PULSE: :pulse
+      STAR: :star
       UNKNOWN: :unknown
 
       def self?.values: -> ::Array[WhopSDK::Models::card_brands]

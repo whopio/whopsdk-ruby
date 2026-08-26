@@ -46,6 +46,10 @@ module WhopSDK
       JCBLANKAPAY = :jcblankapay
       CMI = :cmi
       AURA = :aura
+      ACCEL = :accel
+      NYCE = :nyce
+      PULSE = :pulse
+      STAR = :star
       UNKNOWN = :unknown
 
       # @!method self.values

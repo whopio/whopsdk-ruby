@@ -52,6 +52,10 @@ module WhopSDK
       JCBLANKAPAY = T.let(:jcblankapay, WhopSDK::CardBrands::TaggedSymbol)
       CMI = T.let(:cmi, WhopSDK::CardBrands::TaggedSymbol)
       AURA = T.let(:aura, WhopSDK::CardBrands::TaggedSymbol)
+      ACCEL = T.let(:accel, WhopSDK::CardBrands::TaggedSymbol)
+      NYCE = T.let(:nyce, WhopSDK::CardBrands::TaggedSymbol)
+      PULSE = T.let(:pulse, WhopSDK::CardBrands::TaggedSymbol)
+      STAR = T.let(:star, WhopSDK::CardBrands::TaggedSymbol)
       UNKNOWN = T.let(:unknown, WhopSDK::CardBrands::TaggedSymbol)
 
       sig { override.returns(T::Array[WhopSDK::CardBrands::TaggedSymbol]) }

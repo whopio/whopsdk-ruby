@@ -558,7 +558,7 @@ module WhopSDK
         sig { returns(T.nilable(String)) }
         attr_accessor :phone
 
-        # The granular calculated statuses reflecting payout account KYC and withdrawal
+        # The granular calculated statuses reflecting payout account KYC and payout
         # readiness.
         sig do
           returns(
@@ -605,7 +605,7 @@ module WhopSDK
           latest_verification:,
           # The business representative's phone
           phone:,
-          # The granular calculated statuses reflecting payout account KYC and withdrawal
+          # The granular calculated statuses reflecting payout account KYC and payout
           # readiness.
           status:
         )

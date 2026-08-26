@@ -4,6 +4,8 @@ module WhopSDK
   module Resources
     # Withdrawals
     class Withdrawals
+      # @deprecated
+      #
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::WithdrawalCreateParams} for more details.
       #
@@ -50,6 +52,8 @@ module WhopSDK
         )
       end
 
+      # @deprecated
+      #
       # Retrieves the details of an existing withdrawal.
       #
       # Required permissions:
@@ -75,6 +79,8 @@ module WhopSDK
         )
       end
 
+      # @deprecated
+      #
       # Returns a paginated list of withdrawals for a company, with optional sorting and
       # date filtering.
       #

@@ -51,7 +51,7 @@ module WhopSDK
       required :phone, String, nil?: true
 
       # @!attribute status
-      #   The granular calculated statuses reflecting payout account KYC and withdrawal
+      #   The granular calculated statuses reflecting payout account KYC and payout
       #   readiness.
       #
       #   @return [Symbol, WhopSDK::Models::PayoutAccountCalculatedStatuses, nil]
@@ -77,7 +77,7 @@ module WhopSDK
       #
       #   @param phone [String, nil] The business representative's phone
       #
-      #   @param status [Symbol, WhopSDK::Models::PayoutAccountCalculatedStatuses, nil] The granular calculated statuses reflecting payout account KYC and withdrawal re
+      #   @param status [Symbol, WhopSDK::Models::PayoutAccountCalculatedStatuses, nil] The granular calculated statuses reflecting payout account KYC and payout readin
 
       # @see WhopSDK::Models::PayoutAccountRetrieveResponse#address
       class Address < WhopSDK::Internal::Type::BaseModel

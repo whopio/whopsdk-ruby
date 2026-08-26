@@ -2,7 +2,7 @@
 
 module WhopSDK
   module Models
-    # The granular calculated statuses reflecting payout account KYC and withdrawal
+    # The granular calculated statuses reflecting payout account KYC and payout
     # readiness.
     module PayoutAccountCalculatedStatuses
       extend WhopSDK::Internal::Type::Enum

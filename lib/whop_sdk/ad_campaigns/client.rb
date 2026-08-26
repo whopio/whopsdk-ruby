@@ -214,8 +214,8 @@ module Whop_sdk
       end
 
       # Updates an ad campaign's editable fields (title, budget, schedule, bid strategy, special ad categories, and,
-      # before launch, budget optimization), and launches a draft campaign by setting status to active. Objective,
-      # budget type and desired cost per result are fixed at creation and cannot be changed.
+      # before launch, budget type and budget optimization), and launches a draft campaign by setting status to active.
+      # Objective and desired cost per result are fixed at creation and cannot be changed.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::AdCampaigns::Types::UpdateAdCampaignsRequest]

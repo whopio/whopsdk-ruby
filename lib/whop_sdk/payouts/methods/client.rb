@@ -11,7 +11,7 @@ module Whop_sdk
           @client = client
         end
 
-        # Lists the bank accounts, wallets, and crypto addresses an account or user can withdraw to, newest first.
+        # Lists the bank accounts, wallets, and crypto addresses an account or user can pay out to, newest first.
         #
         # @param request_options [Hash]
         # @param params [Hash]
@@ -78,8 +78,8 @@ module Whop_sdk
           end
         end
 
-        # Saves a new place an account or user can withdraw to. Sensitive details are vaulted in transit and never
-        # stored raw.
+        # Saves a new place an account or user can pay out to. Sensitive details are vaulted in transit and never stored
+        # raw.
         #
         # @param request_options [Hash]
         # @param params [Whop_sdk::Payouts::Methods::Types::CreateMethodsRequest]

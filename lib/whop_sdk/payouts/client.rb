@@ -165,6 +165,54 @@ module Whop_sdk
         end
       end
 
+      # Cancels a payout that is still in review and returns the funds, fees included, to the balance. A payout can be
+      # canceled while its status is `in_review`. A `requested` payout is still being prepared (its funds may be
+      # converting) and answers 409 until it reaches review; from `processing` on, the money is on its way and the
+      # answer is 409 with error type `not_cancelable`. Canceling a payout that is already canceled succeeds and returns
+      # it unchanged.
+      #
+      # @param request_options [Hash]
+      # @param params [Hash]
+      # @option request_options [String] :base_url
+      # @option request_options [Hash{String => Object}] :additional_headers
+      # @option request_options [Hash{String => Object}] :additional_query_parameters
+      # @option request_options [Hash{String => Object}] :additional_body_parameters
+      # @option request_options [Integer] :timeout_in_seconds
+      # @option params [String] :id
+      # @option params [String, nil] :account_id
+      # @option params [String, nil] :user_id
+      #
+      # @example
+      #   client.payouts.cancel(id: "id")
+      #
+      # @return [Whop_sdk::Payouts::Types::CancelPayoutsResponse]
+      def cancel(request_options: {}, **params)
+        params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
+        query_params = {}
+        query_params["account_id"] = params[:account_id] if params.key?(:account_id)
+        query_params["user_id"] = params[:user_id] if params.key?(:user_id)
+
+        request = Whop_sdk::Internal::JSON::Request.new(
+          base_url: request_options[:base_url],
+          method: "POST",
+          path: "payouts/#{URI.encode_uri_component(params[:id].to_s)}/cancel",
+          query: query_params,
+          request_options: request_options
+        )
+        begin
+          response = @client.send(request)
+        rescue Net::HTTPRequestTimeout
+          raise Whop_sdk::Errors::TimeoutError
+        end
+        code = response.code.to_i
+        if code.between?(200, 299)
+          Whop_sdk::Payouts::Types::CancelPayoutsResponse.load(response.body)
+        else
+          error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
+          raise error_class.new(response.body, code: code)
+        end
+      end
+
       # @return [Whop_sdk::Methods::Client]
       def methods
         @methods ||= Whop_sdk::Payouts::Methods::Client.new(client: @client)

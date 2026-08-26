@@ -18,8 +18,6 @@ module Whop_sdk
       member -> { Whop_sdk::Types::PaymentMethodListItemIdealPaymentMethod }, key: "IDEAL_PAYMENT_METHOD"
 
       member -> { Whop_sdk::Types::PaymentMethodListItemSepaDebitPaymentMethod }, key: "SEPA_DEBIT_PAYMENT_METHOD"
-
-      member -> { Whop_sdk::Types::PaymentMethodListItemPlatformBalancePaymentMethod }, key: "PLATFORM_BALANCE_PAYMENT_METHOD"
     end
   end
 end

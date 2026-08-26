@@ -3,7 +3,7 @@
 module Whop_sdk
   module Payouts
     module Types
-      # Fee and delivery estimate for withdrawing the requested amount through this method. Null unless an amount was
+      # Fee and delivery estimate for paying out the requested amount through this method. Null unless an amount was
       # provided, or when the estimate is unavailable.
       class PostPayoutMethodCreatedPayloadDataQuote < Internal::Types::Model
         field :amount, -> { Integer }, optional: false, nullable: false

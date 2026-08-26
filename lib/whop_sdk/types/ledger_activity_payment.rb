@@ -18,6 +18,12 @@ module Whop_sdk
       field :payment_method_type, -> { String }, optional: false, nullable: true
 
       field :payment_processor, -> { String }, optional: false, nullable: true
+
+      field :plan, -> { Whop_sdk::Types::LedgerActivityPaymentPlan }, optional: false, nullable: true
+
+      field :product, -> { Whop_sdk::Types::LedgerActivityPaymentProduct }, optional: false, nullable: true
+
+      field :user, -> { Whop_sdk::Types::LedgerActivityPaymentUser }, optional: false, nullable: true
     end
   end
 end

@@ -14,6 +14,8 @@ module Whop_sdk
 
         field :descriptions, -> { Internal::Types::Array[String] }, optional: true, nullable: false
 
+        field :existing_post_id, -> { String }, optional: true, nullable: false
+
         field :headlines, -> { Internal::Types::Array[String] }, optional: true, nullable: false
 
         field :lead_form, -> { Whop_sdk::Ads::Types::CreateAdsRequestLeadForm }, optional: true, nullable: false
@@ -23,8 +25,6 @@ module Whop_sdk
         field :messaging_config, -> { Whop_sdk::Ads::Types::CreateAdsRequestMessagingConfig }, optional: true, nullable: false
 
         field :multi_advertiser_ads, -> { Internal::Types::Boolean }, optional: true, nullable: false
-
-        field :post_id, -> { String }, optional: true, nullable: false
 
         field :post_source, -> { Whop_sdk::Ads::Types::CreateAdsRequestPostSource }, optional: true, nullable: false
 

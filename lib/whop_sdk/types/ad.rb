@@ -63,6 +63,8 @@ module Whop_sdk
 
       field :descriptions, -> { Internal::Types::Array[String] }, optional: false, nullable: false
 
+      field :existing_post_id, -> { String }, optional: false, nullable: true
+
       field :frequency, -> { Integer }, optional: false, nullable: true
 
       field :headlines, -> { Internal::Types::Array[String] }, optional: false, nullable: false

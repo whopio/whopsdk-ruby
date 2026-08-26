@@ -38,6 +38,8 @@ module Whop_sdk
 
       field :reason, -> { String }, optional: true, nullable: false
 
+      field :risk_review_hold, -> { Internal::Types::Boolean }, optional: true, nullable: false
+
       field :sender_address, -> { String }, optional: true, nullable: false
 
       field :status, -> { String }, optional: true, nullable: false

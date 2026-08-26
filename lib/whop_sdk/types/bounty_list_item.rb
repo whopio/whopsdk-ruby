@@ -41,6 +41,8 @@ module Whop_sdk
 
       field :gross_reward_amount, -> { Integer }, optional: false, nullable: false
 
+      field :hosting_account, -> { Whop_sdk::Types::StorefrontAccount }, optional: false, nullable: true
+
       field :id, -> { String }, optional: false, nullable: false
 
       field :net_reward_amount, -> { Integer }, optional: false, nullable: false

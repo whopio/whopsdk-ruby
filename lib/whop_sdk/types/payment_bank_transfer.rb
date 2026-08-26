@@ -11,6 +11,8 @@ module Whop_sdk
 
       field :bank_account_type, -> { String }, optional: true, nullable: false
 
+      field :bank_address, -> { String }, optional: true, nullable: false
+
       field :bank_branch, -> { String }, optional: true, nullable: false
 
       field :bank_code, -> { String }, optional: true, nullable: false
@@ -30,6 +32,8 @@ module Whop_sdk
       field :instructions, -> { String }, optional: true, nullable: false
 
       field :reference, -> { String }, optional: true, nullable: false
+
+      field :routing_number, -> { String }, optional: true, nullable: false
 
       field :secondary_account_number, -> { String }, optional: true, nullable: false
 

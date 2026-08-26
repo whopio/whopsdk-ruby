@@ -2,7 +2,7 @@
 
 module Whop_sdk
   module Types
-    # Payout destination display info (withdrawal sources only).
+    # Payout destination display info (payout sources only).
     class LedgerActivitySourcePayoutDestination < Internal::Types::Model
       field :icon_url, -> { String }, optional: true, nullable: false
 

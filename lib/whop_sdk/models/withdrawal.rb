@@ -178,6 +178,7 @@ module WhopSDK
         TECHNICAL_PROBLEM = :technical_problem
         PROVIDER_TEMPORARILY_UNAVAILABLE = :provider_temporarily_unavailable
         PROVIDER_VALIDATION_FAILED = :provider_validation_failed
+        QUOTE_BELOW_CONFIRMED_AMOUNT = :quote_below_confirmed_amount
         IDENTIFICATION_NUMBER_INVALID = :identification_number_invalid
         INVALID_ACCOUNT_NUMBER = :invalid_account_number
         INVALID_BANK_CODE = :invalid_bank_code

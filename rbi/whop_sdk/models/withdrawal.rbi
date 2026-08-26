@@ -293,6 +293,11 @@ module WhopSDK
             :provider_validation_failed,
             WhopSDK::Withdrawal::ErrorCode::TaggedSymbol
           )
+        QUOTE_BELOW_CONFIRMED_AMOUNT =
+          T.let(
+            :quote_below_confirmed_amount,
+            WhopSDK::Withdrawal::ErrorCode::TaggedSymbol
+          )
         IDENTIFICATION_NUMBER_INVALID =
           T.let(
             :identification_number_invalid,

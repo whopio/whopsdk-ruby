@@ -53,6 +53,7 @@ module WhopSDK
       CMI = T.let(:cmi, WhopSDK::CardBrands::TaggedSymbol)
       AURA = T.let(:aura, WhopSDK::CardBrands::TaggedSymbol)
       ACCEL = T.let(:accel, WhopSDK::CardBrands::TaggedSymbol)
+      CULIANCE = T.let(:culiance, WhopSDK::CardBrands::TaggedSymbol)
       NYCE = T.let(:nyce, WhopSDK::CardBrands::TaggedSymbol)
       PULSE = T.let(:pulse, WhopSDK::CardBrands::TaggedSymbol)
       STAR = T.let(:star, WhopSDK::CardBrands::TaggedSymbol)

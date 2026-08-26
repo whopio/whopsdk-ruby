@@ -47,6 +47,7 @@ module WhopSDK
       CMI = :cmi
       AURA = :aura
       ACCEL = :accel
+      CULIANCE = :culiance
       NYCE = :nyce
       PULSE = :pulse
       STAR = :star

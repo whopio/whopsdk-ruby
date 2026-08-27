@@ -24,6 +24,7 @@ module Whop_sdk
       # @option params [Boolean, nil] :include_owned_accounts
       # @option params [Boolean, nil] :include_resource
       # @option params [Whop_sdk::FinancialActivity::Types::ListFinancialActivityRequestLineTypesItem, nil] :line_types
+      # @option params [Whop_sdk::FinancialActivity::Types::ListFinancialActivityRequestDirection, nil] :direction
       # @option params [String, nil] :currency
       # @option params [String, nil] :posted_after
       # @option params [String, nil] :posted_before
@@ -44,6 +45,7 @@ module Whop_sdk
         query_params["include_owned_accounts"] = params[:include_owned_accounts] if params.key?(:include_owned_accounts)
         query_params["include_resource"] = params[:include_resource] if params.key?(:include_resource)
         query_params["line_types"] = params[:line_types] if params.key?(:line_types)
+        query_params["direction"] = params[:direction] if params.key?(:direction)
         query_params["currency"] = params[:currency] if params.key?(:currency)
         query_params["posted_after"] = params[:posted_after] if params.key?(:posted_after)
         query_params["posted_before"] = params[:posted_before] if params.key?(:posted_before)

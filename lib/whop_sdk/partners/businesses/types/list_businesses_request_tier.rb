@@ -9,6 +9,7 @@ module Whop_sdk
 
           FIRST = "first"
           SECOND = "second"
+          BLUEPRINT = "blueprint"
         end
       end
     end

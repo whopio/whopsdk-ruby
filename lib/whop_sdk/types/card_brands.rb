@@ -45,6 +45,11 @@ module Whop_sdk
       JCBLANKAPAY = "jcblankapay"
       CMI = "cmi"
       AURA = "aura"
+      ACCEL = "accel"
+      CULIANCE = "culiance"
+      NYCE = "nyce"
+      PULSE = "pulse"
+      STAR = "star"
       UNKNOWN = "unknown"
     end
   end

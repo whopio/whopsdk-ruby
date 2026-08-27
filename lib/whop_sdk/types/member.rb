@@ -15,6 +15,8 @@ module Whop_sdk
 
       field :last_accessed_at, -> { String }, optional: false, nullable: true
 
+      field :phone_number, -> { String }, optional: false, nullable: true
+
       field :status, -> { Whop_sdk::Types::MemberStatus }, optional: false, nullable: false
 
       field :user, -> { Whop_sdk::Types::UserSummary }, optional: false, nullable: true

@@ -29,7 +29,7 @@ module Whop_sdk
 
       field :contacts, -> { Integer }, optional: false, nullable: false
 
-      field :conversion_event, -> { Whop_sdk::Types::ConversionEvent }, optional: true, nullable: false
+      field :conversion_event, -> { Whop_sdk::Types::ConversionEvent }, optional: false, nullable: true
 
       field :conversion_location, -> { Whop_sdk::Types::AdGroupConversionLocation }, optional: true, nullable: false
 
@@ -94,6 +94,8 @@ module Whop_sdk
       field :lead_value, -> { Integer }, optional: false, nullable: false
 
       field :leads, -> { Integer }, optional: false, nullable: false
+
+      field :link_clicks, -> { Integer }, optional: false, nullable: false
 
       field :message_apps, -> { Internal::Types::Array[Whop_sdk::Types::AdGroupMessageAppsItem] }, optional: true, nullable: false
 

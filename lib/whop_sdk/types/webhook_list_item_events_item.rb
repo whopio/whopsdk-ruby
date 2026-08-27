@@ -56,6 +56,8 @@ module Whop_sdk
       IDENTITY_PROFILE_NEEDS_ACTION = "identity_profile.needs_action"
       IDENTITY_PROFILE_UPDATED = "identity_profile.updated"
       PAYOUT_ACCOUNT_STATUS_UPDATED = "payout_account.status_updated"
+      PAYMENT_AUTHORIZED = "payment.authorized"
+      PAYMENT_CANCELED = "payment.canceled"
       RESOLUTION_CENTER_CASE_CREATED = "resolution_center_case.created"
       RESOLUTION_CENTER_CASE_UPDATED = "resolution_center_case.updated"
       RESOLUTION_CENTER_CASE_DECIDED = "resolution_center_case.decided"

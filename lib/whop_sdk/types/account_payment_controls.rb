@@ -22,6 +22,10 @@ module Whop_sdk
       field :resolution_center_auto_refund, -> { Whop_sdk::Types::AccountResolutionCenterAutoRefundControl }, optional: false, nullable: false
 
       field :restricted_payment_methods, -> { Internal::Types::Array[Whop_sdk::Types::AccountPaymentControlsRestrictedPaymentMethodsItem] }, optional: false, nullable: false
+
+      field :undated_pending_reason, -> { Whop_sdk::Types::AccountPaymentControlsUndatedPendingReason }, optional: false, nullable: true
+
+      field :withdrawal_schedule, -> { Whop_sdk::Types::AccountWithdrawalScheduleControl }, optional: false, nullable: false
     end
   end
 end

@@ -12,6 +12,7 @@ module Whop_sdk
         IMPRESSIONS = "impressions"
         REACH = "reach"
         CLICKS = "clicks"
+        LINK_CLICKS = "link_clicks"
         UNIQUE_CLICKS = "unique_clicks"
         FREQUENCY = "frequency"
         CLICK_THROUGH_RATE = "click_through_rate"

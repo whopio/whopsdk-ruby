@@ -14,6 +14,8 @@ module Whop_sdk
 
         field :line_types, -> { Whop_sdk::FinancialActivity::Types::ListFinancialActivityRequestLineTypesItem }, optional: true, nullable: false
 
+        field :direction, -> { Whop_sdk::FinancialActivity::Types::ListFinancialActivityRequestDirection }, optional: true, nullable: false
+
         field :currency, -> { String }, optional: true, nullable: false
 
         field :posted_after, -> { String }, optional: true, nullable: false

@@ -19,6 +19,8 @@ module Whop_sdk
 
       field :metadata, -> { Internal::Types::Hash[String, Object] }, optional: false, nullable: false
 
+      field :phone_number, -> { String }, optional: false, nullable: true
+
       field :plan_id, -> { String }, optional: false, nullable: false
 
       field :product_id, -> { String }, optional: false, nullable: false

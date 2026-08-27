@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 module Whop_sdk
-  module Ledgers
+  module FinancialReports
     module Types
-      module GetFinancialReportResponseRowsItemLineCategory
+      module RetrieveFinancialReportsResponseRowsItemLineCategory
         extend Whop_sdk::Internal::Types::Enum
 
         ACCELERATED_SETTLEMENT_FEE = "accelerated_settlement_fee"
@@ -173,6 +173,7 @@ module Whop_sdk
         PLATFORM_EARNING_UNRECONCILED_CLEARING = "platform_earning_unreconciled_clearing"
         PROMO_REVERSAL = "promo_reversal"
         PSP_ACCELERATED_SETTLEMENT_FEE = "psp_accelerated_settlement_fee"
+        PSP_ACCOUNT_DEBIT = "psp_account_debit"
         PSP_ACCOUNT_UPDATER_FEE = "psp_account_updater_fee"
         PSP_ADJUSTED_PROCESSING_FEE = "psp_adjusted_processing_fee"
         PSP_AUTHENTICATION_FEE = "psp_authentication_fee"

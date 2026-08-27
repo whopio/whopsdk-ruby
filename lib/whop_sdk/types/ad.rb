@@ -83,6 +83,8 @@ module Whop_sdk
 
       field :leads, -> { Integer }, optional: false, nullable: false
 
+      field :link_clicks, -> { Integer }, optional: false, nullable: false
+
       field :messaging_config, -> { Whop_sdk::Types::AdMessagingConfig }, optional: true, nullable: false
 
       field :multi_advertiser_ads, -> { Internal::Types::Boolean }, optional: true, nullable: false

@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 module Whop_sdk
-  module Ledgers
+  module FinancialReports
     module Types
-      module GetFinancialReportResponseReportType
+      module RetrieveFinancialReportsRequestReportType
         extend Whop_sdk::Internal::Types::Enum
 
         BALANCE_SUMMARY = "balance_summary"

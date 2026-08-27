@@ -8,6 +8,7 @@ module WhopSDK
 
       DRAFT = :draft
       OPEN = :open
+      AUTHORIZED = :authorized
       PAID = :paid
       PENDING = :pending
       UNCOLLECTIBLE = :uncollectible

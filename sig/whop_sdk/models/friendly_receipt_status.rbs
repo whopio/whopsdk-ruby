@@ -2,6 +2,7 @@ module WhopSDK
   module Models
     type friendly_receipt_status =
       :succeeded
+      | :requires_capture
       | :pending
       | :failed
       | :past_due
@@ -34,6 +35,7 @@ module WhopSDK
       extend WhopSDK::Internal::Type::Enum
 
       SUCCEEDED: :succeeded
+      REQUIRES_CAPTURE: :requires_capture
       PENDING: :pending
       FAILED: :failed
       PAST_DUE: :past_due

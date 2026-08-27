@@ -130,6 +130,10 @@ module WhopSDK
           :"payout_account.status_updated",
           WhopSDK::WebhookEvent::TaggedSymbol
         )
+      PAYMENT_AUTHORIZED =
+        T.let(:"payment.authorized", WhopSDK::WebhookEvent::TaggedSymbol)
+      PAYMENT_CANCELED =
+        T.let(:"payment.canceled", WhopSDK::WebhookEvent::TaggedSymbol)
       RESOLUTION_CENTER_CASE_CREATED =
         T.let(
           :"resolution_center_case.created",

@@ -1,13 +1,21 @@
 module WhopSDK
   module Models
     type receipt_status =
-      :draft | :open | :paid | :pending | :uncollectible | :unresolved | :void
+      :draft
+      | :open
+      | :authorized
+      | :paid
+      | :pending
+      | :uncollectible
+      | :unresolved
+      | :void
 
     module ReceiptStatus
       extend WhopSDK::Internal::Type::Enum
 
       DRAFT: :draft
       OPEN: :open
+      AUTHORIZED: :authorized
       PAID: :paid
       PENDING: :pending
       UNCOLLECTIBLE: :uncollectible

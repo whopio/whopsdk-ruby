@@ -34,6 +34,8 @@ module WhopSDK
             WhopSDK::VerificationSucceededWebhookEvent,
             WhopSDK::IdentityProfileUpdatedWebhookEvent,
             WhopSDK::PayoutAccountStatusUpdatedWebhookEvent,
+            WhopSDK::PaymentAuthorizedWebhookEvent,
+            WhopSDK::PaymentCanceledWebhookEvent,
             WhopSDK::ResolutionCenterCaseCreatedWebhookEvent,
             WhopSDK::ResolutionCenterCaseUpdatedWebhookEvent,
             WhopSDK::ResolutionCenterCaseDecidedWebhookEvent,

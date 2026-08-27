@@ -9,6 +9,7 @@ module WhopSDK
       extend WhopSDK::Internal::Type::Enum
 
       SUCCEEDED = :succeeded
+      REQUIRES_CAPTURE = :requires_capture
       PENDING = :pending
       FAILED = :failed
       PAST_DUE = :past_due

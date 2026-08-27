@@ -11,6 +11,7 @@ module WhopSDK
 
       DRAFT = T.let(:draft, WhopSDK::ReceiptStatus::TaggedSymbol)
       OPEN = T.let(:open, WhopSDK::ReceiptStatus::TaggedSymbol)
+      AUTHORIZED = T.let(:authorized, WhopSDK::ReceiptStatus::TaggedSymbol)
       PAID = T.let(:paid, WhopSDK::ReceiptStatus::TaggedSymbol)
       PENDING = T.let(:pending, WhopSDK::ReceiptStatus::TaggedSymbol)
       UNCOLLECTIBLE =

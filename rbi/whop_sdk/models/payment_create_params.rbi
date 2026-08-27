@@ -112,6 +112,11 @@ module WhopSDK
           end
           attr_writer :plan
 
+          # Whether to capture the card payment immediately. Pass false to place an
+          # authorization hold that must be captured in full within five days.
+          sig { returns(T.nilable(T::Boolean)) }
+          attr_accessor :capture
+
           # Overrides the buyer email carried on the confirmation token, resolving or
           # creating the Whop user the payment belongs to. Ignored when the confirmation
           # token was created by a signed-in buyer, and unless confirmation_token is
@@ -148,6 +153,7 @@ module WhopSDK
               confirmation_token: String,
               plan:
                 WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanAndConfirmationToken::Plan::OrHash,
+              capture: T.nilable(T::Boolean),
               email: T.nilable(String),
               metadata: T.nilable(T::Hash[Symbol, T.anything]),
               payment_method_id: T.nilable(String),
@@ -167,6 +173,9 @@ module WhopSDK
             confirmation_token:,
             # Pass this object to create a new plan for this payment
             plan:,
+            # Whether to capture the card payment immediately. Pass false to place an
+            # authorization hold that must be captured in full within five days.
+            capture: nil,
             # Overrides the buyer email carried on the confirmation token, resolving or
             # creating the Whop user the payment belongs to. Ignored when the confirmation
             # token was created by a signed-in buyer, and unless confirmation_token is
@@ -196,6 +205,7 @@ module WhopSDK
                 confirmation_token: String,
                 plan:
                   WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanAndConfirmationToken::Plan,
+                capture: T.nilable(T::Boolean),
                 email: T.nilable(String),
                 metadata: T.nilable(T::Hash[Symbol, T.anything]),
                 payment_method_id: T.nilable(String),
@@ -567,6 +577,11 @@ module WhopSDK
           end
           attr_writer :plan
 
+          # Whether to capture the card payment immediately. Pass false to place an
+          # authorization hold that must be captured in full within five days.
+          sig { returns(T.nilable(T::Boolean)) }
+          attr_accessor :capture
+
           # Overrides the buyer email carried on the confirmation token, resolving or
           # creating the Whop user the payment belongs to. Ignored when the confirmation
           # token was created by a signed-in buyer, and unless confirmation_token is
@@ -603,6 +618,7 @@ module WhopSDK
               member_id: String,
               plan:
                 WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanAndMemberID::Plan::OrHash,
+              capture: T.nilable(T::Boolean),
               email: T.nilable(String),
               metadata: T.nilable(T::Hash[Symbol, T.anything]),
               payment_method_id: T.nilable(String),
@@ -618,6 +634,9 @@ module WhopSDK
             member_id:,
             # Pass this object to create a new plan for this payment
             plan:,
+            # Whether to capture the card payment immediately. Pass false to place an
+            # authorization hold that must be captured in full within five days.
+            capture: nil,
             # Overrides the buyer email carried on the confirmation token, resolving or
             # creating the Whop user the payment belongs to. Ignored when the confirmation
             # token was created by a signed-in buyer, and unless confirmation_token is
@@ -647,6 +666,7 @@ module WhopSDK
                 member_id: String,
                 plan:
                   WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanAndMemberID::Plan,
+                capture: T.nilable(T::Boolean),
                 email: T.nilable(String),
                 metadata: T.nilable(T::Hash[Symbol, T.anything]),
                 payment_method_id: T.nilable(String),
@@ -1010,6 +1030,11 @@ module WhopSDK
           sig { returns(String) }
           attr_accessor :plan_id
 
+          # Whether to capture the card payment immediately. Pass false to place an
+          # authorization hold that must be captured in full within five days.
+          sig { returns(T.nilable(T::Boolean)) }
+          attr_accessor :capture
+
           # Overrides the buyer email carried on the confirmation token, resolving or
           # creating the Whop user the payment belongs to. Ignored when the confirmation
           # token was created by a signed-in buyer, and unless confirmation_token is
@@ -1045,6 +1070,7 @@ module WhopSDK
               company_id: String,
               confirmation_token: String,
               plan_id: String,
+              capture: T.nilable(T::Boolean),
               email: T.nilable(String),
               metadata: T.nilable(T::Hash[Symbol, T.anything]),
               payment_method_id: T.nilable(String),
@@ -1064,6 +1090,9 @@ module WhopSDK
             confirmation_token:,
             # An ID of an existing plan to use for the payment.
             plan_id:,
+            # Whether to capture the card payment immediately. Pass false to place an
+            # authorization hold that must be captured in full within five days.
+            capture: nil,
             # Overrides the buyer email carried on the confirmation token, resolving or
             # creating the Whop user the payment belongs to. Ignored when the confirmation
             # token was created by a signed-in buyer, and unless confirmation_token is
@@ -1092,6 +1121,7 @@ module WhopSDK
                 company_id: String,
                 confirmation_token: String,
                 plan_id: String,
+                capture: T.nilable(T::Boolean),
                 email: T.nilable(String),
                 metadata: T.nilable(T::Hash[Symbol, T.anything]),
                 payment_method_id: T.nilable(String),
@@ -1125,6 +1155,11 @@ module WhopSDK
           # An ID of an existing plan to use for the payment.
           sig { returns(String) }
           attr_accessor :plan_id
+
+          # Whether to capture the card payment immediately. Pass false to place an
+          # authorization hold that must be captured in full within five days.
+          sig { returns(T.nilable(T::Boolean)) }
+          attr_accessor :capture
 
           # Overrides the buyer email carried on the confirmation token, resolving or
           # creating the Whop user the payment belongs to. Ignored when the confirmation
@@ -1161,6 +1196,7 @@ module WhopSDK
               company_id: String,
               member_id: String,
               plan_id: String,
+              capture: T.nilable(T::Boolean),
               email: T.nilable(String),
               metadata: T.nilable(T::Hash[Symbol, T.anything]),
               payment_method_id: T.nilable(String),
@@ -1176,6 +1212,9 @@ module WhopSDK
             member_id:,
             # An ID of an existing plan to use for the payment.
             plan_id:,
+            # Whether to capture the card payment immediately. Pass false to place an
+            # authorization hold that must be captured in full within five days.
+            capture: nil,
             # Overrides the buyer email carried on the confirmation token, resolving or
             # creating the Whop user the payment belongs to. Ignored when the confirmation
             # token was created by a signed-in buyer, and unless confirmation_token is
@@ -1204,6 +1243,7 @@ module WhopSDK
                 company_id: String,
                 member_id: String,
                 plan_id: String,
+                capture: T.nilable(T::Boolean),
                 email: T.nilable(String),
                 metadata: T.nilable(T::Hash[Symbol, T.anything]),
                 payment_method_id: T.nilable(String),

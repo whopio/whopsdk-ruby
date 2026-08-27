@@ -1,0 +1,57 @@
+module WhopSDK
+  module Models
+    type payment_canceled_webhook_event =
+      {
+        id: String,
+        api_version: :v1,
+        api_version_date: String?,
+        data: WhopSDK::Payment,
+        timestamp: Time,
+        type: :"payment.canceled",
+        account_id: String?,
+        previous_attributes: top
+      }
+
+    class PaymentCanceledWebhookEvent < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor api_version: :v1
+
+      attr_accessor api_version_date: String?
+
+      attr_accessor data: WhopSDK::Payment
+
+      attr_accessor timestamp: Time
+
+      attr_accessor type: :"payment.canceled"
+
+      attr_accessor account_id: String?
+
+      attr_reader previous_attributes: top?
+
+      def previous_attributes=: (top) -> top
+
+      def initialize: (
+        id: String,
+        api_version_date: String?,
+        data: WhopSDK::Payment,
+        timestamp: Time,
+        ?account_id: String?,
+        ?previous_attributes: top,
+        ?api_version: :v1,
+        ?type: :"payment.canceled"
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        api_version: :v1,
+        api_version_date: String?,
+        data: WhopSDK::Payment,
+        timestamp: Time,
+        type: :"payment.canceled",
+        account_id: String?,
+        previous_attributes: top
+      }
+    end
+  end
+end

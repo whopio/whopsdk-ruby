@@ -59,6 +59,13 @@ module WhopSDK
           required :plan,
                    -> { WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanAndConfirmationToken::Plan }
 
+          # @!attribute capture
+          #   Whether to capture the card payment immediately. Pass false to place an
+          #   authorization hold that must be captured in full within five days.
+          #
+          #   @return [Boolean, nil]
+          optional :capture, WhopSDK::Internal::Type::Boolean, nil?: true
+
           # @!attribute email
           #   Overrides the buyer email carried on the confirmation token, resolving or
           #   creating the Whop user the payment belongs to. Ignored when the confirmation
@@ -98,7 +105,7 @@ module WhopSDK
           #   @return [String, nil]
           optional :return_url, String, nil?: true
 
-          # @!method initialize(company_id:, confirmation_token:, plan:, email: nil, metadata: nil, payment_method_id: nil, promo_code_id: nil, return_url: nil)
+          # @!method initialize(company_id:, confirmation_token:, plan:, capture: nil, email: nil, metadata: nil, payment_method_id: nil, promo_code_id: nil, return_url: nil)
           #   Some parameter documentations has been truncated, see
           #   {WhopSDK::Models::PaymentCreateParams::Body::CreatePaymentInputWithPlanAndConfirmationToken}
           #   for more details.
@@ -111,6 +118,8 @@ module WhopSDK
           #   suppl
           #
           #   @param plan [WhopSDK::Models::PaymentCreateParams::Body::CreatePaymentInputWithPlanAndConfirmationToken::Plan] Pass this object to create a new plan for this payment
+          #
+          #   @param capture [Boolean, nil] Whether to capture the card payment immediately. Pass false to place an authoriz
           #
           #   @param email [String, nil] Overrides the buyer email carried on the confirmation token, resolving or creati
           #
@@ -398,6 +407,13 @@ module WhopSDK
           #   @return [WhopSDK::Models::PaymentCreateParams::Body::CreatePaymentInputWithPlanAndMemberID::Plan]
           required :plan, -> { WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanAndMemberID::Plan }
 
+          # @!attribute capture
+          #   Whether to capture the card payment immediately. Pass false to place an
+          #   authorization hold that must be captured in full within five days.
+          #
+          #   @return [Boolean, nil]
+          optional :capture, WhopSDK::Internal::Type::Boolean, nil?: true
+
           # @!attribute email
           #   Overrides the buyer email carried on the confirmation token, resolving or
           #   creating the Whop user the payment belongs to. Ignored when the confirmation
@@ -437,7 +453,7 @@ module WhopSDK
           #   @return [String, nil]
           optional :return_url, String, nil?: true
 
-          # @!method initialize(company_id:, member_id:, plan:, email: nil, metadata: nil, payment_method_id: nil, promo_code_id: nil, return_url: nil)
+          # @!method initialize(company_id:, member_id:, plan:, capture: nil, email: nil, metadata: nil, payment_method_id: nil, promo_code_id: nil, return_url: nil)
           #   Some parameter documentations has been truncated, see
           #   {WhopSDK::Models::PaymentCreateParams::Body::CreatePaymentInputWithPlanAndMemberID}
           #   for more details.
@@ -449,6 +465,8 @@ module WhopSDK
           #   @param member_id [String] The ID of the member to create the payment for. Required unless confirmation_tok
           #
           #   @param plan [WhopSDK::Models::PaymentCreateParams::Body::CreatePaymentInputWithPlanAndMemberID::Plan] Pass this object to create a new plan for this payment
+          #
+          #   @param capture [Boolean, nil] Whether to capture the card payment immediately. Pass false to place an authoriz
           #
           #   @param email [String, nil] Overrides the buyer email carried on the confirmation token, resolving or creati
           #
@@ -740,6 +758,13 @@ module WhopSDK
           #   @return [String]
           required :plan_id, String
 
+          # @!attribute capture
+          #   Whether to capture the card payment immediately. Pass false to place an
+          #   authorization hold that must be captured in full within five days.
+          #
+          #   @return [Boolean, nil]
+          optional :capture, WhopSDK::Internal::Type::Boolean, nil?: true
+
           # @!attribute email
           #   Overrides the buyer email carried on the confirmation token, resolving or
           #   creating the Whop user the payment belongs to. Ignored when the confirmation
@@ -779,7 +804,7 @@ module WhopSDK
           #   @return [String, nil]
           optional :return_url, String, nil?: true
 
-          # @!method initialize(company_id:, confirmation_token:, plan_id:, email: nil, metadata: nil, payment_method_id: nil, promo_code_id: nil, return_url: nil)
+          # @!method initialize(company_id:, confirmation_token:, plan_id:, capture: nil, email: nil, metadata: nil, payment_method_id: nil, promo_code_id: nil, return_url: nil)
           #   Some parameter documentations has been truncated, see
           #   {WhopSDK::Models::PaymentCreateParams::Body::CreatePaymentInputWithPlanIDAndConfirmationToken}
           #   for more details.
@@ -792,6 +817,8 @@ module WhopSDK
           #   suppl
           #
           #   @param plan_id [String] An ID of an existing plan to use for the payment.
+          #
+          #   @param capture [Boolean, nil] Whether to capture the card payment immediately. Pass false to place an authoriz
           #
           #   @param email [String, nil] Overrides the buyer email carried on the confirmation token, resolving or creati
           #
@@ -824,6 +851,13 @@ module WhopSDK
           #   @return [String]
           required :plan_id, String
 
+          # @!attribute capture
+          #   Whether to capture the card payment immediately. Pass false to place an
+          #   authorization hold that must be captured in full within five days.
+          #
+          #   @return [Boolean, nil]
+          optional :capture, WhopSDK::Internal::Type::Boolean, nil?: true
+
           # @!attribute email
           #   Overrides the buyer email carried on the confirmation token, resolving or
           #   creating the Whop user the payment belongs to. Ignored when the confirmation
@@ -863,7 +897,7 @@ module WhopSDK
           #   @return [String, nil]
           optional :return_url, String, nil?: true
 
-          # @!method initialize(company_id:, member_id:, plan_id:, email: nil, metadata: nil, payment_method_id: nil, promo_code_id: nil, return_url: nil)
+          # @!method initialize(company_id:, member_id:, plan_id:, capture: nil, email: nil, metadata: nil, payment_method_id: nil, promo_code_id: nil, return_url: nil)
           #   Some parameter documentations has been truncated, see
           #   {WhopSDK::Models::PaymentCreateParams::Body::CreatePaymentInputWithPlanIDAndMemberID}
           #   for more details.
@@ -875,6 +909,8 @@ module WhopSDK
           #   @param member_id [String] The ID of the member to create the payment for. Required unless confirmation_tok
           #
           #   @param plan_id [String] An ID of an existing plan to use for the payment.
+          #
+          #   @param capture [Boolean, nil] Whether to capture the card payment immediately. Pass false to place an authoriz
           #
           #   @param email [String, nil] Overrides the buyer email carried on the confirmation token, resolving or creati
           #

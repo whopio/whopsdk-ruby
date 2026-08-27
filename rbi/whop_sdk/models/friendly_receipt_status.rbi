@@ -14,6 +14,8 @@ module WhopSDK
 
       SUCCEEDED =
         T.let(:succeeded, WhopSDK::FriendlyReceiptStatus::TaggedSymbol)
+      REQUIRES_CAPTURE =
+        T.let(:requires_capture, WhopSDK::FriendlyReceiptStatus::TaggedSymbol)
       PENDING = T.let(:pending, WhopSDK::FriendlyReceiptStatus::TaggedSymbol)
       FAILED = T.let(:failed, WhopSDK::FriendlyReceiptStatus::TaggedSymbol)
       PAST_DUE = T.let(:past_due, WhopSDK::FriendlyReceiptStatus::TaggedSymbol)

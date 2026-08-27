@@ -496,6 +496,10 @@ module WhopSDK
 
   Payment = WhopSDK::Models::Payment
 
+  PaymentAuthorizedWebhookEvent = WhopSDK::Models::PaymentAuthorizedWebhookEvent
+
+  PaymentCanceledWebhookEvent = WhopSDK::Models::PaymentCanceledWebhookEvent
+
   PaymentCreatedWebhookEvent = WhopSDK::Models::PaymentCreatedWebhookEvent
 
   PaymentCreateParams = WhopSDK::Models::PaymentCreateParams

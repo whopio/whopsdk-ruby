@@ -39,7 +39,7 @@ module WhopSDK
         # authorizing the app.
         redirect_uris: nil,
         # The unique subdomain route where the app's hosted web builds are served, such as
-        # 'myapp' for myapp.whop.app.
+        # 'myapp' for myapp.whop.site.
         route: nil,
         request_options: {}
       )
@@ -134,7 +134,7 @@ module WhopSDK
         # The permission scopes the app will request from users when they install it.
         required_scopes: nil,
         # The unique subdomain route where the app's hosted web builds are served, such as
-        # 'myapp' for myapp.whop.app.
+        # 'myapp' for myapp.whop.site.
         route: nil,
         # Secrets to add or overwrite on the app, as an object of string values (e.g.
         # {"MAIL_API_KEY": "..."}). Keys not included are left untouched. Pass null or an

@@ -153,7 +153,7 @@ module WhopSDK
       attr_accessor :requested_permissions
 
       # The unique subdomain route where this app's hosted web builds are served, such
-      # as 'myapp' for myapp.whop.app. Null if the app has not claimed a route.
+      # as 'myapp' for myapp.whop.site. Null if the app has not claimed a route.
       sig { returns(T.nilable(String)) }
       attr_accessor :route
 
@@ -302,7 +302,7 @@ module WhopSDK
         # required and optional permissions with justifications.
         requested_permissions:,
         # The unique subdomain route where this app's hosted web builds are served, such
-        # as 'myapp' for myapp.whop.app. Null if the app has not claimed a route.
+        # as 'myapp' for myapp.whop.site. Null if the app has not claimed a route.
         route:,
         # The app's secrets as an object of string values. Encrypted at rest and injected
         # into the app's hosted server runtime as environment bindings. Requires the

@@ -40,7 +40,7 @@ module WhopSDK
       attr_accessor :redirect_uris
 
       # The unique subdomain route where the app's hosted web builds are served, such as
-      # 'myapp' for myapp.whop.app.
+      # 'myapp' for myapp.whop.site.
       sig { returns(T.nilable(String)) }
       attr_accessor :route
 
@@ -70,7 +70,7 @@ module WhopSDK
         # authorizing the app.
         redirect_uris: nil,
         # The unique subdomain route where the app's hosted web builds are served, such as
-        # 'myapp' for myapp.whop.app.
+        # 'myapp' for myapp.whop.site.
         route: nil,
         request_options: {}
       )

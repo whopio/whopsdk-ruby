@@ -42,7 +42,7 @@ module WhopSDK
 
       # @!attribute route
       #   The unique subdomain route where the app's hosted web builds are served, such as
-      #   'myapp' for myapp.whop.app.
+      #   'myapp' for myapp.whop.site.
       #
       #   @return [String, nil]
       optional :route, String, nil?: true

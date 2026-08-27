@@ -8,6 +8,10 @@ module Whop_sdk
 
         field :action_source, -> { Whop_sdk::Events::Types::CreateEventsRequestActionSource }, optional: true, nullable: false
 
+        field :app_build_id, -> { String }, optional: true, nullable: false
+
+        field :app_id, -> { String }, optional: true, nullable: false
+
         field :context, -> { Whop_sdk::Events::Types::CreateEventsRequestContext }, optional: true, nullable: false
 
         field :currency, -> { Whop_sdk::Events::Types::CreateEventsRequestCurrency }, optional: true, nullable: false

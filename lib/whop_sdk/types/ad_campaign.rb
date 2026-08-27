@@ -73,6 +73,8 @@ module Whop_sdk
 
       field :leads, -> { Integer }, optional: false, nullable: false
 
+      field :link_clicks, -> { Integer }, optional: false, nullable: false
+
       field :objective, -> { Whop_sdk::Types::AdCampaignObjective }, optional: false, nullable: true
 
       field :optimization_goal, -> { String }, optional: false, nullable: true

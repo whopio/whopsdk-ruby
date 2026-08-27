@@ -13,6 +13,8 @@ module Whop_sdk
 
       field :error, -> { String }, optional: false, nullable: true
 
+      field :execution_type, -> { Whop_sdk::Types::AccountRecommendedActionChainStepExecutionType }, optional: false, nullable: false
+
       field :input, -> { Internal::Types::Hash[String, Object] }, optional: false, nullable: true
 
       field :output, -> { Internal::Types::Hash[String, Object] }, optional: false, nullable: true

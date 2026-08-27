@@ -53,6 +53,8 @@ module Whop_sdk
 
       field :origin, -> { String }, optional: false, nullable: true
 
+      field :preview_token, -> { String }, optional: false, nullable: true
+
       field :product_id, -> { String }, optional: false, nullable: true
 
       field :production_android_build, -> { Whop_sdk::Types::AppProductionBuild }, optional: false, nullable: true

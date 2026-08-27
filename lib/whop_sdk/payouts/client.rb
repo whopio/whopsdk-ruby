@@ -120,6 +120,47 @@ module Whop_sdk
         end
       end
 
+      # Creates a short-lived, provider-backed quote for a payout. No funds move until the returned quote_token is
+      # submitted to POST /payouts. An Idempotency-Key header is required.
+      #
+      # @param request_options [Hash]
+      # @param params [Whop_sdk::Payouts::Types::CreateQuotePayoutsRequest]
+      # @option request_options [String] :base_url
+      # @option request_options [Hash{String => Object}] :additional_headers
+      # @option request_options [Hash{String => Object}] :additional_query_parameters
+      # @option request_options [Hash{String => Object}] :additional_body_parameters
+      # @option request_options [Integer] :timeout_in_seconds
+      #
+      # @example
+      #   client.payouts.create_quote(
+      #     amount: 6762.41,
+      #     payout_method_id: "potk_xxxxxxxxxxxxxx"
+      #   )
+      #
+      # @return [Whop_sdk::Payouts::Types::CreateQuotePayoutsResponse]
+      def create_quote(request_options: {}, **params)
+        params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
+        request = Whop_sdk::Internal::JSON::Request.new(
+          base_url: request_options[:base_url],
+          method: "POST",
+          path: "payouts/quotes",
+          body: Whop_sdk::Payouts::Types::CreateQuotePayoutsRequest.new(params).to_h,
+          request_options: request_options
+        )
+        begin
+          response = @client.send(request)
+        rescue Net::HTTPRequestTimeout
+          raise Whop_sdk::Errors::TimeoutError
+        end
+        code = response.code.to_i
+        if code.between?(200, 299)
+          Whop_sdk::Payouts::Types::CreateQuotePayoutsResponse.load(response.body)
+        else
+          error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
+          raise error_class.new(response.body, code: code)
+        end
+      end
+
       # Fetches one payout by its `wdrl_` ID, or by the `cofr_` conversion request ID a stablecoin payout carries as
       # `payout_request_id` — both ids answer with the same payout object.
       #

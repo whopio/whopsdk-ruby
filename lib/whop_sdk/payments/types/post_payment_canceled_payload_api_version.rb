@@ -1,14 +1,12 @@
 # frozen_string_literal: true
 
 module Whop_sdk
-  module Ledgers
+  module Payments
     module Types
-      module GetFinancialReportRequestGroupBy
+      module PostPaymentCanceledPayloadAPIVersion
         extend Whop_sdk::Internal::Types::Enum
 
-        DAY = "day"
-        WEEK = "week"
-        MONTH = "month"
+        V1 = "v1"
       end
     end
   end

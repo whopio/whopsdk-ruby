@@ -11,9 +11,9 @@ module Whop_sdk
       end
 
       # Lists apps on the Whop platform: the app store's live apps, or — with `account_id` and developer access to that
-      # account — every app the account owns. Requires authentication, except for the publicly readable lists:
-      # `verified_apps_only=true`, and `app_type=website` with no `account_id`, which returns every live deployed
-      # website that Whop has not verified — verified templates are the curated `verified_apps_only=true` list instead.
+      # account — every app the account owns. Requires authentication except for Whop's public app and website discovery
+      # lists. Public website discovery includes built official blueprints (verified apps with a product) and built,
+      # live community blueprints that Whop recommends.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -25,6 +25,7 @@ module Whop_sdk
       # @option params [String, nil] :account_id
       # @option params [Whop_sdk::Apps::Types::ListAppsRequestAppType, nil] :app_type
       # @option params [Whop_sdk::Apps::Types::ListAppsRequestViewType, nil] :view_type
+      # @option params [Boolean, nil] :verified
       # @option params [Boolean, nil] :verified_apps_only
       # @option params [Boolean, nil] :recommended
       # @option params [String, nil] :query
@@ -45,6 +46,7 @@ module Whop_sdk
         query_params["account_id"] = params[:account_id] if params.key?(:account_id)
         query_params["app_type"] = params[:app_type] if params.key?(:app_type)
         query_params["view_type"] = params[:view_type] if params.key?(:view_type)
+        query_params["verified"] = params[:verified] if params.key?(:verified)
         query_params["verified_apps_only"] = params[:verified_apps_only] if params.key?(:verified_apps_only)
         query_params["recommended"] = params[:recommended] if params.key?(:recommended)
         query_params["query"] = params[:query] if params.key?(:query)
@@ -336,7 +338,7 @@ module Whop_sdk
       end
 
       # Lists a hosted app's server runtime logs, most recent first: console output, uncaught exceptions, and
-      # failed-request summaries captured on whop.app hosting. Logs are retained for 7 days.
+      # failed-request summaries captured on whop.site hosting. Logs are retained for 7 days.
       #
       # @param request_options [Hash]
       # @param params [Hash]

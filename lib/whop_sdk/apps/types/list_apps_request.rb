@@ -10,6 +10,8 @@ module Whop_sdk
 
         field :view_type, -> { Whop_sdk::Apps::Types::ListAppsRequestViewType }, optional: true, nullable: false
 
+        field :verified, -> { Internal::Types::Boolean }, optional: true, nullable: false
+
         field :verified_apps_only, -> { Internal::Types::Boolean }, optional: true, nullable: false
 
         field :recommended, -> { Internal::Types::Boolean }, optional: true, nullable: false

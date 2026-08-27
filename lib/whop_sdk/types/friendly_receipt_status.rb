@@ -6,6 +6,7 @@ module Whop_sdk
       extend Whop_sdk::Internal::Types::Enum
 
       SUCCEEDED = "succeeded"
+      REQUIRES_CAPTURE = "requires_capture"
       PENDING = "pending"
       FAILED = "failed"
       PAST_DUE = "past_due"

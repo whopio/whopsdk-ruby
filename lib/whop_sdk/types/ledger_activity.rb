@@ -9,8 +9,6 @@ module Whop_sdk
 
       field :available_at, -> { String }, optional: false, nullable: true
 
-      field :created_at, -> { String }, optional: false, nullable: true
-
       field :currency, -> { Whop_sdk::Types::LedgerActivityCurrency }, optional: false, nullable: false
 
       field :id, -> { String }, optional: false, nullable: false

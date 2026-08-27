@@ -6,6 +6,8 @@ module Whop_sdk
       class CreateAccountsRequest < Internal::Types::Model
         field :affiliate_code, -> { String }, optional: true, nullable: false
 
+        field :blueprint_id, -> { String }, optional: true, nullable: false
+
         field :country, -> { String }, optional: true, nullable: false
 
         field :email, -> { String }, optional: true, nullable: false

@@ -225,6 +225,45 @@ module Whop_sdk
         end
       end
 
+      # Captures the full amount of a card payment created with `capture: false`. The payment must still be in
+      # `requires_capture` before `capture_expires_at`. Partial capture, multiple captures, capturing more than the
+      # authorized amount, and tips are not supported.
+      #
+      # @param request_options [Hash]
+      # @param params [Hash]
+      # @option request_options [String] :base_url
+      # @option request_options [Hash{String => Object}] :additional_headers
+      # @option request_options [Hash{String => Object}] :additional_query_parameters
+      # @option request_options [Hash{String => Object}] :additional_body_parameters
+      # @option request_options [Integer] :timeout_in_seconds
+      # @option params [String] :id
+      #
+      # @example
+      #   client.payments.capture(id: "id")
+      #
+      # @return [Whop_sdk::Types::PaymentStatus]
+      def capture(request_options: {}, **params)
+        params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
+        request = Whop_sdk::Internal::JSON::Request.new(
+          base_url: request_options[:base_url],
+          method: "POST",
+          path: "payments/#{URI.encode_uri_component(params[:id].to_s)}/capture",
+          request_options: request_options
+        )
+        begin
+          response = @client.send(request)
+        rescue Net::HTTPRequestTimeout
+          raise Whop_sdk::Errors::TimeoutError
+        end
+        code = response.code.to_i
+        if code.between?(200, 299)
+          Whop_sdk::Types::PaymentStatus.load(response.body)
+        else
+          error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
+          raise error_class.new(response.body, code: code)
+        end
+      end
+
       # Returns the list of fees associated with a specific payment, including platform fees and processing fees.
       #
       # Required permissions:

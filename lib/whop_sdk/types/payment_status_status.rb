@@ -7,6 +7,7 @@ module Whop_sdk
 
       REQUIRES_CONFIRMATION = "requires_confirmation"
       REQUIRES_ACTION = "requires_action"
+      REQUIRES_CAPTURE = "requires_capture"
       CONFIRMING = "confirming"
       PROCESSING = "processing"
       SUCCEEDED = "succeeded"

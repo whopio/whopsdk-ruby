@@ -65,6 +65,7 @@ module WhopSDK
       FPX = T.let(:fpx, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       GB_BANK_TRANSFER =
         T.let(:gb_bank_transfer, WhopSDK::PaymentMethodTypes::TaggedSymbol)
+      GCASH = T.let(:gcash, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       GIROPAY = T.let(:giropay, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       GOOGLE_PAY = T.let(:google_pay, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       GOPAY = T.let(:gopay, WhopSDK::PaymentMethodTypes::TaggedSymbol)

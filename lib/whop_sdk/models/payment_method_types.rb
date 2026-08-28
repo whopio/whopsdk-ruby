@@ -44,6 +44,7 @@ module WhopSDK
       EU_BANK_TRANSFER = :eu_bank_transfer
       FPX = :fpx
       GB_BANK_TRANSFER = :gb_bank_transfer
+      GCASH = :gcash
       GIROPAY = :giropay
       GOOGLE_PAY = :google_pay
       GOPAY = :gopay

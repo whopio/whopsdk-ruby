@@ -43,6 +43,7 @@ module WhopSDK
       EPS = :eps
       EU_BANK_TRANSFER = :eu_bank_transfer
       FPX = :fpx
+      FLEX_PAY = :flex_pay
       GB_BANK_TRANSFER = :gb_bank_transfer
       GCASH = :gcash
       GIROPAY = :giropay

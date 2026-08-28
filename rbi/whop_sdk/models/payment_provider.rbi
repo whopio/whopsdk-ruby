@@ -20,6 +20,7 @@ module WhopSDK
       MULTI_PSP = T.let(:multi_psp, WhopSDK::PaymentProvider::TaggedSymbol)
       ADYEN = T.let(:adyen, WhopSDK::PaymentProvider::TaggedSymbol)
       CLARITYPAY = T.let(:claritypay, WhopSDK::PaymentProvider::TaggedSymbol)
+      FLEX_PAY = T.let(:flex_pay, WhopSDK::PaymentProvider::TaggedSymbol)
       CHECKOUT_DOT_COM =
         T.let(:checkout_dot_com, WhopSDK::PaymentProvider::TaggedSymbol)
       AIRWALLEX = T.let(:airwallex, WhopSDK::PaymentProvider::TaggedSymbol)

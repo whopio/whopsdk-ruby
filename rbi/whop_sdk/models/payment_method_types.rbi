@@ -63,6 +63,7 @@ module WhopSDK
       EU_BANK_TRANSFER =
         T.let(:eu_bank_transfer, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       FPX = T.let(:fpx, WhopSDK::PaymentMethodTypes::TaggedSymbol)
+      FLEX_PAY = T.let(:flex_pay, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       GB_BANK_TRANSFER =
         T.let(:gb_bank_transfer, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       GCASH = T.let(:gcash, WhopSDK::PaymentMethodTypes::TaggedSymbol)

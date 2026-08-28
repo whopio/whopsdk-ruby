@@ -7,6 +7,8 @@ module Whop_sdk
         class ListBusinessesResponseDataItem < Internal::Types::Model
           field :account, -> { Whop_sdk::Partners::Businesses::Types::ListBusinessesResponseDataItemAccount }, optional: false, nullable: true
 
+          field :blueprint_partner, -> { Whop_sdk::Partners::Businesses::Types::ListBusinessesResponseDataItemBlueprintPartner }, optional: false, nullable: true
+
           field :created_at, -> { String }, optional: false, nullable: false
 
           field :earnings_usd, -> { Whop_sdk::Partners::Businesses::Types::ListBusinessesResponseDataItemEarningsUsd }, optional: false, nullable: false

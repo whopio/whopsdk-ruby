@@ -8,6 +8,8 @@ module Whop_sdk
 
         field :country, -> { String }, optional: true, nullable: false
 
+        field :email, -> { String }, optional: false, nullable: true
+
         field :id, -> { String }, optional: false, nullable: false
 
         field :name, -> { String }, optional: true, nullable: false

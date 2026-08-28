@@ -78,6 +78,11 @@ module Whop_sdk
           raise error_class.new(response.body, code: code)
         end
       end
+
+      # @return [Whop_sdk::Breakdown::Client]
+      def breakdown
+        @breakdown ||= Whop_sdk::FinancialReports::Breakdown::Client.new(client: @client)
+      end
     end
   end
 end

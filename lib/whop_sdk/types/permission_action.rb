@@ -179,6 +179,7 @@ module Whop_sdk
       REFERRAL_BASIC_READ = "referral:basic:read"
       REFERRAL_PARTNER_CREATE = "referral:partner:create"
       PARTNER_BASIC_READ = "partner:basic:read"
+      PARTNER_EMAIL_READ = "partner:email:read"
       PARTNER_INVITE_CREATE = "partner:invite:create"
       PARTNER_CREATE = "partner:create"
       STATS_READ = "stats:read"

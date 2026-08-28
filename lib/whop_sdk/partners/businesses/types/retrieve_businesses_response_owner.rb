@@ -6,6 +6,8 @@ module Whop_sdk
       module Types
         # The owner of the referred business.
         class RetrieveBusinessesResponseOwner < Internal::Types::Model
+          field :email, -> { String }, optional: false, nullable: true
+
           field :id, -> { String }, optional: false, nullable: false
 
           field :name, -> { String }, optional: false, nullable: true

@@ -7,6 +7,8 @@ module Whop_sdk
         class RetrieveBusinessesResponse < Internal::Types::Model
           field :account, -> { Whop_sdk::Partners::Businesses::Types::RetrieveBusinessesResponseAccount }, optional: false, nullable: true
 
+          field :blueprint_partner, -> { Whop_sdk::Partners::Businesses::Types::RetrieveBusinessesResponseBlueprintPartner }, optional: false, nullable: true
+
           field :created_at, -> { String }, optional: false, nullable: false
 
           field :earnings_usd, -> { Whop_sdk::Partners::Businesses::Types::RetrieveBusinessesResponseEarningsUsd }, optional: false, nullable: false

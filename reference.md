@@ -1208,6 +1208,14 @@ client.accounts.transfer_ownership(
 <dl>
 <dd>
 
+**message:** `String` — A note from the partner, shown as a quote in the invite email and signed with their name. Requires `as_partner`; sending it on an ordinary transfer is a 400. Omit it and the email sends without a note.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **request_options:** `Whop_sdk::Accounts::RequestOptions` 
     
 </dd>
@@ -3900,7 +3908,7 @@ client.ads.create
 <dl>
 <dd>
 
-**url_parameters:** `Internal::Types::Hash[String, Object]` — Query parameters to append to the destination URL, keyed by parameter name. Merged with any query string on `url`. Whop adds its own click-attribution parameters; those are reserved and rejected if you set them (utm_meta_ad_id, utm_meta_adset_id, utm_meta_campaign_id, utm_source, utm_placement, utm_medium, utm_content, utm_adset, utm_whop, wacid, wasid, waid, tw_source, tw_adid).
+**url_parameters:** `Internal::Types::Hash[String, Object]` — Query parameters to append to the destination URL, keyed by parameter name. Merged with any query string on `url`. Whop adds its own click-attribution parameters; those are reserved and rejected if you set them. Which keys are reserved depends on the ad's network — Meta: utm_meta_ad_id, utm_meta_adset_id, utm_meta_campaign_id, utm_source, utm_placement, utm_medium, utm_content, utm_adset, utm_whop, wacid, wasid, waid, tw_source, tw_adid; TikTok: waid, wasid, wacid, ad_id, adset_id, campaign_id, utm_source, utm_medium, utm_placement, utm_whop, tw_source, tw_adid.
     
 </dd>
 </dl>
@@ -4238,7 +4246,7 @@ client.ads.update(id: "id")
 <dl>
 <dd>
 
-**url_parameters:** `Internal::Types::Hash[String, Object]` — Query parameters to append to the destination URL, keyed by parameter name. Merged with any query string on `url`. Whop adds its own click-attribution parameters; those are reserved and rejected if you set them (utm_meta_ad_id, utm_meta_adset_id, utm_meta_campaign_id, utm_source, utm_placement, utm_medium, utm_content, utm_adset, utm_whop, wacid, wasid, waid, tw_source, tw_adid).
+**url_parameters:** `Internal::Types::Hash[String, Object]` — Query parameters to append to the destination URL, keyed by parameter name. Merged with any query string on `url`. Whop adds its own click-attribution parameters; those are reserved and rejected if you set them. Which keys are reserved depends on the ad's network — Meta: utm_meta_ad_id, utm_meta_adset_id, utm_meta_campaign_id, utm_source, utm_placement, utm_medium, utm_content, utm_adset, utm_whop, wacid, wasid, waid, tw_source, tw_adid; TikTok: waid, wasid, wacid, ad_id, adset_id, campaign_id, utm_source, utm_medium, utm_placement, utm_whop, tw_source, tw_adid.
     
 </dd>
 </dl>
@@ -15548,7 +15556,7 @@ client.events.list
 <dl>
 <dd>
 
-**source:** `String` — Canonical source path, exact or with a trailing :* prefix (whop:<campaign>:*, ext:meta:*, referrer:<domain>, direct). Restricts the list to conversion targets attributed to that source — the debuggability twin of a metric cell's source parameter.
+**source:** `String` — Canonical source path, exact or with a trailing :* prefix (whop:<campaign>:*, ext:meta:*, referrer:<domain>, direct). Restricts the list to conversion targets attributed to that source — the debuggability twin of a metric cell's source parameter. A whop:... source combined with non-conversion event names (event=pixel.page) instead lists the events whose ad click resolved to that entity — the page views an ad drove.
     
 </dd>
 </dl>
@@ -17403,7 +17411,7 @@ client.files.list(file_ids: ["file_xxxxxxxxxxxxx"])
 <dl>
 <dd>
 
-Creates a file and returns a presigned destination to upload its bytes to. PUT the bytes to `upload_url` (single-part), or to each of `multipart_upload_urls` and then call Complete File Multipart Upload. Once the bytes land the file becomes `ready`, and its ID can be attached wherever a file is accepted — account legal documents, dispute evidence documents.
+Creates a file and returns a presigned destination to upload its bytes to. PUT the bytes to `upload_url` (single-part), or to each of `multipart_upload_urls` and then call Complete File Multipart Upload. Once the bytes land the file becomes `ready`, and its ID can be attached wherever a file is accepted — account legal documents, dispute evidence documents. For a step-by-step walkthrough of single-part and multipart uploads, see the [direct file uploads guide](/developer/guides/direct-file-uploads).
 </dd>
 </dl>
 </dd>
@@ -17551,7 +17559,7 @@ client.files.retrieve(id: "id")
 <dl>
 <dd>
 
-Assembles the parts of a multipart upload after every part has been PUT to its presigned URL. Pass the `multipart_upload_id` from Create File and each part's `ETag` response header.
+Assembles the parts of a multipart upload after every part has been PUT to its presigned URL. Pass the `multipart_upload_id` from Create File and each part's `ETag` response header. For a step-by-step walkthrough of multipart uploads, see the [direct file uploads guide](/developer/guides/direct-file-uploads).
 </dd>
 </dl>
 </dd>
@@ -17708,6 +17716,14 @@ client.financial_activity.list
 <dd>
 
 **direction:** `Whop_sdk::FinancialActivity::Types::ListFinancialActivityRequestDirection` — Optional direction filter. `money_in` returns positive activity and `money_out` returns negative activity.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**resource_id:** `String` — Optional prefixed resource ID. Returns activity associated with that resource.
     
 </dd>
 </dl>
@@ -33372,7 +33388,7 @@ client.transfers.list_recipients(origin_id: "origin_id")
 <dl>
 <dd>
 
-**query:** `String` — Search anyone on Whop by name or username, plus your own accounts by name or ID. Omit it to get the team around the balance, the people you follow, and your own accounts. The list is the same whether the balance belongs to a company or to you. Searching from a `biz_` origin additionally requires the member:basic:read scope. A credential scoped to a single company is the exception to the search itself: it only ever sees that company's own people. Complete email addresses return no matches.
+**query:** `String` — Search anyone on Whop by name or username, plus your own accounts by name or ID. An exact business ID (`biz_`) returns that business first. Omit it to get the team around the balance, the people you follow, and your own accounts. The list is the same whether the balance belongs to a company or to you. Searching from a `biz_` origin additionally requires the member:basic:read scope. A credential scoped to a single company is the exception to the search itself: it only ever sees that company's own people. Complete email addresses return no matches.
     
 </dd>
 </dl>
@@ -36169,6 +36185,116 @@ client.bounties.submissions.retrieve(
 <dd>
 
 **request_options:** `Whop_sdk::Bounties::Submissions::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## FinancialReports Breakdown
+<details><summary><code>client.financial_reports.breakdown.<a href="/lib/whop_sdk/financial_reports/breakdown/client.rb">retrieve</a>() -> Whop_sdk::FinancialReports::Breakdown::Types::RetrieveBreakdownResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns the top entities behind one high-level financial report bucket and an aggregate remainder.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.financial_reports.breakdown.retrieve(
+  account_id: "account_id",
+  bucket: "transfers",
+  direction: "money_in",
+  currency: "currency",
+  from_date: "from_date",
+  to_date: "to_date"
+)
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**account_id:** `String` — The owning account ID (a biz_ identifier).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**bucket:** `Whop_sdk::FinancialReports::Breakdown::Types::RetrieveBreakdownRequestBucket` — The high-level report bucket to explain.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**direction:** `Whop_sdk::FinancialReports::Breakdown::Types::RetrieveBreakdownRequestDirection` — Whether to explain money received or money sent.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**currency:** `String` — The report currency to explain.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**from_date:** `String` — Start of the report window as an ISO 8601 timestamp.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**to_date:** `String` — Exclusive end of the report window as an ISO 8601 timestamp.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Whop_sdk::FinancialReports::Breakdown::RequestOptions` 
     
 </dd>
 </dl>

@@ -126,6 +126,12 @@ module WhopSDK
       #   @return [String, nil]
       required :failure_message, String, nil?: true
 
+      # @!attribute fees
+      #   The fees associated with this specific payment.
+      #
+      #   @return [Array<WhopSDK::Models::Payment::Fee>]
+      required :fees, -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::Payment::Fee] }
+
       # @!attribute financing_installments_count
       #   The number of financing installments for the payment. Present if the payment is
       #   a financing payment (e.g. Splitit, Klarna, etc.).
@@ -413,7 +419,7 @@ module WhopSDK
       #   @return [Boolean]
       required :voidable, WhopSDK::Internal::Type::Boolean
 
-      # @!method initialize(id:, amount_after_fees:, application_fee:, auto_refunded:, billing_address:, billing_reason:, card_brand:, card_exp_month:, card_exp_year:, card_last4:, checkout_configuration_id:, company:, created_at:, currency:, customer_phone:, decline_code:, dispute_alerted_at:, disputes:, failure_message:, financing_installments_count:, financing_transactions:, last_payment_attempt:, member:, membership:, metadata:, needs_tracking:, next_payment_attempt:, paid_at:, payment_instrument:, payment_method:, payment_method_type:, payments_failed:, plan:, product:, promo_code:, refundable:, refunded_amount:, refunded_at:, refunds:, resolutions:, retryable:, risk_score:, risk_signals:, settlement_amount:, settlement_currency:, settlement_exchange_rate:, settlement_time_at:, shipment:, shipping_address:, status:, substatus:, subtotal:, tax_amount:, tax_behavior:, tax_refunded_amount:, three_ds_verified:, total:, updated_at:, usd_total:, user:, verification_checks:, voidable:)
+      # @!method initialize(id:, amount_after_fees:, application_fee:, auto_refunded:, billing_address:, billing_reason:, card_brand:, card_exp_month:, card_exp_year:, card_last4:, checkout_configuration_id:, company:, created_at:, currency:, customer_phone:, decline_code:, dispute_alerted_at:, disputes:, failure_message:, fees:, financing_installments_count:, financing_transactions:, last_payment_attempt:, member:, membership:, metadata:, needs_tracking:, next_payment_attempt:, paid_at:, payment_instrument:, payment_method:, payment_method_type:, payments_failed:, plan:, product:, promo_code:, refundable:, refunded_amount:, refunded_at:, refunds:, resolutions:, retryable:, risk_score:, risk_signals:, settlement_amount:, settlement_currency:, settlement_exchange_rate:, settlement_time_at:, shipment:, shipping_address:, status:, substatus:, subtotal:, tax_amount:, tax_behavior:, tax_refunded_amount:, three_ds_verified:, total:, updated_at:, usd_total:, user:, verification_checks:, voidable:)
       #   Some parameter documentations has been truncated, see {WhopSDK::Models::Payment}
       #   for more details.
       #
@@ -457,6 +463,8 @@ module WhopSDK
       #   @param disputes [Array<WhopSDK::Models::Payment::Dispute>, nil] The disputes attached to this payment. Null if the actor in context does not hav
       #
       #   @param failure_message [String, nil] If the payment failed, the reason for the failure.
+      #
+      #   @param fees [Array<WhopSDK::Models::Payment::Fee>] The fees associated with this specific payment.
       #
       #   @param financing_installments_count [Integer, nil] The number of financing installments for the payment. Present if the payment is
       #
@@ -861,6 +869,86 @@ module WhopSDK
         #   @param reason [String, nil] A human-readable reason for the dispute.
         #
         #   @param status [Symbol, WhopSDK::Models::DisputeStatuses] The current status of the dispute lifecycle, such as needs_response, under_revie
+      end
+
+      class Fee < WhopSDK::Internal::Type::BaseModel
+        # @!attribute amount
+        #   The value or amount to display for the fee.
+        #
+        #   @return [Float]
+        required :amount, Float
+
+        # @!attribute currency
+        #   The currency of the fee.
+        #
+        #   @return [Symbol, WhopSDK::Models::Currency]
+        required :currency, enum: -> { WhopSDK::Currency }
+
+        # @!attribute name
+        #   The label to display for the fee.
+        #
+        #   @return [String]
+        required :name, String
+
+        # @!attribute type
+        #   The specific origin of the fee, if applicable.
+        #
+        #   @return [Symbol, WhopSDK::Models::Payment::Fee::Type]
+        required :type, enum: -> { WhopSDK::Payment::Fee::Type }
+
+        # @!method initialize(amount:, currency:, name:, type:)
+        #   Represents a fee related to a payment
+        #
+        #   @param amount [Float] The value or amount to display for the fee.
+        #
+        #   @param currency [Symbol, WhopSDK::Models::Currency] The currency of the fee.
+        #
+        #   @param name [String] The label to display for the fee.
+        #
+        #   @param type [Symbol, WhopSDK::Models::Payment::Fee::Type] The specific origin of the fee, if applicable.
+
+        # The specific origin of the fee, if applicable.
+        #
+        # @see WhopSDK::Models::Payment::Fee#type
+        module Type
+          extend WhopSDK::Internal::Type::Enum
+
+          STRIPE_DOMESTIC_PROCESSING_FEE = :stripe_domestic_processing_fee
+          STRIPE_INTERNATIONAL_PROCESSING_FEE = :stripe_international_processing_fee
+          STRIPE_FIXED_PROCESSING_FEE = :stripe_fixed_processing_fee
+          STRIPE_BILLING_FEE = :stripe_billing_fee
+          STRIPE_RADAR_FEE = :stripe_radar_fee
+          SALES_TAX_REMITTANCE = :sales_tax_remittance
+          SALES_TAX_REMITTANCE_REVERSAL = :sales_tax_remittance_reversal
+          STRIPE_SALES_TAX_FEE = :stripe_sales_tax_fee
+          WHOP_PROCESSING_FEE = :whop_processing_fee
+          MARKETPLACE_AFFILIATE_FEE = :marketplace_affiliate_fee
+          AFFILIATE_FEE = :affiliate_fee
+          CRYPTO_FEE = :crypto_fee
+          STRIPE_STANDARD_PROCESSING_FEE = :stripe_standard_processing_fee
+          PAYPAL_FEE = :paypal_fee
+          STRIPE_PAYOUT_FEE = :stripe_payout_fee
+          DISPUTE_FEE = :dispute_fee
+          DISPUTE_ALERT_FEE = :dispute_alert_fee
+          APPLE_PROCESSING_FEE = :apple_processing_fee
+          BUYER_FEE = :buyer_fee
+          SEZZLE_PROCESSING_FEE = :sezzle_processing_fee
+          SPLITIT_PROCESSING_FEE = :splitit_processing_fee
+          PLATFORM_BALANCE_PROCESSING_FEE = :platform_balance_processing_fee
+          PAYMENT_PROCESSING_PERCENTAGE_FEE = :payment_processing_percentage_fee
+          PAYMENT_PROCESSING_FIXED_FEE = :payment_processing_fixed_fee
+          CROSS_BORDER_PERCENTAGE_FEE = :cross_border_percentage_fee
+          FX_PERCENTAGE_FEE = :fx_percentage_fee
+          ORCHESTRATION_PERCENTAGE_FEE = :orchestration_percentage_fee
+          THREE_DS_FIXED_FEE = :three_ds_fixed_fee
+          BILLING_PERCENTAGE_FEE = :billing_percentage_fee
+          REVSHARE_PERCENTAGE_FEE = :revshare_percentage_fee
+          APPLICATION_FEE = :application_fee
+          HIGH_RISK_MERCHANT_FEE = :high_risk_merchant_fee
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
       end
 
       class FinancingTransaction < WhopSDK::Internal::Type::BaseModel

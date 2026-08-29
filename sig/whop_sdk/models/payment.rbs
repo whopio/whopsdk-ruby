@@ -21,6 +21,7 @@ module WhopSDK
         dispute_alerted_at: Time?,
         disputes: ::Array[WhopSDK::Payment::Dispute]?,
         failure_message: String?,
+        fees: ::Array[WhopSDK::Payment::Fee],
         financing_installments_count: Integer?,
         financing_transactions: ::Array[WhopSDK::Payment::FinancingTransaction],
         last_payment_attempt: Time?,
@@ -104,6 +105,8 @@ module WhopSDK
       attr_accessor disputes: ::Array[WhopSDK::Payment::Dispute]?
 
       attr_accessor failure_message: String?
+
+      attr_accessor fees: ::Array[WhopSDK::Payment::Fee]
 
       attr_accessor financing_installments_count: Integer?
 
@@ -211,6 +214,7 @@ module WhopSDK
         dispute_alerted_at: Time?,
         disputes: ::Array[WhopSDK::Payment::Dispute]?,
         failure_message: String?,
+        fees: ::Array[WhopSDK::Payment::Fee],
         financing_installments_count: Integer?,
         financing_transactions: ::Array[WhopSDK::Payment::FinancingTransaction],
         last_payment_attempt: Time?,
@@ -276,6 +280,7 @@ module WhopSDK
         dispute_alerted_at: Time?,
         disputes: ::Array[WhopSDK::Payment::Dispute]?,
         failure_message: String?,
+        fees: ::Array[WhopSDK::Payment::Fee],
         financing_installments_count: Integer?,
         financing_transactions: ::Array[WhopSDK::Payment::FinancingTransaction],
         last_payment_attempt: Time?,
@@ -655,6 +660,111 @@ module WhopSDK
           reason: String?,
           status: WhopSDK::Models::dispute_statuses
         }
+      end
+
+      type fee =
+        {
+          amount: Float,
+          currency: WhopSDK::Models::currency,
+          name: String,
+          type: WhopSDK::Models::Payment::Fee::type_
+        }
+
+      class Fee < WhopSDK::Internal::Type::BaseModel
+        attr_accessor amount: Float
+
+        attr_accessor currency: WhopSDK::Models::currency
+
+        attr_accessor name: String
+
+        attr_accessor type: WhopSDK::Models::Payment::Fee::type_
+
+        def initialize: (
+          amount: Float,
+          currency: WhopSDK::Models::currency,
+          name: String,
+          type: WhopSDK::Models::Payment::Fee::type_
+        ) -> void
+
+        def to_hash: -> {
+          amount: Float,
+          currency: WhopSDK::Models::currency,
+          name: String,
+          type: WhopSDK::Models::Payment::Fee::type_
+        }
+
+        type type_ =
+          :stripe_domestic_processing_fee
+          | :stripe_international_processing_fee
+          | :stripe_fixed_processing_fee
+          | :stripe_billing_fee
+          | :stripe_radar_fee
+          | :sales_tax_remittance
+          | :sales_tax_remittance_reversal
+          | :stripe_sales_tax_fee
+          | :whop_processing_fee
+          | :marketplace_affiliate_fee
+          | :affiliate_fee
+          | :crypto_fee
+          | :stripe_standard_processing_fee
+          | :paypal_fee
+          | :stripe_payout_fee
+          | :dispute_fee
+          | :dispute_alert_fee
+          | :apple_processing_fee
+          | :buyer_fee
+          | :sezzle_processing_fee
+          | :splitit_processing_fee
+          | :platform_balance_processing_fee
+          | :payment_processing_percentage_fee
+          | :payment_processing_fixed_fee
+          | :cross_border_percentage_fee
+          | :fx_percentage_fee
+          | :orchestration_percentage_fee
+          | :three_ds_fixed_fee
+          | :billing_percentage_fee
+          | :revshare_percentage_fee
+          | :application_fee
+          | :high_risk_merchant_fee
+
+        module Type
+          extend WhopSDK::Internal::Type::Enum
+
+          STRIPE_DOMESTIC_PROCESSING_FEE: :stripe_domestic_processing_fee
+          STRIPE_INTERNATIONAL_PROCESSING_FEE: :stripe_international_processing_fee
+          STRIPE_FIXED_PROCESSING_FEE: :stripe_fixed_processing_fee
+          STRIPE_BILLING_FEE: :stripe_billing_fee
+          STRIPE_RADAR_FEE: :stripe_radar_fee
+          SALES_TAX_REMITTANCE: :sales_tax_remittance
+          SALES_TAX_REMITTANCE_REVERSAL: :sales_tax_remittance_reversal
+          STRIPE_SALES_TAX_FEE: :stripe_sales_tax_fee
+          WHOP_PROCESSING_FEE: :whop_processing_fee
+          MARKETPLACE_AFFILIATE_FEE: :marketplace_affiliate_fee
+          AFFILIATE_FEE: :affiliate_fee
+          CRYPTO_FEE: :crypto_fee
+          STRIPE_STANDARD_PROCESSING_FEE: :stripe_standard_processing_fee
+          PAYPAL_FEE: :paypal_fee
+          STRIPE_PAYOUT_FEE: :stripe_payout_fee
+          DISPUTE_FEE: :dispute_fee
+          DISPUTE_ALERT_FEE: :dispute_alert_fee
+          APPLE_PROCESSING_FEE: :apple_processing_fee
+          BUYER_FEE: :buyer_fee
+          SEZZLE_PROCESSING_FEE: :sezzle_processing_fee
+          SPLITIT_PROCESSING_FEE: :splitit_processing_fee
+          PLATFORM_BALANCE_PROCESSING_FEE: :platform_balance_processing_fee
+          PAYMENT_PROCESSING_PERCENTAGE_FEE: :payment_processing_percentage_fee
+          PAYMENT_PROCESSING_FIXED_FEE: :payment_processing_fixed_fee
+          CROSS_BORDER_PERCENTAGE_FEE: :cross_border_percentage_fee
+          FX_PERCENTAGE_FEE: :fx_percentage_fee
+          ORCHESTRATION_PERCENTAGE_FEE: :orchestration_percentage_fee
+          THREE_DS_FIXED_FEE: :three_ds_fixed_fee
+          BILLING_PERCENTAGE_FEE: :billing_percentage_fee
+          REVSHARE_PERCENTAGE_FEE: :revshare_percentage_fee
+          APPLICATION_FEE: :application_fee
+          HIGH_RISK_MERCHANT_FEE: :high_risk_merchant_fee
+
+          def self?.values: -> ::Array[WhopSDK::Models::Payment::Fee::type_]
+        end
       end
 
       type financing_transaction =

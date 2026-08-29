@@ -25,7 +25,8 @@ module WhopSDK
       sig { params(before: String).void }
       attr_writer :before
 
-      # Filter refunds to only those belonging to this company.
+      # Filter refunds to those belonging to this company. Mutually exclusive with
+      # payment_id and user_id: provide exactly one.
       sig { returns(T.nilable(String)) }
       attr_reader :company_id
 
@@ -67,14 +68,17 @@ module WhopSDK
       sig { params(last: Integer).void }
       attr_writer :last
 
-      # Filter refunds to only those associated with this specific payment.
+      # Filter refunds to those associated with this specific payment. Mutually
+      # exclusive with company_id and user_id: provide exactly one.
       sig { returns(T.nilable(String)) }
       attr_reader :payment_id
 
       sig { params(payment_id: String).void }
       attr_writer :payment_id
 
-      # Filter refunds to only those associated with this specific user.
+      # Filter refunds to those associated with this specific user. Mutually exclusive
+      # with payment_id and company_id: provide exactly one. Requires a credential
+      # belonging to that user; any other credential receives 'You are not authorized'.
       sig { returns(T.nilable(String)) }
       attr_reader :user_id
 
@@ -101,7 +105,8 @@ module WhopSDK
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
-        # Filter refunds to only those belonging to this company.
+        # Filter refunds to those belonging to this company. Mutually exclusive with
+        # payment_id and user_id: provide exactly one.
         company_id: nil,
         # Only return refunds created after this timestamp.
         created_after: nil,
@@ -113,9 +118,12 @@ module WhopSDK
         first: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
-        # Filter refunds to only those associated with this specific payment.
+        # Filter refunds to those associated with this specific payment. Mutually
+        # exclusive with company_id and user_id: provide exactly one.
         payment_id: nil,
-        # Filter refunds to only those associated with this specific user.
+        # Filter refunds to those associated with this specific user. Mutually exclusive
+        # with payment_id and company_id: provide exactly one. Requires a credential
+        # belonging to that user; any other credential receives 'You are not authorized'.
         user_id: nil,
         request_options: {}
       )

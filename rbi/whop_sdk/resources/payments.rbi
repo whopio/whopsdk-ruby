@@ -133,7 +133,9 @@ module WhopSDK
         direction: nil,
         # Returns the first _n_ elements from the list.
         first: nil,
-        # Whether to include payments with a zero amount.
+        # Whether to include payments with a zero amount. Defaults to false, so
+        # zero-amount payments are omitted unless you set this to true — a company whose
+        # sales are all free plans returns an empty list without it.
         include_free: nil,
         # Returns the last _n_ elements from the list.
         last: nil,

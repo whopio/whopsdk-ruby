@@ -20,7 +20,8 @@ module WhopSDK
       optional :before, String
 
       # @!attribute company_id
-      #   Filter refunds to only those belonging to this company.
+      #   Filter refunds to those belonging to this company. Mutually exclusive with
+      #   payment_id and user_id: provide exactly one.
       #
       #   @return [String, nil]
       optional :company_id, String
@@ -56,23 +57,29 @@ module WhopSDK
       optional :last, Integer
 
       # @!attribute payment_id
-      #   Filter refunds to only those associated with this specific payment.
+      #   Filter refunds to those associated with this specific payment. Mutually
+      #   exclusive with company_id and user_id: provide exactly one.
       #
       #   @return [String, nil]
       optional :payment_id, String
 
       # @!attribute user_id
-      #   Filter refunds to only those associated with this specific user.
+      #   Filter refunds to those associated with this specific user. Mutually exclusive
+      #   with payment_id and company_id: provide exactly one. Requires a credential
+      #   belonging to that user; any other credential receives 'You are not authorized'.
       #
       #   @return [String, nil]
       optional :user_id, String
 
       # @!method initialize(after: nil, before: nil, company_id: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, payment_id: nil, user_id: nil, request_options: {})
+      #   Some parameter documentations has been truncated, see
+      #   {WhopSDK::Models::RefundListParams} for more details.
+      #
       #   @param after [String] Returns the elements in the list that come after the specified cursor.
       #
       #   @param before [String] Returns the elements in the list that come before the specified cursor.
       #
-      #   @param company_id [String] Filter refunds to only those belonging to this company.
+      #   @param company_id [String] Filter refunds to those belonging to this company. Mutually exclusive with payme
       #
       #   @param created_after [Time] Only return refunds created after this timestamp.
       #
@@ -84,9 +91,9 @@ module WhopSDK
       #
       #   @param last [Integer] Returns the last _n_ elements from the list.
       #
-      #   @param payment_id [String] Filter refunds to only those associated with this specific payment.
+      #   @param payment_id [String] Filter refunds to those associated with this specific payment. Mutually exclusiv
       #
-      #   @param user_id [String] Filter refunds to only those associated with this specific user.
+      #   @param user_id [String] Filter refunds to those associated with this specific user. Mutually exclusive w
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
     end

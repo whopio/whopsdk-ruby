@@ -119,7 +119,7 @@ module WhopSDK
       #
       # @param first [Integer] Returns the first _n_ elements from the list.
       #
-      # @param include_free [Boolean] Whether to include payments with a zero amount.
+      # @param include_free [Boolean] Whether to include payments with a zero amount. Defaults to false, so zero-amoun
       #
       # @param last [Integer] Returns the last _n_ elements from the list.
       #

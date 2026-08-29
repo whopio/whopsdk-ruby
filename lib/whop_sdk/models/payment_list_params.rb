@@ -68,7 +68,9 @@ module WhopSDK
       optional :first, Integer
 
       # @!attribute include_free
-      #   Whether to include payments with a zero amount.
+      #   Whether to include payments with a zero amount. Defaults to false, so
+      #   zero-amount payments are omitted unless you set this to true — a company whose
+      #   sales are all free plans returns an empty list without it.
       #
       #   @return [Boolean, nil]
       optional :include_free, WhopSDK::Internal::Type::Boolean
@@ -153,7 +155,7 @@ module WhopSDK
       #
       #   @param first [Integer] Returns the first _n_ elements from the list.
       #
-      #   @param include_free [Boolean] Whether to include payments with a zero amount.
+      #   @param include_free [Boolean] Whether to include payments with a zero amount. Defaults to false, so zero-amoun
       #
       #   @param last [Integer] Returns the last _n_ elements from the list.
       #

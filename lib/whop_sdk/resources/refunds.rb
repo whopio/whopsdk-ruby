@@ -33,6 +33,9 @@ module WhopSDK
         )
       end
 
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::RefundListParams} for more details.
+      #
       # Returns a paginated list of refunds, with optional filtering by payment,
       # company, user, and creation date.
       #
@@ -46,7 +49,7 @@ module WhopSDK
       #
       # @param before [String] Returns the elements in the list that come before the specified cursor.
       #
-      # @param company_id [String] Filter refunds to only those belonging to this company.
+      # @param company_id [String] Filter refunds to those belonging to this company. Mutually exclusive with payme
       #
       # @param created_after [Time] Only return refunds created after this timestamp.
       #
@@ -58,9 +61,9 @@ module WhopSDK
       #
       # @param last [Integer] Returns the last _n_ elements from the list.
       #
-      # @param payment_id [String] Filter refunds to only those associated with this specific payment.
+      # @param payment_id [String] Filter refunds to those associated with this specific payment. Mutually exclusiv
       #
-      # @param user_id [String] Filter refunds to only those associated with this specific user.
+      # @param user_id [String] Filter refunds to those associated with this specific user. Mutually exclusive w
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

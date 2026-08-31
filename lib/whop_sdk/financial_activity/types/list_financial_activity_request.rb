@@ -18,6 +18,8 @@ module Whop_sdk
 
         field :resource_id, -> { String }, optional: true, nullable: false
 
+        field :activity_id, -> { String }, optional: true, nullable: false
+
         field :currency, -> { String }, optional: true, nullable: false
 
         field :posted_after, -> { String }, optional: true, nullable: false

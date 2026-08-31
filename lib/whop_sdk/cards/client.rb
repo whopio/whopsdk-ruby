@@ -54,7 +54,8 @@ module Whop_sdk
         end
       end
 
-      # Issue a virtual card, or apply for card issuing.
+      # Issue a virtual card, or apply for card issuing. An account with no application files one here and gets back a
+      # `202`; call again to issue the card once it is approved.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::Cards::Types::CreateCardsRequest]

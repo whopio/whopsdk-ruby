@@ -153,7 +153,7 @@ module Whop_sdk
           end
         end
 
-        # Changes the label used to identify a saved payout method.
+        # Changes the label used to identify a saved payout method or makes it the account's default payout method.
         #
         # @param request_options [Hash]
         # @param params [Whop_sdk::Payouts::Methods::Types::UpdateMethodsRequest]
@@ -165,10 +165,7 @@ module Whop_sdk
         # @option params [String] :id
         #
         # @example
-        #   client.payouts.methods.update(
-        #     id: "id",
-        #     nickname: "Primary checking"
-        #   )
+        #   client.payouts.methods.update(id: "id")
         #
         # @return [Whop_sdk::Payouts::Methods::Types::UpdateMethodsResponse]
         def update(request_options: {}, **params)

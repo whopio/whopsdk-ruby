@@ -39,6 +39,8 @@ module Whop_sdk
 
         field :rdt_cid, -> { String }, optional: true, nullable: false
 
+        field :sc, -> { String }, optional: true, nullable: false
+
         field :sccid, -> { String }, optional: true, nullable: false
 
         field :screen_resolution, -> { String }, optional: true, nullable: false

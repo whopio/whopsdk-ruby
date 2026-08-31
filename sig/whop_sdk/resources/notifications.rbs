@@ -2,7 +2,16 @@ module WhopSDK
   module Resources
     class Notifications
       def create: (
-        body: WhopSDK::Models::NotificationCreateParams::body,
+        content: String,
+        title: String,
+        ?account_id: String,
+        ?experience_id: String,
+        ?icon_user_id: String?,
+        ?rest_path: String?,
+        ?subtitle: String?,
+        ?user_ids: ::Array[String],
+        ?api_version_date: String,
+        ?idempotency_key: String,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Models::NotificationCreateResponse
 

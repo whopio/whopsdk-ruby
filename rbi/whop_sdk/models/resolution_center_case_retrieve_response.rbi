@@ -11,90 +11,86 @@ module WhopSDK
           )
         end
 
-      # The unique identifier for the resolution.
+      # Resolution center case ID, prefixed `reso_`.
       sig { returns(String) }
       attr_accessor :id
 
-      # The company involved in this resolution case. Null if the company no longer
-      # exists.
+      # The account the case was filed against.
       sig do
         returns(
           T.nilable(
-            WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Company
+            WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Account
           )
         )
       end
-      attr_reader :company
+      attr_reader :account
 
       sig do
         params(
-          company:
+          account:
             T.nilable(
-              WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Company::OrHash
+              WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Account::OrHash
             )
         ).void
       end
-      attr_writer :company
+      attr_writer :account
 
-      # The datetime the resolution was created.
-      sig { returns(Time) }
+      # The amount in question, in whole units of `currency`.
+      sig { returns(Float) }
+      attr_accessor :amount
+
+      sig do
+        returns(
+          T::Array[
+            WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::AvailableAction::TaggedSymbol
+          ]
+        )
+      end
+      attr_accessor :available_actions
+
+      # The customer who opened the case.
+      sig do
+        returns(WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Buyer)
+      end
+      attr_reader :buyer
+
+      sig do
+        params(
+          buyer:
+            WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Buyer::OrHash
+        ).void
+      end
+      attr_writer :buyer
+
+      # When the case was opened, as an ISO 8601 timestamp.
+      sig { returns(String) }
       attr_accessor :created_at
 
-      # Whether the customer has filed an appeal after the initial resolution decision.
+      # Three-letter ISO currency code of the amount.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :currency
+
+      # Whether the customer has appealed a decision on this case.
       sig { returns(T::Boolean) }
       attr_accessor :customer_appealed
 
-      # The list of actions currently available to the customer.
-      sig do
-        returns(
-          T::Array[WhopSDK::ResolutionCenterCaseCustomerResponse::TaggedSymbol]
-        )
-      end
-      attr_accessor :customer_response_actions
+      # Whether Whop is involved — either reviewing the case, or waiting on the side
+      # named by `status` for something it asked for while reviewing.
+      sig { returns(T::Boolean) }
+      attr_accessor :escalated
 
-      # The deadline by which the next response is required. Null if no deadline is
-      # currently active. As a Unix timestamp.
-      sig { returns(T.nilable(Time)) }
-      attr_accessor :due_date
-
-      # The category of the dispute.
-      sig { returns(WhopSDK::ResolutionCenterCaseIssueType::TaggedSymbol) }
-      attr_accessor :issue
-
-      # The membership record associated with the disputed payment. Null if the
-      # membership no longer exists.
+      # Who prevailed on the claim. `null` until the case closes. Read `refund` for
+      # whether any money actually moved.
       sig do
         returns(
           T.nilable(
-            WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Member
+            WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Outcome::TaggedSymbol
           )
         )
       end
-      attr_reader :member
+      attr_accessor :outcome
 
-      sig do
-        params(
-          member:
-            T.nilable(
-              WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Member::OrHash
-            )
-        ).void
-      end
-      attr_writer :member
-
-      # Whether the merchant has filed an appeal after the initial resolution decision.
-      sig { returns(T::Boolean) }
-      attr_accessor :merchant_appealed
-
-      # The list of actions currently available to the merchant.
-      sig do
-        returns(
-          T::Array[WhopSDK::ResolutionCenterCaseMerchantResponse::TaggedSymbol]
-        )
-      end
-      attr_accessor :merchant_response_actions
-
-      # The payment record that is the subject of this resolution case.
+      # The payment the case was opened against.
       sig do
         returns(WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Payment)
       end
@@ -108,124 +104,138 @@ module WhopSDK
       end
       attr_writer :payment
 
-      # The list of actions currently available to the Whop platform for moderating this
-      # resolution.
+      # The plan the payment was made on, prefixed `plan_`.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :plan_id
+
+      # The product the payment was for, prefixed `prod_`.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :product_id
+
+      # What the customer says went wrong. Shares the `/disputes` vocabulary, so a case
+      # that later becomes a chargeback reports the same complaint.
       sig do
         returns(
-          T::Array[WhopSDK::ResolutionCenterCasePlatformResponse::TaggedSymbol]
+          WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Reason::TaggedSymbol
         )
       end
-      attr_accessor :platform_response_actions
+      attr_accessor :reason
 
-      # The most recent 50 messages, actions, and status changes that have occurred
-      # during this resolution case.
+      # Whether money moved and off whose balance: `none`, `merchant`, or `platform`
+      # (Whop refunded the customer and the merchant kept the funds). Independent of
+      # `outcome` — a case the merchant won can still carry a platform refund. `null`
+      # while the case is open, and on older closed cases that predate this being
+      # recorded.
       sig do
         returns(
-          T::Array[
-            WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::ResolutionEvent
-          ]
+          T.nilable(
+            WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Refund::TaggedSymbol
+          )
         )
       end
-      attr_accessor :resolution_events
+      attr_accessor :refund
 
-      # The current status of the resolution case, indicating which party needs to
-      # respond or if the case is closed.
-      sig { returns(WhopSDK::ResolutionCenterCaseStatus::TaggedSymbol) }
+      # When the next response is due, as an ISO 8601 timestamp.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :response_due_at
+
+      # Who the case is waiting on. `awaiting_merchant` and `awaiting_customer` name the
+      # side that owes a response, `under_review` means Whop is deciding, and `closed`
+      # means it is settled — read `outcome` for how.
+      sig do
+        returns(
+          WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Status::TaggedSymbol
+        )
+      end
       attr_accessor :status
 
-      # The datetime the resolution was last updated.
-      sig { returns(Time) }
+      # When the case was last changed, as an ISO 8601 timestamp.
+      sig { returns(String) }
       attr_accessor :updated_at
 
-      # The customer (buyer) who filed this resolution case.
-      sig do
-        returns(WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::User)
-      end
-      attr_reader :user
-
-      sig do
-        params(
-          user:
-            WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::User::OrHash
-        ).void
-      end
-      attr_writer :user
-
-      # A resolution center case is a dispute or support case between a user and a
-      # company, tracking the issue, status, and outcome.
       sig do
         params(
           id: String,
-          company:
+          account:
             T.nilable(
-              WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Company::OrHash
+              WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Account::OrHash
             ),
-          created_at: Time,
+          amount: Float,
+          available_actions:
+            T::Array[
+              WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::AvailableAction::OrSymbol
+            ],
+          buyer:
+            WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Buyer::OrHash,
+          created_at: String,
+          currency: T.nilable(String),
           customer_appealed: T::Boolean,
-          customer_response_actions:
-            T::Array[WhopSDK::ResolutionCenterCaseCustomerResponse::OrSymbol],
-          due_date: T.nilable(Time),
-          issue: WhopSDK::ResolutionCenterCaseIssueType::OrSymbol,
-          member:
+          escalated: T::Boolean,
+          outcome:
             T.nilable(
-              WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Member::OrHash
+              WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Outcome::OrSymbol
             ),
-          merchant_appealed: T::Boolean,
-          merchant_response_actions:
-            T::Array[WhopSDK::ResolutionCenterCaseMerchantResponse::OrSymbol],
           payment:
             WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Payment::OrHash,
-          platform_response_actions:
-            T::Array[WhopSDK::ResolutionCenterCasePlatformResponse::OrSymbol],
-          resolution_events:
-            T::Array[
-              WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::ResolutionEvent::OrHash
-            ],
-          status: WhopSDK::ResolutionCenterCaseStatus::OrSymbol,
-          updated_at: Time,
-          user:
-            WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::User::OrHash
+          plan_id: T.nilable(String),
+          product_id: T.nilable(String),
+          reason:
+            WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Reason::OrSymbol,
+          refund:
+            T.nilable(
+              WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Refund::OrSymbol
+            ),
+          response_due_at: T.nilable(String),
+          status:
+            WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Status::OrSymbol,
+          updated_at: String
         ).returns(T.attached_class)
       end
       def self.new(
-        # The unique identifier for the resolution.
+        # Resolution center case ID, prefixed `reso_`.
         id:,
-        # The company involved in this resolution case. Null if the company no longer
-        # exists.
-        company:,
-        # The datetime the resolution was created.
+        # The account the case was filed against.
+        account:,
+        # The amount in question, in whole units of `currency`.
+        amount:,
+        available_actions:,
+        # The customer who opened the case.
+        buyer:,
+        # When the case was opened, as an ISO 8601 timestamp.
         created_at:,
-        # Whether the customer has filed an appeal after the initial resolution decision.
+        # Three-letter ISO currency code of the amount.
+        currency:,
+        # Whether the customer has appealed a decision on this case.
         customer_appealed:,
-        # The list of actions currently available to the customer.
-        customer_response_actions:,
-        # The deadline by which the next response is required. Null if no deadline is
-        # currently active. As a Unix timestamp.
-        due_date:,
-        # The category of the dispute.
-        issue:,
-        # The membership record associated with the disputed payment. Null if the
-        # membership no longer exists.
-        member:,
-        # Whether the merchant has filed an appeal after the initial resolution decision.
-        merchant_appealed:,
-        # The list of actions currently available to the merchant.
-        merchant_response_actions:,
-        # The payment record that is the subject of this resolution case.
+        # Whether Whop is involved — either reviewing the case, or waiting on the side
+        # named by `status` for something it asked for while reviewing.
+        escalated:,
+        # Who prevailed on the claim. `null` until the case closes. Read `refund` for
+        # whether any money actually moved.
+        outcome:,
+        # The payment the case was opened against.
         payment:,
-        # The list of actions currently available to the Whop platform for moderating this
-        # resolution.
-        platform_response_actions:,
-        # The most recent 50 messages, actions, and status changes that have occurred
-        # during this resolution case.
-        resolution_events:,
-        # The current status of the resolution case, indicating which party needs to
-        # respond or if the case is closed.
+        # The plan the payment was made on, prefixed `plan_`.
+        plan_id:,
+        # The product the payment was for, prefixed `prod_`.
+        product_id:,
+        # What the customer says went wrong. Shares the `/disputes` vocabulary, so a case
+        # that later becomes a chargeback reports the same complaint.
+        reason:,
+        # Whether money moved and off whose balance: `none`, `merchant`, or `platform`
+        # (Whop refunded the customer and the merchant kept the funds). Independent of
+        # `outcome` — a case the merchant won can still carry a platform refund. `null`
+        # while the case is open, and on older closed cases that predate this being
+        # recorded.
+        refund:,
+        # When the next response is due, as an ISO 8601 timestamp.
+        response_due_at:,
+        # Who the case is waiting on. `awaiting_merchant` and `awaiting_customer` name the
+        # side that owes a response, `under_review` means Whop is deciding, and `closed`
+        # means it is settled — read `outcome` for how.
         status:,
-        # The datetime the resolution was last updated.
-        updated_at:,
-        # The customer (buyer) who filed this resolution case.
-        user:
+        # When the case was last changed, as an ISO 8601 timestamp.
+        updated_at:
       )
       end
 
@@ -233,70 +243,67 @@ module WhopSDK
         override.returns(
           {
             id: String,
-            company:
+            account:
               T.nilable(
-                WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Company
+                WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Account
               ),
-            created_at: Time,
+            amount: Float,
+            available_actions:
+              T::Array[
+                WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::AvailableAction::TaggedSymbol
+              ],
+            buyer: WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Buyer,
+            created_at: String,
+            currency: T.nilable(String),
             customer_appealed: T::Boolean,
-            customer_response_actions:
-              T::Array[
-                WhopSDK::ResolutionCenterCaseCustomerResponse::TaggedSymbol
-              ],
-            due_date: T.nilable(Time),
-            issue: WhopSDK::ResolutionCenterCaseIssueType::TaggedSymbol,
-            member:
+            escalated: T::Boolean,
+            outcome:
               T.nilable(
-                WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Member
+                WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Outcome::TaggedSymbol
               ),
-            merchant_appealed: T::Boolean,
-            merchant_response_actions:
-              T::Array[
-                WhopSDK::ResolutionCenterCaseMerchantResponse::TaggedSymbol
-              ],
             payment:
               WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Payment,
-            platform_response_actions:
-              T::Array[
-                WhopSDK::ResolutionCenterCasePlatformResponse::TaggedSymbol
-              ],
-            resolution_events:
-              T::Array[
-                WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::ResolutionEvent
-              ],
-            status: WhopSDK::ResolutionCenterCaseStatus::TaggedSymbol,
-            updated_at: Time,
-            user: WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::User
+            plan_id: T.nilable(String),
+            product_id: T.nilable(String),
+            reason:
+              WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Reason::TaggedSymbol,
+            refund:
+              T.nilable(
+                WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Refund::TaggedSymbol
+              ),
+            response_due_at: T.nilable(String),
+            status:
+              WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Status::TaggedSymbol,
+            updated_at: String
           }
         )
       end
       def to_hash
       end
 
-      class Company < WhopSDK::Internal::Type::BaseModel
+      class Account < WhopSDK::Internal::Type::BaseModel
         OrHash =
           T.type_alias do
             T.any(
-              WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Company,
+              WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Account,
               WhopSDK::Internal::AnyHash
             )
           end
 
-        # The unique identifier for the company.
+        # Account ID, prefixed `biz_`.
         sig { returns(String) }
         attr_accessor :id
 
-        # The display name of the company shown to customers.
+        # Account display name.
         sig { returns(String) }
         attr_accessor :title
 
-        # The company involved in this resolution case. Null if the company no longer
-        # exists.
+        # The account the case was filed against.
         sig { params(id: String, title: String).returns(T.attached_class) }
         def self.new(
-          # The unique identifier for the company.
+          # Account ID, prefixed `biz_`.
           id:,
-          # The display name of the company shown to customers.
+          # Account display name.
           title:
         )
         end
@@ -306,30 +313,171 @@ module WhopSDK
         end
       end
 
-      class Member < WhopSDK::Internal::Type::BaseModel
+      # What you can do to this case right now, named for the endpoint that does it.
+      # Resolved for the calling credential, so a merchant and a customer reading the
+      # same case see their own options.
+      module AvailableAction
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias do
+            T.all(
+              Symbol,
+              WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::AvailableAction
+            )
+          end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        ACCEPT =
+          T.let(
+            :accept,
+            WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::AvailableAction::TaggedSymbol
+          )
+        DENY =
+          T.let(
+            :deny,
+            WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::AvailableAction::TaggedSymbol
+          )
+        REQUEST_INFO =
+          T.let(
+            :request_info,
+            WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::AvailableAction::TaggedSymbol
+          )
+        REPLY =
+          T.let(
+            :reply,
+            WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::AvailableAction::TaggedSymbol
+          )
+        APPEAL =
+          T.let(
+            :appeal,
+            WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::AvailableAction::TaggedSymbol
+          )
+        WITHDRAW =
+          T.let(
+            :withdraw,
+            WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::AvailableAction::TaggedSymbol
+          )
+
+        sig do
+          override.returns(
+            T::Array[
+              WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::AvailableAction::TaggedSymbol
+            ]
+          )
+        end
+        def self.values
+        end
+      end
+
+      class Buyer < WhopSDK::Internal::Type::BaseModel
         OrHash =
           T.type_alias do
             T.any(
-              WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Member,
+              WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Buyer,
               WhopSDK::Internal::AnyHash
             )
           end
 
-        # The unique identifier for the extra public member.
-        sig { returns(String) }
-        attr_accessor :id
+        # The customer's email address. Requires the `member:email:read` scope; `null`
+        # without it.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :email
 
-        # The membership record associated with the disputed payment. Null if the
-        # membership no longer exists.
-        sig { params(id: String).returns(T.attached_class) }
+        # The customer's member row on the account, prefixed `mem_`.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :member_id
+
+        # The customer's display name.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :name
+
+        # The customer's user ID, prefixed `user_`.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :user_id
+
+        # The customer's Whop username.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :username
+
+        # The customer who opened the case.
+        sig do
+          params(
+            email: T.nilable(String),
+            member_id: T.nilable(String),
+            name: T.nilable(String),
+            user_id: T.nilable(String),
+            username: T.nilable(String)
+          ).returns(T.attached_class)
+        end
         def self.new(
-          # The unique identifier for the extra public member.
-          id:
+          # The customer's email address. Requires the `member:email:read` scope; `null`
+          # without it.
+          email:,
+          # The customer's member row on the account, prefixed `mem_`.
+          member_id:,
+          # The customer's display name.
+          name:,
+          # The customer's user ID, prefixed `user_`.
+          user_id:,
+          # The customer's Whop username.
+          username:
         )
         end
 
-        sig { override.returns({ id: String }) }
+        sig do
+          override.returns(
+            {
+              email: T.nilable(String),
+              member_id: T.nilable(String),
+              name: T.nilable(String),
+              user_id: T.nilable(String),
+              username: T.nilable(String)
+            }
+          )
+        end
         def to_hash
+        end
+      end
+
+      # Who prevailed on the claim. `null` until the case closes. Read `refund` for
+      # whether any money actually moved.
+      module Outcome
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias do
+            T.all(
+              Symbol,
+              WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Outcome
+            )
+          end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        CUSTOMER_WON =
+          T.let(
+            :customer_won,
+            WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Outcome::TaggedSymbol
+          )
+        MERCHANT_WON =
+          T.let(
+            :merchant_won,
+            WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Outcome::TaggedSymbol
+          )
+        WITHDRAWN =
+          T.let(
+            :withdrawn,
+            WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Outcome::TaggedSymbol
+          )
+
+        sig do
+          override.returns(
+            T::Array[
+              WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Outcome::TaggedSymbol
+            ]
+          )
+        end
+        def self.values
         end
       end
 
@@ -342,60 +490,47 @@ module WhopSDK
             )
           end
 
-        # The unique identifier for the payment.
+        # Payment ID, prefixed `pay_`.
         sig { returns(String) }
         attr_accessor :id
 
-        # The datetime the payment was created.
-        sig { returns(Time) }
+        # Card brand, when the customer paid by card.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :card_brand
+
+        # Last four digits of the card, when the customer paid by card.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :card_last4
+
+        # When the payment was made, as an ISO 8601 timestamp.
+        sig { returns(String) }
         attr_accessor :created_at
 
-        # The available currencies on the platform
-        sig { returns(T.nilable(WhopSDK::Currency::TaggedSymbol)) }
-        attr_accessor :currency
+        # How the customer paid, such as `card` or `paypal`.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :payment_method_type
 
-        # The time at which this payment was successfully collected. Null if the payment
-        # has not yet succeeded. As a Unix timestamp.
-        sig { returns(T.nilable(Time)) }
-        attr_accessor :paid_at
-
-        # The payment amount before taxes and discounts are applied. In the currency
-        # specified by the currency field.
-        sig { returns(T.nilable(Float)) }
-        attr_accessor :subtotal
-
-        # The total amount charged to the customer for this payment, including taxes and
-        # after any discounts. In the currency specified by the currency field.
-        sig { returns(Float) }
-        attr_accessor :total
-
-        # The payment record that is the subject of this resolution case.
+        # The payment the case was opened against.
         sig do
           params(
             id: String,
-            created_at: Time,
-            currency: T.nilable(WhopSDK::Currency::OrSymbol),
-            paid_at: T.nilable(Time),
-            subtotal: T.nilable(Float),
-            total: Float
+            card_brand: T.nilable(String),
+            card_last4: T.nilable(String),
+            created_at: String,
+            payment_method_type: T.nilable(String)
           ).returns(T.attached_class)
         end
         def self.new(
-          # The unique identifier for the payment.
+          # Payment ID, prefixed `pay_`.
           id:,
-          # The datetime the payment was created.
+          # Card brand, when the customer paid by card.
+          card_brand:,
+          # Last four digits of the card, when the customer paid by card.
+          card_last4:,
+          # When the payment was made, as an ISO 8601 timestamp.
           created_at:,
-          # The available currencies on the platform
-          currency:,
-          # The time at which this payment was successfully collected. Null if the payment
-          # has not yet succeeded. As a Unix timestamp.
-          paid_at:,
-          # The payment amount before taxes and discounts are applied. In the currency
-          # specified by the currency field.
-          subtotal:,
-          # The total amount charged to the customer for this payment, including taxes and
-          # after any discounts. In the currency specified by the currency field.
-          total:
+          # How the customer paid, such as `card` or `paypal`.
+          payment_method_type:
         )
         end
 
@@ -403,11 +538,10 @@ module WhopSDK
           override.returns(
             {
               id: String,
-              created_at: Time,
-              currency: T.nilable(WhopSDK::Currency::TaggedSymbol),
-              paid_at: T.nilable(Time),
-              subtotal: T.nilable(Float),
-              total: Float
+              card_brand: T.nilable(String),
+              card_last4: T.nilable(String),
+              created_at: String,
+              payment_method_type: T.nilable(String)
             }
           )
         end
@@ -415,257 +549,145 @@ module WhopSDK
         end
       end
 
-      class ResolutionEvent < WhopSDK::Internal::Type::BaseModel
-        OrHash =
+      # What the customer says went wrong. Shares the `/disputes` vocabulary, so a case
+      # that later becomes a chargeback reports the same complaint.
+      module Reason
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
           T.type_alias do
-            T.any(
-              WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::ResolutionEvent,
-              WhopSDK::Internal::AnyHash
+            T.all(
+              Symbol,
+              WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Reason
             )
           end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-        # The unique identifier for the resolution event.
-        sig { returns(String) }
-        attr_accessor :id
-
-        # The type of action recorded in this event.
-        sig do
-          returns(
-            WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::ResolutionEvent::Action::TaggedSymbol
+        FRAUDULENT =
+          T.let(
+            :fraudulent,
+            WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Reason::TaggedSymbol
           )
-        end
-        attr_accessor :action
-
-        # The datetime the resolution event was created.
-        sig { returns(Time) }
-        attr_accessor :created_at
-
-        # The message body or additional context provided with this resolution event. Null
-        # if no details were included.
-        sig { returns(T.nilable(String)) }
-        attr_accessor :details
-
-        # The party who performed this action.
-        sig do
-          returns(
-            WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::ResolutionEvent::ReporterType::TaggedSymbol
+        PRODUCT_NOT_RECEIVED =
+          T.let(
+            :product_not_received,
+            WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Reason::TaggedSymbol
           )
-        end
-        attr_accessor :reporter_type
-
-        # A resolution event is a message or action within a resolution case, such as a
-        # response, escalation, or status change.
-        sig do
-          params(
-            id: String,
-            action:
-              WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::ResolutionEvent::Action::OrSymbol,
-            created_at: Time,
-            details: T.nilable(String),
-            reporter_type:
-              WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::ResolutionEvent::ReporterType::OrSymbol
-          ).returns(T.attached_class)
-        end
-        def self.new(
-          # The unique identifier for the resolution event.
-          id:,
-          # The type of action recorded in this event.
-          action:,
-          # The datetime the resolution event was created.
-          created_at:,
-          # The message body or additional context provided with this resolution event. Null
-          # if no details were included.
-          details:,
-          # The party who performed this action.
-          reporter_type:
-        )
-        end
+        NOT_AS_DESCRIBED =
+          T.let(
+            :not_as_described,
+            WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Reason::TaggedSymbol
+          )
+        PRODUCT_UNACCEPTABLE =
+          T.let(
+            :product_unacceptable,
+            WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Reason::TaggedSymbol
+          )
+        SUBSCRIPTION_CANCELED =
+          T.let(
+            :subscription_canceled,
+            WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Reason::TaggedSymbol
+          )
 
         sig do
           override.returns(
-            {
-              id: String,
-              action:
-                WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::ResolutionEvent::Action::TaggedSymbol,
-              created_at: Time,
-              details: T.nilable(String),
-              reporter_type:
-                WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::ResolutionEvent::ReporterType::TaggedSymbol
-            }
+            T::Array[
+              WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Reason::TaggedSymbol
+            ]
           )
         end
-        def to_hash
-        end
-
-        # The type of action recorded in this event.
-        module Action
-          extend WhopSDK::Internal::Type::Enum
-
-          TaggedSymbol =
-            T.type_alias do
-              T.all(
-                Symbol,
-                WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::ResolutionEvent::Action
-              )
-            end
-          OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-          CREATED =
-            T.let(
-              :created,
-              WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::ResolutionEvent::Action::TaggedSymbol
-            )
-          RESPONDED =
-            T.let(
-              :responded,
-              WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::ResolutionEvent::Action::TaggedSymbol
-            )
-          ACCEPTED =
-            T.let(
-              :accepted,
-              WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::ResolutionEvent::Action::TaggedSymbol
-            )
-          DENIED =
-            T.let(
-              :denied,
-              WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::ResolutionEvent::Action::TaggedSymbol
-            )
-          APPEALED =
-            T.let(
-              :appealed,
-              WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::ResolutionEvent::Action::TaggedSymbol
-            )
-          WITHDREW =
-            T.let(
-              :withdrew,
-              WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::ResolutionEvent::Action::TaggedSymbol
-            )
-          REQUESTED_MORE_INFO =
-            T.let(
-              :requested_more_info,
-              WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::ResolutionEvent::Action::TaggedSymbol
-            )
-          ESCALATED =
-            T.let(
-              :escalated,
-              WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::ResolutionEvent::Action::TaggedSymbol
-            )
-          DISPUTE_OPENED =
-            T.let(
-              :dispute_opened,
-              WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::ResolutionEvent::Action::TaggedSymbol
-            )
-          DISPUTE_CUSTOMER_WON =
-            T.let(
-              :dispute_customer_won,
-              WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::ResolutionEvent::Action::TaggedSymbol
-            )
-          DISPUTE_MERCHANT_WON =
-            T.let(
-              :dispute_merchant_won,
-              WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::ResolutionEvent::Action::TaggedSymbol
-            )
-
-          sig do
-            override.returns(
-              T::Array[
-                WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::ResolutionEvent::Action::TaggedSymbol
-              ]
-            )
-          end
-          def self.values
-          end
-        end
-
-        # The party who performed this action.
-        module ReporterType
-          extend WhopSDK::Internal::Type::Enum
-
-          TaggedSymbol =
-            T.type_alias do
-              T.all(
-                Symbol,
-                WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::ResolutionEvent::ReporterType
-              )
-            end
-          OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-          MERCHANT =
-            T.let(
-              :merchant,
-              WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::ResolutionEvent::ReporterType::TaggedSymbol
-            )
-          CUSTOMER =
-            T.let(
-              :customer,
-              WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::ResolutionEvent::ReporterType::TaggedSymbol
-            )
-          PLATFORM =
-            T.let(
-              :platform,
-              WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::ResolutionEvent::ReporterType::TaggedSymbol
-            )
-          SYSTEM =
-            T.let(
-              :system,
-              WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::ResolutionEvent::ReporterType::TaggedSymbol
-            )
-
-          sig do
-            override.returns(
-              T::Array[
-                WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::ResolutionEvent::ReporterType::TaggedSymbol
-              ]
-            )
-          end
-          def self.values
-          end
+        def self.values
         end
       end
 
-      class User < WhopSDK::Internal::Type::BaseModel
-        OrHash =
+      # Whether money moved and off whose balance: `none`, `merchant`, or `platform`
+      # (Whop refunded the customer and the merchant kept the funds). Independent of
+      # `outcome` — a case the merchant won can still carry a platform refund. `null`
+      # while the case is open, and on older closed cases that predate this being
+      # recorded.
+      module Refund
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
           T.type_alias do
-            T.any(
-              WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::User,
-              WhopSDK::Internal::AnyHash
+            T.all(
+              Symbol,
+              WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Refund
             )
           end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-        # The unique identifier for the user.
-        sig { returns(String) }
-        attr_accessor :id
-
-        # The user's display name shown on their public profile.
-        sig { returns(T.nilable(String)) }
-        attr_accessor :name
-
-        # The user's unique username shown on their public profile.
-        sig { returns(String) }
-        attr_accessor :username
-
-        # The customer (buyer) who filed this resolution case.
-        sig do
-          params(id: String, name: T.nilable(String), username: String).returns(
-            T.attached_class
+        NONE =
+          T.let(
+            :none,
+            WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Refund::TaggedSymbol
           )
-        end
-        def self.new(
-          # The unique identifier for the user.
-          id:,
-          # The user's display name shown on their public profile.
-          name:,
-          # The user's unique username shown on their public profile.
-          username:
-        )
-        end
+        MERCHANT =
+          T.let(
+            :merchant,
+            WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Refund::TaggedSymbol
+          )
+        PLATFORM =
+          T.let(
+            :platform,
+            WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Refund::TaggedSymbol
+          )
 
         sig do
           override.returns(
-            { id: String, name: T.nilable(String), username: String }
+            T::Array[
+              WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Refund::TaggedSymbol
+            ]
           )
         end
-        def to_hash
+        def self.values
+        end
+      end
+
+      # Who the case is waiting on. `awaiting_merchant` and `awaiting_customer` name the
+      # side that owes a response, `under_review` means Whop is deciding, and `closed`
+      # means it is settled — read `outcome` for how.
+      module Status
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias do
+            T.all(
+              Symbol,
+              WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Status
+            )
+          end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        AWAITING_MERCHANT =
+          T.let(
+            :awaiting_merchant,
+            WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Status::TaggedSymbol
+          )
+        AWAITING_CUSTOMER =
+          T.let(
+            :awaiting_customer,
+            WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Status::TaggedSymbol
+          )
+        UNDER_REVIEW =
+          T.let(
+            :under_review,
+            WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Status::TaggedSymbol
+          )
+        CLOSED =
+          T.let(
+            :closed,
+            WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Status::TaggedSymbol
+          )
+
+        sig do
+          override.returns(
+            T::Array[
+              WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Status::TaggedSymbol
+            ]
+          )
+        end
+        def self.values
         end
       end
     end

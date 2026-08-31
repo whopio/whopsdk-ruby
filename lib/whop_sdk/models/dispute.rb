@@ -5,561 +5,1006 @@ module WhopSDK
     # @see WhopSDK::Resources::Disputes#retrieve
     class Dispute < WhopSDK::Internal::Type::BaseModel
       # @!attribute id
-      #   The unique identifier for the dispute.
+      #   Dispute ID, prefixed `dspt_`.
       #
       #   @return [String]
       required :id, String
 
-      # @!attribute access_activity_log
-      #   A log of IP-based access activity for the customer on Whop, submitted as
-      #   evidence in the dispute.
+      # @!attribute account_id
+      #   The account the dispute was filed against, prefixed `biz_`.
       #
       #   @return [String, nil]
-      required :access_activity_log, String, nil?: true
+      required :account_id, String, nil?: true
 
       # @!attribute amount
-      #   The disputed amount in the specified currency, formatted as a decimal.
+      #   The disputed amount, in whole units of `currency`.
       #
       #   @return [Float]
       required :amount, Float
 
-      # @!attribute billing_address
-      #   The customer's billing address from their payment details, submitted as evidence
-      #   in the dispute.
+      # @!attribute buyer
+      #   The customer who filed the dispute.
       #
-      #   @return [String, nil]
-      required :billing_address, String, nil?: true
-
-      # @!attribute cancellation_policy_attachment
-      #   The cancellation policy document uploaded as dispute evidence. Null if no
-      #   cancellation policy has been provided.
-      #
-      #   @return [WhopSDK::Models::Dispute::CancellationPolicyAttachment, nil]
-      required :cancellation_policy_attachment,
-               -> { WhopSDK::Dispute::CancellationPolicyAttachment },
-               nil?: true
-
-      # @!attribute cancellation_policy_disclosure
-      #   A text disclosure describing the company's cancellation policy, submitted as
-      #   dispute evidence.
-      #
-      #   @return [String, nil]
-      required :cancellation_policy_disclosure, String, nil?: true
-
-      # @!attribute company
-      #   The company that the dispute was filed against.
-      #
-      #   @return [WhopSDK::Models::Dispute::Company, nil]
-      required :company, -> { WhopSDK::Dispute::Company }, nil?: true
+      #   @return [WhopSDK::Models::Dispute::Buyer, nil]
+      required :buyer, -> { WhopSDK::Dispute::Buyer }, nil?: true
 
       # @!attribute created_at
-      #   The datetime the dispute was created.
+      #   When the dispute was opened, as an ISO 8601 timestamp.
       #
-      #   @return [Time, nil]
-      required :created_at, Time, nil?: true
+      #   @return [String]
+      required :created_at, String
 
       # @!attribute currency
-      #   The three-letter ISO currency code for the disputed amount.
+      #   Three-letter ISO currency code of the disputed amount.
       #
-      #   @return [Symbol, WhopSDK::Models::Currency]
-      required :currency, enum: -> { WhopSDK::Currency }
+      #   @return [String]
+      required :currency, String
 
-      # @!attribute customer_communication_attachment
-      #   Evidence of customer communication or product usage, uploaded as a dispute
-      #   attachment. Null if not provided.
+      # @!attribute evidence
+      #   The evidence packet sent to the processor to contest the dispute.
       #
-      #   @return [WhopSDK::Models::Dispute::CustomerCommunicationAttachment, nil]
-      required :customer_communication_attachment,
-               -> { WhopSDK::Dispute::CustomerCommunicationAttachment },
+      #   @return [WhopSDK::Models::Dispute::Evidence]
+      required :evidence, -> { WhopSDK::Dispute::Evidence }
+
+      # @!attribute evidence_due_at
+      #   The deadline to submit evidence, as an ISO 8601 timestamp. Whop reserves the
+      #   last 24 hours before the processor's own cutoff to forward the submission.
+      #
+      #   @return [String, nil]
+      required :evidence_due_at, String, nil?: true
+
+      # @!attribute evidence_editable
+      #   Whether `evidence` can still be changed and submitted.
+      #
+      #   @return [Boolean]
+      required :evidence_editable, WhopSDK::Internal::Type::Boolean
+
+      # @!attribute evidence_locked_reason
+      #   Why evidence can no longer be edited. `null` while `evidence_editable` is true.
+      #
+      #   @return [Symbol, WhopSDK::Models::Dispute::EvidenceLockedReason, nil]
+      required :evidence_locked_reason, enum: -> { WhopSDK::Dispute::EvidenceLockedReason }, nil?: true
+
+      # @!attribute evidence_submitted_at
+      #   When the evidence was submitted to the processor, as an ISO 8601 timestamp.
+      #
+      #   @return [String, nil]
+      required :evidence_submitted_at, String, nil?: true
+
+      # @!attribute generated_response_attachment
+      #   The AI-generated representment document filed with the processor on the seller's
+      #   behalf, once ready. Null until generation completes, and for disputes not using
+      #   Whop Dispute Fighter.
+      #
+      #   @return [WhopSDK::Models::Dispute::GeneratedResponseAttachment, nil]
+      required :generated_response_attachment,
+               -> {
+                 WhopSDK::Dispute::GeneratedResponseAttachment
+               },
                nil?: true
 
-      # @!attribute customer_email_address
-      #   The customer's email address from their payment details, included in the
-      #   evidence packet sent to the payment processor. Editable before submission.
+      # @!attribute inquiry
+      #   Whether this is a pre-dispute inquiry rather than a formal chargeback. Inquiries
+      #   follow the same lifecycle but move no funds unless one escalates.
       #
-      #   @return [String, nil]
-      required :customer_email_address, String, nil?: true
+      #   @return [Boolean]
+      required :inquiry, WhopSDK::Internal::Type::Boolean
 
-      # @!attribute customer_name
-      #   The customer's full name from their payment details, included in the evidence
-      #   packet sent to the payment processor. Editable before submission.
+      # @!attribute issuer_comments
       #
-      #   @return [String, nil]
-      required :customer_name, String, nil?: true
-
-      # @!attribute editable
-      #   Whether the dispute evidence can still be edited and submitted.
-      #
-      #   @return [Boolean, nil]
-      required :editable, WhopSDK::Internal::Type::Boolean, nil?: true
-
-      # @!attribute needs_response_by
-      #   The deadline by which dispute evidence must be submitted. Null if no response
-      #   deadline is set.
-      #
-      #   @return [Time, nil]
-      required :needs_response_by, Time, nil?: true
-
-      # @!attribute notes
-      #   Additional freeform notes submitted by the company as part of the dispute
-      #   evidence.
-      #
-      #   @return [String, nil]
-      required :notes, String, nil?: true
+      #   @return [Array<WhopSDK::Models::Dispute::IssuerComment>]
+      required :issuer_comments, -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::Dispute::IssuerComment] }
 
       # @!attribute payment
-      #   The original payment that was disputed.
+      #   The payment being disputed.
       #
       #   @return [WhopSDK::Models::Dispute::Payment, nil]
       required :payment, -> { WhopSDK::Dispute::Payment }, nil?: true
 
-      # @!attribute plan
-      #   The plan associated with the disputed payment. Null if the dispute is not linked
-      #   to a specific plan.
-      #
-      #   @return [WhopSDK::Models::Dispute::Plan, nil]
-      required :plan, -> { WhopSDK::Dispute::Plan }, nil?: true
-
-      # @!attribute product
-      #   The product associated with the disputed payment. Null if the dispute is not
-      #   linked to a specific product.
-      #
-      #   @return [WhopSDK::Models::Dispute::Product, nil]
-      required :product, -> { WhopSDK::Dispute::Product }, nil?: true
-
-      # @!attribute product_description
-      #   A description of the product or service provided, submitted as dispute evidence.
+      # @!attribute plan_id
+      #   The plan the disputed payment was made on, prefixed `plan_`.
       #
       #   @return [String, nil]
-      required :product_description, String, nil?: true
+      required :plan_id, String, nil?: true
+
+      # @!attribute product_id
+      #   The product the disputed payment was for, prefixed `prod_`.
+      #
+      #   @return [String, nil]
+      required :product_id, String, nil?: true
+
+      # @!attribute rapid_dispute_resolution
+      #   Whether Visa Rapid Dispute Resolution settled this automatically. These refund
+      #   the customer without an evidence round.
+      #
+      #   @return [Boolean]
+      required :rapid_dispute_resolution, WhopSDK::Internal::Type::Boolean
 
       # @!attribute reason
-      #   A human-readable reason for the dispute.
+      #   Why the customer says they are disputing, normalized across card networks.
+      #   `other` covers a code Whop has not categorized yet — read `reason_code` for the
+      #   raw value.
       #
-      #   @return [String, nil]
-      required :reason, String, nil?: true
+      #   @return [Symbol, WhopSDK::Models::Dispute::Reason]
+      required :reason, enum: -> { WhopSDK::Dispute::Reason }
 
       # @!attribute reason_code
-      #   The card network reason code for the dispute. Null when the payment processor
-      #   did not provide one.
+      #   The raw card-network or processor reason code, such as `10.4`.
       #
       #   @return [String, nil]
       required :reason_code, String, nil?: true
 
-      # @!attribute refund_policy_attachment
-      #   The refund policy document uploaded as dispute evidence. Null if no refund
-      #   policy has been provided.
-      #
-      #   @return [WhopSDK::Models::Dispute::RefundPolicyAttachment, nil]
-      required :refund_policy_attachment, -> { WhopSDK::Dispute::RefundPolicyAttachment }, nil?: true
-
-      # @!attribute refund_policy_disclosure
-      #   A text disclosure describing the company's refund policy, submitted as dispute
-      #   evidence.
-      #
-      #   @return [String, nil]
-      required :refund_policy_disclosure, String, nil?: true
-
-      # @!attribute refund_refusal_explanation
-      #   An explanation from the company for why a refund was refused, submitted as
-      #   dispute evidence.
-      #
-      #   @return [String, nil]
-      required :refund_refusal_explanation, String, nil?: true
-
-      # @!attribute service_date
-      #   The date when the product or service was delivered to the customer, submitted as
-      #   dispute evidence.
-      #
-      #   @return [String, nil]
-      required :service_date, String, nil?: true
-
       # @!attribute status
-      #   The current status of the dispute lifecycle, such as needs_response,
-      #   under_review, won, or lost.
+      #   Where the dispute stands. `needs_response` is awaiting evidence, `under_review`
+      #   is with the processor, `won` returned the funds to the seller, `lost` returned
+      #   them to the customer, and `closed` ended without a ruling. A dispute past its
+      #   `evidence_due_at` reports `under_review` — the window to respond has closed.
       #
-      #   @return [Symbol, WhopSDK::Models::DisputeStatuses]
-      required :status, enum: -> { WhopSDK::DisputeStatuses }
+      #   @return [Symbol, WhopSDK::Models::Dispute::Status]
+      required :status, enum: -> { WhopSDK::Dispute::Status }
 
-      # @!attribute uncategorized_attachment
-      #   An additional attachment that does not fit into the standard evidence
-      #   categories. Null if not provided.
+      # @!attribute updated_at
+      #   When the dispute was last changed, as an ISO 8601 timestamp.
       #
-      #   @return [WhopSDK::Models::Dispute::UncategorizedAttachment, nil]
-      required :uncategorized_attachment, -> { WhopSDK::Dispute::UncategorizedAttachment }, nil?: true
+      #   @return [String]
+      required :updated_at, String
 
-      # @!attribute visa_rdr
-      #   Whether the dispute was automatically resolved through Visa Rapid Dispute
-      #   Resolution (RDR).
-      #
-      #   @return [Boolean]
-      required :visa_rdr, WhopSDK::Internal::Type::Boolean
-
-      # @!method initialize(id:, access_activity_log:, amount:, billing_address:, cancellation_policy_attachment:, cancellation_policy_disclosure:, company:, created_at:, currency:, customer_communication_attachment:, customer_email_address:, customer_name:, editable:, needs_response_by:, notes:, payment:, plan:, product:, product_description:, reason:, reason_code:, refund_policy_attachment:, refund_policy_disclosure:, refund_refusal_explanation:, service_date:, status:, uncategorized_attachment:, visa_rdr:)
+      # @!method initialize(id:, account_id:, amount:, buyer:, created_at:, currency:, evidence:, evidence_due_at:, evidence_editable:, evidence_locked_reason:, evidence_submitted_at:, generated_response_attachment:, inquiry:, issuer_comments:, payment:, plan_id:, product_id:, rapid_dispute_resolution:, reason:, reason_code:, status:, updated_at:)
       #   Some parameter documentations has been truncated, see {WhopSDK::Models::Dispute}
       #   for more details.
       #
-      #   A dispute is a chargeback or payment challenge filed against a company,
-      #   including evidence and response status.
+      #   @param id [String] Dispute ID, prefixed `dspt_`.
       #
-      #   @param id [String] The unique identifier for the dispute.
+      #   @param account_id [String, nil] The account the dispute was filed against, prefixed `biz_`.
       #
-      #   @param access_activity_log [String, nil] A log of IP-based access activity for the customer on Whop, submitted as evidenc
+      #   @param amount [Float] The disputed amount, in whole units of `currency`.
       #
-      #   @param amount [Float] The disputed amount in the specified currency, formatted as a decimal.
+      #   @param buyer [WhopSDK::Models::Dispute::Buyer, nil] The customer who filed the dispute.
       #
-      #   @param billing_address [String, nil] The customer's billing address from their payment details, submitted as evidence
+      #   @param created_at [String] When the dispute was opened, as an ISO 8601 timestamp.
       #
-      #   @param cancellation_policy_attachment [WhopSDK::Models::Dispute::CancellationPolicyAttachment, nil] The cancellation policy document uploaded as dispute evidence. Null if no cancel
+      #   @param currency [String] Three-letter ISO currency code of the disputed amount.
       #
-      #   @param cancellation_policy_disclosure [String, nil] A text disclosure describing the company's cancellation policy, submitted as dis
+      #   @param evidence [WhopSDK::Models::Dispute::Evidence] The evidence packet sent to the processor to contest the dispute.
       #
-      #   @param company [WhopSDK::Models::Dispute::Company, nil] The company that the dispute was filed against.
+      #   @param evidence_due_at [String, nil] The deadline to submit evidence, as an ISO 8601 timestamp. Whop reserves the las
       #
-      #   @param created_at [Time, nil] The datetime the dispute was created.
+      #   @param evidence_editable [Boolean] Whether `evidence` can still be changed and submitted.
       #
-      #   @param currency [Symbol, WhopSDK::Models::Currency] The three-letter ISO currency code for the disputed amount.
+      #   @param evidence_locked_reason [Symbol, WhopSDK::Models::Dispute::EvidenceLockedReason, nil] Why evidence can no longer be edited. `null` while `evidence_editable` is true.
       #
-      #   @param customer_communication_attachment [WhopSDK::Models::Dispute::CustomerCommunicationAttachment, nil] Evidence of customer communication or product usage, uploaded as a dispute attac
+      #   @param evidence_submitted_at [String, nil] When the evidence was submitted to the processor, as an ISO 8601 timestamp.
       #
-      #   @param customer_email_address [String, nil] The customer's email address from their payment details, included in the evidenc
+      #   @param generated_response_attachment [WhopSDK::Models::Dispute::GeneratedResponseAttachment, nil] The AI-generated representment document filed with the processor on the seller's
       #
-      #   @param customer_name [String, nil] The customer's full name from their payment details, included in the evidence pa
+      #   @param inquiry [Boolean] Whether this is a pre-dispute inquiry rather than a formal chargeback. Inquiries
       #
-      #   @param editable [Boolean, nil] Whether the dispute evidence can still be edited and submitted.
+      #   @param issuer_comments [Array<WhopSDK::Models::Dispute::IssuerComment>]
       #
-      #   @param needs_response_by [Time, nil] The deadline by which dispute evidence must be submitted. Null if no response de
+      #   @param payment [WhopSDK::Models::Dispute::Payment, nil] The payment being disputed.
       #
-      #   @param notes [String, nil] Additional freeform notes submitted by the company as part of the dispute eviden
+      #   @param plan_id [String, nil] The plan the disputed payment was made on, prefixed `plan_`.
       #
-      #   @param payment [WhopSDK::Models::Dispute::Payment, nil] The original payment that was disputed.
+      #   @param product_id [String, nil] The product the disputed payment was for, prefixed `prod_`.
       #
-      #   @param plan [WhopSDK::Models::Dispute::Plan, nil] The plan associated with the disputed payment. Null if the dispute is not linked
+      #   @param rapid_dispute_resolution [Boolean] Whether Visa Rapid Dispute Resolution settled this automatically. These refund t
       #
-      #   @param product [WhopSDK::Models::Dispute::Product, nil] The product associated with the disputed payment. Null if the dispute is not lin
+      #   @param reason [Symbol, WhopSDK::Models::Dispute::Reason] Why the customer says they are disputing, normalized across card networks. `othe
       #
-      #   @param product_description [String, nil] A description of the product or service provided, submitted as dispute evidence.
+      #   @param reason_code [String, nil] The raw card-network or processor reason code, such as `10.4`.
       #
-      #   @param reason [String, nil] A human-readable reason for the dispute.
+      #   @param status [Symbol, WhopSDK::Models::Dispute::Status] Where the dispute stands. `needs_response` is awaiting evidence, `under_review`
       #
-      #   @param reason_code [String, nil] The card network reason code for the dispute. Null when the payment processor di
-      #
-      #   @param refund_policy_attachment [WhopSDK::Models::Dispute::RefundPolicyAttachment, nil] The refund policy document uploaded as dispute evidence. Null if no refund polic
-      #
-      #   @param refund_policy_disclosure [String, nil] A text disclosure describing the company's refund policy, submitted as dispute e
-      #
-      #   @param refund_refusal_explanation [String, nil] An explanation from the company for why a refund was refused, submitted as dispu
-      #
-      #   @param service_date [String, nil] The date when the product or service was delivered to the customer, submitted as
-      #
-      #   @param status [Symbol, WhopSDK::Models::DisputeStatuses] The current status of the dispute lifecycle, such as needs_response, under_revie
-      #
-      #   @param uncategorized_attachment [WhopSDK::Models::Dispute::UncategorizedAttachment, nil] An additional attachment that does not fit into the standard evidence categories
-      #
-      #   @param visa_rdr [Boolean] Whether the dispute was automatically resolved through Visa Rapid Dispute Resolu
+      #   @param updated_at [String] When the dispute was last changed, as an ISO 8601 timestamp.
 
-      # @see WhopSDK::Models::Dispute#cancellation_policy_attachment
-      class CancellationPolicyAttachment < WhopSDK::Internal::Type::BaseModel
-        # @!attribute id
-        #   Represents a unique identifier that is Base64 obfuscated. It is often used to
-        #   refetch an object or as key for a cache. The ID type appears in a JSON response
-        #   as a String; however, it is not intended to be human-readable. When expected as
-        #   an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
-        #   input value will be accepted as an ID.
+      # @see WhopSDK::Models::Dispute#buyer
+      class Buyer < WhopSDK::Internal::Type::BaseModel
+        # @!attribute email
+        #   The customer's email address. Requires the `member:email:read` scope; `null`
+        #   without it.
         #
-        #   @return [String]
-        required :id, String
+        #   @return [String, nil]
+        required :email, String, nil?: true
+
+        # @!attribute member_id
+        #   The customer's member row on the account, prefixed `mem_`.
+        #
+        #   @return [String, nil]
+        required :member_id, String, nil?: true
+
+        # @!attribute name
+        #   The customer's display name.
+        #
+        #   @return [String, nil]
+        required :name, String, nil?: true
+
+        # @!attribute user_id
+        #   The customer's user ID, prefixed `user_`. `null` for a guest checkout.
+        #
+        #   @return [String, nil]
+        required :user_id, String, nil?: true
+
+        # @!attribute username
+        #   The customer's Whop username.
+        #
+        #   @return [String, nil]
+        required :username, String, nil?: true
+
+        # @!method initialize(email:, member_id:, name:, user_id:, username:)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::Dispute::Buyer} for more details.
+        #
+        #   The customer who filed the dispute.
+        #
+        #   @param email [String, nil] The customer's email address. Requires the `member:email:read` scope; `null` wit
+        #
+        #   @param member_id [String, nil] The customer's member row on the account, prefixed `mem_`.
+        #
+        #   @param name [String, nil] The customer's display name.
+        #
+        #   @param user_id [String, nil] The customer's user ID, prefixed `user_`. `null` for a guest checkout.
+        #
+        #   @param username [String, nil] The customer's Whop username.
+      end
+
+      # @see WhopSDK::Models::Dispute#evidence
+      class Evidence < WhopSDK::Internal::Type::BaseModel
+        # @!attribute access_activity_log
+        #   Log of the customer's access to the product, such as sign-in or download
+        #   activity.
+        #
+        #   @return [String, nil]
+        required :access_activity_log, String, nil?: true
+
+        # @!attribute billing_address
+        #   The billing address the customer provided at checkout.
+        #
+        #   @return [String, nil]
+        required :billing_address, String, nil?: true
+
+        # @!attribute cancellation_policy_attachment
+        #   The cancellation policy document. Falls back to Whop's platform policy when the
+        #   seller has not uploaded their own.
+        #
+        #   @return [WhopSDK::Models::Dispute::Evidence::CancellationPolicyAttachment, nil]
+        required :cancellation_policy_attachment,
+                 -> { WhopSDK::Dispute::Evidence::CancellationPolicyAttachment },
+                 nil?: true
+
+        # @!attribute cancellation_policy_disclosure
+        #   How the cancellation policy was shown to the customer before purchase.
+        #
+        #   @return [String, nil]
+        required :cancellation_policy_disclosure, String, nil?: true
+
+        # @!attribute customer_communication_attachment
+        #   Correspondence with the customer, or proof they used the product.
+        #
+        #   @return [WhopSDK::Models::Dispute::Evidence::CustomerCommunicationAttachment, nil]
+        required :customer_communication_attachment,
+                 -> { WhopSDK::Dispute::Evidence::CustomerCommunicationAttachment },
+                 nil?: true
+
+        # @!attribute customer_email_address
+        #   The email address the customer used at checkout.
+        #
+        #   @return [String, nil]
+        required :customer_email_address, String, nil?: true
+
+        # @!attribute customer_name
+        #   The customer's name as given at checkout.
+        #
+        #   @return [String, nil]
+        required :customer_name, String, nil?: true
+
+        # @!attribute documents
+        #
+        #   @return [Array<WhopSDK::Models::Dispute::Evidence::Document>]
+        required :documents, -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::Dispute::Evidence::Document] }
+
+        # @!attribute notes
+        #   Any additional context for the processor reviewing the dispute.
+        #
+        #   @return [String, nil]
+        required :notes, String, nil?: true
+
+        # @!attribute product_description
+        #   What the customer purchased, in the seller's own words.
+        #
+        #   @return [String, nil]
+        required :product_description, String, nil?: true
+
+        # @!attribute refund_policy_attachment
+        #   The refund policy document. Falls back to Whop's platform policy when the seller
+        #   has not uploaded their own.
+        #
+        #   @return [WhopSDK::Models::Dispute::Evidence::RefundPolicyAttachment, nil]
+        required :refund_policy_attachment,
+                 -> {
+                   WhopSDK::Dispute::Evidence::RefundPolicyAttachment
+                 },
+                 nil?: true
+
+        # @!attribute refund_policy_disclosure
+        #   How the refund policy was shown to the customer before purchase.
+        #
+        #   @return [String, nil]
+        required :refund_policy_disclosure, String, nil?: true
+
+        # @!attribute refund_refusal_explanation
+        #   Why a refund was refused, when one was requested and denied.
+        #
+        #   @return [String, nil]
+        required :refund_refusal_explanation, String, nil?: true
+
+        # @!attribute service_date
+        #   When the product or service was delivered.
+        #
+        #   @return [String, nil]
+        required :service_date, String, nil?: true
+
+        # @!attribute uncategorized_attachment
+        #   Supporting evidence that does not fit the other categories.
+        #
+        #   @return [WhopSDK::Models::Dispute::Evidence::UncategorizedAttachment, nil]
+        required :uncategorized_attachment,
+                 -> {
+                   WhopSDK::Dispute::Evidence::UncategorizedAttachment
+                 },
+                 nil?: true
+
+        # @!method initialize(access_activity_log:, billing_address:, cancellation_policy_attachment:, cancellation_policy_disclosure:, customer_communication_attachment:, customer_email_address:, customer_name:, documents:, notes:, product_description:, refund_policy_attachment:, refund_policy_disclosure:, refund_refusal_explanation:, service_date:, uncategorized_attachment:)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::Dispute::Evidence} for more details.
+        #
+        #   The evidence packet sent to the processor to contest the dispute.
+        #
+        #   @param access_activity_log [String, nil] Log of the customer's access to the product, such as sign-in or download activit
+        #
+        #   @param billing_address [String, nil] The billing address the customer provided at checkout.
+        #
+        #   @param cancellation_policy_attachment [WhopSDK::Models::Dispute::Evidence::CancellationPolicyAttachment, nil] The cancellation policy document. Falls back to Whop's platform policy when the
+        #
+        #   @param cancellation_policy_disclosure [String, nil] How the cancellation policy was shown to the customer before purchase.
+        #
+        #   @param customer_communication_attachment [WhopSDK::Models::Dispute::Evidence::CustomerCommunicationAttachment, nil] Correspondence with the customer, or proof they used the product.
+        #
+        #   @param customer_email_address [String, nil] The email address the customer used at checkout.
+        #
+        #   @param customer_name [String, nil] The customer's name as given at checkout.
+        #
+        #   @param documents [Array<WhopSDK::Models::Dispute::Evidence::Document>]
+        #
+        #   @param notes [String, nil] Any additional context for the processor reviewing the dispute.
+        #
+        #   @param product_description [String, nil] What the customer purchased, in the seller's own words.
+        #
+        #   @param refund_policy_attachment [WhopSDK::Models::Dispute::Evidence::RefundPolicyAttachment, nil] The refund policy document. Falls back to Whop's platform policy when the seller
+        #
+        #   @param refund_policy_disclosure [String, nil] How the refund policy was shown to the customer before purchase.
+        #
+        #   @param refund_refusal_explanation [String, nil] Why a refund was refused, when one was requested and denied.
+        #
+        #   @param service_date [String, nil] When the product or service was delivered.
+        #
+        #   @param uncategorized_attachment [WhopSDK::Models::Dispute::Evidence::UncategorizedAttachment, nil] Supporting evidence that does not fit the other categories.
+
+        # @see WhopSDK::Models::Dispute::Evidence#cancellation_policy_attachment
+        class CancellationPolicyAttachment < WhopSDK::Internal::Type::BaseModel
+          # @!attribute id
+          #   The attachment's ID. `null` for a Whop-hosted policy, which is not an uploaded
+          #   file.
+          #
+          #   @return [String, nil]
+          required :id, String, nil?: true
+
+          # @!attribute content_type
+          #   The uploaded file's MIME type.
+          #
+          #   @return [String, nil]
+          required :content_type, String, nil?: true
+
+          # @!attribute filename
+          #   The uploaded file's name.
+          #
+          #   @return [String, nil]
+          required :filename, String, nil?: true
+
+          # @!attribute platform
+          #   Whether this is Whop's own hosted policy, standing in because the seller
+          #   uploaded none. Sending it back on a PATCH changes nothing.
+          #
+          #   @return [Boolean]
+          required :platform, WhopSDK::Internal::Type::Boolean
+
+          # @!attribute url
+          #   A URL to download the attachment.
+          #
+          #   @return [String, nil]
+          required :url, String, nil?: true
+
+          # @!method initialize(id:, content_type:, filename:, platform:, url:)
+          #   Some parameter documentations has been truncated, see
+          #   {WhopSDK::Models::Dispute::Evidence::CancellationPolicyAttachment} for more
+          #   details.
+          #
+          #   The cancellation policy document. Falls back to Whop's platform policy when the
+          #   seller has not uploaded their own.
+          #
+          #   @param id [String, nil] The attachment's ID. `null` for a Whop-hosted policy, which is not an uploaded f
+          #
+          #   @param content_type [String, nil] The uploaded file's MIME type.
+          #
+          #   @param filename [String, nil] The uploaded file's name.
+          #
+          #   @param platform [Boolean] Whether this is Whop's own hosted policy, standing in because the seller uploade
+          #
+          #   @param url [String, nil] A URL to download the attachment.
+        end
+
+        # @see WhopSDK::Models::Dispute::Evidence#customer_communication_attachment
+        class CustomerCommunicationAttachment < WhopSDK::Internal::Type::BaseModel
+          # @!attribute id
+          #   The attachment's ID. `null` for a Whop-hosted policy, which is not an uploaded
+          #   file.
+          #
+          #   @return [String, nil]
+          required :id, String, nil?: true
+
+          # @!attribute content_type
+          #   The uploaded file's MIME type.
+          #
+          #   @return [String, nil]
+          required :content_type, String, nil?: true
+
+          # @!attribute filename
+          #   The uploaded file's name.
+          #
+          #   @return [String, nil]
+          required :filename, String, nil?: true
+
+          # @!attribute platform
+          #   Whether this is Whop's own hosted policy, standing in because the seller
+          #   uploaded none. Sending it back on a PATCH changes nothing.
+          #
+          #   @return [Boolean]
+          required :platform, WhopSDK::Internal::Type::Boolean
+
+          # @!attribute url
+          #   A URL to download the attachment.
+          #
+          #   @return [String, nil]
+          required :url, String, nil?: true
+
+          # @!method initialize(id:, content_type:, filename:, platform:, url:)
+          #   Some parameter documentations has been truncated, see
+          #   {WhopSDK::Models::Dispute::Evidence::CustomerCommunicationAttachment} for more
+          #   details.
+          #
+          #   Correspondence with the customer, or proof they used the product.
+          #
+          #   @param id [String, nil] The attachment's ID. `null` for a Whop-hosted policy, which is not an uploaded f
+          #
+          #   @param content_type [String, nil] The uploaded file's MIME type.
+          #
+          #   @param filename [String, nil] The uploaded file's name.
+          #
+          #   @param platform [Boolean] Whether this is Whop's own hosted policy, standing in because the seller uploade
+          #
+          #   @param url [String, nil] A URL to download the attachment.
+        end
+
+        class Document < WhopSDK::Internal::Type::BaseModel
+          # @!attribute id
+          #   The file's ID, prefixed `file_`.
+          #
+          #   @return [String]
+          required :id, String
+
+          # @!attribute content_type
+          #   The uploaded file's MIME type. Uploads are restricted to the types the processor
+          #   accepts.
+          #
+          #   @return [Symbol, WhopSDK::Models::Dispute::Evidence::Document::ContentType, nil]
+          required :content_type, enum: -> { WhopSDK::Dispute::Evidence::Document::ContentType }, nil?: true
+
+          # @!attribute created_at
+          #   When the file was created, as an ISO 8601 timestamp.
+          #
+          #   @return [String]
+          required :created_at, String
+
+          # @!attribute document_type
+          #   What kind of evidence the document is.
+          #
+          #   @return [Symbol, WhopSDK::Models::Dispute::Evidence::Document::DocumentType]
+          required :document_type, enum: -> { WhopSDK::Dispute::Evidence::Document::DocumentType }
+
+          # @!attribute filename
+          #   The original filename, including its extension.
+          #
+          #   @return [String, nil]
+          required :filename, String, nil?: true
+
+          # @!attribute object
+          #   The type of this object, always `file`.
+          #
+          #   @return [String]
+          required :object, String
+
+          # @!attribute size
+          #   The file size in bytes. `null` until the upload has finished.
+          #
+          #   @return [Integer, nil]
+          required :size, Integer, nil?: true
+
+          # @!attribute upload_status
+          #   Where the file is in its upload lifecycle.
+          #
+          #   @return [Symbol, WhopSDK::Models::Dispute::Evidence::Document::UploadStatus]
+          required :upload_status, enum: -> { WhopSDK::Dispute::Evidence::Document::UploadStatus }
+
+          # @!attribute url
+          #   A URL to download the file: a permanent CDN URL for public files, a signed
+          #   expiring URL for private ones. `null` until the upload has finished.
+          #
+          #   @return [String, nil]
+          required :url, String, nil?: true
+
+          # @!attribute visibility
+          #   `public` files are served via an unsigned CDN URL; `private` files via a signed,
+          #   expiring URL.
+          #
+          #   @return [Symbol, WhopSDK::Models::Dispute::Evidence::Document::Visibility]
+          required :visibility, enum: -> { WhopSDK::Dispute::Evidence::Document::Visibility }
+
+          # @!attribute multipart_chunk_size
+          #   The byte size each part (except the last) must be. Present only on create, and
+          #   only for multipart uploads.
+          #
+          #   @return [Integer, nil]
+          optional :multipart_chunk_size, Integer, nil?: true
+
+          # @!attribute multipart_upload_id
+          #   The ID of the multipart upload, passed back to `complete`. Present only on
+          #   create, and only for multipart uploads.
+          #
+          #   @return [String, nil]
+          optional :multipart_upload_id, String, nil?: true
+
+          # @!attribute multipart_upload_urls
+          #
+          #   @return [Array<WhopSDK::Models::Dispute::Evidence::Document::MultipartUploadURL>, nil]
+          optional :multipart_upload_urls,
+                   -> {
+                     WhopSDK::Internal::Type::ArrayOf[WhopSDK::Dispute::Evidence::Document::MultipartUploadURL]
+                   },
+                   nil?: true
+
+          # @!attribute upload_headers
+          #   Headers to send with the upload PUT. Present only on create.
+          #
+          #   @return [Object, nil]
+          optional :upload_headers, WhopSDK::Internal::Type::Unknown
+
+          # @!attribute upload_url
+          #   Presigned URL to PUT the file's bytes to. Present only on create, and only for
+          #   single-part uploads.
+          #
+          #   @return [String, nil]
+          optional :upload_url, String, nil?: true
+
+          # @!method initialize(id:, content_type:, created_at:, document_type:, filename:, object:, size:, upload_status:, url:, visibility:, multipart_chunk_size: nil, multipart_upload_id: nil, multipart_upload_urls: nil, upload_headers: nil, upload_url: nil)
+          #   Some parameter documentations has been truncated, see
+          #   {WhopSDK::Models::Dispute::Evidence::Document} for more details.
+          #
+          #   Additional evidence documents uploaded through
+          #   `POST /disputes/{id}/upload_evidence`, beyond the four fixed slots. Each rides
+          #   into the submitted packet under its `document_type`.
+          #
+          #   @param id [String] The file's ID, prefixed `file_`.
+          #
+          #   @param content_type [Symbol, WhopSDK::Models::Dispute::Evidence::Document::ContentType, nil] The uploaded file's MIME type. Uploads are restricted to the types the processor
+          #
+          #   @param created_at [String] When the file was created, as an ISO 8601 timestamp.
+          #
+          #   @param document_type [Symbol, WhopSDK::Models::Dispute::Evidence::Document::DocumentType] What kind of evidence the document is.
+          #
+          #   @param filename [String, nil] The original filename, including its extension.
+          #
+          #   @param object [String] The type of this object, always `file`.
+          #
+          #   @param size [Integer, nil] The file size in bytes. `null` until the upload has finished.
+          #
+          #   @param upload_status [Symbol, WhopSDK::Models::Dispute::Evidence::Document::UploadStatus] Where the file is in its upload lifecycle.
+          #
+          #   @param url [String, nil] A URL to download the file: a permanent CDN URL for public files, a signed expir
+          #
+          #   @param visibility [Symbol, WhopSDK::Models::Dispute::Evidence::Document::Visibility] `public` files are served via an unsigned CDN URL; `private` files via a signed,
+          #
+          #   @param multipart_chunk_size [Integer, nil] The byte size each part (except the last) must be. Present only on create, and o
+          #
+          #   @param multipart_upload_id [String, nil] The ID of the multipart upload, passed back to `complete`. Present only on creat
+          #
+          #   @param multipart_upload_urls [Array<WhopSDK::Models::Dispute::Evidence::Document::MultipartUploadURL>, nil]
+          #
+          #   @param upload_headers [Object] Headers to send with the upload PUT. Present only on create.
+          #
+          #   @param upload_url [String, nil] Presigned URL to PUT the file's bytes to. Present only on create, and only for s
+
+          # The uploaded file's MIME type. Uploads are restricted to the types the processor
+          # accepts.
+          #
+          # @see WhopSDK::Models::Dispute::Evidence::Document#content_type
+          module ContentType
+            extend WhopSDK::Internal::Type::Enum
+
+            APPLICATION_PDF = :"application/pdf"
+            APPLICATION_JSON = :"application/json"
+            IMAGE_JPEG = :"image/jpeg"
+            IMAGE_PNG = :"image/png"
+            IMAGE_WEBP = :"image/webp"
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
+          end
+
+          # What kind of evidence the document is.
+          #
+          # @see WhopSDK::Models::Dispute::Evidence::Document#document_type
+          module DocumentType
+            extend WhopSDK::Internal::Type::Enum
+
+            RETURN_POLICY = :return_policy
+            SHIPPING_POLICY = :shipping_policy
+            PHYSICAL_FULFILLMENT = :physical_fulfillment
+            CUSTOMER_ORDER_HISTORY = :customer_order_history
+            PRODUCT_IMAGE = :product_image
+            PRIOR_TRANSACTIONS = :prior_transactions
+            CUSTOMER_SESSION = :customer_session
+            DIGITAL_FULFILLMENT = :digital_fulfillment
+            SUBSCRIPTION = :subscription
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
+          end
+
+          # Where the file is in its upload lifecycle.
+          #
+          # @see WhopSDK::Models::Dispute::Evidence::Document#upload_status
+          module UploadStatus
+            extend WhopSDK::Internal::Type::Enum
+
+            PENDING = :pending
+            PROCESSING = :processing
+            READY = :ready
+            FAILED = :failed
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
+          end
+
+          # `public` files are served via an unsigned CDN URL; `private` files via a signed,
+          # expiring URL.
+          #
+          # @see WhopSDK::Models::Dispute::Evidence::Document#visibility
+          module Visibility
+            extend WhopSDK::Internal::Type::Enum
+
+            PUBLIC = :public
+            PRIVATE = :private
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
+          end
+
+          class MultipartUploadURL < WhopSDK::Internal::Type::BaseModel
+            # @!attribute part_number
+            #   The 1-based index of this part within the multipart upload.
+            #
+            #   @return [Integer]
+            required :part_number, Integer
+
+            # @!attribute url
+            #   The presigned URL to PUT this part's bytes to.
+            #
+            #   @return [String]
+            required :url, String
+
+            # @!method initialize(part_number:, url:)
+            #   The presigned URL for each part. Present only on create, and only for multipart
+            #   uploads.
+            #
+            #   @param part_number [Integer] The 1-based index of this part within the multipart upload.
+            #
+            #   @param url [String] The presigned URL to PUT this part's bytes to.
+          end
+        end
+
+        # @see WhopSDK::Models::Dispute::Evidence#refund_policy_attachment
+        class RefundPolicyAttachment < WhopSDK::Internal::Type::BaseModel
+          # @!attribute id
+          #   The attachment's ID. `null` for a Whop-hosted policy, which is not an uploaded
+          #   file.
+          #
+          #   @return [String, nil]
+          required :id, String, nil?: true
+
+          # @!attribute content_type
+          #   The uploaded file's MIME type.
+          #
+          #   @return [String, nil]
+          required :content_type, String, nil?: true
+
+          # @!attribute filename
+          #   The uploaded file's name.
+          #
+          #   @return [String, nil]
+          required :filename, String, nil?: true
+
+          # @!attribute platform
+          #   Whether this is Whop's own hosted policy, standing in because the seller
+          #   uploaded none. Sending it back on a PATCH changes nothing.
+          #
+          #   @return [Boolean]
+          required :platform, WhopSDK::Internal::Type::Boolean
+
+          # @!attribute url
+          #   A URL to download the attachment.
+          #
+          #   @return [String, nil]
+          required :url, String, nil?: true
+
+          # @!method initialize(id:, content_type:, filename:, platform:, url:)
+          #   Some parameter documentations has been truncated, see
+          #   {WhopSDK::Models::Dispute::Evidence::RefundPolicyAttachment} for more details.
+          #
+          #   The refund policy document. Falls back to Whop's platform policy when the seller
+          #   has not uploaded their own.
+          #
+          #   @param id [String, nil] The attachment's ID. `null` for a Whop-hosted policy, which is not an uploaded f
+          #
+          #   @param content_type [String, nil] The uploaded file's MIME type.
+          #
+          #   @param filename [String, nil] The uploaded file's name.
+          #
+          #   @param platform [Boolean] Whether this is Whop's own hosted policy, standing in because the seller uploade
+          #
+          #   @param url [String, nil] A URL to download the attachment.
+        end
+
+        # @see WhopSDK::Models::Dispute::Evidence#uncategorized_attachment
+        class UncategorizedAttachment < WhopSDK::Internal::Type::BaseModel
+          # @!attribute id
+          #   The attachment's ID. `null` for a Whop-hosted policy, which is not an uploaded
+          #   file.
+          #
+          #   @return [String, nil]
+          required :id, String, nil?: true
+
+          # @!attribute content_type
+          #   The uploaded file's MIME type.
+          #
+          #   @return [String, nil]
+          required :content_type, String, nil?: true
+
+          # @!attribute filename
+          #   The uploaded file's name.
+          #
+          #   @return [String, nil]
+          required :filename, String, nil?: true
+
+          # @!attribute platform
+          #   Whether this is Whop's own hosted policy, standing in because the seller
+          #   uploaded none. Sending it back on a PATCH changes nothing.
+          #
+          #   @return [Boolean]
+          required :platform, WhopSDK::Internal::Type::Boolean
+
+          # @!attribute url
+          #   A URL to download the attachment.
+          #
+          #   @return [String, nil]
+          required :url, String, nil?: true
+
+          # @!method initialize(id:, content_type:, filename:, platform:, url:)
+          #   Some parameter documentations has been truncated, see
+          #   {WhopSDK::Models::Dispute::Evidence::UncategorizedAttachment} for more details.
+          #
+          #   Supporting evidence that does not fit the other categories.
+          #
+          #   @param id [String, nil] The attachment's ID. `null` for a Whop-hosted policy, which is not an uploaded f
+          #
+          #   @param content_type [String, nil] The uploaded file's MIME type.
+          #
+          #   @param filename [String, nil] The uploaded file's name.
+          #
+          #   @param platform [Boolean] Whether this is Whop's own hosted policy, standing in because the seller uploade
+          #
+          #   @param url [String, nil] A URL to download the attachment.
+        end
+      end
+
+      # Why evidence can no longer be edited. `null` while `evidence_editable` is true.
+      #
+      # @see WhopSDK::Models::Dispute#evidence_locked_reason
+      module EvidenceLockedReason
+        extend WhopSDK::Internal::Type::Enum
+
+        SUBMITTED = :submitted
+        RESPONSE_WINDOW_CLOSED = :response_window_closed
+        NOT_CONTESTABLE = :not_contestable
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
+
+      # @see WhopSDK::Models::Dispute#generated_response_attachment
+      class GeneratedResponseAttachment < WhopSDK::Internal::Type::BaseModel
+        # @!attribute id
+        #   The attachment's ID. `null` for a Whop-hosted policy, which is not an uploaded
+        #   file.
+        #
+        #   @return [String, nil]
+        required :id, String, nil?: true
 
         # @!attribute content_type
-        #   Uploaded file MIME type, such as image/jpeg, video/mp4, or audio/mpeg.
+        #   The uploaded file's MIME type.
         #
         #   @return [String, nil]
         required :content_type, String, nil?: true
 
         # @!attribute filename
-        #   The original filename of the uploaded attachment, including its file extension.
+        #   The uploaded file's name.
         #
         #   @return [String, nil]
         required :filename, String, nil?: true
 
+        # @!attribute platform
+        #   Whether this is Whop's own hosted policy, standing in because the seller
+        #   uploaded none. Sending it back on a PATCH changes nothing.
+        #
+        #   @return [Boolean]
+        required :platform, WhopSDK::Internal::Type::Boolean
+
         # @!attribute url
-        #   A pre-optimized URL for rendering this attachment on the client. This should be
-        #   used for displaying attachments in apps.
+        #   A URL to download the attachment.
         #
         #   @return [String, nil]
         required :url, String, nil?: true
 
-        # @!method initialize(id:, content_type:, filename:, url:)
+        # @!method initialize(id:, content_type:, filename:, platform:, url:)
         #   Some parameter documentations has been truncated, see
-        #   {WhopSDK::Models::Dispute::CancellationPolicyAttachment} for more details.
+        #   {WhopSDK::Models::Dispute::GeneratedResponseAttachment} for more details.
         #
-        #   The cancellation policy document uploaded as dispute evidence. Null if no
-        #   cancellation policy has been provided.
+        #   The AI-generated representment document filed with the processor on the seller's
+        #   behalf, once ready. Null until generation completes, and for disputes not using
+        #   Whop Dispute Fighter.
         #
-        #   @param id [String] Represents a unique identifier that is Base64 obfuscated. It is often used to re
+        #   @param id [String, nil] The attachment's ID. `null` for a Whop-hosted policy, which is not an uploaded f
         #
-        #   @param content_type [String, nil] Uploaded file MIME type, such as image/jpeg, video/mp4, or audio/mpeg.
+        #   @param content_type [String, nil] The uploaded file's MIME type.
         #
-        #   @param filename [String, nil] The original filename of the uploaded attachment, including its file extension.
+        #   @param filename [String, nil] The uploaded file's name.
         #
-        #   @param url [String, nil] A pre-optimized URL for rendering this attachment on the client. This should be
+        #   @param platform [Boolean] Whether this is Whop's own hosted policy, standing in because the seller uploade
+        #
+        #   @param url [String, nil] A URL to download the attachment.
       end
 
-      # @see WhopSDK::Models::Dispute#company
-      class Company < WhopSDK::Internal::Type::BaseModel
-        # @!attribute id
-        #   The unique identifier for the company.
-        #
-        #   @return [String]
-        required :id, String
-
-        # @!attribute title
-        #   The written name of the company.
-        #
-        #   @return [String]
-        required :title, String
-
-        # @!method initialize(id:, title:)
-        #   The company that the dispute was filed against.
-        #
-        #   @param id [String] The unique identifier for the company.
-        #
-        #   @param title [String] The written name of the company.
-      end
-
-      # @see WhopSDK::Models::Dispute#customer_communication_attachment
-      class CustomerCommunicationAttachment < WhopSDK::Internal::Type::BaseModel
-        # @!attribute id
-        #   Represents a unique identifier that is Base64 obfuscated. It is often used to
-        #   refetch an object or as key for a cache. The ID type appears in a JSON response
-        #   as a String; however, it is not intended to be human-readable. When expected as
-        #   an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
-        #   input value will be accepted as an ID.
-        #
-        #   @return [String]
-        required :id, String
-
-        # @!attribute content_type
-        #   Uploaded file MIME type, such as image/jpeg, video/mp4, or audio/mpeg.
+      class IssuerComment < WhopSDK::Internal::Type::BaseModel
+        # @!attribute received_at
+        #   When the comment was received, as an ISO 8601 timestamp.
         #
         #   @return [String, nil]
-        required :content_type, String, nil?: true
+        required :received_at, String, nil?: true
 
-        # @!attribute filename
-        #   The original filename of the uploaded attachment, including its file extension.
+        # @!attribute text
+        #   What the issuer wrote, as received.
         #
-        #   @return [String, nil]
-        required :filename, String, nil?: true
+        #   @return [String]
+        required :text, String
 
-        # @!attribute url
-        #   A pre-optimized URL for rendering this attachment on the client. This should be
-        #   used for displaying attachments in apps.
+        # @!method initialize(received_at:, text:)
+        #   What the card issuer said when filing the dispute. Only populated when the
+        #   issuer provides them, and listed in the order they were received.
         #
-        #   @return [String, nil]
-        required :url, String, nil?: true
-
-        # @!method initialize(id:, content_type:, filename:, url:)
-        #   Some parameter documentations has been truncated, see
-        #   {WhopSDK::Models::Dispute::CustomerCommunicationAttachment} for more details.
+        #   @param received_at [String, nil] When the comment was received, as an ISO 8601 timestamp.
         #
-        #   Evidence of customer communication or product usage, uploaded as a dispute
-        #   attachment. Null if not provided.
-        #
-        #   @param id [String] Represents a unique identifier that is Base64 obfuscated. It is often used to re
-        #
-        #   @param content_type [String, nil] Uploaded file MIME type, such as image/jpeg, video/mp4, or audio/mpeg.
-        #
-        #   @param filename [String, nil] The original filename of the uploaded attachment, including its file extension.
-        #
-        #   @param url [String, nil] A pre-optimized URL for rendering this attachment on the client. This should be
+        #   @param text [String] What the issuer wrote, as received.
       end
 
       # @see WhopSDK::Models::Dispute#payment
       class Payment < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The unique identifier for the payment.
+        #   Payment ID, prefixed `pay_`.
         #
         #   @return [String]
         required :id, String
 
-        # @!attribute billing_reason
-        #   The reason why a specific payment was billed
+        # @!attribute amount
+        #   What the customer was charged, in whole units of the payment's currency.
         #
-        #   @return [Symbol, WhopSDK::Models::BillingReasons, nil]
-        required :billing_reason, enum: -> { WhopSDK::BillingReasons }, nil?: true
+        #   @return [Float, nil]
+        required :amount, Float, nil?: true
 
         # @!attribute card_brand
-        #   Possible card brands that a payment token can have
+        #   Card brand, when the customer paid by card.
         #
-        #   @return [Symbol, WhopSDK::Models::CardBrands, nil]
-        required :card_brand, enum: -> { WhopSDK::CardBrands }, nil?: true
+        #   @return [String, nil]
+        required :card_brand, String, nil?: true
 
         # @!attribute card_last4
-        #   The last four digits of the card used to make this payment. Null if the payment
-        #   was not made with a card.
+        #   Last four digits of the card, when the customer paid by card.
         #
         #   @return [String, nil]
         required :card_last4, String, nil?: true
 
         # @!attribute created_at
-        #   The datetime the payment was created.
+        #   When the payment was made, as an ISO 8601 timestamp.
         #
-        #   @return [Time]
-        required :created_at, Time
+        #   @return [String]
+        required :created_at, String
 
         # @!attribute currency
-        #   The three-letter ISO currency code for this payment (e.g., 'usd', 'eur').
+        #   Three-letter ISO currency code of the payment. Can differ from the dispute's
+        #   currency when the processor settles in another currency.
         #
-        #   @return [Symbol, WhopSDK::Models::Currency]
-        required :currency, enum: -> { WhopSDK::Currency }
-
-        # @!attribute dispute_alerted_at
-        #   When an alert came in that this transaction will be disputed
-        #
-        #   @return [Time, nil]
-        required :dispute_alerted_at, Time, nil?: true
-
-        # @!attribute member
-        #   The member attached to this payment.
-        #
-        #   @return [WhopSDK::Models::Dispute::Payment::Member, nil]
-        required :member, -> { WhopSDK::Dispute::Payment::Member }, nil?: true
-
-        # @!attribute membership
-        #   The membership attached to this payment.
-        #
-        #   @return [WhopSDK::Models::Dispute::Payment::Membership, nil]
-        required :membership, -> { WhopSDK::Dispute::Payment::Membership }, nil?: true
-
-        # @!attribute paid_at
-        #   The time at which this payment was successfully collected. Null if the payment
-        #   has not yet succeeded. As a Unix timestamp.
-        #
-        #   @return [Time, nil]
-        required :paid_at, Time, nil?: true
+        #   @return [String, nil]
+        required :currency, String, nil?: true
 
         # @!attribute payment_instrument
         #   The instrument this payment was made with, shaped for display: the method type,
         #   a buyer-facing name, the standard icon set, and the card facts when it was a
-        #   card. Null when the receipt names no payment method.
+        #   card. Null when the payment names no method.
         #
         #   @return [WhopSDK::Models::Dispute::Payment::PaymentInstrument, nil]
         required :payment_instrument, -> { WhopSDK::Dispute::Payment::PaymentInstrument }, nil?: true
 
         # @!attribute payment_method_type
-        #   The different types of payment methods that can be used.
+        #   How the customer paid, such as `card` or `paypal`.
         #
-        #   @return [Symbol, WhopSDK::Models::PaymentMethodTypes, nil]
-        required :payment_method_type, enum: -> { WhopSDK::PaymentMethodTypes }, nil?: true
+        #   @return [String, nil]
+        required :payment_method_type, String, nil?: true
 
-        # @!attribute subtotal
-        #   The subtotal to show to the creator (excluding buyer fees).
+        # @!attribute payment_processor
+        #   The processor that handled the payment, such as `stripe`.
         #
-        #   @return [Float, nil]
-        required :subtotal, Float, nil?: true
+        #   @return [String, nil]
+        required :payment_processor, String, nil?: true
 
-        # @!attribute total
-        #   The total to show to the creator (excluding buyer fees).
-        #
-        #   @return [Float, nil]
-        required :total, Float, nil?: true
-
-        # @!attribute usd_total
-        #   The total in USD to show to the creator (excluding buyer fees).
-        #
-        #   @return [Float, nil]
-        required :usd_total, Float, nil?: true
-
-        # @!attribute user
-        #   The user that made this payment.
-        #
-        #   @return [WhopSDK::Models::Dispute::Payment::User, nil]
-        required :user, -> { WhopSDK::Dispute::Payment::User }, nil?: true
-
-        # @!method initialize(id:, billing_reason:, card_brand:, card_last4:, created_at:, currency:, dispute_alerted_at:, member:, membership:, paid_at:, payment_instrument:, payment_method_type:, subtotal:, total:, usd_total:, user:)
+        # @!method initialize(id:, amount:, card_brand:, card_last4:, created_at:, currency:, payment_instrument:, payment_method_type:, payment_processor:)
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::Dispute::Payment} for more details.
         #
-        #   The original payment that was disputed.
+        #   The payment being disputed.
         #
-        #   @param id [String] The unique identifier for the payment.
+        #   @param id [String] Payment ID, prefixed `pay_`.
         #
-        #   @param billing_reason [Symbol, WhopSDK::Models::BillingReasons, nil] The reason why a specific payment was billed
+        #   @param amount [Float, nil] What the customer was charged, in whole units of the payment's currency.
         #
-        #   @param card_brand [Symbol, WhopSDK::Models::CardBrands, nil] Possible card brands that a payment token can have
+        #   @param card_brand [String, nil] Card brand, when the customer paid by card.
         #
-        #   @param card_last4 [String, nil] The last four digits of the card used to make this payment. Null if the payment
+        #   @param card_last4 [String, nil] Last four digits of the card, when the customer paid by card.
         #
-        #   @param created_at [Time] The datetime the payment was created.
+        #   @param created_at [String] When the payment was made, as an ISO 8601 timestamp.
         #
-        #   @param currency [Symbol, WhopSDK::Models::Currency] The three-letter ISO currency code for this payment (e.g., 'usd', 'eur').
-        #
-        #   @param dispute_alerted_at [Time, nil] When an alert came in that this transaction will be disputed
-        #
-        #   @param member [WhopSDK::Models::Dispute::Payment::Member, nil] The member attached to this payment.
-        #
-        #   @param membership [WhopSDK::Models::Dispute::Payment::Membership, nil] The membership attached to this payment.
-        #
-        #   @param paid_at [Time, nil] The time at which this payment was successfully collected. Null if the payment h
+        #   @param currency [String, nil] Three-letter ISO currency code of the payment. Can differ from the dispute's cur
         #
         #   @param payment_instrument [WhopSDK::Models::Dispute::Payment::PaymentInstrument, nil] The instrument this payment was made with, shaped for display: the method type,
         #
-        #   @param payment_method_type [Symbol, WhopSDK::Models::PaymentMethodTypes, nil] The different types of payment methods that can be used.
+        #   @param payment_method_type [String, nil] How the customer paid, such as `card` or `paypal`.
         #
-        #   @param subtotal [Float, nil] The subtotal to show to the creator (excluding buyer fees).
-        #
-        #   @param total [Float, nil] The total to show to the creator (excluding buyer fees).
-        #
-        #   @param usd_total [Float, nil] The total in USD to show to the creator (excluding buyer fees).
-        #
-        #   @param user [WhopSDK::Models::Dispute::Payment::User, nil] The user that made this payment.
-
-        # @see WhopSDK::Models::Dispute::Payment#member
-        class Member < WhopSDK::Internal::Type::BaseModel
-          # @!attribute id
-          #   The unique identifier for the company member.
-          #
-          #   @return [String]
-          required :id, String
-
-          # @!attribute phone
-          #   The phone number for the member, if available.
-          #
-          #   @return [String, nil]
-          required :phone, String, nil?: true
-
-          # @!method initialize(id:, phone:)
-          #   The member attached to this payment.
-          #
-          #   @param id [String] The unique identifier for the company member.
-          #
-          #   @param phone [String, nil] The phone number for the member, if available.
-        end
-
-        # @see WhopSDK::Models::Dispute::Payment#membership
-        class Membership < WhopSDK::Internal::Type::BaseModel
-          # @!attribute id
-          #   The unique identifier for the membership.
-          #
-          #   @return [String]
-          required :id, String
-
-          # @!attribute status
-          #   The state of the membership.
-          #
-          #   @return [Symbol, WhopSDK::Models::MembershipStatus]
-          required :status, enum: -> { WhopSDK::MembershipStatus }
-
-          # @!method initialize(id:, status:)
-          #   The membership attached to this payment.
-          #
-          #   @param id [String] The unique identifier for the membership.
-          #
-          #   @param status [Symbol, WhopSDK::Models::MembershipStatus] The state of the membership.
-        end
+        #   @param payment_processor [String, nil] The processor that handled the payment, such as `stripe`.
 
         # @see WhopSDK::Models::Dispute::Payment#payment_instrument
         class PaymentInstrument < WhopSDK::Internal::Type::BaseModel
+          # @!attribute card
+          #   Card payments only: the card's network and last four.
+          #
+          #   @return [WhopSDK::Models::Dispute::Payment::PaymentInstrument::Card, nil]
+          required :card, -> { WhopSDK::Dispute::Payment::PaymentInstrument::Card }, nil?: true
+
           # @!attribute display_name
           #   Buyer-facing instrument name — "Visa •••• 4242" when the card surfaced, else the
           #   method's own name ("Klarna").
@@ -577,8 +1022,8 @@ module WhopSDK
           #   Installment methods only: how many payments the charge splits into. Data, not
           #   copy — compose and translate the label client-side.
           #
-          #   @return [Integer, nil]
-          required :installment_count, Integer, nil?: true
+          #   @return [Float, nil]
+          required :installment_count, Float, nil?: true
 
           # @!attribute payment_method_type
           #   The payment method type identifier, e.g. `card`, `klarna`, `apple_pay`.
@@ -586,34 +1031,168 @@ module WhopSDK
           #   @return [String]
           required :payment_method_type, String
 
-          # @!method initialize(display_name:, icons:, installment_count:, payment_method_type:)
+          # @!method initialize(card:, display_name:, icons:, installment_count:, payment_method_type:)
           #   Some parameter documentations has been truncated, see
           #   {WhopSDK::Models::Dispute::Payment::PaymentInstrument} for more details.
           #
           #   The instrument this payment was made with, shaped for display: the method type,
           #   a buyer-facing name, the standard icon set, and the card facts when it was a
-          #   card. Null when the receipt names no payment method.
+          #   card. Null when the payment names no method.
+          #
+          #   @param card [WhopSDK::Models::Dispute::Payment::PaymentInstrument::Card, nil] Card payments only: the card's network and last four.
           #
           #   @param display_name [String] Buyer-facing instrument name — "Visa •••• 4242" when the card surfaced, else the
           #
           #   @param icons [WhopSDK::Models::Dispute::Payment::PaymentInstrument::Icons] The standard icon set: square and card shapes, each in light and dark colorways.
           #
-          #   @param installment_count [Integer, nil] Installment methods only: how many payments the charge splits into. Data, not co
+          #   @param installment_count [Float, nil] Installment methods only: how many payments the charge splits into. Data, not co
           #
           #   @param payment_method_type [String] The payment method type identifier, e.g. `card`, `klarna`, `apple_pay`.
 
+          # @see WhopSDK::Models::Dispute::Payment::PaymentInstrument#card
+          class Card < WhopSDK::Internal::Type::BaseModel
+            # @!attribute brand
+            #   The network identifier (`visa`, `amex`, …), matching `card.networks` entries and
+            #   saved card payment methods.
+            #
+            #   @return [String]
+            required :brand, String
+
+            # @!attribute last4
+            #   The card's last four digits, when captured.
+            #
+            #   @return [String, nil]
+            required :last4, String, nil?: true
+
+            # @!method initialize(brand:, last4:)
+            #   Some parameter documentations has been truncated, see
+            #   {WhopSDK::Models::Dispute::Payment::PaymentInstrument::Card} for more details.
+            #
+            #   Card payments only: the card's network and last four.
+            #
+            #   @param brand [String] The network identifier (`visa`, `amex`, …), matching `card.networks` entries and
+            #
+            #   @param last4 [String, nil] The card's last four digits, when captured.
+          end
+
           # @see WhopSDK::Models::Dispute::Payment::PaymentInstrument#icons
           class Icons < WhopSDK::Internal::Type::BaseModel
+            # @!attribute card
+            #   The credit-card-proportioned tile (48x30).
+            #
+            #   @return [WhopSDK::Models::Dispute::Payment::PaymentInstrument::Icons::Card]
+            required :card, -> { WhopSDK::Dispute::Payment::PaymentInstrument::Icons::Card }
+
             # @!attribute square
             #   The square tile (32x32).
             #
             #   @return [WhopSDK::Models::Dispute::Payment::PaymentInstrument::Icons::Square]
             required :square, -> { WhopSDK::Dispute::Payment::PaymentInstrument::Icons::Square }
 
-            # @!method initialize(square:)
+            # @!method initialize(card:, square:)
             #   The standard icon set: square and card shapes, each in light and dark colorways.
             #
+            #   @param card [WhopSDK::Models::Dispute::Payment::PaymentInstrument::Icons::Card] The credit-card-proportioned tile (48x30).
+            #
             #   @param square [WhopSDK::Models::Dispute::Payment::PaymentInstrument::Icons::Square] The square tile (32x32).
+
+            # @see WhopSDK::Models::Dispute::Payment::PaymentInstrument::Icons#card
+            class Card < WhopSDK::Internal::Type::BaseModel
+              # @!attribute dark
+              #   The colorway for dark surfaces.
+              #
+              #   @return [WhopSDK::Models::Dispute::Payment::PaymentInstrument::Icons::Card::Dark]
+              required :dark, -> { WhopSDK::Dispute::Payment::PaymentInstrument::Icons::Card::Dark }
+
+              # @!attribute light
+              #   The colorway for light surfaces.
+              #
+              #   @return [WhopSDK::Models::Dispute::Payment::PaymentInstrument::Icons::Card::Light]
+              required :light, -> { WhopSDK::Dispute::Payment::PaymentInstrument::Icons::Card::Light }
+
+              # @!method initialize(dark:, light:)
+              #   The credit-card-proportioned tile (48x30).
+              #
+              #   @param dark [WhopSDK::Models::Dispute::Payment::PaymentInstrument::Icons::Card::Dark] The colorway for dark surfaces.
+              #
+              #   @param light [WhopSDK::Models::Dispute::Payment::PaymentInstrument::Icons::Card::Light] The colorway for light surfaces.
+
+              # @see WhopSDK::Models::Dispute::Payment::PaymentInstrument::Icons::Card#dark
+              class Dark < WhopSDK::Internal::Type::BaseModel
+                # @!attribute png_1x
+                #   Raster fallback at the shape's native size.
+                #
+                #   @return [String]
+                required :png_1x, String
+
+                # @!attribute png_2x
+                #   Raster fallback at double density.
+                #
+                #   @return [String]
+                required :png_2x, String
+
+                # @!attribute png_4x
+                #   Raster fallback at quadruple density.
+                #
+                #   @return [String]
+                required :png_4x, String
+
+                # @!attribute svg
+                #   The vector file. Prefer this everywhere SVG renders.
+                #
+                #   @return [String]
+                required :svg, String
+
+                # @!method initialize(png_1x:, png_2x:, png_4x:, svg:)
+                #   The colorway for dark surfaces.
+                #
+                #   @param png_1x [String] Raster fallback at the shape's native size.
+                #
+                #   @param png_2x [String] Raster fallback at double density.
+                #
+                #   @param png_4x [String] Raster fallback at quadruple density.
+                #
+                #   @param svg [String] The vector file. Prefer this everywhere SVG renders.
+              end
+
+              # @see WhopSDK::Models::Dispute::Payment::PaymentInstrument::Icons::Card#light
+              class Light < WhopSDK::Internal::Type::BaseModel
+                # @!attribute png_1x
+                #   Raster fallback at the shape's native size.
+                #
+                #   @return [String]
+                required :png_1x, String
+
+                # @!attribute png_2x
+                #   Raster fallback at double density.
+                #
+                #   @return [String]
+                required :png_2x, String
+
+                # @!attribute png_4x
+                #   Raster fallback at quadruple density.
+                #
+                #   @return [String]
+                required :png_4x, String
+
+                # @!attribute svg
+                #   The vector file. Prefer this everywhere SVG renders.
+                #
+                #   @return [String]
+                required :svg, String
+
+                # @!method initialize(png_1x:, png_2x:, png_4x:, svg:)
+                #   The colorway for light surfaces.
+                #
+                #   @param png_1x [String] Raster fallback at the shape's native size.
+                #
+                #   @param png_2x [String] Raster fallback at double density.
+                #
+                #   @param png_4x [String] Raster fallback at quadruple density.
+                #
+                #   @param svg [String] The vector file. Prefer this everywhere SVG renders.
+              end
+            end
 
             # @see WhopSDK::Models::Dispute::Payment::PaymentInstrument::Icons#square
             class Square < WhopSDK::Internal::Type::BaseModel
@@ -638,212 +1217,126 @@ module WhopSDK
 
               # @see WhopSDK::Models::Dispute::Payment::PaymentInstrument::Icons::Square#dark
               class Dark < WhopSDK::Internal::Type::BaseModel
+                # @!attribute png_1x
+                #   Raster fallback at the shape's native size.
+                #
+                #   @return [String]
+                required :png_1x, String
+
+                # @!attribute png_2x
+                #   Raster fallback at double density.
+                #
+                #   @return [String]
+                required :png_2x, String
+
+                # @!attribute png_4x
+                #   Raster fallback at quadruple density.
+                #
+                #   @return [String]
+                required :png_4x, String
+
                 # @!attribute svg
                 #   The vector file. Prefer this everywhere SVG renders.
                 #
                 #   @return [String]
                 required :svg, String
 
-                # @!method initialize(svg:)
+                # @!method initialize(png_1x:, png_2x:, png_4x:, svg:)
                 #   The colorway for dark surfaces.
+                #
+                #   @param png_1x [String] Raster fallback at the shape's native size.
+                #
+                #   @param png_2x [String] Raster fallback at double density.
+                #
+                #   @param png_4x [String] Raster fallback at quadruple density.
                 #
                 #   @param svg [String] The vector file. Prefer this everywhere SVG renders.
               end
 
               # @see WhopSDK::Models::Dispute::Payment::PaymentInstrument::Icons::Square#light
               class Light < WhopSDK::Internal::Type::BaseModel
+                # @!attribute png_1x
+                #   Raster fallback at the shape's native size.
+                #
+                #   @return [String]
+                required :png_1x, String
+
+                # @!attribute png_2x
+                #   Raster fallback at double density.
+                #
+                #   @return [String]
+                required :png_2x, String
+
+                # @!attribute png_4x
+                #   Raster fallback at quadruple density.
+                #
+                #   @return [String]
+                required :png_4x, String
+
                 # @!attribute svg
                 #   The vector file. Prefer this everywhere SVG renders.
                 #
                 #   @return [String]
                 required :svg, String
 
-                # @!method initialize(svg:)
+                # @!method initialize(png_1x:, png_2x:, png_4x:, svg:)
                 #   The colorway for light surfaces.
+                #
+                #   @param png_1x [String] Raster fallback at the shape's native size.
+                #
+                #   @param png_2x [String] Raster fallback at double density.
+                #
+                #   @param png_4x [String] Raster fallback at quadruple density.
                 #
                 #   @param svg [String] The vector file. Prefer this everywhere SVG renders.
               end
             end
           end
         end
-
-        # @see WhopSDK::Models::Dispute::Payment#user
-        class User < WhopSDK::Internal::Type::BaseModel
-          # @!attribute id
-          #   The unique identifier for the user.
-          #
-          #   @return [String]
-          required :id, String
-
-          # @!attribute email
-          #   The user's email address. Requires the member:email:read permission to access.
-          #   Null if not authorized.
-          #
-          #   @return [String, nil]
-          required :email, String, nil?: true
-
-          # @!attribute name
-          #   The user's display name shown on their public profile.
-          #
-          #   @return [String, nil]
-          required :name, String, nil?: true
-
-          # @!attribute username
-          #   The user's unique username shown on their public profile.
-          #
-          #   @return [String]
-          required :username, String
-
-          # @!method initialize(id:, email:, name:, username:)
-          #   Some parameter documentations has been truncated, see
-          #   {WhopSDK::Models::Dispute::Payment::User} for more details.
-          #
-          #   The user that made this payment.
-          #
-          #   @param id [String] The unique identifier for the user.
-          #
-          #   @param email [String, nil] The user's email address. Requires the member:email:read permission to access. N
-          #
-          #   @param name [String, nil] The user's display name shown on their public profile.
-          #
-          #   @param username [String] The user's unique username shown on their public profile.
-        end
       end
 
-      # @see WhopSDK::Models::Dispute#plan
-      class Plan < WhopSDK::Internal::Type::BaseModel
-        # @!attribute id
-        #   The unique identifier for the plan.
-        #
-        #   @return [String]
-        required :id, String
+      # Why the customer says they are disputing, normalized across card networks.
+      # `other` covers a code Whop has not categorized yet — read `reason_code` for the
+      # raw value.
+      #
+      # @see WhopSDK::Models::Dispute#reason
+      module Reason
+        extend WhopSDK::Internal::Type::Enum
 
-        # @!method initialize(id:)
-        #   The plan associated with the disputed payment. Null if the dispute is not linked
-        #   to a specific plan.
-        #
-        #   @param id [String] The unique identifier for the plan.
+        FRAUDULENT = :fraudulent
+        UNRECOGNIZED = :unrecognized
+        DECLINED_AUTHORIZATION = :declined_authorization
+        PRODUCT_NOT_RECEIVED = :product_not_received
+        PRODUCT_UNACCEPTABLE = :product_unacceptable
+        SUBSCRIPTION_CANCELED = :subscription_canceled
+        CREDIT_NOT_PROCESSED = :credit_not_processed
+        DUPLICATE = :duplicate
+        PROCESSING_ERROR = :processing_error
+        DOCUMENTATION_REQUEST = :documentation_request
+        BANK_CANNOT_PROCESS = :bank_cannot_process
+        OTHER = :other
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
-      # @see WhopSDK::Models::Dispute#product
-      class Product < WhopSDK::Internal::Type::BaseModel
-        # @!attribute id
-        #   The unique identifier for the product.
-        #
-        #   @return [String]
-        required :id, String
+      # Where the dispute stands. `needs_response` is awaiting evidence, `under_review`
+      # is with the processor, `won` returned the funds to the seller, `lost` returned
+      # them to the customer, and `closed` ended without a ruling. A dispute past its
+      # `evidence_due_at` reports `under_review` — the window to respond has closed.
+      #
+      # @see WhopSDK::Models::Dispute#status
+      module Status
+        extend WhopSDK::Internal::Type::Enum
 
-        # @!attribute title
-        #   The display name of the product shown to customers on the product page and in
-        #   search results.
-        #
-        #   @return [String]
-        required :title, String
+        NEEDS_RESPONSE = :needs_response
+        UNDER_REVIEW = :under_review
+        WON = :won
+        LOST = :lost
+        CLOSED = :closed
 
-        # @!method initialize(id:, title:)
-        #   Some parameter documentations has been truncated, see
-        #   {WhopSDK::Models::Dispute::Product} for more details.
-        #
-        #   The product associated with the disputed payment. Null if the dispute is not
-        #   linked to a specific product.
-        #
-        #   @param id [String] The unique identifier for the product.
-        #
-        #   @param title [String] The display name of the product shown to customers on the product page and in se
-      end
-
-      # @see WhopSDK::Models::Dispute#refund_policy_attachment
-      class RefundPolicyAttachment < WhopSDK::Internal::Type::BaseModel
-        # @!attribute id
-        #   Represents a unique identifier that is Base64 obfuscated. It is often used to
-        #   refetch an object or as key for a cache. The ID type appears in a JSON response
-        #   as a String; however, it is not intended to be human-readable. When expected as
-        #   an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
-        #   input value will be accepted as an ID.
-        #
-        #   @return [String]
-        required :id, String
-
-        # @!attribute content_type
-        #   Uploaded file MIME type, such as image/jpeg, video/mp4, or audio/mpeg.
-        #
-        #   @return [String, nil]
-        required :content_type, String, nil?: true
-
-        # @!attribute filename
-        #   The original filename of the uploaded attachment, including its file extension.
-        #
-        #   @return [String, nil]
-        required :filename, String, nil?: true
-
-        # @!attribute url
-        #   A pre-optimized URL for rendering this attachment on the client. This should be
-        #   used for displaying attachments in apps.
-        #
-        #   @return [String, nil]
-        required :url, String, nil?: true
-
-        # @!method initialize(id:, content_type:, filename:, url:)
-        #   Some parameter documentations has been truncated, see
-        #   {WhopSDK::Models::Dispute::RefundPolicyAttachment} for more details.
-        #
-        #   The refund policy document uploaded as dispute evidence. Null if no refund
-        #   policy has been provided.
-        #
-        #   @param id [String] Represents a unique identifier that is Base64 obfuscated. It is often used to re
-        #
-        #   @param content_type [String, nil] Uploaded file MIME type, such as image/jpeg, video/mp4, or audio/mpeg.
-        #
-        #   @param filename [String, nil] The original filename of the uploaded attachment, including its file extension.
-        #
-        #   @param url [String, nil] A pre-optimized URL for rendering this attachment on the client. This should be
-      end
-
-      # @see WhopSDK::Models::Dispute#uncategorized_attachment
-      class UncategorizedAttachment < WhopSDK::Internal::Type::BaseModel
-        # @!attribute id
-        #   Represents a unique identifier that is Base64 obfuscated. It is often used to
-        #   refetch an object or as key for a cache. The ID type appears in a JSON response
-        #   as a String; however, it is not intended to be human-readable. When expected as
-        #   an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
-        #   input value will be accepted as an ID.
-        #
-        #   @return [String]
-        required :id, String
-
-        # @!attribute content_type
-        #   Uploaded file MIME type, such as image/jpeg, video/mp4, or audio/mpeg.
-        #
-        #   @return [String, nil]
-        required :content_type, String, nil?: true
-
-        # @!attribute filename
-        #   The original filename of the uploaded attachment, including its file extension.
-        #
-        #   @return [String, nil]
-        required :filename, String, nil?: true
-
-        # @!attribute url
-        #   A pre-optimized URL for rendering this attachment on the client. This should be
-        #   used for displaying attachments in apps.
-        #
-        #   @return [String, nil]
-        required :url, String, nil?: true
-
-        # @!method initialize(id:, content_type:, filename:, url:)
-        #   Some parameter documentations has been truncated, see
-        #   {WhopSDK::Models::Dispute::UncategorizedAttachment} for more details.
-        #
-        #   An additional attachment that does not fit into the standard evidence
-        #   categories. Null if not provided.
-        #
-        #   @param id [String] Represents a unique identifier that is Base64 obfuscated. It is often used to re
-        #
-        #   @param content_type [String, nil] Uploaded file MIME type, such as image/jpeg, video/mp4, or audio/mpeg.
-        #
-        #   @param filename [String, nil] The original filename of the uploaded attachment, including its file extension.
-        #
-        #   @param url [String, nil] A pre-optimized URL for rendering this attachment on the client. This should be
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
     end
   end

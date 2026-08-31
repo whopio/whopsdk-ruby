@@ -1,5 +1,15 @@
 module WhopSDK
   module Models
-    PromoCodeDeleteResponse: WhopSDK::Internal::Type::Converter
+    type promo_code_delete_response = { id: String, deleted: bool }
+
+    class PromoCodeDeleteResponse < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor deleted: bool
+
+      def initialize: (id: String, deleted: bool) -> void
+
+      def to_hash: -> { id: String, deleted: bool }
+    end
   end
 end

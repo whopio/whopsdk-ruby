@@ -7,181 +7,162 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
+      # @!attribute account_id
+      #   Narrow to one account (`biz_` tag). With read access to the account this lists
+      #   all of its memberships; without, only the caller's own memberships in it.
+      #
+      #   @return [String, nil]
+      optional :account_id, String
+
       # @!attribute after
-      #   Returns the elements in the list that come after the specified cursor.
+      #   Cursor to paginate forwards from.
       #
       #   @return [String, nil]
       optional :after, String
 
       # @!attribute before
-      #   Returns the elements in the list that come before the specified cursor.
+      #   Cursor to paginate backwards from.
       #
       #   @return [String, nil]
       optional :before, String
 
-      # @!attribute cancel_options
-      #   Filter to only memberships matching these cancellation reasons.
-      #
-      #   @return [Array<Symbol, WhopSDK::Models::CancelOptions>, nil]
-      optional :cancel_options, -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::CancelOptions] }
-
-      # @!attribute cancelation_status
-      #   Filter memberships by whether the customer is canceling, left, or was won back.
-      #
-      #   @return [Symbol, WhopSDK::Models::MembershipListParams::CancelationStatus, nil]
-      optional :cancelation_status, enum: -> { WhopSDK::MembershipListParams::CancelationStatus }
-
-      # @!attribute company_id
-      #   The unique identifier of the company to list memberships for. Required when
-      #   using an API key.
+      # @!attribute created_after
+      #   Only memberships created after this ISO 8601 timestamp.
       #
       #   @return [String, nil]
-      optional :company_id, String
-
-      # @!attribute created_after
-      #   Only return memberships created after this timestamp.
-      #
-      #   @return [Time, nil]
-      optional :created_after, Time
+      optional :created_after, String
 
       # @!attribute created_before
-      #   Only return memberships created before this timestamp.
+      #   Only memberships created before this ISO 8601 timestamp.
       #
-      #   @return [Time, nil]
-      optional :created_before, Time
+      #   @return [String, nil]
+      optional :created_before, String
 
       # @!attribute direction
-      #   The sort direction for results. Defaults to descending.
+      #   Sort direction.
       #
-      #   @return [Symbol, WhopSDK::Models::Direction, nil]
-      optional :direction, enum: -> { WhopSDK::Direction }
+      #   @return [Symbol, WhopSDK::Models::MembershipListParams::Direction, nil]
+      optional :direction, enum: -> { WhopSDK::MembershipListParams::Direction }
 
       # @!attribute first
-      #   Returns the first _n_ elements from the list.
+      #   Number of memberships to return from the start of the window.
       #
       #   @return [Integer, nil]
       optional :first, Integer
 
-      # @!attribute has_cancelation_reason
-      #   Filter memberships by whether they have a structured or free-text cancellation
-      #   reason.
-      #
-      #   @return [Boolean, nil]
-      optional :has_cancelation_reason, WhopSDK::Internal::Type::Boolean
-
-      # @!attribute include_text_only_cancelation_reasons
-      #   When filtering by the other cancellation option, also include memberships that
-      #   only have a free-text cancellation reason.
-      #
-      #   @return [Boolean, nil]
-      optional :include_text_only_cancelation_reasons, WhopSDK::Internal::Type::Boolean
-
       # @!attribute last
-      #   Returns the last _n_ elements from the list.
+      #   Number of memberships to return from the end of the window.
       #
       #   @return [Integer, nil]
       optional :last, Integer
 
       # @!attribute order
-      #   The field to sort results by. Null uses the default sort order.
+      #   Sort field.
       #
       #   @return [Symbol, WhopSDK::Models::MembershipListParams::Order, nil]
       optional :order, enum: -> { WhopSDK::MembershipListParams::Order }
 
-      # @!attribute plan_ids
-      #   Filter to only memberships belonging to these plan identifiers.
+      # @!attribute plan_id
+      #   Filter to memberships of this plan (`plan_` tag). Repeat as plan_ids[] for
+      #   several.
       #
-      #   @return [Array<String>, nil]
-      optional :plan_ids, WhopSDK::Internal::Type::ArrayOf[String]
+      #   @return [String, nil]
+      optional :plan_id, String
 
-      # @!attribute product_ids
-      #   Filter to only memberships belonging to these product identifiers.
+      # @!attribute product_id
+      #   Filter to memberships of this product (`prod_` tag). Repeat as product_ids[] for
+      #   several.
       #
-      #   @return [Array<String>, nil]
-      optional :product_ids, WhopSDK::Internal::Type::ArrayOf[String]
+      #   @return [String, nil]
+      optional :product_id, String
 
-      # @!attribute promo_code_ids
-      #   Filter to only memberships that used these promo code identifiers.
+      # @!attribute status
+      #   Filter by billing state. `canceling` matches active memberships set to cancel at
+      #   period end; `paused` matches memberships with payment collection paused.
       #
-      #   @return [Array<String>, nil]
-      optional :promo_code_ids, WhopSDK::Internal::Type::ArrayOf[String]
+      #   @return [Symbol, WhopSDK::Models::MembershipListParams::Status, nil]
+      optional :status, enum: -> { WhopSDK::MembershipListParams::Status }
 
-      # @!attribute statuses
-      #   Filter to only memberships matching these statuses.
+      # @!attribute user_id
+      #   Narrow to one user's memberships (`user_` tag, or `me` for the caller). A user
+      #   outside the caller's visible set returns an empty list.
       #
-      #   @return [Array<Symbol, WhopSDK::Models::MembershipStatus>, nil]
-      optional :statuses, -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::MembershipStatus] }
+      #   @return [String, nil]
+      optional :user_id, String
 
-      # @!attribute user_ids
-      #   Filter to only memberships belonging to these user identifiers.
+      # @!attribute api_version_date
       #
-      #   @return [Array<String>, nil]
-      optional :user_ids, WhopSDK::Internal::Type::ArrayOf[String]
+      #   @return [String, nil]
+      optional :api_version_date, String
 
-      # @!method initialize(after: nil, before: nil, cancel_options: nil, cancelation_status: nil, company_id: nil, created_after: nil, created_before: nil, direction: nil, first: nil, has_cancelation_reason: nil, include_text_only_cancelation_reasons: nil, last: nil, order: nil, plan_ids: nil, product_ids: nil, promo_code_ids: nil, statuses: nil, user_ids: nil, request_options: {})
+      # @!method initialize(account_id: nil, after: nil, before: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, order: nil, plan_id: nil, product_id: nil, status: nil, user_id: nil, api_version_date: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::MembershipListParams} for more details.
       #
-      #   @param after [String] Returns the elements in the list that come after the specified cursor.
+      #   @param account_id [String] Narrow to one account (`biz_` tag). With read access to the account this lists a
       #
-      #   @param before [String] Returns the elements in the list that come before the specified cursor.
+      #   @param after [String] Cursor to paginate forwards from.
       #
-      #   @param cancel_options [Array<Symbol, WhopSDK::Models::CancelOptions>] Filter to only memberships matching these cancellation reasons.
+      #   @param before [String] Cursor to paginate backwards from.
       #
-      #   @param cancelation_status [Symbol, WhopSDK::Models::MembershipListParams::CancelationStatus] Filter memberships by whether the customer is canceling, left, or was won back.
+      #   @param created_after [String] Only memberships created after this ISO 8601 timestamp.
       #
-      #   @param company_id [String] The unique identifier of the company to list memberships for. Required when usin
+      #   @param created_before [String] Only memberships created before this ISO 8601 timestamp.
       #
-      #   @param created_after [Time] Only return memberships created after this timestamp.
+      #   @param direction [Symbol, WhopSDK::Models::MembershipListParams::Direction] Sort direction.
       #
-      #   @param created_before [Time] Only return memberships created before this timestamp.
+      #   @param first [Integer] Number of memberships to return from the start of the window.
       #
-      #   @param direction [Symbol, WhopSDK::Models::Direction] The sort direction for results. Defaults to descending.
+      #   @param last [Integer] Number of memberships to return from the end of the window.
       #
-      #   @param first [Integer] Returns the first _n_ elements from the list.
+      #   @param order [Symbol, WhopSDK::Models::MembershipListParams::Order] Sort field.
       #
-      #   @param has_cancelation_reason [Boolean] Filter memberships by whether they have a structured or free-text cancellation r
+      #   @param plan_id [String] Filter to memberships of this plan (`plan_` tag). Repeat as plan_ids[] for sever
       #
-      #   @param include_text_only_cancelation_reasons [Boolean] When filtering by the other cancellation option, also include memberships that o
+      #   @param product_id [String] Filter to memberships of this product (`prod_` tag). Repeat as product_ids[] for
       #
-      #   @param last [Integer] Returns the last _n_ elements from the list.
+      #   @param status [Symbol, WhopSDK::Models::MembershipListParams::Status] Filter by billing state. `canceling` matches active memberships set to cancel at
       #
-      #   @param order [Symbol, WhopSDK::Models::MembershipListParams::Order] The field to sort results by. Null uses the default sort order.
+      #   @param user_id [String] Narrow to one user's memberships (`user_` tag, or `me` for the caller). A user o
       #
-      #   @param plan_ids [Array<String>] Filter to only memberships belonging to these plan identifiers.
-      #
-      #   @param product_ids [Array<String>] Filter to only memberships belonging to these product identifiers.
-      #
-      #   @param promo_code_ids [Array<String>] Filter to only memberships that used these promo code identifiers.
-      #
-      #   @param statuses [Array<Symbol, WhopSDK::Models::MembershipStatus>] Filter to only memberships matching these statuses.
-      #
-      #   @param user_ids [Array<String>] Filter to only memberships belonging to these user identifiers.
+      #   @param api_version_date [String]
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
 
-      # Filter memberships by whether the customer is canceling, left, or was won back.
-      module CancelationStatus
+      # Sort direction.
+      module Direction
         extend WhopSDK::Internal::Type::Enum
 
-        WON_BACK = :won_back
-        LEFT = :left
-        CANCELING = :canceling
+        ASC = :asc
+        DESC = :desc
 
         # @!method self.values
         #   @return [Array<Symbol>]
       end
 
-      # The field to sort results by. Null uses the default sort order.
+      # Sort field.
       module Order
         extend WhopSDK::Internal::Type::Enum
 
-        ID = :id
         CREATED_AT = :created_at
-        STATUS = :status
-        CANCELED_AT = :canceled_at
-        DATE_JOINED = :date_joined
-        TOTAL_SPEND = :total_spend
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
+
+      # Filter by billing state. `canceling` matches active memberships set to cancel at
+      # period end; `paused` matches memberships with payment collection paused.
+      module Status
+        extend WhopSDK::Internal::Type::Enum
+
+        ACTIVE = :active
+        TRIALING = :trialing
+        PAST_DUE = :past_due
+        COMPLETED = :completed
+        CANCELED = :canceled
+        EXPIRED = :expired
+        CANCELING = :canceling
+        PAUSED = :paused
 
         # @!method self.values
         #   @return [Array<Symbol>]

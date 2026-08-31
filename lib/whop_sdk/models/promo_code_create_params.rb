@@ -7,142 +7,218 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
+      # @!attribute account_id
+      #
+      #   @return [String]
+      required :account_id, String
+
       # @!attribute amount_off
-      #   The discount amount. When promo_type is percentage, this is the percent off
-      #   (e.g., 20 for 20% off). When promo_type is flat_amount, this is the currency
-      #   amount off (e.g., 10.00 for $10.00 off).
       #
       #   @return [Float]
       required :amount_off, Float
 
       # @!attribute base_currency
-      #   The three-letter ISO currency code for the promo code discount.
       #
-      #   @return [Symbol, WhopSDK::Models::Currency]
-      required :base_currency, enum: -> { WhopSDK::Currency }
+      #   @return [Symbol, WhopSDK::Models::PromoCodeCreateParams::BaseCurrency]
+      required :base_currency, enum: -> { WhopSDK::PromoCodeCreateParams::BaseCurrency }
 
       # @!attribute code
-      #   The alphanumeric code customers enter at checkout to apply the discount.
       #
       #   @return [String]
       required :code, String
 
-      # @!attribute company_id
-      #   The unique identifier of the company to create this promo code for.
-      #
-      #   @return [String]
-      required :company_id, String
-
       # @!attribute new_users_only
-      #   Whether to restrict this promo code to only users who have never purchased from
-      #   the company before.
       #
       #   @return [Boolean]
       required :new_users_only, WhopSDK::Internal::Type::Boolean
 
       # @!attribute promo_duration_months
-      #   The number of billing months the discount remains active. For example, 3 means
-      #   the discount applies to the first 3 billing cycles.
       #
       #   @return [Integer]
       required :promo_duration_months, Integer
 
       # @!attribute promo_type
-      #   The discount type, either percentage or flat_amount.
       #
-      #   @return [Symbol, WhopSDK::Models::PromoType]
-      required :promo_type, enum: -> { WhopSDK::PromoType }
+      #   @return [Symbol, WhopSDK::Models::PromoCodeCreateParams::PromoType]
+      required :promo_type, enum: -> { WhopSDK::PromoCodeCreateParams::PromoType }
 
       # @!attribute churned_users_only
-      #   Whether to restrict this promo code to only users who have previously churned
-      #   from the company.
       #
       #   @return [Boolean, nil]
-      optional :churned_users_only, WhopSDK::Internal::Type::Boolean, nil?: true
+      optional :churned_users_only, WhopSDK::Internal::Type::Boolean
 
       # @!attribute existing_memberships_only
-      #   Whether this promo code can only be applied to existing memberships, such as for
-      #   cancellation retention offers.
       #
       #   @return [Boolean, nil]
-      optional :existing_memberships_only, WhopSDK::Internal::Type::Boolean, nil?: true
+      optional :existing_memberships_only, WhopSDK::Internal::Type::Boolean
 
       # @!attribute expires_at
-      #   The datetime when the promo code expires and can no longer be used. Null means
-      #   it never expires.
       #
-      #   @return [Time, nil]
-      optional :expires_at, Time, nil?: true
+      #   @return [String, nil]
+      optional :expires_at, String, nil?: true
 
       # @!attribute one_per_customer
-      #   Whether each customer can only use this promo code once.
       #
       #   @return [Boolean, nil]
-      optional :one_per_customer, WhopSDK::Internal::Type::Boolean, nil?: true
+      optional :one_per_customer, WhopSDK::Internal::Type::Boolean
 
       # @!attribute plan_ids
-      #   The identifiers of plans this promo code applies to. When product_id is also
-      #   provided, only plans attached to that product are included.
       #
       #   @return [Array<String>, nil]
-      optional :plan_ids, WhopSDK::Internal::Type::ArrayOf[String], nil?: true
+      optional :plan_ids, WhopSDK::Internal::Type::ArrayOf[String]
 
       # @!attribute product_id
-      #   The identifier of the product to scope this promo code to. When provided, the
-      #   promo code only applies to plans attached to this product.
       #
       #   @return [String, nil]
       optional :product_id, String, nil?: true
 
       # @!attribute stock
-      #   The maximum number of times this promo code can be used. Ignored when
-      #   unlimited_stock is true.
       #
       #   @return [Integer, nil]
       optional :stock, Integer, nil?: true
 
       # @!attribute unlimited_stock
-      #   Whether the promo code can be used an unlimited number of times.
       #
       #   @return [Boolean, nil]
-      optional :unlimited_stock, WhopSDK::Internal::Type::Boolean, nil?: true
+      optional :unlimited_stock, WhopSDK::Internal::Type::Boolean
 
-      # @!method initialize(amount_off:, base_currency:, code:, company_id:, new_users_only:, promo_duration_months:, promo_type:, churned_users_only: nil, existing_memberships_only: nil, expires_at: nil, one_per_customer: nil, plan_ids: nil, product_id: nil, stock: nil, unlimited_stock: nil, request_options: {})
-      #   Some parameter documentations has been truncated, see
-      #   {WhopSDK::Models::PromoCodeCreateParams} for more details.
+      # @!attribute api_version_date
       #
-      #   @param amount_off [Float] The discount amount. When promo_type is percentage, this is the percent off (e.g
+      #   @return [String, nil]
+      optional :api_version_date, String
+
+      # @!attribute idempotency_key
       #
-      #   @param base_currency [Symbol, WhopSDK::Models::Currency] The three-letter ISO currency code for the promo code discount.
-      #
-      #   @param code [String] The alphanumeric code customers enter at checkout to apply the discount.
-      #
-      #   @param company_id [String] The unique identifier of the company to create this promo code for.
-      #
-      #   @param new_users_only [Boolean] Whether to restrict this promo code to only users who have never purchased from
-      #
-      #   @param promo_duration_months [Integer] The number of billing months the discount remains active. For example, 3 means t
-      #
-      #   @param promo_type [Symbol, WhopSDK::Models::PromoType] The discount type, either percentage or flat_amount.
-      #
-      #   @param churned_users_only [Boolean, nil] Whether to restrict this promo code to only users who have previously churned fr
-      #
-      #   @param existing_memberships_only [Boolean, nil] Whether this promo code can only be applied to existing memberships, such as for
-      #
-      #   @param expires_at [Time, nil] The datetime when the promo code expires and can no longer be used. Null means i
-      #
-      #   @param one_per_customer [Boolean, nil] Whether each customer can only use this promo code once.
-      #
-      #   @param plan_ids [Array<String>, nil] The identifiers of plans this promo code applies to. When product_id is also pro
-      #
-      #   @param product_id [String, nil] The identifier of the product to scope this promo code to. When provided, the pr
-      #
-      #   @param stock [Integer, nil] The maximum number of times this promo code can be used. Ignored when
-      #   unlimited\_
-      #
-      #   @param unlimited_stock [Boolean, nil] Whether the promo code can be used an unlimited number of times.
-      #
+      #   @return [String, nil]
+      optional :idempotency_key, String
+
+      # @!method initialize(account_id:, amount_off:, base_currency:, code:, new_users_only:, promo_duration_months:, promo_type:, churned_users_only: nil, existing_memberships_only: nil, expires_at: nil, one_per_customer: nil, plan_ids: nil, product_id: nil, stock: nil, unlimited_stock: nil, api_version_date: nil, idempotency_key: nil, request_options: {})
+      #   @param account_id [String]
+      #   @param amount_off [Float]
+      #   @param base_currency [Symbol, WhopSDK::Models::PromoCodeCreateParams::BaseCurrency]
+      #   @param code [String]
+      #   @param new_users_only [Boolean]
+      #   @param promo_duration_months [Integer]
+      #   @param promo_type [Symbol, WhopSDK::Models::PromoCodeCreateParams::PromoType]
+      #   @param churned_users_only [Boolean]
+      #   @param existing_memberships_only [Boolean]
+      #   @param expires_at [String, nil]
+      #   @param one_per_customer [Boolean]
+      #   @param plan_ids [Array<String>]
+      #   @param product_id [String, nil]
+      #   @param stock [Integer, nil]
+      #   @param unlimited_stock [Boolean]
+      #   @param api_version_date [String]
+      #   @param idempotency_key [String]
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
+
+      module BaseCurrency
+        extend WhopSDK::Internal::Type::Enum
+
+        USD = :usd
+        SGD = :sgd
+        INR = :inr
+        AUD = :aud
+        BRL = :brl
+        CAD = :cad
+        DKK = :dkk
+        EUR = :eur
+        NOK = :nok
+        GBP = :gbp
+        SEK = :sek
+        CHF = :chf
+        HKD = :hkd
+        HUF = :huf
+        JPY = :jpy
+        MXN = :mxn
+        MYR = :myr
+        PLN = :pln
+        CZK = :czk
+        NZD = :nzd
+        AED = :aed
+        ETH = :eth
+        APE = :ape
+        COP = :cop
+        RON = :ron
+        THB = :thb
+        BGN = :bgn
+        IDR = :idr
+        DOP = :dop
+        PHP = :php
+        TRY = :try
+        KRW = :krw
+        TWD = :twd
+        VND = :vnd
+        PKR = :pkr
+        CLP = :clp
+        UYU = :uyu
+        ARS = :ars
+        ZAR = :zar
+        DZD = :dzd
+        TND = :tnd
+        MAD = :mad
+        KES = :kes
+        KWD = :kwd
+        JOD = :jod
+        ALL = :all
+        XCD = :xcd
+        AMD = :amd
+        BSD = :bsd
+        BHD = :bhd
+        BOB = :bob
+        BAM = :bam
+        KHR = :khr
+        CRC = :crc
+        XOF = :xof
+        EGP = :egp
+        ETB = :etb
+        GMD = :gmd
+        GHS = :ghs
+        GTQ = :gtq
+        GYD = :gyd
+        ILS = :ils
+        JMD = :jmd
+        MOP = :mop
+        MGA = :mga
+        MUR = :mur
+        MDL = :mdl
+        MNT = :mnt
+        NAD = :nad
+        NGN = :ngn
+        MKD = :mkd
+        OMR = :omr
+        PYG = :pyg
+        PEN = :pen
+        QAR = :qar
+        RWF = :rwf
+        SAR = :sar
+        RSD = :rsd
+        LKR = :lkr
+        TZS = :tzs
+        TTD = :ttd
+        UZS = :uzs
+        RUB = :rub
+        BTC = :btc
+        CNY = :cny
+        USDT = :usdt
+        KZT = :kzt
+        AWG = :awg
+        WHOP_USD = :whop_usd
+        XAU = :xau
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
+
+      module PromoType
+        extend WhopSDK::Internal::Type::Enum
+
+        PERCENTAGE = :percentage
+        FLAT_AMOUNT = :flat_amount
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
     end
   end
 end

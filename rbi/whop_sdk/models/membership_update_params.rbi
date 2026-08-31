@@ -14,23 +14,46 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :id
 
-      # A JSON object of key-value pairs to store on the membership. Replaces any
-      # existing metadata.
-      sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
-      attr_accessor :metadata
+      # `true` cancels at the end of the current billing period (the customer keeps
+      # access until then); `false` reverses a pending cancellation.
+      sig { returns(T.nilable(T::Boolean)) }
+      attr_reader :cancel_at_period_end
+
+      sig { params(cancel_at_period_end: T::Boolean).void }
+      attr_writer :cancel_at_period_end
+
+      # Key-value pairs to merge into the membership's metadata. Pass an empty object to
+      # clear it.
+      sig { returns(T.nilable(T.anything)) }
+      attr_reader :metadata
+
+      sig { params(metadata: T.anything).void }
+      attr_writer :metadata
+
+      sig { returns(T.nilable(String)) }
+      attr_reader :api_version_date
+
+      sig { params(api_version_date: String).void }
+      attr_writer :api_version_date
 
       sig do
         params(
           id: String,
-          metadata: T.nilable(T::Hash[Symbol, T.anything]),
+          cancel_at_period_end: T::Boolean,
+          metadata: T.anything,
+          api_version_date: String,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
         id:,
-        # A JSON object of key-value pairs to store on the membership. Replaces any
-        # existing metadata.
+        # `true` cancels at the end of the current billing period (the customer keeps
+        # access until then); `false` reverses a pending cancellation.
+        cancel_at_period_end: nil,
+        # Key-value pairs to merge into the membership's metadata. Pass an empty object to
+        # clear it.
         metadata: nil,
+        api_version_date: nil,
         request_options: {}
       )
       end
@@ -39,7 +62,9 @@ module WhopSDK
         override.returns(
           {
             id: String,
-            metadata: T.nilable(T::Hash[Symbol, T.anything]),
+            cancel_at_period_end: T::Boolean,
+            metadata: T.anything,
+            api_version_date: String,
             request_options: WhopSDK::RequestOptions
           }
         )

@@ -8,12 +8,12 @@ class WhopSDK::Test::Resources::PromoCodesTest < WhopSDK::Test::ResourceTest
 
     response =
       @whop.promo_codes.create(
-        amount_off: 6.9,
+        account_id: "biz_xxxxxxxxxxxxxx",
+        amount_off: 25,
         base_currency: :usd,
-        code: "code",
-        company_id: "biz_xxxxxxxxxxxxxx",
+        code: "AFFILIATE25",
         new_users_only: true,
-        promo_duration_months: 42,
+        promo_duration_months: 3,
         promo_type: :percentage
       )
 
@@ -24,23 +24,25 @@ class WhopSDK::Test::Resources::PromoCodesTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
+        account: WhopSDK::PromoCode::Account,
         amount_off: Float,
         churned_users_only: WhopSDK::Internal::Type::Boolean,
         code: String | nil,
-        company: WhopSDK::PromoCode::Company,
-        created_at: Time,
-        currency: WhopSDK::Currency,
-        duration: WhopSDK::PromoDuration | nil,
+        created_at: String,
+        currency: WhopSDK::PromoCode::Currency,
+        duration: WhopSDK::PromoCode::Duration,
         existing_memberships_only: WhopSDK::Internal::Type::Boolean,
-        expires_at: Time | nil,
+        expires_at: String | nil,
+        metadata: WhopSDK::Internal::Type::Unknown,
         new_users_only: WhopSDK::Internal::Type::Boolean,
         one_per_customer: WhopSDK::Internal::Type::Boolean,
         product: WhopSDK::PromoCode::Product | nil,
         promo_duration_months: Integer | nil,
-        promo_type: WhopSDK::PromoType,
-        status: WhopSDK::PromoCodeStatus,
+        promo_type: WhopSDK::PromoCode::PromoType,
+        status: WhopSDK::PromoCode::Status,
         stock: Integer,
         unlimited_stock: WhopSDK::Internal::Type::Boolean,
+        updated_at: String,
         uses: Integer
       }
     end
@@ -49,7 +51,7 @@ class WhopSDK::Test::Resources::PromoCodesTest < WhopSDK::Test::ResourceTest
   def test_retrieve
     skip("Mock server tests are disabled")
 
-    response = @whop.promo_codes.retrieve("promo_xxxxxxxxxxxx")
+    response = @whop.promo_codes.retrieve("id")
 
     assert_pattern do
       response => WhopSDK::PromoCode
@@ -58,23 +60,25 @@ class WhopSDK::Test::Resources::PromoCodesTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
+        account: WhopSDK::PromoCode::Account,
         amount_off: Float,
         churned_users_only: WhopSDK::Internal::Type::Boolean,
         code: String | nil,
-        company: WhopSDK::PromoCode::Company,
-        created_at: Time,
-        currency: WhopSDK::Currency,
-        duration: WhopSDK::PromoDuration | nil,
+        created_at: String,
+        currency: WhopSDK::PromoCode::Currency,
+        duration: WhopSDK::PromoCode::Duration,
         existing_memberships_only: WhopSDK::Internal::Type::Boolean,
-        expires_at: Time | nil,
+        expires_at: String | nil,
+        metadata: WhopSDK::Internal::Type::Unknown,
         new_users_only: WhopSDK::Internal::Type::Boolean,
         one_per_customer: WhopSDK::Internal::Type::Boolean,
         product: WhopSDK::PromoCode::Product | nil,
         promo_duration_months: Integer | nil,
-        promo_type: WhopSDK::PromoType,
-        status: WhopSDK::PromoCodeStatus,
+        promo_type: WhopSDK::PromoCode::PromoType,
+        status: WhopSDK::PromoCode::Status,
         stock: Integer,
         unlimited_stock: WhopSDK::Internal::Type::Boolean,
+        updated_at: String,
         uses: Integer
       }
     end
@@ -83,7 +87,7 @@ class WhopSDK::Test::Resources::PromoCodesTest < WhopSDK::Test::ResourceTest
   def test_list_required_params
     skip("Mock server tests are disabled")
 
-    response = @whop.promo_codes.list(company_id: "biz_xxxxxxxxxxxxxx")
+    response = @whop.promo_codes.list(account_id: "account_id")
 
     assert_pattern do
       response => WhopSDK::Internal::CursorPage
@@ -102,19 +106,21 @@ class WhopSDK::Test::Resources::PromoCodesTest < WhopSDK::Test::ResourceTest
         amount_off: Float,
         churned_users_only: WhopSDK::Internal::Type::Boolean,
         code: String | nil,
-        created_at: Time,
-        currency: WhopSDK::Currency,
-        duration: WhopSDK::PromoDuration | nil,
+        created_at: String,
+        currency: WhopSDK::Models::PromoCodeListResponse::Currency,
+        duration: WhopSDK::Models::PromoCodeListResponse::Duration,
         existing_memberships_only: WhopSDK::Internal::Type::Boolean,
-        expires_at: Time | nil,
+        expires_at: String | nil,
+        metadata: WhopSDK::Internal::Type::Unknown,
         new_users_only: WhopSDK::Internal::Type::Boolean,
         one_per_customer: WhopSDK::Internal::Type::Boolean,
         product: WhopSDK::Models::PromoCodeListResponse::Product | nil,
         promo_duration_months: Integer | nil,
-        promo_type: WhopSDK::PromoType,
-        status: WhopSDK::PromoCodeStatus,
+        promo_type: WhopSDK::Models::PromoCodeListResponse::PromoType,
+        status: WhopSDK::Models::PromoCodeListResponse::Status,
         stock: Integer,
         unlimited_stock: WhopSDK::Internal::Type::Boolean,
+        updated_at: String,
         uses: Integer
       }
     end
@@ -123,10 +129,17 @@ class WhopSDK::Test::Resources::PromoCodesTest < WhopSDK::Test::ResourceTest
   def test_delete
     skip("Mock server tests are disabled")
 
-    response = @whop.promo_codes.delete("promo_xxxxxxxxxxxx")
+    response = @whop.promo_codes.delete("id")
 
     assert_pattern do
-      response => WhopSDK::Internal::Type::Boolean
+      response => WhopSDK::Models::PromoCodeDeleteResponse
+    end
+
+    assert_pattern do
+      response => {
+        id: String,
+        deleted: WhopSDK::Internal::Type::Boolean
+      }
     end
   end
 end

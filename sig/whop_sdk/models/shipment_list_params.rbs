@@ -2,19 +2,28 @@ module WhopSDK
   module Models
     type shipment_list_params =
       {
+        account_id: String,
         after: String,
         before: String,
-        company_id: String,
+        created_after: String,
+        created_before: String,
+        direction: WhopSDK::Models::ShipmentListParams::direction,
         first: Integer,
         last: Integer,
-        payment_id: String,
-        user_id: String
+        order: WhopSDK::Models::ShipmentListParams::order,
+        payment_id: ::Array[String],
+        status: WhopSDK::Models::ShipmentListParams::status,
+        api_version_date: String
       }
       & WhopSDK::Internal::Type::request_parameters
 
     class ShipmentListParams < WhopSDK::Internal::Type::BaseModel
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
+
+      attr_reader account_id: String?
+
+      def account_id=: (String) -> String
 
       attr_reader after: String?
 
@@ -24,9 +33,19 @@ module WhopSDK
 
       def before=: (String) -> String
 
-      attr_reader company_id: String?
+      attr_reader created_after: String?
 
-      def company_id=: (String) -> String
+      def created_after=: (String) -> String
+
+      attr_reader created_before: String?
+
+      def created_before=: (String) -> String
+
+      attr_reader direction: WhopSDK::Models::ShipmentListParams::direction?
+
+      def direction=: (
+        WhopSDK::Models::ShipmentListParams::direction
+      ) -> WhopSDK::Models::ShipmentListParams::direction
 
       attr_reader first: Integer?
 
@@ -36,35 +55,107 @@ module WhopSDK
 
       def last=: (Integer) -> Integer
 
-      attr_reader payment_id: String?
+      attr_reader order: WhopSDK::Models::ShipmentListParams::order?
 
-      def payment_id=: (String) -> String
+      def order=: (
+        WhopSDK::Models::ShipmentListParams::order
+      ) -> WhopSDK::Models::ShipmentListParams::order
 
-      attr_reader user_id: String?
+      attr_reader payment_id: ::Array[String]?
 
-      def user_id=: (String) -> String
+      def payment_id=: (::Array[String]) -> ::Array[String]
+
+      attr_reader status: WhopSDK::Models::ShipmentListParams::status?
+
+      def status=: (
+        WhopSDK::Models::ShipmentListParams::status
+      ) -> WhopSDK::Models::ShipmentListParams::status
+
+      attr_reader api_version_date: String?
+
+      def api_version_date=: (String) -> String
 
       def initialize: (
+        ?account_id: String,
         ?after: String,
         ?before: String,
-        ?company_id: String,
+        ?created_after: String,
+        ?created_before: String,
+        ?direction: WhopSDK::Models::ShipmentListParams::direction,
         ?first: Integer,
         ?last: Integer,
-        ?payment_id: String,
-        ?user_id: String,
+        ?order: WhopSDK::Models::ShipmentListParams::order,
+        ?payment_id: ::Array[String],
+        ?status: WhopSDK::Models::ShipmentListParams::status,
+        ?api_version_date: String,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
       def to_hash: -> {
+        account_id: String,
         after: String,
         before: String,
-        company_id: String,
+        created_after: String,
+        created_before: String,
+        direction: WhopSDK::Models::ShipmentListParams::direction,
         first: Integer,
         last: Integer,
-        payment_id: String,
-        user_id: String,
+        order: WhopSDK::Models::ShipmentListParams::order,
+        payment_id: ::Array[String],
+        status: WhopSDK::Models::ShipmentListParams::status,
+        api_version_date: String,
         request_options: WhopSDK::RequestOptions
       }
+
+      type direction = :asc | :desc
+
+      module Direction
+        extend WhopSDK::Internal::Type::Enum
+
+        ASC: :asc
+        DESC: :desc
+
+        def self?.values: -> ::Array[WhopSDK::Models::ShipmentListParams::direction]
+      end
+
+      type order = :created_at
+
+      module Order
+        extend WhopSDK::Internal::Type::Enum
+
+        CREATED_AT: :created_at
+
+        def self?.values: -> ::Array[WhopSDK::Models::ShipmentListParams::order]
+      end
+
+      type status =
+        :unknown
+        | :pre_transit
+        | :in_transit
+        | :out_for_delivery
+        | :delivered
+        | :available_for_pickup
+        | :return_to_sender
+        | :failure
+        | :cancelled
+        | :error
+
+      module Status
+        extend WhopSDK::Internal::Type::Enum
+
+        UNKNOWN: :unknown
+        PRE_TRANSIT: :pre_transit
+        IN_TRANSIT: :in_transit
+        OUT_FOR_DELIVERY: :out_for_delivery
+        DELIVERED: :delivered
+        AVAILABLE_FOR_PICKUP: :available_for_pickup
+        RETURN_TO_SENDER: :return_to_sender
+        FAILURE: :failure
+        CANCELLED: :cancelled
+        ERROR: :error
+
+        def self?.values: -> ::Array[WhopSDK::Models::ShipmentListParams::status]
+      end
     end
   end
 end

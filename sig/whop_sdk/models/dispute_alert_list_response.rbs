@@ -3,77 +3,124 @@ module WhopSDK
     type dispute_alert_list_response =
       {
         id: String,
-        alert_type: WhopSDK::Models::dispute_alert_type,
+        account_id: String?,
+        actionable: bool,
         amount: Float,
-        charge_for_alert: bool,
-        created_at: Time,
-        currency: WhopSDK::Models::currency,
-        dispute: WhopSDK::Models::DisputeAlertListResponse::Dispute?,
-        payment: WhopSDK::Models::DisputeAlertListResponse::Payment?,
-        transaction_date: Time?
+        card_brand: String?,
+        created_at: String,
+        currency: String,
+        fee_charged: bool,
+        issuer: String?,
+        not_actionable_reason: WhopSDK::Models::DisputeAlertListResponse::not_actionable_reason?,
+        payment_id: String?,
+        product_id: String?,
+        reported_at: String,
+        transaction_at: String?,
+        type: WhopSDK::Models::DisputeAlertListResponse::type_,
+        updated_at: String
       }
 
     class DisputeAlertListResponse < WhopSDK::Internal::Type::BaseModel
       attr_accessor id: String
 
-      attr_accessor alert_type: WhopSDK::Models::dispute_alert_type
+      attr_accessor account_id: String?
+
+      attr_accessor actionable: bool
 
       attr_accessor amount: Float
 
-      attr_accessor charge_for_alert: bool
+      attr_accessor card_brand: String?
 
-      attr_accessor created_at: Time
+      attr_accessor created_at: String
 
-      attr_accessor currency: WhopSDK::Models::currency
+      attr_accessor currency: String
 
-      attr_accessor dispute: WhopSDK::Models::DisputeAlertListResponse::Dispute?
+      attr_accessor fee_charged: bool
 
-      attr_accessor payment: WhopSDK::Models::DisputeAlertListResponse::Payment?
+      attr_accessor issuer: String?
 
-      attr_accessor transaction_date: Time?
+      attr_accessor not_actionable_reason: WhopSDK::Models::DisputeAlertListResponse::not_actionable_reason?
+
+      attr_accessor payment_id: String?
+
+      attr_accessor product_id: String?
+
+      attr_accessor reported_at: String
+
+      attr_accessor transaction_at: String?
+
+      attr_accessor type: WhopSDK::Models::DisputeAlertListResponse::type_
+
+      attr_accessor updated_at: String
 
       def initialize: (
         id: String,
-        alert_type: WhopSDK::Models::dispute_alert_type,
+        account_id: String?,
+        actionable: bool,
         amount: Float,
-        charge_for_alert: bool,
-        created_at: Time,
-        currency: WhopSDK::Models::currency,
-        dispute: WhopSDK::Models::DisputeAlertListResponse::Dispute?,
-        payment: WhopSDK::Models::DisputeAlertListResponse::Payment?,
-        transaction_date: Time?
+        card_brand: String?,
+        created_at: String,
+        currency: String,
+        fee_charged: bool,
+        issuer: String?,
+        not_actionable_reason: WhopSDK::Models::DisputeAlertListResponse::not_actionable_reason?,
+        payment_id: String?,
+        product_id: String?,
+        reported_at: String,
+        transaction_at: String?,
+        type: WhopSDK::Models::DisputeAlertListResponse::type_,
+        updated_at: String
       ) -> void
 
       def to_hash: -> {
         id: String,
-        alert_type: WhopSDK::Models::dispute_alert_type,
+        account_id: String?,
+        actionable: bool,
         amount: Float,
-        charge_for_alert: bool,
-        created_at: Time,
-        currency: WhopSDK::Models::currency,
-        dispute: WhopSDK::Models::DisputeAlertListResponse::Dispute?,
-        payment: WhopSDK::Models::DisputeAlertListResponse::Payment?,
-        transaction_date: Time?
+        card_brand: String?,
+        created_at: String,
+        currency: String,
+        fee_charged: bool,
+        issuer: String?,
+        not_actionable_reason: WhopSDK::Models::DisputeAlertListResponse::not_actionable_reason?,
+        payment_id: String?,
+        product_id: String?,
+        reported_at: String,
+        transaction_at: String?,
+        type: WhopSDK::Models::DisputeAlertListResponse::type_,
+        updated_at: String
       }
 
-      type dispute = { id: String }
+      type not_actionable_reason =
+        :network_resolved
+        | :payment_unmatched
+        | :payment_not_captured
+        | :payment_disputed
+        | :payment_refunded
 
-      class Dispute < WhopSDK::Internal::Type::BaseModel
-        attr_accessor id: String
+      module NotActionableReason
+        extend WhopSDK::Internal::Type::Enum
 
-        def initialize: (id: String) -> void
+        NETWORK_RESOLVED: :network_resolved
+        PAYMENT_UNMATCHED: :payment_unmatched
+        PAYMENT_NOT_CAPTURED: :payment_not_captured
+        PAYMENT_DISPUTED: :payment_disputed
+        PAYMENT_REFUNDED: :payment_refunded
 
-        def to_hash: -> { id: String }
+        def self?.values: -> ::Array[WhopSDK::Models::DisputeAlertListResponse::not_actionable_reason]
       end
 
-      type payment = { id: String }
+      type type_ =
+        :early_fraud_warning | :dispute_alert | :rapid_dispute_resolution
 
-      class Payment < WhopSDK::Internal::Type::BaseModel
-        attr_accessor id: String
+      module Type
+        extend WhopSDK::Internal::Type::Enum
 
-        def initialize: (id: String) -> void
+        EARLY_FRAUD_WARNING: :early_fraud_warning
+        DISPUTE_ALERT: :dispute_alert
+        RAPID_DISPUTE_RESOLUTION: :rapid_dispute_resolution
 
-        def to_hash: -> { id: String }
+        def self?.values: -> ::Array[WhopSDK::Models::DisputeAlertListResponse::type_]
       end
     end
   end

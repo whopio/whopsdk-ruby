@@ -2,30 +2,30 @@ module WhopSDK
   module Models
     type membership_list_params =
       {
+        account_id: String,
         after: String,
         before: String,
-        cancel_options: ::Array[WhopSDK::Models::cancel_options],
-        cancelation_status: WhopSDK::Models::MembershipListParams::cancelation_status,
-        company_id: String,
-        created_after: Time,
-        created_before: Time,
-        direction: WhopSDK::Models::direction,
+        created_after: String,
+        created_before: String,
+        direction: WhopSDK::Models::MembershipListParams::direction,
         first: Integer,
-        has_cancelation_reason: bool,
-        include_text_only_cancelation_reasons: bool,
         last: Integer,
         order: WhopSDK::Models::MembershipListParams::order,
-        plan_ids: ::Array[String],
-        product_ids: ::Array[String],
-        promo_code_ids: ::Array[String],
-        statuses: ::Array[WhopSDK::Models::membership_status],
-        user_ids: ::Array[String]
+        plan_id: String,
+        product_id: String,
+        status: WhopSDK::Models::MembershipListParams::status,
+        user_id: String,
+        api_version_date: String
       }
       & WhopSDK::Internal::Type::request_parameters
 
     class MembershipListParams < WhopSDK::Internal::Type::BaseModel
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
+
+      attr_reader account_id: String?
+
+      def account_id=: (String) -> String
 
       attr_reader after: String?
 
@@ -35,45 +35,23 @@ module WhopSDK
 
       def before=: (String) -> String
 
-      attr_reader cancel_options: ::Array[WhopSDK::Models::cancel_options]?
+      attr_reader created_after: String?
 
-      def cancel_options=: (
-        ::Array[WhopSDK::Models::cancel_options]
-      ) -> ::Array[WhopSDK::Models::cancel_options]
+      def created_after=: (String) -> String
 
-      attr_reader cancelation_status: WhopSDK::Models::MembershipListParams::cancelation_status?
+      attr_reader created_before: String?
 
-      def cancelation_status=: (
-        WhopSDK::Models::MembershipListParams::cancelation_status
-      ) -> WhopSDK::Models::MembershipListParams::cancelation_status
+      def created_before=: (String) -> String
 
-      attr_reader company_id: String?
+      attr_reader direction: WhopSDK::Models::MembershipListParams::direction?
 
-      def company_id=: (String) -> String
-
-      attr_reader created_after: Time?
-
-      def created_after=: (Time) -> Time
-
-      attr_reader created_before: Time?
-
-      def created_before=: (Time) -> Time
-
-      attr_reader direction: WhopSDK::Models::direction?
-
-      def direction=: (WhopSDK::Models::direction) -> WhopSDK::Models::direction
+      def direction=: (
+        WhopSDK::Models::MembershipListParams::direction
+      ) -> WhopSDK::Models::MembershipListParams::direction
 
       attr_reader first: Integer?
 
       def first=: (Integer) -> Integer
-
-      attr_reader has_cancelation_reason: bool?
-
-      def has_cancelation_reason=: (bool) -> bool
-
-      attr_reader include_text_only_cancelation_reasons: bool?
-
-      def include_text_only_cancelation_reasons=: (bool) -> bool
 
       attr_reader last: Integer?
 
@@ -85,98 +63,108 @@ module WhopSDK
         WhopSDK::Models::MembershipListParams::order
       ) -> WhopSDK::Models::MembershipListParams::order
 
-      attr_reader plan_ids: ::Array[String]?
+      attr_reader plan_id: String?
 
-      def plan_ids=: (::Array[String]) -> ::Array[String]
+      def plan_id=: (String) -> String
 
-      attr_reader product_ids: ::Array[String]?
+      attr_reader product_id: String?
 
-      def product_ids=: (::Array[String]) -> ::Array[String]
+      def product_id=: (String) -> String
 
-      attr_reader promo_code_ids: ::Array[String]?
+      attr_reader status: WhopSDK::Models::MembershipListParams::status?
 
-      def promo_code_ids=: (::Array[String]) -> ::Array[String]
+      def status=: (
+        WhopSDK::Models::MembershipListParams::status
+      ) -> WhopSDK::Models::MembershipListParams::status
 
-      attr_reader statuses: ::Array[WhopSDK::Models::membership_status]?
+      attr_reader user_id: String?
 
-      def statuses=: (
-        ::Array[WhopSDK::Models::membership_status]
-      ) -> ::Array[WhopSDK::Models::membership_status]
+      def user_id=: (String) -> String
 
-      attr_reader user_ids: ::Array[String]?
+      attr_reader api_version_date: String?
 
-      def user_ids=: (::Array[String]) -> ::Array[String]
+      def api_version_date=: (String) -> String
 
       def initialize: (
+        ?account_id: String,
         ?after: String,
         ?before: String,
-        ?cancel_options: ::Array[WhopSDK::Models::cancel_options],
-        ?cancelation_status: WhopSDK::Models::MembershipListParams::cancelation_status,
-        ?company_id: String,
-        ?created_after: Time,
-        ?created_before: Time,
-        ?direction: WhopSDK::Models::direction,
+        ?created_after: String,
+        ?created_before: String,
+        ?direction: WhopSDK::Models::MembershipListParams::direction,
         ?first: Integer,
-        ?has_cancelation_reason: bool,
-        ?include_text_only_cancelation_reasons: bool,
         ?last: Integer,
         ?order: WhopSDK::Models::MembershipListParams::order,
-        ?plan_ids: ::Array[String],
-        ?product_ids: ::Array[String],
-        ?promo_code_ids: ::Array[String],
-        ?statuses: ::Array[WhopSDK::Models::membership_status],
-        ?user_ids: ::Array[String],
+        ?plan_id: String,
+        ?product_id: String,
+        ?status: WhopSDK::Models::MembershipListParams::status,
+        ?user_id: String,
+        ?api_version_date: String,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
       def to_hash: -> {
+        account_id: String,
         after: String,
         before: String,
-        cancel_options: ::Array[WhopSDK::Models::cancel_options],
-        cancelation_status: WhopSDK::Models::MembershipListParams::cancelation_status,
-        company_id: String,
-        created_after: Time,
-        created_before: Time,
-        direction: WhopSDK::Models::direction,
+        created_after: String,
+        created_before: String,
+        direction: WhopSDK::Models::MembershipListParams::direction,
         first: Integer,
-        has_cancelation_reason: bool,
-        include_text_only_cancelation_reasons: bool,
         last: Integer,
         order: WhopSDK::Models::MembershipListParams::order,
-        plan_ids: ::Array[String],
-        product_ids: ::Array[String],
-        promo_code_ids: ::Array[String],
-        statuses: ::Array[WhopSDK::Models::membership_status],
-        user_ids: ::Array[String],
+        plan_id: String,
+        product_id: String,
+        status: WhopSDK::Models::MembershipListParams::status,
+        user_id: String,
+        api_version_date: String,
         request_options: WhopSDK::RequestOptions
       }
 
-      type cancelation_status = :won_back | :left | :canceling
+      type direction = :asc | :desc
 
-      module CancelationStatus
+      module Direction
         extend WhopSDK::Internal::Type::Enum
 
-        WON_BACK: :won_back
-        LEFT: :left
-        CANCELING: :canceling
+        ASC: :asc
+        DESC: :desc
 
-        def self?.values: -> ::Array[WhopSDK::Models::MembershipListParams::cancelation_status]
+        def self?.values: -> ::Array[WhopSDK::Models::MembershipListParams::direction]
       end
 
-      type order =
-        :id | :created_at | :status | :canceled_at | :date_joined | :total_spend
+      type order = :created_at
 
       module Order
         extend WhopSDK::Internal::Type::Enum
 
-        ID: :id
         CREATED_AT: :created_at
-        STATUS: :status
-        CANCELED_AT: :canceled_at
-        DATE_JOINED: :date_joined
-        TOTAL_SPEND: :total_spend
 
         def self?.values: -> ::Array[WhopSDK::Models::MembershipListParams::order]
+      end
+
+      type status =
+        :active
+        | :trialing
+        | :past_due
+        | :completed
+        | :canceled
+        | :expired
+        | :canceling
+        | :paused
+
+      module Status
+        extend WhopSDK::Internal::Type::Enum
+
+        ACTIVE: :active
+        TRIALING: :trialing
+        PAST_DUE: :past_due
+        COMPLETED: :completed
+        CANCELED: :canceled
+        EXPIRED: :expired
+        CANCELING: :canceling
+        PAUSED: :paused
+
+        def self?.values: -> ::Array[WhopSDK::Models::MembershipListParams::status]
       end
     end
   end

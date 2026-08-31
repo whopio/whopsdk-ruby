@@ -2,25 +2,37 @@ module WhopSDK
   module Resources
     class CheckoutConfigurations
       def create: (
-        body: WhopSDK::Models::CheckoutConfigurationCreateParams::body,
+        ?account_id: String,
+        ?affiliate_code: String?,
+        ?currency: String?,
+        ?metadata: top?,
+        ?mode: WhopSDK::Models::CheckoutConfigurationCreateParams::mode,
+        ?payment_method_configuration: WhopSDK::CheckoutConfigurationCreateParams::PaymentMethodConfiguration?,
+        ?plan: WhopSDK::CheckoutConfigurationCreateParams::Plan?,
+        ?plan_id: String?,
+        ?redirect_url: String?,
+        ?three_ds_level: WhopSDK::Models::CheckoutConfigurationCreateParams::three_ds_level?,
+        ?api_version_date: String,
+        ?idempotency_key: String,
         ?request_options: WhopSDK::request_opts
-      ) -> WhopSDK::CheckoutConfiguration
+      ) -> WhopSDK::Models::CheckoutConfigurationCreateResponse
 
       def retrieve: (
         String id,
+        ?api_version_date: String,
         ?request_options: WhopSDK::request_opts
-      ) -> WhopSDK::CheckoutConfiguration
+      ) -> WhopSDK::Models::CheckoutConfigurationRetrieveResponse
 
       def list: (
-        company_id: String,
+        account_id: String,
         ?after: String,
-        ?before: String,
-        ?created_after: Time,
-        ?created_before: Time,
-        ?direction: WhopSDK::Models::direction,
+        ?created_after: String,
+        ?created_before: String,
+        ?direction: WhopSDK::Models::CheckoutConfigurationListParams::direction,
         ?first: Integer,
-        ?last: Integer,
+        ?order: WhopSDK::Models::CheckoutConfigurationListParams::order,
         ?plan_id: String,
+        ?api_version_date: String,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::CheckoutConfigurationListResponse]
 

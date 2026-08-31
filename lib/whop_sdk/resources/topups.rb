@@ -2,7 +2,6 @@
 
 module WhopSDK
   module Resources
-    # Topups
     class Topups
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::TopupCreateParams} for more details.

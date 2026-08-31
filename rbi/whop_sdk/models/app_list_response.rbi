@@ -8,25 +8,49 @@ module WhopSDK
           T.any(WhopSDK::Models::AppListResponse, WhopSDK::Internal::AnyHash)
         end
 
-      # The unique identifier for the app.
+      # App ID, prefixed `app_`.
       sig { returns(String) }
       attr_accessor :id
 
-      # The target audience classification for this app (e.g., 'b2b_app', 'b2c_app',
-      # 'company_app', 'component').
-      sig { returns(WhopSDK::AppType::TaggedSymbol) }
-      attr_accessor :app_type
-
-      # The company that owns and publishes this app.
-      sig { returns(WhopSDK::Models::AppListResponse::Company) }
-      attr_reader :company
+      # The account that owns the app.
+      sig { returns(WhopSDK::Models::AppListResponse::Account) }
+      attr_reader :account
 
       sig do
-        params(company: WhopSDK::Models::AppListResponse::Company::OrHash).void
+        params(account: WhopSDK::Models::AppListResponse::Account::OrHash).void
       end
-      attr_writer :company
+      attr_writer :account
 
-      # The user who created and owns the company that published this app.
+      # The type of end-user the app is built for.
+      sig { returns(WhopSDK::Models::AppListResponse::AppType::TaggedSymbol) }
+      attr_accessor :app_type
+
+      # Banner image from the app's product listing, or `null` when none is uploaded.
+      sig { returns(T.nilable(WhopSDK::Models::AppListResponse::BannerImage)) }
+      attr_reader :banner_image
+
+      sig do
+        params(
+          banner_image:
+            T.nilable(WhopSDK::Models::AppListResponse::BannerImage::OrHash)
+        ).void
+      end
+      attr_writer :banner_image
+
+      # The production base URL where the app is hosted. `null` if no base URL is
+      # configured, if the caller lacks the `developer:basic:read` permission on the
+      # app's account, or on list responses, which never expose it.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :base_url
+
+      # Number of businesses created from this app as a template.
+      sig { returns(Integer) }
+      attr_accessor :businesses_created_count
+
+      sig { returns(T::Array[String]) }
+      attr_accessor :businesses_created_logo_urls
+
+      # The user who owns the publishing account.
       sig { returns(WhopSDK::Models::AppListResponse::Creator) }
       attr_reader :creator
 
@@ -35,96 +59,82 @@ module WhopSDK
       end
       attr_writer :creator
 
-      # The URL path template for a specific view of this app, appended to the base
-      # domain (e.g., '/experiences/[experienceId]'). Null if the specified view type is
-      # not configured.
+      # URL path for the account dashboard view, or `null` when not configured.
       sig { returns(T.nilable(String)) }
       attr_accessor :dashboard_path
 
-      # A written description of what this app does, displayed on the app store listing
-      # page. Null if no description has been set.
+      # Short description shown in listings and search results, or `null` if none has
+      # been set.
       sig { returns(T.nilable(String)) }
       attr_accessor :description
 
-      # The URL path template for a specific view of this app, appended to the base
-      # domain (e.g., '/experiences/[experienceId]'). Null if the specified view type is
-      # not configured.
+      # URL path for the discover view, or `null` when not configured.
       sig { returns(T.nilable(String)) }
       attr_accessor :discover_path
 
-      # The unique subdomain identifier for this app's proxied URL on the Whop platform.
-      # Forms the URL pattern https://{domain_id}.apps.whop.com.
+      # Subdomain identifier for the app's proxied URL, forming
+      # https://{domain_id}.apps.whop.com.
       sig { returns(String) }
       attr_accessor :domain_id
 
-      # The URL path template for a specific view of this app, appended to the base
-      # domain (e.g., '/experiences/[experienceId]'). Null if the specified view type is
-      # not configured.
+      # URL path for the member-facing hub view, or `null` when not configured.
       sig { returns(T.nilable(String)) }
       attr_accessor :experience_path
 
-      # The full canonical URL where this app's hosted web build is served. Null if the
-      # app has not claimed a route.
+      # Full URL where the app's hosted web build is served, or `null` if no route is
+      # claimed.
       sig { returns(T.nilable(String)) }
       attr_accessor :hosted_url
 
-      # The icon image for this app, displayed on the app store, product pages,
-      # checkout, and as the default icon for experiences using this app.
-      sig { returns(T.nilable(WhopSDK::Models::AppListResponse::Icon)) }
+      # The app's icon. Falls back to the default app icon when none is uploaded.
+      sig { returns(WhopSDK::Models::AppListResponse::Icon) }
       attr_reader :icon
 
-      sig do
-        params(
-          icon: T.nilable(WhopSDK::Models::AppListResponse::Icon::OrHash)
-        ).void
-      end
+      sig { params(icon: WhopSDK::Models::AppListResponse::Icon::OrHash).void }
       attr_writer :icon
 
-      # The display name of this app shown on the app store and in experience
-      # navigation. Maximum 30 characters.
+      # Display name shown on the app store and in experience navigation.
       sig { returns(String) }
       attr_accessor :name
 
-      # The URL path template for a specific view of this app, appended to the base
-      # domain (e.g., '/experiences/[experienceId]'). Null if the specified view type is
-      # not configured.
+      # URL path to the app's OpenAPI spec file, or `null` when not configured.
       sig { returns(T.nilable(String)) }
       attr_accessor :openapi_path
 
-      # The full origin URL for this app's proxied domain (e.g.,
-      # 'https://myapp.apps.whop.com'). Null if no proxy domain is configured.
+      # Full origin URL of the app's proxied domain, for example
+      # https://ab1c2d3e4f.apps.whop.com.
       sig { returns(T.nilable(String)) }
       attr_accessor :origin
 
-      # The unique subdomain route where this app's hosted web builds are served, such
-      # as 'myapp' for myapp.whop.site. Null if the app has not claimed a route.
+      # Claimed subdomain route where hosted web builds are served (`myapp` for
+      # myapp.whop.site), or `null` if no route is claimed.
       sig { returns(T.nilable(String)) }
       attr_accessor :route
 
-      # The URL path template for a specific view of this app, appended to the base
-      # domain (e.g., '/experiences/[experienceId]'). Null if the specified view type is
-      # not configured.
+      # URL path to the app's skills directory, or `null` when not configured.
       sig { returns(T.nilable(String)) }
       attr_accessor :skills_path
 
-      # The current visibility status of this app on the Whop app store. 'live' means
-      # publicly discoverable, 'unlisted' means accessible only via direct link, and
-      # 'hidden' means not visible anywhere.
-      sig { returns(WhopSDK::AppStatuses::TaggedSymbol) }
+      # Visibility on the Whop app store: `live` is publicly discoverable, `unlisted` is
+      # accessible only via direct link, `hidden` is not visible anywhere.
+      sig { returns(WhopSDK::Models::AppListResponse::Status::TaggedSymbol) }
       attr_accessor :status
 
-      # Whether this app has been verified by Whop. Verified apps are endorsed by Whop
-      # and displayed in the featured apps section of the app store.
+      # Whether the app has been verified by Whop and is eligible for the featured apps
+      # section.
       sig { returns(T::Boolean) }
       attr_accessor :verified
 
-      # An app is an integration built on Whop. Apps can serve consumers as experiences
-      # within products, or serve companies as business tools.
       sig do
         params(
           id: String,
-          app_type: WhopSDK::AppType::OrSymbol,
-          company: WhopSDK::Models::AppListResponse::Company::OrHash,
+          account: WhopSDK::Models::AppListResponse::Account::OrHash,
+          app_type: WhopSDK::Models::AppListResponse::AppType::OrSymbol,
+          banner_image:
+            T.nilable(WhopSDK::Models::AppListResponse::BannerImage::OrHash),
+          base_url: T.nilable(String),
+          businesses_created_count: Integer,
+          businesses_created_logo_urls: T::Array[String],
           creator: WhopSDK::Models::AppListResponse::Creator::OrHash,
           dashboard_path: T.nilable(String),
           description: T.nilable(String),
@@ -132,73 +142,68 @@ module WhopSDK
           domain_id: String,
           experience_path: T.nilable(String),
           hosted_url: T.nilable(String),
-          icon: T.nilable(WhopSDK::Models::AppListResponse::Icon::OrHash),
+          icon: WhopSDK::Models::AppListResponse::Icon::OrHash,
           name: String,
           openapi_path: T.nilable(String),
           origin: T.nilable(String),
           route: T.nilable(String),
           skills_path: T.nilable(String),
-          status: WhopSDK::AppStatuses::OrSymbol,
+          status: WhopSDK::Models::AppListResponse::Status::OrSymbol,
           verified: T::Boolean
         ).returns(T.attached_class)
       end
       def self.new(
-        # The unique identifier for the app.
+        # App ID, prefixed `app_`.
         id:,
-        # The target audience classification for this app (e.g., 'b2b_app', 'b2c_app',
-        # 'company_app', 'component').
+        # The account that owns the app.
+        account:,
+        # The type of end-user the app is built for.
         app_type:,
-        # The company that owns and publishes this app.
-        company:,
-        # The user who created and owns the company that published this app.
+        # Banner image from the app's product listing, or `null` when none is uploaded.
+        banner_image:,
+        # The production base URL where the app is hosted. `null` if no base URL is
+        # configured, if the caller lacks the `developer:basic:read` permission on the
+        # app's account, or on list responses, which never expose it.
+        base_url:,
+        # Number of businesses created from this app as a template.
+        businesses_created_count:,
+        businesses_created_logo_urls:,
+        # The user who owns the publishing account.
         creator:,
-        # The URL path template for a specific view of this app, appended to the base
-        # domain (e.g., '/experiences/[experienceId]'). Null if the specified view type is
-        # not configured.
+        # URL path for the account dashboard view, or `null` when not configured.
         dashboard_path:,
-        # A written description of what this app does, displayed on the app store listing
-        # page. Null if no description has been set.
+        # Short description shown in listings and search results, or `null` if none has
+        # been set.
         description:,
-        # The URL path template for a specific view of this app, appended to the base
-        # domain (e.g., '/experiences/[experienceId]'). Null if the specified view type is
-        # not configured.
+        # URL path for the discover view, or `null` when not configured.
         discover_path:,
-        # The unique subdomain identifier for this app's proxied URL on the Whop platform.
-        # Forms the URL pattern https://{domain_id}.apps.whop.com.
+        # Subdomain identifier for the app's proxied URL, forming
+        # https://{domain_id}.apps.whop.com.
         domain_id:,
-        # The URL path template for a specific view of this app, appended to the base
-        # domain (e.g., '/experiences/[experienceId]'). Null if the specified view type is
-        # not configured.
+        # URL path for the member-facing hub view, or `null` when not configured.
         experience_path:,
-        # The full canonical URL where this app's hosted web build is served. Null if the
-        # app has not claimed a route.
+        # Full URL where the app's hosted web build is served, or `null` if no route is
+        # claimed.
         hosted_url:,
-        # The icon image for this app, displayed on the app store, product pages,
-        # checkout, and as the default icon for experiences using this app.
+        # The app's icon. Falls back to the default app icon when none is uploaded.
         icon:,
-        # The display name of this app shown on the app store and in experience
-        # navigation. Maximum 30 characters.
+        # Display name shown on the app store and in experience navigation.
         name:,
-        # The URL path template for a specific view of this app, appended to the base
-        # domain (e.g., '/experiences/[experienceId]'). Null if the specified view type is
-        # not configured.
+        # URL path to the app's OpenAPI spec file, or `null` when not configured.
         openapi_path:,
-        # The full origin URL for this app's proxied domain (e.g.,
-        # 'https://myapp.apps.whop.com'). Null if no proxy domain is configured.
+        # Full origin URL of the app's proxied domain, for example
+        # https://ab1c2d3e4f.apps.whop.com.
         origin:,
-        # The unique subdomain route where this app's hosted web builds are served, such
-        # as 'myapp' for myapp.whop.site. Null if the app has not claimed a route.
+        # Claimed subdomain route where hosted web builds are served (`myapp` for
+        # myapp.whop.site), or `null` if no route is claimed.
         route:,
-        # The URL path template for a specific view of this app, appended to the base
-        # domain (e.g., '/experiences/[experienceId]'). Null if the specified view type is
-        # not configured.
+        # URL path to the app's skills directory, or `null` when not configured.
         skills_path:,
-        # The current visibility status of this app on the Whop app store. 'live' means
-        # publicly discoverable, 'unlisted' means accessible only via direct link, and
-        # 'hidden' means not visible anywhere.
+        # Visibility on the Whop app store: `live` is publicly discoverable, `unlisted` is
+        # accessible only via direct link, `hidden` is not visible anywhere.
         status:,
-        # Whether this app has been verified by Whop. Verified apps are endorsed by Whop
-        # and displayed in the featured apps section of the app store.
+        # Whether the app has been verified by Whop and is eligible for the featured apps
+        # section.
         verified:
       )
       end
@@ -207,8 +212,13 @@ module WhopSDK
         override.returns(
           {
             id: String,
-            app_type: WhopSDK::AppType::TaggedSymbol,
-            company: WhopSDK::Models::AppListResponse::Company,
+            account: WhopSDK::Models::AppListResponse::Account,
+            app_type: WhopSDK::Models::AppListResponse::AppType::TaggedSymbol,
+            banner_image:
+              T.nilable(WhopSDK::Models::AppListResponse::BannerImage),
+            base_url: T.nilable(String),
+            businesses_created_count: Integer,
+            businesses_created_logo_urls: T::Array[String],
             creator: WhopSDK::Models::AppListResponse::Creator,
             dashboard_path: T.nilable(String),
             description: T.nilable(String),
@@ -216,13 +226,13 @@ module WhopSDK
             domain_id: String,
             experience_path: T.nilable(String),
             hosted_url: T.nilable(String),
-            icon: T.nilable(WhopSDK::Models::AppListResponse::Icon),
+            icon: WhopSDK::Models::AppListResponse::Icon,
             name: String,
             openapi_path: T.nilable(String),
             origin: T.nilable(String),
             route: T.nilable(String),
             skills_path: T.nilable(String),
-            status: WhopSDK::AppStatuses::TaggedSymbol,
+            status: WhopSDK::Models::AppListResponse::Status::TaggedSymbol,
             verified: T::Boolean
           }
         )
@@ -230,34 +240,133 @@ module WhopSDK
       def to_hash
       end
 
-      class Company < WhopSDK::Internal::Type::BaseModel
+      class Account < WhopSDK::Internal::Type::BaseModel
         OrHash =
           T.type_alias do
             T.any(
-              WhopSDK::Models::AppListResponse::Company,
+              WhopSDK::Models::AppListResponse::Account,
               WhopSDK::Internal::AnyHash
             )
           end
 
-        # The unique identifier for the company.
+        # Account ID, prefixed `biz_`.
         sig { returns(String) }
         attr_accessor :id
 
-        # The display name of the company shown to customers.
+        # Account logo image URL.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :logo_url
+
+        # Account public route identifier.
+        sig { returns(String) }
+        attr_accessor :route
+
+        # Account display name.
         sig { returns(String) }
         attr_accessor :title
 
-        # The company that owns and publishes this app.
-        sig { params(id: String, title: String).returns(T.attached_class) }
+        # The account that owns the app.
+        sig do
+          params(
+            id: String,
+            logo_url: T.nilable(String),
+            route: String,
+            title: String
+          ).returns(T.attached_class)
+        end
         def self.new(
-          # The unique identifier for the company.
+          # Account ID, prefixed `biz_`.
           id:,
-          # The display name of the company shown to customers.
+          # Account logo image URL.
+          logo_url:,
+          # Account public route identifier.
+          route:,
+          # Account display name.
           title:
         )
         end
 
-        sig { override.returns({ id: String, title: String }) }
+        sig do
+          override.returns(
+            {
+              id: String,
+              logo_url: T.nilable(String),
+              route: String,
+              title: String
+            }
+          )
+        end
+        def to_hash
+        end
+      end
+
+      # The type of end-user the app is built for.
+      module AppType
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias do
+            T.all(Symbol, WhopSDK::Models::AppListResponse::AppType)
+          end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        B2B_APP =
+          T.let(
+            :b2b_app,
+            WhopSDK::Models::AppListResponse::AppType::TaggedSymbol
+          )
+        B2C_APP =
+          T.let(
+            :b2c_app,
+            WhopSDK::Models::AppListResponse::AppType::TaggedSymbol
+          )
+        COMPANY_APP =
+          T.let(
+            :company_app,
+            WhopSDK::Models::AppListResponse::AppType::TaggedSymbol
+          )
+        COMPONENT =
+          T.let(
+            :component,
+            WhopSDK::Models::AppListResponse::AppType::TaggedSymbol
+          )
+        WEBSITE =
+          T.let(
+            :website,
+            WhopSDK::Models::AppListResponse::AppType::TaggedSymbol
+          )
+
+        sig do
+          override.returns(
+            T::Array[WhopSDK::Models::AppListResponse::AppType::TaggedSymbol]
+          )
+        end
+        def self.values
+        end
+      end
+
+      class BannerImage < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              WhopSDK::Models::AppListResponse::BannerImage,
+              WhopSDK::Internal::AnyHash
+            )
+          end
+
+        # Banner image URL, taken from the app's product listing.
+        sig { returns(String) }
+        attr_accessor :url
+
+        # Banner image from the app's product listing, or `null` when none is uploaded.
+        sig { params(url: String).returns(T.attached_class) }
+        def self.new(
+          # Banner image URL, taken from the app's product listing.
+          url:
+        )
+        end
+
+        sig { override.returns({ url: String }) }
         def to_hash
         end
       end
@@ -271,30 +380,30 @@ module WhopSDK
             )
           end
 
-        # The unique identifier for the user.
+        # User ID, prefixed `user_`.
         sig { returns(String) }
         attr_accessor :id
 
-        # The user's display name shown on their public profile.
+        # Display name.
         sig { returns(T.nilable(String)) }
         attr_accessor :name
 
-        # The user's unique username shown on their public profile.
+        # Public username.
         sig { returns(String) }
         attr_accessor :username
 
-        # The user who created and owns the company that published this app.
+        # The user who owns the publishing account.
         sig do
           params(id: String, name: T.nilable(String), username: String).returns(
             T.attached_class
           )
         end
         def self.new(
-          # The unique identifier for the user.
+          # User ID, prefixed `user_`.
           id:,
-          # The user's display name shown on their public profile.
+          # Display name.
           name:,
-          # The user's unique username shown on their public profile.
+          # Public username.
           username:
         )
         end
@@ -317,23 +426,50 @@ module WhopSDK
             )
           end
 
-        # A pre-optimized URL for rendering this attachment on the client. This should be
-        # used for displaying attachments in apps.
-        sig { returns(T.nilable(String)) }
+        # Icon image URL. Always present — the default app icon when none is uploaded.
+        sig { returns(String) }
         attr_accessor :url
 
-        # The icon image for this app, displayed on the app store, product pages,
-        # checkout, and as the default icon for experiences using this app.
-        sig { params(url: T.nilable(String)).returns(T.attached_class) }
+        # The app's icon. Falls back to the default app icon when none is uploaded.
+        sig { params(url: String).returns(T.attached_class) }
         def self.new(
-          # A pre-optimized URL for rendering this attachment on the client. This should be
-          # used for displaying attachments in apps.
+          # Icon image URL. Always present — the default app icon when none is uploaded.
           url:
         )
         end
 
-        sig { override.returns({ url: T.nilable(String) }) }
+        sig { override.returns({ url: String }) }
         def to_hash
+        end
+      end
+
+      # Visibility on the Whop app store: `live` is publicly discoverable, `unlisted` is
+      # accessible only via direct link, `hidden` is not visible anywhere.
+      module Status
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias do
+            T.all(Symbol, WhopSDK::Models::AppListResponse::Status)
+          end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        LIVE =
+          T.let(:live, WhopSDK::Models::AppListResponse::Status::TaggedSymbol)
+        UNLISTED =
+          T.let(
+            :unlisted,
+            WhopSDK::Models::AppListResponse::Status::TaggedSymbol
+          )
+        HIDDEN =
+          T.let(:hidden, WhopSDK::Models::AppListResponse::Status::TaggedSymbol)
+
+        sig do
+          override.returns(
+            T::Array[WhopSDK::Models::AppListResponse::Status::TaggedSymbol]
+          )
+        end
+        def self.values
         end
       end
     end

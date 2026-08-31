@@ -3,388 +3,839 @@ module WhopSDK
     type dispute =
       {
         id: String,
-        access_activity_log: String?,
+        account_id: String?,
         amount: Float,
-        billing_address: String?,
-        cancellation_policy_attachment: WhopSDK::Dispute::CancellationPolicyAttachment?,
-        cancellation_policy_disclosure: String?,
-        company: WhopSDK::Dispute::Company?,
-        created_at: Time?,
-        currency: WhopSDK::Models::currency,
-        customer_communication_attachment: WhopSDK::Dispute::CustomerCommunicationAttachment?,
-        customer_email_address: String?,
-        customer_name: String?,
-        editable: bool?,
-        needs_response_by: Time?,
-        notes: String?,
+        buyer: WhopSDK::Dispute::Buyer?,
+        created_at: String,
+        currency: String,
+        evidence: WhopSDK::Dispute::Evidence,
+        evidence_due_at: String?,
+        evidence_editable: bool,
+        evidence_locked_reason: WhopSDK::Models::Dispute::evidence_locked_reason?,
+        evidence_submitted_at: String?,
+        generated_response_attachment: WhopSDK::Dispute::GeneratedResponseAttachment?,
+        inquiry: bool,
+        issuer_comments: ::Array[WhopSDK::Dispute::IssuerComment],
         payment: WhopSDK::Dispute::Payment?,
-        plan: WhopSDK::Dispute::Plan?,
-        product: WhopSDK::Dispute::Product?,
-        product_description: String?,
-        reason: String?,
+        plan_id: String?,
+        product_id: String?,
+        rapid_dispute_resolution: bool,
+        reason: WhopSDK::Models::Dispute::reason,
         reason_code: String?,
-        refund_policy_attachment: WhopSDK::Dispute::RefundPolicyAttachment?,
-        refund_policy_disclosure: String?,
-        refund_refusal_explanation: String?,
-        service_date: String?,
-        status: WhopSDK::Models::dispute_statuses,
-        uncategorized_attachment: WhopSDK::Dispute::UncategorizedAttachment?,
-        visa_rdr: bool
+        status: WhopSDK::Models::Dispute::status,
+        updated_at: String
       }
 
     class Dispute < WhopSDK::Internal::Type::BaseModel
       attr_accessor id: String
 
-      attr_accessor access_activity_log: String?
+      attr_accessor account_id: String?
 
       attr_accessor amount: Float
 
-      attr_accessor billing_address: String?
+      attr_accessor buyer: WhopSDK::Dispute::Buyer?
 
-      attr_accessor cancellation_policy_attachment: WhopSDK::Dispute::CancellationPolicyAttachment?
+      attr_accessor created_at: String
 
-      attr_accessor cancellation_policy_disclosure: String?
+      attr_accessor currency: String
 
-      attr_accessor company: WhopSDK::Dispute::Company?
+      attr_accessor evidence: WhopSDK::Dispute::Evidence
 
-      attr_accessor created_at: Time?
+      attr_accessor evidence_due_at: String?
 
-      attr_accessor currency: WhopSDK::Models::currency
+      attr_accessor evidence_editable: bool
 
-      attr_accessor customer_communication_attachment: WhopSDK::Dispute::CustomerCommunicationAttachment?
+      attr_accessor evidence_locked_reason: WhopSDK::Models::Dispute::evidence_locked_reason?
 
-      attr_accessor customer_email_address: String?
+      attr_accessor evidence_submitted_at: String?
 
-      attr_accessor customer_name: String?
+      attr_accessor generated_response_attachment: WhopSDK::Dispute::GeneratedResponseAttachment?
 
-      attr_accessor editable: bool?
+      attr_accessor inquiry: bool
 
-      attr_accessor needs_response_by: Time?
-
-      attr_accessor notes: String?
+      attr_accessor issuer_comments: ::Array[WhopSDK::Dispute::IssuerComment]
 
       attr_accessor payment: WhopSDK::Dispute::Payment?
 
-      attr_accessor plan: WhopSDK::Dispute::Plan?
+      attr_accessor plan_id: String?
 
-      attr_accessor product: WhopSDK::Dispute::Product?
+      attr_accessor product_id: String?
 
-      attr_accessor product_description: String?
+      attr_accessor rapid_dispute_resolution: bool
 
-      attr_accessor reason: String?
+      attr_accessor reason: WhopSDK::Models::Dispute::reason
 
       attr_accessor reason_code: String?
 
-      attr_accessor refund_policy_attachment: WhopSDK::Dispute::RefundPolicyAttachment?
+      attr_accessor status: WhopSDK::Models::Dispute::status
 
-      attr_accessor refund_policy_disclosure: String?
-
-      attr_accessor refund_refusal_explanation: String?
-
-      attr_accessor service_date: String?
-
-      attr_accessor status: WhopSDK::Models::dispute_statuses
-
-      attr_accessor uncategorized_attachment: WhopSDK::Dispute::UncategorizedAttachment?
-
-      attr_accessor visa_rdr: bool
+      attr_accessor updated_at: String
 
       def initialize: (
         id: String,
-        access_activity_log: String?,
+        account_id: String?,
         amount: Float,
-        billing_address: String?,
-        cancellation_policy_attachment: WhopSDK::Dispute::CancellationPolicyAttachment?,
-        cancellation_policy_disclosure: String?,
-        company: WhopSDK::Dispute::Company?,
-        created_at: Time?,
-        currency: WhopSDK::Models::currency,
-        customer_communication_attachment: WhopSDK::Dispute::CustomerCommunicationAttachment?,
-        customer_email_address: String?,
-        customer_name: String?,
-        editable: bool?,
-        needs_response_by: Time?,
-        notes: String?,
+        buyer: WhopSDK::Dispute::Buyer?,
+        created_at: String,
+        currency: String,
+        evidence: WhopSDK::Dispute::Evidence,
+        evidence_due_at: String?,
+        evidence_editable: bool,
+        evidence_locked_reason: WhopSDK::Models::Dispute::evidence_locked_reason?,
+        evidence_submitted_at: String?,
+        generated_response_attachment: WhopSDK::Dispute::GeneratedResponseAttachment?,
+        inquiry: bool,
+        issuer_comments: ::Array[WhopSDK::Dispute::IssuerComment],
         payment: WhopSDK::Dispute::Payment?,
-        plan: WhopSDK::Dispute::Plan?,
-        product: WhopSDK::Dispute::Product?,
-        product_description: String?,
-        reason: String?,
+        plan_id: String?,
+        product_id: String?,
+        rapid_dispute_resolution: bool,
+        reason: WhopSDK::Models::Dispute::reason,
         reason_code: String?,
-        refund_policy_attachment: WhopSDK::Dispute::RefundPolicyAttachment?,
-        refund_policy_disclosure: String?,
-        refund_refusal_explanation: String?,
-        service_date: String?,
-        status: WhopSDK::Models::dispute_statuses,
-        uncategorized_attachment: WhopSDK::Dispute::UncategorizedAttachment?,
-        visa_rdr: bool
+        status: WhopSDK::Models::Dispute::status,
+        updated_at: String
       ) -> void
 
       def to_hash: -> {
         id: String,
-        access_activity_log: String?,
+        account_id: String?,
         amount: Float,
-        billing_address: String?,
-        cancellation_policy_attachment: WhopSDK::Dispute::CancellationPolicyAttachment?,
-        cancellation_policy_disclosure: String?,
-        company: WhopSDK::Dispute::Company?,
-        created_at: Time?,
-        currency: WhopSDK::Models::currency,
-        customer_communication_attachment: WhopSDK::Dispute::CustomerCommunicationAttachment?,
-        customer_email_address: String?,
-        customer_name: String?,
-        editable: bool?,
-        needs_response_by: Time?,
-        notes: String?,
+        buyer: WhopSDK::Dispute::Buyer?,
+        created_at: String,
+        currency: String,
+        evidence: WhopSDK::Dispute::Evidence,
+        evidence_due_at: String?,
+        evidence_editable: bool,
+        evidence_locked_reason: WhopSDK::Models::Dispute::evidence_locked_reason?,
+        evidence_submitted_at: String?,
+        generated_response_attachment: WhopSDK::Dispute::GeneratedResponseAttachment?,
+        inquiry: bool,
+        issuer_comments: ::Array[WhopSDK::Dispute::IssuerComment],
         payment: WhopSDK::Dispute::Payment?,
-        plan: WhopSDK::Dispute::Plan?,
-        product: WhopSDK::Dispute::Product?,
-        product_description: String?,
-        reason: String?,
+        plan_id: String?,
+        product_id: String?,
+        rapid_dispute_resolution: bool,
+        reason: WhopSDK::Models::Dispute::reason,
         reason_code: String?,
-        refund_policy_attachment: WhopSDK::Dispute::RefundPolicyAttachment?,
-        refund_policy_disclosure: String?,
-        refund_refusal_explanation: String?,
-        service_date: String?,
-        status: WhopSDK::Models::dispute_statuses,
-        uncategorized_attachment: WhopSDK::Dispute::UncategorizedAttachment?,
-        visa_rdr: bool
+        status: WhopSDK::Models::Dispute::status,
+        updated_at: String
       }
 
-      type cancellation_policy_attachment =
-        { id: String, content_type: String?, filename: String?, url: String? }
+      type buyer =
+        {
+          email: String?,
+          member_id: String?,
+          name: String?,
+          user_id: String?,
+          username: String?
+        }
 
-      class CancellationPolicyAttachment < WhopSDK::Internal::Type::BaseModel
-        attr_accessor id: String
+      class Buyer < WhopSDK::Internal::Type::BaseModel
+        attr_accessor email: String?
+
+        attr_accessor member_id: String?
+
+        attr_accessor name: String?
+
+        attr_accessor user_id: String?
+
+        attr_accessor username: String?
+
+        def initialize: (
+          email: String?,
+          member_id: String?,
+          name: String?,
+          user_id: String?,
+          username: String?
+        ) -> void
+
+        def to_hash: -> {
+          email: String?,
+          member_id: String?,
+          name: String?,
+          user_id: String?,
+          username: String?
+        }
+      end
+
+      type evidence =
+        {
+          access_activity_log: String?,
+          billing_address: String?,
+          cancellation_policy_attachment: WhopSDK::Dispute::Evidence::CancellationPolicyAttachment?,
+          cancellation_policy_disclosure: String?,
+          customer_communication_attachment: WhopSDK::Dispute::Evidence::CustomerCommunicationAttachment?,
+          customer_email_address: String?,
+          customer_name: String?,
+          documents: ::Array[WhopSDK::Dispute::Evidence::Document],
+          notes: String?,
+          product_description: String?,
+          refund_policy_attachment: WhopSDK::Dispute::Evidence::RefundPolicyAttachment?,
+          refund_policy_disclosure: String?,
+          refund_refusal_explanation: String?,
+          service_date: String?,
+          uncategorized_attachment: WhopSDK::Dispute::Evidence::UncategorizedAttachment?
+        }
+
+      class Evidence < WhopSDK::Internal::Type::BaseModel
+        attr_accessor access_activity_log: String?
+
+        attr_accessor billing_address: String?
+
+        attr_accessor cancellation_policy_attachment: WhopSDK::Dispute::Evidence::CancellationPolicyAttachment?
+
+        attr_accessor cancellation_policy_disclosure: String?
+
+        attr_accessor customer_communication_attachment: WhopSDK::Dispute::Evidence::CustomerCommunicationAttachment?
+
+        attr_accessor customer_email_address: String?
+
+        attr_accessor customer_name: String?
+
+        attr_accessor documents: ::Array[WhopSDK::Dispute::Evidence::Document]
+
+        attr_accessor notes: String?
+
+        attr_accessor product_description: String?
+
+        attr_accessor refund_policy_attachment: WhopSDK::Dispute::Evidence::RefundPolicyAttachment?
+
+        attr_accessor refund_policy_disclosure: String?
+
+        attr_accessor refund_refusal_explanation: String?
+
+        attr_accessor service_date: String?
+
+        attr_accessor uncategorized_attachment: WhopSDK::Dispute::Evidence::UncategorizedAttachment?
+
+        def initialize: (
+          access_activity_log: String?,
+          billing_address: String?,
+          cancellation_policy_attachment: WhopSDK::Dispute::Evidence::CancellationPolicyAttachment?,
+          cancellation_policy_disclosure: String?,
+          customer_communication_attachment: WhopSDK::Dispute::Evidence::CustomerCommunicationAttachment?,
+          customer_email_address: String?,
+          customer_name: String?,
+          documents: ::Array[WhopSDK::Dispute::Evidence::Document],
+          notes: String?,
+          product_description: String?,
+          refund_policy_attachment: WhopSDK::Dispute::Evidence::RefundPolicyAttachment?,
+          refund_policy_disclosure: String?,
+          refund_refusal_explanation: String?,
+          service_date: String?,
+          uncategorized_attachment: WhopSDK::Dispute::Evidence::UncategorizedAttachment?
+        ) -> void
+
+        def to_hash: -> {
+          access_activity_log: String?,
+          billing_address: String?,
+          cancellation_policy_attachment: WhopSDK::Dispute::Evidence::CancellationPolicyAttachment?,
+          cancellation_policy_disclosure: String?,
+          customer_communication_attachment: WhopSDK::Dispute::Evidence::CustomerCommunicationAttachment?,
+          customer_email_address: String?,
+          customer_name: String?,
+          documents: ::Array[WhopSDK::Dispute::Evidence::Document],
+          notes: String?,
+          product_description: String?,
+          refund_policy_attachment: WhopSDK::Dispute::Evidence::RefundPolicyAttachment?,
+          refund_policy_disclosure: String?,
+          refund_refusal_explanation: String?,
+          service_date: String?,
+          uncategorized_attachment: WhopSDK::Dispute::Evidence::UncategorizedAttachment?
+        }
+
+        type cancellation_policy_attachment =
+          {
+            id: String?,
+            content_type: String?,
+            filename: String?,
+            platform: bool,
+            url: String?
+          }
+
+        class CancellationPolicyAttachment < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String?
+
+          attr_accessor content_type: String?
+
+          attr_accessor filename: String?
+
+          attr_accessor platform: bool
+
+          attr_accessor url: String?
+
+          def initialize: (
+            id: String?,
+            content_type: String?,
+            filename: String?,
+            platform: bool,
+            url: String?
+          ) -> void
+
+          def to_hash: -> {
+            id: String?,
+            content_type: String?,
+            filename: String?,
+            platform: bool,
+            url: String?
+          }
+        end
+
+        type customer_communication_attachment =
+          {
+            id: String?,
+            content_type: String?,
+            filename: String?,
+            platform: bool,
+            url: String?
+          }
+
+        class CustomerCommunicationAttachment < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String?
+
+          attr_accessor content_type: String?
+
+          attr_accessor filename: String?
+
+          attr_accessor platform: bool
+
+          attr_accessor url: String?
+
+          def initialize: (
+            id: String?,
+            content_type: String?,
+            filename: String?,
+            platform: bool,
+            url: String?
+          ) -> void
+
+          def to_hash: -> {
+            id: String?,
+            content_type: String?,
+            filename: String?,
+            platform: bool,
+            url: String?
+          }
+        end
+
+        type document =
+          {
+            id: String,
+            content_type: WhopSDK::Models::Dispute::Evidence::Document::content_type?,
+            created_at: String,
+            document_type: WhopSDK::Models::Dispute::Evidence::Document::document_type,
+            filename: String?,
+            object: String,
+            size: Integer?,
+            upload_status: WhopSDK::Models::Dispute::Evidence::Document::upload_status,
+            url: String?,
+            visibility: WhopSDK::Models::Dispute::Evidence::Document::visibility,
+            multipart_chunk_size: Integer?,
+            multipart_upload_id: String?,
+            multipart_upload_urls: ::Array[WhopSDK::Dispute::Evidence::Document::MultipartUploadURL]?,
+            upload_headers: top,
+            upload_url: String?
+          }
+
+        class Document < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor content_type: WhopSDK::Models::Dispute::Evidence::Document::content_type?
+
+          attr_accessor created_at: String
+
+          attr_accessor document_type: WhopSDK::Models::Dispute::Evidence::Document::document_type
+
+          attr_accessor filename: String?
+
+          attr_accessor object: String
+
+          attr_accessor size: Integer?
+
+          attr_accessor upload_status: WhopSDK::Models::Dispute::Evidence::Document::upload_status
+
+          attr_accessor url: String?
+
+          attr_accessor visibility: WhopSDK::Models::Dispute::Evidence::Document::visibility
+
+          attr_accessor multipart_chunk_size: Integer?
+
+          attr_accessor multipart_upload_id: String?
+
+          attr_accessor multipart_upload_urls: ::Array[WhopSDK::Dispute::Evidence::Document::MultipartUploadURL]?
+
+          attr_reader upload_headers: top?
+
+          def upload_headers=: (top) -> top
+
+          attr_accessor upload_url: String?
+
+          def initialize: (
+            id: String,
+            content_type: WhopSDK::Models::Dispute::Evidence::Document::content_type?,
+            created_at: String,
+            document_type: WhopSDK::Models::Dispute::Evidence::Document::document_type,
+            filename: String?,
+            object: String,
+            size: Integer?,
+            upload_status: WhopSDK::Models::Dispute::Evidence::Document::upload_status,
+            url: String?,
+            visibility: WhopSDK::Models::Dispute::Evidence::Document::visibility,
+            ?multipart_chunk_size: Integer?,
+            ?multipart_upload_id: String?,
+            ?multipart_upload_urls: ::Array[WhopSDK::Dispute::Evidence::Document::MultipartUploadURL]?,
+            ?upload_headers: top,
+            ?upload_url: String?
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            content_type: WhopSDK::Models::Dispute::Evidence::Document::content_type?,
+            created_at: String,
+            document_type: WhopSDK::Models::Dispute::Evidence::Document::document_type,
+            filename: String?,
+            object: String,
+            size: Integer?,
+            upload_status: WhopSDK::Models::Dispute::Evidence::Document::upload_status,
+            url: String?,
+            visibility: WhopSDK::Models::Dispute::Evidence::Document::visibility,
+            multipart_chunk_size: Integer?,
+            multipart_upload_id: String?,
+            multipart_upload_urls: ::Array[WhopSDK::Dispute::Evidence::Document::MultipartUploadURL]?,
+            upload_headers: top,
+            upload_url: String?
+          }
+
+          type content_type =
+            :"application/pdf"
+            | :"application/json"
+            | :"image/jpeg"
+            | :"image/png"
+            | :"image/webp"
+
+          module ContentType
+            extend WhopSDK::Internal::Type::Enum
+
+            APPLICATION_PDF: :"application/pdf"
+            APPLICATION_JSON: :"application/json"
+            IMAGE_JPEG: :"image/jpeg"
+            IMAGE_PNG: :"image/png"
+            IMAGE_WEBP: :"image/webp"
+
+            def self?.values: -> ::Array[WhopSDK::Models::Dispute::Evidence::Document::content_type]
+          end
+
+          type document_type =
+            :return_policy
+            | :shipping_policy
+            | :physical_fulfillment
+            | :customer_order_history
+            | :product_image
+            | :prior_transactions
+            | :customer_session
+            | :digital_fulfillment
+            | :subscription
+
+          module DocumentType
+            extend WhopSDK::Internal::Type::Enum
+
+            RETURN_POLICY: :return_policy
+            SHIPPING_POLICY: :shipping_policy
+            PHYSICAL_FULFILLMENT: :physical_fulfillment
+            CUSTOMER_ORDER_HISTORY: :customer_order_history
+            PRODUCT_IMAGE: :product_image
+            PRIOR_TRANSACTIONS: :prior_transactions
+            CUSTOMER_SESSION: :customer_session
+            DIGITAL_FULFILLMENT: :digital_fulfillment
+            SUBSCRIPTION: :subscription
+
+            def self?.values: -> ::Array[WhopSDK::Models::Dispute::Evidence::Document::document_type]
+          end
+
+          type upload_status = :pending | :processing | :ready | :failed
+
+          module UploadStatus
+            extend WhopSDK::Internal::Type::Enum
+
+            PENDING: :pending
+            PROCESSING: :processing
+            READY: :ready
+            FAILED: :failed
+
+            def self?.values: -> ::Array[WhopSDK::Models::Dispute::Evidence::Document::upload_status]
+          end
+
+          type visibility = :public | :private
+
+          module Visibility
+            extend WhopSDK::Internal::Type::Enum
+
+            PUBLIC: :public
+            PRIVATE: :private
+
+            def self?.values: -> ::Array[WhopSDK::Models::Dispute::Evidence::Document::visibility]
+          end
+
+          type multipart_upload_url = { part_number: Integer, url: String }
+
+          class MultipartUploadURL < WhopSDK::Internal::Type::BaseModel
+            attr_accessor part_number: Integer
+
+            attr_accessor url: String
+
+            def initialize: (part_number: Integer, url: String) -> void
+
+            def to_hash: -> { part_number: Integer, url: String }
+          end
+        end
+
+        type refund_policy_attachment =
+          {
+            id: String?,
+            content_type: String?,
+            filename: String?,
+            platform: bool,
+            url: String?
+          }
+
+        class RefundPolicyAttachment < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String?
+
+          attr_accessor content_type: String?
+
+          attr_accessor filename: String?
+
+          attr_accessor platform: bool
+
+          attr_accessor url: String?
+
+          def initialize: (
+            id: String?,
+            content_type: String?,
+            filename: String?,
+            platform: bool,
+            url: String?
+          ) -> void
+
+          def to_hash: -> {
+            id: String?,
+            content_type: String?,
+            filename: String?,
+            platform: bool,
+            url: String?
+          }
+        end
+
+        type uncategorized_attachment =
+          {
+            id: String?,
+            content_type: String?,
+            filename: String?,
+            platform: bool,
+            url: String?
+          }
+
+        class UncategorizedAttachment < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String?
+
+          attr_accessor content_type: String?
+
+          attr_accessor filename: String?
+
+          attr_accessor platform: bool
+
+          attr_accessor url: String?
+
+          def initialize: (
+            id: String?,
+            content_type: String?,
+            filename: String?,
+            platform: bool,
+            url: String?
+          ) -> void
+
+          def to_hash: -> {
+            id: String?,
+            content_type: String?,
+            filename: String?,
+            platform: bool,
+            url: String?
+          }
+        end
+      end
+
+      type evidence_locked_reason =
+        :submitted | :response_window_closed | :not_contestable
+
+      module EvidenceLockedReason
+        extend WhopSDK::Internal::Type::Enum
+
+        SUBMITTED: :submitted
+        RESPONSE_WINDOW_CLOSED: :response_window_closed
+        NOT_CONTESTABLE: :not_contestable
+
+        def self?.values: -> ::Array[WhopSDK::Models::Dispute::evidence_locked_reason]
+      end
+
+      type generated_response_attachment =
+        {
+          id: String?,
+          content_type: String?,
+          filename: String?,
+          platform: bool,
+          url: String?
+        }
+
+      class GeneratedResponseAttachment < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String?
 
         attr_accessor content_type: String?
 
         attr_accessor filename: String?
 
-        attr_accessor url: String?
-
-        def initialize: (
-          id: String,
-          content_type: String?,
-          filename: String?,
-          url: String?
-        ) -> void
-
-        def to_hash: -> {
-          id: String,
-          content_type: String?,
-          filename: String?,
-          url: String?
-        }
-      end
-
-      type company = { id: String, title: String }
-
-      class Company < WhopSDK::Internal::Type::BaseModel
-        attr_accessor id: String
-
-        attr_accessor title: String
-
-        def initialize: (id: String, title: String) -> void
-
-        def to_hash: -> { id: String, title: String }
-      end
-
-      type customer_communication_attachment =
-        { id: String, content_type: String?, filename: String?, url: String? }
-
-      class CustomerCommunicationAttachment < WhopSDK::Internal::Type::BaseModel
-        attr_accessor id: String
-
-        attr_accessor content_type: String?
-
-        attr_accessor filename: String?
+        attr_accessor platform: bool
 
         attr_accessor url: String?
 
         def initialize: (
-          id: String,
+          id: String?,
           content_type: String?,
           filename: String?,
+          platform: bool,
           url: String?
         ) -> void
 
         def to_hash: -> {
-          id: String,
+          id: String?,
           content_type: String?,
           filename: String?,
+          platform: bool,
           url: String?
         }
+      end
+
+      type issuer_comment = { received_at: String?, text: String }
+
+      class IssuerComment < WhopSDK::Internal::Type::BaseModel
+        attr_accessor received_at: String?
+
+        attr_accessor text: String
+
+        def initialize: (received_at: String?, text: String) -> void
+
+        def to_hash: -> { received_at: String?, text: String }
       end
 
       type payment =
         {
           id: String,
-          billing_reason: WhopSDK::Models::billing_reasons?,
-          card_brand: WhopSDK::Models::card_brands?,
+          amount: Float?,
+          card_brand: String?,
           :card_last4 => String?,
-          created_at: Time,
-          currency: WhopSDK::Models::currency,
-          dispute_alerted_at: Time?,
-          member: WhopSDK::Dispute::Payment::Member?,
-          membership: WhopSDK::Dispute::Payment::Membership?,
-          paid_at: Time?,
+          created_at: String,
+          currency: String?,
           payment_instrument: WhopSDK::Dispute::Payment::PaymentInstrument?,
-          payment_method_type: WhopSDK::Models::payment_method_types?,
-          subtotal: Float?,
-          total: Float?,
-          usd_total: Float?,
-          user: WhopSDK::Dispute::Payment::User?
+          payment_method_type: String?,
+          payment_processor: String?
         }
 
       class Payment < WhopSDK::Internal::Type::BaseModel
         attr_accessor id: String
 
-        attr_accessor billing_reason: WhopSDK::Models::billing_reasons?
+        attr_accessor amount: Float?
 
-        attr_accessor card_brand: WhopSDK::Models::card_brands?
+        attr_accessor card_brand: String?
 
         attr_accessor card_last4: String?
 
-        attr_accessor created_at: Time
+        attr_accessor created_at: String
 
-        attr_accessor currency: WhopSDK::Models::currency
-
-        attr_accessor dispute_alerted_at: Time?
-
-        attr_accessor member: WhopSDK::Dispute::Payment::Member?
-
-        attr_accessor membership: WhopSDK::Dispute::Payment::Membership?
-
-        attr_accessor paid_at: Time?
+        attr_accessor currency: String?
 
         attr_accessor payment_instrument: WhopSDK::Dispute::Payment::PaymentInstrument?
 
-        attr_accessor payment_method_type: WhopSDK::Models::payment_method_types?
+        attr_accessor payment_method_type: String?
 
-        attr_accessor subtotal: Float?
-
-        attr_accessor total: Float?
-
-        attr_accessor usd_total: Float?
-
-        attr_accessor user: WhopSDK::Dispute::Payment::User?
+        attr_accessor payment_processor: String?
 
         def initialize: (
           id: String,
-          billing_reason: WhopSDK::Models::billing_reasons?,
-          card_brand: WhopSDK::Models::card_brands?,
+          amount: Float?,
+          card_brand: String?,
           card_last4: String?,
-          created_at: Time,
-          currency: WhopSDK::Models::currency,
-          dispute_alerted_at: Time?,
-          member: WhopSDK::Dispute::Payment::Member?,
-          membership: WhopSDK::Dispute::Payment::Membership?,
-          paid_at: Time?,
+          created_at: String,
+          currency: String?,
           payment_instrument: WhopSDK::Dispute::Payment::PaymentInstrument?,
-          payment_method_type: WhopSDK::Models::payment_method_types?,
-          subtotal: Float?,
-          total: Float?,
-          usd_total: Float?,
-          user: WhopSDK::Dispute::Payment::User?
+          payment_method_type: String?,
+          payment_processor: String?
         ) -> void
 
         def to_hash: -> {
           id: String,
-          billing_reason: WhopSDK::Models::billing_reasons?,
-          card_brand: WhopSDK::Models::card_brands?,
+          amount: Float?,
+          card_brand: String?,
           :card_last4 => String?,
-          created_at: Time,
-          currency: WhopSDK::Models::currency,
-          dispute_alerted_at: Time?,
-          member: WhopSDK::Dispute::Payment::Member?,
-          membership: WhopSDK::Dispute::Payment::Membership?,
-          paid_at: Time?,
+          created_at: String,
+          currency: String?,
           payment_instrument: WhopSDK::Dispute::Payment::PaymentInstrument?,
-          payment_method_type: WhopSDK::Models::payment_method_types?,
-          subtotal: Float?,
-          total: Float?,
-          usd_total: Float?,
-          user: WhopSDK::Dispute::Payment::User?
+          payment_method_type: String?,
+          payment_processor: String?
         }
-
-        type member = { id: String, phone: String? }
-
-        class Member < WhopSDK::Internal::Type::BaseModel
-          attr_accessor id: String
-
-          attr_accessor phone: String?
-
-          def initialize: (id: String, phone: String?) -> void
-
-          def to_hash: -> { id: String, phone: String? }
-        end
-
-        type membership =
-          { id: String, status: WhopSDK::Models::membership_status }
-
-        class Membership < WhopSDK::Internal::Type::BaseModel
-          attr_accessor id: String
-
-          attr_accessor status: WhopSDK::Models::membership_status
-
-          def initialize: (
-            id: String,
-            status: WhopSDK::Models::membership_status
-          ) -> void
-
-          def to_hash: -> {
-            id: String,
-            status: WhopSDK::Models::membership_status
-          }
-        end
 
         type payment_instrument =
           {
+            card: WhopSDK::Dispute::Payment::PaymentInstrument::Card?,
             display_name: String,
             icons: WhopSDK::Dispute::Payment::PaymentInstrument::Icons,
-            installment_count: Integer?,
+            installment_count: Float?,
             payment_method_type: String
           }
 
         class PaymentInstrument < WhopSDK::Internal::Type::BaseModel
+          attr_accessor card: WhopSDK::Dispute::Payment::PaymentInstrument::Card?
+
           attr_accessor display_name: String
 
           attr_accessor icons: WhopSDK::Dispute::Payment::PaymentInstrument::Icons
 
-          attr_accessor installment_count: Integer?
+          attr_accessor installment_count: Float?
 
           attr_accessor payment_method_type: String
 
           def initialize: (
+            card: WhopSDK::Dispute::Payment::PaymentInstrument::Card?,
             display_name: String,
             icons: WhopSDK::Dispute::Payment::PaymentInstrument::Icons,
-            installment_count: Integer?,
+            installment_count: Float?,
             payment_method_type: String
           ) -> void
 
           def to_hash: -> {
+            card: WhopSDK::Dispute::Payment::PaymentInstrument::Card?,
             display_name: String,
             icons: WhopSDK::Dispute::Payment::PaymentInstrument::Icons,
-            installment_count: Integer?,
+            installment_count: Float?,
             payment_method_type: String
           }
 
+          type card = { brand: String, :last4 => String? }
+
+          class Card < WhopSDK::Internal::Type::BaseModel
+            attr_accessor brand: String
+
+            attr_accessor last4: String?
+
+            def initialize: (brand: String, last4: String?) -> void
+
+            def to_hash: -> { brand: String, :last4 => String? }
+          end
+
           type icons =
             {
+              card: WhopSDK::Dispute::Payment::PaymentInstrument::Icons::Card,
               square: WhopSDK::Dispute::Payment::PaymentInstrument::Icons::Square
             }
 
           class Icons < WhopSDK::Internal::Type::BaseModel
+            attr_accessor card: WhopSDK::Dispute::Payment::PaymentInstrument::Icons::Card
+
             attr_accessor square: WhopSDK::Dispute::Payment::PaymentInstrument::Icons::Square
 
             def initialize: (
+              card: WhopSDK::Dispute::Payment::PaymentInstrument::Icons::Card,
               square: WhopSDK::Dispute::Payment::PaymentInstrument::Icons::Square
             ) -> void
 
             def to_hash: -> {
+              card: WhopSDK::Dispute::Payment::PaymentInstrument::Icons::Card,
               square: WhopSDK::Dispute::Payment::PaymentInstrument::Icons::Square
             }
+
+            type card =
+              {
+                dark: WhopSDK::Dispute::Payment::PaymentInstrument::Icons::Card::Dark,
+                light: WhopSDK::Dispute::Payment::PaymentInstrument::Icons::Card::Light
+              }
+
+            class Card < WhopSDK::Internal::Type::BaseModel
+              attr_accessor dark: WhopSDK::Dispute::Payment::PaymentInstrument::Icons::Card::Dark
+
+              attr_accessor light: WhopSDK::Dispute::Payment::PaymentInstrument::Icons::Card::Light
+
+              def initialize: (
+                dark: WhopSDK::Dispute::Payment::PaymentInstrument::Icons::Card::Dark,
+                light: WhopSDK::Dispute::Payment::PaymentInstrument::Icons::Card::Light
+              ) -> void
+
+              def to_hash: -> {
+                dark: WhopSDK::Dispute::Payment::PaymentInstrument::Icons::Card::Dark,
+                light: WhopSDK::Dispute::Payment::PaymentInstrument::Icons::Card::Light
+              }
+
+              type dark =
+                {
+                  :png_1x => String,
+                  :png_2x => String,
+                  :png_4x => String,
+                  svg: String
+                }
+
+              class Dark < WhopSDK::Internal::Type::BaseModel
+                attr_accessor png_1x: String
+
+                attr_accessor png_2x: String
+
+                attr_accessor png_4x: String
+
+                attr_accessor svg: String
+
+                def initialize: (
+                  png_1x: String,
+                  png_2x: String,
+                  png_4x: String,
+                  svg: String
+                ) -> void
+
+                def to_hash: -> {
+                  :png_1x => String,
+                  :png_2x => String,
+                  :png_4x => String,
+                  svg: String
+                }
+              end
+
+              type light =
+                {
+                  :png_1x => String,
+                  :png_2x => String,
+                  :png_4x => String,
+                  svg: String
+                }
+
+              class Light < WhopSDK::Internal::Type::BaseModel
+                attr_accessor png_1x: String
+
+                attr_accessor png_2x: String
+
+                attr_accessor png_4x: String
+
+                attr_accessor svg: String
+
+                def initialize: (
+                  png_1x: String,
+                  png_2x: String,
+                  png_4x: String,
+                  svg: String
+                ) -> void
+
+                def to_hash: -> {
+                  :png_1x => String,
+                  :png_2x => String,
+                  :png_4x => String,
+                  svg: String
+                }
+              end
+            end
 
             type square =
               {
@@ -407,131 +858,119 @@ module WhopSDK
                 light: WhopSDK::Dispute::Payment::PaymentInstrument::Icons::Square::Light
               }
 
-              type dark = { svg: String }
+              type dark =
+                {
+                  :png_1x => String,
+                  :png_2x => String,
+                  :png_4x => String,
+                  svg: String
+                }
 
               class Dark < WhopSDK::Internal::Type::BaseModel
+                attr_accessor png_1x: String
+
+                attr_accessor png_2x: String
+
+                attr_accessor png_4x: String
+
                 attr_accessor svg: String
 
-                def initialize: (svg: String) -> void
+                def initialize: (
+                  png_1x: String,
+                  png_2x: String,
+                  png_4x: String,
+                  svg: String
+                ) -> void
 
-                def to_hash: -> { svg: String }
+                def to_hash: -> {
+                  :png_1x => String,
+                  :png_2x => String,
+                  :png_4x => String,
+                  svg: String
+                }
               end
 
-              type light = { svg: String }
+              type light =
+                {
+                  :png_1x => String,
+                  :png_2x => String,
+                  :png_4x => String,
+                  svg: String
+                }
 
               class Light < WhopSDK::Internal::Type::BaseModel
+                attr_accessor png_1x: String
+
+                attr_accessor png_2x: String
+
+                attr_accessor png_4x: String
+
                 attr_accessor svg: String
 
-                def initialize: (svg: String) -> void
+                def initialize: (
+                  png_1x: String,
+                  png_2x: String,
+                  png_4x: String,
+                  svg: String
+                ) -> void
 
-                def to_hash: -> { svg: String }
+                def to_hash: -> {
+                  :png_1x => String,
+                  :png_2x => String,
+                  :png_4x => String,
+                  svg: String
+                }
               end
             end
           end
         end
-
-        type user =
-          { id: String, email: String?, name: String?, username: String }
-
-        class User < WhopSDK::Internal::Type::BaseModel
-          attr_accessor id: String
-
-          attr_accessor email: String?
-
-          attr_accessor name: String?
-
-          attr_accessor username: String
-
-          def initialize: (
-            id: String,
-            email: String?,
-            name: String?,
-            username: String
-          ) -> void
-
-          def to_hash: -> {
-            id: String,
-            email: String?,
-            name: String?,
-            username: String
-          }
-        end
       end
 
-      type plan = { id: String }
+      type reason =
+        :fraudulent
+        | :unrecognized
+        | :declined_authorization
+        | :product_not_received
+        | :product_unacceptable
+        | :subscription_canceled
+        | :credit_not_processed
+        | :duplicate
+        | :processing_error
+        | :documentation_request
+        | :bank_cannot_process
+        | :other
 
-      class Plan < WhopSDK::Internal::Type::BaseModel
-        attr_accessor id: String
+      module Reason
+        extend WhopSDK::Internal::Type::Enum
 
-        def initialize: (id: String) -> void
+        FRAUDULENT: :fraudulent
+        UNRECOGNIZED: :unrecognized
+        DECLINED_AUTHORIZATION: :declined_authorization
+        PRODUCT_NOT_RECEIVED: :product_not_received
+        PRODUCT_UNACCEPTABLE: :product_unacceptable
+        SUBSCRIPTION_CANCELED: :subscription_canceled
+        CREDIT_NOT_PROCESSED: :credit_not_processed
+        DUPLICATE: :duplicate
+        PROCESSING_ERROR: :processing_error
+        DOCUMENTATION_REQUEST: :documentation_request
+        BANK_CANNOT_PROCESS: :bank_cannot_process
+        OTHER: :other
 
-        def to_hash: -> { id: String }
+        def self?.values: -> ::Array[WhopSDK::Models::Dispute::reason]
       end
 
-      type product = { id: String, title: String }
+      type status = :needs_response | :under_review | :won | :lost | :closed
 
-      class Product < WhopSDK::Internal::Type::BaseModel
-        attr_accessor id: String
+      module Status
+        extend WhopSDK::Internal::Type::Enum
 
-        attr_accessor title: String
+        NEEDS_RESPONSE: :needs_response
+        UNDER_REVIEW: :under_review
+        WON: :won
+        LOST: :lost
+        CLOSED: :closed
 
-        def initialize: (id: String, title: String) -> void
-
-        def to_hash: -> { id: String, title: String }
-      end
-
-      type refund_policy_attachment =
-        { id: String, content_type: String?, filename: String?, url: String? }
-
-      class RefundPolicyAttachment < WhopSDK::Internal::Type::BaseModel
-        attr_accessor id: String
-
-        attr_accessor content_type: String?
-
-        attr_accessor filename: String?
-
-        attr_accessor url: String?
-
-        def initialize: (
-          id: String,
-          content_type: String?,
-          filename: String?,
-          url: String?
-        ) -> void
-
-        def to_hash: -> {
-          id: String,
-          content_type: String?,
-          filename: String?,
-          url: String?
-        }
-      end
-
-      type uncategorized_attachment =
-        { id: String, content_type: String?, filename: String?, url: String? }
-
-      class UncategorizedAttachment < WhopSDK::Internal::Type::BaseModel
-        attr_accessor id: String
-
-        attr_accessor content_type: String?
-
-        attr_accessor filename: String?
-
-        attr_accessor url: String?
-
-        def initialize: (
-          id: String,
-          content_type: String?,
-          filename: String?,
-          url: String?
-        ) -> void
-
-        def to_hash: -> {
-          id: String,
-          content_type: String?,
-          filename: String?,
-          url: String?
-        }
+        def self?.values: -> ::Array[WhopSDK::Models::Dispute::status]
       end
     end
   end

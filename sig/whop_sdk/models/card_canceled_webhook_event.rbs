@@ -1,0 +1,290 @@
+module WhopSDK
+  module Models
+    type card_canceled_webhook_event =
+      {
+        id: String,
+        api_version: :v1,
+        api_version_date: String?,
+        data: WhopSDK::CardCanceledWebhookEvent::Data,
+        timestamp: Time,
+        type: :"card.canceled",
+        account_id: String?,
+        previous_attributes: top
+      }
+
+    class CardCanceledWebhookEvent < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor api_version: :v1
+
+      attr_accessor api_version_date: String?
+
+      attr_accessor data: WhopSDK::CardCanceledWebhookEvent::Data
+
+      attr_accessor timestamp: Time
+
+      attr_accessor type: :"card.canceled"
+
+      attr_accessor account_id: String?
+
+      attr_reader previous_attributes: top?
+
+      def previous_attributes=: (top) -> top
+
+      def initialize: (
+        id: String,
+        api_version_date: String?,
+        data: WhopSDK::CardCanceledWebhookEvent::Data,
+        timestamp: Time,
+        ?account_id: String?,
+        ?previous_attributes: top,
+        ?api_version: :v1,
+        ?type: :"card.canceled"
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        api_version: :v1,
+        api_version_date: String?,
+        data: WhopSDK::CardCanceledWebhookEvent::Data,
+        timestamp: Time,
+        type: :"card.canceled",
+        account_id: String?,
+        previous_attributes: top
+      }
+
+      type data =
+        {
+          id: String,
+          billing: WhopSDK::CardCanceledWebhookEvent::Data::Billing?,
+          canceled_at: Time?,
+          created_at: Time?,
+          expiration_month: String?,
+          expiration_year: String?,
+          :last4 => String?,
+          limit: WhopSDK::CardCanceledWebhookEvent::Data::Limit?,
+          name: String?,
+          object: WhopSDK::Models::CardCanceledWebhookEvent::Data::object,
+          spent_last_month: Integer?,
+          status: WhopSDK::Models::CardCanceledWebhookEvent::Data::status?,
+          type: WhopSDK::Models::CardCanceledWebhookEvent::Data::type_?,
+          user_id: String?,
+          secrets: WhopSDK::CardCanceledWebhookEvent::Data::Secrets?
+        }
+
+      class Data < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor billing: WhopSDK::CardCanceledWebhookEvent::Data::Billing?
+
+        attr_accessor canceled_at: Time?
+
+        attr_accessor created_at: Time?
+
+        attr_accessor expiration_month: String?
+
+        attr_accessor expiration_year: String?
+
+        attr_accessor last4: String?
+
+        attr_accessor limit: WhopSDK::CardCanceledWebhookEvent::Data::Limit?
+
+        attr_accessor name: String?
+
+        attr_accessor object: WhopSDK::Models::CardCanceledWebhookEvent::Data::object
+
+        attr_accessor spent_last_month: Integer?
+
+        attr_accessor status: WhopSDK::Models::CardCanceledWebhookEvent::Data::status?
+
+        attr_accessor type: WhopSDK::Models::CardCanceledWebhookEvent::Data::type_?
+
+        attr_accessor user_id: String?
+
+        attr_accessor secrets: WhopSDK::CardCanceledWebhookEvent::Data::Secrets?
+
+        def initialize: (
+          id: String,
+          billing: WhopSDK::CardCanceledWebhookEvent::Data::Billing?,
+          canceled_at: Time?,
+          created_at: Time?,
+          expiration_month: String?,
+          expiration_year: String?,
+          last4: String?,
+          limit: WhopSDK::CardCanceledWebhookEvent::Data::Limit?,
+          name: String?,
+          object: WhopSDK::Models::CardCanceledWebhookEvent::Data::object,
+          spent_last_month: Integer?,
+          status: WhopSDK::Models::CardCanceledWebhookEvent::Data::status?,
+          type: WhopSDK::Models::CardCanceledWebhookEvent::Data::type_?,
+          user_id: String?,
+          ?secrets: WhopSDK::CardCanceledWebhookEvent::Data::Secrets?
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          billing: WhopSDK::CardCanceledWebhookEvent::Data::Billing?,
+          canceled_at: Time?,
+          created_at: Time?,
+          expiration_month: String?,
+          expiration_year: String?,
+          :last4 => String?,
+          limit: WhopSDK::CardCanceledWebhookEvent::Data::Limit?,
+          name: String?,
+          object: WhopSDK::Models::CardCanceledWebhookEvent::Data::object,
+          spent_last_month: Integer?,
+          status: WhopSDK::Models::CardCanceledWebhookEvent::Data::status?,
+          type: WhopSDK::Models::CardCanceledWebhookEvent::Data::type_?,
+          user_id: String?,
+          secrets: WhopSDK::CardCanceledWebhookEvent::Data::Secrets?
+        }
+
+        type billing =
+          {
+            city: String?,
+            country_code: String?,
+            :line1 => String?,
+            :line2 => String?,
+            postal_code: String?,
+            region: String?
+          }
+
+        class Billing < WhopSDK::Internal::Type::BaseModel
+          attr_accessor city: String?
+
+          attr_accessor country_code: String?
+
+          attr_accessor line1: String?
+
+          attr_accessor line2: String?
+
+          attr_accessor postal_code: String?
+
+          attr_accessor region: String?
+
+          def initialize: (
+            city: String?,
+            country_code: String?,
+            line1: String?,
+            line2: String?,
+            postal_code: String?,
+            region: String?
+          ) -> void
+
+          def to_hash: -> {
+            city: String?,
+            country_code: String?,
+            :line1 => String?,
+            :line2 => String?,
+            postal_code: String?,
+            region: String?
+          }
+        end
+
+        type limit =
+          {
+            amount: Float,
+            frequency: WhopSDK::Models::CardCanceledWebhookEvent::Data::Limit::frequency
+          }
+
+        class Limit < WhopSDK::Internal::Type::BaseModel
+          attr_accessor amount: Float
+
+          attr_accessor frequency: WhopSDK::Models::CardCanceledWebhookEvent::Data::Limit::frequency
+
+          def initialize: (
+            amount: Float,
+            frequency: WhopSDK::Models::CardCanceledWebhookEvent::Data::Limit::frequency
+          ) -> void
+
+          def to_hash: -> {
+            amount: Float,
+            frequency: WhopSDK::Models::CardCanceledWebhookEvent::Data::Limit::frequency
+          }
+
+          type frequency =
+            :daily | :weekly | :monthly | :one_time | :per_transaction
+
+          module Frequency
+            extend WhopSDK::Internal::Type::Enum
+
+            DAILY: :daily
+            WEEKLY: :weekly
+            MONTHLY: :monthly
+            ONE_TIME: :one_time
+            PER_TRANSACTION: :per_transaction
+
+            def self?.values: -> ::Array[WhopSDK::Models::CardCanceledWebhookEvent::Data::Limit::frequency]
+          end
+        end
+
+        type object = :card
+
+        module Object
+          extend WhopSDK::Internal::Type::Enum
+
+          CARD: :card
+
+          def self?.values: -> ::Array[WhopSDK::Models::CardCanceledWebhookEvent::Data::object]
+        end
+
+        type status = :active | :frozen | :canceled | :invited | :denied
+
+        module Status
+          extend WhopSDK::Internal::Type::Enum
+
+          ACTIVE: :active
+          FROZEN: :frozen
+          CANCELED: :canceled
+          INVITED: :invited
+          DENIED: :denied
+
+          def self?.values: -> ::Array[WhopSDK::Models::CardCanceledWebhookEvent::Data::status]
+        end
+
+        type type_ = :virtual | :physical
+
+        module Type
+          extend WhopSDK::Internal::Type::Enum
+
+          VIRTUAL: :virtual
+          PHYSICAL: :physical
+
+          def self?.values: -> ::Array[WhopSDK::Models::CardCanceledWebhookEvent::Data::type_]
+        end
+
+        type secrets =
+          {
+            card_number: String,
+            cvc: String,
+            name_on_card: String?,
+            pin: String?
+          }
+
+        class Secrets < WhopSDK::Internal::Type::BaseModel
+          attr_accessor card_number: String
+
+          attr_accessor cvc: String
+
+          attr_accessor name_on_card: String?
+
+          attr_accessor pin: String?
+
+          def initialize: (
+            card_number: String,
+            cvc: String,
+            name_on_card: String?,
+            pin: String?
+          ) -> void
+
+          def to_hash: -> {
+            card_number: String,
+            cvc: String,
+            name_on_card: String?,
+            pin: String?
+          }
+        end
+      end
+    end
+  end
+end

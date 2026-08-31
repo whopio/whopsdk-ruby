@@ -3,118 +3,127 @@ module WhopSDK
     type member_retrieve_response =
       {
         id: String,
-        access_level: WhopSDK::Models::access_level,
-        company: WhopSDK::Models::MemberRetrieveResponse::Company,
-        company_token_balance: Float,
-        created_at: Time,
-        joined_at: Time,
-        most_recent_action: WhopSDK::Models::member_most_recent_actions?,
-        most_recent_action_at: Time?,
-        phone: String?,
-        status: WhopSDK::Models::member_statuses,
-        updated_at: Time,
-        usd_total_spent: Float,
+        access_level: WhopSDK::Models::MemberRetrieveResponse::access_level,
+        account_id: String,
+        created_at: String,
+        joined_at: String,
+        last_accessed_at: String?,
+        phone_number: String?,
+        status: WhopSDK::Models::MemberRetrieveResponse::status,
+        token_balance: Float,
         user: WhopSDK::Models::MemberRetrieveResponse::User?
       }
 
     class MemberRetrieveResponse < WhopSDK::Internal::Type::BaseModel
       attr_accessor id: String
 
-      attr_accessor access_level: WhopSDK::Models::access_level
+      attr_accessor access_level: WhopSDK::Models::MemberRetrieveResponse::access_level
 
-      attr_accessor company: WhopSDK::Models::MemberRetrieveResponse::Company
+      attr_accessor account_id: String
 
-      attr_accessor company_token_balance: Float
+      attr_accessor created_at: String
 
-      attr_accessor created_at: Time
+      attr_accessor joined_at: String
 
-      attr_accessor joined_at: Time
+      attr_accessor last_accessed_at: String?
 
-      attr_accessor most_recent_action: WhopSDK::Models::member_most_recent_actions?
+      attr_accessor phone_number: String?
 
-      attr_accessor most_recent_action_at: Time?
+      attr_accessor status: WhopSDK::Models::MemberRetrieveResponse::status
 
-      attr_accessor phone: String?
-
-      attr_accessor status: WhopSDK::Models::member_statuses
-
-      attr_accessor updated_at: Time
-
-      attr_accessor usd_total_spent: Float
+      attr_accessor token_balance: Float
 
       attr_accessor user: WhopSDK::Models::MemberRetrieveResponse::User?
 
       def initialize: (
         id: String,
-        access_level: WhopSDK::Models::access_level,
-        company: WhopSDK::Models::MemberRetrieveResponse::Company,
-        company_token_balance: Float,
-        created_at: Time,
-        joined_at: Time,
-        most_recent_action: WhopSDK::Models::member_most_recent_actions?,
-        most_recent_action_at: Time?,
-        phone: String?,
-        status: WhopSDK::Models::member_statuses,
-        updated_at: Time,
-        usd_total_spent: Float,
+        access_level: WhopSDK::Models::MemberRetrieveResponse::access_level,
+        account_id: String,
+        created_at: String,
+        joined_at: String,
+        last_accessed_at: String?,
+        phone_number: String?,
+        status: WhopSDK::Models::MemberRetrieveResponse::status,
+        token_balance: Float,
         user: WhopSDK::Models::MemberRetrieveResponse::User?
       ) -> void
 
       def to_hash: -> {
         id: String,
-        access_level: WhopSDK::Models::access_level,
-        company: WhopSDK::Models::MemberRetrieveResponse::Company,
-        company_token_balance: Float,
-        created_at: Time,
-        joined_at: Time,
-        most_recent_action: WhopSDK::Models::member_most_recent_actions?,
-        most_recent_action_at: Time?,
-        phone: String?,
-        status: WhopSDK::Models::member_statuses,
-        updated_at: Time,
-        usd_total_spent: Float,
+        access_level: WhopSDK::Models::MemberRetrieveResponse::access_level,
+        account_id: String,
+        created_at: String,
+        joined_at: String,
+        last_accessed_at: String?,
+        phone_number: String?,
+        status: WhopSDK::Models::MemberRetrieveResponse::status,
+        token_balance: Float,
         user: WhopSDK::Models::MemberRetrieveResponse::User?
       }
 
-      type company = { id: String, route: String, title: String }
+      type access_level = :no_access | :admin | :customer
 
-      class Company < WhopSDK::Internal::Type::BaseModel
-        attr_accessor id: String
+      module AccessLevel
+        extend WhopSDK::Internal::Type::Enum
 
-        attr_accessor route: String
+        NO_ACCESS: :no_access
+        ADMIN: :admin
+        CUSTOMER: :customer
 
-        attr_accessor title: String
+        def self?.values: -> ::Array[WhopSDK::Models::MemberRetrieveResponse::access_level]
+      end
 
-        def initialize: (id: String, route: String, title: String) -> void
+      type status = :joined | :left
 
-        def to_hash: -> { id: String, route: String, title: String }
+      module Status
+        extend WhopSDK::Internal::Type::Enum
+
+        JOINED: :joined
+        LEFT: :left
+
+        def self?.values: -> ::Array[WhopSDK::Models::MemberRetrieveResponse::status]
       end
 
       type user =
-        { id: String, email: String?, name: String?, username: String }
+        {
+          id: String,
+          name: String?,
+          profile_picture: WhopSDK::Models::MemberRetrieveResponse::User::ProfilePicture,
+          username: String
+        }
 
       class User < WhopSDK::Internal::Type::BaseModel
         attr_accessor id: String
 
-        attr_accessor email: String?
-
         attr_accessor name: String?
+
+        attr_accessor profile_picture: WhopSDK::Models::MemberRetrieveResponse::User::ProfilePicture
 
         attr_accessor username: String
 
         def initialize: (
           id: String,
-          email: String?,
           name: String?,
+          profile_picture: WhopSDK::Models::MemberRetrieveResponse::User::ProfilePicture,
           username: String
         ) -> void
 
         def to_hash: -> {
           id: String,
-          email: String?,
           name: String?,
+          profile_picture: WhopSDK::Models::MemberRetrieveResponse::User::ProfilePicture,
           username: String
         }
+
+        type profile_picture = { url: String }
+
+        class ProfilePicture < WhopSDK::Internal::Type::BaseModel
+          attr_accessor url: String
+
+          def initialize: (url: String) -> void
+
+          def to_hash: -> { url: String }
+        end
       end
     end
   end

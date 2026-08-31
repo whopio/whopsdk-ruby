@@ -56,35 +56,34 @@ module WhopSDK
       type data =
         {
           id: String,
-          authorization_method: String?,
           card_id: String,
+          cardholder_id: String?,
           cashback_usd_amount: Float?,
-          created_at: Time,
+          created_at: String,
           currency: String?,
           declined_reason: String?,
           international: bool,
           local_amount: Float?,
-          memo: String?,
           merchant_category: String?,
           merchant_category_code: String?,
           merchant_icon_url: String?,
           merchant_name: String?,
-          posted_at: Time?,
+          posted_at: String?,
           status: WhopSDK::Models::CardTransactionUpdatedWebhookEvent::Data::status,
-          transaction_type: String,
+          transaction_type: WhopSDK::Models::CardTransactionUpdatedWebhookEvent::Data::transaction_type,
           usd_amount: Float?
         }
 
       class Data < WhopSDK::Internal::Type::BaseModel
         attr_accessor id: String
 
-        attr_accessor authorization_method: String?
-
         attr_accessor card_id: String
+
+        attr_accessor cardholder_id: String?
 
         attr_accessor cashback_usd_amount: Float?
 
-        attr_accessor created_at: Time
+        attr_accessor created_at: String
 
         attr_accessor currency: String?
 
@@ -94,8 +93,6 @@ module WhopSDK
 
         attr_accessor local_amount: Float?
 
-        attr_accessor memo: String?
-
         attr_accessor merchant_category: String?
 
         attr_accessor merchant_category_code: String?
@@ -104,53 +101,51 @@ module WhopSDK
 
         attr_accessor merchant_name: String?
 
-        attr_accessor posted_at: Time?
+        attr_accessor posted_at: String?
 
         attr_accessor status: WhopSDK::Models::CardTransactionUpdatedWebhookEvent::Data::status
 
-        attr_accessor transaction_type: String
+        attr_accessor transaction_type: WhopSDK::Models::CardTransactionUpdatedWebhookEvent::Data::transaction_type
 
         attr_accessor usd_amount: Float?
 
         def initialize: (
           id: String,
-          authorization_method: String?,
           card_id: String,
+          cardholder_id: String?,
           cashback_usd_amount: Float?,
-          created_at: Time,
+          created_at: String,
           currency: String?,
           declined_reason: String?,
           international: bool,
           local_amount: Float?,
-          memo: String?,
           merchant_category: String?,
           merchant_category_code: String?,
           merchant_icon_url: String?,
           merchant_name: String?,
-          posted_at: Time?,
+          posted_at: String?,
           status: WhopSDK::Models::CardTransactionUpdatedWebhookEvent::Data::status,
-          transaction_type: String,
+          transaction_type: WhopSDK::Models::CardTransactionUpdatedWebhookEvent::Data::transaction_type,
           usd_amount: Float?
         ) -> void
 
         def to_hash: -> {
           id: String,
-          authorization_method: String?,
           card_id: String,
+          cardholder_id: String?,
           cashback_usd_amount: Float?,
-          created_at: Time,
+          created_at: String,
           currency: String?,
           declined_reason: String?,
           international: bool,
           local_amount: Float?,
-          memo: String?,
           merchant_category: String?,
           merchant_category_code: String?,
           merchant_icon_url: String?,
           merchant_name: String?,
-          posted_at: Time?,
+          posted_at: String?,
           status: WhopSDK::Models::CardTransactionUpdatedWebhookEvent::Data::status,
-          transaction_type: String,
+          transaction_type: WhopSDK::Models::CardTransactionUpdatedWebhookEvent::Data::transaction_type,
           usd_amount: Float?
         }
 
@@ -165,6 +160,16 @@ module WhopSDK
           DECLINED: :declined
 
           def self?.values: -> ::Array[WhopSDK::Models::CardTransactionUpdatedWebhookEvent::Data::status]
+        end
+
+        type transaction_type = :spend
+
+        module TransactionType
+          extend WhopSDK::Internal::Type::Enum
+
+          SPEND: :spend
+
+          def self?.values: -> ::Array[WhopSDK::Models::CardTransactionUpdatedWebhookEvent::Data::transaction_type]
         end
       end
     end

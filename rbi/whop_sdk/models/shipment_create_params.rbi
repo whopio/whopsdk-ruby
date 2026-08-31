@@ -11,37 +11,52 @@ module WhopSDK
           T.any(WhopSDK::ShipmentCreateParams, WhopSDK::Internal::AnyHash)
         end
 
-      # The unique identifier of the company to create the shipment for, starting with
-      # 'biz\_'.
-      sig { returns(String) }
-      attr_accessor :company_id
-
-      # The unique identifier of the payment to associate the shipment with.
+      # The payment to attach the shipment to, prefixed `pay_`.
       sig { returns(String) }
       attr_accessor :payment_id
 
-      # The carrier tracking code for the shipment, such as a USPS, UPS, or FedEx
-      # tracking number.
+      # The carrier-assigned tracking number.
       sig { returns(String) }
-      attr_accessor :tracking_code
+      attr_accessor :tracking_number
+
+      # The unique identifier of the account, prefixed `biz_`.
+      sig { returns(T.nilable(String)) }
+      attr_reader :account_id
+
+      sig { params(account_id: String).void }
+      attr_writer :account_id
+
+      sig { returns(T.nilable(String)) }
+      attr_reader :api_version_date
+
+      sig { params(api_version_date: String).void }
+      attr_writer :api_version_date
+
+      sig { returns(T.nilable(String)) }
+      attr_reader :idempotency_key
+
+      sig { params(idempotency_key: String).void }
+      attr_writer :idempotency_key
 
       sig do
         params(
-          company_id: String,
           payment_id: String,
-          tracking_code: String,
+          tracking_number: String,
+          account_id: String,
+          api_version_date: String,
+          idempotency_key: String,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
-        # The unique identifier of the company to create the shipment for, starting with
-        # 'biz\_'.
-        company_id:,
-        # The unique identifier of the payment to associate the shipment with.
+        # The payment to attach the shipment to, prefixed `pay_`.
         payment_id:,
-        # The carrier tracking code for the shipment, such as a USPS, UPS, or FedEx
-        # tracking number.
-        tracking_code:,
+        # The carrier-assigned tracking number.
+        tracking_number:,
+        # The unique identifier of the account, prefixed `biz_`.
+        account_id: nil,
+        api_version_date: nil,
+        idempotency_key: nil,
         request_options: {}
       )
       end
@@ -49,9 +64,11 @@ module WhopSDK
       sig do
         override.returns(
           {
-            company_id: String,
             payment_id: String,
-            tracking_code: String,
+            tracking_number: String,
+            account_id: String,
+            api_version_date: String,
+            idempotency_key: String,
             request_options: WhopSDK::RequestOptions
           }
         )

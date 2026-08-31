@@ -11,65 +11,139 @@ module WhopSDK
           )
         end
 
-      # The unique identifier for the file.
+      # The file's ID, prefixed `file_`.
       sig { returns(String) }
       attr_accessor :id
 
-      # The MIME type of the uploaded file (e.g., image/jpeg, video/mp4, audio/mpeg).
+      # The file's MIME type, e.g. `application/pdf`.
       sig { returns(T.nilable(String)) }
       attr_accessor :content_type
 
-      # The original filename of the uploaded file, including its file extension.
+      # When the file was created, as an ISO 8601 timestamp.
+      sig { returns(String) }
+      attr_accessor :created_at
+
+      # The original filename, including its extension.
       sig { returns(T.nilable(String)) }
       attr_accessor :filename
 
-      # The file size in bytes. Null if the file has not finished uploading.
-      sig { returns(T.nilable(String)) }
+      # The type of this object, always `file`.
+      sig { returns(String) }
+      attr_accessor :object
+
+      # The file size in bytes. `null` until the upload has finished.
+      sig { returns(T.nilable(Integer)) }
       attr_accessor :size
 
-      # The current upload status of the file (e.g., pending, ready).
-      sig { returns(WhopSDK::UploadStatus::TaggedSymbol) }
+      # Where the file is in its upload lifecycle.
+      sig do
+        returns(
+          WhopSDK::Models::FileRetrieveResponse::UploadStatus::TaggedSymbol
+        )
+      end
       attr_accessor :upload_status
 
-      # The URL for accessing the file. For public files, this is a permanent CDN URL.
-      # For private files, this is a signed URL that expires. Null if the file has not
-      # finished uploading.
+      # A URL to download the file: a permanent CDN URL for public files, a signed
+      # expiring URL for private ones. `null` until the upload has finished.
       sig { returns(T.nilable(String)) }
       attr_accessor :url
 
-      # Whether the file is publicly accessible or requires authentication.
-      sig { returns(WhopSDK::FileVisibility::TaggedSymbol) }
+      # `public` files are served via an unsigned CDN URL; `private` files via a signed,
+      # expiring URL.
+      sig do
+        returns(WhopSDK::Models::FileRetrieveResponse::Visibility::TaggedSymbol)
+      end
       attr_accessor :visibility
 
-      # A file that has been uploaded or is pending upload.
+      # The byte size each part (except the last) must be. Present only on create, and
+      # only for multipart uploads.
+      sig { returns(T.nilable(Integer)) }
+      attr_accessor :multipart_chunk_size
+
+      # The ID of the multipart upload, passed back to `complete`. Present only on
+      # create, and only for multipart uploads.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :multipart_upload_id
+
+      sig do
+        returns(
+          T.nilable(
+            T::Array[WhopSDK::Models::FileRetrieveResponse::MultipartUploadURL]
+          )
+        )
+      end
+      attr_accessor :multipart_upload_urls
+
+      # Headers to send with the upload PUT. Present only on create.
+      sig { returns(T.nilable(T.anything)) }
+      attr_reader :upload_headers
+
+      sig { params(upload_headers: T.anything).void }
+      attr_writer :upload_headers
+
+      # Presigned URL to PUT the file's bytes to. Present only on create, and only for
+      # single-part uploads.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :upload_url
+
       sig do
         params(
           id: String,
           content_type: T.nilable(String),
+          created_at: String,
           filename: T.nilable(String),
-          size: T.nilable(String),
-          upload_status: WhopSDK::UploadStatus::OrSymbol,
+          object: String,
+          size: T.nilable(Integer),
+          upload_status:
+            WhopSDK::Models::FileRetrieveResponse::UploadStatus::OrSymbol,
           url: T.nilable(String),
-          visibility: WhopSDK::FileVisibility::OrSymbol
+          visibility:
+            WhopSDK::Models::FileRetrieveResponse::Visibility::OrSymbol,
+          multipart_chunk_size: T.nilable(Integer),
+          multipart_upload_id: T.nilable(String),
+          multipart_upload_urls:
+            T.nilable(
+              T::Array[
+                WhopSDK::Models::FileRetrieveResponse::MultipartUploadURL::OrHash
+              ]
+            ),
+          upload_headers: T.anything,
+          upload_url: T.nilable(String)
         ).returns(T.attached_class)
       end
       def self.new(
-        # The unique identifier for the file.
+        # The file's ID, prefixed `file_`.
         id:,
-        # The MIME type of the uploaded file (e.g., image/jpeg, video/mp4, audio/mpeg).
+        # The file's MIME type, e.g. `application/pdf`.
         content_type:,
-        # The original filename of the uploaded file, including its file extension.
+        # When the file was created, as an ISO 8601 timestamp.
+        created_at:,
+        # The original filename, including its extension.
         filename:,
-        # The file size in bytes. Null if the file has not finished uploading.
+        # The type of this object, always `file`.
+        object:,
+        # The file size in bytes. `null` until the upload has finished.
         size:,
-        # The current upload status of the file (e.g., pending, ready).
+        # Where the file is in its upload lifecycle.
         upload_status:,
-        # The URL for accessing the file. For public files, this is a permanent CDN URL.
-        # For private files, this is a signed URL that expires. Null if the file has not
-        # finished uploading.
+        # A URL to download the file: a permanent CDN URL for public files, a signed
+        # expiring URL for private ones. `null` until the upload has finished.
         url:,
-        # Whether the file is publicly accessible or requires authentication.
-        visibility:
+        # `public` files are served via an unsigned CDN URL; `private` files via a signed,
+        # expiring URL.
+        visibility:,
+        # The byte size each part (except the last) must be. Present only on create, and
+        # only for multipart uploads.
+        multipart_chunk_size: nil,
+        # The ID of the multipart upload, passed back to `complete`. Present only on
+        # create, and only for multipart uploads.
+        multipart_upload_id: nil,
+        multipart_upload_urls: nil,
+        # Headers to send with the upload PUT. Present only on create.
+        upload_headers: nil,
+        # Presigned URL to PUT the file's bytes to. Present only on create, and only for
+        # single-part uploads.
+        upload_url: nil
       )
       end
 
@@ -78,15 +152,139 @@ module WhopSDK
           {
             id: String,
             content_type: T.nilable(String),
+            created_at: String,
             filename: T.nilable(String),
-            size: T.nilable(String),
-            upload_status: WhopSDK::UploadStatus::TaggedSymbol,
+            object: String,
+            size: T.nilable(Integer),
+            upload_status:
+              WhopSDK::Models::FileRetrieveResponse::UploadStatus::TaggedSymbol,
             url: T.nilable(String),
-            visibility: WhopSDK::FileVisibility::TaggedSymbol
+            visibility:
+              WhopSDK::Models::FileRetrieveResponse::Visibility::TaggedSymbol,
+            multipart_chunk_size: T.nilable(Integer),
+            multipart_upload_id: T.nilable(String),
+            multipart_upload_urls:
+              T.nilable(
+                T::Array[
+                  WhopSDK::Models::FileRetrieveResponse::MultipartUploadURL
+                ]
+              ),
+            upload_headers: T.anything,
+            upload_url: T.nilable(String)
           }
         )
       end
       def to_hash
+      end
+
+      # Where the file is in its upload lifecycle.
+      module UploadStatus
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias do
+            T.all(Symbol, WhopSDK::Models::FileRetrieveResponse::UploadStatus)
+          end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        PENDING =
+          T.let(
+            :pending,
+            WhopSDK::Models::FileRetrieveResponse::UploadStatus::TaggedSymbol
+          )
+        PROCESSING =
+          T.let(
+            :processing,
+            WhopSDK::Models::FileRetrieveResponse::UploadStatus::TaggedSymbol
+          )
+        READY =
+          T.let(
+            :ready,
+            WhopSDK::Models::FileRetrieveResponse::UploadStatus::TaggedSymbol
+          )
+        FAILED =
+          T.let(
+            :failed,
+            WhopSDK::Models::FileRetrieveResponse::UploadStatus::TaggedSymbol
+          )
+
+        sig do
+          override.returns(
+            T::Array[
+              WhopSDK::Models::FileRetrieveResponse::UploadStatus::TaggedSymbol
+            ]
+          )
+        end
+        def self.values
+        end
+      end
+
+      # `public` files are served via an unsigned CDN URL; `private` files via a signed,
+      # expiring URL.
+      module Visibility
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias do
+            T.all(Symbol, WhopSDK::Models::FileRetrieveResponse::Visibility)
+          end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        PUBLIC =
+          T.let(
+            :public,
+            WhopSDK::Models::FileRetrieveResponse::Visibility::TaggedSymbol
+          )
+        PRIVATE =
+          T.let(
+            :private,
+            WhopSDK::Models::FileRetrieveResponse::Visibility::TaggedSymbol
+          )
+
+        sig do
+          override.returns(
+            T::Array[
+              WhopSDK::Models::FileRetrieveResponse::Visibility::TaggedSymbol
+            ]
+          )
+        end
+        def self.values
+        end
+      end
+
+      class MultipartUploadURL < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              WhopSDK::Models::FileRetrieveResponse::MultipartUploadURL,
+              WhopSDK::Internal::AnyHash
+            )
+          end
+
+        # The 1-based index of this part within the multipart upload.
+        sig { returns(Integer) }
+        attr_accessor :part_number
+
+        # The presigned URL to PUT this part's bytes to.
+        sig { returns(String) }
+        attr_accessor :url
+
+        # The presigned URL for each part. Present only on create, and only for multipart
+        # uploads.
+        sig do
+          params(part_number: Integer, url: String).returns(T.attached_class)
+        end
+        def self.new(
+          # The 1-based index of this part within the multipart upload.
+          part_number:,
+          # The presigned URL to PUT this part's bytes to.
+          url:
+        )
+        end
+
+        sig { override.returns({ part_number: Integer, url: String }) }
+        def to_hash
+        end
       end
     end
   end

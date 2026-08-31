@@ -14,28 +14,52 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :id
 
-      # The mode of cancellation for a membership
-      sig do
-        returns(
-          T.nilable(WhopSDK::MembershipCancelParams::CancellationMode::OrSymbol)
-        )
-      end
-      attr_accessor :cancellation_mode
+      # `true` stops auto-renewal and keeps access until the current billing period
+      # ends. Omit or `false` revokes access immediately.
+      sig { returns(T.nilable(T::Boolean)) }
+      attr_reader :cancel_at_period_end
+
+      sig { params(cancel_at_period_end: T::Boolean).void }
+      attr_writer :cancel_at_period_end
+
+      # Free-form note recording why the membership was canceled.
+      sig { returns(T.nilable(String)) }
+      attr_reader :reason
+
+      sig { params(reason: String).void }
+      attr_writer :reason
+
+      sig { returns(T.nilable(String)) }
+      attr_reader :api_version_date
+
+      sig { params(api_version_date: String).void }
+      attr_writer :api_version_date
+
+      sig { returns(T.nilable(String)) }
+      attr_reader :idempotency_key
+
+      sig { params(idempotency_key: String).void }
+      attr_writer :idempotency_key
 
       sig do
         params(
           id: String,
-          cancellation_mode:
-            T.nilable(
-              WhopSDK::MembershipCancelParams::CancellationMode::OrSymbol
-            ),
+          cancel_at_period_end: T::Boolean,
+          reason: String,
+          api_version_date: String,
+          idempotency_key: String,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
         id:,
-        # The mode of cancellation for a membership
-        cancellation_mode: nil,
+        # `true` stops auto-renewal and keeps access until the current billing period
+        # ends. Omit or `false` revokes access immediately.
+        cancel_at_period_end: nil,
+        # Free-form note recording why the membership was canceled.
+        reason: nil,
+        api_version_date: nil,
+        idempotency_key: nil,
         request_options: {}
       )
       end
@@ -44,47 +68,15 @@ module WhopSDK
         override.returns(
           {
             id: String,
-            cancellation_mode:
-              T.nilable(
-                WhopSDK::MembershipCancelParams::CancellationMode::OrSymbol
-              ),
+            cancel_at_period_end: T::Boolean,
+            reason: String,
+            api_version_date: String,
+            idempotency_key: String,
             request_options: WhopSDK::RequestOptions
           }
         )
       end
       def to_hash
-      end
-
-      # The mode of cancellation for a membership
-      module CancellationMode
-        extend WhopSDK::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias do
-            T.all(Symbol, WhopSDK::MembershipCancelParams::CancellationMode)
-          end
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        AT_PERIOD_END =
-          T.let(
-            :at_period_end,
-            WhopSDK::MembershipCancelParams::CancellationMode::TaggedSymbol
-          )
-        IMMEDIATE =
-          T.let(
-            :immediate,
-            WhopSDK::MembershipCancelParams::CancellationMode::TaggedSymbol
-          )
-
-        sig do
-          override.returns(
-            T::Array[
-              WhopSDK::MembershipCancelParams::CancellationMode::TaggedSymbol
-            ]
-          )
-        end
-        def self.values
-        end
       end
     end
   end

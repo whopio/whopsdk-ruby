@@ -1,0 +1,291 @@
+module WhopSDK
+  module Models
+    type checkout_configuration_retrieve_response =
+      {
+        id: String,
+        account_id: String,
+        created_at: String,
+        mode: WhopSDK::Models::CheckoutConfigurationRetrieveResponse::mode,
+        updated_at: String,
+        affiliate_code: String?,
+        currency: String?,
+        effective_payment_method_configuration: WhopSDK::Models::CheckoutConfigurationRetrieveResponse::EffectivePaymentMethodConfiguration?,
+        metadata: top?,
+        payment_method_configuration: WhopSDK::Models::CheckoutConfigurationRetrieveResponse::PaymentMethodConfiguration?,
+        plan: WhopSDK::Models::CheckoutConfigurationRetrieveResponse::Plan?,
+        purchase_url: String?,
+        redirect_url: String?,
+        three_ds_level: WhopSDK::Models::CheckoutConfigurationRetrieveResponse::three_ds_level?
+      }
+
+    class CheckoutConfigurationRetrieveResponse < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor account_id: String
+
+      attr_accessor created_at: String
+
+      attr_accessor mode: WhopSDK::Models::CheckoutConfigurationRetrieveResponse::mode
+
+      attr_accessor updated_at: String
+
+      attr_accessor affiliate_code: String?
+
+      attr_accessor currency: String?
+
+      attr_accessor effective_payment_method_configuration: WhopSDK::Models::CheckoutConfigurationRetrieveResponse::EffectivePaymentMethodConfiguration?
+
+      attr_accessor metadata: top?
+
+      attr_accessor payment_method_configuration: WhopSDK::Models::CheckoutConfigurationRetrieveResponse::PaymentMethodConfiguration?
+
+      attr_accessor plan: WhopSDK::Models::CheckoutConfigurationRetrieveResponse::Plan?
+
+      attr_accessor purchase_url: String?
+
+      attr_accessor redirect_url: String?
+
+      attr_accessor three_ds_level: WhopSDK::Models::CheckoutConfigurationRetrieveResponse::three_ds_level?
+
+      def initialize: (
+        id: String,
+        account_id: String,
+        created_at: String,
+        mode: WhopSDK::Models::CheckoutConfigurationRetrieveResponse::mode,
+        updated_at: String,
+        ?affiliate_code: String?,
+        ?currency: String?,
+        ?effective_payment_method_configuration: WhopSDK::Models::CheckoutConfigurationRetrieveResponse::EffectivePaymentMethodConfiguration?,
+        ?metadata: top?,
+        ?payment_method_configuration: WhopSDK::Models::CheckoutConfigurationRetrieveResponse::PaymentMethodConfiguration?,
+        ?plan: WhopSDK::Models::CheckoutConfigurationRetrieveResponse::Plan?,
+        ?purchase_url: String?,
+        ?redirect_url: String?,
+        ?three_ds_level: WhopSDK::Models::CheckoutConfigurationRetrieveResponse::three_ds_level?
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        account_id: String,
+        created_at: String,
+        mode: WhopSDK::Models::CheckoutConfigurationRetrieveResponse::mode,
+        updated_at: String,
+        affiliate_code: String?,
+        currency: String?,
+        effective_payment_method_configuration: WhopSDK::Models::CheckoutConfigurationRetrieveResponse::EffectivePaymentMethodConfiguration?,
+        metadata: top?,
+        payment_method_configuration: WhopSDK::Models::CheckoutConfigurationRetrieveResponse::PaymentMethodConfiguration?,
+        plan: WhopSDK::Models::CheckoutConfigurationRetrieveResponse::Plan?,
+        purchase_url: String?,
+        redirect_url: String?,
+        three_ds_level: WhopSDK::Models::CheckoutConfigurationRetrieveResponse::three_ds_level?
+      }
+
+      type mode = :payment | :setup
+
+      module Mode
+        extend WhopSDK::Internal::Type::Enum
+
+        PAYMENT: :payment
+        SETUP: :setup
+
+        def self?.values: -> ::Array[WhopSDK::Models::CheckoutConfigurationRetrieveResponse::mode]
+      end
+
+      type effective_payment_method_configuration =
+        {
+          disabled: ::Array[String],
+          enabled: ::Array[String],
+          include_platform_defaults: bool
+        }
+
+      class EffectivePaymentMethodConfiguration < WhopSDK::Internal::Type::BaseModel
+        attr_reader disabled: ::Array[String]?
+
+        def disabled=: (::Array[String]) -> ::Array[String]
+
+        attr_reader enabled: ::Array[String]?
+
+        def enabled=: (::Array[String]) -> ::Array[String]
+
+        attr_reader include_platform_defaults: bool?
+
+        def include_platform_defaults=: (bool) -> bool
+
+        def initialize: (
+          ?disabled: ::Array[String],
+          ?enabled: ::Array[String],
+          ?include_platform_defaults: bool
+        ) -> void
+
+        def to_hash: -> {
+          disabled: ::Array[String],
+          enabled: ::Array[String],
+          include_platform_defaults: bool
+        }
+      end
+
+      type payment_method_configuration =
+        {
+          disabled: ::Array[String],
+          enabled: ::Array[String],
+          include_platform_defaults: bool
+        }
+
+      class PaymentMethodConfiguration < WhopSDK::Internal::Type::BaseModel
+        attr_reader disabled: ::Array[String]?
+
+        def disabled=: (::Array[String]) -> ::Array[String]
+
+        attr_reader enabled: ::Array[String]?
+
+        def enabled=: (::Array[String]) -> ::Array[String]
+
+        attr_reader include_platform_defaults: bool?
+
+        def include_platform_defaults=: (bool) -> bool
+
+        def initialize: (
+          ?disabled: ::Array[String],
+          ?enabled: ::Array[String],
+          ?include_platform_defaults: bool
+        ) -> void
+
+        def to_hash: -> {
+          disabled: ::Array[String],
+          enabled: ::Array[String],
+          include_platform_defaults: bool
+        }
+      end
+
+      type plan =
+        {
+          id: String,
+          adaptive_pricing_enabled: bool,
+          billing_period: Integer?,
+          currency: String,
+          expiration_days: Integer?,
+          initial_price: Float,
+          plan_type: WhopSDK::Models::CheckoutConfigurationRetrieveResponse::Plan::plan_type,
+          release_method: WhopSDK::Models::CheckoutConfigurationRetrieveResponse::Plan::release_method,
+          renewal_price: Float,
+          three_ds_level: WhopSDK::Models::CheckoutConfigurationRetrieveResponse::Plan::three_ds_level?,
+          trial_period_days: Integer?,
+          visibility: WhopSDK::Models::CheckoutConfigurationRetrieveResponse::Plan::visibility
+        }
+
+      class Plan < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor adaptive_pricing_enabled: bool
+
+        attr_accessor billing_period: Integer?
+
+        attr_accessor currency: String
+
+        attr_accessor expiration_days: Integer?
+
+        attr_accessor initial_price: Float
+
+        attr_accessor plan_type: WhopSDK::Models::CheckoutConfigurationRetrieveResponse::Plan::plan_type
+
+        attr_accessor release_method: WhopSDK::Models::CheckoutConfigurationRetrieveResponse::Plan::release_method
+
+        attr_accessor renewal_price: Float
+
+        attr_accessor three_ds_level: WhopSDK::Models::CheckoutConfigurationRetrieveResponse::Plan::three_ds_level?
+
+        attr_accessor trial_period_days: Integer?
+
+        attr_accessor visibility: WhopSDK::Models::CheckoutConfigurationRetrieveResponse::Plan::visibility
+
+        def initialize: (
+          id: String,
+          adaptive_pricing_enabled: bool,
+          billing_period: Integer?,
+          currency: String,
+          expiration_days: Integer?,
+          initial_price: Float,
+          plan_type: WhopSDK::Models::CheckoutConfigurationRetrieveResponse::Plan::plan_type,
+          release_method: WhopSDK::Models::CheckoutConfigurationRetrieveResponse::Plan::release_method,
+          renewal_price: Float,
+          three_ds_level: WhopSDK::Models::CheckoutConfigurationRetrieveResponse::Plan::three_ds_level?,
+          trial_period_days: Integer?,
+          visibility: WhopSDK::Models::CheckoutConfigurationRetrieveResponse::Plan::visibility
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          adaptive_pricing_enabled: bool,
+          billing_period: Integer?,
+          currency: String,
+          expiration_days: Integer?,
+          initial_price: Float,
+          plan_type: WhopSDK::Models::CheckoutConfigurationRetrieveResponse::Plan::plan_type,
+          release_method: WhopSDK::Models::CheckoutConfigurationRetrieveResponse::Plan::release_method,
+          renewal_price: Float,
+          three_ds_level: WhopSDK::Models::CheckoutConfigurationRetrieveResponse::Plan::three_ds_level?,
+          trial_period_days: Integer?,
+          visibility: WhopSDK::Models::CheckoutConfigurationRetrieveResponse::Plan::visibility
+        }
+
+        type plan_type = :renewal | :one_time
+
+        module PlanType
+          extend WhopSDK::Internal::Type::Enum
+
+          RENEWAL: :renewal
+          ONE_TIME: :one_time
+
+          def self?.values: -> ::Array[WhopSDK::Models::CheckoutConfigurationRetrieveResponse::Plan::plan_type]
+        end
+
+        type release_method = :buy_now | :waitlist
+
+        module ReleaseMethod
+          extend WhopSDK::Internal::Type::Enum
+
+          BUY_NOW: :buy_now
+          WAITLIST: :waitlist
+
+          def self?.values: -> ::Array[WhopSDK::Models::CheckoutConfigurationRetrieveResponse::Plan::release_method]
+        end
+
+        type three_ds_level = :mandate_challenge | :frictionless
+
+        module ThreeDSLevel
+          extend WhopSDK::Internal::Type::Enum
+
+          MANDATE_CHALLENGE: :mandate_challenge
+          FRICTIONLESS: :frictionless
+
+          def self?.values: -> ::Array[WhopSDK::Models::CheckoutConfigurationRetrieveResponse::Plan::three_ds_level]
+        end
+
+        type visibility = :visible | :hidden | :archived | :quick_link
+
+        module Visibility
+          extend WhopSDK::Internal::Type::Enum
+
+          VISIBLE: :visible
+          HIDDEN: :hidden
+          ARCHIVED: :archived
+          QUICK_LINK: :quick_link
+
+          def self?.values: -> ::Array[WhopSDK::Models::CheckoutConfigurationRetrieveResponse::Plan::visibility]
+        end
+      end
+
+      type three_ds_level = :mandate_challenge | :frictionless
+
+      module ThreeDSLevel
+        extend WhopSDK::Internal::Type::Enum
+
+        MANDATE_CHALLENGE: :mandate_challenge
+        FRICTIONLESS: :frictionless
+
+        def self?.values: -> ::Array[WhopSDK::Models::CheckoutConfigurationRetrieveResponse::three_ds_level]
+      end
+    end
+  end
+end

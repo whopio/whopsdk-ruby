@@ -1,7 +1,14 @@
 module WhopSDK
   module Models
     type file_create_params =
-      { filename: String, visibility: WhopSDK::Models::file_visibility? }
+      {
+        filename: String,
+        byte_size: Integer,
+        multipart: bool,
+        visibility: WhopSDK::Models::FileCreateParams::visibility,
+        api_version_date: String,
+        idempotency_key: String
+      }
       & WhopSDK::Internal::Type::request_parameters
 
     class FileCreateParams < WhopSDK::Internal::Type::BaseModel
@@ -10,19 +17,58 @@ module WhopSDK
 
       attr_accessor filename: String
 
-      attr_accessor visibility: WhopSDK::Models::file_visibility?
+      attr_reader byte_size: Integer?
+
+      def byte_size=: (Integer) -> Integer
+
+      attr_reader multipart: bool?
+
+      def multipart=: (bool) -> bool
+
+      attr_reader visibility: WhopSDK::Models::FileCreateParams::visibility?
+
+      def visibility=: (
+        WhopSDK::Models::FileCreateParams::visibility
+      ) -> WhopSDK::Models::FileCreateParams::visibility
+
+      attr_reader api_version_date: String?
+
+      def api_version_date=: (String) -> String
+
+      attr_reader idempotency_key: String?
+
+      def idempotency_key=: (String) -> String
 
       def initialize: (
         filename: String,
-        ?visibility: WhopSDK::Models::file_visibility?,
+        ?byte_size: Integer,
+        ?multipart: bool,
+        ?visibility: WhopSDK::Models::FileCreateParams::visibility,
+        ?api_version_date: String,
+        ?idempotency_key: String,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
       def to_hash: -> {
         filename: String,
-        visibility: WhopSDK::Models::file_visibility?,
+        byte_size: Integer,
+        multipart: bool,
+        visibility: WhopSDK::Models::FileCreateParams::visibility,
+        api_version_date: String,
+        idempotency_key: String,
         request_options: WhopSDK::RequestOptions
       }
+
+      type visibility = :public | :private
+
+      module Visibility
+        extend WhopSDK::Internal::Type::Enum
+
+        PUBLIC: :public
+        PRIVATE: :private
+
+        def self?.values: -> ::Array[WhopSDK::Models::FileCreateParams::visibility]
+      end
     end
   end
 end

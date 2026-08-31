@@ -4,13 +4,18 @@ module WhopSDK
       {
         id: String,
         content_type: String?,
+        created_at: String,
         filename: String?,
-        size: String?,
-        upload_headers: ::Hash[Symbol, top]?,
-        upload_status: WhopSDK::Models::upload_status,
-        upload_url: String?,
+        object: String,
+        size: Integer?,
+        upload_status: WhopSDK::Models::FileCreateResponse::upload_status,
         url: String?,
-        visibility: WhopSDK::Models::file_visibility
+        visibility: WhopSDK::Models::FileCreateResponse::visibility,
+        multipart_chunk_size: Integer?,
+        multipart_upload_id: String?,
+        multipart_upload_urls: ::Array[WhopSDK::Models::FileCreateResponse::MultipartUploadURL]?,
+        upload_headers: top,
+        upload_url: String?
       }
 
     class FileCreateResponse < WhopSDK::Internal::Type::BaseModel
@@ -18,43 +23,101 @@ module WhopSDK
 
       attr_accessor content_type: String?
 
+      attr_accessor created_at: String
+
       attr_accessor filename: String?
 
-      attr_accessor size: String?
+      attr_accessor object: String
 
-      attr_accessor upload_headers: ::Hash[Symbol, top]?
+      attr_accessor size: Integer?
 
-      attr_accessor upload_status: WhopSDK::Models::upload_status
-
-      attr_accessor upload_url: String?
+      attr_accessor upload_status: WhopSDK::Models::FileCreateResponse::upload_status
 
       attr_accessor url: String?
 
-      attr_accessor visibility: WhopSDK::Models::file_visibility
+      attr_accessor visibility: WhopSDK::Models::FileCreateResponse::visibility
+
+      attr_accessor multipart_chunk_size: Integer?
+
+      attr_accessor multipart_upload_id: String?
+
+      attr_accessor multipart_upload_urls: ::Array[WhopSDK::Models::FileCreateResponse::MultipartUploadURL]?
+
+      attr_reader upload_headers: top?
+
+      def upload_headers=: (top) -> top
+
+      attr_accessor upload_url: String?
 
       def initialize: (
         id: String,
         content_type: String?,
+        created_at: String,
         filename: String?,
-        size: String?,
-        upload_headers: ::Hash[Symbol, top]?,
-        upload_status: WhopSDK::Models::upload_status,
-        upload_url: String?,
+        object: String,
+        size: Integer?,
+        upload_status: WhopSDK::Models::FileCreateResponse::upload_status,
         url: String?,
-        visibility: WhopSDK::Models::file_visibility
+        visibility: WhopSDK::Models::FileCreateResponse::visibility,
+        ?multipart_chunk_size: Integer?,
+        ?multipart_upload_id: String?,
+        ?multipart_upload_urls: ::Array[WhopSDK::Models::FileCreateResponse::MultipartUploadURL]?,
+        ?upload_headers: top,
+        ?upload_url: String?
       ) -> void
 
       def to_hash: -> {
         id: String,
         content_type: String?,
+        created_at: String,
         filename: String?,
-        size: String?,
-        upload_headers: ::Hash[Symbol, top]?,
-        upload_status: WhopSDK::Models::upload_status,
-        upload_url: String?,
+        object: String,
+        size: Integer?,
+        upload_status: WhopSDK::Models::FileCreateResponse::upload_status,
         url: String?,
-        visibility: WhopSDK::Models::file_visibility
+        visibility: WhopSDK::Models::FileCreateResponse::visibility,
+        multipart_chunk_size: Integer?,
+        multipart_upload_id: String?,
+        multipart_upload_urls: ::Array[WhopSDK::Models::FileCreateResponse::MultipartUploadURL]?,
+        upload_headers: top,
+        upload_url: String?
       }
+
+      type upload_status = :pending | :processing | :ready | :failed
+
+      module UploadStatus
+        extend WhopSDK::Internal::Type::Enum
+
+        PENDING: :pending
+        PROCESSING: :processing
+        READY: :ready
+        FAILED: :failed
+
+        def self?.values: -> ::Array[WhopSDK::Models::FileCreateResponse::upload_status]
+      end
+
+      type visibility = :public | :private
+
+      module Visibility
+        extend WhopSDK::Internal::Type::Enum
+
+        PUBLIC: :public
+        PRIVATE: :private
+
+        def self?.values: -> ::Array[WhopSDK::Models::FileCreateResponse::visibility]
+      end
+
+      type multipart_upload_url = { part_number: Integer, url: String }
+
+      class MultipartUploadURL < WhopSDK::Internal::Type::BaseModel
+        attr_accessor part_number: Integer
+
+        attr_accessor url: String
+
+        def initialize: (part_number: Integer, url: String) -> void
+
+        def to_hash: -> { part_number: Integer, url: String }
+      end
     end
   end
 end

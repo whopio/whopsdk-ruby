@@ -2,17 +2,23 @@
 
 module WhopSDK
   module Resources
-    # Verifications
+    # A Verification represents a legal identity for a person or business. Accounts
+    # and users complete verification when Whop needs to confirm who they are before
+    # enabling payouts or compliance-sensitive workflows.
+    #
+    # Use the Verifications API to start or resume a hosted verification session,
+    # check review status, and submit requested details or documents. If
+    # `requested_information` contains items, submit answers with
+    # [Update Verification](/api-reference/beta/verifications/update-verification).
     class Verifications
-      # Retrieves the details of an existing verification.
+      # Returns verifications for an account, including their status and any required
+      # actions.
       #
-      # Required permissions:
+      # @overload retrieve(id, api_version_date: nil, request_options: {})
       #
-      # - `payout:account:read`
+      # @param id [String] Verification profile ID, prefixed `idpf_`.
       #
-      # @overload retrieve(id, request_options: {})
-      #
-      # @param id [String] The unique identifier of the verification to retrieve.
+      # @param api_version_date [String] Pins the request to a dated API version.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -20,46 +26,46 @@ module WhopSDK
       #
       # @see WhopSDK::Models::VerificationRetrieveParams
       def retrieve(id, params = {})
+        parsed, options = WhopSDK::VerificationRetrieveParams.dump_request(params)
         @client.request(
           method: :get,
           path: ["verifications/%1$s", id],
+          headers: parsed.transform_keys(api_version_date: "api-version-date"),
           model: WhopSDK::Models::VerificationRetrieveResponse,
-          options: params[:request_options]
+          options: options
         )
       end
 
-      # Returns a list of identity verifications for a payout account, ordered by most
-      # recent first.
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::VerificationListParams} for more details.
       #
-      # Required permissions:
+      # Returns verifications for an account, including their status and any required
+      # actions.
       #
-      # - `payout:account:read`
+      # @overload list(account_id:, direction: nil, order: nil, api_version_date: nil, request_options: {})
       #
-      # @overload list(payout_account_id:, after: nil, before: nil, first: nil, last: nil, request_options: {})
+      # @param account_id [String] Query param: Account or user ID whose verifications you want to list. Use a `biz
       #
-      # @param payout_account_id [String] The unique identifier of the payout account to list verifications for.
+      # @param direction [Symbol, WhopSDK::Models::VerificationListParams::Direction] Query param: Sort direction for returned verifications.
       #
-      # @param after [String] Returns the elements in the list that come after the specified cursor.
+      # @param order [Symbol, WhopSDK::Models::VerificationListParams::Order] Query param: Field used to sort returned verifications.
       #
-      # @param before [String] Returns the elements in the list that come before the specified cursor.
-      #
-      # @param first [Integer] Returns the first _n_ elements from the list.
-      #
-      # @param last [Integer] Returns the last _n_ elements from the list.
+      # @param api_version_date [String] Header param: Pins the request to a dated API version.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [WhopSDK::Internal::CursorPage<WhopSDK::Models::VerificationListResponse>]
+      # @return [WhopSDK::Models::VerificationListResponse]
       #
       # @see WhopSDK::Models::VerificationListParams
       def list(params)
+        query_params = [:account_id, :direction, :order]
         parsed, options = WhopSDK::VerificationListParams.dump_request(params)
-        query = WhopSDK::Internal::Util.encode_query_params(parsed)
+        query = WhopSDK::Internal::Util.encode_query_params(parsed.slice(*query_params))
         @client.request(
           method: :get,
           path: "verifications",
           query: query,
-          page: WhopSDK::Internal::CursorPage,
+          headers: parsed.except(*query_params).transform_keys(api_version_date: "api-version-date"),
           model: WhopSDK::Models::VerificationListResponse,
           options: options
         )

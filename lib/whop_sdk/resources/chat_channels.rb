@@ -2,7 +2,6 @@
 
 module WhopSDK
   module Resources
-    # Chat channels
     class ChatChannels
       # Retrieves the details of an existing chat channel.
       #

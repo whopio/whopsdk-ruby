@@ -23,8 +23,6 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :api_version_date
 
-      # A membership represents an active relationship between a user and a product. It
-      # tracks the user's access, billing status, and renewal schedule.
       sig { returns(WhopSDK::Membership) }
       attr_reader :data
 
@@ -68,8 +66,6 @@ module WhopSDK
         id:,
         # The dated API version (Api-Version-Date) the payload is serialized to
         api_version_date:,
-        # A membership represents an active relationship between a user and a product. It
-        # tracks the user's access, billing status, and renewal schedule.
         data:,
         # The timestamp in ISO 8601 format that the webhook was sent at on the server
         timestamp:,

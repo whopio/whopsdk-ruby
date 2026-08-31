@@ -4,100 +4,173 @@ module WhopSDK
   module Models
     class Shipment < WhopSDK::Internal::Type::BaseModel
       # @!attribute id
-      #   The unique identifier for the shipment.
+      #   Shipment ID, prefixed `ship_`.
       #
       #   @return [String]
       required :id, String
 
-      # @!attribute created_at
-      #   The datetime the shipment was created.
+      # @!attribute account_id
+      #   The account that owns this shipment, prefixed `biz_`.
       #
-      #   @return [Time]
-      required :created_at, Time
+      #   @return [String]
+      required :account_id, String
 
-      # @!attribute delivery_estimate
-      #   The estimated delivery date for this shipment. Null if the carrier has not
-      #   provided an estimate.
-      #
-      #   @return [Time, nil]
-      required :delivery_estimate, Time, nil?: true
-
-      # @!attribute payment
-      #   The payment associated with this shipment. Null if the payment has been deleted
-      #   or is inaccessible.
-      #
-      #   @return [WhopSDK::Models::Shipment::Payment, nil]
-      required :payment, -> { WhopSDK::Shipment::Payment }, nil?: true
-
-      # @!attribute service
-      #   The shipping service level used for this shipment. Null if the carrier does not
-      #   specify a service tier.
+      # @!attribute carrier
+      #   The shipping carrier detected for this shipment. Null until a tracking update
+      #   identifies it.
       #
       #   @return [String, nil]
-      required :service, String, nil?: true
+      required :carrier, String, nil?: true
+
+      # @!attribute checkpoints
+      #
+      #   @return [Array<WhopSDK::Models::Shipment::Checkpoint>]
+      required :checkpoints, -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::Shipment::Checkpoint] }
+
+      # @!attribute created_at
+      #   The datetime the shipment was created (ISO 8601).
+      #
+      #   @return [String]
+      required :created_at, String
+
+      # @!attribute payment_id
+      #   The payment this shipment fulfills, prefixed `pay_`.
+      #
+      #   @return [String]
+      required :payment_id, String
 
       # @!attribute status
       #   The current delivery status of this shipment.
       #
-      #   @return [Symbol, WhopSDK::Models::ShipmentStatus]
-      required :status, enum: -> { WhopSDK::ShipmentStatus }
+      #   @return [Symbol, WhopSDK::Models::Shipment::Status]
+      required :status, enum: -> { WhopSDK::Shipment::Status }
 
-      # @!attribute substatus
-      #   The substatus of a shipment
-      #
-      #   @return [Symbol, WhopSDK::Models::ShipmentSubstatus, nil]
-      required :substatus, enum: -> { WhopSDK::ShipmentSubstatus }, nil?: true
-
-      # @!attribute tracking_code
+      # @!attribute tracking_number
       #   The carrier-assigned tracking number used to look up shipment progress.
       #
       #   @return [String]
-      required :tracking_code, String
+      required :tracking_number, String
+
+      # @!attribute tracking_url
+      #   A customer-facing URL to track this shipment's progress.
+      #
+      #   @return [String]
+      required :tracking_url, String
 
       # @!attribute updated_at
-      #   The datetime the shipment was last updated.
+      #   The datetime the shipment was last updated (ISO 8601).
       #
-      #   @return [Time]
-      required :updated_at, Time
+      #   @return [String]
+      required :updated_at, String
 
-      # @!method initialize(id:, created_at:, delivery_estimate:, payment:, service:, status:, substatus:, tracking_code:, updated_at:)
+      # @!method initialize(id:, account_id:, carrier:, checkpoints:, created_at:, payment_id:, status:, tracking_number:, tracking_url:, updated_at:)
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::Shipment} for more details.
       #
-      #   A physical shipment associated with a payment, including carrier details and
-      #   tracking information.
+      #   @param id [String] Shipment ID, prefixed `ship_`.
       #
-      #   @param id [String] The unique identifier for the shipment.
+      #   @param account_id [String] The account that owns this shipment, prefixed `biz_`.
       #
-      #   @param created_at [Time] The datetime the shipment was created.
+      #   @param carrier [String, nil] The shipping carrier detected for this shipment. Null until a tracking update id
       #
-      #   @param delivery_estimate [Time, nil] The estimated delivery date for this shipment. Null if the carrier has not provi
+      #   @param checkpoints [Array<WhopSDK::Models::Shipment::Checkpoint>]
       #
-      #   @param payment [WhopSDK::Models::Shipment::Payment, nil] The payment associated with this shipment. Null if the payment has been deleted
+      #   @param created_at [String] The datetime the shipment was created (ISO 8601).
       #
-      #   @param service [String, nil] The shipping service level used for this shipment. Null if the carrier does not
+      #   @param payment_id [String] The payment this shipment fulfills, prefixed `pay_`.
       #
-      #   @param status [Symbol, WhopSDK::Models::ShipmentStatus] The current delivery status of this shipment.
+      #   @param status [Symbol, WhopSDK::Models::Shipment::Status] The current delivery status of this shipment.
       #
-      #   @param substatus [Symbol, WhopSDK::Models::ShipmentSubstatus, nil] The substatus of a shipment
+      #   @param tracking_number [String] The carrier-assigned tracking number used to look up shipment progress.
       #
-      #   @param tracking_code [String] The carrier-assigned tracking number used to look up shipment progress.
+      #   @param tracking_url [String] A customer-facing URL to track this shipment's progress.
       #
-      #   @param updated_at [Time] The datetime the shipment was last updated.
+      #   @param updated_at [String] The datetime the shipment was last updated (ISO 8601).
 
-      # @see WhopSDK::Models::Shipment#payment
-      class Payment < WhopSDK::Internal::Type::BaseModel
-        # @!attribute id
-        #   The unique identifier for the payment.
+      class Checkpoint < WhopSDK::Internal::Type::BaseModel
+        # @!attribute location
+        #   Where the carrier recorded the scan, such as `PHILADELPHIA, PA`. Null when the
+        #   carrier sent none.
         #
-        #   @return [String]
-        required :id, String
+        #   @return [String, nil]
+        required :location, String, nil?: true
 
-        # @!method initialize(id:)
-        #   The payment associated with this shipment. Null if the payment has been deleted
-        #   or is inaccessible.
+        # @!attribute message
+        #   Carrier's description of the scan, such as `Departed USPS Regional Facility`.
+        #   Null when the carrier sent none.
         #
-        #   @param id [String] The unique identifier for the payment.
+        #   @return [String, nil]
+        required :message, String, nil?: true
+
+        # @!attribute status
+        #   Delivery status this carrier scan maps to.
+        #
+        #   @return [Symbol, WhopSDK::Models::Shipment::Checkpoint::Status]
+        required :status, enum: -> { WhopSDK::Shipment::Checkpoint::Status }
+
+        # @!attribute timestamp
+        #   When the carrier recorded the scan, as an ISO 8601 timestamp. Null when the
+        #   carrier sent no scan time.
+        #
+        #   @return [String, nil]
+        required :timestamp, String, nil?: true
+
+        # @!method initialize(location:, message:, status:, timestamp:)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::Shipment::Checkpoint} for more details.
+        #
+        #   Carrier scan history for this shipment, oldest scan first. Empty until the
+        #   carrier reports its first scan.
+        #
+        #   @param location [String, nil] Where the carrier recorded the scan, such as `PHILADELPHIA, PA`. Null when the c
+        #
+        #   @param message [String, nil] Carrier's description of the scan, such as `Departed USPS Regional Facility`. Nu
+        #
+        #   @param status [Symbol, WhopSDK::Models::Shipment::Checkpoint::Status] Delivery status this carrier scan maps to.
+        #
+        #   @param timestamp [String, nil] When the carrier recorded the scan, as an ISO 8601 timestamp. Null when the carr
+
+        # Delivery status this carrier scan maps to.
+        #
+        # @see WhopSDK::Models::Shipment::Checkpoint#status
+        module Status
+          extend WhopSDK::Internal::Type::Enum
+
+          UNKNOWN = :unknown
+          PRE_TRANSIT = :pre_transit
+          IN_TRANSIT = :in_transit
+          OUT_FOR_DELIVERY = :out_for_delivery
+          DELIVERED = :delivered
+          AVAILABLE_FOR_PICKUP = :available_for_pickup
+          RETURN_TO_SENDER = :return_to_sender
+          FAILURE = :failure
+          CANCELLED = :cancelled
+          ERROR = :error
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
+      end
+
+      # The current delivery status of this shipment.
+      #
+      # @see WhopSDK::Models::Shipment#status
+      module Status
+        extend WhopSDK::Internal::Type::Enum
+
+        UNKNOWN = :unknown
+        PRE_TRANSIT = :pre_transit
+        IN_TRANSIT = :in_transit
+        OUT_FOR_DELIVERY = :out_for_delivery
+        DELIVERED = :delivered
+        AVAILABLE_FOR_PICKUP = :available_for_pickup
+        RETURN_TO_SENDER = :return_to_sender
+        FAILURE = :failure
+        CANCELLED = :cancelled
+        ERROR = :error
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
     end
   end

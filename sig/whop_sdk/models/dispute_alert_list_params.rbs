@@ -2,14 +2,18 @@ module WhopSDK
   module Models
     type dispute_alert_list_params =
       {
-        company_id: String,
+        account_id: String,
         after: String,
         before: String,
-        created_after: Time,
-        created_before: Time,
-        direction: WhopSDK::Models::direction,
+        created_after: String,
+        created_before: String,
+        direction: WhopSDK::Models::DisputeAlertListParams::direction,
         first: Integer,
-        last: Integer
+        last: Integer,
+        order: WhopSDK::Models::DisputeAlertListParams::order,
+        payment_id: String,
+        type: WhopSDK::Models::DisputeAlertListParams::type_,
+        api_version_date: String
       }
       & WhopSDK::Internal::Type::request_parameters
 
@@ -17,7 +21,9 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      attr_accessor company_id: String
+      attr_reader account_id: String?
+
+      def account_id=: (String) -> String
 
       attr_reader after: String?
 
@@ -27,17 +33,19 @@ module WhopSDK
 
       def before=: (String) -> String
 
-      attr_reader created_after: Time?
+      attr_reader created_after: String?
 
-      def created_after=: (Time) -> Time
+      def created_after=: (String) -> String
 
-      attr_reader created_before: Time?
+      attr_reader created_before: String?
 
-      def created_before=: (Time) -> Time
+      def created_before=: (String) -> String
 
-      attr_reader direction: WhopSDK::Models::direction?
+      attr_reader direction: WhopSDK::Models::DisputeAlertListParams::direction?
 
-      def direction=: (WhopSDK::Models::direction) -> WhopSDK::Models::direction
+      def direction=: (
+        WhopSDK::Models::DisputeAlertListParams::direction
+      ) -> WhopSDK::Models::DisputeAlertListParams::direction
 
       attr_reader first: Integer?
 
@@ -47,29 +55,93 @@ module WhopSDK
 
       def last=: (Integer) -> Integer
 
+      attr_reader order: WhopSDK::Models::DisputeAlertListParams::order?
+
+      def order=: (
+        WhopSDK::Models::DisputeAlertListParams::order
+      ) -> WhopSDK::Models::DisputeAlertListParams::order
+
+      attr_reader payment_id: String?
+
+      def payment_id=: (String) -> String
+
+      attr_reader type: WhopSDK::Models::DisputeAlertListParams::type_?
+
+      def type=: (
+        WhopSDK::Models::DisputeAlertListParams::type_
+      ) -> WhopSDK::Models::DisputeAlertListParams::type_
+
+      attr_reader api_version_date: String?
+
+      def api_version_date=: (String) -> String
+
       def initialize: (
-        company_id: String,
+        ?account_id: String,
         ?after: String,
         ?before: String,
-        ?created_after: Time,
-        ?created_before: Time,
-        ?direction: WhopSDK::Models::direction,
+        ?created_after: String,
+        ?created_before: String,
+        ?direction: WhopSDK::Models::DisputeAlertListParams::direction,
         ?first: Integer,
         ?last: Integer,
+        ?order: WhopSDK::Models::DisputeAlertListParams::order,
+        ?payment_id: String,
+        ?type: WhopSDK::Models::DisputeAlertListParams::type_,
+        ?api_version_date: String,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
       def to_hash: -> {
-        company_id: String,
+        account_id: String,
         after: String,
         before: String,
-        created_after: Time,
-        created_before: Time,
-        direction: WhopSDK::Models::direction,
+        created_after: String,
+        created_before: String,
+        direction: WhopSDK::Models::DisputeAlertListParams::direction,
         first: Integer,
         last: Integer,
+        order: WhopSDK::Models::DisputeAlertListParams::order,
+        payment_id: String,
+        type: WhopSDK::Models::DisputeAlertListParams::type_,
+        api_version_date: String,
         request_options: WhopSDK::RequestOptions
       }
+
+      type direction = :asc | :desc
+
+      module Direction
+        extend WhopSDK::Internal::Type::Enum
+
+        ASC: :asc
+        DESC: :desc
+
+        def self?.values: -> ::Array[WhopSDK::Models::DisputeAlertListParams::direction]
+      end
+
+      type order = :created_at | :reported_at | :amount
+
+      module Order
+        extend WhopSDK::Internal::Type::Enum
+
+        CREATED_AT: :created_at
+        REPORTED_AT: :reported_at
+        AMOUNT: :amount
+
+        def self?.values: -> ::Array[WhopSDK::Models::DisputeAlertListParams::order]
+      end
+
+      type type_ =
+        :early_fraud_warning | :dispute_alert | :rapid_dispute_resolution
+
+      module Type
+        extend WhopSDK::Internal::Type::Enum
+
+        EARLY_FRAUD_WARNING: :early_fraud_warning
+        DISPUTE_ALERT: :dispute_alert
+        RAPID_DISPUTE_RESOLUTION: :rapid_dispute_resolution
+
+        def self?.values: -> ::Array[WhopSDK::Models::DisputeAlertListParams::type_]
+      end
     end
   end
 end

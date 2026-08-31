@@ -3,89 +3,309 @@ module WhopSDK
     type checkout_configuration =
       {
         id: String,
+        account_id: String,
         affiliate_code: String?,
-        company_id: String,
-        currency: WhopSDK::Models::currency?,
-        metadata: ::Hash[Symbol, top]?,
-        mode: WhopSDK::Models::checkout_modes,
-        payment_method_configuration: WhopSDK::CheckoutConfiguration::PaymentMethodConfiguration?,
+        created_at: String,
+        currency: WhopSDK::Models::CheckoutConfiguration::currency?,
+        effective_payment_method_configuration: WhopSDK::CheckoutConfiguration::EffectivePaymentMethodConfiguration?,
+        metadata: top?,
+        mode: WhopSDK::Models::CheckoutConfiguration::mode,
+        payment_method_configuration: top?,
         plan: WhopSDK::CheckoutConfiguration::Plan?,
-        purchase_url: String,
-        redirect_url: String?
+        purchase_url: String?,
+        redirect_url: String?,
+        three_ds_level: WhopSDK::Models::CheckoutConfiguration::three_ds_level?,
+        updated_at: String
       }
 
     class CheckoutConfiguration < WhopSDK::Internal::Type::BaseModel
       attr_accessor id: String
 
+      attr_accessor account_id: String
+
       attr_accessor affiliate_code: String?
 
-      attr_accessor company_id: String
+      attr_accessor created_at: String
 
-      attr_accessor currency: WhopSDK::Models::currency?
+      attr_accessor currency: WhopSDK::Models::CheckoutConfiguration::currency?
 
-      attr_accessor metadata: ::Hash[Symbol, top]?
+      attr_accessor effective_payment_method_configuration: WhopSDK::CheckoutConfiguration::EffectivePaymentMethodConfiguration?
 
-      attr_accessor mode: WhopSDK::Models::checkout_modes
+      attr_accessor metadata: top?
 
-      attr_accessor payment_method_configuration: WhopSDK::CheckoutConfiguration::PaymentMethodConfiguration?
+      attr_accessor mode: WhopSDK::Models::CheckoutConfiguration::mode
+
+      attr_accessor payment_method_configuration: top?
 
       attr_accessor plan: WhopSDK::CheckoutConfiguration::Plan?
 
-      attr_accessor purchase_url: String
+      attr_accessor purchase_url: String?
 
       attr_accessor redirect_url: String?
 
+      attr_accessor three_ds_level: WhopSDK::Models::CheckoutConfiguration::three_ds_level?
+
+      attr_accessor updated_at: String
+
       def initialize: (
         id: String,
+        account_id: String,
         affiliate_code: String?,
-        company_id: String,
-        currency: WhopSDK::Models::currency?,
-        metadata: ::Hash[Symbol, top]?,
-        mode: WhopSDK::Models::checkout_modes,
-        payment_method_configuration: WhopSDK::CheckoutConfiguration::PaymentMethodConfiguration?,
+        created_at: String,
+        currency: WhopSDK::Models::CheckoutConfiguration::currency?,
+        effective_payment_method_configuration: WhopSDK::CheckoutConfiguration::EffectivePaymentMethodConfiguration?,
+        metadata: top?,
+        mode: WhopSDK::Models::CheckoutConfiguration::mode,
+        payment_method_configuration: top?,
         plan: WhopSDK::CheckoutConfiguration::Plan?,
-        purchase_url: String,
-        redirect_url: String?
+        purchase_url: String?,
+        redirect_url: String?,
+        three_ds_level: WhopSDK::Models::CheckoutConfiguration::three_ds_level?,
+        updated_at: String
       ) -> void
 
       def to_hash: -> {
         id: String,
+        account_id: String,
         affiliate_code: String?,
-        company_id: String,
-        currency: WhopSDK::Models::currency?,
-        metadata: ::Hash[Symbol, top]?,
-        mode: WhopSDK::Models::checkout_modes,
-        payment_method_configuration: WhopSDK::CheckoutConfiguration::PaymentMethodConfiguration?,
+        created_at: String,
+        currency: WhopSDK::Models::CheckoutConfiguration::currency?,
+        effective_payment_method_configuration: WhopSDK::CheckoutConfiguration::EffectivePaymentMethodConfiguration?,
+        metadata: top?,
+        mode: WhopSDK::Models::CheckoutConfiguration::mode,
+        payment_method_configuration: top?,
         plan: WhopSDK::CheckoutConfiguration::Plan?,
-        purchase_url: String,
-        redirect_url: String?
+        purchase_url: String?,
+        redirect_url: String?,
+        three_ds_level: WhopSDK::Models::CheckoutConfiguration::three_ds_level?,
+        updated_at: String
       }
 
-      type payment_method_configuration =
+      type currency =
+        :usd
+        | :sgd
+        | :inr
+        | :aud
+        | :brl
+        | :cad
+        | :dkk
+        | :eur
+        | :nok
+        | :gbp
+        | :sek
+        | :chf
+        | :hkd
+        | :huf
+        | :jpy
+        | :mxn
+        | :myr
+        | :pln
+        | :czk
+        | :nzd
+        | :aed
+        | :eth
+        | :ape
+        | :cop
+        | :ron
+        | :thb
+        | :bgn
+        | :idr
+        | :dop
+        | :php
+        | :try
+        | :krw
+        | :twd
+        | :vnd
+        | :pkr
+        | :clp
+        | :uyu
+        | :ars
+        | :zar
+        | :dzd
+        | :tnd
+        | :mad
+        | :kes
+        | :kwd
+        | :jod
+        | :all
+        | :xcd
+        | :amd
+        | :bsd
+        | :bhd
+        | :bob
+        | :bam
+        | :khr
+        | :crc
+        | :xof
+        | :egp
+        | :etb
+        | :gmd
+        | :ghs
+        | :gtq
+        | :gyd
+        | :ils
+        | :jmd
+        | :mop
+        | :mga
+        | :mur
+        | :mdl
+        | :mnt
+        | :nad
+        | :ngn
+        | :mkd
+        | :omr
+        | :pyg
+        | :pen
+        | :qar
+        | :rwf
+        | :sar
+        | :rsd
+        | :lkr
+        | :tzs
+        | :ttd
+        | :uzs
+        | :rub
+        | :btc
+        | :cny
+        | :usdt
+        | :kzt
+        | :awg
+        | :whop_usd
+        | :xau
+
+      module Currency
+        extend WhopSDK::Internal::Type::Enum
+
+        USD: :usd
+        SGD: :sgd
+        INR: :inr
+        AUD: :aud
+        BRL: :brl
+        CAD: :cad
+        DKK: :dkk
+        EUR: :eur
+        NOK: :nok
+        GBP: :gbp
+        SEK: :sek
+        CHF: :chf
+        HKD: :hkd
+        HUF: :huf
+        JPY: :jpy
+        MXN: :mxn
+        MYR: :myr
+        PLN: :pln
+        CZK: :czk
+        NZD: :nzd
+        AED: :aed
+        ETH: :eth
+        APE: :ape
+        COP: :cop
+        RON: :ron
+        THB: :thb
+        BGN: :bgn
+        IDR: :idr
+        DOP: :dop
+        PHP: :php
+        TRY: :try
+        KRW: :krw
+        TWD: :twd
+        VND: :vnd
+        PKR: :pkr
+        CLP: :clp
+        UYU: :uyu
+        ARS: :ars
+        ZAR: :zar
+        DZD: :dzd
+        TND: :tnd
+        MAD: :mad
+        KES: :kes
+        KWD: :kwd
+        JOD: :jod
+        ALL: :all
+        XCD: :xcd
+        AMD: :amd
+        BSD: :bsd
+        BHD: :bhd
+        BOB: :bob
+        BAM: :bam
+        KHR: :khr
+        CRC: :crc
+        XOF: :xof
+        EGP: :egp
+        ETB: :etb
+        GMD: :gmd
+        GHS: :ghs
+        GTQ: :gtq
+        GYD: :gyd
+        ILS: :ils
+        JMD: :jmd
+        MOP: :mop
+        MGA: :mga
+        MUR: :mur
+        MDL: :mdl
+        MNT: :mnt
+        NAD: :nad
+        NGN: :ngn
+        MKD: :mkd
+        OMR: :omr
+        PYG: :pyg
+        PEN: :pen
+        QAR: :qar
+        RWF: :rwf
+        SAR: :sar
+        RSD: :rsd
+        LKR: :lkr
+        TZS: :tzs
+        TTD: :ttd
+        UZS: :uzs
+        RUB: :rub
+        BTC: :btc
+        CNY: :cny
+        USDT: :usdt
+        KZT: :kzt
+        AWG: :awg
+        WHOP_USD: :whop_usd
+        XAU: :xau
+
+        def self?.values: -> ::Array[WhopSDK::Models::CheckoutConfiguration::currency]
+      end
+
+      type effective_payment_method_configuration =
         {
-          disabled: ::Array[WhopSDK::Models::payment_method_types],
-          enabled: ::Array[WhopSDK::Models::payment_method_types],
+          disabled: ::Array[String],
+          enabled: ::Array[String],
           include_platform_defaults: bool
         }
 
-      class PaymentMethodConfiguration < WhopSDK::Internal::Type::BaseModel
-        attr_accessor disabled: ::Array[WhopSDK::Models::payment_method_types]
+      class EffectivePaymentMethodConfiguration < WhopSDK::Internal::Type::BaseModel
+        attr_accessor disabled: ::Array[String]
 
-        attr_accessor enabled: ::Array[WhopSDK::Models::payment_method_types]
+        attr_accessor enabled: ::Array[String]
 
         attr_accessor include_platform_defaults: bool
 
         def initialize: (
-          disabled: ::Array[WhopSDK::Models::payment_method_types],
-          enabled: ::Array[WhopSDK::Models::payment_method_types],
+          disabled: ::Array[String],
+          enabled: ::Array[String],
           include_platform_defaults: bool
         ) -> void
 
         def to_hash: -> {
-          disabled: ::Array[WhopSDK::Models::payment_method_types],
-          enabled: ::Array[WhopSDK::Models::payment_method_types],
+          disabled: ::Array[String],
+          enabled: ::Array[String],
           include_platform_defaults: bool
         }
+      end
+
+      type mode = :payment | :setup
+
+      module Mode
+        extend WhopSDK::Internal::Type::Enum
+
+        PAYMENT: :payment
+        SETUP: :setup
+
+        def self?.values: -> ::Array[WhopSDK::Models::CheckoutConfiguration::mode]
       end
 
       type plan =
@@ -93,15 +313,15 @@ module WhopSDK
           id: String,
           adaptive_pricing_enabled: bool,
           billing_period: Integer?,
-          currency: WhopSDK::Models::currency,
+          currency: String,
           expiration_days: Integer?,
           initial_price: Float,
-          plan_type: WhopSDK::Models::plan_type,
-          release_method: WhopSDK::Models::release_method,
+          plan_type: WhopSDK::Models::CheckoutConfiguration::Plan::plan_type,
+          release_method: WhopSDK::Models::CheckoutConfiguration::Plan::release_method,
           renewal_price: Float,
           three_ds_level: WhopSDK::Models::CheckoutConfiguration::Plan::three_ds_level?,
           trial_period_days: Integer?,
-          visibility: WhopSDK::Models::visibility
+          visibility: WhopSDK::Models::CheckoutConfiguration::Plan::visibility
         }
 
       class Plan < WhopSDK::Internal::Type::BaseModel
@@ -111,15 +331,15 @@ module WhopSDK
 
         attr_accessor billing_period: Integer?
 
-        attr_accessor currency: WhopSDK::Models::currency
+        attr_accessor currency: String
 
         attr_accessor expiration_days: Integer?
 
         attr_accessor initial_price: Float
 
-        attr_accessor plan_type: WhopSDK::Models::plan_type
+        attr_accessor plan_type: WhopSDK::Models::CheckoutConfiguration::Plan::plan_type
 
-        attr_accessor release_method: WhopSDK::Models::release_method
+        attr_accessor release_method: WhopSDK::Models::CheckoutConfiguration::Plan::release_method
 
         attr_accessor renewal_price: Float
 
@@ -127,37 +347,59 @@ module WhopSDK
 
         attr_accessor trial_period_days: Integer?
 
-        attr_accessor visibility: WhopSDK::Models::visibility
+        attr_accessor visibility: WhopSDK::Models::CheckoutConfiguration::Plan::visibility
 
         def initialize: (
           id: String,
           adaptive_pricing_enabled: bool,
           billing_period: Integer?,
-          currency: WhopSDK::Models::currency,
+          currency: String,
           expiration_days: Integer?,
           initial_price: Float,
-          plan_type: WhopSDK::Models::plan_type,
-          release_method: WhopSDK::Models::release_method,
+          plan_type: WhopSDK::Models::CheckoutConfiguration::Plan::plan_type,
+          release_method: WhopSDK::Models::CheckoutConfiguration::Plan::release_method,
           renewal_price: Float,
           three_ds_level: WhopSDK::Models::CheckoutConfiguration::Plan::three_ds_level?,
           trial_period_days: Integer?,
-          visibility: WhopSDK::Models::visibility
+          visibility: WhopSDK::Models::CheckoutConfiguration::Plan::visibility
         ) -> void
 
         def to_hash: -> {
           id: String,
           adaptive_pricing_enabled: bool,
           billing_period: Integer?,
-          currency: WhopSDK::Models::currency,
+          currency: String,
           expiration_days: Integer?,
           initial_price: Float,
-          plan_type: WhopSDK::Models::plan_type,
-          release_method: WhopSDK::Models::release_method,
+          plan_type: WhopSDK::Models::CheckoutConfiguration::Plan::plan_type,
+          release_method: WhopSDK::Models::CheckoutConfiguration::Plan::release_method,
           renewal_price: Float,
           three_ds_level: WhopSDK::Models::CheckoutConfiguration::Plan::three_ds_level?,
           trial_period_days: Integer?,
-          visibility: WhopSDK::Models::visibility
+          visibility: WhopSDK::Models::CheckoutConfiguration::Plan::visibility
         }
+
+        type plan_type = :renewal | :one_time
+
+        module PlanType
+          extend WhopSDK::Internal::Type::Enum
+
+          RENEWAL: :renewal
+          ONE_TIME: :one_time
+
+          def self?.values: -> ::Array[WhopSDK::Models::CheckoutConfiguration::Plan::plan_type]
+        end
+
+        type release_method = :buy_now | :waitlist
+
+        module ReleaseMethod
+          extend WhopSDK::Internal::Type::Enum
+
+          BUY_NOW: :buy_now
+          WAITLIST: :waitlist
+
+          def self?.values: -> ::Array[WhopSDK::Models::CheckoutConfiguration::Plan::release_method]
+        end
 
         type three_ds_level = :mandate_challenge | :frictionless
 
@@ -169,6 +411,30 @@ module WhopSDK
 
           def self?.values: -> ::Array[WhopSDK::Models::CheckoutConfiguration::Plan::three_ds_level]
         end
+
+        type visibility = :visible | :hidden | :archived | :quick_link
+
+        module Visibility
+          extend WhopSDK::Internal::Type::Enum
+
+          VISIBLE: :visible
+          HIDDEN: :hidden
+          ARCHIVED: :archived
+          QUICK_LINK: :quick_link
+
+          def self?.values: -> ::Array[WhopSDK::Models::CheckoutConfiguration::Plan::visibility]
+        end
+      end
+
+      type three_ds_level = :mandate_challenge | :frictionless
+
+      module ThreeDSLevel
+        extend WhopSDK::Internal::Type::Enum
+
+        MANDATE_CHALLENGE: :mandate_challenge
+        FRICTIONLESS: :frictionless
+
+        def self?.values: -> ::Array[WhopSDK::Models::CheckoutConfiguration::three_ds_level]
       end
     end
   end

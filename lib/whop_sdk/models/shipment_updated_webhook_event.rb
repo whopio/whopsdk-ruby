@@ -22,8 +22,6 @@ module WhopSDK
       required :api_version_date, String, nil?: true
 
       # @!attribute data
-      #   A physical shipment associated with a payment, including carrier details and
-      #   tracking information.
       #
       #   @return [WhopSDK::Models::Shipment]
       required :data, -> { WhopSDK::Shipment }
@@ -61,7 +59,7 @@ module WhopSDK
       #
       #   @param api_version_date [String, nil] The dated API version (Api-Version-Date) the payload is serialized to
       #
-      #   @param data [WhopSDK::Models::Shipment] A physical shipment associated with a payment, including carrier details and tra
+      #   @param data [WhopSDK::Models::Shipment]
       #
       #   @param timestamp [Time] The timestamp in ISO 8601 format that the webhook was sent at on the server
       #

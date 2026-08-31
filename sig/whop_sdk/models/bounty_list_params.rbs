@@ -2,19 +2,32 @@ module WhopSDK
   module Models
     type bounty_list_params =
       {
+        account_id: String,
         after: String,
         before: String,
-        direction: WhopSDK::Models::direction,
+        business_goal_type: WhopSDK::Models::BountyListParams::business_goal_type,
+        country: String,
+        created_after: String,
+        created_before: String,
+        direction: WhopSDK::Models::BountyListParams::direction,
         experience_id: String,
         first: Integer,
         last: Integer,
-        status: WhopSDK::Models::BountyListParams::status
+        order: WhopSDK::Models::BountyListParams::order,
+        query: String,
+        status: WhopSDK::Models::BountyListParams::status,
+        user_id: String,
+        api_version_date: String
       }
       & WhopSDK::Internal::Type::request_parameters
 
     class BountyListParams < WhopSDK::Internal::Type::BaseModel
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
+
+      attr_reader account_id: String?
+
+      def account_id=: (String) -> String
 
       attr_reader after: String?
 
@@ -24,9 +37,29 @@ module WhopSDK
 
       def before=: (String) -> String
 
-      attr_reader direction: WhopSDK::Models::direction?
+      attr_reader business_goal_type: WhopSDK::Models::BountyListParams::business_goal_type?
 
-      def direction=: (WhopSDK::Models::direction) -> WhopSDK::Models::direction
+      def business_goal_type=: (
+        WhopSDK::Models::BountyListParams::business_goal_type
+      ) -> WhopSDK::Models::BountyListParams::business_goal_type
+
+      attr_reader country: String?
+
+      def country=: (String) -> String
+
+      attr_reader created_after: String?
+
+      def created_after=: (String) -> String
+
+      attr_reader created_before: String?
+
+      def created_before=: (String) -> String
+
+      attr_reader direction: WhopSDK::Models::BountyListParams::direction?
+
+      def direction=: (
+        WhopSDK::Models::BountyListParams::direction
+      ) -> WhopSDK::Models::BountyListParams::direction
 
       attr_reader experience_id: String?
 
@@ -40,42 +73,126 @@ module WhopSDK
 
       def last=: (Integer) -> Integer
 
+      attr_reader order: WhopSDK::Models::BountyListParams::order?
+
+      def order=: (
+        WhopSDK::Models::BountyListParams::order
+      ) -> WhopSDK::Models::BountyListParams::order
+
+      attr_reader query: String?
+
+      def query=: (String) -> String
+
       attr_reader status: WhopSDK::Models::BountyListParams::status?
 
       def status=: (
         WhopSDK::Models::BountyListParams::status
       ) -> WhopSDK::Models::BountyListParams::status
 
+      attr_reader user_id: String?
+
+      def user_id=: (String) -> String
+
+      attr_reader api_version_date: String?
+
+      def api_version_date=: (String) -> String
+
       def initialize: (
+        ?account_id: String,
         ?after: String,
         ?before: String,
-        ?direction: WhopSDK::Models::direction,
+        ?business_goal_type: WhopSDK::Models::BountyListParams::business_goal_type,
+        ?country: String,
+        ?created_after: String,
+        ?created_before: String,
+        ?direction: WhopSDK::Models::BountyListParams::direction,
         ?experience_id: String,
         ?first: Integer,
         ?last: Integer,
+        ?order: WhopSDK::Models::BountyListParams::order,
+        ?query: String,
         ?status: WhopSDK::Models::BountyListParams::status,
+        ?user_id: String,
+        ?api_version_date: String,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
       def to_hash: -> {
+        account_id: String,
         after: String,
         before: String,
-        direction: WhopSDK::Models::direction,
+        business_goal_type: WhopSDK::Models::BountyListParams::business_goal_type,
+        country: String,
+        created_after: String,
+        created_before: String,
+        direction: WhopSDK::Models::BountyListParams::direction,
         experience_id: String,
         first: Integer,
         last: Integer,
+        order: WhopSDK::Models::BountyListParams::order,
+        query: String,
         status: WhopSDK::Models::BountyListParams::status,
+        user_id: String,
+        api_version_date: String,
         request_options: WhopSDK::RequestOptions
       }
 
-      type status = :published | :archived | :scheduled
+      type business_goal_type =
+        :clipping
+        | :post_engagement
+        | :owned_account_growth
+        | :ugc_content
+        | :local_activation
+        | :data_capture
+        | :other
+
+      module BusinessGoalType
+        extend WhopSDK::Internal::Type::Enum
+
+        CLIPPING: :clipping
+        POST_ENGAGEMENT: :post_engagement
+        OWNED_ACCOUNT_GROWTH: :owned_account_growth
+        UGC_CONTENT: :ugc_content
+        LOCAL_ACTIVATION: :local_activation
+        DATA_CAPTURE: :data_capture
+        OTHER: :other
+
+        def self?.values: -> ::Array[WhopSDK::Models::BountyListParams::business_goal_type]
+      end
+
+      type direction = :asc | :desc
+
+      module Direction
+        extend WhopSDK::Internal::Type::Enum
+
+        ASC: :asc
+        DESC: :desc
+
+        def self?.values: -> ::Array[WhopSDK::Models::BountyListParams::direction]
+      end
+
+      type order = :created_at | :gross_paid_out_amount | :gross_reward_amount
+
+      module Order
+        extend WhopSDK::Internal::Type::Enum
+
+        CREATED_AT: :created_at
+        GROSS_PAID_OUT_AMOUNT: :gross_paid_out_amount
+        GROSS_REWARD_AMOUNT: :gross_reward_amount
+
+        def self?.values: -> ::Array[WhopSDK::Models::BountyListParams::order]
+      end
+
+      type status = :scheduled | :open | :closed | :completed | :canceled
 
       module Status
         extend WhopSDK::Internal::Type::Enum
 
-        PUBLISHED: :published
-        ARCHIVED: :archived
         SCHEDULED: :scheduled
+        OPEN: :open
+        CLOSED: :closed
+        COMPLETED: :completed
+        CANCELED: :canceled
 
         def self?.values: -> ::Array[WhopSDK::Models::BountyListParams::status]
       end

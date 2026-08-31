@@ -8,54 +8,51 @@ module WhopSDK
           T.any(WhopSDK::Models::MemberListResponse, WhopSDK::Internal::AnyHash)
         end
 
-      # The unique identifier for the company member.
+      # Member ID, prefixed `mber_`.
       sig { returns(String) }
       attr_accessor :id
 
-      # The member's content access level. `admin` means their team role grants
-      # administrative content access, `customer` means they hold a valid product
-      # membership, and `no_access` means they cannot access company content.
-      sig { returns(WhopSDK::AccessLevel::TaggedSymbol) }
+      # What the member can reach on the account: `customer` for paying members, `admin`
+      # for team members, `no_access` once every grant has lapsed.
+      sig do
+        returns(WhopSDK::Models::MemberListResponse::AccessLevel::TaggedSymbol)
+      end
       attr_accessor :access_level
 
-      # The member's token balance for this company. Computed live from the ledger, not
-      # from a cache.
-      sig { returns(Float) }
-      attr_accessor :company_token_balance
+      # The account this member belongs to, prefixed `biz_`.
+      sig { returns(String) }
+      attr_accessor :account_id
 
-      # The datetime the company member was created.
-      sig { returns(Time) }
+      # When the member record was created, as an ISO 8601 timestamp.
+      sig { returns(String) }
       attr_accessor :created_at
 
-      # When the member joined the company
-      sig { returns(Time) }
+      # When the member first joined the account, as an ISO 8601 timestamp.
+      sig { returns(String) }
       attr_accessor :joined_at
 
-      # The different most recent actions a member can have.
-      sig { returns(T.nilable(WhopSDK::MemberMostRecentActions::TaggedSymbol)) }
-      attr_accessor :most_recent_action
-
-      # The time for the most recent action, if applicable.
-      sig { returns(T.nilable(Time)) }
-      attr_accessor :most_recent_action_at
-
-      # The phone number for the member, if available.
+      # When the member last opened the account's content, as an ISO 8601 timestamp.
+      # `null` if they never have.
       sig { returns(T.nilable(String)) }
-      attr_accessor :phone
+      attr_accessor :last_accessed_at
 
-      # The status of the member
-      sig { returns(WhopSDK::MemberStatuses::TaggedSymbol) }
+      # The member's phone number, or `null`. Their account number when they have shared
+      # one with this seller; otherwise the most recent number collected (or verified)
+      # at checkout.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :phone_number
+
+      # `joined` while the member is part of the account, `left` after they leave.
+      sig { returns(WhopSDK::Models::MemberListResponse::Status::TaggedSymbol) }
       attr_accessor :status
 
-      # The datetime the company member was last updated.
-      sig { returns(Time) }
-      attr_accessor :updated_at
-
-      # How much money this customer has spent on the company's products and plans
+      # The member's current token balance for this account, computed from token
+      # transactions.
       sig { returns(Float) }
-      attr_accessor :usd_total_spent
+      attr_accessor :token_balance
 
-      # The user for this member, if any.
+      # The user behind this member. `null` when the buyer is another business rather
+      # than a person.
       sig { returns(T.nilable(WhopSDK::Models::MemberListResponse::User)) }
       attr_reader :user
 
@@ -66,52 +63,47 @@ module WhopSDK
       end
       attr_writer :user
 
-      # A member represents a user's relationship with a company on Whop, including
-      # their access level, status, and spending history.
       sig do
         params(
           id: String,
-          access_level: WhopSDK::AccessLevel::OrSymbol,
-          company_token_balance: Float,
-          created_at: Time,
-          joined_at: Time,
-          most_recent_action:
-            T.nilable(WhopSDK::MemberMostRecentActions::OrSymbol),
-          most_recent_action_at: T.nilable(Time),
-          phone: T.nilable(String),
-          status: WhopSDK::MemberStatuses::OrSymbol,
-          updated_at: Time,
-          usd_total_spent: Float,
+          access_level:
+            WhopSDK::Models::MemberListResponse::AccessLevel::OrSymbol,
+          account_id: String,
+          created_at: String,
+          joined_at: String,
+          last_accessed_at: T.nilable(String),
+          phone_number: T.nilable(String),
+          status: WhopSDK::Models::MemberListResponse::Status::OrSymbol,
+          token_balance: Float,
           user: T.nilable(WhopSDK::Models::MemberListResponse::User::OrHash)
         ).returns(T.attached_class)
       end
       def self.new(
-        # The unique identifier for the company member.
+        # Member ID, prefixed `mber_`.
         id:,
-        # The member's content access level. `admin` means their team role grants
-        # administrative content access, `customer` means they hold a valid product
-        # membership, and `no_access` means they cannot access company content.
+        # What the member can reach on the account: `customer` for paying members, `admin`
+        # for team members, `no_access` once every grant has lapsed.
         access_level:,
-        # The member's token balance for this company. Computed live from the ledger, not
-        # from a cache.
-        company_token_balance:,
-        # The datetime the company member was created.
+        # The account this member belongs to, prefixed `biz_`.
+        account_id:,
+        # When the member record was created, as an ISO 8601 timestamp.
         created_at:,
-        # When the member joined the company
+        # When the member first joined the account, as an ISO 8601 timestamp.
         joined_at:,
-        # The different most recent actions a member can have.
-        most_recent_action:,
-        # The time for the most recent action, if applicable.
-        most_recent_action_at:,
-        # The phone number for the member, if available.
-        phone:,
-        # The status of the member
+        # When the member last opened the account's content, as an ISO 8601 timestamp.
+        # `null` if they never have.
+        last_accessed_at:,
+        # The member's phone number, or `null`. Their account number when they have shared
+        # one with this seller; otherwise the most recent number collected (or verified)
+        # at checkout.
+        phone_number:,
+        # `joined` while the member is part of the account, `left` after they leave.
         status:,
-        # The datetime the company member was last updated.
-        updated_at:,
-        # How much money this customer has spent on the company's products and plans
-        usd_total_spent:,
-        # The user for this member, if any.
+        # The member's current token balance for this account, computed from token
+        # transactions.
+        token_balance:,
+        # The user behind this member. `null` when the buyer is another business rather
+        # than a person.
         user:
       )
       end
@@ -120,22 +112,88 @@ module WhopSDK
         override.returns(
           {
             id: String,
-            access_level: WhopSDK::AccessLevel::TaggedSymbol,
-            company_token_balance: Float,
-            created_at: Time,
-            joined_at: Time,
-            most_recent_action:
-              T.nilable(WhopSDK::MemberMostRecentActions::TaggedSymbol),
-            most_recent_action_at: T.nilable(Time),
-            phone: T.nilable(String),
-            status: WhopSDK::MemberStatuses::TaggedSymbol,
-            updated_at: Time,
-            usd_total_spent: Float,
+            access_level:
+              WhopSDK::Models::MemberListResponse::AccessLevel::TaggedSymbol,
+            account_id: String,
+            created_at: String,
+            joined_at: String,
+            last_accessed_at: T.nilable(String),
+            phone_number: T.nilable(String),
+            status: WhopSDK::Models::MemberListResponse::Status::TaggedSymbol,
+            token_balance: Float,
             user: T.nilable(WhopSDK::Models::MemberListResponse::User)
           }
         )
       end
       def to_hash
+      end
+
+      # What the member can reach on the account: `customer` for paying members, `admin`
+      # for team members, `no_access` once every grant has lapsed.
+      module AccessLevel
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias do
+            T.all(Symbol, WhopSDK::Models::MemberListResponse::AccessLevel)
+          end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        NO_ACCESS =
+          T.let(
+            :no_access,
+            WhopSDK::Models::MemberListResponse::AccessLevel::TaggedSymbol
+          )
+        ADMIN =
+          T.let(
+            :admin,
+            WhopSDK::Models::MemberListResponse::AccessLevel::TaggedSymbol
+          )
+        CUSTOMER =
+          T.let(
+            :customer,
+            WhopSDK::Models::MemberListResponse::AccessLevel::TaggedSymbol
+          )
+
+        sig do
+          override.returns(
+            T::Array[
+              WhopSDK::Models::MemberListResponse::AccessLevel::TaggedSymbol
+            ]
+          )
+        end
+        def self.values
+        end
+      end
+
+      # `joined` while the member is part of the account, `left` after they leave.
+      module Status
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias do
+            T.all(Symbol, WhopSDK::Models::MemberListResponse::Status)
+          end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        JOINED =
+          T.let(
+            :joined,
+            WhopSDK::Models::MemberListResponse::Status::TaggedSymbol
+          )
+        LEFT =
+          T.let(
+            :left,
+            WhopSDK::Models::MemberListResponse::Status::TaggedSymbol
+          )
+
+        sig do
+          override.returns(
+            T::Array[WhopSDK::Models::MemberListResponse::Status::TaggedSymbol]
+          )
+        end
+        def self.values
+        end
       end
 
       class User < WhopSDK::Internal::Type::BaseModel
@@ -147,39 +205,53 @@ module WhopSDK
             )
           end
 
-        # The unique identifier for the company member user.
+        # User ID, prefixed `user_`.
         sig { returns(String) }
         attr_accessor :id
 
-        # The digital mailing address of the user.
-        sig { returns(T.nilable(String)) }
-        attr_accessor :email
-
-        # The user's full name.
+        # Display name.
         sig { returns(T.nilable(String)) }
         attr_accessor :name
 
-        # The whop username.
+        # Avatar wrapper; its `url` is always present, using a generated placeholder when
+        # the user set no picture.
+        sig do
+          returns(WhopSDK::Models::MemberListResponse::User::ProfilePicture)
+        end
+        attr_reader :profile_picture
+
+        sig do
+          params(
+            profile_picture:
+              WhopSDK::Models::MemberListResponse::User::ProfilePicture::OrHash
+          ).void
+        end
+        attr_writer :profile_picture
+
+        # Public username.
         sig { returns(String) }
         attr_accessor :username
 
-        # The user for this member, if any.
+        # The user behind this member. `null` when the buyer is another business rather
+        # than a person.
         sig do
           params(
             id: String,
-            email: T.nilable(String),
             name: T.nilable(String),
+            profile_picture:
+              WhopSDK::Models::MemberListResponse::User::ProfilePicture::OrHash,
             username: String
           ).returns(T.attached_class)
         end
         def self.new(
-          # The unique identifier for the company member user.
+          # User ID, prefixed `user_`.
           id:,
-          # The digital mailing address of the user.
-          email:,
-          # The user's full name.
+          # Display name.
           name:,
-          # The whop username.
+          # Avatar wrapper; its `url` is always present, using a generated placeholder when
+          # the user set no picture.
+          profile_picture:,
+          # Public username.
           username:
         )
         end
@@ -188,13 +260,43 @@ module WhopSDK
           override.returns(
             {
               id: String,
-              email: T.nilable(String),
               name: T.nilable(String),
+              profile_picture:
+                WhopSDK::Models::MemberListResponse::User::ProfilePicture,
               username: String
             }
           )
         end
         def to_hash
+        end
+
+        class ProfilePicture < WhopSDK::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                WhopSDK::Models::MemberListResponse::User::ProfilePicture,
+                WhopSDK::Internal::AnyHash
+              )
+            end
+
+          # Avatar image URL. Always present — a generated placeholder when the user set no
+          # picture.
+          sig { returns(String) }
+          attr_accessor :url
+
+          # Avatar wrapper; its `url` is always present, using a generated placeholder when
+          # the user set no picture.
+          sig { params(url: String).returns(T.attached_class) }
+          def self.new(
+            # Avatar image URL. Always present — a generated placeholder when the user set no
+            # picture.
+            url:
+          )
+          end
+
+          sig { override.returns({ url: String }) }
+          def to_hash
+          end
         end
       end
     end

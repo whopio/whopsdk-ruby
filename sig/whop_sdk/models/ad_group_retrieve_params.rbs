@@ -1,0 +1,74 @@
+module WhopSDK
+  module Models
+    type ad_group_retrieve_params =
+      {
+        id: String,
+        attribution_model: WhopSDK::Models::AdGroupRetrieveParams::attribution_model,
+        stats_from: String,
+        stats_to: String,
+        time_zone: String,
+        api_version_date: String
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class AdGroupRetrieveParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor id: String
+
+      attr_reader attribution_model: WhopSDK::Models::AdGroupRetrieveParams::attribution_model?
+
+      def attribution_model=: (
+        WhopSDK::Models::AdGroupRetrieveParams::attribution_model
+      ) -> WhopSDK::Models::AdGroupRetrieveParams::attribution_model
+
+      attr_reader stats_from: String?
+
+      def stats_from=: (String) -> String
+
+      attr_reader stats_to: String?
+
+      def stats_to=: (String) -> String
+
+      attr_reader time_zone: String?
+
+      def time_zone=: (String) -> String
+
+      attr_reader api_version_date: String?
+
+      def api_version_date=: (String) -> String
+
+      def initialize: (
+        id: String,
+        ?attribution_model: WhopSDK::Models::AdGroupRetrieveParams::attribution_model,
+        ?stats_from: String,
+        ?stats_to: String,
+        ?time_zone: String,
+        ?api_version_date: String,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        attribution_model: WhopSDK::Models::AdGroupRetrieveParams::attribution_model,
+        stats_from: String,
+        stats_to: String,
+        time_zone: String,
+        api_version_date: String,
+        request_options: WhopSDK::RequestOptions
+      }
+
+      type attribution_model = :last_touch | :first_touch
+
+      module AttributionModel
+        extend WhopSDK::Internal::Type::Enum
+
+        LAST_TOUCH: :last_touch
+        FIRST_TOUCH: :first_touch
+
+        def self?.values: -> ::Array[WhopSDK::Models::AdGroupRetrieveParams::attribution_model]
+      end
+    end
+  end
+end

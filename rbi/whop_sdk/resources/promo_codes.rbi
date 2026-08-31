@@ -2,163 +2,153 @@
 
 module WhopSDK
   module Resources
-    # Promo codes
     class PromoCodes
-      # Create a new promo code that applies a discount at checkout. Can be scoped to
-      # specific products or plans.
-      #
-      # Required permissions:
-      #
-      # - `promo_code:create`
-      # - `access_pass:basic:read`
+      # Creates a promo code for an account. First-party sessions may attach an
+      # affiliate.
       sig do
         params(
+          account_id: String,
           amount_off: Float,
-          base_currency: WhopSDK::Currency::OrSymbol,
+          base_currency: WhopSDK::PromoCodeCreateParams::BaseCurrency::OrSymbol,
           code: String,
-          company_id: String,
           new_users_only: T::Boolean,
           promo_duration_months: Integer,
-          promo_type: WhopSDK::PromoType::OrSymbol,
-          churned_users_only: T.nilable(T::Boolean),
-          existing_memberships_only: T.nilable(T::Boolean),
-          expires_at: T.nilable(Time),
-          one_per_customer: T.nilable(T::Boolean),
-          plan_ids: T.nilable(T::Array[String]),
+          promo_type: WhopSDK::PromoCodeCreateParams::PromoType::OrSymbol,
+          churned_users_only: T::Boolean,
+          existing_memberships_only: T::Boolean,
+          expires_at: T.nilable(String),
+          one_per_customer: T::Boolean,
+          plan_ids: T::Array[String],
           product_id: T.nilable(String),
           stock: T.nilable(Integer),
-          unlimited_stock: T.nilable(T::Boolean),
+          unlimited_stock: T::Boolean,
+          api_version_date: String,
+          idempotency_key: String,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::PromoCode)
       end
       def create(
-        # The discount amount. When promo_type is percentage, this is the percent off
-        # (e.g., 20 for 20% off). When promo_type is flat_amount, this is the currency
-        # amount off (e.g., 10.00 for $10.00 off).
+        # Body param
+        account_id:,
+        # Body param
         amount_off:,
-        # The three-letter ISO currency code for the promo code discount.
+        # Body param
         base_currency:,
-        # The alphanumeric code customers enter at checkout to apply the discount.
+        # Body param
         code:,
-        # The unique identifier of the company to create this promo code for.
-        company_id:,
-        # Whether to restrict this promo code to only users who have never purchased from
-        # the company before.
+        # Body param
         new_users_only:,
-        # The number of billing months the discount remains active. For example, 3 means
-        # the discount applies to the first 3 billing cycles.
+        # Body param
         promo_duration_months:,
-        # The discount type, either percentage or flat_amount.
+        # Body param
         promo_type:,
-        # Whether to restrict this promo code to only users who have previously churned
-        # from the company.
+        # Body param
         churned_users_only: nil,
-        # Whether this promo code can only be applied to existing memberships, such as for
-        # cancellation retention offers.
+        # Body param
         existing_memberships_only: nil,
-        # The datetime when the promo code expires and can no longer be used. Null means
-        # it never expires.
+        # Body param
         expires_at: nil,
-        # Whether each customer can only use this promo code once.
+        # Body param
         one_per_customer: nil,
-        # The identifiers of plans this promo code applies to. When product_id is also
-        # provided, only plans attached to that product are included.
+        # Body param
         plan_ids: nil,
-        # The identifier of the product to scope this promo code to. When provided, the
-        # promo code only applies to plans attached to this product.
+        # Body param
         product_id: nil,
-        # The maximum number of times this promo code can be used. Ignored when
-        # unlimited_stock is true.
+        # Body param
         stock: nil,
-        # Whether the promo code can be used an unlimited number of times.
+        # Body param
         unlimited_stock: nil,
+        # Header param: Pins the request to a dated API version.
+        api_version_date: nil,
+        # Header param: A unique key that makes this request safe to retry. See
+        # [Idempotent requests](https://docs.whop.com/developer/api/idempotency).
+        idempotency_key: nil,
         request_options: {}
       )
       end
 
-      # Retrieves the details of an existing promo code.
-      #
-      # Required permissions:
-      #
-      # - `promo_code:basic:read`
-      # - `access_pass:basic:read`
+      # Retrieves a promo code by ID.
       sig do
         params(
           id: String,
+          api_version_date: String,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::PromoCode)
       end
       def retrieve(
-        # The unique identifier of the promo code.
+        # Promo code ID (`promo_` tag).
         id,
+        # Pins the request to a dated API version.
+        api_version_date: nil,
         request_options: {}
       )
       end
 
-      # Returns a paginated list of promo codes belonging to a company, with optional
-      # filtering by product, plan, and status.
-      #
-      # Required permissions:
-      #
-      # - `promo_code:basic:read`
-      # - `access_pass:basic:read`
+      # Lists promo codes for an account with cursor pagination, filters, and sorting.
       sig do
         params(
-          company_id: String,
+          account_id: String,
           after: String,
           before: String,
           created_after: Time,
           created_before: Time,
+          direction: WhopSDK::PromoCodeListParams::Direction::OrSymbol,
           first: Integer,
           last: Integer,
+          order: WhopSDK::PromoCodeListParams::Order::OrSymbol,
           plan_ids: T::Array[String],
           product_ids: T::Array[String],
-          status: WhopSDK::PromoCodeStatus::OrSymbol,
+          status: WhopSDK::PromoCodeListParams::Status::OrSymbol,
+          api_version_date: String,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(
           WhopSDK::Internal::CursorPage[WhopSDK::Models::PromoCodeListResponse]
         )
       end
       def list(
-        # The unique identifier of the company to list promo codes for.
-        company_id:,
-        # Returns the elements in the list that come after the specified cursor.
+        # Query param: Account whose promo codes are listed (`biz_` tag).
+        account_id:,
+        # Query param: Cursor to paginate forwards from.
         after: nil,
-        # Returns the elements in the list that come before the specified cursor.
+        # Query param: Cursor to paginate backwards from.
         before: nil,
-        # Only return promo codes created after this timestamp.
+        # Query param: Only promo codes created after this ISO 8601 timestamp.
         created_after: nil,
-        # Only return promo codes created before this timestamp.
+        # Query param: Only promo codes created before this ISO 8601 timestamp.
         created_before: nil,
-        # Returns the first _n_ elements from the list.
+        # Query param: Sort direction.
+        direction: nil,
+        # Query param: Number of promo codes to return from the start of the window.
         first: nil,
-        # Returns the last _n_ elements from the list.
+        # Query param: Number of promo codes to return from the end of the window.
         last: nil,
-        # Filter to only promo codes scoped to these plan identifiers.
+        # Query param: Sort field.
+        order: nil,
+        # Query param: Only promo codes scoped to these plan IDs.
         plan_ids: nil,
-        # Filter to only promo codes scoped to these product identifiers.
+        # Query param: Only promo codes scoped to these product IDs.
         product_ids: nil,
-        # Filter to only promo codes matching this status.
+        # Query param: Promo-code status. `expired` groups inactive and archived codes.
         status: nil,
+        # Header param: Pins the request to a dated API version.
+        api_version_date: nil,
         request_options: {}
       )
       end
 
-      # Archive a promo code, preventing it from being used in future checkouts.
-      # Existing memberships are not affected.
-      #
-      # Required permissions:
-      #
-      # - `promo_code:delete`
+      # Archives a promo code so it cannot be used in future checkouts.
       sig do
         params(
           id: String,
+          api_version_date: String,
           request_options: WhopSDK::RequestOptions::OrHash
-        ).returns(T::Boolean)
+        ).returns(WhopSDK::Models::PromoCodeDeleteResponse)
       end
       def delete(
-        # The unique identifier of the promo code to archive.
+        # Promo code ID (`promo_` tag).
         id,
+        # Pins the request to a dated API version.
+        api_version_date: nil,
         request_options: {}
       )
       end

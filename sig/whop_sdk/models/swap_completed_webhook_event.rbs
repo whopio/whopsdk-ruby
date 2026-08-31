@@ -1,0 +1,1442 @@
+module WhopSDK
+  module Models
+    type swap_completed_webhook_event =
+      {
+        id: String,
+        api_version: :v1,
+        api_version_date: String?,
+        data: WhopSDK::SwapCompletedWebhookEvent::Data,
+        timestamp: Time,
+        type: :"swap.completed",
+        account_id: String?,
+        previous_attributes: top
+      }
+
+    class SwapCompletedWebhookEvent < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor api_version: :v1
+
+      attr_accessor api_version_date: String?
+
+      attr_accessor data: WhopSDK::SwapCompletedWebhookEvent::Data
+
+      attr_accessor timestamp: Time
+
+      attr_accessor type: :"swap.completed"
+
+      attr_accessor account_id: String?
+
+      attr_reader previous_attributes: top?
+
+      def previous_attributes=: (top) -> top
+
+      def initialize: (
+        id: String,
+        api_version_date: String?,
+        data: WhopSDK::SwapCompletedWebhookEvent::Data,
+        timestamp: Time,
+        ?account_id: String?,
+        ?previous_attributes: top,
+        ?api_version: :v1,
+        ?type: :"swap.completed"
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        api_version: :v1,
+        api_version_date: String?,
+        data: WhopSDK::SwapCompletedWebhookEvent::Data,
+        timestamp: Time,
+        type: :"swap.completed",
+        account_id: String?,
+        previous_attributes: top
+      }
+
+      type data =
+        {
+          id: String,
+          amount: String,
+          available_at: Time?,
+          currency: WhopSDK::SwapCompletedWebhookEvent::Data::Currency,
+          line_type: WhopSDK::Models::SwapCompletedWebhookEvent::Data::line_type,
+          object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::object,
+          posted_at: Time,
+          resource: WhopSDK::Models::SwapCompletedWebhookEvent::Data::resource?,
+          source: WhopSDK::SwapCompletedWebhookEvent::Data::Source?,
+          account: WhopSDK::Models::SwapCompletedWebhookEvent::Data::account,
+          ledger_account_id: String?,
+          payment: WhopSDK::SwapCompletedWebhookEvent::Data::Payment?,
+          payment_id: String?,
+          plan_id: String?,
+          plan_name: String?,
+          product_id: String?,
+          product_name: String?,
+          user_email: String?,
+          user_id: String?,
+          user_name: String?
+        }
+
+      class Data < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor amount: String
+
+        attr_accessor available_at: Time?
+
+        attr_accessor currency: WhopSDK::SwapCompletedWebhookEvent::Data::Currency
+
+        attr_accessor line_type: WhopSDK::Models::SwapCompletedWebhookEvent::Data::line_type
+
+        attr_accessor object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::object
+
+        attr_accessor posted_at: Time
+
+        attr_accessor resource: WhopSDK::Models::SwapCompletedWebhookEvent::Data::resource?
+
+        attr_accessor source: WhopSDK::SwapCompletedWebhookEvent::Data::Source?
+
+        attr_reader account: WhopSDK::Models::SwapCompletedWebhookEvent::Data::account?
+
+        def account=: (
+          WhopSDK::Models::SwapCompletedWebhookEvent::Data::account
+        ) -> WhopSDK::Models::SwapCompletedWebhookEvent::Data::account
+
+        attr_accessor ledger_account_id: String?
+
+        attr_accessor payment: WhopSDK::SwapCompletedWebhookEvent::Data::Payment?
+
+        attr_accessor payment_id: String?
+
+        attr_accessor plan_id: String?
+
+        attr_accessor plan_name: String?
+
+        attr_accessor product_id: String?
+
+        attr_accessor product_name: String?
+
+        attr_accessor user_email: String?
+
+        attr_accessor user_id: String?
+
+        attr_accessor user_name: String?
+
+        def initialize: (
+          id: String,
+          amount: String,
+          available_at: Time?,
+          currency: WhopSDK::SwapCompletedWebhookEvent::Data::Currency,
+          line_type: WhopSDK::Models::SwapCompletedWebhookEvent::Data::line_type,
+          object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::object,
+          posted_at: Time,
+          resource: WhopSDK::Models::SwapCompletedWebhookEvent::Data::resource?,
+          source: WhopSDK::SwapCompletedWebhookEvent::Data::Source?,
+          ?account: WhopSDK::Models::SwapCompletedWebhookEvent::Data::account,
+          ?ledger_account_id: String?,
+          ?payment: WhopSDK::SwapCompletedWebhookEvent::Data::Payment?,
+          ?payment_id: String?,
+          ?plan_id: String?,
+          ?plan_name: String?,
+          ?product_id: String?,
+          ?product_name: String?,
+          ?user_email: String?,
+          ?user_id: String?,
+          ?user_name: String?
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          amount: String,
+          available_at: Time?,
+          currency: WhopSDK::SwapCompletedWebhookEvent::Data::Currency,
+          line_type: WhopSDK::Models::SwapCompletedWebhookEvent::Data::line_type,
+          object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::object,
+          posted_at: Time,
+          resource: WhopSDK::Models::SwapCompletedWebhookEvent::Data::resource?,
+          source: WhopSDK::SwapCompletedWebhookEvent::Data::Source?,
+          account: WhopSDK::Models::SwapCompletedWebhookEvent::Data::account,
+          ledger_account_id: String?,
+          payment: WhopSDK::SwapCompletedWebhookEvent::Data::Payment?,
+          payment_id: String?,
+          plan_id: String?,
+          plan_name: String?,
+          product_id: String?,
+          product_name: String?,
+          user_email: String?,
+          user_id: String?,
+          user_name: String?
+        }
+
+        type currency = { code: String, precision: String }
+
+        class Currency < WhopSDK::Internal::Type::BaseModel
+          attr_accessor code: String
+
+          attr_accessor precision: String
+
+          def initialize: (code: String, precision: String) -> void
+
+          def to_hash: -> { code: String, precision: String }
+        end
+
+        type line_type =
+          :ad_budget_release
+          | :ad_campaign_budget
+          | :ad_publisher_payout
+          | :ad_publisher_payout_received
+          | :ad_spend_charge
+          | :affiliate_fee
+          | :airdrop
+          | :airdrop_link_created
+          | :airdrop_link_redeemed
+          | :airdrop_link_returned
+          | :airdrop_reversal
+          | :application_fee
+          | :application_fee_payout
+          | :balance_reservation
+          | :balance_reservation_reversal
+          | :bank_transfer
+          | :billing_percentage_fee
+          | :buyer_fee
+          | :card_interchange
+          | :card_load_deposit
+          | :card_load_transfer
+          | :card_spend_authorization
+          | :card_spend_authorization_void
+          | :card_spend_refund
+          | :card_unload_deposit
+          | :card_unload_transfer
+          | :company_referral
+          | :connected_account_negative_balance
+          | :cross_border_percentage_fee
+          | :currency_conversion_incoming
+          | :currency_conversion_outgoing
+          | :dispute_alert_fee
+          | :dispute_hold_adjustment
+          | :dispute_representment_fee
+          | :external_card_load_deposit
+          | :fraud_prevention_fee
+          | :fx_percentage_fee
+          | :high_risk_merchant_fee
+          | :installment_default
+          | :internal_balance_transfer_incoming
+          | :internal_balance_transfer_outgoing
+          | :internal_withdrawal
+          | :internal_withdrawal_complete
+          | :internal_withdrawal_fee
+          | :internal_withdrawal_fee_reversal
+          | :internal_withdrawal_in_transit
+          | :internal_withdrawal_in_transit_reversal
+          | :internal_withdrawal_markup_fee
+          | :internal_withdrawal_markup_fee_payout
+          | :internal_withdrawal_markup_fee_payout_reversal
+          | :internal_withdrawal_markup_fee_reversal
+          | :internal_withdrawal_reversal
+          | :legacy_crypto_payment
+          | :legacy_payment
+          | :legacy_payment_refund
+          | :license_sale
+          | :license_sale_commission
+          | :license_sale_revenue
+          | :marketplace_affiliate_fee
+          | :misc_purchase
+          | :misc_refund
+          | :misc_reversal
+          | :onchain_deposit
+          | :onchain_swap_source
+          | :onchain_swap_target
+          | :onchain_wallet_transfer_incoming
+          | :onchain_wallet_transfer_outgoing
+          | :onchain_withdrawal
+          | :orchestration_percentage_fee
+          | :passthrough_gmv
+          | :payment_dispute
+          | :payment_dispute_adjustment
+          | :payment_dispute_fee
+          | :payment_dispute_reversal
+          | :payment_gross
+          | :payment_gross_reversal
+          | :payment_processing_fixed_fee
+          | :payment_processing_percentage_fee
+          | :payment_referral
+          | :payment_referral_refund
+          | :payment_referral_reversal
+          | :payment_refund
+          | :payment_refund_reversal
+          | :payment_revshare
+          | :payment_revshare_payout
+          | :payment_revshare_refund
+          | :payment_revshare_reversal
+          | :payout_fee
+          | :platform_affiliate_payment
+          | :platform_affiliate_payment_reversal
+          | :platform_balance_payment
+          | :platform_balance_payment_refund
+          | :platform_balance_transfer_fee
+          | :platform_balance_transfer_incoming
+          | :platform_balance_transfer_outgoing
+          | :platform_covered_dispute
+          | :platform_earning
+          | :promo_reversal
+          | :referral_bonus
+          | :resolution_center_refund
+          | :revshare_percentage_fee
+          | :sales_tax_fee
+          | :sales_tax_remittance
+          | :sales_tax_remittance_reversal
+          | :software_rental_revshare
+          | :software_rental_transaction
+          | :stripe_domestic_processing_fee
+          | :stripe_international_processing_fee
+          | :swap_fee
+          | :three_ds_fixed_fee
+          | :topup
+          | :topup_fee
+          | :topup_reversal
+          | :treasury_payin
+          | :whop_processing_fee
+          | :withdrawal
+          | :withdrawal_clawback
+          | :withdrawal_clawback_reversal
+          | :withdrawal_fee
+          | :withdrawal_fee_reversal
+          | :withdrawal_markup_fee
+          | :withdrawal_markup_fee_payout
+          | :withdrawal_markup_fee_payout_reversal
+          | :withdrawal_markup_fee_reversal
+          | :withdrawal_reclassification
+          | :withdrawal_reversal
+          | :withdrawal_topup_adjustment
+
+        module LineType
+          extend WhopSDK::Internal::Type::Enum
+
+          AD_BUDGET_RELEASE: :ad_budget_release
+          AD_CAMPAIGN_BUDGET: :ad_campaign_budget
+          AD_PUBLISHER_PAYOUT: :ad_publisher_payout
+          AD_PUBLISHER_PAYOUT_RECEIVED: :ad_publisher_payout_received
+          AD_SPEND_CHARGE: :ad_spend_charge
+          AFFILIATE_FEE: :affiliate_fee
+          AIRDROP: :airdrop
+          AIRDROP_LINK_CREATED: :airdrop_link_created
+          AIRDROP_LINK_REDEEMED: :airdrop_link_redeemed
+          AIRDROP_LINK_RETURNED: :airdrop_link_returned
+          AIRDROP_REVERSAL: :airdrop_reversal
+          APPLICATION_FEE: :application_fee
+          APPLICATION_FEE_PAYOUT: :application_fee_payout
+          BALANCE_RESERVATION: :balance_reservation
+          BALANCE_RESERVATION_REVERSAL: :balance_reservation_reversal
+          BANK_TRANSFER: :bank_transfer
+          BILLING_PERCENTAGE_FEE: :billing_percentage_fee
+          BUYER_FEE: :buyer_fee
+          CARD_INTERCHANGE: :card_interchange
+          CARD_LOAD_DEPOSIT: :card_load_deposit
+          CARD_LOAD_TRANSFER: :card_load_transfer
+          CARD_SPEND_AUTHORIZATION: :card_spend_authorization
+          CARD_SPEND_AUTHORIZATION_VOID: :card_spend_authorization_void
+          CARD_SPEND_REFUND: :card_spend_refund
+          CARD_UNLOAD_DEPOSIT: :card_unload_deposit
+          CARD_UNLOAD_TRANSFER: :card_unload_transfer
+          COMPANY_REFERRAL: :company_referral
+          CONNECTED_ACCOUNT_NEGATIVE_BALANCE: :connected_account_negative_balance
+          CROSS_BORDER_PERCENTAGE_FEE: :cross_border_percentage_fee
+          CURRENCY_CONVERSION_INCOMING: :currency_conversion_incoming
+          CURRENCY_CONVERSION_OUTGOING: :currency_conversion_outgoing
+          DISPUTE_ALERT_FEE: :dispute_alert_fee
+          DISPUTE_HOLD_ADJUSTMENT: :dispute_hold_adjustment
+          DISPUTE_REPRESENTMENT_FEE: :dispute_representment_fee
+          EXTERNAL_CARD_LOAD_DEPOSIT: :external_card_load_deposit
+          FRAUD_PREVENTION_FEE: :fraud_prevention_fee
+          FX_PERCENTAGE_FEE: :fx_percentage_fee
+          HIGH_RISK_MERCHANT_FEE: :high_risk_merchant_fee
+          INSTALLMENT_DEFAULT: :installment_default
+          INTERNAL_BALANCE_TRANSFER_INCOMING: :internal_balance_transfer_incoming
+          INTERNAL_BALANCE_TRANSFER_OUTGOING: :internal_balance_transfer_outgoing
+          INTERNAL_WITHDRAWAL: :internal_withdrawal
+          INTERNAL_WITHDRAWAL_COMPLETE: :internal_withdrawal_complete
+          INTERNAL_WITHDRAWAL_FEE: :internal_withdrawal_fee
+          INTERNAL_WITHDRAWAL_FEE_REVERSAL: :internal_withdrawal_fee_reversal
+          INTERNAL_WITHDRAWAL_IN_TRANSIT: :internal_withdrawal_in_transit
+          INTERNAL_WITHDRAWAL_IN_TRANSIT_REVERSAL: :internal_withdrawal_in_transit_reversal
+          INTERNAL_WITHDRAWAL_MARKUP_FEE: :internal_withdrawal_markup_fee
+          INTERNAL_WITHDRAWAL_MARKUP_FEE_PAYOUT: :internal_withdrawal_markup_fee_payout
+          INTERNAL_WITHDRAWAL_MARKUP_FEE_PAYOUT_REVERSAL: :internal_withdrawal_markup_fee_payout_reversal
+          INTERNAL_WITHDRAWAL_MARKUP_FEE_REVERSAL: :internal_withdrawal_markup_fee_reversal
+          INTERNAL_WITHDRAWAL_REVERSAL: :internal_withdrawal_reversal
+          LEGACY_CRYPTO_PAYMENT: :legacy_crypto_payment
+          LEGACY_PAYMENT: :legacy_payment
+          LEGACY_PAYMENT_REFUND: :legacy_payment_refund
+          LICENSE_SALE: :license_sale
+          LICENSE_SALE_COMMISSION: :license_sale_commission
+          LICENSE_SALE_REVENUE: :license_sale_revenue
+          MARKETPLACE_AFFILIATE_FEE: :marketplace_affiliate_fee
+          MISC_PURCHASE: :misc_purchase
+          MISC_REFUND: :misc_refund
+          MISC_REVERSAL: :misc_reversal
+          ONCHAIN_DEPOSIT: :onchain_deposit
+          ONCHAIN_SWAP_SOURCE: :onchain_swap_source
+          ONCHAIN_SWAP_TARGET: :onchain_swap_target
+          ONCHAIN_WALLET_TRANSFER_INCOMING: :onchain_wallet_transfer_incoming
+          ONCHAIN_WALLET_TRANSFER_OUTGOING: :onchain_wallet_transfer_outgoing
+          ONCHAIN_WITHDRAWAL: :onchain_withdrawal
+          ORCHESTRATION_PERCENTAGE_FEE: :orchestration_percentage_fee
+          PASSTHROUGH_GMV: :passthrough_gmv
+          PAYMENT_DISPUTE: :payment_dispute
+          PAYMENT_DISPUTE_ADJUSTMENT: :payment_dispute_adjustment
+          PAYMENT_DISPUTE_FEE: :payment_dispute_fee
+          PAYMENT_DISPUTE_REVERSAL: :payment_dispute_reversal
+          PAYMENT_GROSS: :payment_gross
+          PAYMENT_GROSS_REVERSAL: :payment_gross_reversal
+          PAYMENT_PROCESSING_FIXED_FEE: :payment_processing_fixed_fee
+          PAYMENT_PROCESSING_PERCENTAGE_FEE: :payment_processing_percentage_fee
+          PAYMENT_REFERRAL: :payment_referral
+          PAYMENT_REFERRAL_REFUND: :payment_referral_refund
+          PAYMENT_REFERRAL_REVERSAL: :payment_referral_reversal
+          PAYMENT_REFUND: :payment_refund
+          PAYMENT_REFUND_REVERSAL: :payment_refund_reversal
+          PAYMENT_REVSHARE: :payment_revshare
+          PAYMENT_REVSHARE_PAYOUT: :payment_revshare_payout
+          PAYMENT_REVSHARE_REFUND: :payment_revshare_refund
+          PAYMENT_REVSHARE_REVERSAL: :payment_revshare_reversal
+          PAYOUT_FEE: :payout_fee
+          PLATFORM_AFFILIATE_PAYMENT: :platform_affiliate_payment
+          PLATFORM_AFFILIATE_PAYMENT_REVERSAL: :platform_affiliate_payment_reversal
+          PLATFORM_BALANCE_PAYMENT: :platform_balance_payment
+          PLATFORM_BALANCE_PAYMENT_REFUND: :platform_balance_payment_refund
+          PLATFORM_BALANCE_TRANSFER_FEE: :platform_balance_transfer_fee
+          PLATFORM_BALANCE_TRANSFER_INCOMING: :platform_balance_transfer_incoming
+          PLATFORM_BALANCE_TRANSFER_OUTGOING: :platform_balance_transfer_outgoing
+          PLATFORM_COVERED_DISPUTE: :platform_covered_dispute
+          PLATFORM_EARNING: :platform_earning
+          PROMO_REVERSAL: :promo_reversal
+          REFERRAL_BONUS: :referral_bonus
+          RESOLUTION_CENTER_REFUND: :resolution_center_refund
+          REVSHARE_PERCENTAGE_FEE: :revshare_percentage_fee
+          SALES_TAX_FEE: :sales_tax_fee
+          SALES_TAX_REMITTANCE: :sales_tax_remittance
+          SALES_TAX_REMITTANCE_REVERSAL: :sales_tax_remittance_reversal
+          SOFTWARE_RENTAL_REVSHARE: :software_rental_revshare
+          SOFTWARE_RENTAL_TRANSACTION: :software_rental_transaction
+          STRIPE_DOMESTIC_PROCESSING_FEE: :stripe_domestic_processing_fee
+          STRIPE_INTERNATIONAL_PROCESSING_FEE: :stripe_international_processing_fee
+          SWAP_FEE: :swap_fee
+          THREE_DS_FIXED_FEE: :three_ds_fixed_fee
+          TOPUP: :topup
+          TOPUP_FEE: :topup_fee
+          TOPUP_REVERSAL: :topup_reversal
+          TREASURY_PAYIN: :treasury_payin
+          WHOP_PROCESSING_FEE: :whop_processing_fee
+          WITHDRAWAL: :withdrawal
+          WITHDRAWAL_CLAWBACK: :withdrawal_clawback
+          WITHDRAWAL_CLAWBACK_REVERSAL: :withdrawal_clawback_reversal
+          WITHDRAWAL_FEE: :withdrawal_fee
+          WITHDRAWAL_FEE_REVERSAL: :withdrawal_fee_reversal
+          WITHDRAWAL_MARKUP_FEE: :withdrawal_markup_fee
+          WITHDRAWAL_MARKUP_FEE_PAYOUT: :withdrawal_markup_fee_payout
+          WITHDRAWAL_MARKUP_FEE_PAYOUT_REVERSAL: :withdrawal_markup_fee_payout_reversal
+          WITHDRAWAL_MARKUP_FEE_REVERSAL: :withdrawal_markup_fee_reversal
+          WITHDRAWAL_RECLASSIFICATION: :withdrawal_reclassification
+          WITHDRAWAL_REVERSAL: :withdrawal_reversal
+          WITHDRAWAL_TOPUP_ADJUSTMENT: :withdrawal_topup_adjustment
+
+          def self?.values: -> ::Array[WhopSDK::Models::SwapCompletedWebhookEvent::Data::line_type]
+        end
+
+        type object = :ledger_activity
+
+        module Object
+          extend WhopSDK::Internal::Type::Enum
+
+          LEDGER_ACTIVITY: :ledger_activity
+
+          def self?.values: -> ::Array[WhopSDK::Models::SwapCompletedWebhookEvent::Data::object]
+        end
+
+        type resource =
+          WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember0
+          | WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember1
+          | WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember2
+          | WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember3
+          | WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember4
+          | WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember5
+          | WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember6
+
+        module Resource
+          extend WhopSDK::Internal::Type::Union
+
+          type union_member0 =
+            {
+              id: String,
+              logo_url: String?,
+              object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember0::object,
+              route: String?,
+              title: String?
+            }
+
+          class UnionMember0 < WhopSDK::Internal::Type::BaseModel
+            attr_accessor id: String
+
+            attr_accessor logo_url: String?
+
+            attr_accessor object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember0::object
+
+            attr_accessor route: String?
+
+            attr_accessor title: String?
+
+            def initialize: (
+              id: String,
+              logo_url: String?,
+              object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember0::object,
+              route: String?,
+              title: String?
+            ) -> void
+
+            def to_hash: -> {
+              id: String,
+              logo_url: String?,
+              object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember0::object,
+              route: String?,
+              title: String?
+            }
+
+            type object = :account
+
+            module Object
+              extend WhopSDK::Internal::Type::Enum
+
+              ACCOUNT: :account
+
+              def self?.values: -> ::Array[WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember0::object]
+            end
+          end
+
+          type union_member1 =
+            {
+              id: String,
+              name: String?,
+              object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember1::object,
+              profile_picture_url: String?,
+              username: String?
+            }
+
+          class UnionMember1 < WhopSDK::Internal::Type::BaseModel
+            attr_accessor id: String
+
+            attr_accessor name: String?
+
+            attr_accessor object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember1::object
+
+            attr_accessor profile_picture_url: String?
+
+            attr_accessor username: String?
+
+            def initialize: (
+              id: String,
+              name: String?,
+              object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember1::object,
+              profile_picture_url: String?,
+              username: String?
+            ) -> void
+
+            def to_hash: -> {
+              id: String,
+              name: String?,
+              object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember1::object,
+              profile_picture_url: String?,
+              username: String?
+            }
+
+            type object = :user
+
+            module Object
+              extend WhopSDK::Internal::Type::Enum
+
+              USER: :user
+
+              def self?.values: -> ::Array[WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember1::object]
+            end
+          end
+
+          type union_member2 =
+            {
+              id: String,
+              object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember2::object,
+              status: String,
+              title: String
+            }
+
+          class UnionMember2 < WhopSDK::Internal::Type::BaseModel
+            attr_accessor id: String
+
+            attr_accessor object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember2::object
+
+            attr_accessor status: String
+
+            attr_accessor title: String
+
+            def initialize: (
+              id: String,
+              object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember2::object,
+              status: String,
+              title: String
+            ) -> void
+
+            def to_hash: -> {
+              id: String,
+              object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember2::object,
+              status: String,
+              title: String
+            }
+
+            type object = :bounty
+
+            module Object
+              extend WhopSDK::Internal::Type::Enum
+
+              BOUNTY: :bounty
+
+              def self?.values: -> ::Array[WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember2::object]
+            end
+          end
+
+          type union_member3 =
+            {
+              id: String,
+              object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember3::object,
+              owner: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember3::owner?
+            }
+
+          class UnionMember3 < WhopSDK::Internal::Type::BaseModel
+            attr_accessor id: String
+
+            attr_accessor object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember3::object
+
+            attr_accessor owner: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember3::owner?
+
+            def initialize: (
+              id: String,
+              object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember3::object,
+              owner: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember3::owner?
+            ) -> void
+
+            def to_hash: -> {
+              id: String,
+              object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember3::object,
+              owner: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember3::owner?
+            }
+
+            type object = :ledger_account
+
+            module Object
+              extend WhopSDK::Internal::Type::Enum
+
+              LEDGER_ACCOUNT: :ledger_account
+
+              def self?.values: -> ::Array[WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember3::object]
+            end
+
+            type owner =
+              WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember0
+              | WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember1
+
+            module Owner
+              extend WhopSDK::Internal::Type::Union
+
+              type union_member0 =
+                {
+                  id: String,
+                  logo_url: String?,
+                  object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember0::object,
+                  route: String?,
+                  title: String?
+                }
+
+              class UnionMember0 < WhopSDK::Internal::Type::BaseModel
+                attr_accessor id: String
+
+                attr_accessor logo_url: String?
+
+                attr_accessor object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember0::object
+
+                attr_accessor route: String?
+
+                attr_accessor title: String?
+
+                def initialize: (
+                  id: String,
+                  logo_url: String?,
+                  object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember0::object,
+                  route: String?,
+                  title: String?
+                ) -> void
+
+                def to_hash: -> {
+                  id: String,
+                  logo_url: String?,
+                  object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember0::object,
+                  route: String?,
+                  title: String?
+                }
+
+                type object = :account
+
+                module Object
+                  extend WhopSDK::Internal::Type::Enum
+
+                  ACCOUNT: :account
+
+                  def self?.values: -> ::Array[WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember0::object]
+                end
+              end
+
+              type union_member1 =
+                {
+                  id: String,
+                  name: String?,
+                  object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember1::object,
+                  profile_picture_url: String?,
+                  username: String?
+                }
+
+              class UnionMember1 < WhopSDK::Internal::Type::BaseModel
+                attr_accessor id: String
+
+                attr_accessor name: String?
+
+                attr_accessor object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember1::object
+
+                attr_accessor profile_picture_url: String?
+
+                attr_accessor username: String?
+
+                def initialize: (
+                  id: String,
+                  name: String?,
+                  object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember1::object,
+                  profile_picture_url: String?,
+                  username: String?
+                ) -> void
+
+                def to_hash: -> {
+                  id: String,
+                  name: String?,
+                  object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember1::object,
+                  profile_picture_url: String?,
+                  username: String?
+                }
+
+                type object = :user
+
+                module Object
+                  extend WhopSDK::Internal::Type::Enum
+
+                  USER: :user
+
+                  def self?.values: -> ::Array[WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember1::object]
+                end
+              end
+
+              def self?.variants: -> ::Array[WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember3::owner]
+            end
+          end
+
+          type union_member4 =
+            {
+              id: String,
+              bank: WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember4::Bank?,
+              card: WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember4::Card?,
+              email_identifier: String?,
+              gateway_type: String?,
+              object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember4::object,
+              payment_method_type: String?
+            }
+
+          class UnionMember4 < WhopSDK::Internal::Type::BaseModel
+            attr_accessor id: String
+
+            attr_accessor bank: WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember4::Bank?
+
+            attr_accessor card: WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember4::Card?
+
+            attr_accessor email_identifier: String?
+
+            attr_accessor gateway_type: String?
+
+            attr_accessor object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember4::object
+
+            attr_accessor payment_method_type: String?
+
+            def initialize: (
+              id: String,
+              bank: WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember4::Bank?,
+              card: WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember4::Card?,
+              email_identifier: String?,
+              gateway_type: String?,
+              object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember4::object,
+              payment_method_type: String?
+            ) -> void
+
+            def to_hash: -> {
+              id: String,
+              bank: WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember4::Bank?,
+              card: WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember4::Card?,
+              email_identifier: String?,
+              gateway_type: String?,
+              object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember4::object,
+              payment_method_type: String?
+            }
+
+            type bank =
+              {
+                account_name: String?,
+                account_type: String?,
+                bank_name: String?,
+                :last4 => String?
+              }
+
+            class Bank < WhopSDK::Internal::Type::BaseModel
+              attr_accessor account_name: String?
+
+              attr_accessor account_type: String?
+
+              attr_accessor bank_name: String?
+
+              attr_accessor last4: String?
+
+              def initialize: (
+                account_name: String?,
+                account_type: String?,
+                bank_name: String?,
+                last4: String?
+              ) -> void
+
+              def to_hash: -> {
+                account_name: String?,
+                account_type: String?,
+                bank_name: String?,
+                :last4 => String?
+              }
+            end
+
+            type card =
+              {
+                brand: String?,
+                exp_month: Integer?,
+                exp_year: Integer?,
+                :last4 => String?
+              }
+
+            class Card < WhopSDK::Internal::Type::BaseModel
+              attr_accessor brand: String?
+
+              attr_accessor exp_month: Integer?
+
+              attr_accessor exp_year: Integer?
+
+              attr_accessor last4: String?
+
+              def initialize: (
+                brand: String?,
+                exp_month: Integer?,
+                exp_year: Integer?,
+                last4: String?
+              ) -> void
+
+              def to_hash: -> {
+                brand: String?,
+                exp_month: Integer?,
+                exp_year: Integer?,
+                :last4 => String?
+              }
+            end
+
+            type object = :payment_method
+
+            module Object
+              extend WhopSDK::Internal::Type::Enum
+
+              PAYMENT_METHOD: :payment_method
+
+              def self?.values: -> ::Array[WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember4::object]
+            end
+          end
+
+          type union_member5 =
+            {
+              id: String,
+              account_reference: String?,
+              destination_currency_code: String?,
+              institution_name: String?,
+              nickname: String?,
+              object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember5::object,
+              provider: String?
+            }
+
+          class UnionMember5 < WhopSDK::Internal::Type::BaseModel
+            attr_accessor id: String
+
+            attr_accessor account_reference: String?
+
+            attr_accessor destination_currency_code: String?
+
+            attr_accessor institution_name: String?
+
+            attr_accessor nickname: String?
+
+            attr_accessor object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember5::object
+
+            attr_accessor provider: String?
+
+            def initialize: (
+              id: String,
+              account_reference: String?,
+              destination_currency_code: String?,
+              institution_name: String?,
+              nickname: String?,
+              object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember5::object,
+              provider: String?
+            ) -> void
+
+            def to_hash: -> {
+              id: String,
+              account_reference: String?,
+              destination_currency_code: String?,
+              institution_name: String?,
+              nickname: String?,
+              object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember5::object,
+              provider: String?
+            }
+
+            type object = :payout_method
+
+            module Object
+              extend WhopSDK::Internal::Type::Enum
+
+              PAYOUT_METHOD: :payout_method
+
+              def self?.values: -> ::Array[WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember5::object]
+            end
+          end
+
+          type union_member6 =
+            {
+              id: String,
+              authorized_at: Time?,
+              card_id: String?,
+              cashback_usd: String?,
+              declined_reason: String?,
+              local_amount: String?,
+              local_currency: String?,
+              merchant_category: String?,
+              merchant_icon_url: String?,
+              merchant_name: String?,
+              object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember6::object,
+              posted_at: Time?,
+              status: String?,
+              usd_amount: String?
+            }
+
+          class UnionMember6 < WhopSDK::Internal::Type::BaseModel
+            attr_accessor id: String
+
+            attr_accessor authorized_at: Time?
+
+            attr_accessor card_id: String?
+
+            attr_accessor cashback_usd: String?
+
+            attr_accessor declined_reason: String?
+
+            attr_accessor local_amount: String?
+
+            attr_accessor local_currency: String?
+
+            attr_accessor merchant_category: String?
+
+            attr_accessor merchant_icon_url: String?
+
+            attr_accessor merchant_name: String?
+
+            attr_accessor object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember6::object
+
+            attr_accessor posted_at: Time?
+
+            attr_accessor status: String?
+
+            attr_accessor usd_amount: String?
+
+            def initialize: (
+              id: String,
+              authorized_at: Time?,
+              card_id: String?,
+              cashback_usd: String?,
+              declined_reason: String?,
+              local_amount: String?,
+              local_currency: String?,
+              merchant_category: String?,
+              merchant_icon_url: String?,
+              merchant_name: String?,
+              object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember6::object,
+              posted_at: Time?,
+              status: String?,
+              usd_amount: String?
+            ) -> void
+
+            def to_hash: -> {
+              id: String,
+              authorized_at: Time?,
+              card_id: String?,
+              cashback_usd: String?,
+              declined_reason: String?,
+              local_amount: String?,
+              local_currency: String?,
+              merchant_category: String?,
+              merchant_icon_url: String?,
+              merchant_name: String?,
+              object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember6::object,
+              posted_at: Time?,
+              status: String?,
+              usd_amount: String?
+            }
+
+            type object = :card_transaction
+
+            module Object
+              extend WhopSDK::Internal::Type::Enum
+
+              CARD_TRANSACTION: :card_transaction
+
+              def self?.values: -> ::Array[WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember6::object]
+            end
+          end
+
+          def self?.variants: -> ::Array[WhopSDK::Models::SwapCompletedWebhookEvent::Data::resource]
+        end
+
+        type source =
+          {
+            id: String,
+            object: String,
+            amount_float: Float?,
+            card_brand: String?,
+            chain: String?,
+            claim_url: String?,
+            created_at: Time?,
+            estimated_arrival: Time?,
+            from_amount: String?,
+            from_currency: String?,
+            payer_name: String?,
+            payment_amount: WhopSDK::SwapCompletedWebhookEvent::Data::Source::PaymentAmount?,
+            payment_method_type: String?,
+            payment_processor: String?,
+            payout_destination: WhopSDK::SwapCompletedWebhookEvent::Data::Source::PayoutDestination?,
+            payout_token_nickname: String?,
+            reason: String?,
+            risk_review_hold: bool?,
+            sender_address: String?,
+            status: String?,
+            to_amount: String?,
+            to_currency: String?,
+            tx_hash: String?
+          }
+
+        class Source < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor object: String
+
+          attr_accessor amount_float: Float?
+
+          attr_accessor card_brand: String?
+
+          attr_accessor chain: String?
+
+          attr_accessor claim_url: String?
+
+          attr_accessor created_at: Time?
+
+          attr_accessor estimated_arrival: Time?
+
+          attr_accessor from_amount: String?
+
+          attr_accessor from_currency: String?
+
+          attr_accessor payer_name: String?
+
+          attr_accessor payment_amount: WhopSDK::SwapCompletedWebhookEvent::Data::Source::PaymentAmount?
+
+          attr_accessor payment_method_type: String?
+
+          attr_accessor payment_processor: String?
+
+          attr_accessor payout_destination: WhopSDK::SwapCompletedWebhookEvent::Data::Source::PayoutDestination?
+
+          attr_accessor payout_token_nickname: String?
+
+          attr_accessor reason: String?
+
+          attr_accessor risk_review_hold: bool?
+
+          attr_accessor sender_address: String?
+
+          attr_accessor status: String?
+
+          attr_accessor to_amount: String?
+
+          attr_accessor to_currency: String?
+
+          attr_accessor tx_hash: String?
+
+          def initialize: (
+            id: String,
+            object: String,
+            ?amount_float: Float?,
+            ?card_brand: String?,
+            ?chain: String?,
+            ?claim_url: String?,
+            ?created_at: Time?,
+            ?estimated_arrival: Time?,
+            ?from_amount: String?,
+            ?from_currency: String?,
+            ?payer_name: String?,
+            ?payment_amount: WhopSDK::SwapCompletedWebhookEvent::Data::Source::PaymentAmount?,
+            ?payment_method_type: String?,
+            ?payment_processor: String?,
+            ?payout_destination: WhopSDK::SwapCompletedWebhookEvent::Data::Source::PayoutDestination?,
+            ?payout_token_nickname: String?,
+            ?reason: String?,
+            ?risk_review_hold: bool?,
+            ?sender_address: String?,
+            ?status: String?,
+            ?to_amount: String?,
+            ?to_currency: String?,
+            ?tx_hash: String?
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            object: String,
+            amount_float: Float?,
+            card_brand: String?,
+            chain: String?,
+            claim_url: String?,
+            created_at: Time?,
+            estimated_arrival: Time?,
+            from_amount: String?,
+            from_currency: String?,
+            payer_name: String?,
+            payment_amount: WhopSDK::SwapCompletedWebhookEvent::Data::Source::PaymentAmount?,
+            payment_method_type: String?,
+            payment_processor: String?,
+            payout_destination: WhopSDK::SwapCompletedWebhookEvent::Data::Source::PayoutDestination?,
+            payout_token_nickname: String?,
+            reason: String?,
+            risk_review_hold: bool?,
+            sender_address: String?,
+            status: String?,
+            to_amount: String?,
+            to_currency: String?,
+            tx_hash: String?
+          }
+
+          type payment_amount =
+            {
+              amount: String,
+              currency: String,
+              decimals: Integer,
+              display_decimals: Integer
+            }
+
+          class PaymentAmount < WhopSDK::Internal::Type::BaseModel
+            attr_accessor amount: String
+
+            attr_accessor currency: String
+
+            attr_accessor decimals: Integer
+
+            attr_accessor display_decimals: Integer
+
+            def initialize: (
+              amount: String,
+              currency: String,
+              decimals: Integer,
+              display_decimals: Integer
+            ) -> void
+
+            def to_hash: -> {
+              amount: String,
+              currency: String,
+              decimals: Integer,
+              display_decimals: Integer
+            }
+          end
+
+          type payout_destination = { icon_url: String?, payer_name: String? }
+
+          class PayoutDestination < WhopSDK::Internal::Type::BaseModel
+            attr_accessor icon_url: String?
+
+            attr_accessor payer_name: String?
+
+            def initialize: (?icon_url: String?, ?payer_name: String?) -> void
+
+            def to_hash: -> { icon_url: String?, payer_name: String? }
+          end
+        end
+
+        type account =
+          WhopSDK::SwapCompletedWebhookEvent::Data::Account::UnionMember0
+          | WhopSDK::SwapCompletedWebhookEvent::Data::Account::UnionMember1
+
+        module Account
+          extend WhopSDK::Internal::Type::Union
+
+          type union_member0 =
+            {
+              id: String,
+              logo_url: String?,
+              object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Account::UnionMember0::object,
+              route: String?,
+              title: String?
+            }
+
+          class UnionMember0 < WhopSDK::Internal::Type::BaseModel
+            attr_accessor id: String
+
+            attr_accessor logo_url: String?
+
+            attr_accessor object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Account::UnionMember0::object
+
+            attr_accessor route: String?
+
+            attr_accessor title: String?
+
+            def initialize: (
+              id: String,
+              logo_url: String?,
+              object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Account::UnionMember0::object,
+              route: String?,
+              title: String?
+            ) -> void
+
+            def to_hash: -> {
+              id: String,
+              logo_url: String?,
+              object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Account::UnionMember0::object,
+              route: String?,
+              title: String?
+            }
+
+            type object = :account
+
+            module Object
+              extend WhopSDK::Internal::Type::Enum
+
+              ACCOUNT: :account
+
+              def self?.values: -> ::Array[WhopSDK::Models::SwapCompletedWebhookEvent::Data::Account::UnionMember0::object]
+            end
+          end
+
+          type union_member1 =
+            {
+              id: String,
+              name: String?,
+              object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Account::UnionMember1::object,
+              profile_picture_url: String?,
+              username: String?
+            }
+
+          class UnionMember1 < WhopSDK::Internal::Type::BaseModel
+            attr_accessor id: String
+
+            attr_accessor name: String?
+
+            attr_accessor object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Account::UnionMember1::object
+
+            attr_accessor profile_picture_url: String?
+
+            attr_accessor username: String?
+
+            def initialize: (
+              id: String,
+              name: String?,
+              object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Account::UnionMember1::object,
+              profile_picture_url: String?,
+              username: String?
+            ) -> void
+
+            def to_hash: -> {
+              id: String,
+              name: String?,
+              object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Account::UnionMember1::object,
+              profile_picture_url: String?,
+              username: String?
+            }
+
+            type object = :user
+
+            module Object
+              extend WhopSDK::Internal::Type::Enum
+
+              USER: :user
+
+              def self?.values: -> ::Array[WhopSDK::Models::SwapCompletedWebhookEvent::Data::Account::UnionMember1::object]
+            end
+          end
+
+          def self?.variants: -> ::Array[WhopSDK::Models::SwapCompletedWebhookEvent::Data::account]
+        end
+
+        type payment =
+          {
+            id: String,
+            amount: WhopSDK::SwapCompletedWebhookEvent::Data::Payment::Amount?,
+            card_brand: String?,
+            :card_last4 => String?,
+            created_at: Time,
+            object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Payment::object,
+            payment_method_type: String?,
+            payment_processor: String?,
+            plan: WhopSDK::SwapCompletedWebhookEvent::Data::Payment::Plan?,
+            product: WhopSDK::SwapCompletedWebhookEvent::Data::Payment::Product?,
+            user: WhopSDK::SwapCompletedWebhookEvent::Data::Payment::User?
+          }
+
+        class Payment < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor amount: WhopSDK::SwapCompletedWebhookEvent::Data::Payment::Amount?
+
+          attr_accessor card_brand: String?
+
+          attr_accessor card_last4: String?
+
+          attr_accessor created_at: Time
+
+          attr_accessor object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Payment::object
+
+          attr_accessor payment_method_type: String?
+
+          attr_accessor payment_processor: String?
+
+          attr_accessor plan: WhopSDK::SwapCompletedWebhookEvent::Data::Payment::Plan?
+
+          attr_accessor product: WhopSDK::SwapCompletedWebhookEvent::Data::Payment::Product?
+
+          attr_accessor user: WhopSDK::SwapCompletedWebhookEvent::Data::Payment::User?
+
+          def initialize: (
+            id: String,
+            amount: WhopSDK::SwapCompletedWebhookEvent::Data::Payment::Amount?,
+            card_brand: String?,
+            card_last4: String?,
+            created_at: Time,
+            object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Payment::object,
+            payment_method_type: String?,
+            payment_processor: String?,
+            plan: WhopSDK::SwapCompletedWebhookEvent::Data::Payment::Plan?,
+            product: WhopSDK::SwapCompletedWebhookEvent::Data::Payment::Product?,
+            user: WhopSDK::SwapCompletedWebhookEvent::Data::Payment::User?
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            amount: WhopSDK::SwapCompletedWebhookEvent::Data::Payment::Amount?,
+            card_brand: String?,
+            :card_last4 => String?,
+            created_at: Time,
+            object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Payment::object,
+            payment_method_type: String?,
+            payment_processor: String?,
+            plan: WhopSDK::SwapCompletedWebhookEvent::Data::Payment::Plan?,
+            product: WhopSDK::SwapCompletedWebhookEvent::Data::Payment::Product?,
+            user: WhopSDK::SwapCompletedWebhookEvent::Data::Payment::User?
+          }
+
+          type amount =
+            {
+              amount: String,
+              currency: String,
+              decimals: Integer,
+              display_decimals: Integer
+            }
+
+          class Amount < WhopSDK::Internal::Type::BaseModel
+            attr_accessor amount: String
+
+            attr_accessor currency: String
+
+            attr_accessor decimals: Integer
+
+            attr_accessor display_decimals: Integer
+
+            def initialize: (
+              amount: String,
+              currency: String,
+              decimals: Integer,
+              display_decimals: Integer
+            ) -> void
+
+            def to_hash: -> {
+              amount: String,
+              currency: String,
+              decimals: Integer,
+              display_decimals: Integer
+            }
+          end
+
+          type object = :payment
+
+          module Object
+            extend WhopSDK::Internal::Type::Enum
+
+            PAYMENT: :payment
+
+            def self?.values: -> ::Array[WhopSDK::Models::SwapCompletedWebhookEvent::Data::Payment::object]
+          end
+
+          type plan = { id: String, name: String? }
+
+          class Plan < WhopSDK::Internal::Type::BaseModel
+            attr_accessor id: String
+
+            attr_accessor name: String?
+
+            def initialize: (id: String, name: String?) -> void
+
+            def to_hash: -> { id: String, name: String? }
+          end
+
+          type product = { id: String, name: String }
+
+          class Product < WhopSDK::Internal::Type::BaseModel
+            attr_accessor id: String
+
+            attr_accessor name: String
+
+            def initialize: (id: String, name: String) -> void
+
+            def to_hash: -> { id: String, name: String }
+          end
+
+          type user = { id: String, email: String?, name: String }
+
+          class User < WhopSDK::Internal::Type::BaseModel
+            attr_accessor id: String
+
+            attr_accessor email: String?
+
+            attr_accessor name: String
+
+            def initialize: (id: String, email: String?, name: String) -> void
+
+            def to_hash: -> { id: String, email: String?, name: String }
+          end
+        end
+      end
+    end
+  end
+end

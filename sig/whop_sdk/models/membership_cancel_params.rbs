@@ -3,7 +3,10 @@ module WhopSDK
     type membership_cancel_params =
       {
         id: String,
-        cancellation_mode: WhopSDK::Models::MembershipCancelParams::cancellation_mode?
+        cancel_at_period_end: bool,
+        reason: String,
+        api_version_date: String,
+        idempotency_key: String
       }
       & WhopSDK::Internal::Type::request_parameters
 
@@ -13,30 +16,39 @@ module WhopSDK
 
       attr_accessor id: String
 
-      attr_accessor cancellation_mode: WhopSDK::Models::MembershipCancelParams::cancellation_mode?
+      attr_reader cancel_at_period_end: bool?
+
+      def cancel_at_period_end=: (bool) -> bool
+
+      attr_reader reason: String?
+
+      def reason=: (String) -> String
+
+      attr_reader api_version_date: String?
+
+      def api_version_date=: (String) -> String
+
+      attr_reader idempotency_key: String?
+
+      def idempotency_key=: (String) -> String
 
       def initialize: (
         id: String,
-        ?cancellation_mode: WhopSDK::Models::MembershipCancelParams::cancellation_mode?,
+        ?cancel_at_period_end: bool,
+        ?reason: String,
+        ?api_version_date: String,
+        ?idempotency_key: String,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
       def to_hash: -> {
         id: String,
-        cancellation_mode: WhopSDK::Models::MembershipCancelParams::cancellation_mode?,
+        cancel_at_period_end: bool,
+        reason: String,
+        api_version_date: String,
+        idempotency_key: String,
         request_options: WhopSDK::RequestOptions
       }
-
-      type cancellation_mode = :at_period_end | :immediate
-
-      module CancellationMode
-        extend WhopSDK::Internal::Type::Enum
-
-        AT_PERIOD_END: :at_period_end
-        IMMEDIATE: :immediate
-
-        def self?.values: -> ::Array[WhopSDK::Models::MembershipCancelParams::cancellation_mode]
-      end
     end
   end
 end

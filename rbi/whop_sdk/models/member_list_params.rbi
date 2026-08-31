@@ -11,192 +11,162 @@ module WhopSDK
           T.any(WhopSDK::MemberListParams, WhopSDK::Internal::AnyHash)
         end
 
-      # Filter members by their current access level to the product.
-      sig { returns(T.nilable(WhopSDK::AccessLevel::OrSymbol)) }
+      # Filter by what the member can reach on the account.
+      sig do
+        returns(T.nilable(WhopSDK::MemberListParams::AccessLevel::OrSymbol))
+      end
       attr_reader :access_level
 
-      sig { params(access_level: WhopSDK::AccessLevel::OrSymbol).void }
+      sig do
+        params(
+          access_level: WhopSDK::MemberListParams::AccessLevel::OrSymbol
+        ).void
+      end
       attr_writer :access_level
 
-      # Returns the elements in the list that come after the specified cursor.
+      # The account to list members for (`biz_` tag). Defaults to the account the
+      # credential acts as.
+      sig { returns(T.nilable(String)) }
+      attr_reader :account_id
+
+      sig { params(account_id: String).void }
+      attr_writer :account_id
+
+      # Cursor to paginate forwards from.
       sig { returns(T.nilable(String)) }
       attr_reader :after
 
       sig { params(after: String).void }
       attr_writer :after
 
-      # Returns the elements in the list that come before the specified cursor.
+      # Cursor to paginate backwards from.
       sig { returns(T.nilable(String)) }
       attr_reader :before
 
       sig { params(before: String).void }
       attr_writer :before
 
-      # The unique identifier of the company to list members for.
+      # Only members who joined after this ISO 8601 timestamp.
       sig { returns(T.nilable(String)) }
-      attr_reader :company_id
-
-      sig { params(company_id: String).void }
-      attr_writer :company_id
-
-      # Only return members created after this timestamp.
-      sig { returns(T.nilable(Time)) }
       attr_reader :created_after
 
-      sig { params(created_after: Time).void }
+      sig { params(created_after: String).void }
       attr_writer :created_after
 
-      # Only return members created before this timestamp.
-      sig { returns(T.nilable(Time)) }
+      # Only members who joined before this ISO 8601 timestamp.
+      sig { returns(T.nilable(String)) }
       attr_reader :created_before
 
-      sig { params(created_before: Time).void }
+      sig { params(created_before: String).void }
       attr_writer :created_before
 
-      # The sort direction for results. Defaults to descending.
-      sig { returns(T.nilable(WhopSDK::Direction::OrSymbol)) }
+      # Sort direction.
+      sig { returns(T.nilable(WhopSDK::MemberListParams::Direction::OrSymbol)) }
       attr_reader :direction
 
-      sig { params(direction: WhopSDK::Direction::OrSymbol).void }
+      sig do
+        params(direction: WhopSDK::MemberListParams::Direction::OrSymbol).void
+      end
       attr_writer :direction
 
-      # Returns the first _n_ elements from the list.
+      # Number of members to return from the start of the window.
       sig { returns(T.nilable(Integer)) }
       attr_reader :first
 
       sig { params(first: Integer).void }
       attr_writer :first
 
-      # Returns the last _n_ elements from the list.
+      # Number of members to return from the end of the window.
       sig { returns(T.nilable(Integer)) }
       attr_reader :last
 
       sig { params(last: Integer).void }
       attr_writer :last
 
-      # Filter members by their most recent activity type.
-      sig do
-        returns(T.nilable(T::Array[WhopSDK::MemberMostRecentActions::OrSymbol]))
-      end
-      attr_reader :most_recent_actions
-
-      sig do
-        params(
-          most_recent_actions:
-            T::Array[WhopSDK::MemberMostRecentActions::OrSymbol]
-        ).void
-      end
-      attr_writer :most_recent_actions
-
-      # The column to sort members by, such as creation date or revenue.
+      # Sort field.
       sig { returns(T.nilable(WhopSDK::MemberListParams::Order::OrSymbol)) }
       attr_reader :order
 
       sig { params(order: WhopSDK::MemberListParams::Order::OrSymbol).void }
       attr_writer :order
 
-      # Filter members to only those subscribed to these specific plans.
-      sig { returns(T.nilable(T::Array[String])) }
-      attr_reader :plan_ids
-
-      sig { params(plan_ids: T::Array[String]).void }
-      attr_writer :plan_ids
-
-      # Filter members to only those belonging to these specific products.
-      sig { returns(T.nilable(T::Array[String])) }
-      attr_reader :product_ids
-
-      sig { params(product_ids: T::Array[String]).void }
-      attr_writer :product_ids
-
-      # Filter members to only those who used these specific promo codes.
-      sig { returns(T.nilable(T::Array[String])) }
-      attr_reader :promo_code_ids
-
-      sig { params(promo_code_ids: T::Array[String]).void }
-      attr_writer :promo_code_ids
-
-      # Search members by name, username, or email. Email filtering requires the
-      # member:email:read permission.
+      # Search members by name or username. An exact email address also matches when the
+      # credential holds the member:email:read scope.
       sig { returns(T.nilable(String)) }
       attr_reader :query
 
       sig { params(query: String).void }
       attr_writer :query
 
-      # Filter members by their current subscription status.
-      sig { returns(T.nilable(T::Array[WhopSDK::MemberStatuses::OrSymbol])) }
-      attr_reader :statuses
+      # Filter by whether the member is still part of the account.
+      sig { returns(T.nilable(WhopSDK::MemberListParams::Status::OrSymbol)) }
+      attr_reader :status
 
-      sig { params(statuses: T::Array[WhopSDK::MemberStatuses::OrSymbol]).void }
-      attr_writer :statuses
+      sig { params(status: WhopSDK::MemberListParams::Status::OrSymbol).void }
+      attr_writer :status
 
-      # Filter members to only those matching these specific user identifiers.
+      # Only return members whose users match these `user_` identifiers.
       sig { returns(T.nilable(T::Array[String])) }
       attr_reader :user_ids
 
       sig { params(user_ids: T::Array[String]).void }
       attr_writer :user_ids
 
+      sig { returns(T.nilable(String)) }
+      attr_reader :api_version_date
+
+      sig { params(api_version_date: String).void }
+      attr_writer :api_version_date
+
       sig do
         params(
-          access_level: WhopSDK::AccessLevel::OrSymbol,
+          access_level: WhopSDK::MemberListParams::AccessLevel::OrSymbol,
+          account_id: String,
           after: String,
           before: String,
-          company_id: String,
-          created_after: Time,
-          created_before: Time,
-          direction: WhopSDK::Direction::OrSymbol,
+          created_after: String,
+          created_before: String,
+          direction: WhopSDK::MemberListParams::Direction::OrSymbol,
           first: Integer,
           last: Integer,
-          most_recent_actions:
-            T::Array[WhopSDK::MemberMostRecentActions::OrSymbol],
           order: WhopSDK::MemberListParams::Order::OrSymbol,
-          plan_ids: T::Array[String],
-          product_ids: T::Array[String],
-          promo_code_ids: T::Array[String],
           query: String,
-          statuses: T::Array[WhopSDK::MemberStatuses::OrSymbol],
+          status: WhopSDK::MemberListParams::Status::OrSymbol,
           user_ids: T::Array[String],
+          api_version_date: String,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
-        # Filter members by their current access level to the product.
+        # Filter by what the member can reach on the account.
         access_level: nil,
-        # Returns the elements in the list that come after the specified cursor.
+        # The account to list members for (`biz_` tag). Defaults to the account the
+        # credential acts as.
+        account_id: nil,
+        # Cursor to paginate forwards from.
         after: nil,
-        # Returns the elements in the list that come before the specified cursor.
+        # Cursor to paginate backwards from.
         before: nil,
-        # The unique identifier of the company to list members for.
-        company_id: nil,
-        # Only return members created after this timestamp.
+        # Only members who joined after this ISO 8601 timestamp.
         created_after: nil,
-        # Only return members created before this timestamp.
+        # Only members who joined before this ISO 8601 timestamp.
         created_before: nil,
-        # The sort direction for results. Defaults to descending.
+        # Sort direction.
         direction: nil,
-        # Returns the first _n_ elements from the list.
+        # Number of members to return from the start of the window.
         first: nil,
-        # Returns the last _n_ elements from the list.
+        # Number of members to return from the end of the window.
         last: nil,
-        # Filter members by their most recent activity type.
-        most_recent_actions: nil,
-        # The column to sort members by, such as creation date or revenue.
+        # Sort field.
         order: nil,
-        # Filter members to only those subscribed to these specific plans.
-        plan_ids: nil,
-        # Filter members to only those belonging to these specific products.
-        product_ids: nil,
-        # Filter members to only those who used these specific promo codes.
-        promo_code_ids: nil,
-        # Search members by name, username, or email. Email filtering requires the
-        # member:email:read permission.
+        # Search members by name or username. An exact email address also matches when the
+        # credential holds the member:email:read scope.
         query: nil,
-        # Filter members by their current subscription status.
-        statuses: nil,
-        # Filter members to only those matching these specific user identifiers.
+        # Filter by whether the member is still part of the account.
+        status: nil,
+        # Only return members whose users match these `user_` identifiers.
         user_ids: nil,
+        api_version_date: nil,
         request_options: {}
       )
       end
@@ -204,24 +174,20 @@ module WhopSDK
       sig do
         override.returns(
           {
-            access_level: WhopSDK::AccessLevel::OrSymbol,
+            access_level: WhopSDK::MemberListParams::AccessLevel::OrSymbol,
+            account_id: String,
             after: String,
             before: String,
-            company_id: String,
-            created_after: Time,
-            created_before: Time,
-            direction: WhopSDK::Direction::OrSymbol,
+            created_after: String,
+            created_before: String,
+            direction: WhopSDK::MemberListParams::Direction::OrSymbol,
             first: Integer,
             last: Integer,
-            most_recent_actions:
-              T::Array[WhopSDK::MemberMostRecentActions::OrSymbol],
             order: WhopSDK::MemberListParams::Order::OrSymbol,
-            plan_ids: T::Array[String],
-            product_ids: T::Array[String],
-            promo_code_ids: T::Array[String],
             query: String,
-            statuses: T::Array[WhopSDK::MemberStatuses::OrSymbol],
+            status: WhopSDK::MemberListParams::Status::OrSymbol,
             user_ids: T::Array[String],
+            api_version_date: String,
             request_options: WhopSDK::RequestOptions
           }
         )
@@ -229,7 +195,54 @@ module WhopSDK
       def to_hash
       end
 
-      # The column to sort members by, such as creation date or revenue.
+      # Filter by what the member can reach on the account.
+      module AccessLevel
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias { T.all(Symbol, WhopSDK::MemberListParams::AccessLevel) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        NO_ACCESS =
+          T.let(
+            :no_access,
+            WhopSDK::MemberListParams::AccessLevel::TaggedSymbol
+          )
+        ADMIN =
+          T.let(:admin, WhopSDK::MemberListParams::AccessLevel::TaggedSymbol)
+        CUSTOMER =
+          T.let(:customer, WhopSDK::MemberListParams::AccessLevel::TaggedSymbol)
+
+        sig do
+          override.returns(
+            T::Array[WhopSDK::MemberListParams::AccessLevel::TaggedSymbol]
+          )
+        end
+        def self.values
+        end
+      end
+
+      # Sort direction.
+      module Direction
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias { T.all(Symbol, WhopSDK::MemberListParams::Direction) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        ASC = T.let(:asc, WhopSDK::MemberListParams::Direction::TaggedSymbol)
+        DESC = T.let(:desc, WhopSDK::MemberListParams::Direction::TaggedSymbol)
+
+        sig do
+          override.returns(
+            T::Array[WhopSDK::MemberListParams::Direction::TaggedSymbol]
+          )
+        end
+        def self.values
+        end
+      end
+
+      # Sort field.
       module Order
         extend WhopSDK::Internal::Type::Enum
 
@@ -237,25 +250,44 @@ module WhopSDK
           T.type_alias { T.all(Symbol, WhopSDK::MemberListParams::Order) }
         OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-        ID = T.let(:id, WhopSDK::MemberListParams::Order::TaggedSymbol)
-        USD_TOTAL_SPENT =
-          T.let(
-            :usd_total_spent,
-            WhopSDK::MemberListParams::Order::TaggedSymbol
-          )
         CREATED_AT =
           T.let(:created_at, WhopSDK::MemberListParams::Order::TaggedSymbol)
         JOINED_AT =
           T.let(:joined_at, WhopSDK::MemberListParams::Order::TaggedSymbol)
-        MOST_RECENT_ACTION =
+        LAST_ACCESSED_AT =
           T.let(
-            :most_recent_action,
+            :last_accessed_at,
+            WhopSDK::MemberListParams::Order::TaggedSymbol
+          )
+        USD_TOTAL_SPENT =
+          T.let(
+            :usd_total_spent,
             WhopSDK::MemberListParams::Order::TaggedSymbol
           )
 
         sig do
           override.returns(
             T::Array[WhopSDK::MemberListParams::Order::TaggedSymbol]
+          )
+        end
+        def self.values
+        end
+      end
+
+      # Filter by whether the member is still part of the account.
+      module Status
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias { T.all(Symbol, WhopSDK::MemberListParams::Status) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        JOINED = T.let(:joined, WhopSDK::MemberListParams::Status::TaggedSymbol)
+        LEFT = T.let(:left, WhopSDK::MemberListParams::Status::TaggedSymbol)
+
+        sig do
+          override.returns(
+            T::Array[WhopSDK::MemberListParams::Status::TaggedSymbol]
           )
         end
         def self.values

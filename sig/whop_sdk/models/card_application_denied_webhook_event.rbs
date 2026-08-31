@@ -1,0 +1,124 @@
+module WhopSDK
+  module Models
+    type card_application_denied_webhook_event =
+      {
+        id: String,
+        api_version: :v1,
+        api_version_date: String?,
+        data: WhopSDK::CardApplicationDeniedWebhookEvent::Data,
+        timestamp: Time,
+        type: :"card_application.denied",
+        account_id: String?,
+        previous_attributes: top
+      }
+
+    class CardApplicationDeniedWebhookEvent < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor api_version: :v1
+
+      attr_accessor api_version_date: String?
+
+      attr_accessor data: WhopSDK::CardApplicationDeniedWebhookEvent::Data
+
+      attr_accessor timestamp: Time
+
+      attr_accessor type: :"card_application.denied"
+
+      attr_accessor account_id: String?
+
+      attr_reader previous_attributes: top?
+
+      def previous_attributes=: (top) -> top
+
+      def initialize: (
+        id: String,
+        api_version_date: String?,
+        data: WhopSDK::CardApplicationDeniedWebhookEvent::Data,
+        timestamp: Time,
+        ?account_id: String?,
+        ?previous_attributes: top,
+        ?api_version: :v1,
+        ?type: :"card_application.denied"
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        api_version: :v1,
+        api_version_date: String?,
+        data: WhopSDK::CardApplicationDeniedWebhookEvent::Data,
+        timestamp: Time,
+        type: :"card_application.denied",
+        account_id: String?,
+        previous_attributes: top
+      }
+
+      type data =
+        {
+          id: String,
+          hosted_url: String?,
+          object: WhopSDK::Models::CardApplicationDeniedWebhookEvent::Data::object,
+          status: WhopSDK::Models::CardApplicationDeniedWebhookEvent::Data::status
+        }
+
+      class Data < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor hosted_url: String?
+
+        attr_accessor object: WhopSDK::Models::CardApplicationDeniedWebhookEvent::Data::object
+
+        attr_accessor status: WhopSDK::Models::CardApplicationDeniedWebhookEvent::Data::status
+
+        def initialize: (
+          id: String,
+          hosted_url: String?,
+          object: WhopSDK::Models::CardApplicationDeniedWebhookEvent::Data::object,
+          status: WhopSDK::Models::CardApplicationDeniedWebhookEvent::Data::status
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          hosted_url: String?,
+          object: WhopSDK::Models::CardApplicationDeniedWebhookEvent::Data::object,
+          status: WhopSDK::Models::CardApplicationDeniedWebhookEvent::Data::status
+        }
+
+        type object = :card_application
+
+        module Object
+          extend WhopSDK::Internal::Type::Enum
+
+          CARD_APPLICATION: :card_application
+
+          def self?.values: -> ::Array[WhopSDK::Models::CardApplicationDeniedWebhookEvent::Data::object]
+        end
+
+        type status =
+          :approved
+          | :pending
+          | :manual_review
+          | :denied
+          | :locked
+          | :canceled
+          | :needs_verification
+          | :needs_information
+
+        module Status
+          extend WhopSDK::Internal::Type::Enum
+
+          APPROVED: :approved
+          PENDING: :pending
+          MANUAL_REVIEW: :manual_review
+          DENIED: :denied
+          LOCKED: :locked
+          CANCELED: :canceled
+          NEEDS_VERIFICATION: :needs_verification
+          NEEDS_INFORMATION: :needs_information
+
+          def self?.values: -> ::Array[WhopSDK::Models::CardApplicationDeniedWebhookEvent::Data::status]
+        end
+      end
+    end
+  end
+end

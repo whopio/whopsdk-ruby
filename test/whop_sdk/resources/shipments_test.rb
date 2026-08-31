@@ -7,11 +7,7 @@ class WhopSDK::Test::Resources::ShipmentsTest < WhopSDK::Test::ResourceTest
     skip("Mock server tests are disabled")
 
     response =
-      @whop.shipments.create(
-        company_id: "biz_xxxxxxxxxxxxxx",
-        payment_id: "pay_xxxxxxxxxxxxxx",
-        tracking_code: "tracking_code"
-      )
+      @whop.shipments.create(payment_id: "pay_xxxxxxxxxxxxxx", tracking_number: "1Z999AA10123456784")
 
     assert_pattern do
       response => WhopSDK::Shipment
@@ -20,14 +16,15 @@ class WhopSDK::Test::Resources::ShipmentsTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
-        created_at: Time,
-        delivery_estimate: Time | nil,
-        payment: WhopSDK::Shipment::Payment | nil,
-        service: String | nil,
-        status: WhopSDK::ShipmentStatus,
-        substatus: WhopSDK::ShipmentSubstatus | nil,
-        tracking_code: String,
-        updated_at: Time
+        account_id: String,
+        carrier: String | nil,
+        checkpoints: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Shipment::Checkpoint]),
+        created_at: String,
+        payment_id: String,
+        status: WhopSDK::Shipment::Status,
+        tracking_number: String,
+        tracking_url: String,
+        updated_at: String
       }
     end
   end
@@ -35,7 +32,7 @@ class WhopSDK::Test::Resources::ShipmentsTest < WhopSDK::Test::ResourceTest
   def test_retrieve
     skip("Mock server tests are disabled")
 
-    response = @whop.shipments.retrieve("ship_xxxxxxxxxxxxx")
+    response = @whop.shipments.retrieve("id")
 
     assert_pattern do
       response => WhopSDK::Shipment
@@ -44,14 +41,15 @@ class WhopSDK::Test::Resources::ShipmentsTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
-        created_at: Time,
-        delivery_estimate: Time | nil,
-        payment: WhopSDK::Shipment::Payment | nil,
-        service: String | nil,
-        status: WhopSDK::ShipmentStatus,
-        substatus: WhopSDK::ShipmentSubstatus | nil,
-        tracking_code: String,
-        updated_at: Time
+        account_id: String,
+        carrier: String | nil,
+        checkpoints: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Shipment::Checkpoint]),
+        created_at: String,
+        payment_id: String,
+        status: WhopSDK::Shipment::Status,
+        tracking_number: String,
+        tracking_url: String,
+        updated_at: String
       }
     end
   end
@@ -69,20 +67,21 @@ class WhopSDK::Test::Resources::ShipmentsTest < WhopSDK::Test::ResourceTest
     return if row.nil?
 
     assert_pattern do
-      row => WhopSDK::Models::ShipmentListResponse
+      row => WhopSDK::Shipment
     end
 
     assert_pattern do
       row => {
         id: String,
-        created_at: Time,
-        delivery_estimate: Time | nil,
-        payment: WhopSDK::Models::ShipmentListResponse::Payment | nil,
-        service: String | nil,
-        status: WhopSDK::ShipmentStatus,
-        substatus: WhopSDK::ShipmentSubstatus | nil,
-        tracking_code: String,
-        updated_at: Time
+        account_id: String,
+        carrier: String | nil,
+        checkpoints: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Shipment::Checkpoint]),
+        created_at: String,
+        payment_id: String,
+        status: WhopSDK::Shipment::Status,
+        tracking_number: String,
+        tracking_url: String,
+        updated_at: String
       }
     end
   end

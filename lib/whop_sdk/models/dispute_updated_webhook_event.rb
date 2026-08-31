@@ -22,8 +22,6 @@ module WhopSDK
       required :api_version_date, String, nil?: true
 
       # @!attribute data
-      #   A dispute is a chargeback or payment challenge filed against a company,
-      #   including evidence and response status.
       #
       #   @return [WhopSDK::Models::Dispute]
       required :data, -> { WhopSDK::Dispute }
@@ -61,7 +59,7 @@ module WhopSDK
       #
       #   @param api_version_date [String, nil] The dated API version (Api-Version-Date) the payload is serialized to
       #
-      #   @param data [WhopSDK::Models::Dispute] A dispute is a chargeback or payment challenge filed against a company, includin
+      #   @param data [WhopSDK::Models::Dispute]
       #
       #   @param timestamp [Time] The timestamp in ISO 8601 format that the webhook was sent at on the server
       #

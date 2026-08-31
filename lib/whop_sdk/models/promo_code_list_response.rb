@@ -5,184 +5,333 @@ module WhopSDK
     # @see WhopSDK::Resources::PromoCodes#list
     class PromoCodeListResponse < WhopSDK::Internal::Type::BaseModel
       # @!attribute id
-      #   The unique identifier for the promo code.
+      #   Promo code ID, prefixed `promo_`.
       #
       #   @return [String]
       required :id, String
 
       # @!attribute amount_off
-      #   The discount amount. Interpretation depends on promo_type: if 'percentage', this
-      #   is the percentage (e.g., 20 means 20% off); if 'flat_amount', this is dollars
-      #   off (e.g., 10.00 means $10.00 off).
+      #   Discount amount. Percentage discounts are represented as a decimal fraction.
       #
       #   @return [Float]
       required :amount_off, Float
 
       # @!attribute churned_users_only
-      #   Restricts promo use to only users who have churned from the company before.
+      #   Whether the promo code is restricted to churned customers.
       #
       #   @return [Boolean]
       required :churned_users_only, WhopSDK::Internal::Type::Boolean
 
       # @!attribute code
-      #   The specific code used to apply the promo at checkout.
+      #   Code entered at checkout.
       #
       #   @return [String, nil]
       required :code, String, nil?: true
 
       # @!attribute created_at
-      #   The datetime the promo code was created.
+      #   When the promo code was created, as an ISO 8601 timestamp.
       #
-      #   @return [Time]
-      required :created_at, Time
+      #   @return [String]
+      required :created_at, String
 
       # @!attribute currency
-      #   The monetary currency of the promo code.
+      #   Currency used for a fixed-amount discount.
       #
-      #   @return [Symbol, WhopSDK::Models::Currency]
-      required :currency, enum: -> { WhopSDK::Currency }
+      #   @return [Symbol, WhopSDK::Models::PromoCodeListResponse::Currency]
+      required :currency, enum: -> { WhopSDK::Models::PromoCodeListResponse::Currency }
 
       # @!attribute duration
-      #   The duration setting for the promo code
+      #   How long the discount applies.
       #
-      #   @return [Symbol, WhopSDK::Models::PromoDuration, nil]
-      required :duration, enum: -> { WhopSDK::PromoDuration }, nil?: true
+      #   @return [Symbol, WhopSDK::Models::PromoCodeListResponse::Duration]
+      required :duration, enum: -> { WhopSDK::Models::PromoCodeListResponse::Duration }
 
       # @!attribute existing_memberships_only
-      #   Restricts promo use to only be applied to already purchased memberships.
+      #   Whether the promo code applies only to existing memberships.
       #
       #   @return [Boolean]
       required :existing_memberships_only, WhopSDK::Internal::Type::Boolean
 
       # @!attribute expires_at
-      #   The date/time of when the promo expires.
+      #   When the promo code expires, as an ISO 8601 timestamp.
       #
-      #   @return [Time, nil]
-      required :expires_at, Time, nil?: true
+      #   @return [String, nil]
+      required :expires_at, String, nil?: true
+
+      # @!attribute metadata
+      #   Custom key-value metadata stored on the promo code.
+      #
+      #   @return [Object]
+      required :metadata, WhopSDK::Internal::Type::Unknown
 
       # @!attribute new_users_only
-      #   Restricts promo use to only users who have never purchased from the company
-      #   before.
+      #   Whether the promo code is restricted to new customers.
       #
       #   @return [Boolean]
       required :new_users_only, WhopSDK::Internal::Type::Boolean
 
       # @!attribute one_per_customer
-      #   Restricts promo use to only be applied once per customer.
+      #   Whether each customer may redeem the promo code only once.
       #
       #   @return [Boolean]
       required :one_per_customer, WhopSDK::Internal::Type::Boolean
 
       # @!attribute product
-      #   The product this promo code applies to
+      #   Product the promo code is restricted to, or `null` when it is not
+      #   product-scoped.
       #
       #   @return [WhopSDK::Models::PromoCodeListResponse::Product, nil]
       required :product, -> { WhopSDK::Models::PromoCodeListResponse::Product }, nil?: true
 
       # @!attribute promo_duration_months
-      #   The number of months the promo is applied for.
+      #   Billing intervals the discount applies to.
       #
       #   @return [Integer, nil]
       required :promo_duration_months, Integer, nil?: true
 
       # @!attribute promo_type
-      #   The type (% or flat amount) of the promo.
+      #   Whether the discount is percentage-based or a fixed amount.
       #
-      #   @return [Symbol, WhopSDK::Models::PromoType]
-      required :promo_type, enum: -> { WhopSDK::PromoType }
+      #   @return [Symbol, WhopSDK::Models::PromoCodeListResponse::PromoType]
+      required :promo_type, enum: -> { WhopSDK::Models::PromoCodeListResponse::PromoType }
 
       # @!attribute status
-      #   Indicates if the promo code is live or disabled.
+      #   Promo code lifecycle status.
       #
-      #   @return [Symbol, WhopSDK::Models::PromoCodeStatus]
-      required :status, enum: -> { WhopSDK::PromoCodeStatus }
+      #   @return [Symbol, WhopSDK::Models::PromoCodeListResponse::Status]
+      required :status, enum: -> { WhopSDK::Models::PromoCodeListResponse::Status }
 
       # @!attribute stock
-      #   The quantity limit on the number of uses.
+      #   Maximum uses when stock is limited.
       #
       #   @return [Integer]
       required :stock, Integer
 
       # @!attribute unlimited_stock
-      #   Whether or not the promo code has unlimited stock.
+      #   Whether the promo code has no redemption limit.
       #
       #   @return [Boolean]
       required :unlimited_stock, WhopSDK::Internal::Type::Boolean
 
+      # @!attribute updated_at
+      #   When the promo code was updated, as an ISO 8601 timestamp.
+      #
+      #   @return [String]
+      required :updated_at, String
+
       # @!attribute uses
-      #   The amount of times the promo codes has been used.
+      #   Memberships that used the promo code.
       #
       #   @return [Integer]
       required :uses, Integer
 
-      # @!method initialize(id:, amount_off:, churned_users_only:, code:, created_at:, currency:, duration:, existing_memberships_only:, expires_at:, new_users_only:, one_per_customer:, product:, promo_duration_months:, promo_type:, status:, stock:, unlimited_stock:, uses:)
+      # @!method initialize(id:, amount_off:, churned_users_only:, code:, created_at:, currency:, duration:, existing_memberships_only:, expires_at:, metadata:, new_users_only:, one_per_customer:, product:, promo_duration_months:, promo_type:, status:, stock:, unlimited_stock:, updated_at:, uses:)
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::PromoCodeListResponse} for more details.
       #
-      #   A promo code applies a discount to a plan during checkout. Promo codes can be
-      #   percentage-based or fixed-amount, and can have usage limits and expiration
-      #   dates.
+      #   @param id [String] Promo code ID, prefixed `promo_`.
       #
-      #   @param id [String] The unique identifier for the promo code.
+      #   @param amount_off [Float] Discount amount. Percentage discounts are represented as a decimal fraction.
       #
-      #   @param amount_off [Float] The discount amount. Interpretation depends on promo_type: if 'percentage', this
+      #   @param churned_users_only [Boolean] Whether the promo code is restricted to churned customers.
       #
-      #   @param churned_users_only [Boolean] Restricts promo use to only users who have churned from the company before.
+      #   @param code [String, nil] Code entered at checkout.
       #
-      #   @param code [String, nil] The specific code used to apply the promo at checkout.
+      #   @param created_at [String] When the promo code was created, as an ISO 8601 timestamp.
       #
-      #   @param created_at [Time] The datetime the promo code was created.
+      #   @param currency [Symbol, WhopSDK::Models::PromoCodeListResponse::Currency] Currency used for a fixed-amount discount.
       #
-      #   @param currency [Symbol, WhopSDK::Models::Currency] The monetary currency of the promo code.
+      #   @param duration [Symbol, WhopSDK::Models::PromoCodeListResponse::Duration] How long the discount applies.
       #
-      #   @param duration [Symbol, WhopSDK::Models::PromoDuration, nil] The duration setting for the promo code
+      #   @param existing_memberships_only [Boolean] Whether the promo code applies only to existing memberships.
       #
-      #   @param existing_memberships_only [Boolean] Restricts promo use to only be applied to already purchased memberships.
+      #   @param expires_at [String, nil] When the promo code expires, as an ISO 8601 timestamp.
       #
-      #   @param expires_at [Time, nil] The date/time of when the promo expires.
+      #   @param metadata [Object] Custom key-value metadata stored on the promo code.
       #
-      #   @param new_users_only [Boolean] Restricts promo use to only users who have never purchased from the company befo
+      #   @param new_users_only [Boolean] Whether the promo code is restricted to new customers.
       #
-      #   @param one_per_customer [Boolean] Restricts promo use to only be applied once per customer.
+      #   @param one_per_customer [Boolean] Whether each customer may redeem the promo code only once.
       #
-      #   @param product [WhopSDK::Models::PromoCodeListResponse::Product, nil] The product this promo code applies to
+      #   @param product [WhopSDK::Models::PromoCodeListResponse::Product, nil] Product the promo code is restricted to, or `null` when it is not product-scoped
       #
-      #   @param promo_duration_months [Integer, nil] The number of months the promo is applied for.
+      #   @param promo_duration_months [Integer, nil] Billing intervals the discount applies to.
       #
-      #   @param promo_type [Symbol, WhopSDK::Models::PromoType] The type (% or flat amount) of the promo.
+      #   @param promo_type [Symbol, WhopSDK::Models::PromoCodeListResponse::PromoType] Whether the discount is percentage-based or a fixed amount.
       #
-      #   @param status [Symbol, WhopSDK::Models::PromoCodeStatus] Indicates if the promo code is live or disabled.
+      #   @param status [Symbol, WhopSDK::Models::PromoCodeListResponse::Status] Promo code lifecycle status.
       #
-      #   @param stock [Integer] The quantity limit on the number of uses.
+      #   @param stock [Integer] Maximum uses when stock is limited.
       #
-      #   @param unlimited_stock [Boolean] Whether or not the promo code has unlimited stock.
+      #   @param unlimited_stock [Boolean] Whether the promo code has no redemption limit.
       #
-      #   @param uses [Integer] The amount of times the promo codes has been used.
+      #   @param updated_at [String] When the promo code was updated, as an ISO 8601 timestamp.
+      #
+      #   @param uses [Integer] Memberships that used the promo code.
+
+      # Currency used for a fixed-amount discount.
+      #
+      # @see WhopSDK::Models::PromoCodeListResponse#currency
+      module Currency
+        extend WhopSDK::Internal::Type::Enum
+
+        USD = :usd
+        SGD = :sgd
+        INR = :inr
+        AUD = :aud
+        BRL = :brl
+        CAD = :cad
+        DKK = :dkk
+        EUR = :eur
+        NOK = :nok
+        GBP = :gbp
+        SEK = :sek
+        CHF = :chf
+        HKD = :hkd
+        HUF = :huf
+        JPY = :jpy
+        MXN = :mxn
+        MYR = :myr
+        PLN = :pln
+        CZK = :czk
+        NZD = :nzd
+        AED = :aed
+        ETH = :eth
+        APE = :ape
+        COP = :cop
+        RON = :ron
+        THB = :thb
+        BGN = :bgn
+        IDR = :idr
+        DOP = :dop
+        PHP = :php
+        TRY = :try
+        KRW = :krw
+        TWD = :twd
+        VND = :vnd
+        PKR = :pkr
+        CLP = :clp
+        UYU = :uyu
+        ARS = :ars
+        ZAR = :zar
+        DZD = :dzd
+        TND = :tnd
+        MAD = :mad
+        KES = :kes
+        KWD = :kwd
+        JOD = :jod
+        ALL = :all
+        XCD = :xcd
+        AMD = :amd
+        BSD = :bsd
+        BHD = :bhd
+        BOB = :bob
+        BAM = :bam
+        KHR = :khr
+        CRC = :crc
+        XOF = :xof
+        EGP = :egp
+        ETB = :etb
+        GMD = :gmd
+        GHS = :ghs
+        GTQ = :gtq
+        GYD = :gyd
+        ILS = :ils
+        JMD = :jmd
+        MOP = :mop
+        MGA = :mga
+        MUR = :mur
+        MDL = :mdl
+        MNT = :mnt
+        NAD = :nad
+        NGN = :ngn
+        MKD = :mkd
+        OMR = :omr
+        PYG = :pyg
+        PEN = :pen
+        QAR = :qar
+        RWF = :rwf
+        SAR = :sar
+        RSD = :rsd
+        LKR = :lkr
+        TZS = :tzs
+        TTD = :ttd
+        UZS = :uzs
+        RUB = :rub
+        BTC = :btc
+        CNY = :cny
+        USDT = :usdt
+        KZT = :kzt
+        AWG = :awg
+        WHOP_USD = :whop_usd
+        XAU = :xau
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
+
+      # How long the discount applies.
+      #
+      # @see WhopSDK::Models::PromoCodeListResponse#duration
+      module Duration
+        extend WhopSDK::Internal::Type::Enum
+
+        FOREVER = :forever
+        ONCE = :once
+        REPEATING = :repeating
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
 
       # @see WhopSDK::Models::PromoCodeListResponse#product
       class Product < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The unique identifier for the product.
+        #   Product ID, prefixed `prod_`.
         #
         #   @return [String]
         required :id, String
 
         # @!attribute title
-        #   The display name of the product shown to customers on the product page and in
-        #   search results.
+        #   Product display name.
         #
         #   @return [String]
         required :title, String
 
         # @!method initialize(id:, title:)
-        #   Some parameter documentations has been truncated, see
-        #   {WhopSDK::Models::PromoCodeListResponse::Product} for more details.
+        #   Product the promo code is restricted to, or `null` when it is not
+        #   product-scoped.
         #
-        #   The product this promo code applies to
+        #   @param id [String] Product ID, prefixed `prod_`.
         #
-        #   @param id [String] The unique identifier for the product.
-        #
-        #   @param title [String] The display name of the product shown to customers on the product page and in se
+        #   @param title [String] Product display name.
+      end
+
+      # Whether the discount is percentage-based or a fixed amount.
+      #
+      # @see WhopSDK::Models::PromoCodeListResponse#promo_type
+      module PromoType
+        extend WhopSDK::Internal::Type::Enum
+
+        PERCENTAGE = :percentage
+        FLAT_AMOUNT = :flat_amount
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
+
+      # Promo code lifecycle status.
+      #
+      # @see WhopSDK::Models::PromoCodeListResponse#status
+      module Status
+        extend WhopSDK::Internal::Type::Enum
+
+        ACTIVE = :active
+        INACTIVE = :inactive
+        ARCHIVED = :archived
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
     end
   end

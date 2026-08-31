@@ -2,7 +2,6 @@
 
 module WhopSDK
   module Resources
-    # Experiences
     class Experiences
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::ExperienceCreateParams} for more details.

@@ -56,97 +56,107 @@ module WhopSDK
       type data =
         {
           id: String,
-          company: WhopSDK::ResolutionCenterCaseCreatedWebhookEvent::Data::Company?,
-          created_at: Time,
+          account: WhopSDK::ResolutionCenterCaseCreatedWebhookEvent::Data::Account?,
+          amount: Float,
+          available_actions: ::Array[WhopSDK::Models::ResolutionCenterCaseCreatedWebhookEvent::Data::available_action],
+          buyer: WhopSDK::ResolutionCenterCaseCreatedWebhookEvent::Data::Buyer,
+          created_at: String,
+          currency: String?,
           customer_appealed: bool,
-          customer_response_actions: ::Array[WhopSDK::Models::resolution_center_case_customer_response],
-          due_date: Time?,
-          issue: WhopSDK::Models::resolution_center_case_issue_type,
-          member: WhopSDK::ResolutionCenterCaseCreatedWebhookEvent::Data::Member?,
-          merchant_appealed: bool,
-          merchant_response_actions: ::Array[WhopSDK::Models::resolution_center_case_merchant_response],
+          escalated: bool,
+          outcome: WhopSDK::Models::ResolutionCenterCaseCreatedWebhookEvent::Data::outcome?,
           payment: WhopSDK::ResolutionCenterCaseCreatedWebhookEvent::Data::Payment,
-          platform_response_actions: ::Array[WhopSDK::Models::resolution_center_case_platform_response],
-          resolution_events: ::Array[WhopSDK::ResolutionCenterCaseCreatedWebhookEvent::Data::ResolutionEvent],
-          status: WhopSDK::Models::resolution_center_case_status,
-          updated_at: Time,
-          user: WhopSDK::ResolutionCenterCaseCreatedWebhookEvent::Data::User
+          plan_id: String?,
+          product_id: String?,
+          reason: WhopSDK::Models::ResolutionCenterCaseCreatedWebhookEvent::Data::reason,
+          refund: WhopSDK::Models::ResolutionCenterCaseCreatedWebhookEvent::Data::refund?,
+          response_due_at: String?,
+          status: WhopSDK::Models::ResolutionCenterCaseCreatedWebhookEvent::Data::status,
+          updated_at: String
         }
 
       class Data < WhopSDK::Internal::Type::BaseModel
         attr_accessor id: String
 
-        attr_accessor company: WhopSDK::ResolutionCenterCaseCreatedWebhookEvent::Data::Company?
+        attr_accessor account: WhopSDK::ResolutionCenterCaseCreatedWebhookEvent::Data::Account?
 
-        attr_accessor created_at: Time
+        attr_accessor amount: Float
+
+        attr_accessor available_actions: ::Array[WhopSDK::Models::ResolutionCenterCaseCreatedWebhookEvent::Data::available_action]
+
+        attr_accessor buyer: WhopSDK::ResolutionCenterCaseCreatedWebhookEvent::Data::Buyer
+
+        attr_accessor created_at: String
+
+        attr_accessor currency: String?
 
         attr_accessor customer_appealed: bool
 
-        attr_accessor customer_response_actions: ::Array[WhopSDK::Models::resolution_center_case_customer_response]
+        attr_accessor escalated: bool
 
-        attr_accessor due_date: Time?
-
-        attr_accessor issue: WhopSDK::Models::resolution_center_case_issue_type
-
-        attr_accessor member: WhopSDK::ResolutionCenterCaseCreatedWebhookEvent::Data::Member?
-
-        attr_accessor merchant_appealed: bool
-
-        attr_accessor merchant_response_actions: ::Array[WhopSDK::Models::resolution_center_case_merchant_response]
+        attr_accessor outcome: WhopSDK::Models::ResolutionCenterCaseCreatedWebhookEvent::Data::outcome?
 
         attr_accessor payment: WhopSDK::ResolutionCenterCaseCreatedWebhookEvent::Data::Payment
 
-        attr_accessor platform_response_actions: ::Array[WhopSDK::Models::resolution_center_case_platform_response]
+        attr_accessor plan_id: String?
 
-        attr_accessor resolution_events: ::Array[WhopSDK::ResolutionCenterCaseCreatedWebhookEvent::Data::ResolutionEvent]
+        attr_accessor product_id: String?
 
-        attr_accessor status: WhopSDK::Models::resolution_center_case_status
+        attr_accessor reason: WhopSDK::Models::ResolutionCenterCaseCreatedWebhookEvent::Data::reason
 
-        attr_accessor updated_at: Time
+        attr_accessor refund: WhopSDK::Models::ResolutionCenterCaseCreatedWebhookEvent::Data::refund?
 
-        attr_accessor user: WhopSDK::ResolutionCenterCaseCreatedWebhookEvent::Data::User
+        attr_accessor response_due_at: String?
+
+        attr_accessor status: WhopSDK::Models::ResolutionCenterCaseCreatedWebhookEvent::Data::status
+
+        attr_accessor updated_at: String
 
         def initialize: (
           id: String,
-          company: WhopSDK::ResolutionCenterCaseCreatedWebhookEvent::Data::Company?,
-          created_at: Time,
+          account: WhopSDK::ResolutionCenterCaseCreatedWebhookEvent::Data::Account?,
+          amount: Float,
+          available_actions: ::Array[WhopSDK::Models::ResolutionCenterCaseCreatedWebhookEvent::Data::available_action],
+          buyer: WhopSDK::ResolutionCenterCaseCreatedWebhookEvent::Data::Buyer,
+          created_at: String,
+          currency: String?,
           customer_appealed: bool,
-          customer_response_actions: ::Array[WhopSDK::Models::resolution_center_case_customer_response],
-          due_date: Time?,
-          issue: WhopSDK::Models::resolution_center_case_issue_type,
-          member: WhopSDK::ResolutionCenterCaseCreatedWebhookEvent::Data::Member?,
-          merchant_appealed: bool,
-          merchant_response_actions: ::Array[WhopSDK::Models::resolution_center_case_merchant_response],
+          escalated: bool,
+          outcome: WhopSDK::Models::ResolutionCenterCaseCreatedWebhookEvent::Data::outcome?,
           payment: WhopSDK::ResolutionCenterCaseCreatedWebhookEvent::Data::Payment,
-          platform_response_actions: ::Array[WhopSDK::Models::resolution_center_case_platform_response],
-          resolution_events: ::Array[WhopSDK::ResolutionCenterCaseCreatedWebhookEvent::Data::ResolutionEvent],
-          status: WhopSDK::Models::resolution_center_case_status,
-          updated_at: Time,
-          user: WhopSDK::ResolutionCenterCaseCreatedWebhookEvent::Data::User
+          plan_id: String?,
+          product_id: String?,
+          reason: WhopSDK::Models::ResolutionCenterCaseCreatedWebhookEvent::Data::reason,
+          refund: WhopSDK::Models::ResolutionCenterCaseCreatedWebhookEvent::Data::refund?,
+          response_due_at: String?,
+          status: WhopSDK::Models::ResolutionCenterCaseCreatedWebhookEvent::Data::status,
+          updated_at: String
         ) -> void
 
         def to_hash: -> {
           id: String,
-          company: WhopSDK::ResolutionCenterCaseCreatedWebhookEvent::Data::Company?,
-          created_at: Time,
+          account: WhopSDK::ResolutionCenterCaseCreatedWebhookEvent::Data::Account?,
+          amount: Float,
+          available_actions: ::Array[WhopSDK::Models::ResolutionCenterCaseCreatedWebhookEvent::Data::available_action],
+          buyer: WhopSDK::ResolutionCenterCaseCreatedWebhookEvent::Data::Buyer,
+          created_at: String,
+          currency: String?,
           customer_appealed: bool,
-          customer_response_actions: ::Array[WhopSDK::Models::resolution_center_case_customer_response],
-          due_date: Time?,
-          issue: WhopSDK::Models::resolution_center_case_issue_type,
-          member: WhopSDK::ResolutionCenterCaseCreatedWebhookEvent::Data::Member?,
-          merchant_appealed: bool,
-          merchant_response_actions: ::Array[WhopSDK::Models::resolution_center_case_merchant_response],
+          escalated: bool,
+          outcome: WhopSDK::Models::ResolutionCenterCaseCreatedWebhookEvent::Data::outcome?,
           payment: WhopSDK::ResolutionCenterCaseCreatedWebhookEvent::Data::Payment,
-          platform_response_actions: ::Array[WhopSDK::Models::resolution_center_case_platform_response],
-          resolution_events: ::Array[WhopSDK::ResolutionCenterCaseCreatedWebhookEvent::Data::ResolutionEvent],
-          status: WhopSDK::Models::resolution_center_case_status,
-          updated_at: Time,
-          user: WhopSDK::ResolutionCenterCaseCreatedWebhookEvent::Data::User
+          plan_id: String?,
+          product_id: String?,
+          reason: WhopSDK::Models::ResolutionCenterCaseCreatedWebhookEvent::Data::reason,
+          refund: WhopSDK::Models::ResolutionCenterCaseCreatedWebhookEvent::Data::refund?,
+          response_due_at: String?,
+          status: WhopSDK::Models::ResolutionCenterCaseCreatedWebhookEvent::Data::status,
+          updated_at: String
         }
 
-        type company = { id: String, title: String }
+        type account = { id: String, title: String }
 
-        class Company < WhopSDK::Internal::Type::BaseModel
+        class Account < WhopSDK::Internal::Type::BaseModel
           attr_accessor id: String
 
           attr_accessor title: String
@@ -156,151 +166,151 @@ module WhopSDK
           def to_hash: -> { id: String, title: String }
         end
 
-        type member = { id: String }
+        type available_action =
+          :accept | :deny | :request_info | :reply | :appeal | :withdraw
 
-        class Member < WhopSDK::Internal::Type::BaseModel
-          attr_accessor id: String
+        module AvailableAction
+          extend WhopSDK::Internal::Type::Enum
 
-          def initialize: (id: String) -> void
+          ACCEPT: :accept
+          DENY: :deny
+          REQUEST_INFO: :request_info
+          REPLY: :reply
+          APPEAL: :appeal
+          WITHDRAW: :withdraw
 
-          def to_hash: -> { id: String }
+          def self?.values: -> ::Array[WhopSDK::Models::ResolutionCenterCaseCreatedWebhookEvent::Data::available_action]
+        end
+
+        type buyer =
+          {
+            email: String?,
+            member_id: String?,
+            name: String?,
+            user_id: String?,
+            username: String?
+          }
+
+        class Buyer < WhopSDK::Internal::Type::BaseModel
+          attr_accessor email: String?
+
+          attr_accessor member_id: String?
+
+          attr_accessor name: String?
+
+          attr_accessor user_id: String?
+
+          attr_accessor username: String?
+
+          def initialize: (
+            email: String?,
+            member_id: String?,
+            name: String?,
+            user_id: String?,
+            username: String?
+          ) -> void
+
+          def to_hash: -> {
+            email: String?,
+            member_id: String?,
+            name: String?,
+            user_id: String?,
+            username: String?
+          }
+        end
+
+        type outcome = :customer_won | :merchant_won | :withdrawn
+
+        module Outcome
+          extend WhopSDK::Internal::Type::Enum
+
+          CUSTOMER_WON: :customer_won
+          MERCHANT_WON: :merchant_won
+          WITHDRAWN: :withdrawn
+
+          def self?.values: -> ::Array[WhopSDK::Models::ResolutionCenterCaseCreatedWebhookEvent::Data::outcome]
         end
 
         type payment =
           {
             id: String,
-            created_at: Time,
-            currency: WhopSDK::Models::currency?,
-            paid_at: Time?,
-            subtotal: Float?,
-            total: Float
+            card_brand: String?,
+            :card_last4 => String?,
+            created_at: String,
+            payment_method_type: String?
           }
 
         class Payment < WhopSDK::Internal::Type::BaseModel
           attr_accessor id: String
 
-          attr_accessor created_at: Time
+          attr_accessor card_brand: String?
 
-          attr_accessor currency: WhopSDK::Models::currency?
+          attr_accessor card_last4: String?
 
-          attr_accessor paid_at: Time?
+          attr_accessor created_at: String
 
-          attr_accessor subtotal: Float?
-
-          attr_accessor total: Float
+          attr_accessor payment_method_type: String?
 
           def initialize: (
             id: String,
-            created_at: Time,
-            currency: WhopSDK::Models::currency?,
-            paid_at: Time?,
-            subtotal: Float?,
-            total: Float
+            card_brand: String?,
+            card_last4: String?,
+            created_at: String,
+            payment_method_type: String?
           ) -> void
 
           def to_hash: -> {
             id: String,
-            created_at: Time,
-            currency: WhopSDK::Models::currency?,
-            paid_at: Time?,
-            subtotal: Float?,
-            total: Float
+            card_brand: String?,
+            :card_last4 => String?,
+            created_at: String,
+            payment_method_type: String?
           }
         end
 
-        type resolution_event =
-          {
-            id: String,
-            action: WhopSDK::Models::ResolutionCenterCaseCreatedWebhookEvent::Data::ResolutionEvent::action,
-            created_at: Time,
-            details: String?,
-            reporter_type: WhopSDK::Models::ResolutionCenterCaseCreatedWebhookEvent::Data::ResolutionEvent::reporter_type
-          }
+        type reason =
+          :fraudulent
+          | :product_not_received
+          | :not_as_described
+          | :product_unacceptable
+          | :subscription_canceled
 
-        class ResolutionEvent < WhopSDK::Internal::Type::BaseModel
-          attr_accessor id: String
+        module Reason
+          extend WhopSDK::Internal::Type::Enum
 
-          attr_accessor action: WhopSDK::Models::ResolutionCenterCaseCreatedWebhookEvent::Data::ResolutionEvent::action
+          FRAUDULENT: :fraudulent
+          PRODUCT_NOT_RECEIVED: :product_not_received
+          NOT_AS_DESCRIBED: :not_as_described
+          PRODUCT_UNACCEPTABLE: :product_unacceptable
+          SUBSCRIPTION_CANCELED: :subscription_canceled
 
-          attr_accessor created_at: Time
-
-          attr_accessor details: String?
-
-          attr_accessor reporter_type: WhopSDK::Models::ResolutionCenterCaseCreatedWebhookEvent::Data::ResolutionEvent::reporter_type
-
-          def initialize: (
-            id: String,
-            action: WhopSDK::Models::ResolutionCenterCaseCreatedWebhookEvent::Data::ResolutionEvent::action,
-            created_at: Time,
-            details: String?,
-            reporter_type: WhopSDK::Models::ResolutionCenterCaseCreatedWebhookEvent::Data::ResolutionEvent::reporter_type
-          ) -> void
-
-          def to_hash: -> {
-            id: String,
-            action: WhopSDK::Models::ResolutionCenterCaseCreatedWebhookEvent::Data::ResolutionEvent::action,
-            created_at: Time,
-            details: String?,
-            reporter_type: WhopSDK::Models::ResolutionCenterCaseCreatedWebhookEvent::Data::ResolutionEvent::reporter_type
-          }
-
-          type action =
-            :created
-            | :responded
-            | :accepted
-            | :denied
-            | :appealed
-            | :withdrew
-            | :requested_more_info
-            | :escalated
-            | :dispute_opened
-            | :dispute_customer_won
-            | :dispute_merchant_won
-
-          module Action
-            extend WhopSDK::Internal::Type::Enum
-
-            CREATED: :created
-            RESPONDED: :responded
-            ACCEPTED: :accepted
-            DENIED: :denied
-            APPEALED: :appealed
-            WITHDREW: :withdrew
-            REQUESTED_MORE_INFO: :requested_more_info
-            ESCALATED: :escalated
-            DISPUTE_OPENED: :dispute_opened
-            DISPUTE_CUSTOMER_WON: :dispute_customer_won
-            DISPUTE_MERCHANT_WON: :dispute_merchant_won
-
-            def self?.values: -> ::Array[WhopSDK::Models::ResolutionCenterCaseCreatedWebhookEvent::Data::ResolutionEvent::action]
-          end
-
-          type reporter_type = :merchant | :customer | :platform | :system
-
-          module ReporterType
-            extend WhopSDK::Internal::Type::Enum
-
-            MERCHANT: :merchant
-            CUSTOMER: :customer
-            PLATFORM: :platform
-            SYSTEM: :system
-
-            def self?.values: -> ::Array[WhopSDK::Models::ResolutionCenterCaseCreatedWebhookEvent::Data::ResolutionEvent::reporter_type]
-          end
+          def self?.values: -> ::Array[WhopSDK::Models::ResolutionCenterCaseCreatedWebhookEvent::Data::reason]
         end
 
-        type user = { id: String, name: String?, username: String }
+        type refund = :none | :merchant | :platform
 
-        class User < WhopSDK::Internal::Type::BaseModel
-          attr_accessor id: String
+        module Refund
+          extend WhopSDK::Internal::Type::Enum
 
-          attr_accessor name: String?
+          NONE: :none
+          MERCHANT: :merchant
+          PLATFORM: :platform
 
-          attr_accessor username: String
+          def self?.values: -> ::Array[WhopSDK::Models::ResolutionCenterCaseCreatedWebhookEvent::Data::refund]
+        end
 
-          def initialize: (id: String, name: String?, username: String) -> void
+        type status =
+          :awaiting_merchant | :awaiting_customer | :under_review | :closed
 
-          def to_hash: -> { id: String, name: String?, username: String }
+        module Status
+          extend WhopSDK::Internal::Type::Enum
+
+          AWAITING_MERCHANT: :awaiting_merchant
+          AWAITING_CUSTOMER: :awaiting_customer
+          UNDER_REVIEW: :under_review
+          CLOSED: :closed
+
+          def self?.values: -> ::Array[WhopSDK::Models::ResolutionCenterCaseCreatedWebhookEvent::Data::status]
         end
       end
     end

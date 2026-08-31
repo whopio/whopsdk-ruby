@@ -6,7 +6,7 @@ class WhopSDK::Test::Resources::ResolutionCenterCasesTest < WhopSDK::Test::Resou
   def test_retrieve
     skip("Mock server tests are disabled")
 
-    response = @whop.resolution_center_cases.retrieve("reso_xxxxxxxxxxxxx")
+    response = @whop.resolution_center_cases.retrieve("id")
 
     assert_pattern do
       response => WhopSDK::Models::ResolutionCenterCaseRetrieveResponse
@@ -15,21 +15,23 @@ class WhopSDK::Test::Resources::ResolutionCenterCasesTest < WhopSDK::Test::Resou
     assert_pattern do
       response => {
         id: String,
-        company: WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Company | nil,
-        created_at: Time,
+        account: WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Account | nil,
+        amount: Float,
+        available_actions: ^(WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::AvailableAction]),
+        buyer: WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Buyer,
+        created_at: String,
+        currency: String | nil,
         customer_appealed: WhopSDK::Internal::Type::Boolean,
-        customer_response_actions: ^(WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::ResolutionCenterCaseCustomerResponse]),
-        due_date: Time | nil,
-        issue: WhopSDK::ResolutionCenterCaseIssueType,
-        member: WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Member | nil,
-        merchant_appealed: WhopSDK::Internal::Type::Boolean,
-        merchant_response_actions: ^(WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::ResolutionCenterCaseMerchantResponse]),
+        escalated: WhopSDK::Internal::Type::Boolean,
+        outcome: WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Outcome | nil,
         payment: WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Payment,
-        platform_response_actions: ^(WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::ResolutionCenterCasePlatformResponse]),
-        resolution_events: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::ResolutionEvent]),
-        status: WhopSDK::ResolutionCenterCaseStatus,
-        updated_at: Time,
-        user: WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::User
+        plan_id: String | nil,
+        product_id: String | nil,
+        reason: WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Reason,
+        refund: WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Refund | nil,
+        response_due_at: String | nil,
+        status: WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Status,
+        updated_at: String
       }
     end
   end
@@ -53,18 +55,23 @@ class WhopSDK::Test::Resources::ResolutionCenterCasesTest < WhopSDK::Test::Resou
     assert_pattern do
       row => {
         id: String,
-        company: WhopSDK::Models::ResolutionCenterCaseListResponse::Company | nil,
-        created_at: Time,
+        account: WhopSDK::Models::ResolutionCenterCaseListResponse::Account | nil,
+        amount: Float,
+        available_actions: ^(WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::Models::ResolutionCenterCaseListResponse::AvailableAction]),
+        buyer: WhopSDK::Models::ResolutionCenterCaseListResponse::Buyer,
+        created_at: String,
+        currency: String | nil,
         customer_appealed: WhopSDK::Internal::Type::Boolean,
-        customer_response_actions: ^(WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::ResolutionCenterCaseCustomerResponse]),
-        due_date: Time | nil,
-        issue: WhopSDK::ResolutionCenterCaseIssueType,
-        merchant_appealed: WhopSDK::Internal::Type::Boolean,
-        merchant_response_actions: ^(WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::ResolutionCenterCaseMerchantResponse]),
+        escalated: WhopSDK::Internal::Type::Boolean,
+        outcome: WhopSDK::Models::ResolutionCenterCaseListResponse::Outcome | nil,
         payment: WhopSDK::Models::ResolutionCenterCaseListResponse::Payment,
-        status: WhopSDK::ResolutionCenterCaseStatus,
-        updated_at: Time,
-        user: WhopSDK::Models::ResolutionCenterCaseListResponse::User
+        plan_id: String | nil,
+        product_id: String | nil,
+        reason: WhopSDK::Models::ResolutionCenterCaseListResponse::Reason,
+        refund: WhopSDK::Models::ResolutionCenterCaseListResponse::Refund | nil,
+        response_due_at: String | nil,
+        status: WhopSDK::Models::ResolutionCenterCaseListResponse::Status,
+        updated_at: String
       }
     end
   end

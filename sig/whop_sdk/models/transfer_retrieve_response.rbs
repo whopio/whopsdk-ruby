@@ -1,0 +1,268 @@
+module WhopSDK
+  module Models
+    type transfer_retrieve_response =
+      {
+        id: String,
+        amount: Float,
+        created_at: Time,
+        created_by_user: WhopSDK::Models::TransferRetrieveResponse::CreatedByUser?,
+        currency: String,
+        destination: WhopSDK::Models::TransferRetrieveResponse::destination,
+        destination_ledger_account_id: String,
+        object: WhopSDK::Models::TransferRetrieveResponse::object,
+        origin: WhopSDK::Models::TransferRetrieveResponse::origin,
+        origin_ledger_account_id: String,
+        status: WhopSDK::Models::TransferRetrieveResponse::status,
+        failed_at: Time?,
+        failure_code: String?,
+        failure_reason: String?,
+        fee_amount: Float?,
+        metadata: ::Hash[Symbol, top]?,
+        notes: String?
+      }
+
+    class TransferRetrieveResponse < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor amount: Float
+
+      attr_accessor created_at: Time
+
+      attr_accessor created_by_user: WhopSDK::Models::TransferRetrieveResponse::CreatedByUser?
+
+      attr_accessor currency: String
+
+      attr_accessor destination: WhopSDK::Models::TransferRetrieveResponse::destination
+
+      attr_accessor destination_ledger_account_id: String
+
+      attr_accessor object: WhopSDK::Models::TransferRetrieveResponse::object
+
+      attr_accessor origin: WhopSDK::Models::TransferRetrieveResponse::origin
+
+      attr_accessor origin_ledger_account_id: String
+
+      attr_accessor status: WhopSDK::Models::TransferRetrieveResponse::status
+
+      attr_accessor failed_at: Time?
+
+      attr_accessor failure_code: String?
+
+      attr_accessor failure_reason: String?
+
+      attr_accessor fee_amount: Float?
+
+      attr_accessor metadata: ::Hash[Symbol, top]?
+
+      attr_accessor notes: String?
+
+      def initialize: (
+        id: String,
+        amount: Float,
+        created_at: Time,
+        created_by_user: WhopSDK::Models::TransferRetrieveResponse::CreatedByUser?,
+        currency: String,
+        destination: WhopSDK::Models::TransferRetrieveResponse::destination,
+        destination_ledger_account_id: String,
+        object: WhopSDK::Models::TransferRetrieveResponse::object,
+        origin: WhopSDK::Models::TransferRetrieveResponse::origin,
+        origin_ledger_account_id: String,
+        status: WhopSDK::Models::TransferRetrieveResponse::status,
+        ?failed_at: Time?,
+        ?failure_code: String?,
+        ?failure_reason: String?,
+        ?fee_amount: Float?,
+        ?metadata: ::Hash[Symbol, top]?,
+        ?notes: String?
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        amount: Float,
+        created_at: Time,
+        created_by_user: WhopSDK::Models::TransferRetrieveResponse::CreatedByUser?,
+        currency: String,
+        destination: WhopSDK::Models::TransferRetrieveResponse::destination,
+        destination_ledger_account_id: String,
+        object: WhopSDK::Models::TransferRetrieveResponse::object,
+        origin: WhopSDK::Models::TransferRetrieveResponse::origin,
+        origin_ledger_account_id: String,
+        status: WhopSDK::Models::TransferRetrieveResponse::status,
+        failed_at: Time?,
+        failure_code: String?,
+        failure_reason: String?,
+        fee_amount: Float?,
+        metadata: ::Hash[Symbol, top]?,
+        notes: String?
+      }
+
+      type created_by_user = { id: String, username: String, name: String? }
+
+      class CreatedByUser < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor username: String
+
+        attr_accessor name: String?
+
+        def initialize: (id: String, username: String, ?name: String?) -> void
+
+        def to_hash: -> { id: String, username: String, name: String? }
+      end
+
+      type destination =
+        WhopSDK::Models::TransferRetrieveResponse::Destination::Company
+        | WhopSDK::Models::TransferRetrieveResponse::Destination::User
+
+      module Destination
+        extend WhopSDK::Internal::Type::Union
+
+        type company =
+          { id: String, typename: :Company, route: String?, title: String? }
+
+        class Company < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor typename: :Company
+
+          attr_accessor route: String?
+
+          attr_accessor title: String?
+
+          def initialize: (
+            id: String,
+            ?route: String?,
+            ?title: String?,
+            ?typename: :Company
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            typename: :Company,
+            route: String?,
+            title: String?
+          }
+        end
+
+        type user =
+          { id: String, typename: :User, name: String?, username: String }
+
+        class User < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor typename: :User
+
+          attr_accessor name: String?
+
+          attr_reader username: String?
+
+          def username=: (String) -> String
+
+          def initialize: (
+            id: String,
+            ?name: String?,
+            ?username: String,
+            ?typename: :User
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            typename: :User,
+            name: String?,
+            username: String
+          }
+        end
+
+        def self?.variants: -> ::Array[WhopSDK::Models::TransferRetrieveResponse::destination]
+      end
+
+      type object = :transfer
+
+      module Object
+        extend WhopSDK::Internal::Type::Enum
+
+        TRANSFER: :transfer
+
+        def self?.values: -> ::Array[WhopSDK::Models::TransferRetrieveResponse::object]
+      end
+
+      type origin =
+        WhopSDK::Models::TransferRetrieveResponse::Origin::Company
+        | WhopSDK::Models::TransferRetrieveResponse::Origin::User
+
+      module Origin
+        extend WhopSDK::Internal::Type::Union
+
+        type company =
+          { id: String, typename: :Company, route: String?, title: String? }
+
+        class Company < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor typename: :Company
+
+          attr_accessor route: String?
+
+          attr_accessor title: String?
+
+          def initialize: (
+            id: String,
+            ?route: String?,
+            ?title: String?,
+            ?typename: :Company
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            typename: :Company,
+            route: String?,
+            title: String?
+          }
+        end
+
+        type user =
+          { id: String, typename: :User, name: String?, username: String }
+
+        class User < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor typename: :User
+
+          attr_accessor name: String?
+
+          attr_reader username: String?
+
+          def username=: (String) -> String
+
+          def initialize: (
+            id: String,
+            ?name: String?,
+            ?username: String,
+            ?typename: :User
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            typename: :User,
+            name: String?,
+            username: String
+          }
+        end
+
+        def self?.variants: -> ::Array[WhopSDK::Models::TransferRetrieveResponse::origin]
+      end
+
+      type status = :processing | :succeeded | :failed
+
+      module Status
+        extend WhopSDK::Internal::Type::Enum
+
+        PROCESSING: :processing
+        SUCCEEDED: :succeeded
+        FAILED: :failed
+
+        def self?.values: -> ::Array[WhopSDK::Models::TransferRetrieveResponse::status]
+      end
+    end
+  end
+end

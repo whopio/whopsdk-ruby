@@ -2,49 +2,48 @@
 
 module WhopSDK
   module Resources
-    # Dispute alerts
+    # A Dispute alert is an early warning from a card issuer that a settled payment is
+    # being questioned, ahead of any chargeback. `type` separates fraud reports
+    # (`early_fraud_warning`), pre-dispute notices (`dispute_alert`), and Visa RDR
+    # cases the network already closed by refunding (`rapid_dispute_resolution`).
+    #
+    # Use the Dispute alerts API to list alerts for an account, filter them by type or
+    # payment, and read `actionable` to see whether refunding can still avoid the
+    # chargeback.
     class DisputeAlerts
-      # Retrieves the details of an existing dispute alert.
-      #
-      # Required permissions:
-      #
-      # - `payment:dispute_alert:read`
-      # - `payment:basic:read`
-      # - `member:email:read`
-      # - `member:basic:read`
-      # - `member:phone:read`
-      # - `payment:dispute:read`
+      # Retrieves a single dispute alert or early fraud warning by ID.
       sig do
         params(
           id: String,
+          api_version_date: String,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Models::DisputeAlertRetrieveResponse)
       end
       def retrieve(
-        # The unique identifier of the dispute alert.
+        # The dispute alert ID, prefixed `dspa_`.
         id,
+        # Pins the request to a dated API version.
+        api_version_date: nil,
         request_options: {}
       )
       end
 
-      # Returns a paginated list of dispute alerts for a company, with optional
-      # filtering by creation date.
-      #
-      # Required permissions:
-      #
-      # - `payment:dispute_alert:read`
-      # - `payment:basic:read`
-      # - `payment:dispute:read`
+      # Lists the dispute alerts and early fraud warnings across the accounts you can
+      # read.
       sig do
         params(
-          company_id: String,
+          account_id: String,
           after: String,
           before: String,
-          created_after: Time,
-          created_before: Time,
-          direction: WhopSDK::Direction::OrSymbol,
+          created_after: String,
+          created_before: String,
+          direction: WhopSDK::DisputeAlertListParams::Direction::OrSymbol,
           first: Integer,
           last: Integer,
+          order: WhopSDK::DisputeAlertListParams::Order::OrSymbol,
+          payment_id: String,
+          type: WhopSDK::DisputeAlertListParams::Type::OrSymbol,
+          api_version_date: String,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(
           WhopSDK::Internal::CursorPage[
@@ -53,22 +52,34 @@ module WhopSDK
         )
       end
       def list(
-        # The unique identifier of the company to list dispute alerts for.
-        company_id:,
-        # Returns the elements in the list that come after the specified cursor.
+        # Query param: Only alerts on this account's payments (`biz_` tag). Omit it to
+        # cover every account you can read.
+        account_id: nil,
+        # Query param: A cursor; returns alerts after this position.
         after: nil,
-        # Returns the elements in the list that come before the specified cursor.
+        # Query param: A cursor; returns alerts before this position.
         before: nil,
-        # Only return dispute alerts created after this timestamp.
+        # Query param: Only alerts Whop received after this ISO 8601 timestamp.
         created_after: nil,
-        # Only return dispute alerts created before this timestamp.
+        # Query param: Only alerts Whop received before this ISO 8601 timestamp.
         created_before: nil,
-        # The sort direction for ordering results, either ascending or descending.
+        # Query param: Sort direction.
         direction: nil,
-        # Returns the first _n_ elements from the list.
+        # Query param: The number of alerts to return (default 20, max 100).
         first: nil,
-        # Returns the last _n_ elements from the list.
+        # Query param: The number of alerts to return from the end of the range.
         last: nil,
+        # Query param: The field to sort alerts by.
+        order: nil,
+        # Query param: Only alerts on this payment (`pay_` tag). A payment can carry
+        # several.
+        payment_id: nil,
+        # Query param: Only alerts of this kind. `early_fraud_warning` for issuer fraud
+        # reports, `dispute_alert` for pre-dispute notices, `rapid_dispute_resolution` for
+        # Visa RDR cases the network already closed.
+        type: nil,
+        # Header param: Pins the request to a dated API version.
+        api_version_date: nil,
         request_options: {}
       )
       end

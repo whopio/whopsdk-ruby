@@ -1,0 +1,1231 @@
+module WhopSDK
+  module Models
+    type ad_group =
+      {
+        id: String,
+        ad_campaign: WhopSDK::AdGroup::AdCampaign,
+        added_to_cart_value: Float,
+        added_to_carts: Float,
+        audiences: WhopSDK::AdGroup::Audiences,
+        bid_type: WhopSDK::Models::AdGroup::bid_type?,
+        budget_amount: Float?,
+        budget_type: WhopSDK::Models::AdGroup::budget_type?,
+        click_through_rate: Float,
+        clicks: Float,
+        completed_registration_value: Float,
+        completed_registrations: Float,
+        contact_value: Float,
+        contacts: Float,
+        conversion_event: WhopSDK::Models::AdGroup::conversion_event?,
+        cost_per_added_to_cart: Float?,
+        cost_per_click: Float,
+        cost_per_completed_registration: Float?,
+        cost_per_contact: Float?,
+        cost_per_lead: Float?,
+        cost_per_mille: Float,
+        cost_per_purchase: Float?,
+        cost_per_result: Float?,
+        cost_per_schedule: Float?,
+        cost_per_submitted_application: Float?,
+        cost_per_unique_click: Float?,
+        cost_per_viewed_content: Float?,
+        created_at: String,
+        custom_conversions: Float,
+        custom_event_counts: top,
+        custom_event_values: top,
+        delivery_status: WhopSDK::Models::AdGroup::delivery_status,
+        demographics: WhopSDK::AdGroup::Demographics,
+        desired_cost_per_result: Float?,
+        detailed_targeting: WhopSDK::AdGroup::DetailedTargeting,
+        devices: WhopSDK::AdGroup::Devices,
+        ends_at: String?,
+        frequency: Float?,
+        frequency_cap: WhopSDK::AdGroup::FrequencyCap?,
+        impressions: Float,
+        issues: ::Array[WhopSDK::AdGroup::Issue],
+        languages: ::Array[String],
+        lead_value: Float,
+        leads: Float,
+        link_clicks: Float,
+        optimization_goal: WhopSDK::Models::AdGroup::optimization_goal?,
+        placements: ::Array[WhopSDK::AdGroup::Placement],
+        purchase_value: Float,
+        purchases: Float,
+        reach: Float,
+        regions: WhopSDK::AdGroup::Regions,
+        result_event: WhopSDK::Models::AdGroup::result_event?,
+        result_event_name: String?,
+        results: Float?,
+        return_on_ad_spend: Float,
+        schedule_value: Float,
+        schedules: Float,
+        spend: Float,
+        spend_currency: String?,
+        starts_at: String?,
+        status: WhopSDK::Models::AdGroup::status,
+        submitted_application_value: Float,
+        submitted_applications: Float,
+        title: String?,
+        unique_click_through_rate: Float?,
+        unique_clicks: Float,
+        updated_at: String,
+        viewed_content_value: Float,
+        viewed_contents: Float,
+        conversion_location: WhopSDK::Models::AdGroup::conversion_location?,
+        dynamic_creative: bool,
+        message_apps: ::Array[WhopSDK::Models::AdGroup::message_app],
+        minimum_daily_spend: Float?
+      }
+
+    class AdGroup < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor ad_campaign: WhopSDK::AdGroup::AdCampaign
+
+      attr_accessor added_to_cart_value: Float
+
+      attr_accessor added_to_carts: Float
+
+      attr_accessor audiences: WhopSDK::AdGroup::Audiences
+
+      attr_accessor bid_type: WhopSDK::Models::AdGroup::bid_type?
+
+      attr_accessor budget_amount: Float?
+
+      attr_accessor budget_type: WhopSDK::Models::AdGroup::budget_type?
+
+      attr_accessor click_through_rate: Float
+
+      attr_accessor clicks: Float
+
+      attr_accessor completed_registration_value: Float
+
+      attr_accessor completed_registrations: Float
+
+      attr_accessor contact_value: Float
+
+      attr_accessor contacts: Float
+
+      attr_accessor conversion_event: WhopSDK::Models::AdGroup::conversion_event?
+
+      attr_accessor cost_per_added_to_cart: Float?
+
+      attr_accessor cost_per_click: Float
+
+      attr_accessor cost_per_completed_registration: Float?
+
+      attr_accessor cost_per_contact: Float?
+
+      attr_accessor cost_per_lead: Float?
+
+      attr_accessor cost_per_mille: Float
+
+      attr_accessor cost_per_purchase: Float?
+
+      attr_accessor cost_per_result: Float?
+
+      attr_accessor cost_per_schedule: Float?
+
+      attr_accessor cost_per_submitted_application: Float?
+
+      attr_accessor cost_per_unique_click: Float?
+
+      attr_accessor cost_per_viewed_content: Float?
+
+      attr_accessor created_at: String
+
+      attr_accessor custom_conversions: Float
+
+      attr_accessor custom_event_counts: top
+
+      attr_accessor custom_event_values: top
+
+      attr_accessor delivery_status: WhopSDK::Models::AdGroup::delivery_status
+
+      attr_accessor demographics: WhopSDK::AdGroup::Demographics
+
+      attr_accessor desired_cost_per_result: Float?
+
+      attr_accessor detailed_targeting: WhopSDK::AdGroup::DetailedTargeting
+
+      attr_accessor devices: WhopSDK::AdGroup::Devices
+
+      attr_accessor ends_at: String?
+
+      attr_accessor frequency: Float?
+
+      attr_accessor frequency_cap: WhopSDK::AdGroup::FrequencyCap?
+
+      attr_accessor impressions: Float
+
+      attr_accessor issues: ::Array[WhopSDK::AdGroup::Issue]
+
+      attr_accessor languages: ::Array[String]
+
+      attr_accessor lead_value: Float
+
+      attr_accessor leads: Float
+
+      attr_accessor link_clicks: Float
+
+      attr_accessor optimization_goal: WhopSDK::Models::AdGroup::optimization_goal?
+
+      attr_accessor placements: ::Array[WhopSDK::AdGroup::Placement]
+
+      attr_accessor purchase_value: Float
+
+      attr_accessor purchases: Float
+
+      attr_accessor reach: Float
+
+      attr_accessor regions: WhopSDK::AdGroup::Regions
+
+      attr_accessor result_event: WhopSDK::Models::AdGroup::result_event?
+
+      attr_accessor result_event_name: String?
+
+      attr_accessor results: Float?
+
+      attr_accessor return_on_ad_spend: Float
+
+      attr_accessor schedule_value: Float
+
+      attr_accessor schedules: Float
+
+      attr_accessor spend: Float
+
+      attr_accessor spend_currency: String?
+
+      attr_accessor starts_at: String?
+
+      attr_accessor status: WhopSDK::Models::AdGroup::status
+
+      attr_accessor submitted_application_value: Float
+
+      attr_accessor submitted_applications: Float
+
+      attr_accessor title: String?
+
+      attr_accessor unique_click_through_rate: Float?
+
+      attr_accessor unique_clicks: Float
+
+      attr_accessor updated_at: String
+
+      attr_accessor viewed_content_value: Float
+
+      attr_accessor viewed_contents: Float
+
+      attr_accessor conversion_location: WhopSDK::Models::AdGroup::conversion_location?
+
+      attr_reader dynamic_creative: bool?
+
+      def dynamic_creative=: (bool) -> bool
+
+      attr_reader message_apps: ::Array[WhopSDK::Models::AdGroup::message_app]?
+
+      def message_apps=: (
+        ::Array[WhopSDK::Models::AdGroup::message_app]
+      ) -> ::Array[WhopSDK::Models::AdGroup::message_app]
+
+      attr_accessor minimum_daily_spend: Float?
+
+      def initialize: (
+        id: String,
+        ad_campaign: WhopSDK::AdGroup::AdCampaign,
+        added_to_cart_value: Float,
+        added_to_carts: Float,
+        audiences: WhopSDK::AdGroup::Audiences,
+        bid_type: WhopSDK::Models::AdGroup::bid_type?,
+        budget_amount: Float?,
+        budget_type: WhopSDK::Models::AdGroup::budget_type?,
+        click_through_rate: Float,
+        clicks: Float,
+        completed_registration_value: Float,
+        completed_registrations: Float,
+        contact_value: Float,
+        contacts: Float,
+        conversion_event: WhopSDK::Models::AdGroup::conversion_event?,
+        cost_per_added_to_cart: Float?,
+        cost_per_click: Float,
+        cost_per_completed_registration: Float?,
+        cost_per_contact: Float?,
+        cost_per_lead: Float?,
+        cost_per_mille: Float,
+        cost_per_purchase: Float?,
+        cost_per_result: Float?,
+        cost_per_schedule: Float?,
+        cost_per_submitted_application: Float?,
+        cost_per_unique_click: Float?,
+        cost_per_viewed_content: Float?,
+        created_at: String,
+        custom_conversions: Float,
+        custom_event_counts: top,
+        custom_event_values: top,
+        delivery_status: WhopSDK::Models::AdGroup::delivery_status,
+        demographics: WhopSDK::AdGroup::Demographics,
+        desired_cost_per_result: Float?,
+        detailed_targeting: WhopSDK::AdGroup::DetailedTargeting,
+        devices: WhopSDK::AdGroup::Devices,
+        ends_at: String?,
+        frequency: Float?,
+        frequency_cap: WhopSDK::AdGroup::FrequencyCap?,
+        impressions: Float,
+        issues: ::Array[WhopSDK::AdGroup::Issue],
+        languages: ::Array[String],
+        lead_value: Float,
+        leads: Float,
+        link_clicks: Float,
+        optimization_goal: WhopSDK::Models::AdGroup::optimization_goal?,
+        placements: ::Array[WhopSDK::AdGroup::Placement],
+        purchase_value: Float,
+        purchases: Float,
+        reach: Float,
+        regions: WhopSDK::AdGroup::Regions,
+        result_event: WhopSDK::Models::AdGroup::result_event?,
+        result_event_name: String?,
+        results: Float?,
+        return_on_ad_spend: Float,
+        schedule_value: Float,
+        schedules: Float,
+        spend: Float,
+        spend_currency: String?,
+        starts_at: String?,
+        status: WhopSDK::Models::AdGroup::status,
+        submitted_application_value: Float,
+        submitted_applications: Float,
+        title: String?,
+        unique_click_through_rate: Float?,
+        unique_clicks: Float,
+        updated_at: String,
+        viewed_content_value: Float,
+        viewed_contents: Float,
+        ?conversion_location: WhopSDK::Models::AdGroup::conversion_location?,
+        ?dynamic_creative: bool,
+        ?message_apps: ::Array[WhopSDK::Models::AdGroup::message_app],
+        ?minimum_daily_spend: Float?
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        ad_campaign: WhopSDK::AdGroup::AdCampaign,
+        added_to_cart_value: Float,
+        added_to_carts: Float,
+        audiences: WhopSDK::AdGroup::Audiences,
+        bid_type: WhopSDK::Models::AdGroup::bid_type?,
+        budget_amount: Float?,
+        budget_type: WhopSDK::Models::AdGroup::budget_type?,
+        click_through_rate: Float,
+        clicks: Float,
+        completed_registration_value: Float,
+        completed_registrations: Float,
+        contact_value: Float,
+        contacts: Float,
+        conversion_event: WhopSDK::Models::AdGroup::conversion_event?,
+        cost_per_added_to_cart: Float?,
+        cost_per_click: Float,
+        cost_per_completed_registration: Float?,
+        cost_per_contact: Float?,
+        cost_per_lead: Float?,
+        cost_per_mille: Float,
+        cost_per_purchase: Float?,
+        cost_per_result: Float?,
+        cost_per_schedule: Float?,
+        cost_per_submitted_application: Float?,
+        cost_per_unique_click: Float?,
+        cost_per_viewed_content: Float?,
+        created_at: String,
+        custom_conversions: Float,
+        custom_event_counts: top,
+        custom_event_values: top,
+        delivery_status: WhopSDK::Models::AdGroup::delivery_status,
+        demographics: WhopSDK::AdGroup::Demographics,
+        desired_cost_per_result: Float?,
+        detailed_targeting: WhopSDK::AdGroup::DetailedTargeting,
+        devices: WhopSDK::AdGroup::Devices,
+        ends_at: String?,
+        frequency: Float?,
+        frequency_cap: WhopSDK::AdGroup::FrequencyCap?,
+        impressions: Float,
+        issues: ::Array[WhopSDK::AdGroup::Issue],
+        languages: ::Array[String],
+        lead_value: Float,
+        leads: Float,
+        link_clicks: Float,
+        optimization_goal: WhopSDK::Models::AdGroup::optimization_goal?,
+        placements: ::Array[WhopSDK::AdGroup::Placement],
+        purchase_value: Float,
+        purchases: Float,
+        reach: Float,
+        regions: WhopSDK::AdGroup::Regions,
+        result_event: WhopSDK::Models::AdGroup::result_event?,
+        result_event_name: String?,
+        results: Float?,
+        return_on_ad_spend: Float,
+        schedule_value: Float,
+        schedules: Float,
+        spend: Float,
+        spend_currency: String?,
+        starts_at: String?,
+        status: WhopSDK::Models::AdGroup::status,
+        submitted_application_value: Float,
+        submitted_applications: Float,
+        title: String?,
+        unique_click_through_rate: Float?,
+        unique_clicks: Float,
+        updated_at: String,
+        viewed_content_value: Float,
+        viewed_contents: Float,
+        conversion_location: WhopSDK::Models::AdGroup::conversion_location?,
+        dynamic_creative: bool,
+        message_apps: ::Array[WhopSDK::Models::AdGroup::message_app],
+        minimum_daily_spend: Float?
+      }
+
+      type ad_campaign = { id: String }
+
+      class AdCampaign < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        def initialize: (id: String) -> void
+
+        def to_hash: -> { id: String }
+      end
+
+      type audiences = { exclude: ::Array[String], include: ::Array[String] }
+
+      class Audiences < WhopSDK::Internal::Type::BaseModel
+        attr_accessor exclude: ::Array[String]
+
+        attr_accessor include: ::Array[String]
+
+        def initialize: (
+          exclude: ::Array[String],
+          include: ::Array[String]
+        ) -> void
+
+        def to_hash: -> { exclude: ::Array[String], include: ::Array[String] }
+      end
+
+      type bid_type = :minimum_cost | :average_target | :maximum_target
+
+      module BidType
+        extend WhopSDK::Internal::Type::Enum
+
+        MINIMUM_COST: :minimum_cost
+        AVERAGE_TARGET: :average_target
+        MAXIMUM_TARGET: :maximum_target
+
+        def self?.values: -> ::Array[WhopSDK::Models::AdGroup::bid_type]
+      end
+
+      type budget_type = :daily | :lifetime
+
+      module BudgetType
+        extend WhopSDK::Internal::Type::Enum
+
+        DAILY: :daily
+        LIFETIME: :lifetime
+
+        def self?.values: -> ::Array[WhopSDK::Models::AdGroup::budget_type]
+      end
+
+      type conversion_event =
+        :purchase
+        | :add_to_cart
+        | :initiated_checkout
+        | :add_payment_info
+        | :complete_registration
+        | :lead
+        | :content_view
+        | :search
+        | :contact
+        | :customize_product
+        | :donate
+        | :find_location
+        | :schedule
+        | :start_trial
+        | :submit_application
+        | :subscribe
+        | String
+
+      module ConversionEvent
+        extend WhopSDK::Internal::Type::Union
+
+        def self?.variants: -> ::Array[WhopSDK::Models::AdGroup::conversion_event]
+
+        PURCHASE: :purchase
+        ADD_TO_CART: :add_to_cart
+        INITIATED_CHECKOUT: :initiated_checkout
+        ADD_PAYMENT_INFO: :add_payment_info
+        COMPLETE_REGISTRATION: :complete_registration
+        LEAD: :lead
+        CONTENT_VIEW: :content_view
+        SEARCH: :search
+        CONTACT: :contact
+        CUSTOMIZE_PRODUCT: :customize_product
+        DONATE: :donate
+        FIND_LOCATION: :find_location
+        SCHEDULE: :schedule
+        START_TRIAL: :start_trial
+        SUBMIT_APPLICATION: :submit_application
+        SUBSCRIBE: :subscribe
+      end
+
+      type delivery_status =
+        :all_ads_rejected
+        | :rejected
+        | :draft
+        | :no_ads
+        | :campaign_paused
+        | :paused
+        | :processing
+        | :issues
+        | :scheduled
+        | :completed
+        | :ads_off
+        | :learning_limited
+        | :learning
+        | :active
+
+      module DeliveryStatus
+        extend WhopSDK::Internal::Type::Enum
+
+        ALL_ADS_REJECTED: :all_ads_rejected
+        REJECTED: :rejected
+        DRAFT: :draft
+        NO_ADS: :no_ads
+        CAMPAIGN_PAUSED: :campaign_paused
+        PAUSED: :paused
+        PROCESSING: :processing
+        ISSUES: :issues
+        SCHEDULED: :scheduled
+        COMPLETED: :completed
+        ADS_OFF: :ads_off
+        LEARNING_LIMITED: :learning_limited
+        LEARNING: :learning
+        ACTIVE: :active
+
+        def self?.values: -> ::Array[WhopSDK::Models::AdGroup::delivery_status]
+      end
+
+      type demographics =
+        {
+          automatic: bool,
+          gender: WhopSDK::Models::AdGroup::Demographics::gender,
+          maximum_age: Float?,
+          minimum_age: Float?
+        }
+
+      class Demographics < WhopSDK::Internal::Type::BaseModel
+        attr_accessor automatic: bool
+
+        attr_accessor gender: WhopSDK::Models::AdGroup::Demographics::gender
+
+        attr_accessor maximum_age: Float?
+
+        attr_accessor minimum_age: Float?
+
+        def initialize: (
+          automatic: bool,
+          gender: WhopSDK::Models::AdGroup::Demographics::gender,
+          maximum_age: Float?,
+          minimum_age: Float?
+        ) -> void
+
+        def to_hash: -> {
+          automatic: bool,
+          gender: WhopSDK::Models::AdGroup::Demographics::gender,
+          maximum_age: Float?,
+          minimum_age: Float?
+        }
+
+        type gender = :all | :male | :female
+
+        module Gender
+          extend WhopSDK::Internal::Type::Enum
+
+          ALL: :all
+          MALE: :male
+          FEMALE: :female
+
+          def self?.values: -> ::Array[WhopSDK::Models::AdGroup::Demographics::gender]
+        end
+      end
+
+      type detailed_targeting =
+        {
+          behaviors: ::Array[WhopSDK::AdGroup::DetailedTargeting::Behavior],
+          demographics: ::Array[WhopSDK::AdGroup::DetailedTargeting::Demographic],
+          interests: ::Array[WhopSDK::AdGroup::DetailedTargeting::Interest]
+        }
+
+      class DetailedTargeting < WhopSDK::Internal::Type::BaseModel
+        attr_accessor behaviors: ::Array[WhopSDK::AdGroup::DetailedTargeting::Behavior]
+
+        attr_accessor demographics: ::Array[WhopSDK::AdGroup::DetailedTargeting::Demographic]
+
+        attr_accessor interests: ::Array[WhopSDK::AdGroup::DetailedTargeting::Interest]
+
+        def initialize: (
+          behaviors: ::Array[WhopSDK::AdGroup::DetailedTargeting::Behavior],
+          demographics: ::Array[WhopSDK::AdGroup::DetailedTargeting::Demographic],
+          interests: ::Array[WhopSDK::AdGroup::DetailedTargeting::Interest]
+        ) -> void
+
+        def to_hash: -> {
+          behaviors: ::Array[WhopSDK::AdGroup::DetailedTargeting::Behavior],
+          demographics: ::Array[WhopSDK::AdGroup::DetailedTargeting::Demographic],
+          interests: ::Array[WhopSDK::AdGroup::DetailedTargeting::Interest]
+        }
+
+        type behavior =
+          {
+            id: String,
+            behavior_type: WhopSDK::Models::AdGroup::DetailedTargeting::Behavior::behavior_type,
+            name: String,
+            period: Float
+          }
+
+        class Behavior < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_reader behavior_type: WhopSDK::Models::AdGroup::DetailedTargeting::Behavior::behavior_type?
+
+          def behavior_type=: (
+            WhopSDK::Models::AdGroup::DetailedTargeting::Behavior::behavior_type
+          ) -> WhopSDK::Models::AdGroup::DetailedTargeting::Behavior::behavior_type
+
+          attr_reader name: String?
+
+          def name=: (String) -> String
+
+          attr_reader period: Float?
+
+          def period=: (Float) -> Float
+
+          def initialize: (
+            id: String,
+            ?behavior_type: WhopSDK::Models::AdGroup::DetailedTargeting::Behavior::behavior_type,
+            ?name: String,
+            ?period: Float
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            behavior_type: WhopSDK::Models::AdGroup::DetailedTargeting::Behavior::behavior_type,
+            name: String,
+            period: Float
+          }
+
+          type behavior_type = :video | :creator | :hashtag
+
+          module BehaviorType
+            extend WhopSDK::Internal::Type::Enum
+
+            VIDEO: :video
+            CREATOR: :creator
+            HASHTAG: :hashtag
+
+            def self?.values: -> ::Array[WhopSDK::Models::AdGroup::DetailedTargeting::Behavior::behavior_type]
+          end
+        end
+
+        type demographic =
+          {
+            id: String,
+            type: WhopSDK::Models::AdGroup::DetailedTargeting::Demographic::type_,
+            name: String
+          }
+
+        class Demographic < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor type: WhopSDK::Models::AdGroup::DetailedTargeting::Demographic::type_
+
+          attr_reader name: String?
+
+          def name=: (String) -> String
+
+          def initialize: (
+            id: String,
+            type: WhopSDK::Models::AdGroup::DetailedTargeting::Demographic::type_,
+            ?name: String
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            type: WhopSDK::Models::AdGroup::DetailedTargeting::Demographic::type_,
+            name: String
+          }
+
+          type type_ =
+            :life_events
+            | :industries
+            | :income
+            | :family_statuses
+            | :work_employers
+            | :work_positions
+            | :education_schools
+            | :education_majors
+
+          module Type
+            extend WhopSDK::Internal::Type::Enum
+
+            LIFE_EVENTS: :life_events
+            INDUSTRIES: :industries
+            INCOME: :income
+            FAMILY_STATUSES: :family_statuses
+            WORK_EMPLOYERS: :work_employers
+            WORK_POSITIONS: :work_positions
+            EDUCATION_SCHOOLS: :education_schools
+            EDUCATION_MAJORS: :education_majors
+
+            def self?.values: -> ::Array[WhopSDK::Models::AdGroup::DetailedTargeting::Demographic::type_]
+          end
+        end
+
+        type interest = { id: String, name: String }
+
+        class Interest < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_reader name: String?
+
+          def name=: (String) -> String
+
+          def initialize: (id: String, ?name: String) -> void
+
+          def to_hash: -> { id: String, name: String }
+        end
+      end
+
+      type devices =
+        {
+          operating_systems: ::Array[WhopSDK::AdGroup::Devices::OperatingSystem],
+          platforms: ::Array[WhopSDK::Models::AdGroup::Devices::platform]
+        }
+
+      class Devices < WhopSDK::Internal::Type::BaseModel
+        attr_accessor operating_systems: ::Array[WhopSDK::AdGroup::Devices::OperatingSystem]
+
+        attr_accessor platforms: ::Array[WhopSDK::Models::AdGroup::Devices::platform]
+
+        def initialize: (
+          operating_systems: ::Array[WhopSDK::AdGroup::Devices::OperatingSystem],
+          platforms: ::Array[WhopSDK::Models::AdGroup::Devices::platform]
+        ) -> void
+
+        def to_hash: -> {
+          operating_systems: ::Array[WhopSDK::AdGroup::Devices::OperatingSystem],
+          platforms: ::Array[WhopSDK::Models::AdGroup::Devices::platform]
+        }
+
+        type operating_system =
+          {
+            os: WhopSDK::Models::AdGroup::Devices::OperatingSystem::os,
+            minimum_version: String
+          }
+
+        class OperatingSystem < WhopSDK::Internal::Type::BaseModel
+          attr_accessor os: WhopSDK::Models::AdGroup::Devices::OperatingSystem::os
+
+          attr_reader minimum_version: String?
+
+          def minimum_version=: (String) -> String
+
+          def initialize: (
+            os: WhopSDK::Models::AdGroup::Devices::OperatingSystem::os,
+            ?minimum_version: String
+          ) -> void
+
+          def to_hash: -> {
+            os: WhopSDK::Models::AdGroup::Devices::OperatingSystem::os,
+            minimum_version: String
+          }
+
+          type os = :ios | :android
+
+          module Os
+            extend WhopSDK::Internal::Type::Enum
+
+            IOS: :ios
+            ANDROID: :android
+
+            def self?.values: -> ::Array[WhopSDK::Models::AdGroup::Devices::OperatingSystem::os]
+          end
+        end
+
+        type platform = :mobile | :desktop
+
+        module Platform
+          extend WhopSDK::Internal::Type::Enum
+
+          MOBILE: :mobile
+          DESKTOP: :desktop
+
+          def self?.values: -> ::Array[WhopSDK::Models::AdGroup::Devices::platform]
+        end
+      end
+
+      type frequency_cap = { maximum_impressions: Float, per_days: Float? }
+
+      class FrequencyCap < WhopSDK::Internal::Type::BaseModel
+        attr_accessor maximum_impressions: Float
+
+        attr_accessor per_days: Float?
+
+        def initialize: (maximum_impressions: Float, per_days: Float?) -> void
+
+        def to_hash: -> { maximum_impressions: Float, per_days: Float? }
+      end
+
+      type issue =
+        {
+          id: String,
+          message: String,
+          resource_id: String?,
+          resource_type: WhopSDK::Models::AdGroup::Issue::resource_type
+        }
+
+      class Issue < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor message: String
+
+        attr_accessor resource_id: String?
+
+        attr_accessor resource_type: WhopSDK::Models::AdGroup::Issue::resource_type
+
+        def initialize: (
+          id: String,
+          message: String,
+          resource_id: String?,
+          resource_type: WhopSDK::Models::AdGroup::Issue::resource_type
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          message: String,
+          resource_id: String?,
+          resource_type: WhopSDK::Models::AdGroup::Issue::resource_type
+        }
+
+        type resource_type = :ad_campaign | :ad_group | :ad
+
+        module ResourceType
+          extend WhopSDK::Internal::Type::Enum
+
+          AD_CAMPAIGN: :ad_campaign
+          AD_GROUP: :ad_group
+          AD: :ad
+
+          def self?.values: -> ::Array[WhopSDK::Models::AdGroup::Issue::resource_type]
+        end
+      end
+
+      type optimization_goal =
+        :conversions
+        | :link_clicks
+        | :landing_page_views
+        | :reach
+        | :impressions
+        | :engagement
+        | :conversations
+        | :video_views
+        | :two_second_views
+        | :page_likes
+        | :social_profile
+        | :ad_recall_lift
+        | :event_responses
+        | :reminders_set
+        | :lead_generation
+        | :quality_lead
+        | :value
+        | :profile_and_page_engagement
+
+      module OptimizationGoal
+        extend WhopSDK::Internal::Type::Enum
+
+        CONVERSIONS: :conversions
+        LINK_CLICKS: :link_clicks
+        LANDING_PAGE_VIEWS: :landing_page_views
+        REACH: :reach
+        IMPRESSIONS: :impressions
+        ENGAGEMENT: :engagement
+        CONVERSATIONS: :conversations
+        VIDEO_VIEWS: :video_views
+        TWO_SECOND_VIEWS: :two_second_views
+        PAGE_LIKES: :page_likes
+        SOCIAL_PROFILE: :social_profile
+        AD_RECALL_LIFT: :ad_recall_lift
+        EVENT_RESPONSES: :event_responses
+        REMINDERS_SET: :reminders_set
+        LEAD_GENERATION: :lead_generation
+        QUALITY_LEAD: :quality_lead
+        VALUE: :value
+        PROFILE_AND_PAGE_ENGAGEMENT: :profile_and_page_engagement
+
+        def self?.values: -> ::Array[WhopSDK::Models::AdGroup::optimization_goal]
+      end
+
+      type placement =
+        {
+          platform: WhopSDK::Models::AdGroup::Placement::platform,
+          positions: ::Array[String]
+        }
+
+      class Placement < WhopSDK::Internal::Type::BaseModel
+        attr_accessor platform: WhopSDK::Models::AdGroup::Placement::platform
+
+        attr_accessor positions: ::Array[String]
+
+        def initialize: (
+          platform: WhopSDK::Models::AdGroup::Placement::platform,
+          positions: ::Array[String]
+        ) -> void
+
+        def to_hash: -> {
+          platform: WhopSDK::Models::AdGroup::Placement::platform,
+          positions: ::Array[String]
+        }
+
+        type platform =
+          :facebook
+          | :instagram
+          | :messenger
+          | :audience_network
+          | :threads
+          | :whatsapp
+
+        module Platform
+          extend WhopSDK::Internal::Type::Enum
+
+          FACEBOOK: :facebook
+          INSTAGRAM: :instagram
+          MESSENGER: :messenger
+          AUDIENCE_NETWORK: :audience_network
+          THREADS: :threads
+          WHATSAPP: :whatsapp
+
+          def self?.values: -> ::Array[WhopSDK::Models::AdGroup::Placement::platform]
+        end
+      end
+
+      type regions =
+        {
+          exclude: WhopSDK::AdGroup::Regions::Exclude,
+          include: WhopSDK::AdGroup::Regions::Include
+        }
+
+      class Regions < WhopSDK::Internal::Type::BaseModel
+        attr_accessor exclude: WhopSDK::AdGroup::Regions::Exclude
+
+        attr_accessor include: WhopSDK::AdGroup::Regions::Include
+
+        def initialize: (
+          exclude: WhopSDK::AdGroup::Regions::Exclude,
+          include: WhopSDK::AdGroup::Regions::Include
+        ) -> void
+
+        def to_hash: -> {
+          exclude: WhopSDK::AdGroup::Regions::Exclude,
+          include: WhopSDK::AdGroup::Regions::Include
+        }
+
+        type exclude =
+          {
+            cities: ::Array[WhopSDK::AdGroup::Regions::Exclude::City],
+            countries: ::Array[String],
+            country_groups: ::Array[String],
+            custom_locations: ::Array[WhopSDK::AdGroup::Regions::Exclude::CustomLocation],
+            regions: ::Array[String],
+            zips: ::Array[String]
+          }
+
+        class Exclude < WhopSDK::Internal::Type::BaseModel
+          attr_accessor cities: ::Array[WhopSDK::AdGroup::Regions::Exclude::City]
+
+          attr_accessor countries: ::Array[String]
+
+          attr_accessor country_groups: ::Array[String]
+
+          attr_accessor custom_locations: ::Array[WhopSDK::AdGroup::Regions::Exclude::CustomLocation]
+
+          attr_accessor regions: ::Array[String]
+
+          attr_accessor zips: ::Array[String]
+
+          def initialize: (
+            cities: ::Array[WhopSDK::AdGroup::Regions::Exclude::City],
+            countries: ::Array[String],
+            country_groups: ::Array[String],
+            custom_locations: ::Array[WhopSDK::AdGroup::Regions::Exclude::CustomLocation],
+            regions: ::Array[String],
+            zips: ::Array[String]
+          ) -> void
+
+          def to_hash: -> {
+            cities: ::Array[WhopSDK::AdGroup::Regions::Exclude::City],
+            countries: ::Array[String],
+            country_groups: ::Array[String],
+            custom_locations: ::Array[WhopSDK::AdGroup::Regions::Exclude::CustomLocation],
+            regions: ::Array[String],
+            zips: ::Array[String]
+          }
+
+          type city = { key: String, name: String }
+
+          class City < WhopSDK::Internal::Type::BaseModel
+            attr_accessor key: String
+
+            attr_reader name: String?
+
+            def name=: (String) -> String
+
+            def initialize: (key: String, ?name: String) -> void
+
+            def to_hash: -> { key: String, name: String }
+          end
+
+          type custom_location =
+            {
+              distance_unit: WhopSDK::Models::AdGroup::Regions::Exclude::CustomLocation::distance_unit,
+              latitude: Float,
+              longitude: Float,
+              radius: Float,
+              name: String
+            }
+
+          class CustomLocation < WhopSDK::Internal::Type::BaseModel
+            attr_accessor distance_unit: WhopSDK::Models::AdGroup::Regions::Exclude::CustomLocation::distance_unit
+
+            attr_accessor latitude: Float
+
+            attr_accessor longitude: Float
+
+            attr_accessor radius: Float
+
+            attr_reader name: String?
+
+            def name=: (String) -> String
+
+            def initialize: (
+              distance_unit: WhopSDK::Models::AdGroup::Regions::Exclude::CustomLocation::distance_unit,
+              latitude: Float,
+              longitude: Float,
+              radius: Float,
+              ?name: String
+            ) -> void
+
+            def to_hash: -> {
+              distance_unit: WhopSDK::Models::AdGroup::Regions::Exclude::CustomLocation::distance_unit,
+              latitude: Float,
+              longitude: Float,
+              radius: Float,
+              name: String
+            }
+
+            type distance_unit = :mile | :kilometer
+
+            module DistanceUnit
+              extend WhopSDK::Internal::Type::Enum
+
+              MILE: :mile
+              KILOMETER: :kilometer
+
+              def self?.values: -> ::Array[WhopSDK::Models::AdGroup::Regions::Exclude::CustomLocation::distance_unit]
+            end
+          end
+        end
+
+        type include_ =
+          {
+            cities: ::Array[WhopSDK::AdGroup::Regions::Include::City],
+            countries: ::Array[String],
+            country_groups: ::Array[String],
+            custom_locations: ::Array[WhopSDK::AdGroup::Regions::Include::CustomLocation],
+            regions: ::Array[String],
+            zips: ::Array[String]
+          }
+
+        class Include < WhopSDK::Internal::Type::BaseModel
+          attr_accessor cities: ::Array[WhopSDK::AdGroup::Regions::Include::City]
+
+          attr_accessor countries: ::Array[String]
+
+          attr_accessor country_groups: ::Array[String]
+
+          attr_accessor custom_locations: ::Array[WhopSDK::AdGroup::Regions::Include::CustomLocation]
+
+          attr_accessor regions: ::Array[String]
+
+          attr_accessor zips: ::Array[String]
+
+          def initialize: (
+            cities: ::Array[WhopSDK::AdGroup::Regions::Include::City],
+            countries: ::Array[String],
+            country_groups: ::Array[String],
+            custom_locations: ::Array[WhopSDK::AdGroup::Regions::Include::CustomLocation],
+            regions: ::Array[String],
+            zips: ::Array[String]
+          ) -> void
+
+          def to_hash: -> {
+            cities: ::Array[WhopSDK::AdGroup::Regions::Include::City],
+            countries: ::Array[String],
+            country_groups: ::Array[String],
+            custom_locations: ::Array[WhopSDK::AdGroup::Regions::Include::CustomLocation],
+            regions: ::Array[String],
+            zips: ::Array[String]
+          }
+
+          type city = { key: String, name: String }
+
+          class City < WhopSDK::Internal::Type::BaseModel
+            attr_accessor key: String
+
+            attr_reader name: String?
+
+            def name=: (String) -> String
+
+            def initialize: (key: String, ?name: String) -> void
+
+            def to_hash: -> { key: String, name: String }
+          end
+
+          type custom_location =
+            {
+              distance_unit: WhopSDK::Models::AdGroup::Regions::Include::CustomLocation::distance_unit,
+              latitude: Float,
+              longitude: Float,
+              radius: Float,
+              name: String
+            }
+
+          class CustomLocation < WhopSDK::Internal::Type::BaseModel
+            attr_accessor distance_unit: WhopSDK::Models::AdGroup::Regions::Include::CustomLocation::distance_unit
+
+            attr_accessor latitude: Float
+
+            attr_accessor longitude: Float
+
+            attr_accessor radius: Float
+
+            attr_reader name: String?
+
+            def name=: (String) -> String
+
+            def initialize: (
+              distance_unit: WhopSDK::Models::AdGroup::Regions::Include::CustomLocation::distance_unit,
+              latitude: Float,
+              longitude: Float,
+              radius: Float,
+              ?name: String
+            ) -> void
+
+            def to_hash: -> {
+              distance_unit: WhopSDK::Models::AdGroup::Regions::Include::CustomLocation::distance_unit,
+              latitude: Float,
+              longitude: Float,
+              radius: Float,
+              name: String
+            }
+
+            type distance_unit = :mile | :kilometer
+
+            module DistanceUnit
+              extend WhopSDK::Internal::Type::Enum
+
+              MILE: :mile
+              KILOMETER: :kilometer
+
+              def self?.values: -> ::Array[WhopSDK::Models::AdGroup::Regions::Include::CustomLocation::distance_unit]
+            end
+          end
+        end
+      end
+
+      type result_event =
+        :purchase
+        | :lead
+        | :schedule
+        | :submit_application
+        | :contact
+        | :complete_registration
+        | :view_content
+        | :add_to_cart
+        | :custom
+        | :messaging_conversation
+
+      module ResultEvent
+        extend WhopSDK::Internal::Type::Enum
+
+        PURCHASE: :purchase
+        LEAD: :lead
+        SCHEDULE: :schedule
+        SUBMIT_APPLICATION: :submit_application
+        CONTACT: :contact
+        COMPLETE_REGISTRATION: :complete_registration
+        VIEW_CONTENT: :view_content
+        ADD_TO_CART: :add_to_cart
+        CUSTOM: :custom
+        MESSAGING_CONVERSATION: :messaging_conversation
+
+        def self?.values: -> ::Array[WhopSDK::Models::AdGroup::result_event]
+      end
+
+      type status = :active | :paused | :rejected | :duplicating
+
+      module Status
+        extend WhopSDK::Internal::Type::Enum
+
+        ACTIVE: :active
+        PAUSED: :paused
+        REJECTED: :rejected
+        DUPLICATING: :duplicating
+
+        def self?.values: -> ::Array[WhopSDK::Models::AdGroup::status]
+      end
+
+      type conversion_location =
+        :website
+        | :profile
+        | :instagram_and_facebook
+        | :instagram_profile
+        | :messaging
+        | :on_ad
+        | :instant_forms
+        | :instant_forms_and_messenger
+        | :website_and_instant_forms
+
+      module ConversionLocation
+        extend WhopSDK::Internal::Type::Enum
+
+        WEBSITE: :website
+        PROFILE: :profile
+        INSTAGRAM_AND_FACEBOOK: :instagram_and_facebook
+        INSTAGRAM_PROFILE: :instagram_profile
+        MESSAGING: :messaging
+        ON_AD: :on_ad
+        INSTANT_FORMS: :instant_forms
+        INSTANT_FORMS_AND_MESSENGER: :instant_forms_and_messenger
+        WEBSITE_AND_INSTANT_FORMS: :website_and_instant_forms
+
+        def self?.values: -> ::Array[WhopSDK::Models::AdGroup::conversion_location]
+      end
+
+      type message_app = :messenger | :instagram | :whatsapp
+
+      module MessageApp
+        extend WhopSDK::Internal::Type::Enum
+
+        MESSENGER: :messenger
+        INSTAGRAM: :instagram
+        WHATSAPP: :whatsapp
+
+        def self?.values: -> ::Array[WhopSDK::Models::AdGroup::message_app]
+      end
+    end
+  end
+end

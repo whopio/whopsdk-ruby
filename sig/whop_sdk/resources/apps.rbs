@@ -2,54 +2,65 @@ module WhopSDK
   module Resources
     class Apps
       def create: (
-        company_id: String,
         name: String,
+        ?account_id: String,
+        ?app_type: WhopSDK::Models::AppCreateParams::app_type,
         ?base_url: String?,
-        ?icon: WhopSDK::AppCreateParams::Icon?,
-        ?redirect_uris: ::Array[String]?,
+        ?icon: WhopSDK::AppCreateParams::Icon,
+        ?redirect_uris: ::Array[String],
         ?route: String?,
+        ?api_version_date: String,
+        ?idempotency_key: String,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::App
 
       def retrieve: (
         String id,
+        ?api_version_date: String,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::App
 
       def update: (
         String id,
-        ?app_store_description: String?,
-        ?app_type: WhopSDK::Models::app_type?,
+        ?app_store_description: String,
+        ?app_type: WhopSDK::Models::AppUpdateParams::app_type,
         ?base_url: String?,
         ?dashboard_path: String?,
-        ?description: String?,
+        ?description: String,
         ?discover_path: String?,
         ?experience_path: String?,
-        ?icon: WhopSDK::AppUpdateParams::Icon?,
-        ?name: String?,
-        ?oauth_client_type: WhopSDK::Models::AppUpdateParams::oauth_client_type?,
+        ?icon: WhopSDK::AppUpdateParams::Icon,
+        ?name: String,
+        ?oauth_client_type: WhopSDK::Models::AppUpdateParams::oauth_client_type,
         ?openapi_path: String?,
-        ?redirect_uris: ::Array[String]?,
-        ?required_scopes: ::Array[WhopSDK::Models::AppUpdateParams::required_scope]?,
-        ?route: String?,
-        ?secrets: ::Hash[Symbol, top]?,
+        ?production_android_build_id: String?,
+        ?production_ios_build_id: String?,
+        ?production_web_build_id: String?,
+        ?redirect_uris: ::Array[String],
+        ?required_scopes: ::Array[String],
+        ?route: String,
+        ?secrets: top,
         ?skills_path: String?,
-        ?status: WhopSDK::Models::app_statuses?,
+        ?status: WhopSDK::Models::AppUpdateParams::status,
+        ?api_version_date: String,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::App
 
       def list: (
+        ?account_id: String,
         ?after: String,
-        ?app_type: WhopSDK::Models::app_type,
+        ?app_type: WhopSDK::Models::AppListParams::app_type,
         ?before: String,
-        ?company_id: String,
-        ?direction: WhopSDK::Models::direction,
+        ?direction: WhopSDK::Models::AppListParams::direction,
         ?first: Integer,
         ?last: Integer,
         ?order: WhopSDK::Models::AppListParams::order,
         ?query: String,
+        ?recommended: bool,
+        ?verified: bool,
         ?verified_apps_only: bool,
-        ?view_type: WhopSDK::Models::app_view_type,
+        ?view_type: WhopSDK::Models::AppListParams::view_type,
+        ?api_version_date: String,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::AppListResponse]
 

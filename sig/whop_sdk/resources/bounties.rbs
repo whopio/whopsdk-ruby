@@ -2,37 +2,47 @@ module WhopSDK
   module Resources
     class Bounties
       def create: (
-        base_unit_amount: Float,
-        currency: WhopSDK::Models::currency,
         description: String,
+        gross_reward_amount: Float,
         title: String,
         ?accepted_submissions_limit: Integer?,
+        ?accepted_submissions_per_user_limit: Integer?,
+        ?account_id: String?,
         ?allowed_country_codes: ::Array[String]?,
-        ?business_goal_type: WhopSDK::Models::BountyCreateParams::business_goal_type?,
+        ?business_goal_type: WhopSDK::Models::BountyCreateParams::business_goal_type,
+        ?capture_spec: WhopSDK::BountyCreateParams::CaptureSpec,
         ?experience_id: String?,
-        ?minimum_total_verified_clip_duration_seconds: Integer?,
-        ?origin_account_id: String?,
-        ?post_markdown_content: String?,
-        ?post_title: String?,
-        ?scheduled_frequency: WhopSDK::Models::BountyCreateParams::scheduled_frequency?,
-        ?scheduled_publish_at: Time?,
-        ?scheduled_timezone: String?,
+        ?frequency: WhopSDK::Models::BountyCreateParams::frequency,
+        ?publish_at: String?,
+        ?publish_at_timezone: String?,
+        ?api_version_date: String,
+        ?idempotency_key: String,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Models::BountyCreateResponse
 
       def retrieve: (
         String id,
+        ?api_version_date: String,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Models::BountyRetrieveResponse
 
       def list: (
+        ?account_id: String,
         ?after: String,
         ?before: String,
-        ?direction: WhopSDK::Models::direction,
+        ?business_goal_type: WhopSDK::Models::BountyListParams::business_goal_type,
+        ?country: String,
+        ?created_after: String,
+        ?created_before: String,
+        ?direction: WhopSDK::Models::BountyListParams::direction,
         ?experience_id: String,
         ?first: Integer,
         ?last: Integer,
+        ?order: WhopSDK::Models::BountyListParams::order,
+        ?query: String,
         ?status: WhopSDK::Models::BountyListParams::status,
+        ?user_id: String,
+        ?api_version_date: String,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::BountyListResponse]
 

@@ -20,8 +20,6 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :api_version_date
 
-      # A dispute is a chargeback or payment challenge filed against a company,
-      # including evidence and response status.
       sig { returns(WhopSDK::Dispute) }
       attr_reader :data
 
@@ -65,8 +63,6 @@ module WhopSDK
         id:,
         # The dated API version (Api-Version-Date) the payload is serialized to
         api_version_date:,
-        # A dispute is a chargeback or payment challenge filed against a company,
-        # including evidence and response status.
         data:,
         # The timestamp in ISO 8601 format that the webhook was sent at on the server
         timestamp:,

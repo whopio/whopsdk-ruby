@@ -2,49 +2,51 @@
 
 module WhopSDK
   module Resources
-    # Bounties
+    # A Bounty is a paid task posted by an account or user. The reward is held in
+    # escrow when the bounty publishes, workers submit proof of completed work, and
+    # each accepted submission is paid out until every winner slot fills.
+    #
+    # Use the Bounties API to create and publish a bounty, list an account's bounties
+    # for reporting or dashboards, list the bounties a user can work or has
+    # participated in, and retrieve a single bounty by ID.
     class Bounties
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::BountyCreateParams} for more details.
       #
-      # Create a new workforce bounty by funding a dedicated bounty pool.
+      # Creates a bounty and escrows its reward pool. Publishes immediately, or as a
+      # scheduled draft when you set `publish_at`.
       #
-      # Required permissions:
+      # @overload create(description:, gross_reward_amount:, title:, accepted_submissions_limit: nil, accepted_submissions_per_user_limit: nil, account_id: nil, allowed_country_codes: nil, business_goal_type: nil, capture_spec: nil, experience_id: nil, frequency: nil, publish_at: nil, publish_at_timezone: nil, api_version_date: nil, idempotency_key: nil, request_options: {})
       #
-      # - `bounty:create`
+      # @param description [String] Body param: Full task instructions shown to workers.
       #
-      # @overload create(base_unit_amount:, currency:, description:, title:, accepted_submissions_limit: nil, allowed_country_codes: nil, business_goal_type: nil, experience_id: nil, minimum_total_verified_clip_duration_seconds: nil, origin_account_id: nil, post_markdown_content: nil, post_title: nil, scheduled_frequency: nil, scheduled_publish_at: nil, scheduled_timezone: nil, request_options: {})
+      # @param gross_reward_amount [Float] Body param: Gross bounty-pool amount (USD) escrowed per accepted submission, in
       #
-      # @param base_unit_amount [Float] The amount paid to each approved submission. The total bounty pool funded is thi
+      # @param title [String] Body param: Short name of the task shown to workers.
       #
-      # @param currency [Symbol, WhopSDK::Models::Currency] The currency for the bounty pool funding amount.
+      # @param accepted_submissions_limit [Integer, nil] Body param: Number of submissions that can be accepted (winner slots). Defaults
       #
-      # @param description [String] The description of the bounty.
+      # @param accepted_submissions_per_user_limit [Integer, nil] Body param: How many winner slots one worker can win. Defaults to `1`. Wins plus
       #
-      # @param title [String] The title of the bounty.
+      # @param account_id [String, nil] Body param: Account whose balance funds the bounty pool (`biz_` tag). Defaults t
       #
-      # @param accepted_submissions_limit [Integer, nil] The number of submissions that can be approved before the bounty closes. Default
+      # @param allowed_country_codes [Array<String>, nil] Body param: Countries whose residents can work the bounty, as ISO 3166 alpha-2 c
       #
-      # @param allowed_country_codes [Array<String>, nil] The ISO3166 country codes where this bounty should be visible. Empty means globa
+      # @param business_goal_type [Symbol, WhopSDK::Models::BountyCreateParams::BusinessGoalType] Body param: What the poster wants the work to achieve, declared once here.
       #
-      # @param business_goal_type [Symbol, WhopSDK::Models::BountyCreateParams::BusinessGoalType, nil] What the poster is trying to accomplish with a workforce bounty. Used for produc
+      # @param capture_spec [WhopSDK::Models::BountyCreateParams::CaptureSpec] Body param: Per-bounty overrides of the served capture contract. Only accepted w
       #
-      # @param experience_id [String, nil] An optional experience to scope the bounty to.
+      # @param experience_id [String, nil] Body param: Experience to host the bounty in (`exp_` tag). Any visibility — publ
       #
-      # @param minimum_total_verified_clip_duration_seconds [Integer, nil] Data capture bounties only: the minimum total server-verified clip duration in s
+      # @param frequency [Symbol, WhopSDK::Models::BountyCreateParams::Frequency] Body param: How often the schedule creates a new bounty. Each occurrence is a se
       #
-      # @param origin_account_id [String, nil] The user (user*\*) or company (biz*\*) tag whose balance funds this bounty pool.
-      # D
+      # @param publish_at [String, nil] Body param: ISO 8601 time to publish the bounty. When set, the bounty is created
       #
-      # @param post_markdown_content [String, nil] Optional markdown body for the anchor forum post. Falls back to the bounty descr
+      # @param publish_at_timezone [String, nil] Body param: IANA timezone for recurring occurrences. Required when publish_at is
       #
-      # @param post_title [String, nil] Optional title for the anchor forum post. Falls back to the bounty title when om
+      # @param api_version_date [String] Header param: Pins the request to a dated API version.
       #
-      # @param scheduled_frequency [Symbol, WhopSDK::Models::BountyCreateParams::ScheduledFrequency, nil] How often a scheduled bounty republishes a new bounty.
-      #
-      # @param scheduled_publish_at [Time, nil] When to publish the bounty. When provided, the bounty is created as a hidden dra
-      #
-      # @param scheduled_timezone [String, nil] The IANA timezone used for recurring occurrences. Required when scheduled_publis
+      # @param idempotency_key [String] Header param: A unique key that makes this request safe to retry. See [Idempoten
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -53,20 +55,28 @@ module WhopSDK
       # @see WhopSDK::Models::BountyCreateParams
       def create(params)
         parsed, options = WhopSDK::BountyCreateParams.dump_request(params)
+        header_params = {api_version_date: "api-version-date", idempotency_key: "idempotency-key"}
         @client.request(
           method: :post,
           path: "bounties",
-          body: parsed,
+          headers: parsed.slice(*header_params.keys).transform_keys(header_params),
+          body: parsed.except(*header_params.keys),
           model: WhopSDK::Models::BountyCreateResponse,
           options: options
         )
       end
 
-      # Retrieves a workforce bounty for the current authenticated user.
+      # Retrieves a bounty by ID. Authentication is optional: a request with no
+      # credential reads the bounty when it is publicly visible — published or
+      # completed, and not restricted to a private experience's members. Bounties
+      # outside the caller's scope, and bounties not publicly visible to an anonymous
+      # caller, return `404`.
       #
-      # @overload retrieve(id, request_options: {})
+      # @overload retrieve(id, api_version_date: nil, request_options: {})
       #
-      # @param id [String] The unique identifier of the workforce bounty to retrieve.
+      # @param id [String] Bounty ID (`bnty_` tag).
+      #
+      # @param api_version_date [String] Pins the request to a dated API version.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -74,36 +84,56 @@ module WhopSDK
       #
       # @see WhopSDK::Models::BountyRetrieveParams
       def retrieve(id, params = {})
+        parsed, options = WhopSDK::BountyRetrieveParams.dump_request(params)
         @client.request(
           method: :get,
           path: ["bounties/%1$s", id],
+          headers: parsed.transform_keys(api_version_date: "api-version-date"),
           model: WhopSDK::Models::BountyRetrieveResponse,
-          options: params[:request_options]
+          options: options
         )
       end
 
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::BountyListParams} for more details.
       #
-      # Returns a paginated list of workforce bounties. When experienceId is provided,
-      # returns bounties scoped to that experience. When omitted, returns bounties with
-      # no experience.
+      # Lists bounties visible to the credential — for an account API key, the account's
+      # bounties including scheduled drafts; for a user token, the bounties the user can
+      # see and work.
       #
-      # @overload list(after: nil, before: nil, direction: nil, experience_id: nil, first: nil, last: nil, status: nil, request_options: {})
+      # @overload list(account_id: nil, after: nil, before: nil, business_goal_type: nil, country: nil, created_after: nil, created_before: nil, direction: nil, experience_id: nil, first: nil, last: nil, order: nil, query: nil, status: nil, user_id: nil, api_version_date: nil, request_options: {})
       #
-      # @param after [String] Returns the elements in the list that come after the specified cursor.
+      # @param account_id [String] Query param: Scope the list to this account (`biz_` tag). Requires read access t
       #
-      # @param before [String] Returns the elements in the list that come before the specified cursor.
+      # @param after [String] Query param: Cursor to paginate forwards from.
       #
-      # @param direction [Symbol, WhopSDK::Models::Direction] Sort direction. Defaults to descending.
+      # @param before [String] Query param: Cursor to paginate backwards from.
       #
-      # @param experience_id [String] The experience to list bounties for. When omitted, returns bounties with no expe
+      # @param business_goal_type [Symbol, WhopSDK::Models::BountyListParams::BusinessGoalType] Query param: Filter by the poster's declared goal. Bounties created before the g
       #
-      # @param first [Integer] Returns the first _n_ elements from the list.
+      # @param country [String] Query param: Only bounties workable from this country, as an ISO 3166-1 alpha-2
       #
-      # @param last [Integer] Returns the last _n_ elements from the list.
+      # @param created_after [String] Query param: Only bounties created after this ISO 8601 timestamp.
       #
-      # @param status [Symbol, WhopSDK::Models::BountyListParams::Status] Filter bounties by status.
+      # @param created_before [String] Query param: Only bounties created before this ISO 8601 timestamp.
+      #
+      # @param direction [Symbol, WhopSDK::Models::BountyListParams::Direction] Query param: Sort direction.
+      #
+      # @param experience_id [String] Query param: Only bounties posted to this forum experience, prefixed `exp_`. An
+      #
+      # @param first [Integer] Query param: Number of bounties to return from the start of the window.
+      #
+      # @param last [Integer] Query param: Number of bounties to return from the end of the window.
+      #
+      # @param order [Symbol, WhopSDK::Models::BountyListParams::Order] Query param: Sort field.
+      #
+      # @param query [String] Query param: Substring match on the bounty title or ID.
+      #
+      # @param status [Symbol, WhopSDK::Models::BountyListParams::Status] Query param: Filter by lifecycle state.
+      #
+      # @param user_id [String] Query param: List the bounties this user participated in (`user_` tag). Must be
+      #
+      # @param api_version_date [String] Header param: Pins the request to a dated API version.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -111,12 +141,31 @@ module WhopSDK
       #
       # @see WhopSDK::Models::BountyListParams
       def list(params = {})
+        query_params =
+          [
+            :account_id,
+            :after,
+            :before,
+            :business_goal_type,
+            :country,
+            :created_after,
+            :created_before,
+            :direction,
+            :experience_id,
+            :first,
+            :last,
+            :order,
+            :query,
+            :status,
+            :user_id
+          ]
         parsed, options = WhopSDK::BountyListParams.dump_request(params)
-        query = WhopSDK::Internal::Util.encode_query_params(parsed)
+        query = WhopSDK::Internal::Util.encode_query_params(parsed.slice(*query_params))
         @client.request(
           method: :get,
           path: "bounties",
           query: query,
+          headers: parsed.except(*query_params).transform_keys(api_version_date: "api-version-date"),
           page: WhopSDK::Internal::CursorPage,
           model: WhopSDK::Models::BountyListResponse,
           options: options

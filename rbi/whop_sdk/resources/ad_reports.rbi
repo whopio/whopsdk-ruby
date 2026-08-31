@@ -2,7 +2,6 @@
 
 module WhopSDK
   module Resources
-    # Ad reports
     class AdReports
       # Performance report for a company, ad campaigns, ad groups, or ads. Always
       # returns aggregate `summary` totals summed across the scope. Set `granularity` to

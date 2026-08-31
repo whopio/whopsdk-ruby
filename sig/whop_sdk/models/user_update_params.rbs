@@ -1,0 +1,107 @@
+module WhopSDK
+  module Models
+    type user_update_params =
+      {
+        id: String,
+        account_id: String,
+        banner: WhopSDK::UserUpdateParams::Banner?,
+        bio: String,
+        name: String,
+        profile_picture: WhopSDK::UserUpdateParams::ProfilePicture,
+        username: String,
+        api_version_date: String
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class UserUpdateParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor id: String
+
+      attr_reader account_id: String?
+
+      def account_id=: (String) -> String
+
+      attr_accessor banner: WhopSDK::UserUpdateParams::Banner?
+
+      attr_reader bio: String?
+
+      def bio=: (String) -> String
+
+      attr_reader name: String?
+
+      def name=: (String) -> String
+
+      attr_reader profile_picture: WhopSDK::UserUpdateParams::ProfilePicture?
+
+      def profile_picture=: (
+        WhopSDK::UserUpdateParams::ProfilePicture
+      ) -> WhopSDK::UserUpdateParams::ProfilePicture
+
+      attr_reader username: String?
+
+      def username=: (String) -> String
+
+      attr_reader api_version_date: String?
+
+      def api_version_date=: (String) -> String
+
+      def initialize: (
+        id: String,
+        ?account_id: String,
+        ?banner: WhopSDK::UserUpdateParams::Banner?,
+        ?bio: String,
+        ?name: String,
+        ?profile_picture: WhopSDK::UserUpdateParams::ProfilePicture,
+        ?username: String,
+        ?api_version_date: String,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        account_id: String,
+        banner: WhopSDK::UserUpdateParams::Banner?,
+        bio: String,
+        name: String,
+        profile_picture: WhopSDK::UserUpdateParams::ProfilePicture,
+        username: String,
+        api_version_date: String,
+        request_options: WhopSDK::RequestOptions
+      }
+
+      type banner = { id: String, direct_upload_id: String }
+
+      class Banner < WhopSDK::Internal::Type::BaseModel
+        attr_reader id: String?
+
+        def id=: (String) -> String
+
+        attr_reader direct_upload_id: String?
+
+        def direct_upload_id=: (String) -> String
+
+        def initialize: (?id: String, ?direct_upload_id: String) -> void
+
+        def to_hash: -> { id: String, direct_upload_id: String }
+      end
+
+      type profile_picture = { id: String, direct_upload_id: String }
+
+      class ProfilePicture < WhopSDK::Internal::Type::BaseModel
+        attr_reader id: String?
+
+        def id=: (String) -> String
+
+        attr_reader direct_upload_id: String?
+
+        def direct_upload_id=: (String) -> String
+
+        def initialize: (?id: String, ?direct_upload_id: String) -> void
+
+        def to_hash: -> { id: String, direct_upload_id: String }
+      end
+    end
+  end
+end

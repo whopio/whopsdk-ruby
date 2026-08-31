@@ -4,256 +4,414 @@ module WhopSDK
   module Models
     class CheckoutConfiguration < WhopSDK::Internal::Type::BaseModel
       # @!attribute id
-      #   The unique identifier for the checkout session.
       #
       #   @return [String]
       required :id, String
 
+      # @!attribute account_id
+      #   Account ID, prefixed `biz_`.
+      #
+      #   @return [String]
+      required :account_id, String
+
       # @!attribute affiliate_code
-      #   The affiliate code to use for the checkout configuration
+      #   Affiliate code applied at checkout, or `null` when none is set.
       #
       #   @return [String, nil]
       required :affiliate_code, String, nil?: true
 
-      # @!attribute company_id
-      #   The ID of the company to use for the checkout configuration
+      # @!attribute created_at
+      #   When the checkout configuration was created, as an ISO 8601 timestamp.
       #
       #   @return [String]
-      required :company_id, String
+      required :created_at, String
 
       # @!attribute currency
-      #   The available currencies on the platform
+      #   Currency used for setup-mode payment method availability; defaults to `usd` when
+      #   omitted.
       #
-      #   @return [Symbol, WhopSDK::Models::Currency, nil]
-      required :currency, enum: -> { WhopSDK::Currency }, nil?: true
+      #   @return [Symbol, WhopSDK::Models::CheckoutConfiguration::Currency, nil]
+      required :currency, enum: -> { WhopSDK::CheckoutConfiguration::Currency }, nil?: true
 
-      # @!attribute metadata
-      #   The metadata to use for the checkout configuration
+      # @!attribute effective_payment_method_configuration
+      #   The configuration governing a checkout mounted from this configuration, resolved
+      #   through every layer (its own overrides, the plan's, and the account's) — the
+      #   shape a session's `payment_method_configuration` carries. Apply it over the
+      #   payment method types catalogue for the offerable set. `null` means platform
+      #   defaults; `payment_method_configuration` stays this configuration's own editable
+      #   override.
       #
-      #   @return [Hash{Symbol=>Object}, nil]
-      required :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown], nil?: true
-
-      # @!attribute mode
-      #   The mode of the checkout session.
-      #
-      #   @return [Symbol, WhopSDK::Models::CheckoutModes]
-      required :mode, enum: -> { WhopSDK::CheckoutModes }
-
-      # @!attribute payment_method_configuration
-      #   The explicit payment method configuration for the session, if any. This
-      #   currently only works in 'setup' mode. Use the plan's
-      #   payment_method_configuration for payment method.
-      #
-      #   @return [WhopSDK::Models::CheckoutConfiguration::PaymentMethodConfiguration, nil]
-      required :payment_method_configuration,
-               -> { WhopSDK::CheckoutConfiguration::PaymentMethodConfiguration },
+      #   @return [WhopSDK::Models::CheckoutConfiguration::EffectivePaymentMethodConfiguration, nil]
+      required :effective_payment_method_configuration,
+               -> { WhopSDK::CheckoutConfiguration::EffectivePaymentMethodConfiguration },
                nil?: true
 
+      # @!attribute metadata
+      #   Custom key-value metadata copied to payments and memberships. `null` without the
+      #   `checkout_configuration:basic:read` scope.
+      #
+      #   @return [Object, nil]
+      required :metadata, WhopSDK::Internal::Type::Unknown, nil?: true
+
+      # @!attribute mode
+      #   Controls whether checkout charges the buyer immediately or saves payment details
+      #   for later.
+      #
+      #   @return [Symbol, WhopSDK::Models::CheckoutConfiguration::Mode]
+      required :mode, enum: -> { WhopSDK::CheckoutConfiguration::Mode }
+
+      # @!attribute payment_method_configuration
+      #   Payment method overrides for this checkout. `null` when it uses the plan or
+      #   platform defaults.
+      #
+      #   @return [Object, nil]
+      required :payment_method_configuration, WhopSDK::Internal::Type::Unknown, nil?: true
+
       # @!attribute plan
-      #   The plan to use for the checkout configuration
+      #   Plan used for payment checkout. `null` in setup mode.
       #
       #   @return [WhopSDK::Models::CheckoutConfiguration::Plan, nil]
       required :plan, -> { WhopSDK::CheckoutConfiguration::Plan }, nil?: true
 
       # @!attribute purchase_url
-      #   A URL you can send to customers to complete a checkout. It looks like
-      #   `/checkout/ch_xxxx/`
+      #   Checkout URL you can send to customers.
       #
-      #   @return [String]
-      required :purchase_url, String
+      #   @return [String, nil]
+      required :purchase_url, String, nil?: true
 
       # @!attribute redirect_url
-      #   The URL to redirect the user to after the checkout configuration is created
+      #   URL customers are sent to after checkout, or `null` when no redirect is
+      #   configured.
       #
       #   @return [String, nil]
       required :redirect_url, String, nil?: true
 
-      # @!method initialize(id:, affiliate_code:, company_id:, currency:, metadata:, mode:, payment_method_configuration:, plan:, purchase_url:, redirect_url:)
+      # @!attribute three_ds_level
+      #   3D Secure behavior for this checkout, or `null` to use the account default.
+      #
+      #   @return [Symbol, WhopSDK::Models::CheckoutConfiguration::ThreeDSLevel, nil]
+      required :three_ds_level, enum: -> { WhopSDK::CheckoutConfiguration::ThreeDSLevel }, nil?: true
+
+      # @!attribute updated_at
+      #   When the checkout configuration was last updated, as an ISO 8601 timestamp.
+      #
+      #   @return [String]
+      required :updated_at, String
+
+      # @!method initialize(id:, account_id:, affiliate_code:, created_at:, currency:, effective_payment_method_configuration:, metadata:, mode:, payment_method_configuration:, plan:, purchase_url:, redirect_url:, three_ds_level:, updated_at:)
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::CheckoutConfiguration} for more details.
       #
-      #   A checkout configuration is a reusable configuration for a checkout, including
-      #   the plan, affiliate, and custom metadata. Payments and memberships created from
-      #   a checkout session inherit its metadata.
+      #   @param id [String]
       #
-      #   @param id [String] The unique identifier for the checkout session.
+      #   @param account_id [String] Account ID, prefixed `biz_`.
       #
-      #   @param affiliate_code [String, nil] The affiliate code to use for the checkout configuration
+      #   @param affiliate_code [String, nil] Affiliate code applied at checkout, or `null` when none is set.
       #
-      #   @param company_id [String] The ID of the company to use for the checkout configuration
+      #   @param created_at [String] When the checkout configuration was created, as an ISO 8601 timestamp.
       #
-      #   @param currency [Symbol, WhopSDK::Models::Currency, nil] The available currencies on the platform
+      #   @param currency [Symbol, WhopSDK::Models::CheckoutConfiguration::Currency, nil] Currency used for setup-mode payment method availability; defaults to `usd` when
       #
-      #   @param metadata [Hash{Symbol=>Object}, nil] The metadata to use for the checkout configuration
+      #   @param effective_payment_method_configuration [WhopSDK::Models::CheckoutConfiguration::EffectivePaymentMethodConfiguration, nil] The configuration governing a checkout mounted from this configuration, resolved
       #
-      #   @param mode [Symbol, WhopSDK::Models::CheckoutModes] The mode of the checkout session.
+      #   @param metadata [Object, nil] Custom key-value metadata copied to payments and memberships. `null` without the
       #
-      #   @param payment_method_configuration [WhopSDK::Models::CheckoutConfiguration::PaymentMethodConfiguration, nil] The explicit payment method configuration for the session, if any. This currentl
+      #   @param mode [Symbol, WhopSDK::Models::CheckoutConfiguration::Mode] Controls whether checkout charges the buyer immediately or saves payment details
       #
-      #   @param plan [WhopSDK::Models::CheckoutConfiguration::Plan, nil] The plan to use for the checkout configuration
+      #   @param payment_method_configuration [Object, nil] Payment method overrides for this checkout. `null` when it uses the plan or plat
       #
-      #   @param purchase_url [String] A URL you can send to customers to complete a checkout. It looks like `/checkout
+      #   @param plan [WhopSDK::Models::CheckoutConfiguration::Plan, nil] Plan used for payment checkout. `null` in setup mode.
       #
-      #   @param redirect_url [String, nil] The URL to redirect the user to after the checkout configuration is created
+      #   @param purchase_url [String, nil] Checkout URL you can send to customers.
+      #
+      #   @param redirect_url [String, nil] URL customers are sent to after checkout, or `null` when no redirect is configur
+      #
+      #   @param three_ds_level [Symbol, WhopSDK::Models::CheckoutConfiguration::ThreeDSLevel, nil] 3D Secure behavior for this checkout, or `null` to use the account default.
+      #
+      #   @param updated_at [String] When the checkout configuration was last updated, as an ISO 8601 timestamp.
 
-      # @see WhopSDK::Models::CheckoutConfiguration#payment_method_configuration
-      class PaymentMethodConfiguration < WhopSDK::Internal::Type::BaseModel
+      # Currency used for setup-mode payment method availability; defaults to `usd` when
+      # omitted.
+      #
+      # @see WhopSDK::Models::CheckoutConfiguration#currency
+      module Currency
+        extend WhopSDK::Internal::Type::Enum
+
+        USD = :usd
+        SGD = :sgd
+        INR = :inr
+        AUD = :aud
+        BRL = :brl
+        CAD = :cad
+        DKK = :dkk
+        EUR = :eur
+        NOK = :nok
+        GBP = :gbp
+        SEK = :sek
+        CHF = :chf
+        HKD = :hkd
+        HUF = :huf
+        JPY = :jpy
+        MXN = :mxn
+        MYR = :myr
+        PLN = :pln
+        CZK = :czk
+        NZD = :nzd
+        AED = :aed
+        ETH = :eth
+        APE = :ape
+        COP = :cop
+        RON = :ron
+        THB = :thb
+        BGN = :bgn
+        IDR = :idr
+        DOP = :dop
+        PHP = :php
+        TRY = :try
+        KRW = :krw
+        TWD = :twd
+        VND = :vnd
+        PKR = :pkr
+        CLP = :clp
+        UYU = :uyu
+        ARS = :ars
+        ZAR = :zar
+        DZD = :dzd
+        TND = :tnd
+        MAD = :mad
+        KES = :kes
+        KWD = :kwd
+        JOD = :jod
+        ALL = :all
+        XCD = :xcd
+        AMD = :amd
+        BSD = :bsd
+        BHD = :bhd
+        BOB = :bob
+        BAM = :bam
+        KHR = :khr
+        CRC = :crc
+        XOF = :xof
+        EGP = :egp
+        ETB = :etb
+        GMD = :gmd
+        GHS = :ghs
+        GTQ = :gtq
+        GYD = :gyd
+        ILS = :ils
+        JMD = :jmd
+        MOP = :mop
+        MGA = :mga
+        MUR = :mur
+        MDL = :mdl
+        MNT = :mnt
+        NAD = :nad
+        NGN = :ngn
+        MKD = :mkd
+        OMR = :omr
+        PYG = :pyg
+        PEN = :pen
+        QAR = :qar
+        RWF = :rwf
+        SAR = :sar
+        RSD = :rsd
+        LKR = :lkr
+        TZS = :tzs
+        TTD = :ttd
+        UZS = :uzs
+        RUB = :rub
+        BTC = :btc
+        CNY = :cny
+        USDT = :usdt
+        KZT = :kzt
+        AWG = :awg
+        WHOP_USD = :whop_usd
+        XAU = :xau
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
+
+      # @see WhopSDK::Models::CheckoutConfiguration#effective_payment_method_configuration
+      class EffectivePaymentMethodConfiguration < WhopSDK::Internal::Type::BaseModel
         # @!attribute disabled
-        #   An array of payment method identifiers that are explicitly disabled. Only
-        #   applies if the include_platform_defaults is true.
         #
-        #   @return [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>]
-        required :disabled, -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::PaymentMethodTypes] }
+        #   @return [Array<String>]
+        required :disabled, WhopSDK::Internal::Type::ArrayOf[String]
 
         # @!attribute enabled
-        #   An array of payment method identifiers that are explicitly enabled. This means
-        #   these payment methods will be shown on checkout. Example use case is to only
-        #   enable a specific payment method like cashapp, or extending the platform
-        #   defaults with additional methods.
         #
-        #   @return [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>]
-        required :enabled, -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::PaymentMethodTypes] }
+        #   @return [Array<String>]
+        required :enabled, WhopSDK::Internal::Type::ArrayOf[String]
 
         # @!attribute include_platform_defaults
-        #   Whether Whop's platform default payment method enablement settings are included
-        #   in this configuration. The full list of default payment methods can be found in
-        #   the documentation at docs.whop.com/payments.
+        #   Whether Whop's default set is the starting point. When `false`, only `enabled`
+        #   is offered.
         #
         #   @return [Boolean]
         required :include_platform_defaults, WhopSDK::Internal::Type::Boolean
 
         # @!method initialize(disabled:, enabled:, include_platform_defaults:)
         #   Some parameter documentations has been truncated, see
-        #   {WhopSDK::Models::CheckoutConfiguration::PaymentMethodConfiguration} for more
-        #   details.
+        #   {WhopSDK::Models::CheckoutConfiguration::EffectivePaymentMethodConfiguration}
+        #   for more details.
         #
-        #   The explicit payment method configuration for the session, if any. This
-        #   currently only works in 'setup' mode. Use the plan's
-        #   payment_method_configuration for payment method.
+        #   The configuration governing a checkout mounted from this configuration, resolved
+        #   through every layer (its own overrides, the plan's, and the account's) — the
+        #   shape a session's `payment_method_configuration` carries. Apply it over the
+        #   payment method types catalogue for the offerable set. `null` means platform
+        #   defaults; `payment_method_configuration` stays this configuration's own editable
+        #   override.
         #
-        #   @param disabled [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>] An array of payment method identifiers that are explicitly disabled. Only applie
+        #   @param disabled [Array<String>]
         #
-        #   @param enabled [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>] An array of payment method identifiers that are explicitly enabled. This means t
+        #   @param enabled [Array<String>]
         #
-        #   @param include_platform_defaults [Boolean] Whether Whop's platform default payment method enablement settings are included
+        #   @param include_platform_defaults [Boolean] Whether Whop's default set is the starting point. When `false`, only `enabled` i
+      end
+
+      # Controls whether checkout charges the buyer immediately or saves payment details
+      # for later.
+      #
+      # @see WhopSDK::Models::CheckoutConfiguration#mode
+      module Mode
+        extend WhopSDK::Internal::Type::Enum
+
+        PAYMENT = :payment
+        SETUP = :setup
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
       # @see WhopSDK::Models::CheckoutConfiguration#plan
       class Plan < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The unique identifier for the plan.
+        #   Plan ID, prefixed `plan_`.
         #
         #   @return [String]
         required :id, String
 
         # @!attribute adaptive_pricing_enabled
-        #   Whether the creator has turned on adaptive pricing for this plan. Raw setting —
-        #   does not check processor compatibility or feature flags.
+        #   Whether this plan accepts local currency payments via adaptive pricing.
         #
         #   @return [Boolean]
         required :adaptive_pricing_enabled, WhopSDK::Internal::Type::Boolean
 
         # @!attribute billing_period
-        #   Number of days between recurring charges, such as 30 for monthly or 365 for
-        #   annual. `null` for one-time plans.
+        #   Recurring billing interval in days.
         #
         #   @return [Integer, nil]
         required :billing_period, Integer, nil?: true
 
         # @!attribute currency
-        #   The currency used for all prices on this plan (e.g., 'usd', 'eur'). All monetary
-        #   amounts on the plan are denominated in this currency.
+        #   Three-letter ISO currency code for the plan's prices.
         #
-        #   @return [Symbol, WhopSDK::Models::Currency]
-        required :currency, enum: -> { WhopSDK::Currency }
+        #   @return [String]
+        required :currency, String
 
         # @!attribute expiration_days
-        #   Access duration in days for expiration-based plans, such as 365 for a one-year
-        #   pass.
+        #   Access duration in days for expiration-based plans.
         #
         #   @return [Integer, nil]
         required :expiration_days, Integer, nil?: true
 
         # @!attribute initial_price
-        #   The initial purchase price in the plan's base_currency (e.g., 49.99 for $49.99).
-        #   For one-time plans, this is the full price. For renewal plans, this is charged
-        #   on top of the first renewal_price.
+        #   Initial purchase price in the plan currency.
         #
         #   @return [Float]
         required :initial_price, Float
 
         # @!attribute plan_type
-        #   The billing model for this plan: 'renewal' for recurring subscriptions or
-        #   'one_time' for single payments.
+        #   Billing model for the plan.
         #
-        #   @return [Symbol, WhopSDK::Models::PlanType]
-        required :plan_type, enum: -> { WhopSDK::PlanType }
+        #   @return [Symbol, WhopSDK::Models::CheckoutConfiguration::Plan::PlanType]
+        required :plan_type, enum: -> { WhopSDK::CheckoutConfiguration::Plan::PlanType }
 
         # @!attribute release_method
-        #   Sales method for this plan: `buy_now` for immediate purchase or `waitlist` for
-        #   waitlist-based access.
+        #   Sales method for the plan.
         #
-        #   @return [Symbol, WhopSDK::Models::ReleaseMethod]
-        required :release_method, enum: -> { WhopSDK::ReleaseMethod }
+        #   @return [Symbol, WhopSDK::Models::CheckoutConfiguration::Plan::ReleaseMethod]
+        required :release_method, enum: -> { WhopSDK::CheckoutConfiguration::Plan::ReleaseMethod }
 
         # @!attribute renewal_price
-        #   The recurring price charged every billing_period in the plan's base_currency
-        #   (e.g., 9.99 for $9.99/period). Zero for one-time plans.
+        #   Recurring price charged each billing period.
         #
         #   @return [Float]
         required :renewal_price, Float
 
         # @!attribute three_ds_level
-        #   The 3D Secure behavior for a plan.
+        #   3D Secure behavior for this plan, or `null` to use the account default.
         #
         #   @return [Symbol, WhopSDK::Models::CheckoutConfiguration::Plan::ThreeDSLevel, nil]
         required :three_ds_level, enum: -> { WhopSDK::CheckoutConfiguration::Plan::ThreeDSLevel }, nil?: true
 
         # @!attribute trial_period_days
-        #   Free trial days before first renewal charge. `null` if no trial is configured or
-        #   the user has already used a trial for this plan.
+        #   Free trial days before the first renewal charge.
         #
         #   @return [Integer, nil]
         required :trial_period_days, Integer, nil?: true
 
         # @!attribute visibility
-        #   Controls whether the plan is visible to customers. When set to 'hidden', the
-        #   plan is only accessible via direct link.
+        #   Whether the plan is visible to customers or hidden from public view.
         #
-        #   @return [Symbol, WhopSDK::Models::Visibility]
-        required :visibility, enum: -> { WhopSDK::Visibility }
+        #   @return [Symbol, WhopSDK::Models::CheckoutConfiguration::Plan::Visibility]
+        required :visibility, enum: -> { WhopSDK::CheckoutConfiguration::Plan::Visibility }
 
         # @!method initialize(id:, adaptive_pricing_enabled:, billing_period:, currency:, expiration_days:, initial_price:, plan_type:, release_method:, renewal_price:, three_ds_level:, trial_period_days:, visibility:)
-        #   Some parameter documentations has been truncated, see
-        #   {WhopSDK::Models::CheckoutConfiguration::Plan} for more details.
+        #   Plan used for payment checkout. `null` in setup mode.
         #
-        #   The plan to use for the checkout configuration
+        #   @param id [String] Plan ID, prefixed `plan_`.
         #
-        #   @param id [String] The unique identifier for the plan.
+        #   @param adaptive_pricing_enabled [Boolean] Whether this plan accepts local currency payments via adaptive pricing.
         #
-        #   @param adaptive_pricing_enabled [Boolean] Whether the creator has turned on adaptive pricing for this plan. Raw setting —
+        #   @param billing_period [Integer, nil] Recurring billing interval in days.
         #
-        #   @param billing_period [Integer, nil] Number of days between recurring charges, such as 30 for monthly or 365 for annu
+        #   @param currency [String] Three-letter ISO currency code for the plan's prices.
         #
-        #   @param currency [Symbol, WhopSDK::Models::Currency] The currency used for all prices on this plan (e.g., 'usd', 'eur'). All monetary
+        #   @param expiration_days [Integer, nil] Access duration in days for expiration-based plans.
         #
-        #   @param expiration_days [Integer, nil] Access duration in days for expiration-based plans, such as 365 for a one-year p
+        #   @param initial_price [Float] Initial purchase price in the plan currency.
         #
-        #   @param initial_price [Float] The initial purchase price in the plan's base_currency (e.g., 49.99 for $49.99).
+        #   @param plan_type [Symbol, WhopSDK::Models::CheckoutConfiguration::Plan::PlanType] Billing model for the plan.
         #
-        #   @param plan_type [Symbol, WhopSDK::Models::PlanType] The billing model for this plan: 'renewal' for recurring subscriptions or 'one_t
+        #   @param release_method [Symbol, WhopSDK::Models::CheckoutConfiguration::Plan::ReleaseMethod] Sales method for the plan.
         #
-        #   @param release_method [Symbol, WhopSDK::Models::ReleaseMethod] Sales method for this plan: `buy_now` for immediate purchase or `waitlist` for w
+        #   @param renewal_price [Float] Recurring price charged each billing period.
         #
-        #   @param renewal_price [Float] The recurring price charged every billing_period in the plan's base_currency (e.
+        #   @param three_ds_level [Symbol, WhopSDK::Models::CheckoutConfiguration::Plan::ThreeDSLevel, nil] 3D Secure behavior for this plan, or `null` to use the account default.
         #
-        #   @param three_ds_level [Symbol, WhopSDK::Models::CheckoutConfiguration::Plan::ThreeDSLevel, nil] The 3D Secure behavior for a plan.
+        #   @param trial_period_days [Integer, nil] Free trial days before the first renewal charge.
         #
-        #   @param trial_period_days [Integer, nil] Free trial days before first renewal charge. `null` if no trial is configured or
-        #
-        #   @param visibility [Symbol, WhopSDK::Models::Visibility] Controls whether the plan is visible to customers. When set to 'hidden', the pla
+        #   @param visibility [Symbol, WhopSDK::Models::CheckoutConfiguration::Plan::Visibility] Whether the plan is visible to customers or hidden from public view.
 
-        # The 3D Secure behavior for a plan.
+        # Billing model for the plan.
+        #
+        # @see WhopSDK::Models::CheckoutConfiguration::Plan#plan_type
+        module PlanType
+          extend WhopSDK::Internal::Type::Enum
+
+          RENEWAL = :renewal
+          ONE_TIME = :one_time
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
+
+        # Sales method for the plan.
+        #
+        # @see WhopSDK::Models::CheckoutConfiguration::Plan#release_method
+        module ReleaseMethod
+          extend WhopSDK::Internal::Type::Enum
+
+          BUY_NOW = :buy_now
+          WAITLIST = :waitlist
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
+
+        # 3D Secure behavior for this plan, or `null` to use the account default.
         #
         # @see WhopSDK::Models::CheckoutConfiguration::Plan#three_ds_level
         module ThreeDSLevel
@@ -265,6 +423,34 @@ module WhopSDK
           # @!method self.values
           #   @return [Array<Symbol>]
         end
+
+        # Whether the plan is visible to customers or hidden from public view.
+        #
+        # @see WhopSDK::Models::CheckoutConfiguration::Plan#visibility
+        module Visibility
+          extend WhopSDK::Internal::Type::Enum
+
+          VISIBLE = :visible
+          HIDDEN = :hidden
+          ARCHIVED = :archived
+          QUICK_LINK = :quick_link
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
+      end
+
+      # 3D Secure behavior for this checkout, or `null` to use the account default.
+      #
+      # @see WhopSDK::Models::CheckoutConfiguration#three_ds_level
+      module ThreeDSLevel
+        extend WhopSDK::Internal::Type::Enum
+
+        MANDATE_CHALLENGE = :mandate_challenge
+        FRICTIONLESS = :frictionless
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
     end
   end

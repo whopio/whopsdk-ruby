@@ -1,7 +1,12 @@
 module WhopSDK
   module Models
     type membership_pause_params =
-      { id: String, resumes_at: Time?, void_payments: bool? }
+      {
+        id: String,
+        until_: String,
+        api_version_date: String,
+        idempotency_key: String
+      }
       & WhopSDK::Internal::Type::request_parameters
 
     class MembershipPauseParams < WhopSDK::Internal::Type::BaseModel
@@ -10,21 +15,31 @@ module WhopSDK
 
       attr_accessor id: String
 
-      attr_accessor resumes_at: Time?
+      attr_reader until_: String?
 
-      attr_accessor void_payments: bool?
+      def until_=: (String) -> String
+
+      attr_reader api_version_date: String?
+
+      def api_version_date=: (String) -> String
+
+      attr_reader idempotency_key: String?
+
+      def idempotency_key=: (String) -> String
 
       def initialize: (
         id: String,
-        ?resumes_at: Time?,
-        ?void_payments: bool?,
+        ?until_: String,
+        ?api_version_date: String,
+        ?idempotency_key: String,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
       def to_hash: -> {
         id: String,
-        resumes_at: Time?,
-        void_payments: bool?,
+        until_: String,
+        api_version_date: String,
+        idempotency_key: String,
         request_options: WhopSDK::RequestOptions
       }
     end

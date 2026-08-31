@@ -7,111 +7,100 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      # @!attribute company_id
-      #   The unique identifier of the company to create this product for.
-      #
-      #   @return [String]
-      required :company_id, String
-
       # @!attribute title
       #   The display name of the product. Maximum 80 characters.
       #
       #   @return [String]
       required :title, String
 
+      # @!attribute account_id
+      #   The unique identifier of the account to create this product for.
+      #
+      #   @return [String, nil]
+      optional :account_id, String
+
       # @!attribute collect_shipping_address
-      #   Whether the checkout flow collects a shipping address from the customer.
+      #   Whether to collect a shipping address at checkout.
       #
       #   @return [Boolean, nil]
       optional :collect_shipping_address, WhopSDK::Internal::Type::Boolean, nil?: true
 
       # @!attribute custom_cta
-      #   The different types of custom CTAs that can be selected.
+      #   The call-to-action button label.
       #
-      #   @return [Symbol, WhopSDK::Models::CustomCta, nil]
-      optional :custom_cta, enum: -> { WhopSDK::CustomCta }, nil?: true
+      #   @return [Symbol, WhopSDK::Models::ProductCreateParams::CustomCta, nil]
+      optional :custom_cta, enum: -> { WhopSDK::ProductCreateParams::CustomCta }, nil?: true
 
       # @!attribute custom_cta_url
-      #   A URL that the call-to-action button links to instead of the default checkout
-      #   flow.
+      #   A URL the call-to-action button links to.
       #
       #   @return [String, nil]
       optional :custom_cta_url, String, nil?: true
 
       # @!attribute custom_statement_descriptor
-      #   A custom text label that appears on the customer's bank statement. Must be 5-22
-      #   characters, contain at least one letter, and not contain <, >, \, ', or "
-      #   characters.
+      #   Custom bank statement descriptor. Must start with WHOP\*.
       #
       #   @return [String, nil]
       optional :custom_statement_descriptor, String, nil?: true
 
       # @!attribute description
-      #   A written description of the product displayed on its product page.
+      #   A written description displayed on the product page.
       #
       #   @return [String, nil]
       optional :description, String, nil?: true
 
-      # @!attribute experience_ids
-      #   The unique identifiers of experiences to connect to this product.
-      #
-      #   @return [Array<String>, nil]
-      optional :experience_ids, WhopSDK::Internal::Type::ArrayOf[String], nil?: true
-
       # @!attribute global_affiliate_percentage
-      #   The commission rate as a percentage that affiliates earn through the global
-      #   affiliate program.
+      #   The commission rate affiliates earn.
       #
       #   @return [Float, nil]
       optional :global_affiliate_percentage, Float, nil?: true
 
       # @!attribute global_affiliate_status
-      #   The different statuses of the global affiliate program for a product.
+      #   The enrollment status in the global affiliate program.
       #
-      #   @return [Symbol, WhopSDK::Models::GlobalAffiliateStatus, nil]
-      optional :global_affiliate_status, enum: -> { WhopSDK::GlobalAffiliateStatus }, nil?: true
+      #   @return [Symbol, WhopSDK::Models::ProductCreateParams::GlobalAffiliateStatus, nil]
+      optional :global_affiliate_status, enum: -> { WhopSDK::ProductCreateParams::GlobalAffiliateStatus }
 
       # @!attribute headline
-      #   A short marketing headline displayed prominently on the product page.
+      #   A short marketing headline for the product page.
       #
       #   @return [String, nil]
       optional :headline, String, nil?: true
 
+      # @!attribute labels
+      #   Labels used to group products into collections. Stored lowercased and
+      #   de-duplicated. Maximum 20 labels, 50 characters each.
+      #
+      #   @return [Array<String>, nil]
+      optional :labels, WhopSDK::Internal::Type::ArrayOf[String], nil?: true
+
       # @!attribute member_affiliate_percentage
-      #   The commission rate as a percentage that members earn through the member
-      #   affiliate program.
+      #   The commission rate members earn.
       #
       #   @return [Float, nil]
       optional :member_affiliate_percentage, Float, nil?: true
 
       # @!attribute member_affiliate_status
-      #   The different statuses of the global affiliate program for a product.
+      #   The enrollment status in the member affiliate program.
       #
-      #   @return [Symbol, WhopSDK::Models::GlobalAffiliateStatus, nil]
-      optional :member_affiliate_status, enum: -> { WhopSDK::GlobalAffiliateStatus }, nil?: true
+      #   @return [Symbol, WhopSDK::Models::ProductCreateParams::MemberAffiliateStatus, nil]
+      optional :member_affiliate_status, enum: -> { WhopSDK::ProductCreateParams::MemberAffiliateStatus }
 
       # @!attribute metadata
-      #   Custom key-value pairs to store on the product. Included in webhook payloads for
-      #   payment and membership events. Max 50 keys, 100 chars per key, 500 chars per
-      #   string value.
+      #   Custom key-value pairs to store on the product.
       #
-      #   @return [Hash{Symbol=>Object}, nil]
-      optional :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown], nil?: true
-
-      # @!attribute plan_options
-      #   Configuration for an automatically generated plan to attach to this product.
-      #
-      #   @return [WhopSDK::Models::ProductCreateParams::PlanOptions, nil]
-      optional :plan_options, -> { WhopSDK::ProductCreateParams::PlanOptions }, nil?: true
+      #   @return [Object, nil]
+      optional :metadata, WhopSDK::Internal::Type::Unknown, nil?: true
 
       # @!attribute product_tax_code_id
-      #   The unique identifier of the tax classification code to apply to this product.
+      #   The unique identifier of the tax classification code. See the available
+      #   [product categories](https://docs.numeral.com/essentials/product-categories).
       #
       #   @return [String, nil]
       optional :product_tax_code_id, String, nil?: true
 
       # @!attribute redirect_purchase_url
-      #   A URL to redirect the customer to after completing a purchase.
+      #   A URL to redirect the customer to after purchase.
       #
       #   @return [String, nil]
       optional :redirect_purchase_url, String, nil?: true
@@ -130,184 +119,111 @@ module WhopSDK
       optional :send_welcome_message, WhopSDK::Internal::Type::Boolean, nil?: true
 
       # @!attribute visibility
-      #   Visibility of a resource
+      #   Whether the product is visible to customers.
       #
-      #   @return [Symbol, WhopSDK::Models::Visibility, nil]
-      optional :visibility, enum: -> { WhopSDK::Visibility }, nil?: true
+      #   @return [String, nil]
+      optional :visibility, String
 
-      # @!method initialize(company_id:, title:, collect_shipping_address: nil, custom_cta: nil, custom_cta_url: nil, custom_statement_descriptor: nil, description: nil, experience_ids: nil, global_affiliate_percentage: nil, global_affiliate_status: nil, headline: nil, member_affiliate_percentage: nil, member_affiliate_status: nil, metadata: nil, plan_options: nil, product_tax_code_id: nil, redirect_purchase_url: nil, route: nil, send_welcome_message: nil, visibility: nil, request_options: {})
+      # @!attribute api_version_date
+      #
+      #   @return [String, nil]
+      optional :api_version_date, String
+
+      # @!attribute idempotency_key
+      #
+      #   @return [String, nil]
+      optional :idempotency_key, String
+
+      # @!method initialize(title:, account_id: nil, collect_shipping_address: nil, custom_cta: nil, custom_cta_url: nil, custom_statement_descriptor: nil, description: nil, global_affiliate_percentage: nil, global_affiliate_status: nil, headline: nil, labels: nil, member_affiliate_percentage: nil, member_affiliate_status: nil, metadata: nil, product_tax_code_id: nil, redirect_purchase_url: nil, route: nil, send_welcome_message: nil, visibility: nil, api_version_date: nil, idempotency_key: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::ProductCreateParams} for more details.
       #
-      #   @param company_id [String] The unique identifier of the company to create this product for.
-      #
       #   @param title [String] The display name of the product. Maximum 80 characters.
       #
-      #   @param collect_shipping_address [Boolean, nil] Whether the checkout flow collects a shipping address from the customer.
+      #   @param account_id [String] The unique identifier of the account to create this product for.
       #
-      #   @param custom_cta [Symbol, WhopSDK::Models::CustomCta, nil] The different types of custom CTAs that can be selected.
+      #   @param collect_shipping_address [Boolean, nil] Whether to collect a shipping address at checkout.
       #
-      #   @param custom_cta_url [String, nil] A URL that the call-to-action button links to instead of the default checkout fl
+      #   @param custom_cta [Symbol, WhopSDK::Models::ProductCreateParams::CustomCta, nil] The call-to-action button label.
       #
-      #   @param custom_statement_descriptor [String, nil] A custom text label that appears on the customer's bank statement. Must be 5-22
+      #   @param custom_cta_url [String, nil] A URL the call-to-action button links to.
       #
-      #   @param description [String, nil] A written description of the product displayed on its product page.
+      #   @param custom_statement_descriptor [String, nil] Custom bank statement descriptor. Must start with WHOP\*.
       #
-      #   @param experience_ids [Array<String>, nil] The unique identifiers of experiences to connect to this product.
+      #   @param description [String, nil] A written description displayed on the product page.
       #
-      #   @param global_affiliate_percentage [Float, nil] The commission rate as a percentage that affiliates earn through the global affi
+      #   @param global_affiliate_percentage [Float, nil] The commission rate affiliates earn.
       #
-      #   @param global_affiliate_status [Symbol, WhopSDK::Models::GlobalAffiliateStatus, nil] The different statuses of the global affiliate program for a product.
+      #   @param global_affiliate_status [Symbol, WhopSDK::Models::ProductCreateParams::GlobalAffiliateStatus] The enrollment status in the global affiliate program.
       #
-      #   @param headline [String, nil] A short marketing headline displayed prominently on the product page.
+      #   @param headline [String, nil] A short marketing headline for the product page.
       #
-      #   @param member_affiliate_percentage [Float, nil] The commission rate as a percentage that members earn through the member affilia
+      #   @param labels [Array<String>, nil] Labels used to group products into collections. Stored lowercased and de-duplica
       #
-      #   @param member_affiliate_status [Symbol, WhopSDK::Models::GlobalAffiliateStatus, nil] The different statuses of the global affiliate program for a product.
+      #   @param member_affiliate_percentage [Float, nil] The commission rate members earn.
       #
-      #   @param metadata [Hash{Symbol=>Object}, nil] Custom key-value pairs to store on the product. Included in webhook payloads for
+      #   @param member_affiliate_status [Symbol, WhopSDK::Models::ProductCreateParams::MemberAffiliateStatus] The enrollment status in the member affiliate program.
       #
-      #   @param plan_options [WhopSDK::Models::ProductCreateParams::PlanOptions, nil] Configuration for an automatically generated plan to attach to this product.
+      #   @param metadata [Object, nil] Custom key-value pairs to store on the product.
       #
-      #   @param product_tax_code_id [String, nil] The unique identifier of the tax classification code to apply to this product.
+      #   @param product_tax_code_id [String, nil] The unique identifier of the tax classification code. See the available [product
       #
-      #   @param redirect_purchase_url [String, nil] A URL to redirect the customer to after completing a purchase.
+      #   @param redirect_purchase_url [String, nil] A URL to redirect the customer to after purchase.
       #
       #   @param route [String, nil] The URL slug for the product's public link.
       #
       #   @param send_welcome_message [Boolean, nil] Whether to send an automated welcome message via support chat when a user joins
       #
-      #   @param visibility [Symbol, WhopSDK::Models::Visibility, nil] Visibility of a resource
+      #   @param visibility [String] Whether the product is visible to customers.
+      #
+      #   @param api_version_date [String]
+      #
+      #   @param idempotency_key [String]
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
 
-      class PlanOptions < WhopSDK::Internal::Type::BaseModel
-        # @!attribute base_currency
-        #   The available currencies on the platform
-        #
-        #   @return [Symbol, WhopSDK::Models::Currency, nil]
-        optional :base_currency, enum: -> { WhopSDK::Currency }, nil?: true
+      # The call-to-action button label.
+      module CustomCta
+        extend WhopSDK::Internal::Type::Enum
 
-        # @!attribute billing_period
-        #   The interval at which the plan charges (renewal plans).
-        #
-        #   @return [Integer, nil]
-        optional :billing_period, Integer, nil?: true
+        GET_ACCESS = :get_access
+        JOIN = :join
+        ORDER_NOW = :order_now
+        SHOP_NOW = :shop_now
+        CALL_NOW = :call_now
+        DONATE_NOW = :donate_now
+        CONTACT_US = :contact_us
+        SIGN_UP = :sign_up
+        SUBSCRIBE = :subscribe
+        PURCHASE = :purchase
+        GET_OFFER = :get_offer
+        APPLY_NOW = :apply_now
+        COMPLETE_ORDER = :complete_order
 
-        # @!attribute custom_fields
-        #   An array of custom field objects.
-        #
-        #   @return [Array<WhopSDK::Models::ProductCreateParams::PlanOptions::CustomField>, nil]
-        optional :custom_fields,
-                 -> {
-                   WhopSDK::Internal::Type::ArrayOf[WhopSDK::ProductCreateParams::PlanOptions::CustomField]
-                 },
-                 nil?: true
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
 
-        # @!attribute initial_price
-        #   An additional amount charged upon first purchase. Provided as a number in the
-        #   specified currency. Eg: 10.43 for $10.43 USD.
-        #
-        #   @return [Float, nil]
-        optional :initial_price, Float, nil?: true
+      # The enrollment status in the global affiliate program.
+      module GlobalAffiliateStatus
+        extend WhopSDK::Internal::Type::Enum
 
-        # @!attribute plan_type
-        #   The type of plan that can be attached to a product
-        #
-        #   @return [Symbol, WhopSDK::Models::PlanType, nil]
-        optional :plan_type, enum: -> { WhopSDK::PlanType }, nil?: true
+        ENABLED = :enabled
+        DISABLED = :disabled
 
-        # @!attribute release_method
-        #   The methods of how a plan can be released.
-        #
-        #   @return [Symbol, WhopSDK::Models::ReleaseMethod, nil]
-        optional :release_method, enum: -> { WhopSDK::ReleaseMethod }, nil?: true
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
 
-        # @!attribute renewal_price
-        #   The amount the customer is charged every billing period. Provided as a number in
-        #   the specified currency. Eg: 10.43 for $10.43 USD.
-        #
-        #   @return [Float, nil]
-        optional :renewal_price, Float, nil?: true
+      # The enrollment status in the member affiliate program.
+      module MemberAffiliateStatus
+        extend WhopSDK::Internal::Type::Enum
 
-        # @!attribute visibility
-        #   Visibility of a resource
-        #
-        #   @return [Symbol, WhopSDK::Models::Visibility, nil]
-        optional :visibility, enum: -> { WhopSDK::Visibility }, nil?: true
+        ENABLED = :enabled
+        DISABLED = :disabled
 
-        # @!method initialize(base_currency: nil, billing_period: nil, custom_fields: nil, initial_price: nil, plan_type: nil, release_method: nil, renewal_price: nil, visibility: nil)
-        #   Some parameter documentations has been truncated, see
-        #   {WhopSDK::Models::ProductCreateParams::PlanOptions} for more details.
-        #
-        #   Configuration for an automatically generated plan to attach to this product.
-        #
-        #   @param base_currency [Symbol, WhopSDK::Models::Currency, nil] The available currencies on the platform
-        #
-        #   @param billing_period [Integer, nil] The interval at which the plan charges (renewal plans).
-        #
-        #   @param custom_fields [Array<WhopSDK::Models::ProductCreateParams::PlanOptions::CustomField>, nil] An array of custom field objects.
-        #
-        #   @param initial_price [Float, nil] An additional amount charged upon first purchase. Provided as a number in the sp
-        #
-        #   @param plan_type [Symbol, WhopSDK::Models::PlanType, nil] The type of plan that can be attached to a product
-        #
-        #   @param release_method [Symbol, WhopSDK::Models::ReleaseMethod, nil] The methods of how a plan can be released.
-        #
-        #   @param renewal_price [Float, nil] The amount the customer is charged every billing period. Provided as a number in
-        #
-        #   @param visibility [Symbol, WhopSDK::Models::Visibility, nil] Visibility of a resource
-
-        class CustomField < WhopSDK::Internal::Type::BaseModel
-          # @!attribute field_type
-          #   The type of the custom field.
-          #
-          #   @return [Symbol, :text]
-          required :field_type, const: :text
-
-          # @!attribute name
-          #   The name of the custom field.
-          #
-          #   @return [String]
-          required :name, String
-
-          # @!attribute id
-          #   The ID of the custom field (if being updated)
-          #
-          #   @return [String, nil]
-          optional :id, String, nil?: true
-
-          # @!attribute order
-          #   The order of the field.
-          #
-          #   @return [Integer, nil]
-          optional :order, Integer, nil?: true
-
-          # @!attribute placeholder
-          #   The placeholder value of the field.
-          #
-          #   @return [String, nil]
-          optional :placeholder, String, nil?: true
-
-          # @!attribute required
-          #   Whether or not the field is required.
-          #
-          #   @return [Boolean, nil]
-          optional :required, WhopSDK::Internal::Type::Boolean, nil?: true
-
-          # @!method initialize(name:, id: nil, order: nil, placeholder: nil, required: nil, field_type: :text)
-          #   @param name [String] The name of the custom field.
-          #
-          #   @param id [String, nil] The ID of the custom field (if being updated)
-          #
-          #   @param order [Integer, nil] The order of the field.
-          #
-          #   @param placeholder [String, nil] The placeholder value of the field.
-          #
-          #   @param required [Boolean, nil] Whether or not the field is required.
-          #
-          #   @param field_type [Symbol, :text] The type of the custom field.
-        end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
     end
   end

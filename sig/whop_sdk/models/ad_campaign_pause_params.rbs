@@ -1,0 +1,36 @@
+module WhopSDK
+  module Models
+    type ad_campaign_pause_params =
+      { id: String, api_version_date: String, idempotency_key: String }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class AdCampaignPauseParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor id: String
+
+      attr_reader api_version_date: String?
+
+      def api_version_date=: (String) -> String
+
+      attr_reader idempotency_key: String?
+
+      def idempotency_key=: (String) -> String
+
+      def initialize: (
+        id: String,
+        ?api_version_date: String,
+        ?idempotency_key: String,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        api_version_date: String,
+        idempotency_key: String,
+        request_options: WhopSDK::RequestOptions
+      }
+    end
+  end
+end

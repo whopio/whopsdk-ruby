@@ -16,115 +16,168 @@ module WhopSDK
 
       # The detailed description shown on the app store's in-depth app view page.
       sig { returns(T.nilable(String)) }
-      attr_accessor :app_store_description
+      attr_reader :app_store_description
 
-      # The type of end-user an app is built for
-      sig { returns(T.nilable(WhopSDK::AppType::OrSymbol)) }
-      attr_accessor :app_type
+      sig { params(app_store_description: String).void }
+      attr_writer :app_store_description
 
-      # The base production URL where the app is hosted. Pass null to take the app proxy
-      # offline.
+      # The type of end-user the app is built for. Cannot be changed on an app whose
+      # type is already `website`.
+      sig { returns(T.nilable(WhopSDK::AppUpdateParams::AppType::OrSymbol)) }
+      attr_reader :app_type
+
+      sig { params(app_type: WhopSDK::AppUpdateParams::AppType::OrSymbol).void }
+      attr_writer :app_type
+
+      # The base production URL where the app is hosted. Set to `null` to take the app
+      # proxy offline.
       sig { returns(T.nilable(String)) }
       attr_accessor :base_url
 
-      # The URL path for the company dashboard view of the app, such as '/dashboard'.
+      # The URL path for the account dashboard view.
       sig { returns(T.nilable(String)) }
       attr_accessor :dashboard_path
 
       # A short description of the app shown in listings and search results.
       sig { returns(T.nilable(String)) }
-      attr_accessor :description
+      attr_reader :description
 
-      # The URL path for the discover view of the app, such as '/discover'.
+      sig { params(description: String).void }
+      attr_writer :description
+
+      # The URL path for the discover view.
       sig { returns(T.nilable(String)) }
       attr_accessor :discover_path
 
-      # The URL path for the member-facing hub view of the app, such as
-      # '/experiences/[experienceId]'.
+      # The URL path for the member-facing hub view, such as
+      # `/experiences/[experienceId]`.
       sig { returns(T.nilable(String)) }
       attr_accessor :experience_path
 
-      # The icon image for the app, used in listings and navigation.
+      # The icon image for the app in PNG, JPEG, or GIF format, referencing an uploaded
+      # file: `{ id }` for an existing attachment or `{ direct_upload_id }` for a new
+      # direct upload.
       sig { returns(T.nilable(WhopSDK::AppUpdateParams::Icon)) }
       attr_reader :icon
 
-      sig do
-        params(icon: T.nilable(WhopSDK::AppUpdateParams::Icon::OrHash)).void
-      end
+      sig { params(icon: WhopSDK::AppUpdateParams::Icon::OrHash).void }
       attr_writer :icon
 
       # The display name for the app, shown to users on the app store and product pages.
       sig { returns(T.nilable(String)) }
-      attr_accessor :name
+      attr_reader :name
 
-      # How this app authenticates at the OAuth token endpoint.
+      sig { params(name: String).void }
+      attr_writer :name
+
+      # How the app authenticates at the OAuth token endpoint.
       sig do
         returns(T.nilable(WhopSDK::AppUpdateParams::OAuthClientType::OrSymbol))
       end
-      attr_accessor :oauth_client_type
+      attr_reader :oauth_client_type
 
-      # The URL path to the OpenAPI spec file of the app, such as
-      # '/assets/openapi.json'.
+      sig do
+        params(
+          oauth_client_type: WhopSDK::AppUpdateParams::OAuthClientType::OrSymbol
+        ).void
+      end
+      attr_writer :oauth_client_type
+
+      # The URL path to the app's OpenAPI spec file (requires the ai_chat capability).
       sig { returns(T.nilable(String)) }
       attr_accessor :openapi_path
 
-      # The whitelisted OAuth callback URLs that users are redirected to after
-      # authorizing the app
-      sig { returns(T.nilable(T::Array[String])) }
-      attr_accessor :redirect_uris
-
-      # The permission scopes the app will request from users when they install it.
-      sig do
-        returns(
-          T.nilable(T::Array[WhopSDK::AppUpdateParams::RequiredScope::OrSymbol])
-        )
-      end
-      attr_accessor :required_scopes
-
-      # The unique subdomain route where the app's hosted web builds are served, such as
-      # 'myapp' for myapp.whop.site.
+      # The app build (`abld_` tag) to serve as the Android production build, or `null`
+      # to unassign it. Same rules as `production_web_build_id`.
       sig { returns(T.nilable(String)) }
-      attr_accessor :route
+      attr_accessor :production_android_build_id
 
-      # Secrets to add or overwrite on the app, as an object of string values (e.g.
-      # {"MAIL_API_KEY": "..."}). Keys not included are left untouched. Pass null or an
-      # empty string as the value to delete a secret. Secrets are encrypted at rest and
-      # injected into the app's hosted server runtime as environment bindings.
-      sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
-      attr_accessor :secrets
+      # The app build (`abld_` tag) to serve as the iOS production build, or `null` to
+      # unassign it. Same rules as `production_web_build_id`.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :production_ios_build_id
 
-      # The URL path to the skills directory of the app, such as '/assets/skills/'.
+      # The app build (`abld_` tag) to serve as the web production build, or `null` to
+      # unassign it. The build must belong to this app, target web, and be in the draft
+      # or approved status; a draft build is queued for approval and takes over once
+      # approved. Requires the `developer:manage_builds` scope.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :production_web_build_id
+
+      # The whitelisted OAuth callback URLs users are redirected to after authorizing
+      # the app.
+      sig { returns(T.nilable(T::Array[String])) }
+      attr_reader :redirect_uris
+
+      sig { params(redirect_uris: T::Array[String]).void }
+      attr_writer :redirect_uris
+
+      # The OAuth scopes the app requests from users when they install it.
+      sig { returns(T.nilable(T::Array[String])) }
+      attr_reader :required_scopes
+
+      sig { params(required_scopes: T::Array[String]).void }
+      attr_writer :required_scopes
+
+      # The subdomain route where the app's hosted web builds are served.
+      sig { returns(T.nilable(String)) }
+      attr_reader :route
+
+      sig { params(route: String).void }
+      attr_writer :route
+
+      # Secrets to add or overwrite on the app, as an object of string values. Keys not
+      # included are left untouched; pass null or an empty string as the value to delete
+      # a secret. Encrypted at rest and injected into the app's hosted server runtime.
+      sig { returns(T.nilable(T.anything)) }
+      attr_reader :secrets
+
+      sig { params(secrets: T.anything).void }
+      attr_writer :secrets
+
+      # The URL path to the app's skills directory (requires the ai_chat capability).
       sig { returns(T.nilable(String)) }
       attr_accessor :skills_path
 
-      # The status of an experience interface
-      sig { returns(T.nilable(WhopSDK::AppStatuses::OrSymbol)) }
-      attr_accessor :status
+      # Controls whether the app is published on Whop discovery or accessible only
+      # through its direct link. Publishing requires a name, icon, and description.
+      sig { returns(T.nilable(WhopSDK::AppUpdateParams::Status::OrSymbol)) }
+      attr_reader :status
+
+      sig { params(status: WhopSDK::AppUpdateParams::Status::OrSymbol).void }
+      attr_writer :status
+
+      sig { returns(T.nilable(String)) }
+      attr_reader :api_version_date
+
+      sig { params(api_version_date: String).void }
+      attr_writer :api_version_date
 
       sig do
         params(
           id: String,
-          app_store_description: T.nilable(String),
-          app_type: T.nilable(WhopSDK::AppType::OrSymbol),
+          app_store_description: String,
+          app_type: WhopSDK::AppUpdateParams::AppType::OrSymbol,
           base_url: T.nilable(String),
           dashboard_path: T.nilable(String),
-          description: T.nilable(String),
+          description: String,
           discover_path: T.nilable(String),
           experience_path: T.nilable(String),
-          icon: T.nilable(WhopSDK::AppUpdateParams::Icon::OrHash),
-          name: T.nilable(String),
+          icon: WhopSDK::AppUpdateParams::Icon::OrHash,
+          name: String,
           oauth_client_type:
-            T.nilable(WhopSDK::AppUpdateParams::OAuthClientType::OrSymbol),
+            WhopSDK::AppUpdateParams::OAuthClientType::OrSymbol,
           openapi_path: T.nilable(String),
-          redirect_uris: T.nilable(T::Array[String]),
-          required_scopes:
-            T.nilable(
-              T::Array[WhopSDK::AppUpdateParams::RequiredScope::OrSymbol]
-            ),
-          route: T.nilable(String),
-          secrets: T.nilable(T::Hash[Symbol, T.anything]),
+          production_android_build_id: T.nilable(String),
+          production_ios_build_id: T.nilable(String),
+          production_web_build_id: T.nilable(String),
+          redirect_uris: T::Array[String],
+          required_scopes: T::Array[String],
+          route: String,
+          secrets: T.anything,
           skills_path: T.nilable(String),
-          status: T.nilable(WhopSDK::AppStatuses::OrSymbol),
+          status: WhopSDK::AppUpdateParams::Status::OrSymbol,
+          api_version_date: String,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -132,46 +185,59 @@ module WhopSDK
         id:,
         # The detailed description shown on the app store's in-depth app view page.
         app_store_description: nil,
-        # The type of end-user an app is built for
+        # The type of end-user the app is built for. Cannot be changed on an app whose
+        # type is already `website`.
         app_type: nil,
-        # The base production URL where the app is hosted. Pass null to take the app proxy
-        # offline.
+        # The base production URL where the app is hosted. Set to `null` to take the app
+        # proxy offline.
         base_url: nil,
-        # The URL path for the company dashboard view of the app, such as '/dashboard'.
+        # The URL path for the account dashboard view.
         dashboard_path: nil,
         # A short description of the app shown in listings and search results.
         description: nil,
-        # The URL path for the discover view of the app, such as '/discover'.
+        # The URL path for the discover view.
         discover_path: nil,
-        # The URL path for the member-facing hub view of the app, such as
-        # '/experiences/[experienceId]'.
+        # The URL path for the member-facing hub view, such as
+        # `/experiences/[experienceId]`.
         experience_path: nil,
-        # The icon image for the app, used in listings and navigation.
+        # The icon image for the app in PNG, JPEG, or GIF format, referencing an uploaded
+        # file: `{ id }` for an existing attachment or `{ direct_upload_id }` for a new
+        # direct upload.
         icon: nil,
         # The display name for the app, shown to users on the app store and product pages.
         name: nil,
-        # How this app authenticates at the OAuth token endpoint.
+        # How the app authenticates at the OAuth token endpoint.
         oauth_client_type: nil,
-        # The URL path to the OpenAPI spec file of the app, such as
-        # '/assets/openapi.json'.
+        # The URL path to the app's OpenAPI spec file (requires the ai_chat capability).
         openapi_path: nil,
-        # The whitelisted OAuth callback URLs that users are redirected to after
-        # authorizing the app
+        # The app build (`abld_` tag) to serve as the Android production build, or `null`
+        # to unassign it. Same rules as `production_web_build_id`.
+        production_android_build_id: nil,
+        # The app build (`abld_` tag) to serve as the iOS production build, or `null` to
+        # unassign it. Same rules as `production_web_build_id`.
+        production_ios_build_id: nil,
+        # The app build (`abld_` tag) to serve as the web production build, or `null` to
+        # unassign it. The build must belong to this app, target web, and be in the draft
+        # or approved status; a draft build is queued for approval and takes over once
+        # approved. Requires the `developer:manage_builds` scope.
+        production_web_build_id: nil,
+        # The whitelisted OAuth callback URLs users are redirected to after authorizing
+        # the app.
         redirect_uris: nil,
-        # The permission scopes the app will request from users when they install it.
+        # The OAuth scopes the app requests from users when they install it.
         required_scopes: nil,
-        # The unique subdomain route where the app's hosted web builds are served, such as
-        # 'myapp' for myapp.whop.site.
+        # The subdomain route where the app's hosted web builds are served.
         route: nil,
-        # Secrets to add or overwrite on the app, as an object of string values (e.g.
-        # {"MAIL_API_KEY": "..."}). Keys not included are left untouched. Pass null or an
-        # empty string as the value to delete a secret. Secrets are encrypted at rest and
-        # injected into the app's hosted server runtime as environment bindings.
+        # Secrets to add or overwrite on the app, as an object of string values. Keys not
+        # included are left untouched; pass null or an empty string as the value to delete
+        # a secret. Encrypted at rest and injected into the app's hosted server runtime.
         secrets: nil,
-        # The URL path to the skills directory of the app, such as '/assets/skills/'.
+        # The URL path to the app's skills directory (requires the ai_chat capability).
         skills_path: nil,
-        # The status of an experience interface
+        # Controls whether the app is published on Whop discovery or accessible only
+        # through its direct link. Publishing requires a name, icon, and description.
         status: nil,
+        api_version_date: nil,
         request_options: {}
       )
       end
@@ -180,32 +246,62 @@ module WhopSDK
         override.returns(
           {
             id: String,
-            app_store_description: T.nilable(String),
-            app_type: T.nilable(WhopSDK::AppType::OrSymbol),
+            app_store_description: String,
+            app_type: WhopSDK::AppUpdateParams::AppType::OrSymbol,
             base_url: T.nilable(String),
             dashboard_path: T.nilable(String),
-            description: T.nilable(String),
+            description: String,
             discover_path: T.nilable(String),
             experience_path: T.nilable(String),
-            icon: T.nilable(WhopSDK::AppUpdateParams::Icon),
-            name: T.nilable(String),
+            icon: WhopSDK::AppUpdateParams::Icon,
+            name: String,
             oauth_client_type:
-              T.nilable(WhopSDK::AppUpdateParams::OAuthClientType::OrSymbol),
+              WhopSDK::AppUpdateParams::OAuthClientType::OrSymbol,
             openapi_path: T.nilable(String),
-            redirect_uris: T.nilable(T::Array[String]),
-            required_scopes:
-              T.nilable(
-                T::Array[WhopSDK::AppUpdateParams::RequiredScope::OrSymbol]
-              ),
-            route: T.nilable(String),
-            secrets: T.nilable(T::Hash[Symbol, T.anything]),
+            production_android_build_id: T.nilable(String),
+            production_ios_build_id: T.nilable(String),
+            production_web_build_id: T.nilable(String),
+            redirect_uris: T::Array[String],
+            required_scopes: T::Array[String],
+            route: String,
+            secrets: T.anything,
             skills_path: T.nilable(String),
-            status: T.nilable(WhopSDK::AppStatuses::OrSymbol),
+            status: WhopSDK::AppUpdateParams::Status::OrSymbol,
+            api_version_date: String,
             request_options: WhopSDK::RequestOptions
           }
         )
       end
       def to_hash
+      end
+
+      # The type of end-user the app is built for. Cannot be changed on an app whose
+      # type is already `website`.
+      module AppType
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias { T.all(Symbol, WhopSDK::AppUpdateParams::AppType) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        B2B_APP =
+          T.let(:b2b_app, WhopSDK::AppUpdateParams::AppType::TaggedSymbol)
+        B2C_APP =
+          T.let(:b2c_app, WhopSDK::AppUpdateParams::AppType::TaggedSymbol)
+        COMPANY_APP =
+          T.let(:company_app, WhopSDK::AppUpdateParams::AppType::TaggedSymbol)
+        COMPONENT =
+          T.let(:component, WhopSDK::AppUpdateParams::AppType::TaggedSymbol)
+        WEBSITE =
+          T.let(:website, WhopSDK::AppUpdateParams::AppType::TaggedSymbol)
+
+        sig do
+          override.returns(
+            T::Array[WhopSDK::AppUpdateParams::AppType::TaggedSymbol]
+          )
+        end
+        def self.values
+        end
       end
 
       class Icon < WhopSDK::Internal::Type::BaseModel
@@ -214,24 +310,40 @@ module WhopSDK
             T.any(WhopSDK::AppUpdateParams::Icon, WhopSDK::Internal::AnyHash)
           end
 
-        # The ID of an existing file object.
-        sig { returns(String) }
-        attr_accessor :id
+        # The tag of an already-uploaded attachment.
+        sig { returns(T.nilable(String)) }
+        attr_reader :id
 
-        # The icon image for the app, used in listings and navigation.
-        sig { params(id: String).returns(T.attached_class) }
+        sig { params(id: String).void }
+        attr_writer :id
+
+        # The signed id of a completed direct upload.
+        sig { returns(T.nilable(String)) }
+        attr_reader :direct_upload_id
+
+        sig { params(direct_upload_id: String).void }
+        attr_writer :direct_upload_id
+
+        # The icon image for the app in PNG, JPEG, or GIF format, referencing an uploaded
+        # file: `{ id }` for an existing attachment or `{ direct_upload_id }` for a new
+        # direct upload.
+        sig do
+          params(id: String, direct_upload_id: String).returns(T.attached_class)
+        end
         def self.new(
-          # The ID of an existing file object.
-          id:
+          # The tag of an already-uploaded attachment.
+          id: nil,
+          # The signed id of a completed direct upload.
+          direct_upload_id: nil
         )
         end
 
-        sig { override.returns({ id: String }) }
+        sig { override.returns({ id: String, direct_upload_id: String }) }
         def to_hash
         end
       end
 
-      # How this app authenticates at the OAuth token endpoint.
+      # How the app authenticates at the OAuth token endpoint.
       module OAuthClientType
         extend WhopSDK::Internal::Type::Enum
 
@@ -261,25 +373,23 @@ module WhopSDK
         end
       end
 
-      # These are the scopes an app can request on behalf of a user
-      module RequiredScope
+      # Controls whether the app is published on Whop discovery or accessible only
+      # through its direct link. Publishing requires a name, icon, and description.
+      module Status
         extend WhopSDK::Internal::Type::Enum
 
         TaggedSymbol =
-          T.type_alias do
-            T.all(Symbol, WhopSDK::AppUpdateParams::RequiredScope)
-          end
+          T.type_alias { T.all(Symbol, WhopSDK::AppUpdateParams::Status) }
         OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-        READ_USER =
-          T.let(
-            :read_user,
-            WhopSDK::AppUpdateParams::RequiredScope::TaggedSymbol
-          )
+        LIVE = T.let(:live, WhopSDK::AppUpdateParams::Status::TaggedSymbol)
+        UNLISTED =
+          T.let(:unlisted, WhopSDK::AppUpdateParams::Status::TaggedSymbol)
+        HIDDEN = T.let(:hidden, WhopSDK::AppUpdateParams::Status::TaggedSymbol)
 
         sig do
           override.returns(
-            T::Array[WhopSDK::AppUpdateParams::RequiredScope::TaggedSymbol]
+            T::Array[WhopSDK::AppUpdateParams::Status::TaggedSymbol]
           )
         end
         def self.values

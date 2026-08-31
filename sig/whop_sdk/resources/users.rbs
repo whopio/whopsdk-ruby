@@ -1,6 +1,47 @@
 module WhopSDK
   module Resources
     class Users
+      def retrieve: (
+        String id,
+        ?account_id: String,
+        ?from: String,
+        ?include_balance_history: bool,
+        ?interval: WhopSDK::Models::UserRetrieveParams::interval,
+        ?time_zone: String,
+        ?to: String,
+        ?api_version_date: String,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::User
+
+      def update: (
+        String id,
+        ?account_id: String,
+        ?banner: WhopSDK::UserUpdateParams::Banner?,
+        ?bio: String,
+        ?name: String,
+        ?profile_picture: WhopSDK::UserUpdateParams::ProfilePicture,
+        ?username: String,
+        ?api_version_date: String,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::User
+
+      def list: (
+        ?after: String,
+        ?before: String,
+        ?first: Integer,
+        ?last: Integer,
+        ?query: String,
+        ?api_version_date: String,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Internal::CursorPage[WhopSDK::User]
+
+      def check_access: (
+        String resource_id,
+        id: String,
+        ?api_version_date: String,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Models::UserCheckAccessResponse
+
       def initialize: (client: WhopSDK::Client) -> void
     end
   end

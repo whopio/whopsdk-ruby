@@ -1,0 +1,305 @@
+module WhopSDK
+  module Models
+    type plan_list_response =
+      {
+        id: String,
+        account: WhopSDK::Models::PlanListResponse::Account?,
+        adaptive_pricing_enabled: bool,
+        billing_period: Float?,
+        cancel_discount_intervals: Float?,
+        cancel_discount_percentage: Float?,
+        checkout_styling: top?,
+        created_at: String,
+        currency: String,
+        custom_fields: ::Array[WhopSDK::Models::PlanListResponse::CustomField],
+        description: String?,
+        expiration_days: Float?,
+        formatted_price: String,
+        image: top?,
+        initial_price: Float,
+        internal_notes: String?,
+        invoice: top?,
+        member_count: Float?,
+        metadata: top?,
+        offer_cancel_discount: bool?,
+        payment_method_configuration: top?,
+        plan_type: WhopSDK::Models::PlanListResponse::plan_type,
+        product: top?,
+        purchase_url: String,
+        release_method: WhopSDK::Models::PlanListResponse::release_method,
+        renewal_price: Float,
+        split_pay_required_payments: Float?,
+        stock: Float?,
+        strike_through_initial_price: Float?,
+        strike_through_renewal_price: Float?,
+        three_ds_level: WhopSDK::Models::PlanListResponse::three_ds_level?,
+        title: String?,
+        trial_period_days: Float?,
+        unlimited_stock: bool,
+        updated_at: String,
+        visibility: WhopSDK::Models::PlanListResponse::visibility
+      }
+
+    class PlanListResponse < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor account: WhopSDK::Models::PlanListResponse::Account?
+
+      attr_accessor adaptive_pricing_enabled: bool
+
+      attr_accessor billing_period: Float?
+
+      attr_accessor cancel_discount_intervals: Float?
+
+      attr_accessor cancel_discount_percentage: Float?
+
+      attr_accessor checkout_styling: top?
+
+      attr_accessor created_at: String
+
+      attr_accessor currency: String
+
+      attr_accessor custom_fields: ::Array[WhopSDK::Models::PlanListResponse::CustomField]
+
+      attr_accessor description: String?
+
+      attr_accessor expiration_days: Float?
+
+      attr_accessor formatted_price: String
+
+      attr_accessor image: top?
+
+      attr_accessor initial_price: Float
+
+      attr_accessor internal_notes: String?
+
+      attr_accessor invoice: top?
+
+      attr_accessor member_count: Float?
+
+      attr_accessor metadata: top?
+
+      attr_accessor offer_cancel_discount: bool?
+
+      attr_accessor payment_method_configuration: top?
+
+      attr_accessor plan_type: WhopSDK::Models::PlanListResponse::plan_type
+
+      attr_accessor product: top?
+
+      attr_accessor purchase_url: String
+
+      attr_accessor release_method: WhopSDK::Models::PlanListResponse::release_method
+
+      attr_accessor renewal_price: Float
+
+      attr_accessor split_pay_required_payments: Float?
+
+      attr_accessor stock: Float?
+
+      attr_accessor strike_through_initial_price: Float?
+
+      attr_accessor strike_through_renewal_price: Float?
+
+      attr_accessor three_ds_level: WhopSDK::Models::PlanListResponse::three_ds_level?
+
+      attr_accessor title: String?
+
+      attr_accessor trial_period_days: Float?
+
+      attr_accessor unlimited_stock: bool
+
+      attr_accessor updated_at: String
+
+      attr_accessor visibility: WhopSDK::Models::PlanListResponse::visibility
+
+      def initialize: (
+        id: String,
+        account: WhopSDK::Models::PlanListResponse::Account?,
+        adaptive_pricing_enabled: bool,
+        billing_period: Float?,
+        cancel_discount_intervals: Float?,
+        cancel_discount_percentage: Float?,
+        checkout_styling: top?,
+        created_at: String,
+        currency: String,
+        custom_fields: ::Array[WhopSDK::Models::PlanListResponse::CustomField],
+        description: String?,
+        expiration_days: Float?,
+        formatted_price: String,
+        image: top?,
+        initial_price: Float,
+        internal_notes: String?,
+        invoice: top?,
+        member_count: Float?,
+        metadata: top?,
+        offer_cancel_discount: bool?,
+        payment_method_configuration: top?,
+        plan_type: WhopSDK::Models::PlanListResponse::plan_type,
+        product: top?,
+        purchase_url: String,
+        release_method: WhopSDK::Models::PlanListResponse::release_method,
+        renewal_price: Float,
+        split_pay_required_payments: Float?,
+        stock: Float?,
+        strike_through_initial_price: Float?,
+        strike_through_renewal_price: Float?,
+        three_ds_level: WhopSDK::Models::PlanListResponse::three_ds_level?,
+        title: String?,
+        trial_period_days: Float?,
+        unlimited_stock: bool,
+        updated_at: String,
+        visibility: WhopSDK::Models::PlanListResponse::visibility
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        account: WhopSDK::Models::PlanListResponse::Account?,
+        adaptive_pricing_enabled: bool,
+        billing_period: Float?,
+        cancel_discount_intervals: Float?,
+        cancel_discount_percentage: Float?,
+        checkout_styling: top?,
+        created_at: String,
+        currency: String,
+        custom_fields: ::Array[WhopSDK::Models::PlanListResponse::CustomField],
+        description: String?,
+        expiration_days: Float?,
+        formatted_price: String,
+        image: top?,
+        initial_price: Float,
+        internal_notes: String?,
+        invoice: top?,
+        member_count: Float?,
+        metadata: top?,
+        offer_cancel_discount: bool?,
+        payment_method_configuration: top?,
+        plan_type: WhopSDK::Models::PlanListResponse::plan_type,
+        product: top?,
+        purchase_url: String,
+        release_method: WhopSDK::Models::PlanListResponse::release_method,
+        renewal_price: Float,
+        split_pay_required_payments: Float?,
+        stock: Float?,
+        strike_through_initial_price: Float?,
+        strike_through_renewal_price: Float?,
+        three_ds_level: WhopSDK::Models::PlanListResponse::three_ds_level?,
+        title: String?,
+        trial_period_days: Float?,
+        unlimited_stock: bool,
+        updated_at: String,
+        visibility: WhopSDK::Models::PlanListResponse::visibility
+      }
+
+      type account = { id: String, title: String }
+
+      class Account < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor title: String
+
+        def initialize: (id: String, title: String) -> void
+
+        def to_hash: -> { id: String, title: String }
+      end
+
+      type custom_field =
+        {
+          id: String,
+          field_type: WhopSDK::Models::PlanListResponse::CustomField::field_type,
+          name: String,
+          order: Float,
+          placeholder: String?,
+          required: bool
+        }
+
+      class CustomField < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor field_type: WhopSDK::Models::PlanListResponse::CustomField::field_type
+
+        attr_accessor name: String
+
+        attr_accessor order: Float
+
+        attr_accessor placeholder: String?
+
+        attr_accessor required: bool
+
+        def initialize: (
+          id: String,
+          field_type: WhopSDK::Models::PlanListResponse::CustomField::field_type,
+          name: String,
+          order: Float,
+          placeholder: String?,
+          required: bool
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          field_type: WhopSDK::Models::PlanListResponse::CustomField::field_type,
+          name: String,
+          order: Float,
+          placeholder: String?,
+          required: bool
+        }
+
+        type field_type = :text
+
+        module FieldType
+          extend WhopSDK::Internal::Type::Enum
+
+          TEXT: :text
+
+          def self?.values: -> ::Array[WhopSDK::Models::PlanListResponse::CustomField::field_type]
+        end
+      end
+
+      type plan_type = :renewal | :one_time
+
+      module PlanType
+        extend WhopSDK::Internal::Type::Enum
+
+        RENEWAL: :renewal
+        ONE_TIME: :one_time
+
+        def self?.values: -> ::Array[WhopSDK::Models::PlanListResponse::plan_type]
+      end
+
+      type release_method = :buy_now | :waitlist
+
+      module ReleaseMethod
+        extend WhopSDK::Internal::Type::Enum
+
+        BUY_NOW: :buy_now
+        WAITLIST: :waitlist
+
+        def self?.values: -> ::Array[WhopSDK::Models::PlanListResponse::release_method]
+      end
+
+      type three_ds_level = :mandate_challenge | :frictionless
+
+      module ThreeDSLevel
+        extend WhopSDK::Internal::Type::Enum
+
+        MANDATE_CHALLENGE: :mandate_challenge
+        FRICTIONLESS: :frictionless
+
+        def self?.values: -> ::Array[WhopSDK::Models::PlanListResponse::three_ds_level]
+      end
+
+      type visibility = :visible | :hidden | :archived | :quick_link
+
+      module Visibility
+        extend WhopSDK::Internal::Type::Enum
+
+        VISIBLE: :visible
+        HIDDEN: :hidden
+        ARCHIVED: :archived
+        QUICK_LINK: :quick_link
+
+        def self?.values: -> ::Array[WhopSDK::Models::PlanListResponse::visibility]
+      end
+    end
+  end
+end

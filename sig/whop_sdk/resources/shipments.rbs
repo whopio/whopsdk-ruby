@@ -2,27 +2,35 @@ module WhopSDK
   module Resources
     class Shipments
       def create: (
-        company_id: String,
         payment_id: String,
-        tracking_code: String,
+        tracking_number: String,
+        ?account_id: String,
+        ?api_version_date: String,
+        ?idempotency_key: String,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Shipment
 
       def retrieve: (
         String id,
+        ?api_version_date: String,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Shipment
 
       def list: (
+        ?account_id: String,
         ?after: String,
         ?before: String,
-        ?company_id: String,
+        ?created_after: String,
+        ?created_before: String,
+        ?direction: WhopSDK::Models::ShipmentListParams::direction,
         ?first: Integer,
         ?last: Integer,
-        ?payment_id: String,
-        ?user_id: String,
+        ?order: WhopSDK::Models::ShipmentListParams::order,
+        ?payment_id: ::Array[String],
+        ?status: WhopSDK::Models::ShipmentListParams::status,
+        ?api_version_date: String,
         ?request_options: WhopSDK::request_opts
-      ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::ShipmentListResponse]
+      ) -> WhopSDK::Internal::CursorPage[WhopSDK::Shipment]
 
       def initialize: (client: WhopSDK::Client) -> void
     end

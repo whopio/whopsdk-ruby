@@ -3,28 +3,32 @@ module WhopSDK
     type promo_code =
       {
         id: String,
+        account: WhopSDK::PromoCode::Account,
         amount_off: Float,
         churned_users_only: bool,
         code: String?,
-        company: WhopSDK::PromoCode::Company,
-        created_at: Time,
-        currency: WhopSDK::Models::currency,
-        duration: WhopSDK::Models::promo_duration?,
+        created_at: String,
+        currency: WhopSDK::Models::PromoCode::currency,
+        duration: WhopSDK::Models::PromoCode::duration,
         existing_memberships_only: bool,
-        expires_at: Time?,
+        expires_at: String?,
+        metadata: top,
         new_users_only: bool,
         one_per_customer: bool,
         product: WhopSDK::PromoCode::Product?,
         promo_duration_months: Integer?,
-        promo_type: WhopSDK::Models::promo_type,
-        status: WhopSDK::Models::promo_code_status,
+        promo_type: WhopSDK::Models::PromoCode::promo_type,
+        status: WhopSDK::Models::PromoCode::status,
         stock: Integer,
         unlimited_stock: bool,
+        updated_at: String,
         uses: Integer
       }
 
     class PromoCode < WhopSDK::Internal::Type::BaseModel
       attr_accessor id: String
+
+      attr_accessor account: WhopSDK::PromoCode::Account
 
       attr_accessor amount_off: Float
 
@@ -32,17 +36,17 @@ module WhopSDK
 
       attr_accessor code: String?
 
-      attr_accessor company: WhopSDK::PromoCode::Company
+      attr_accessor created_at: String
 
-      attr_accessor created_at: Time
+      attr_accessor currency: WhopSDK::Models::PromoCode::currency
 
-      attr_accessor currency: WhopSDK::Models::currency
-
-      attr_accessor duration: WhopSDK::Models::promo_duration?
+      attr_accessor duration: WhopSDK::Models::PromoCode::duration
 
       attr_accessor existing_memberships_only: bool
 
-      attr_accessor expires_at: Time?
+      attr_accessor expires_at: String?
+
+      attr_accessor metadata: top
 
       attr_accessor new_users_only: bool
 
@@ -52,63 +56,69 @@ module WhopSDK
 
       attr_accessor promo_duration_months: Integer?
 
-      attr_accessor promo_type: WhopSDK::Models::promo_type
+      attr_accessor promo_type: WhopSDK::Models::PromoCode::promo_type
 
-      attr_accessor status: WhopSDK::Models::promo_code_status
+      attr_accessor status: WhopSDK::Models::PromoCode::status
 
       attr_accessor stock: Integer
 
       attr_accessor unlimited_stock: bool
 
+      attr_accessor updated_at: String
+
       attr_accessor uses: Integer
 
       def initialize: (
         id: String,
+        account: WhopSDK::PromoCode::Account,
         amount_off: Float,
         churned_users_only: bool,
         code: String?,
-        company: WhopSDK::PromoCode::Company,
-        created_at: Time,
-        currency: WhopSDK::Models::currency,
-        duration: WhopSDK::Models::promo_duration?,
+        created_at: String,
+        currency: WhopSDK::Models::PromoCode::currency,
+        duration: WhopSDK::Models::PromoCode::duration,
         existing_memberships_only: bool,
-        expires_at: Time?,
+        expires_at: String?,
+        metadata: top,
         new_users_only: bool,
         one_per_customer: bool,
         product: WhopSDK::PromoCode::Product?,
         promo_duration_months: Integer?,
-        promo_type: WhopSDK::Models::promo_type,
-        status: WhopSDK::Models::promo_code_status,
+        promo_type: WhopSDK::Models::PromoCode::promo_type,
+        status: WhopSDK::Models::PromoCode::status,
         stock: Integer,
         unlimited_stock: bool,
+        updated_at: String,
         uses: Integer
       ) -> void
 
       def to_hash: -> {
         id: String,
+        account: WhopSDK::PromoCode::Account,
         amount_off: Float,
         churned_users_only: bool,
         code: String?,
-        company: WhopSDK::PromoCode::Company,
-        created_at: Time,
-        currency: WhopSDK::Models::currency,
-        duration: WhopSDK::Models::promo_duration?,
+        created_at: String,
+        currency: WhopSDK::Models::PromoCode::currency,
+        duration: WhopSDK::Models::PromoCode::duration,
         existing_memberships_only: bool,
-        expires_at: Time?,
+        expires_at: String?,
+        metadata: top,
         new_users_only: bool,
         one_per_customer: bool,
         product: WhopSDK::PromoCode::Product?,
         promo_duration_months: Integer?,
-        promo_type: WhopSDK::Models::promo_type,
-        status: WhopSDK::Models::promo_code_status,
+        promo_type: WhopSDK::Models::PromoCode::promo_type,
+        status: WhopSDK::Models::PromoCode::status,
         stock: Integer,
         unlimited_stock: bool,
+        updated_at: String,
         uses: Integer
       }
 
-      type company = { id: String, title: String }
+      type account = { id: String, title: String }
 
-      class Company < WhopSDK::Internal::Type::BaseModel
+      class Account < WhopSDK::Internal::Type::BaseModel
         attr_accessor id: String
 
         attr_accessor title: String
@@ -116,6 +126,207 @@ module WhopSDK
         def initialize: (id: String, title: String) -> void
 
         def to_hash: -> { id: String, title: String }
+      end
+
+      type currency =
+        :usd
+        | :sgd
+        | :inr
+        | :aud
+        | :brl
+        | :cad
+        | :dkk
+        | :eur
+        | :nok
+        | :gbp
+        | :sek
+        | :chf
+        | :hkd
+        | :huf
+        | :jpy
+        | :mxn
+        | :myr
+        | :pln
+        | :czk
+        | :nzd
+        | :aed
+        | :eth
+        | :ape
+        | :cop
+        | :ron
+        | :thb
+        | :bgn
+        | :idr
+        | :dop
+        | :php
+        | :try
+        | :krw
+        | :twd
+        | :vnd
+        | :pkr
+        | :clp
+        | :uyu
+        | :ars
+        | :zar
+        | :dzd
+        | :tnd
+        | :mad
+        | :kes
+        | :kwd
+        | :jod
+        | :all
+        | :xcd
+        | :amd
+        | :bsd
+        | :bhd
+        | :bob
+        | :bam
+        | :khr
+        | :crc
+        | :xof
+        | :egp
+        | :etb
+        | :gmd
+        | :ghs
+        | :gtq
+        | :gyd
+        | :ils
+        | :jmd
+        | :mop
+        | :mga
+        | :mur
+        | :mdl
+        | :mnt
+        | :nad
+        | :ngn
+        | :mkd
+        | :omr
+        | :pyg
+        | :pen
+        | :qar
+        | :rwf
+        | :sar
+        | :rsd
+        | :lkr
+        | :tzs
+        | :ttd
+        | :uzs
+        | :rub
+        | :btc
+        | :cny
+        | :usdt
+        | :kzt
+        | :awg
+        | :whop_usd
+        | :xau
+
+      module Currency
+        extend WhopSDK::Internal::Type::Enum
+
+        USD: :usd
+        SGD: :sgd
+        INR: :inr
+        AUD: :aud
+        BRL: :brl
+        CAD: :cad
+        DKK: :dkk
+        EUR: :eur
+        NOK: :nok
+        GBP: :gbp
+        SEK: :sek
+        CHF: :chf
+        HKD: :hkd
+        HUF: :huf
+        JPY: :jpy
+        MXN: :mxn
+        MYR: :myr
+        PLN: :pln
+        CZK: :czk
+        NZD: :nzd
+        AED: :aed
+        ETH: :eth
+        APE: :ape
+        COP: :cop
+        RON: :ron
+        THB: :thb
+        BGN: :bgn
+        IDR: :idr
+        DOP: :dop
+        PHP: :php
+        TRY: :try
+        KRW: :krw
+        TWD: :twd
+        VND: :vnd
+        PKR: :pkr
+        CLP: :clp
+        UYU: :uyu
+        ARS: :ars
+        ZAR: :zar
+        DZD: :dzd
+        TND: :tnd
+        MAD: :mad
+        KES: :kes
+        KWD: :kwd
+        JOD: :jod
+        ALL: :all
+        XCD: :xcd
+        AMD: :amd
+        BSD: :bsd
+        BHD: :bhd
+        BOB: :bob
+        BAM: :bam
+        KHR: :khr
+        CRC: :crc
+        XOF: :xof
+        EGP: :egp
+        ETB: :etb
+        GMD: :gmd
+        GHS: :ghs
+        GTQ: :gtq
+        GYD: :gyd
+        ILS: :ils
+        JMD: :jmd
+        MOP: :mop
+        MGA: :mga
+        MUR: :mur
+        MDL: :mdl
+        MNT: :mnt
+        NAD: :nad
+        NGN: :ngn
+        MKD: :mkd
+        OMR: :omr
+        PYG: :pyg
+        PEN: :pen
+        QAR: :qar
+        RWF: :rwf
+        SAR: :sar
+        RSD: :rsd
+        LKR: :lkr
+        TZS: :tzs
+        TTD: :ttd
+        UZS: :uzs
+        RUB: :rub
+        BTC: :btc
+        CNY: :cny
+        USDT: :usdt
+        KZT: :kzt
+        AWG: :awg
+        WHOP_USD: :whop_usd
+        XAU: :xau
+
+        def self?.values: -> ::Array[WhopSDK::Models::PromoCode::currency]
+      end
+
+      type duration = :forever | :once | :repeating
+
+      module Duration
+        extend WhopSDK::Internal::Type::Enum
+
+        FOREVER: :forever
+        ONCE: :once
+        REPEATING: :repeating
+
+        def self?.values: -> ::Array[WhopSDK::Models::PromoCode::duration]
       end
 
       type product = { id: String, title: String }
@@ -128,6 +339,29 @@ module WhopSDK
         def initialize: (id: String, title: String) -> void
 
         def to_hash: -> { id: String, title: String }
+      end
+
+      type promo_type = :percentage | :flat_amount
+
+      module PromoType
+        extend WhopSDK::Internal::Type::Enum
+
+        PERCENTAGE: :percentage
+        FLAT_AMOUNT: :flat_amount
+
+        def self?.values: -> ::Array[WhopSDK::Models::PromoCode::promo_type]
+      end
+
+      type status = :active | :inactive | :archived
+
+      module Status
+        extend WhopSDK::Internal::Type::Enum
+
+        ACTIVE: :active
+        INACTIVE: :inactive
+        ARCHIVED: :archived
+
+        def self?.values: -> ::Array[WhopSDK::Models::PromoCode::status]
       end
     end
   end

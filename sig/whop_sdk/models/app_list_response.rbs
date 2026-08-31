@@ -3,8 +3,12 @@ module WhopSDK
     type app_list_response =
       {
         id: String,
-        app_type: WhopSDK::Models::app_type,
-        company: WhopSDK::Models::AppListResponse::Company,
+        account: WhopSDK::Models::AppListResponse::Account,
+        app_type: WhopSDK::Models::AppListResponse::app_type,
+        banner_image: WhopSDK::Models::AppListResponse::BannerImage?,
+        base_url: String?,
+        businesses_created_count: Integer,
+        businesses_created_logo_urls: ::Array[String],
         creator: WhopSDK::Models::AppListResponse::Creator,
         dashboard_path: String?,
         description: String?,
@@ -12,22 +16,30 @@ module WhopSDK
         domain_id: String,
         experience_path: String?,
         hosted_url: String?,
-        icon: WhopSDK::Models::AppListResponse::Icon?,
+        icon: WhopSDK::Models::AppListResponse::Icon,
         name: String,
         openapi_path: String?,
         origin: String?,
         route: String?,
         skills_path: String?,
-        status: WhopSDK::Models::app_statuses,
+        status: WhopSDK::Models::AppListResponse::status,
         verified: bool
       }
 
     class AppListResponse < WhopSDK::Internal::Type::BaseModel
       attr_accessor id: String
 
-      attr_accessor app_type: WhopSDK::Models::app_type
+      attr_accessor account: WhopSDK::Models::AppListResponse::Account
 
-      attr_accessor company: WhopSDK::Models::AppListResponse::Company
+      attr_accessor app_type: WhopSDK::Models::AppListResponse::app_type
+
+      attr_accessor banner_image: WhopSDK::Models::AppListResponse::BannerImage?
+
+      attr_accessor base_url: String?
+
+      attr_accessor businesses_created_count: Integer
+
+      attr_accessor businesses_created_logo_urls: ::Array[String]
 
       attr_accessor creator: WhopSDK::Models::AppListResponse::Creator
 
@@ -43,7 +55,7 @@ module WhopSDK
 
       attr_accessor hosted_url: String?
 
-      attr_accessor icon: WhopSDK::Models::AppListResponse::Icon?
+      attr_accessor icon: WhopSDK::Models::AppListResponse::Icon
 
       attr_accessor name: String
 
@@ -55,14 +67,18 @@ module WhopSDK
 
       attr_accessor skills_path: String?
 
-      attr_accessor status: WhopSDK::Models::app_statuses
+      attr_accessor status: WhopSDK::Models::AppListResponse::status
 
       attr_accessor verified: bool
 
       def initialize: (
         id: String,
-        app_type: WhopSDK::Models::app_type,
-        company: WhopSDK::Models::AppListResponse::Company,
+        account: WhopSDK::Models::AppListResponse::Account,
+        app_type: WhopSDK::Models::AppListResponse::app_type,
+        banner_image: WhopSDK::Models::AppListResponse::BannerImage?,
+        base_url: String?,
+        businesses_created_count: Integer,
+        businesses_created_logo_urls: ::Array[String],
         creator: WhopSDK::Models::AppListResponse::Creator,
         dashboard_path: String?,
         description: String?,
@@ -70,20 +86,24 @@ module WhopSDK
         domain_id: String,
         experience_path: String?,
         hosted_url: String?,
-        icon: WhopSDK::Models::AppListResponse::Icon?,
+        icon: WhopSDK::Models::AppListResponse::Icon,
         name: String,
         openapi_path: String?,
         origin: String?,
         route: String?,
         skills_path: String?,
-        status: WhopSDK::Models::app_statuses,
+        status: WhopSDK::Models::AppListResponse::status,
         verified: bool
       ) -> void
 
       def to_hash: -> {
         id: String,
-        app_type: WhopSDK::Models::app_type,
-        company: WhopSDK::Models::AppListResponse::Company,
+        account: WhopSDK::Models::AppListResponse::Account,
+        app_type: WhopSDK::Models::AppListResponse::app_type,
+        banner_image: WhopSDK::Models::AppListResponse::BannerImage?,
+        base_url: String?,
+        businesses_created_count: Integer,
+        businesses_created_logo_urls: ::Array[String],
         creator: WhopSDK::Models::AppListResponse::Creator,
         dashboard_path: String?,
         description: String?,
@@ -91,26 +111,65 @@ module WhopSDK
         domain_id: String,
         experience_path: String?,
         hosted_url: String?,
-        icon: WhopSDK::Models::AppListResponse::Icon?,
+        icon: WhopSDK::Models::AppListResponse::Icon,
         name: String,
         openapi_path: String?,
         origin: String?,
         route: String?,
         skills_path: String?,
-        status: WhopSDK::Models::app_statuses,
+        status: WhopSDK::Models::AppListResponse::status,
         verified: bool
       }
 
-      type company = { id: String, title: String }
+      type account =
+        { id: String, logo_url: String?, route: String, title: String }
 
-      class Company < WhopSDK::Internal::Type::BaseModel
+      class Account < WhopSDK::Internal::Type::BaseModel
         attr_accessor id: String
+
+        attr_accessor logo_url: String?
+
+        attr_accessor route: String
 
         attr_accessor title: String
 
-        def initialize: (id: String, title: String) -> void
+        def initialize: (
+          id: String,
+          logo_url: String?,
+          route: String,
+          title: String
+        ) -> void
 
-        def to_hash: -> { id: String, title: String }
+        def to_hash: -> {
+          id: String,
+          logo_url: String?,
+          route: String,
+          title: String
+        }
+      end
+
+      type app_type = :b2b_app | :b2c_app | :company_app | :component | :website
+
+      module AppType
+        extend WhopSDK::Internal::Type::Enum
+
+        B2B_APP: :b2b_app
+        B2C_APP: :b2c_app
+        COMPANY_APP: :company_app
+        COMPONENT: :component
+        WEBSITE: :website
+
+        def self?.values: -> ::Array[WhopSDK::Models::AppListResponse::app_type]
+      end
+
+      type banner_image = { url: String }
+
+      class BannerImage < WhopSDK::Internal::Type::BaseModel
+        attr_accessor url: String
+
+        def initialize: (url: String) -> void
+
+        def to_hash: -> { url: String }
       end
 
       type creator = { id: String, name: String?, username: String }
@@ -127,14 +186,26 @@ module WhopSDK
         def to_hash: -> { id: String, name: String?, username: String }
       end
 
-      type icon = { url: String? }
+      type icon = { url: String }
 
       class Icon < WhopSDK::Internal::Type::BaseModel
-        attr_accessor url: String?
+        attr_accessor url: String
 
-        def initialize: (url: String?) -> void
+        def initialize: (url: String) -> void
 
-        def to_hash: -> { url: String? }
+        def to_hash: -> { url: String }
+      end
+
+      type status = :live | :unlisted | :hidden
+
+      module Status
+        extend WhopSDK::Internal::Type::Enum
+
+        LIVE: :live
+        UNLISTED: :unlisted
+        HIDDEN: :hidden
+
+        def self?.values: -> ::Array[WhopSDK::Models::AppListResponse::status]
       end
     end
   end

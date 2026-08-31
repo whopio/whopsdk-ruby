@@ -29,232 +29,359 @@ module WhopSDK
     # @return [String, nil]
     attr_reader :app_id
 
-    # Apps
+    # An App is software you build on Whop. It can be a hosted web app served at
+    # `<route>.whop.site` or an API integration installed as an experience, and it
+    # belongs to the account that owns its credentials, settings, builds, and runtime
+    # logs.
+    #
+    # Use the Apps API to manage app configuration, deploy an app's working copy and
+    # follow the run on the app's `deployment` field, and, for hosted apps, read
+    # server runtime logs for console output, uncaught exceptions, and failed
+    # requests. Logs are retained for 7 days and can be filtered by build, level, time
+    # window, and message text.
+    #
+    # Apps are also reusable blueprints. List official blueprints with
+    # `app_type=website&verified=true&order=template_usage`, or community blueprints
+    # with `app_type=website&verified=false&recommended=true&order=template_usage`.
+    # Pass the returned App `id` as `blueprint_id` when creating an Account.
     # @return [WhopSDK::Resources::Apps]
     attr_reader :apps
 
-    # Invoices
     # @return [WhopSDK::Resources::Invoices]
     attr_reader :invoices
 
-    # Course lesson interactions
     # @return [WhopSDK::Resources::CourseLessonInteractions]
     attr_reader :course_lesson_interactions
 
-    # Products
+    # A Product is a digital good or service sold on Whop. Products may contain plans
+    # for pricing and/or experiences for content delivery.
+    #
+    # Use the Products API to search the public marketplace, list an account's
+    # products, retrieve a product, and create, update, or delete products.
     # @return [WhopSDK::Resources::Products]
     attr_reader :products
 
-    # Companies
     # @return [WhopSDK::Resources::Companies]
     attr_reader :companies
 
-    # Webhooks
     # @return [WhopSDK::Resources::Webhooks]
     attr_reader :webhooks
 
+    # A Plan defines how customers buy a product. It controls pricing, billing
+    # cadence, availability, tax behavior, checkout fields, and purchase visibility.
+    #
+    # Use the Plans API to create plans for products, list existing plans, retrieve or
+    # update plan configuration, calculate tax for checkout, and delete plans that
+    # should no longer be offered.
     # @return [WhopSDK::Resources::Plans]
     attr_reader :plans
 
-    # Entries
     # @return [WhopSDK::Resources::Entries]
     attr_reader :entries
 
-    # Forum posts
     # @return [WhopSDK::Resources::ForumPosts]
     attr_reader :forum_posts
 
+    # Transfers move value between identities on Whop. They are used for
+    # account-to-account money movement, user payouts inside Whop, crypto transfers,
+    # and claim links depending on the destination type.
+    #
+    # Use the Transfers API to create a transfer, list previous transfers, and
+    # retrieve a transfer by ID when reconciling money movement between accounts or
+    # users.
     # @return [WhopSDK::Resources::Transfers]
     attr_reader :transfers
 
-    # Ledger accounts
     # @return [WhopSDK::Resources::LedgerAccounts]
     attr_reader :ledger_accounts
 
-    # Memberships
+    # A Membership is a customer's purchase of a plan: the subscription or one-time
+    # grant that gives them access to a product. It tracks billing state (`active`,
+    # `trialing`, `past_due`, and so on), the current period, pending cancellations,
+    # custom metadata, and the software license key when the product includes
+    # licensing.
+    #
+    # Use the Memberships API to list an account's memberships or the caller's own,
+    # retrieve one by ID or license key, invite a recipient to join through a free
+    # plan, and manage the lifecycle: cancel immediately or at period end, reverse a
+    # scheduled period-end cancellation, pause and resume payment collection, extend
+    # with free days, generate a transfer link, and update metadata.
     # @return [WhopSDK::Resources::Memberships]
     attr_reader :memberships
 
-    # Authorized users
     # @return [WhopSDK::Resources::AuthorizedUsers]
     attr_reader :authorized_users
 
-    # App builds
+    # An App Build is a versioned artifact uploaded for an app — a hosted web archive,
+    # or an iOS/Android bundle. Builds start as drafts, go through review, and one
+    # approved build per platform is served to users as the production build.
+    #
+    # Use the App Builds API to upload a build for an app, list an app's builds with
+    # platform and status filters, retrieve a build, and promote a draft or approved
+    # build to production.
     # @return [WhopSDK::Resources::AppBuilds]
     attr_reader :app_builds
 
-    # Shipments
+    # A Shipment attaches a carrier tracking number to a payment and follows the
+    # package from label creation to delivery, exposing the current delivery status
+    # and a customer-facing tracking URL.
+    #
+    # Use the Shipments API to list an account's shipments, retrieve one by its id or
+    # the payment it fulfills, attach a tracking number to a payment, and update the
+    # tracking number on an existing shipment.
     # @return [WhopSDK::Resources::Shipments]
     attr_reader :shipments
 
-    # Checkout configurations
+    # A Checkout Configuration is a reusable checkout link owned by an account. In
+    # `payment` mode it sells a specific plan; in `setup` mode it collects and saves
+    # payment details without charging. Each configuration can also override which
+    # payment methods are accepted and how 3D Secure is enforced for that checkout.
+    #
+    # Use the Checkout Configurations API to create checkout links for an existing or
+    # inline plan, list configurations for an account, retrieve the configuration
+    # behind a checkout URL, and delete links that should no longer be used.
     # @return [WhopSDK::Resources::CheckoutConfigurations]
     attr_reader :checkout_configurations
 
-    # Messages
     # @return [WhopSDK::Resources::Messages]
     attr_reader :messages
 
-    # Chat channels
     # @return [WhopSDK::Resources::ChatChannels]
     attr_reader :chat_channels
 
+    # A User represents a person on Whop. Users have a public profile and can buy
+    # products, join accounts, and access experiences.
+    #
+    # Use the Users API to search for users, retrieve or update profiles, and check
+    # whether a user has access to an account, product, or experience.
     # @return [WhopSDK::Resources::Users]
     attr_reader :users
 
-    # Payments
+    # A Payment is one charge against a buyer. Create an on-session payment with a
+    # `confirmation_token` for the method the buyer selected, or an off-session
+    # payment with an existing member's stored payment method.
+    #
+    # Collection runs in the background, so the create response is not the outcome.
+    # Poll [Retrieve status](/api-reference/beta/payments/retrieve-status) for how far
+    # the payment has got and, while it is `requires_action`, what the buyer must do
+    # next — follow a redirect, complete 3D Secure, display transfer instructions, or
+    # link a bank account. Use the return_url operation to change where they land
+    # afterwards, up until they come back.
     # @return [WhopSDK::Resources::Payments]
     attr_reader :payments
 
-    # Support channels
     # @return [WhopSDK::Resources::SupportChannels]
     attr_reader :support_channels
 
-    # Experiences
     # @return [WhopSDK::Resources::Experiences]
     attr_reader :experiences
 
-    # Reactions
     # @return [WhopSDK::Resources::Reactions]
     attr_reader :reactions
 
-    # Members
+    # A Member is one buyer's relationship with an account — one record per customer
+    # regardless of how many memberships they hold. It carries relationship-level
+    # state: whether they have joined or left, their access level (`customer`,
+    # `admin`, or `no_access`), when they joined, and when they last opened the
+    # account's content.
+    #
+    # Use the Members API to list an account's members with filtering by access level,
+    # status, join date, and name or username search, and to retrieve a single member.
+    # Member rows are created and maintained by the membership lifecycle; to grant or
+    # revoke access, work with memberships instead.
     # @return [WhopSDK::Resources::Members]
     attr_reader :members
 
-    # Forums
     # @return [WhopSDK::Resources::Forums]
     attr_reader :forums
 
-    # Promo codes
     # @return [WhopSDK::Resources::PromoCodes]
     attr_reader :promo_codes
 
-    # Courses
     # @return [WhopSDK::Resources::Courses]
     attr_reader :courses
 
-    # Course chapters
     # @return [WhopSDK::Resources::CourseChapters]
     attr_reader :course_chapters
 
-    # Course lessons
     # @return [WhopSDK::Resources::CourseLessons]
     attr_reader :course_lessons
 
-    # Reviews
     # @return [WhopSDK::Resources::Reviews]
     attr_reader :reviews
 
-    # Course students
     # @return [WhopSDK::Resources::CourseStudents]
     attr_reader :course_students
 
-    # Access tokens
     # @return [WhopSDK::Resources::AccessTokens]
     attr_reader :access_tokens
 
-    # Notifications
+    # A Notification is a message delivered to a user — a new post, a payment, a
+    # mention. Every notification comes from an experience the user belongs to or a
+    # team they are on, and users control what they receive with notification
+    # preferences.
+    #
+    # Every notification belongs to a topic: the category it falls under, such as new
+    # sales or account activity. Topics carry a default, so a user only needs a
+    # preference row where they diverge from it. `GET /notifications/topics` lists the
+    # platform's visible topics, and a topic's `id` is what the notification
+    # preference endpoints take as `topic_id` — the catalog is the only place those
+    # ids come from, so read it rather than hardcoding. Each topic also carries an
+    # `identifier` such as `new-follower`, which is stable across environments and is
+    # the value to match on in code.
+    #
+    # Use the Notifications API to list the authenticated user's feed, read
+    # per-experience unread badges, mark an experience (or everything) as read, send
+    # notifications from your app to an experience's users or an account's team, and
+    # list the topic catalog.
     # @return [WhopSDK::Resources::Notifications]
     attr_reader :notifications
 
-    # Disputes
+    # A Dispute is a chargeback a customer files against a payment through their bank,
+    # or an inquiry that may become one. It carries the disputed payment, a deadline
+    # to respond, your evidence, and the outcome once the processor rules.
+    #
+    # Use the Disputes API to list disputes, edit the evidence packet while a dispute
+    # is still contestable, and submit it for review.
     # @return [WhopSDK::Resources::Disputes]
     attr_reader :disputes
 
-    # Refunds
     # @return [WhopSDK::Resources::Refunds]
     attr_reader :refunds
 
-    # Withdrawals
     # @return [WhopSDK::Resources::Withdrawals]
     attr_reader :withdrawals
 
-    # Account links
     # @return [WhopSDK::Resources::AccountLinks]
     attr_reader :account_links
 
-    # Setup intents
     # @return [WhopSDK::Resources::SetupIntents]
     attr_reader :setup_intents
 
-    # Payment methods
     # @return [WhopSDK::Resources::PaymentMethods]
     attr_reader :payment_methods
 
-    # Fee markups
     # @return [WhopSDK::Resources::FeeMarkups]
     attr_reader :fee_markups
 
-    # Payout methods
     # @return [WhopSDK::Resources::PayoutMethods]
     attr_reader :payout_methods
 
-    # Verifications
+    # A Verification represents a legal identity for a person or business. Accounts
+    # and users complete verification when Whop needs to confirm who they are before
+    # enabling payouts or compliance-sensitive workflows.
+    #
+    # Use the Verifications API to start or resume a hosted verification session,
+    # check review status, and submit requested details or documents. If
+    # `requested_information` contains items, submit answers with
+    # [Update Verification](/api-reference/beta/verifications/update-verification).
     # @return [WhopSDK::Resources::Verifications]
     attr_reader :verifications
 
-    # Leads
     # @return [WhopSDK::Resources::Leads]
     attr_reader :leads
 
-    # Topups
     # @return [WhopSDK::Resources::Topups]
     attr_reader :topups
 
-    # Files
+    # A File is an uploaded document or media object, identified by a `file_` ID.
+    # Creating a file returns a presigned destination; upload the bytes there and the
+    # file becomes `ready`.
+    #
+    # Use the Files API to create a file, upload its content directly to storage (in
+    # one PUT, or in parts for large files), and retrieve it while polling for
+    # readiness. A ready file's ID can be attached wherever Whop accepts files.
     # @return [WhopSDK::Resources::Files]
     attr_reader :files
 
-    # Company token transactions
     # @return [WhopSDK::Resources::CompanyTokenTransactions]
     attr_reader :company_token_transactions
 
-    # Dm members
     # @return [WhopSDK::Resources::DmMembers]
     attr_reader :dm_members
 
-    # Ai chats
     # @return [WhopSDK::Resources::AIChats]
     attr_reader :ai_chats
 
-    # Dm channels
     # @return [WhopSDK::Resources::DmChannels]
     attr_reader :dm_channels
 
-    # Dispute alerts
+    # A Dispute alert is an early warning from a card issuer that a settled payment is
+    # being questioned, ahead of any chargeback. `type` separates fraud reports
+    # (`early_fraud_warning`), pre-dispute notices (`dispute_alert`), and Visa RDR
+    # cases the network already closed by refunding (`rapid_dispute_resolution`).
+    #
+    # Use the Dispute alerts API to list alerts for an account, filter them by type or
+    # payment, and read `actionable` to see whether refunding can still avoid the
+    # chargeback.
     # @return [WhopSDK::Resources::DisputeAlerts]
     attr_reader :dispute_alerts
 
-    # Resolution center cases
+    # A Resolution Center Case is opened by a buyer when something is wrong with a
+    # purchase — an unwanted renewal, an item that never arrived, or a charge they
+    # don't recognize. It is the step before a chargeback: the two sides work it out
+    # directly, and Whop decides the case if they can't. Each case carries a reason, a
+    # status naming which side it is waiting on, a timeline of events, and the actions
+    # available to whoever is reading it.
+    #
+    # Use the Resolution Center Cases API from either side: as the buyer, open a case,
+    # reply, appeal a decision, or withdraw it; as the merchant, accept it (refunding
+    # the payment), deny it, or ask the buyer for more information. Both sides read
+    # the same case, page its timeline, and summarize the cases they can see.
     # @return [WhopSDK::Resources::ResolutionCenterCases]
     attr_reader :resolution_center_cases
 
-    # Payout accounts
     # @return [WhopSDK::Resources::PayoutAccounts]
     attr_reader :payout_accounts
 
-    # Affiliates
     # @return [WhopSDK::Resources::Affiliates]
     attr_reader :affiliates
 
-    # Bounties
+    # A Bounty is a paid task posted by an account or user. The reward is held in
+    # escrow when the bounty publishes, workers submit proof of completed work, and
+    # each accepted submission is paid out until every winner slot fills.
+    #
+    # Use the Bounties API to create and publish a bounty, list an account's bounties
+    # for reporting or dashboards, list the bounties a user can work or has
+    # participated in, and retrieve a single bounty by ID.
     # @return [WhopSDK::Resources::Bounties]
     attr_reader :bounties
 
+    # An Ad Campaign is the top-level container for paid ads on an ad network. It sets
+    # the platform, objective, and budget strategy shared by its
+    # [ad groups](/api-reference/beta/ad-groups/ad-group) and ads.
+    #
+    # Use the Ad Campaigns API to create campaigns, list campaigns for an account,
+    # retrieve or update campaign settings, and pause or resume campaign delivery.
     # @return [WhopSDK::Resources::AdCampaigns]
     attr_reader :ad_campaigns
 
+    # An Ad Group sits inside an
+    # [ad campaign](/api-reference/beta/ad-campaigns/ad-campaign) and controls
+    # delivery for [ads](/api-reference/beta/ads/ad). It sets the audience,
+    # placements, schedule, budget, and optimization goal for its ads.
+    #
+    # Use the Ad Groups API to create ad groups in campaigns, list or retrieve
+    # targeting and delivery settings, update budgets or targeting, delete groups that
+    # should stop running, and pause or resume delivery. It can also search the ad
+    # platform's targeting taxonomy for options to target and estimate how many people
+    # a draft targeting spec can reach.
     # @return [WhopSDK::Resources::AdGroups]
     attr_reader :ad_groups
 
+    # An Ad is the individual creative unit delivered by an
+    # [ad group](/api-reference/beta/ad-groups/ad-group). It holds the copy, creative
+    # assets, and destination URL for one ad.
+    #
+    # Use the Ads API to list ads for an account, create ads inside ad groups,
+    # retrieve or update creative details, delete ads that should stop running, and
+    # pause or resume delivery.
     # @return [WhopSDK::Resources::Ads]
     attr_reader :ads
 
     # @return [WhopSDK::Resources::Conversions]
     attr_reader :conversions
 
-    # Ad reports
     # @return [WhopSDK::Resources::AdReports]
     attr_reader :ad_reports
 

@@ -1,0 +1,357 @@
+module WhopSDK
+  module Models
+    type payout_updated_webhook_event =
+      {
+        id: String,
+        api_version: :v1,
+        api_version_date: String?,
+        data: WhopSDK::PayoutUpdatedWebhookEvent::Data,
+        timestamp: Time,
+        type: :"payout.updated",
+        account_id: String?,
+        previous_attributes: top
+      }
+
+    class PayoutUpdatedWebhookEvent < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor api_version: :v1
+
+      attr_accessor api_version_date: String?
+
+      attr_accessor data: WhopSDK::PayoutUpdatedWebhookEvent::Data
+
+      attr_accessor timestamp: Time
+
+      attr_accessor type: :"payout.updated"
+
+      attr_accessor account_id: String?
+
+      attr_reader previous_attributes: top?
+
+      def previous_attributes=: (top) -> top
+
+      def initialize: (
+        id: String,
+        api_version_date: String?,
+        data: WhopSDK::PayoutUpdatedWebhookEvent::Data,
+        timestamp: Time,
+        ?account_id: String?,
+        ?previous_attributes: top,
+        ?api_version: :v1,
+        ?type: :"payout.updated"
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        api_version: :v1,
+        api_version_date: String?,
+        data: WhopSDK::PayoutUpdatedWebhookEvent::Data,
+        timestamp: Time,
+        type: :"payout.updated",
+        account_id: String?,
+        previous_attributes: top
+      }
+
+      type data =
+        {
+          id: String,
+          amount: String,
+          created_at: Time,
+          currency: String,
+          destination_amount: String?,
+          destination_currency: String?,
+          estimated_arrival: Time?,
+          exchange_rate: Float?,
+          failure: WhopSDK::PayoutUpdatedWebhookEvent::Data::Failure?,
+          fee_amount: String,
+          fee_paid_by: WhopSDK::Models::PayoutUpdatedWebhookEvent::Data::fee_paid_by,
+          markup_fee: String,
+          metadata: ::Hash[Symbol, String],
+          net_amount: String,
+          notes: String?,
+          object: WhopSDK::Models::PayoutUpdatedWebhookEvent::Data::object,
+          payer_name: String?,
+          payout_method: WhopSDK::PayoutUpdatedWebhookEvent::Data::PayoutMethod?,
+          payout_request_id: String?,
+          source: WhopSDK::Models::PayoutUpdatedWebhookEvent::Data::source?,
+          speed: WhopSDK::Models::PayoutUpdatedWebhookEvent::Data::speed,
+          status: WhopSDK::Models::PayoutUpdatedWebhookEvent::Data::status,
+          status_detail: String,
+          trace_code: String?
+        }
+
+      class Data < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor amount: String
+
+        attr_accessor created_at: Time
+
+        attr_accessor currency: String
+
+        attr_accessor destination_amount: String?
+
+        attr_accessor destination_currency: String?
+
+        attr_accessor estimated_arrival: Time?
+
+        attr_accessor exchange_rate: Float?
+
+        attr_accessor failure: WhopSDK::PayoutUpdatedWebhookEvent::Data::Failure?
+
+        attr_accessor fee_amount: String
+
+        attr_accessor fee_paid_by: WhopSDK::Models::PayoutUpdatedWebhookEvent::Data::fee_paid_by
+
+        attr_accessor markup_fee: String
+
+        attr_accessor metadata: ::Hash[Symbol, String]
+
+        attr_accessor net_amount: String
+
+        attr_accessor notes: String?
+
+        attr_accessor object: WhopSDK::Models::PayoutUpdatedWebhookEvent::Data::object
+
+        attr_accessor payer_name: String?
+
+        attr_accessor payout_method: WhopSDK::PayoutUpdatedWebhookEvent::Data::PayoutMethod?
+
+        attr_accessor payout_request_id: String?
+
+        attr_accessor source: WhopSDK::Models::PayoutUpdatedWebhookEvent::Data::source?
+
+        attr_accessor speed: WhopSDK::Models::PayoutUpdatedWebhookEvent::Data::speed
+
+        attr_accessor status: WhopSDK::Models::PayoutUpdatedWebhookEvent::Data::status
+
+        attr_accessor status_detail: String
+
+        attr_accessor trace_code: String?
+
+        def initialize: (
+          id: String,
+          amount: String,
+          created_at: Time,
+          currency: String,
+          destination_amount: String?,
+          destination_currency: String?,
+          estimated_arrival: Time?,
+          exchange_rate: Float?,
+          failure: WhopSDK::PayoutUpdatedWebhookEvent::Data::Failure?,
+          fee_amount: String,
+          fee_paid_by: WhopSDK::Models::PayoutUpdatedWebhookEvent::Data::fee_paid_by,
+          markup_fee: String,
+          metadata: ::Hash[Symbol, String],
+          net_amount: String,
+          notes: String?,
+          object: WhopSDK::Models::PayoutUpdatedWebhookEvent::Data::object,
+          payer_name: String?,
+          payout_method: WhopSDK::PayoutUpdatedWebhookEvent::Data::PayoutMethod?,
+          payout_request_id: String?,
+          source: WhopSDK::Models::PayoutUpdatedWebhookEvent::Data::source?,
+          speed: WhopSDK::Models::PayoutUpdatedWebhookEvent::Data::speed,
+          status: WhopSDK::Models::PayoutUpdatedWebhookEvent::Data::status,
+          status_detail: String,
+          trace_code: String?
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          amount: String,
+          created_at: Time,
+          currency: String,
+          destination_amount: String?,
+          destination_currency: String?,
+          estimated_arrival: Time?,
+          exchange_rate: Float?,
+          failure: WhopSDK::PayoutUpdatedWebhookEvent::Data::Failure?,
+          fee_amount: String,
+          fee_paid_by: WhopSDK::Models::PayoutUpdatedWebhookEvent::Data::fee_paid_by,
+          markup_fee: String,
+          metadata: ::Hash[Symbol, String],
+          net_amount: String,
+          notes: String?,
+          object: WhopSDK::Models::PayoutUpdatedWebhookEvent::Data::object,
+          payer_name: String?,
+          payout_method: WhopSDK::PayoutUpdatedWebhookEvent::Data::PayoutMethod?,
+          payout_request_id: String?,
+          source: WhopSDK::Models::PayoutUpdatedWebhookEvent::Data::source?,
+          speed: WhopSDK::Models::PayoutUpdatedWebhookEvent::Data::speed,
+          status: WhopSDK::Models::PayoutUpdatedWebhookEvent::Data::status,
+          status_detail: String,
+          trace_code: String?
+        }
+
+        type failure =
+          { code: String?, funds_returned_at: Time?, message: String? }
+
+        class Failure < WhopSDK::Internal::Type::BaseModel
+          attr_accessor code: String?
+
+          attr_accessor funds_returned_at: Time?
+
+          attr_accessor message: String?
+
+          def initialize: (
+            code: String?,
+            funds_returned_at: Time?,
+            message: String?
+          ) -> void
+
+          def to_hash: -> {
+            code: String?,
+            funds_returned_at: Time?,
+            message: String?
+          }
+        end
+
+        type fee_paid_by = :self | :platform
+
+        module FeePaidBy
+          extend WhopSDK::Internal::Type::Enum
+
+          SELF: :self
+          PLATFORM: :platform
+
+          def self?.values: -> ::Array[WhopSDK::Models::PayoutUpdatedWebhookEvent::Data::fee_paid_by]
+        end
+
+        type object = :payout
+
+        module Object
+          extend WhopSDK::Internal::Type::Enum
+
+          PAYOUT: :payout
+
+          def self?.values: -> ::Array[WhopSDK::Models::PayoutUpdatedWebhookEvent::Data::object]
+        end
+
+        type payout_method =
+          {
+            nickname: String?,
+            supported_payout_method: WhopSDK::PayoutUpdatedWebhookEvent::Data::PayoutMethod::SupportedPayoutMethod?
+          }
+
+        class PayoutMethod < WhopSDK::Internal::Type::BaseModel
+          attr_accessor nickname: String?
+
+          attr_accessor supported_payout_method: WhopSDK::PayoutUpdatedWebhookEvent::Data::PayoutMethod::SupportedPayoutMethod?
+
+          def initialize: (
+            nickname: String?,
+            supported_payout_method: WhopSDK::PayoutUpdatedWebhookEvent::Data::PayoutMethod::SupportedPayoutMethod?
+          ) -> void
+
+          def to_hash: -> {
+            nickname: String?,
+            supported_payout_method: WhopSDK::PayoutUpdatedWebhookEvent::Data::PayoutMethod::SupportedPayoutMethod?
+          }
+
+          type supported_payout_method =
+            {
+              delivery_type: WhopSDK::Models::PayoutUpdatedWebhookEvent::Data::PayoutMethod::SupportedPayoutMethod::delivery_type,
+              icon_url: String?,
+              payer_name: String?
+            }
+
+          class SupportedPayoutMethod < WhopSDK::Internal::Type::BaseModel
+            attr_accessor delivery_type: WhopSDK::Models::PayoutUpdatedWebhookEvent::Data::PayoutMethod::SupportedPayoutMethod::delivery_type
+
+            attr_accessor icon_url: String?
+
+            attr_accessor payer_name: String?
+
+            def initialize: (
+              delivery_type: WhopSDK::Models::PayoutUpdatedWebhookEvent::Data::PayoutMethod::SupportedPayoutMethod::delivery_type,
+              icon_url: String?,
+              payer_name: String?
+            ) -> void
+
+            def to_hash: -> {
+              delivery_type: WhopSDK::Models::PayoutUpdatedWebhookEvent::Data::PayoutMethod::SupportedPayoutMethod::delivery_type,
+              icon_url: String?,
+              payer_name: String?
+            }
+
+            type delivery_type =
+              :cash_pickup
+              | :bank_deposit
+              | :home_delivery
+              | :mobile_wallet
+              | :card
+              | :check
+              | :bill
+              | :cryptocurrency
+              | :unknown
+
+            module DeliveryType
+              extend WhopSDK::Internal::Type::Enum
+
+              CASH_PICKUP: :cash_pickup
+              BANK_DEPOSIT: :bank_deposit
+              HOME_DELIVERY: :home_delivery
+              MOBILE_WALLET: :mobile_wallet
+              CARD: :card
+              CHECK: :check
+              BILL: :bill
+              CRYPTOCURRENCY: :cryptocurrency
+              UNKNOWN: :unknown
+
+              def self?.values: -> ::Array[WhopSDK::Models::PayoutUpdatedWebhookEvent::Data::PayoutMethod::SupportedPayoutMethod::delivery_type]
+            end
+          end
+        end
+
+        type source = :api | :dashboard | :automatic
+
+        module Source
+          extend WhopSDK::Internal::Type::Enum
+
+          API: :api
+          DASHBOARD: :dashboard
+          AUTOMATIC: :automatic
+
+          def self?.values: -> ::Array[WhopSDK::Models::PayoutUpdatedWebhookEvent::Data::source]
+        end
+
+        type speed = :standard | :instant
+
+        module Speed
+          extend WhopSDK::Internal::Type::Enum
+
+          STANDARD: :standard
+          INSTANT: :instant
+
+          def self?.values: -> ::Array[WhopSDK::Models::PayoutUpdatedWebhookEvent::Data::speed]
+        end
+
+        type status =
+          :requested
+          | :in_review
+          | :processing
+          | :completed
+          | :reversed
+          | :canceled
+          | :failed
+          | :denied
+
+        module Status
+          extend WhopSDK::Internal::Type::Enum
+
+          REQUESTED: :requested
+          IN_REVIEW: :in_review
+          PROCESSING: :processing
+          COMPLETED: :completed
+          REVERSED: :reversed
+          CANCELED: :canceled
+          FAILED: :failed
+          DENIED: :denied
+
+          def self?.values: -> ::Array[WhopSDK::Models::PayoutUpdatedWebhookEvent::Data::status]
+        end
+      end
+    end
+  end
+end

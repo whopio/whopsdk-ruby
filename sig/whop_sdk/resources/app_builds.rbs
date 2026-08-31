@@ -4,16 +4,19 @@ module WhopSDK
       def create: (
         attachment: WhopSDK::AppBuildCreateParams::Attachment,
         checksum: String,
-        platform: WhopSDK::Models::app_build_platforms,
-        ?ai_prompt_id: String?,
-        ?app_id: String?,
-        ?source_attachment: WhopSDK::AppBuildCreateParams::SourceAttachment?,
-        ?supported_app_view_types: ::Array[WhopSDK::Models::app_view_type]?,
+        platform: WhopSDK::Models::AppBuildCreateParams::platform,
+        ?ai_prompt_id: String,
+        ?app_id: String,
+        ?source_attachment: WhopSDK::AppBuildCreateParams::SourceAttachment,
+        ?supported_app_view_types: ::Array[WhopSDK::Models::AppBuildCreateParams::supported_app_view_type],
+        ?api_version_date: String,
+        ?idempotency_key: String,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::AppBuild
 
       def retrieve: (
         String id,
+        ?api_version_date: String,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::AppBuild
 
@@ -21,17 +24,20 @@ module WhopSDK
         app_id: String,
         ?after: String,
         ?before: String,
-        ?created_after: Time,
-        ?created_before: Time,
+        ?created_after: WhopSDK::Models::AppBuildListParams::created_after,
+        ?created_before: WhopSDK::Models::AppBuildListParams::created_before,
         ?first: Integer,
         ?last: Integer,
-        ?platform: WhopSDK::Models::app_build_platforms,
-        ?status: WhopSDK::Models::app_build_statuses,
+        ?platform: WhopSDK::Models::AppBuildListParams::platform,
+        ?status: WhopSDK::Models::AppBuildListParams::status,
+        ?api_version_date: String,
         ?request_options: WhopSDK::request_opts
-      ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::AppBuildListResponse]
+      ) -> WhopSDK::Internal::CursorPage[WhopSDK::AppBuild]
 
       def promote: (
         String id,
+        ?api_version_date: String,
+        ?idempotency_key: String,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::AppBuild
 

@@ -1,0 +1,1074 @@
+module WhopSDK
+  module Models
+    type ad_group_update_params =
+      {
+        id: String,
+        audiences: WhopSDK::AdGroupUpdateParams::Audiences,
+        bid_type: WhopSDK::Models::AdGroupUpdateParams::bid_type,
+        budget_amount: Float,
+        budget_type: WhopSDK::Models::AdGroupUpdateParams::budget_type,
+        conversion_event: WhopSDK::Models::AdGroupUpdateParams::conversion_event?,
+        conversion_location: WhopSDK::Models::AdGroupUpdateParams::conversion_location,
+        demographics: WhopSDK::AdGroupUpdateParams::Demographics,
+        desired_cost_per_result: Float,
+        detailed_targeting: WhopSDK::AdGroupUpdateParams::DetailedTargeting,
+        devices: WhopSDK::AdGroupUpdateParams::Devices,
+        ends_at: String,
+        frequency_cap: WhopSDK::AdGroupUpdateParams::FrequencyCap,
+        languages: ::Array[String],
+        message_apps: ::Array[WhopSDK::Models::AdGroupUpdateParams::message_app],
+        minimum_daily_spend: Float,
+        optimization_goal: WhopSDK::Models::AdGroupUpdateParams::optimization_goal,
+        placements: WhopSDK::Models::AdGroupUpdateParams::placements,
+        regions: WhopSDK::AdGroupUpdateParams::Regions,
+        starts_at: String,
+        status: WhopSDK::Models::AdGroupUpdateParams::status,
+        title: String,
+        api_version_date: String
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class AdGroupUpdateParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor id: String
+
+      attr_reader audiences: WhopSDK::AdGroupUpdateParams::Audiences?
+
+      def audiences=: (
+        WhopSDK::AdGroupUpdateParams::Audiences
+      ) -> WhopSDK::AdGroupUpdateParams::Audiences
+
+      attr_reader bid_type: WhopSDK::Models::AdGroupUpdateParams::bid_type?
+
+      def bid_type=: (
+        WhopSDK::Models::AdGroupUpdateParams::bid_type
+      ) -> WhopSDK::Models::AdGroupUpdateParams::bid_type
+
+      attr_reader budget_amount: Float?
+
+      def budget_amount=: (Float) -> Float
+
+      attr_reader budget_type: WhopSDK::Models::AdGroupUpdateParams::budget_type?
+
+      def budget_type=: (
+        WhopSDK::Models::AdGroupUpdateParams::budget_type
+      ) -> WhopSDK::Models::AdGroupUpdateParams::budget_type
+
+      attr_accessor conversion_event: WhopSDK::Models::AdGroupUpdateParams::conversion_event?
+
+      attr_reader conversion_location: WhopSDK::Models::AdGroupUpdateParams::conversion_location?
+
+      def conversion_location=: (
+        WhopSDK::Models::AdGroupUpdateParams::conversion_location
+      ) -> WhopSDK::Models::AdGroupUpdateParams::conversion_location
+
+      attr_reader demographics: WhopSDK::AdGroupUpdateParams::Demographics?
+
+      def demographics=: (
+        WhopSDK::AdGroupUpdateParams::Demographics
+      ) -> WhopSDK::AdGroupUpdateParams::Demographics
+
+      attr_reader desired_cost_per_result: Float?
+
+      def desired_cost_per_result=: (Float) -> Float
+
+      attr_reader detailed_targeting: WhopSDK::AdGroupUpdateParams::DetailedTargeting?
+
+      def detailed_targeting=: (
+        WhopSDK::AdGroupUpdateParams::DetailedTargeting
+      ) -> WhopSDK::AdGroupUpdateParams::DetailedTargeting
+
+      attr_reader devices: WhopSDK::AdGroupUpdateParams::Devices?
+
+      def devices=: (
+        WhopSDK::AdGroupUpdateParams::Devices
+      ) -> WhopSDK::AdGroupUpdateParams::Devices
+
+      attr_reader ends_at: String?
+
+      def ends_at=: (String) -> String
+
+      attr_reader frequency_cap: WhopSDK::AdGroupUpdateParams::FrequencyCap?
+
+      def frequency_cap=: (
+        WhopSDK::AdGroupUpdateParams::FrequencyCap
+      ) -> WhopSDK::AdGroupUpdateParams::FrequencyCap
+
+      attr_reader languages: ::Array[String]?
+
+      def languages=: (::Array[String]) -> ::Array[String]
+
+      attr_reader message_apps: ::Array[WhopSDK::Models::AdGroupUpdateParams::message_app]?
+
+      def message_apps=: (
+        ::Array[WhopSDK::Models::AdGroupUpdateParams::message_app]
+      ) -> ::Array[WhopSDK::Models::AdGroupUpdateParams::message_app]
+
+      attr_reader minimum_daily_spend: Float?
+
+      def minimum_daily_spend=: (Float) -> Float
+
+      attr_reader optimization_goal: WhopSDK::Models::AdGroupUpdateParams::optimization_goal?
+
+      def optimization_goal=: (
+        WhopSDK::Models::AdGroupUpdateParams::optimization_goal
+      ) -> WhopSDK::Models::AdGroupUpdateParams::optimization_goal
+
+      attr_reader placements: WhopSDK::Models::AdGroupUpdateParams::placements?
+
+      def placements=: (
+        WhopSDK::Models::AdGroupUpdateParams::placements
+      ) -> WhopSDK::Models::AdGroupUpdateParams::placements
+
+      attr_reader regions: WhopSDK::AdGroupUpdateParams::Regions?
+
+      def regions=: (
+        WhopSDK::AdGroupUpdateParams::Regions
+      ) -> WhopSDK::AdGroupUpdateParams::Regions
+
+      attr_reader starts_at: String?
+
+      def starts_at=: (String) -> String
+
+      attr_reader status: WhopSDK::Models::AdGroupUpdateParams::status?
+
+      def status=: (
+        WhopSDK::Models::AdGroupUpdateParams::status
+      ) -> WhopSDK::Models::AdGroupUpdateParams::status
+
+      attr_reader title: String?
+
+      def title=: (String) -> String
+
+      attr_reader api_version_date: String?
+
+      def api_version_date=: (String) -> String
+
+      def initialize: (
+        id: String,
+        ?audiences: WhopSDK::AdGroupUpdateParams::Audiences,
+        ?bid_type: WhopSDK::Models::AdGroupUpdateParams::bid_type,
+        ?budget_amount: Float,
+        ?budget_type: WhopSDK::Models::AdGroupUpdateParams::budget_type,
+        ?conversion_event: WhopSDK::Models::AdGroupUpdateParams::conversion_event?,
+        ?conversion_location: WhopSDK::Models::AdGroupUpdateParams::conversion_location,
+        ?demographics: WhopSDK::AdGroupUpdateParams::Demographics,
+        ?desired_cost_per_result: Float,
+        ?detailed_targeting: WhopSDK::AdGroupUpdateParams::DetailedTargeting,
+        ?devices: WhopSDK::AdGroupUpdateParams::Devices,
+        ?ends_at: String,
+        ?frequency_cap: WhopSDK::AdGroupUpdateParams::FrequencyCap,
+        ?languages: ::Array[String],
+        ?message_apps: ::Array[WhopSDK::Models::AdGroupUpdateParams::message_app],
+        ?minimum_daily_spend: Float,
+        ?optimization_goal: WhopSDK::Models::AdGroupUpdateParams::optimization_goal,
+        ?placements: WhopSDK::Models::AdGroupUpdateParams::placements,
+        ?regions: WhopSDK::AdGroupUpdateParams::Regions,
+        ?starts_at: String,
+        ?status: WhopSDK::Models::AdGroupUpdateParams::status,
+        ?title: String,
+        ?api_version_date: String,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        audiences: WhopSDK::AdGroupUpdateParams::Audiences,
+        bid_type: WhopSDK::Models::AdGroupUpdateParams::bid_type,
+        budget_amount: Float,
+        budget_type: WhopSDK::Models::AdGroupUpdateParams::budget_type,
+        conversion_event: WhopSDK::Models::AdGroupUpdateParams::conversion_event?,
+        conversion_location: WhopSDK::Models::AdGroupUpdateParams::conversion_location,
+        demographics: WhopSDK::AdGroupUpdateParams::Demographics,
+        desired_cost_per_result: Float,
+        detailed_targeting: WhopSDK::AdGroupUpdateParams::DetailedTargeting,
+        devices: WhopSDK::AdGroupUpdateParams::Devices,
+        ends_at: String,
+        frequency_cap: WhopSDK::AdGroupUpdateParams::FrequencyCap,
+        languages: ::Array[String],
+        message_apps: ::Array[WhopSDK::Models::AdGroupUpdateParams::message_app],
+        minimum_daily_spend: Float,
+        optimization_goal: WhopSDK::Models::AdGroupUpdateParams::optimization_goal,
+        placements: WhopSDK::Models::AdGroupUpdateParams::placements,
+        regions: WhopSDK::AdGroupUpdateParams::Regions,
+        starts_at: String,
+        status: WhopSDK::Models::AdGroupUpdateParams::status,
+        title: String,
+        api_version_date: String,
+        request_options: WhopSDK::RequestOptions
+      }
+
+      type audiences = { exclude: ::Array[String], include: ::Array[String] }
+
+      class Audiences < WhopSDK::Internal::Type::BaseModel
+        attr_reader exclude: ::Array[String]?
+
+        def exclude=: (::Array[String]) -> ::Array[String]
+
+        attr_reader include: ::Array[String]?
+
+        def include=: (::Array[String]) -> ::Array[String]
+
+        def initialize: (
+          ?exclude: ::Array[String],
+          ?include: ::Array[String]
+        ) -> void
+
+        def to_hash: -> { exclude: ::Array[String], include: ::Array[String] }
+      end
+
+      type bid_type = :minimum_cost | :average_target | :maximum_target
+
+      module BidType
+        extend WhopSDK::Internal::Type::Enum
+
+        MINIMUM_COST: :minimum_cost
+        AVERAGE_TARGET: :average_target
+        MAXIMUM_TARGET: :maximum_target
+
+        def self?.values: -> ::Array[WhopSDK::Models::AdGroupUpdateParams::bid_type]
+      end
+
+      type budget_type = :daily | :lifetime
+
+      module BudgetType
+        extend WhopSDK::Internal::Type::Enum
+
+        DAILY: :daily
+        LIFETIME: :lifetime
+
+        def self?.values: -> ::Array[WhopSDK::Models::AdGroupUpdateParams::budget_type]
+      end
+
+      type conversion_event =
+        :purchase
+        | :add_to_cart
+        | :initiated_checkout
+        | :add_payment_info
+        | :complete_registration
+        | :lead
+        | :content_view
+        | :search
+        | :contact
+        | :customize_product
+        | :donate
+        | :find_location
+        | :schedule
+        | :start_trial
+        | :submit_application
+        | :subscribe
+        | String
+
+      module ConversionEvent
+        extend WhopSDK::Internal::Type::Union
+
+        def self?.variants: -> ::Array[WhopSDK::Models::AdGroupUpdateParams::conversion_event]
+
+        PURCHASE: :purchase
+        ADD_TO_CART: :add_to_cart
+        INITIATED_CHECKOUT: :initiated_checkout
+        ADD_PAYMENT_INFO: :add_payment_info
+        COMPLETE_REGISTRATION: :complete_registration
+        LEAD: :lead
+        CONTENT_VIEW: :content_view
+        SEARCH: :search
+        CONTACT: :contact
+        CUSTOMIZE_PRODUCT: :customize_product
+        DONATE: :donate
+        FIND_LOCATION: :find_location
+        SCHEDULE: :schedule
+        START_TRIAL: :start_trial
+        SUBMIT_APPLICATION: :submit_application
+        SUBSCRIBE: :subscribe
+      end
+
+      type conversion_location =
+        :website
+        | :profile
+        | :instagram_and_facebook
+        | :instagram_profile
+        | :messaging
+        | :on_ad
+        | :instant_forms
+        | :instant_forms_and_messenger
+        | :website_and_instant_forms
+
+      module ConversionLocation
+        extend WhopSDK::Internal::Type::Enum
+
+        WEBSITE: :website
+        PROFILE: :profile
+        INSTAGRAM_AND_FACEBOOK: :instagram_and_facebook
+        INSTAGRAM_PROFILE: :instagram_profile
+        MESSAGING: :messaging
+        ON_AD: :on_ad
+        INSTANT_FORMS: :instant_forms
+        INSTANT_FORMS_AND_MESSENGER: :instant_forms_and_messenger
+        WEBSITE_AND_INSTANT_FORMS: :website_and_instant_forms
+
+        def self?.values: -> ::Array[WhopSDK::Models::AdGroupUpdateParams::conversion_location]
+      end
+
+      type demographics =
+        {
+          automatic: bool,
+          gender: WhopSDK::Models::AdGroupUpdateParams::Demographics::gender,
+          maximum_age: Integer,
+          minimum_age: Integer
+        }
+
+      class Demographics < WhopSDK::Internal::Type::BaseModel
+        attr_reader automatic: bool?
+
+        def automatic=: (bool) -> bool
+
+        attr_reader gender: WhopSDK::Models::AdGroupUpdateParams::Demographics::gender?
+
+        def gender=: (
+          WhopSDK::Models::AdGroupUpdateParams::Demographics::gender
+        ) -> WhopSDK::Models::AdGroupUpdateParams::Demographics::gender
+
+        attr_reader maximum_age: Integer?
+
+        def maximum_age=: (Integer) -> Integer
+
+        attr_reader minimum_age: Integer?
+
+        def minimum_age=: (Integer) -> Integer
+
+        def initialize: (
+          ?automatic: bool,
+          ?gender: WhopSDK::Models::AdGroupUpdateParams::Demographics::gender,
+          ?maximum_age: Integer,
+          ?minimum_age: Integer
+        ) -> void
+
+        def to_hash: -> {
+          automatic: bool,
+          gender: WhopSDK::Models::AdGroupUpdateParams::Demographics::gender,
+          maximum_age: Integer,
+          minimum_age: Integer
+        }
+
+        type gender = :all | :male | :female
+
+        module Gender
+          extend WhopSDK::Internal::Type::Enum
+
+          ALL: :all
+          MALE: :male
+          FEMALE: :female
+
+          def self?.values: -> ::Array[WhopSDK::Models::AdGroupUpdateParams::Demographics::gender]
+        end
+      end
+
+      type detailed_targeting =
+        {
+          behaviors: ::Array[WhopSDK::AdGroupUpdateParams::DetailedTargeting::Behavior],
+          demographics: ::Array[WhopSDK::AdGroupUpdateParams::DetailedTargeting::Demographic],
+          interests: ::Array[WhopSDK::AdGroupUpdateParams::DetailedTargeting::Interest]
+        }
+
+      class DetailedTargeting < WhopSDK::Internal::Type::BaseModel
+        attr_reader behaviors: ::Array[WhopSDK::AdGroupUpdateParams::DetailedTargeting::Behavior]?
+
+        def behaviors=: (
+          ::Array[WhopSDK::AdGroupUpdateParams::DetailedTargeting::Behavior]
+        ) -> ::Array[WhopSDK::AdGroupUpdateParams::DetailedTargeting::Behavior]
+
+        attr_reader demographics: ::Array[WhopSDK::AdGroupUpdateParams::DetailedTargeting::Demographic]?
+
+        def demographics=: (
+          ::Array[WhopSDK::AdGroupUpdateParams::DetailedTargeting::Demographic]
+        ) -> ::Array[WhopSDK::AdGroupUpdateParams::DetailedTargeting::Demographic]
+
+        attr_reader interests: ::Array[WhopSDK::AdGroupUpdateParams::DetailedTargeting::Interest]?
+
+        def interests=: (
+          ::Array[WhopSDK::AdGroupUpdateParams::DetailedTargeting::Interest]
+        ) -> ::Array[WhopSDK::AdGroupUpdateParams::DetailedTargeting::Interest]
+
+        def initialize: (
+          ?behaviors: ::Array[WhopSDK::AdGroupUpdateParams::DetailedTargeting::Behavior],
+          ?demographics: ::Array[WhopSDK::AdGroupUpdateParams::DetailedTargeting::Demographic],
+          ?interests: ::Array[WhopSDK::AdGroupUpdateParams::DetailedTargeting::Interest]
+        ) -> void
+
+        def to_hash: -> {
+          behaviors: ::Array[WhopSDK::AdGroupUpdateParams::DetailedTargeting::Behavior],
+          demographics: ::Array[WhopSDK::AdGroupUpdateParams::DetailedTargeting::Demographic],
+          interests: ::Array[WhopSDK::AdGroupUpdateParams::DetailedTargeting::Interest]
+        }
+
+        type behavior =
+          {
+            id: String,
+            behavior_type: WhopSDK::Models::AdGroupUpdateParams::DetailedTargeting::Behavior::behavior_type,
+            name: String,
+            period: Integer
+          }
+
+        class Behavior < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_reader behavior_type: WhopSDK::Models::AdGroupUpdateParams::DetailedTargeting::Behavior::behavior_type?
+
+          def behavior_type=: (
+            WhopSDK::Models::AdGroupUpdateParams::DetailedTargeting::Behavior::behavior_type
+          ) -> WhopSDK::Models::AdGroupUpdateParams::DetailedTargeting::Behavior::behavior_type
+
+          attr_reader name: String?
+
+          def name=: (String) -> String
+
+          attr_reader period: Integer?
+
+          def period=: (Integer) -> Integer
+
+          def initialize: (
+            id: String,
+            ?behavior_type: WhopSDK::Models::AdGroupUpdateParams::DetailedTargeting::Behavior::behavior_type,
+            ?name: String,
+            ?period: Integer
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            behavior_type: WhopSDK::Models::AdGroupUpdateParams::DetailedTargeting::Behavior::behavior_type,
+            name: String,
+            period: Integer
+          }
+
+          type behavior_type = :video | :creator | :hashtag
+
+          module BehaviorType
+            extend WhopSDK::Internal::Type::Enum
+
+            VIDEO: :video
+            CREATOR: :creator
+            HASHTAG: :hashtag
+
+            def self?.values: -> ::Array[WhopSDK::Models::AdGroupUpdateParams::DetailedTargeting::Behavior::behavior_type]
+          end
+        end
+
+        type demographic =
+          {
+            id: String,
+            type: WhopSDK::Models::AdGroupUpdateParams::DetailedTargeting::Demographic::type_,
+            name: String
+          }
+
+        class Demographic < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor type: WhopSDK::Models::AdGroupUpdateParams::DetailedTargeting::Demographic::type_
+
+          attr_reader name: String?
+
+          def name=: (String) -> String
+
+          def initialize: (
+            id: String,
+            type: WhopSDK::Models::AdGroupUpdateParams::DetailedTargeting::Demographic::type_,
+            ?name: String
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            type: WhopSDK::Models::AdGroupUpdateParams::DetailedTargeting::Demographic::type_,
+            name: String
+          }
+
+          type type_ =
+            :life_events
+            | :industries
+            | :income
+            | :family_statuses
+            | :work_employers
+            | :work_positions
+            | :education_schools
+            | :education_majors
+
+          module Type
+            extend WhopSDK::Internal::Type::Enum
+
+            LIFE_EVENTS: :life_events
+            INDUSTRIES: :industries
+            INCOME: :income
+            FAMILY_STATUSES: :family_statuses
+            WORK_EMPLOYERS: :work_employers
+            WORK_POSITIONS: :work_positions
+            EDUCATION_SCHOOLS: :education_schools
+            EDUCATION_MAJORS: :education_majors
+
+            def self?.values: -> ::Array[WhopSDK::Models::AdGroupUpdateParams::DetailedTargeting::Demographic::type_]
+          end
+        end
+
+        type interest = { id: String, name: String }
+
+        class Interest < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_reader name: String?
+
+          def name=: (String) -> String
+
+          def initialize: (id: String, ?name: String) -> void
+
+          def to_hash: -> { id: String, name: String }
+        end
+      end
+
+      type devices =
+        {
+          operating_systems: ::Array[WhopSDK::AdGroupUpdateParams::Devices::OperatingSystem],
+          platforms: ::Array[WhopSDK::Models::AdGroupUpdateParams::Devices::platform]
+        }
+
+      class Devices < WhopSDK::Internal::Type::BaseModel
+        attr_reader operating_systems: ::Array[WhopSDK::AdGroupUpdateParams::Devices::OperatingSystem]?
+
+        def operating_systems=: (
+          ::Array[WhopSDK::AdGroupUpdateParams::Devices::OperatingSystem]
+        ) -> ::Array[WhopSDK::AdGroupUpdateParams::Devices::OperatingSystem]
+
+        attr_reader platforms: ::Array[WhopSDK::Models::AdGroupUpdateParams::Devices::platform]?
+
+        def platforms=: (
+          ::Array[WhopSDK::Models::AdGroupUpdateParams::Devices::platform]
+        ) -> ::Array[WhopSDK::Models::AdGroupUpdateParams::Devices::platform]
+
+        def initialize: (
+          ?operating_systems: ::Array[WhopSDK::AdGroupUpdateParams::Devices::OperatingSystem],
+          ?platforms: ::Array[WhopSDK::Models::AdGroupUpdateParams::Devices::platform]
+        ) -> void
+
+        def to_hash: -> {
+          operating_systems: ::Array[WhopSDK::AdGroupUpdateParams::Devices::OperatingSystem],
+          platforms: ::Array[WhopSDK::Models::AdGroupUpdateParams::Devices::platform]
+        }
+
+        type operating_system =
+          {
+            os: WhopSDK::Models::AdGroupUpdateParams::Devices::OperatingSystem::os,
+            minimum_version: String
+          }
+
+        class OperatingSystem < WhopSDK::Internal::Type::BaseModel
+          attr_accessor os: WhopSDK::Models::AdGroupUpdateParams::Devices::OperatingSystem::os
+
+          attr_reader minimum_version: String?
+
+          def minimum_version=: (String) -> String
+
+          def initialize: (
+            os: WhopSDK::Models::AdGroupUpdateParams::Devices::OperatingSystem::os,
+            ?minimum_version: String
+          ) -> void
+
+          def to_hash: -> {
+            os: WhopSDK::Models::AdGroupUpdateParams::Devices::OperatingSystem::os,
+            minimum_version: String
+          }
+
+          type os = :ios | :android
+
+          module Os
+            extend WhopSDK::Internal::Type::Enum
+
+            IOS: :ios
+            ANDROID: :android
+
+            def self?.values: -> ::Array[WhopSDK::Models::AdGroupUpdateParams::Devices::OperatingSystem::os]
+          end
+        end
+
+        type platform = :mobile | :desktop
+
+        module Platform
+          extend WhopSDK::Internal::Type::Enum
+
+          MOBILE: :mobile
+          DESKTOP: :desktop
+
+          def self?.values: -> ::Array[WhopSDK::Models::AdGroupUpdateParams::Devices::platform]
+        end
+      end
+
+      type frequency_cap = { maximum_impressions: Integer, per_days: Integer }
+
+      class FrequencyCap < WhopSDK::Internal::Type::BaseModel
+        attr_reader maximum_impressions: Integer?
+
+        def maximum_impressions=: (Integer) -> Integer
+
+        attr_reader per_days: Integer?
+
+        def per_days=: (Integer) -> Integer
+
+        def initialize: (
+          ?maximum_impressions: Integer,
+          ?per_days: Integer
+        ) -> void
+
+        def to_hash: -> { maximum_impressions: Integer, per_days: Integer }
+      end
+
+      type message_app = :messenger | :instagram | :whatsapp
+
+      module MessageApp
+        extend WhopSDK::Internal::Type::Enum
+
+        MESSENGER: :messenger
+        INSTAGRAM: :instagram
+        WHATSAPP: :whatsapp
+
+        def self?.values: -> ::Array[WhopSDK::Models::AdGroupUpdateParams::message_app]
+      end
+
+      type optimization_goal =
+        :conversions
+        | :link_clicks
+        | :landing_page_views
+        | :reach
+        | :impressions
+        | :engagement
+        | :conversations
+        | :video_views
+        | :two_second_views
+        | :page_likes
+        | :social_profile
+        | :ad_recall_lift
+        | :event_responses
+        | :reminders_set
+        | :lead_generation
+        | :quality_lead
+        | :value
+        | :profile_and_page_engagement
+
+      module OptimizationGoal
+        extend WhopSDK::Internal::Type::Enum
+
+        CONVERSIONS: :conversions
+        LINK_CLICKS: :link_clicks
+        LANDING_PAGE_VIEWS: :landing_page_views
+        REACH: :reach
+        IMPRESSIONS: :impressions
+        ENGAGEMENT: :engagement
+        CONVERSATIONS: :conversations
+        VIDEO_VIEWS: :video_views
+        TWO_SECOND_VIEWS: :two_second_views
+        PAGE_LIKES: :page_likes
+        SOCIAL_PROFILE: :social_profile
+        AD_RECALL_LIFT: :ad_recall_lift
+        EVENT_RESPONSES: :event_responses
+        REMINDERS_SET: :reminders_set
+        LEAD_GENERATION: :lead_generation
+        QUALITY_LEAD: :quality_lead
+        VALUE: :value
+        PROFILE_AND_PAGE_ENGAGEMENT: :profile_and_page_engagement
+
+        def self?.values: -> ::Array[WhopSDK::Models::AdGroupUpdateParams::optimization_goal]
+      end
+
+      type placements =
+        :automatic
+        | ::Array[WhopSDK::AdGroupUpdateParams::Placements::UnionMember1]
+
+      module Placements
+        extend WhopSDK::Internal::Type::Union
+
+        type union_member1 =
+          {
+            platform: WhopSDK::Models::AdGroupUpdateParams::Placements::UnionMember1::platform,
+            positions: ::Array[String]
+          }
+
+        class UnionMember1 < WhopSDK::Internal::Type::BaseModel
+          attr_accessor platform: WhopSDK::Models::AdGroupUpdateParams::Placements::UnionMember1::platform
+
+          attr_reader positions: ::Array[String]?
+
+          def positions=: (::Array[String]) -> ::Array[String]
+
+          def initialize: (
+            platform: WhopSDK::Models::AdGroupUpdateParams::Placements::UnionMember1::platform,
+            ?positions: ::Array[String]
+          ) -> void
+
+          def to_hash: -> {
+            platform: WhopSDK::Models::AdGroupUpdateParams::Placements::UnionMember1::platform,
+            positions: ::Array[String]
+          }
+
+          type platform =
+            :facebook
+            | :instagram
+            | :messenger
+            | :audience_network
+            | :threads
+            | :whatsapp
+
+          module Platform
+            extend WhopSDK::Internal::Type::Enum
+
+            FACEBOOK: :facebook
+            INSTAGRAM: :instagram
+            MESSENGER: :messenger
+            AUDIENCE_NETWORK: :audience_network
+            THREADS: :threads
+            WHATSAPP: :whatsapp
+
+            def self?.values: -> ::Array[WhopSDK::Models::AdGroupUpdateParams::Placements::UnionMember1::platform]
+          end
+        end
+
+        def self?.variants: -> ::Array[WhopSDK::Models::AdGroupUpdateParams::placements]
+
+        AUTOMATIC: :automatic
+
+        UnionMember1Array: WhopSDK::Internal::Type::Converter
+      end
+
+      type regions =
+        {
+          exclude: WhopSDK::AdGroupUpdateParams::Regions::Exclude,
+          include: WhopSDK::AdGroupUpdateParams::Regions::Include
+        }
+
+      class Regions < WhopSDK::Internal::Type::BaseModel
+        attr_reader exclude: WhopSDK::AdGroupUpdateParams::Regions::Exclude?
+
+        def exclude=: (
+          WhopSDK::AdGroupUpdateParams::Regions::Exclude
+        ) -> WhopSDK::AdGroupUpdateParams::Regions::Exclude
+
+        attr_reader include: WhopSDK::AdGroupUpdateParams::Regions::Include?
+
+        def include=: (
+          WhopSDK::AdGroupUpdateParams::Regions::Include
+        ) -> WhopSDK::AdGroupUpdateParams::Regions::Include
+
+        def initialize: (
+          ?exclude: WhopSDK::AdGroupUpdateParams::Regions::Exclude,
+          ?include: WhopSDK::AdGroupUpdateParams::Regions::Include
+        ) -> void
+
+        def to_hash: -> {
+          exclude: WhopSDK::AdGroupUpdateParams::Regions::Exclude,
+          include: WhopSDK::AdGroupUpdateParams::Regions::Include
+        }
+
+        type exclude =
+          {
+            cities: ::Array[WhopSDK::AdGroupUpdateParams::Regions::Exclude::City],
+            countries: ::Array[String],
+            country_groups: ::Array[String],
+            custom_locations: ::Array[WhopSDK::AdGroupUpdateParams::Regions::Exclude::CustomLocation],
+            regions: ::Array[String],
+            zips: ::Array[WhopSDK::Models::AdGroupUpdateParams::Regions::Exclude::zip]
+          }
+
+        class Exclude < WhopSDK::Internal::Type::BaseModel
+          attr_reader cities: ::Array[WhopSDK::AdGroupUpdateParams::Regions::Exclude::City]?
+
+          def cities=: (
+            ::Array[WhopSDK::AdGroupUpdateParams::Regions::Exclude::City]
+          ) -> ::Array[WhopSDK::AdGroupUpdateParams::Regions::Exclude::City]
+
+          attr_reader countries: ::Array[String]?
+
+          def countries=: (::Array[String]) -> ::Array[String]
+
+          attr_reader country_groups: ::Array[String]?
+
+          def country_groups=: (::Array[String]) -> ::Array[String]
+
+          attr_reader custom_locations: ::Array[WhopSDK::AdGroupUpdateParams::Regions::Exclude::CustomLocation]?
+
+          def custom_locations=: (
+            ::Array[WhopSDK::AdGroupUpdateParams::Regions::Exclude::CustomLocation]
+          ) -> ::Array[WhopSDK::AdGroupUpdateParams::Regions::Exclude::CustomLocation]
+
+          attr_reader regions: ::Array[String]?
+
+          def regions=: (::Array[String]) -> ::Array[String]
+
+          attr_reader zips: ::Array[WhopSDK::Models::AdGroupUpdateParams::Regions::Exclude::zip]?
+
+          def zips=: (
+            ::Array[WhopSDK::Models::AdGroupUpdateParams::Regions::Exclude::zip]
+          ) -> ::Array[WhopSDK::Models::AdGroupUpdateParams::Regions::Exclude::zip]
+
+          def initialize: (
+            ?cities: ::Array[WhopSDK::AdGroupUpdateParams::Regions::Exclude::City],
+            ?countries: ::Array[String],
+            ?country_groups: ::Array[String],
+            ?custom_locations: ::Array[WhopSDK::AdGroupUpdateParams::Regions::Exclude::CustomLocation],
+            ?regions: ::Array[String],
+            ?zips: ::Array[WhopSDK::Models::AdGroupUpdateParams::Regions::Exclude::zip]
+          ) -> void
+
+          def to_hash: -> {
+            cities: ::Array[WhopSDK::AdGroupUpdateParams::Regions::Exclude::City],
+            countries: ::Array[String],
+            country_groups: ::Array[String],
+            custom_locations: ::Array[WhopSDK::AdGroupUpdateParams::Regions::Exclude::CustomLocation],
+            regions: ::Array[String],
+            zips: ::Array[WhopSDK::Models::AdGroupUpdateParams::Regions::Exclude::zip]
+          }
+
+          type city = { key: String, name: String }
+
+          class City < WhopSDK::Internal::Type::BaseModel
+            attr_accessor key: String
+
+            attr_reader name: String?
+
+            def name=: (String) -> String
+
+            def initialize: (key: String, ?name: String) -> void
+
+            def to_hash: -> { key: String, name: String }
+          end
+
+          type custom_location =
+            {
+              latitude: Float,
+              longitude: Float,
+              radius: Float,
+              distance_unit: WhopSDK::Models::AdGroupUpdateParams::Regions::Exclude::CustomLocation::distance_unit,
+              name: String
+            }
+
+          class CustomLocation < WhopSDK::Internal::Type::BaseModel
+            attr_accessor latitude: Float
+
+            attr_accessor longitude: Float
+
+            attr_accessor radius: Float
+
+            attr_reader distance_unit: WhopSDK::Models::AdGroupUpdateParams::Regions::Exclude::CustomLocation::distance_unit?
+
+            def distance_unit=: (
+              WhopSDK::Models::AdGroupUpdateParams::Regions::Exclude::CustomLocation::distance_unit
+            ) -> WhopSDK::Models::AdGroupUpdateParams::Regions::Exclude::CustomLocation::distance_unit
+
+            attr_reader name: String?
+
+            def name=: (String) -> String
+
+            def initialize: (
+              latitude: Float,
+              longitude: Float,
+              radius: Float,
+              ?distance_unit: WhopSDK::Models::AdGroupUpdateParams::Regions::Exclude::CustomLocation::distance_unit,
+              ?name: String
+            ) -> void
+
+            def to_hash: -> {
+              latitude: Float,
+              longitude: Float,
+              radius: Float,
+              distance_unit: WhopSDK::Models::AdGroupUpdateParams::Regions::Exclude::CustomLocation::distance_unit,
+              name: String
+            }
+
+            type distance_unit = :mile | :kilometer
+
+            module DistanceUnit
+              extend WhopSDK::Internal::Type::Enum
+
+              MILE: :mile
+              KILOMETER: :kilometer
+
+              def self?.values: -> ::Array[WhopSDK::Models::AdGroupUpdateParams::Regions::Exclude::CustomLocation::distance_unit]
+            end
+          end
+
+          type zip =
+            String | WhopSDK::AdGroupUpdateParams::Regions::Exclude::Zip::Key
+
+          module Zip
+            extend WhopSDK::Internal::Type::Union
+
+            type key = { key: String }
+
+            class Key < WhopSDK::Internal::Type::BaseModel
+              attr_accessor key: String
+
+              def initialize: (key: String) -> void
+
+              def to_hash: -> { key: String }
+            end
+
+            def self?.variants: -> ::Array[WhopSDK::Models::AdGroupUpdateParams::Regions::Exclude::zip]
+          end
+        end
+
+        type include_ =
+          {
+            cities: ::Array[WhopSDK::AdGroupUpdateParams::Regions::Include::City],
+            countries: ::Array[String],
+            country_groups: ::Array[String],
+            custom_locations: ::Array[WhopSDK::AdGroupUpdateParams::Regions::Include::CustomLocation],
+            regions: ::Array[String],
+            zips: ::Array[WhopSDK::Models::AdGroupUpdateParams::Regions::Include::zip]
+          }
+
+        class Include < WhopSDK::Internal::Type::BaseModel
+          attr_reader cities: ::Array[WhopSDK::AdGroupUpdateParams::Regions::Include::City]?
+
+          def cities=: (
+            ::Array[WhopSDK::AdGroupUpdateParams::Regions::Include::City]
+          ) -> ::Array[WhopSDK::AdGroupUpdateParams::Regions::Include::City]
+
+          attr_reader countries: ::Array[String]?
+
+          def countries=: (::Array[String]) -> ::Array[String]
+
+          attr_reader country_groups: ::Array[String]?
+
+          def country_groups=: (::Array[String]) -> ::Array[String]
+
+          attr_reader custom_locations: ::Array[WhopSDK::AdGroupUpdateParams::Regions::Include::CustomLocation]?
+
+          def custom_locations=: (
+            ::Array[WhopSDK::AdGroupUpdateParams::Regions::Include::CustomLocation]
+          ) -> ::Array[WhopSDK::AdGroupUpdateParams::Regions::Include::CustomLocation]
+
+          attr_reader regions: ::Array[String]?
+
+          def regions=: (::Array[String]) -> ::Array[String]
+
+          attr_reader zips: ::Array[WhopSDK::Models::AdGroupUpdateParams::Regions::Include::zip]?
+
+          def zips=: (
+            ::Array[WhopSDK::Models::AdGroupUpdateParams::Regions::Include::zip]
+          ) -> ::Array[WhopSDK::Models::AdGroupUpdateParams::Regions::Include::zip]
+
+          def initialize: (
+            ?cities: ::Array[WhopSDK::AdGroupUpdateParams::Regions::Include::City],
+            ?countries: ::Array[String],
+            ?country_groups: ::Array[String],
+            ?custom_locations: ::Array[WhopSDK::AdGroupUpdateParams::Regions::Include::CustomLocation],
+            ?regions: ::Array[String],
+            ?zips: ::Array[WhopSDK::Models::AdGroupUpdateParams::Regions::Include::zip]
+          ) -> void
+
+          def to_hash: -> {
+            cities: ::Array[WhopSDK::AdGroupUpdateParams::Regions::Include::City],
+            countries: ::Array[String],
+            country_groups: ::Array[String],
+            custom_locations: ::Array[WhopSDK::AdGroupUpdateParams::Regions::Include::CustomLocation],
+            regions: ::Array[String],
+            zips: ::Array[WhopSDK::Models::AdGroupUpdateParams::Regions::Include::zip]
+          }
+
+          type city = { key: String, name: String }
+
+          class City < WhopSDK::Internal::Type::BaseModel
+            attr_accessor key: String
+
+            attr_reader name: String?
+
+            def name=: (String) -> String
+
+            def initialize: (key: String, ?name: String) -> void
+
+            def to_hash: -> { key: String, name: String }
+          end
+
+          type custom_location =
+            {
+              latitude: Float,
+              longitude: Float,
+              radius: Float,
+              distance_unit: WhopSDK::Models::AdGroupUpdateParams::Regions::Include::CustomLocation::distance_unit,
+              name: String
+            }
+
+          class CustomLocation < WhopSDK::Internal::Type::BaseModel
+            attr_accessor latitude: Float
+
+            attr_accessor longitude: Float
+
+            attr_accessor radius: Float
+
+            attr_reader distance_unit: WhopSDK::Models::AdGroupUpdateParams::Regions::Include::CustomLocation::distance_unit?
+
+            def distance_unit=: (
+              WhopSDK::Models::AdGroupUpdateParams::Regions::Include::CustomLocation::distance_unit
+            ) -> WhopSDK::Models::AdGroupUpdateParams::Regions::Include::CustomLocation::distance_unit
+
+            attr_reader name: String?
+
+            def name=: (String) -> String
+
+            def initialize: (
+              latitude: Float,
+              longitude: Float,
+              radius: Float,
+              ?distance_unit: WhopSDK::Models::AdGroupUpdateParams::Regions::Include::CustomLocation::distance_unit,
+              ?name: String
+            ) -> void
+
+            def to_hash: -> {
+              latitude: Float,
+              longitude: Float,
+              radius: Float,
+              distance_unit: WhopSDK::Models::AdGroupUpdateParams::Regions::Include::CustomLocation::distance_unit,
+              name: String
+            }
+
+            type distance_unit = :mile | :kilometer
+
+            module DistanceUnit
+              extend WhopSDK::Internal::Type::Enum
+
+              MILE: :mile
+              KILOMETER: :kilometer
+
+              def self?.values: -> ::Array[WhopSDK::Models::AdGroupUpdateParams::Regions::Include::CustomLocation::distance_unit]
+            end
+          end
+
+          type zip =
+            String | WhopSDK::AdGroupUpdateParams::Regions::Include::Zip::Key
+
+          module Zip
+            extend WhopSDK::Internal::Type::Union
+
+            type key = { key: String }
+
+            class Key < WhopSDK::Internal::Type::BaseModel
+              attr_accessor key: String
+
+              def initialize: (key: String) -> void
+
+              def to_hash: -> { key: String }
+            end
+
+            def self?.variants: -> ::Array[WhopSDK::Models::AdGroupUpdateParams::Regions::Include::zip]
+          end
+        end
+      end
+
+      type status = :active | :paused
+
+      module Status
+        extend WhopSDK::Internal::Type::Enum
+
+        ACTIVE: :active
+        PAUSED: :paused
+
+        def self?.values: -> ::Array[WhopSDK::Models::AdGroupUpdateParams::status]
+      end
+    end
+  end
+end

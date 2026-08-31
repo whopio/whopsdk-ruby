@@ -7,88 +7,145 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      # @!attribute company_id
-      #   The unique identifier of the company to list promo codes for.
+      # @!attribute account_id
+      #   Account whose promo codes are listed (`biz_` tag).
       #
       #   @return [String]
-      required :company_id, String
+      required :account_id, String
 
       # @!attribute after
-      #   Returns the elements in the list that come after the specified cursor.
+      #   Cursor to paginate forwards from.
       #
       #   @return [String, nil]
       optional :after, String
 
       # @!attribute before
-      #   Returns the elements in the list that come before the specified cursor.
+      #   Cursor to paginate backwards from.
       #
       #   @return [String, nil]
       optional :before, String
 
       # @!attribute created_after
-      #   Only return promo codes created after this timestamp.
+      #   Only promo codes created after this ISO 8601 timestamp.
       #
       #   @return [Time, nil]
       optional :created_after, Time
 
       # @!attribute created_before
-      #   Only return promo codes created before this timestamp.
+      #   Only promo codes created before this ISO 8601 timestamp.
       #
       #   @return [Time, nil]
       optional :created_before, Time
 
+      # @!attribute direction
+      #   Sort direction.
+      #
+      #   @return [Symbol, WhopSDK::Models::PromoCodeListParams::Direction, nil]
+      optional :direction, enum: -> { WhopSDK::PromoCodeListParams::Direction }
+
       # @!attribute first
-      #   Returns the first _n_ elements from the list.
+      #   Number of promo codes to return from the start of the window.
       #
       #   @return [Integer, nil]
       optional :first, Integer
 
       # @!attribute last
-      #   Returns the last _n_ elements from the list.
+      #   Number of promo codes to return from the end of the window.
       #
       #   @return [Integer, nil]
       optional :last, Integer
 
+      # @!attribute order
+      #   Sort field.
+      #
+      #   @return [Symbol, WhopSDK::Models::PromoCodeListParams::Order, nil]
+      optional :order, enum: -> { WhopSDK::PromoCodeListParams::Order }
+
       # @!attribute plan_ids
-      #   Filter to only promo codes scoped to these plan identifiers.
+      #   Only promo codes scoped to these plan IDs.
       #
       #   @return [Array<String>, nil]
       optional :plan_ids, WhopSDK::Internal::Type::ArrayOf[String]
 
       # @!attribute product_ids
-      #   Filter to only promo codes scoped to these product identifiers.
+      #   Only promo codes scoped to these product IDs.
       #
       #   @return [Array<String>, nil]
       optional :product_ids, WhopSDK::Internal::Type::ArrayOf[String]
 
       # @!attribute status
-      #   Filter to only promo codes matching this status.
+      #   Promo-code status. `expired` groups inactive and archived codes.
       #
-      #   @return [Symbol, WhopSDK::Models::PromoCodeStatus, nil]
-      optional :status, enum: -> { WhopSDK::PromoCodeStatus }
+      #   @return [Symbol, WhopSDK::Models::PromoCodeListParams::Status, nil]
+      optional :status, enum: -> { WhopSDK::PromoCodeListParams::Status }
 
-      # @!method initialize(company_id:, after: nil, before: nil, created_after: nil, created_before: nil, first: nil, last: nil, plan_ids: nil, product_ids: nil, status: nil, request_options: {})
-      #   @param company_id [String] The unique identifier of the company to list promo codes for.
+      # @!attribute api_version_date
       #
-      #   @param after [String] Returns the elements in the list that come after the specified cursor.
+      #   @return [String, nil]
+      optional :api_version_date, String
+
+      # @!method initialize(account_id:, after: nil, before: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, order: nil, plan_ids: nil, product_ids: nil, status: nil, api_version_date: nil, request_options: {})
+      #   @param account_id [String] Account whose promo codes are listed (`biz_` tag).
       #
-      #   @param before [String] Returns the elements in the list that come before the specified cursor.
+      #   @param after [String] Cursor to paginate forwards from.
       #
-      #   @param created_after [Time] Only return promo codes created after this timestamp.
+      #   @param before [String] Cursor to paginate backwards from.
       #
-      #   @param created_before [Time] Only return promo codes created before this timestamp.
+      #   @param created_after [Time] Only promo codes created after this ISO 8601 timestamp.
       #
-      #   @param first [Integer] Returns the first _n_ elements from the list.
+      #   @param created_before [Time] Only promo codes created before this ISO 8601 timestamp.
       #
-      #   @param last [Integer] Returns the last _n_ elements from the list.
+      #   @param direction [Symbol, WhopSDK::Models::PromoCodeListParams::Direction] Sort direction.
       #
-      #   @param plan_ids [Array<String>] Filter to only promo codes scoped to these plan identifiers.
+      #   @param first [Integer] Number of promo codes to return from the start of the window.
       #
-      #   @param product_ids [Array<String>] Filter to only promo codes scoped to these product identifiers.
+      #   @param last [Integer] Number of promo codes to return from the end of the window.
       #
-      #   @param status [Symbol, WhopSDK::Models::PromoCodeStatus] Filter to only promo codes matching this status.
+      #   @param order [Symbol, WhopSDK::Models::PromoCodeListParams::Order] Sort field.
+      #
+      #   @param plan_ids [Array<String>] Only promo codes scoped to these plan IDs.
+      #
+      #   @param product_ids [Array<String>] Only promo codes scoped to these product IDs.
+      #
+      #   @param status [Symbol, WhopSDK::Models::PromoCodeListParams::Status] Promo-code status. `expired` groups inactive and archived codes.
+      #
+      #   @param api_version_date [String]
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
+
+      # Sort direction.
+      module Direction
+        extend WhopSDK::Internal::Type::Enum
+
+        ASC = :asc
+        DESC = :desc
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
+
+      # Sort field.
+      module Order
+        extend WhopSDK::Internal::Type::Enum
+
+        CREATED_AT = :created_at
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
+
+      # Promo-code status. `expired` groups inactive and archived codes.
+      module Status
+        extend WhopSDK::Internal::Type::Enum
+
+        ACTIVE = :active
+        INACTIVE = :inactive
+        ARCHIVED = :archived
+        EXPIRED = :expired
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
     end
   end
 end

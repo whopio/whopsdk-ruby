@@ -2,16 +2,19 @@ module WhopSDK
   module Models
     type promo_code_list_params =
       {
-        company_id: String,
+        account_id: String,
         after: String,
         before: String,
         created_after: Time,
         created_before: Time,
+        direction: WhopSDK::Models::PromoCodeListParams::direction,
         first: Integer,
         last: Integer,
+        order: WhopSDK::Models::PromoCodeListParams::order,
         plan_ids: ::Array[String],
         product_ids: ::Array[String],
-        status: WhopSDK::Models::promo_code_status
+        status: WhopSDK::Models::PromoCodeListParams::status,
+        api_version_date: String
       }
       & WhopSDK::Internal::Type::request_parameters
 
@@ -19,7 +22,7 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      attr_accessor company_id: String
+      attr_accessor account_id: String
 
       attr_reader after: String?
 
@@ -37,6 +40,12 @@ module WhopSDK
 
       def created_before=: (Time) -> Time
 
+      attr_reader direction: WhopSDK::Models::PromoCodeListParams::direction?
+
+      def direction=: (
+        WhopSDK::Models::PromoCodeListParams::direction
+      ) -> WhopSDK::Models::PromoCodeListParams::direction
+
       attr_reader first: Integer?
 
       def first=: (Integer) -> Integer
@@ -44,6 +53,12 @@ module WhopSDK
       attr_reader last: Integer?
 
       def last=: (Integer) -> Integer
+
+      attr_reader order: WhopSDK::Models::PromoCodeListParams::order?
+
+      def order=: (
+        WhopSDK::Models::PromoCodeListParams::order
+      ) -> WhopSDK::Models::PromoCodeListParams::order
 
       attr_reader plan_ids: ::Array[String]?
 
@@ -53,39 +68,83 @@ module WhopSDK
 
       def product_ids=: (::Array[String]) -> ::Array[String]
 
-      attr_reader status: WhopSDK::Models::promo_code_status?
+      attr_reader status: WhopSDK::Models::PromoCodeListParams::status?
 
       def status=: (
-        WhopSDK::Models::promo_code_status
-      ) -> WhopSDK::Models::promo_code_status
+        WhopSDK::Models::PromoCodeListParams::status
+      ) -> WhopSDK::Models::PromoCodeListParams::status
+
+      attr_reader api_version_date: String?
+
+      def api_version_date=: (String) -> String
 
       def initialize: (
-        company_id: String,
+        account_id: String,
         ?after: String,
         ?before: String,
         ?created_after: Time,
         ?created_before: Time,
+        ?direction: WhopSDK::Models::PromoCodeListParams::direction,
         ?first: Integer,
         ?last: Integer,
+        ?order: WhopSDK::Models::PromoCodeListParams::order,
         ?plan_ids: ::Array[String],
         ?product_ids: ::Array[String],
-        ?status: WhopSDK::Models::promo_code_status,
+        ?status: WhopSDK::Models::PromoCodeListParams::status,
+        ?api_version_date: String,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
       def to_hash: -> {
-        company_id: String,
+        account_id: String,
         after: String,
         before: String,
         created_after: Time,
         created_before: Time,
+        direction: WhopSDK::Models::PromoCodeListParams::direction,
         first: Integer,
         last: Integer,
+        order: WhopSDK::Models::PromoCodeListParams::order,
         plan_ids: ::Array[String],
         product_ids: ::Array[String],
-        status: WhopSDK::Models::promo_code_status,
+        status: WhopSDK::Models::PromoCodeListParams::status,
+        api_version_date: String,
         request_options: WhopSDK::RequestOptions
       }
+
+      type direction = :asc | :desc
+
+      module Direction
+        extend WhopSDK::Internal::Type::Enum
+
+        ASC: :asc
+        DESC: :desc
+
+        def self?.values: -> ::Array[WhopSDK::Models::PromoCodeListParams::direction]
+      end
+
+      type order = :created_at
+
+      module Order
+        extend WhopSDK::Internal::Type::Enum
+
+        CREATED_AT: :created_at
+
+        def self?.values: -> ::Array[WhopSDK::Models::PromoCodeListParams::order]
+      end
+
+      type status = :active | :inactive | :archived | :expired
+
+      module Status
+        extend WhopSDK::Internal::Type::Enum
+
+        ACTIVE: :active
+        INACTIVE: :inactive
+        ARCHIVED: :archived
+        EXPIRED: :expired
+
+        def self?.values: -> ::Array[WhopSDK::Models::PromoCodeListParams::status]
+      end
     end
   end
 end

@@ -7,148 +7,145 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      # @!attribute base_unit_amount
-      #   The amount paid to each approved submission. The total bounty pool funded is
-      #   this amount times accepted_submissions_limit, and must be at least 5 in the
-      #   bounty's currency.
-      #
-      #   @return [Float]
-      required :base_unit_amount, Float
-
-      # @!attribute currency
-      #   The currency for the bounty pool funding amount.
-      #
-      #   @return [Symbol, WhopSDK::Models::Currency]
-      required :currency, enum: -> { WhopSDK::Currency }
-
       # @!attribute description
-      #   The description of the bounty.
+      #   Full task instructions shown to workers.
       #
       #   @return [String]
       required :description, String
 
+      # @!attribute gross_reward_amount
+      #   Gross bounty-pool amount (USD) escrowed per accepted submission, in whole
+      #   dollars. Platform fees and affiliate shares are paid from this amount.
+      #
+      #   @return [Float]
+      required :gross_reward_amount, Float
+
       # @!attribute title
-      #   The title of the bounty.
+      #   Short name of the task shown to workers.
       #
       #   @return [String]
       required :title, String
 
       # @!attribute accepted_submissions_limit
-      #   The number of submissions that can be approved before the bounty closes.
-      #   Defaults to 1. The total pool (base_unit_amount times this limit) must be at
-      #   least 5 in the bounty's currency.
+      #   Number of submissions that can be accepted (winner slots). Defaults to 1. The
+      #   escrowed total is `gross_reward_amount` times this limit and must be at least
+      #   $5.
       #
       #   @return [Integer, nil]
       optional :accepted_submissions_limit, Integer, nil?: true
 
+      # @!attribute accepted_submissions_per_user_limit
+      #   How many winner slots one worker can win. Defaults to `1`. Wins plus proofs
+      #   awaiting review never exceed this number, and a worker runs one attempt at a
+      #   time. Cannot exceed `accepted_submissions_limit`.
+      #
+      #   @return [Integer, nil]
+      optional :accepted_submissions_per_user_limit, Integer, nil?: true
+
+      # @!attribute account_id
+      #   Account whose balance funds the bounty pool (`biz_` tag). Defaults to the
+      #   caller's personal balance. Requires permission to move the account's funds.
+      #
+      #   @return [String, nil]
+      optional :account_id, String, nil?: true
+
       # @!attribute allowed_country_codes
-      #   The ISO3166 country codes where this bounty should be visible. Empty means
-      #   globally visible.
+      #   Countries whose residents can work the bounty, as ISO 3166 alpha-2 codes. Empty
+      #   means worldwide.
       #
       #   @return [Array<String>, nil]
       optional :allowed_country_codes, WhopSDK::Internal::Type::ArrayOf[String], nil?: true
 
       # @!attribute business_goal_type
-      #   What the poster is trying to accomplish with a workforce bounty. Used for
-      #   product taxonomy and analytics, separate from the bounty's implementation type.
+      #   What the poster wants the work to achieve, declared once here.
       #
       #   @return [Symbol, WhopSDK::Models::BountyCreateParams::BusinessGoalType, nil]
-      optional :business_goal_type, enum: -> { WhopSDK::BountyCreateParams::BusinessGoalType }, nil?: true
+      optional :business_goal_type, enum: -> { WhopSDK::BountyCreateParams::BusinessGoalType }
+
+      # @!attribute capture_spec
+      #   Per-bounty overrides of the served capture contract. Only accepted when
+      #   `business_goal_type` is `data_capture`; omitted fields keep the platform
+      #   defaults, and the resulting contract is echoed back as `capture_spec` on the
+      #   bounty.
+      #
+      #   @return [WhopSDK::Models::BountyCreateParams::CaptureSpec, nil]
+      optional :capture_spec, -> { WhopSDK::BountyCreateParams::CaptureSpec }
 
       # @!attribute experience_id
-      #   An optional experience to scope the bounty to.
+      #   Experience to host the bounty in (`exp_` tag). Any visibility — public for an
+      #   open bounty, private for an invited one. Required unless account_id is set, in
+      #   which case the bounty anchors in that account's public forum.
       #
       #   @return [String, nil]
       optional :experience_id, String, nil?: true
 
-      # @!attribute minimum_total_verified_clip_duration_seconds
-      #   Data capture bounties only: the minimum total server-verified clip duration in
-      #   seconds. Defaults to 3600 and must be a whole number of hours between 1 and 12.
+      # @!attribute frequency
+      #   How often the schedule creates a new bounty. Each occurrence is a separate
+      #   bounty. Defaults to `once`; only applies with `publish_at`.
       #
-      #   @return [Integer, nil]
-      optional :minimum_total_verified_clip_duration_seconds, Integer, nil?: true
+      #   @return [Symbol, WhopSDK::Models::BountyCreateParams::Frequency, nil]
+      optional :frequency, enum: -> { WhopSDK::BountyCreateParams::Frequency }
 
-      # @!attribute origin_account_id
-      #   The user (user*\*) or company (biz*\*) tag whose balance funds this bounty pool.
-      #   Defaults to the requester's personal balance when omitted. The requester must be
-      #   the user themself or an owner/admin of the company.
-      #
-      #   @return [String, nil]
-      optional :origin_account_id, String, nil?: true
-
-      # @!attribute post_markdown_content
-      #   Optional markdown body for the anchor forum post. Falls back to the bounty
-      #   description when omitted.
+      # @!attribute publish_at
+      #   ISO 8601 time to publish the bounty. When set, the bounty is created as a hidden
+      #   draft and funded + published at this time instead of immediately.
       #
       #   @return [String, nil]
-      optional :post_markdown_content, String, nil?: true
+      optional :publish_at, String, nil?: true
 
-      # @!attribute post_title
-      #   Optional title for the anchor forum post. Falls back to the bounty title when
-      #   omitted.
+      # @!attribute publish_at_timezone
+      #   IANA timezone for recurring occurrences. Required when publish_at is set.
       #
       #   @return [String, nil]
-      optional :post_title, String, nil?: true
+      optional :publish_at_timezone, String, nil?: true
 
-      # @!attribute scheduled_frequency
-      #   How often a scheduled bounty republishes a new bounty.
-      #
-      #   @return [Symbol, WhopSDK::Models::BountyCreateParams::ScheduledFrequency, nil]
-      optional :scheduled_frequency, enum: -> { WhopSDK::BountyCreateParams::ScheduledFrequency }, nil?: true
-
-      # @!attribute scheduled_publish_at
-      #   When to publish the bounty. When provided, the bounty is created as a hidden
-      #   draft and published at this time instead of immediately. Must be in the future.
-      #
-      #   @return [Time, nil]
-      optional :scheduled_publish_at, Time, nil?: true
-
-      # @!attribute scheduled_timezone
-      #   The IANA timezone used for recurring occurrences. Required when
-      #   scheduled_publish_at is provided.
+      # @!attribute api_version_date
       #
       #   @return [String, nil]
-      optional :scheduled_timezone, String, nil?: true
+      optional :api_version_date, String
 
-      # @!method initialize(base_unit_amount:, currency:, description:, title:, accepted_submissions_limit: nil, allowed_country_codes: nil, business_goal_type: nil, experience_id: nil, minimum_total_verified_clip_duration_seconds: nil, origin_account_id: nil, post_markdown_content: nil, post_title: nil, scheduled_frequency: nil, scheduled_publish_at: nil, scheduled_timezone: nil, request_options: {})
+      # @!attribute idempotency_key
+      #
+      #   @return [String, nil]
+      optional :idempotency_key, String
+
+      # @!method initialize(description:, gross_reward_amount:, title:, accepted_submissions_limit: nil, accepted_submissions_per_user_limit: nil, account_id: nil, allowed_country_codes: nil, business_goal_type: nil, capture_spec: nil, experience_id: nil, frequency: nil, publish_at: nil, publish_at_timezone: nil, api_version_date: nil, idempotency_key: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::BountyCreateParams} for more details.
       #
-      #   @param base_unit_amount [Float] The amount paid to each approved submission. The total bounty pool funded is thi
+      #   @param description [String] Full task instructions shown to workers.
       #
-      #   @param currency [Symbol, WhopSDK::Models::Currency] The currency for the bounty pool funding amount.
+      #   @param gross_reward_amount [Float] Gross bounty-pool amount (USD) escrowed per accepted submission, in whole dollar
       #
-      #   @param description [String] The description of the bounty.
+      #   @param title [String] Short name of the task shown to workers.
       #
-      #   @param title [String] The title of the bounty.
+      #   @param accepted_submissions_limit [Integer, nil] Number of submissions that can be accepted (winner slots). Defaults to 1. The es
       #
-      #   @param accepted_submissions_limit [Integer, nil] The number of submissions that can be approved before the bounty closes. Default
+      #   @param accepted_submissions_per_user_limit [Integer, nil] How many winner slots one worker can win. Defaults to `1`. Wins plus proofs awai
       #
-      #   @param allowed_country_codes [Array<String>, nil] The ISO3166 country codes where this bounty should be visible. Empty means globa
+      #   @param account_id [String, nil] Account whose balance funds the bounty pool (`biz_` tag). Defaults to the caller
       #
-      #   @param business_goal_type [Symbol, WhopSDK::Models::BountyCreateParams::BusinessGoalType, nil] What the poster is trying to accomplish with a workforce bounty. Used for produc
+      #   @param allowed_country_codes [Array<String>, nil] Countries whose residents can work the bounty, as ISO 3166 alpha-2 codes. Empty
       #
-      #   @param experience_id [String, nil] An optional experience to scope the bounty to.
+      #   @param business_goal_type [Symbol, WhopSDK::Models::BountyCreateParams::BusinessGoalType] What the poster wants the work to achieve, declared once here.
       #
-      #   @param minimum_total_verified_clip_duration_seconds [Integer, nil] Data capture bounties only: the minimum total server-verified clip duration in s
+      #   @param capture_spec [WhopSDK::Models::BountyCreateParams::CaptureSpec] Per-bounty overrides of the served capture contract. Only accepted when `busines
       #
-      #   @param origin_account_id [String, nil] The user (user*\*) or company (biz*\*) tag whose balance funds this bounty pool.
-      #   D
+      #   @param experience_id [String, nil] Experience to host the bounty in (`exp_` tag). Any visibility — public for an op
       #
-      #   @param post_markdown_content [String, nil] Optional markdown body for the anchor forum post. Falls back to the bounty descr
+      #   @param frequency [Symbol, WhopSDK::Models::BountyCreateParams::Frequency] How often the schedule creates a new bounty. Each occurrence is a separate bount
       #
-      #   @param post_title [String, nil] Optional title for the anchor forum post. Falls back to the bounty title when om
+      #   @param publish_at [String, nil] ISO 8601 time to publish the bounty. When set, the bounty is created as a hidden
       #
-      #   @param scheduled_frequency [Symbol, WhopSDK::Models::BountyCreateParams::ScheduledFrequency, nil] How often a scheduled bounty republishes a new bounty.
+      #   @param publish_at_timezone [String, nil] IANA timezone for recurring occurrences. Required when publish_at is set.
       #
-      #   @param scheduled_publish_at [Time, nil] When to publish the bounty. When provided, the bounty is created as a hidden dra
+      #   @param api_version_date [String]
       #
-      #   @param scheduled_timezone [String, nil] The IANA timezone used for recurring occurrences. Required when scheduled_publis
+      #   @param idempotency_key [String]
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
 
-      # What the poster is trying to accomplish with a workforce bounty. Used for
-      # product taxonomy and analytics, separate from the bounty's implementation type.
+      # What the poster wants the work to achieve, declared once here.
       module BusinessGoalType
         extend WhopSDK::Internal::Type::Enum
 
@@ -164,8 +161,91 @@ module WhopSDK
         #   @return [Array<Symbol>]
       end
 
-      # How often a scheduled bounty republishes a new bounty.
-      module ScheduledFrequency
+      class CaptureSpec < WhopSDK::Internal::Type::BaseModel
+        # @!attribute bitrate_target_mbps
+        #   Average bitrate the recorder encodes at, in megabits per second. Must sit within
+        #   the served floor and ceiling.
+        #
+        #   @return [Integer, nil]
+        optional :bitrate_target_mbps, Integer
+
+        # @!attribute embed_camera_metadata
+        #   Whether the recorder also writes camera make and model into the video
+        #   container's metadata.
+        #
+        #   @return [Boolean, nil]
+        optional :embed_camera_metadata, WhopSDK::Internal::Type::Boolean
+
+        # @!attribute frame_gap_tolerance_ms
+        #   Longest stall between consecutive frames a clip may contain before the client
+        #   rejects it, in milliseconds. Unlike the recording fields this one can also be
+        #   tuned after the bounty is created, since it bounds what is accepted rather than
+        #   how footage is captured.
+        #
+        #   @return [Integer, nil]
+        optional :frame_gap_tolerance_ms, Integer
+
+        # @!attribute min_clip_duration_seconds
+        #   Minimum length of a single clip, in seconds.
+        #
+        #   @return [Integer, nil]
+        optional :min_clip_duration_seconds, Integer
+
+        # @!attribute min_total_verified_duration_seconds
+        #   Total verified footage a submission must accumulate across all its clips before
+        #   it can be submitted, in seconds. Must be a whole number of hours between 1
+        #   and 12. Editable after create, until someone starts an attempt.
+        #
+        #   @return [Integer, nil]
+        optional :min_total_verified_duration_seconds, Integer
+
+        # @!attribute stabilization_mode
+        #   How the recorder configures video stabilization. `off` preserves raw motion for
+        #   pose extraction.
+        #
+        #   @return [Symbol, WhopSDK::Models::BountyCreateParams::CaptureSpec::StabilizationMode, nil]
+        optional :stabilization_mode, enum: -> { WhopSDK::BountyCreateParams::CaptureSpec::StabilizationMode }
+
+        # @!method initialize(bitrate_target_mbps: nil, embed_camera_metadata: nil, frame_gap_tolerance_ms: nil, min_clip_duration_seconds: nil, min_total_verified_duration_seconds: nil, stabilization_mode: nil)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::BountyCreateParams::CaptureSpec} for more details.
+        #
+        #   Per-bounty overrides of the served capture contract. Only accepted when
+        #   `business_goal_type` is `data_capture`; omitted fields keep the platform
+        #   defaults, and the resulting contract is echoed back as `capture_spec` on the
+        #   bounty.
+        #
+        #   @param bitrate_target_mbps [Integer] Average bitrate the recorder encodes at, in megabits per second. Must sit within
+        #
+        #   @param embed_camera_metadata [Boolean] Whether the recorder also writes camera make and model into the video container'
+        #
+        #   @param frame_gap_tolerance_ms [Integer] Longest stall between consecutive frames a clip may contain before the client re
+        #
+        #   @param min_clip_duration_seconds [Integer] Minimum length of a single clip, in seconds.
+        #
+        #   @param min_total_verified_duration_seconds [Integer] Total verified footage a submission must accumulate across all its clips before
+        #
+        #   @param stabilization_mode [Symbol, WhopSDK::Models::BountyCreateParams::CaptureSpec::StabilizationMode] How the recorder configures video stabilization. `off` preserves raw motion for
+
+        # How the recorder configures video stabilization. `off` preserves raw motion for
+        # pose extraction.
+        #
+        # @see WhopSDK::Models::BountyCreateParams::CaptureSpec#stabilization_mode
+        module StabilizationMode
+          extend WhopSDK::Internal::Type::Enum
+
+          OFF = :off
+          ON = :on
+          ANY = :any
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
+      end
+
+      # How often the schedule creates a new bounty. Each occurrence is a separate
+      # bounty. Defaults to `once`; only applies with `publish_at`.
+      module Frequency
         extend WhopSDK::Internal::Type::Enum
 
         ONCE = :once

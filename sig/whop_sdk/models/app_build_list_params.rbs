@@ -5,12 +5,13 @@ module WhopSDK
         app_id: String,
         after: String,
         before: String,
-        created_after: Time,
-        created_before: Time,
+        created_after: WhopSDK::Models::AppBuildListParams::created_after,
+        created_before: WhopSDK::Models::AppBuildListParams::created_before,
         first: Integer,
         last: Integer,
-        platform: WhopSDK::Models::app_build_platforms,
-        status: WhopSDK::Models::app_build_statuses
+        platform: WhopSDK::Models::AppBuildListParams::platform,
+        status: WhopSDK::Models::AppBuildListParams::status,
+        api_version_date: String
       }
       & WhopSDK::Internal::Type::request_parameters
 
@@ -28,13 +29,17 @@ module WhopSDK
 
       def before=: (String) -> String
 
-      attr_reader created_after: Time?
+      attr_reader created_after: WhopSDK::Models::AppBuildListParams::created_after?
 
-      def created_after=: (Time) -> Time
+      def created_after=: (
+        WhopSDK::Models::AppBuildListParams::created_after
+      ) -> WhopSDK::Models::AppBuildListParams::created_after
 
-      attr_reader created_before: Time?
+      attr_reader created_before: WhopSDK::Models::AppBuildListParams::created_before?
 
-      def created_before=: (Time) -> Time
+      def created_before=: (
+        WhopSDK::Models::AppBuildListParams::created_before
+      ) -> WhopSDK::Models::AppBuildListParams::created_before
 
       attr_reader first: Integer?
 
@@ -44,28 +49,33 @@ module WhopSDK
 
       def last=: (Integer) -> Integer
 
-      attr_reader platform: WhopSDK::Models::app_build_platforms?
+      attr_reader platform: WhopSDK::Models::AppBuildListParams::platform?
 
       def platform=: (
-        WhopSDK::Models::app_build_platforms
-      ) -> WhopSDK::Models::app_build_platforms
+        WhopSDK::Models::AppBuildListParams::platform
+      ) -> WhopSDK::Models::AppBuildListParams::platform
 
-      attr_reader status: WhopSDK::Models::app_build_statuses?
+      attr_reader status: WhopSDK::Models::AppBuildListParams::status?
 
       def status=: (
-        WhopSDK::Models::app_build_statuses
-      ) -> WhopSDK::Models::app_build_statuses
+        WhopSDK::Models::AppBuildListParams::status
+      ) -> WhopSDK::Models::AppBuildListParams::status
+
+      attr_reader api_version_date: String?
+
+      def api_version_date=: (String) -> String
 
       def initialize: (
         app_id: String,
         ?after: String,
         ?before: String,
-        ?created_after: Time,
-        ?created_before: Time,
+        ?created_after: WhopSDK::Models::AppBuildListParams::created_after,
+        ?created_before: WhopSDK::Models::AppBuildListParams::created_before,
         ?first: Integer,
         ?last: Integer,
-        ?platform: WhopSDK::Models::app_build_platforms,
-        ?status: WhopSDK::Models::app_build_statuses,
+        ?platform: WhopSDK::Models::AppBuildListParams::platform,
+        ?status: WhopSDK::Models::AppBuildListParams::status,
+        ?api_version_date: String,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
@@ -73,14 +83,56 @@ module WhopSDK
         app_id: String,
         after: String,
         before: String,
-        created_after: Time,
-        created_before: Time,
+        created_after: WhopSDK::Models::AppBuildListParams::created_after,
+        created_before: WhopSDK::Models::AppBuildListParams::created_before,
         first: Integer,
         last: Integer,
-        platform: WhopSDK::Models::app_build_platforms,
-        status: WhopSDK::Models::app_build_statuses,
+        platform: WhopSDK::Models::AppBuildListParams::platform,
+        status: WhopSDK::Models::AppBuildListParams::status,
+        api_version_date: String,
         request_options: WhopSDK::RequestOptions
       }
+
+      type created_after = Integer | String
+
+      module CreatedAfter
+        extend WhopSDK::Internal::Type::Union
+
+        def self?.variants: -> ::Array[WhopSDK::Models::AppBuildListParams::created_after]
+      end
+
+      type created_before = Integer | String
+
+      module CreatedBefore
+        extend WhopSDK::Internal::Type::Union
+
+        def self?.variants: -> ::Array[WhopSDK::Models::AppBuildListParams::created_before]
+      end
+
+      type platform = :ios | :android | :web
+
+      module Platform
+        extend WhopSDK::Internal::Type::Enum
+
+        IOS: :ios
+        ANDROID: :android
+        WEB: :web
+
+        def self?.values: -> ::Array[WhopSDK::Models::AppBuildListParams::platform]
+      end
+
+      type status = :draft | :pending | :approved | :rejected
+
+      module Status
+        extend WhopSDK::Internal::Type::Enum
+
+        DRAFT: :draft
+        PENDING: :pending
+        APPROVED: :approved
+        REJECTED: :rejected
+
+        def self?.values: -> ::Array[WhopSDK::Models::AppBuildListParams::status]
+      end
     end
   end
 end

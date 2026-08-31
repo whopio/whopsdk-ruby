@@ -2,12 +2,15 @@ module WhopSDK
   module Models
     type app_create_params =
       {
-        company_id: String,
         name: String,
+        account_id: String,
+        app_type: WhopSDK::Models::AppCreateParams::app_type,
         base_url: String?,
-        icon: WhopSDK::AppCreateParams::Icon?,
-        redirect_uris: ::Array[String]?,
-        route: String?
+        icon: WhopSDK::AppCreateParams::Icon,
+        redirect_uris: ::Array[String],
+        route: String?,
+        api_version_date: String,
+        idempotency_key: String
       }
       & WhopSDK::Internal::Type::request_parameters
 
@@ -15,46 +18,94 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      attr_accessor company_id: String
-
       attr_accessor name: String
+
+      attr_reader account_id: String?
+
+      def account_id=: (String) -> String
+
+      attr_reader app_type: WhopSDK::Models::AppCreateParams::app_type?
+
+      def app_type=: (
+        WhopSDK::Models::AppCreateParams::app_type
+      ) -> WhopSDK::Models::AppCreateParams::app_type
 
       attr_accessor base_url: String?
 
-      attr_accessor icon: WhopSDK::AppCreateParams::Icon?
+      attr_reader icon: WhopSDK::AppCreateParams::Icon?
 
-      attr_accessor redirect_uris: ::Array[String]?
+      def icon=: (
+        WhopSDK::AppCreateParams::Icon
+      ) -> WhopSDK::AppCreateParams::Icon
+
+      attr_reader redirect_uris: ::Array[String]?
+
+      def redirect_uris=: (::Array[String]) -> ::Array[String]
 
       attr_accessor route: String?
 
+      attr_reader api_version_date: String?
+
+      def api_version_date=: (String) -> String
+
+      attr_reader idempotency_key: String?
+
+      def idempotency_key=: (String) -> String
+
       def initialize: (
-        company_id: String,
         name: String,
+        ?account_id: String,
+        ?app_type: WhopSDK::Models::AppCreateParams::app_type,
         ?base_url: String?,
-        ?icon: WhopSDK::AppCreateParams::Icon?,
-        ?redirect_uris: ::Array[String]?,
+        ?icon: WhopSDK::AppCreateParams::Icon,
+        ?redirect_uris: ::Array[String],
         ?route: String?,
+        ?api_version_date: String,
+        ?idempotency_key: String,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
       def to_hash: -> {
-        company_id: String,
         name: String,
+        account_id: String,
+        app_type: WhopSDK::Models::AppCreateParams::app_type,
         base_url: String?,
-        icon: WhopSDK::AppCreateParams::Icon?,
-        redirect_uris: ::Array[String]?,
+        icon: WhopSDK::AppCreateParams::Icon,
+        redirect_uris: ::Array[String],
         route: String?,
+        api_version_date: String,
+        idempotency_key: String,
         request_options: WhopSDK::RequestOptions
       }
 
-      type icon = { id: String }
+      type app_type = :b2b_app | :b2c_app | :company_app | :component | :website
+
+      module AppType
+        extend WhopSDK::Internal::Type::Enum
+
+        B2B_APP: :b2b_app
+        B2C_APP: :b2c_app
+        COMPANY_APP: :company_app
+        COMPONENT: :component
+        WEBSITE: :website
+
+        def self?.values: -> ::Array[WhopSDK::Models::AppCreateParams::app_type]
+      end
+
+      type icon = { id: String, direct_upload_id: String }
 
       class Icon < WhopSDK::Internal::Type::BaseModel
-        attr_accessor id: String
+        attr_reader id: String?
 
-        def initialize: (id: String) -> void
+        def id=: (String) -> String
 
-        def to_hash: -> { id: String }
+        attr_reader direct_upload_id: String?
+
+        def direct_upload_id=: (String) -> String
+
+        def initialize: (?id: String, ?direct_upload_id: String) -> void
+
+        def to_hash: -> { id: String, direct_upload_id: String }
       end
     end
   end

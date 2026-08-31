@@ -2,21 +2,30 @@ module WhopSDK
   module Models
     type resolution_center_case_list_params =
       {
+        account_id: String,
         after: String,
         before: String,
-        company_id: String,
-        created_after: Time,
-        created_before: Time,
-        direction: WhopSDK::Models::direction,
+        created_after: String,
+        created_before: String,
+        direction: WhopSDK::Models::ResolutionCenterCaseListParams::direction,
         first: Integer,
         last: Integer,
-        statuses: ::Array[WhopSDK::Models::resolution_center_case_status]
+        order: WhopSDK::Models::ResolutionCenterCaseListParams::order,
+        outcome: ::Array[WhopSDK::Models::ResolutionCenterCaseListParams::outcome],
+        reason: ::Array[WhopSDK::Models::ResolutionCenterCaseListParams::reason],
+        status: ::Array[WhopSDK::Models::ResolutionCenterCaseListParams::status],
+        user_id: String,
+        api_version_date: String
       }
       & WhopSDK::Internal::Type::request_parameters
 
     class ResolutionCenterCaseListParams < WhopSDK::Internal::Type::BaseModel
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
+
+      attr_reader account_id: String?
+
+      def account_id=: (String) -> String
 
       attr_reader after: String?
 
@@ -26,21 +35,19 @@ module WhopSDK
 
       def before=: (String) -> String
 
-      attr_reader company_id: String?
+      attr_reader created_after: String?
 
-      def company_id=: (String) -> String
+      def created_after=: (String) -> String
 
-      attr_reader created_after: Time?
+      attr_reader created_before: String?
 
-      def created_after=: (Time) -> Time
+      def created_before=: (String) -> String
 
-      attr_reader created_before: Time?
+      attr_reader direction: WhopSDK::Models::ResolutionCenterCaseListParams::direction?
 
-      def created_before=: (Time) -> Time
-
-      attr_reader direction: WhopSDK::Models::direction?
-
-      def direction=: (WhopSDK::Models::direction) -> WhopSDK::Models::direction
+      def direction=: (
+        WhopSDK::Models::ResolutionCenterCaseListParams::direction
+      ) -> WhopSDK::Models::ResolutionCenterCaseListParams::direction
 
       attr_reader first: Integer?
 
@@ -50,37 +57,140 @@ module WhopSDK
 
       def last=: (Integer) -> Integer
 
-      attr_reader statuses: ::Array[WhopSDK::Models::resolution_center_case_status]?
+      attr_reader order: WhopSDK::Models::ResolutionCenterCaseListParams::order?
 
-      def statuses=: (
-        ::Array[WhopSDK::Models::resolution_center_case_status]
-      ) -> ::Array[WhopSDK::Models::resolution_center_case_status]
+      def order=: (
+        WhopSDK::Models::ResolutionCenterCaseListParams::order
+      ) -> WhopSDK::Models::ResolutionCenterCaseListParams::order
+
+      attr_reader outcome: ::Array[WhopSDK::Models::ResolutionCenterCaseListParams::outcome]?
+
+      def outcome=: (
+        ::Array[WhopSDK::Models::ResolutionCenterCaseListParams::outcome]
+      ) -> ::Array[WhopSDK::Models::ResolutionCenterCaseListParams::outcome]
+
+      attr_reader reason: ::Array[WhopSDK::Models::ResolutionCenterCaseListParams::reason]?
+
+      def reason=: (
+        ::Array[WhopSDK::Models::ResolutionCenterCaseListParams::reason]
+      ) -> ::Array[WhopSDK::Models::ResolutionCenterCaseListParams::reason]
+
+      attr_reader status: ::Array[WhopSDK::Models::ResolutionCenterCaseListParams::status]?
+
+      def status=: (
+        ::Array[WhopSDK::Models::ResolutionCenterCaseListParams::status]
+      ) -> ::Array[WhopSDK::Models::ResolutionCenterCaseListParams::status]
+
+      attr_reader user_id: String?
+
+      def user_id=: (String) -> String
+
+      attr_reader api_version_date: String?
+
+      def api_version_date=: (String) -> String
 
       def initialize: (
+        ?account_id: String,
         ?after: String,
         ?before: String,
-        ?company_id: String,
-        ?created_after: Time,
-        ?created_before: Time,
-        ?direction: WhopSDK::Models::direction,
+        ?created_after: String,
+        ?created_before: String,
+        ?direction: WhopSDK::Models::ResolutionCenterCaseListParams::direction,
         ?first: Integer,
         ?last: Integer,
-        ?statuses: ::Array[WhopSDK::Models::resolution_center_case_status],
+        ?order: WhopSDK::Models::ResolutionCenterCaseListParams::order,
+        ?outcome: ::Array[WhopSDK::Models::ResolutionCenterCaseListParams::outcome],
+        ?reason: ::Array[WhopSDK::Models::ResolutionCenterCaseListParams::reason],
+        ?status: ::Array[WhopSDK::Models::ResolutionCenterCaseListParams::status],
+        ?user_id: String,
+        ?api_version_date: String,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
       def to_hash: -> {
+        account_id: String,
         after: String,
         before: String,
-        company_id: String,
-        created_after: Time,
-        created_before: Time,
-        direction: WhopSDK::Models::direction,
+        created_after: String,
+        created_before: String,
+        direction: WhopSDK::Models::ResolutionCenterCaseListParams::direction,
         first: Integer,
         last: Integer,
-        statuses: ::Array[WhopSDK::Models::resolution_center_case_status],
+        order: WhopSDK::Models::ResolutionCenterCaseListParams::order,
+        outcome: ::Array[WhopSDK::Models::ResolutionCenterCaseListParams::outcome],
+        reason: ::Array[WhopSDK::Models::ResolutionCenterCaseListParams::reason],
+        status: ::Array[WhopSDK::Models::ResolutionCenterCaseListParams::status],
+        user_id: String,
+        api_version_date: String,
         request_options: WhopSDK::RequestOptions
       }
+
+      type direction = :asc | :desc
+
+      module Direction
+        extend WhopSDK::Internal::Type::Enum
+
+        ASC: :asc
+        DESC: :desc
+
+        def self?.values: -> ::Array[WhopSDK::Models::ResolutionCenterCaseListParams::direction]
+      end
+
+      type order = :created_at | :response_due_at
+
+      module Order
+        extend WhopSDK::Internal::Type::Enum
+
+        CREATED_AT: :created_at
+        RESPONSE_DUE_AT: :response_due_at
+
+        def self?.values: -> ::Array[WhopSDK::Models::ResolutionCenterCaseListParams::order]
+      end
+
+      type outcome = :customer_won | :merchant_won | :withdrawn
+
+      module Outcome
+        extend WhopSDK::Internal::Type::Enum
+
+        CUSTOMER_WON: :customer_won
+        MERCHANT_WON: :merchant_won
+        WITHDRAWN: :withdrawn
+
+        def self?.values: -> ::Array[WhopSDK::Models::ResolutionCenterCaseListParams::outcome]
+      end
+
+      type reason =
+        :fraudulent
+        | :product_not_received
+        | :not_as_described
+        | :product_unacceptable
+        | :subscription_canceled
+
+      module Reason
+        extend WhopSDK::Internal::Type::Enum
+
+        FRAUDULENT: :fraudulent
+        PRODUCT_NOT_RECEIVED: :product_not_received
+        NOT_AS_DESCRIBED: :not_as_described
+        PRODUCT_UNACCEPTABLE: :product_unacceptable
+        SUBSCRIPTION_CANCELED: :subscription_canceled
+
+        def self?.values: -> ::Array[WhopSDK::Models::ResolutionCenterCaseListParams::reason]
+      end
+
+      type status =
+        :awaiting_merchant | :awaiting_customer | :under_review | :closed
+
+      module Status
+        extend WhopSDK::Internal::Type::Enum
+
+        AWAITING_MERCHANT: :awaiting_merchant
+        AWAITING_CUSTOMER: :awaiting_customer
+        UNDER_REVIEW: :under_review
+        CLOSED: :closed
+
+        def self?.values: -> ::Array[WhopSDK::Models::ResolutionCenterCaseListParams::status]
+      end
     end
   end
 end

@@ -15,17 +15,14 @@ class WhopSDK::Test::Resources::MembersTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
-        access_level: WhopSDK::AccessLevel,
-        company: WhopSDK::Models::MemberRetrieveResponse::Company,
-        company_token_balance: Float,
-        created_at: Time,
-        joined_at: Time,
-        most_recent_action: WhopSDK::MemberMostRecentActions | nil,
-        most_recent_action_at: Time | nil,
-        phone: String | nil,
-        status: WhopSDK::MemberStatuses,
-        updated_at: Time,
-        usd_total_spent: Float,
+        access_level: WhopSDK::Models::MemberRetrieveResponse::AccessLevel,
+        account_id: String,
+        created_at: String,
+        joined_at: String,
+        last_accessed_at: String | nil,
+        phone_number: String | nil,
+        status: WhopSDK::Models::MemberRetrieveResponse::Status,
+        token_balance: Float,
         user: WhopSDK::Models::MemberRetrieveResponse::User | nil
       }
     end
@@ -50,16 +47,14 @@ class WhopSDK::Test::Resources::MembersTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       row => {
         id: String,
-        access_level: WhopSDK::AccessLevel,
-        company_token_balance: Float,
-        created_at: Time,
-        joined_at: Time,
-        most_recent_action: WhopSDK::MemberMostRecentActions | nil,
-        most_recent_action_at: Time | nil,
-        phone: String | nil,
-        status: WhopSDK::MemberStatuses,
-        updated_at: Time,
-        usd_total_spent: Float,
+        access_level: WhopSDK::Models::MemberListResponse::AccessLevel,
+        account_id: String,
+        created_at: String,
+        joined_at: String,
+        last_accessed_at: String | nil,
+        phone_number: String | nil,
+        status: WhopSDK::Models::MemberListResponse::Status,
+        token_balance: Float,
         user: WhopSDK::Models::MemberListResponse::User | nil
       }
     end

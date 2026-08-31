@@ -5,246 +5,318 @@ module WhopSDK
     # @see WhopSDK::Resources::Apps#list
     class AppListResponse < WhopSDK::Internal::Type::BaseModel
       # @!attribute id
-      #   The unique identifier for the app.
+      #   App ID, prefixed `app_`.
       #
       #   @return [String]
       required :id, String
 
-      # @!attribute app_type
-      #   The target audience classification for this app (e.g., 'b2b_app', 'b2c_app',
-      #   'company_app', 'component').
+      # @!attribute account
+      #   The account that owns the app.
       #
-      #   @return [Symbol, WhopSDK::Models::AppType]
-      required :app_type, enum: -> { WhopSDK::AppType }
+      #   @return [WhopSDK::Models::AppListResponse::Account]
+      required :account, -> { WhopSDK::Models::AppListResponse::Account }
 
-      # @!attribute company
-      #   The company that owns and publishes this app.
+      # @!attribute app_type
+      #   The type of end-user the app is built for.
       #
-      #   @return [WhopSDK::Models::AppListResponse::Company]
-      required :company, -> { WhopSDK::Models::AppListResponse::Company }
+      #   @return [Symbol, WhopSDK::Models::AppListResponse::AppType]
+      required :app_type, enum: -> { WhopSDK::Models::AppListResponse::AppType }
+
+      # @!attribute banner_image
+      #   Banner image from the app's product listing, or `null` when none is uploaded.
+      #
+      #   @return [WhopSDK::Models::AppListResponse::BannerImage, nil]
+      required :banner_image, -> { WhopSDK::Models::AppListResponse::BannerImage }, nil?: true
+
+      # @!attribute base_url
+      #   The production base URL where the app is hosted. `null` if no base URL is
+      #   configured, if the caller lacks the `developer:basic:read` permission on the
+      #   app's account, or on list responses, which never expose it.
+      #
+      #   @return [String, nil]
+      required :base_url, String, nil?: true
+
+      # @!attribute businesses_created_count
+      #   Number of businesses created from this app as a template.
+      #
+      #   @return [Integer]
+      required :businesses_created_count, Integer
+
+      # @!attribute businesses_created_logo_urls
+      #
+      #   @return [Array<String>]
+      required :businesses_created_logo_urls, WhopSDK::Internal::Type::ArrayOf[String]
 
       # @!attribute creator
-      #   The user who created and owns the company that published this app.
+      #   The user who owns the publishing account.
       #
       #   @return [WhopSDK::Models::AppListResponse::Creator]
       required :creator, -> { WhopSDK::Models::AppListResponse::Creator }
 
       # @!attribute dashboard_path
-      #   The URL path template for a specific view of this app, appended to the base
-      #   domain (e.g., '/experiences/[experienceId]'). Null if the specified view type is
-      #   not configured.
+      #   URL path for the account dashboard view, or `null` when not configured.
       #
       #   @return [String, nil]
       required :dashboard_path, String, nil?: true
 
       # @!attribute description
-      #   A written description of what this app does, displayed on the app store listing
-      #   page. Null if no description has been set.
+      #   Short description shown in listings and search results, or `null` if none has
+      #   been set.
       #
       #   @return [String, nil]
       required :description, String, nil?: true
 
       # @!attribute discover_path
-      #   The URL path template for a specific view of this app, appended to the base
-      #   domain (e.g., '/experiences/[experienceId]'). Null if the specified view type is
-      #   not configured.
+      #   URL path for the discover view, or `null` when not configured.
       #
       #   @return [String, nil]
       required :discover_path, String, nil?: true
 
       # @!attribute domain_id
-      #   The unique subdomain identifier for this app's proxied URL on the Whop platform.
-      #   Forms the URL pattern https://{domain_id}.apps.whop.com.
+      #   Subdomain identifier for the app's proxied URL, forming
+      #   https://{domain_id}.apps.whop.com.
       #
       #   @return [String]
       required :domain_id, String
 
       # @!attribute experience_path
-      #   The URL path template for a specific view of this app, appended to the base
-      #   domain (e.g., '/experiences/[experienceId]'). Null if the specified view type is
-      #   not configured.
+      #   URL path for the member-facing hub view, or `null` when not configured.
       #
       #   @return [String, nil]
       required :experience_path, String, nil?: true
 
       # @!attribute hosted_url
-      #   The full canonical URL where this app's hosted web build is served. Null if the
-      #   app has not claimed a route.
+      #   Full URL where the app's hosted web build is served, or `null` if no route is
+      #   claimed.
       #
       #   @return [String, nil]
       required :hosted_url, String, nil?: true
 
       # @!attribute icon
-      #   The icon image for this app, displayed on the app store, product pages,
-      #   checkout, and as the default icon for experiences using this app.
+      #   The app's icon. Falls back to the default app icon when none is uploaded.
       #
-      #   @return [WhopSDK::Models::AppListResponse::Icon, nil]
-      required :icon, -> { WhopSDK::Models::AppListResponse::Icon }, nil?: true
+      #   @return [WhopSDK::Models::AppListResponse::Icon]
+      required :icon, -> { WhopSDK::Models::AppListResponse::Icon }
 
       # @!attribute name
-      #   The display name of this app shown on the app store and in experience
-      #   navigation. Maximum 30 characters.
+      #   Display name shown on the app store and in experience navigation.
       #
       #   @return [String]
       required :name, String
 
       # @!attribute openapi_path
-      #   The URL path template for a specific view of this app, appended to the base
-      #   domain (e.g., '/experiences/[experienceId]'). Null if the specified view type is
-      #   not configured.
+      #   URL path to the app's OpenAPI spec file, or `null` when not configured.
       #
       #   @return [String, nil]
       required :openapi_path, String, nil?: true
 
       # @!attribute origin
-      #   The full origin URL for this app's proxied domain (e.g.,
-      #   'https://myapp.apps.whop.com'). Null if no proxy domain is configured.
+      #   Full origin URL of the app's proxied domain, for example
+      #   https://ab1c2d3e4f.apps.whop.com.
       #
       #   @return [String, nil]
       required :origin, String, nil?: true
 
       # @!attribute route
-      #   The unique subdomain route where this app's hosted web builds are served, such
-      #   as 'myapp' for myapp.whop.site. Null if the app has not claimed a route.
+      #   Claimed subdomain route where hosted web builds are served (`myapp` for
+      #   myapp.whop.site), or `null` if no route is claimed.
       #
       #   @return [String, nil]
       required :route, String, nil?: true
 
       # @!attribute skills_path
-      #   The URL path template for a specific view of this app, appended to the base
-      #   domain (e.g., '/experiences/[experienceId]'). Null if the specified view type is
-      #   not configured.
+      #   URL path to the app's skills directory, or `null` when not configured.
       #
       #   @return [String, nil]
       required :skills_path, String, nil?: true
 
       # @!attribute status
-      #   The current visibility status of this app on the Whop app store. 'live' means
-      #   publicly discoverable, 'unlisted' means accessible only via direct link, and
-      #   'hidden' means not visible anywhere.
+      #   Visibility on the Whop app store: `live` is publicly discoverable, `unlisted` is
+      #   accessible only via direct link, `hidden` is not visible anywhere.
       #
-      #   @return [Symbol, WhopSDK::Models::AppStatuses]
-      required :status, enum: -> { WhopSDK::AppStatuses }
+      #   @return [Symbol, WhopSDK::Models::AppListResponse::Status]
+      required :status, enum: -> { WhopSDK::Models::AppListResponse::Status }
 
       # @!attribute verified
-      #   Whether this app has been verified by Whop. Verified apps are endorsed by Whop
-      #   and displayed in the featured apps section of the app store.
+      #   Whether the app has been verified by Whop and is eligible for the featured apps
+      #   section.
       #
       #   @return [Boolean]
       required :verified, WhopSDK::Internal::Type::Boolean
 
-      # @!method initialize(id:, app_type:, company:, creator:, dashboard_path:, description:, discover_path:, domain_id:, experience_path:, hosted_url:, icon:, name:, openapi_path:, origin:, route:, skills_path:, status:, verified:)
+      # @!method initialize(id:, account:, app_type:, banner_image:, base_url:, businesses_created_count:, businesses_created_logo_urls:, creator:, dashboard_path:, description:, discover_path:, domain_id:, experience_path:, hosted_url:, icon:, name:, openapi_path:, origin:, route:, skills_path:, status:, verified:)
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::AppListResponse} for more details.
       #
-      #   An app is an integration built on Whop. Apps can serve consumers as experiences
-      #   within products, or serve companies as business tools.
+      #   @param id [String] App ID, prefixed `app_`.
       #
-      #   @param id [String] The unique identifier for the app.
+      #   @param account [WhopSDK::Models::AppListResponse::Account] The account that owns the app.
       #
-      #   @param app_type [Symbol, WhopSDK::Models::AppType] The target audience classification for this app (e.g., 'b2b_app', 'b2c_app', 'co
+      #   @param app_type [Symbol, WhopSDK::Models::AppListResponse::AppType] The type of end-user the app is built for.
       #
-      #   @param company [WhopSDK::Models::AppListResponse::Company] The company that owns and publishes this app.
+      #   @param banner_image [WhopSDK::Models::AppListResponse::BannerImage, nil] Banner image from the app's product listing, or `null` when none is uploaded.
       #
-      #   @param creator [WhopSDK::Models::AppListResponse::Creator] The user who created and owns the company that published this app.
+      #   @param base_url [String, nil] The production base URL where the app is hosted. `null` if no base URL is config
       #
-      #   @param dashboard_path [String, nil] The URL path template for a specific view of this app, appended to the base doma
+      #   @param businesses_created_count [Integer] Number of businesses created from this app as a template.
       #
-      #   @param description [String, nil] A written description of what this app does, displayed on the app store listing
+      #   @param businesses_created_logo_urls [Array<String>]
       #
-      #   @param discover_path [String, nil] The URL path template for a specific view of this app, appended to the base doma
+      #   @param creator [WhopSDK::Models::AppListResponse::Creator] The user who owns the publishing account.
       #
-      #   @param domain_id [String] The unique subdomain identifier for this app's proxied URL on the Whop platform.
+      #   @param dashboard_path [String, nil] URL path for the account dashboard view, or `null` when not configured.
       #
-      #   @param experience_path [String, nil] The URL path template for a specific view of this app, appended to the base doma
+      #   @param description [String, nil] Short description shown in listings and search results, or `null` if none has be
       #
-      #   @param hosted_url [String, nil] The full canonical URL where this app's hosted web build is served. Null if the
+      #   @param discover_path [String, nil] URL path for the discover view, or `null` when not configured.
       #
-      #   @param icon [WhopSDK::Models::AppListResponse::Icon, nil] The icon image for this app, displayed on the app store, product pages, checkout
+      #   @param domain_id [String] Subdomain identifier for the app's proxied URL, forming https://{domain_id}.apps
       #
-      #   @param name [String] The display name of this app shown on the app store and in experience navigation
+      #   @param experience_path [String, nil] URL path for the member-facing hub view, or `null` when not configured.
       #
-      #   @param openapi_path [String, nil] The URL path template for a specific view of this app, appended to the base doma
+      #   @param hosted_url [String, nil] Full URL where the app's hosted web build is served, or `null` if no route is cl
       #
-      #   @param origin [String, nil] The full origin URL for this app's proxied domain (e.g., 'https://myapp.apps.who
+      #   @param icon [WhopSDK::Models::AppListResponse::Icon] The app's icon. Falls back to the default app icon when none is uploaded.
       #
-      #   @param route [String, nil] The unique subdomain route where this app's hosted web builds are served, such a
+      #   @param name [String] Display name shown on the app store and in experience navigation.
       #
-      #   @param skills_path [String, nil] The URL path template for a specific view of this app, appended to the base doma
+      #   @param openapi_path [String, nil] URL path to the app's OpenAPI spec file, or `null` when not configured.
       #
-      #   @param status [Symbol, WhopSDK::Models::AppStatuses] The current visibility status of this app on the Whop app store. 'live' means pu
+      #   @param origin [String, nil] Full origin URL of the app's proxied domain, for example https://ab1c2d3e4f.apps
       #
-      #   @param verified [Boolean] Whether this app has been verified by Whop. Verified apps are endorsed by Whop a
+      #   @param route [String, nil] Claimed subdomain route where hosted web builds are served (`myapp` for myapp.wh
+      #
+      #   @param skills_path [String, nil] URL path to the app's skills directory, or `null` when not configured.
+      #
+      #   @param status [Symbol, WhopSDK::Models::AppListResponse::Status] Visibility on the Whop app store: `live` is publicly discoverable, `unlisted` is
+      #
+      #   @param verified [Boolean] Whether the app has been verified by Whop and is eligible for the featured apps
 
-      # @see WhopSDK::Models::AppListResponse#company
-      class Company < WhopSDK::Internal::Type::BaseModel
+      # @see WhopSDK::Models::AppListResponse#account
+      class Account < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The unique identifier for the company.
+        #   Account ID, prefixed `biz_`.
         #
         #   @return [String]
         required :id, String
 
+        # @!attribute logo_url
+        #   Account logo image URL.
+        #
+        #   @return [String, nil]
+        required :logo_url, String, nil?: true
+
+        # @!attribute route
+        #   Account public route identifier.
+        #
+        #   @return [String]
+        required :route, String
+
         # @!attribute title
-        #   The display name of the company shown to customers.
+        #   Account display name.
         #
         #   @return [String]
         required :title, String
 
-        # @!method initialize(id:, title:)
-        #   The company that owns and publishes this app.
+        # @!method initialize(id:, logo_url:, route:, title:)
+        #   The account that owns the app.
         #
-        #   @param id [String] The unique identifier for the company.
+        #   @param id [String] Account ID, prefixed `biz_`.
         #
-        #   @param title [String] The display name of the company shown to customers.
+        #   @param logo_url [String, nil] Account logo image URL.
+        #
+        #   @param route [String] Account public route identifier.
+        #
+        #   @param title [String] Account display name.
+      end
+
+      # The type of end-user the app is built for.
+      #
+      # @see WhopSDK::Models::AppListResponse#app_type
+      module AppType
+        extend WhopSDK::Internal::Type::Enum
+
+        B2B_APP = :b2b_app
+        B2C_APP = :b2c_app
+        COMPANY_APP = :company_app
+        COMPONENT = :component
+        WEBSITE = :website
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
+
+      # @see WhopSDK::Models::AppListResponse#banner_image
+      class BannerImage < WhopSDK::Internal::Type::BaseModel
+        # @!attribute url
+        #   Banner image URL, taken from the app's product listing.
+        #
+        #   @return [String]
+        required :url, String
+
+        # @!method initialize(url:)
+        #   Banner image from the app's product listing, or `null` when none is uploaded.
+        #
+        #   @param url [String] Banner image URL, taken from the app's product listing.
       end
 
       # @see WhopSDK::Models::AppListResponse#creator
       class Creator < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The unique identifier for the user.
+        #   User ID, prefixed `user_`.
         #
         #   @return [String]
         required :id, String
 
         # @!attribute name
-        #   The user's display name shown on their public profile.
+        #   Display name.
         #
         #   @return [String, nil]
         required :name, String, nil?: true
 
         # @!attribute username
-        #   The user's unique username shown on their public profile.
+        #   Public username.
         #
         #   @return [String]
         required :username, String
 
         # @!method initialize(id:, name:, username:)
-        #   The user who created and owns the company that published this app.
+        #   The user who owns the publishing account.
         #
-        #   @param id [String] The unique identifier for the user.
+        #   @param id [String] User ID, prefixed `user_`.
         #
-        #   @param name [String, nil] The user's display name shown on their public profile.
+        #   @param name [String, nil] Display name.
         #
-        #   @param username [String] The user's unique username shown on their public profile.
+        #   @param username [String] Public username.
       end
 
       # @see WhopSDK::Models::AppListResponse#icon
       class Icon < WhopSDK::Internal::Type::BaseModel
         # @!attribute url
-        #   A pre-optimized URL for rendering this attachment on the client. This should be
-        #   used for displaying attachments in apps.
+        #   Icon image URL. Always present — the default app icon when none is uploaded.
         #
-        #   @return [String, nil]
-        required :url, String, nil?: true
+        #   @return [String]
+        required :url, String
 
         # @!method initialize(url:)
-        #   Some parameter documentations has been truncated, see
-        #   {WhopSDK::Models::AppListResponse::Icon} for more details.
+        #   The app's icon. Falls back to the default app icon when none is uploaded.
         #
-        #   The icon image for this app, displayed on the app store, product pages,
-        #   checkout, and as the default icon for experiences using this app.
-        #
-        #   @param url [String, nil] A pre-optimized URL for rendering this attachment on the client. This should be
+        #   @param url [String] Icon image URL. Always present — the default app icon when none is uploaded.
+      end
+
+      # Visibility on the Whop app store: `live` is publicly discoverable, `unlisted` is
+      # accessible only via direct link, `hidden` is not visible anywhere.
+      #
+      # @see WhopSDK::Models::AppListResponse#status
+      module Status
+        extend WhopSDK::Internal::Type::Enum
+
+        LIVE = :live
+        UNLISTED = :unlisted
+        HIDDEN = :hidden
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
     end
   end

@@ -2,91 +2,103 @@
 
 module WhopSDK
   module Resources
-    # Shipments
+    # A Shipment attaches a carrier tracking number to a payment and follows the
+    # package from label creation to delivery, exposing the current delivery status
+    # and a customer-facing tracking URL.
+    #
+    # Use the Shipments API to list an account's shipments, retrieve one by its id or
+    # the payment it fulfills, attach a tracking number to a payment, and update the
+    # tracking number on an existing shipment.
     class Shipments
-      # Create a new shipment with a tracking code for a specific payment within a
-      # company.
-      #
-      # Required permissions:
-      #
-      # - `shipment:create`
-      # - `payment:basic:read`
+      # Attaches a carrier tracking number to a payment and begins tracking it.
       sig do
         params(
-          company_id: String,
           payment_id: String,
-          tracking_code: String,
+          tracking_number: String,
+          account_id: String,
+          api_version_date: String,
+          idempotency_key: String,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Shipment)
       end
       def create(
-        # The unique identifier of the company to create the shipment for, starting with
-        # 'biz\_'.
-        company_id:,
-        # The unique identifier of the payment to associate the shipment with.
+        # Body param: The payment to attach the shipment to, prefixed `pay_`.
         payment_id:,
-        # The carrier tracking code for the shipment, such as a USPS, UPS, or FedEx
-        # tracking number.
-        tracking_code:,
+        # Body param: The carrier-assigned tracking number.
+        tracking_number:,
+        # Body param: The unique identifier of the account, prefixed `biz_`.
+        account_id: nil,
+        # Header param: Pins the request to a dated API version.
+        api_version_date: nil,
+        # Header param: A unique key that makes this request safe to retry. See
+        # [Idempotent requests](https://docs.whop.com/developer/api/idempotency).
+        idempotency_key: nil,
         request_options: {}
       )
       end
 
-      # Retrieves the details of an existing shipment.
-      #
-      # Required permissions:
-      #
-      # - `shipment:basic:read`
-      # - `payment:basic:read`
+      # Retrieves a shipment by its id, or by the payment id it fulfills.
       sig do
         params(
           id: String,
+          api_version_date: String,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Shipment)
       end
       def retrieve(
-        # The unique identifier of the shipment to retrieve.
+        # The shipment id (`ship_`), or the payment id (`pay_`) it fulfills.
         id,
+        # Pins the request to a dated API version.
+        api_version_date: nil,
         request_options: {}
       )
       end
 
-      # Returns a paginated list of shipments, with optional filtering by payment,
-      # company, or user.
-      #
-      # Required permissions:
-      #
-      # - `shipment:basic:read`
-      # - `payment:basic:read`
+      # Returns a paginated list of shipments for an account.
       sig do
         params(
+          account_id: String,
           after: String,
           before: String,
-          company_id: String,
+          created_after: String,
+          created_before: String,
+          direction: WhopSDK::ShipmentListParams::Direction::OrSymbol,
           first: Integer,
           last: Integer,
-          payment_id: String,
-          user_id: String,
+          order: WhopSDK::ShipmentListParams::Order::OrSymbol,
+          payment_id: T::Array[String],
+          status: WhopSDK::ShipmentListParams::Status::OrSymbol,
+          api_version_date: String,
           request_options: WhopSDK::RequestOptions::OrHash
-        ).returns(
-          WhopSDK::Internal::CursorPage[WhopSDK::Models::ShipmentListResponse]
-        )
+        ).returns(WhopSDK::Internal::CursorPage[WhopSDK::Shipment])
       end
       def list(
-        # Returns the elements in the list that come after the specified cursor.
+        # Query param: The account to list shipments for. Defaults to the acting account.
+        account_id: nil,
+        # Query param: A cursor; returns shipments after this position.
         after: nil,
-        # Returns the elements in the list that come before the specified cursor.
+        # Query param: A cursor; returns shipments before this position.
         before: nil,
-        # Filter shipments to only those belonging to this company.
-        company_id: nil,
-        # Returns the first _n_ elements from the list.
+        # Query param: Return shipments created after this ISO 8601 timestamp.
+        created_after: nil,
+        # Query param: Return shipments created before this ISO 8601 timestamp.
+        created_before: nil,
+        # Query param: The sort direction.
+        direction: nil,
+        # Query param: The number of shipments to return.
         first: nil,
-        # Returns the last _n_ elements from the list.
+        # Query param: The number of shipments to return from the end of the range.
         last: nil,
-        # Filter shipments to only those associated with this specific payment.
+        # Query param: The field to sort by.
+        order: nil,
+        # Query param: Only shipments fulfilling these payments, each prefixed `pay_`.
+        # Repeat the parameter to pass several, up to 100 per request — one paginated list
+        # covers all of them.
         payment_id: nil,
-        # Filter shipments to only those for this specific user.
-        user_id: nil,
+        # Query param: Filter to shipments with this delivery status.
+        status: nil,
+        # Header param: Pins the request to a dated API version.
+        api_version_date: nil,
         request_options: {}
       )
       end

@@ -22,8 +22,6 @@ module WhopSDK
       required :api_version_date, String, nil?: true
 
       # @!attribute data
-      #   A membership represents an active relationship between a user and a product. It
-      #   tracks the user's access, billing status, and renewal schedule.
       #
       #   @return [WhopSDK::Models::Membership]
       required :data, -> { WhopSDK::Membership }
@@ -61,7 +59,7 @@ module WhopSDK
       #
       #   @param api_version_date [String, nil] The dated API version (Api-Version-Date) the payload is serialized to
       #
-      #   @param data [WhopSDK::Models::Membership] A membership represents an active relationship between a user and a product. It
+      #   @param data [WhopSDK::Models::Membership]
       #
       #   @param timestamp [Time] The timestamp in ISO 8601 format that the webhook was sent at on the server
       #

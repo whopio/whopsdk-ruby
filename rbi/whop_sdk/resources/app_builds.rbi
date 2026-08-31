@@ -2,132 +2,142 @@
 
 module WhopSDK
   module Resources
-    # App builds
+    # An App Build is a versioned artifact uploaded for an app — a hosted web archive,
+    # or an iOS/Android bundle. Builds start as drafts, go through review, and one
+    # approved build per platform is served to users as the production build.
+    #
+    # Use the App Builds API to upload a build for an app, list an app's builds with
+    # platform and status filters, retrieve a build, and promote a draft or approved
+    # build to production.
     class AppBuilds
-      # Upload a new build artifact for an app. The build must include a compiled code
-      # bundle for the specified platform.
-      #
-      # Required permissions:
-      #
-      # - `developer:manage_builds`
+      # Uploads a new build artifact for an app. Upload the file first (POST /files or a
+      # direct upload), then reference it here; iOS and Android take a .zip bundle, web
+      # takes a JavaScript file or a .zip archive of the hosted site.
       sig do
         params(
           attachment: WhopSDK::AppBuildCreateParams::Attachment::OrHash,
           checksum: String,
-          platform: WhopSDK::AppBuildPlatforms::OrSymbol,
-          ai_prompt_id: T.nilable(String),
-          app_id: T.nilable(String),
+          platform: WhopSDK::AppBuildCreateParams::Platform::OrSymbol,
+          ai_prompt_id: String,
+          app_id: String,
           source_attachment:
-            T.nilable(WhopSDK::AppBuildCreateParams::SourceAttachment::OrHash),
+            WhopSDK::AppBuildCreateParams::SourceAttachment::OrHash,
           supported_app_view_types:
-            T.nilable(T::Array[WhopSDK::AppViewType::OrSymbol]),
+            T::Array[
+              WhopSDK::AppBuildCreateParams::SupportedAppViewType::OrSymbol
+            ],
+          api_version_date: String,
+          idempotency_key: String,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::AppBuild)
       end
       def create(
-        # The build file to upload. For iOS and Android, this should be a .zip archive
-        # containing a main_js_bundle.hbc file and an optional assets folder. For web,
-        # this should be a JavaScript file or a .zip archive of the hosted site.
+        # Body param: The uploaded build file: `{ id }` for an existing file or
+        # `{ direct_upload_id }` for a completed direct upload.
         attachment:,
-        # A client-generated checksum of the build file, used to verify file integrity
-        # when unpacked on a device.
+        # Body param: A client-generated checksum of the build file, used to verify file
+        # integrity when unpacked.
         checksum:,
-        # The target platform for the build. Accepted values: ios, android, web.
+        # Body param: The target platform for the build.
         platform:,
-        # The identifier of the AI prompt that generated this build, if applicable.
+        # Body param: The AI prompt that generated this build, if applicable.
         ai_prompt_id: nil,
-        # The unique identifier of the app to create the build for. Defaults to the app
-        # associated with the current API key.
+        # Body param: The app to create the build for, prefixed `app_`. Defaults to the
+        # app behind the presented credential.
         app_id: nil,
-        # An optional compressed archive (.zip or .gz) of the source code that produced
-        # this build, stored alongside the build so it can be downloaded later.
+        # Body param: An optional compressed archive (.zip or .gz) of the source code that
+        # produced this build, stored alongside the build so it can be downloaded later.
+        # Referenced like `attachment`, and must be a different file.
         source_attachment: nil,
-        # The view types this build supports. A build can support multiple view types but
-        # should only list the ones its code implements.
+        # Body param: The view types this build supports. Only list the ones its code
+        # implements.
         supported_app_view_types: nil,
+        # Header param: Pins the request to a dated API version.
+        api_version_date: nil,
+        # Header param: A unique key that makes this request safe to retry. See
+        # [Idempotent requests](https://docs.whop.com/developer/api/idempotency).
+        idempotency_key: nil,
         request_options: {}
       )
       end
 
       # Retrieves the details of an existing app build.
-      #
-      # Required permissions:
-      #
-      # - `developer:manage_builds`
       sig do
         params(
           id: String,
+          api_version_date: String,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::AppBuild)
       end
       def retrieve(
-        # The unique identifier of the app build to retrieve.
+        # App build ID, prefixed `abld_`.
         id,
+        # Pins the request to a dated API version.
+        api_version_date: nil,
         request_options: {}
       )
       end
 
-      # Returns a paginated list of build artifacts for a given app, with optional
-      # filtering by platform, status, and creation date.
-      #
-      # Required permissions:
-      #
-      # - `developer:manage_builds`
+      # Returns a paginated list of build artifacts for an app, newest first, with
+      # optional platform, status, and creation-date filters.
       sig do
         params(
           app_id: String,
           after: String,
           before: String,
-          created_after: Time,
-          created_before: Time,
+          created_after: WhopSDK::AppBuildListParams::CreatedAfter::Variants,
+          created_before: WhopSDK::AppBuildListParams::CreatedBefore::Variants,
           first: Integer,
           last: Integer,
-          platform: WhopSDK::AppBuildPlatforms::OrSymbol,
-          status: WhopSDK::AppBuildStatuses::OrSymbol,
+          platform: WhopSDK::AppBuildListParams::Platform::OrSymbol,
+          status: WhopSDK::AppBuildListParams::Status::OrSymbol,
+          api_version_date: String,
           request_options: WhopSDK::RequestOptions::OrHash
-        ).returns(
-          WhopSDK::Internal::CursorPage[WhopSDK::Models::AppBuildListResponse]
-        )
+        ).returns(WhopSDK::Internal::CursorPage[WhopSDK::AppBuild])
       end
       def list(
-        # The unique identifier of the app to list builds for.
+        # Query param: The app to list builds for, prefixed `app_`.
         app_id:,
-        # Returns the elements in the list that come after the specified cursor.
+        # Query param: A cursor; returns builds after this position.
         after: nil,
-        # Returns the elements in the list that come before the specified cursor.
+        # Query param: A cursor; returns builds before this position.
         before: nil,
-        # Only return builds created after this timestamp.
+        # Query param: Only return builds created after this ISO 8601 timestamp.
         created_after: nil,
-        # Only return builds created before this timestamp.
+        # Query param: Only return builds created before this ISO 8601 timestamp.
         created_before: nil,
-        # Returns the first _n_ elements from the list.
+        # Query param: The number of builds to return (default 20, max 100).
         first: nil,
-        # Returns the last _n_ elements from the list.
+        # Query param: The number of builds to return from the end of the range.
         last: nil,
-        # Filter builds by target platform.
+        # Query param: Filter builds by target platform.
         platform: nil,
-        # Filter builds by review status.
+        # Query param: Filter builds by review status.
         status: nil,
+        # Header param: Pins the request to a dated API version.
+        api_version_date: nil,
         request_options: {}
       )
       end
 
-      # Promote an approved or draft app build to production so it becomes the active
-      # version served to users.
-      #
-      # Required permissions:
-      #
-      # - `developer:manage_builds`
+      # Promotes a draft or approved app build to production so it becomes the active
+      # version served to users. Draft builds enter review first.
       sig do
         params(
           id: String,
+          api_version_date: String,
+          idempotency_key: String,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::AppBuild)
       end
       def promote(
-        # The unique identifier of the app build to promote to production, starting with
-        # 'abld\_'.
+        # App build ID, prefixed `abld_`.
         id,
+        # Pins the request to a dated API version.
+        api_version_date: nil,
+        # A unique key that makes this request safe to retry. See
+        # [Idempotent requests](https://docs.whop.com/developer/api/idempotency).
+        idempotency_key: nil,
         request_options: {}
       )
       end

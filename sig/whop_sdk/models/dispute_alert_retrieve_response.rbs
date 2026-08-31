@@ -3,244 +3,124 @@ module WhopSDK
     type dispute_alert_retrieve_response =
       {
         id: String,
-        alert_type: WhopSDK::Models::dispute_alert_type,
+        account_id: String?,
+        actionable: bool,
         amount: Float,
-        charge_for_alert: bool,
-        created_at: Time,
-        currency: WhopSDK::Models::currency,
-        dispute: WhopSDK::Models::DisputeAlertRetrieveResponse::Dispute?,
-        payment: WhopSDK::Models::DisputeAlertRetrieveResponse::Payment?,
-        transaction_date: Time?
+        card_brand: String?,
+        created_at: String,
+        currency: String,
+        fee_charged: bool,
+        issuer: String?,
+        not_actionable_reason: WhopSDK::Models::DisputeAlertRetrieveResponse::not_actionable_reason?,
+        payment_id: String?,
+        product_id: String?,
+        reported_at: String,
+        transaction_at: String?,
+        type: WhopSDK::Models::DisputeAlertRetrieveResponse::type_,
+        updated_at: String
       }
 
     class DisputeAlertRetrieveResponse < WhopSDK::Internal::Type::BaseModel
       attr_accessor id: String
 
-      attr_accessor alert_type: WhopSDK::Models::dispute_alert_type
+      attr_accessor account_id: String?
+
+      attr_accessor actionable: bool
 
       attr_accessor amount: Float
 
-      attr_accessor charge_for_alert: bool
+      attr_accessor card_brand: String?
 
-      attr_accessor created_at: Time
+      attr_accessor created_at: String
 
-      attr_accessor currency: WhopSDK::Models::currency
+      attr_accessor currency: String
 
-      attr_accessor dispute: WhopSDK::Models::DisputeAlertRetrieveResponse::Dispute?
+      attr_accessor fee_charged: bool
 
-      attr_accessor payment: WhopSDK::Models::DisputeAlertRetrieveResponse::Payment?
+      attr_accessor issuer: String?
 
-      attr_accessor transaction_date: Time?
+      attr_accessor not_actionable_reason: WhopSDK::Models::DisputeAlertRetrieveResponse::not_actionable_reason?
+
+      attr_accessor payment_id: String?
+
+      attr_accessor product_id: String?
+
+      attr_accessor reported_at: String
+
+      attr_accessor transaction_at: String?
+
+      attr_accessor type: WhopSDK::Models::DisputeAlertRetrieveResponse::type_
+
+      attr_accessor updated_at: String
 
       def initialize: (
         id: String,
-        alert_type: WhopSDK::Models::dispute_alert_type,
+        account_id: String?,
+        actionable: bool,
         amount: Float,
-        charge_for_alert: bool,
-        created_at: Time,
-        currency: WhopSDK::Models::currency,
-        dispute: WhopSDK::Models::DisputeAlertRetrieveResponse::Dispute?,
-        payment: WhopSDK::Models::DisputeAlertRetrieveResponse::Payment?,
-        transaction_date: Time?
+        card_brand: String?,
+        created_at: String,
+        currency: String,
+        fee_charged: bool,
+        issuer: String?,
+        not_actionable_reason: WhopSDK::Models::DisputeAlertRetrieveResponse::not_actionable_reason?,
+        payment_id: String?,
+        product_id: String?,
+        reported_at: String,
+        transaction_at: String?,
+        type: WhopSDK::Models::DisputeAlertRetrieveResponse::type_,
+        updated_at: String
       ) -> void
 
       def to_hash: -> {
         id: String,
-        alert_type: WhopSDK::Models::dispute_alert_type,
+        account_id: String?,
+        actionable: bool,
         amount: Float,
-        charge_for_alert: bool,
-        created_at: Time,
-        currency: WhopSDK::Models::currency,
-        dispute: WhopSDK::Models::DisputeAlertRetrieveResponse::Dispute?,
-        payment: WhopSDK::Models::DisputeAlertRetrieveResponse::Payment?,
-        transaction_date: Time?
+        card_brand: String?,
+        created_at: String,
+        currency: String,
+        fee_charged: bool,
+        issuer: String?,
+        not_actionable_reason: WhopSDK::Models::DisputeAlertRetrieveResponse::not_actionable_reason?,
+        payment_id: String?,
+        product_id: String?,
+        reported_at: String,
+        transaction_at: String?,
+        type: WhopSDK::Models::DisputeAlertRetrieveResponse::type_,
+        updated_at: String
       }
 
-      type dispute =
-        {
-          id: String,
-          amount: Float,
-          created_at: Time?,
-          currency: WhopSDK::Models::currency,
-          reason: String?,
-          status: WhopSDK::Models::dispute_statuses
-        }
+      type not_actionable_reason =
+        :network_resolved
+        | :payment_unmatched
+        | :payment_not_captured
+        | :payment_disputed
+        | :payment_refunded
 
-      class Dispute < WhopSDK::Internal::Type::BaseModel
-        attr_accessor id: String
+      module NotActionableReason
+        extend WhopSDK::Internal::Type::Enum
 
-        attr_accessor amount: Float
+        NETWORK_RESOLVED: :network_resolved
+        PAYMENT_UNMATCHED: :payment_unmatched
+        PAYMENT_NOT_CAPTURED: :payment_not_captured
+        PAYMENT_DISPUTED: :payment_disputed
+        PAYMENT_REFUNDED: :payment_refunded
 
-        attr_accessor created_at: Time?
-
-        attr_accessor currency: WhopSDK::Models::currency
-
-        attr_accessor reason: String?
-
-        attr_accessor status: WhopSDK::Models::dispute_statuses
-
-        def initialize: (
-          id: String,
-          amount: Float,
-          created_at: Time?,
-          currency: WhopSDK::Models::currency,
-          reason: String?,
-          status: WhopSDK::Models::dispute_statuses
-        ) -> void
-
-        def to_hash: -> {
-          id: String,
-          amount: Float,
-          created_at: Time?,
-          currency: WhopSDK::Models::currency,
-          reason: String?,
-          status: WhopSDK::Models::dispute_statuses
-        }
+        def self?.values: -> ::Array[WhopSDK::Models::DisputeAlertRetrieveResponse::not_actionable_reason]
       end
 
-      type payment =
-        {
-          id: String,
-          billing_reason: WhopSDK::Models::billing_reasons?,
-          card_brand: WhopSDK::Models::card_brands?,
-          :card_last4 => String?,
-          created_at: Time,
-          currency: WhopSDK::Models::currency,
-          dispute_alerted_at: Time?,
-          member: WhopSDK::Models::DisputeAlertRetrieveResponse::Payment::Member?,
-          membership: WhopSDK::Models::DisputeAlertRetrieveResponse::Payment::Membership?,
-          paid_at: Time?,
-          payment_method_type: WhopSDK::Models::payment_method_types?,
-          subtotal: Float?,
-          total: Float?,
-          usd_total: Float?,
-          user: WhopSDK::Models::DisputeAlertRetrieveResponse::Payment::User?
-        }
+      type type_ =
+        :early_fraud_warning | :dispute_alert | :rapid_dispute_resolution
 
-      class Payment < WhopSDK::Internal::Type::BaseModel
-        attr_accessor id: String
+      module Type
+        extend WhopSDK::Internal::Type::Enum
 
-        attr_accessor billing_reason: WhopSDK::Models::billing_reasons?
+        EARLY_FRAUD_WARNING: :early_fraud_warning
+        DISPUTE_ALERT: :dispute_alert
+        RAPID_DISPUTE_RESOLUTION: :rapid_dispute_resolution
 
-        attr_accessor card_brand: WhopSDK::Models::card_brands?
-
-        attr_accessor card_last4: String?
-
-        attr_accessor created_at: Time
-
-        attr_accessor currency: WhopSDK::Models::currency
-
-        attr_accessor dispute_alerted_at: Time?
-
-        attr_accessor member: WhopSDK::Models::DisputeAlertRetrieveResponse::Payment::Member?
-
-        attr_accessor membership: WhopSDK::Models::DisputeAlertRetrieveResponse::Payment::Membership?
-
-        attr_accessor paid_at: Time?
-
-        attr_accessor payment_method_type: WhopSDK::Models::payment_method_types?
-
-        attr_accessor subtotal: Float?
-
-        attr_accessor total: Float?
-
-        attr_accessor usd_total: Float?
-
-        attr_accessor user: WhopSDK::Models::DisputeAlertRetrieveResponse::Payment::User?
-
-        def initialize: (
-          id: String,
-          billing_reason: WhopSDK::Models::billing_reasons?,
-          card_brand: WhopSDK::Models::card_brands?,
-          card_last4: String?,
-          created_at: Time,
-          currency: WhopSDK::Models::currency,
-          dispute_alerted_at: Time?,
-          member: WhopSDK::Models::DisputeAlertRetrieveResponse::Payment::Member?,
-          membership: WhopSDK::Models::DisputeAlertRetrieveResponse::Payment::Membership?,
-          paid_at: Time?,
-          payment_method_type: WhopSDK::Models::payment_method_types?,
-          subtotal: Float?,
-          total: Float?,
-          usd_total: Float?,
-          user: WhopSDK::Models::DisputeAlertRetrieveResponse::Payment::User?
-        ) -> void
-
-        def to_hash: -> {
-          id: String,
-          billing_reason: WhopSDK::Models::billing_reasons?,
-          card_brand: WhopSDK::Models::card_brands?,
-          :card_last4 => String?,
-          created_at: Time,
-          currency: WhopSDK::Models::currency,
-          dispute_alerted_at: Time?,
-          member: WhopSDK::Models::DisputeAlertRetrieveResponse::Payment::Member?,
-          membership: WhopSDK::Models::DisputeAlertRetrieveResponse::Payment::Membership?,
-          paid_at: Time?,
-          payment_method_type: WhopSDK::Models::payment_method_types?,
-          subtotal: Float?,
-          total: Float?,
-          usd_total: Float?,
-          user: WhopSDK::Models::DisputeAlertRetrieveResponse::Payment::User?
-        }
-
-        type member = { id: String, phone: String? }
-
-        class Member < WhopSDK::Internal::Type::BaseModel
-          attr_accessor id: String
-
-          attr_accessor phone: String?
-
-          def initialize: (id: String, phone: String?) -> void
-
-          def to_hash: -> { id: String, phone: String? }
-        end
-
-        type membership =
-          { id: String, status: WhopSDK::Models::membership_status }
-
-        class Membership < WhopSDK::Internal::Type::BaseModel
-          attr_accessor id: String
-
-          attr_accessor status: WhopSDK::Models::membership_status
-
-          def initialize: (
-            id: String,
-            status: WhopSDK::Models::membership_status
-          ) -> void
-
-          def to_hash: -> {
-            id: String,
-            status: WhopSDK::Models::membership_status
-          }
-        end
-
-        type user =
-          { id: String, email: String?, name: String?, username: String }
-
-        class User < WhopSDK::Internal::Type::BaseModel
-          attr_accessor id: String
-
-          attr_accessor email: String?
-
-          attr_accessor name: String?
-
-          attr_accessor username: String
-
-          def initialize: (
-            id: String,
-            email: String?,
-            name: String?,
-            username: String
-          ) -> void
-
-          def to_hash: -> {
-            id: String,
-            email: String?,
-            name: String?,
-            username: String
-          }
-        end
+        def self?.values: -> ::Array[WhopSDK::Models::DisputeAlertRetrieveResponse::type_]
       end
     end
   end

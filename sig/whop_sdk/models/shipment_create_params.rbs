@@ -1,30 +1,50 @@
 module WhopSDK
   module Models
     type shipment_create_params =
-      { company_id: String, payment_id: String, tracking_code: String }
+      {
+        payment_id: String,
+        tracking_number: String,
+        account_id: String,
+        api_version_date: String,
+        idempotency_key: String
+      }
       & WhopSDK::Internal::Type::request_parameters
 
     class ShipmentCreateParams < WhopSDK::Internal::Type::BaseModel
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      attr_accessor company_id: String
-
       attr_accessor payment_id: String
 
-      attr_accessor tracking_code: String
+      attr_accessor tracking_number: String
+
+      attr_reader account_id: String?
+
+      def account_id=: (String) -> String
+
+      attr_reader api_version_date: String?
+
+      def api_version_date=: (String) -> String
+
+      attr_reader idempotency_key: String?
+
+      def idempotency_key=: (String) -> String
 
       def initialize: (
-        company_id: String,
         payment_id: String,
-        tracking_code: String,
+        tracking_number: String,
+        ?account_id: String,
+        ?api_version_date: String,
+        ?idempotency_key: String,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
       def to_hash: -> {
-        company_id: String,
         payment_id: String,
-        tracking_code: String,
+        tracking_number: String,
+        account_id: String,
+        api_version_date: String,
+        idempotency_key: String,
         request_options: WhopSDK::RequestOptions
       }
     end

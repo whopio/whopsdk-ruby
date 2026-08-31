@@ -11,16 +11,11 @@ module WhopSDK
           )
         end
 
-      # Whether the notification was successfully queued for delivery
       sig { returns(T::Boolean) }
       attr_accessor :success
 
-      # Response from queuing a notification
       sig { params(success: T::Boolean).returns(T.attached_class) }
-      def self.new(
-        # Whether the notification was successfully queued for delivery
-        success:
-      )
+      def self.new(success:)
       end
 
       sig { override.returns({ success: T::Boolean }) }

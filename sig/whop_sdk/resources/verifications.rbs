@@ -3,17 +3,17 @@ module WhopSDK
     class Verifications
       def retrieve: (
         String id,
+        ?api_version_date: String,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Models::VerificationRetrieveResponse
 
       def list: (
-        payout_account_id: String,
-        ?after: String,
-        ?before: String,
-        ?first: Integer,
-        ?last: Integer,
+        account_id: String,
+        ?direction: WhopSDK::Models::VerificationListParams::direction,
+        ?order: WhopSDK::Models::VerificationListParams::order,
+        ?api_version_date: String,
         ?request_options: WhopSDK::request_opts
-      ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::VerificationListResponse]
+      ) -> WhopSDK::Models::VerificationListResponse
 
       def initialize: (client: WhopSDK::Client) -> void
     end

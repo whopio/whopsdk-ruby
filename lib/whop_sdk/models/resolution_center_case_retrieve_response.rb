@@ -5,367 +5,362 @@ module WhopSDK
     # @see WhopSDK::Resources::ResolutionCenterCases#retrieve
     class ResolutionCenterCaseRetrieveResponse < WhopSDK::Internal::Type::BaseModel
       # @!attribute id
-      #   The unique identifier for the resolution.
+      #   Resolution center case ID, prefixed `reso_`.
       #
       #   @return [String]
       required :id, String
 
-      # @!attribute company
-      #   The company involved in this resolution case. Null if the company no longer
-      #   exists.
+      # @!attribute account
+      #   The account the case was filed against.
       #
-      #   @return [WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Company, nil]
-      required :company, -> { WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Company }, nil?: true
+      #   @return [WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Account, nil]
+      required :account, -> { WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Account }, nil?: true
+
+      # @!attribute amount
+      #   The amount in question, in whole units of `currency`.
+      #
+      #   @return [Float]
+      required :amount, Float
+
+      # @!attribute available_actions
+      #
+      #   @return [Array<Symbol, WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::AvailableAction>]
+      required :available_actions,
+               -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::AvailableAction] }
+
+      # @!attribute buyer
+      #   The customer who opened the case.
+      #
+      #   @return [WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Buyer]
+      required :buyer, -> { WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Buyer }
 
       # @!attribute created_at
-      #   The datetime the resolution was created.
+      #   When the case was opened, as an ISO 8601 timestamp.
       #
-      #   @return [Time]
-      required :created_at, Time
+      #   @return [String]
+      required :created_at, String
+
+      # @!attribute currency
+      #   Three-letter ISO currency code of the amount.
+      #
+      #   @return [String, nil]
+      required :currency, String, nil?: true
 
       # @!attribute customer_appealed
-      #   Whether the customer has filed an appeal after the initial resolution decision.
+      #   Whether the customer has appealed a decision on this case.
       #
       #   @return [Boolean]
       required :customer_appealed, WhopSDK::Internal::Type::Boolean
 
-      # @!attribute customer_response_actions
-      #   The list of actions currently available to the customer.
-      #
-      #   @return [Array<Symbol, WhopSDK::Models::ResolutionCenterCaseCustomerResponse>]
-      required :customer_response_actions,
-               -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::ResolutionCenterCaseCustomerResponse] }
-
-      # @!attribute due_date
-      #   The deadline by which the next response is required. Null if no deadline is
-      #   currently active. As a Unix timestamp.
-      #
-      #   @return [Time, nil]
-      required :due_date, Time, nil?: true
-
-      # @!attribute issue
-      #   The category of the dispute.
-      #
-      #   @return [Symbol, WhopSDK::Models::ResolutionCenterCaseIssueType]
-      required :issue, enum: -> { WhopSDK::ResolutionCenterCaseIssueType }
-
-      # @!attribute member
-      #   The membership record associated with the disputed payment. Null if the
-      #   membership no longer exists.
-      #
-      #   @return [WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Member, nil]
-      required :member, -> { WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Member }, nil?: true
-
-      # @!attribute merchant_appealed
-      #   Whether the merchant has filed an appeal after the initial resolution decision.
+      # @!attribute escalated
+      #   Whether Whop is involved — either reviewing the case, or waiting on the side
+      #   named by `status` for something it asked for while reviewing.
       #
       #   @return [Boolean]
-      required :merchant_appealed, WhopSDK::Internal::Type::Boolean
+      required :escalated, WhopSDK::Internal::Type::Boolean
 
-      # @!attribute merchant_response_actions
-      #   The list of actions currently available to the merchant.
+      # @!attribute outcome
+      #   Who prevailed on the claim. `null` until the case closes. Read `refund` for
+      #   whether any money actually moved.
       #
-      #   @return [Array<Symbol, WhopSDK::Models::ResolutionCenterCaseMerchantResponse>]
-      required :merchant_response_actions,
-               -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::ResolutionCenterCaseMerchantResponse] }
+      #   @return [Symbol, WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Outcome, nil]
+      required :outcome, enum: -> { WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Outcome }, nil?: true
 
       # @!attribute payment
-      #   The payment record that is the subject of this resolution case.
+      #   The payment the case was opened against.
       #
       #   @return [WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Payment]
       required :payment, -> { WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Payment }
 
-      # @!attribute platform_response_actions
-      #   The list of actions currently available to the Whop platform for moderating this
-      #   resolution.
+      # @!attribute plan_id
+      #   The plan the payment was made on, prefixed `plan_`.
       #
-      #   @return [Array<Symbol, WhopSDK::Models::ResolutionCenterCasePlatformResponse>]
-      required :platform_response_actions,
-               -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::ResolutionCenterCasePlatformResponse] }
+      #   @return [String, nil]
+      required :plan_id, String, nil?: true
 
-      # @!attribute resolution_events
-      #   The most recent 50 messages, actions, and status changes that have occurred
-      #   during this resolution case.
+      # @!attribute product_id
+      #   The product the payment was for, prefixed `prod_`.
       #
-      #   @return [Array<WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::ResolutionEvent>]
-      required :resolution_events,
-               -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::ResolutionEvent] }
+      #   @return [String, nil]
+      required :product_id, String, nil?: true
+
+      # @!attribute reason
+      #   What the customer says went wrong. Shares the `/disputes` vocabulary, so a case
+      #   that later becomes a chargeback reports the same complaint.
+      #
+      #   @return [Symbol, WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Reason]
+      required :reason, enum: -> { WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Reason }
+
+      # @!attribute refund
+      #   Whether money moved and off whose balance: `none`, `merchant`, or `platform`
+      #   (Whop refunded the customer and the merchant kept the funds). Independent of
+      #   `outcome` — a case the merchant won can still carry a platform refund. `null`
+      #   while the case is open, and on older closed cases that predate this being
+      #   recorded.
+      #
+      #   @return [Symbol, WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Refund, nil]
+      required :refund, enum: -> { WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Refund }, nil?: true
+
+      # @!attribute response_due_at
+      #   When the next response is due, as an ISO 8601 timestamp.
+      #
+      #   @return [String, nil]
+      required :response_due_at, String, nil?: true
 
       # @!attribute status
-      #   The current status of the resolution case, indicating which party needs to
-      #   respond or if the case is closed.
+      #   Who the case is waiting on. `awaiting_merchant` and `awaiting_customer` name the
+      #   side that owes a response, `under_review` means Whop is deciding, and `closed`
+      #   means it is settled — read `outcome` for how.
       #
-      #   @return [Symbol, WhopSDK::Models::ResolutionCenterCaseStatus]
-      required :status, enum: -> { WhopSDK::ResolutionCenterCaseStatus }
+      #   @return [Symbol, WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Status]
+      required :status, enum: -> { WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Status }
 
       # @!attribute updated_at
-      #   The datetime the resolution was last updated.
+      #   When the case was last changed, as an ISO 8601 timestamp.
       #
-      #   @return [Time]
-      required :updated_at, Time
+      #   @return [String]
+      required :updated_at, String
 
-      # @!attribute user
-      #   The customer (buyer) who filed this resolution case.
-      #
-      #   @return [WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::User]
-      required :user, -> { WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::User }
-
-      # @!method initialize(id:, company:, created_at:, customer_appealed:, customer_response_actions:, due_date:, issue:, member:, merchant_appealed:, merchant_response_actions:, payment:, platform_response_actions:, resolution_events:, status:, updated_at:, user:)
+      # @!method initialize(id:, account:, amount:, available_actions:, buyer:, created_at:, currency:, customer_appealed:, escalated:, outcome:, payment:, plan_id:, product_id:, reason:, refund:, response_due_at:, status:, updated_at:)
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::ResolutionCenterCaseRetrieveResponse} for more details.
       #
-      #   A resolution center case is a dispute or support case between a user and a
-      #   company, tracking the issue, status, and outcome.
+      #   @param id [String] Resolution center case ID, prefixed `reso_`.
       #
-      #   @param id [String] The unique identifier for the resolution.
+      #   @param account [WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Account, nil] The account the case was filed against.
       #
-      #   @param company [WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Company, nil] The company involved in this resolution case. Null if the company no longer exis
+      #   @param amount [Float] The amount in question, in whole units of `currency`.
       #
-      #   @param created_at [Time] The datetime the resolution was created.
+      #   @param available_actions [Array<Symbol, WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::AvailableAction>]
       #
-      #   @param customer_appealed [Boolean] Whether the customer has filed an appeal after the initial resolution decision.
+      #   @param buyer [WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Buyer] The customer who opened the case.
       #
-      #   @param customer_response_actions [Array<Symbol, WhopSDK::Models::ResolutionCenterCaseCustomerResponse>] The list of actions currently available to the customer.
+      #   @param created_at [String] When the case was opened, as an ISO 8601 timestamp.
       #
-      #   @param due_date [Time, nil] The deadline by which the next response is required. Null if no deadline is curr
+      #   @param currency [String, nil] Three-letter ISO currency code of the amount.
       #
-      #   @param issue [Symbol, WhopSDK::Models::ResolutionCenterCaseIssueType] The category of the dispute.
+      #   @param customer_appealed [Boolean] Whether the customer has appealed a decision on this case.
       #
-      #   @param member [WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Member, nil] The membership record associated with the disputed payment. Null if the membersh
+      #   @param escalated [Boolean] Whether Whop is involved — either reviewing the case, or waiting on the side nam
       #
-      #   @param merchant_appealed [Boolean] Whether the merchant has filed an appeal after the initial resolution decision.
+      #   @param outcome [Symbol, WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Outcome, nil] Who prevailed on the claim. `null` until the case closes. Read `refund` for whet
       #
-      #   @param merchant_response_actions [Array<Symbol, WhopSDK::Models::ResolutionCenterCaseMerchantResponse>] The list of actions currently available to the merchant.
+      #   @param payment [WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Payment] The payment the case was opened against.
       #
-      #   @param payment [WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Payment] The payment record that is the subject of this resolution case.
+      #   @param plan_id [String, nil] The plan the payment was made on, prefixed `plan_`.
       #
-      #   @param platform_response_actions [Array<Symbol, WhopSDK::Models::ResolutionCenterCasePlatformResponse>] The list of actions currently available to the Whop platform for moderating this
+      #   @param product_id [String, nil] The product the payment was for, prefixed `prod_`.
       #
-      #   @param resolution_events [Array<WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::ResolutionEvent>] The most recent 50 messages, actions, and status changes that have occurred duri
+      #   @param reason [Symbol, WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Reason] What the customer says went wrong. Shares the `/disputes` vocabulary, so a case
       #
-      #   @param status [Symbol, WhopSDK::Models::ResolutionCenterCaseStatus] The current status of the resolution case, indicating which party needs to respo
+      #   @param refund [Symbol, WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Refund, nil] Whether money moved and off whose balance: `none`, `merchant`, or `platform` (Wh
       #
-      #   @param updated_at [Time] The datetime the resolution was last updated.
+      #   @param response_due_at [String, nil] When the next response is due, as an ISO 8601 timestamp.
       #
-      #   @param user [WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::User] The customer (buyer) who filed this resolution case.
+      #   @param status [Symbol, WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Status] Who the case is waiting on. `awaiting_merchant` and `awaiting_customer` name the
+      #
+      #   @param updated_at [String] When the case was last changed, as an ISO 8601 timestamp.
 
-      # @see WhopSDK::Models::ResolutionCenterCaseRetrieveResponse#company
-      class Company < WhopSDK::Internal::Type::BaseModel
+      # @see WhopSDK::Models::ResolutionCenterCaseRetrieveResponse#account
+      class Account < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The unique identifier for the company.
+        #   Account ID, prefixed `biz_`.
         #
         #   @return [String]
         required :id, String
 
         # @!attribute title
-        #   The display name of the company shown to customers.
+        #   Account display name.
         #
         #   @return [String]
         required :title, String
 
         # @!method initialize(id:, title:)
-        #   The company involved in this resolution case. Null if the company no longer
-        #   exists.
+        #   The account the case was filed against.
         #
-        #   @param id [String] The unique identifier for the company.
+        #   @param id [String] Account ID, prefixed `biz_`.
         #
-        #   @param title [String] The display name of the company shown to customers.
+        #   @param title [String] Account display name.
       end
 
-      # @see WhopSDK::Models::ResolutionCenterCaseRetrieveResponse#member
-      class Member < WhopSDK::Internal::Type::BaseModel
-        # @!attribute id
-        #   The unique identifier for the extra public member.
-        #
-        #   @return [String]
-        required :id, String
+      # What you can do to this case right now, named for the endpoint that does it.
+      # Resolved for the calling credential, so a merchant and a customer reading the
+      # same case see their own options.
+      module AvailableAction
+        extend WhopSDK::Internal::Type::Enum
 
-        # @!method initialize(id:)
-        #   The membership record associated with the disputed payment. Null if the
-        #   membership no longer exists.
+        ACCEPT = :accept
+        DENY = :deny
+        REQUEST_INFO = :request_info
+        REPLY = :reply
+        APPEAL = :appeal
+        WITHDRAW = :withdraw
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
+
+      # @see WhopSDK::Models::ResolutionCenterCaseRetrieveResponse#buyer
+      class Buyer < WhopSDK::Internal::Type::BaseModel
+        # @!attribute email
+        #   The customer's email address. Requires the `member:email:read` scope; `null`
+        #   without it.
         #
-        #   @param id [String] The unique identifier for the extra public member.
+        #   @return [String, nil]
+        required :email, String, nil?: true
+
+        # @!attribute member_id
+        #   The customer's member row on the account, prefixed `mem_`.
+        #
+        #   @return [String, nil]
+        required :member_id, String, nil?: true
+
+        # @!attribute name
+        #   The customer's display name.
+        #
+        #   @return [String, nil]
+        required :name, String, nil?: true
+
+        # @!attribute user_id
+        #   The customer's user ID, prefixed `user_`.
+        #
+        #   @return [String, nil]
+        required :user_id, String, nil?: true
+
+        # @!attribute username
+        #   The customer's Whop username.
+        #
+        #   @return [String, nil]
+        required :username, String, nil?: true
+
+        # @!method initialize(email:, member_id:, name:, user_id:, username:)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Buyer} for more details.
+        #
+        #   The customer who opened the case.
+        #
+        #   @param email [String, nil] The customer's email address. Requires the `member:email:read` scope; `null` wit
+        #
+        #   @param member_id [String, nil] The customer's member row on the account, prefixed `mem_`.
+        #
+        #   @param name [String, nil] The customer's display name.
+        #
+        #   @param user_id [String, nil] The customer's user ID, prefixed `user_`.
+        #
+        #   @param username [String, nil] The customer's Whop username.
+      end
+
+      # Who prevailed on the claim. `null` until the case closes. Read `refund` for
+      # whether any money actually moved.
+      #
+      # @see WhopSDK::Models::ResolutionCenterCaseRetrieveResponse#outcome
+      module Outcome
+        extend WhopSDK::Internal::Type::Enum
+
+        CUSTOMER_WON = :customer_won
+        MERCHANT_WON = :merchant_won
+        WITHDRAWN = :withdrawn
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
       # @see WhopSDK::Models::ResolutionCenterCaseRetrieveResponse#payment
       class Payment < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The unique identifier for the payment.
+        #   Payment ID, prefixed `pay_`.
         #
         #   @return [String]
         required :id, String
 
-        # @!attribute created_at
-        #   The datetime the payment was created.
-        #
-        #   @return [Time]
-        required :created_at, Time
-
-        # @!attribute currency
-        #   The available currencies on the platform
-        #
-        #   @return [Symbol, WhopSDK::Models::Currency, nil]
-        required :currency, enum: -> { WhopSDK::Currency }, nil?: true
-
-        # @!attribute paid_at
-        #   The time at which this payment was successfully collected. Null if the payment
-        #   has not yet succeeded. As a Unix timestamp.
-        #
-        #   @return [Time, nil]
-        required :paid_at, Time, nil?: true
-
-        # @!attribute subtotal
-        #   The payment amount before taxes and discounts are applied. In the currency
-        #   specified by the currency field.
-        #
-        #   @return [Float, nil]
-        required :subtotal, Float, nil?: true
-
-        # @!attribute total
-        #   The total amount charged to the customer for this payment, including taxes and
-        #   after any discounts. In the currency specified by the currency field.
-        #
-        #   @return [Float]
-        required :total, Float
-
-        # @!method initialize(id:, created_at:, currency:, paid_at:, subtotal:, total:)
-        #   Some parameter documentations has been truncated, see
-        #   {WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::Payment} for more
-        #   details.
-        #
-        #   The payment record that is the subject of this resolution case.
-        #
-        #   @param id [String] The unique identifier for the payment.
-        #
-        #   @param created_at [Time] The datetime the payment was created.
-        #
-        #   @param currency [Symbol, WhopSDK::Models::Currency, nil] The available currencies on the platform
-        #
-        #   @param paid_at [Time, nil] The time at which this payment was successfully collected. Null if the payment h
-        #
-        #   @param subtotal [Float, nil] The payment amount before taxes and discounts are applied. In the currency speci
-        #
-        #   @param total [Float] The total amount charged to the customer for this payment, including taxes and a
-      end
-
-      class ResolutionEvent < WhopSDK::Internal::Type::BaseModel
-        # @!attribute id
-        #   The unique identifier for the resolution event.
-        #
-        #   @return [String]
-        required :id, String
-
-        # @!attribute action
-        #   The type of action recorded in this event.
-        #
-        #   @return [Symbol, WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::ResolutionEvent::Action]
-        required :action,
-                 enum: -> { WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::ResolutionEvent::Action }
-
-        # @!attribute created_at
-        #   The datetime the resolution event was created.
-        #
-        #   @return [Time]
-        required :created_at, Time
-
-        # @!attribute details
-        #   The message body or additional context provided with this resolution event. Null
-        #   if no details were included.
+        # @!attribute card_brand
+        #   Card brand, when the customer paid by card.
         #
         #   @return [String, nil]
-        required :details, String, nil?: true
+        required :card_brand, String, nil?: true
 
-        # @!attribute reporter_type
-        #   The party who performed this action.
-        #
-        #   @return [Symbol, WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::ResolutionEvent::ReporterType]
-        required :reporter_type,
-                 enum: -> { WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::ResolutionEvent::ReporterType }
-
-        # @!method initialize(id:, action:, created_at:, details:, reporter_type:)
-        #   Some parameter documentations has been truncated, see
-        #   {WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::ResolutionEvent} for
-        #   more details.
-        #
-        #   A resolution event is a message or action within a resolution case, such as a
-        #   response, escalation, or status change.
-        #
-        #   @param id [String] The unique identifier for the resolution event.
-        #
-        #   @param action [Symbol, WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::ResolutionEvent::Action] The type of action recorded in this event.
-        #
-        #   @param created_at [Time] The datetime the resolution event was created.
-        #
-        #   @param details [String, nil] The message body or additional context provided with this resolution event. Null
-        #
-        #   @param reporter_type [Symbol, WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::ResolutionEvent::ReporterType] The party who performed this action.
-
-        # The type of action recorded in this event.
-        #
-        # @see WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::ResolutionEvent#action
-        module Action
-          extend WhopSDK::Internal::Type::Enum
-
-          CREATED = :created
-          RESPONDED = :responded
-          ACCEPTED = :accepted
-          DENIED = :denied
-          APPEALED = :appealed
-          WITHDREW = :withdrew
-          REQUESTED_MORE_INFO = :requested_more_info
-          ESCALATED = :escalated
-          DISPUTE_OPENED = :dispute_opened
-          DISPUTE_CUSTOMER_WON = :dispute_customer_won
-          DISPUTE_MERCHANT_WON = :dispute_merchant_won
-
-          # @!method self.values
-          #   @return [Array<Symbol>]
-        end
-
-        # The party who performed this action.
-        #
-        # @see WhopSDK::Models::ResolutionCenterCaseRetrieveResponse::ResolutionEvent#reporter_type
-        module ReporterType
-          extend WhopSDK::Internal::Type::Enum
-
-          MERCHANT = :merchant
-          CUSTOMER = :customer
-          PLATFORM = :platform
-          SYSTEM = :system
-
-          # @!method self.values
-          #   @return [Array<Symbol>]
-        end
-      end
-
-      # @see WhopSDK::Models::ResolutionCenterCaseRetrieveResponse#user
-      class User < WhopSDK::Internal::Type::BaseModel
-        # @!attribute id
-        #   The unique identifier for the user.
-        #
-        #   @return [String]
-        required :id, String
-
-        # @!attribute name
-        #   The user's display name shown on their public profile.
+        # @!attribute card_last4
+        #   Last four digits of the card, when the customer paid by card.
         #
         #   @return [String, nil]
-        required :name, String, nil?: true
+        required :card_last4, String, nil?: true
 
-        # @!attribute username
-        #   The user's unique username shown on their public profile.
+        # @!attribute created_at
+        #   When the payment was made, as an ISO 8601 timestamp.
         #
         #   @return [String]
-        required :username, String
+        required :created_at, String
 
-        # @!method initialize(id:, name:, username:)
-        #   The customer (buyer) who filed this resolution case.
+        # @!attribute payment_method_type
+        #   How the customer paid, such as `card` or `paypal`.
         #
-        #   @param id [String] The unique identifier for the user.
+        #   @return [String, nil]
+        required :payment_method_type, String, nil?: true
+
+        # @!method initialize(id:, card_brand:, card_last4:, created_at:, payment_method_type:)
+        #   The payment the case was opened against.
         #
-        #   @param name [String, nil] The user's display name shown on their public profile.
+        #   @param id [String] Payment ID, prefixed `pay_`.
         #
-        #   @param username [String] The user's unique username shown on their public profile.
+        #   @param card_brand [String, nil] Card brand, when the customer paid by card.
+        #
+        #   @param card_last4 [String, nil] Last four digits of the card, when the customer paid by card.
+        #
+        #   @param created_at [String] When the payment was made, as an ISO 8601 timestamp.
+        #
+        #   @param payment_method_type [String, nil] How the customer paid, such as `card` or `paypal`.
+      end
+
+      # What the customer says went wrong. Shares the `/disputes` vocabulary, so a case
+      # that later becomes a chargeback reports the same complaint.
+      #
+      # @see WhopSDK::Models::ResolutionCenterCaseRetrieveResponse#reason
+      module Reason
+        extend WhopSDK::Internal::Type::Enum
+
+        FRAUDULENT = :fraudulent
+        PRODUCT_NOT_RECEIVED = :product_not_received
+        NOT_AS_DESCRIBED = :not_as_described
+        PRODUCT_UNACCEPTABLE = :product_unacceptable
+        SUBSCRIPTION_CANCELED = :subscription_canceled
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
+
+      # Whether money moved and off whose balance: `none`, `merchant`, or `platform`
+      # (Whop refunded the customer and the merchant kept the funds). Independent of
+      # `outcome` — a case the merchant won can still carry a platform refund. `null`
+      # while the case is open, and on older closed cases that predate this being
+      # recorded.
+      #
+      # @see WhopSDK::Models::ResolutionCenterCaseRetrieveResponse#refund
+      module Refund
+        extend WhopSDK::Internal::Type::Enum
+
+        NONE = :none
+        MERCHANT = :merchant
+        PLATFORM = :platform
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
+
+      # Who the case is waiting on. `awaiting_merchant` and `awaiting_customer` name the
+      # side that owes a response, `under_review` means Whop is deciding, and `closed`
+      # means it is settled — read `outcome` for how.
+      #
+      # @see WhopSDK::Models::ResolutionCenterCaseRetrieveResponse#status
+      module Status
+        extend WhopSDK::Internal::Type::Enum
+
+        AWAITING_MERCHANT = :awaiting_merchant
+        AWAITING_CUSTOMER = :awaiting_customer
+        UNDER_REVIEW = :under_review
+        CLOSED = :closed
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
     end
   end

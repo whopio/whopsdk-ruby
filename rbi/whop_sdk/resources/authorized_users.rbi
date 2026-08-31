@@ -2,7 +2,6 @@
 
 module WhopSDK
   module Resources
-    # Authorized users
     class AuthorizedUsers
       # Add a new authorized user to a company.
       #

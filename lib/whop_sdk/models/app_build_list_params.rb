@@ -8,43 +8,43 @@ module WhopSDK
       include WhopSDK::Internal::Type::RequestParameters
 
       # @!attribute app_id
-      #   The unique identifier of the app to list builds for.
+      #   The app to list builds for, prefixed `app_`.
       #
       #   @return [String]
       required :app_id, String
 
       # @!attribute after
-      #   Returns the elements in the list that come after the specified cursor.
+      #   A cursor; returns builds after this position.
       #
       #   @return [String, nil]
       optional :after, String
 
       # @!attribute before
-      #   Returns the elements in the list that come before the specified cursor.
+      #   A cursor; returns builds before this position.
       #
       #   @return [String, nil]
       optional :before, String
 
       # @!attribute created_after
-      #   Only return builds created after this timestamp.
+      #   Only return builds created after this ISO 8601 timestamp.
       #
-      #   @return [Time, nil]
-      optional :created_after, Time
+      #   @return [Integer, String, nil]
+      optional :created_after, union: -> { WhopSDK::AppBuildListParams::CreatedAfter }
 
       # @!attribute created_before
-      #   Only return builds created before this timestamp.
+      #   Only return builds created before this ISO 8601 timestamp.
       #
-      #   @return [Time, nil]
-      optional :created_before, Time
+      #   @return [Integer, String, nil]
+      optional :created_before, union: -> { WhopSDK::AppBuildListParams::CreatedBefore }
 
       # @!attribute first
-      #   Returns the first _n_ elements from the list.
+      #   The number of builds to return (default 20, max 100).
       #
       #   @return [Integer, nil]
       optional :first, Integer
 
       # @!attribute last
-      #   Returns the last _n_ elements from the list.
+      #   The number of builds to return from the end of the range.
       #
       #   @return [Integer, nil]
       optional :last, Integer
@@ -52,35 +52,91 @@ module WhopSDK
       # @!attribute platform
       #   Filter builds by target platform.
       #
-      #   @return [Symbol, WhopSDK::Models::AppBuildPlatforms, nil]
-      optional :platform, enum: -> { WhopSDK::AppBuildPlatforms }
+      #   @return [Symbol, WhopSDK::Models::AppBuildListParams::Platform, nil]
+      optional :platform, enum: -> { WhopSDK::AppBuildListParams::Platform }
 
       # @!attribute status
       #   Filter builds by review status.
       #
-      #   @return [Symbol, WhopSDK::Models::AppBuildStatuses, nil]
-      optional :status, enum: -> { WhopSDK::AppBuildStatuses }
+      #   @return [Symbol, WhopSDK::Models::AppBuildListParams::Status, nil]
+      optional :status, enum: -> { WhopSDK::AppBuildListParams::Status }
 
-      # @!method initialize(app_id:, after: nil, before: nil, created_after: nil, created_before: nil, first: nil, last: nil, platform: nil, status: nil, request_options: {})
-      #   @param app_id [String] The unique identifier of the app to list builds for.
+      # @!attribute api_version_date
       #
-      #   @param after [String] Returns the elements in the list that come after the specified cursor.
+      #   @return [String, nil]
+      optional :api_version_date, String
+
+      # @!method initialize(app_id:, after: nil, before: nil, created_after: nil, created_before: nil, first: nil, last: nil, platform: nil, status: nil, api_version_date: nil, request_options: {})
+      #   @param app_id [String] The app to list builds for, prefixed `app_`.
       #
-      #   @param before [String] Returns the elements in the list that come before the specified cursor.
+      #   @param after [String] A cursor; returns builds after this position.
       #
-      #   @param created_after [Time] Only return builds created after this timestamp.
+      #   @param before [String] A cursor; returns builds before this position.
       #
-      #   @param created_before [Time] Only return builds created before this timestamp.
+      #   @param created_after [Integer, String] Only return builds created after this ISO 8601 timestamp.
       #
-      #   @param first [Integer] Returns the first _n_ elements from the list.
+      #   @param created_before [Integer, String] Only return builds created before this ISO 8601 timestamp.
       #
-      #   @param last [Integer] Returns the last _n_ elements from the list.
+      #   @param first [Integer] The number of builds to return (default 20, max 100).
       #
-      #   @param platform [Symbol, WhopSDK::Models::AppBuildPlatforms] Filter builds by target platform.
+      #   @param last [Integer] The number of builds to return from the end of the range.
       #
-      #   @param status [Symbol, WhopSDK::Models::AppBuildStatuses] Filter builds by review status.
+      #   @param platform [Symbol, WhopSDK::Models::AppBuildListParams::Platform] Filter builds by target platform.
+      #
+      #   @param status [Symbol, WhopSDK::Models::AppBuildListParams::Status] Filter builds by review status.
+      #
+      #   @param api_version_date [String]
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
+
+      # Only return builds created after this ISO 8601 timestamp.
+      module CreatedAfter
+        extend WhopSDK::Internal::Type::Union
+
+        variant Integer
+
+        variant String
+
+        # @!method self.variants
+        #   @return [Array(Integer, String)]
+      end
+
+      # Only return builds created before this ISO 8601 timestamp.
+      module CreatedBefore
+        extend WhopSDK::Internal::Type::Union
+
+        variant Integer
+
+        variant String
+
+        # @!method self.variants
+        #   @return [Array(Integer, String)]
+      end
+
+      # Filter builds by target platform.
+      module Platform
+        extend WhopSDK::Internal::Type::Enum
+
+        IOS = :ios
+        ANDROID = :android
+        WEB = :web
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
+
+      # Filter builds by review status.
+      module Status
+        extend WhopSDK::Internal::Type::Enum
+
+        DRAFT = :draft
+        PENDING = :pending
+        APPROVED = :approved
+        REJECTED = :rejected
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
     end
   end
 end

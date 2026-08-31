@@ -1,0 +1,229 @@
+module WhopSDK
+  module Models
+    type ad_group_list_params =
+      {
+        account_id: String,
+        ad_campaign_id: String,
+        ad_campaign_ids: ::Array[String],
+        after: String,
+        attribution_model: WhopSDK::Models::AdGroupListParams::attribution_model,
+        before: String,
+        created_after: String,
+        created_before: String,
+        direction: WhopSDK::Models::AdGroupListParams::direction,
+        first: Integer,
+        last: Integer,
+        order: WhopSDK::Models::AdGroupListParams::order,
+        query: String,
+        stats_from: String,
+        stats_to: String,
+        status: WhopSDK::Models::AdGroupListParams::status,
+        time_zone: String,
+        api_version_date: String
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class AdGroupListParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_reader account_id: String?
+
+      def account_id=: (String) -> String
+
+      attr_reader ad_campaign_id: String?
+
+      def ad_campaign_id=: (String) -> String
+
+      attr_reader ad_campaign_ids: ::Array[String]?
+
+      def ad_campaign_ids=: (::Array[String]) -> ::Array[String]
+
+      attr_reader after: String?
+
+      def after=: (String) -> String
+
+      attr_reader attribution_model: WhopSDK::Models::AdGroupListParams::attribution_model?
+
+      def attribution_model=: (
+        WhopSDK::Models::AdGroupListParams::attribution_model
+      ) -> WhopSDK::Models::AdGroupListParams::attribution_model
+
+      attr_reader before: String?
+
+      def before=: (String) -> String
+
+      attr_reader created_after: String?
+
+      def created_after=: (String) -> String
+
+      attr_reader created_before: String?
+
+      def created_before=: (String) -> String
+
+      attr_reader direction: WhopSDK::Models::AdGroupListParams::direction?
+
+      def direction=: (
+        WhopSDK::Models::AdGroupListParams::direction
+      ) -> WhopSDK::Models::AdGroupListParams::direction
+
+      attr_reader first: Integer?
+
+      def first=: (Integer) -> Integer
+
+      attr_reader last: Integer?
+
+      def last=: (Integer) -> Integer
+
+      attr_reader order: WhopSDK::Models::AdGroupListParams::order?
+
+      def order=: (
+        WhopSDK::Models::AdGroupListParams::order
+      ) -> WhopSDK::Models::AdGroupListParams::order
+
+      attr_reader query: String?
+
+      def query=: (String) -> String
+
+      attr_reader stats_from: String?
+
+      def stats_from=: (String) -> String
+
+      attr_reader stats_to: String?
+
+      def stats_to=: (String) -> String
+
+      attr_reader status: WhopSDK::Models::AdGroupListParams::status?
+
+      def status=: (
+        WhopSDK::Models::AdGroupListParams::status
+      ) -> WhopSDK::Models::AdGroupListParams::status
+
+      attr_reader time_zone: String?
+
+      def time_zone=: (String) -> String
+
+      attr_reader api_version_date: String?
+
+      def api_version_date=: (String) -> String
+
+      def initialize: (
+        ?account_id: String,
+        ?ad_campaign_id: String,
+        ?ad_campaign_ids: ::Array[String],
+        ?after: String,
+        ?attribution_model: WhopSDK::Models::AdGroupListParams::attribution_model,
+        ?before: String,
+        ?created_after: String,
+        ?created_before: String,
+        ?direction: WhopSDK::Models::AdGroupListParams::direction,
+        ?first: Integer,
+        ?last: Integer,
+        ?order: WhopSDK::Models::AdGroupListParams::order,
+        ?query: String,
+        ?stats_from: String,
+        ?stats_to: String,
+        ?status: WhopSDK::Models::AdGroupListParams::status,
+        ?time_zone: String,
+        ?api_version_date: String,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        account_id: String,
+        ad_campaign_id: String,
+        ad_campaign_ids: ::Array[String],
+        after: String,
+        attribution_model: WhopSDK::Models::AdGroupListParams::attribution_model,
+        before: String,
+        created_after: String,
+        created_before: String,
+        direction: WhopSDK::Models::AdGroupListParams::direction,
+        first: Integer,
+        last: Integer,
+        order: WhopSDK::Models::AdGroupListParams::order,
+        query: String,
+        stats_from: String,
+        stats_to: String,
+        status: WhopSDK::Models::AdGroupListParams::status,
+        time_zone: String,
+        api_version_date: String,
+        request_options: WhopSDK::RequestOptions
+      }
+
+      type attribution_model = :last_touch | :first_touch
+
+      module AttributionModel
+        extend WhopSDK::Internal::Type::Enum
+
+        LAST_TOUCH: :last_touch
+        FIRST_TOUCH: :first_touch
+
+        def self?.values: -> ::Array[WhopSDK::Models::AdGroupListParams::attribution_model]
+      end
+
+      type direction = :asc | :desc
+
+      module Direction
+        extend WhopSDK::Internal::Type::Enum
+
+        ASC: :asc
+        DESC: :desc
+
+        def self?.values: -> ::Array[WhopSDK::Models::AdGroupListParams::direction]
+      end
+
+      type order =
+        :created_at
+        | :updated_at
+        | :spend
+        | :impressions
+        | :reach
+        | :clicks
+        | :link_clicks
+        | :unique_clicks
+        | :frequency
+        | :click_through_rate
+        | :results
+        | :cost_per_mille
+        | :cost_per_click
+        | :cost_per_result
+        | :return_on_ad_spend
+
+      module Order
+        extend WhopSDK::Internal::Type::Enum
+
+        CREATED_AT: :created_at
+        UPDATED_AT: :updated_at
+        SPEND: :spend
+        IMPRESSIONS: :impressions
+        REACH: :reach
+        CLICKS: :clicks
+        LINK_CLICKS: :link_clicks
+        UNIQUE_CLICKS: :unique_clicks
+        FREQUENCY: :frequency
+        CLICK_THROUGH_RATE: :click_through_rate
+        RESULTS: :results
+        COST_PER_MILLE: :cost_per_mille
+        COST_PER_CLICK: :cost_per_click
+        COST_PER_RESULT: :cost_per_result
+        RETURN_ON_AD_SPEND: :return_on_ad_spend
+
+        def self?.values: -> ::Array[WhopSDK::Models::AdGroupListParams::order]
+      end
+
+      type status = :active | :paused | :rejected | :duplicating
+
+      module Status
+        extend WhopSDK::Internal::Type::Enum
+
+        ACTIVE: :active
+        PAUSED: :paused
+        REJECTED: :rejected
+        DUPLICATING: :duplicating
+
+        def self?.values: -> ::Array[WhopSDK::Models::AdGroupListParams::status]
+      end
+    end
+  end
+end

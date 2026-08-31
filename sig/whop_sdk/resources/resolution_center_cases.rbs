@@ -3,19 +3,25 @@ module WhopSDK
     class ResolutionCenterCases
       def retrieve: (
         String id,
+        ?api_version_date: String,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Models::ResolutionCenterCaseRetrieveResponse
 
       def list: (
+        ?account_id: String,
         ?after: String,
         ?before: String,
-        ?company_id: String,
-        ?created_after: Time,
-        ?created_before: Time,
-        ?direction: WhopSDK::Models::direction,
+        ?created_after: String,
+        ?created_before: String,
+        ?direction: WhopSDK::Models::ResolutionCenterCaseListParams::direction,
         ?first: Integer,
         ?last: Integer,
-        ?statuses: ::Array[WhopSDK::Models::resolution_center_case_status],
+        ?order: WhopSDK::Models::ResolutionCenterCaseListParams::order,
+        ?outcome: ::Array[WhopSDK::Models::ResolutionCenterCaseListParams::outcome],
+        ?reason: ::Array[WhopSDK::Models::ResolutionCenterCaseListParams::reason],
+        ?status: ::Array[WhopSDK::Models::ResolutionCenterCaseListParams::status],
+        ?user_id: String,
+        ?api_version_date: String,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::ResolutionCenterCaseListResponse]
 

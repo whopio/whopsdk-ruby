@@ -1,0 +1,208 @@
+module WhopSDK
+  module Models
+    type export_completed_webhook_event =
+      {
+        id: String,
+        api_version: :v1,
+        api_version_date: String?,
+        data: WhopSDK::ExportCompletedWebhookEvent::Data,
+        timestamp: Time,
+        type: :"export.completed",
+        account_id: String?,
+        previous_attributes: top
+      }
+
+    class ExportCompletedWebhookEvent < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor api_version: :v1
+
+      attr_accessor api_version_date: String?
+
+      attr_accessor data: WhopSDK::ExportCompletedWebhookEvent::Data
+
+      attr_accessor timestamp: Time
+
+      attr_accessor type: :"export.completed"
+
+      attr_accessor account_id: String?
+
+      attr_reader previous_attributes: top?
+
+      def previous_attributes=: (top) -> top
+
+      def initialize: (
+        id: String,
+        api_version_date: String?,
+        data: WhopSDK::ExportCompletedWebhookEvent::Data,
+        timestamp: Time,
+        ?account_id: String?,
+        ?previous_attributes: top,
+        ?api_version: :v1,
+        ?type: :"export.completed"
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        api_version: :v1,
+        api_version_date: String?,
+        data: WhopSDK::ExportCompletedWebhookEvent::Data,
+        timestamp: Time,
+        type: :"export.completed",
+        account_id: String?,
+        previous_attributes: top
+      }
+
+      type data =
+        {
+          id: String,
+          created_at: String,
+          download_url: String?,
+          expires_at: String,
+          progress_percent: Integer?,
+          resource: WhopSDK::Models::ExportCompletedWebhookEvent::Data::resource,
+          status: WhopSDK::Models::ExportCompletedWebhookEvent::Data::status,
+          updated_at: String
+        }
+
+      class Data < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor created_at: String
+
+        attr_accessor download_url: String?
+
+        attr_accessor expires_at: String
+
+        attr_accessor progress_percent: Integer?
+
+        attr_accessor resource: WhopSDK::Models::ExportCompletedWebhookEvent::Data::resource
+
+        attr_accessor status: WhopSDK::Models::ExportCompletedWebhookEvent::Data::status
+
+        attr_accessor updated_at: String
+
+        def initialize: (
+          id: String,
+          created_at: String,
+          download_url: String?,
+          expires_at: String,
+          progress_percent: Integer?,
+          resource: WhopSDK::Models::ExportCompletedWebhookEvent::Data::resource,
+          status: WhopSDK::Models::ExportCompletedWebhookEvent::Data::status,
+          updated_at: String
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          created_at: String,
+          download_url: String?,
+          expires_at: String,
+          progress_percent: Integer?,
+          resource: WhopSDK::Models::ExportCompletedWebhookEvent::Data::resource,
+          status: WhopSDK::Models::ExportCompletedWebhookEvent::Data::status,
+          updated_at: String
+        }
+
+        type resource =
+          :ad_campaigns
+          | :ad_groups
+          | :ads
+          | :apps
+          | :audiences
+          | :bounties
+          | :bounty_submissions
+          | :card_transactions
+          | :checkout_configurations
+          | :disputes
+          | :events
+          | :"financial-activity"
+          | :payout_methods
+          | :payouts
+          | :people
+          | :plans
+          | :products
+          | :resolution_center_cases
+          | :shipments
+          | :social_accounts
+          | :team_members
+          | :transfers
+          | :webhooks
+          | :members
+          | :receipts
+          | :unclaimed_memberships
+          | :memberships
+          | :tracking_links
+          | :promo_codes
+          | :resolutions
+          | :entries
+          | :leads
+          | :content_rewards_submissions
+          | :invoices
+          | :cancelation_reasons
+          | :child_companies
+          | :ledger_lines
+          | :withdrawal_lines
+
+        module Resource
+          extend WhopSDK::Internal::Type::Enum
+
+          AD_CAMPAIGNS: :ad_campaigns
+          AD_GROUPS: :ad_groups
+          ADS: :ads
+          APPS: :apps
+          AUDIENCES: :audiences
+          BOUNTIES: :bounties
+          BOUNTY_SUBMISSIONS: :bounty_submissions
+          CARD_TRANSACTIONS: :card_transactions
+          CHECKOUT_CONFIGURATIONS: :checkout_configurations
+          DISPUTES: :disputes
+          EVENTS: :events
+          FINANCIAL_ACTIVITY: :"financial-activity"
+          PAYOUT_METHODS: :payout_methods
+          PAYOUTS: :payouts
+          PEOPLE: :people
+          PLANS: :plans
+          PRODUCTS: :products
+          RESOLUTION_CENTER_CASES: :resolution_center_cases
+          SHIPMENTS: :shipments
+          SOCIAL_ACCOUNTS: :social_accounts
+          TEAM_MEMBERS: :team_members
+          TRANSFERS: :transfers
+          WEBHOOKS: :webhooks
+          MEMBERS: :members
+          RECEIPTS: :receipts
+          UNCLAIMED_MEMBERSHIPS: :unclaimed_memberships
+          MEMBERSHIPS: :memberships
+          TRACKING_LINKS: :tracking_links
+          PROMO_CODES: :promo_codes
+          RESOLUTIONS: :resolutions
+          ENTRIES: :entries
+          LEADS: :leads
+          CONTENT_REWARDS_SUBMISSIONS: :content_rewards_submissions
+          INVOICES: :invoices
+          CANCELATION_REASONS: :cancelation_reasons
+          CHILD_COMPANIES: :child_companies
+          LEDGER_LINES: :ledger_lines
+          WITHDRAWAL_LINES: :withdrawal_lines
+
+          def self?.values: -> ::Array[WhopSDK::Models::ExportCompletedWebhookEvent::Data::resource]
+        end
+
+        type status = :pending | :processing | :completed | :failed | :expired
+
+        module Status
+          extend WhopSDK::Internal::Type::Enum
+
+          PENDING: :pending
+          PROCESSING: :processing
+          COMPLETED: :completed
+          FAILED: :failed
+          EXPIRED: :expired
+
+          def self?.values: -> ::Array[WhopSDK::Models::ExportCompletedWebhookEvent::Data::status]
+        end
+      end
+    end
+  end
+end

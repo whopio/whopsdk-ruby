@@ -2,200 +2,252 @@
 
 module WhopSDK
   module Resources
-    # Apps
+    # An App is software you build on Whop. It can be a hosted web app served at
+    # `<route>.whop.site` or an API integration installed as an experience, and it
+    # belongs to the account that owns its credentials, settings, builds, and runtime
+    # logs.
+    #
+    # Use the Apps API to manage app configuration, deploy an app's working copy and
+    # follow the run on the app's `deployment` field, and, for hosted apps, read
+    # server runtime logs for console output, uncaught exceptions, and failed
+    # requests. Logs are retained for 7 days and can be filtered by build, level, time
+    # window, and message text.
+    #
+    # Apps are also reusable blueprints. List official blueprints with
+    # `app_type=website&verified=true&order=template_usage`, or community blueprints
+    # with `app_type=website&verified=false&recommended=true&order=template_usage`.
+    # Pass the returned App `id` as `blueprint_id` when creating an Account.
     class Apps
-      # Register a new app on the Whop developer platform. Apps provide custom
+      # Registers a new app on the Whop developer platform. Apps provide custom
       # experiences that can be added to products.
-      #
-      # Required permissions:
-      #
-      # - `developer:create_app`
-      # - `developer:manage_api_key`
-      # - `developer:basic:read`
-      # - `developer:update_app`
       sig do
         params(
-          company_id: String,
           name: String,
+          account_id: String,
+          app_type: WhopSDK::AppCreateParams::AppType::OrSymbol,
           base_url: T.nilable(String),
-          icon: T.nilable(WhopSDK::AppCreateParams::Icon::OrHash),
-          redirect_uris: T.nilable(T::Array[String]),
+          icon: WhopSDK::AppCreateParams::Icon::OrHash,
+          redirect_uris: T::Array[String],
           route: T.nilable(String),
+          api_version_date: String,
+          idempotency_key: String,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::App)
       end
       def create(
-        # The unique identifier of the company to create the app for, starting with
-        # 'biz\_'.
-        company_id:,
-        # The display name for the app, shown to users on the app store and product pages.
+        # Body param: The display name for the app, shown to users on the app store and
+        # product pages.
         name:,
-        # The base production URL where the app is hosted, such as
-        # 'https://myapp.example.com'.
+        # Body param: The account to create the app for (`biz_` tag). Defaults to the
+        # account behind the presented credential.
+        account_id: nil,
+        # Body param: The type of app to create. Defaults to `b2c_app`.
+        app_type: nil,
+        # Body param: The base production URL where the app is hosted, such as
+        # `https://myapp.example.com`.
         base_url: nil,
-        # The icon image for the app in PNG, JPEG, or GIF format.
+        # Body param: The icon image for the app in PNG, JPEG, or GIF format, referencing
+        # an uploaded file: `{ id }` for an existing attachment or `{ direct_upload_id }`
+        # for a new direct upload.
         icon: nil,
-        # The whitelisted OAuth callback URLs that users are redirected to after
-        # authorizing the app.
+        # Body param: The whitelisted OAuth callback URLs that users are redirected to
+        # after authorizing the app.
         redirect_uris: nil,
-        # The unique subdomain route where the app's hosted web builds are served, such as
-        # 'myapp' for myapp.whop.site.
+        # Body param: The subdomain route where the app's hosted web builds are served,
+        # such as `myapp` for myapp.whop.site.
         route: nil,
+        # Header param: Pins the request to a dated API version.
+        api_version_date: nil,
+        # Header param: A unique key that makes this request safe to retry. See
+        # [Idempotent requests](https://docs.whop.com/developer/api/idempotency).
+        idempotency_key: nil,
         request_options: {}
       )
       end
 
-      # Retrieves the details of an existing app.
-      #
-      # Required permissions:
-      #
-      # - `developer:manage_api_key`
-      # - `developer:basic:read`
-      # - `developer:update_app`
+      # Retrieves an app by ID, claimed route, or proxy domain id. Credential fields
+      # (api_key, default_api_key, secrets) render `null` unless the caller has the
+      # corresponding developer permission on the owning account.
       sig do
         params(
           id: String,
+          api_version_date: String,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::App)
       end
       def retrieve(
-        # The unique identifier of the app to retrieve.
+        # App ID (prefixed `app_`), the app's claimed route, or its proxy domain id.
         id,
+        # Pins the request to a dated API version.
+        api_version_date: nil,
         request_options: {}
       )
       end
 
-      # Update the settings, metadata, or status of an existing app on the Whop
-      # developer platform.
-      #
-      # Required permissions:
-      #
-      # - `developer:update_app`
-      # - `developer:manage_api_key`
-      # - `developer:basic:read`
+      # Updates the settings, metadata, or status of an app. Fields that are omitted
+      # keep their current value.
       sig do
         params(
           id: String,
-          app_store_description: T.nilable(String),
-          app_type: T.nilable(WhopSDK::AppType::OrSymbol),
+          app_store_description: String,
+          app_type: WhopSDK::AppUpdateParams::AppType::OrSymbol,
           base_url: T.nilable(String),
           dashboard_path: T.nilable(String),
-          description: T.nilable(String),
+          description: String,
           discover_path: T.nilable(String),
           experience_path: T.nilable(String),
-          icon: T.nilable(WhopSDK::AppUpdateParams::Icon::OrHash),
-          name: T.nilable(String),
+          icon: WhopSDK::AppUpdateParams::Icon::OrHash,
+          name: String,
           oauth_client_type:
-            T.nilable(WhopSDK::AppUpdateParams::OAuthClientType::OrSymbol),
+            WhopSDK::AppUpdateParams::OAuthClientType::OrSymbol,
           openapi_path: T.nilable(String),
-          redirect_uris: T.nilable(T::Array[String]),
-          required_scopes:
-            T.nilable(
-              T::Array[WhopSDK::AppUpdateParams::RequiredScope::OrSymbol]
-            ),
-          route: T.nilable(String),
-          secrets: T.nilable(T::Hash[Symbol, T.anything]),
+          production_android_build_id: T.nilable(String),
+          production_ios_build_id: T.nilable(String),
+          production_web_build_id: T.nilable(String),
+          redirect_uris: T::Array[String],
+          required_scopes: T::Array[String],
+          route: String,
+          secrets: T.anything,
           skills_path: T.nilable(String),
-          status: T.nilable(WhopSDK::AppStatuses::OrSymbol),
+          status: WhopSDK::AppUpdateParams::Status::OrSymbol,
+          api_version_date: String,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::App)
       end
       def update(
-        # The unique identifier of the app to update, starting with 'app\_'.
+        # Path param: App ID (prefixed `app_`), the app's claimed route, or its proxy
+        # domain id.
         id,
-        # The detailed description shown on the app store's in-depth app view page.
+        # Body param: The detailed description shown on the app store's in-depth app view
+        # page.
         app_store_description: nil,
-        # The type of end-user an app is built for
+        # Body param: The type of end-user the app is built for. Cannot be changed on an
+        # app whose type is already `website`.
         app_type: nil,
-        # The base production URL where the app is hosted. Pass null to take the app proxy
-        # offline.
+        # Body param: The base production URL where the app is hosted. Set to `null` to
+        # take the app proxy offline.
         base_url: nil,
-        # The URL path for the company dashboard view of the app, such as '/dashboard'.
+        # Body param: The URL path for the account dashboard view.
         dashboard_path: nil,
-        # A short description of the app shown in listings and search results.
+        # Body param: A short description of the app shown in listings and search results.
         description: nil,
-        # The URL path for the discover view of the app, such as '/discover'.
+        # Body param: The URL path for the discover view.
         discover_path: nil,
-        # The URL path for the member-facing hub view of the app, such as
-        # '/experiences/[experienceId]'.
+        # Body param: The URL path for the member-facing hub view, such as
+        # `/experiences/[experienceId]`.
         experience_path: nil,
-        # The icon image for the app, used in listings and navigation.
+        # Body param: The icon image for the app in PNG, JPEG, or GIF format, referencing
+        # an uploaded file: `{ id }` for an existing attachment or `{ direct_upload_id }`
+        # for a new direct upload.
         icon: nil,
-        # The display name for the app, shown to users on the app store and product pages.
+        # Body param: The display name for the app, shown to users on the app store and
+        # product pages.
         name: nil,
-        # How this app authenticates at the OAuth token endpoint.
+        # Body param: How the app authenticates at the OAuth token endpoint.
         oauth_client_type: nil,
-        # The URL path to the OpenAPI spec file of the app, such as
-        # '/assets/openapi.json'.
+        # Body param: The URL path to the app's OpenAPI spec file (requires the ai_chat
+        # capability).
         openapi_path: nil,
-        # The whitelisted OAuth callback URLs that users are redirected to after
-        # authorizing the app
+        # Body param: The app build (`abld_` tag) to serve as the Android production
+        # build, or `null` to unassign it. Same rules as `production_web_build_id`.
+        production_android_build_id: nil,
+        # Body param: The app build (`abld_` tag) to serve as the iOS production build, or
+        # `null` to unassign it. Same rules as `production_web_build_id`.
+        production_ios_build_id: nil,
+        # Body param: The app build (`abld_` tag) to serve as the web production build, or
+        # `null` to unassign it. The build must belong to this app, target web, and be in
+        # the draft or approved status; a draft build is queued for approval and takes
+        # over once approved. Requires the `developer:manage_builds` scope.
+        production_web_build_id: nil,
+        # Body param: The whitelisted OAuth callback URLs users are redirected to after
+        # authorizing the app.
         redirect_uris: nil,
-        # The permission scopes the app will request from users when they install it.
+        # Body param: The OAuth scopes the app requests from users when they install it.
         required_scopes: nil,
-        # The unique subdomain route where the app's hosted web builds are served, such as
-        # 'myapp' for myapp.whop.site.
+        # Body param: The subdomain route where the app's hosted web builds are served.
         route: nil,
-        # Secrets to add or overwrite on the app, as an object of string values (e.g.
-        # {"MAIL_API_KEY": "..."}). Keys not included are left untouched. Pass null or an
-        # empty string as the value to delete a secret. Secrets are encrypted at rest and
-        # injected into the app's hosted server runtime as environment bindings.
+        # Body param: Secrets to add or overwrite on the app, as an object of string
+        # values. Keys not included are left untouched; pass null or an empty string as
+        # the value to delete a secret. Encrypted at rest and injected into the app's
+        # hosted server runtime.
         secrets: nil,
-        # The URL path to the skills directory of the app, such as '/assets/skills/'.
+        # Body param: The URL path to the app's skills directory (requires the ai_chat
+        # capability).
         skills_path: nil,
-        # The status of an experience interface
+        # Body param: Controls whether the app is published on Whop discovery or
+        # accessible only through its direct link. Publishing requires a name, icon, and
+        # description.
         status: nil,
+        # Header param: Pins the request to a dated API version.
+        api_version_date: nil,
         request_options: {}
       )
       end
 
-      # Returns a paginated list of apps on the Whop platform, with optional filtering
-      # by company, type, view support, and search query.
+      # Lists apps on the Whop platform: the app store's live apps, or — with
+      # `account_id` and developer access to that account — every app the account owns.
+      # Requires authentication except for Whop's public app and website discovery
+      # lists. Public website discovery includes built official blueprints (verified
+      # apps with a product) and built, live community blueprints that Whop recommends.
       sig do
         params(
+          account_id: String,
           after: String,
-          app_type: WhopSDK::AppType::OrSymbol,
+          app_type: WhopSDK::AppListParams::AppType::OrSymbol,
           before: String,
-          company_id: String,
-          direction: WhopSDK::Direction::OrSymbol,
+          direction: WhopSDK::AppListParams::Direction::OrSymbol,
           first: Integer,
           last: Integer,
           order: WhopSDK::AppListParams::Order::OrSymbol,
           query: String,
+          recommended: T::Boolean,
+          verified: T::Boolean,
           verified_apps_only: T::Boolean,
-          view_type: WhopSDK::AppViewType::OrSymbol,
+          view_type: WhopSDK::AppListParams::ViewType::OrSymbol,
+          api_version_date: String,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(
           WhopSDK::Internal::CursorPage[WhopSDK::Models::AppListResponse]
         )
       end
       def list(
-        # Returns the elements in the list that come after the specified cursor.
+        # Query param: Only return apps created by this account (`biz_` tag). With
+        # developer access to the account this includes its unlisted and hidden apps.
+        account_id: nil,
+        # Query param: A cursor; returns apps after this position.
         after: nil,
-        # Filter apps by the type of end-user they are built for, such as consumer or
-        # business.
+        # Query param: Filter apps by the type of end-user they are built for. Apps of
+        # type `website` are left out unless you ask for them by name.
         app_type: nil,
-        # Returns the elements in the list that come before the specified cursor.
+        # Query param: A cursor; returns apps before this position.
         before: nil,
-        # Filter apps to only those created by this company, starting with 'biz\_'.
-        company_id: nil,
-        # The sort direction for results. Accepted values: asc, desc.
+        # Query param: Sort direction.
         direction: nil,
-        # Returns the first _n_ elements from the list.
+        # Query param: The number of apps to return (default 20, max 100).
         first: nil,
-        # Returns the last _n_ elements from the list.
+        # Query param: The number of apps to return from the end of the range.
         last: nil,
-        # The field to sort apps by. Defaults to discoverable_at descending, showing the
-        # most recently published apps first.
+        # Query param: The field to sort apps by. Defaults to discoverable_at, showing the
+        # most recently published apps first. `template_usage` ranks Whop-verified apps
+        # first, then by how many businesses created apps from each app as a template.
         order: nil,
-        # A search string to filter apps by name, such as 'chat' or 'analytics'.
+        # Query param: A search string matched against app names.
         query: nil,
-        # Whether to only return apps that have been verified by Whop. Useful for
-        # populating a featured apps section.
+        # Query param: Only return apps Whop recommends (or, with `false`, only those it
+        # does not), independently of verification status.
+        recommended: nil,
+        # Query param: Only return apps whose Whop verification status matches this value.
+        # Omit this filter to include every verification status the caller can see.
+        verified: nil,
+        # Query param: Legacy compatibility filter. Use `verified` for field equality.
+        # `true` returns verified apps; clients pinned before `2026-08-25-2` retain the
+        # earlier public website discovery behavior.
         verified_apps_only: nil,
-        # Filter apps to only those supporting a specific view type, such as 'dashboard'
-        # or 'hub'.
+        # Query param: Only return apps supporting this view type, such as `dashboard` or
+        # `hub`.
         view_type: nil,
+        # Header param: Pins the request to a dated API version.
+        api_version_date: nil,
         request_options: {}
       )
       end

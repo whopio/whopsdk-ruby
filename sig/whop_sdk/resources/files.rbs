@@ -3,12 +3,17 @@ module WhopSDK
     class Files
       def create: (
         filename: String,
-        ?visibility: WhopSDK::Models::file_visibility?,
+        ?byte_size: Integer,
+        ?multipart: bool,
+        ?visibility: WhopSDK::Models::FileCreateParams::visibility,
+        ?api_version_date: String,
+        ?idempotency_key: String,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Models::FileCreateResponse
 
       def retrieve: (
         String id,
+        ?api_version_date: String,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Models::FileRetrieveResponse
 

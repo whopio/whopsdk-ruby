@@ -2,57 +2,54 @@
 
 module WhopSDK
   module Resources
-    # Verifications
+    # A Verification represents a legal identity for a person or business. Accounts
+    # and users complete verification when Whop needs to confirm who they are before
+    # enabling payouts or compliance-sensitive workflows.
+    #
+    # Use the Verifications API to start or resume a hosted verification session,
+    # check review status, and submit requested details or documents. If
+    # `requested_information` contains items, submit answers with
+    # [Update Verification](/api-reference/beta/verifications/update-verification).
     class Verifications
-      # Retrieves the details of an existing verification.
-      #
-      # Required permissions:
-      #
-      # - `payout:account:read`
+      # Returns verifications for an account, including their status and any required
+      # actions.
       sig do
         params(
           id: String,
+          api_version_date: String,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Models::VerificationRetrieveResponse)
       end
       def retrieve(
-        # The unique identifier of the verification to retrieve.
+        # Verification profile ID, prefixed `idpf_`.
         id,
+        # Pins the request to a dated API version.
+        api_version_date: nil,
         request_options: {}
       )
       end
 
-      # Returns a list of identity verifications for a payout account, ordered by most
-      # recent first.
-      #
-      # Required permissions:
-      #
-      # - `payout:account:read`
+      # Returns verifications for an account, including their status and any required
+      # actions.
       sig do
         params(
-          payout_account_id: String,
-          after: String,
-          before: String,
-          first: Integer,
-          last: Integer,
+          account_id: String,
+          direction: WhopSDK::VerificationListParams::Direction::OrSymbol,
+          order: WhopSDK::VerificationListParams::Order::OrSymbol,
+          api_version_date: String,
           request_options: WhopSDK::RequestOptions::OrHash
-        ).returns(
-          WhopSDK::Internal::CursorPage[
-            WhopSDK::Models::VerificationListResponse
-          ]
-        )
+        ).returns(WhopSDK::Models::VerificationListResponse)
       end
       def list(
-        # The unique identifier of the payout account to list verifications for.
-        payout_account_id:,
-        # Returns the elements in the list that come after the specified cursor.
-        after: nil,
-        # Returns the elements in the list that come before the specified cursor.
-        before: nil,
-        # Returns the first _n_ elements from the list.
-        first: nil,
-        # Returns the last _n_ elements from the list.
-        last: nil,
+        # Query param: Account or user ID whose verifications you want to list. Use a
+        # `biz_` account ID, or the caller's `user_` ID for personal verifications.
+        account_id:,
+        # Query param: Sort direction for returned verifications.
+        direction: nil,
+        # Query param: Field used to sort returned verifications.
+        order: nil,
+        # Header param: Pins the request to a dated API version.
+        api_version_date: nil,
         request_options: {}
       )
       end

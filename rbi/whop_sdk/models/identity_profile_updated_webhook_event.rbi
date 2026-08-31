@@ -23,8 +23,6 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :api_version_date
 
-      # The identity profile that changed. Re-fetch `GET /api/v1/verifications` to read
-      # its current, access-scoped state.
       sig { returns(WhopSDK::IdentityProfileUpdatedWebhookEvent::Data) }
       attr_reader :data
 
@@ -72,8 +70,6 @@ module WhopSDK
         id:,
         # The dated API version (Api-Version-Date) the payload is serialized to
         api_version_date:,
-        # The identity profile that changed. Re-fetch `GET /api/v1/verifications` to read
-        # its current, access-scoped state.
         data:,
         # The timestamp in ISO 8601 format that the webhook was sent at on the server
         timestamp:,
@@ -115,15 +111,15 @@ module WhopSDK
             )
           end
 
-        # The identity profile id.
+        # The identity profile id (`idpf_`). Re-fetch `GET /verifications` for its current
+        # state.
         sig { returns(String) }
         attr_accessor :id
 
-        # The identity profile that changed. Re-fetch `GET /api/v1/verifications` to read
-        # its current, access-scoped state.
         sig { params(id: String).returns(T.attached_class) }
         def self.new(
-          # The identity profile id.
+          # The identity profile id (`idpf_`). Re-fetch `GET /verifications` for its current
+          # state.
           id:
         )
         end

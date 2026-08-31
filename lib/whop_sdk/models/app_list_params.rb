@@ -7,121 +7,184 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
+      # @!attribute account_id
+      #   Only return apps created by this account (`biz_` tag). With developer access to
+      #   the account this includes its unlisted and hidden apps.
+      #
+      #   @return [String, nil]
+      optional :account_id, String
+
       # @!attribute after
-      #   Returns the elements in the list that come after the specified cursor.
+      #   A cursor; returns apps after this position.
       #
       #   @return [String, nil]
       optional :after, String
 
       # @!attribute app_type
-      #   Filter apps by the type of end-user they are built for, such as consumer or
-      #   business.
+      #   Filter apps by the type of end-user they are built for. Apps of type `website`
+      #   are left out unless you ask for them by name.
       #
-      #   @return [Symbol, WhopSDK::Models::AppType, nil]
-      optional :app_type, enum: -> { WhopSDK::AppType }
+      #   @return [Symbol, WhopSDK::Models::AppListParams::AppType, nil]
+      optional :app_type, enum: -> { WhopSDK::AppListParams::AppType }
 
       # @!attribute before
-      #   Returns the elements in the list that come before the specified cursor.
+      #   A cursor; returns apps before this position.
       #
       #   @return [String, nil]
       optional :before, String
 
-      # @!attribute company_id
-      #   Filter apps to only those created by this company, starting with 'biz\_'.
-      #
-      #   @return [String, nil]
-      optional :company_id, String
-
       # @!attribute direction
-      #   The sort direction for results. Accepted values: asc, desc.
+      #   Sort direction.
       #
-      #   @return [Symbol, WhopSDK::Models::Direction, nil]
-      optional :direction, enum: -> { WhopSDK::Direction }
+      #   @return [Symbol, WhopSDK::Models::AppListParams::Direction, nil]
+      optional :direction, enum: -> { WhopSDK::AppListParams::Direction }
 
       # @!attribute first
-      #   Returns the first _n_ elements from the list.
+      #   The number of apps to return (default 20, max 100).
       #
       #   @return [Integer, nil]
       optional :first, Integer
 
       # @!attribute last
-      #   Returns the last _n_ elements from the list.
+      #   The number of apps to return from the end of the range.
       #
       #   @return [Integer, nil]
       optional :last, Integer
 
       # @!attribute order
-      #   The field to sort apps by. Defaults to discoverable_at descending, showing the
-      #   most recently published apps first.
+      #   The field to sort apps by. Defaults to discoverable_at, showing the most
+      #   recently published apps first. `template_usage` ranks Whop-verified apps first,
+      #   then by how many businesses created apps from each app as a template.
       #
       #   @return [Symbol, WhopSDK::Models::AppListParams::Order, nil]
       optional :order, enum: -> { WhopSDK::AppListParams::Order }
 
       # @!attribute query
-      #   A search string to filter apps by name, such as 'chat' or 'analytics'.
+      #   A search string matched against app names.
       #
       #   @return [String, nil]
       optional :query, String
 
+      # @!attribute recommended
+      #   Only return apps Whop recommends (or, with `false`, only those it does not),
+      #   independently of verification status.
+      #
+      #   @return [Boolean, nil]
+      optional :recommended, WhopSDK::Internal::Type::Boolean
+
+      # @!attribute verified
+      #   Only return apps whose Whop verification status matches this value. Omit this
+      #   filter to include every verification status the caller can see.
+      #
+      #   @return [Boolean, nil]
+      optional :verified, WhopSDK::Internal::Type::Boolean
+
       # @!attribute verified_apps_only
-      #   Whether to only return apps that have been verified by Whop. Useful for
-      #   populating a featured apps section.
+      #   Legacy compatibility filter. Use `verified` for field equality. `true` returns
+      #   verified apps; clients pinned before `2026-08-25-2` retain the earlier public
+      #   website discovery behavior.
       #
       #   @return [Boolean, nil]
       optional :verified_apps_only, WhopSDK::Internal::Type::Boolean
 
       # @!attribute view_type
-      #   Filter apps to only those supporting a specific view type, such as 'dashboard'
-      #   or 'hub'.
+      #   Only return apps supporting this view type, such as `dashboard` or `hub`.
       #
-      #   @return [Symbol, WhopSDK::Models::AppViewType, nil]
-      optional :view_type, enum: -> { WhopSDK::AppViewType }
+      #   @return [Symbol, WhopSDK::Models::AppListParams::ViewType, nil]
+      optional :view_type, enum: -> { WhopSDK::AppListParams::ViewType }
 
-      # @!method initialize(after: nil, app_type: nil, before: nil, company_id: nil, direction: nil, first: nil, last: nil, order: nil, query: nil, verified_apps_only: nil, view_type: nil, request_options: {})
+      # @!attribute api_version_date
+      #
+      #   @return [String, nil]
+      optional :api_version_date, String
+
+      # @!method initialize(account_id: nil, after: nil, app_type: nil, before: nil, direction: nil, first: nil, last: nil, order: nil, query: nil, recommended: nil, verified: nil, verified_apps_only: nil, view_type: nil, api_version_date: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::AppListParams} for more details.
       #
-      #   @param after [String] Returns the elements in the list that come after the specified cursor.
+      #   @param account_id [String] Only return apps created by this account (`biz_` tag). With developer access to
       #
-      #   @param app_type [Symbol, WhopSDK::Models::AppType] Filter apps by the type of end-user they are built for, such as consumer or busi
+      #   @param after [String] A cursor; returns apps after this position.
       #
-      #   @param before [String] Returns the elements in the list that come before the specified cursor.
+      #   @param app_type [Symbol, WhopSDK::Models::AppListParams::AppType] Filter apps by the type of end-user they are built for. Apps of type `website` a
       #
-      #   @param company_id [String] Filter apps to only those created by this company, starting with 'biz\_'.
+      #   @param before [String] A cursor; returns apps before this position.
       #
-      #   @param direction [Symbol, WhopSDK::Models::Direction] The sort direction for results. Accepted values: asc, desc.
+      #   @param direction [Symbol, WhopSDK::Models::AppListParams::Direction] Sort direction.
       #
-      #   @param first [Integer] Returns the first _n_ elements from the list.
+      #   @param first [Integer] The number of apps to return (default 20, max 100).
       #
-      #   @param last [Integer] Returns the last _n_ elements from the list.
+      #   @param last [Integer] The number of apps to return from the end of the range.
       #
-      #   @param order [Symbol, WhopSDK::Models::AppListParams::Order] The field to sort apps by. Defaults to discoverable_at descending, showing the m
+      #   @param order [Symbol, WhopSDK::Models::AppListParams::Order] The field to sort apps by. Defaults to discoverable_at, showing the most recentl
       #
-      #   @param query [String] A search string to filter apps by name, such as 'chat' or 'analytics'.
+      #   @param query [String] A search string matched against app names.
       #
-      #   @param verified_apps_only [Boolean] Whether to only return apps that have been verified by Whop. Useful for populati
+      #   @param recommended [Boolean] Only return apps Whop recommends (or, with `false`, only those it does not), ind
       #
-      #   @param view_type [Symbol, WhopSDK::Models::AppViewType] Filter apps to only those supporting a specific view type, such as 'dashboard' o
+      #   @param verified [Boolean] Only return apps whose Whop verification status matches this value. Omit this fi
+      #
+      #   @param verified_apps_only [Boolean] Legacy compatibility filter. Use `verified` for field equality. `true` returns v
+      #
+      #   @param view_type [Symbol, WhopSDK::Models::AppListParams::ViewType] Only return apps supporting this view type, such as `dashboard` or `hub`.
+      #
+      #   @param api_version_date [String]
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
 
-      # The field to sort apps by. Defaults to discoverable_at descending, showing the
-      # most recently published apps first.
+      # Filter apps by the type of end-user they are built for. Apps of type `website`
+      # are left out unless you ask for them by name.
+      module AppType
+        extend WhopSDK::Internal::Type::Enum
+
+        B2B_APP = :b2b_app
+        B2C_APP = :b2c_app
+        COMPANY_APP = :company_app
+        COMPONENT = :component
+        WEBSITE = :website
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
+
+      # Sort direction.
+      module Direction
+        extend WhopSDK::Internal::Type::Enum
+
+        ASC = :asc
+        DESC = :desc
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
+
+      # The field to sort apps by. Defaults to discoverable_at, showing the most
+      # recently published apps first. `template_usage` ranks Whop-verified apps first,
+      # then by how many businesses created apps from each app as a template.
       module Order
         extend WhopSDK::Internal::Type::Enum
 
         CREATED_AT = :created_at
         DISCOVERABLE_AT = :discoverable_at
+        TEMPLATE_USAGE = :template_usage
         TOTAL_INSTALLS_LAST_30_DAYS = :total_installs_last_30_days
         TOTAL_INSTALLS_LAST_7_DAYS = :total_installs_last_7_days
-        TIME_SPENT = :time_spent
-        TIME_SPENT_LAST_24_HOURS = :time_spent_last_24_hours
-        DAILY_ACTIVE_USERS = :daily_active_users
-        AI_PROMPT_COUNT = :ai_prompt_count
-        TOTAL_AI_COST_USD = :total_ai_cost_usd
-        TOTAL_AI_TOKENS = :total_ai_tokens
-        LAST_AI_PROMPT_AT = :last_ai_prompt_at
-        AI_AVERAGE_RATING = :ai_average_rating
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
+
+      # Only return apps supporting this view type, such as `dashboard` or `hub`.
+      module ViewType
+        extend WhopSDK::Internal::Type::Enum
+
+        HUB = :hub
+        DISCOVER = :discover
+        DASH = :dash
+        DASHBOARD = :dashboard
+        ANALYTICS = :analytics
+        SKILLS = :skills
+        OPENAPI = :openapi
 
         # @!method self.values
         #   @return [Array<Symbol>]

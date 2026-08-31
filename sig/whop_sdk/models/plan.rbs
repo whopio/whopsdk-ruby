@@ -1,0 +1,553 @@
+module WhopSDK
+  module Models
+    type plan =
+      {
+        id: String,
+        account: WhopSDK::Plan::Account?,
+        adaptive_pricing_enabled: bool,
+        billing_period: Float?,
+        cancel_discount_intervals: Float?,
+        cancel_discount_percentage: Float?,
+        checkout_styling: top?,
+        collect_tax: bool,
+        created_at: String,
+        currency: WhopSDK::Models::Plan::currency,
+        custom_fields: ::Array[WhopSDK::Plan::CustomField],
+        deletable: bool?,
+        description: String?,
+        effective_payment_method_configuration: WhopSDK::Plan::EffectivePaymentMethodConfiguration?,
+        expiration_days: Float?,
+        formatted_price: String,
+        image: top?,
+        initial_price: Float,
+        internal_notes: String?,
+        invoice: top?,
+        member_count: Float?,
+        metadata: top?,
+        offer_cancel_discount: bool?,
+        payment_method_configuration: top?,
+        plan_type: WhopSDK::Models::Plan::plan_type,
+        product: top?,
+        purchase_url: String,
+        release_method: WhopSDK::Models::Plan::release_method,
+        renewal_price: Float,
+        split_pay_required_payments: Float?,
+        stock: Float?,
+        strike_through_initial_price: Float?,
+        strike_through_renewal_price: Float?,
+        tax_type: WhopSDK::Models::Plan::tax_type,
+        three_ds_level: WhopSDK::Models::Plan::three_ds_level?,
+        title: String?,
+        trial_period_days: Float?,
+        unlimited_stock: bool,
+        updated_at: String,
+        visibility: WhopSDK::Models::Plan::visibility
+      }
+
+    class Plan < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor account: WhopSDK::Plan::Account?
+
+      attr_accessor adaptive_pricing_enabled: bool
+
+      attr_accessor billing_period: Float?
+
+      attr_accessor cancel_discount_intervals: Float?
+
+      attr_accessor cancel_discount_percentage: Float?
+
+      attr_accessor checkout_styling: top?
+
+      attr_accessor collect_tax: bool
+
+      attr_accessor created_at: String
+
+      attr_accessor currency: WhopSDK::Models::Plan::currency
+
+      attr_accessor custom_fields: ::Array[WhopSDK::Plan::CustomField]
+
+      attr_accessor deletable: bool?
+
+      attr_accessor description: String?
+
+      attr_accessor effective_payment_method_configuration: WhopSDK::Plan::EffectivePaymentMethodConfiguration?
+
+      attr_accessor expiration_days: Float?
+
+      attr_accessor formatted_price: String
+
+      attr_accessor image: top?
+
+      attr_accessor initial_price: Float
+
+      attr_accessor internal_notes: String?
+
+      attr_accessor invoice: top?
+
+      attr_accessor member_count: Float?
+
+      attr_accessor metadata: top?
+
+      attr_accessor offer_cancel_discount: bool?
+
+      attr_accessor payment_method_configuration: top?
+
+      attr_accessor plan_type: WhopSDK::Models::Plan::plan_type
+
+      attr_accessor product: top?
+
+      attr_accessor purchase_url: String
+
+      attr_accessor release_method: WhopSDK::Models::Plan::release_method
+
+      attr_accessor renewal_price: Float
+
+      attr_accessor split_pay_required_payments: Float?
+
+      attr_accessor stock: Float?
+
+      attr_accessor strike_through_initial_price: Float?
+
+      attr_accessor strike_through_renewal_price: Float?
+
+      attr_accessor tax_type: WhopSDK::Models::Plan::tax_type
+
+      attr_accessor three_ds_level: WhopSDK::Models::Plan::three_ds_level?
+
+      attr_accessor title: String?
+
+      attr_accessor trial_period_days: Float?
+
+      attr_accessor unlimited_stock: bool
+
+      attr_accessor updated_at: String
+
+      attr_accessor visibility: WhopSDK::Models::Plan::visibility
+
+      def initialize: (
+        id: String,
+        account: WhopSDK::Plan::Account?,
+        adaptive_pricing_enabled: bool,
+        billing_period: Float?,
+        cancel_discount_intervals: Float?,
+        cancel_discount_percentage: Float?,
+        checkout_styling: top?,
+        collect_tax: bool,
+        created_at: String,
+        currency: WhopSDK::Models::Plan::currency,
+        custom_fields: ::Array[WhopSDK::Plan::CustomField],
+        deletable: bool?,
+        description: String?,
+        effective_payment_method_configuration: WhopSDK::Plan::EffectivePaymentMethodConfiguration?,
+        expiration_days: Float?,
+        formatted_price: String,
+        image: top?,
+        initial_price: Float,
+        internal_notes: String?,
+        invoice: top?,
+        member_count: Float?,
+        metadata: top?,
+        offer_cancel_discount: bool?,
+        payment_method_configuration: top?,
+        plan_type: WhopSDK::Models::Plan::plan_type,
+        product: top?,
+        purchase_url: String,
+        release_method: WhopSDK::Models::Plan::release_method,
+        renewal_price: Float,
+        split_pay_required_payments: Float?,
+        stock: Float?,
+        strike_through_initial_price: Float?,
+        strike_through_renewal_price: Float?,
+        tax_type: WhopSDK::Models::Plan::tax_type,
+        three_ds_level: WhopSDK::Models::Plan::three_ds_level?,
+        title: String?,
+        trial_period_days: Float?,
+        unlimited_stock: bool,
+        updated_at: String,
+        visibility: WhopSDK::Models::Plan::visibility
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        account: WhopSDK::Plan::Account?,
+        adaptive_pricing_enabled: bool,
+        billing_period: Float?,
+        cancel_discount_intervals: Float?,
+        cancel_discount_percentage: Float?,
+        checkout_styling: top?,
+        collect_tax: bool,
+        created_at: String,
+        currency: WhopSDK::Models::Plan::currency,
+        custom_fields: ::Array[WhopSDK::Plan::CustomField],
+        deletable: bool?,
+        description: String?,
+        effective_payment_method_configuration: WhopSDK::Plan::EffectivePaymentMethodConfiguration?,
+        expiration_days: Float?,
+        formatted_price: String,
+        image: top?,
+        initial_price: Float,
+        internal_notes: String?,
+        invoice: top?,
+        member_count: Float?,
+        metadata: top?,
+        offer_cancel_discount: bool?,
+        payment_method_configuration: top?,
+        plan_type: WhopSDK::Models::Plan::plan_type,
+        product: top?,
+        purchase_url: String,
+        release_method: WhopSDK::Models::Plan::release_method,
+        renewal_price: Float,
+        split_pay_required_payments: Float?,
+        stock: Float?,
+        strike_through_initial_price: Float?,
+        strike_through_renewal_price: Float?,
+        tax_type: WhopSDK::Models::Plan::tax_type,
+        three_ds_level: WhopSDK::Models::Plan::three_ds_level?,
+        title: String?,
+        trial_period_days: Float?,
+        unlimited_stock: bool,
+        updated_at: String,
+        visibility: WhopSDK::Models::Plan::visibility
+      }
+
+      type account = { id: String, title: String }
+
+      class Account < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor title: String
+
+        def initialize: (id: String, title: String) -> void
+
+        def to_hash: -> { id: String, title: String }
+      end
+
+      type currency =
+        :usd
+        | :sgd
+        | :inr
+        | :aud
+        | :brl
+        | :cad
+        | :dkk
+        | :eur
+        | :nok
+        | :gbp
+        | :sek
+        | :chf
+        | :hkd
+        | :huf
+        | :jpy
+        | :mxn
+        | :myr
+        | :pln
+        | :czk
+        | :nzd
+        | :aed
+        | :eth
+        | :ape
+        | :cop
+        | :ron
+        | :thb
+        | :bgn
+        | :idr
+        | :dop
+        | :php
+        | :try
+        | :krw
+        | :twd
+        | :vnd
+        | :pkr
+        | :clp
+        | :uyu
+        | :ars
+        | :zar
+        | :dzd
+        | :tnd
+        | :mad
+        | :kes
+        | :kwd
+        | :jod
+        | :all
+        | :xcd
+        | :amd
+        | :bsd
+        | :bhd
+        | :bob
+        | :bam
+        | :khr
+        | :crc
+        | :xof
+        | :egp
+        | :etb
+        | :gmd
+        | :ghs
+        | :gtq
+        | :gyd
+        | :ils
+        | :jmd
+        | :mop
+        | :mga
+        | :mur
+        | :mdl
+        | :mnt
+        | :nad
+        | :ngn
+        | :mkd
+        | :omr
+        | :pyg
+        | :pen
+        | :qar
+        | :rwf
+        | :sar
+        | :rsd
+        | :lkr
+        | :tzs
+        | :ttd
+        | :uzs
+        | :rub
+        | :btc
+        | :cny
+        | :usdt
+        | :kzt
+        | :awg
+        | :whop_usd
+        | :xau
+
+      module Currency
+        extend WhopSDK::Internal::Type::Enum
+
+        USD: :usd
+        SGD: :sgd
+        INR: :inr
+        AUD: :aud
+        BRL: :brl
+        CAD: :cad
+        DKK: :dkk
+        EUR: :eur
+        NOK: :nok
+        GBP: :gbp
+        SEK: :sek
+        CHF: :chf
+        HKD: :hkd
+        HUF: :huf
+        JPY: :jpy
+        MXN: :mxn
+        MYR: :myr
+        PLN: :pln
+        CZK: :czk
+        NZD: :nzd
+        AED: :aed
+        ETH: :eth
+        APE: :ape
+        COP: :cop
+        RON: :ron
+        THB: :thb
+        BGN: :bgn
+        IDR: :idr
+        DOP: :dop
+        PHP: :php
+        TRY: :try
+        KRW: :krw
+        TWD: :twd
+        VND: :vnd
+        PKR: :pkr
+        CLP: :clp
+        UYU: :uyu
+        ARS: :ars
+        ZAR: :zar
+        DZD: :dzd
+        TND: :tnd
+        MAD: :mad
+        KES: :kes
+        KWD: :kwd
+        JOD: :jod
+        ALL: :all
+        XCD: :xcd
+        AMD: :amd
+        BSD: :bsd
+        BHD: :bhd
+        BOB: :bob
+        BAM: :bam
+        KHR: :khr
+        CRC: :crc
+        XOF: :xof
+        EGP: :egp
+        ETB: :etb
+        GMD: :gmd
+        GHS: :ghs
+        GTQ: :gtq
+        GYD: :gyd
+        ILS: :ils
+        JMD: :jmd
+        MOP: :mop
+        MGA: :mga
+        MUR: :mur
+        MDL: :mdl
+        MNT: :mnt
+        NAD: :nad
+        NGN: :ngn
+        MKD: :mkd
+        OMR: :omr
+        PYG: :pyg
+        PEN: :pen
+        QAR: :qar
+        RWF: :rwf
+        SAR: :sar
+        RSD: :rsd
+        LKR: :lkr
+        TZS: :tzs
+        TTD: :ttd
+        UZS: :uzs
+        RUB: :rub
+        BTC: :btc
+        CNY: :cny
+        USDT: :usdt
+        KZT: :kzt
+        AWG: :awg
+        WHOP_USD: :whop_usd
+        XAU: :xau
+
+        def self?.values: -> ::Array[WhopSDK::Models::Plan::currency]
+      end
+
+      type custom_field =
+        {
+          id: String,
+          field_type: WhopSDK::Models::Plan::CustomField::field_type,
+          name: String,
+          order: Float,
+          placeholder: String?,
+          required: bool
+        }
+
+      class CustomField < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor field_type: WhopSDK::Models::Plan::CustomField::field_type
+
+        attr_accessor name: String
+
+        attr_accessor order: Float
+
+        attr_accessor placeholder: String?
+
+        attr_accessor required: bool
+
+        def initialize: (
+          id: String,
+          field_type: WhopSDK::Models::Plan::CustomField::field_type,
+          name: String,
+          order: Float,
+          placeholder: String?,
+          required: bool
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          field_type: WhopSDK::Models::Plan::CustomField::field_type,
+          name: String,
+          order: Float,
+          placeholder: String?,
+          required: bool
+        }
+
+        type field_type = :text
+
+        module FieldType
+          extend WhopSDK::Internal::Type::Enum
+
+          TEXT: :text
+
+          def self?.values: -> ::Array[WhopSDK::Models::Plan::CustomField::field_type]
+        end
+      end
+
+      type effective_payment_method_configuration =
+        {
+          disabled: ::Array[String],
+          enabled: ::Array[String],
+          include_platform_defaults: bool
+        }
+
+      class EffectivePaymentMethodConfiguration < WhopSDK::Internal::Type::BaseModel
+        attr_accessor disabled: ::Array[String]
+
+        attr_accessor enabled: ::Array[String]
+
+        attr_accessor include_platform_defaults: bool
+
+        def initialize: (
+          disabled: ::Array[String],
+          enabled: ::Array[String],
+          include_platform_defaults: bool
+        ) -> void
+
+        def to_hash: -> {
+          disabled: ::Array[String],
+          enabled: ::Array[String],
+          include_platform_defaults: bool
+        }
+      end
+
+      type plan_type = :renewal | :one_time
+
+      module PlanType
+        extend WhopSDK::Internal::Type::Enum
+
+        RENEWAL: :renewal
+        ONE_TIME: :one_time
+
+        def self?.values: -> ::Array[WhopSDK::Models::Plan::plan_type]
+      end
+
+      type release_method = :buy_now | :waitlist
+
+      module ReleaseMethod
+        extend WhopSDK::Internal::Type::Enum
+
+        BUY_NOW: :buy_now
+        WAITLIST: :waitlist
+
+        def self?.values: -> ::Array[WhopSDK::Models::Plan::release_method]
+      end
+
+      type tax_type = :inclusive | :exclusive | :unspecified
+
+      module TaxType
+        extend WhopSDK::Internal::Type::Enum
+
+        INCLUSIVE: :inclusive
+        EXCLUSIVE: :exclusive
+        UNSPECIFIED: :unspecified
+
+        def self?.values: -> ::Array[WhopSDK::Models::Plan::tax_type]
+      end
+
+      type three_ds_level = :mandate_challenge | :frictionless
+
+      module ThreeDSLevel
+        extend WhopSDK::Internal::Type::Enum
+
+        MANDATE_CHALLENGE: :mandate_challenge
+        FRICTIONLESS: :frictionless
+
+        def self?.values: -> ::Array[WhopSDK::Models::Plan::three_ds_level]
+      end
+
+      type visibility = :visible | :hidden | :archived | :quick_link
+
+      module Visibility
+        extend WhopSDK::Internal::Type::Enum
+
+        VISIBLE: :visible
+        HIDDEN: :hidden
+        ARCHIVED: :archived
+        QUICK_LINK: :quick_link
+
+        def self?.values: -> ::Array[WhopSDK::Models::Plan::visibility]
+      end
+    end
+  end
+end

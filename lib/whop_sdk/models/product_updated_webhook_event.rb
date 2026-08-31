@@ -22,8 +22,6 @@ module WhopSDK
       required :api_version_date, String, nil?: true
 
       # @!attribute data
-      #   A product is a digital good or service sold on Whop. Products contain plans for
-      #   pricing and experiences for content delivery.
       #
       #   @return [WhopSDK::Models::Product]
       required :data, -> { WhopSDK::Product }
@@ -61,7 +59,7 @@ module WhopSDK
       #
       #   @param api_version_date [String, nil] The dated API version (Api-Version-Date) the payload is serialized to
       #
-      #   @param data [WhopSDK::Models::Product] A product is a digital good or service sold on Whop. Products contain plans for
+      #   @param data [WhopSDK::Models::Product]
       #
       #   @param timestamp [Time] The timestamp in ISO 8601 format that the webhook was sent at on the server
       #

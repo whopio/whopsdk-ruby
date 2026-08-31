@@ -3,82 +3,107 @@ module WhopSDK
     type resolution_center_case_list_response =
       {
         id: String,
-        company: WhopSDK::Models::ResolutionCenterCaseListResponse::Company?,
-        created_at: Time,
+        account: WhopSDK::Models::ResolutionCenterCaseListResponse::Account?,
+        amount: Float,
+        available_actions: ::Array[WhopSDK::Models::ResolutionCenterCaseListResponse::available_action],
+        buyer: WhopSDK::Models::ResolutionCenterCaseListResponse::Buyer,
+        created_at: String,
+        currency: String?,
         customer_appealed: bool,
-        customer_response_actions: ::Array[WhopSDK::Models::resolution_center_case_customer_response],
-        due_date: Time?,
-        issue: WhopSDK::Models::resolution_center_case_issue_type,
-        merchant_appealed: bool,
-        merchant_response_actions: ::Array[WhopSDK::Models::resolution_center_case_merchant_response],
+        escalated: bool,
+        outcome: WhopSDK::Models::ResolutionCenterCaseListResponse::outcome?,
         payment: WhopSDK::Models::ResolutionCenterCaseListResponse::Payment,
-        status: WhopSDK::Models::resolution_center_case_status,
-        updated_at: Time,
-        user: WhopSDK::Models::ResolutionCenterCaseListResponse::User
+        plan_id: String?,
+        product_id: String?,
+        reason: WhopSDK::Models::ResolutionCenterCaseListResponse::reason,
+        refund: WhopSDK::Models::ResolutionCenterCaseListResponse::refund?,
+        response_due_at: String?,
+        status: WhopSDK::Models::ResolutionCenterCaseListResponse::status,
+        updated_at: String
       }
 
     class ResolutionCenterCaseListResponse < WhopSDK::Internal::Type::BaseModel
       attr_accessor id: String
 
-      attr_accessor company: WhopSDK::Models::ResolutionCenterCaseListResponse::Company?
+      attr_accessor account: WhopSDK::Models::ResolutionCenterCaseListResponse::Account?
 
-      attr_accessor created_at: Time
+      attr_accessor amount: Float
+
+      attr_accessor available_actions: ::Array[WhopSDK::Models::ResolutionCenterCaseListResponse::available_action]
+
+      attr_accessor buyer: WhopSDK::Models::ResolutionCenterCaseListResponse::Buyer
+
+      attr_accessor created_at: String
+
+      attr_accessor currency: String?
 
       attr_accessor customer_appealed: bool
 
-      attr_accessor customer_response_actions: ::Array[WhopSDK::Models::resolution_center_case_customer_response]
+      attr_accessor escalated: bool
 
-      attr_accessor due_date: Time?
-
-      attr_accessor issue: WhopSDK::Models::resolution_center_case_issue_type
-
-      attr_accessor merchant_appealed: bool
-
-      attr_accessor merchant_response_actions: ::Array[WhopSDK::Models::resolution_center_case_merchant_response]
+      attr_accessor outcome: WhopSDK::Models::ResolutionCenterCaseListResponse::outcome?
 
       attr_accessor payment: WhopSDK::Models::ResolutionCenterCaseListResponse::Payment
 
-      attr_accessor status: WhopSDK::Models::resolution_center_case_status
+      attr_accessor plan_id: String?
 
-      attr_accessor updated_at: Time
+      attr_accessor product_id: String?
 
-      attr_accessor user: WhopSDK::Models::ResolutionCenterCaseListResponse::User
+      attr_accessor reason: WhopSDK::Models::ResolutionCenterCaseListResponse::reason
+
+      attr_accessor refund: WhopSDK::Models::ResolutionCenterCaseListResponse::refund?
+
+      attr_accessor response_due_at: String?
+
+      attr_accessor status: WhopSDK::Models::ResolutionCenterCaseListResponse::status
+
+      attr_accessor updated_at: String
 
       def initialize: (
         id: String,
-        company: WhopSDK::Models::ResolutionCenterCaseListResponse::Company?,
-        created_at: Time,
+        account: WhopSDK::Models::ResolutionCenterCaseListResponse::Account?,
+        amount: Float,
+        available_actions: ::Array[WhopSDK::Models::ResolutionCenterCaseListResponse::available_action],
+        buyer: WhopSDK::Models::ResolutionCenterCaseListResponse::Buyer,
+        created_at: String,
+        currency: String?,
         customer_appealed: bool,
-        customer_response_actions: ::Array[WhopSDK::Models::resolution_center_case_customer_response],
-        due_date: Time?,
-        issue: WhopSDK::Models::resolution_center_case_issue_type,
-        merchant_appealed: bool,
-        merchant_response_actions: ::Array[WhopSDK::Models::resolution_center_case_merchant_response],
+        escalated: bool,
+        outcome: WhopSDK::Models::ResolutionCenterCaseListResponse::outcome?,
         payment: WhopSDK::Models::ResolutionCenterCaseListResponse::Payment,
-        status: WhopSDK::Models::resolution_center_case_status,
-        updated_at: Time,
-        user: WhopSDK::Models::ResolutionCenterCaseListResponse::User
+        plan_id: String?,
+        product_id: String?,
+        reason: WhopSDK::Models::ResolutionCenterCaseListResponse::reason,
+        refund: WhopSDK::Models::ResolutionCenterCaseListResponse::refund?,
+        response_due_at: String?,
+        status: WhopSDK::Models::ResolutionCenterCaseListResponse::status,
+        updated_at: String
       ) -> void
 
       def to_hash: -> {
         id: String,
-        company: WhopSDK::Models::ResolutionCenterCaseListResponse::Company?,
-        created_at: Time,
+        account: WhopSDK::Models::ResolutionCenterCaseListResponse::Account?,
+        amount: Float,
+        available_actions: ::Array[WhopSDK::Models::ResolutionCenterCaseListResponse::available_action],
+        buyer: WhopSDK::Models::ResolutionCenterCaseListResponse::Buyer,
+        created_at: String,
+        currency: String?,
         customer_appealed: bool,
-        customer_response_actions: ::Array[WhopSDK::Models::resolution_center_case_customer_response],
-        due_date: Time?,
-        issue: WhopSDK::Models::resolution_center_case_issue_type,
-        merchant_appealed: bool,
-        merchant_response_actions: ::Array[WhopSDK::Models::resolution_center_case_merchant_response],
+        escalated: bool,
+        outcome: WhopSDK::Models::ResolutionCenterCaseListResponse::outcome?,
         payment: WhopSDK::Models::ResolutionCenterCaseListResponse::Payment,
-        status: WhopSDK::Models::resolution_center_case_status,
-        updated_at: Time,
-        user: WhopSDK::Models::ResolutionCenterCaseListResponse::User
+        plan_id: String?,
+        product_id: String?,
+        reason: WhopSDK::Models::ResolutionCenterCaseListResponse::reason,
+        refund: WhopSDK::Models::ResolutionCenterCaseListResponse::refund?,
+        response_due_at: String?,
+        status: WhopSDK::Models::ResolutionCenterCaseListResponse::status,
+        updated_at: String
       }
 
-      type company = { id: String, title: String }
+      type account = { id: String, title: String }
 
-      class Company < WhopSDK::Internal::Type::BaseModel
+      class Account < WhopSDK::Internal::Type::BaseModel
         attr_accessor id: String
 
         attr_accessor title: String
@@ -88,28 +113,151 @@ module WhopSDK
         def to_hash: -> { id: String, title: String }
       end
 
-      type payment = { id: String }
+      type available_action =
+        :accept | :deny | :request_info | :reply | :appeal | :withdraw
+
+      module AvailableAction
+        extend WhopSDK::Internal::Type::Enum
+
+        ACCEPT: :accept
+        DENY: :deny
+        REQUEST_INFO: :request_info
+        REPLY: :reply
+        APPEAL: :appeal
+        WITHDRAW: :withdraw
+
+        def self?.values: -> ::Array[WhopSDK::Models::ResolutionCenterCaseListResponse::available_action]
+      end
+
+      type buyer =
+        {
+          email: String?,
+          member_id: String?,
+          name: String?,
+          user_id: String?,
+          username: String?
+        }
+
+      class Buyer < WhopSDK::Internal::Type::BaseModel
+        attr_accessor email: String?
+
+        attr_accessor member_id: String?
+
+        attr_accessor name: String?
+
+        attr_accessor user_id: String?
+
+        attr_accessor username: String?
+
+        def initialize: (
+          email: String?,
+          member_id: String?,
+          name: String?,
+          user_id: String?,
+          username: String?
+        ) -> void
+
+        def to_hash: -> {
+          email: String?,
+          member_id: String?,
+          name: String?,
+          user_id: String?,
+          username: String?
+        }
+      end
+
+      type outcome = :customer_won | :merchant_won | :withdrawn
+
+      module Outcome
+        extend WhopSDK::Internal::Type::Enum
+
+        CUSTOMER_WON: :customer_won
+        MERCHANT_WON: :merchant_won
+        WITHDRAWN: :withdrawn
+
+        def self?.values: -> ::Array[WhopSDK::Models::ResolutionCenterCaseListResponse::outcome]
+      end
+
+      type payment =
+        {
+          id: String,
+          card_brand: String?,
+          :card_last4 => String?,
+          created_at: String,
+          payment_method_type: String?
+        }
 
       class Payment < WhopSDK::Internal::Type::BaseModel
         attr_accessor id: String
 
-        def initialize: (id: String) -> void
+        attr_accessor card_brand: String?
 
-        def to_hash: -> { id: String }
+        attr_accessor card_last4: String?
+
+        attr_accessor created_at: String
+
+        attr_accessor payment_method_type: String?
+
+        def initialize: (
+          id: String,
+          card_brand: String?,
+          card_last4: String?,
+          created_at: String,
+          payment_method_type: String?
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          card_brand: String?,
+          :card_last4 => String?,
+          created_at: String,
+          payment_method_type: String?
+        }
       end
 
-      type user = { id: String, name: String?, username: String }
+      type reason =
+        :fraudulent
+        | :product_not_received
+        | :not_as_described
+        | :product_unacceptable
+        | :subscription_canceled
 
-      class User < WhopSDK::Internal::Type::BaseModel
-        attr_accessor id: String
+      module Reason
+        extend WhopSDK::Internal::Type::Enum
 
-        attr_accessor name: String?
+        FRAUDULENT: :fraudulent
+        PRODUCT_NOT_RECEIVED: :product_not_received
+        NOT_AS_DESCRIBED: :not_as_described
+        PRODUCT_UNACCEPTABLE: :product_unacceptable
+        SUBSCRIPTION_CANCELED: :subscription_canceled
 
-        attr_accessor username: String
+        def self?.values: -> ::Array[WhopSDK::Models::ResolutionCenterCaseListResponse::reason]
+      end
 
-        def initialize: (id: String, name: String?, username: String) -> void
+      type refund = :none | :merchant | :platform
 
-        def to_hash: -> { id: String, name: String?, username: String }
+      module Refund
+        extend WhopSDK::Internal::Type::Enum
+
+        NONE: :none
+        MERCHANT: :merchant
+        PLATFORM: :platform
+
+        def self?.values: -> ::Array[WhopSDK::Models::ResolutionCenterCaseListResponse::refund]
+      end
+
+      type status =
+        :awaiting_merchant | :awaiting_customer | :under_review | :closed
+
+      module Status
+        extend WhopSDK::Internal::Type::Enum
+
+        AWAITING_MERCHANT: :awaiting_merchant
+        AWAITING_CUSTOMER: :awaiting_customer
+        UNDER_REVIEW: :under_review
+        CLOSED: :closed
+
+        def self?.values: -> ::Array[WhopSDK::Models::ResolutionCenterCaseListResponse::status]
       end
     end
   end

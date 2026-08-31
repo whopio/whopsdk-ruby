@@ -3,36 +3,35 @@ module WhopSDK
     class Memberships
       def retrieve: (
         String id,
+        ?api_version_date: String,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Membership
 
       def update: (
         String id,
-        ?metadata: ::Hash[Symbol, top]?,
+        ?cancel_at_period_end: bool,
+        ?metadata: top,
+        ?api_version_date: String,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Membership
 
       def list: (
+        ?account_id: String,
         ?after: String,
         ?before: String,
-        ?cancel_options: ::Array[WhopSDK::Models::cancel_options],
-        ?cancelation_status: WhopSDK::Models::MembershipListParams::cancelation_status,
-        ?company_id: String,
-        ?created_after: Time,
-        ?created_before: Time,
-        ?direction: WhopSDK::Models::direction,
+        ?created_after: String,
+        ?created_before: String,
+        ?direction: WhopSDK::Models::MembershipListParams::direction,
         ?first: Integer,
-        ?has_cancelation_reason: bool,
-        ?include_text_only_cancelation_reasons: bool,
         ?last: Integer,
         ?order: WhopSDK::Models::MembershipListParams::order,
-        ?plan_ids: ::Array[String],
-        ?product_ids: ::Array[String],
-        ?promo_code_ids: ::Array[String],
-        ?statuses: ::Array[WhopSDK::Models::membership_status],
-        ?user_ids: ::Array[String],
+        ?plan_id: String,
+        ?product_id: String,
+        ?status: WhopSDK::Models::MembershipListParams::status,
+        ?user_id: String,
+        ?api_version_date: String,
         ?request_options: WhopSDK::request_opts
-      ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::MembershipListResponse]
+      ) -> WhopSDK::Internal::CursorPage[WhopSDK::Membership]
 
       def add_free_days: (
         String id,
@@ -42,19 +41,25 @@ module WhopSDK
 
       def cancel: (
         String id,
-        ?cancellation_mode: WhopSDK::Models::MembershipCancelParams::cancellation_mode?,
+        ?cancel_at_period_end: bool,
+        ?reason: String,
+        ?api_version_date: String,
+        ?idempotency_key: String,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Membership
 
       def pause: (
         String id,
-        ?resumes_at: Time?,
-        ?void_payments: bool?,
+        ?until_: String,
+        ?api_version_date: String,
+        ?idempotency_key: String,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Membership
 
       def resume: (
         String id,
+        ?api_version_date: String,
+        ?idempotency_key: String,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Membership
 

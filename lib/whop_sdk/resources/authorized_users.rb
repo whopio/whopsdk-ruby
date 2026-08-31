@@ -2,7 +2,6 @@
 
 module WhopSDK
   module Resources
-    # Authorized users
     class AuthorizedUsers
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::AuthorizedUserCreateParams} for more details.

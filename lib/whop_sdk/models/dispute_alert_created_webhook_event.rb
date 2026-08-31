@@ -22,8 +22,6 @@ module WhopSDK
       required :api_version_date, String, nil?: true
 
       # @!attribute data
-      #   A dispute alert represents an early warning notification from a payment
-      #   processor about a potential dispute or chargeback.
       #
       #   @return [WhopSDK::Models::DisputeAlertCreatedWebhookEvent::Data]
       required :data, -> { WhopSDK::DisputeAlertCreatedWebhookEvent::Data }
@@ -61,7 +59,7 @@ module WhopSDK
       #
       #   @param api_version_date [String, nil] The dated API version (Api-Version-Date) the payload is serialized to
       #
-      #   @param data [WhopSDK::Models::DisputeAlertCreatedWebhookEvent::Data] A dispute alert represents an early warning notification from a payment processo
+      #   @param data [WhopSDK::Models::DisputeAlertCreatedWebhookEvent::Data]
       #
       #   @param timestamp [Time] The timestamp in ISO 8601 format that the webhook was sent at on the server
       #
@@ -76,359 +74,194 @@ module WhopSDK
       # @see WhopSDK::Models::DisputeAlertCreatedWebhookEvent#data
       class Data < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The unique identifier of the dispute alert.
+        #   Dispute alert ID, prefixed `dspa_`.
         #
         #   @return [String]
         required :id, String
 
-        # @!attribute alert_type
-        #   The type of the dispute alert.
+        # @!attribute account_id
+        #   The account the alerted payment belongs to, prefixed `biz_`. `null` while the
+        #   alert is unmatched.
         #
-        #   @return [Symbol, WhopSDK::Models::DisputeAlertType]
-        required :alert_type, enum: -> { WhopSDK::DisputeAlertType }
+        #   @return [String, nil]
+        required :account_id, String, nil?: true
+
+        # @!attribute actionable
+        #   Whether refunding the payment can still avoid a chargeback. `false` once the
+        #   payment has been disputed or fully refunded, or when the alert could not be
+        #   matched to a payment — `not_actionable_reason` says which.
+        #
+        #   @return [Boolean]
+        required :actionable, WhopSDK::Internal::Type::Boolean
 
         # @!attribute amount
-        #   The alerted amount in the specified currency.
+        #   The alerted amount, in whole units of `currency`. This is what the issuer
+        #   reported, which can differ from the payment's own amount.
         #
         #   @return [Float]
         required :amount, Float
 
-        # @!attribute charge_for_alert
-        #   Whether this alert incurs a charge.
+        # @!attribute card_brand
+        #   The card network as reported by the issuer, lowercased, such as `visa` or
+        #   `mastercard`. `unknown` when the report carries neither a network nor a
+        #   recognizable BIN.
         #
-        #   @return [Boolean]
-        required :charge_for_alert, WhopSDK::Internal::Type::Boolean
+        #   @return [String, nil]
+        required :card_brand, String, nil?: true
 
         # @!attribute created_at
-        #   The time the dispute alert was created.
+        #   When Whop received the alert, as an ISO 8601 timestamp.
         #
-        #   @return [Time]
-        required :created_at, Time
+        #   @return [String]
+        required :created_at, String
 
         # @!attribute currency
-        #   The three-letter ISO currency code for the alerted amount.
+        #   Three-letter ISO currency code of the alerted amount.
         #
-        #   @return [Symbol, WhopSDK::Models::Currency]
-        required :currency, enum: -> { WhopSDK::Currency }
+        #   @return [String]
+        required :currency, String
 
-        # @!attribute dispute
-        #   The dispute associated with the dispute alert.
+        # @!attribute fee_charged
+        #   Whether Whop charged the account an alert fee for this one. Always `false` for
+        #   `early_fraud_warning`, which Whop is not billed for and never passes on.
         #
-        #   @return [WhopSDK::Models::DisputeAlertCreatedWebhookEvent::Data::Dispute, nil]
-        required :dispute, -> { WhopSDK::DisputeAlertCreatedWebhookEvent::Data::Dispute }, nil?: true
+        #   @return [Boolean]
+        required :fee_charged, WhopSDK::Internal::Type::Boolean
 
-        # @!attribute payment
-        #   The payment associated with the dispute alert.
+        # @!attribute issuer
+        #   Name of the bank that issued the card and filed the report.
         #
-        #   @return [WhopSDK::Models::DisputeAlertCreatedWebhookEvent::Data::Payment, nil]
-        required :payment, -> { WhopSDK::DisputeAlertCreatedWebhookEvent::Data::Payment }, nil?: true
+        #   @return [String, nil]
+        required :issuer, String, nil?: true
 
-        # @!attribute transaction_date
-        #   The date of the original transaction.
+        # @!attribute not_actionable_reason
+        #   Why refunding can no longer avoid a chargeback. `network_resolved` when a Visa
+        #   RDR already closed the case, `payment_unmatched` when no payment matched,
+        #   `payment_not_captured` when it never captured money, `payment_disputed` once the
+        #   payment carries a dispute, `payment_refunded` once fully refunded. `null` while
+        #   `actionable` is true.
         #
-        #   @return [Time, nil]
-        required :transaction_date, Time, nil?: true
+        #   @return [Symbol, WhopSDK::Models::DisputeAlertCreatedWebhookEvent::Data::NotActionableReason, nil]
+        required :not_actionable_reason,
+                 enum: -> { WhopSDK::DisputeAlertCreatedWebhookEvent::Data::NotActionableReason },
+                 nil?: true
 
-        # @!method initialize(id:, alert_type:, amount:, charge_for_alert:, created_at:, currency:, dispute:, payment:, transaction_date:)
-        #   A dispute alert represents an early warning notification from a payment
-        #   processor about a potential dispute or chargeback.
+        # @!attribute payment_id
+        #   The payment the issuer reported, prefixed `pay_`. `null` when Whop could not
+        #   match the report to a payment.
         #
-        #   @param id [String] The unique identifier of the dispute alert.
-        #
-        #   @param alert_type [Symbol, WhopSDK::Models::DisputeAlertType] The type of the dispute alert.
-        #
-        #   @param amount [Float] The alerted amount in the specified currency.
-        #
-        #   @param charge_for_alert [Boolean] Whether this alert incurs a charge.
-        #
-        #   @param created_at [Time] The time the dispute alert was created.
-        #
-        #   @param currency [Symbol, WhopSDK::Models::Currency] The three-letter ISO currency code for the alerted amount.
-        #
-        #   @param dispute [WhopSDK::Models::DisputeAlertCreatedWebhookEvent::Data::Dispute, nil] The dispute associated with the dispute alert.
-        #
-        #   @param payment [WhopSDK::Models::DisputeAlertCreatedWebhookEvent::Data::Payment, nil] The payment associated with the dispute alert.
-        #
-        #   @param transaction_date [Time, nil] The date of the original transaction.
+        #   @return [String, nil]
+        required :payment_id, String, nil?: true
 
-        # @see WhopSDK::Models::DisputeAlertCreatedWebhookEvent::Data#dispute
-        class Dispute < WhopSDK::Internal::Type::BaseModel
-          # @!attribute id
-          #   The unique identifier for the dispute.
-          #
-          #   @return [String]
-          required :id, String
+        # @!attribute product_id
+        #   The product the alerted payment was for, prefixed `prod_`.
+        #
+        #   @return [String, nil]
+        required :product_id, String, nil?: true
 
-          # @!attribute amount
-          #   The disputed amount in the specified currency, formatted as a decimal.
-          #
-          #   @return [Float]
-          required :amount, Float
+        # @!attribute reported_at
+        #   When the issuer filed the report, as an ISO 8601 timestamp. Earlier than
+        #   `created_at`, which is when Whop received it.
+        #
+        #   @return [String]
+        required :reported_at, String
 
-          # @!attribute created_at
-          #   The datetime the dispute was created.
-          #
-          #   @return [Time, nil]
-          required :created_at, Time, nil?: true
+        # @!attribute transaction_at
+        #   When the reported transaction was made, as an ISO 8601 timestamp.
+        #
+        #   @return [String, nil]
+        required :transaction_at, String, nil?: true
 
-          # @!attribute currency
-          #   The three-letter ISO currency code for the disputed amount.
-          #
-          #   @return [Symbol, WhopSDK::Models::Currency]
-          required :currency, enum: -> { WhopSDK::Currency }
+        # @!attribute type
+        #   What the issuer sent. `early_fraud_warning` is a fraud report on a settled
+        #   payment (Visa TC40 / Mastercard SAFE) — refunding still avoids the chargeback,
+        #   and Whop never charges a fee for one. `dispute_alert` is a pre-dispute notice
+        #   from the issuer's alert network, which Whop pays for and passes on as a fee.
+        #   `rapid_dispute_resolution` is a Visa RDR case the network already closed by
+        #   refunding the payment — nothing is left to act on.
+        #
+        #   @return [Symbol, WhopSDK::Models::DisputeAlertCreatedWebhookEvent::Data::Type]
+        required :type, enum: -> { WhopSDK::DisputeAlertCreatedWebhookEvent::Data::Type }
 
-          # @!attribute reason
-          #   A human-readable reason for the dispute.
-          #
-          #   @return [String, nil]
-          required :reason, String, nil?: true
+        # @!attribute updated_at
+        #   When the alert was last changed, as an ISO 8601 timestamp.
+        #
+        #   @return [String]
+        required :updated_at, String
 
-          # @!attribute status
-          #   The current status of the dispute lifecycle, such as needs_response,
-          #   under_review, won, or lost.
-          #
-          #   @return [Symbol, WhopSDK::Models::DisputeStatuses]
-          required :status, enum: -> { WhopSDK::DisputeStatuses }
+        # @!method initialize(id:, account_id:, actionable:, amount:, card_brand:, created_at:, currency:, fee_charged:, issuer:, not_actionable_reason:, payment_id:, product_id:, reported_at:, transaction_at:, type:, updated_at:)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::DisputeAlertCreatedWebhookEvent::Data} for more details.
+        #
+        #   @param id [String] Dispute alert ID, prefixed `dspa_`.
+        #
+        #   @param account_id [String, nil] The account the alerted payment belongs to, prefixed `biz_`. `null` while the al
+        #
+        #   @param actionable [Boolean] Whether refunding the payment can still avoid a chargeback. `false` once the pay
+        #
+        #   @param amount [Float] The alerted amount, in whole units of `currency`. This is what the issuer report
+        #
+        #   @param card_brand [String, nil] The card network as reported by the issuer, lowercased, such as `visa` or `maste
+        #
+        #   @param created_at [String] When Whop received the alert, as an ISO 8601 timestamp.
+        #
+        #   @param currency [String] Three-letter ISO currency code of the alerted amount.
+        #
+        #   @param fee_charged [Boolean] Whether Whop charged the account an alert fee for this one. Always `false` for `
+        #
+        #   @param issuer [String, nil] Name of the bank that issued the card and filed the report.
+        #
+        #   @param not_actionable_reason [Symbol, WhopSDK::Models::DisputeAlertCreatedWebhookEvent::Data::NotActionableReason, nil] Why refunding can no longer avoid a chargeback. `network_resolved` when a Visa R
+        #
+        #   @param payment_id [String, nil] The payment the issuer reported, prefixed `pay_`. `null` when Whop could not mat
+        #
+        #   @param product_id [String, nil] The product the alerted payment was for, prefixed `prod_`.
+        #
+        #   @param reported_at [String] When the issuer filed the report, as an ISO 8601 timestamp. Earlier than `create
+        #
+        #   @param transaction_at [String, nil] When the reported transaction was made, as an ISO 8601 timestamp.
+        #
+        #   @param type [Symbol, WhopSDK::Models::DisputeAlertCreatedWebhookEvent::Data::Type] What the issuer sent. `early_fraud_warning` is a fraud report on a settled payme
+        #
+        #   @param updated_at [String] When the alert was last changed, as an ISO 8601 timestamp.
 
-          # @!method initialize(id:, amount:, created_at:, currency:, reason:, status:)
-          #   Some parameter documentations has been truncated, see
-          #   {WhopSDK::Models::DisputeAlertCreatedWebhookEvent::Data::Dispute} for more
-          #   details.
-          #
-          #   The dispute associated with the dispute alert.
-          #
-          #   @param id [String] The unique identifier for the dispute.
-          #
-          #   @param amount [Float] The disputed amount in the specified currency, formatted as a decimal.
-          #
-          #   @param created_at [Time, nil] The datetime the dispute was created.
-          #
-          #   @param currency [Symbol, WhopSDK::Models::Currency] The three-letter ISO currency code for the disputed amount.
-          #
-          #   @param reason [String, nil] A human-readable reason for the dispute.
-          #
-          #   @param status [Symbol, WhopSDK::Models::DisputeStatuses] The current status of the dispute lifecycle, such as needs_response, under_revie
+        # Why refunding can no longer avoid a chargeback. `network_resolved` when a Visa
+        # RDR already closed the case, `payment_unmatched` when no payment matched,
+        # `payment_not_captured` when it never captured money, `payment_disputed` once the
+        # payment carries a dispute, `payment_refunded` once fully refunded. `null` while
+        # `actionable` is true.
+        #
+        # @see WhopSDK::Models::DisputeAlertCreatedWebhookEvent::Data#not_actionable_reason
+        module NotActionableReason
+          extend WhopSDK::Internal::Type::Enum
+
+          NETWORK_RESOLVED = :network_resolved
+          PAYMENT_UNMATCHED = :payment_unmatched
+          PAYMENT_NOT_CAPTURED = :payment_not_captured
+          PAYMENT_DISPUTED = :payment_disputed
+          PAYMENT_REFUNDED = :payment_refunded
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
         end
 
-        # @see WhopSDK::Models::DisputeAlertCreatedWebhookEvent::Data#payment
-        class Payment < WhopSDK::Internal::Type::BaseModel
-          # @!attribute id
-          #   The unique identifier for the payment.
-          #
-          #   @return [String]
-          required :id, String
+        # What the issuer sent. `early_fraud_warning` is a fraud report on a settled
+        # payment (Visa TC40 / Mastercard SAFE) — refunding still avoids the chargeback,
+        # and Whop never charges a fee for one. `dispute_alert` is a pre-dispute notice
+        # from the issuer's alert network, which Whop pays for and passes on as a fee.
+        # `rapid_dispute_resolution` is a Visa RDR case the network already closed by
+        # refunding the payment — nothing is left to act on.
+        #
+        # @see WhopSDK::Models::DisputeAlertCreatedWebhookEvent::Data#type
+        module Type
+          extend WhopSDK::Internal::Type::Enum
 
-          # @!attribute billing_reason
-          #   The reason why a specific payment was billed
-          #
-          #   @return [Symbol, WhopSDK::Models::BillingReasons, nil]
-          required :billing_reason, enum: -> { WhopSDK::BillingReasons }, nil?: true
+          EARLY_FRAUD_WARNING = :early_fraud_warning
+          DISPUTE_ALERT = :dispute_alert
+          RAPID_DISPUTE_RESOLUTION = :rapid_dispute_resolution
 
-          # @!attribute card_brand
-          #   Possible card brands that a payment token can have
-          #
-          #   @return [Symbol, WhopSDK::Models::CardBrands, nil]
-          required :card_brand, enum: -> { WhopSDK::CardBrands }, nil?: true
-
-          # @!attribute card_last4
-          #   The last four digits of the card used to make this payment. Null if the payment
-          #   was not made with a card.
-          #
-          #   @return [String, nil]
-          required :card_last4, String, nil?: true
-
-          # @!attribute created_at
-          #   The datetime the payment was created.
-          #
-          #   @return [Time]
-          required :created_at, Time
-
-          # @!attribute currency
-          #   The three-letter ISO currency code for this payment (e.g., 'usd', 'eur').
-          #
-          #   @return [Symbol, WhopSDK::Models::Currency]
-          required :currency, enum: -> { WhopSDK::Currency }
-
-          # @!attribute dispute_alerted_at
-          #   When an alert came in that this transaction will be disputed
-          #
-          #   @return [Time, nil]
-          required :dispute_alerted_at, Time, nil?: true
-
-          # @!attribute member
-          #   The member attached to this payment.
-          #
-          #   @return [WhopSDK::Models::DisputeAlertCreatedWebhookEvent::Data::Payment::Member, nil]
-          required :member, -> { WhopSDK::DisputeAlertCreatedWebhookEvent::Data::Payment::Member }, nil?: true
-
-          # @!attribute membership
-          #   The membership attached to this payment.
-          #
-          #   @return [WhopSDK::Models::DisputeAlertCreatedWebhookEvent::Data::Payment::Membership, nil]
-          required :membership,
-                   -> { WhopSDK::DisputeAlertCreatedWebhookEvent::Data::Payment::Membership },
-                   nil?: true
-
-          # @!attribute paid_at
-          #   The time at which this payment was successfully collected. Null if the payment
-          #   has not yet succeeded. As a Unix timestamp.
-          #
-          #   @return [Time, nil]
-          required :paid_at, Time, nil?: true
-
-          # @!attribute payment_method_type
-          #   The different types of payment methods that can be used.
-          #
-          #   @return [Symbol, WhopSDK::Models::PaymentMethodTypes, nil]
-          required :payment_method_type, enum: -> { WhopSDK::PaymentMethodTypes }, nil?: true
-
-          # @!attribute subtotal
-          #   The subtotal to show to the creator (excluding buyer fees).
-          #
-          #   @return [Float, nil]
-          required :subtotal, Float, nil?: true
-
-          # @!attribute total
-          #   The total to show to the creator (excluding buyer fees).
-          #
-          #   @return [Float, nil]
-          required :total, Float, nil?: true
-
-          # @!attribute usd_total
-          #   The total in USD to show to the creator (excluding buyer fees).
-          #
-          #   @return [Float, nil]
-          required :usd_total, Float, nil?: true
-
-          # @!attribute user
-          #   The user that made this payment.
-          #
-          #   @return [WhopSDK::Models::DisputeAlertCreatedWebhookEvent::Data::Payment::User, nil]
-          required :user, -> { WhopSDK::DisputeAlertCreatedWebhookEvent::Data::Payment::User }, nil?: true
-
-          # @!method initialize(id:, billing_reason:, card_brand:, card_last4:, created_at:, currency:, dispute_alerted_at:, member:, membership:, paid_at:, payment_method_type:, subtotal:, total:, usd_total:, user:)
-          #   Some parameter documentations has been truncated, see
-          #   {WhopSDK::Models::DisputeAlertCreatedWebhookEvent::Data::Payment} for more
-          #   details.
-          #
-          #   The payment associated with the dispute alert.
-          #
-          #   @param id [String] The unique identifier for the payment.
-          #
-          #   @param billing_reason [Symbol, WhopSDK::Models::BillingReasons, nil] The reason why a specific payment was billed
-          #
-          #   @param card_brand [Symbol, WhopSDK::Models::CardBrands, nil] Possible card brands that a payment token can have
-          #
-          #   @param card_last4 [String, nil] The last four digits of the card used to make this payment. Null if the payment
-          #
-          #   @param created_at [Time] The datetime the payment was created.
-          #
-          #   @param currency [Symbol, WhopSDK::Models::Currency] The three-letter ISO currency code for this payment (e.g., 'usd', 'eur').
-          #
-          #   @param dispute_alerted_at [Time, nil] When an alert came in that this transaction will be disputed
-          #
-          #   @param member [WhopSDK::Models::DisputeAlertCreatedWebhookEvent::Data::Payment::Member, nil] The member attached to this payment.
-          #
-          #   @param membership [WhopSDK::Models::DisputeAlertCreatedWebhookEvent::Data::Payment::Membership, nil] The membership attached to this payment.
-          #
-          #   @param paid_at [Time, nil] The time at which this payment was successfully collected. Null if the payment h
-          #
-          #   @param payment_method_type [Symbol, WhopSDK::Models::PaymentMethodTypes, nil] The different types of payment methods that can be used.
-          #
-          #   @param subtotal [Float, nil] The subtotal to show to the creator (excluding buyer fees).
-          #
-          #   @param total [Float, nil] The total to show to the creator (excluding buyer fees).
-          #
-          #   @param usd_total [Float, nil] The total in USD to show to the creator (excluding buyer fees).
-          #
-          #   @param user [WhopSDK::Models::DisputeAlertCreatedWebhookEvent::Data::Payment::User, nil] The user that made this payment.
-
-          # @see WhopSDK::Models::DisputeAlertCreatedWebhookEvent::Data::Payment#member
-          class Member < WhopSDK::Internal::Type::BaseModel
-            # @!attribute id
-            #   The unique identifier for the company member.
-            #
-            #   @return [String]
-            required :id, String
-
-            # @!attribute phone
-            #   The phone number for the member, if available.
-            #
-            #   @return [String, nil]
-            required :phone, String, nil?: true
-
-            # @!method initialize(id:, phone:)
-            #   The member attached to this payment.
-            #
-            #   @param id [String] The unique identifier for the company member.
-            #
-            #   @param phone [String, nil] The phone number for the member, if available.
-          end
-
-          # @see WhopSDK::Models::DisputeAlertCreatedWebhookEvent::Data::Payment#membership
-          class Membership < WhopSDK::Internal::Type::BaseModel
-            # @!attribute id
-            #   The unique identifier for the membership.
-            #
-            #   @return [String]
-            required :id, String
-
-            # @!attribute status
-            #   The state of the membership.
-            #
-            #   @return [Symbol, WhopSDK::Models::MembershipStatus]
-            required :status, enum: -> { WhopSDK::MembershipStatus }
-
-            # @!method initialize(id:, status:)
-            #   The membership attached to this payment.
-            #
-            #   @param id [String] The unique identifier for the membership.
-            #
-            #   @param status [Symbol, WhopSDK::Models::MembershipStatus] The state of the membership.
-          end
-
-          # @see WhopSDK::Models::DisputeAlertCreatedWebhookEvent::Data::Payment#user
-          class User < WhopSDK::Internal::Type::BaseModel
-            # @!attribute id
-            #   The unique identifier for the user.
-            #
-            #   @return [String]
-            required :id, String
-
-            # @!attribute email
-            #   The user's email address. Requires the member:email:read permission to access.
-            #   Null if not authorized.
-            #
-            #   @return [String, nil]
-            required :email, String, nil?: true
-
-            # @!attribute name
-            #   The user's display name shown on their public profile.
-            #
-            #   @return [String, nil]
-            required :name, String, nil?: true
-
-            # @!attribute username
-            #   The user's unique username shown on their public profile.
-            #
-            #   @return [String]
-            required :username, String
-
-            # @!method initialize(id:, email:, name:, username:)
-            #   Some parameter documentations has been truncated, see
-            #   {WhopSDK::Models::DisputeAlertCreatedWebhookEvent::Data::Payment::User} for more
-            #   details.
-            #
-            #   The user that made this payment.
-            #
-            #   @param id [String] The unique identifier for the user.
-            #
-            #   @param email [String, nil] The user's email address. Requires the member:email:read permission to access. N
-            #
-            #   @param name [String, nil] The user's display name shown on their public profile.
-            #
-            #   @param username [String] The user's unique username shown on their public profile.
-          end
+          # @!method self.values
+          #   @return [Array<Symbol>]
         end
       end
     end

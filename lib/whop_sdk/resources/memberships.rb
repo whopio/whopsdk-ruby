@@ -2,18 +2,26 @@
 
 module WhopSDK
   module Resources
-    # Memberships
+    # A Membership is a customer's purchase of a plan: the subscription or one-time
+    # grant that gives them access to a product. It tracks billing state (`active`,
+    # `trialing`, `past_due`, and so on), the current period, pending cancellations,
+    # custom metadata, and the software license key when the product includes
+    # licensing.
+    #
+    # Use the Memberships API to list an account's memberships or the caller's own,
+    # retrieve one by ID or license key, invite a recipient to join through a free
+    # plan, and manage the lifecycle: cancel immediately or at period end, reverse a
+    # scheduled period-end cancellation, pause and resume payment collection, extend
+    # with free days, generate a transfer link, and update metadata.
     class Memberships
-      # Retrieves the details of an existing membership.
+      # Retrieves a membership by ID or license key. Accessible to the account and to
+      # the membership's own user.
       #
-      # Required permissions:
+      # @overload retrieve(id, api_version_date: nil, request_options: {})
       #
-      # - `member:basic:read`
-      # - `member:email:read`
+      # @param id [String] Membership ID (`mem_` tag), or a software license key.
       #
-      # @overload retrieve(id, request_options: {})
-      #
-      # @param id [String] The unique identifier of the membership, or a license key.
+      # @param api_version_date [String] Pins the request to a dated API version.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -21,30 +29,32 @@ module WhopSDK
       #
       # @see WhopSDK::Models::MembershipRetrieveParams
       def retrieve(id, params = {})
+        parsed, options = WhopSDK::MembershipRetrieveParams.dump_request(params)
         @client.request(
           method: :get,
           path: ["memberships/%1$s", id],
+          headers: parsed.transform_keys(api_version_date: "api-version-date"),
           model: WhopSDK::Membership,
-          options: params[:request_options]
+          options: options
         )
       end
 
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::MembershipUpdateParams} for more details.
       #
-      # Update a membership's metadata or other mutable properties.
+      # Updates a membership: merge metadata key-value pairs, or toggle
+      # `cancel_at_period_end` — `true` schedules the cancellation for the end of the
+      # current billing period, `false` reverses a pending one.
       #
-      # Required permissions:
+      # @overload update(id, cancel_at_period_end: nil, metadata: nil, api_version_date: nil, request_options: {})
       #
-      # - `member:manage`
-      # - `member:email:read`
-      # - `member:basic:read`
+      # @param id [String] Path param: Membership ID (`mem_` tag), or a software license key.
       #
-      # @overload update(id, metadata: nil, request_options: {})
+      # @param cancel_at_period_end [Boolean] Body param: `true` cancels at the end of the current billing period (the custome
       #
-      # @param id [String] The unique identifier of the membership to update.
+      # @param metadata [Object] Body param: Key-value pairs to merge into the membership's metadata. Pass an emp
       #
-      # @param metadata [Hash{Symbol=>Object}, nil] A JSON object of key-value pairs to store on the membership. Replaces any existi
+      # @param api_version_date [String] Header param: Pins the request to a dated API version.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -53,10 +63,12 @@ module WhopSDK
       # @see WhopSDK::Models::MembershipUpdateParams
       def update(id, params = {})
         parsed, options = WhopSDK::MembershipUpdateParams.dump_request(params)
+        header_params = {api_version_date: "api-version-date"}
         @client.request(
           method: :patch,
           path: ["memberships/%1$s", id],
-          body: parsed,
+          headers: parsed.slice(*header_params.keys).transform_keys(header_params),
+          body: parsed.except(*header_params.keys),
           model: WhopSDK::Membership,
           options: options
         )
@@ -65,66 +77,72 @@ module WhopSDK
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::MembershipListParams} for more details.
       #
-      # Returns a paginated list of memberships, with optional filtering by product,
-      # plan, status, and user.
+      # Lists every membership the caller can read: an account API key its account's; a
+      # user credential their own plus those of every account they manage. `account_id`
+      # and `user_id` only narrow that list — values outside the caller's reach return
+      # fewer results, not an error.
       #
-      # Required permissions:
+      # @overload list(account_id: nil, after: nil, before: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, order: nil, plan_id: nil, product_id: nil, status: nil, user_id: nil, api_version_date: nil, request_options: {})
       #
-      # - `member:basic:read`
-      # - `member:email:read`
+      # @param account_id [String] Query param: Narrow to one account (`biz_` tag). With read access to the account
       #
-      # @overload list(after: nil, before: nil, cancel_options: nil, cancelation_status: nil, company_id: nil, created_after: nil, created_before: nil, direction: nil, first: nil, has_cancelation_reason: nil, include_text_only_cancelation_reasons: nil, last: nil, order: nil, plan_ids: nil, product_ids: nil, promo_code_ids: nil, statuses: nil, user_ids: nil, request_options: {})
+      # @param after [String] Query param: Cursor to paginate forwards from.
       #
-      # @param after [String] Returns the elements in the list that come after the specified cursor.
+      # @param before [String] Query param: Cursor to paginate backwards from.
       #
-      # @param before [String] Returns the elements in the list that come before the specified cursor.
+      # @param created_after [String] Query param: Only memberships created after this ISO 8601 timestamp.
       #
-      # @param cancel_options [Array<Symbol, WhopSDK::Models::CancelOptions>] Filter to only memberships matching these cancellation reasons.
+      # @param created_before [String] Query param: Only memberships created before this ISO 8601 timestamp.
       #
-      # @param cancelation_status [Symbol, WhopSDK::Models::MembershipListParams::CancelationStatus] Filter memberships by whether the customer is canceling, left, or was won back.
+      # @param direction [Symbol, WhopSDK::Models::MembershipListParams::Direction] Query param: Sort direction.
       #
-      # @param company_id [String] The unique identifier of the company to list memberships for. Required when usin
+      # @param first [Integer] Query param: Number of memberships to return from the start of the window.
       #
-      # @param created_after [Time] Only return memberships created after this timestamp.
+      # @param last [Integer] Query param: Number of memberships to return from the end of the window.
       #
-      # @param created_before [Time] Only return memberships created before this timestamp.
+      # @param order [Symbol, WhopSDK::Models::MembershipListParams::Order] Query param: Sort field.
       #
-      # @param direction [Symbol, WhopSDK::Models::Direction] The sort direction for results. Defaults to descending.
+      # @param plan_id [String] Query param: Filter to memberships of this plan (`plan_` tag). Repeat as plan_id
       #
-      # @param first [Integer] Returns the first _n_ elements from the list.
+      # @param product_id [String] Query param: Filter to memberships of this product (`prod_` tag). Repeat as prod
       #
-      # @param has_cancelation_reason [Boolean] Filter memberships by whether they have a structured or free-text cancellation r
+      # @param status [Symbol, WhopSDK::Models::MembershipListParams::Status] Query param: Filter by billing state. `canceling` matches active memberships set
       #
-      # @param include_text_only_cancelation_reasons [Boolean] When filtering by the other cancellation option, also include memberships that o
+      # @param user_id [String] Query param: Narrow to one user's memberships (`user_` tag, or `me` for the call
       #
-      # @param last [Integer] Returns the last _n_ elements from the list.
-      #
-      # @param order [Symbol, WhopSDK::Models::MembershipListParams::Order] The field to sort results by. Null uses the default sort order.
-      #
-      # @param plan_ids [Array<String>] Filter to only memberships belonging to these plan identifiers.
-      #
-      # @param product_ids [Array<String>] Filter to only memberships belonging to these product identifiers.
-      #
-      # @param promo_code_ids [Array<String>] Filter to only memberships that used these promo code identifiers.
-      #
-      # @param statuses [Array<Symbol, WhopSDK::Models::MembershipStatus>] Filter to only memberships matching these statuses.
-      #
-      # @param user_ids [Array<String>] Filter to only memberships belonging to these user identifiers.
+      # @param api_version_date [String] Header param: Pins the request to a dated API version.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [WhopSDK::Internal::CursorPage<WhopSDK::Models::MembershipListResponse>]
+      # @return [WhopSDK::Internal::CursorPage<WhopSDK::Models::Membership>]
       #
       # @see WhopSDK::Models::MembershipListParams
       def list(params = {})
+        query_params =
+          [
+            :account_id,
+            :after,
+            :before,
+            :created_after,
+            :created_before,
+            :direction,
+            :first,
+            :last,
+            :order,
+            :plan_id,
+            :product_id,
+            :status,
+            :user_id
+          ]
         parsed, options = WhopSDK::MembershipListParams.dump_request(params)
-        query = WhopSDK::Internal::Util.encode_query_params(parsed)
+        query = WhopSDK::Internal::Util.encode_query_params(parsed.slice(*query_params))
         @client.request(
           method: :get,
           path: "memberships",
           query: query,
+          headers: parsed.except(*query_params).transform_keys(api_version_date: "api-version-date"),
           page: WhopSDK::Internal::CursorPage,
-          model: WhopSDK::Models::MembershipListResponse,
+          model: WhopSDK::Membership,
           options: options
         )
       end
@@ -163,20 +181,25 @@ module WhopSDK
         )
       end
 
-      # Cancel a membership either immediately or at the end of the current billing
-      # period. Immediate cancellation revokes access right away.
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::MembershipCancelParams} for more details.
       #
-      # Required permissions:
+      # Cancels a membership. Pass `cancel_at_period_end: true` to stop auto-renewal and
+      # keep access until the current billing period ends. Omit it (or pass `false`) to
+      # revoke access immediately. Buyers cannot cancel buy-now-pay-later (`splitit`,
+      # `sezzle`) or non-trial split-pay memberships.
       #
-      # - `membership:cancel`
-      # - `member:email:read`
-      # - `member:basic:read`
+      # @overload cancel(id, cancel_at_period_end: nil, reason: nil, api_version_date: nil, idempotency_key: nil, request_options: {})
       #
-      # @overload cancel(id, cancellation_mode: nil, request_options: {})
+      # @param id [String] Path param: Membership ID (`mem_` tag).
       #
-      # @param id [String] The unique identifier of the membership to cancel.
+      # @param cancel_at_period_end [Boolean] Body param: `true` stops auto-renewal and keeps access until the current billing
       #
-      # @param cancellation_mode [Symbol, WhopSDK::Models::MembershipCancelParams::CancellationMode, nil] The mode of cancellation for a membership
+      # @param reason [String] Body param: Free-form note recording why the membership was canceled.
+      #
+      # @param api_version_date [String] Header param: Pins the request to a dated API version.
+      #
+      # @param idempotency_key [String] Header param: A unique key that makes this request safe to retry. See [Idempoten
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -185,10 +208,12 @@ module WhopSDK
       # @see WhopSDK::Models::MembershipCancelParams
       def cancel(id, params = {})
         parsed, options = WhopSDK::MembershipCancelParams.dump_request(params)
+        header_params = {api_version_date: "api-version-date", idempotency_key: "idempotency-key"}
         @client.request(
           method: :post,
           path: ["memberships/%1$s/cancel", id],
-          body: parsed,
+          headers: parsed.slice(*header_params.keys).transform_keys(header_params),
+          body: parsed.except(*header_params.keys),
           model: WhopSDK::Membership,
           options: options
         )
@@ -197,22 +222,18 @@ module WhopSDK
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::MembershipPauseParams} for more details.
       #
-      # Pause a membership's recurring payments. The customer retains access but will
-      # not be charged until the membership is resumed.
+      # Pauses a membership's recurring payment collection. The customer keeps access
+      # but is not charged until the membership is resumed.
       #
-      # Required permissions:
+      # @overload pause(id, until_: nil, api_version_date: nil, idempotency_key: nil, request_options: {})
       #
-      # - `member:manage`
-      # - `member:email:read`
-      # - `member:basic:read`
+      # @param id [String] Path param: Membership ID (`mem_` tag).
       #
-      # @overload pause(id, resumes_at: nil, void_payments: nil, request_options: {})
+      # @param until_ [String] Body param: ISO 8601 time to automatically resume payment collection. Must be in
       #
-      # @param id [String] The unique identifier of the membership to pause.
+      # @param api_version_date [String] Header param: Pins the request to a dated API version.
       #
-      # @param resumes_at [Time, nil] When the membership should automatically resume payment collection. If not provi
-      #
-      # @param void_payments [Boolean, nil] Whether to void any outstanding past-due payments on this membership, preventing
+      # @param idempotency_key [String] Header param: A unique key that makes this request safe to retry. See [Idempoten
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -221,27 +242,30 @@ module WhopSDK
       # @see WhopSDK::Models::MembershipPauseParams
       def pause(id, params = {})
         parsed, options = WhopSDK::MembershipPauseParams.dump_request(params)
+        header_params = {api_version_date: "api-version-date", idempotency_key: "idempotency-key"}
         @client.request(
           method: :post,
           path: ["memberships/%1$s/pause", id],
-          body: parsed,
+          headers: parsed.slice(*header_params.keys).transform_keys(header_params),
+          body: parsed.except(*header_params.keys),
           model: WhopSDK::Membership,
           options: options
         )
       end
 
-      # Resume a previously paused membership's recurring payments. Billing resumes on
-      # the next cycle.
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::MembershipResumeParams} for more details.
       #
-      # Required permissions:
+      # Resumes a previously paused membership's recurring payment collection. Billing
+      # resumes on the next cycle.
       #
-      # - `member:manage`
-      # - `member:email:read`
-      # - `member:basic:read`
+      # @overload resume(id, api_version_date: nil, idempotency_key: nil, request_options: {})
       #
-      # @overload resume(id, request_options: {})
+      # @param id [String] Membership ID (`mem_` tag).
       #
-      # @param id [String] The unique identifier of the membership to resume.
+      # @param api_version_date [String] Pins the request to a dated API version.
+      #
+      # @param idempotency_key [String] A unique key that makes this request safe to retry. See [Idempotent requests](ht
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -249,11 +273,16 @@ module WhopSDK
       #
       # @see WhopSDK::Models::MembershipResumeParams
       def resume(id, params = {})
+        parsed, options = WhopSDK::MembershipResumeParams.dump_request(params)
         @client.request(
           method: :post,
           path: ["memberships/%1$s/resume", id],
+          headers: parsed.transform_keys(
+            api_version_date: "api-version-date",
+            idempotency_key: "idempotency-key"
+          ),
           model: WhopSDK::Membership,
-          options: params[:request_options]
+          options: options
         )
       end
 

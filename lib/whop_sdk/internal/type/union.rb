@@ -8,11 +8,11 @@ module WhopSDK
       # @example
       #   # `unwrap_webhook_event` is a `WhopSDK::UnwrapWebhookEvent`
       #   case unwrap_webhook_event
-      #   when WhopSDK::InvoiceCreatedWebhookEvent
+      #   when WhopSDK::AccountUpdatedWebhookEvent
       #     puts(unwrap_webhook_event.id)
-      #   when WhopSDK::InvoiceMarkedUncollectibleWebhookEvent
+      #   when WhopSDK::AdCampaignPaymentFailedWebhookEvent
       #     puts(unwrap_webhook_event.api_version)
-      #   when WhopSDK::InvoicePaidWebhookEvent
+      #   when WhopSDK::CardCanceledWebhookEvent
       #     puts(unwrap_webhook_event.api_version_date)
       #   else
       #     puts(unwrap_webhook_event)
@@ -20,11 +20,11 @@ module WhopSDK
       #
       # @example
       #   case unwrap_webhook_event
-      #   in {type: :"invoice.created", id: id, api_version: api_version, api_version_date: api_version_date}
+      #   in {type: :"account.updated", id: id, api_version: api_version, api_version_date: api_version_date}
       #     puts(id)
-      #   in {type: :"invoice.marked_uncollectible", id: id, api_version: api_version, api_version_date: api_version_date}
+      #   in {type: :"ad_campaign.payment_failed", id: id, api_version: api_version, api_version_date: api_version_date}
       #     puts(api_version)
-      #   in {type: :"invoice.paid", id: id, api_version: api_version, api_version_date: api_version_date}
+      #   in {type: :"card.canceled", id: id, api_version: api_version, api_version_date: api_version_date}
       #     puts(api_version_date)
       #   else
       #     puts(unwrap_webhook_event)

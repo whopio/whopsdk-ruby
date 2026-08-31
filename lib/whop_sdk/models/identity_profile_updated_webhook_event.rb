@@ -22,8 +22,6 @@ module WhopSDK
       required :api_version_date, String, nil?: true
 
       # @!attribute data
-      #   The identity profile that changed. Re-fetch `GET /api/v1/verifications` to read
-      #   its current, access-scoped state.
       #
       #   @return [WhopSDK::Models::IdentityProfileUpdatedWebhookEvent::Data]
       required :data, -> { WhopSDK::IdentityProfileUpdatedWebhookEvent::Data }
@@ -61,7 +59,7 @@ module WhopSDK
       #
       #   @param api_version_date [String, nil] The dated API version (Api-Version-Date) the payload is serialized to
       #
-      #   @param data [WhopSDK::Models::IdentityProfileUpdatedWebhookEvent::Data] The identity profile that changed. Re-fetch `GET /api/v1/verifications` to read
+      #   @param data [WhopSDK::Models::IdentityProfileUpdatedWebhookEvent::Data]
       #
       #   @param timestamp [Time] The timestamp in ISO 8601 format that the webhook was sent at on the server
       #
@@ -76,16 +74,17 @@ module WhopSDK
       # @see WhopSDK::Models::IdentityProfileUpdatedWebhookEvent#data
       class Data < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The identity profile id.
+        #   The identity profile id (`idpf_`). Re-fetch `GET /verifications` for its current
+        #   state.
         #
         #   @return [String]
         required :id, String
 
         # @!method initialize(id:)
-        #   The identity profile that changed. Re-fetch `GET /api/v1/verifications` to read
-        #   its current, access-scoped state.
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::IdentityProfileUpdatedWebhookEvent::Data} for more details.
         #
-        #   @param id [String] The identity profile id.
+        #   @param id [String] The identity profile id (`idpf_`). Re-fetch `GET /verifications` for its current
       end
     end
   end

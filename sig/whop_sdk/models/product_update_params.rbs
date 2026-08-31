@@ -3,25 +3,16 @@ module WhopSDK
     type product_update_params =
       {
         id: String,
-        collect_shipping_address: bool?,
-        custom_cta: WhopSDK::Models::custom_cta?,
-        custom_cta_url: String?,
-        custom_statement_descriptor: String?,
+        banner_image: WhopSDK::ProductUpdateParams::BannerImage?,
         description: String?,
-        gallery_images: ::Array[WhopSDK::ProductUpdateParams::GalleryImage]?,
-        global_affiliate_percentage: Float?,
-        global_affiliate_status: WhopSDK::Models::global_affiliate_status?,
         headline: String?,
-        member_affiliate_percentage: Float?,
-        member_affiliate_status: WhopSDK::Models::global_affiliate_status?,
-        metadata: ::Hash[Symbol, top]?,
+        labels: ::Array[String]?,
+        metadata: top?,
         product_tax_code_id: String?,
-        redirect_purchase_url: String?,
-        route: String?,
         send_welcome_message: bool?,
-        store_page_config: WhopSDK::ProductUpdateParams::StorePageConfig?,
-        title: String?,
-        visibility: WhopSDK::Models::visibility?
+        title: String,
+        visibility: String,
+        api_version_date: String
       }
       & WhopSDK::Internal::Type::request_parameters
 
@@ -31,112 +22,76 @@ module WhopSDK
 
       attr_accessor id: String
 
-      attr_accessor collect_shipping_address: bool?
-
-      attr_accessor custom_cta: WhopSDK::Models::custom_cta?
-
-      attr_accessor custom_cta_url: String?
-
-      attr_accessor custom_statement_descriptor: String?
+      attr_accessor banner_image: WhopSDK::ProductUpdateParams::BannerImage?
 
       attr_accessor description: String?
 
-      attr_accessor gallery_images: ::Array[WhopSDK::ProductUpdateParams::GalleryImage]?
-
-      attr_accessor global_affiliate_percentage: Float?
-
-      attr_accessor global_affiliate_status: WhopSDK::Models::global_affiliate_status?
-
       attr_accessor headline: String?
 
-      attr_accessor member_affiliate_percentage: Float?
+      attr_accessor labels: ::Array[String]?
 
-      attr_accessor member_affiliate_status: WhopSDK::Models::global_affiliate_status?
-
-      attr_accessor metadata: ::Hash[Symbol, top]?
+      attr_accessor metadata: top?
 
       attr_accessor product_tax_code_id: String?
 
-      attr_accessor redirect_purchase_url: String?
-
-      attr_accessor route: String?
-
       attr_accessor send_welcome_message: bool?
 
-      attr_accessor store_page_config: WhopSDK::ProductUpdateParams::StorePageConfig?
+      attr_reader title: String?
 
-      attr_accessor title: String?
+      def title=: (String) -> String
 
-      attr_accessor visibility: WhopSDK::Models::visibility?
+      attr_reader visibility: String?
+
+      def visibility=: (String) -> String
+
+      attr_reader api_version_date: String?
+
+      def api_version_date=: (String) -> String
 
       def initialize: (
         id: String,
-        ?collect_shipping_address: bool?,
-        ?custom_cta: WhopSDK::Models::custom_cta?,
-        ?custom_cta_url: String?,
-        ?custom_statement_descriptor: String?,
+        ?banner_image: WhopSDK::ProductUpdateParams::BannerImage?,
         ?description: String?,
-        ?gallery_images: ::Array[WhopSDK::ProductUpdateParams::GalleryImage]?,
-        ?global_affiliate_percentage: Float?,
-        ?global_affiliate_status: WhopSDK::Models::global_affiliate_status?,
         ?headline: String?,
-        ?member_affiliate_percentage: Float?,
-        ?member_affiliate_status: WhopSDK::Models::global_affiliate_status?,
-        ?metadata: ::Hash[Symbol, top]?,
+        ?labels: ::Array[String]?,
+        ?metadata: top?,
         ?product_tax_code_id: String?,
-        ?redirect_purchase_url: String?,
-        ?route: String?,
         ?send_welcome_message: bool?,
-        ?store_page_config: WhopSDK::ProductUpdateParams::StorePageConfig?,
-        ?title: String?,
-        ?visibility: WhopSDK::Models::visibility?,
+        ?title: String,
+        ?visibility: String,
+        ?api_version_date: String,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
       def to_hash: -> {
         id: String,
-        collect_shipping_address: bool?,
-        custom_cta: WhopSDK::Models::custom_cta?,
-        custom_cta_url: String?,
-        custom_statement_descriptor: String?,
+        banner_image: WhopSDK::ProductUpdateParams::BannerImage?,
         description: String?,
-        gallery_images: ::Array[WhopSDK::ProductUpdateParams::GalleryImage]?,
-        global_affiliate_percentage: Float?,
-        global_affiliate_status: WhopSDK::Models::global_affiliate_status?,
         headline: String?,
-        member_affiliate_percentage: Float?,
-        member_affiliate_status: WhopSDK::Models::global_affiliate_status?,
-        metadata: ::Hash[Symbol, top]?,
+        labels: ::Array[String]?,
+        metadata: top?,
         product_tax_code_id: String?,
-        redirect_purchase_url: String?,
-        route: String?,
         send_welcome_message: bool?,
-        store_page_config: WhopSDK::ProductUpdateParams::StorePageConfig?,
-        title: String?,
-        visibility: WhopSDK::Models::visibility?,
+        title: String,
+        visibility: String,
+        api_version_date: String,
         request_options: WhopSDK::RequestOptions
       }
 
-      type gallery_image = { id: String }
+      type banner_image = { id: String, direct_upload_id: String }
 
-      class GalleryImage < WhopSDK::Internal::Type::BaseModel
-        attr_accessor id: String
+      class BannerImage < WhopSDK::Internal::Type::BaseModel
+        attr_reader id: String?
 
-        def initialize: (id: String) -> void
+        def id=: (String) -> String
 
-        def to_hash: -> { id: String }
-      end
+        attr_reader direct_upload_id: String?
 
-      type store_page_config = { custom_cta: String?, show_price: bool? }
+        def direct_upload_id=: (String) -> String
 
-      class StorePageConfig < WhopSDK::Internal::Type::BaseModel
-        attr_accessor custom_cta: String?
+        def initialize: (?id: String, ?direct_upload_id: String) -> void
 
-        attr_accessor show_price: bool?
-
-        def initialize: (?custom_cta: String?, ?show_price: bool?) -> void
-
-        def to_hash: -> { custom_cta: String?, show_price: bool? }
+        def to_hash: -> { id: String, direct_upload_id: String }
       end
     end
   end

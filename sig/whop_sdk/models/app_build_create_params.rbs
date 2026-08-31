@@ -4,11 +4,13 @@ module WhopSDK
       {
         attachment: WhopSDK::AppBuildCreateParams::Attachment,
         checksum: String,
-        platform: WhopSDK::Models::app_build_platforms,
-        ai_prompt_id: String?,
-        app_id: String?,
-        source_attachment: WhopSDK::AppBuildCreateParams::SourceAttachment?,
-        supported_app_view_types: ::Array[WhopSDK::Models::app_view_type]?
+        platform: WhopSDK::Models::AppBuildCreateParams::platform,
+        ai_prompt_id: String,
+        app_id: String,
+        source_attachment: WhopSDK::AppBuildCreateParams::SourceAttachment,
+        supported_app_view_types: ::Array[WhopSDK::Models::AppBuildCreateParams::supported_app_view_type],
+        api_version_date: String,
+        idempotency_key: String
       }
       & WhopSDK::Internal::Type::request_parameters
 
@@ -20,56 +22,121 @@ module WhopSDK
 
       attr_accessor checksum: String
 
-      attr_accessor platform: WhopSDK::Models::app_build_platforms
+      attr_accessor platform: WhopSDK::Models::AppBuildCreateParams::platform
 
-      attr_accessor ai_prompt_id: String?
+      attr_reader ai_prompt_id: String?
 
-      attr_accessor app_id: String?
+      def ai_prompt_id=: (String) -> String
 
-      attr_accessor source_attachment: WhopSDK::AppBuildCreateParams::SourceAttachment?
+      attr_reader app_id: String?
 
-      attr_accessor supported_app_view_types: ::Array[WhopSDK::Models::app_view_type]?
+      def app_id=: (String) -> String
+
+      attr_reader source_attachment: WhopSDK::AppBuildCreateParams::SourceAttachment?
+
+      def source_attachment=: (
+        WhopSDK::AppBuildCreateParams::SourceAttachment
+      ) -> WhopSDK::AppBuildCreateParams::SourceAttachment
+
+      attr_reader supported_app_view_types: ::Array[WhopSDK::Models::AppBuildCreateParams::supported_app_view_type]?
+
+      def supported_app_view_types=: (
+        ::Array[WhopSDK::Models::AppBuildCreateParams::supported_app_view_type]
+      ) -> ::Array[WhopSDK::Models::AppBuildCreateParams::supported_app_view_type]
+
+      attr_reader api_version_date: String?
+
+      def api_version_date=: (String) -> String
+
+      attr_reader idempotency_key: String?
+
+      def idempotency_key=: (String) -> String
 
       def initialize: (
         attachment: WhopSDK::AppBuildCreateParams::Attachment,
         checksum: String,
-        platform: WhopSDK::Models::app_build_platforms,
-        ?ai_prompt_id: String?,
-        ?app_id: String?,
-        ?source_attachment: WhopSDK::AppBuildCreateParams::SourceAttachment?,
-        ?supported_app_view_types: ::Array[WhopSDK::Models::app_view_type]?,
+        platform: WhopSDK::Models::AppBuildCreateParams::platform,
+        ?ai_prompt_id: String,
+        ?app_id: String,
+        ?source_attachment: WhopSDK::AppBuildCreateParams::SourceAttachment,
+        ?supported_app_view_types: ::Array[WhopSDK::Models::AppBuildCreateParams::supported_app_view_type],
+        ?api_version_date: String,
+        ?idempotency_key: String,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
       def to_hash: -> {
         attachment: WhopSDK::AppBuildCreateParams::Attachment,
         checksum: String,
-        platform: WhopSDK::Models::app_build_platforms,
-        ai_prompt_id: String?,
-        app_id: String?,
-        source_attachment: WhopSDK::AppBuildCreateParams::SourceAttachment?,
-        supported_app_view_types: ::Array[WhopSDK::Models::app_view_type]?,
+        platform: WhopSDK::Models::AppBuildCreateParams::platform,
+        ai_prompt_id: String,
+        app_id: String,
+        source_attachment: WhopSDK::AppBuildCreateParams::SourceAttachment,
+        supported_app_view_types: ::Array[WhopSDK::Models::AppBuildCreateParams::supported_app_view_type],
+        api_version_date: String,
+        idempotency_key: String,
         request_options: WhopSDK::RequestOptions
       }
 
-      type attachment = { id: String }
+      type attachment = { id: String, direct_upload_id: String }
 
       class Attachment < WhopSDK::Internal::Type::BaseModel
-        attr_accessor id: String
+        attr_reader id: String?
 
-        def initialize: (id: String) -> void
+        def id=: (String) -> String
 
-        def to_hash: -> { id: String }
+        attr_reader direct_upload_id: String?
+
+        def direct_upload_id=: (String) -> String
+
+        def initialize: (?id: String, ?direct_upload_id: String) -> void
+
+        def to_hash: -> { id: String, direct_upload_id: String }
       end
 
-      type source_attachment = { id: String }
+      type platform = :ios | :android | :web
+
+      module Platform
+        extend WhopSDK::Internal::Type::Enum
+
+        IOS: :ios
+        ANDROID: :android
+        WEB: :web
+
+        def self?.values: -> ::Array[WhopSDK::Models::AppBuildCreateParams::platform]
+      end
+
+      type source_attachment = { id: String, direct_upload_id: String }
 
       class SourceAttachment < WhopSDK::Internal::Type::BaseModel
-        attr_accessor id: String
+        attr_reader id: String?
 
-        def initialize: (id: String) -> void
+        def id=: (String) -> String
 
-        def to_hash: -> { id: String }
+        attr_reader direct_upload_id: String?
+
+        def direct_upload_id=: (String) -> String
+
+        def initialize: (?id: String, ?direct_upload_id: String) -> void
+
+        def to_hash: -> { id: String, direct_upload_id: String }
+      end
+
+      type supported_app_view_type =
+        :hub | :discover | :dash | :dashboard | :analytics | :skills | :openapi
+
+      module SupportedAppViewType
+        extend WhopSDK::Internal::Type::Enum
+
+        HUB: :hub
+        DISCOVER: :discover
+        DASH: :dash
+        DASHBOARD: :dashboard
+        ANALYTICS: :analytics
+        SKILLS: :skills
+        OPENAPI: :openapi
+
+        def self?.values: -> ::Array[WhopSDK::Models::AppBuildCreateParams::supported_app_view_type]
       end
     end
   end

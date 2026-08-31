@@ -12,29 +12,44 @@ module WhopSDK
       #   @return [String]
       required :id, String
 
-      # @!attribute cancellation_mode
-      #   The mode of cancellation for a membership
+      # @!attribute cancel_at_period_end
+      #   `true` stops auto-renewal and keeps access until the current billing period
+      #   ends. Omit or `false` revokes access immediately.
       #
-      #   @return [Symbol, WhopSDK::Models::MembershipCancelParams::CancellationMode, nil]
-      optional :cancellation_mode, enum: -> { WhopSDK::MembershipCancelParams::CancellationMode }, nil?: true
+      #   @return [Boolean, nil]
+      optional :cancel_at_period_end, WhopSDK::Internal::Type::Boolean
 
-      # @!method initialize(id:, cancellation_mode: nil, request_options: {})
+      # @!attribute reason
+      #   Free-form note recording why the membership was canceled.
+      #
+      #   @return [String, nil]
+      optional :reason, String
+
+      # @!attribute api_version_date
+      #
+      #   @return [String, nil]
+      optional :api_version_date, String
+
+      # @!attribute idempotency_key
+      #
+      #   @return [String, nil]
+      optional :idempotency_key, String
+
+      # @!method initialize(id:, cancel_at_period_end: nil, reason: nil, api_version_date: nil, idempotency_key: nil, request_options: {})
+      #   Some parameter documentations has been truncated, see
+      #   {WhopSDK::Models::MembershipCancelParams} for more details.
+      #
       #   @param id [String]
       #
-      #   @param cancellation_mode [Symbol, WhopSDK::Models::MembershipCancelParams::CancellationMode, nil] The mode of cancellation for a membership
+      #   @param cancel_at_period_end [Boolean] `true` stops auto-renewal and keeps access until the current billing period ends
+      #
+      #   @param reason [String] Free-form note recording why the membership was canceled.
+      #
+      #   @param api_version_date [String]
+      #
+      #   @param idempotency_key [String]
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
-
-      # The mode of cancellation for a membership
-      module CancellationMode
-        extend WhopSDK::Internal::Type::Enum
-
-        AT_PERIOD_END = :at_period_end
-        IMMEDIATE = :immediate
-
-        # @!method self.values
-        #   @return [Array<Symbol>]
-      end
     end
   end
 end

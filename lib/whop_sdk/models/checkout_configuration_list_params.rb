@@ -7,84 +7,100 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      # @!attribute company_id
-      #   The unique identifier of the company to list checkout configurations for.
+      # @!attribute account_id
+      #   Account ID, prefixed `biz_`.
       #
       #   @return [String]
-      required :company_id, String
+      required :account_id, String
 
       # @!attribute after
-      #   Returns the elements in the list that come after the specified cursor.
+      #   Cursor for the next page of results.
       #
       #   @return [String, nil]
       optional :after, String
 
-      # @!attribute before
-      #   Returns the elements in the list that come before the specified cursor.
+      # @!attribute created_after
+      #   Only return checkout configurations created after this ISO 8601 timestamp.
       #
       #   @return [String, nil]
-      optional :before, String
-
-      # @!attribute created_after
-      #   Only return checkout configurations created after this timestamp.
-      #
-      #   @return [Time, nil]
-      optional :created_after, Time
+      optional :created_after, String
 
       # @!attribute created_before
-      #   Only return checkout configurations created before this timestamp.
+      #   Only return checkout configurations created before this ISO 8601 timestamp.
       #
-      #   @return [Time, nil]
-      optional :created_before, Time
+      #   @return [String, nil]
+      optional :created_before, String
 
       # @!attribute direction
-      #   The sort direction for ordering results, either ascending or descending.
+      #   Sort direction. Defaults to `desc`.
       #
-      #   @return [Symbol, WhopSDK::Models::Direction, nil]
-      optional :direction, enum: -> { WhopSDK::Direction }
+      #   @return [Symbol, WhopSDK::Models::CheckoutConfigurationListParams::Direction, nil]
+      optional :direction, enum: -> { WhopSDK::CheckoutConfigurationListParams::Direction }
 
       # @!attribute first
-      #   Returns the first _n_ elements from the list.
+      #   Number of checkout configurations to return.
       #
       #   @return [Integer, nil]
       optional :first, Integer
 
-      # @!attribute last
-      #   Returns the last _n_ elements from the list.
+      # @!attribute order
+      #   Field used to sort checkout configurations.
       #
-      #   @return [Integer, nil]
-      optional :last, Integer
+      #   @return [Symbol, WhopSDK::Models::CheckoutConfigurationListParams::Order, nil]
+      optional :order, enum: -> { WhopSDK::CheckoutConfigurationListParams::Order }
 
       # @!attribute plan_id
-      #   Filter checkout configurations to only those associated with this plan
-      #   identifier.
+      #   Only return checkout configurations for this plan ID, prefixed `plan_`.
       #
       #   @return [String, nil]
       optional :plan_id, String
 
-      # @!method initialize(company_id:, after: nil, before: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, plan_id: nil, request_options: {})
-      #   Some parameter documentations has been truncated, see
-      #   {WhopSDK::Models::CheckoutConfigurationListParams} for more details.
+      # @!attribute api_version_date
       #
-      #   @param company_id [String] The unique identifier of the company to list checkout configurations for.
+      #   @return [String, nil]
+      optional :api_version_date, String
+
+      # @!method initialize(account_id:, after: nil, created_after: nil, created_before: nil, direction: nil, first: nil, order: nil, plan_id: nil, api_version_date: nil, request_options: {})
+      #   @param account_id [String] Account ID, prefixed `biz_`.
       #
-      #   @param after [String] Returns the elements in the list that come after the specified cursor.
+      #   @param after [String] Cursor for the next page of results.
       #
-      #   @param before [String] Returns the elements in the list that come before the specified cursor.
+      #   @param created_after [String] Only return checkout configurations created after this ISO 8601 timestamp.
       #
-      #   @param created_after [Time] Only return checkout configurations created after this timestamp.
+      #   @param created_before [String] Only return checkout configurations created before this ISO 8601 timestamp.
       #
-      #   @param created_before [Time] Only return checkout configurations created before this timestamp.
+      #   @param direction [Symbol, WhopSDK::Models::CheckoutConfigurationListParams::Direction] Sort direction. Defaults to `desc`.
       #
-      #   @param direction [Symbol, WhopSDK::Models::Direction] The sort direction for ordering results, either ascending or descending.
+      #   @param first [Integer] Number of checkout configurations to return.
       #
-      #   @param first [Integer] Returns the first _n_ elements from the list.
+      #   @param order [Symbol, WhopSDK::Models::CheckoutConfigurationListParams::Order] Field used to sort checkout configurations.
       #
-      #   @param last [Integer] Returns the last _n_ elements from the list.
+      #   @param plan_id [String] Only return checkout configurations for this plan ID, prefixed `plan_`.
       #
-      #   @param plan_id [String] Filter checkout configurations to only those associated with this plan identifie
+      #   @param api_version_date [String]
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
+
+      # Sort direction. Defaults to `desc`.
+      module Direction
+        extend WhopSDK::Internal::Type::Enum
+
+        ASC = :asc
+        DESC = :desc
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
+
+      # Field used to sort checkout configurations.
+      module Order
+        extend WhopSDK::Internal::Type::Enum
+
+        CREATED_AT = :created_at
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
     end
   end
 end

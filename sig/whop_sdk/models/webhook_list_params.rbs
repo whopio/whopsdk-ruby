@@ -2,12 +2,15 @@ module WhopSDK
   module Models
     type webhook_list_params =
       {
-        company_id: String,
+        account_id: String,
         after: String,
         app_id: String,
         before: String,
         first: Integer,
-        last: Integer
+        has_failures: bool,
+        include_app_webhooks: bool,
+        last: Integer,
+        api_version_date: String
       }
       & WhopSDK::Internal::Type::request_parameters
 
@@ -15,7 +18,7 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      attr_accessor company_id: String
+      attr_accessor account_id: String
 
       attr_reader after: String?
 
@@ -33,27 +36,45 @@ module WhopSDK
 
       def first=: (Integer) -> Integer
 
+      attr_reader has_failures: bool?
+
+      def has_failures=: (bool) -> bool
+
+      attr_reader include_app_webhooks: bool?
+
+      def include_app_webhooks=: (bool) -> bool
+
       attr_reader last: Integer?
 
       def last=: (Integer) -> Integer
 
+      attr_reader api_version_date: String?
+
+      def api_version_date=: (String) -> String
+
       def initialize: (
-        company_id: String,
+        account_id: String,
         ?after: String,
         ?app_id: String,
         ?before: String,
         ?first: Integer,
+        ?has_failures: bool,
+        ?include_app_webhooks: bool,
         ?last: Integer,
+        ?api_version_date: String,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
       def to_hash: -> {
-        company_id: String,
+        account_id: String,
         after: String,
         app_id: String,
         before: String,
         first: Integer,
+        has_failures: bool,
+        include_app_webhooks: bool,
         last: Integer,
+        api_version_date: String,
         request_options: WhopSDK::RequestOptions
       }
     end

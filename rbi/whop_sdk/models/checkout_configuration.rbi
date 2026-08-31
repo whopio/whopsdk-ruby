@@ -8,51 +8,69 @@ module WhopSDK
           T.any(WhopSDK::CheckoutConfiguration, WhopSDK::Internal::AnyHash)
         end
 
-      # The unique identifier for the checkout session.
       sig { returns(String) }
       attr_accessor :id
 
-      # The affiliate code to use for the checkout configuration
+      # Account ID, prefixed `biz_`.
+      sig { returns(String) }
+      attr_accessor :account_id
+
+      # Affiliate code applied at checkout, or `null` when none is set.
       sig { returns(T.nilable(String)) }
       attr_accessor :affiliate_code
 
-      # The ID of the company to use for the checkout configuration
+      # When the checkout configuration was created, as an ISO 8601 timestamp.
       sig { returns(String) }
-      attr_accessor :company_id
+      attr_accessor :created_at
 
-      # The available currencies on the platform
-      sig { returns(T.nilable(WhopSDK::Currency::TaggedSymbol)) }
+      # Currency used for setup-mode payment method availability; defaults to `usd` when
+      # omitted.
+      sig do
+        returns(T.nilable(WhopSDK::CheckoutConfiguration::Currency::OrSymbol))
+      end
       attr_accessor :currency
 
-      # The metadata to use for the checkout configuration
-      sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
-      attr_accessor :metadata
-
-      # The mode of the checkout session.
-      sig { returns(WhopSDK::CheckoutModes::TaggedSymbol) }
-      attr_accessor :mode
-
-      # The explicit payment method configuration for the session, if any. This
-      # currently only works in 'setup' mode. Use the plan's
-      # payment_method_configuration for payment method.
+      # The configuration governing a checkout mounted from this configuration, resolved
+      # through every layer (its own overrides, the plan's, and the account's) — the
+      # shape a session's `payment_method_configuration` carries. Apply it over the
+      # payment method types catalogue for the offerable set. `null` means platform
+      # defaults; `payment_method_configuration` stays this configuration's own editable
+      # override.
       sig do
         returns(
-          T.nilable(WhopSDK::CheckoutConfiguration::PaymentMethodConfiguration)
+          T.nilable(
+            WhopSDK::CheckoutConfiguration::EffectivePaymentMethodConfiguration
+          )
         )
       end
-      attr_reader :payment_method_configuration
+      attr_reader :effective_payment_method_configuration
 
       sig do
         params(
-          payment_method_configuration:
+          effective_payment_method_configuration:
             T.nilable(
-              WhopSDK::CheckoutConfiguration::PaymentMethodConfiguration::OrHash
+              WhopSDK::CheckoutConfiguration::EffectivePaymentMethodConfiguration::OrHash
             )
         ).void
       end
-      attr_writer :payment_method_configuration
+      attr_writer :effective_payment_method_configuration
 
-      # The plan to use for the checkout configuration
+      # Custom key-value metadata copied to payments and memberships. `null` without the
+      # `checkout_configuration:basic:read` scope.
+      sig { returns(T.nilable(T.anything)) }
+      attr_accessor :metadata
+
+      # Controls whether checkout charges the buyer immediately or saves payment details
+      # for later.
+      sig { returns(WhopSDK::CheckoutConfiguration::Mode::OrSymbol) }
+      attr_accessor :mode
+
+      # Payment method overrides for this checkout. `null` when it uses the plan or
+      # platform defaults.
+      sig { returns(T.nilable(T.anything)) }
+      attr_accessor :payment_method_configuration
+
+      # Plan used for payment checkout. `null` in setup mode.
       sig { returns(T.nilable(WhopSDK::CheckoutConfiguration::Plan)) }
       attr_reader :plan
 
@@ -63,59 +81,88 @@ module WhopSDK
       end
       attr_writer :plan
 
-      # A URL you can send to customers to complete a checkout. It looks like
-      # `/checkout/ch_xxxx/`
-      sig { returns(String) }
+      # Checkout URL you can send to customers.
+      sig { returns(T.nilable(String)) }
       attr_accessor :purchase_url
 
-      # The URL to redirect the user to after the checkout configuration is created
+      # URL customers are sent to after checkout, or `null` when no redirect is
+      # configured.
       sig { returns(T.nilable(String)) }
       attr_accessor :redirect_url
 
-      # A checkout configuration is a reusable configuration for a checkout, including
-      # the plan, affiliate, and custom metadata. Payments and memberships created from
-      # a checkout session inherit its metadata.
+      # 3D Secure behavior for this checkout, or `null` to use the account default.
+      sig do
+        returns(
+          T.nilable(WhopSDK::CheckoutConfiguration::ThreeDSLevel::OrSymbol)
+        )
+      end
+      attr_accessor :three_ds_level
+
+      # When the checkout configuration was last updated, as an ISO 8601 timestamp.
+      sig { returns(String) }
+      attr_accessor :updated_at
+
       sig do
         params(
           id: String,
+          account_id: String,
           affiliate_code: T.nilable(String),
-          company_id: String,
-          currency: T.nilable(WhopSDK::Currency::OrSymbol),
-          metadata: T.nilable(T::Hash[Symbol, T.anything]),
-          mode: WhopSDK::CheckoutModes::OrSymbol,
-          payment_method_configuration:
+          created_at: String,
+          currency:
+            T.nilable(WhopSDK::CheckoutConfiguration::Currency::OrSymbol),
+          effective_payment_method_configuration:
             T.nilable(
-              WhopSDK::CheckoutConfiguration::PaymentMethodConfiguration::OrHash
+              WhopSDK::CheckoutConfiguration::EffectivePaymentMethodConfiguration::OrHash
             ),
+          metadata: T.nilable(T.anything),
+          mode: WhopSDK::CheckoutConfiguration::Mode::OrSymbol,
+          payment_method_configuration: T.nilable(T.anything),
           plan: T.nilable(WhopSDK::CheckoutConfiguration::Plan::OrHash),
-          purchase_url: String,
-          redirect_url: T.nilable(String)
+          purchase_url: T.nilable(String),
+          redirect_url: T.nilable(String),
+          three_ds_level:
+            T.nilable(WhopSDK::CheckoutConfiguration::ThreeDSLevel::OrSymbol),
+          updated_at: String
         ).returns(T.attached_class)
       end
       def self.new(
-        # The unique identifier for the checkout session.
         id:,
-        # The affiliate code to use for the checkout configuration
+        # Account ID, prefixed `biz_`.
+        account_id:,
+        # Affiliate code applied at checkout, or `null` when none is set.
         affiliate_code:,
-        # The ID of the company to use for the checkout configuration
-        company_id:,
-        # The available currencies on the platform
+        # When the checkout configuration was created, as an ISO 8601 timestamp.
+        created_at:,
+        # Currency used for setup-mode payment method availability; defaults to `usd` when
+        # omitted.
         currency:,
-        # The metadata to use for the checkout configuration
+        # The configuration governing a checkout mounted from this configuration, resolved
+        # through every layer (its own overrides, the plan's, and the account's) — the
+        # shape a session's `payment_method_configuration` carries. Apply it over the
+        # payment method types catalogue for the offerable set. `null` means platform
+        # defaults; `payment_method_configuration` stays this configuration's own editable
+        # override.
+        effective_payment_method_configuration:,
+        # Custom key-value metadata copied to payments and memberships. `null` without the
+        # `checkout_configuration:basic:read` scope.
         metadata:,
-        # The mode of the checkout session.
+        # Controls whether checkout charges the buyer immediately or saves payment details
+        # for later.
         mode:,
-        # The explicit payment method configuration for the session, if any. This
-        # currently only works in 'setup' mode. Use the plan's
-        # payment_method_configuration for payment method.
+        # Payment method overrides for this checkout. `null` when it uses the plan or
+        # platform defaults.
         payment_method_configuration:,
-        # The plan to use for the checkout configuration
+        # Plan used for payment checkout. `null` in setup mode.
         plan:,
-        # A URL you can send to customers to complete a checkout. It looks like
-        # `/checkout/ch_xxxx/`
+        # Checkout URL you can send to customers.
         purchase_url:,
-        # The URL to redirect the user to after the checkout configuration is created
-        redirect_url:
+        # URL customers are sent to after checkout, or `null` when no redirect is
+        # configured.
+        redirect_url:,
+        # 3D Secure behavior for this checkout, or `null` to use the account default.
+        three_ds_level:,
+        # When the checkout configuration was last updated, as an ISO 8601 timestamp.
+        updated_at:
       )
       end
 
@@ -123,73 +170,272 @@ module WhopSDK
         override.returns(
           {
             id: String,
+            account_id: String,
             affiliate_code: T.nilable(String),
-            company_id: String,
-            currency: T.nilable(WhopSDK::Currency::TaggedSymbol),
-            metadata: T.nilable(T::Hash[Symbol, T.anything]),
-            mode: WhopSDK::CheckoutModes::TaggedSymbol,
-            payment_method_configuration:
+            created_at: String,
+            currency:
+              T.nilable(WhopSDK::CheckoutConfiguration::Currency::OrSymbol),
+            effective_payment_method_configuration:
               T.nilable(
-                WhopSDK::CheckoutConfiguration::PaymentMethodConfiguration
+                WhopSDK::CheckoutConfiguration::EffectivePaymentMethodConfiguration
               ),
+            metadata: T.nilable(T.anything),
+            mode: WhopSDK::CheckoutConfiguration::Mode::OrSymbol,
+            payment_method_configuration: T.nilable(T.anything),
             plan: T.nilable(WhopSDK::CheckoutConfiguration::Plan),
-            purchase_url: String,
-            redirect_url: T.nilable(String)
+            purchase_url: T.nilable(String),
+            redirect_url: T.nilable(String),
+            three_ds_level:
+              T.nilable(WhopSDK::CheckoutConfiguration::ThreeDSLevel::OrSymbol),
+            updated_at: String
           }
         )
       end
       def to_hash
       end
 
-      class PaymentMethodConfiguration < WhopSDK::Internal::Type::BaseModel
+      # Currency used for setup-mode payment method availability; defaults to `usd` when
+      # omitted.
+      module Currency
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias do
+            T.all(Symbol, WhopSDK::CheckoutConfiguration::Currency)
+          end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        USD =
+          T.let(:usd, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        SGD =
+          T.let(:sgd, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        INR =
+          T.let(:inr, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        AUD =
+          T.let(:aud, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        BRL =
+          T.let(:brl, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        CAD =
+          T.let(:cad, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        DKK =
+          T.let(:dkk, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        EUR =
+          T.let(:eur, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        NOK =
+          T.let(:nok, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        GBP =
+          T.let(:gbp, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        SEK =
+          T.let(:sek, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        CHF =
+          T.let(:chf, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        HKD =
+          T.let(:hkd, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        HUF =
+          T.let(:huf, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        JPY =
+          T.let(:jpy, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        MXN =
+          T.let(:mxn, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        MYR =
+          T.let(:myr, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        PLN =
+          T.let(:pln, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        CZK =
+          T.let(:czk, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        NZD =
+          T.let(:nzd, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        AED =
+          T.let(:aed, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        ETH =
+          T.let(:eth, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        APE =
+          T.let(:ape, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        COP =
+          T.let(:cop, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        RON =
+          T.let(:ron, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        THB =
+          T.let(:thb, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        BGN =
+          T.let(:bgn, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        IDR =
+          T.let(:idr, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        DOP =
+          T.let(:dop, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        PHP =
+          T.let(:php, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        TRY =
+          T.let(:try, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        KRW =
+          T.let(:krw, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        TWD =
+          T.let(:twd, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        VND =
+          T.let(:vnd, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        PKR =
+          T.let(:pkr, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        CLP =
+          T.let(:clp, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        UYU =
+          T.let(:uyu, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        ARS =
+          T.let(:ars, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        ZAR =
+          T.let(:zar, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        DZD =
+          T.let(:dzd, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        TND =
+          T.let(:tnd, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        MAD =
+          T.let(:mad, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        KES =
+          T.let(:kes, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        KWD =
+          T.let(:kwd, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        JOD =
+          T.let(:jod, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        ALL =
+          T.let(:all, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        XCD =
+          T.let(:xcd, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        AMD =
+          T.let(:amd, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        BSD =
+          T.let(:bsd, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        BHD =
+          T.let(:bhd, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        BOB =
+          T.let(:bob, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        BAM =
+          T.let(:bam, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        KHR =
+          T.let(:khr, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        CRC =
+          T.let(:crc, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        XOF =
+          T.let(:xof, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        EGP =
+          T.let(:egp, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        ETB =
+          T.let(:etb, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        GMD =
+          T.let(:gmd, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        GHS =
+          T.let(:ghs, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        GTQ =
+          T.let(:gtq, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        GYD =
+          T.let(:gyd, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        ILS =
+          T.let(:ils, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        JMD =
+          T.let(:jmd, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        MOP =
+          T.let(:mop, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        MGA =
+          T.let(:mga, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        MUR =
+          T.let(:mur, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        MDL =
+          T.let(:mdl, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        MNT =
+          T.let(:mnt, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        NAD =
+          T.let(:nad, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        NGN =
+          T.let(:ngn, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        MKD =
+          T.let(:mkd, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        OMR =
+          T.let(:omr, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        PYG =
+          T.let(:pyg, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        PEN =
+          T.let(:pen, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        QAR =
+          T.let(:qar, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        RWF =
+          T.let(:rwf, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        SAR =
+          T.let(:sar, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        RSD =
+          T.let(:rsd, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        LKR =
+          T.let(:lkr, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        TZS =
+          T.let(:tzs, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        TTD =
+          T.let(:ttd, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        UZS =
+          T.let(:uzs, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        RUB =
+          T.let(:rub, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        BTC =
+          T.let(:btc, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        CNY =
+          T.let(:cny, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        USDT =
+          T.let(:usdt, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        KZT =
+          T.let(:kzt, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        AWG =
+          T.let(:awg, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+        WHOP_USD =
+          T.let(
+            :whop_usd,
+            WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol
+          )
+        XAU =
+          T.let(:xau, WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol)
+
+        sig do
+          override.returns(
+            T::Array[WhopSDK::CheckoutConfiguration::Currency::TaggedSymbol]
+          )
+        end
+        def self.values
+        end
+      end
+
+      class EffectivePaymentMethodConfiguration < WhopSDK::Internal::Type::BaseModel
         OrHash =
           T.type_alias do
             T.any(
-              WhopSDK::CheckoutConfiguration::PaymentMethodConfiguration,
+              WhopSDK::CheckoutConfiguration::EffectivePaymentMethodConfiguration,
               WhopSDK::Internal::AnyHash
             )
           end
 
-        # An array of payment method identifiers that are explicitly disabled. Only
-        # applies if the include_platform_defaults is true.
-        sig { returns(T::Array[WhopSDK::PaymentMethodTypes::TaggedSymbol]) }
+        sig { returns(T::Array[String]) }
         attr_accessor :disabled
 
-        # An array of payment method identifiers that are explicitly enabled. This means
-        # these payment methods will be shown on checkout. Example use case is to only
-        # enable a specific payment method like cashapp, or extending the platform
-        # defaults with additional methods.
-        sig { returns(T::Array[WhopSDK::PaymentMethodTypes::TaggedSymbol]) }
+        sig { returns(T::Array[String]) }
         attr_accessor :enabled
 
-        # Whether Whop's platform default payment method enablement settings are included
-        # in this configuration. The full list of default payment methods can be found in
-        # the documentation at docs.whop.com/payments.
+        # Whether Whop's default set is the starting point. When `false`, only `enabled`
+        # is offered.
         sig { returns(T::Boolean) }
         attr_accessor :include_platform_defaults
 
-        # The explicit payment method configuration for the session, if any. This
-        # currently only works in 'setup' mode. Use the plan's
-        # payment_method_configuration for payment method.
+        # The configuration governing a checkout mounted from this configuration, resolved
+        # through every layer (its own overrides, the plan's, and the account's) — the
+        # shape a session's `payment_method_configuration` carries. Apply it over the
+        # payment method types catalogue for the offerable set. `null` means platform
+        # defaults; `payment_method_configuration` stays this configuration's own editable
+        # override.
         sig do
           params(
-            disabled: T::Array[WhopSDK::PaymentMethodTypes::OrSymbol],
-            enabled: T::Array[WhopSDK::PaymentMethodTypes::OrSymbol],
+            disabled: T::Array[String],
+            enabled: T::Array[String],
             include_platform_defaults: T::Boolean
           ).returns(T.attached_class)
         end
         def self.new(
-          # An array of payment method identifiers that are explicitly disabled. Only
-          # applies if the include_platform_defaults is true.
           disabled:,
-          # An array of payment method identifiers that are explicitly enabled. This means
-          # these payment methods will be shown on checkout. Example use case is to only
-          # enable a specific payment method like cashapp, or extending the platform
-          # defaults with additional methods.
           enabled:,
-          # Whether Whop's platform default payment method enablement settings are included
-          # in this configuration. The full list of default payment methods can be found in
-          # the documentation at docs.whop.com/payments.
+          # Whether Whop's default set is the starting point. When `false`, only `enabled`
+          # is offered.
           include_platform_defaults:
         )
         end
@@ -197,13 +443,36 @@ module WhopSDK
         sig do
           override.returns(
             {
-              disabled: T::Array[WhopSDK::PaymentMethodTypes::TaggedSymbol],
-              enabled: T::Array[WhopSDK::PaymentMethodTypes::TaggedSymbol],
+              disabled: T::Array[String],
+              enabled: T::Array[String],
               include_platform_defaults: T::Boolean
             }
           )
         end
         def to_hash
+        end
+      end
+
+      # Controls whether checkout charges the buyer immediately or saves payment details
+      # for later.
+      module Mode
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias { T.all(Symbol, WhopSDK::CheckoutConfiguration::Mode) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        PAYMENT =
+          T.let(:payment, WhopSDK::CheckoutConfiguration::Mode::TaggedSymbol)
+        SETUP =
+          T.let(:setup, WhopSDK::CheckoutConfiguration::Mode::TaggedSymbol)
+
+        sig do
+          override.returns(
+            T::Array[WhopSDK::CheckoutConfiguration::Mode::TaggedSymbol]
+          )
+        end
+        def self.values
         end
       end
 
@@ -216,126 +485,112 @@ module WhopSDK
             )
           end
 
-        # The unique identifier for the plan.
+        # Plan ID, prefixed `plan_`.
         sig { returns(String) }
         attr_accessor :id
 
-        # Whether the creator has turned on adaptive pricing for this plan. Raw setting —
-        # does not check processor compatibility or feature flags.
+        # Whether this plan accepts local currency payments via adaptive pricing.
         sig { returns(T::Boolean) }
         attr_accessor :adaptive_pricing_enabled
 
-        # Number of days between recurring charges, such as 30 for monthly or 365 for
-        # annual. `null` for one-time plans.
+        # Recurring billing interval in days.
         sig { returns(T.nilable(Integer)) }
         attr_accessor :billing_period
 
-        # The currency used for all prices on this plan (e.g., 'usd', 'eur'). All monetary
-        # amounts on the plan are denominated in this currency.
-        sig { returns(WhopSDK::Currency::TaggedSymbol) }
+        # Three-letter ISO currency code for the plan's prices.
+        sig { returns(String) }
         attr_accessor :currency
 
-        # Access duration in days for expiration-based plans, such as 365 for a one-year
-        # pass.
+        # Access duration in days for expiration-based plans.
         sig { returns(T.nilable(Integer)) }
         attr_accessor :expiration_days
 
-        # The initial purchase price in the plan's base_currency (e.g., 49.99 for $49.99).
-        # For one-time plans, this is the full price. For renewal plans, this is charged
-        # on top of the first renewal_price.
+        # Initial purchase price in the plan currency.
         sig { returns(Float) }
         attr_accessor :initial_price
 
-        # The billing model for this plan: 'renewal' for recurring subscriptions or
-        # 'one_time' for single payments.
-        sig { returns(WhopSDK::PlanType::TaggedSymbol) }
+        # Billing model for the plan.
+        sig do
+          returns(WhopSDK::CheckoutConfiguration::Plan::PlanType::OrSymbol)
+        end
         attr_accessor :plan_type
 
-        # Sales method for this plan: `buy_now` for immediate purchase or `waitlist` for
-        # waitlist-based access.
-        sig { returns(WhopSDK::ReleaseMethod::TaggedSymbol) }
+        # Sales method for the plan.
+        sig do
+          returns(WhopSDK::CheckoutConfiguration::Plan::ReleaseMethod::OrSymbol)
+        end
         attr_accessor :release_method
 
-        # The recurring price charged every billing_period in the plan's base_currency
-        # (e.g., 9.99 for $9.99/period). Zero for one-time plans.
+        # Recurring price charged each billing period.
         sig { returns(Float) }
         attr_accessor :renewal_price
 
-        # The 3D Secure behavior for a plan.
+        # 3D Secure behavior for this plan, or `null` to use the account default.
         sig do
           returns(
             T.nilable(
-              WhopSDK::CheckoutConfiguration::Plan::ThreeDSLevel::TaggedSymbol
+              WhopSDK::CheckoutConfiguration::Plan::ThreeDSLevel::OrSymbol
             )
           )
         end
         attr_accessor :three_ds_level
 
-        # Free trial days before first renewal charge. `null` if no trial is configured or
-        # the user has already used a trial for this plan.
+        # Free trial days before the first renewal charge.
         sig { returns(T.nilable(Integer)) }
         attr_accessor :trial_period_days
 
-        # Controls whether the plan is visible to customers. When set to 'hidden', the
-        # plan is only accessible via direct link.
-        sig { returns(WhopSDK::Visibility::TaggedSymbol) }
+        # Whether the plan is visible to customers or hidden from public view.
+        sig do
+          returns(WhopSDK::CheckoutConfiguration::Plan::Visibility::OrSymbol)
+        end
         attr_accessor :visibility
 
-        # The plan to use for the checkout configuration
+        # Plan used for payment checkout. `null` in setup mode.
         sig do
           params(
             id: String,
             adaptive_pricing_enabled: T::Boolean,
             billing_period: T.nilable(Integer),
-            currency: WhopSDK::Currency::OrSymbol,
+            currency: String,
             expiration_days: T.nilable(Integer),
             initial_price: Float,
-            plan_type: WhopSDK::PlanType::OrSymbol,
-            release_method: WhopSDK::ReleaseMethod::OrSymbol,
+            plan_type: WhopSDK::CheckoutConfiguration::Plan::PlanType::OrSymbol,
+            release_method:
+              WhopSDK::CheckoutConfiguration::Plan::ReleaseMethod::OrSymbol,
             renewal_price: Float,
             three_ds_level:
               T.nilable(
                 WhopSDK::CheckoutConfiguration::Plan::ThreeDSLevel::OrSymbol
               ),
             trial_period_days: T.nilable(Integer),
-            visibility: WhopSDK::Visibility::OrSymbol
+            visibility:
+              WhopSDK::CheckoutConfiguration::Plan::Visibility::OrSymbol
           ).returns(T.attached_class)
         end
         def self.new(
-          # The unique identifier for the plan.
+          # Plan ID, prefixed `plan_`.
           id:,
-          # Whether the creator has turned on adaptive pricing for this plan. Raw setting —
-          # does not check processor compatibility or feature flags.
+          # Whether this plan accepts local currency payments via adaptive pricing.
           adaptive_pricing_enabled:,
-          # Number of days between recurring charges, such as 30 for monthly or 365 for
-          # annual. `null` for one-time plans.
+          # Recurring billing interval in days.
           billing_period:,
-          # The currency used for all prices on this plan (e.g., 'usd', 'eur'). All monetary
-          # amounts on the plan are denominated in this currency.
+          # Three-letter ISO currency code for the plan's prices.
           currency:,
-          # Access duration in days for expiration-based plans, such as 365 for a one-year
-          # pass.
+          # Access duration in days for expiration-based plans.
           expiration_days:,
-          # The initial purchase price in the plan's base_currency (e.g., 49.99 for $49.99).
-          # For one-time plans, this is the full price. For renewal plans, this is charged
-          # on top of the first renewal_price.
+          # Initial purchase price in the plan currency.
           initial_price:,
-          # The billing model for this plan: 'renewal' for recurring subscriptions or
-          # 'one_time' for single payments.
+          # Billing model for the plan.
           plan_type:,
-          # Sales method for this plan: `buy_now` for immediate purchase or `waitlist` for
-          # waitlist-based access.
+          # Sales method for the plan.
           release_method:,
-          # The recurring price charged every billing_period in the plan's base_currency
-          # (e.g., 9.99 for $9.99/period). Zero for one-time plans.
+          # Recurring price charged each billing period.
           renewal_price:,
-          # The 3D Secure behavior for a plan.
+          # 3D Secure behavior for this plan, or `null` to use the account default.
           three_ds_level:,
-          # Free trial days before first renewal charge. `null` if no trial is configured or
-          # the user has already used a trial for this plan.
+          # Free trial days before the first renewal charge.
           trial_period_days:,
-          # Controls whether the plan is visible to customers. When set to 'hidden', the
-          # plan is only accessible via direct link.
+          # Whether the plan is visible to customers or hidden from public view.
           visibility:
         )
         end
@@ -346,25 +601,92 @@ module WhopSDK
               id: String,
               adaptive_pricing_enabled: T::Boolean,
               billing_period: T.nilable(Integer),
-              currency: WhopSDK::Currency::TaggedSymbol,
+              currency: String,
               expiration_days: T.nilable(Integer),
               initial_price: Float,
-              plan_type: WhopSDK::PlanType::TaggedSymbol,
-              release_method: WhopSDK::ReleaseMethod::TaggedSymbol,
+              plan_type:
+                WhopSDK::CheckoutConfiguration::Plan::PlanType::OrSymbol,
+              release_method:
+                WhopSDK::CheckoutConfiguration::Plan::ReleaseMethod::OrSymbol,
               renewal_price: Float,
               three_ds_level:
                 T.nilable(
-                  WhopSDK::CheckoutConfiguration::Plan::ThreeDSLevel::TaggedSymbol
+                  WhopSDK::CheckoutConfiguration::Plan::ThreeDSLevel::OrSymbol
                 ),
               trial_period_days: T.nilable(Integer),
-              visibility: WhopSDK::Visibility::TaggedSymbol
+              visibility:
+                WhopSDK::CheckoutConfiguration::Plan::Visibility::OrSymbol
             }
           )
         end
         def to_hash
         end
 
-        # The 3D Secure behavior for a plan.
+        # Billing model for the plan.
+        module PlanType
+          extend WhopSDK::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(Symbol, WhopSDK::CheckoutConfiguration::Plan::PlanType)
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          RENEWAL =
+            T.let(
+              :renewal,
+              WhopSDK::CheckoutConfiguration::Plan::PlanType::TaggedSymbol
+            )
+          ONE_TIME =
+            T.let(
+              :one_time,
+              WhopSDK::CheckoutConfiguration::Plan::PlanType::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                WhopSDK::CheckoutConfiguration::Plan::PlanType::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
+        end
+
+        # Sales method for the plan.
+        module ReleaseMethod
+          extend WhopSDK::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(Symbol, WhopSDK::CheckoutConfiguration::Plan::ReleaseMethod)
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          BUY_NOW =
+            T.let(
+              :buy_now,
+              WhopSDK::CheckoutConfiguration::Plan::ReleaseMethod::TaggedSymbol
+            )
+          WAITLIST =
+            T.let(
+              :waitlist,
+              WhopSDK::CheckoutConfiguration::Plan::ReleaseMethod::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                WhopSDK::CheckoutConfiguration::Plan::ReleaseMethod::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
+        end
+
+        # 3D Secure behavior for this plan, or `null` to use the account default.
         module ThreeDSLevel
           extend WhopSDK::Internal::Type::Enum
 
@@ -394,6 +716,78 @@ module WhopSDK
           end
           def self.values
           end
+        end
+
+        # Whether the plan is visible to customers or hidden from public view.
+        module Visibility
+          extend WhopSDK::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(Symbol, WhopSDK::CheckoutConfiguration::Plan::Visibility)
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          VISIBLE =
+            T.let(
+              :visible,
+              WhopSDK::CheckoutConfiguration::Plan::Visibility::TaggedSymbol
+            )
+          HIDDEN =
+            T.let(
+              :hidden,
+              WhopSDK::CheckoutConfiguration::Plan::Visibility::TaggedSymbol
+            )
+          ARCHIVED =
+            T.let(
+              :archived,
+              WhopSDK::CheckoutConfiguration::Plan::Visibility::TaggedSymbol
+            )
+          QUICK_LINK =
+            T.let(
+              :quick_link,
+              WhopSDK::CheckoutConfiguration::Plan::Visibility::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                WhopSDK::CheckoutConfiguration::Plan::Visibility::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
+        end
+      end
+
+      # 3D Secure behavior for this checkout, or `null` to use the account default.
+      module ThreeDSLevel
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias do
+            T.all(Symbol, WhopSDK::CheckoutConfiguration::ThreeDSLevel)
+          end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        MANDATE_CHALLENGE =
+          T.let(
+            :mandate_challenge,
+            WhopSDK::CheckoutConfiguration::ThreeDSLevel::TaggedSymbol
+          )
+        FRICTIONLESS =
+          T.let(
+            :frictionless,
+            WhopSDK::CheckoutConfiguration::ThreeDSLevel::TaggedSymbol
+          )
+
+        sig do
+          override.returns(
+            T::Array[WhopSDK::CheckoutConfiguration::ThreeDSLevel::TaggedSymbol]
+          )
+        end
+        def self.values
         end
       end
     end

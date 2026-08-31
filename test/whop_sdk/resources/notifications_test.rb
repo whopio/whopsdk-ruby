@@ -7,7 +7,10 @@ class WhopSDK::Test::Resources::NotificationsTest < WhopSDK::Test::ResourceTest
     skip("Mock server tests are disabled")
 
     response =
-      @whop.notifications.create(body: {company_id: "biz_xxxxxxxxxxxxxx", content: "content", title: "title"})
+      @whop.notifications.create(
+        content: "Drop off at 4180 Burnet Rd. Plan on two days for the full coating.",
+        title: "Your ceramic coating is booked"
+      )
 
     assert_pattern do
       response => WhopSDK::Models::NotificationCreateResponse

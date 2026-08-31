@@ -3,67 +3,152 @@ module WhopSDK
     type shipment =
       {
         id: String,
-        created_at: Time,
-        delivery_estimate: Time?,
-        payment: WhopSDK::Shipment::Payment?,
-        service: String?,
-        status: WhopSDK::Models::shipment_status,
-        substatus: WhopSDK::Models::shipment_substatus?,
-        tracking_code: String,
-        updated_at: Time
+        account_id: String,
+        carrier: String?,
+        checkpoints: ::Array[WhopSDK::Shipment::Checkpoint],
+        created_at: String,
+        payment_id: String,
+        status: WhopSDK::Models::Shipment::status,
+        tracking_number: String,
+        tracking_url: String,
+        updated_at: String
       }
 
     class Shipment < WhopSDK::Internal::Type::BaseModel
       attr_accessor id: String
 
-      attr_accessor created_at: Time
+      attr_accessor account_id: String
 
-      attr_accessor delivery_estimate: Time?
+      attr_accessor carrier: String?
 
-      attr_accessor payment: WhopSDK::Shipment::Payment?
+      attr_accessor checkpoints: ::Array[WhopSDK::Shipment::Checkpoint]
 
-      attr_accessor service: String?
+      attr_accessor created_at: String
 
-      attr_accessor status: WhopSDK::Models::shipment_status
+      attr_accessor payment_id: String
 
-      attr_accessor substatus: WhopSDK::Models::shipment_substatus?
+      attr_accessor status: WhopSDK::Models::Shipment::status
 
-      attr_accessor tracking_code: String
+      attr_accessor tracking_number: String
 
-      attr_accessor updated_at: Time
+      attr_accessor tracking_url: String
+
+      attr_accessor updated_at: String
 
       def initialize: (
         id: String,
-        created_at: Time,
-        delivery_estimate: Time?,
-        payment: WhopSDK::Shipment::Payment?,
-        service: String?,
-        status: WhopSDK::Models::shipment_status,
-        substatus: WhopSDK::Models::shipment_substatus?,
-        tracking_code: String,
-        updated_at: Time
+        account_id: String,
+        carrier: String?,
+        checkpoints: ::Array[WhopSDK::Shipment::Checkpoint],
+        created_at: String,
+        payment_id: String,
+        status: WhopSDK::Models::Shipment::status,
+        tracking_number: String,
+        tracking_url: String,
+        updated_at: String
       ) -> void
 
       def to_hash: -> {
         id: String,
-        created_at: Time,
-        delivery_estimate: Time?,
-        payment: WhopSDK::Shipment::Payment?,
-        service: String?,
-        status: WhopSDK::Models::shipment_status,
-        substatus: WhopSDK::Models::shipment_substatus?,
-        tracking_code: String,
-        updated_at: Time
+        account_id: String,
+        carrier: String?,
+        checkpoints: ::Array[WhopSDK::Shipment::Checkpoint],
+        created_at: String,
+        payment_id: String,
+        status: WhopSDK::Models::Shipment::status,
+        tracking_number: String,
+        tracking_url: String,
+        updated_at: String
       }
 
-      type payment = { id: String }
+      type checkpoint =
+        {
+          location: String?,
+          message: String?,
+          status: WhopSDK::Models::Shipment::Checkpoint::status,
+          timestamp: String?
+        }
 
-      class Payment < WhopSDK::Internal::Type::BaseModel
-        attr_accessor id: String
+      class Checkpoint < WhopSDK::Internal::Type::BaseModel
+        attr_accessor location: String?
 
-        def initialize: (id: String) -> void
+        attr_accessor message: String?
 
-        def to_hash: -> { id: String }
+        attr_accessor status: WhopSDK::Models::Shipment::Checkpoint::status
+
+        attr_accessor timestamp: String?
+
+        def initialize: (
+          location: String?,
+          message: String?,
+          status: WhopSDK::Models::Shipment::Checkpoint::status,
+          timestamp: String?
+        ) -> void
+
+        def to_hash: -> {
+          location: String?,
+          message: String?,
+          status: WhopSDK::Models::Shipment::Checkpoint::status,
+          timestamp: String?
+        }
+
+        type status =
+          :unknown
+          | :pre_transit
+          | :in_transit
+          | :out_for_delivery
+          | :delivered
+          | :available_for_pickup
+          | :return_to_sender
+          | :failure
+          | :cancelled
+          | :error
+
+        module Status
+          extend WhopSDK::Internal::Type::Enum
+
+          UNKNOWN: :unknown
+          PRE_TRANSIT: :pre_transit
+          IN_TRANSIT: :in_transit
+          OUT_FOR_DELIVERY: :out_for_delivery
+          DELIVERED: :delivered
+          AVAILABLE_FOR_PICKUP: :available_for_pickup
+          RETURN_TO_SENDER: :return_to_sender
+          FAILURE: :failure
+          CANCELLED: :cancelled
+          ERROR: :error
+
+          def self?.values: -> ::Array[WhopSDK::Models::Shipment::Checkpoint::status]
+        end
+      end
+
+      type status =
+        :unknown
+        | :pre_transit
+        | :in_transit
+        | :out_for_delivery
+        | :delivered
+        | :available_for_pickup
+        | :return_to_sender
+        | :failure
+        | :cancelled
+        | :error
+
+      module Status
+        extend WhopSDK::Internal::Type::Enum
+
+        UNKNOWN: :unknown
+        PRE_TRANSIT: :pre_transit
+        IN_TRANSIT: :in_transit
+        OUT_FOR_DELIVERY: :out_for_delivery
+        DELIVERED: :delivered
+        AVAILABLE_FOR_PICKUP: :available_for_pickup
+        RETURN_TO_SENDER: :return_to_sender
+        FAILURE: :failure
+        CANCELLED: :cancelled
+        ERROR: :error
+
+        def self?.values: -> ::Array[WhopSDK::Models::Shipment::status]
       end
     end
   end

@@ -2,17 +2,24 @@ module WhopSDK
   module Models
     type product_list_params =
       {
-        company_id: String,
+        access_pass_types: ::Array[String],
+        account_id: String,
         after: String,
         before: String,
-        created_after: Time,
-        created_before: Time,
-        direction: WhopSDK::Models::direction,
+        created_after: String,
+        created_before: String,
+        direction: WhopSDK::Models::ProductListParams::direction,
         first: Integer,
+        labels: ::Array[String],
         last: Integer,
-        order: WhopSDK::Models::ProductListParams::order,
-        product_types: ::Array[WhopSDK::Models::access_pass_type],
-        visibilities: ::Array[WhopSDK::Models::visibility_filter]
+        marketplace_category_route: String,
+        order: String,
+        plan_types: ::Array[WhopSDK::Models::ProductListParams::plan_type],
+        price_maximum: Float,
+        price_minimum: Float,
+        query: String,
+        visibilities: ::Array[String],
+        api_version_date: String
       }
       & WhopSDK::Internal::Type::request_parameters
 
@@ -20,7 +27,13 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      attr_accessor company_id: String
+      attr_reader access_pass_types: ::Array[String]?
+
+      def access_pass_types=: (::Array[String]) -> ::Array[String]
+
+      attr_reader account_id: String?
+
+      def account_id=: (String) -> String
 
       attr_reader after: String?
 
@@ -30,86 +43,130 @@ module WhopSDK
 
       def before=: (String) -> String
 
-      attr_reader created_after: Time?
+      attr_reader created_after: String?
 
-      def created_after=: (Time) -> Time
+      def created_after=: (String) -> String
 
-      attr_reader created_before: Time?
+      attr_reader created_before: String?
 
-      def created_before=: (Time) -> Time
+      def created_before=: (String) -> String
 
-      attr_reader direction: WhopSDK::Models::direction?
+      attr_reader direction: WhopSDK::Models::ProductListParams::direction?
 
-      def direction=: (WhopSDK::Models::direction) -> WhopSDK::Models::direction
+      def direction=: (
+        WhopSDK::Models::ProductListParams::direction
+      ) -> WhopSDK::Models::ProductListParams::direction
 
       attr_reader first: Integer?
 
       def first=: (Integer) -> Integer
 
+      attr_reader labels: ::Array[String]?
+
+      def labels=: (::Array[String]) -> ::Array[String]
+
       attr_reader last: Integer?
 
       def last=: (Integer) -> Integer
 
-      attr_reader order: WhopSDK::Models::ProductListParams::order?
+      attr_reader marketplace_category_route: String?
 
-      def order=: (
-        WhopSDK::Models::ProductListParams::order
-      ) -> WhopSDK::Models::ProductListParams::order
+      def marketplace_category_route=: (String) -> String
 
-      attr_reader product_types: ::Array[WhopSDK::Models::access_pass_type]?
+      attr_reader order: String?
 
-      def product_types=: (
-        ::Array[WhopSDK::Models::access_pass_type]
-      ) -> ::Array[WhopSDK::Models::access_pass_type]
+      def order=: (String) -> String
 
-      attr_reader visibilities: ::Array[WhopSDK::Models::visibility_filter]?
+      attr_reader plan_types: ::Array[WhopSDK::Models::ProductListParams::plan_type]?
 
-      def visibilities=: (
-        ::Array[WhopSDK::Models::visibility_filter]
-      ) -> ::Array[WhopSDK::Models::visibility_filter]
+      def plan_types=: (
+        ::Array[WhopSDK::Models::ProductListParams::plan_type]
+      ) -> ::Array[WhopSDK::Models::ProductListParams::plan_type]
+
+      attr_reader price_maximum: Float?
+
+      def price_maximum=: (Float) -> Float
+
+      attr_reader price_minimum: Float?
+
+      def price_minimum=: (Float) -> Float
+
+      attr_reader query: String?
+
+      def query=: (String) -> String
+
+      attr_reader visibilities: ::Array[String]?
+
+      def visibilities=: (::Array[String]) -> ::Array[String]
+
+      attr_reader api_version_date: String?
+
+      def api_version_date=: (String) -> String
 
       def initialize: (
-        company_id: String,
+        ?access_pass_types: ::Array[String],
+        ?account_id: String,
         ?after: String,
         ?before: String,
-        ?created_after: Time,
-        ?created_before: Time,
-        ?direction: WhopSDK::Models::direction,
+        ?created_after: String,
+        ?created_before: String,
+        ?direction: WhopSDK::Models::ProductListParams::direction,
         ?first: Integer,
+        ?labels: ::Array[String],
         ?last: Integer,
-        ?order: WhopSDK::Models::ProductListParams::order,
-        ?product_types: ::Array[WhopSDK::Models::access_pass_type],
-        ?visibilities: ::Array[WhopSDK::Models::visibility_filter],
+        ?marketplace_category_route: String,
+        ?order: String,
+        ?plan_types: ::Array[WhopSDK::Models::ProductListParams::plan_type],
+        ?price_maximum: Float,
+        ?price_minimum: Float,
+        ?query: String,
+        ?visibilities: ::Array[String],
+        ?api_version_date: String,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
       def to_hash: -> {
-        company_id: String,
+        access_pass_types: ::Array[String],
+        account_id: String,
         after: String,
         before: String,
-        created_after: Time,
-        created_before: Time,
-        direction: WhopSDK::Models::direction,
+        created_after: String,
+        created_before: String,
+        direction: WhopSDK::Models::ProductListParams::direction,
         first: Integer,
+        labels: ::Array[String],
         last: Integer,
-        order: WhopSDK::Models::ProductListParams::order,
-        product_types: ::Array[WhopSDK::Models::access_pass_type],
-        visibilities: ::Array[WhopSDK::Models::visibility_filter],
+        marketplace_category_route: String,
+        order: String,
+        plan_types: ::Array[WhopSDK::Models::ProductListParams::plan_type],
+        price_maximum: Float,
+        price_minimum: Float,
+        query: String,
+        visibilities: ::Array[String],
+        api_version_date: String,
         request_options: WhopSDK::RequestOptions
       }
 
-      type order =
-        :active_memberships_count | :created_at | :usd_gmv | :usd_gmv_30_days
+      type direction = :asc | :desc
 
-      module Order
+      module Direction
         extend WhopSDK::Internal::Type::Enum
 
-        ACTIVE_MEMBERSHIPS_COUNT: :active_memberships_count
-        CREATED_AT: :created_at
-        USD_GMV: :usd_gmv
-        USD_GMV_30_DAYS: :usd_gmv_30_days
+        ASC: :asc
+        DESC: :desc
 
-        def self?.values: -> ::Array[WhopSDK::Models::ProductListParams::order]
+        def self?.values: -> ::Array[WhopSDK::Models::ProductListParams::direction]
+      end
+
+      type plan_type = :renewal | :one_time
+
+      module PlanType
+        extend WhopSDK::Internal::Type::Enum
+
+        RENEWAL: :renewal
+        ONE_TIME: :one_time
+
+        def self?.values: -> ::Array[WhopSDK::Models::ProductListParams::plan_type]
       end
     end
   end

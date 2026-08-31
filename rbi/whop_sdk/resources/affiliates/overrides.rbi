@@ -3,7 +3,6 @@
 module WhopSDK
   module Resources
     class Affiliates
-      # Affiliates
       class Overrides
         # Creates a commission override for an affiliate.
         #

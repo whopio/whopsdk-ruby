@@ -1,36 +1,6 @@
 module WhopSDK
   module Resources
     class Withdrawals
-      def create: (
-        amount: Float,
-        company_id: String,
-        currency: WhopSDK::Models::currency,
-        ?acknowledge_bank_warning: bool?,
-        ?idempotency_key: String?,
-        ?payout_method_id: String?,
-        ?platform_covers_fees: bool?,
-        ?speed: WhopSDK::Models::withdrawal_speeds?,
-        ?statement_descriptor: String?,
-        ?request_options: WhopSDK::request_opts
-      ) -> WhopSDK::Withdrawal
-
-      def retrieve: (
-        String id,
-        ?request_options: WhopSDK::request_opts
-      ) -> WhopSDK::Withdrawal
-
-      def list: (
-        company_id: String,
-        ?after: String,
-        ?before: String,
-        ?created_after: Time,
-        ?created_before: Time,
-        ?direction: WhopSDK::Models::direction,
-        ?first: Integer,
-        ?last: Integer,
-        ?request_options: WhopSDK::request_opts
-      ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::WithdrawalListResponse]
-
       def initialize: (client: WhopSDK::Client) -> void
     end
   end

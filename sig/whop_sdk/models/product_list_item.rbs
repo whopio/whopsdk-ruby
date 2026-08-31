@@ -3,24 +3,34 @@ module WhopSDK
     type product_list_item =
       {
         id: String,
-        created_at: Time,
+        account: top?,
+        created_at: String,
+        default_plan: WhopSDK::ProductListItem::DefaultPlan?,
+        description: String?,
         external_identifier: String?,
         gallery_images: ::Array[WhopSDK::ProductListItem::GalleryImage],
         headline: String?,
-        member_count: Integer,
-        metadata: ::Hash[Symbol, top]?,
-        published_reviews_count: Integer,
+        labels: ::Array[String],
+        member_count: Float,
+        metadata: top?,
+        published_reviews_count: Float,
         route: String,
         title: String,
-        updated_at: Time,
+        updated_at: String,
         verified: bool,
-        visibility: WhopSDK::Models::visibility
+        visibility: String?
       }
 
     class ProductListItem < WhopSDK::Internal::Type::BaseModel
       attr_accessor id: String
 
-      attr_accessor created_at: Time
+      attr_accessor account: top?
+
+      attr_accessor created_at: String
+
+      attr_accessor default_plan: WhopSDK::ProductListItem::DefaultPlan?
+
+      attr_accessor description: String?
 
       attr_accessor external_identifier: String?
 
@@ -28,53 +38,208 @@ module WhopSDK
 
       attr_accessor headline: String?
 
-      attr_accessor member_count: Integer
+      attr_accessor labels: ::Array[String]
 
-      attr_accessor metadata: ::Hash[Symbol, top]?
+      attr_accessor member_count: Float
 
-      attr_accessor published_reviews_count: Integer
+      attr_accessor metadata: top?
+
+      attr_accessor published_reviews_count: Float
 
       attr_accessor route: String
 
       attr_accessor title: String
 
-      attr_accessor updated_at: Time
+      attr_accessor updated_at: String
 
       attr_accessor verified: bool
 
-      attr_accessor visibility: WhopSDK::Models::visibility
+      attr_accessor visibility: String?
 
       def initialize: (
         id: String,
-        created_at: Time,
+        account: top?,
+        created_at: String,
+        default_plan: WhopSDK::ProductListItem::DefaultPlan?,
+        description: String?,
         external_identifier: String?,
         gallery_images: ::Array[WhopSDK::ProductListItem::GalleryImage],
         headline: String?,
-        member_count: Integer,
-        metadata: ::Hash[Symbol, top]?,
-        published_reviews_count: Integer,
+        labels: ::Array[String],
+        member_count: Float,
+        metadata: top?,
+        published_reviews_count: Float,
         route: String,
         title: String,
-        updated_at: Time,
+        updated_at: String,
         verified: bool,
-        visibility: WhopSDK::Models::visibility
+        visibility: String?
       ) -> void
 
       def to_hash: -> {
         id: String,
-        created_at: Time,
+        account: top?,
+        created_at: String,
+        default_plan: WhopSDK::ProductListItem::DefaultPlan?,
+        description: String?,
         external_identifier: String?,
         gallery_images: ::Array[WhopSDK::ProductListItem::GalleryImage],
         headline: String?,
-        member_count: Integer,
-        metadata: ::Hash[Symbol, top]?,
-        published_reviews_count: Integer,
+        labels: ::Array[String],
+        member_count: Float,
+        metadata: top?,
+        published_reviews_count: Float,
         route: String,
         title: String,
-        updated_at: Time,
+        updated_at: String,
         verified: bool,
-        visibility: WhopSDK::Models::visibility
+        visibility: String?
       }
+
+      type default_plan =
+        {
+          id: String,
+          billing_period: Float?,
+          expiration_days: Float?,
+          initial_price: WhopSDK::ProductListItem::DefaultPlan::InitialPrice,
+          plan_type: WhopSDK::Models::ProductListItem::DefaultPlan::plan_type,
+          renewal_price: WhopSDK::ProductListItem::DefaultPlan::RenewalPrice,
+          title: String?,
+          unlimited_stock: bool,
+          visibility: WhopSDK::Models::ProductListItem::DefaultPlan::visibility
+        }
+
+      class DefaultPlan < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor billing_period: Float?
+
+        attr_accessor expiration_days: Float?
+
+        attr_accessor initial_price: WhopSDK::ProductListItem::DefaultPlan::InitialPrice
+
+        attr_accessor plan_type: WhopSDK::Models::ProductListItem::DefaultPlan::plan_type
+
+        attr_accessor renewal_price: WhopSDK::ProductListItem::DefaultPlan::RenewalPrice
+
+        attr_accessor title: String?
+
+        attr_accessor unlimited_stock: bool
+
+        attr_accessor visibility: WhopSDK::Models::ProductListItem::DefaultPlan::visibility
+
+        def initialize: (
+          id: String,
+          billing_period: Float?,
+          expiration_days: Float?,
+          initial_price: WhopSDK::ProductListItem::DefaultPlan::InitialPrice,
+          plan_type: WhopSDK::Models::ProductListItem::DefaultPlan::plan_type,
+          renewal_price: WhopSDK::ProductListItem::DefaultPlan::RenewalPrice,
+          title: String?,
+          unlimited_stock: bool,
+          visibility: WhopSDK::Models::ProductListItem::DefaultPlan::visibility
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          billing_period: Float?,
+          expiration_days: Float?,
+          initial_price: WhopSDK::ProductListItem::DefaultPlan::InitialPrice,
+          plan_type: WhopSDK::Models::ProductListItem::DefaultPlan::plan_type,
+          renewal_price: WhopSDK::ProductListItem::DefaultPlan::RenewalPrice,
+          title: String?,
+          unlimited_stock: bool,
+          visibility: WhopSDK::Models::ProductListItem::DefaultPlan::visibility
+        }
+
+        type initial_price =
+          {
+            amount: String,
+            currency: String,
+            decimals: Integer,
+            display_decimals: Integer
+          }
+
+        class InitialPrice < WhopSDK::Internal::Type::BaseModel
+          attr_accessor amount: String
+
+          attr_accessor currency: String
+
+          attr_accessor decimals: Integer
+
+          attr_accessor display_decimals: Integer
+
+          def initialize: (
+            amount: String,
+            currency: String,
+            decimals: Integer,
+            display_decimals: Integer
+          ) -> void
+
+          def to_hash: -> {
+            amount: String,
+            currency: String,
+            decimals: Integer,
+            display_decimals: Integer
+          }
+        end
+
+        type plan_type = :renewal | :one_time
+
+        module PlanType
+          extend WhopSDK::Internal::Type::Enum
+
+          RENEWAL: :renewal
+          ONE_TIME: :one_time
+
+          def self?.values: -> ::Array[WhopSDK::Models::ProductListItem::DefaultPlan::plan_type]
+        end
+
+        type renewal_price =
+          {
+            amount: String,
+            currency: String,
+            decimals: Integer,
+            display_decimals: Integer
+          }
+
+        class RenewalPrice < WhopSDK::Internal::Type::BaseModel
+          attr_accessor amount: String
+
+          attr_accessor currency: String
+
+          attr_accessor decimals: Integer
+
+          attr_accessor display_decimals: Integer
+
+          def initialize: (
+            amount: String,
+            currency: String,
+            decimals: Integer,
+            display_decimals: Integer
+          ) -> void
+
+          def to_hash: -> {
+            amount: String,
+            currency: String,
+            decimals: Integer,
+            display_decimals: Integer
+          }
+        end
+
+        type visibility = :visible | :hidden | :archived | :quick_link
+
+        module Visibility
+          extend WhopSDK::Internal::Type::Enum
+
+          VISIBLE: :visible
+          HIDDEN: :hidden
+          ARCHIVED: :archived
+          QUICK_LINK: :quick_link
+
+          def self?.values: -> ::Array[WhopSDK::Models::ProductListItem::DefaultPlan::visibility]
+        end
+      end
 
       type gallery_image = { id: String, content_type: String?, url: String? }
 

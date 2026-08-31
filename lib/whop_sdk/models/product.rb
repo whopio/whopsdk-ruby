@@ -4,363 +4,525 @@ module WhopSDK
   module Models
     class Product < WhopSDK::Internal::Type::BaseModel
       # @!attribute id
-      #   The unique identifier for the product.
+      #   Product ID, prefixed `prod_`.
       #
       #   @return [String]
       required :id, String
 
-      # @!attribute company
-      #   The company this product belongs to.
+      # @!attribute account
+      #   Account that sells this product.
       #
-      #   @return [WhopSDK::Models::Product::Company]
-      required :company, -> { WhopSDK::Product::Company }
+      #   @return [Object, nil]
+      required :account, WhopSDK::Internal::Type::Unknown, nil?: true
 
       # @!attribute created_at
-      #   The datetime the product was created.
+      #   When the product was created, as an ISO 8601 timestamp.
       #
-      #   @return [Time]
-      required :created_at, Time
+      #   @return [String]
+      required :created_at, String
 
       # @!attribute custom_cta
       #   Call-to-action button label shown on the product purchase page.
       #
-      #   @return [Symbol, WhopSDK::Models::CustomCta]
-      required :custom_cta, enum: -> { WhopSDK::CustomCta }
+      #   @return [Symbol, WhopSDK::Models::Product::CustomCta, nil]
+      required :custom_cta, enum: -> { WhopSDK::Product::CustomCta }, nil?: true
 
       # @!attribute custom_cta_url
-      #   An optional URL that the call-to-action button links to instead of the default
-      #   checkout flow. Null if no custom URL is set.
+      #   URL the call-to-action button links to instead of checkout.
       #
       #   @return [String, nil]
       required :custom_cta_url, String, nil?: true
 
       # @!attribute custom_statement_descriptor
-      #   Custom bank statement descriptor for product purchases. Maximum 22 characters,
-      #   including required `WHOP*` prefix.
+      #   Custom text label on customer's bank statement.
       #
       #   @return [String, nil]
       required :custom_statement_descriptor, String, nil?: true
 
+      # @!attribute default_plan
+      #   Buyable plan to show and check out with. The configured default when that plan
+      #   is buyable, otherwise the first buyable plan in product-page order. `null` when
+      #   none is buyable.
+      #
+      #   @return [WhopSDK::Models::Product::DefaultPlan, nil]
+      required :default_plan, -> { WhopSDK::Product::DefaultPlan }, nil?: true
+
       # @!attribute description
-      #   A brief summary of what the product offers, displayed on product pages and
-      #   search results.
+      #   Written description displayed on the product page. `null` if none is set.
       #
       #   @return [String, nil]
       required :description, String, nil?: true
 
       # @!attribute external_identifier
-      #   External identifier for the product. Providing it on a product creation endpoint
-      #   updates the existing product with this identifier instead of creating a new one.
+      #   External identifier stored on the product for your own reference.
       #
       #   @return [String, nil]
       required :external_identifier, String, nil?: true
 
       # @!attribute gallery_images
-      #   The gallery images for this product, ordered by position.
       #
       #   @return [Array<WhopSDK::Models::Product::GalleryImage>]
       required :gallery_images, -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::Product::GalleryImage] }
 
       # @!attribute global_affiliate_percentage
-      #   Marketplace affiliate commission percentage for this product, or `null` if
-      #   program is inactive.
+      #   Commission rate affiliates earn through the global affiliate program.
       #
       #   @return [Float, nil]
       required :global_affiliate_percentage, Float, nil?: true
 
       # @!attribute global_affiliate_status
-      #   The enrollment status of this product in the Whop marketplace global affiliate
-      #   program.
+      #   Enrollment status in the global affiliate program.
       #
-      #   @return [Symbol, WhopSDK::Models::GlobalAffiliateStatus]
-      required :global_affiliate_status, enum: -> { WhopSDK::GlobalAffiliateStatus }
+      #   @return [Symbol, WhopSDK::Models::Product::GlobalAffiliateStatus, nil]
+      required :global_affiliate_status, enum: -> { WhopSDK::Product::GlobalAffiliateStatus }, nil?: true
 
       # @!attribute headline
-      #   A short marketing headline displayed prominently on the product's product page.
+      #   Short marketing headline displayed on product page.
       #
       #   @return [String, nil]
       required :headline, String, nil?: true
 
+      # @!attribute labels
+      #
+      #   @return [Array<String>]
+      required :labels, WhopSDK::Internal::Type::ArrayOf[String]
+
+      # @!attribute marketplace_status
+      #   Listing state on the whop.com marketplace. `pending_review` means submitted and
+      #   awaiting review; `live_marketplace` means approved and discoverable.
+      #
+      #   @return [Symbol, WhopSDK::Models::Product::MarketplaceStatus]
+      required :marketplace_status, enum: -> { WhopSDK::Product::MarketplaceStatus }
+
       # @!attribute member_affiliate_percentage
-      #   Member referral commission percentage for this product, or `null` if program is
-      #   inactive.
+      #   Commission rate members earn through the member affiliate program.
       #
       #   @return [Float, nil]
       required :member_affiliate_percentage, Float, nil?: true
 
       # @!attribute member_affiliate_status
-      #   The enrollment status of this product in the member affiliate program.
+      #   Enrollment status in the member affiliate program.
       #
-      #   @return [Symbol, WhopSDK::Models::GlobalAffiliateStatus]
-      required :member_affiliate_status, enum: -> { WhopSDK::GlobalAffiliateStatus }
+      #   @return [Symbol, WhopSDK::Models::Product::MemberAffiliateStatus, nil]
+      required :member_affiliate_status, enum: -> { WhopSDK::Product::MemberAffiliateStatus }, nil?: true
 
       # @!attribute member_count
-      #   Active memberships for this product. Returns `0` if the account has disabled
-      #   public member counts.
+      #   Active memberships for this product; 0 if public member counts are disabled.
       #
-      #   @return [Integer]
-      required :member_count, Integer
+      #   @return [Float]
+      required :member_count, Float
 
       # @!attribute metadata
-      #   Custom key-value pairs stored on the product and included in payment and
-      #   membership webhook payloads. Max 50 keys, 100 characters per key, 500 characters
-      #   per string value.
+      #   Custom key-value pairs stored on the product.
       #
-      #   @return [Hash{Symbol=>Object}, nil]
-      required :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown], nil?: true
+      #   @return [Object, nil]
+      required :metadata, WhopSDK::Internal::Type::Unknown, nil?: true
 
       # @!attribute owner_user
-      #   The user who owns the company that sells this product.
+      #   User who owns the account selling this product.
       #
-      #   @return [WhopSDK::Models::Product::OwnerUser]
-      required :owner_user, -> { WhopSDK::Product::OwnerUser }
+      #   @return [Object, nil]
+      required :owner_user, WhopSDK::Internal::Type::Unknown, nil?: true
 
       # @!attribute product_tax_code
-      #   The tax classification code applied to purchases of this product for sales tax
-      #   calculation. Null if no tax code is assigned.
+      #   Tax classification code for this product, or `null` if no tax code is set.
       #
-      #   @return [WhopSDK::Models::Product::ProductTaxCode, nil]
-      required :product_tax_code, -> { WhopSDK::Product::ProductTaxCode }, nil?: true
+      #   @return [Object, nil]
+      required :product_tax_code, WhopSDK::Internal::Type::Unknown, nil?: true
 
       # @!attribute published_reviews_count
-      #   The total number of published customer reviews for this product's company.
+      #   Published customer reviews for this product.
       #
-      #   @return [Integer]
-      required :published_reviews_count, Integer
+      #   @return [Float]
+      required :published_reviews_count, Float
 
       # @!attribute route
-      #   URL slug in the product's public link, e.g. `pickaxe-analytics` in
-      #   whop.com/company/pickaxe-analytics.
+      #   URL slug for the product's public link.
       #
       #   @return [String]
       required :route, String
 
       # @!attribute title
-      #   The display name of the product shown to customers on the product page and in
-      #   search results.
+      #   Product display name shown to customers.
       #
       #   @return [String]
       required :title, String
 
       # @!attribute updated_at
-      #   The datetime the product was last updated.
+      #   When the product was last updated, as an ISO 8601 timestamp.
       #
-      #   @return [Time]
-      required :updated_at, Time
+      #   @return [String]
+      required :updated_at, String
 
       # @!attribute verified
-      #   Whether this company has been verified by Whop's trust and safety team.
+      #   Whether the product has been verified by Whop.
       #
       #   @return [Boolean]
       required :verified, WhopSDK::Internal::Type::Boolean
 
       # @!attribute visibility
-      #   Controls whether the product is visible to customers. When set to 'hidden', the
-      #   product is only accessible via direct link.
+      #   Whether the product is publicly visible, hidden, or archived.
       #
-      #   @return [Symbol, WhopSDK::Models::Visibility]
-      required :visibility, enum: -> { WhopSDK::Visibility }
+      #   @return [String, nil]
+      required :visibility, String, nil?: true
 
-      # @!method initialize(id:, company:, created_at:, custom_cta:, custom_cta_url:, custom_statement_descriptor:, description:, external_identifier:, gallery_images:, global_affiliate_percentage:, global_affiliate_status:, headline:, member_affiliate_percentage:, member_affiliate_status:, member_count:, metadata:, owner_user:, product_tax_code:, published_reviews_count:, route:, title:, updated_at:, verified:, visibility:)
+      # @!method initialize(id:, account:, created_at:, custom_cta:, custom_cta_url:, custom_statement_descriptor:, default_plan:, description:, external_identifier:, gallery_images:, global_affiliate_percentage:, global_affiliate_status:, headline:, labels:, marketplace_status:, member_affiliate_percentage:, member_affiliate_status:, member_count:, metadata:, owner_user:, product_tax_code:, published_reviews_count:, route:, title:, updated_at:, verified:, visibility:)
       #   Some parameter documentations has been truncated, see {WhopSDK::Models::Product}
       #   for more details.
       #
-      #   A product is a digital good or service sold on Whop. Products contain plans for
-      #   pricing and experiences for content delivery.
+      #   @param id [String] Product ID, prefixed `prod_`.
       #
-      #   @param id [String] The unique identifier for the product.
+      #   @param account [Object, nil] Account that sells this product.
       #
-      #   @param company [WhopSDK::Models::Product::Company] The company this product belongs to.
+      #   @param created_at [String] When the product was created, as an ISO 8601 timestamp.
       #
-      #   @param created_at [Time] The datetime the product was created.
+      #   @param custom_cta [Symbol, WhopSDK::Models::Product::CustomCta, nil] Call-to-action button label shown on the product purchase page.
       #
-      #   @param custom_cta [Symbol, WhopSDK::Models::CustomCta] Call-to-action button label shown on the product purchase page.
+      #   @param custom_cta_url [String, nil] URL the call-to-action button links to instead of checkout.
       #
-      #   @param custom_cta_url [String, nil] An optional URL that the call-to-action button links to instead of the default c
+      #   @param custom_statement_descriptor [String, nil] Custom text label on customer's bank statement.
       #
-      #   @param custom_statement_descriptor [String, nil] Custom bank statement descriptor for product purchases. Maximum 22 characters, i
+      #   @param default_plan [WhopSDK::Models::Product::DefaultPlan, nil] Buyable plan to show and check out with. The configured default when that plan i
       #
-      #   @param description [String, nil] A brief summary of what the product offers, displayed on product pages and searc
+      #   @param description [String, nil] Written description displayed on the product page. `null` if none is set.
       #
-      #   @param external_identifier [String, nil] External identifier for the product. Providing it on a product creation endpoint
+      #   @param external_identifier [String, nil] External identifier stored on the product for your own reference.
       #
-      #   @param gallery_images [Array<WhopSDK::Models::Product::GalleryImage>] The gallery images for this product, ordered by position.
+      #   @param gallery_images [Array<WhopSDK::Models::Product::GalleryImage>]
       #
-      #   @param global_affiliate_percentage [Float, nil] Marketplace affiliate commission percentage for this product, or `null` if progr
+      #   @param global_affiliate_percentage [Float, nil] Commission rate affiliates earn through the global affiliate program.
       #
-      #   @param global_affiliate_status [Symbol, WhopSDK::Models::GlobalAffiliateStatus] The enrollment status of this product in the Whop marketplace global affiliate p
+      #   @param global_affiliate_status [Symbol, WhopSDK::Models::Product::GlobalAffiliateStatus, nil] Enrollment status in the global affiliate program.
       #
-      #   @param headline [String, nil] A short marketing headline displayed prominently on the product's product page.
+      #   @param headline [String, nil] Short marketing headline displayed on product page.
       #
-      #   @param member_affiliate_percentage [Float, nil] Member referral commission percentage for this product, or `null` if program is
+      #   @param labels [Array<String>]
       #
-      #   @param member_affiliate_status [Symbol, WhopSDK::Models::GlobalAffiliateStatus] The enrollment status of this product in the member affiliate program.
+      #   @param marketplace_status [Symbol, WhopSDK::Models::Product::MarketplaceStatus] Listing state on the whop.com marketplace. `pending_review` means submitted and
       #
-      #   @param member_count [Integer] Active memberships for this product. Returns `0` if the account has disabled pub
+      #   @param member_affiliate_percentage [Float, nil] Commission rate members earn through the member affiliate program.
       #
-      #   @param metadata [Hash{Symbol=>Object}, nil] Custom key-value pairs stored on the product and included in payment and members
+      #   @param member_affiliate_status [Symbol, WhopSDK::Models::Product::MemberAffiliateStatus, nil] Enrollment status in the member affiliate program.
       #
-      #   @param owner_user [WhopSDK::Models::Product::OwnerUser] The user who owns the company that sells this product.
+      #   @param member_count [Float] Active memberships for this product; 0 if public member counts are disabled.
       #
-      #   @param product_tax_code [WhopSDK::Models::Product::ProductTaxCode, nil] The tax classification code applied to purchases of this product for sales tax c
+      #   @param metadata [Object, nil] Custom key-value pairs stored on the product.
       #
-      #   @param published_reviews_count [Integer] The total number of published customer reviews for this product's company.
+      #   @param owner_user [Object, nil] User who owns the account selling this product.
       #
-      #   @param route [String] URL slug in the product's public link, e.g. `pickaxe-analytics` in whop.com/comp
+      #   @param product_tax_code [Object, nil] Tax classification code for this product, or `null` if no tax code is set.
       #
-      #   @param title [String] The display name of the product shown to customers on the product page and in se
+      #   @param published_reviews_count [Float] Published customer reviews for this product.
       #
-      #   @param updated_at [Time] The datetime the product was last updated.
+      #   @param route [String] URL slug for the product's public link.
       #
-      #   @param verified [Boolean] Whether this company has been verified by Whop's trust and safety team.
+      #   @param title [String] Product display name shown to customers.
       #
-      #   @param visibility [Symbol, WhopSDK::Models::Visibility] Controls whether the product is visible to customers. When set to 'hidden', the
+      #   @param updated_at [String] When the product was last updated, as an ISO 8601 timestamp.
+      #
+      #   @param verified [Boolean] Whether the product has been verified by Whop.
+      #
+      #   @param visibility [String, nil] Whether the product is publicly visible, hidden, or archived.
 
-      # @see WhopSDK::Models::Product#company
-      class Company < WhopSDK::Internal::Type::BaseModel
+      # Call-to-action button label shown on the product purchase page.
+      #
+      # @see WhopSDK::Models::Product#custom_cta
+      module CustomCta
+        extend WhopSDK::Internal::Type::Enum
+
+        GET_ACCESS = :get_access
+        JOIN = :join
+        ORDER_NOW = :order_now
+        SHOP_NOW = :shop_now
+        CALL_NOW = :call_now
+        DONATE_NOW = :donate_now
+        CONTACT_US = :contact_us
+        SIGN_UP = :sign_up
+        SUBSCRIBE = :subscribe
+        PURCHASE = :purchase
+        GET_OFFER = :get_offer
+        APPLY_NOW = :apply_now
+        COMPLETE_ORDER = :complete_order
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
+
+      # @see WhopSDK::Models::Product#default_plan
+      class DefaultPlan < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The unique identifier for the company.
+        #   Plan ID, prefixed `plan_`.
         #
         #   @return [String]
         required :id, String
 
-        # @!attribute route
-        #   URL slug for the account's store page, e.g. `pickaxe` in whop.com/pickaxe.
+        # @!attribute billing_period
+        #   Number of days between recurring charges, such as 30 for monthly or 365 for
+        #   annual. `null` for one-time plans.
         #
-        #   @return [String]
-        required :route, String
+        #   @return [Float, nil]
+        required :billing_period, Float, nil?: true
+
+        # @!attribute expiration_days
+        #   Access duration in days for expiration-based plans. `null` for plans without an
+        #   expiration.
+        #
+        #   @return [Float, nil]
+        required :expiration_days, Float, nil?: true
+
+        # @!attribute initial_price
+        #   What checkout charges up front. `amount` is `"0.00"` when the first charge is
+        #   free, such as a trial.
+        #
+        #   @return [WhopSDK::Models::Product::DefaultPlan::InitialPrice]
+        required :initial_price, -> { WhopSDK::Product::DefaultPlan::InitialPrice }
+
+        # @!attribute plan_type
+        #   Billing model for this plan: `one_time` or `renewal`.
+        #
+        #   @return [Symbol, WhopSDK::Models::Product::DefaultPlan::PlanType]
+        required :plan_type, enum: -> { WhopSDK::Product::DefaultPlan::PlanType }
+
+        # @!attribute renewal_price
+        #   The recurring charge every `billing_period` days. `amount` is `"0.00"` for
+        #   one-time plans.
+        #
+        #   @return [WhopSDK::Models::Product::DefaultPlan::RenewalPrice]
+        required :renewal_price, -> { WhopSDK::Product::DefaultPlan::RenewalPrice }
 
         # @!attribute title
-        #   The display name of the company shown to customers.
+        #   Plan display name shown to customers. `null` if no title has been set.
         #
-        #   @return [String]
-        required :title, String
+        #   @return [String, nil]
+        required :title, String, nil?: true
 
-        # @!method initialize(id:, route:, title:)
-        #   The company this product belongs to.
+        # @!attribute unlimited_stock
+        #   Whether the plan has unlimited stock.
         #
-        #   @param id [String] The unique identifier for the company.
+        #   @return [Boolean]
+        required :unlimited_stock, WhopSDK::Internal::Type::Boolean
+
+        # @!attribute visibility
+        #   Where this plan can be seen. `visible` plans appear on the product page.
         #
-        #   @param route [String] URL slug for the account's store page, e.g. `pickaxe` in whop.com/pickaxe.
+        #   @return [Symbol, WhopSDK::Models::Product::DefaultPlan::Visibility]
+        required :visibility, enum: -> { WhopSDK::Product::DefaultPlan::Visibility }
+
+        # @!method initialize(id:, billing_period:, expiration_days:, initial_price:, plan_type:, renewal_price:, title:, unlimited_stock:, visibility:)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::Product::DefaultPlan} for more details.
         #
-        #   @param title [String] The display name of the company shown to customers.
+        #   Buyable plan to show and check out with. The configured default when that plan
+        #   is buyable, otherwise the first buyable plan in product-page order. `null` when
+        #   none is buyable.
+        #
+        #   @param id [String] Plan ID, prefixed `plan_`.
+        #
+        #   @param billing_period [Float, nil] Number of days between recurring charges, such as 30 for monthly or 365 for annu
+        #
+        #   @param expiration_days [Float, nil] Access duration in days for expiration-based plans. `null` for plans without an
+        #
+        #   @param initial_price [WhopSDK::Models::Product::DefaultPlan::InitialPrice] What checkout charges up front. `amount` is `"0.00"` when the first charge is fr
+        #
+        #   @param plan_type [Symbol, WhopSDK::Models::Product::DefaultPlan::PlanType] Billing model for this plan: `one_time` or `renewal`.
+        #
+        #   @param renewal_price [WhopSDK::Models::Product::DefaultPlan::RenewalPrice] The recurring charge every `billing_period` days. `amount` is `"0.00"` for one-t
+        #
+        #   @param title [String, nil] Plan display name shown to customers. `null` if no title has been set.
+        #
+        #   @param unlimited_stock [Boolean] Whether the plan has unlimited stock.
+        #
+        #   @param visibility [Symbol, WhopSDK::Models::Product::DefaultPlan::Visibility] Where this plan can be seen. `visible` plans appear on the product page.
+
+        # @see WhopSDK::Models::Product::DefaultPlan#initial_price
+        class InitialPrice < WhopSDK::Internal::Type::BaseModel
+          # @!attribute amount
+          #   The amount in major units, as an exact decimal string — `"10.00"` is ten
+          #   dollars. A string so no float rounds it in transit.
+          #
+          #   @return [String]
+          required :amount, String
+
+          # @!attribute currency
+          #   Three-letter ISO 4217 currency code, lowercase.
+          #
+          #   @return [String]
+          required :currency, String
+
+          # @!attribute decimals
+          #   How many decimal places the amount CARRIES — the precision the charge itself
+          #   runs at.
+          #
+          #   @return [Integer]
+          required :decimals, Integer
+
+          # @!attribute display_decimals
+          #   How many decimal places to SHOW. Usually equal to `decimals`, and deliberately
+          #   not always: COP is charged in centavos but written in whole pesos, so it is `2`
+          #   and `0`. Format the number in your own locale using this.
+          #
+          #   @return [Integer]
+          required :display_decimals, Integer
+
+          # @!method initialize(amount:, currency:, decimals:, display_decimals:)
+          #   Some parameter documentations has been truncated, see
+          #   {WhopSDK::Models::Product::DefaultPlan::InitialPrice} for more details.
+          #
+          #   What checkout charges up front. `amount` is `"0.00"` when the first charge is
+          #   free, such as a trial.
+          #
+          #   @param amount [String] The amount in major units, as an exact decimal string — `"10.00"` is ten dollars
+          #
+          #   @param currency [String] Three-letter ISO 4217 currency code, lowercase.
+          #
+          #   @param decimals [Integer] How many decimal places the amount CARRIES — the precision the charge itself run
+          #
+          #   @param display_decimals [Integer] How many decimal places to SHOW. Usually equal to `decimals`, and deliberately n
+        end
+
+        # Billing model for this plan: `one_time` or `renewal`.
+        #
+        # @see WhopSDK::Models::Product::DefaultPlan#plan_type
+        module PlanType
+          extend WhopSDK::Internal::Type::Enum
+
+          RENEWAL = :renewal
+          ONE_TIME = :one_time
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
+
+        # @see WhopSDK::Models::Product::DefaultPlan#renewal_price
+        class RenewalPrice < WhopSDK::Internal::Type::BaseModel
+          # @!attribute amount
+          #   The amount in major units, as an exact decimal string — `"10.00"` is ten
+          #   dollars. A string so no float rounds it in transit.
+          #
+          #   @return [String]
+          required :amount, String
+
+          # @!attribute currency
+          #   Three-letter ISO 4217 currency code, lowercase.
+          #
+          #   @return [String]
+          required :currency, String
+
+          # @!attribute decimals
+          #   How many decimal places the amount CARRIES — the precision the charge itself
+          #   runs at.
+          #
+          #   @return [Integer]
+          required :decimals, Integer
+
+          # @!attribute display_decimals
+          #   How many decimal places to SHOW. Usually equal to `decimals`, and deliberately
+          #   not always: COP is charged in centavos but written in whole pesos, so it is `2`
+          #   and `0`. Format the number in your own locale using this.
+          #
+          #   @return [Integer]
+          required :display_decimals, Integer
+
+          # @!method initialize(amount:, currency:, decimals:, display_decimals:)
+          #   Some parameter documentations has been truncated, see
+          #   {WhopSDK::Models::Product::DefaultPlan::RenewalPrice} for more details.
+          #
+          #   The recurring charge every `billing_period` days. `amount` is `"0.00"` for
+          #   one-time plans.
+          #
+          #   @param amount [String] The amount in major units, as an exact decimal string — `"10.00"` is ten dollars
+          #
+          #   @param currency [String] Three-letter ISO 4217 currency code, lowercase.
+          #
+          #   @param decimals [Integer] How many decimal places the amount CARRIES — the precision the charge itself run
+          #
+          #   @param display_decimals [Integer] How many decimal places to SHOW. Usually equal to `decimals`, and deliberately n
+        end
+
+        # Where this plan can be seen. `visible` plans appear on the product page.
+        #
+        # @see WhopSDK::Models::Product::DefaultPlan#visibility
+        module Visibility
+          extend WhopSDK::Internal::Type::Enum
+
+          VISIBLE = :visible
+          HIDDEN = :hidden
+          ARCHIVED = :archived
+          QUICK_LINK = :quick_link
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
       end
 
       class GalleryImage < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   Represents a unique identifier that is Base64 obfuscated. It is often used to
-        #   refetch an object or as key for a cache. The ID type appears in a JSON response
-        #   as a String; however, it is not intended to be human-readable. When expected as
-        #   an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
-        #   input value will be accepted as an ID.
+        #   Gallery image ID.
         #
         #   @return [String]
         required :id, String
 
         # @!attribute content_type
-        #   Uploaded file MIME type, such as image/jpeg, video/mp4, or audio/mpeg.
+        #   Uploaded file MIME type, such as image/jpeg.
         #
         #   @return [String, nil]
         required :content_type, String, nil?: true
 
         # @!attribute url
-        #   A pre-optimized URL for rendering this attachment on the client. This should be
-        #   used for displaying attachments in apps.
+        #   Pre-optimized URL for rendering this image on the client.
         #
         #   @return [String, nil]
         required :url, String, nil?: true
 
         # @!method initialize(id:, content_type:, url:)
-        #   Some parameter documentations has been truncated, see
-        #   {WhopSDK::Models::Product::GalleryImage} for more details.
+        #   Gallery images for this product, ordered by position.
         #
-        #   Represents an image attachment
+        #   @param id [String] Gallery image ID.
         #
-        #   @param id [String] Represents a unique identifier that is Base64 obfuscated. It is often used to re
+        #   @param content_type [String, nil] Uploaded file MIME type, such as image/jpeg.
         #
-        #   @param content_type [String, nil] Uploaded file MIME type, such as image/jpeg, video/mp4, or audio/mpeg.
-        #
-        #   @param url [String, nil] A pre-optimized URL for rendering this attachment on the client. This should be
+        #   @param url [String, nil] Pre-optimized URL for rendering this image on the client.
       end
 
-      # @see WhopSDK::Models::Product#owner_user
-      class OwnerUser < WhopSDK::Internal::Type::BaseModel
-        # @!attribute id
-        #   The unique identifier for the user.
-        #
-        #   @return [String]
-        required :id, String
+      # Enrollment status in the global affiliate program.
+      #
+      # @see WhopSDK::Models::Product#global_affiliate_status
+      module GlobalAffiliateStatus
+        extend WhopSDK::Internal::Type::Enum
 
-        # @!attribute name
-        #   The user's display name shown on their public profile.
-        #
-        #   @return [String, nil]
-        required :name, String, nil?: true
+        ENABLED = :enabled
+        DISABLED = :disabled
 
-        # @!attribute username
-        #   The user's unique username shown on their public profile.
-        #
-        #   @return [String]
-        required :username, String
-
-        # @!method initialize(id:, name:, username:)
-        #   The user who owns the company that sells this product.
-        #
-        #   @param id [String] The unique identifier for the user.
-        #
-        #   @param name [String, nil] The user's display name shown on their public profile.
-        #
-        #   @param username [String] The user's unique username shown on their public profile.
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
-      # @see WhopSDK::Models::Product#product_tax_code
-      class ProductTaxCode < WhopSDK::Internal::Type::BaseModel
-        # @!attribute id
-        #   The unique identifier for the product tax code.
-        #
-        #   @return [String]
-        required :id, String
+      # Listing state on the whop.com marketplace. `pending_review` means submitted and
+      # awaiting review; `live_marketplace` means approved and discoverable.
+      #
+      # @see WhopSDK::Models::Product#marketplace_status
+      module MarketplaceStatus
+        extend WhopSDK::Internal::Type::Enum
 
-        # @!attribute name
-        #   Human-readable name of this tax classification, such as 'Digital - SaaS'.
-        #
-        #   @return [String]
-        required :name, String
+        NOT_AVAILABLE = :not_available
+        PENDING_REVIEW = :pending_review
+        LIVE_MARKETPLACE = :live_marketplace
 
-        # @!attribute product_type
-        #   Broad product category this tax code covers, such as physical goods or digital
-        #   services.
-        #
-        #   @return [Symbol, WhopSDK::Models::Product::ProductTaxCode::ProductType]
-        required :product_type, enum: -> { WhopSDK::Product::ProductTaxCode::ProductType }
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
 
-        # @!method initialize(id:, name:, product_type:)
-        #   Some parameter documentations has been truncated, see
-        #   {WhopSDK::Models::Product::ProductTaxCode} for more details.
-        #
-        #   The tax classification code applied to purchases of this product for sales tax
-        #   calculation. Null if no tax code is assigned.
-        #
-        #   @param id [String] The unique identifier for the product tax code.
-        #
-        #   @param name [String] Human-readable name of this tax classification, such as 'Digital - SaaS'.
-        #
-        #   @param product_type [Symbol, WhopSDK::Models::Product::ProductTaxCode::ProductType] Broad product category this tax code covers, such as physical goods or digital s
+      # Enrollment status in the member affiliate program.
+      #
+      # @see WhopSDK::Models::Product#member_affiliate_status
+      module MemberAffiliateStatus
+        extend WhopSDK::Internal::Type::Enum
 
-        # Broad product category this tax code covers, such as physical goods or digital
-        # services.
-        #
-        # @see WhopSDK::Models::Product::ProductTaxCode#product_type
-        module ProductType
-          extend WhopSDK::Internal::Type::Enum
+        ENABLED = :enabled
+        DISABLED = :disabled
 
-          PHYSICAL = :physical
-          DIGITAL = :digital
-          SERVICES = :services
-
-          # @!method self.values
-          #   @return [Array<Symbol>]
-        end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
     end
   end

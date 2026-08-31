@@ -11,106 +11,170 @@ module WhopSDK
           )
         end
 
-      # The unique identifier of the dispute alert.
+      # Dispute alert ID, prefixed `dspa_`.
       sig { returns(String) }
       attr_accessor :id
 
-      # The type of the dispute alert.
-      sig { returns(WhopSDK::DisputeAlertType::TaggedSymbol) }
-      attr_accessor :alert_type
+      # The account the alerted payment belongs to, prefixed `biz_`. `null` while the
+      # alert is unmatched.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :account_id
 
-      # The alerted amount in the specified currency.
+      # Whether refunding the payment can still avoid a chargeback. `false` once the
+      # payment has been disputed or fully refunded, or when the alert could not be
+      # matched to a payment — `not_actionable_reason` says which.
+      sig { returns(T::Boolean) }
+      attr_accessor :actionable
+
+      # The alerted amount, in whole units of `currency`. This is what the issuer
+      # reported, which can differ from the payment's own amount.
       sig { returns(Float) }
       attr_accessor :amount
 
-      # Whether this alert incurs a charge.
-      sig { returns(T::Boolean) }
-      attr_accessor :charge_for_alert
+      # The card network as reported by the issuer, lowercased, such as `visa` or
+      # `mastercard`. `unknown` when the report carries neither a network nor a
+      # recognizable BIN.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :card_brand
 
-      # The time the dispute alert was created.
-      sig { returns(Time) }
+      # When Whop received the alert, as an ISO 8601 timestamp.
+      sig { returns(String) }
       attr_accessor :created_at
 
-      # The three-letter ISO currency code for the alerted amount.
-      sig { returns(WhopSDK::Currency::TaggedSymbol) }
+      # Three-letter ISO currency code of the alerted amount.
+      sig { returns(String) }
       attr_accessor :currency
 
-      # The dispute associated with the dispute alert.
+      # Whether Whop charged the account an alert fee for this one. Always `false` for
+      # `early_fraud_warning`, which Whop is not billed for and never passes on.
+      sig { returns(T::Boolean) }
+      attr_accessor :fee_charged
+
+      # Name of the bank that issued the card and filed the report.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :issuer
+
+      # Why refunding can no longer avoid a chargeback. `network_resolved` when a Visa
+      # RDR already closed the case, `payment_unmatched` when no payment matched,
+      # `payment_not_captured` when it never captured money, `payment_disputed` once the
+      # payment carries a dispute, `payment_refunded` once fully refunded. `null` while
+      # `actionable` is true.
       sig do
-        returns(T.nilable(WhopSDK::Models::DisputeAlertListResponse::Dispute))
+        returns(
+          T.nilable(
+            WhopSDK::Models::DisputeAlertListResponse::NotActionableReason::TaggedSymbol
+          )
+        )
       end
-      attr_reader :dispute
+      attr_accessor :not_actionable_reason
 
+      # The payment the issuer reported, prefixed `pay_`. `null` when Whop could not
+      # match the report to a payment.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :payment_id
+
+      # The product the alerted payment was for, prefixed `prod_`.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :product_id
+
+      # When the issuer filed the report, as an ISO 8601 timestamp. Earlier than
+      # `created_at`, which is when Whop received it.
+      sig { returns(String) }
+      attr_accessor :reported_at
+
+      # When the reported transaction was made, as an ISO 8601 timestamp.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :transaction_at
+
+      # What the issuer sent. `early_fraud_warning` is a fraud report on a settled
+      # payment (Visa TC40 / Mastercard SAFE) — refunding still avoids the chargeback,
+      # and Whop never charges a fee for one. `dispute_alert` is a pre-dispute notice
+      # from the issuer's alert network, which Whop pays for and passes on as a fee.
+      # `rapid_dispute_resolution` is a Visa RDR case the network already closed by
+      # refunding the payment — nothing is left to act on.
       sig do
-        params(
-          dispute:
-            T.nilable(
-              WhopSDK::Models::DisputeAlertListResponse::Dispute::OrHash
-            )
-        ).void
+        returns(WhopSDK::Models::DisputeAlertListResponse::Type::TaggedSymbol)
       end
-      attr_writer :dispute
+      attr_accessor :type
 
-      # The payment associated with the dispute alert.
-      sig do
-        returns(T.nilable(WhopSDK::Models::DisputeAlertListResponse::Payment))
-      end
-      attr_reader :payment
+      # When the alert was last changed, as an ISO 8601 timestamp.
+      sig { returns(String) }
+      attr_accessor :updated_at
 
-      sig do
-        params(
-          payment:
-            T.nilable(
-              WhopSDK::Models::DisputeAlertListResponse::Payment::OrHash
-            )
-        ).void
-      end
-      attr_writer :payment
-
-      # The date of the original transaction.
-      sig { returns(T.nilable(Time)) }
-      attr_accessor :transaction_date
-
-      # A dispute alert represents an early warning notification from a payment
-      # processor about a potential dispute or chargeback.
       sig do
         params(
           id: String,
-          alert_type: WhopSDK::DisputeAlertType::OrSymbol,
+          account_id: T.nilable(String),
+          actionable: T::Boolean,
           amount: Float,
-          charge_for_alert: T::Boolean,
-          created_at: Time,
-          currency: WhopSDK::Currency::OrSymbol,
-          dispute:
+          card_brand: T.nilable(String),
+          created_at: String,
+          currency: String,
+          fee_charged: T::Boolean,
+          issuer: T.nilable(String),
+          not_actionable_reason:
             T.nilable(
-              WhopSDK::Models::DisputeAlertListResponse::Dispute::OrHash
+              WhopSDK::Models::DisputeAlertListResponse::NotActionableReason::OrSymbol
             ),
-          payment:
-            T.nilable(
-              WhopSDK::Models::DisputeAlertListResponse::Payment::OrHash
-            ),
-          transaction_date: T.nilable(Time)
+          payment_id: T.nilable(String),
+          product_id: T.nilable(String),
+          reported_at: String,
+          transaction_at: T.nilable(String),
+          type: WhopSDK::Models::DisputeAlertListResponse::Type::OrSymbol,
+          updated_at: String
         ).returns(T.attached_class)
       end
       def self.new(
-        # The unique identifier of the dispute alert.
+        # Dispute alert ID, prefixed `dspa_`.
         id:,
-        # The type of the dispute alert.
-        alert_type:,
-        # The alerted amount in the specified currency.
+        # The account the alerted payment belongs to, prefixed `biz_`. `null` while the
+        # alert is unmatched.
+        account_id:,
+        # Whether refunding the payment can still avoid a chargeback. `false` once the
+        # payment has been disputed or fully refunded, or when the alert could not be
+        # matched to a payment — `not_actionable_reason` says which.
+        actionable:,
+        # The alerted amount, in whole units of `currency`. This is what the issuer
+        # reported, which can differ from the payment's own amount.
         amount:,
-        # Whether this alert incurs a charge.
-        charge_for_alert:,
-        # The time the dispute alert was created.
+        # The card network as reported by the issuer, lowercased, such as `visa` or
+        # `mastercard`. `unknown` when the report carries neither a network nor a
+        # recognizable BIN.
+        card_brand:,
+        # When Whop received the alert, as an ISO 8601 timestamp.
         created_at:,
-        # The three-letter ISO currency code for the alerted amount.
+        # Three-letter ISO currency code of the alerted amount.
         currency:,
-        # The dispute associated with the dispute alert.
-        dispute:,
-        # The payment associated with the dispute alert.
-        payment:,
-        # The date of the original transaction.
-        transaction_date:
+        # Whether Whop charged the account an alert fee for this one. Always `false` for
+        # `early_fraud_warning`, which Whop is not billed for and never passes on.
+        fee_charged:,
+        # Name of the bank that issued the card and filed the report.
+        issuer:,
+        # Why refunding can no longer avoid a chargeback. `network_resolved` when a Visa
+        # RDR already closed the case, `payment_unmatched` when no payment matched,
+        # `payment_not_captured` when it never captured money, `payment_disputed` once the
+        # payment carries a dispute, `payment_refunded` once fully refunded. `null` while
+        # `actionable` is true.
+        not_actionable_reason:,
+        # The payment the issuer reported, prefixed `pay_`. `null` when Whop could not
+        # match the report to a payment.
+        payment_id:,
+        # The product the alerted payment was for, prefixed `prod_`.
+        product_id:,
+        # When the issuer filed the report, as an ISO 8601 timestamp. Earlier than
+        # `created_at`, which is when Whop received it.
+        reported_at:,
+        # When the reported transaction was made, as an ISO 8601 timestamp.
+        transaction_at:,
+        # What the issuer sent. `early_fraud_warning` is a fraud report on a settled
+        # payment (Visa TC40 / Mastercard SAFE) — refunding still avoids the chargeback,
+        # and Whop never charges a fee for one. `dispute_alert` is a pre-dispute notice
+        # from the issuer's alert network, which Whop pays for and passes on as a fee.
+        # `rapid_dispute_resolution` is a Visa RDR case the network already closed by
+        # refunding the payment — nothing is left to act on.
+        type:,
+        # When the alert was last changed, as an ISO 8601 timestamp.
+        updated_at:
       )
       end
 
@@ -118,71 +182,123 @@ module WhopSDK
         override.returns(
           {
             id: String,
-            alert_type: WhopSDK::DisputeAlertType::TaggedSymbol,
+            account_id: T.nilable(String),
+            actionable: T::Boolean,
             amount: Float,
-            charge_for_alert: T::Boolean,
-            created_at: Time,
-            currency: WhopSDK::Currency::TaggedSymbol,
-            dispute:
-              T.nilable(WhopSDK::Models::DisputeAlertListResponse::Dispute),
-            payment:
-              T.nilable(WhopSDK::Models::DisputeAlertListResponse::Payment),
-            transaction_date: T.nilable(Time)
+            card_brand: T.nilable(String),
+            created_at: String,
+            currency: String,
+            fee_charged: T::Boolean,
+            issuer: T.nilable(String),
+            not_actionable_reason:
+              T.nilable(
+                WhopSDK::Models::DisputeAlertListResponse::NotActionableReason::TaggedSymbol
+              ),
+            payment_id: T.nilable(String),
+            product_id: T.nilable(String),
+            reported_at: String,
+            transaction_at: T.nilable(String),
+            type: WhopSDK::Models::DisputeAlertListResponse::Type::TaggedSymbol,
+            updated_at: String
           }
         )
       end
       def to_hash
       end
 
-      class Dispute < WhopSDK::Internal::Type::BaseModel
-        OrHash =
+      # Why refunding can no longer avoid a chargeback. `network_resolved` when a Visa
+      # RDR already closed the case, `payment_unmatched` when no payment matched,
+      # `payment_not_captured` when it never captured money, `payment_disputed` once the
+      # payment carries a dispute, `payment_refunded` once fully refunded. `null` while
+      # `actionable` is true.
+      module NotActionableReason
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
           T.type_alias do
-            T.any(
-              WhopSDK::Models::DisputeAlertListResponse::Dispute,
-              WhopSDK::Internal::AnyHash
+            T.all(
+              Symbol,
+              WhopSDK::Models::DisputeAlertListResponse::NotActionableReason
             )
           end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-        # The unique identifier for the dispute.
-        sig { returns(String) }
-        attr_accessor :id
+        NETWORK_RESOLVED =
+          T.let(
+            :network_resolved,
+            WhopSDK::Models::DisputeAlertListResponse::NotActionableReason::TaggedSymbol
+          )
+        PAYMENT_UNMATCHED =
+          T.let(
+            :payment_unmatched,
+            WhopSDK::Models::DisputeAlertListResponse::NotActionableReason::TaggedSymbol
+          )
+        PAYMENT_NOT_CAPTURED =
+          T.let(
+            :payment_not_captured,
+            WhopSDK::Models::DisputeAlertListResponse::NotActionableReason::TaggedSymbol
+          )
+        PAYMENT_DISPUTED =
+          T.let(
+            :payment_disputed,
+            WhopSDK::Models::DisputeAlertListResponse::NotActionableReason::TaggedSymbol
+          )
+        PAYMENT_REFUNDED =
+          T.let(
+            :payment_refunded,
+            WhopSDK::Models::DisputeAlertListResponse::NotActionableReason::TaggedSymbol
+          )
 
-        # The dispute associated with the dispute alert.
-        sig { params(id: String).returns(T.attached_class) }
-        def self.new(
-          # The unique identifier for the dispute.
-          id:
-        )
+        sig do
+          override.returns(
+            T::Array[
+              WhopSDK::Models::DisputeAlertListResponse::NotActionableReason::TaggedSymbol
+            ]
+          )
         end
-
-        sig { override.returns({ id: String }) }
-        def to_hash
+        def self.values
         end
       end
 
-      class Payment < WhopSDK::Internal::Type::BaseModel
-        OrHash =
+      # What the issuer sent. `early_fraud_warning` is a fraud report on a settled
+      # payment (Visa TC40 / Mastercard SAFE) — refunding still avoids the chargeback,
+      # and Whop never charges a fee for one. `dispute_alert` is a pre-dispute notice
+      # from the issuer's alert network, which Whop pays for and passes on as a fee.
+      # `rapid_dispute_resolution` is a Visa RDR case the network already closed by
+      # refunding the payment — nothing is left to act on.
+      module Type
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
           T.type_alias do
-            T.any(
-              WhopSDK::Models::DisputeAlertListResponse::Payment,
-              WhopSDK::Internal::AnyHash
-            )
+            T.all(Symbol, WhopSDK::Models::DisputeAlertListResponse::Type)
           end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-        # The unique identifier for the payment.
-        sig { returns(String) }
-        attr_accessor :id
+        EARLY_FRAUD_WARNING =
+          T.let(
+            :early_fraud_warning,
+            WhopSDK::Models::DisputeAlertListResponse::Type::TaggedSymbol
+          )
+        DISPUTE_ALERT =
+          T.let(
+            :dispute_alert,
+            WhopSDK::Models::DisputeAlertListResponse::Type::TaggedSymbol
+          )
+        RAPID_DISPUTE_RESOLUTION =
+          T.let(
+            :rapid_dispute_resolution,
+            WhopSDK::Models::DisputeAlertListResponse::Type::TaggedSymbol
+          )
 
-        # The payment associated with the dispute alert.
-        sig { params(id: String).returns(T.attached_class) }
-        def self.new(
-          # The unique identifier for the payment.
-          id:
-        )
+        sig do
+          override.returns(
+            T::Array[
+              WhopSDK::Models::DisputeAlertListResponse::Type::TaggedSymbol
+            ]
+          )
         end
-
-        sig { override.returns({ id: String }) }
-        def to_hash
+        def self.values
         end
       end
     end

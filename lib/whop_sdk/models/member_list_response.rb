@@ -5,147 +5,183 @@ module WhopSDK
     # @see WhopSDK::Resources::Members#list
     class MemberListResponse < WhopSDK::Internal::Type::BaseModel
       # @!attribute id
-      #   The unique identifier for the company member.
+      #   Member ID, prefixed `mber_`.
       #
       #   @return [String]
       required :id, String
 
       # @!attribute access_level
-      #   The member's content access level. `admin` means their team role grants
-      #   administrative content access, `customer` means they hold a valid product
-      #   membership, and `no_access` means they cannot access company content.
+      #   What the member can reach on the account: `customer` for paying members, `admin`
+      #   for team members, `no_access` once every grant has lapsed.
       #
-      #   @return [Symbol, WhopSDK::Models::AccessLevel]
-      required :access_level, enum: -> { WhopSDK::AccessLevel }
+      #   @return [Symbol, WhopSDK::Models::MemberListResponse::AccessLevel]
+      required :access_level, enum: -> { WhopSDK::Models::MemberListResponse::AccessLevel }
 
-      # @!attribute company_token_balance
-      #   The member's token balance for this company. Computed live from the ledger, not
-      #   from a cache.
+      # @!attribute account_id
+      #   The account this member belongs to, prefixed `biz_`.
       #
-      #   @return [Float]
-      required :company_token_balance, Float
+      #   @return [String]
+      required :account_id, String
 
       # @!attribute created_at
-      #   The datetime the company member was created.
+      #   When the member record was created, as an ISO 8601 timestamp.
       #
-      #   @return [Time]
-      required :created_at, Time
+      #   @return [String]
+      required :created_at, String
 
       # @!attribute joined_at
-      #   When the member joined the company
+      #   When the member first joined the account, as an ISO 8601 timestamp.
       #
-      #   @return [Time]
-      required :joined_at, Time
+      #   @return [String]
+      required :joined_at, String
 
-      # @!attribute most_recent_action
-      #   The different most recent actions a member can have.
-      #
-      #   @return [Symbol, WhopSDK::Models::MemberMostRecentActions, nil]
-      required :most_recent_action, enum: -> { WhopSDK::MemberMostRecentActions }, nil?: true
-
-      # @!attribute most_recent_action_at
-      #   The time for the most recent action, if applicable.
-      #
-      #   @return [Time, nil]
-      required :most_recent_action_at, Time, nil?: true
-
-      # @!attribute phone
-      #   The phone number for the member, if available.
+      # @!attribute last_accessed_at
+      #   When the member last opened the account's content, as an ISO 8601 timestamp.
+      #   `null` if they never have.
       #
       #   @return [String, nil]
-      required :phone, String, nil?: true
+      required :last_accessed_at, String, nil?: true
+
+      # @!attribute phone_number
+      #   The member's phone number, or `null`. Their account number when they have shared
+      #   one with this seller; otherwise the most recent number collected (or verified)
+      #   at checkout.
+      #
+      #   @return [String, nil]
+      required :phone_number, String, nil?: true
 
       # @!attribute status
-      #   The status of the member
+      #   `joined` while the member is part of the account, `left` after they leave.
       #
-      #   @return [Symbol, WhopSDK::Models::MemberStatuses]
-      required :status, enum: -> { WhopSDK::MemberStatuses }
+      #   @return [Symbol, WhopSDK::Models::MemberListResponse::Status]
+      required :status, enum: -> { WhopSDK::Models::MemberListResponse::Status }
 
-      # @!attribute updated_at
-      #   The datetime the company member was last updated.
-      #
-      #   @return [Time]
-      required :updated_at, Time
-
-      # @!attribute usd_total_spent
-      #   How much money this customer has spent on the company's products and plans
+      # @!attribute token_balance
+      #   The member's current token balance for this account, computed from token
+      #   transactions.
       #
       #   @return [Float]
-      required :usd_total_spent, Float
+      required :token_balance, Float
 
       # @!attribute user
-      #   The user for this member, if any.
+      #   The user behind this member. `null` when the buyer is another business rather
+      #   than a person.
       #
       #   @return [WhopSDK::Models::MemberListResponse::User, nil]
       required :user, -> { WhopSDK::Models::MemberListResponse::User }, nil?: true
 
-      # @!method initialize(id:, access_level:, company_token_balance:, created_at:, joined_at:, most_recent_action:, most_recent_action_at:, phone:, status:, updated_at:, usd_total_spent:, user:)
+      # @!method initialize(id:, access_level:, account_id:, created_at:, joined_at:, last_accessed_at:, phone_number:, status:, token_balance:, user:)
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::MemberListResponse} for more details.
       #
-      #   A member represents a user's relationship with a company on Whop, including
-      #   their access level, status, and spending history.
+      #   @param id [String] Member ID, prefixed `mber_`.
       #
-      #   @param id [String] The unique identifier for the company member.
+      #   @param access_level [Symbol, WhopSDK::Models::MemberListResponse::AccessLevel] What the member can reach on the account: `customer` for paying members, `admin`
       #
-      #   @param access_level [Symbol, WhopSDK::Models::AccessLevel] The member's content access level. `admin` means their team role grants administ
+      #   @param account_id [String] The account this member belongs to, prefixed `biz_`.
       #
-      #   @param company_token_balance [Float] The member's token balance for this company. Computed live from the ledger, not
+      #   @param created_at [String] When the member record was created, as an ISO 8601 timestamp.
       #
-      #   @param created_at [Time] The datetime the company member was created.
+      #   @param joined_at [String] When the member first joined the account, as an ISO 8601 timestamp.
       #
-      #   @param joined_at [Time] When the member joined the company
+      #   @param last_accessed_at [String, nil] When the member last opened the account's content, as an ISO 8601 timestamp. `nu
       #
-      #   @param most_recent_action [Symbol, WhopSDK::Models::MemberMostRecentActions, nil] The different most recent actions a member can have.
+      #   @param phone_number [String, nil] The member's phone number, or `null`. Their account number when they have shared
       #
-      #   @param most_recent_action_at [Time, nil] The time for the most recent action, if applicable.
+      #   @param status [Symbol, WhopSDK::Models::MemberListResponse::Status] `joined` while the member is part of the account, `left` after they leave.
       #
-      #   @param phone [String, nil] The phone number for the member, if available.
+      #   @param token_balance [Float] The member's current token balance for this account, computed from token transac
       #
-      #   @param status [Symbol, WhopSDK::Models::MemberStatuses] The status of the member
+      #   @param user [WhopSDK::Models::MemberListResponse::User, nil] The user behind this member. `null` when the buyer is another business rather th
+
+      # What the member can reach on the account: `customer` for paying members, `admin`
+      # for team members, `no_access` once every grant has lapsed.
       #
-      #   @param updated_at [Time] The datetime the company member was last updated.
+      # @see WhopSDK::Models::MemberListResponse#access_level
+      module AccessLevel
+        extend WhopSDK::Internal::Type::Enum
+
+        NO_ACCESS = :no_access
+        ADMIN = :admin
+        CUSTOMER = :customer
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
+
+      # `joined` while the member is part of the account, `left` after they leave.
       #
-      #   @param usd_total_spent [Float] How much money this customer has spent on the company's products and plans
-      #
-      #   @param user [WhopSDK::Models::MemberListResponse::User, nil] The user for this member, if any.
+      # @see WhopSDK::Models::MemberListResponse#status
+      module Status
+        extend WhopSDK::Internal::Type::Enum
+
+        JOINED = :joined
+        LEFT = :left
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
 
       # @see WhopSDK::Models::MemberListResponse#user
       class User < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The unique identifier for the company member user.
+        #   User ID, prefixed `user_`.
         #
         #   @return [String]
         required :id, String
 
-        # @!attribute email
-        #   The digital mailing address of the user.
-        #
-        #   @return [String, nil]
-        required :email, String, nil?: true
-
         # @!attribute name
-        #   The user's full name.
+        #   Display name.
         #
         #   @return [String, nil]
         required :name, String, nil?: true
 
+        # @!attribute profile_picture
+        #   Avatar wrapper; its `url` is always present, using a generated placeholder when
+        #   the user set no picture.
+        #
+        #   @return [WhopSDK::Models::MemberListResponse::User::ProfilePicture]
+        required :profile_picture, -> { WhopSDK::Models::MemberListResponse::User::ProfilePicture }
+
         # @!attribute username
-        #   The whop username.
+        #   Public username.
         #
         #   @return [String]
         required :username, String
 
-        # @!method initialize(id:, email:, name:, username:)
-        #   The user for this member, if any.
+        # @!method initialize(id:, name:, profile_picture:, username:)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::MemberListResponse::User} for more details.
         #
-        #   @param id [String] The unique identifier for the company member user.
+        #   The user behind this member. `null` when the buyer is another business rather
+        #   than a person.
         #
-        #   @param email [String, nil] The digital mailing address of the user.
+        #   @param id [String] User ID, prefixed `user_`.
         #
-        #   @param name [String, nil] The user's full name.
+        #   @param name [String, nil] Display name.
         #
-        #   @param username [String] The whop username.
+        #   @param profile_picture [WhopSDK::Models::MemberListResponse::User::ProfilePicture] Avatar wrapper; its `url` is always present, using a generated placeholder when
+        #
+        #   @param username [String] Public username.
+
+        # @see WhopSDK::Models::MemberListResponse::User#profile_picture
+        class ProfilePicture < WhopSDK::Internal::Type::BaseModel
+          # @!attribute url
+          #   Avatar image URL. Always present — a generated placeholder when the user set no
+          #   picture.
+          #
+          #   @return [String]
+          required :url, String
+
+          # @!method initialize(url:)
+          #   Some parameter documentations has been truncated, see
+          #   {WhopSDK::Models::MemberListResponse::User::ProfilePicture} for more details.
+          #
+          #   Avatar wrapper; its `url` is always present, using a generated placeholder when
+          #   the user set no picture.
+          #
+          #   @param url [String] Avatar image URL. Always present — a generated placeholder when the user set no
+        end
       end
     end
   end

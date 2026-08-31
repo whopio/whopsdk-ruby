@@ -7,7 +7,47 @@ module WhopSDK
 
   class AccountLinkCreateParams = WhopSDK::Models::AccountLinkCreateParams
 
+  class AccountUpdatedWebhookEvent = WhopSDK::Models::AccountUpdatedWebhookEvent
+
+  class Ad = WhopSDK::Models::Ad
+
+  class AdCampaign = WhopSDK::Models::AdCampaign
+
+  class AdCampaignListParams = WhopSDK::Models::AdCampaignListParams
+
+  class AdCampaignPauseParams = WhopSDK::Models::AdCampaignPauseParams
+
+  class AdCampaignPaymentFailedWebhookEvent = WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent
+
+  class AdCampaignRetrieveParams = WhopSDK::Models::AdCampaignRetrieveParams
+
+  class AdCampaignUnpauseParams = WhopSDK::Models::AdCampaignUnpauseParams
+
+  class AdCampaignUpdateParams = WhopSDK::Models::AdCampaignUpdateParams
+
+  class AdGroup = WhopSDK::Models::AdGroup
+
+  class AdGroupDeleteParams = WhopSDK::Models::AdGroupDeleteParams
+
+  class AdGroupListParams = WhopSDK::Models::AdGroupListParams
+
+  class AdGroupPauseParams = WhopSDK::Models::AdGroupPauseParams
+
+  class AdGroupRetrieveParams = WhopSDK::Models::AdGroupRetrieveParams
+
+  class AdGroupUnpauseParams = WhopSDK::Models::AdGroupUnpauseParams
+
+  class AdGroupUpdateParams = WhopSDK::Models::AdGroupUpdateParams
+
+  class AdListParams = WhopSDK::Models::AdListParams
+
+  class AdPauseParams = WhopSDK::Models::AdPauseParams
+
   class AdReportRetrieveParams = WhopSDK::Models::AdReportRetrieveParams
+
+  class AdRetrieveParams = WhopSDK::Models::AdRetrieveParams
+
+  class AdUnpauseParams = WhopSDK::Models::AdUnpauseParams
 
   class Affiliate = WhopSDK::Models::Affiliate
 
@@ -91,7 +131,21 @@ module WhopSDK
 
   module CancelOptions = WhopSDK::Models::CancelOptions
 
+  class CardApplicationApprovedWebhookEvent = WhopSDK::Models::CardApplicationApprovedWebhookEvent
+
+  class CardApplicationCreatedWebhookEvent = WhopSDK::Models::CardApplicationCreatedWebhookEvent
+
+  class CardApplicationDeniedWebhookEvent = WhopSDK::Models::CardApplicationDeniedWebhookEvent
+
+  class CardApplicationUpdatedWebhookEvent = WhopSDK::Models::CardApplicationUpdatedWebhookEvent
+
   module CardBrands = WhopSDK::Models::CardBrands
+
+  class CardCanceledWebhookEvent = WhopSDK::Models::CardCanceledWebhookEvent
+
+  class CardCreatedWebhookEvent = WhopSDK::Models::CardCreatedWebhookEvent
+
+  class CardFrozenWebhookEvent = WhopSDK::Models::CardFrozenWebhookEvent
 
   class CardTransactionCompletedWebhookEvent = WhopSDK::Models::CardTransactionCompletedWebhookEvent
 
@@ -102,6 +156,8 @@ module WhopSDK
   class CardTransactionReversedWebhookEvent = WhopSDK::Models::CardTransactionReversedWebhookEvent
 
   class CardTransactionUpdatedWebhookEvent = WhopSDK::Models::CardTransactionUpdatedWebhookEvent
+
+  class CardUpdatedWebhookEvent = WhopSDK::Models::CardUpdatedWebhookEvent
 
   class ChatChannel = WhopSDK::Models::ChatChannel
 
@@ -213,6 +269,8 @@ module WhopSDK
 
   module CustomCta = WhopSDK::Models::CustomCta
 
+  class DepositSucceededWebhookEvent = WhopSDK::Models::DepositSucceededWebhookEvent
+
   module Direction = WhopSDK::Models::Direction
 
   class Dispute = WhopSDK::Models::Dispute
@@ -310,6 +368,10 @@ module WhopSDK
   class ExperienceRetrieveParams = WhopSDK::Models::ExperienceRetrieveParams
 
   class ExperienceUpdateParams = WhopSDK::Models::ExperienceUpdateParams
+
+  class ExportCompletedWebhookEvent = WhopSDK::Models::ExportCompletedWebhookEvent
+
+  class ExportFailedWebhookEvent = WhopSDK::Models::ExportFailedWebhookEvent
 
   class FeeMarkupCreateParams = WhopSDK::Models::FeeMarkupCreateParams
 
@@ -505,6 +567,8 @@ module WhopSDK
 
   class PayoutAccountStatusUpdatedWebhookEvent = WhopSDK::Models::PayoutAccountStatusUpdatedWebhookEvent
 
+  class PayoutCreatedWebhookEvent = WhopSDK::Models::PayoutCreatedWebhookEvent
+
   module PayoutDestinationCategory = WhopSDK::Models::PayoutDestinationCategory
 
   class PayoutMethodCreatedWebhookEvent = WhopSDK::Models::PayoutMethodCreatedWebhookEvent
@@ -513,7 +577,29 @@ module WhopSDK
 
   class PayoutMethodRetrieveParams = WhopSDK::Models::PayoutMethodRetrieveParams
 
+  class PayoutReversedWebhookEvent = WhopSDK::Models::PayoutReversedWebhookEvent
+
+  class PayoutUpdatedWebhookEvent = WhopSDK::Models::PayoutUpdatedWebhookEvent
+
+  class Plan = WhopSDK::Models::Plan
+
+  class PlanCreatedWebhookEvent = WhopSDK::Models::PlanCreatedWebhookEvent
+
+  class PlanCreateParams = WhopSDK::Models::PlanCreateParams
+
+  class PlanDeletedWebhookEvent = WhopSDK::Models::PlanDeletedWebhookEvent
+
+  class PlanDeleteParams = WhopSDK::Models::PlanDeleteParams
+
+  class PlanListParams = WhopSDK::Models::PlanListParams
+
+  class PlanRetrieveParams = WhopSDK::Models::PlanRetrieveParams
+
   module PlanType = WhopSDK::Models::PlanType
+
+  class PlanUpdatedWebhookEvent = WhopSDK::Models::PlanUpdatedWebhookEvent
+
+  class PlanUpdateParams = WhopSDK::Models::PlanUpdateParams
 
   class Product = WhopSDK::Models::Product
 
@@ -655,15 +741,39 @@ module WhopSDK
 
   class SupportChannelRetrieveParams = WhopSDK::Models::SupportChannelRetrieveParams
 
+  class SwapCompletedWebhookEvent = WhopSDK::Models::SwapCompletedWebhookEvent
+
   module TaxIdentifierType = WhopSDK::Models::TaxIdentifierType
 
   module TaxType = WhopSDK::Models::TaxType
 
   class TopupCreateParams = WhopSDK::Models::TopupCreateParams
 
+  class TransferCompletedWebhookEvent = WhopSDK::Models::TransferCompletedWebhookEvent
+
+  class TransferCreatedWebhookEvent = WhopSDK::Models::TransferCreatedWebhookEvent
+
+  class TransferCreateParams = WhopSDK::Models::TransferCreateParams
+
+  class TransferFailedWebhookEvent = WhopSDK::Models::TransferFailedWebhookEvent
+
+  class TransferListParams = WhopSDK::Models::TransferListParams
+
+  class TransferRetrieveParams = WhopSDK::Models::TransferRetrieveParams
+
   module UnwrapWebhookEvent = WhopSDK::Models::UnwrapWebhookEvent
 
   module UploadStatus = WhopSDK::Models::UploadStatus
+
+  class User = WhopSDK::Models::User
+
+  class UserCheckAccessParams = WhopSDK::Models::UserCheckAccessParams
+
+  class UserListParams = WhopSDK::Models::UserListParams
+
+  class UserRetrieveParams = WhopSDK::Models::UserRetrieveParams
+
+  class UserUpdateParams = WhopSDK::Models::UserUpdateParams
 
   module VerificationErrorCode = WhopSDK::Models::VerificationErrorCode
 
@@ -702,18 +812,4 @@ module WhopSDK
   module WhoCanPostTypes = WhopSDK::Models::WhoCanPostTypes
 
   module WhoCanReact = WhopSDK::Models::WhoCanReact
-
-  class Withdrawal = WhopSDK::Models::Withdrawal
-
-  class WithdrawalCreateParams = WhopSDK::Models::WithdrawalCreateParams
-
-  module WithdrawalFeeTypes = WhopSDK::Models::WithdrawalFeeTypes
-
-  class WithdrawalListParams = WhopSDK::Models::WithdrawalListParams
-
-  class WithdrawalRetrieveParams = WhopSDK::Models::WithdrawalRetrieveParams
-
-  module WithdrawalSpeeds = WhopSDK::Models::WithdrawalSpeeds
-
-  module WithdrawalStatus = WhopSDK::Models::WithdrawalStatus
 end

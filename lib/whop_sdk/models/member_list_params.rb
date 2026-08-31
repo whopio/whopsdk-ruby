@@ -8,158 +8,166 @@ module WhopSDK
       include WhopSDK::Internal::Type::RequestParameters
 
       # @!attribute access_level
-      #   Filter members by their current access level to the product.
+      #   Filter by what the member can reach on the account.
       #
-      #   @return [Symbol, WhopSDK::Models::AccessLevel, nil]
-      optional :access_level, enum: -> { WhopSDK::AccessLevel }
+      #   @return [Symbol, WhopSDK::Models::MemberListParams::AccessLevel, nil]
+      optional :access_level, enum: -> { WhopSDK::MemberListParams::AccessLevel }
+
+      # @!attribute account_id
+      #   The account to list members for (`biz_` tag). Defaults to the account the
+      #   credential acts as.
+      #
+      #   @return [String, nil]
+      optional :account_id, String
 
       # @!attribute after
-      #   Returns the elements in the list that come after the specified cursor.
+      #   Cursor to paginate forwards from.
       #
       #   @return [String, nil]
       optional :after, String
 
       # @!attribute before
-      #   Returns the elements in the list that come before the specified cursor.
+      #   Cursor to paginate backwards from.
       #
       #   @return [String, nil]
       optional :before, String
 
-      # @!attribute company_id
-      #   The unique identifier of the company to list members for.
+      # @!attribute created_after
+      #   Only members who joined after this ISO 8601 timestamp.
       #
       #   @return [String, nil]
-      optional :company_id, String
-
-      # @!attribute created_after
-      #   Only return members created after this timestamp.
-      #
-      #   @return [Time, nil]
-      optional :created_after, Time
+      optional :created_after, String
 
       # @!attribute created_before
-      #   Only return members created before this timestamp.
+      #   Only members who joined before this ISO 8601 timestamp.
       #
-      #   @return [Time, nil]
-      optional :created_before, Time
+      #   @return [String, nil]
+      optional :created_before, String
 
       # @!attribute direction
-      #   The sort direction for results. Defaults to descending.
+      #   Sort direction.
       #
-      #   @return [Symbol, WhopSDK::Models::Direction, nil]
-      optional :direction, enum: -> { WhopSDK::Direction }
+      #   @return [Symbol, WhopSDK::Models::MemberListParams::Direction, nil]
+      optional :direction, enum: -> { WhopSDK::MemberListParams::Direction }
 
       # @!attribute first
-      #   Returns the first _n_ elements from the list.
+      #   Number of members to return from the start of the window.
       #
       #   @return [Integer, nil]
       optional :first, Integer
 
       # @!attribute last
-      #   Returns the last _n_ elements from the list.
+      #   Number of members to return from the end of the window.
       #
       #   @return [Integer, nil]
       optional :last, Integer
 
-      # @!attribute most_recent_actions
-      #   Filter members by their most recent activity type.
-      #
-      #   @return [Array<Symbol, WhopSDK::Models::MemberMostRecentActions>, nil]
-      optional :most_recent_actions,
-               -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::MemberMostRecentActions] }
-
       # @!attribute order
-      #   The column to sort members by, such as creation date or revenue.
+      #   Sort field.
       #
       #   @return [Symbol, WhopSDK::Models::MemberListParams::Order, nil]
       optional :order, enum: -> { WhopSDK::MemberListParams::Order }
 
-      # @!attribute plan_ids
-      #   Filter members to only those subscribed to these specific plans.
-      #
-      #   @return [Array<String>, nil]
-      optional :plan_ids, WhopSDK::Internal::Type::ArrayOf[String]
-
-      # @!attribute product_ids
-      #   Filter members to only those belonging to these specific products.
-      #
-      #   @return [Array<String>, nil]
-      optional :product_ids, WhopSDK::Internal::Type::ArrayOf[String]
-
-      # @!attribute promo_code_ids
-      #   Filter members to only those who used these specific promo codes.
-      #
-      #   @return [Array<String>, nil]
-      optional :promo_code_ids, WhopSDK::Internal::Type::ArrayOf[String]
-
       # @!attribute query
-      #   Search members by name, username, or email. Email filtering requires the
-      #   member:email:read permission.
+      #   Search members by name or username. An exact email address also matches when the
+      #   credential holds the member:email:read scope.
       #
       #   @return [String, nil]
       optional :query, String
 
-      # @!attribute statuses
-      #   Filter members by their current subscription status.
+      # @!attribute status
+      #   Filter by whether the member is still part of the account.
       #
-      #   @return [Array<Symbol, WhopSDK::Models::MemberStatuses>, nil]
-      optional :statuses, -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::MemberStatuses] }
+      #   @return [Symbol, WhopSDK::Models::MemberListParams::Status, nil]
+      optional :status, enum: -> { WhopSDK::MemberListParams::Status }
 
       # @!attribute user_ids
-      #   Filter members to only those matching these specific user identifiers.
+      #   Only return members whose users match these `user_` identifiers.
       #
       #   @return [Array<String>, nil]
       optional :user_ids, WhopSDK::Internal::Type::ArrayOf[String]
 
-      # @!method initialize(access_level: nil, after: nil, before: nil, company_id: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, most_recent_actions: nil, order: nil, plan_ids: nil, product_ids: nil, promo_code_ids: nil, query: nil, statuses: nil, user_ids: nil, request_options: {})
+      # @!attribute api_version_date
+      #
+      #   @return [String, nil]
+      optional :api_version_date, String
+
+      # @!method initialize(access_level: nil, account_id: nil, after: nil, before: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, order: nil, query: nil, status: nil, user_ids: nil, api_version_date: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::MemberListParams} for more details.
       #
-      #   @param access_level [Symbol, WhopSDK::Models::AccessLevel] Filter members by their current access level to the product.
+      #   @param access_level [Symbol, WhopSDK::Models::MemberListParams::AccessLevel] Filter by what the member can reach on the account.
       #
-      #   @param after [String] Returns the elements in the list that come after the specified cursor.
+      #   @param account_id [String] The account to list members for (`biz_` tag). Defaults to the account the creden
       #
-      #   @param before [String] Returns the elements in the list that come before the specified cursor.
+      #   @param after [String] Cursor to paginate forwards from.
       #
-      #   @param company_id [String] The unique identifier of the company to list members for.
+      #   @param before [String] Cursor to paginate backwards from.
       #
-      #   @param created_after [Time] Only return members created after this timestamp.
+      #   @param created_after [String] Only members who joined after this ISO 8601 timestamp.
       #
-      #   @param created_before [Time] Only return members created before this timestamp.
+      #   @param created_before [String] Only members who joined before this ISO 8601 timestamp.
       #
-      #   @param direction [Symbol, WhopSDK::Models::Direction] The sort direction for results. Defaults to descending.
+      #   @param direction [Symbol, WhopSDK::Models::MemberListParams::Direction] Sort direction.
       #
-      #   @param first [Integer] Returns the first _n_ elements from the list.
+      #   @param first [Integer] Number of members to return from the start of the window.
       #
-      #   @param last [Integer] Returns the last _n_ elements from the list.
+      #   @param last [Integer] Number of members to return from the end of the window.
       #
-      #   @param most_recent_actions [Array<Symbol, WhopSDK::Models::MemberMostRecentActions>] Filter members by their most recent activity type.
+      #   @param order [Symbol, WhopSDK::Models::MemberListParams::Order] Sort field.
       #
-      #   @param order [Symbol, WhopSDK::Models::MemberListParams::Order] The column to sort members by, such as creation date or revenue.
+      #   @param query [String] Search members by name or username. An exact email address also matches when the
       #
-      #   @param plan_ids [Array<String>] Filter members to only those subscribed to these specific plans.
+      #   @param status [Symbol, WhopSDK::Models::MemberListParams::Status] Filter by whether the member is still part of the account.
       #
-      #   @param product_ids [Array<String>] Filter members to only those belonging to these specific products.
+      #   @param user_ids [Array<String>] Only return members whose users match these `user_` identifiers.
       #
-      #   @param promo_code_ids [Array<String>] Filter members to only those who used these specific promo codes.
-      #
-      #   @param query [String] Search members by name, username, or email. Email filtering requires the member:
-      #
-      #   @param statuses [Array<Symbol, WhopSDK::Models::MemberStatuses>] Filter members by their current subscription status.
-      #
-      #   @param user_ids [Array<String>] Filter members to only those matching these specific user identifiers.
+      #   @param api_version_date [String]
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
 
-      # The column to sort members by, such as creation date or revenue.
+      # Filter by what the member can reach on the account.
+      module AccessLevel
+        extend WhopSDK::Internal::Type::Enum
+
+        NO_ACCESS = :no_access
+        ADMIN = :admin
+        CUSTOMER = :customer
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
+
+      # Sort direction.
+      module Direction
+        extend WhopSDK::Internal::Type::Enum
+
+        ASC = :asc
+        DESC = :desc
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
+
+      # Sort field.
       module Order
         extend WhopSDK::Internal::Type::Enum
 
-        ID = :id
-        USD_TOTAL_SPENT = :usd_total_spent
         CREATED_AT = :created_at
         JOINED_AT = :joined_at
-        MOST_RECENT_ACTION = :most_recent_action
+        LAST_ACCESSED_AT = :last_accessed_at
+        USD_TOTAL_SPENT = :usd_total_spent
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
+
+      # Filter by whether the member is still part of the account.
+      module Status
+        extend WhopSDK::Internal::Type::Enum
+
+        JOINED = :joined
+        LEFT = :left
 
         # @!method self.values
         #   @return [Array<Symbol>]

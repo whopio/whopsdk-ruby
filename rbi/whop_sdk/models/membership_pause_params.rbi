@@ -14,32 +14,42 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :id
 
-      # When the membership should automatically resume payment collection. If not
-      # provided, the membership stays paused until manually resumed.
-      sig { returns(T.nilable(Time)) }
-      attr_accessor :resumes_at
+      # ISO 8601 time to automatically resume payment collection. Must be in the future;
+      # only supported for memberships billed by Whop.
+      sig { returns(T.nilable(String)) }
+      attr_reader :until_
 
-      # Whether to void any outstanding past-due payments on this membership, preventing
-      # future collection attempts.
-      sig { returns(T.nilable(T::Boolean)) }
-      attr_accessor :void_payments
+      sig { params(until_: String).void }
+      attr_writer :until_
+
+      sig { returns(T.nilable(String)) }
+      attr_reader :api_version_date
+
+      sig { params(api_version_date: String).void }
+      attr_writer :api_version_date
+
+      sig { returns(T.nilable(String)) }
+      attr_reader :idempotency_key
+
+      sig { params(idempotency_key: String).void }
+      attr_writer :idempotency_key
 
       sig do
         params(
           id: String,
-          resumes_at: T.nilable(Time),
-          void_payments: T.nilable(T::Boolean),
+          until_: String,
+          api_version_date: String,
+          idempotency_key: String,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
         id:,
-        # When the membership should automatically resume payment collection. If not
-        # provided, the membership stays paused until manually resumed.
-        resumes_at: nil,
-        # Whether to void any outstanding past-due payments on this membership, preventing
-        # future collection attempts.
-        void_payments: nil,
+        # ISO 8601 time to automatically resume payment collection. Must be in the future;
+        # only supported for memberships billed by Whop.
+        until_: nil,
+        api_version_date: nil,
+        idempotency_key: nil,
         request_options: {}
       )
       end
@@ -48,8 +58,9 @@ module WhopSDK
         override.returns(
           {
             id: String,
-            resumes_at: T.nilable(Time),
-            void_payments: T.nilable(T::Boolean),
+            until_: String,
+            api_version_date: String,
+            idempotency_key: String,
             request_options: WhopSDK::RequestOptions
           }
         )

@@ -6,89 +6,39 @@ module WhopSDK
       OrHash =
         T.type_alias { T.any(WhopSDK::Membership, WhopSDK::Internal::AnyHash) }
 
-      # The unique identifier for the membership.
+      # Membership ID, prefixed `mem_`.
       sig { returns(String) }
       attr_accessor :id
 
-      # Whether this membership is set to cancel at the end of the current billing
-      # cycle. Only applies to memberships with a recurring plan.
+      # The account (seller) this membership belongs to.
+      sig { returns(WhopSDK::Membership::Account) }
+      attr_reader :account
+
+      sig { params(account: WhopSDK::Membership::Account::OrHash).void }
+      attr_writer :account
+
+      # Whether the membership is set to cancel when the current billing period ends.
+      # Only meaningful for recurring plans.
       sig { returns(T::Boolean) }
       attr_accessor :cancel_at_period_end
 
-      # The different reasons a user can choose for why they are canceling their
-      # membership.
-      sig { returns(T.nilable(WhopSDK::CancelOptions::TaggedSymbol)) }
-      attr_accessor :cancel_option
-
-      # The state of a membership after a customer provides a cancelation reason.
-      sig do
-        returns(T.nilable(WhopSDK::Membership::CancelationStatus::TaggedSymbol))
-      end
-      attr_accessor :cancelation_status
-
-      # The time the customer initiated cancellation of this membership. As a Unix
-      # timestamp. Null if the membership has not been canceled.
-      sig { returns(T.nilable(Time)) }
-      attr_accessor :canceled_at
-
-      # Free-text explanation provided by the customer when canceling. Null if the
-      # customer did not provide a reason.
-      sig { returns(T.nilable(String)) }
-      attr_accessor :cancellation_reason
-
-      # The ID of the checkout session/configuration that produced this membership, if
-      # any. Use this to map memberships back to the checkout configuration that created
-      # them.
-      sig { returns(T.nilable(String)) }
-      attr_accessor :checkout_configuration_id
-
-      # The company this membership belongs to.
-      sig { returns(WhopSDK::Membership::Company) }
-      attr_reader :company
-
-      sig { params(company: WhopSDK::Membership::Company::OrHash).void }
-      attr_writer :company
-
-      # The datetime the membership was created.
-      sig { returns(Time) }
+      # When the membership was created, as an ISO 8601 timestamp.
+      sig { returns(String) }
       attr_accessor :created_at
 
-      # The available currencies on the platform
-      sig { returns(T.nilable(WhopSDK::Currency::TaggedSymbol)) }
-      attr_accessor :currency
-
-      # The customer's responses to custom checkout questions configured on the product
-      # at the time of purchase.
-      sig { returns(T::Array[WhopSDK::Membership::CustomFieldResponse]) }
-      attr_accessor :custom_field_responses
-
-      # The recurring renewal price for this membership, formatted with currency symbol
-      # and billing interval. Null if the membership is not recurring.
+      # When the current billing period renews, or when a non-renewing membership
+      # expires, as an ISO 8601 timestamp. `null` for one-time purchases with no
+      # expiration.
       sig { returns(T.nilable(String)) }
-      attr_accessor :formatted_renewal_price
+      attr_accessor :current_period_end
 
-      # The amount the customer paid when first purchasing this membership, formatted
-      # with currency symbol.
-      sig { returns(String) }
-      attr_accessor :initial_price_paid
-
-      # The time the user first joined the company associated with this membership. As a
-      # Unix timestamp. Null if the member record does not exist.
-      sig { returns(T.nilable(Time)) }
-      attr_accessor :joined_at
-
-      # The software license key associated with this membership. Only present if the
-      # product includes a Whop Software Licensing experience. Null otherwise.
+      # The software license key for this membership. Only present when the product
+      # includes a software licensing experience.
       sig { returns(T.nilable(String)) }
       attr_accessor :license_key
 
-      # The URL where the customer can view and manage this membership, including
-      # cancellation and plan changes. Null if no member record exists.
-      sig { returns(T.nilable(String)) }
-      attr_accessor :manage_url
-
-      # The member record linking the user to the company for this membership. Null if
-      # the member record has not been created yet.
+      # The caller's member row on the account. Present only when the membership belongs
+      # to the caller; `null` on seller-side reads.
       sig { returns(T.nilable(WhopSDK::Membership::Member)) }
       attr_reader :member
 
@@ -97,177 +47,93 @@ module WhopSDK
       end
       attr_writer :member
 
-      # Custom key-value pairs for the membership (commonly used for software licensing,
-      # e.g., HWID). Max 50 keys, 100 chars per key, 500 chars per string value.
-      sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
+      # Custom key-value pairs stored on the membership, commonly used for software
+      # licensing.
+      sig { returns(T.anything) }
       attr_accessor :metadata
 
-      # Whether recurring payment collection for this membership is temporarily paused
-      # by the company.
-      sig { returns(T::Boolean) }
-      attr_accessor :payment_collection_paused
+      # The buyer's phone number recorded for this membership, or `null`. The number
+      # collected (or verified) at checkout when the seller's phone collection is on;
+      # falls back to the buyer's account number when they have shared one with this
+      # seller.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :phone_number
 
-      # The plan the customer purchased to create this membership.
-      sig { returns(WhopSDK::Membership::Plan) }
-      attr_reader :plan
+      # The plan the buyer purchased, prefixed `plan_`.
+      sig { returns(String) }
+      attr_accessor :plan_id
 
-      sig { params(plan: WhopSDK::Membership::Plan::OrHash).void }
-      attr_writer :plan
+      # The product this membership grants access to, prefixed `prod_`.
+      sig { returns(String) }
+      attr_accessor :product_id
 
-      # The product this membership grants access to.
-      sig { returns(WhopSDK::Membership::Product) }
-      attr_reader :product
-
-      sig { params(product: WhopSDK::Membership::Product::OrHash).void }
-      attr_writer :product
-
-      # The promotional code currently applied to this membership's billing. Null if no
-      # promo code is active.
-      sig { returns(T.nilable(WhopSDK::Membership::PromoCode)) }
-      attr_reader :promo_code
-
-      sig do
-        params(
-          promo_code: T.nilable(WhopSDK::Membership::PromoCode::OrHash)
-        ).void
-      end
-      attr_writer :promo_code
-
-      # The end of the current billing period for this recurring membership. As a Unix
-      # timestamp. Null if the membership is not recurring.
-      sig { returns(T.nilable(Time)) }
-      attr_accessor :renewal_period_end
-
-      # The start of the current billing period for this recurring membership. As a Unix
-      # timestamp. Null if the membership is not recurring.
-      sig { returns(T.nilable(Time)) }
-      attr_accessor :renewal_period_start
-
-      # The current lifecycle status of the membership (e.g., active, trialing,
-      # past_due, canceled, expired, completed).
-      sig { returns(WhopSDK::MembershipStatus::TaggedSymbol) }
+      # Billing state of the membership. `active`/`trialing` memberships grant access;
+      # `past_due` is the grace period after a failed payment; `completed` one-time
+      # purchases keep access; `canceled`/`expired` do not.
+      sig { returns(WhopSDK::Membership::Status::TaggedSymbol) }
       attr_accessor :status
 
-      # The datetime the membership was last updated.
-      sig { returns(Time) }
-      attr_accessor :updated_at
+      # The buyer, prefixed `user_`. `null` when the buyer is another business or the
+      # membership is unclaimed.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :user_id
 
-      # The user who owns this membership. Null if the user account has been deleted.
-      sig { returns(T.nilable(WhopSDK::Membership::User)) }
-      attr_reader :user
-
-      sig { params(user: T.nilable(WhopSDK::Membership::User::OrHash)).void }
-      attr_writer :user
-
-      # A membership represents an active relationship between a user and a product. It
-      # tracks the user's access, billing status, and renewal schedule.
       sig do
         params(
           id: String,
+          account: WhopSDK::Membership::Account::OrHash,
           cancel_at_period_end: T::Boolean,
-          cancel_option: T.nilable(WhopSDK::CancelOptions::OrSymbol),
-          cancelation_status:
-            T.nilable(WhopSDK::Membership::CancelationStatus::OrSymbol),
-          canceled_at: T.nilable(Time),
-          cancellation_reason: T.nilable(String),
-          checkout_configuration_id: T.nilable(String),
-          company: WhopSDK::Membership::Company::OrHash,
-          created_at: Time,
-          currency: T.nilable(WhopSDK::Currency::OrSymbol),
-          custom_field_responses:
-            T::Array[WhopSDK::Membership::CustomFieldResponse::OrHash],
-          formatted_renewal_price: T.nilable(String),
-          initial_price_paid: String,
-          joined_at: T.nilable(Time),
+          created_at: String,
+          current_period_end: T.nilable(String),
           license_key: T.nilable(String),
-          manage_url: T.nilable(String),
           member: T.nilable(WhopSDK::Membership::Member::OrHash),
-          metadata: T.nilable(T::Hash[Symbol, T.anything]),
-          payment_collection_paused: T::Boolean,
-          plan: WhopSDK::Membership::Plan::OrHash,
-          product: WhopSDK::Membership::Product::OrHash,
-          promo_code: T.nilable(WhopSDK::Membership::PromoCode::OrHash),
-          renewal_period_end: T.nilable(Time),
-          renewal_period_start: T.nilable(Time),
-          status: WhopSDK::MembershipStatus::OrSymbol,
-          updated_at: Time,
-          user: T.nilable(WhopSDK::Membership::User::OrHash)
+          metadata: T.anything,
+          phone_number: T.nilable(String),
+          plan_id: String,
+          product_id: String,
+          status: WhopSDK::Membership::Status::OrSymbol,
+          user_id: T.nilable(String)
         ).returns(T.attached_class)
       end
       def self.new(
-        # The unique identifier for the membership.
+        # Membership ID, prefixed `mem_`.
         id:,
-        # Whether this membership is set to cancel at the end of the current billing
-        # cycle. Only applies to memberships with a recurring plan.
+        # The account (seller) this membership belongs to.
+        account:,
+        # Whether the membership is set to cancel when the current billing period ends.
+        # Only meaningful for recurring plans.
         cancel_at_period_end:,
-        # The different reasons a user can choose for why they are canceling their
-        # membership.
-        cancel_option:,
-        # The state of a membership after a customer provides a cancelation reason.
-        cancelation_status:,
-        # The time the customer initiated cancellation of this membership. As a Unix
-        # timestamp. Null if the membership has not been canceled.
-        canceled_at:,
-        # Free-text explanation provided by the customer when canceling. Null if the
-        # customer did not provide a reason.
-        cancellation_reason:,
-        # The ID of the checkout session/configuration that produced this membership, if
-        # any. Use this to map memberships back to the checkout configuration that created
-        # them.
-        checkout_configuration_id:,
-        # The company this membership belongs to.
-        company:,
-        # The datetime the membership was created.
+        # When the membership was created, as an ISO 8601 timestamp.
         created_at:,
-        # The available currencies on the platform
-        currency:,
-        # The customer's responses to custom checkout questions configured on the product
-        # at the time of purchase.
-        custom_field_responses:,
-        # The recurring renewal price for this membership, formatted with currency symbol
-        # and billing interval. Null if the membership is not recurring.
-        formatted_renewal_price:,
-        # The amount the customer paid when first purchasing this membership, formatted
-        # with currency symbol.
-        initial_price_paid:,
-        # The time the user first joined the company associated with this membership. As a
-        # Unix timestamp. Null if the member record does not exist.
-        joined_at:,
-        # The software license key associated with this membership. Only present if the
-        # product includes a Whop Software Licensing experience. Null otherwise.
+        # When the current billing period renews, or when a non-renewing membership
+        # expires, as an ISO 8601 timestamp. `null` for one-time purchases with no
+        # expiration.
+        current_period_end:,
+        # The software license key for this membership. Only present when the product
+        # includes a software licensing experience.
         license_key:,
-        # The URL where the customer can view and manage this membership, including
-        # cancellation and plan changes. Null if no member record exists.
-        manage_url:,
-        # The member record linking the user to the company for this membership. Null if
-        # the member record has not been created yet.
+        # The caller's member row on the account. Present only when the membership belongs
+        # to the caller; `null` on seller-side reads.
         member:,
-        # Custom key-value pairs for the membership (commonly used for software licensing,
-        # e.g., HWID). Max 50 keys, 100 chars per key, 500 chars per string value.
+        # Custom key-value pairs stored on the membership, commonly used for software
+        # licensing.
         metadata:,
-        # Whether recurring payment collection for this membership is temporarily paused
-        # by the company.
-        payment_collection_paused:,
-        # The plan the customer purchased to create this membership.
-        plan:,
-        # The product this membership grants access to.
-        product:,
-        # The promotional code currently applied to this membership's billing. Null if no
-        # promo code is active.
-        promo_code:,
-        # The end of the current billing period for this recurring membership. As a Unix
-        # timestamp. Null if the membership is not recurring.
-        renewal_period_end:,
-        # The start of the current billing period for this recurring membership. As a Unix
-        # timestamp. Null if the membership is not recurring.
-        renewal_period_start:,
-        # The current lifecycle status of the membership (e.g., active, trialing,
-        # past_due, canceled, expired, completed).
+        # The buyer's phone number recorded for this membership, or `null`. The number
+        # collected (or verified) at checkout when the seller's phone collection is on;
+        # falls back to the buyer's account number when they have shared one with this
+        # seller.
+        phone_number:,
+        # The plan the buyer purchased, prefixed `plan_`.
+        plan_id:,
+        # The product this membership grants access to, prefixed `prod_`.
+        product_id:,
+        # Billing state of the membership. `active`/`trialing` memberships grant access;
+        # `past_due` is the grace period after a failed payment; `completed` one-time
+        # purchases keep access; `canceled`/`expired` do not.
         status:,
-        # The datetime the membership was last updated.
-        updated_at:,
-        # The user who owns this membership. Null if the user account has been deleted.
-        user:
+        # The buyer, prefixed `user_`. `null` when the buyer is another business or the
+        # membership is unclaimed.
+        user_id:
       )
       end
 
@@ -275,135 +141,76 @@ module WhopSDK
         override.returns(
           {
             id: String,
+            account: WhopSDK::Membership::Account,
             cancel_at_period_end: T::Boolean,
-            cancel_option: T.nilable(WhopSDK::CancelOptions::TaggedSymbol),
-            cancelation_status:
-              T.nilable(WhopSDK::Membership::CancelationStatus::TaggedSymbol),
-            canceled_at: T.nilable(Time),
-            cancellation_reason: T.nilable(String),
-            checkout_configuration_id: T.nilable(String),
-            company: WhopSDK::Membership::Company,
-            created_at: Time,
-            currency: T.nilable(WhopSDK::Currency::TaggedSymbol),
-            custom_field_responses:
-              T::Array[WhopSDK::Membership::CustomFieldResponse],
-            formatted_renewal_price: T.nilable(String),
-            initial_price_paid: String,
-            joined_at: T.nilable(Time),
+            created_at: String,
+            current_period_end: T.nilable(String),
             license_key: T.nilable(String),
-            manage_url: T.nilable(String),
             member: T.nilable(WhopSDK::Membership::Member),
-            metadata: T.nilable(T::Hash[Symbol, T.anything]),
-            payment_collection_paused: T::Boolean,
-            plan: WhopSDK::Membership::Plan,
-            product: WhopSDK::Membership::Product,
-            promo_code: T.nilable(WhopSDK::Membership::PromoCode),
-            renewal_period_end: T.nilable(Time),
-            renewal_period_start: T.nilable(Time),
-            status: WhopSDK::MembershipStatus::TaggedSymbol,
-            updated_at: Time,
-            user: T.nilable(WhopSDK::Membership::User)
+            metadata: T.anything,
+            phone_number: T.nilable(String),
+            plan_id: String,
+            product_id: String,
+            status: WhopSDK::Membership::Status::TaggedSymbol,
+            user_id: T.nilable(String)
           }
         )
       end
       def to_hash
       end
 
-      # The state of a membership after a customer provides a cancelation reason.
-      module CancelationStatus
-        extend WhopSDK::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias { T.all(Symbol, WhopSDK::Membership::CancelationStatus) }
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        WON_BACK =
-          T.let(:won_back, WhopSDK::Membership::CancelationStatus::TaggedSymbol)
-        LEFT =
-          T.let(:left, WhopSDK::Membership::CancelationStatus::TaggedSymbol)
-        CANCELING =
-          T.let(
-            :canceling,
-            WhopSDK::Membership::CancelationStatus::TaggedSymbol
-          )
-
-        sig do
-          override.returns(
-            T::Array[WhopSDK::Membership::CancelationStatus::TaggedSymbol]
-          )
-        end
-        def self.values
-        end
-      end
-
-      class Company < WhopSDK::Internal::Type::BaseModel
+      class Account < WhopSDK::Internal::Type::BaseModel
         OrHash =
           T.type_alias do
-            T.any(WhopSDK::Membership::Company, WhopSDK::Internal::AnyHash)
+            T.any(WhopSDK::Membership::Account, WhopSDK::Internal::AnyHash)
           end
 
-        # The unique identifier for the company.
+        # Account ID, prefixed `biz_`.
         sig { returns(String) }
         attr_accessor :id
 
-        # The display name of the company shown to customers.
+        # Account logo image URL. `null` when the account has not set one.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :logo_url
+
+        # Account public route identifier — the `whop.com/{route}` storefront path.
+        sig { returns(String) }
+        attr_accessor :route
+
+        # Account display name.
         sig { returns(String) }
         attr_accessor :title
 
-        # The company this membership belongs to.
-        sig { params(id: String, title: String).returns(T.attached_class) }
+        # The account (seller) this membership belongs to.
+        sig do
+          params(
+            id: String,
+            logo_url: T.nilable(String),
+            route: String,
+            title: String
+          ).returns(T.attached_class)
+        end
         def self.new(
-          # The unique identifier for the company.
+          # Account ID, prefixed `biz_`.
           id:,
-          # The display name of the company shown to customers.
+          # Account logo image URL. `null` when the account has not set one.
+          logo_url:,
+          # Account public route identifier — the `whop.com/{route}` storefront path.
+          route:,
+          # Account display name.
           title:
         )
         end
 
-        sig { override.returns({ id: String, title: String }) }
-        def to_hash
-        end
-      end
-
-      class CustomFieldResponse < WhopSDK::Internal::Type::BaseModel
-        OrHash =
-          T.type_alias do
-            T.any(
-              WhopSDK::Membership::CustomFieldResponse,
-              WhopSDK::Internal::AnyHash
-            )
-          end
-
-        # The unique identifier for the custom field response.
-        sig { returns(String) }
-        attr_accessor :id
-
-        # The response a user gave to the specific question or field.
-        sig { returns(String) }
-        attr_accessor :answer
-
-        # The question asked by the custom field
-        sig { returns(String) }
-        attr_accessor :question
-
-        # The response from a custom field on checkout
         sig do
-          params(id: String, answer: String, question: String).returns(
-            T.attached_class
+          override.returns(
+            {
+              id: String,
+              logo_url: T.nilable(String),
+              route: String,
+              title: String
+            }
           )
-        end
-        def self.new(
-          # The unique identifier for the custom field response.
-          id:,
-          # The response a user gave to the specific question or field.
-          answer:,
-          # The question asked by the custom field
-          question:
-        )
-        end
-
-        sig do
-          override.returns({ id: String, answer: String, question: String })
         end
         def to_hash
         end
@@ -415,213 +222,116 @@ module WhopSDK
             T.any(WhopSDK::Membership::Member, WhopSDK::Internal::AnyHash)
           end
 
-        # The unique identifier for the member.
-        sig { returns(String) }
-        attr_accessor :id
+        # What the member can reach on the account: `customer` for paying members, `admin`
+        # for team members, `no_access` once every grant has lapsed.
+        sig { returns(WhopSDK::Membership::Member::AccessLevel::TaggedSymbol) }
+        attr_accessor :access_level
 
-        # The member record linking the user to the company for this membership. Null if
-        # the member record has not been created yet.
-        sig { params(id: String).returns(T.attached_class) }
-        def self.new(
-          # The unique identifier for the member.
-          id:
-        )
-        end
+        # When the member last opened the account's content, as an ISO 8601 timestamp.
+        # `null` if they never have.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :last_accessed_at
 
-        sig { override.returns({ id: String }) }
-        def to_hash
-        end
-      end
+        # The member's sort position in the buyer's own account list. `null` until they
+        # arrange it.
+        sig { returns(T.nilable(Float)) }
+        attr_accessor :position
 
-      class Plan < WhopSDK::Internal::Type::BaseModel
-        OrHash =
-          T.type_alias do
-            T.any(WhopSDK::Membership::Plan, WhopSDK::Internal::AnyHash)
-          end
-
-        # The unique identifier for the plan.
-        sig { returns(String) }
-        attr_accessor :id
-
-        # Custom key-value pairs stored on the plan. Included in webhook payloads for
-        # payment and membership events. Max 50 keys, 100 chars per key, 500 chars per
-        # string value. The reserved keys `custom_cta` and `custom_cta_url`, when set,
-        # override the product's checkout call to action for this plan.
-        sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
-        attr_accessor :metadata
-
-        # The plan the customer purchased to create this membership.
+        # The caller's member row on the account. Present only when the membership belongs
+        # to the caller; `null` on seller-side reads.
         sig do
           params(
-            id: String,
-            metadata: T.nilable(T::Hash[Symbol, T.anything])
+            access_level: WhopSDK::Membership::Member::AccessLevel::OrSymbol,
+            last_accessed_at: T.nilable(String),
+            position: T.nilable(Float)
           ).returns(T.attached_class)
         end
         def self.new(
-          # The unique identifier for the plan.
-          id:,
-          # Custom key-value pairs stored on the plan. Included in webhook payloads for
-          # payment and membership events. Max 50 keys, 100 chars per key, 500 chars per
-          # string value. The reserved keys `custom_cta` and `custom_cta_url`, when set,
-          # override the product's checkout call to action for this plan.
-          metadata:
-        )
-        end
-
-        sig do
-          override.returns(
-            { id: String, metadata: T.nilable(T::Hash[Symbol, T.anything]) }
-          )
-        end
-        def to_hash
-        end
-      end
-
-      class Product < WhopSDK::Internal::Type::BaseModel
-        OrHash =
-          T.type_alias do
-            T.any(WhopSDK::Membership::Product, WhopSDK::Internal::AnyHash)
-          end
-
-        # The unique identifier for the product.
-        sig { returns(String) }
-        attr_accessor :id
-
-        # Custom key-value pairs stored on the product and included in payment and
-        # membership webhook payloads. Max 50 keys, 100 characters per key, 500 characters
-        # per string value.
-        sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
-        attr_accessor :metadata
-
-        # The display name of the product shown to customers on the product page and in
-        # search results.
-        sig { returns(String) }
-        attr_accessor :title
-
-        # The product this membership grants access to.
-        sig do
-          params(
-            id: String,
-            metadata: T.nilable(T::Hash[Symbol, T.anything]),
-            title: String
-          ).returns(T.attached_class)
-        end
-        def self.new(
-          # The unique identifier for the product.
-          id:,
-          # Custom key-value pairs stored on the product and included in payment and
-          # membership webhook payloads. Max 50 keys, 100 characters per key, 500 characters
-          # per string value.
-          metadata:,
-          # The display name of the product shown to customers on the product page and in
-          # search results.
-          title:
+          # What the member can reach on the account: `customer` for paying members, `admin`
+          # for team members, `no_access` once every grant has lapsed.
+          access_level:,
+          # When the member last opened the account's content, as an ISO 8601 timestamp.
+          # `null` if they never have.
+          last_accessed_at:,
+          # The member's sort position in the buyer's own account list. `null` until they
+          # arrange it.
+          position:
         )
         end
 
         sig do
           override.returns(
             {
-              id: String,
-              metadata: T.nilable(T::Hash[Symbol, T.anything]),
-              title: String
+              access_level:
+                WhopSDK::Membership::Member::AccessLevel::TaggedSymbol,
+              last_accessed_at: T.nilable(String),
+              position: T.nilable(Float)
             }
           )
         end
         def to_hash
         end
+
+        # What the member can reach on the account: `customer` for paying members, `admin`
+        # for team members, `no_access` once every grant has lapsed.
+        module AccessLevel
+          extend WhopSDK::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(Symbol, WhopSDK::Membership::Member::AccessLevel)
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          NO_ACCESS =
+            T.let(
+              :no_access,
+              WhopSDK::Membership::Member::AccessLevel::TaggedSymbol
+            )
+          ADMIN =
+            T.let(
+              :admin,
+              WhopSDK::Membership::Member::AccessLevel::TaggedSymbol
+            )
+          CUSTOMER =
+            T.let(
+              :customer,
+              WhopSDK::Membership::Member::AccessLevel::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[WhopSDK::Membership::Member::AccessLevel::TaggedSymbol]
+            )
+          end
+          def self.values
+          end
+        end
       end
 
-      class PromoCode < WhopSDK::Internal::Type::BaseModel
-        OrHash =
-          T.type_alias do
-            T.any(WhopSDK::Membership::PromoCode, WhopSDK::Internal::AnyHash)
-          end
+      # Billing state of the membership. `active`/`trialing` memberships grant access;
+      # `past_due` is the grace period after a failed payment; `completed` one-time
+      # purchases keep access; `canceled`/`expired` do not.
+      module Status
+        extend WhopSDK::Internal::Type::Enum
 
-        # The unique identifier for the promo code.
-        sig { returns(String) }
-        attr_accessor :id
+        TaggedSymbol =
+          T.type_alias { T.all(Symbol, WhopSDK::Membership::Status) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-        # The promotional code currently applied to this membership's billing. Null if no
-        # promo code is active.
-        sig { params(id: String).returns(T.attached_class) }
-        def self.new(
-          # The unique identifier for the promo code.
-          id:
-        )
-        end
-
-        sig { override.returns({ id: String }) }
-        def to_hash
-        end
-      end
-
-      class User < WhopSDK::Internal::Type::BaseModel
-        OrHash =
-          T.type_alias do
-            T.any(WhopSDK::Membership::User, WhopSDK::Internal::AnyHash)
-          end
-
-        # The unique identifier for the user.
-        sig { returns(String) }
-        attr_accessor :id
-
-        # The user's email address. Requires the member:email:read permission to access.
-        # Null if not authorized.
-        sig { returns(T.nilable(String)) }
-        attr_accessor :email
-
-        # The user's display name shown on their public profile.
-        sig { returns(T.nilable(String)) }
-        attr_accessor :name
-
-        # The URL of the user's profile picture. Use profilePicture for the full
-        # attachment object.
-        sig { returns(String) }
-        attr_accessor :profile_pic
-
-        # The user's unique username shown on their public profile.
-        sig { returns(String) }
-        attr_accessor :username
-
-        # The user who owns this membership. Null if the user account has been deleted.
-        sig do
-          params(
-            id: String,
-            email: T.nilable(String),
-            name: T.nilable(String),
-            profile_pic: String,
-            username: String
-          ).returns(T.attached_class)
-        end
-        def self.new(
-          # The unique identifier for the user.
-          id:,
-          # The user's email address. Requires the member:email:read permission to access.
-          # Null if not authorized.
-          email:,
-          # The user's display name shown on their public profile.
-          name:,
-          # The URL of the user's profile picture. Use profilePicture for the full
-          # attachment object.
-          profile_pic:,
-          # The user's unique username shown on their public profile.
-          username:
-        )
-        end
+        TRIALING = T.let(:trialing, WhopSDK::Membership::Status::TaggedSymbol)
+        ACTIVE = T.let(:active, WhopSDK::Membership::Status::TaggedSymbol)
+        PAST_DUE = T.let(:past_due, WhopSDK::Membership::Status::TaggedSymbol)
+        COMPLETED = T.let(:completed, WhopSDK::Membership::Status::TaggedSymbol)
+        CANCELED = T.let(:canceled, WhopSDK::Membership::Status::TaggedSymbol)
+        EXPIRED = T.let(:expired, WhopSDK::Membership::Status::TaggedSymbol)
+        UNRESOLVED =
+          T.let(:unresolved, WhopSDK::Membership::Status::TaggedSymbol)
 
         sig do
-          override.returns(
-            {
-              id: String,
-              email: T.nilable(String),
-              name: T.nilable(String),
-              profile_pic: String,
-              username: String
-            }
-          )
+          override.returns(T::Array[WhopSDK::Membership::Status::TaggedSymbol])
         end
-        def to_hash
+        def self.values
         end
       end
     end

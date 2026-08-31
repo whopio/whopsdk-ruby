@@ -3,63 +3,309 @@ module WhopSDK
     type webhook_list_response =
       {
         id: String,
-        api_version: WhopSDK::Models::api_version,
+        api_version: WhopSDK::Models::WebhookListResponse::api_version,
         api_version_date: String?,
         child_resource_events: bool,
-        created_at: Time,
+        consecutive_failures: Integer,
+        created_at: String,
+        disabled_at: String?,
+        disabled_reason: WhopSDK::Models::WebhookListResponse::disabled_reason?,
         enabled: bool,
-        events: ::Array[WhopSDK::Models::webhook_event],
+        events: ::Array[WhopSDK::Models::WebhookListResponse::event],
+        failing_since: String?,
+        last_failure_at: String?,
         resource_id: String,
         url: String,
-        webhook_secret: String
+        webhook_secret: String?
       }
 
     class WebhookListResponse < WhopSDK::Internal::Type::BaseModel
       attr_accessor id: String
 
-      attr_accessor api_version: WhopSDK::Models::api_version
+      attr_accessor api_version: WhopSDK::Models::WebhookListResponse::api_version
 
       attr_accessor api_version_date: String?
 
       attr_accessor child_resource_events: bool
 
-      attr_accessor created_at: Time
+      attr_accessor consecutive_failures: Integer
+
+      attr_accessor created_at: String
+
+      attr_accessor disabled_at: String?
+
+      attr_accessor disabled_reason: WhopSDK::Models::WebhookListResponse::disabled_reason?
 
       attr_accessor enabled: bool
 
-      attr_accessor events: ::Array[WhopSDK::Models::webhook_event]
+      attr_accessor events: ::Array[WhopSDK::Models::WebhookListResponse::event]
+
+      attr_accessor failing_since: String?
+
+      attr_accessor last_failure_at: String?
 
       attr_accessor resource_id: String
 
       attr_accessor url: String
 
-      attr_accessor webhook_secret: String
+      attr_accessor webhook_secret: String?
 
       def initialize: (
         id: String,
-        api_version: WhopSDK::Models::api_version,
+        api_version: WhopSDK::Models::WebhookListResponse::api_version,
         api_version_date: String?,
         child_resource_events: bool,
-        created_at: Time,
+        consecutive_failures: Integer,
+        created_at: String,
+        disabled_at: String?,
+        disabled_reason: WhopSDK::Models::WebhookListResponse::disabled_reason?,
         enabled: bool,
-        events: ::Array[WhopSDK::Models::webhook_event],
+        events: ::Array[WhopSDK::Models::WebhookListResponse::event],
+        failing_since: String?,
+        last_failure_at: String?,
         resource_id: String,
         url: String,
-        webhook_secret: String
+        webhook_secret: String?
       ) -> void
 
       def to_hash: -> {
         id: String,
-        api_version: WhopSDK::Models::api_version,
+        api_version: WhopSDK::Models::WebhookListResponse::api_version,
         api_version_date: String?,
         child_resource_events: bool,
-        created_at: Time,
+        consecutive_failures: Integer,
+        created_at: String,
+        disabled_at: String?,
+        disabled_reason: WhopSDK::Models::WebhookListResponse::disabled_reason?,
         enabled: bool,
-        events: ::Array[WhopSDK::Models::webhook_event],
+        events: ::Array[WhopSDK::Models::WebhookListResponse::event],
+        failing_since: String?,
+        last_failure_at: String?,
         resource_id: String,
         url: String,
-        webhook_secret: String
+        webhook_secret: String?
       }
+
+      type api_version = :v1 | :v2 | :v5
+
+      module APIVersion
+        extend WhopSDK::Internal::Type::Enum
+
+        V1: :v1
+        V2: :v2
+        V5: :v5
+
+        def self?.values: -> ::Array[WhopSDK::Models::WebhookListResponse::api_version]
+      end
+
+      type disabled_reason = :delivery_failures
+
+      module DisabledReason
+        extend WhopSDK::Internal::Type::Enum
+
+        DELIVERY_FAILURES: :delivery_failures
+
+        def self?.values: -> ::Array[WhopSDK::Models::WebhookListResponse::disabled_reason]
+      end
+
+      type event =
+        :"account.updated"
+        | :"invoice.created"
+        | :"invoice.marked_uncollectible"
+        | :"invoice.paid"
+        | :"invoice.past_due"
+        | :"invoice.voided"
+        | :"membership.activated"
+        | :"membership.deactivated"
+        | :"membership.trial_ending_soon"
+        | :"entry.created"
+        | :"entry.approved"
+        | :"entry.denied"
+        | :"entry.deleted"
+        | :"export.completed"
+        | :"export.failed"
+        | :"setup_intent.requires_action"
+        | :"setup_intent.succeeded"
+        | :"setup_intent.canceled"
+        | :"ledger_account.funds_available"
+        | :"swap.completed"
+        | :"deposit.succeeded"
+        | :"transfer.created"
+        | :"transfer.completed"
+        | :"transfer.failed"
+        | :"withdrawal.created"
+        | :"withdrawal.updated"
+        | :"withdrawal.reversed"
+        | :"payout.created"
+        | :"payout.updated"
+        | :"payout.reversed"
+        | :"card_transaction.created"
+        | :"card_transaction.updated"
+        | :"card_transaction.completed"
+        | :"card_transaction.declined"
+        | :"card_transaction.reversed"
+        | :"card.created"
+        | :"card.updated"
+        | :"card.frozen"
+        | :"card.canceled"
+        | :"card_application.created"
+        | :"card_application.updated"
+        | :"card_application.approved"
+        | :"card_application.denied"
+        | :"course_lesson_interaction.completed"
+        | :"payout_method.created"
+        | :"verification.succeeded"
+        | :"identity_profile.approved"
+        | :"identity_profile.rejected"
+        | :"identity_profile.needs_action"
+        | :"identity_profile.updated"
+        | :"payout_account.status_updated"
+        | :"payment.authorized"
+        | :"payment.canceled"
+        | :"resolution_center_case.created"
+        | :"resolution_center_case.updated"
+        | :"resolution_center_case.decided"
+        | :"product.created"
+        | :"product.updated"
+        | :"product.deleted"
+        | :"product.published"
+        | :"product.unpublished"
+        | :"plan.created"
+        | :"plan.updated"
+        | :"plan.deleted"
+        | :"shipment.created"
+        | :"shipment.updated"
+        | :"member.created"
+        | :"ad_campaign.payment_failed"
+        | :"chat.message.created"
+        | :"chat.reaction.created"
+        | :"payment.created"
+        | :"payment.succeeded"
+        | :"payment.failed"
+        | :"payment.pending"
+        | :"dispute.created"
+        | :"dispute.updated"
+        | :"refund.created"
+        | :"refund.updated"
+        | :"dispute_alert.created"
+        | :"membership.cancel_at_period_end_changed"
+        | :"membership.went_valid"
+        | :"membership.went_invalid"
+        | :"membership.metadata_updated"
+        | :"resolution.created"
+        | :"resolution.updated"
+        | :"resolution.decided"
+        | :"payment.affiliate_reward_created"
+        | :"membership.experience_claimed"
+        | :"app_membership.went_valid"
+        | :"app_membership.went_invalid"
+        | :"app_payment.created"
+        | :"app_payment.succeeded"
+        | :"app_payment.failed"
+        | :"app_payment.pending"
+        | :"app_membership.cancel_at_period_end_changed"
+
+      module Event
+        extend WhopSDK::Internal::Type::Enum
+
+        ACCOUNT_UPDATED: :"account.updated"
+        INVOICE_CREATED: :"invoice.created"
+        INVOICE_MARKED_UNCOLLECTIBLE: :"invoice.marked_uncollectible"
+        INVOICE_PAID: :"invoice.paid"
+        INVOICE_PAST_DUE: :"invoice.past_due"
+        INVOICE_VOIDED: :"invoice.voided"
+        MEMBERSHIP_ACTIVATED: :"membership.activated"
+        MEMBERSHIP_DEACTIVATED: :"membership.deactivated"
+        MEMBERSHIP_TRIAL_ENDING_SOON: :"membership.trial_ending_soon"
+        ENTRY_CREATED: :"entry.created"
+        ENTRY_APPROVED: :"entry.approved"
+        ENTRY_DENIED: :"entry.denied"
+        ENTRY_DELETED: :"entry.deleted"
+        EXPORT_COMPLETED: :"export.completed"
+        EXPORT_FAILED: :"export.failed"
+        SETUP_INTENT_REQUIRES_ACTION: :"setup_intent.requires_action"
+        SETUP_INTENT_SUCCEEDED: :"setup_intent.succeeded"
+        SETUP_INTENT_CANCELED: :"setup_intent.canceled"
+        LEDGER_ACCOUNT_FUNDS_AVAILABLE: :"ledger_account.funds_available"
+        SWAP_COMPLETED: :"swap.completed"
+        DEPOSIT_SUCCEEDED: :"deposit.succeeded"
+        TRANSFER_CREATED: :"transfer.created"
+        TRANSFER_COMPLETED: :"transfer.completed"
+        TRANSFER_FAILED: :"transfer.failed"
+        WITHDRAWAL_CREATED: :"withdrawal.created"
+        WITHDRAWAL_UPDATED: :"withdrawal.updated"
+        WITHDRAWAL_REVERSED: :"withdrawal.reversed"
+        PAYOUT_CREATED: :"payout.created"
+        PAYOUT_UPDATED: :"payout.updated"
+        PAYOUT_REVERSED: :"payout.reversed"
+        CARD_TRANSACTION_CREATED: :"card_transaction.created"
+        CARD_TRANSACTION_UPDATED: :"card_transaction.updated"
+        CARD_TRANSACTION_COMPLETED: :"card_transaction.completed"
+        CARD_TRANSACTION_DECLINED: :"card_transaction.declined"
+        CARD_TRANSACTION_REVERSED: :"card_transaction.reversed"
+        CARD_CREATED: :"card.created"
+        CARD_UPDATED: :"card.updated"
+        CARD_FROZEN: :"card.frozen"
+        CARD_CANCELED: :"card.canceled"
+        CARD_APPLICATION_CREATED: :"card_application.created"
+        CARD_APPLICATION_UPDATED: :"card_application.updated"
+        CARD_APPLICATION_APPROVED: :"card_application.approved"
+        CARD_APPLICATION_DENIED: :"card_application.denied"
+        COURSE_LESSON_INTERACTION_COMPLETED: :"course_lesson_interaction.completed"
+        PAYOUT_METHOD_CREATED: :"payout_method.created"
+        VERIFICATION_SUCCEEDED: :"verification.succeeded"
+        IDENTITY_PROFILE_APPROVED: :"identity_profile.approved"
+        IDENTITY_PROFILE_REJECTED: :"identity_profile.rejected"
+        IDENTITY_PROFILE_NEEDS_ACTION: :"identity_profile.needs_action"
+        IDENTITY_PROFILE_UPDATED: :"identity_profile.updated"
+        PAYOUT_ACCOUNT_STATUS_UPDATED: :"payout_account.status_updated"
+        PAYMENT_AUTHORIZED: :"payment.authorized"
+        PAYMENT_CANCELED: :"payment.canceled"
+        RESOLUTION_CENTER_CASE_CREATED: :"resolution_center_case.created"
+        RESOLUTION_CENTER_CASE_UPDATED: :"resolution_center_case.updated"
+        RESOLUTION_CENTER_CASE_DECIDED: :"resolution_center_case.decided"
+        PRODUCT_CREATED: :"product.created"
+        PRODUCT_UPDATED: :"product.updated"
+        PRODUCT_DELETED: :"product.deleted"
+        PRODUCT_PUBLISHED: :"product.published"
+        PRODUCT_UNPUBLISHED: :"product.unpublished"
+        PLAN_CREATED: :"plan.created"
+        PLAN_UPDATED: :"plan.updated"
+        PLAN_DELETED: :"plan.deleted"
+        SHIPMENT_CREATED: :"shipment.created"
+        SHIPMENT_UPDATED: :"shipment.updated"
+        MEMBER_CREATED: :"member.created"
+        AD_CAMPAIGN_PAYMENT_FAILED: :"ad_campaign.payment_failed"
+        CHAT_MESSAGE_CREATED: :"chat.message.created"
+        CHAT_REACTION_CREATED: :"chat.reaction.created"
+        PAYMENT_CREATED: :"payment.created"
+        PAYMENT_SUCCEEDED: :"payment.succeeded"
+        PAYMENT_FAILED: :"payment.failed"
+        PAYMENT_PENDING: :"payment.pending"
+        DISPUTE_CREATED: :"dispute.created"
+        DISPUTE_UPDATED: :"dispute.updated"
+        REFUND_CREATED: :"refund.created"
+        REFUND_UPDATED: :"refund.updated"
+        DISPUTE_ALERT_CREATED: :"dispute_alert.created"
+        MEMBERSHIP_CANCEL_AT_PERIOD_END_CHANGED: :"membership.cancel_at_period_end_changed"
+        MEMBERSHIP_WENT_VALID: :"membership.went_valid"
+        MEMBERSHIP_WENT_INVALID: :"membership.went_invalid"
+        MEMBERSHIP_METADATA_UPDATED: :"membership.metadata_updated"
+        RESOLUTION_CREATED: :"resolution.created"
+        RESOLUTION_UPDATED: :"resolution.updated"
+        RESOLUTION_DECIDED: :"resolution.decided"
+        PAYMENT_AFFILIATE_REWARD_CREATED: :"payment.affiliate_reward_created"
+        MEMBERSHIP_EXPERIENCE_CLAIMED: :"membership.experience_claimed"
+        APP_MEMBERSHIP_WENT_VALID: :"app_membership.went_valid"
+        APP_MEMBERSHIP_WENT_INVALID: :"app_membership.went_invalid"
+        APP_PAYMENT_CREATED: :"app_payment.created"
+        APP_PAYMENT_SUCCEEDED: :"app_payment.succeeded"
+        APP_PAYMENT_FAILED: :"app_payment.failed"
+        APP_PAYMENT_PENDING: :"app_payment.pending"
+        APP_MEMBERSHIP_CANCEL_AT_PERIOD_END_CHANGED: :"app_membership.cancel_at_period_end_changed"
+
+        def self?.values: -> ::Array[WhopSDK::Models::WebhookListResponse::event]
+      end
     end
   end
 end

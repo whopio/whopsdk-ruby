@@ -14,101 +14,117 @@ module WhopSDK
           )
         end
 
-      # The unique identifier of the company to list checkout configurations for.
+      # Account ID, prefixed `biz_`.
       sig { returns(String) }
-      attr_accessor :company_id
+      attr_accessor :account_id
 
-      # Returns the elements in the list that come after the specified cursor.
+      # Cursor for the next page of results.
       sig { returns(T.nilable(String)) }
       attr_reader :after
 
       sig { params(after: String).void }
       attr_writer :after
 
-      # Returns the elements in the list that come before the specified cursor.
+      # Only return checkout configurations created after this ISO 8601 timestamp.
       sig { returns(T.nilable(String)) }
-      attr_reader :before
-
-      sig { params(before: String).void }
-      attr_writer :before
-
-      # Only return checkout configurations created after this timestamp.
-      sig { returns(T.nilable(Time)) }
       attr_reader :created_after
 
-      sig { params(created_after: Time).void }
+      sig { params(created_after: String).void }
       attr_writer :created_after
 
-      # Only return checkout configurations created before this timestamp.
-      sig { returns(T.nilable(Time)) }
+      # Only return checkout configurations created before this ISO 8601 timestamp.
+      sig { returns(T.nilable(String)) }
       attr_reader :created_before
 
-      sig { params(created_before: Time).void }
+      sig { params(created_before: String).void }
       attr_writer :created_before
 
-      # The sort direction for ordering results, either ascending or descending.
-      sig { returns(T.nilable(WhopSDK::Direction::OrSymbol)) }
+      # Sort direction. Defaults to `desc`.
+      sig do
+        returns(
+          T.nilable(
+            WhopSDK::CheckoutConfigurationListParams::Direction::OrSymbol
+          )
+        )
+      end
       attr_reader :direction
 
-      sig { params(direction: WhopSDK::Direction::OrSymbol).void }
+      sig do
+        params(
+          direction:
+            WhopSDK::CheckoutConfigurationListParams::Direction::OrSymbol
+        ).void
+      end
       attr_writer :direction
 
-      # Returns the first _n_ elements from the list.
+      # Number of checkout configurations to return.
       sig { returns(T.nilable(Integer)) }
       attr_reader :first
 
       sig { params(first: Integer).void }
       attr_writer :first
 
-      # Returns the last _n_ elements from the list.
-      sig { returns(T.nilable(Integer)) }
-      attr_reader :last
+      # Field used to sort checkout configurations.
+      sig do
+        returns(
+          T.nilable(WhopSDK::CheckoutConfigurationListParams::Order::OrSymbol)
+        )
+      end
+      attr_reader :order
 
-      sig { params(last: Integer).void }
-      attr_writer :last
+      sig do
+        params(
+          order: WhopSDK::CheckoutConfigurationListParams::Order::OrSymbol
+        ).void
+      end
+      attr_writer :order
 
-      # Filter checkout configurations to only those associated with this plan
-      # identifier.
+      # Only return checkout configurations for this plan ID, prefixed `plan_`.
       sig { returns(T.nilable(String)) }
       attr_reader :plan_id
 
       sig { params(plan_id: String).void }
       attr_writer :plan_id
 
+      sig { returns(T.nilable(String)) }
+      attr_reader :api_version_date
+
+      sig { params(api_version_date: String).void }
+      attr_writer :api_version_date
+
       sig do
         params(
-          company_id: String,
+          account_id: String,
           after: String,
-          before: String,
-          created_after: Time,
-          created_before: Time,
-          direction: WhopSDK::Direction::OrSymbol,
+          created_after: String,
+          created_before: String,
+          direction:
+            WhopSDK::CheckoutConfigurationListParams::Direction::OrSymbol,
           first: Integer,
-          last: Integer,
+          order: WhopSDK::CheckoutConfigurationListParams::Order::OrSymbol,
           plan_id: String,
+          api_version_date: String,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
-        # The unique identifier of the company to list checkout configurations for.
-        company_id:,
-        # Returns the elements in the list that come after the specified cursor.
+        # Account ID, prefixed `biz_`.
+        account_id:,
+        # Cursor for the next page of results.
         after: nil,
-        # Returns the elements in the list that come before the specified cursor.
-        before: nil,
-        # Only return checkout configurations created after this timestamp.
+        # Only return checkout configurations created after this ISO 8601 timestamp.
         created_after: nil,
-        # Only return checkout configurations created before this timestamp.
+        # Only return checkout configurations created before this ISO 8601 timestamp.
         created_before: nil,
-        # The sort direction for ordering results, either ascending or descending.
+        # Sort direction. Defaults to `desc`.
         direction: nil,
-        # Returns the first _n_ elements from the list.
+        # Number of checkout configurations to return.
         first: nil,
-        # Returns the last _n_ elements from the list.
-        last: nil,
-        # Filter checkout configurations to only those associated with this plan
-        # identifier.
+        # Field used to sort checkout configurations.
+        order: nil,
+        # Only return checkout configurations for this plan ID, prefixed `plan_`.
         plan_id: nil,
+        api_version_date: nil,
         request_options: {}
       )
       end
@@ -116,20 +132,80 @@ module WhopSDK
       sig do
         override.returns(
           {
-            company_id: String,
+            account_id: String,
             after: String,
-            before: String,
-            created_after: Time,
-            created_before: Time,
-            direction: WhopSDK::Direction::OrSymbol,
+            created_after: String,
+            created_before: String,
+            direction:
+              WhopSDK::CheckoutConfigurationListParams::Direction::OrSymbol,
             first: Integer,
-            last: Integer,
+            order: WhopSDK::CheckoutConfigurationListParams::Order::OrSymbol,
             plan_id: String,
+            api_version_date: String,
             request_options: WhopSDK::RequestOptions
           }
         )
       end
       def to_hash
+      end
+
+      # Sort direction. Defaults to `desc`.
+      module Direction
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias do
+            T.all(Symbol, WhopSDK::CheckoutConfigurationListParams::Direction)
+          end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        ASC =
+          T.let(
+            :asc,
+            WhopSDK::CheckoutConfigurationListParams::Direction::TaggedSymbol
+          )
+        DESC =
+          T.let(
+            :desc,
+            WhopSDK::CheckoutConfigurationListParams::Direction::TaggedSymbol
+          )
+
+        sig do
+          override.returns(
+            T::Array[
+              WhopSDK::CheckoutConfigurationListParams::Direction::TaggedSymbol
+            ]
+          )
+        end
+        def self.values
+        end
+      end
+
+      # Field used to sort checkout configurations.
+      module Order
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias do
+            T.all(Symbol, WhopSDK::CheckoutConfigurationListParams::Order)
+          end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        CREATED_AT =
+          T.let(
+            :created_at,
+            WhopSDK::CheckoutConfigurationListParams::Order::TaggedSymbol
+          )
+
+        sig do
+          override.returns(
+            T::Array[
+              WhopSDK::CheckoutConfigurationListParams::Order::TaggedSymbol
+            ]
+          )
+        end
+        def self.values
+        end
       end
     end
   end

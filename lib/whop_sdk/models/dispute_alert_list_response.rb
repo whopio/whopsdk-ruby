@@ -5,107 +5,194 @@ module WhopSDK
     # @see WhopSDK::Resources::DisputeAlerts#list
     class DisputeAlertListResponse < WhopSDK::Internal::Type::BaseModel
       # @!attribute id
-      #   The unique identifier of the dispute alert.
+      #   Dispute alert ID, prefixed `dspa_`.
       #
       #   @return [String]
       required :id, String
 
-      # @!attribute alert_type
-      #   The type of the dispute alert.
+      # @!attribute account_id
+      #   The account the alerted payment belongs to, prefixed `biz_`. `null` while the
+      #   alert is unmatched.
       #
-      #   @return [Symbol, WhopSDK::Models::DisputeAlertType]
-      required :alert_type, enum: -> { WhopSDK::DisputeAlertType }
+      #   @return [String, nil]
+      required :account_id, String, nil?: true
+
+      # @!attribute actionable
+      #   Whether refunding the payment can still avoid a chargeback. `false` once the
+      #   payment has been disputed or fully refunded, or when the alert could not be
+      #   matched to a payment — `not_actionable_reason` says which.
+      #
+      #   @return [Boolean]
+      required :actionable, WhopSDK::Internal::Type::Boolean
 
       # @!attribute amount
-      #   The alerted amount in the specified currency.
+      #   The alerted amount, in whole units of `currency`. This is what the issuer
+      #   reported, which can differ from the payment's own amount.
       #
       #   @return [Float]
       required :amount, Float
 
-      # @!attribute charge_for_alert
-      #   Whether this alert incurs a charge.
+      # @!attribute card_brand
+      #   The card network as reported by the issuer, lowercased, such as `visa` or
+      #   `mastercard`. `unknown` when the report carries neither a network nor a
+      #   recognizable BIN.
       #
-      #   @return [Boolean]
-      required :charge_for_alert, WhopSDK::Internal::Type::Boolean
+      #   @return [String, nil]
+      required :card_brand, String, nil?: true
 
       # @!attribute created_at
-      #   The time the dispute alert was created.
+      #   When Whop received the alert, as an ISO 8601 timestamp.
       #
-      #   @return [Time]
-      required :created_at, Time
+      #   @return [String]
+      required :created_at, String
 
       # @!attribute currency
-      #   The three-letter ISO currency code for the alerted amount.
+      #   Three-letter ISO currency code of the alerted amount.
       #
-      #   @return [Symbol, WhopSDK::Models::Currency]
-      required :currency, enum: -> { WhopSDK::Currency }
+      #   @return [String]
+      required :currency, String
 
-      # @!attribute dispute
-      #   The dispute associated with the dispute alert.
+      # @!attribute fee_charged
+      #   Whether Whop charged the account an alert fee for this one. Always `false` for
+      #   `early_fraud_warning`, which Whop is not billed for and never passes on.
       #
-      #   @return [WhopSDK::Models::DisputeAlertListResponse::Dispute, nil]
-      required :dispute, -> { WhopSDK::Models::DisputeAlertListResponse::Dispute }, nil?: true
+      #   @return [Boolean]
+      required :fee_charged, WhopSDK::Internal::Type::Boolean
 
-      # @!attribute payment
-      #   The payment associated with the dispute alert.
+      # @!attribute issuer
+      #   Name of the bank that issued the card and filed the report.
       #
-      #   @return [WhopSDK::Models::DisputeAlertListResponse::Payment, nil]
-      required :payment, -> { WhopSDK::Models::DisputeAlertListResponse::Payment }, nil?: true
+      #   @return [String, nil]
+      required :issuer, String, nil?: true
 
-      # @!attribute transaction_date
-      #   The date of the original transaction.
+      # @!attribute not_actionable_reason
+      #   Why refunding can no longer avoid a chargeback. `network_resolved` when a Visa
+      #   RDR already closed the case, `payment_unmatched` when no payment matched,
+      #   `payment_not_captured` when it never captured money, `payment_disputed` once the
+      #   payment carries a dispute, `payment_refunded` once fully refunded. `null` while
+      #   `actionable` is true.
       #
-      #   @return [Time, nil]
-      required :transaction_date, Time, nil?: true
+      #   @return [Symbol, WhopSDK::Models::DisputeAlertListResponse::NotActionableReason, nil]
+      required :not_actionable_reason,
+               enum: -> { WhopSDK::Models::DisputeAlertListResponse::NotActionableReason },
+               nil?: true
 
-      # @!method initialize(id:, alert_type:, amount:, charge_for_alert:, created_at:, currency:, dispute:, payment:, transaction_date:)
-      #   A dispute alert represents an early warning notification from a payment
-      #   processor about a potential dispute or chargeback.
+      # @!attribute payment_id
+      #   The payment the issuer reported, prefixed `pay_`. `null` when Whop could not
+      #   match the report to a payment.
       #
-      #   @param id [String] The unique identifier of the dispute alert.
-      #
-      #   @param alert_type [Symbol, WhopSDK::Models::DisputeAlertType] The type of the dispute alert.
-      #
-      #   @param amount [Float] The alerted amount in the specified currency.
-      #
-      #   @param charge_for_alert [Boolean] Whether this alert incurs a charge.
-      #
-      #   @param created_at [Time] The time the dispute alert was created.
-      #
-      #   @param currency [Symbol, WhopSDK::Models::Currency] The three-letter ISO currency code for the alerted amount.
-      #
-      #   @param dispute [WhopSDK::Models::DisputeAlertListResponse::Dispute, nil] The dispute associated with the dispute alert.
-      #
-      #   @param payment [WhopSDK::Models::DisputeAlertListResponse::Payment, nil] The payment associated with the dispute alert.
-      #
-      #   @param transaction_date [Time, nil] The date of the original transaction.
+      #   @return [String, nil]
+      required :payment_id, String, nil?: true
 
-      # @see WhopSDK::Models::DisputeAlertListResponse#dispute
-      class Dispute < WhopSDK::Internal::Type::BaseModel
-        # @!attribute id
-        #   The unique identifier for the dispute.
-        #
-        #   @return [String]
-        required :id, String
+      # @!attribute product_id
+      #   The product the alerted payment was for, prefixed `prod_`.
+      #
+      #   @return [String, nil]
+      required :product_id, String, nil?: true
 
-        # @!method initialize(id:)
-        #   The dispute associated with the dispute alert.
-        #
-        #   @param id [String] The unique identifier for the dispute.
+      # @!attribute reported_at
+      #   When the issuer filed the report, as an ISO 8601 timestamp. Earlier than
+      #   `created_at`, which is when Whop received it.
+      #
+      #   @return [String]
+      required :reported_at, String
+
+      # @!attribute transaction_at
+      #   When the reported transaction was made, as an ISO 8601 timestamp.
+      #
+      #   @return [String, nil]
+      required :transaction_at, String, nil?: true
+
+      # @!attribute type
+      #   What the issuer sent. `early_fraud_warning` is a fraud report on a settled
+      #   payment (Visa TC40 / Mastercard SAFE) — refunding still avoids the chargeback,
+      #   and Whop never charges a fee for one. `dispute_alert` is a pre-dispute notice
+      #   from the issuer's alert network, which Whop pays for and passes on as a fee.
+      #   `rapid_dispute_resolution` is a Visa RDR case the network already closed by
+      #   refunding the payment — nothing is left to act on.
+      #
+      #   @return [Symbol, WhopSDK::Models::DisputeAlertListResponse::Type]
+      required :type, enum: -> { WhopSDK::Models::DisputeAlertListResponse::Type }
+
+      # @!attribute updated_at
+      #   When the alert was last changed, as an ISO 8601 timestamp.
+      #
+      #   @return [String]
+      required :updated_at, String
+
+      # @!method initialize(id:, account_id:, actionable:, amount:, card_brand:, created_at:, currency:, fee_charged:, issuer:, not_actionable_reason:, payment_id:, product_id:, reported_at:, transaction_at:, type:, updated_at:)
+      #   Some parameter documentations has been truncated, see
+      #   {WhopSDK::Models::DisputeAlertListResponse} for more details.
+      #
+      #   @param id [String] Dispute alert ID, prefixed `dspa_`.
+      #
+      #   @param account_id [String, nil] The account the alerted payment belongs to, prefixed `biz_`. `null` while the al
+      #
+      #   @param actionable [Boolean] Whether refunding the payment can still avoid a chargeback. `false` once the pay
+      #
+      #   @param amount [Float] The alerted amount, in whole units of `currency`. This is what the issuer report
+      #
+      #   @param card_brand [String, nil] The card network as reported by the issuer, lowercased, such as `visa` or `maste
+      #
+      #   @param created_at [String] When Whop received the alert, as an ISO 8601 timestamp.
+      #
+      #   @param currency [String] Three-letter ISO currency code of the alerted amount.
+      #
+      #   @param fee_charged [Boolean] Whether Whop charged the account an alert fee for this one. Always `false` for `
+      #
+      #   @param issuer [String, nil] Name of the bank that issued the card and filed the report.
+      #
+      #   @param not_actionable_reason [Symbol, WhopSDK::Models::DisputeAlertListResponse::NotActionableReason, nil] Why refunding can no longer avoid a chargeback. `network_resolved` when a Visa R
+      #
+      #   @param payment_id [String, nil] The payment the issuer reported, prefixed `pay_`. `null` when Whop could not mat
+      #
+      #   @param product_id [String, nil] The product the alerted payment was for, prefixed `prod_`.
+      #
+      #   @param reported_at [String] When the issuer filed the report, as an ISO 8601 timestamp. Earlier than `create
+      #
+      #   @param transaction_at [String, nil] When the reported transaction was made, as an ISO 8601 timestamp.
+      #
+      #   @param type [Symbol, WhopSDK::Models::DisputeAlertListResponse::Type] What the issuer sent. `early_fraud_warning` is a fraud report on a settled payme
+      #
+      #   @param updated_at [String] When the alert was last changed, as an ISO 8601 timestamp.
+
+      # Why refunding can no longer avoid a chargeback. `network_resolved` when a Visa
+      # RDR already closed the case, `payment_unmatched` when no payment matched,
+      # `payment_not_captured` when it never captured money, `payment_disputed` once the
+      # payment carries a dispute, `payment_refunded` once fully refunded. `null` while
+      # `actionable` is true.
+      #
+      # @see WhopSDK::Models::DisputeAlertListResponse#not_actionable_reason
+      module NotActionableReason
+        extend WhopSDK::Internal::Type::Enum
+
+        NETWORK_RESOLVED = :network_resolved
+        PAYMENT_UNMATCHED = :payment_unmatched
+        PAYMENT_NOT_CAPTURED = :payment_not_captured
+        PAYMENT_DISPUTED = :payment_disputed
+        PAYMENT_REFUNDED = :payment_refunded
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
-      # @see WhopSDK::Models::DisputeAlertListResponse#payment
-      class Payment < WhopSDK::Internal::Type::BaseModel
-        # @!attribute id
-        #   The unique identifier for the payment.
-        #
-        #   @return [String]
-        required :id, String
+      # What the issuer sent. `early_fraud_warning` is a fraud report on a settled
+      # payment (Visa TC40 / Mastercard SAFE) — refunding still avoids the chargeback,
+      # and Whop never charges a fee for one. `dispute_alert` is a pre-dispute notice
+      # from the issuer's alert network, which Whop pays for and passes on as a fee.
+      # `rapid_dispute_resolution` is a Visa RDR case the network already closed by
+      # refunding the payment — nothing is left to act on.
+      #
+      # @see WhopSDK::Models::DisputeAlertListResponse#type
+      module Type
+        extend WhopSDK::Internal::Type::Enum
 
-        # @!method initialize(id:)
-        #   The payment associated with the dispute alert.
-        #
-        #   @param id [String] The unique identifier for the payment.
+        EARLY_FRAUD_WARNING = :early_fraud_warning
+        DISPUTE_ALERT = :dispute_alert
+        RAPID_DISPUTE_RESOLUTION = :rapid_dispute_resolution
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
     end
   end

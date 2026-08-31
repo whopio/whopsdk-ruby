@@ -23,8 +23,6 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :api_version_date
 
-      # A physical shipment associated with a payment, including carrier details and
-      # tracking information.
       sig { returns(WhopSDK::Shipment) }
       attr_reader :data
 
@@ -68,8 +66,6 @@ module WhopSDK
         id:,
         # The dated API version (Api-Version-Date) the payload is serialized to
         api_version_date:,
-        # A physical shipment associated with a payment, including carrier details and
-        # tracking information.
         data:,
         # The timestamp in ISO 8601 format that the webhook was sent at on the server
         timestamp:,

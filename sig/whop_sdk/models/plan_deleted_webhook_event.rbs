@@ -1,0 +1,57 @@
+module WhopSDK
+  module Models
+    type plan_deleted_webhook_event =
+      {
+        id: String,
+        api_version: :v1,
+        api_version_date: String?,
+        data: WhopSDK::Plan,
+        timestamp: Time,
+        type: :"plan.deleted",
+        account_id: String?,
+        previous_attributes: top
+      }
+
+    class PlanDeletedWebhookEvent < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor api_version: :v1
+
+      attr_accessor api_version_date: String?
+
+      attr_accessor data: WhopSDK::Plan
+
+      attr_accessor timestamp: Time
+
+      attr_accessor type: :"plan.deleted"
+
+      attr_accessor account_id: String?
+
+      attr_reader previous_attributes: top?
+
+      def previous_attributes=: (top) -> top
+
+      def initialize: (
+        id: String,
+        api_version_date: String?,
+        data: WhopSDK::Plan,
+        timestamp: Time,
+        ?account_id: String?,
+        ?previous_attributes: top,
+        ?api_version: :v1,
+        ?type: :"plan.deleted"
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        api_version: :v1,
+        api_version_date: String?,
+        data: WhopSDK::Plan,
+        timestamp: Time,
+        type: :"plan.deleted",
+        account_id: String?,
+        previous_attributes: top
+      }
+    end
+  end
+end

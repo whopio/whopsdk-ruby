@@ -23,7 +23,6 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :api_version_date
 
-      # A card transaction record.
       sig { returns(WhopSDK::CardTransactionCompletedWebhookEvent::Data) }
       attr_reader :data
 
@@ -71,7 +70,6 @@ module WhopSDK
         id:,
         # The dated API version (Api-Version-Date) the payload is serialized to
         api_version_date:,
-        # A card transaction record.
         data:,
         # The timestamp in ISO 8601 format that the webhook was sent at on the server
         timestamp:,
@@ -113,72 +111,68 @@ module WhopSDK
             )
           end
 
-        # The unique identifier for the card transaction.
+        # Card transaction ID, prefixed `citx_`.
         sig { returns(String) }
         attr_accessor :id
 
-        # How the card was presented or authenticated for the purchase.
-        sig { returns(T.nilable(String)) }
-        attr_accessor :authorization_method
-
-        # Represents a unique identifier that is Base64 obfuscated. It is often used to
-        # refetch an object or as key for a cache. The ID type appears in a JSON response
-        # as a String; however, it is not intended to be human-readable. When expected as
-        # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
-        # input value will be accepted as an ID.
+        # The card this transaction was charged to, prefixed `icrd_`.
         sig { returns(String) }
         attr_accessor :card_id
 
-        # The cashback reward amount earned on this transaction, in USD.
+        # The user the card is assigned to, prefixed `user_`. Null when the card has no
+        # assigned cardholder.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :cardholder_id
+
+        # Cashback earned on this transaction as a USD amount. Zero for declined or
+        # ineligible transactions, and null when cashback has not been computed yet.
         sig { returns(T.nilable(Float)) }
         attr_accessor :cashback_usd_amount
 
-        # The datetime the card transaction was created.
-        sig { returns(Time) }
+        # When the transaction was authorized, as an ISO 8601 timestamp.
+        sig { returns(String) }
         attr_accessor :created_at
 
-        # The ISO 4217 currency code for the transaction amount.
+        # ISO 4217 currency code the merchant charged in.
         sig { returns(T.nilable(String)) }
         attr_accessor :currency
 
-        # The issuer-provided reason the transaction was declined.
+        # Why the transaction was declined. Null unless `status` is `declined`.
         sig { returns(T.nilable(String)) }
         attr_accessor :declined_reason
 
-        # Whether the transaction was made with a merchant outside the card's home
-        # country.
+        # True when the merchant is outside the card's home country.
         sig { returns(T::Boolean) }
         attr_accessor :international
 
-        # The transaction amount in the merchant's local currency before conversion.
+        # Amount the merchant charged in their own currency. Pair with `currency`.
         sig { returns(T.nilable(Float)) }
         attr_accessor :local_amount
 
-        # A user-provided note attached to the transaction.
-        sig { returns(T.nilable(String)) }
-        attr_accessor :memo
-
-        # The enriched or raw category label for the merchant.
+        # Merchant category label, enriched where available and otherwise as the card
+        # network reported it.
         sig { returns(T.nilable(String)) }
         attr_accessor :merchant_category
 
-        # The four-digit ISO 18245 merchant category code (MCC).
+        # Four-digit ISO 18245 merchant category code (MCC).
         sig { returns(T.nilable(String)) }
         attr_accessor :merchant_category_code
 
-        # A URL to the enriched merchant logo image.
+        # URL of the enriched merchant logo. Null when no logo was matched.
         sig { returns(T.nilable(String)) }
         attr_accessor :merchant_icon_url
 
-        # The enriched or raw name of the merchant where the purchase was made.
+        # Merchant name, enriched where available and otherwise as the card network
+        # reported it.
         sig { returns(T.nilable(String)) }
         attr_accessor :merchant_name
 
-        # When the transaction was settled by the card network.
-        sig { returns(T.nilable(Time)) }
+        # When the card network settled the transaction, as an ISO 8601 timestamp. Null
+        # until it settles.
+        sig { returns(T.nilable(String)) }
         attr_accessor :posted_at
 
-        # The current lifecycle status of the transaction.
+        # Current status of the transaction.
         sig do
           returns(
             WhopSDK::CardTransactionCompletedWebhookEvent::Data::Status::TaggedSymbol
@@ -186,79 +180,80 @@ module WhopSDK
         end
         attr_accessor :status
 
-        # The type of transaction.
-        sig { returns(String) }
+        # The kind of card transaction. Always `spend` today.
+        sig do
+          returns(
+            WhopSDK::CardTransactionCompletedWebhookEvent::Data::TransactionType::TaggedSymbol
+          )
+        end
         attr_accessor :transaction_type
 
-        # The transaction amount in USD.
+        # Amount charged in USD. Negative when the merchant refunded the card.
         sig { returns(T.nilable(Float)) }
         attr_accessor :usd_amount
 
-        # A card transaction record.
         sig do
           params(
             id: String,
-            authorization_method: T.nilable(String),
             card_id: String,
+            cardholder_id: T.nilable(String),
             cashback_usd_amount: T.nilable(Float),
-            created_at: Time,
+            created_at: String,
             currency: T.nilable(String),
             declined_reason: T.nilable(String),
             international: T::Boolean,
             local_amount: T.nilable(Float),
-            memo: T.nilable(String),
             merchant_category: T.nilable(String),
             merchant_category_code: T.nilable(String),
             merchant_icon_url: T.nilable(String),
             merchant_name: T.nilable(String),
-            posted_at: T.nilable(Time),
+            posted_at: T.nilable(String),
             status:
               WhopSDK::CardTransactionCompletedWebhookEvent::Data::Status::OrSymbol,
-            transaction_type: String,
+            transaction_type:
+              WhopSDK::CardTransactionCompletedWebhookEvent::Data::TransactionType::OrSymbol,
             usd_amount: T.nilable(Float)
           ).returns(T.attached_class)
         end
         def self.new(
-          # The unique identifier for the card transaction.
+          # Card transaction ID, prefixed `citx_`.
           id:,
-          # How the card was presented or authenticated for the purchase.
-          authorization_method:,
-          # Represents a unique identifier that is Base64 obfuscated. It is often used to
-          # refetch an object or as key for a cache. The ID type appears in a JSON response
-          # as a String; however, it is not intended to be human-readable. When expected as
-          # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
-          # input value will be accepted as an ID.
+          # The card this transaction was charged to, prefixed `icrd_`.
           card_id:,
-          # The cashback reward amount earned on this transaction, in USD.
+          # The user the card is assigned to, prefixed `user_`. Null when the card has no
+          # assigned cardholder.
+          cardholder_id:,
+          # Cashback earned on this transaction as a USD amount. Zero for declined or
+          # ineligible transactions, and null when cashback has not been computed yet.
           cashback_usd_amount:,
-          # The datetime the card transaction was created.
+          # When the transaction was authorized, as an ISO 8601 timestamp.
           created_at:,
-          # The ISO 4217 currency code for the transaction amount.
+          # ISO 4217 currency code the merchant charged in.
           currency:,
-          # The issuer-provided reason the transaction was declined.
+          # Why the transaction was declined. Null unless `status` is `declined`.
           declined_reason:,
-          # Whether the transaction was made with a merchant outside the card's home
-          # country.
+          # True when the merchant is outside the card's home country.
           international:,
-          # The transaction amount in the merchant's local currency before conversion.
+          # Amount the merchant charged in their own currency. Pair with `currency`.
           local_amount:,
-          # A user-provided note attached to the transaction.
-          memo:,
-          # The enriched or raw category label for the merchant.
+          # Merchant category label, enriched where available and otherwise as the card
+          # network reported it.
           merchant_category:,
-          # The four-digit ISO 18245 merchant category code (MCC).
+          # Four-digit ISO 18245 merchant category code (MCC).
           merchant_category_code:,
-          # A URL to the enriched merchant logo image.
+          # URL of the enriched merchant logo. Null when no logo was matched.
           merchant_icon_url:,
-          # The enriched or raw name of the merchant where the purchase was made.
+          # Merchant name, enriched where available and otherwise as the card network
+          # reported it.
           merchant_name:,
-          # When the transaction was settled by the card network.
+          # When the card network settled the transaction, as an ISO 8601 timestamp. Null
+          # until it settles.
           posted_at:,
-          # The current lifecycle status of the transaction.
+          # Current status of the transaction.
           status:,
-          # The type of transaction.
+          # The kind of card transaction. Always `spend` today.
           transaction_type:,
-          # The transaction amount in USD.
+          # Amount charged in USD. Negative when the merchant refunded the card.
           usd_amount:
         )
         end
@@ -267,23 +262,23 @@ module WhopSDK
           override.returns(
             {
               id: String,
-              authorization_method: T.nilable(String),
               card_id: String,
+              cardholder_id: T.nilable(String),
               cashback_usd_amount: T.nilable(Float),
-              created_at: Time,
+              created_at: String,
               currency: T.nilable(String),
               declined_reason: T.nilable(String),
               international: T::Boolean,
               local_amount: T.nilable(Float),
-              memo: T.nilable(String),
               merchant_category: T.nilable(String),
               merchant_category_code: T.nilable(String),
               merchant_icon_url: T.nilable(String),
               merchant_name: T.nilable(String),
-              posted_at: T.nilable(Time),
+              posted_at: T.nilable(String),
               status:
                 WhopSDK::CardTransactionCompletedWebhookEvent::Data::Status::TaggedSymbol,
-              transaction_type: String,
+              transaction_type:
+                WhopSDK::CardTransactionCompletedWebhookEvent::Data::TransactionType::TaggedSymbol,
               usd_amount: T.nilable(Float)
             }
           )
@@ -291,7 +286,7 @@ module WhopSDK
         def to_hash
         end
 
-        # The current lifecycle status of the transaction.
+        # Current status of the transaction.
         module Status
           extend WhopSDK::Internal::Type::Enum
 
@@ -329,6 +324,36 @@ module WhopSDK
             override.returns(
               T::Array[
                 WhopSDK::CardTransactionCompletedWebhookEvent::Data::Status::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
+        end
+
+        # The kind of card transaction. Always `spend` today.
+        module TransactionType
+          extend WhopSDK::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(
+                Symbol,
+                WhopSDK::CardTransactionCompletedWebhookEvent::Data::TransactionType
+              )
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          SPEND =
+            T.let(
+              :spend,
+              WhopSDK::CardTransactionCompletedWebhookEvent::Data::TransactionType::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                WhopSDK::CardTransactionCompletedWebhookEvent::Data::TransactionType::TaggedSymbol
               ]
             )
           end

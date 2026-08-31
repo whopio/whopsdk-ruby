@@ -2,11 +2,10 @@ module WhopSDK
   module Models
     type verification_list_params =
       {
-        payout_account_id: String,
-        after: String,
-        before: String,
-        first: Integer,
-        last: Integer
+        account_id: String,
+        direction: WhopSDK::Models::VerificationListParams::direction,
+        order: WhopSDK::Models::VerificationListParams::order,
+        api_version_date: String
       }
       & WhopSDK::Internal::Type::request_parameters
 
@@ -14,41 +13,61 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      attr_accessor payout_account_id: String
+      attr_accessor account_id: String
 
-      attr_reader after: String?
+      attr_reader direction: WhopSDK::Models::VerificationListParams::direction?
 
-      def after=: (String) -> String
+      def direction=: (
+        WhopSDK::Models::VerificationListParams::direction
+      ) -> WhopSDK::Models::VerificationListParams::direction
 
-      attr_reader before: String?
+      attr_reader order: WhopSDK::Models::VerificationListParams::order?
 
-      def before=: (String) -> String
+      def order=: (
+        WhopSDK::Models::VerificationListParams::order
+      ) -> WhopSDK::Models::VerificationListParams::order
 
-      attr_reader first: Integer?
+      attr_reader api_version_date: String?
 
-      def first=: (Integer) -> Integer
-
-      attr_reader last: Integer?
-
-      def last=: (Integer) -> Integer
+      def api_version_date=: (String) -> String
 
       def initialize: (
-        payout_account_id: String,
-        ?after: String,
-        ?before: String,
-        ?first: Integer,
-        ?last: Integer,
+        account_id: String,
+        ?direction: WhopSDK::Models::VerificationListParams::direction,
+        ?order: WhopSDK::Models::VerificationListParams::order,
+        ?api_version_date: String,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
       def to_hash: -> {
-        payout_account_id: String,
-        after: String,
-        before: String,
-        first: Integer,
-        last: Integer,
+        account_id: String,
+        direction: WhopSDK::Models::VerificationListParams::direction,
+        order: WhopSDK::Models::VerificationListParams::order,
+        api_version_date: String,
         request_options: WhopSDK::RequestOptions
       }
+
+      type direction = :asc | :desc
+
+      module Direction
+        extend WhopSDK::Internal::Type::Enum
+
+        ASC: :asc
+        DESC: :desc
+
+        def self?.values: -> ::Array[WhopSDK::Models::VerificationListParams::direction]
+      end
+
+      type order = :updated_at | :created_at
+
+      module Order
+        extend WhopSDK::Internal::Type::Enum
+
+        UPDATED_AT: :updated_at
+        CREATED_AT: :created_at
+
+        def self?.values: -> ::Array[WhopSDK::Models::VerificationListParams::order]
+      end
     end
   end
 end

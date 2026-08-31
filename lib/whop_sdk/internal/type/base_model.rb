@@ -441,8 +441,8 @@ module WhopSDK
         #   # `app` is a `WhopSDK::App`
         #   app => {
         #     id: id,
-        #     api_key: api_key,
-        #     app_type: app_type
+        #     account: account,
+        #     api_key: api_key
         #   }
         def deconstruct_keys(keys)
           (keys || self.class.known_fields.keys)

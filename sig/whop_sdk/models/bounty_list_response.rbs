@@ -3,89 +3,319 @@ module WhopSDK
     type bounty_list_response =
       {
         id: String,
-        bounty_type: WhopSDK::Models::BountyListResponse::bounty_type,
-        created_at: Time,
-        currency: WhopSDK::Models::currency,
+        accepted_deliverable_types: ::Array[WhopSDK::Models::BountyListResponse::accepted_deliverable_type],
+        accepted_submissions_count: Integer,
+        accepted_submissions_limit: Integer,
+        accepted_submissions_per_user_limit: Integer,
+        affiliate_share_amount: Float,
+        allowed_country_codes: ::Array[String],
+        budget_amount: Float,
+        business_goal_type: WhopSDK::Models::BountyListResponse::business_goal_type?,
+        cancel_requested_at: String?,
+        created_at: String,
+        currency: String,
         description: String,
+        discussion_experience_id: String?,
+        discussion_feed_id: String?,
+        discussion_post_id: String?,
+        experience_id: String?,
+        funding_account: WhopSDK::Models::BountyListResponse::FundingAccount?,
+        gross_paid_out_amount: Float,
+        gross_reward_amount: Float,
+        hosting_account: WhopSDK::Models::BountyListResponse::HostingAccount?,
+        min_total_verified_duration_seconds: Integer?,
+        net_reward_amount: Float,
+        poster: WhopSDK::Models::BountyListResponse::Poster,
+        scheduled_frequency: WhopSDK::Models::BountyListResponse::scheduled_frequency?,
+        scheduled_publish_at: String?,
+        spots_remaining: Integer,
         status: WhopSDK::Models::BountyListResponse::status,
+        submissions_closed_at: String?,
         title: String,
-        total_available: Float,
-        total_paid: Float,
-        updated_at: Time,
-        vote_threshold: Integer
+        unresolved_submissions_count: Integer,
+        updated_at: String,
+        viewer_accepted_submissions_count: Integer
       }
 
     class BountyListResponse < WhopSDK::Internal::Type::BaseModel
       attr_accessor id: String
 
-      attr_accessor bounty_type: WhopSDK::Models::BountyListResponse::bounty_type
+      attr_accessor accepted_deliverable_types: ::Array[WhopSDK::Models::BountyListResponse::accepted_deliverable_type]
 
-      attr_accessor created_at: Time
+      attr_accessor accepted_submissions_count: Integer
 
-      attr_accessor currency: WhopSDK::Models::currency
+      attr_accessor accepted_submissions_limit: Integer
+
+      attr_accessor accepted_submissions_per_user_limit: Integer
+
+      attr_accessor affiliate_share_amount: Float
+
+      attr_accessor allowed_country_codes: ::Array[String]
+
+      attr_accessor budget_amount: Float
+
+      attr_accessor business_goal_type: WhopSDK::Models::BountyListResponse::business_goal_type?
+
+      attr_accessor cancel_requested_at: String?
+
+      attr_accessor created_at: String
+
+      attr_accessor currency: String
 
       attr_accessor description: String
 
+      attr_accessor discussion_experience_id: String?
+
+      attr_accessor discussion_feed_id: String?
+
+      attr_accessor discussion_post_id: String?
+
+      attr_accessor experience_id: String?
+
+      attr_accessor funding_account: WhopSDK::Models::BountyListResponse::FundingAccount?
+
+      attr_accessor gross_paid_out_amount: Float
+
+      attr_accessor gross_reward_amount: Float
+
+      attr_accessor hosting_account: WhopSDK::Models::BountyListResponse::HostingAccount?
+
+      attr_accessor min_total_verified_duration_seconds: Integer?
+
+      attr_accessor net_reward_amount: Float
+
+      attr_accessor poster: WhopSDK::Models::BountyListResponse::Poster
+
+      attr_accessor scheduled_frequency: WhopSDK::Models::BountyListResponse::scheduled_frequency?
+
+      attr_accessor scheduled_publish_at: String?
+
+      attr_accessor spots_remaining: Integer
+
       attr_accessor status: WhopSDK::Models::BountyListResponse::status
+
+      attr_accessor submissions_closed_at: String?
 
       attr_accessor title: String
 
-      attr_accessor total_available: Float
+      attr_accessor unresolved_submissions_count: Integer
 
-      attr_accessor total_paid: Float
+      attr_accessor updated_at: String
 
-      attr_accessor updated_at: Time
-
-      attr_accessor vote_threshold: Integer
+      attr_accessor viewer_accepted_submissions_count: Integer
 
       def initialize: (
         id: String,
-        bounty_type: WhopSDK::Models::BountyListResponse::bounty_type,
-        created_at: Time,
-        currency: WhopSDK::Models::currency,
+        accepted_deliverable_types: ::Array[WhopSDK::Models::BountyListResponse::accepted_deliverable_type],
+        accepted_submissions_count: Integer,
+        accepted_submissions_limit: Integer,
+        accepted_submissions_per_user_limit: Integer,
+        affiliate_share_amount: Float,
+        allowed_country_codes: ::Array[String],
+        budget_amount: Float,
+        business_goal_type: WhopSDK::Models::BountyListResponse::business_goal_type?,
+        cancel_requested_at: String?,
+        created_at: String,
+        currency: String,
         description: String,
+        discussion_experience_id: String?,
+        discussion_feed_id: String?,
+        discussion_post_id: String?,
+        experience_id: String?,
+        funding_account: WhopSDK::Models::BountyListResponse::FundingAccount?,
+        gross_paid_out_amount: Float,
+        gross_reward_amount: Float,
+        hosting_account: WhopSDK::Models::BountyListResponse::HostingAccount?,
+        min_total_verified_duration_seconds: Integer?,
+        net_reward_amount: Float,
+        poster: WhopSDK::Models::BountyListResponse::Poster,
+        scheduled_frequency: WhopSDK::Models::BountyListResponse::scheduled_frequency?,
+        scheduled_publish_at: String?,
+        spots_remaining: Integer,
         status: WhopSDK::Models::BountyListResponse::status,
+        submissions_closed_at: String?,
         title: String,
-        total_available: Float,
-        total_paid: Float,
-        updated_at: Time,
-        vote_threshold: Integer
+        unresolved_submissions_count: Integer,
+        updated_at: String,
+        viewer_accepted_submissions_count: Integer
       ) -> void
 
       def to_hash: -> {
         id: String,
-        bounty_type: WhopSDK::Models::BountyListResponse::bounty_type,
-        created_at: Time,
-        currency: WhopSDK::Models::currency,
+        accepted_deliverable_types: ::Array[WhopSDK::Models::BountyListResponse::accepted_deliverable_type],
+        accepted_submissions_count: Integer,
+        accepted_submissions_limit: Integer,
+        accepted_submissions_per_user_limit: Integer,
+        affiliate_share_amount: Float,
+        allowed_country_codes: ::Array[String],
+        budget_amount: Float,
+        business_goal_type: WhopSDK::Models::BountyListResponse::business_goal_type?,
+        cancel_requested_at: String?,
+        created_at: String,
+        currency: String,
         description: String,
+        discussion_experience_id: String?,
+        discussion_feed_id: String?,
+        discussion_post_id: String?,
+        experience_id: String?,
+        funding_account: WhopSDK::Models::BountyListResponse::FundingAccount?,
+        gross_paid_out_amount: Float,
+        gross_reward_amount: Float,
+        hosting_account: WhopSDK::Models::BountyListResponse::HostingAccount?,
+        min_total_verified_duration_seconds: Integer?,
+        net_reward_amount: Float,
+        poster: WhopSDK::Models::BountyListResponse::Poster,
+        scheduled_frequency: WhopSDK::Models::BountyListResponse::scheduled_frequency?,
+        scheduled_publish_at: String?,
+        spots_remaining: Integer,
         status: WhopSDK::Models::BountyListResponse::status,
+        submissions_closed_at: String?,
         title: String,
-        total_available: Float,
-        total_paid: Float,
-        updated_at: Time,
-        vote_threshold: Integer
+        unresolved_submissions_count: Integer,
+        updated_at: String,
+        viewer_accepted_submissions_count: Integer
       }
 
-      type bounty_type = :classic | :user_funded | :workforce
+      type accepted_deliverable_type = :content_url | :media | :data_capture
 
-      module BountyType
+      module AcceptedDeliverableType
         extend WhopSDK::Internal::Type::Enum
 
-        CLASSIC: :classic
-        USER_FUNDED: :user_funded
-        WORKFORCE: :workforce
+        CONTENT_URL: :content_url
+        MEDIA: :media
+        DATA_CAPTURE: :data_capture
 
-        def self?.values: -> ::Array[WhopSDK::Models::BountyListResponse::bounty_type]
+        def self?.values: -> ::Array[WhopSDK::Models::BountyListResponse::accepted_deliverable_type]
       end
 
-      type status = :published | :archived | :scheduled
+      type business_goal_type =
+        :clipping
+        | :post_engagement
+        | :owned_account_growth
+        | :ugc_content
+        | :local_activation
+        | :data_capture
+        | :other
+
+      module BusinessGoalType
+        extend WhopSDK::Internal::Type::Enum
+
+        CLIPPING: :clipping
+        POST_ENGAGEMENT: :post_engagement
+        OWNED_ACCOUNT_GROWTH: :owned_account_growth
+        UGC_CONTENT: :ugc_content
+        LOCAL_ACTIVATION: :local_activation
+        DATA_CAPTURE: :data_capture
+        OTHER: :other
+
+        def self?.values: -> ::Array[WhopSDK::Models::BountyListResponse::business_goal_type]
+      end
+
+      type funding_account = { id: String, title: String }
+
+      class FundingAccount < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor title: String
+
+        def initialize: (id: String, title: String) -> void
+
+        def to_hash: -> { id: String, title: String }
+      end
+
+      type hosting_account =
+        { id: String, logo_url: String?, route: String, title: String }
+
+      class HostingAccount < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor logo_url: String?
+
+        attr_accessor route: String
+
+        attr_accessor title: String
+
+        def initialize: (
+          id: String,
+          logo_url: String?,
+          route: String,
+          title: String
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          logo_url: String?,
+          route: String,
+          title: String
+        }
+      end
+
+      type poster =
+        {
+          id: String,
+          name: String?,
+          profile_picture: WhopSDK::Models::BountyListResponse::Poster::ProfilePicture,
+          username: String
+        }
+
+      class Poster < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor name: String?
+
+        attr_accessor profile_picture: WhopSDK::Models::BountyListResponse::Poster::ProfilePicture
+
+        attr_accessor username: String
+
+        def initialize: (
+          id: String,
+          name: String?,
+          profile_picture: WhopSDK::Models::BountyListResponse::Poster::ProfilePicture,
+          username: String
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          name: String?,
+          profile_picture: WhopSDK::Models::BountyListResponse::Poster::ProfilePicture,
+          username: String
+        }
+
+        type profile_picture = { url: String }
+
+        class ProfilePicture < WhopSDK::Internal::Type::BaseModel
+          attr_accessor url: String
+
+          def initialize: (url: String) -> void
+
+          def to_hash: -> { url: String }
+        end
+      end
+
+      type scheduled_frequency = :once | :hourly | :daily | :weekly | :monthly
+
+      module ScheduledFrequency
+        extend WhopSDK::Internal::Type::Enum
+
+        ONCE: :once
+        HOURLY: :hourly
+        DAILY: :daily
+        WEEKLY: :weekly
+        MONTHLY: :monthly
+
+        def self?.values: -> ::Array[WhopSDK::Models::BountyListResponse::scheduled_frequency]
+      end
+
+      type status = :scheduled | :open | :closed | :completed | :canceled
 
       module Status
         extend WhopSDK::Internal::Type::Enum
 
-        PUBLISHED: :published
-        ARCHIVED: :archived
         SCHEDULED: :scheduled
+        OPEN: :open
+        CLOSED: :closed
+        COMPLETED: :completed
+        CANCELED: :canceled
 
         def self?.values: -> ::Array[WhopSDK::Models::BountyListResponse::status]
       end

@@ -3,43 +3,48 @@ module WhopSDK
     type product =
       {
         id: String,
-        company: WhopSDK::Product::Company,
-        created_at: Time,
-        custom_cta: WhopSDK::Models::custom_cta,
+        account: top?,
+        created_at: String,
+        custom_cta: WhopSDK::Models::Product::custom_cta?,
         custom_cta_url: String?,
         custom_statement_descriptor: String?,
+        default_plan: WhopSDK::Product::DefaultPlan?,
         description: String?,
         external_identifier: String?,
         gallery_images: ::Array[WhopSDK::Product::GalleryImage],
         global_affiliate_percentage: Float?,
-        global_affiliate_status: WhopSDK::Models::global_affiliate_status,
+        global_affiliate_status: WhopSDK::Models::Product::global_affiliate_status?,
         headline: String?,
+        labels: ::Array[String],
+        marketplace_status: WhopSDK::Models::Product::marketplace_status,
         member_affiliate_percentage: Float?,
-        member_affiliate_status: WhopSDK::Models::global_affiliate_status,
-        member_count: Integer,
-        metadata: ::Hash[Symbol, top]?,
-        owner_user: WhopSDK::Product::OwnerUser,
-        product_tax_code: WhopSDK::Product::ProductTaxCode?,
-        published_reviews_count: Integer,
+        member_affiliate_status: WhopSDK::Models::Product::member_affiliate_status?,
+        member_count: Float,
+        metadata: top?,
+        owner_user: top?,
+        product_tax_code: top?,
+        published_reviews_count: Float,
         route: String,
         title: String,
-        updated_at: Time,
+        updated_at: String,
         verified: bool,
-        visibility: WhopSDK::Models::visibility
+        visibility: String?
       }
 
     class Product < WhopSDK::Internal::Type::BaseModel
       attr_accessor id: String
 
-      attr_accessor company: WhopSDK::Product::Company
+      attr_accessor account: top?
 
-      attr_accessor created_at: Time
+      attr_accessor created_at: String
 
-      attr_accessor custom_cta: WhopSDK::Models::custom_cta
+      attr_accessor custom_cta: WhopSDK::Models::Product::custom_cta?
 
       attr_accessor custom_cta_url: String?
 
       attr_accessor custom_statement_descriptor: String?
+
+      attr_accessor default_plan: WhopSDK::Product::DefaultPlan?
 
       attr_accessor description: String?
 
@@ -49,100 +54,276 @@ module WhopSDK
 
       attr_accessor global_affiliate_percentage: Float?
 
-      attr_accessor global_affiliate_status: WhopSDK::Models::global_affiliate_status
+      attr_accessor global_affiliate_status: WhopSDK::Models::Product::global_affiliate_status?
 
       attr_accessor headline: String?
 
+      attr_accessor labels: ::Array[String]
+
+      attr_accessor marketplace_status: WhopSDK::Models::Product::marketplace_status
+
       attr_accessor member_affiliate_percentage: Float?
 
-      attr_accessor member_affiliate_status: WhopSDK::Models::global_affiliate_status
+      attr_accessor member_affiliate_status: WhopSDK::Models::Product::member_affiliate_status?
 
-      attr_accessor member_count: Integer
+      attr_accessor member_count: Float
 
-      attr_accessor metadata: ::Hash[Symbol, top]?
+      attr_accessor metadata: top?
 
-      attr_accessor owner_user: WhopSDK::Product::OwnerUser
+      attr_accessor owner_user: top?
 
-      attr_accessor product_tax_code: WhopSDK::Product::ProductTaxCode?
+      attr_accessor product_tax_code: top?
 
-      attr_accessor published_reviews_count: Integer
+      attr_accessor published_reviews_count: Float
 
       attr_accessor route: String
 
       attr_accessor title: String
 
-      attr_accessor updated_at: Time
+      attr_accessor updated_at: String
 
       attr_accessor verified: bool
 
-      attr_accessor visibility: WhopSDK::Models::visibility
+      attr_accessor visibility: String?
 
       def initialize: (
         id: String,
-        company: WhopSDK::Product::Company,
-        created_at: Time,
-        custom_cta: WhopSDK::Models::custom_cta,
+        account: top?,
+        created_at: String,
+        custom_cta: WhopSDK::Models::Product::custom_cta?,
         custom_cta_url: String?,
         custom_statement_descriptor: String?,
+        default_plan: WhopSDK::Product::DefaultPlan?,
         description: String?,
         external_identifier: String?,
         gallery_images: ::Array[WhopSDK::Product::GalleryImage],
         global_affiliate_percentage: Float?,
-        global_affiliate_status: WhopSDK::Models::global_affiliate_status,
+        global_affiliate_status: WhopSDK::Models::Product::global_affiliate_status?,
         headline: String?,
+        labels: ::Array[String],
+        marketplace_status: WhopSDK::Models::Product::marketplace_status,
         member_affiliate_percentage: Float?,
-        member_affiliate_status: WhopSDK::Models::global_affiliate_status,
-        member_count: Integer,
-        metadata: ::Hash[Symbol, top]?,
-        owner_user: WhopSDK::Product::OwnerUser,
-        product_tax_code: WhopSDK::Product::ProductTaxCode?,
-        published_reviews_count: Integer,
+        member_affiliate_status: WhopSDK::Models::Product::member_affiliate_status?,
+        member_count: Float,
+        metadata: top?,
+        owner_user: top?,
+        product_tax_code: top?,
+        published_reviews_count: Float,
         route: String,
         title: String,
-        updated_at: Time,
+        updated_at: String,
         verified: bool,
-        visibility: WhopSDK::Models::visibility
+        visibility: String?
       ) -> void
 
       def to_hash: -> {
         id: String,
-        company: WhopSDK::Product::Company,
-        created_at: Time,
-        custom_cta: WhopSDK::Models::custom_cta,
+        account: top?,
+        created_at: String,
+        custom_cta: WhopSDK::Models::Product::custom_cta?,
         custom_cta_url: String?,
         custom_statement_descriptor: String?,
+        default_plan: WhopSDK::Product::DefaultPlan?,
         description: String?,
         external_identifier: String?,
         gallery_images: ::Array[WhopSDK::Product::GalleryImage],
         global_affiliate_percentage: Float?,
-        global_affiliate_status: WhopSDK::Models::global_affiliate_status,
+        global_affiliate_status: WhopSDK::Models::Product::global_affiliate_status?,
         headline: String?,
+        labels: ::Array[String],
+        marketplace_status: WhopSDK::Models::Product::marketplace_status,
         member_affiliate_percentage: Float?,
-        member_affiliate_status: WhopSDK::Models::global_affiliate_status,
-        member_count: Integer,
-        metadata: ::Hash[Symbol, top]?,
-        owner_user: WhopSDK::Product::OwnerUser,
-        product_tax_code: WhopSDK::Product::ProductTaxCode?,
-        published_reviews_count: Integer,
+        member_affiliate_status: WhopSDK::Models::Product::member_affiliate_status?,
+        member_count: Float,
+        metadata: top?,
+        owner_user: top?,
+        product_tax_code: top?,
+        published_reviews_count: Float,
         route: String,
         title: String,
-        updated_at: Time,
+        updated_at: String,
         verified: bool,
-        visibility: WhopSDK::Models::visibility
+        visibility: String?
       }
 
-      type company = { id: String, route: String, title: String }
+      type custom_cta =
+        :get_access
+        | :join
+        | :order_now
+        | :shop_now
+        | :call_now
+        | :donate_now
+        | :contact_us
+        | :sign_up
+        | :subscribe
+        | :purchase
+        | :get_offer
+        | :apply_now
+        | :complete_order
 
-      class Company < WhopSDK::Internal::Type::BaseModel
+      module CustomCta
+        extend WhopSDK::Internal::Type::Enum
+
+        GET_ACCESS: :get_access
+        JOIN: :join
+        ORDER_NOW: :order_now
+        SHOP_NOW: :shop_now
+        CALL_NOW: :call_now
+        DONATE_NOW: :donate_now
+        CONTACT_US: :contact_us
+        SIGN_UP: :sign_up
+        SUBSCRIBE: :subscribe
+        PURCHASE: :purchase
+        GET_OFFER: :get_offer
+        APPLY_NOW: :apply_now
+        COMPLETE_ORDER: :complete_order
+
+        def self?.values: -> ::Array[WhopSDK::Models::Product::custom_cta]
+      end
+
+      type default_plan =
+        {
+          id: String,
+          billing_period: Float?,
+          expiration_days: Float?,
+          initial_price: WhopSDK::Product::DefaultPlan::InitialPrice,
+          plan_type: WhopSDK::Models::Product::DefaultPlan::plan_type,
+          renewal_price: WhopSDK::Product::DefaultPlan::RenewalPrice,
+          title: String?,
+          unlimited_stock: bool,
+          visibility: WhopSDK::Models::Product::DefaultPlan::visibility
+        }
+
+      class DefaultPlan < WhopSDK::Internal::Type::BaseModel
         attr_accessor id: String
 
-        attr_accessor route: String
+        attr_accessor billing_period: Float?
 
-        attr_accessor title: String
+        attr_accessor expiration_days: Float?
 
-        def initialize: (id: String, route: String, title: String) -> void
+        attr_accessor initial_price: WhopSDK::Product::DefaultPlan::InitialPrice
 
-        def to_hash: -> { id: String, route: String, title: String }
+        attr_accessor plan_type: WhopSDK::Models::Product::DefaultPlan::plan_type
+
+        attr_accessor renewal_price: WhopSDK::Product::DefaultPlan::RenewalPrice
+
+        attr_accessor title: String?
+
+        attr_accessor unlimited_stock: bool
+
+        attr_accessor visibility: WhopSDK::Models::Product::DefaultPlan::visibility
+
+        def initialize: (
+          id: String,
+          billing_period: Float?,
+          expiration_days: Float?,
+          initial_price: WhopSDK::Product::DefaultPlan::InitialPrice,
+          plan_type: WhopSDK::Models::Product::DefaultPlan::plan_type,
+          renewal_price: WhopSDK::Product::DefaultPlan::RenewalPrice,
+          title: String?,
+          unlimited_stock: bool,
+          visibility: WhopSDK::Models::Product::DefaultPlan::visibility
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          billing_period: Float?,
+          expiration_days: Float?,
+          initial_price: WhopSDK::Product::DefaultPlan::InitialPrice,
+          plan_type: WhopSDK::Models::Product::DefaultPlan::plan_type,
+          renewal_price: WhopSDK::Product::DefaultPlan::RenewalPrice,
+          title: String?,
+          unlimited_stock: bool,
+          visibility: WhopSDK::Models::Product::DefaultPlan::visibility
+        }
+
+        type initial_price =
+          {
+            amount: String,
+            currency: String,
+            decimals: Integer,
+            display_decimals: Integer
+          }
+
+        class InitialPrice < WhopSDK::Internal::Type::BaseModel
+          attr_accessor amount: String
+
+          attr_accessor currency: String
+
+          attr_accessor decimals: Integer
+
+          attr_accessor display_decimals: Integer
+
+          def initialize: (
+            amount: String,
+            currency: String,
+            decimals: Integer,
+            display_decimals: Integer
+          ) -> void
+
+          def to_hash: -> {
+            amount: String,
+            currency: String,
+            decimals: Integer,
+            display_decimals: Integer
+          }
+        end
+
+        type plan_type = :renewal | :one_time
+
+        module PlanType
+          extend WhopSDK::Internal::Type::Enum
+
+          RENEWAL: :renewal
+          ONE_TIME: :one_time
+
+          def self?.values: -> ::Array[WhopSDK::Models::Product::DefaultPlan::plan_type]
+        end
+
+        type renewal_price =
+          {
+            amount: String,
+            currency: String,
+            decimals: Integer,
+            display_decimals: Integer
+          }
+
+        class RenewalPrice < WhopSDK::Internal::Type::BaseModel
+          attr_accessor amount: String
+
+          attr_accessor currency: String
+
+          attr_accessor decimals: Integer
+
+          attr_accessor display_decimals: Integer
+
+          def initialize: (
+            amount: String,
+            currency: String,
+            decimals: Integer,
+            display_decimals: Integer
+          ) -> void
+
+          def to_hash: -> {
+            amount: String,
+            currency: String,
+            decimals: Integer,
+            display_decimals: Integer
+          }
+        end
+
+        type visibility = :visible | :hidden | :archived | :quick_link
+
+        module Visibility
+          extend WhopSDK::Internal::Type::Enum
+
+          VISIBLE: :visible
+          HIDDEN: :hidden
+          ARCHIVED: :archived
+          QUICK_LINK: :quick_link
+
+          def self?.values: -> ::Array[WhopSDK::Models::Product::DefaultPlan::visibility]
+        end
       end
 
       type gallery_image = { id: String, content_type: String?, url: String? }
@@ -163,57 +344,39 @@ module WhopSDK
         def to_hash: -> { id: String, content_type: String?, url: String? }
       end
 
-      type owner_user = { id: String, name: String?, username: String }
+      type global_affiliate_status = :enabled | :disabled
 
-      class OwnerUser < WhopSDK::Internal::Type::BaseModel
-        attr_accessor id: String
+      module GlobalAffiliateStatus
+        extend WhopSDK::Internal::Type::Enum
 
-        attr_accessor name: String?
+        ENABLED: :enabled
+        DISABLED: :disabled
 
-        attr_accessor username: String
-
-        def initialize: (id: String, name: String?, username: String) -> void
-
-        def to_hash: -> { id: String, name: String?, username: String }
+        def self?.values: -> ::Array[WhopSDK::Models::Product::global_affiliate_status]
       end
 
-      type product_tax_code =
-        {
-          id: String,
-          name: String,
-          product_type: WhopSDK::Models::Product::ProductTaxCode::product_type
-        }
+      type marketplace_status =
+        :not_available | :pending_review | :live_marketplace
 
-      class ProductTaxCode < WhopSDK::Internal::Type::BaseModel
-        attr_accessor id: String
+      module MarketplaceStatus
+        extend WhopSDK::Internal::Type::Enum
 
-        attr_accessor name: String
+        NOT_AVAILABLE: :not_available
+        PENDING_REVIEW: :pending_review
+        LIVE_MARKETPLACE: :live_marketplace
 
-        attr_accessor product_type: WhopSDK::Models::Product::ProductTaxCode::product_type
+        def self?.values: -> ::Array[WhopSDK::Models::Product::marketplace_status]
+      end
 
-        def initialize: (
-          id: String,
-          name: String,
-          product_type: WhopSDK::Models::Product::ProductTaxCode::product_type
-        ) -> void
+      type member_affiliate_status = :enabled | :disabled
 
-        def to_hash: -> {
-          id: String,
-          name: String,
-          product_type: WhopSDK::Models::Product::ProductTaxCode::product_type
-        }
+      module MemberAffiliateStatus
+        extend WhopSDK::Internal::Type::Enum
 
-        type product_type = :physical | :digital | :services
+        ENABLED: :enabled
+        DISABLED: :disabled
 
-        module ProductType
-          extend WhopSDK::Internal::Type::Enum
-
-          PHYSICAL: :physical
-          DIGITAL: :digital
-          SERVICES: :services
-
-          def self?.values: -> ::Array[WhopSDK::Models::Product::ProductTaxCode::product_type]
-        end
+        def self?.values: -> ::Array[WhopSDK::Models::Product::member_affiliate_status]
       end
     end
   end

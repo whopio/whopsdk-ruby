@@ -1,7 +1,12 @@
 module WhopSDK
   module Models
     type membership_update_params =
-      { id: String, metadata: ::Hash[Symbol, top]? }
+      {
+        id: String,
+        cancel_at_period_end: bool,
+        metadata: top,
+        api_version_date: String
+      }
       & WhopSDK::Internal::Type::request_parameters
 
     class MembershipUpdateParams < WhopSDK::Internal::Type::BaseModel
@@ -10,17 +15,31 @@ module WhopSDK
 
       attr_accessor id: String
 
-      attr_accessor metadata: ::Hash[Symbol, top]?
+      attr_reader cancel_at_period_end: bool?
+
+      def cancel_at_period_end=: (bool) -> bool
+
+      attr_reader metadata: top?
+
+      def metadata=: (top) -> top
+
+      attr_reader api_version_date: String?
+
+      def api_version_date=: (String) -> String
 
       def initialize: (
         id: String,
-        ?metadata: ::Hash[Symbol, top]?,
+        ?cancel_at_period_end: bool,
+        ?metadata: top,
+        ?api_version_date: String,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
       def to_hash: -> {
         id: String,
-        metadata: ::Hash[Symbol, top]?,
+        cancel_at_period_end: bool,
+        metadata: top,
+        api_version_date: String,
         request_options: WhopSDK::RequestOptions
       }
     end

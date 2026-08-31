@@ -3,7 +3,7 @@
 module Whop_sdk
   module Types
     class Membership < Internal::Types::Model
-      field :account, -> { Whop_sdk::Types::MembershipAccount }, optional: false, nullable: false
+      field :account, -> { Whop_sdk::Types::StorefrontAccount }, optional: false, nullable: false
 
       field :cancel_at_period_end, -> { Internal::Types::Boolean }, optional: false, nullable: false
 

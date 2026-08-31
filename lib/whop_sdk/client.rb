@@ -74,6 +74,11 @@ module Whop_sdk
       @api_keys ||= Whop_sdk::APIKeys::Client.new(client: @raw_client)
     end
 
+    # @return [Whop_sdk::APILogs::Client]
+    def api_logs
+      @api_logs ||= Whop_sdk::APILogs::Client.new(client: @raw_client)
+    end
+
     # @return [Whop_sdk::AppBuilds::Client]
     def app_builds
       @app_builds ||= Whop_sdk::AppBuilds::Client.new(client: @raw_client)
@@ -132,6 +137,11 @@ module Whop_sdk
     # @return [Whop_sdk::CompanyTokenTransactions::Client]
     def company_token_transactions
       @company_token_transactions ||= Whop_sdk::CompanyTokenTransactions::Client.new(client: @raw_client)
+    end
+
+    # @return [Whop_sdk::ConfirmationTokens::Client]
+    def confirmation_tokens
+      @confirmation_tokens ||= Whop_sdk::ConfirmationTokens::Client.new(client: @raw_client)
     end
 
     # @return [Whop_sdk::CourseChapters::Client]

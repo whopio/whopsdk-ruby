@@ -8,7 +8,7 @@ module Whop_sdk
 
         field :platform, -> { Whop_sdk::SocialAccounts::Types::ConnectSocialAccountsRequestPlatform }, optional: false, nullable: false
 
-        field :redirect_url, -> { String }, optional: true, nullable: false
+        field :redirect_url, -> { String }, optional: false, nullable: false
 
         field :scopes, -> { Internal::Types::Array[Whop_sdk::SocialAccounts::Types::ConnectSocialAccountsRequestScopesItem] }, optional: true, nullable: false
       end

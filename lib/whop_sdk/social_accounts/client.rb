@@ -127,7 +127,10 @@ module Whop_sdk
       # @option request_options [Integer] :timeout_in_seconds
       #
       # @example
-      #   client.social_accounts.connect(platform: "meta_business")
+      #   client.social_accounts.connect(
+      #     platform: "meta_business",
+      #     redirect_url: "https://example.com/settings/social-accounts"
+      #   )
       #
       # @return [Whop_sdk::SocialAccounts::Types::ConnectSocialAccountsResponse]
       def connect(request_options: {}, **params)

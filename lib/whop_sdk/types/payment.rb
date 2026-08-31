@@ -41,6 +41,8 @@ module Whop_sdk
 
       field :failure_message, -> { String }, optional: false, nullable: true
 
+      field :fees, -> { Internal::Types::Array[Whop_sdk::Types::PaymentFeesItem] }, optional: false, nullable: false
+
       field :financing_installments_count, -> { Integer }, optional: false, nullable: true
 
       field :financing_transactions, -> { Internal::Types::Array[Whop_sdk::Types::PaymentFinancingTransactionsItem] }, optional: false, nullable: false

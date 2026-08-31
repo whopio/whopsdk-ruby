@@ -332,6 +332,44 @@ module Whop_sdk
         end
       end
 
+      # Suspends a connected account directly owned by the authenticated platform account. This cannot suspend the
+      # platform account itself or an account owned by another platform.
+      #
+      # @param request_options [Hash]
+      # @param params [Hash]
+      # @option request_options [String] :base_url
+      # @option request_options [Hash{String => Object}] :additional_headers
+      # @option request_options [Hash{String => Object}] :additional_query_parameters
+      # @option request_options [Hash{String => Object}] :additional_body_parameters
+      # @option request_options [Integer] :timeout_in_seconds
+      # @option params [String] :id
+      #
+      # @example
+      #   client.accounts.suspend(id: "id")
+      #
+      # @return [Whop_sdk::Types::Account]
+      def suspend(request_options: {}, **params)
+        params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
+        request = Whop_sdk::Internal::JSON::Request.new(
+          base_url: request_options[:base_url],
+          method: "POST",
+          path: "accounts/#{URI.encode_uri_component(params[:id].to_s)}/suspend",
+          request_options: request_options
+        )
+        begin
+          response = @client.send(request)
+        rescue Net::HTTPRequestTimeout
+          raise Whop_sdk::Errors::TimeoutError
+        end
+        code = response.code.to_i
+        if code.between?(200, 299)
+          Whop_sdk::Types::Account.load(response.body)
+        else
+          error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
+          raise error_class.new(response.body, code: code)
+        end
+      end
+
       # Transfers ownership of the account to another user, identified by user ID or email address. If the recipient
       # already holds the owner role, ownership moves immediately; otherwise they get an invite and ownership moves when
       # they accept.

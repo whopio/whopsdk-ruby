@@ -74,6 +74,7 @@ module Whop_sdk
       COMPANY_TRANSFER_OWNERSHIP = "company:transfer_ownership"
       COMPANY_CREATE = "company:create"
       COMPANY_CREATE_CHILD = "company:create_child"
+      COMPANY_SUSPEND_CHILD = "company:suspend_child"
       COMPANY_DELETE = "company:delete"
       COMPANY_DELETE_CHILD = "company:delete_child"
       COMPANY_UPDATE_CHILD_FEES = "company:update_child_fees"

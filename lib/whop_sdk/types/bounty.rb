@@ -53,6 +53,8 @@ module Whop_sdk
 
       field :id, -> { String }, optional: false, nullable: false
 
+      field :min_total_verified_duration_seconds, -> { Integer }, optional: false, nullable: true
+
       field :net_reward_amount, -> { Integer }, optional: false, nullable: false
 
       field :poster, -> { Whop_sdk::Types::UserSummary }, optional: false, nullable: false

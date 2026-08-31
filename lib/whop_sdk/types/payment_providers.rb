@@ -15,6 +15,7 @@ module Whop_sdk
       MULTI_PSP = "multi_psp"
       ADYEN = "adyen"
       CLARITYPAY = "claritypay"
+      FLEX_PAY = "flex_pay"
       CHECKOUT_DOT_COM = "checkout_dot_com"
       AIRWALLEX = "airwallex"
       COINFLOW = "coinflow"

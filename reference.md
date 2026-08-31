@@ -1139,6 +1139,68 @@ client.accounts.form_company(
 </dl>
 </details>
 
+<details><summary><code>client.accounts.<a href="/lib/whop_sdk/accounts/client.rb">suspend</a>(id:) -> Whop_sdk::Types::Account</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Suspends a connected account directly owned by the authenticated platform account. This cannot suspend the platform account itself or an account owned by another platform.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.accounts.suspend(id: "id")
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — Connected account ID, prefixed `biz_`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Whop_sdk::Accounts::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.accounts.<a href="/lib/whop_sdk/accounts/client.rb">transfer_ownership</a>(id:, request) -> Whop_sdk::Accounts::Types::TransferOwnershipAccountsResponse</code></summary>
 <dl>
 <dd>
@@ -5895,6 +5957,149 @@ client.api_keys.rotate(id: "id")
 </dl>
 </details>
 
+## Api Logs
+<details><summary><code>client.api_logs.<a href="/lib/whop_sdk/api_logs/client.rb">list</a>() -> Whop_sdk::APILogs::Types::ListAPILogsResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists the requests served by Whop's API with the account's API keys, newest first — every surface (GraphQL, REST, and native /api/v1), reads and failed requests included.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.api_logs.list
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**account_id:** `String` — The account (biz_*) whose API logs to list. Defaults to the authenticated account.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**created_after:** `String` — Only return requests served at or after this ISO 8601 timestamp. Defaults to 7 days before created_before, or 7 days ago.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**created_before:** `String` — Only return requests served before this ISO 8601 timestamp.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**operation_name:** `String` — Only return requests for this operation, matched exactly against the operation_name shown on each log row (for example api/v1/products#create).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**http_method:** `Whop_sdk::APILogs::Types::ListAPILogsRequestHTTPMethod` — Only return requests made with this HTTP method.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**status:** `Whop_sdk::APILogs::Types::ListAPILogsRequestStatus` — Only return requests that finished with this status.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**api_key_id:** `String` — Only return requests made with this API key (apik_…).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**min_duration_ms:** `Integer` — Only return requests that took at least this many milliseconds.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**max_duration_ms:** `Integer` — Only return requests that took at most this many milliseconds.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**first:** `Integer` — Number of logs to return.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**after:** `String` — Cursor to fetch the page after (from page_info.end_cursor).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Whop_sdk::APILogs::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## App Builds
 <details><summary><code>client.app_builds.<a href="/lib/whop_sdk/app_builds/client.rb">list</a>() -> Whop_sdk::AppBuilds::Types::ListAppBuildsResponse</code></summary>
 <dl>
@@ -6359,7 +6564,7 @@ client.apps.list
 <dl>
 <dd>
 
-**order:** `Whop_sdk::Apps::Types::ListAppsRequestOrder` — The field to sort apps by. Defaults to discoverable_at, showing the most recently published apps first. `template_usage` ranks Whop-verified apps first, then apps with a banner image, then by how many apps were created from each app as a template.
+**order:** `Whop_sdk::Apps::Types::ListAppsRequestOrder` — The field to sort apps by. Defaults to discoverable_at, showing the most recently published apps first. `template_usage` ranks Whop-verified apps first, then by how many businesses created apps from each app as a template.
     
 </dd>
 </dl>
@@ -9410,7 +9615,7 @@ client.cards.list
 <dl>
 <dd>
 
-Issue a virtual card, or apply for card issuing.
+Issue a virtual card, or apply for card issuing. An account with no application files one here and gets back a `202`; call again to issue the card once it is approved.
 </dd>
 </dl>
 </dd>
@@ -9448,7 +9653,7 @@ client.cards.create
 <dl>
 <dd>
 
-**assigned_user_id:** `String` — The account member (a user_ identifier) to assign the card to. Required for business card issuing accounts.
+**assigned_user_id:** `String` — The account member (a user_ identifier) to assign the card to. Required for business card issuing accounts, and whenever a company API key files an account's first card application.
     
 </dd>
 </dl>
@@ -11214,6 +11419,204 @@ client.company_token_transactions.retrieve(id: "id")
 <dd>
 
 **request_options:** `Whop_sdk::CompanyTokenTransactions::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Confirmation Tokens
+<details><summary><code>client.confirmation_tokens.<a href="/lib/whop_sdk/confirmation_tokens/client.rb">create</a>(request) -> Whop_sdk::Types::ConfirmationToken</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Mints a single-use, short-lived confirmation token from what the buyer entered on your collection surface: the payment method payload, billing details, and attested save consent. Public and rate-limited — the account_id in the body scopes the token but does not authenticate. Confirm it with POST /payments from your server.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.confirmation_tokens.create(
+  account_id: "biz_xxxxxxxxxxxxxx",
+  billing_details: {
+    address: {
+      city: "Austin",
+      country: "US",
+      line1: "123 Main St",
+      postal_code: "78701"
+    },
+    email: "buyer@example.com",
+    name: "Buyer Name"
+  },
+  payment_method: {
+    card: {
+      brand: "visa",
+      last4: "4242",
+      token_intent: "bt_ti_123"
+    },
+    category: "card",
+    type: "card"
+  },
+  setup_future_usage: "off_session"
+)
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**account_id:** `String` — The account (biz_) this token is scoped to — the publishable identity.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**billing_details:** `Whop_sdk::ConfirmationTokens::Types::CreateConfirmationTokensRequestBillingDetails` — Billing details collected with the method. `email` is always required; cards additionally require `name` and an address with `line1` and `country`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**browser_info:** `Internal::Types::Hash[String, Object]` — Screen/runtime facts from the buyer's browser (platform, screen dimensions, language, ...) used for authentication ceremonies. Header-derived fields are captured server-side.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**payment_method:** `Whop_sdk::ConfirmationTokens::Types::CreateConfirmationTokensRequestPaymentMethod` — The collected method: `type` names the payment method, `category` names the payload shape, and the category-keyed object carries the payload. Wallets are the exception: their payload rides the type key (`apple_pay` / `google_pay`). Send exactly the one payload arm the category selects — extra arms are rejected. Redirect-flow methods (category `redirect`, `bank_transfer`, `voucher`, and redirect wallets like `cashapp`) collect nothing and send no payload arm.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**return_url:** `String` — Where redirect flows send the buyer, carried onto the confirm that consumes this token.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**setup_future_usage:** `Whop_sdk::ConfirmationTokens::Types::CreateConfirmationTokensRequestSetupFutureUsage` — The save-consent state your surface displayed when the buyer confirmed. Confirm may vault only if attested here.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Whop_sdk::ConfirmationTokens::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.confirmation_tokens.<a href="/lib/whop_sdk/confirmation_tokens/client.rb">retrieve</a>(id:) -> Whop_sdk::Types::ConfirmationToken</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves a token's display-safe preview — never the underlying payment credential. Public and rate-limited: the account_id query param must match the account the token was minted for.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.confirmation_tokens.retrieve(
+  id: "id",
+  account_id: "account_id"
+)
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — Confirmation token ID, prefixed `ctok_`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**account_id:** `String` — The account (biz_) the token was minted for.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Whop_sdk::ConfirmationTokens::RequestOptions` 
     
 </dd>
 </dl>
@@ -17731,6 +18134,14 @@ client.financial_activity.list
 <dl>
 <dd>
 
+**activity_id:** `String` — Optional ledger activity ID (for example `line_3`). Returns at most that one activity.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **currency:** `String` — Optional currency code filter, for example `usd`.
     
 </dd>
@@ -23644,7 +24055,7 @@ client.payments.list(
 <dl>
 <dd>
 
-**include_free:** `Internal::Types::Boolean` — Whether to include payments with a zero amount.
+**include_free:** `Internal::Types::Boolean` — Whether to include payments with a zero amount. Defaults to false, so zero-amount payments are omitted unless you set this to true — a company whose sales are all free plans returns an empty list without it.
     
 </dd>
 </dl>
@@ -23724,7 +24135,7 @@ client.payments.list(
 <dl>
 <dd>
 
-Charge an existing member off-session using one of their stored payment methods. You can provide an existing plan, or create a new one in-line. This endpoint will respond with a payment object immediately, but the payment is processed asynchronously in the background. Use webhooks to be notified when the payment succeeds or fails.
+Charge a buyer on-session with a `confirmation_token` for the method they selected, or charge an existing member off-session using a stored payment method. You can provide an existing plan or create one inline. The endpoint returns a payment immediately, but processing continues asynchronously. Use webhooks to learn whether it succeeds or fails, and poll the payment's status endpoint for any step the buyer must complete.
 
 Required permissions:
  - `payment:charge`
@@ -28488,7 +28899,7 @@ client.refunds.list(
 <dl>
 <dd>
 
-**payment_id:** `String` — Filter refunds to only those associated with this specific payment.
+**payment_id:** `String` — Filter refunds to those associated with this specific payment. Mutually exclusive with company_id and user_id: provide exactly one.
     
 </dd>
 </dl>
@@ -28496,7 +28907,7 @@ client.refunds.list(
 <dl>
 <dd>
 
-**company_id:** `String` — Filter refunds to only those belonging to this company.
+**company_id:** `String` — Filter refunds to those belonging to this company. Mutually exclusive with payment_id and user_id: provide exactly one.
     
 </dd>
 </dl>
@@ -28504,7 +28915,7 @@ client.refunds.list(
 <dl>
 <dd>
 
-**user_id:** `String` — Filter refunds to only those associated with this specific user.
+**user_id:** `String` — Filter refunds to those associated with this specific user. Mutually exclusive with payment_id and company_id: provide exactly one. Requires a credential belonging to that user; any other credential receives 'You are not authorized'.
     
 </dd>
 </dl>
@@ -30808,7 +31219,10 @@ Starts an OAuth connection flow and returns an authorize_url where the user can 
 <dd>
 
 ```ruby
-client.social_accounts.connect(platform: "meta_business")
+client.social_accounts.connect(
+  platform: "meta_business",
+  redirect_url: "https://example.com/settings/social-accounts"
+)
 ```
 </dd>
 </dl>
@@ -30831,7 +31245,7 @@ client.social_accounts.connect(platform: "meta_business")
 <dl>
 <dd>
 
-**platform:** `Whop_sdk::SocialAccounts::Types::ConnectSocialAccountsRequestPlatform` — The platform to connect the social account on. Supported options are `meta_business` and `tiktok`.
+**platform:** `Whop_sdk::SocialAccounts::Types::ConnectSocialAccountsRequestPlatform` — The platform to connect the social account on. Use `meta_business` to connect Meta Business assets, which is how Facebook Pages and Instagram accounts are connected — there is no separate `instagram` value. Use `tiktok` for TikTok accounts.
     
 </dd>
 </dl>
@@ -30839,7 +31253,7 @@ client.social_accounts.connect(platform: "meta_business")
 <dl>
 <dd>
 
-**redirect_url:** `String` — The Whop URL to redirect the user to after they finish connecting.
+**redirect_url:** `String` — Where to send the user once they finish connecting their accounts. Any `http` or `https` URL. If the connection fails, the user is redirected with a `social_account_error` query param.
     
 </dd>
 </dl>
@@ -30847,7 +31261,7 @@ client.social_accounts.connect(platform: "meta_business")
 <dl>
 <dd>
 
-**scopes:** `Internal::Types::Array[Whop_sdk::SocialAccounts::Types::ConnectSocialAccountsRequestScopesItem]` — Capabilities to grant for the connected social account. Use `advertise` when connecting a Meta Business or TikTok account for ads.
+**scopes:** `Internal::Types::Array[Whop_sdk::SocialAccounts::Types::ConnectSocialAccountsRequestScopesItem]` — Capabilities to grant for the connected social account. `advertise` is required for both `meta_business` and `tiktok` connections — it is not conditional on whether you intend to run ads, and omitting it fails the request.
     
 </dd>
 </dl>
@@ -37163,7 +37577,7 @@ client.payouts.methods.delete(id: "id")
 <dl>
 <dd>
 
-Changes the label used to identify a saved payout method.
+Changes the label used to identify a saved payout method or makes it the account's default payout method.
 </dd>
 </dl>
 </dd>
@@ -37178,10 +37592,7 @@ Changes the label used to identify a saved payout method.
 <dd>
 
 ```ruby
-client.payouts.methods.update(
-  id: "id",
-  nickname: "Primary checking"
-)
+client.payouts.methods.update(id: "id")
 ```
 </dd>
 </dl>
@@ -37197,6 +37608,14 @@ client.payouts.methods.update(
 <dd>
 
 **id:** `String` — Payout method ID, prefixed `potk_`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**is_default:** `Internal::Types::Boolean` — Set to `true` to make this the account's default payout method. `false` is not accepted.
     
 </dd>
 </dl>

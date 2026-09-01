@@ -672,6 +672,19 @@ module WhopSDK
           end
           attr_writer :instant
 
+          # Why instant delivery is unavailable for this method.
+          # `minimum_crypto_sales_not_met` means the account has not reached the total sales
+          # required for instant cryptocurrency payouts. `null` when this restriction does
+          # not apply.
+          sig do
+            returns(
+              T.nilable(
+                WhopSDK::PayoutMethodCreatedWebhookEvent::Data::Quote::InstantUnavailableReason::TaggedSymbol
+              )
+            )
+          end
+          attr_accessor :instant_unavailable_reason
+
           # Maximum payout amount for this method, in the payout currency.
           sig { returns(T.nilable(Float)) }
           attr_accessor :max_limit
@@ -712,6 +725,10 @@ module WhopSDK
                 T.nilable(
                   WhopSDK::PayoutMethodCreatedWebhookEvent::Data::Quote::Instant::OrHash
                 ),
+              instant_unavailable_reason:
+                T.nilable(
+                  WhopSDK::PayoutMethodCreatedWebhookEvent::Data::Quote::InstantUnavailableReason::OrSymbol
+                ),
               max_limit: T.nilable(Float),
               min_limit: Float,
               standard:
@@ -731,6 +748,11 @@ module WhopSDK
             # instant delivery is unavailable for the account, or the amount does not cover
             # the fee.
             instant:,
+            # Why instant delivery is unavailable for this method.
+            # `minimum_crypto_sales_not_met` means the account has not reached the total sales
+            # required for instant cryptocurrency payouts. `null` when this restriction does
+            # not apply.
+            instant_unavailable_reason:,
             # Maximum payout amount for this method, in the payout currency.
             max_limit:,
             # Minimum payout amount for this method, in the payout currency.
@@ -750,6 +772,10 @@ module WhopSDK
                 instant:
                   T.nilable(
                     WhopSDK::PayoutMethodCreatedWebhookEvent::Data::Quote::Instant
+                  ),
+                instant_unavailable_reason:
+                  T.nilable(
+                    WhopSDK::PayoutMethodCreatedWebhookEvent::Data::Quote::InstantUnavailableReason::TaggedSymbol
                   ),
                 max_limit: T.nilable(Float),
                 min_limit: Float,
@@ -798,6 +824,39 @@ module WhopSDK
 
             sig { override.returns({ fee: Float, total_received: Float }) }
             def to_hash
+            end
+          end
+
+          # Why instant delivery is unavailable for this method.
+          # `minimum_crypto_sales_not_met` means the account has not reached the total sales
+          # required for instant cryptocurrency payouts. `null` when this restriction does
+          # not apply.
+          module InstantUnavailableReason
+            extend WhopSDK::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(
+                  Symbol,
+                  WhopSDK::PayoutMethodCreatedWebhookEvent::Data::Quote::InstantUnavailableReason
+                )
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            MINIMUM_CRYPTO_SALES_NOT_MET =
+              T.let(
+                :minimum_crypto_sales_not_met,
+                WhopSDK::PayoutMethodCreatedWebhookEvent::Data::Quote::InstantUnavailableReason::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  WhopSDK::PayoutMethodCreatedWebhookEvent::Data::Quote::InstantUnavailableReason::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
             end
           end
 

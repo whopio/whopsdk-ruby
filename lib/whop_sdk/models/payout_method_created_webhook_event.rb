@@ -388,6 +388,19 @@ module WhopSDK
           #   @return [WhopSDK::Models::PayoutMethodCreatedWebhookEvent::Data::Quote::Instant, nil]
           required :instant, -> { WhopSDK::PayoutMethodCreatedWebhookEvent::Data::Quote::Instant }, nil?: true
 
+          # @!attribute instant_unavailable_reason
+          #   Why instant delivery is unavailable for this method.
+          #   `minimum_crypto_sales_not_met` means the account has not reached the total sales
+          #   required for instant cryptocurrency payouts. `null` when this restriction does
+          #   not apply.
+          #
+          #   @return [Symbol, WhopSDK::Models::PayoutMethodCreatedWebhookEvent::Data::Quote::InstantUnavailableReason, nil]
+          required :instant_unavailable_reason,
+                   enum: -> {
+                     WhopSDK::PayoutMethodCreatedWebhookEvent::Data::Quote::InstantUnavailableReason
+                   },
+                   nil?: true
+
           # @!attribute max_limit
           #   Maximum payout amount for this method, in the payout currency.
           #
@@ -411,7 +424,7 @@ module WhopSDK
                    },
                    nil?: true
 
-          # @!method initialize(amount:, currency:, exchange_rate:, instant:, max_limit:, min_limit:, standard:)
+          # @!method initialize(amount:, currency:, exchange_rate:, instant:, instant_unavailable_reason:, max_limit:, min_limit:, standard:)
           #   Some parameter documentations has been truncated, see
           #   {WhopSDK::Models::PayoutMethodCreatedWebhookEvent::Data::Quote} for more
           #   details.
@@ -426,6 +439,8 @@ module WhopSDK
           #   @param exchange_rate [Float] Exchange rate from the payout currency to the destination currency.
           #
           #   @param instant [WhopSDK::Models::PayoutMethodCreatedWebhookEvent::Data::Quote::Instant, nil] Instant-delivery estimate. Null if the method does not support instant delivery,
+          #
+          #   @param instant_unavailable_reason [Symbol, WhopSDK::Models::PayoutMethodCreatedWebhookEvent::Data::Quote::InstantUnavailableReason, nil] Why instant delivery is unavailable for this method. `minimum_crypto_sales_not_m
           #
           #   @param max_limit [Float, nil] Maximum payout amount for this method, in the payout currency.
           #
@@ -455,6 +470,21 @@ module WhopSDK
             #   @param fee [Float] Total fee charged, in the payout currency.
             #
             #   @param total_received [Float] Amount remaining after fees, in the payout currency.
+          end
+
+          # Why instant delivery is unavailable for this method.
+          # `minimum_crypto_sales_not_met` means the account has not reached the total sales
+          # required for instant cryptocurrency payouts. `null` when this restriction does
+          # not apply.
+          #
+          # @see WhopSDK::Models::PayoutMethodCreatedWebhookEvent::Data::Quote#instant_unavailable_reason
+          module InstantUnavailableReason
+            extend WhopSDK::Internal::Type::Enum
+
+            MINIMUM_CRYPTO_SALES_NOT_MET = :minimum_crypto_sales_not_met
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
           end
 
           # @see WhopSDK::Models::PayoutMethodCreatedWebhookEvent::Data::Quote#standard

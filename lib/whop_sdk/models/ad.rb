@@ -471,7 +471,14 @@ module WhopSDK
       #   @return [Boolean, nil]
       optional :multi_advertiser_ads, WhopSDK::Internal::Type::Boolean
 
-      # @!method initialize(id:, ad_campaign:, ad_group:, added_to_cart_value:, added_to_carts:, call_to_action:, click_through_rate:, clicks:, completed_registration_value:, completed_registrations:, contact_value:, contacts:, cost_per_added_to_cart:, cost_per_click:, cost_per_completed_registration:, cost_per_contact:, cost_per_lead:, cost_per_mille:, cost_per_purchase:, cost_per_result:, cost_per_schedule:, cost_per_submitted_application:, cost_per_unique_click:, cost_per_viewed_content:, created_at:, creatives:, custom_conversions:, custom_event_counts:, custom_event_values:, delivery_status:, descriptions:, existing_post_id:, frequency:, headlines:, impressions:, issues:, lead_value:, leads:, link_clicks:, post_id:, post_source:, post_thumbnail_url:, primary_texts:, purchase_value:, purchases:, reach:, result_event:, result_event_name:, results:, return_on_ad_spend:, schedule_value:, schedules:, social_accounts:, spend:, spend_currency:, status:, submitted_application_value:, submitted_applications:, title:, unique_click_through_rate:, unique_clicks:, updated_at:, url:, url_parameters:, viewed_content_value:, viewed_contents:, lead_form: nil, lead_form_id: nil, messaging_config: nil, multi_advertiser_ads: nil)
+      # @!attribute music
+      #   The advertiser-uploaded MP3 a TikTok carousel ad plays. TikTok-only; `null`
+      #   elsewhere and for non-carousel ads.
+      #
+      #   @return [WhopSDK::Models::Ad::Music, nil]
+      optional :music, -> { WhopSDK::Ad::Music }, nil?: true
+
+      # @!method initialize(id:, ad_campaign:, ad_group:, added_to_cart_value:, added_to_carts:, call_to_action:, click_through_rate:, clicks:, completed_registration_value:, completed_registrations:, contact_value:, contacts:, cost_per_added_to_cart:, cost_per_click:, cost_per_completed_registration:, cost_per_contact:, cost_per_lead:, cost_per_mille:, cost_per_purchase:, cost_per_result:, cost_per_schedule:, cost_per_submitted_application:, cost_per_unique_click:, cost_per_viewed_content:, created_at:, creatives:, custom_conversions:, custom_event_counts:, custom_event_values:, delivery_status:, descriptions:, existing_post_id:, frequency:, headlines:, impressions:, issues:, lead_value:, leads:, link_clicks:, post_id:, post_source:, post_thumbnail_url:, primary_texts:, purchase_value:, purchases:, reach:, result_event:, result_event_name:, results:, return_on_ad_spend:, schedule_value:, schedules:, social_accounts:, spend:, spend_currency:, status:, submitted_application_value:, submitted_applications:, title:, unique_click_through_rate:, unique_clicks:, updated_at:, url:, url_parameters:, viewed_content_value:, viewed_contents:, lead_form: nil, lead_form_id: nil, messaging_config: nil, multi_advertiser_ads: nil, music: nil)
       #   Some parameter documentations has been truncated, see {WhopSDK::Models::Ad} for
       #   more details.
       #
@@ -614,6 +621,8 @@ module WhopSDK
       #   @param messaging_config [WhopSDK::Models::Ad::MessagingConfig, nil] Welcome message for click-to-message ads, shown when the conversation opens. `nu
       #
       #   @param multi_advertiser_ads [Boolean] Whether the ad can appear alongside other advertisers' ads in the same unit. Def
+      #
+      #   @param music [WhopSDK::Models::Ad::Music, nil] The advertiser-uploaded MP3 a TikTok carousel ad plays. TikTok-only; `null` else
 
       # @see WhopSDK::Models::Ad#ad_campaign
       class AdCampaign < WhopSDK::Internal::Type::BaseModel
@@ -1310,6 +1319,37 @@ module WhopSDK
         #   @param keyword [String, nil] Suggested reply the person can tap to start the conversation.
         #
         #   @param message [String, nil] Greeting shown when the conversation opens.
+      end
+
+      # @see WhopSDK::Models::Ad#music
+      class Music < WhopSDK::Internal::Type::BaseModel
+        # @!attribute id
+        #   The music attachment's file id.
+        #
+        #   @return [String]
+        required :id, String
+
+        # @!attribute name
+        #   The uploaded file's name.
+        #
+        #   @return [String, nil]
+        required :name, String, nil?: true
+
+        # @!attribute url
+        #   CDN url of the MP3.
+        #
+        #   @return [String, nil]
+        required :url, String, nil?: true
+
+        # @!method initialize(id:, name:, url:)
+        #   The advertiser-uploaded MP3 a TikTok carousel ad plays. TikTok-only; `null`
+        #   elsewhere and for non-carousel ads.
+        #
+        #   @param id [String] The music attachment's file id.
+        #
+        #   @param name [String, nil] The uploaded file's name.
+        #
+        #   @param url [String, nil] CDN url of the MP3.
       end
     end
   end

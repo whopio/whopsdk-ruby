@@ -71,7 +71,8 @@ module WhopSDK
         lead_form: WhopSDK::Ad::LeadForm?,
         lead_form_id: String?,
         messaging_config: WhopSDK::Ad::MessagingConfig?,
-        multi_advertiser_ads: bool
+        multi_advertiser_ads: bool,
+        music: WhopSDK::Ad::Music?
       }
 
     class Ad < WhopSDK::Internal::Type::BaseModel
@@ -217,6 +218,8 @@ module WhopSDK
 
       def multi_advertiser_ads=: (bool) -> bool
 
+      attr_accessor music: WhopSDK::Ad::Music?
+
       def initialize: (
         id: String,
         ad_campaign: WhopSDK::Ad::AdCampaign,
@@ -287,7 +290,8 @@ module WhopSDK
         ?lead_form: WhopSDK::Ad::LeadForm?,
         ?lead_form_id: String?,
         ?messaging_config: WhopSDK::Ad::MessagingConfig?,
-        ?multi_advertiser_ads: bool
+        ?multi_advertiser_ads: bool,
+        ?music: WhopSDK::Ad::Music?
       ) -> void
 
       def to_hash: -> {
@@ -360,7 +364,8 @@ module WhopSDK
         lead_form: WhopSDK::Ad::LeadForm?,
         lead_form_id: String?,
         messaging_config: WhopSDK::Ad::MessagingConfig?,
-        multi_advertiser_ads: bool
+        multi_advertiser_ads: bool,
+        music: WhopSDK::Ad::Music?
       }
 
       type ad_campaign = { id: String }
@@ -966,6 +971,20 @@ module WhopSDK
         def initialize: (keyword: String?, message: String?) -> void
 
         def to_hash: -> { keyword: String?, message: String? }
+      end
+
+      type music = { id: String, name: String?, url: String? }
+
+      class Music < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor name: String?
+
+        attr_accessor url: String?
+
+        def initialize: (id: String, name: String?, url: String?) -> void
+
+        def to_hash: -> { id: String, name: String?, url: String? }
       end
     end
   end

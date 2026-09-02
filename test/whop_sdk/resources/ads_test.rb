@@ -83,7 +83,8 @@ class WhopSDK::Test::Resources::AdsTest < WhopSDK::Test::ResourceTest
         lead_form: WhopSDK::Ad::LeadForm | nil,
         lead_form_id: String | nil,
         messaging_config: WhopSDK::Ad::MessagingConfig | nil,
-        multi_advertiser_ads: WhopSDK::Internal::Type::Boolean | nil
+        multi_advertiser_ads: WhopSDK::Internal::Type::Boolean | nil,
+        music: WhopSDK::Ad::Music | nil
       }
     end
   end
@@ -175,7 +176,8 @@ class WhopSDK::Test::Resources::AdsTest < WhopSDK::Test::ResourceTest
         lead_form: WhopSDK::Ad::LeadForm | nil,
         lead_form_id: String | nil,
         messaging_config: WhopSDK::Ad::MessagingConfig | nil,
-        multi_advertiser_ads: WhopSDK::Internal::Type::Boolean | nil
+        multi_advertiser_ads: WhopSDK::Internal::Type::Boolean | nil,
+        music: WhopSDK::Ad::Music | nil
       }
     end
   end
@@ -260,7 +262,8 @@ class WhopSDK::Test::Resources::AdsTest < WhopSDK::Test::ResourceTest
         lead_form: WhopSDK::Ad::LeadForm | nil,
         lead_form_id: String | nil,
         messaging_config: WhopSDK::Ad::MessagingConfig | nil,
-        multi_advertiser_ads: WhopSDK::Internal::Type::Boolean | nil
+        multi_advertiser_ads: WhopSDK::Internal::Type::Boolean | nil,
+        music: WhopSDK::Ad::Music | nil
       }
     end
   end
@@ -345,7 +348,8 @@ class WhopSDK::Test::Resources::AdsTest < WhopSDK::Test::ResourceTest
         lead_form: WhopSDK::Ad::LeadForm | nil,
         lead_form_id: String | nil,
         messaging_config: WhopSDK::Ad::MessagingConfig | nil,
-        multi_advertiser_ads: WhopSDK::Internal::Type::Boolean | nil
+        multi_advertiser_ads: WhopSDK::Internal::Type::Boolean | nil,
+        music: WhopSDK::Ad::Music | nil
       }
     end
   end

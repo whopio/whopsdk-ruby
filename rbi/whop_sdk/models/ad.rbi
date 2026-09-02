@@ -351,6 +351,14 @@ module WhopSDK
       sig { params(multi_advertiser_ads: T::Boolean).void }
       attr_writer :multi_advertiser_ads
 
+      # The advertiser-uploaded MP3 a TikTok carousel ad plays. TikTok-only; `null`
+      # elsewhere and for non-carousel ads.
+      sig { returns(T.nilable(WhopSDK::Ad::Music)) }
+      attr_reader :music
+
+      sig { params(music: T.nilable(WhopSDK::Ad::Music::OrHash)).void }
+      attr_writer :music
+
       sig do
         params(
           id: String,
@@ -422,7 +430,8 @@ module WhopSDK
           lead_form: T.nilable(WhopSDK::Ad::LeadForm::OrHash),
           lead_form_id: T.nilable(String),
           messaging_config: T.nilable(WhopSDK::Ad::MessagingConfig::OrHash),
-          multi_advertiser_ads: T::Boolean
+          multi_advertiser_ads: T::Boolean,
+          music: T.nilable(WhopSDK::Ad::Music::OrHash)
         ).returns(T.attached_class)
       end
       def self.new(
@@ -612,7 +621,10 @@ module WhopSDK
         messaging_config: nil,
         # Whether the ad can appear alongside other advertisers' ads in the same unit.
         # Defaults to true.
-        multi_advertiser_ads: nil
+        multi_advertiser_ads: nil,
+        # The advertiser-uploaded MP3 a TikTok carousel ad plays. TikTok-only; `null`
+        # elsewhere and for non-carousel ads.
+        music: nil
       )
       end
 
@@ -688,7 +700,8 @@ module WhopSDK
             lead_form: T.nilable(WhopSDK::Ad::LeadForm),
             lead_form_id: T.nilable(String),
             messaging_config: T.nilable(WhopSDK::Ad::MessagingConfig),
-            multi_advertiser_ads: T::Boolean
+            multi_advertiser_ads: T::Boolean,
+            music: T.nilable(WhopSDK::Ad::Music)
           }
         )
       end
@@ -1822,6 +1835,50 @@ module WhopSDK
         sig do
           override.returns(
             { keyword: T.nilable(String), message: T.nilable(String) }
+          )
+        end
+        def to_hash
+        end
+      end
+
+      class Music < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias { T.any(WhopSDK::Ad::Music, WhopSDK::Internal::AnyHash) }
+
+        # The music attachment's file id.
+        sig { returns(String) }
+        attr_accessor :id
+
+        # The uploaded file's name.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :name
+
+        # CDN url of the MP3.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :url
+
+        # The advertiser-uploaded MP3 a TikTok carousel ad plays. TikTok-only; `null`
+        # elsewhere and for non-carousel ads.
+        sig do
+          params(
+            id: String,
+            name: T.nilable(String),
+            url: T.nilable(String)
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The music attachment's file id.
+          id:,
+          # The uploaded file's name.
+          name:,
+          # CDN url of the MP3.
+          url:
+        )
+        end
+
+        sig do
+          override.returns(
+            { id: String, name: T.nilable(String), url: T.nilable(String) }
           )
         end
         def to_hash

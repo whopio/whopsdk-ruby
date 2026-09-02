@@ -76,6 +76,7 @@ module WhopSDK
           payout_request_id: String?,
           source: WhopSDK::Models::PayoutCreatedWebhookEvent::Data::source?,
           speed: WhopSDK::Models::PayoutCreatedWebhookEvent::Data::speed,
+          statement_descriptor: String?,
           status: WhopSDK::Models::PayoutCreatedWebhookEvent::Data::status,
           status_detail: String,
           trace_code: String?
@@ -124,6 +125,8 @@ module WhopSDK
 
         attr_accessor speed: WhopSDK::Models::PayoutCreatedWebhookEvent::Data::speed
 
+        attr_accessor statement_descriptor: String?
+
         attr_accessor status: WhopSDK::Models::PayoutCreatedWebhookEvent::Data::status
 
         attr_accessor status_detail: String
@@ -152,6 +155,7 @@ module WhopSDK
           payout_request_id: String?,
           source: WhopSDK::Models::PayoutCreatedWebhookEvent::Data::source?,
           speed: WhopSDK::Models::PayoutCreatedWebhookEvent::Data::speed,
+          statement_descriptor: String?,
           status: WhopSDK::Models::PayoutCreatedWebhookEvent::Data::status,
           status_detail: String,
           trace_code: String?
@@ -179,6 +183,7 @@ module WhopSDK
           payout_request_id: String?,
           source: WhopSDK::Models::PayoutCreatedWebhookEvent::Data::source?,
           speed: WhopSDK::Models::PayoutCreatedWebhookEvent::Data::speed,
+          statement_descriptor: String?,
           status: WhopSDK::Models::PayoutCreatedWebhookEvent::Data::status,
           status_detail: String,
           trace_code: String?

@@ -218,6 +218,13 @@ module WhopSDK
         #   @return [Symbol, WhopSDK::Models::PayoutCreatedWebhookEvent::Data::Speed]
         required :speed, enum: -> { WhopSDK::PayoutCreatedWebhookEvent::Data::Speed }
 
+        # @!attribute statement_descriptor
+        #   Text that appears on the recipient's bank statement, or `null` if no descriptor
+        #   was set. When set, 5-22 alphanumeric characters (A-Z, a-z, 0-9).
+        #
+        #   @return [String, nil]
+        required :statement_descriptor, String, nil?: true
+
         # @!attribute status
         #   Current payout status.
         #
@@ -241,7 +248,7 @@ module WhopSDK
         #   @return [String, nil]
         required :trace_code, String, nil?: true
 
-        # @!method initialize(id:, amount:, created_at:, currency:, destination_amount:, destination_currency:, estimated_arrival:, exchange_rate:, failure:, fee_amount:, fee_paid_by:, markup_fee:, metadata:, net_amount:, notes:, object:, payer_name:, payout_method:, payout_request_id:, source:, speed:, status:, status_detail:, trace_code:)
+        # @!method initialize(id:, amount:, created_at:, currency:, destination_amount:, destination_currency:, estimated_arrival:, exchange_rate:, failure:, fee_amount:, fee_paid_by:, markup_fee:, metadata:, net_amount:, notes:, object:, payer_name:, payout_method:, payout_request_id:, source:, speed:, statement_descriptor:, status:, status_detail:, trace_code:)
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::PayoutCreatedWebhookEvent::Data} for more details.
         #
@@ -286,6 +293,8 @@ module WhopSDK
         #   @param source [Symbol, WhopSDK::Models::PayoutCreatedWebhookEvent::Data::Source, nil] How the payout was created. `automatic` means a scheduled auto-payout; `null` on
         #
         #   @param speed [Symbol, WhopSDK::Models::PayoutCreatedWebhookEvent::Data::Speed] Payout delivery speed.
+        #
+        #   @param statement_descriptor [String, nil] Text that appears on the recipient's bank statement, or `null` if no descriptor
         #
         #   @param status [Symbol, WhopSDK::Models::PayoutCreatedWebhookEvent::Data::Status] Current payout status.
         #

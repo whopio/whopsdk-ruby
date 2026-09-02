@@ -253,6 +253,11 @@ module WhopSDK
         end
         attr_accessor :speed
 
+        # Text that appears on the recipient's bank statement, or `null` if no descriptor
+        # was set. When set, 5-22 alphanumeric characters (A-Z, a-z, 0-9).
+        sig { returns(T.nilable(String)) }
+        attr_accessor :statement_descriptor
+
         # Current payout status.
         sig do
           returns(
@@ -307,6 +312,7 @@ module WhopSDK
                 WhopSDK::PayoutReversedWebhookEvent::Data::Source::OrSymbol
               ),
             speed: WhopSDK::PayoutReversedWebhookEvent::Data::Speed::OrSymbol,
+            statement_descriptor: T.nilable(String),
             status: WhopSDK::PayoutReversedWebhookEvent::Data::Status::OrSymbol,
             status_detail: String,
             trace_code: T.nilable(String)
@@ -374,6 +380,9 @@ module WhopSDK
           source:,
           # Payout delivery speed.
           speed:,
+          # Text that appears on the recipient's bank statement, or `null` if no descriptor
+          # was set. When set, 5-22 alphanumeric characters (A-Z, a-z, 0-9).
+          statement_descriptor:,
           # Current payout status.
           status:,
           # The finest machine phase under `status` — for example
@@ -422,6 +431,7 @@ module WhopSDK
                 ),
               speed:
                 WhopSDK::PayoutReversedWebhookEvent::Data::Speed::TaggedSymbol,
+              statement_descriptor: T.nilable(String),
               status:
                 WhopSDK::PayoutReversedWebhookEvent::Data::Status::TaggedSymbol,
               status_detail: String,

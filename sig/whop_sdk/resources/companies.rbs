@@ -1,60 +1,6 @@
 module WhopSDK
   module Resources
     class Companies
-      def create: (
-        title: String,
-        ?country: WhopSDK::Models::CompanyCreateParams::country?,
-        ?description: String?,
-        ?email: String?,
-        ?logo: WhopSDK::CompanyCreateParams::Logo?,
-        ?metadata: ::Hash[Symbol, top]?,
-        ?parent_company_id: String?,
-        ?send_customer_emails: bool?,
-        ?request_options: WhopSDK::request_opts
-      ) -> WhopSDK::Company
-
-      def retrieve: (
-        String id,
-        ?request_options: WhopSDK::request_opts
-      ) -> WhopSDK::Company
-
-      def update: (
-        String id,
-        ?affiliate_application_required: bool?,
-        ?affiliate_instructions: String?,
-        ?banner_image: WhopSDK::CompanyUpdateParams::BannerImage?,
-        ?description: String?,
-        ?featured_affiliate_product_id: String?,
-        ?logo: WhopSDK::CompanyUpdateParams::Logo?,
-        ?route: String?,
-        ?send_customer_emails: bool?,
-        ?social_links: ::Array[WhopSDK::CompanyUpdateParams::SocialLink]?,
-        ?target_audience: String?,
-        ?title: String?,
-        ?request_options: WhopSDK::request_opts
-      ) -> WhopSDK::Company
-
-      def list: (
-        ?after: String,
-        ?before: String,
-        ?created_after: Time,
-        ?created_before: Time,
-        ?direction: WhopSDK::Models::direction,
-        ?first: Integer,
-        ?last: Integer,
-        ?parent_company_id: String,
-        ?request_options: WhopSDK::request_opts
-      ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::CompanyListResponse]
-
-      def create_api_key: (
-        String parent_company_id,
-        child_company_id: String,
-        ?name: String?,
-        ?permissions: ::Array[WhopSDK::CompanyCreateAPIKeyParams::Permission]?,
-        ?role: WhopSDK::Models::CompanyCreateAPIKeyParams::role?,
-        ?request_options: WhopSDK::request_opts
-      ) -> WhopSDK::Models::CompanyCreateAPIKeyResponse
-
       def initialize: (client: WhopSDK::Client) -> void
     end
   end

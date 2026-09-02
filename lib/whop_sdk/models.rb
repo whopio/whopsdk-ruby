@@ -83,8 +83,6 @@ module WhopSDK
 
   AdPauseParams = WhopSDK::Models::AdPauseParams
 
-  AdReportRetrieveParams = WhopSDK::Models::AdReportRetrieveParams
-
   AdRetrieveParams = WhopSDK::Models::AdRetrieveParams
 
   AdUnpauseParams = WhopSDK::Models::AdUnpauseParams
@@ -227,16 +225,6 @@ module WhopSDK
 
   CollectionMethod = WhopSDK::Models::CollectionMethod
 
-  Company = WhopSDK::Models::Company
-
-  CompanyCreateAPIKeyParams = WhopSDK::Models::CompanyCreateAPIKeyParams
-
-  CompanyCreateParams = WhopSDK::Models::CompanyCreateParams
-
-  CompanyListParams = WhopSDK::Models::CompanyListParams
-
-  CompanyRetrieveParams = WhopSDK::Models::CompanyRetrieveParams
-
   CompanyTokenTransaction = WhopSDK::Models::CompanyTokenTransaction
 
   CompanyTokenTransactionCreateParams = WhopSDK::Models::CompanyTokenTransactionCreateParams
@@ -246,8 +234,6 @@ module WhopSDK
   CompanyTokenTransactionRetrieveParams = WhopSDK::Models::CompanyTokenTransactionRetrieveParams
 
   CompanyTokenTransactionType = WhopSDK::Models::CompanyTokenTransactionType
-
-  CompanyUpdateParams = WhopSDK::Models::CompanyUpdateParams
 
   Course = WhopSDK::Models::Course
 
@@ -451,8 +437,6 @@ module WhopSDK
   FriendlyReceiptStatus = WhopSDK::Models::FriendlyReceiptStatus
 
   GlobalAffiliateStatus = WhopSDK::Models::GlobalAffiliateStatus
-
-  Granularities = WhopSDK::Models::Granularities
 
   IdentityProfileUpdatedWebhookEvent = WhopSDK::Models::IdentityProfileUpdatedWebhookEvent
 
@@ -733,8 +717,6 @@ module WhopSDK
 
   ResolutionCenterCaseUpdatedWebhookEvent = WhopSDK::Models::ResolutionCenterCaseUpdatedWebhookEvent
 
-  ResultLabelKeys = WhopSDK::Models::ResultLabelKeys
-
   ReviewListParams = WhopSDK::Models::ReviewListParams
 
   ReviewRetrieveParams = WhopSDK::Models::ReviewRetrieveParams
@@ -770,8 +752,6 @@ module WhopSDK
   ShipmentSubstatus = WhopSDK::Models::ShipmentSubstatus
 
   ShipmentUpdatedWebhookEvent = WhopSDK::Models::ShipmentUpdatedWebhookEvent
-
-  SocialLinkWebsites = WhopSDK::Models::SocialLinkWebsites
 
   Status = WhopSDK::Models::Status
 

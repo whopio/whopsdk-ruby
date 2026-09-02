@@ -43,8 +43,6 @@ module WhopSDK
 
   class AdPauseParams = WhopSDK::Models::AdPauseParams
 
-  class AdReportRetrieveParams = WhopSDK::Models::AdReportRetrieveParams
-
   class AdRetrieveParams = WhopSDK::Models::AdRetrieveParams
 
   class AdUnpauseParams = WhopSDK::Models::AdUnpauseParams
@@ -187,16 +185,6 @@ module WhopSDK
 
   module CollectionMethod = WhopSDK::Models::CollectionMethod
 
-  class Company = WhopSDK::Models::Company
-
-  class CompanyCreateAPIKeyParams = WhopSDK::Models::CompanyCreateAPIKeyParams
-
-  class CompanyCreateParams = WhopSDK::Models::CompanyCreateParams
-
-  class CompanyListParams = WhopSDK::Models::CompanyListParams
-
-  class CompanyRetrieveParams = WhopSDK::Models::CompanyRetrieveParams
-
   class CompanyTokenTransaction = WhopSDK::Models::CompanyTokenTransaction
 
   class CompanyTokenTransactionCreateParams = WhopSDK::Models::CompanyTokenTransactionCreateParams
@@ -206,8 +194,6 @@ module WhopSDK
   class CompanyTokenTransactionRetrieveParams = WhopSDK::Models::CompanyTokenTransactionRetrieveParams
 
   module CompanyTokenTransactionType = WhopSDK::Models::CompanyTokenTransactionType
-
-  class CompanyUpdateParams = WhopSDK::Models::CompanyUpdateParams
 
   class Course = WhopSDK::Models::Course
 
@@ -410,8 +396,6 @@ module WhopSDK
   module FriendlyReceiptStatus = WhopSDK::Models::FriendlyReceiptStatus
 
   module GlobalAffiliateStatus = WhopSDK::Models::GlobalAffiliateStatus
-
-  module Granularities = WhopSDK::Models::Granularities
 
   class IdentityProfileUpdatedWebhookEvent = WhopSDK::Models::IdentityProfileUpdatedWebhookEvent
 
@@ -691,8 +675,6 @@ module WhopSDK
 
   class ResolutionCenterCaseUpdatedWebhookEvent = WhopSDK::Models::ResolutionCenterCaseUpdatedWebhookEvent
 
-  module ResultLabelKeys = WhopSDK::Models::ResultLabelKeys
-
   class ReviewListParams = WhopSDK::Models::ReviewListParams
 
   class ReviewRetrieveParams = WhopSDK::Models::ReviewRetrieveParams
@@ -728,8 +710,6 @@ module WhopSDK
   module ShipmentSubstatus = WhopSDK::Models::ShipmentSubstatus
 
   class ShipmentUpdatedWebhookEvent = WhopSDK::Models::ShipmentUpdatedWebhookEvent
-
-  module SocialLinkWebsites = WhopSDK::Models::SocialLinkWebsites
 
   module Status = WhopSDK::Models::Status
 

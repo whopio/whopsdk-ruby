@@ -185,6 +185,14 @@ module WhopSDK
         end
         attr_writer :source
 
+        # Dollar value of this movement as a decimal string, signed like `amount`.
+        # Converted from the posted amount at the rate that was live when the line posted
+        # — the same pricing the wallet balance chart and the financial reports use — so a
+        # crypto row carries its dollar value too. `null` for a currency Whop holds no
+        # exchange rate for.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :usd_amount
+
         # The viewer account that owns this row's ledger. Present only when the response
         # aggregates owned accounts (include_owned_accounts=true); omitted otherwise.
         sig do
@@ -293,6 +301,7 @@ module WhopSDK
               T.nilable(
                 WhopSDK::DepositSucceededWebhookEvent::Data::Source::OrHash
               ),
+            usd_amount: T.nilable(String),
             account:
               T.any(
                 WhopSDK::DepositSucceededWebhookEvent::Data::Account::UnionMember0::OrHash,
@@ -336,6 +345,12 @@ module WhopSDK
           resource:,
           # Source of this ledger activity.
           source:,
+          # Dollar value of this movement as a decimal string, signed like `amount`.
+          # Converted from the posted amount at the rate that was live when the line posted
+          # — the same pricing the wallet balance chart and the financial reports use — so a
+          # crypto row carries its dollar value too. `null` for a currency Whop holds no
+          # exchange rate for.
+          usd_amount:,
           # The viewer account that owns this row's ledger. Present only when the response
           # aggregates owned accounts (include_owned_accounts=true); omitted otherwise.
           account: nil,
@@ -384,6 +399,7 @@ module WhopSDK
                 ),
               source:
                 T.nilable(WhopSDK::DepositSucceededWebhookEvent::Data::Source),
+              usd_amount: T.nilable(String),
               account:
                 WhopSDK::DepositSucceededWebhookEvent::Data::Account::Variants,
               ledger_account_id: T.nilable(String),
@@ -758,6 +774,11 @@ module WhopSDK
           MISC_REVERSAL =
             T.let(
               :misc_reversal,
+              WhopSDK::DepositSucceededWebhookEvent::Data::LineType::TaggedSymbol
+            )
+          ONBOARDING_REWARD =
+            T.let(
+              :onboarding_reward,
               WhopSDK::DepositSucceededWebhookEvent::Data::LineType::TaggedSymbol
             )
           ONCHAIN_DEPOSIT =

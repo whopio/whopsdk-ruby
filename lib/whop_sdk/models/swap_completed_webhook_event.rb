@@ -131,6 +131,16 @@ module WhopSDK
         #   @return [WhopSDK::Models::SwapCompletedWebhookEvent::Data::Source, nil]
         required :source, -> { WhopSDK::SwapCompletedWebhookEvent::Data::Source }, nil?: true
 
+        # @!attribute usd_amount
+        #   Dollar value of this movement as a decimal string, signed like `amount`.
+        #   Converted from the posted amount at the rate that was live when the line posted
+        #   — the same pricing the wallet balance chart and the financial reports use — so a
+        #   crypto row carries its dollar value too. `null` for a currency Whop holds no
+        #   exchange rate for.
+        #
+        #   @return [String, nil]
+        required :usd_amount, String, nil?: true
+
         # @!attribute account
         #   The viewer account that owns this row's ledger. Present only when the response
         #   aggregates owned accounts (include_owned_accounts=true); omitted otherwise.
@@ -202,7 +212,7 @@ module WhopSDK
         #   @return [String, nil]
         optional :user_name, String, nil?: true
 
-        # @!method initialize(id:, amount:, available_at:, currency:, line_type:, object:, posted_at:, resource:, source:, account: nil, ledger_account_id: nil, payment: nil, payment_id: nil, plan_id: nil, plan_name: nil, product_id: nil, product_name: nil, user_email: nil, user_id: nil, user_name: nil)
+        # @!method initialize(id:, amount:, available_at:, currency:, line_type:, object:, posted_at:, resource:, source:, usd_amount:, account: nil, ledger_account_id: nil, payment: nil, payment_id: nil, plan_id: nil, plan_name: nil, product_id: nil, product_name: nil, user_email: nil, user_id: nil, user_name: nil)
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::SwapCompletedWebhookEvent::Data} for more details.
         #
@@ -223,6 +233,8 @@ module WhopSDK
         #   @param resource [WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember0, WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember1, WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember2, WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember3, WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember4, WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember5, WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember6, nil] Resource associated with this ledger activity.
         #
         #   @param source [WhopSDK::Models::SwapCompletedWebhookEvent::Data::Source, nil] Source of this ledger activity.
+        #
+        #   @param usd_amount [String, nil] Dollar value of this movement as a decimal string, signed like `amount`. Convert
         #
         #   @param account [WhopSDK::Models::SwapCompletedWebhookEvent::Data::Account::UnionMember0, WhopSDK::Models::SwapCompletedWebhookEvent::Data::Account::UnionMember1] The viewer account that owns this row's ledger. Present only when the response a
         #
@@ -337,6 +349,7 @@ module WhopSDK
           MISC_PURCHASE = :misc_purchase
           MISC_REFUND = :misc_refund
           MISC_REVERSAL = :misc_reversal
+          ONBOARDING_REWARD = :onboarding_reward
           ONCHAIN_DEPOSIT = :onchain_deposit
           ONCHAIN_SWAP_SOURCE = :onchain_swap_source
           ONCHAIN_SWAP_TARGET = :onchain_swap_target

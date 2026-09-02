@@ -64,6 +64,7 @@ module WhopSDK
           posted_at: Time,
           resource: WhopSDK::Models::DepositSucceededWebhookEvent::Data::resource?,
           source: WhopSDK::DepositSucceededWebhookEvent::Data::Source?,
+          usd_amount: String?,
           account: WhopSDK::Models::DepositSucceededWebhookEvent::Data::account,
           ledger_account_id: String?,
           payment: WhopSDK::DepositSucceededWebhookEvent::Data::Payment?,
@@ -95,6 +96,8 @@ module WhopSDK
         attr_accessor resource: WhopSDK::Models::DepositSucceededWebhookEvent::Data::resource?
 
         attr_accessor source: WhopSDK::DepositSucceededWebhookEvent::Data::Source?
+
+        attr_accessor usd_amount: String?
 
         attr_reader account: WhopSDK::Models::DepositSucceededWebhookEvent::Data::account?
 
@@ -132,6 +135,7 @@ module WhopSDK
           posted_at: Time,
           resource: WhopSDK::Models::DepositSucceededWebhookEvent::Data::resource?,
           source: WhopSDK::DepositSucceededWebhookEvent::Data::Source?,
+          usd_amount: String?,
           ?account: WhopSDK::Models::DepositSucceededWebhookEvent::Data::account,
           ?ledger_account_id: String?,
           ?payment: WhopSDK::DepositSucceededWebhookEvent::Data::Payment?,
@@ -155,6 +159,7 @@ module WhopSDK
           posted_at: Time,
           resource: WhopSDK::Models::DepositSucceededWebhookEvent::Data::resource?,
           source: WhopSDK::DepositSucceededWebhookEvent::Data::Source?,
+          usd_amount: String?,
           account: WhopSDK::Models::DepositSucceededWebhookEvent::Data::account,
           ledger_account_id: String?,
           payment: WhopSDK::DepositSucceededWebhookEvent::Data::Payment?,
@@ -243,6 +248,7 @@ module WhopSDK
           | :misc_purchase
           | :misc_refund
           | :misc_reversal
+          | :onboarding_reward
           | :onchain_deposit
           | :onchain_swap_source
           | :onchain_swap_target
@@ -374,6 +380,7 @@ module WhopSDK
           MISC_PURCHASE: :misc_purchase
           MISC_REFUND: :misc_refund
           MISC_REVERSAL: :misc_reversal
+          ONBOARDING_REWARD: :onboarding_reward
           ONCHAIN_DEPOSIT: :onchain_deposit
           ONCHAIN_SWAP_SOURCE: :onchain_swap_source
           ONCHAIN_SWAP_TARGET: :onchain_swap_target

@@ -12,41 +12,14 @@ module WhopSDK
       #   @return [String]
       required :id, String
 
-      # @!attribute after
-      #   Returns the elements in the list that come after the specified cursor.
+      # @!attribute api_version_date
       #
       #   @return [String, nil]
-      optional :after, String
+      optional :api_version_date, String
 
-      # @!attribute before
-      #   Returns the elements in the list that come before the specified cursor.
-      #
-      #   @return [String, nil]
-      optional :before, String
-
-      # @!attribute first
-      #   Returns the first _n_ elements from the list.
-      #
-      #   @return [Integer, nil]
-      optional :first, Integer
-
-      # @!attribute last
-      #   Returns the last _n_ elements from the list.
-      #
-      #   @return [Integer, nil]
-      optional :last, Integer
-
-      # @!method initialize(id:, after: nil, before: nil, first: nil, last: nil, request_options: {})
+      # @!method initialize(id:, api_version_date: nil, request_options: {})
       #   @param id [String]
-      #
-      #   @param after [String] Returns the elements in the list that come after the specified cursor.
-      #
-      #   @param before [String] Returns the elements in the list that come before the specified cursor.
-      #
-      #   @param first [Integer] Returns the first _n_ elements from the list.
-      #
-      #   @param last [Integer] Returns the last _n_ elements from the list.
-      #
+      #   @param api_version_date [String]
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
     end
   end

@@ -28,6 +28,7 @@ module WhopSDK
         openapi_path: String?,
         origin: String?,
         preview_token: String?,
+        previous_hosted_urls: ::Array[String],
         product_id: String?,
         production_android_build: WhopSDK::App::ProductionAndroidBuild?,
         production_ios_build: WhopSDK::App::ProductionIosBuild?,
@@ -95,6 +96,8 @@ module WhopSDK
 
       attr_accessor preview_token: String?
 
+      attr_accessor previous_hosted_urls: ::Array[String]
+
       attr_accessor product_id: String?
 
       attr_accessor production_android_build: WhopSDK::App::ProductionAndroidBuild?
@@ -146,6 +149,7 @@ module WhopSDK
         openapi_path: String?,
         origin: String?,
         preview_token: String?,
+        previous_hosted_urls: ::Array[String],
         product_id: String?,
         production_android_build: WhopSDK::App::ProductionAndroidBuild?,
         production_ios_build: WhopSDK::App::ProductionIosBuild?,
@@ -187,6 +191,7 @@ module WhopSDK
         openapi_path: String?,
         origin: String?,
         preview_token: String?,
+        previous_hosted_urls: ::Array[String],
         product_id: String?,
         production_android_build: WhopSDK::App::ProductionAndroidBuild?,
         production_ios_build: WhopSDK::App::ProductionIosBuild?,

@@ -61,6 +61,7 @@ module WhopSDK
           owner: WhopSDK::Models::LedgerAccountFundsAvailableWebhookEvent::Data::owner?,
           payments_approval_status: WhopSDK::Models::LedgerAccountFundsAvailableWebhookEvent::Data::payments_approval_status?,
           payout_account_details: WhopSDK::LedgerAccountFundsAvailableWebhookEvent::Data::PayoutAccountDetails?,
+          payout_quote_required: bool,
           settlement_time_at: Time?,
           transfer_fee: Float?,
           treasury_balance: WhopSDK::LedgerAccountFundsAvailableWebhookEvent::Data::TreasuryBalance?
@@ -79,6 +80,8 @@ module WhopSDK
 
         attr_accessor payout_account_details: WhopSDK::LedgerAccountFundsAvailableWebhookEvent::Data::PayoutAccountDetails?
 
+        attr_accessor payout_quote_required: bool
+
         attr_accessor settlement_time_at: Time?
 
         attr_accessor transfer_fee: Float?
@@ -92,6 +95,7 @@ module WhopSDK
           owner: WhopSDK::Models::LedgerAccountFundsAvailableWebhookEvent::Data::owner?,
           payments_approval_status: WhopSDK::Models::LedgerAccountFundsAvailableWebhookEvent::Data::payments_approval_status?,
           payout_account_details: WhopSDK::LedgerAccountFundsAvailableWebhookEvent::Data::PayoutAccountDetails?,
+          payout_quote_required: bool,
           settlement_time_at: Time?,
           transfer_fee: Float?,
           treasury_balance: WhopSDK::LedgerAccountFundsAvailableWebhookEvent::Data::TreasuryBalance?
@@ -104,6 +108,7 @@ module WhopSDK
           owner: WhopSDK::Models::LedgerAccountFundsAvailableWebhookEvent::Data::owner?,
           payments_approval_status: WhopSDK::Models::LedgerAccountFundsAvailableWebhookEvent::Data::payments_approval_status?,
           payout_account_details: WhopSDK::LedgerAccountFundsAvailableWebhookEvent::Data::PayoutAccountDetails?,
+          payout_quote_required: bool,
           settlement_time_at: Time?,
           transfer_fee: Float?,
           treasury_balance: WhopSDK::LedgerAccountFundsAvailableWebhookEvent::Data::TreasuryBalance?

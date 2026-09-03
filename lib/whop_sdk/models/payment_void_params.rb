@@ -12,8 +12,20 @@ module WhopSDK
       #   @return [String]
       required :id, String
 
-      # @!method initialize(id:, request_options: {})
+      # @!attribute api_version_date
+      #
+      #   @return [String, nil]
+      optional :api_version_date, String
+
+      # @!attribute idempotency_key
+      #
+      #   @return [String, nil]
+      optional :idempotency_key, String
+
+      # @!method initialize(id:, api_version_date: nil, idempotency_key: nil, request_options: {})
       #   @param id [String]
+      #   @param api_version_date [String]
+      #   @param idempotency_key [String]
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
     end
   end

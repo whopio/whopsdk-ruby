@@ -176,6 +176,11 @@ module WhopSDK
       #   @return [String, nil]
       required :preview_token, String, nil?: true
 
+      # @!attribute previous_hosted_urls
+      #
+      #   @return [Array<String>]
+      required :previous_hosted_urls, WhopSDK::Internal::Type::ArrayOf[String]
+
       # @!attribute product_id
       #   ID of the app's product listing on the Whop app store, or `null` when the app
       #   has no associated product.
@@ -252,7 +257,7 @@ module WhopSDK
       #   @return [Boolean]
       required :verified, WhopSDK::Internal::Type::Boolean
 
-      # @!method initialize(id:, account:, api_key:, app_store_description:, app_type:, banner_image:, base_url:, businesses_created_count:, businesses_created_logo_urls:, creator:, dashboard_path:, default_api_key:, deployment:, description:, discover_path:, domain_id:, elements_used:, experience_path:, hosted_url:, icon:, marketplace_status:, name:, oauth_client_type:, openapi_path:, origin:, preview_token:, product_id:, production_android_build:, production_ios_build:, production_web_build:, redirect_uris:, requested_permissions:, required_scopes:, route:, secrets:, skills_path:, status:, verified:)
+      # @!method initialize(id:, account:, api_key:, app_store_description:, app_type:, banner_image:, base_url:, businesses_created_count:, businesses_created_logo_urls:, creator:, dashboard_path:, default_api_key:, deployment:, description:, discover_path:, domain_id:, elements_used:, experience_path:, hosted_url:, icon:, marketplace_status:, name:, oauth_client_type:, openapi_path:, origin:, preview_token:, previous_hosted_urls:, product_id:, production_android_build:, production_ios_build:, production_web_build:, redirect_uris:, requested_permissions:, required_scopes:, route:, secrets:, skills_path:, status:, verified:)
       #   Some parameter documentations has been truncated, see {WhopSDK::Models::App} for
       #   more details.
       #
@@ -307,6 +312,8 @@ module WhopSDK
       #   @param origin [String, nil] Full origin URL of the app's proxied domain, for example https://ab1c2d3e4f.apps
       #
       #   @param preview_token [String, nil] A short-lived signed pass scoping the caller to this app's gated preview hosts —
+      #
+      #   @param previous_hosted_urls [Array<String>]
       #
       #   @param product_id [String, nil] ID of the app's product listing on the Whop app store, or `null` when the app ha
       #

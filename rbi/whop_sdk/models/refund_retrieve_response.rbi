@@ -11,111 +11,200 @@ module WhopSDK
           )
         end
 
-      # The unique identifier for the refund.
+      # Refund ID, prefixed `rf_`.
       sig { returns(String) }
       attr_accessor :id
 
-      # The refunded amount as a decimal in the specified currency, such as 10.43 for
-      # $10.43 USD.
-      sig { returns(Float) }
-      attr_accessor :amount
+      # The account that issued the refund, prefixed `biz_`.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :account_id
 
-      # The datetime the refund was created.
-      sig { returns(Time) }
-      attr_accessor :created_at
-
-      # The three-letter ISO currency code for the refunded amount.
-      sig { returns(WhopSDK::Currency::TaggedSymbol) }
-      attr_accessor :currency
-
-      # The original payment that this refund was issued against. Null if the payment is
-      # no longer available.
+      # The refunded amount as it settled, in the payment's settlement currency, so
+      # pages of refunds net against the payment's `refunded_amount`. Converted at the
+      # rate in force when the refund was issued, not the payment's original rate. Null
+      # only when no exchange rate is recorded for a legacy multi-currency payment.
       sig do
-        returns(T.nilable(WhopSDK::Models::RefundRetrieveResponse::Payment))
+        returns(T.nilable(WhopSDK::Models::RefundRetrieveResponse::Amount))
       end
-      attr_reader :payment
+      attr_reader :amount
 
       sig do
         params(
-          payment:
-            T.nilable(WhopSDK::Models::RefundRetrieveResponse::Payment::OrHash)
+          amount:
+            T.nilable(WhopSDK::Models::RefundRetrieveResponse::Amount::OrHash)
         ).void
       end
-      attr_writer :payment
+      attr_writer :amount
 
-      # The payment provider that processed the refund.
-      sig { returns(WhopSDK::PaymentProvider::TaggedSymbol) }
+      # When the refund was requested, as an ISO 8601 timestamp.
+      sig { returns(String) }
+      attr_accessor :created_at
+
+      # The provider's own explanation of the failure, or null.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :failure_message
+
+      # Why the refund failed, normalized across providers. Null unless the refund
+      # failed or was canceled.
+      sig do
+        returns(
+          T.nilable(
+            WhopSDK::Models::RefundRetrieveResponse::FailureReason::TaggedSymbol
+          )
+        )
+      end
+      attr_accessor :failure_reason
+
+      # The refunded amount in the currency the processor moved.
+      sig { returns(WhopSDK::Models::RefundRetrieveResponse::OriginalAmount) }
+      attr_reader :original_amount
+
+      sig do
+        params(
+          original_amount:
+            WhopSDK::Models::RefundRetrieveResponse::OriginalAmount::OrHash
+        ).void
+      end
+      attr_writer :original_amount
+
+      # The payment this refund reverses, prefixed `pay_`.
+      sig { returns(String) }
+      attr_accessor :payment_id
+
+      # The payment provider that processed the refund, such as `paypal` or `coinbase`.
+      sig { returns(String) }
       attr_accessor :provider
 
-      # The timestamp when the refund was created in the payment provider's system. Null
-      # if not available from the provider.
-      sig { returns(T.nilable(Time)) }
+      # When the provider created the refund, as an ISO 8601 timestamp.
+      sig { returns(T.nilable(String)) }
       attr_accessor :provider_created_at
 
-      # The status of the refund reference.
-      sig { returns(T.nilable(WhopSDK::RefundReferenceStatus::TaggedSymbol)) }
+      # Why the refund was issued, when recorded.
+      sig do
+        returns(
+          T.nilable(
+            WhopSDK::Models::RefundRetrieveResponse::Reason::TaggedSymbol
+          )
+        )
+      end
+      attr_accessor :reason
+
+      # Whether a banking-network tracking reference is available for this refund.
+      sig do
+        returns(
+          T.nilable(
+            WhopSDK::Models::RefundRetrieveResponse::ReferenceStatus::TaggedSymbol
+          )
+        )
+      end
       attr_accessor :reference_status
 
-      # The type of refund reference that was made available by the payment provider.
-      sig { returns(T.nilable(WhopSDK::RefundReferenceType::TaggedSymbol)) }
+      # The kind of tracking reference, such as an acquirer reference number.
+      sig do
+        returns(
+          T.nilable(
+            WhopSDK::Models::RefundRetrieveResponse::ReferenceType::TaggedSymbol
+          )
+        )
+      end
       attr_accessor :reference_type
 
-      # The tracking reference value from the payment processor, used to trace the
-      # refund through banking networks. Null if no reference was provided.
+      # The tracking reference the buyer's bank can trace the refund by.
       sig { returns(T.nilable(String)) }
       attr_accessor :reference_value
 
-      # The current processing status of the refund, such as pending, succeeded, or
-      # failed.
-      sig { returns(WhopSDK::RefundStatus::TaggedSymbol) }
+      # Where the refund stands with the processor: `pending`, `requires_action`,
+      # `succeeded`, `failed`, or `canceled`.
+      sig do
+        returns(WhopSDK::Models::RefundRetrieveResponse::Status::TaggedSymbol)
+      end
       attr_accessor :status
 
-      # A refund represents a full or partial reversal of a payment, including the
-      # amount, status, and payment provider.
+      # When the refund last changed, as an ISO 8601 timestamp.
+      sig { returns(String) }
+      attr_accessor :updated_at
+
+      # True when the card network initiated the refund through Rapid Dispute
+      # Resolution.
+      sig { returns(T::Boolean) }
+      attr_accessor :visa_rdr
+
       sig do
         params(
           id: String,
-          amount: Float,
-          created_at: Time,
-          currency: WhopSDK::Currency::OrSymbol,
-          payment:
-            T.nilable(WhopSDK::Models::RefundRetrieveResponse::Payment::OrHash),
-          provider: WhopSDK::PaymentProvider::OrSymbol,
-          provider_created_at: T.nilable(Time),
-          reference_status: T.nilable(WhopSDK::RefundReferenceStatus::OrSymbol),
-          reference_type: T.nilable(WhopSDK::RefundReferenceType::OrSymbol),
+          account_id: T.nilable(String),
+          amount:
+            T.nilable(WhopSDK::Models::RefundRetrieveResponse::Amount::OrHash),
+          created_at: String,
+          failure_message: T.nilable(String),
+          failure_reason:
+            T.nilable(
+              WhopSDK::Models::RefundRetrieveResponse::FailureReason::OrSymbol
+            ),
+          original_amount:
+            WhopSDK::Models::RefundRetrieveResponse::OriginalAmount::OrHash,
+          payment_id: String,
+          provider: String,
+          provider_created_at: T.nilable(String),
+          reason:
+            T.nilable(
+              WhopSDK::Models::RefundRetrieveResponse::Reason::OrSymbol
+            ),
+          reference_status:
+            T.nilable(
+              WhopSDK::Models::RefundRetrieveResponse::ReferenceStatus::OrSymbol
+            ),
+          reference_type:
+            T.nilable(
+              WhopSDK::Models::RefundRetrieveResponse::ReferenceType::OrSymbol
+            ),
           reference_value: T.nilable(String),
-          status: WhopSDK::RefundStatus::OrSymbol
+          status: WhopSDK::Models::RefundRetrieveResponse::Status::OrSymbol,
+          updated_at: String,
+          visa_rdr: T::Boolean
         ).returns(T.attached_class)
       end
       def self.new(
-        # The unique identifier for the refund.
+        # Refund ID, prefixed `rf_`.
         id:,
-        # The refunded amount as a decimal in the specified currency, such as 10.43 for
-        # $10.43 USD.
+        # The account that issued the refund, prefixed `biz_`.
+        account_id:,
+        # The refunded amount as it settled, in the payment's settlement currency, so
+        # pages of refunds net against the payment's `refunded_amount`. Converted at the
+        # rate in force when the refund was issued, not the payment's original rate. Null
+        # only when no exchange rate is recorded for a legacy multi-currency payment.
         amount:,
-        # The datetime the refund was created.
+        # When the refund was requested, as an ISO 8601 timestamp.
         created_at:,
-        # The three-letter ISO currency code for the refunded amount.
-        currency:,
-        # The original payment that this refund was issued against. Null if the payment is
-        # no longer available.
-        payment:,
-        # The payment provider that processed the refund.
+        # The provider's own explanation of the failure, or null.
+        failure_message:,
+        # Why the refund failed, normalized across providers. Null unless the refund
+        # failed or was canceled.
+        failure_reason:,
+        # The refunded amount in the currency the processor moved.
+        original_amount:,
+        # The payment this refund reverses, prefixed `pay_`.
+        payment_id:,
+        # The payment provider that processed the refund, such as `paypal` or `coinbase`.
         provider:,
-        # The timestamp when the refund was created in the payment provider's system. Null
-        # if not available from the provider.
+        # When the provider created the refund, as an ISO 8601 timestamp.
         provider_created_at:,
-        # The status of the refund reference.
+        # Why the refund was issued, when recorded.
+        reason:,
+        # Whether a banking-network tracking reference is available for this refund.
         reference_status:,
-        # The type of refund reference that was made available by the payment provider.
+        # The kind of tracking reference, such as an acquirer reference number.
         reference_type:,
-        # The tracking reference value from the payment processor, used to trace the
-        # refund through banking networks. Null if no reference was provided.
+        # The tracking reference the buyer's bank can trace the refund by.
         reference_value:,
-        # The current processing status of the refund, such as pending, succeeded, or
-        # failed.
-        status:
+        # Where the refund stands with the processor: `pending`, `requires_action`,
+        # `succeeded`, `failed`, or `canceled`.
+        status:,
+        # When the refund last changed, as an ISO 8601 timestamp.
+        updated_at:,
+        # True when the card network initiated the refund through Rapid Dispute
+        # Resolution.
+        visa_rdr:
       )
       end
 
@@ -123,563 +212,414 @@ module WhopSDK
         override.returns(
           {
             id: String,
-            amount: Float,
-            created_at: Time,
-            currency: WhopSDK::Currency::TaggedSymbol,
-            payment:
-              T.nilable(WhopSDK::Models::RefundRetrieveResponse::Payment),
-            provider: WhopSDK::PaymentProvider::TaggedSymbol,
-            provider_created_at: T.nilable(Time),
+            account_id: T.nilable(String),
+            amount: T.nilable(WhopSDK::Models::RefundRetrieveResponse::Amount),
+            created_at: String,
+            failure_message: T.nilable(String),
+            failure_reason:
+              T.nilable(
+                WhopSDK::Models::RefundRetrieveResponse::FailureReason::TaggedSymbol
+              ),
+            original_amount:
+              WhopSDK::Models::RefundRetrieveResponse::OriginalAmount,
+            payment_id: String,
+            provider: String,
+            provider_created_at: T.nilable(String),
+            reason:
+              T.nilable(
+                WhopSDK::Models::RefundRetrieveResponse::Reason::TaggedSymbol
+              ),
             reference_status:
-              T.nilable(WhopSDK::RefundReferenceStatus::TaggedSymbol),
+              T.nilable(
+                WhopSDK::Models::RefundRetrieveResponse::ReferenceStatus::TaggedSymbol
+              ),
             reference_type:
-              T.nilable(WhopSDK::RefundReferenceType::TaggedSymbol),
+              T.nilable(
+                WhopSDK::Models::RefundRetrieveResponse::ReferenceType::TaggedSymbol
+              ),
             reference_value: T.nilable(String),
-            status: WhopSDK::RefundStatus::TaggedSymbol
+            status:
+              WhopSDK::Models::RefundRetrieveResponse::Status::TaggedSymbol,
+            updated_at: String,
+            visa_rdr: T::Boolean
           }
         )
       end
       def to_hash
       end
 
-      class Payment < WhopSDK::Internal::Type::BaseModel
+      class Amount < WhopSDK::Internal::Type::BaseModel
         OrHash =
           T.type_alias do
             T.any(
-              WhopSDK::Models::RefundRetrieveResponse::Payment,
+              WhopSDK::Models::RefundRetrieveResponse::Amount,
               WhopSDK::Internal::AnyHash
             )
           end
 
-        # The unique identifier for the payment.
+        # The amount in major units, as an exact decimal string — `"10.00"` is ten
+        # dollars. A string so no float rounds it in transit.
         sig { returns(String) }
-        attr_accessor :id
+        attr_accessor :amount
 
-        # The reason why a specific payment was billed
-        sig { returns(T.nilable(WhopSDK::BillingReasons::TaggedSymbol)) }
-        attr_accessor :billing_reason
-
-        # Possible card brands that a payment token can have
-        sig { returns(T.nilable(WhopSDK::CardBrands::TaggedSymbol)) }
-        attr_accessor :card_brand
-
-        # The last four digits of the card used to make this payment. Null if the payment
-        # was not made with a card.
-        sig { returns(T.nilable(String)) }
-        attr_accessor :card_last4
-
-        # The datetime the payment was created.
-        sig { returns(Time) }
-        attr_accessor :created_at
-
-        # The three-letter ISO currency code for this payment (e.g., 'usd', 'eur').
-        sig { returns(WhopSDK::Currency::TaggedSymbol) }
+        # Three-letter ISO 4217 currency code, lowercase.
+        sig { returns(String) }
         attr_accessor :currency
 
-        # When an alert came in that this transaction will be disputed
-        sig { returns(T.nilable(Time)) }
-        attr_accessor :dispute_alerted_at
+        # How many decimal places the amount CARRIES — the precision the charge itself
+        # runs at.
+        sig { returns(Integer) }
+        attr_accessor :decimals
 
-        # The member attached to this payment.
-        sig do
-          returns(
-            T.nilable(WhopSDK::Models::RefundRetrieveResponse::Payment::Member)
-          )
-        end
-        attr_reader :member
+        # How many decimal places to SHOW. Usually equal to `decimals`, and deliberately
+        # not always: COP is charged in centavos but written in whole pesos, so it is `2`
+        # and `0`. Format the number in your own locale using this.
+        sig { returns(Integer) }
+        attr_accessor :display_decimals
 
-        sig do
-          params(
-            member:
-              T.nilable(
-                WhopSDK::Models::RefundRetrieveResponse::Payment::Member::OrHash
-              )
-          ).void
-        end
-        attr_writer :member
-
-        # The membership attached to this payment.
-        sig do
-          returns(
-            T.nilable(
-              WhopSDK::Models::RefundRetrieveResponse::Payment::Membership
-            )
-          )
-        end
-        attr_reader :membership
-
+        # The refunded amount as it settled, in the payment's settlement currency, so
+        # pages of refunds net against the payment's `refunded_amount`. Converted at the
+        # rate in force when the refund was issued, not the payment's original rate. Null
+        # only when no exchange rate is recorded for a legacy multi-currency payment.
         sig do
           params(
-            membership:
-              T.nilable(
-                WhopSDK::Models::RefundRetrieveResponse::Payment::Membership::OrHash
-              )
-          ).void
-        end
-        attr_writer :membership
-
-        # The custom metadata stored on this payment. This will be copied over to the
-        # checkout configuration for which this payment was made
-        sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
-        attr_accessor :metadata
-
-        # The time at which this payment was successfully collected. Null if the payment
-        # has not yet succeeded. As a Unix timestamp.
-        sig { returns(T.nilable(Time)) }
-        attr_accessor :paid_at
-
-        # The different types of payment methods that can be used.
-        sig { returns(T.nilable(WhopSDK::PaymentMethodTypes::TaggedSymbol)) }
-        attr_accessor :payment_method_type
-
-        # The plan attached to this payment.
-        sig do
-          returns(
-            T.nilable(WhopSDK::Models::RefundRetrieveResponse::Payment::Plan)
-          )
-        end
-        attr_reader :plan
-
-        sig do
-          params(
-            plan:
-              T.nilable(
-                WhopSDK::Models::RefundRetrieveResponse::Payment::Plan::OrHash
-              )
-          ).void
-        end
-        attr_writer :plan
-
-        # The product this payment was made for
-        sig do
-          returns(
-            T.nilable(WhopSDK::Models::RefundRetrieveResponse::Payment::Product)
-          )
-        end
-        attr_reader :product
-
-        sig do
-          params(
-            product:
-              T.nilable(
-                WhopSDK::Models::RefundRetrieveResponse::Payment::Product::OrHash
-              )
-          ).void
-        end
-        attr_writer :product
-
-        # The subtotal to show to the creator (excluding buyer fees).
-        sig { returns(T.nilable(Float)) }
-        attr_accessor :subtotal
-
-        # The calculated amount of the sales/VAT tax (if applicable).
-        sig { returns(T.nilable(Float)) }
-        attr_accessor :tax_amount
-
-        # The type of tax inclusivity applied to the receipt, for determining whether the
-        # tax is included in the final price, or paid on top.
-        sig { returns(T.nilable(WhopSDK::ReceiptTaxBehavior::TaggedSymbol)) }
-        attr_accessor :tax_behavior
-
-        # The amount of tax that has been refunded (if applicable).
-        sig { returns(T.nilable(Float)) }
-        attr_accessor :tax_refunded_amount
-
-        # The total to show to the creator (excluding buyer fees).
-        sig { returns(T.nilable(Float)) }
-        attr_accessor :total
-
-        # The total in USD to show to the creator (excluding buyer fees).
-        sig { returns(T.nilable(Float)) }
-        attr_accessor :usd_total
-
-        # The user that made this payment.
-        sig do
-          returns(
-            T.nilable(WhopSDK::Models::RefundRetrieveResponse::Payment::User)
-          )
-        end
-        attr_reader :user
-
-        sig do
-          params(
-            user:
-              T.nilable(
-                WhopSDK::Models::RefundRetrieveResponse::Payment::User::OrHash
-              )
-          ).void
-        end
-        attr_writer :user
-
-        # The original payment that this refund was issued against. Null if the payment is
-        # no longer available.
-        sig do
-          params(
-            id: String,
-            billing_reason: T.nilable(WhopSDK::BillingReasons::OrSymbol),
-            card_brand: T.nilable(WhopSDK::CardBrands::OrSymbol),
-            card_last4: T.nilable(String),
-            created_at: Time,
-            currency: WhopSDK::Currency::OrSymbol,
-            dispute_alerted_at: T.nilable(Time),
-            member:
-              T.nilable(
-                WhopSDK::Models::RefundRetrieveResponse::Payment::Member::OrHash
-              ),
-            membership:
-              T.nilable(
-                WhopSDK::Models::RefundRetrieveResponse::Payment::Membership::OrHash
-              ),
-            metadata: T.nilable(T::Hash[Symbol, T.anything]),
-            paid_at: T.nilable(Time),
-            payment_method_type:
-              T.nilable(WhopSDK::PaymentMethodTypes::OrSymbol),
-            plan:
-              T.nilable(
-                WhopSDK::Models::RefundRetrieveResponse::Payment::Plan::OrHash
-              ),
-            product:
-              T.nilable(
-                WhopSDK::Models::RefundRetrieveResponse::Payment::Product::OrHash
-              ),
-            subtotal: T.nilable(Float),
-            tax_amount: T.nilable(Float),
-            tax_behavior: T.nilable(WhopSDK::ReceiptTaxBehavior::OrSymbol),
-            tax_refunded_amount: T.nilable(Float),
-            total: T.nilable(Float),
-            usd_total: T.nilable(Float),
-            user:
-              T.nilable(
-                WhopSDK::Models::RefundRetrieveResponse::Payment::User::OrHash
-              )
+            amount: String,
+            currency: String,
+            decimals: Integer,
+            display_decimals: Integer
           ).returns(T.attached_class)
         end
         def self.new(
-          # The unique identifier for the payment.
-          id:,
-          # The reason why a specific payment was billed
-          billing_reason:,
-          # Possible card brands that a payment token can have
-          card_brand:,
-          # The last four digits of the card used to make this payment. Null if the payment
-          # was not made with a card.
-          card_last4:,
-          # The datetime the payment was created.
-          created_at:,
-          # The three-letter ISO currency code for this payment (e.g., 'usd', 'eur').
+          # The amount in major units, as an exact decimal string — `"10.00"` is ten
+          # dollars. A string so no float rounds it in transit.
+          amount:,
+          # Three-letter ISO 4217 currency code, lowercase.
           currency:,
-          # When an alert came in that this transaction will be disputed
-          dispute_alerted_at:,
-          # The member attached to this payment.
-          member:,
-          # The membership attached to this payment.
-          membership:,
-          # The custom metadata stored on this payment. This will be copied over to the
-          # checkout configuration for which this payment was made
-          metadata:,
-          # The time at which this payment was successfully collected. Null if the payment
-          # has not yet succeeded. As a Unix timestamp.
-          paid_at:,
-          # The different types of payment methods that can be used.
-          payment_method_type:,
-          # The plan attached to this payment.
-          plan:,
-          # The product this payment was made for
-          product:,
-          # The subtotal to show to the creator (excluding buyer fees).
-          subtotal:,
-          # The calculated amount of the sales/VAT tax (if applicable).
-          tax_amount:,
-          # The type of tax inclusivity applied to the receipt, for determining whether the
-          # tax is included in the final price, or paid on top.
-          tax_behavior:,
-          # The amount of tax that has been refunded (if applicable).
-          tax_refunded_amount:,
-          # The total to show to the creator (excluding buyer fees).
-          total:,
-          # The total in USD to show to the creator (excluding buyer fees).
-          usd_total:,
-          # The user that made this payment.
-          user:
+          # How many decimal places the amount CARRIES — the precision the charge itself
+          # runs at.
+          decimals:,
+          # How many decimal places to SHOW. Usually equal to `decimals`, and deliberately
+          # not always: COP is charged in centavos but written in whole pesos, so it is `2`
+          # and `0`. Format the number in your own locale using this.
+          display_decimals:
         )
         end
 
         sig do
           override.returns(
             {
-              id: String,
-              billing_reason: T.nilable(WhopSDK::BillingReasons::TaggedSymbol),
-              card_brand: T.nilable(WhopSDK::CardBrands::TaggedSymbol),
-              card_last4: T.nilable(String),
-              created_at: Time,
-              currency: WhopSDK::Currency::TaggedSymbol,
-              dispute_alerted_at: T.nilable(Time),
-              member:
-                T.nilable(
-                  WhopSDK::Models::RefundRetrieveResponse::Payment::Member
-                ),
-              membership:
-                T.nilable(
-                  WhopSDK::Models::RefundRetrieveResponse::Payment::Membership
-                ),
-              metadata: T.nilable(T::Hash[Symbol, T.anything]),
-              paid_at: T.nilable(Time),
-              payment_method_type:
-                T.nilable(WhopSDK::PaymentMethodTypes::TaggedSymbol),
-              plan:
-                T.nilable(
-                  WhopSDK::Models::RefundRetrieveResponse::Payment::Plan
-                ),
-              product:
-                T.nilable(
-                  WhopSDK::Models::RefundRetrieveResponse::Payment::Product
-                ),
-              subtotal: T.nilable(Float),
-              tax_amount: T.nilable(Float),
-              tax_behavior:
-                T.nilable(WhopSDK::ReceiptTaxBehavior::TaggedSymbol),
-              tax_refunded_amount: T.nilable(Float),
-              total: T.nilable(Float),
-              usd_total: T.nilable(Float),
-              user:
-                T.nilable(
-                  WhopSDK::Models::RefundRetrieveResponse::Payment::User
-                )
+              amount: String,
+              currency: String,
+              decimals: Integer,
+              display_decimals: Integer
             }
           )
         end
         def to_hash
         end
+      end
 
-        class Member < WhopSDK::Internal::Type::BaseModel
-          OrHash =
-            T.type_alias do
-              T.any(
-                WhopSDK::Models::RefundRetrieveResponse::Payment::Member,
-                WhopSDK::Internal::AnyHash
-              )
-            end
+      # Why the refund failed, normalized across providers. Null unless the refund
+      # failed or was canceled.
+      module FailureReason
+        extend WhopSDK::Internal::Type::Enum
 
-          # The unique identifier for the company member.
-          sig { returns(String) }
-          attr_accessor :id
-
-          # The phone number for the member, if available.
-          sig { returns(T.nilable(String)) }
-          attr_accessor :phone
-
-          # The member attached to this payment.
-          sig do
-            params(id: String, phone: T.nilable(String)).returns(
-              T.attached_class
+        TaggedSymbol =
+          T.type_alias do
+            T.all(
+              Symbol,
+              WhopSDK::Models::RefundRetrieveResponse::FailureReason
             )
           end
-          def self.new(
-            # The unique identifier for the company member.
-            id:,
-            # The phone number for the member, if available.
-            phone:
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        BANK_DECLINED =
+          T.let(
+            :bank_declined,
+            WhopSDK::Models::RefundRetrieveResponse::FailureReason::TaggedSymbol
           )
+        EXPIRED_OR_CANCELED_CARD =
+          T.let(
+            :expired_or_canceled_card,
+            WhopSDK::Models::RefundRetrieveResponse::FailureReason::TaggedSymbol
+          )
+        LOST_OR_STOLEN_CARD =
+          T.let(
+            :lost_or_stolen_card,
+            WhopSDK::Models::RefundRetrieveResponse::FailureReason::TaggedSymbol
+          )
+        INSUFFICIENT_FUNDS =
+          T.let(
+            :insufficient_funds,
+            WhopSDK::Models::RefundRetrieveResponse::FailureReason::TaggedSymbol
+          )
+        CHARGE_DISPUTED =
+          T.let(
+            :charge_disputed,
+            WhopSDK::Models::RefundRetrieveResponse::FailureReason::TaggedSymbol
+          )
+        NOT_REFUNDABLE =
+          T.let(
+            :not_refundable,
+            WhopSDK::Models::RefundRetrieveResponse::FailureReason::TaggedSymbol
+          )
+        MERCHANT_REQUEST =
+          T.let(
+            :merchant_request,
+            WhopSDK::Models::RefundRetrieveResponse::FailureReason::TaggedSymbol
+          )
+        UNKNOWN =
+          T.let(
+            :unknown,
+            WhopSDK::Models::RefundRetrieveResponse::FailureReason::TaggedSymbol
+          )
+
+        sig do
+          override.returns(
+            T::Array[
+              WhopSDK::Models::RefundRetrieveResponse::FailureReason::TaggedSymbol
+            ]
+          )
+        end
+        def self.values
+        end
+      end
+
+      class OriginalAmount < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              WhopSDK::Models::RefundRetrieveResponse::OriginalAmount,
+              WhopSDK::Internal::AnyHash
+            )
           end
 
-          sig { override.returns({ id: String, phone: T.nilable(String) }) }
-          def to_hash
-          end
+        # The amount in major units, as an exact decimal string — `"10.00"` is ten
+        # dollars. A string so no float rounds it in transit.
+        sig { returns(String) }
+        attr_accessor :amount
+
+        # Three-letter ISO 4217 currency code, lowercase.
+        sig { returns(String) }
+        attr_accessor :currency
+
+        # How many decimal places the amount CARRIES — the precision the charge itself
+        # runs at.
+        sig { returns(Integer) }
+        attr_accessor :decimals
+
+        # How many decimal places to SHOW. Usually equal to `decimals`, and deliberately
+        # not always: COP is charged in centavos but written in whole pesos, so it is `2`
+        # and `0`. Format the number in your own locale using this.
+        sig { returns(Integer) }
+        attr_accessor :display_decimals
+
+        # The refunded amount in the currency the processor moved.
+        sig do
+          params(
+            amount: String,
+            currency: String,
+            decimals: Integer,
+            display_decimals: Integer
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The amount in major units, as an exact decimal string — `"10.00"` is ten
+          # dollars. A string so no float rounds it in transit.
+          amount:,
+          # Three-letter ISO 4217 currency code, lowercase.
+          currency:,
+          # How many decimal places the amount CARRIES — the precision the charge itself
+          # runs at.
+          decimals:,
+          # How many decimal places to SHOW. Usually equal to `decimals`, and deliberately
+          # not always: COP is charged in centavos but written in whole pesos, so it is `2`
+          # and `0`. Format the number in your own locale using this.
+          display_decimals:
+        )
         end
 
-        class Membership < WhopSDK::Internal::Type::BaseModel
-          OrHash =
-            T.type_alias do
-              T.any(
-                WhopSDK::Models::RefundRetrieveResponse::Payment::Membership,
-                WhopSDK::Internal::AnyHash
-              )
-            end
-
-          # The unique identifier for the membership.
-          sig { returns(String) }
-          attr_accessor :id
-
-          # The state of the membership.
-          sig { returns(WhopSDK::MembershipStatus::TaggedSymbol) }
-          attr_accessor :status
-
-          # The membership attached to this payment.
-          sig do
-            params(
-              id: String,
-              status: WhopSDK::MembershipStatus::OrSymbol
-            ).returns(T.attached_class)
-          end
-          def self.new(
-            # The unique identifier for the membership.
-            id:,
-            # The state of the membership.
-            status:
+        sig do
+          override.returns(
+            {
+              amount: String,
+              currency: String,
+              decimals: Integer,
+              display_decimals: Integer
+            }
           )
-          end
-
-          sig do
-            override.returns(
-              { id: String, status: WhopSDK::MembershipStatus::TaggedSymbol }
-            )
-          end
-          def to_hash
-          end
         end
-
-        class Plan < WhopSDK::Internal::Type::BaseModel
-          OrHash =
-            T.type_alias do
-              T.any(
-                WhopSDK::Models::RefundRetrieveResponse::Payment::Plan,
-                WhopSDK::Internal::AnyHash
-              )
-            end
-
-          # The unique identifier for the plan.
-          sig { returns(String) }
-          attr_accessor :id
-
-          # Custom key-value pairs stored on the plan. Included in webhook payloads for
-          # payment and membership events. Max 50 keys, 100 chars per key, 500 chars per
-          # string value. The reserved keys `custom_cta` and `custom_cta_url`, when set,
-          # override the product's checkout call to action for this plan.
-          sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
-          attr_accessor :metadata
-
-          # The plan attached to this payment.
-          sig do
-            params(
-              id: String,
-              metadata: T.nilable(T::Hash[Symbol, T.anything])
-            ).returns(T.attached_class)
-          end
-          def self.new(
-            # The unique identifier for the plan.
-            id:,
-            # Custom key-value pairs stored on the plan. Included in webhook payloads for
-            # payment and membership events. Max 50 keys, 100 chars per key, 500 chars per
-            # string value. The reserved keys `custom_cta` and `custom_cta_url`, when set,
-            # override the product's checkout call to action for this plan.
-            metadata:
-          )
-          end
-
-          sig do
-            override.returns(
-              { id: String, metadata: T.nilable(T::Hash[Symbol, T.anything]) }
-            )
-          end
-          def to_hash
-          end
+        def to_hash
         end
+      end
 
-        class Product < WhopSDK::Internal::Type::BaseModel
-          OrHash =
-            T.type_alias do
-              T.any(
-                WhopSDK::Models::RefundRetrieveResponse::Payment::Product,
-                WhopSDK::Internal::AnyHash
-              )
-            end
+      # Why the refund was issued, when recorded.
+      module Reason
+        extend WhopSDK::Internal::Type::Enum
 
-          # The unique identifier for the product.
-          sig { returns(String) }
-          attr_accessor :id
-
-          # Custom key-value pairs stored on the product and included in payment and
-          # membership webhook payloads. Max 50 keys, 100 characters per key, 500 characters
-          # per string value.
-          sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
-          attr_accessor :metadata
-
-          # The product this payment was made for
-          sig do
-            params(
-              id: String,
-              metadata: T.nilable(T::Hash[Symbol, T.anything])
-            ).returns(T.attached_class)
+        TaggedSymbol =
+          T.type_alias do
+            T.all(Symbol, WhopSDK::Models::RefundRetrieveResponse::Reason)
           end
-          def self.new(
-            # The unique identifier for the product.
-            id:,
-            # Custom key-value pairs stored on the product and included in payment and
-            # membership webhook payloads. Max 50 keys, 100 characters per key, 500 characters
-            # per string value.
-            metadata:
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        DUPLICATE =
+          T.let(
+            :duplicate,
+            WhopSDK::Models::RefundRetrieveResponse::Reason::TaggedSymbol
           )
-          end
+        FRAUDULENT =
+          T.let(
+            :fraudulent,
+            WhopSDK::Models::RefundRetrieveResponse::Reason::TaggedSymbol
+          )
+        REQUESTED_BY_CUSTOMER =
+          T.let(
+            :requested_by_customer,
+            WhopSDK::Models::RefundRetrieveResponse::Reason::TaggedSymbol
+          )
+        EXPIRED_UNCAPTURED_CHARGE =
+          T.let(
+            :expired_uncaptured_charge,
+            WhopSDK::Models::RefundRetrieveResponse::Reason::TaggedSymbol
+          )
 
-          sig do
-            override.returns(
-              { id: String, metadata: T.nilable(T::Hash[Symbol, T.anything]) }
-            )
-          end
-          def to_hash
-          end
+        sig do
+          override.returns(
+            T::Array[
+              WhopSDK::Models::RefundRetrieveResponse::Reason::TaggedSymbol
+            ]
+          )
         end
+        def self.values
+        end
+      end
 
-        class User < WhopSDK::Internal::Type::BaseModel
-          OrHash =
-            T.type_alias do
-              T.any(
-                WhopSDK::Models::RefundRetrieveResponse::Payment::User,
-                WhopSDK::Internal::AnyHash
-              )
-            end
+      # Whether a banking-network tracking reference is available for this refund.
+      module ReferenceStatus
+        extend WhopSDK::Internal::Type::Enum
 
-          # The unique identifier for the user.
-          sig { returns(String) }
-          attr_accessor :id
-
-          # The user's email address. Requires the member:email:read permission to access.
-          # Null if not authorized.
-          sig { returns(T.nilable(String)) }
-          attr_accessor :email
-
-          # The user's display name shown on their public profile.
-          sig { returns(T.nilable(String)) }
-          attr_accessor :name
-
-          # The user's unique username shown on their public profile.
-          sig { returns(String) }
-          attr_accessor :username
-
-          # The user that made this payment.
-          sig do
-            params(
-              id: String,
-              email: T.nilable(String),
-              name: T.nilable(String),
-              username: String
-            ).returns(T.attached_class)
-          end
-          def self.new(
-            # The unique identifier for the user.
-            id:,
-            # The user's email address. Requires the member:email:read permission to access.
-            # Null if not authorized.
-            email:,
-            # The user's display name shown on their public profile.
-            name:,
-            # The user's unique username shown on their public profile.
-            username:
-          )
-          end
-
-          sig do
-            override.returns(
-              {
-                id: String,
-                email: T.nilable(String),
-                name: T.nilable(String),
-                username: String
-              }
+        TaggedSymbol =
+          T.type_alias do
+            T.all(
+              Symbol,
+              WhopSDK::Models::RefundRetrieveResponse::ReferenceStatus
             )
           end
-          def to_hash
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        AVAILABLE =
+          T.let(
+            :available,
+            WhopSDK::Models::RefundRetrieveResponse::ReferenceStatus::TaggedSymbol
+          )
+        PENDING =
+          T.let(
+            :pending,
+            WhopSDK::Models::RefundRetrieveResponse::ReferenceStatus::TaggedSymbol
+          )
+        UNAVAILABLE =
+          T.let(
+            :unavailable,
+            WhopSDK::Models::RefundRetrieveResponse::ReferenceStatus::TaggedSymbol
+          )
+
+        sig do
+          override.returns(
+            T::Array[
+              WhopSDK::Models::RefundRetrieveResponse::ReferenceStatus::TaggedSymbol
+            ]
+          )
+        end
+        def self.values
+        end
+      end
+
+      # The kind of tracking reference, such as an acquirer reference number.
+      module ReferenceType
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias do
+            T.all(
+              Symbol,
+              WhopSDK::Models::RefundRetrieveResponse::ReferenceType
+            )
           end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        ACQUIRER_REFERENCE_NUMBER =
+          T.let(
+            :acquirer_reference_number,
+            WhopSDK::Models::RefundRetrieveResponse::ReferenceType::TaggedSymbol
+          )
+        RETRIEVAL_REFERENCE_NUMBER =
+          T.let(
+            :retrieval_reference_number,
+            WhopSDK::Models::RefundRetrieveResponse::ReferenceType::TaggedSymbol
+          )
+        SYSTEM_TRACE_AUDIT_NUMBER =
+          T.let(
+            :system_trace_audit_number,
+            WhopSDK::Models::RefundRetrieveResponse::ReferenceType::TaggedSymbol
+          )
+
+        sig do
+          override.returns(
+            T::Array[
+              WhopSDK::Models::RefundRetrieveResponse::ReferenceType::TaggedSymbol
+            ]
+          )
+        end
+        def self.values
+        end
+      end
+
+      # Where the refund stands with the processor: `pending`, `requires_action`,
+      # `succeeded`, `failed`, or `canceled`.
+      module Status
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias do
+            T.all(Symbol, WhopSDK::Models::RefundRetrieveResponse::Status)
+          end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        PENDING =
+          T.let(
+            :pending,
+            WhopSDK::Models::RefundRetrieveResponse::Status::TaggedSymbol
+          )
+        REQUIRES_ACTION =
+          T.let(
+            :requires_action,
+            WhopSDK::Models::RefundRetrieveResponse::Status::TaggedSymbol
+          )
+        SUCCEEDED =
+          T.let(
+            :succeeded,
+            WhopSDK::Models::RefundRetrieveResponse::Status::TaggedSymbol
+          )
+        FAILED =
+          T.let(
+            :failed,
+            WhopSDK::Models::RefundRetrieveResponse::Status::TaggedSymbol
+          )
+        CANCELED =
+          T.let(
+            :canceled,
+            WhopSDK::Models::RefundRetrieveResponse::Status::TaggedSymbol
+          )
+
+        sig do
+          override.returns(
+            T::Array[
+              WhopSDK::Models::RefundRetrieveResponse::Status::TaggedSymbol
+            ]
+          )
+        end
+        def self.values
         end
       end
     end

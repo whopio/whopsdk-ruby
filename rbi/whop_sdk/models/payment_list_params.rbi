@@ -11,117 +11,120 @@ module WhopSDK
           T.any(WhopSDK::PaymentListParams, WhopSDK::Internal::AnyHash)
         end
 
-      # Returns the elements in the list that come after the specified cursor.
+      # Only payments charged by this account, prefixed `biz_`.
+      sig { returns(T.nilable(String)) }
+      attr_reader :account_id
+
+      sig { params(account_id: String).void }
+      attr_writer :account_id
+
+      # A cursor; returns payments after this position.
       sig { returns(T.nilable(String)) }
       attr_reader :after
 
       sig { params(after: String).void }
       attr_writer :after
 
-      # Returns the elements in the list that come before the specified cursor.
+      # A cursor; returns payments before this position.
       sig { returns(T.nilable(String)) }
       attr_reader :before
 
       sig { params(before: String).void }
       attr_writer :before
 
-      # Filter payments by their billing reason.
-      sig { returns(T.nilable(T::Array[WhopSDK::BillingReasons::OrSymbol])) }
-      attr_reader :billing_reasons
+      # Only payments charged for this reason.
+      sig do
+        returns(T.nilable(WhopSDK::PaymentListParams::BillingReason::OrSymbol))
+      end
+      attr_reader :billing_reason
 
       sig do
         params(
-          billing_reasons: T::Array[WhopSDK::BillingReasons::OrSymbol]
+          billing_reason: WhopSDK::PaymentListParams::BillingReason::OrSymbol
         ).void
       end
-      attr_writer :billing_reasons
+      attr_writer :billing_reason
 
-      # Only return payments from these checkout configurations.
-      sig { returns(T.nilable(T::Array[String])) }
-      attr_reader :checkout_configuration_ids
-
-      sig { params(checkout_configuration_ids: T::Array[String]).void }
-      attr_writer :checkout_configuration_ids
-
-      # The unique identifier of the company to list payments for.
-      sig { returns(T.nilable(String)) }
-      attr_reader :company_id
-
-      sig { params(company_id: String).void }
-      attr_writer :company_id
-
-      # Only return payments created after this timestamp.
+      # Only payments created after this ISO 8601 timestamp.
       sig { returns(T.nilable(Time)) }
       attr_reader :created_after
 
       sig { params(created_after: Time).void }
       attr_writer :created_after
 
-      # Only return payments created before this timestamp.
+      # Only payments created before this ISO 8601 timestamp.
       sig { returns(T.nilable(Time)) }
       attr_reader :created_before
 
       sig { params(created_before: Time).void }
       attr_writer :created_before
 
-      # Filter payments by their currency code.
-      sig { returns(T.nilable(T::Array[WhopSDK::Currency::OrSymbol])) }
-      attr_reader :currencies
+      # Only payments presented in this three-letter currency, such as `usd`.
+      sig { returns(T.nilable(String)) }
+      attr_reader :currency
 
-      sig { params(currencies: T::Array[WhopSDK::Currency::OrSymbol]).void }
-      attr_writer :currencies
+      sig { params(currency: String).void }
+      attr_writer :currency
 
-      # The sort direction for ordering results, either ascending or descending.
-      sig { returns(T.nilable(WhopSDK::Direction::OrSymbol)) }
+      # The sort direction.
+      sig do
+        returns(T.nilable(WhopSDK::PaymentListParams::Direction::OrSymbol))
+      end
       attr_reader :direction
 
-      sig { params(direction: WhopSDK::Direction::OrSymbol).void }
+      sig do
+        params(direction: WhopSDK::PaymentListParams::Direction::OrSymbol).void
+      end
       attr_writer :direction
 
-      # Returns the first _n_ elements from the list.
+      # The number of payments to return.
       sig { returns(T.nilable(Integer)) }
       attr_reader :first
 
       sig { params(first: Integer).void }
       attr_writer :first
 
-      # Whether to include payments with a zero amount. Defaults to false, so
-      # zero-amount payments are omitted unless you set this to true — a company whose
-      # sales are all free plans returns an empty list without it.
-      sig { returns(T.nilable(T::Boolean)) }
-      attr_reader :include_free
-
-      sig { params(include_free: T::Boolean).void }
-      attr_writer :include_free
-
-      # Returns the last _n_ elements from the list.
+      # The number of payments to return from the end of the range.
       sig { returns(T.nilable(Integer)) }
       attr_reader :last
 
       sig { params(last: Integer).void }
       attr_writer :last
 
-      # The field to order results by, such as creation date.
+      # Only payments made by this member, prefixed `mber_`.
+      sig { returns(T.nilable(String)) }
+      attr_reader :member_id
+
+      sig { params(member_id: String).void }
+      attr_writer :member_id
+
+      # Only payments billed under this membership, prefixed `mem_`.
+      sig { returns(T.nilable(String)) }
+      attr_reader :membership_id
+
+      sig { params(membership_id: String).void }
+      attr_writer :membership_id
+
+      # The field to sort by.
       sig { returns(T.nilable(WhopSDK::PaymentListParams::Order::OrSymbol)) }
       attr_reader :order
 
       sig { params(order: WhopSDK::PaymentListParams::Order::OrSymbol).void }
       attr_writer :order
 
-      # Filter payments to only those associated with these specific plan identifiers.
-      sig { returns(T.nilable(T::Array[String])) }
-      attr_reader :plan_ids
+      # Only payments priced by this plan, prefixed `plan_`.
+      sig { returns(T.nilable(String)) }
+      attr_reader :plan_id
 
-      sig { params(plan_ids: T::Array[String]).void }
-      attr_writer :plan_ids
+      sig { params(plan_id: String).void }
+      attr_writer :plan_id
 
-      # Filter payments to only those associated with these specific product
-      # identifiers.
-      sig { returns(T.nilable(T::Array[String])) }
-      attr_reader :product_ids
+      # Only payments for this product, prefixed `prod_`.
+      sig { returns(T.nilable(String)) }
+      attr_reader :product_id
 
-      sig { params(product_ids: T::Array[String]).void }
-      attr_writer :product_ids
+      sig { params(product_id: String).void }
+      attr_writer :product_id
 
       # Search payments by user ID, membership ID, user email, name, or username. Email
       # filtering requires the member:email:read permission.
@@ -131,110 +134,89 @@ module WhopSDK
       sig { params(query: String).void }
       attr_writer :query
 
-      # Filter payments by their current status.
-      sig { returns(T.nilable(T::Array[WhopSDK::ReceiptStatus::OrSymbol])) }
-      attr_reader :statuses
+      # Only payments in this lifecycle state.
+      sig { returns(T.nilable(WhopSDK::PaymentListParams::Status::OrSymbol)) }
+      attr_reader :status
 
-      sig { params(statuses: T::Array[WhopSDK::ReceiptStatus::OrSymbol]).void }
-      attr_writer :statuses
+      sig { params(status: WhopSDK::PaymentListParams::Status::OrSymbol).void }
+      attr_writer :status
 
-      # Filter payments by their current substatus for more granular filtering.
-      sig do
-        returns(T.nilable(T::Array[WhopSDK::FriendlyReceiptStatus::OrSymbol]))
-      end
-      attr_reader :substatuses
+      # Only payments made by this buyer, prefixed `user_`.
+      sig { returns(T.nilable(String)) }
+      attr_reader :user_id
 
-      sig do
-        params(
-          substatuses: T::Array[WhopSDK::FriendlyReceiptStatus::OrSymbol]
-        ).void
-      end
-      attr_writer :substatuses
+      sig { params(user_id: String).void }
+      attr_writer :user_id
 
-      # Only return payments last updated after this timestamp.
-      sig { returns(T.nilable(Time)) }
-      attr_reader :updated_after
+      sig { returns(T.nilable(String)) }
+      attr_reader :api_version_date
 
-      sig { params(updated_after: Time).void }
-      attr_writer :updated_after
-
-      # Only return payments last updated before this timestamp.
-      sig { returns(T.nilable(Time)) }
-      attr_reader :updated_before
-
-      sig { params(updated_before: Time).void }
-      attr_writer :updated_before
+      sig { params(api_version_date: String).void }
+      attr_writer :api_version_date
 
       sig do
         params(
+          account_id: String,
           after: String,
           before: String,
-          billing_reasons: T::Array[WhopSDK::BillingReasons::OrSymbol],
-          checkout_configuration_ids: T::Array[String],
-          company_id: String,
+          billing_reason: WhopSDK::PaymentListParams::BillingReason::OrSymbol,
           created_after: Time,
           created_before: Time,
-          currencies: T::Array[WhopSDK::Currency::OrSymbol],
-          direction: WhopSDK::Direction::OrSymbol,
+          currency: String,
+          direction: WhopSDK::PaymentListParams::Direction::OrSymbol,
           first: Integer,
-          include_free: T::Boolean,
           last: Integer,
+          member_id: String,
+          membership_id: String,
           order: WhopSDK::PaymentListParams::Order::OrSymbol,
-          plan_ids: T::Array[String],
-          product_ids: T::Array[String],
+          plan_id: String,
+          product_id: String,
           query: String,
-          statuses: T::Array[WhopSDK::ReceiptStatus::OrSymbol],
-          substatuses: T::Array[WhopSDK::FriendlyReceiptStatus::OrSymbol],
-          updated_after: Time,
-          updated_before: Time,
+          status: WhopSDK::PaymentListParams::Status::OrSymbol,
+          user_id: String,
+          api_version_date: String,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
-        # Returns the elements in the list that come after the specified cursor.
+        # Only payments charged by this account, prefixed `biz_`.
+        account_id: nil,
+        # A cursor; returns payments after this position.
         after: nil,
-        # Returns the elements in the list that come before the specified cursor.
+        # A cursor; returns payments before this position.
         before: nil,
-        # Filter payments by their billing reason.
-        billing_reasons: nil,
-        # Only return payments from these checkout configurations.
-        checkout_configuration_ids: nil,
-        # The unique identifier of the company to list payments for.
-        company_id: nil,
-        # Only return payments created after this timestamp.
+        # Only payments charged for this reason.
+        billing_reason: nil,
+        # Only payments created after this ISO 8601 timestamp.
         created_after: nil,
-        # Only return payments created before this timestamp.
+        # Only payments created before this ISO 8601 timestamp.
         created_before: nil,
-        # Filter payments by their currency code.
-        currencies: nil,
-        # The sort direction for ordering results, either ascending or descending.
+        # Only payments presented in this three-letter currency, such as `usd`.
+        currency: nil,
+        # The sort direction.
         direction: nil,
-        # Returns the first _n_ elements from the list.
+        # The number of payments to return.
         first: nil,
-        # Whether to include payments with a zero amount. Defaults to false, so
-        # zero-amount payments are omitted unless you set this to true — a company whose
-        # sales are all free plans returns an empty list without it.
-        include_free: nil,
-        # Returns the last _n_ elements from the list.
+        # The number of payments to return from the end of the range.
         last: nil,
-        # The field to order results by, such as creation date.
+        # Only payments made by this member, prefixed `mber_`.
+        member_id: nil,
+        # Only payments billed under this membership, prefixed `mem_`.
+        membership_id: nil,
+        # The field to sort by.
         order: nil,
-        # Filter payments to only those associated with these specific plan identifiers.
-        plan_ids: nil,
-        # Filter payments to only those associated with these specific product
-        # identifiers.
-        product_ids: nil,
+        # Only payments priced by this plan, prefixed `plan_`.
+        plan_id: nil,
+        # Only payments for this product, prefixed `prod_`.
+        product_id: nil,
         # Search payments by user ID, membership ID, user email, name, or username. Email
         # filtering requires the member:email:read permission.
         query: nil,
-        # Filter payments by their current status.
-        statuses: nil,
-        # Filter payments by their current substatus for more granular filtering.
-        substatuses: nil,
-        # Only return payments last updated after this timestamp.
-        updated_after: nil,
-        # Only return payments last updated before this timestamp.
-        updated_before: nil,
+        # Only payments in this lifecycle state.
+        status: nil,
+        # Only payments made by this buyer, prefixed `user_`.
+        user_id: nil,
+        api_version_date: nil,
         request_options: {}
       )
       end
@@ -242,26 +224,25 @@ module WhopSDK
       sig do
         override.returns(
           {
+            account_id: String,
             after: String,
             before: String,
-            billing_reasons: T::Array[WhopSDK::BillingReasons::OrSymbol],
-            checkout_configuration_ids: T::Array[String],
-            company_id: String,
+            billing_reason: WhopSDK::PaymentListParams::BillingReason::OrSymbol,
             created_after: Time,
             created_before: Time,
-            currencies: T::Array[WhopSDK::Currency::OrSymbol],
-            direction: WhopSDK::Direction::OrSymbol,
+            currency: String,
+            direction: WhopSDK::PaymentListParams::Direction::OrSymbol,
             first: Integer,
-            include_free: T::Boolean,
             last: Integer,
+            member_id: String,
+            membership_id: String,
             order: WhopSDK::PaymentListParams::Order::OrSymbol,
-            plan_ids: T::Array[String],
-            product_ids: T::Array[String],
+            plan_id: String,
+            product_id: String,
             query: String,
-            statuses: T::Array[WhopSDK::ReceiptStatus::OrSymbol],
-            substatuses: T::Array[WhopSDK::FriendlyReceiptStatus::OrSymbol],
-            updated_after: Time,
-            updated_before: Time,
+            status: WhopSDK::PaymentListParams::Status::OrSymbol,
+            user_id: String,
+            api_version_date: String,
             request_options: WhopSDK::RequestOptions
           }
         )
@@ -269,7 +250,77 @@ module WhopSDK
       def to_hash
       end
 
-      # The field to order results by, such as creation date.
+      # Only payments charged for this reason.
+      module BillingReason
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias do
+            T.all(Symbol, WhopSDK::PaymentListParams::BillingReason)
+          end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        SUBSCRIPTION_CREATE =
+          T.let(
+            :subscription_create,
+            WhopSDK::PaymentListParams::BillingReason::TaggedSymbol
+          )
+        SUBSCRIPTION_CYCLE =
+          T.let(
+            :subscription_cycle,
+            WhopSDK::PaymentListParams::BillingReason::TaggedSymbol
+          )
+        SUBSCRIPTION_UPDATE =
+          T.let(
+            :subscription_update,
+            WhopSDK::PaymentListParams::BillingReason::TaggedSymbol
+          )
+        ONE_TIME =
+          T.let(
+            :one_time,
+            WhopSDK::PaymentListParams::BillingReason::TaggedSymbol
+          )
+        MANUAL =
+          T.let(
+            :manual,
+            WhopSDK::PaymentListParams::BillingReason::TaggedSymbol
+          )
+        SUBSCRIPTION =
+          T.let(
+            :subscription,
+            WhopSDK::PaymentListParams::BillingReason::TaggedSymbol
+          )
+
+        sig do
+          override.returns(
+            T::Array[WhopSDK::PaymentListParams::BillingReason::TaggedSymbol]
+          )
+        end
+        def self.values
+        end
+      end
+
+      # The sort direction.
+      module Direction
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias { T.all(Symbol, WhopSDK::PaymentListParams::Direction) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        ASC = T.let(:asc, WhopSDK::PaymentListParams::Direction::TaggedSymbol)
+        DESC = T.let(:desc, WhopSDK::PaymentListParams::Direction::TaggedSymbol)
+
+        sig do
+          override.returns(
+            T::Array[WhopSDK::PaymentListParams::Direction::TaggedSymbol]
+          )
+        end
+        def self.values
+        end
+      end
+
+      # The field to sort by.
       module Order
         extend WhopSDK::Internal::Type::Enum
 
@@ -277,8 +328,6 @@ module WhopSDK
           T.type_alias { T.all(Symbol, WhopSDK::PaymentListParams::Order) }
         OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-        FINAL_AMOUNT =
-          T.let(:final_amount, WhopSDK::PaymentListParams::Order::TaggedSymbol)
         CREATED_AT =
           T.let(:created_at, WhopSDK::PaymentListParams::Order::TaggedSymbol)
         PAID_AT =
@@ -287,6 +336,38 @@ module WhopSDK
         sig do
           override.returns(
             T::Array[WhopSDK::PaymentListParams::Order::TaggedSymbol]
+          )
+        end
+        def self.values
+        end
+      end
+
+      # Only payments in this lifecycle state.
+      module Status
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias { T.all(Symbol, WhopSDK::PaymentListParams::Status) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        OPEN = T.let(:open, WhopSDK::PaymentListParams::Status::TaggedSymbol)
+        AUTHORIZED =
+          T.let(:authorized, WhopSDK::PaymentListParams::Status::TaggedSymbol)
+        PAID = T.let(:paid, WhopSDK::PaymentListParams::Status::TaggedSymbol)
+        PENDING =
+          T.let(:pending, WhopSDK::PaymentListParams::Status::TaggedSymbol)
+        UNCOLLECTIBLE =
+          T.let(
+            :uncollectible,
+            WhopSDK::PaymentListParams::Status::TaggedSymbol
+          )
+        UNRESOLVED =
+          T.let(:unresolved, WhopSDK::PaymentListParams::Status::TaggedSymbol)
+        VOID = T.let(:void, WhopSDK::PaymentListParams::Status::TaggedSymbol)
+
+        sig do
+          override.returns(
+            T::Array[WhopSDK::PaymentListParams::Status::TaggedSymbol]
           )
         end
         def self.values

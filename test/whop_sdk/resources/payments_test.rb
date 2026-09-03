@@ -6,27 +6,132 @@ class WhopSDK::Test::Resources::PaymentsTest < WhopSDK::Test::ResourceTest
   def test_create_required_params
     skip("Mock server tests are disabled")
 
-    response =
-      @whop.payments.create(
-        body: {
-          company_id: "biz_xxxxxxxxxxxxxx",
-          confirmation_token: "confirmation_token",
-          plan: {currency: :usd}
-        }
-      )
+    response = @whop.payments.create(account_id: "biz_xxxxxxxxxxxxxx", plan_id: "plan_xxxxxxxxxxxxxx")
 
     assert_pattern do
-      response => WhopSDK::Models::PaymentCreateResponse
+      response => WhopSDK::Payment
+    end
+
+    assert_pattern do
+      response => {
+        id: String,
+        account_id: String | nil,
+        amount_after_fees: WhopSDK::Payment::AmountAfterFees,
+        auto_refunded: WhopSDK::Internal::Type::Boolean,
+        billing_address: WhopSDK::Payment::BillingAddress | nil,
+        billing_reason: WhopSDK::BillingReasons | nil,
+        checkout_configuration_id: String | nil,
+        client_secret: String | nil,
+        created_at: String,
+        currency: WhopSDK::Currency,
+        customer_phone: String | nil,
+        decline_code: WhopSDK::Payment::DeclineCode | nil,
+        dispute_alerted_at: String | nil,
+        failure_message: String | nil,
+        financing_installments_count: Float | nil,
+        last_payment_attempt_at: String | nil,
+        member_id: String | nil,
+        membership_id: String | nil,
+        metadata: WhopSDK::Internal::Type::Unknown | nil,
+        needs_tracking: WhopSDK::Internal::Type::Boolean | nil,
+        next_payment_attempt_at: String | nil,
+        paid_at: String | nil,
+        payment_instrument: WhopSDK::Payment::PaymentInstrument | nil,
+        payment_method_id: String | nil,
+        payment_method_type: WhopSDK::PaymentMethodTypes | nil,
+        payments_failed: Float,
+        plan_id: String | nil,
+        product_id: String | nil,
+        promo_code_id: String | nil,
+        refundable: WhopSDK::Internal::Type::Boolean,
+        refunded_amount: WhopSDK::Payment::RefundedAmount | nil,
+        refunded_at: String | nil,
+        retryable: WhopSDK::Internal::Type::Boolean,
+        risk_score: Float | nil,
+        risk_signals: WhopSDK::Internal::Type::Unknown | nil,
+        settlement_time_at: String | nil,
+        shipment_id: String | nil,
+        shipping_address: WhopSDK::Payment::ShippingAddress | nil,
+        status: WhopSDK::ReceiptStatus,
+        substatus: WhopSDK::FriendlyReceiptStatus,
+        subtotal: WhopSDK::Payment::Subtotal | nil,
+        tax_amount: WhopSDK::Payment::TaxAmount | nil,
+        tax_behavior: WhopSDK::ReceiptTaxBehavior | nil,
+        tax_refunded_amount: WhopSDK::Payment::TaxRefundedAmount,
+        three_ds_verified: WhopSDK::Internal::Type::Boolean,
+        total: WhopSDK::Payment::Total | nil,
+        updated_at: String,
+        usd_total: WhopSDK::Payment::UsdTotal | nil,
+        user: WhopSDK::Payment::User | nil,
+        verification_checks: WhopSDK::Payment::VerificationChecks | nil,
+        voidable: WhopSDK::Internal::Type::Boolean
+      }
     end
   end
 
   def test_retrieve
     skip("Mock server tests are disabled")
 
-    response = @whop.payments.retrieve("pay_xxxxxxxxxxxxxx")
+    response = @whop.payments.retrieve("id")
 
     assert_pattern do
-      response => WhopSDK::Models::PaymentRetrieveResponse
+      response => WhopSDK::Payment
+    end
+
+    assert_pattern do
+      response => {
+        id: String,
+        account_id: String | nil,
+        amount_after_fees: WhopSDK::Payment::AmountAfterFees,
+        auto_refunded: WhopSDK::Internal::Type::Boolean,
+        billing_address: WhopSDK::Payment::BillingAddress | nil,
+        billing_reason: WhopSDK::BillingReasons | nil,
+        checkout_configuration_id: String | nil,
+        client_secret: String | nil,
+        created_at: String,
+        currency: WhopSDK::Currency,
+        customer_phone: String | nil,
+        decline_code: WhopSDK::Payment::DeclineCode | nil,
+        dispute_alerted_at: String | nil,
+        failure_message: String | nil,
+        financing_installments_count: Float | nil,
+        last_payment_attempt_at: String | nil,
+        member_id: String | nil,
+        membership_id: String | nil,
+        metadata: WhopSDK::Internal::Type::Unknown | nil,
+        needs_tracking: WhopSDK::Internal::Type::Boolean | nil,
+        next_payment_attempt_at: String | nil,
+        paid_at: String | nil,
+        payment_instrument: WhopSDK::Payment::PaymentInstrument | nil,
+        payment_method_id: String | nil,
+        payment_method_type: WhopSDK::PaymentMethodTypes | nil,
+        payments_failed: Float,
+        plan_id: String | nil,
+        product_id: String | nil,
+        promo_code_id: String | nil,
+        refundable: WhopSDK::Internal::Type::Boolean,
+        refunded_amount: WhopSDK::Payment::RefundedAmount | nil,
+        refunded_at: String | nil,
+        retryable: WhopSDK::Internal::Type::Boolean,
+        risk_score: Float | nil,
+        risk_signals: WhopSDK::Internal::Type::Unknown | nil,
+        settlement_time_at: String | nil,
+        shipment_id: String | nil,
+        shipping_address: WhopSDK::Payment::ShippingAddress | nil,
+        status: WhopSDK::ReceiptStatus,
+        substatus: WhopSDK::FriendlyReceiptStatus,
+        subtotal: WhopSDK::Payment::Subtotal | nil,
+        tax_amount: WhopSDK::Payment::TaxAmount | nil,
+        tax_behavior: WhopSDK::ReceiptTaxBehavior | nil,
+        tax_refunded_amount: WhopSDK::Payment::TaxRefundedAmount,
+        three_ds_verified: WhopSDK::Internal::Type::Boolean,
+        total: WhopSDK::Payment::Total | nil,
+        updated_at: String,
+        usd_total: WhopSDK::Payment::UsdTotal | nil,
+        user: WhopSDK::Payment::User | nil,
+        verification_checks: WhopSDK::Payment::VerificationChecks | nil,
+        voidable: WhopSDK::Internal::Type::Boolean
+      }
     end
   end
 
@@ -43,57 +148,61 @@ class WhopSDK::Test::Resources::PaymentsTest < WhopSDK::Test::ResourceTest
     return if row.nil?
 
     assert_pattern do
-      row => WhopSDK::Models::PaymentListResponse
+      row => WhopSDK::Payment
     end
 
     assert_pattern do
       row => {
         id: String,
-        amount_after_fees: Float,
-        application_fee: WhopSDK::Models::PaymentListResponse::ApplicationFee | nil,
+        account_id: String | nil,
+        amount_after_fees: WhopSDK::Payment::AmountAfterFees,
         auto_refunded: WhopSDK::Internal::Type::Boolean,
-        billing_address: WhopSDK::Models::PaymentListResponse::BillingAddress | nil,
+        billing_address: WhopSDK::Payment::BillingAddress | nil,
         billing_reason: WhopSDK::BillingReasons | nil,
-        card_brand: WhopSDK::CardBrands | nil,
-        card_last4: String | nil,
         checkout_configuration_id: String | nil,
-        company: WhopSDK::Models::PaymentListResponse::Company | nil,
-        created_at: Time,
+        client_secret: String | nil,
+        created_at: String,
         currency: WhopSDK::Currency,
         customer_phone: String | nil,
-        decline_code: WhopSDK::Models::PaymentListResponse::DeclineCode | nil,
-        dispute_alerted_at: Time | nil,
+        decline_code: WhopSDK::Payment::DeclineCode | nil,
+        dispute_alerted_at: String | nil,
         failure_message: String | nil,
-        last_payment_attempt: Time | nil,
-        member: WhopSDK::Models::PaymentListResponse::Member | nil,
-        membership: WhopSDK::Models::PaymentListResponse::Membership | nil,
-        metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]) | nil,
+        financing_installments_count: Float | nil,
+        last_payment_attempt_at: String | nil,
+        member_id: String | nil,
+        membership_id: String | nil,
+        metadata: WhopSDK::Internal::Type::Unknown | nil,
         needs_tracking: WhopSDK::Internal::Type::Boolean | nil,
-        next_payment_attempt: Time | nil,
-        paid_at: Time | nil,
-        payment_instrument: WhopSDK::Models::PaymentListResponse::PaymentInstrument | nil,
-        payment_method: WhopSDK::Models::PaymentListResponse::PaymentMethod | nil,
+        next_payment_attempt_at: String | nil,
+        paid_at: String | nil,
+        payment_instrument: WhopSDK::Payment::PaymentInstrument | nil,
+        payment_method_id: String | nil,
         payment_method_type: WhopSDK::PaymentMethodTypes | nil,
-        payments_failed: Integer | nil,
-        plan: WhopSDK::Models::PaymentListResponse::Plan | nil,
-        product: WhopSDK::Models::PaymentListResponse::Product | nil,
-        promo_code: WhopSDK::Models::PaymentListResponse::PromoCode | nil,
+        payments_failed: Float,
+        plan_id: String | nil,
+        product_id: String | nil,
+        promo_code_id: String | nil,
         refundable: WhopSDK::Internal::Type::Boolean,
-        refunded_amount: Float | nil,
-        refunded_at: Time | nil,
+        refunded_amount: WhopSDK::Payment::RefundedAmount | nil,
+        refunded_at: String | nil,
         retryable: WhopSDK::Internal::Type::Boolean,
-        settlement_currency: WhopSDK::Currency,
-        shipment: WhopSDK::Models::PaymentListResponse::Shipment | nil,
-        shipping_address: WhopSDK::Models::PaymentListResponse::ShippingAddress | nil,
-        status: WhopSDK::ReceiptStatus | nil,
+        risk_score: Float | nil,
+        risk_signals: WhopSDK::Internal::Type::Unknown | nil,
+        settlement_time_at: String | nil,
+        shipment_id: String | nil,
+        shipping_address: WhopSDK::Payment::ShippingAddress | nil,
+        status: WhopSDK::ReceiptStatus,
         substatus: WhopSDK::FriendlyReceiptStatus,
-        subtotal: Float | nil,
-        tax_amount: Float | nil,
+        subtotal: WhopSDK::Payment::Subtotal | nil,
+        tax_amount: WhopSDK::Payment::TaxAmount | nil,
         tax_behavior: WhopSDK::ReceiptTaxBehavior | nil,
-        total: Float | nil,
-        updated_at: Time,
-        usd_total: Float | nil,
-        user: WhopSDK::Models::PaymentListResponse::User | nil,
+        tax_refunded_amount: WhopSDK::Payment::TaxRefundedAmount,
+        three_ds_verified: WhopSDK::Internal::Type::Boolean,
+        total: WhopSDK::Payment::Total | nil,
+        updated_at: String,
+        usd_total: WhopSDK::Payment::UsdTotal | nil,
+        user: WhopSDK::Payment::User | nil,
+        verification_checks: WhopSDK::Payment::VerificationChecks | nil,
         voidable: WhopSDK::Internal::Type::Boolean
       }
     end
@@ -102,25 +211,16 @@ class WhopSDK::Test::Resources::PaymentsTest < WhopSDK::Test::ResourceTest
   def test_list_fees
     skip("Mock server tests are disabled")
 
-    response = @whop.payments.list_fees("pay_xxxxxxxxxxxxxx")
+    response = @whop.payments.list_fees("id")
 
     assert_pattern do
-      response => WhopSDK::Internal::CursorPage
-    end
-
-    row = response.to_enum.first
-    return if row.nil?
-
-    assert_pattern do
-      row => WhopSDK::Models::PaymentListFeesResponse
+      response => WhopSDK::Models::PaymentListFeesResponse
     end
 
     assert_pattern do
-      row => {
-        amount: Float,
-        currency: WhopSDK::Currency,
-        name: String,
-        type: WhopSDK::Models::PaymentListFeesResponse::Type
+      response => {
+        data: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Models::PaymentListFeesResponse::Data]),
+        page_info: WhopSDK::Models::PaymentListFeesResponse::PageInfo
       }
     end
   end
@@ -128,7 +228,7 @@ class WhopSDK::Test::Resources::PaymentsTest < WhopSDK::Test::ResourceTest
   def test_refund
     skip("Mock server tests are disabled")
 
-    response = @whop.payments.refund("pay_xxxxxxxxxxxxxx")
+    response = @whop.payments.refund("id")
 
     assert_pattern do
       response => WhopSDK::Payment
@@ -137,65 +237,53 @@ class WhopSDK::Test::Resources::PaymentsTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
-        amount_after_fees: Float,
-        application_fee: WhopSDK::Payment::ApplicationFee | nil,
+        account_id: String | nil,
+        amount_after_fees: WhopSDK::Payment::AmountAfterFees,
         auto_refunded: WhopSDK::Internal::Type::Boolean,
         billing_address: WhopSDK::Payment::BillingAddress | nil,
         billing_reason: WhopSDK::BillingReasons | nil,
-        card_brand: WhopSDK::CardBrands | nil,
-        card_exp_month: Integer | nil,
-        card_exp_year: Integer | nil,
-        card_last4: String | nil,
         checkout_configuration_id: String | nil,
-        company: WhopSDK::Payment::Company | nil,
-        created_at: Time,
+        client_secret: String | nil,
+        created_at: String,
         currency: WhopSDK::Currency,
         customer_phone: String | nil,
         decline_code: WhopSDK::Payment::DeclineCode | nil,
-        dispute_alerted_at: Time | nil,
-        disputes: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Payment::Dispute]) | nil,
+        dispute_alerted_at: String | nil,
         failure_message: String | nil,
-        fees: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Payment::Fee]),
-        financing_installments_count: Integer | nil,
-        financing_transactions: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Payment::FinancingTransaction]),
-        last_payment_attempt: Time | nil,
-        member: WhopSDK::Payment::Member | nil,
-        membership: WhopSDK::Payment::Membership | nil,
-        metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]) | nil,
+        financing_installments_count: Float | nil,
+        last_payment_attempt_at: String | nil,
+        member_id: String | nil,
+        membership_id: String | nil,
+        metadata: WhopSDK::Internal::Type::Unknown | nil,
         needs_tracking: WhopSDK::Internal::Type::Boolean | nil,
-        next_payment_attempt: Time | nil,
-        paid_at: Time | nil,
+        next_payment_attempt_at: String | nil,
+        paid_at: String | nil,
         payment_instrument: WhopSDK::Payment::PaymentInstrument | nil,
-        payment_method: WhopSDK::Payment::PaymentMethod | nil,
+        payment_method_id: String | nil,
         payment_method_type: WhopSDK::PaymentMethodTypes | nil,
-        payments_failed: Integer | nil,
-        plan: WhopSDK::Payment::Plan | nil,
-        product: WhopSDK::Payment::Product | nil,
-        promo_code: WhopSDK::Payment::PromoCode | nil,
+        payments_failed: Float,
+        plan_id: String | nil,
+        product_id: String | nil,
+        promo_code_id: String | nil,
         refundable: WhopSDK::Internal::Type::Boolean,
-        refunded_amount: Float | nil,
-        refunded_at: Time | nil,
-        refunds: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Payment::Refund]),
-        resolutions: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Payment::Resolution]) | nil,
+        refunded_amount: WhopSDK::Payment::RefundedAmount | nil,
+        refunded_at: String | nil,
         retryable: WhopSDK::Internal::Type::Boolean,
-        risk_score: Integer | nil,
-        risk_signals: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]) | nil,
-        settlement_amount: Float,
-        settlement_currency: WhopSDK::Currency,
-        settlement_exchange_rate: Float | nil,
-        settlement_time_at: Time | nil,
-        shipment: WhopSDK::Payment::Shipment | nil,
+        risk_score: Float | nil,
+        risk_signals: WhopSDK::Internal::Type::Unknown | nil,
+        settlement_time_at: String | nil,
+        shipment_id: String | nil,
         shipping_address: WhopSDK::Payment::ShippingAddress | nil,
-        status: WhopSDK::ReceiptStatus | nil,
+        status: WhopSDK::ReceiptStatus,
         substatus: WhopSDK::FriendlyReceiptStatus,
-        subtotal: Float | nil,
-        tax_amount: Float | nil,
+        subtotal: WhopSDK::Payment::Subtotal | nil,
+        tax_amount: WhopSDK::Payment::TaxAmount | nil,
         tax_behavior: WhopSDK::ReceiptTaxBehavior | nil,
-        tax_refunded_amount: Float | nil,
+        tax_refunded_amount: WhopSDK::Payment::TaxRefundedAmount,
         three_ds_verified: WhopSDK::Internal::Type::Boolean,
-        total: Float | nil,
-        updated_at: Time,
-        usd_total: Float | nil,
+        total: WhopSDK::Payment::Total | nil,
+        updated_at: String,
+        usd_total: WhopSDK::Payment::UsdTotal | nil,
         user: WhopSDK::Payment::User | nil,
         verification_checks: WhopSDK::Payment::VerificationChecks | nil,
         voidable: WhopSDK::Internal::Type::Boolean
@@ -206,7 +294,7 @@ class WhopSDK::Test::Resources::PaymentsTest < WhopSDK::Test::ResourceTest
   def test_retry_
     skip("Mock server tests are disabled")
 
-    response = @whop.payments.retry_("pay_xxxxxxxxxxxxxx")
+    response = @whop.payments.retry_("id")
 
     assert_pattern do
       response => WhopSDK::Payment
@@ -215,65 +303,53 @@ class WhopSDK::Test::Resources::PaymentsTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
-        amount_after_fees: Float,
-        application_fee: WhopSDK::Payment::ApplicationFee | nil,
+        account_id: String | nil,
+        amount_after_fees: WhopSDK::Payment::AmountAfterFees,
         auto_refunded: WhopSDK::Internal::Type::Boolean,
         billing_address: WhopSDK::Payment::BillingAddress | nil,
         billing_reason: WhopSDK::BillingReasons | nil,
-        card_brand: WhopSDK::CardBrands | nil,
-        card_exp_month: Integer | nil,
-        card_exp_year: Integer | nil,
-        card_last4: String | nil,
         checkout_configuration_id: String | nil,
-        company: WhopSDK::Payment::Company | nil,
-        created_at: Time,
+        client_secret: String | nil,
+        created_at: String,
         currency: WhopSDK::Currency,
         customer_phone: String | nil,
         decline_code: WhopSDK::Payment::DeclineCode | nil,
-        dispute_alerted_at: Time | nil,
-        disputes: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Payment::Dispute]) | nil,
+        dispute_alerted_at: String | nil,
         failure_message: String | nil,
-        fees: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Payment::Fee]),
-        financing_installments_count: Integer | nil,
-        financing_transactions: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Payment::FinancingTransaction]),
-        last_payment_attempt: Time | nil,
-        member: WhopSDK::Payment::Member | nil,
-        membership: WhopSDK::Payment::Membership | nil,
-        metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]) | nil,
+        financing_installments_count: Float | nil,
+        last_payment_attempt_at: String | nil,
+        member_id: String | nil,
+        membership_id: String | nil,
+        metadata: WhopSDK::Internal::Type::Unknown | nil,
         needs_tracking: WhopSDK::Internal::Type::Boolean | nil,
-        next_payment_attempt: Time | nil,
-        paid_at: Time | nil,
+        next_payment_attempt_at: String | nil,
+        paid_at: String | nil,
         payment_instrument: WhopSDK::Payment::PaymentInstrument | nil,
-        payment_method: WhopSDK::Payment::PaymentMethod | nil,
+        payment_method_id: String | nil,
         payment_method_type: WhopSDK::PaymentMethodTypes | nil,
-        payments_failed: Integer | nil,
-        plan: WhopSDK::Payment::Plan | nil,
-        product: WhopSDK::Payment::Product | nil,
-        promo_code: WhopSDK::Payment::PromoCode | nil,
+        payments_failed: Float,
+        plan_id: String | nil,
+        product_id: String | nil,
+        promo_code_id: String | nil,
         refundable: WhopSDK::Internal::Type::Boolean,
-        refunded_amount: Float | nil,
-        refunded_at: Time | nil,
-        refunds: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Payment::Refund]),
-        resolutions: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Payment::Resolution]) | nil,
+        refunded_amount: WhopSDK::Payment::RefundedAmount | nil,
+        refunded_at: String | nil,
         retryable: WhopSDK::Internal::Type::Boolean,
-        risk_score: Integer | nil,
-        risk_signals: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]) | nil,
-        settlement_amount: Float,
-        settlement_currency: WhopSDK::Currency,
-        settlement_exchange_rate: Float | nil,
-        settlement_time_at: Time | nil,
-        shipment: WhopSDK::Payment::Shipment | nil,
+        risk_score: Float | nil,
+        risk_signals: WhopSDK::Internal::Type::Unknown | nil,
+        settlement_time_at: String | nil,
+        shipment_id: String | nil,
         shipping_address: WhopSDK::Payment::ShippingAddress | nil,
-        status: WhopSDK::ReceiptStatus | nil,
+        status: WhopSDK::ReceiptStatus,
         substatus: WhopSDK::FriendlyReceiptStatus,
-        subtotal: Float | nil,
-        tax_amount: Float | nil,
+        subtotal: WhopSDK::Payment::Subtotal | nil,
+        tax_amount: WhopSDK::Payment::TaxAmount | nil,
         tax_behavior: WhopSDK::ReceiptTaxBehavior | nil,
-        tax_refunded_amount: Float | nil,
+        tax_refunded_amount: WhopSDK::Payment::TaxRefundedAmount,
         three_ds_verified: WhopSDK::Internal::Type::Boolean,
-        total: Float | nil,
-        updated_at: Time,
-        usd_total: Float | nil,
+        total: WhopSDK::Payment::Total | nil,
+        updated_at: String,
+        usd_total: WhopSDK::Payment::UsdTotal | nil,
         user: WhopSDK::Payment::User | nil,
         verification_checks: WhopSDK::Payment::VerificationChecks | nil,
         voidable: WhopSDK::Internal::Type::Boolean
@@ -284,7 +360,7 @@ class WhopSDK::Test::Resources::PaymentsTest < WhopSDK::Test::ResourceTest
   def test_void
     skip("Mock server tests are disabled")
 
-    response = @whop.payments.void("pay_xxxxxxxxxxxxxx")
+    response = @whop.payments.void("id")
 
     assert_pattern do
       response => WhopSDK::Payment
@@ -293,65 +369,53 @@ class WhopSDK::Test::Resources::PaymentsTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
-        amount_after_fees: Float,
-        application_fee: WhopSDK::Payment::ApplicationFee | nil,
+        account_id: String | nil,
+        amount_after_fees: WhopSDK::Payment::AmountAfterFees,
         auto_refunded: WhopSDK::Internal::Type::Boolean,
         billing_address: WhopSDK::Payment::BillingAddress | nil,
         billing_reason: WhopSDK::BillingReasons | nil,
-        card_brand: WhopSDK::CardBrands | nil,
-        card_exp_month: Integer | nil,
-        card_exp_year: Integer | nil,
-        card_last4: String | nil,
         checkout_configuration_id: String | nil,
-        company: WhopSDK::Payment::Company | nil,
-        created_at: Time,
+        client_secret: String | nil,
+        created_at: String,
         currency: WhopSDK::Currency,
         customer_phone: String | nil,
         decline_code: WhopSDK::Payment::DeclineCode | nil,
-        dispute_alerted_at: Time | nil,
-        disputes: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Payment::Dispute]) | nil,
+        dispute_alerted_at: String | nil,
         failure_message: String | nil,
-        fees: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Payment::Fee]),
-        financing_installments_count: Integer | nil,
-        financing_transactions: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Payment::FinancingTransaction]),
-        last_payment_attempt: Time | nil,
-        member: WhopSDK::Payment::Member | nil,
-        membership: WhopSDK::Payment::Membership | nil,
-        metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]) | nil,
+        financing_installments_count: Float | nil,
+        last_payment_attempt_at: String | nil,
+        member_id: String | nil,
+        membership_id: String | nil,
+        metadata: WhopSDK::Internal::Type::Unknown | nil,
         needs_tracking: WhopSDK::Internal::Type::Boolean | nil,
-        next_payment_attempt: Time | nil,
-        paid_at: Time | nil,
+        next_payment_attempt_at: String | nil,
+        paid_at: String | nil,
         payment_instrument: WhopSDK::Payment::PaymentInstrument | nil,
-        payment_method: WhopSDK::Payment::PaymentMethod | nil,
+        payment_method_id: String | nil,
         payment_method_type: WhopSDK::PaymentMethodTypes | nil,
-        payments_failed: Integer | nil,
-        plan: WhopSDK::Payment::Plan | nil,
-        product: WhopSDK::Payment::Product | nil,
-        promo_code: WhopSDK::Payment::PromoCode | nil,
+        payments_failed: Float,
+        plan_id: String | nil,
+        product_id: String | nil,
+        promo_code_id: String | nil,
         refundable: WhopSDK::Internal::Type::Boolean,
-        refunded_amount: Float | nil,
-        refunded_at: Time | nil,
-        refunds: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Payment::Refund]),
-        resolutions: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Payment::Resolution]) | nil,
+        refunded_amount: WhopSDK::Payment::RefundedAmount | nil,
+        refunded_at: String | nil,
         retryable: WhopSDK::Internal::Type::Boolean,
-        risk_score: Integer | nil,
-        risk_signals: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]) | nil,
-        settlement_amount: Float,
-        settlement_currency: WhopSDK::Currency,
-        settlement_exchange_rate: Float | nil,
-        settlement_time_at: Time | nil,
-        shipment: WhopSDK::Payment::Shipment | nil,
+        risk_score: Float | nil,
+        risk_signals: WhopSDK::Internal::Type::Unknown | nil,
+        settlement_time_at: String | nil,
+        shipment_id: String | nil,
         shipping_address: WhopSDK::Payment::ShippingAddress | nil,
-        status: WhopSDK::ReceiptStatus | nil,
+        status: WhopSDK::ReceiptStatus,
         substatus: WhopSDK::FriendlyReceiptStatus,
-        subtotal: Float | nil,
-        tax_amount: Float | nil,
+        subtotal: WhopSDK::Payment::Subtotal | nil,
+        tax_amount: WhopSDK::Payment::TaxAmount | nil,
         tax_behavior: WhopSDK::ReceiptTaxBehavior | nil,
-        tax_refunded_amount: Float | nil,
+        tax_refunded_amount: WhopSDK::Payment::TaxRefundedAmount,
         three_ds_verified: WhopSDK::Internal::Type::Boolean,
-        total: Float | nil,
-        updated_at: Time,
-        usd_total: Float | nil,
+        total: WhopSDK::Payment::Total | nil,
+        updated_at: String,
+        usd_total: WhopSDK::Payment::UsdTotal | nil,
         user: WhopSDK::Payment::User | nil,
         verification_checks: WhopSDK::Payment::VerificationChecks | nil,
         voidable: WhopSDK::Internal::Type::Boolean

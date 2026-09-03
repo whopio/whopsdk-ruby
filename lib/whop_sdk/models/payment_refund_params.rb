@@ -20,13 +20,27 @@ module WhopSDK
       #   @return [Float, nil]
       optional :partial_amount, Float, nil?: true
 
-      # @!method initialize(id:, partial_amount: nil, request_options: {})
+      # @!attribute api_version_date
+      #
+      #   @return [String, nil]
+      optional :api_version_date, String
+
+      # @!attribute idempotency_key
+      #
+      #   @return [String, nil]
+      optional :idempotency_key, String
+
+      # @!method initialize(id:, partial_amount: nil, api_version_date: nil, idempotency_key: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::PaymentRefundParams} for more details.
       #
       #   @param id [String]
       #
       #   @param partial_amount [Float, nil] The amount to refund. For multi-currency payments, this is in the charge currenc
+      #
+      #   @param api_version_date [String]
+      #
+      #   @param idempotency_key [String]
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
     end

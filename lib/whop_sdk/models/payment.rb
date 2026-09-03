@@ -4,31 +4,32 @@ module WhopSDK
   module Models
     class Payment < WhopSDK::Internal::Type::BaseModel
       # @!attribute id
-      #   The unique identifier for the payment.
+      #   Payment ID, prefixed `pay_`.
       #
       #   @return [String]
       required :id, String
 
-      # @!attribute amount_after_fees
-      #   How much the payment is for after fees
+      # @!attribute account_id
+      #   The account that received the payment, prefixed `biz_`.
       #
-      #   @return [Float]
-      required :amount_after_fees, Float
+      #   @return [String, nil]
+      required :account_id, String, nil?: true
 
-      # @!attribute application_fee
-      #   The application fee charged on this payment.
+      # @!attribute amount_after_fees
+      #   What the account keeps: the total less Whop's fees.
       #
-      #   @return [WhopSDK::Models::Payment::ApplicationFee, nil]
-      required :application_fee, -> { WhopSDK::Payment::ApplicationFee }, nil?: true
+      #   @return [WhopSDK::Models::Payment::AmountAfterFees]
+      required :amount_after_fees, -> { WhopSDK::Payment::AmountAfterFees }
 
       # @!attribute auto_refunded
-      #   Whether this payment was auto refunded or not
+      #   True when Whop refunded the payment automatically, for example on a dispute
+      #   alert.
       #
       #   @return [Boolean]
       required :auto_refunded, WhopSDK::Internal::Type::Boolean
 
       # @!attribute billing_address
-      #   The address of the user who made the payment.
+      #   The billing address the buyer entered, or null.
       #
       #   @return [WhopSDK::Models::Payment::BillingAddress, nil]
       required :billing_address, -> { WhopSDK::Payment::BillingAddress }, nil?: true
@@ -39,64 +40,35 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::BillingReasons, nil]
       required :billing_reason, enum: -> { WhopSDK::BillingReasons }, nil?: true
 
-      # @!attribute card_brand
-      #   Possible card brands that a payment token can have
-      #
-      #   @return [Symbol, WhopSDK::Models::CardBrands, nil]
-      required :card_brand, enum: -> { WhopSDK::CardBrands }, nil?: true
-
-      # @!attribute card_exp_month
-      #   The expiration month (1-12) of the card used for this payment. Falls back to the
-      #   declined card on failed payments with no saved card. Null when the payment was
-      #   not made with a card or the expiry is unavailable.
-      #
-      #   @return [Integer, nil]
-      required :card_exp_month, Integer, nil?: true
-
-      # @!attribute card_exp_year
-      #   The four-digit expiration year of the card used for this payment. Falls back to
-      #   the declined card on failed payments with no saved card. Null when the payment
-      #   was not made with a card or the expiry is unavailable.
-      #
-      #   @return [Integer, nil]
-      required :card_exp_year, Integer, nil?: true
-
-      # @!attribute card_last4
-      #   The last four digits of the card used to make this payment. Null if the payment
-      #   was not made with a card.
-      #
-      #   @return [String, nil]
-      required :card_last4, String, nil?: true
-
       # @!attribute checkout_configuration_id
-      #   The ID of the checkout session/configuration that produced this payment, if any.
-      #   Use this to map payments back to the checkout configuration that created them.
+      #   The checkout configuration the buyer paid through, prefixed `ch_`, or null.
       #
       #   @return [String, nil]
       required :checkout_configuration_id, String, nil?: true
 
-      # @!attribute company
-      #   The company for the payment.
+      # @!attribute client_secret
+      #   The credential a buyer's surface presents to poll this payment and set its
+      #   return URL. Only on payments created from a confirmation token, and always null
+      #   in list responses — retrieve the payment for it.
       #
-      #   @return [WhopSDK::Models::Payment::Company, nil]
-      required :company, -> { WhopSDK::Payment::Company }, nil?: true
+      #   @return [String, nil]
+      required :client_secret, String, nil?: true
 
       # @!attribute created_at
-      #   The datetime the payment was created.
+      #   When the payment was created, as an ISO 8601 timestamp.
       #
-      #   @return [Time]
-      required :created_at, Time
+      #   @return [String]
+      required :created_at, String
 
       # @!attribute currency
-      #   The three-letter ISO currency code for this payment (e.g., 'usd', 'eur').
+      #   The currency the payment settles in, lowercase ISO 4217. Every money field below
+      #   is stated in it unless it says otherwise.
       #
       #   @return [Symbol, WhopSDK::Models::Currency]
       required :currency, enum: -> { WhopSDK::Currency }
 
       # @!attribute customer_phone
-      #   Phone number the customer provided at checkout, or their verified phone number
-      #   when your checkout requires phone verification. `null` when no phone number was
-      #   collected.
+      #   The phone number the buyer gave at checkout, when one was collected.
       #
       #   @return [String, nil]
       required :customer_phone, String, nil?: true
@@ -108,104 +80,81 @@ module WhopSDK
       required :decline_code, enum: -> { WhopSDK::Payment::DeclineCode }, nil?: true
 
       # @!attribute dispute_alerted_at
-      #   When an alert came in that this transaction will be disputed
+      #   When an issuer warned that this payment will be disputed, or null.
       #
-      #   @return [Time, nil]
-      required :dispute_alerted_at, Time, nil?: true
-
-      # @!attribute disputes
-      #   The disputes attached to this payment. Null if the actor in context does not
-      #   have the payment:dispute:read permission.
-      #
-      #   @return [Array<WhopSDK::Models::Payment::Dispute>, nil]
-      required :disputes, -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::Payment::Dispute] }, nil?: true
+      #   @return [String, nil]
+      required :dispute_alerted_at, String, nil?: true
 
       # @!attribute failure_message
-      #   If the payment failed, the reason for the failure.
+      #   Why the most recent attempt failed, in plain words, or null.
       #
       #   @return [String, nil]
       required :failure_message, String, nil?: true
 
-      # @!attribute fees
-      #   The fees associated with this specific payment.
-      #
-      #   @return [Array<WhopSDK::Models::Payment::Fee>]
-      required :fees, -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::Payment::Fee] }
-
       # @!attribute financing_installments_count
-      #   The number of financing installments for the payment. Present if the payment is
-      #   a financing payment (e.g. Splitit, Klarna, etc.).
+      #   For installment methods, how many payments the charge splits into.
       #
-      #   @return [Integer, nil]
-      required :financing_installments_count, Integer, nil?: true
+      #   @return [Float, nil]
+      required :financing_installments_count, Float, nil?: true
 
-      # @!attribute financing_transactions
-      #   The financing transactions attached to this payment. Present if the payment is a
-      #   financing payment (e.g. Splitit, Klarna, etc.).
+      # @!attribute last_payment_attempt_at
+      #   When the most recent charge attempt ran, or null.
       #
-      #   @return [Array<WhopSDK::Models::Payment::FinancingTransaction>]
-      required :financing_transactions,
-               -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::Payment::FinancingTransaction] }
+      #   @return [String, nil]
+      required :last_payment_attempt_at, String, nil?: true
 
-      # @!attribute last_payment_attempt
-      #   The time of the last payment attempt.
+      # @!attribute member_id
+      #   The buyer's member record on the account, prefixed `mber_`. Null without the
+      #   member:basic:read permission.
       #
-      #   @return [Time, nil]
-      required :last_payment_attempt, Time, nil?: true
+      #   @return [String, nil]
+      required :member_id, String, nil?: true
 
-      # @!attribute member
-      #   The member attached to this payment.
+      # @!attribute membership_id
+      #   The membership this payment is billed against, prefixed `mem_`. Null for one-off
+      #   purchases or without the member:basic:read permission.
       #
-      #   @return [WhopSDK::Models::Payment::Member, nil]
-      required :member, -> { WhopSDK::Payment::Member }, nil?: true
-
-      # @!attribute membership
-      #   The membership attached to this payment.
-      #
-      #   @return [WhopSDK::Models::Payment::Membership, nil]
-      required :membership, -> { WhopSDK::Payment::Membership }, nil?: true
+      #   @return [String, nil]
+      required :membership_id, String, nil?: true
 
       # @!attribute metadata
-      #   The custom metadata stored on this payment. This will be copied over to the
-      #   checkout configuration for which this payment was made
+      #   Your own key-value data attached when the payment was created.
       #
-      #   @return [Hash{Symbol=>Object}, nil]
-      required :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown], nil?: true
+      #   @return [Object, nil]
+      required :metadata, WhopSDK::Internal::Type::Unknown, nil?: true
 
       # @!attribute needs_tracking
-      #   Whether this payment is holding funds until the order ships and has no tracking
-      #   number yet.
+      #   True when funds are held until the order ships and no tracking number has been
+      #   added yet. Null without the shipment:basic:read permission.
       #
       #   @return [Boolean, nil]
       required :needs_tracking, WhopSDK::Internal::Type::Boolean, nil?: true
 
-      # @!attribute next_payment_attempt
-      #   The time of the next schedule payment retry.
+      # @!attribute next_payment_attempt_at
+      #   When the next automatic retry is scheduled, or null.
       #
-      #   @return [Time, nil]
-      required :next_payment_attempt, Time, nil?: true
+      #   @return [String, nil]
+      required :next_payment_attempt_at, String, nil?: true
 
       # @!attribute paid_at
-      #   The time at which this payment was successfully collected. Null if the payment
-      #   has not yet succeeded. As a Unix timestamp.
+      #   When the money was collected, or null while it has not been.
       #
-      #   @return [Time, nil]
-      required :paid_at, Time, nil?: true
+      #   @return [String, nil]
+      required :paid_at, String, nil?: true
 
       # @!attribute payment_instrument
-      #   The instrument this payment was made with, shaped for display: the method type,
-      #   a buyer-facing name, the standard icon set, and the card facts when it was a
-      #   card. Null when the receipt names no payment method.
+      #   The instrument shaped for display: a buyer-facing name, the standard icon set,
+      #   and the card's brand and last four when it was a card.
       #
       #   @return [WhopSDK::Models::Payment::PaymentInstrument, nil]
       required :payment_instrument, -> { WhopSDK::Payment::PaymentInstrument }, nil?: true
 
-      # @!attribute payment_method
-      #   The tokenized payment method reference used for this payment. Null if no token
-      #   was used.
+      # @!attribute payment_method_id
+      #   The stored payment method that was charged, prefixed `payt_`. Null when the
+      #   method was not saved.
       #
-      #   @return [WhopSDK::Models::Payment::PaymentMethod, nil]
-      required :payment_method, -> { WhopSDK::Payment::PaymentMethod }, nil?: true
+      #   @return [String, nil]
+      required :payment_method_id, String, nil?: true
 
       # @!attribute payment_method_type
       #   The different types of payment methods that can be used.
@@ -214,153 +163,118 @@ module WhopSDK
       required :payment_method_type, enum: -> { WhopSDK::PaymentMethodTypes }, nil?: true
 
       # @!attribute payments_failed
-      #   The number of failed payment attempts for the payment.
+      #   How many charge attempts have failed on this payment.
       #
-      #   @return [Integer, nil]
-      required :payments_failed, Integer, nil?: true
+      #   @return [Float]
+      required :payments_failed, Float
 
-      # @!attribute plan
-      #   The plan attached to this payment.
+      # @!attribute plan_id
+      #   The plan that was charged, prefixed `plan_`.
       #
-      #   @return [WhopSDK::Models::Payment::Plan, nil]
-      required :plan, -> { WhopSDK::Payment::Plan }, nil?: true
+      #   @return [String, nil]
+      required :plan_id, String, nil?: true
 
-      # @!attribute product
-      #   The product this payment was made for
+      # @!attribute product_id
+      #   The product the plan belongs to, prefixed `prod_`. Null for a plan with no
+      #   product.
       #
-      #   @return [WhopSDK::Models::Payment::Product, nil]
-      required :product, -> { WhopSDK::Payment::Product }, nil?: true
+      #   @return [String, nil]
+      required :product_id, String, nil?: true
 
-      # @!attribute promo_code
-      #   The promo code used for this payment.
+      # @!attribute promo_code_id
+      #   The promo code applied at checkout, prefixed `promo_`, or null.
       #
-      #   @return [WhopSDK::Models::Payment::PromoCode, nil]
-      required :promo_code, -> { WhopSDK::Payment::PromoCode }, nil?: true
+      #   @return [String, nil]
+      required :promo_code_id, String, nil?: true
 
       # @!attribute refundable
-      #   True only for payments that are `paid`, have not been fully refunded, and were
-      #   processed by a payment processor that allows refunds.
+      #   True when the payment is `paid`, not yet fully refunded, and its processor
+      #   supports refunds.
       #
       #   @return [Boolean]
       required :refundable, WhopSDK::Internal::Type::Boolean
 
       # @!attribute refunded_amount
-      #   The payment refund amount(if applicable).
+      #   How much has been refunded so far, as it settled — refunds convert at the rate
+      #   in force when each one was issued, not the payment's original rate.
       #
-      #   @return [Float, nil]
-      required :refunded_amount, Float, nil?: true
+      #   @return [WhopSDK::Models::Payment::RefundedAmount, nil]
+      required :refunded_amount, -> { WhopSDK::Payment::RefundedAmount }, nil?: true
 
       # @!attribute refunded_at
-      #   When the payment was refunded (if applicable).
+      #   When the payment was refunded, or null.
       #
-      #   @return [Time, nil]
-      required :refunded_at, Time, nil?: true
-
-      # @!attribute refunds
-      #   The refunds issued against this payment, newest first, including failed and
-      #   canceled refund attempts. Limited to the 100 most recent.
-      #
-      #   @return [Array<WhopSDK::Models::Payment::Refund>]
-      required :refunds, -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::Payment::Refund] }
-
-      # @!attribute resolutions
-      #   The resolution center cases opened by the customer on this payment. Null if the
-      #   actor in context does not have the payment:resolution_center_case:read
-      #   permission.
-      #
-      #   @return [Array<WhopSDK::Models::Payment::Resolution>, nil]
-      required :resolutions, -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::Payment::Resolution] }, nil?: true
+      #   @return [String, nil]
+      required :refunded_at, String, nil?: true
 
       # @!attribute retryable
-      #   True when the payment status is `open` and its membership is in one of the
-      #   retry-eligible states (`active`, `trialing`, `completed`, or `past_due`), or
-      #   when it is a failed initial billing-engine payment on a `drafted` membership
-      #   with an unlimited-stock plan; otherwise false. Used to decide if Whop can
-      #   attempt the charge again.
+      #   True when the payment is `open` and Whop can attempt the charge again — see
+      #   `POST /payments/{id}/retry`.
       #
       #   @return [Boolean]
       required :retryable, WhopSDK::Internal::Type::Boolean
 
       # @!attribute risk_score
-      #   Whop's in-house fraud risk score for this payment, from 0 (lowest risk) to 100
-      #   (highest risk). Null when the payment has not been scored or scoring has not yet
-      #   completed.
-      #
-      #   @return [Integer, nil]
-      required :risk_score, Integer, nil?: true
-
-      # @!attribute risk_signals
-      #   A curated set of factors behind the risk score, grouped by category (business
-      #   transaction history, buyer, device). Each entry has a key, human-readable label,
-      #   category, and value. Null when there is no risk assessment for this payment.
-      #
-      #   @return [Hash{Symbol=>Object}, nil]
-      required :risk_signals, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown], nil?: true
-
-      # @!attribute settlement_amount
-      #   The total amount charged to the customer for this payment, including taxes and
-      #   after any discounts. In the currency specified by the currency field.
-      #
-      #   @return [Float]
-      required :settlement_amount, Float
-
-      # @!attribute settlement_currency
-      #   The three-letter ISO currency code for this payment (e.g., 'usd', 'eur').
-      #
-      #   @return [Symbol, WhopSDK::Models::Currency]
-      required :settlement_currency, enum: -> { WhopSDK::Currency }
-
-      # @!attribute settlement_exchange_rate
-      #   Deprecated. Always returns null.
+      #   Whop's fraud risk score from 0 (lowest) to 100 (highest), or null when the
+      #   payment was not scored.
       #
       #   @return [Float, nil]
-      required :settlement_exchange_rate, Float, nil?: true
+      required :risk_score, Float, nil?: true
+
+      # @!attribute risk_signals
+      #   The factors behind `risk_score`, grouped by category, or null.
+      #
+      #   @return [Object, nil]
+      required :risk_signals, WhopSDK::Internal::Type::Unknown, nil?: true
 
       # @!attribute settlement_time_at
-      #   When this payment's funds post to the company's available balance, at midnight
-      #   UTC. Known at payment time and never changes. The
-      #   `ledger_account.funds_available` webhook carries the same `settlement_time_at`
-      #   when that batch posts — match them to know these funds are now withdrawable.
+      #   When the funds post to the account's available balance, at midnight UTC. The
+      #   `ledger_account.funds_available` webhook carries the same value. Null until the
+      #   payment is paid, and always null in list responses — retrieve the payment for
+      #   it.
       #
-      #   @return [Time, nil]
-      required :settlement_time_at, Time, nil?: true
+      #   @return [String, nil]
+      required :settlement_time_at, String, nil?: true
 
-      # @!attribute shipment
-      #   The shipment attached to this payment.
+      # @!attribute shipment_id
+      #   The shipment fulfilling this payment, prefixed `ship_`. Null when nothing ships
+      #   or without the shipment:basic:read permission.
       #
-      #   @return [WhopSDK::Models::Payment::Shipment, nil]
-      required :shipment, -> { WhopSDK::Payment::Shipment }, nil?: true
+      #   @return [String, nil]
+      required :shipment_id, String, nil?: true
 
       # @!attribute shipping_address
-      #   The shipping address provided by the customer for physical goods. Null if no
-      #   shipping address was collected.
+      #   The shipping address for physical goods, or null.
       #
       #   @return [WhopSDK::Models::Payment::ShippingAddress, nil]
       required :shipping_address, -> { WhopSDK::Payment::ShippingAddress }, nil?: true
 
       # @!attribute status
-      #   The status of a receipt
+      #   The lifecycle state of the charge: `open` while collection is outstanding,
+      #   `paid` once the money moved, `pending` while a settlement rail clears,
+      #   `void`/`uncollectible` when it ended without collecting.
       #
-      #   @return [Symbol, WhopSDK::Models::ReceiptStatus, nil]
-      required :status, enum: -> { WhopSDK::ReceiptStatus }, nil?: true
+      #   @return [Symbol, WhopSDK::Models::ReceiptStatus]
+      required :status, enum: -> { WhopSDK::ReceiptStatus }
 
       # @!attribute substatus
-      #   The friendly status of the payment.
+      #   The dashboard's finer-grained reading of the payment, folding in refunds,
+      #   disputes and Resolution Center cases.
       #
       #   @return [Symbol, WhopSDK::Models::FriendlyReceiptStatus]
       required :substatus, enum: -> { WhopSDK::FriendlyReceiptStatus }
 
       # @!attribute subtotal
-      #   The subtotal to show to the creator (excluding buyer fees).
+      #   The price before discounts, tax and fees.
       #
-      #   @return [Float, nil]
-      required :subtotal, Float, nil?: true
+      #   @return [WhopSDK::Models::Payment::Subtotal, nil]
+      required :subtotal, -> { WhopSDK::Payment::Subtotal }, nil?: true
 
       # @!attribute tax_amount
-      #   The calculated amount of the sales/VAT tax (if applicable).
+      #   The sales tax or VAT collected. Null when no tax applied.
       #
-      #   @return [Float, nil]
-      required :tax_amount, Float, nil?: true
+      #   @return [WhopSDK::Models::Payment::TaxAmount, nil]
+      required :tax_amount, -> { WhopSDK::Payment::TaxAmount }, nil?: true
 
       # @!attribute tax_behavior
       #   The type of tax inclusivity applied to the receipt, for determining whether the
@@ -370,332 +284,271 @@ module WhopSDK
       required :tax_behavior, enum: -> { WhopSDK::ReceiptTaxBehavior }, nil?: true
 
       # @!attribute tax_refunded_amount
-      #   The amount of tax that has been refunded (if applicable).
+      #   How much of the collected tax has been returned to the buyer so far. Zero when
+      #   the payment carried no tax, or when nothing has been refunded.
       #
-      #   @return [Float, nil]
-      required :tax_refunded_amount, Float, nil?: true
+      #   @return [WhopSDK::Models::Payment::TaxRefundedAmount]
+      required :tax_refunded_amount, -> { WhopSDK::Payment::TaxRefundedAmount }
 
       # @!attribute three_ds_verified
-      #   Whether 3D Secure authentication was completed for this payment.
+      #   True when the buyer completed 3D Secure for this payment.
       #
       #   @return [Boolean]
       required :three_ds_verified, WhopSDK::Internal::Type::Boolean
 
       # @!attribute total
-      #   The total to show to the creator (excluding buyer fees).
+      #   The account-facing total: the price after discounts, plus any tax added on top.
+      #   Excludes buyer fees, which the buyer pays above this amount — so this is not
+      #   necessarily what the buyer's statement shows.
       #
-      #   @return [Float, nil]
-      required :total, Float, nil?: true
+      #   @return [WhopSDK::Models::Payment::Total, nil]
+      required :total, -> { WhopSDK::Payment::Total }, nil?: true
 
       # @!attribute updated_at
-      #   The datetime the payment was last updated.
+      #   When the payment last changed, as an ISO 8601 timestamp.
       #
-      #   @return [Time]
-      required :updated_at, Time
+      #   @return [String]
+      required :updated_at, String
 
       # @!attribute usd_total
-      #   The total in USD to show to the creator (excluding buyer fees).
+      #   The total converted to USD at the time of the charge, for reporting across
+      #   currencies. Excludes the adaptive pricing FX markup, which the account does not
+      #   keep.
       #
-      #   @return [Float, nil]
-      required :usd_total, Float, nil?: true
+      #   @return [WhopSDK::Models::Payment::UsdTotal, nil]
+      required :usd_total, -> { WhopSDK::Payment::UsdTotal }, nil?: true
 
       # @!attribute user
-      #   The user that made this payment.
+      #   The buyer. Null when the payment belongs to a company buyer rather than a user.
       #
       #   @return [WhopSDK::Models::Payment::User, nil]
       required :user, -> { WhopSDK::Payment::User }, nil?: true
 
       # @!attribute verification_checks
-      #   The issuer's address and card security code check results for this payment. Null
-      #   when the processor returned none.
+      #   The issuer's address and security code check results, or null when the processor
+      #   returned none.
       #
       #   @return [WhopSDK::Models::Payment::VerificationChecks, nil]
       required :verification_checks, -> { WhopSDK::Payment::VerificationChecks }, nil?: true
 
       # @!attribute voidable
-      #   True when the payment is tied to a membership in `past_due`, the payment status
-      #   is `open`, and the processor allows voiding payments; otherwise false.
+      #   True when the payment is `open` on a past-due membership and its processor
+      #   supports voiding — see `POST /payments/{id}/void`.
       #
       #   @return [Boolean]
       required :voidable, WhopSDK::Internal::Type::Boolean
 
-      # @!method initialize(id:, amount_after_fees:, application_fee:, auto_refunded:, billing_address:, billing_reason:, card_brand:, card_exp_month:, card_exp_year:, card_last4:, checkout_configuration_id:, company:, created_at:, currency:, customer_phone:, decline_code:, dispute_alerted_at:, disputes:, failure_message:, fees:, financing_installments_count:, financing_transactions:, last_payment_attempt:, member:, membership:, metadata:, needs_tracking:, next_payment_attempt:, paid_at:, payment_instrument:, payment_method:, payment_method_type:, payments_failed:, plan:, product:, promo_code:, refundable:, refunded_amount:, refunded_at:, refunds:, resolutions:, retryable:, risk_score:, risk_signals:, settlement_amount:, settlement_currency:, settlement_exchange_rate:, settlement_time_at:, shipment:, shipping_address:, status:, substatus:, subtotal:, tax_amount:, tax_behavior:, tax_refunded_amount:, three_ds_verified:, total:, updated_at:, usd_total:, user:, verification_checks:, voidable:)
+      # @!method initialize(id:, account_id:, amount_after_fees:, auto_refunded:, billing_address:, billing_reason:, checkout_configuration_id:, client_secret:, created_at:, currency:, customer_phone:, decline_code:, dispute_alerted_at:, failure_message:, financing_installments_count:, last_payment_attempt_at:, member_id:, membership_id:, metadata:, needs_tracking:, next_payment_attempt_at:, paid_at:, payment_instrument:, payment_method_id:, payment_method_type:, payments_failed:, plan_id:, product_id:, promo_code_id:, refundable:, refunded_amount:, refunded_at:, retryable:, risk_score:, risk_signals:, settlement_time_at:, shipment_id:, shipping_address:, status:, substatus:, subtotal:, tax_amount:, tax_behavior:, tax_refunded_amount:, three_ds_verified:, total:, updated_at:, usd_total:, user:, verification_checks:, voidable:)
       #   Some parameter documentations has been truncated, see {WhopSDK::Models::Payment}
       #   for more details.
       #
-      #   A payment represents a completed or attempted charge. Payments track the amount,
-      #   status, currency, and payment method used.
+      #   @param id [String] Payment ID, prefixed `pay_`.
       #
-      #   @param id [String] The unique identifier for the payment.
+      #   @param account_id [String, nil] The account that received the payment, prefixed `biz_`.
       #
-      #   @param amount_after_fees [Float] How much the payment is for after fees
+      #   @param amount_after_fees [WhopSDK::Models::Payment::AmountAfterFees] What the account keeps: the total less Whop's fees.
       #
-      #   @param application_fee [WhopSDK::Models::Payment::ApplicationFee, nil] The application fee charged on this payment.
+      #   @param auto_refunded [Boolean] True when Whop refunded the payment automatically, for example on a dispute aler
       #
-      #   @param auto_refunded [Boolean] Whether this payment was auto refunded or not
-      #
-      #   @param billing_address [WhopSDK::Models::Payment::BillingAddress, nil] The address of the user who made the payment.
+      #   @param billing_address [WhopSDK::Models::Payment::BillingAddress, nil] The billing address the buyer entered, or null.
       #
       #   @param billing_reason [Symbol, WhopSDK::Models::BillingReasons, nil] The reason why a specific payment was billed
       #
-      #   @param card_brand [Symbol, WhopSDK::Models::CardBrands, nil] Possible card brands that a payment token can have
+      #   @param checkout_configuration_id [String, nil] The checkout configuration the buyer paid through, prefixed `ch_`, or null.
       #
-      #   @param card_exp_month [Integer, nil] The expiration month (1-12) of the card used for this payment. Falls back to the
+      #   @param client_secret [String, nil] The credential a buyer's surface presents to poll this payment and set its retur
       #
-      #   @param card_exp_year [Integer, nil] The four-digit expiration year of the card used for this payment. Falls back to
+      #   @param created_at [String] When the payment was created, as an ISO 8601 timestamp.
       #
-      #   @param card_last4 [String, nil] The last four digits of the card used to make this payment. Null if the payment
+      #   @param currency [Symbol, WhopSDK::Models::Currency] The currency the payment settles in, lowercase ISO 4217. Every money field below
       #
-      #   @param checkout_configuration_id [String, nil] The ID of the checkout session/configuration that produced this payment, if any.
-      #
-      #   @param company [WhopSDK::Models::Payment::Company, nil] The company for the payment.
-      #
-      #   @param created_at [Time] The datetime the payment was created.
-      #
-      #   @param currency [Symbol, WhopSDK::Models::Currency] The three-letter ISO currency code for this payment (e.g., 'usd', 'eur').
-      #
-      #   @param customer_phone [String, nil] Phone number the customer provided at checkout, or their verified phone number w
+      #   @param customer_phone [String, nil] The phone number the buyer gave at checkout, when one was collected.
       #
       #   @param decline_code [Symbol, WhopSDK::Models::Payment::DeclineCode, nil] The reason a payment was declined.
       #
-      #   @param dispute_alerted_at [Time, nil] When an alert came in that this transaction will be disputed
+      #   @param dispute_alerted_at [String, nil] When an issuer warned that this payment will be disputed, or null.
       #
-      #   @param disputes [Array<WhopSDK::Models::Payment::Dispute>, nil] The disputes attached to this payment. Null if the actor in context does not hav
+      #   @param failure_message [String, nil] Why the most recent attempt failed, in plain words, or null.
       #
-      #   @param failure_message [String, nil] If the payment failed, the reason for the failure.
+      #   @param financing_installments_count [Float, nil] For installment methods, how many payments the charge splits into.
       #
-      #   @param fees [Array<WhopSDK::Models::Payment::Fee>] The fees associated with this specific payment.
+      #   @param last_payment_attempt_at [String, nil] When the most recent charge attempt ran, or null.
       #
-      #   @param financing_installments_count [Integer, nil] The number of financing installments for the payment. Present if the payment is
+      #   @param member_id [String, nil] The buyer's member record on the account, prefixed `mber_`. Null without the mem
       #
-      #   @param financing_transactions [Array<WhopSDK::Models::Payment::FinancingTransaction>] The financing transactions attached to this payment. Present if the payment is a
+      #   @param membership_id [String, nil] The membership this payment is billed against, prefixed `mem_`. Null for one-off
       #
-      #   @param last_payment_attempt [Time, nil] The time of the last payment attempt.
+      #   @param metadata [Object, nil] Your own key-value data attached when the payment was created.
       #
-      #   @param member [WhopSDK::Models::Payment::Member, nil] The member attached to this payment.
+      #   @param needs_tracking [Boolean, nil] True when funds are held until the order ships and no tracking number has been a
       #
-      #   @param membership [WhopSDK::Models::Payment::Membership, nil] The membership attached to this payment.
+      #   @param next_payment_attempt_at [String, nil] When the next automatic retry is scheduled, or null.
       #
-      #   @param metadata [Hash{Symbol=>Object}, nil] The custom metadata stored on this payment. This will be copied over to the chec
+      #   @param paid_at [String, nil] When the money was collected, or null while it has not been.
       #
-      #   @param needs_tracking [Boolean, nil] Whether this payment is holding funds until the order ships and has no tracking
+      #   @param payment_instrument [WhopSDK::Models::Payment::PaymentInstrument, nil] The instrument shaped for display: a buyer-facing name, the standard icon set, a
       #
-      #   @param next_payment_attempt [Time, nil] The time of the next schedule payment retry.
-      #
-      #   @param paid_at [Time, nil] The time at which this payment was successfully collected. Null if the payment h
-      #
-      #   @param payment_instrument [WhopSDK::Models::Payment::PaymentInstrument, nil] The instrument this payment was made with, shaped for display: the method type,
-      #
-      #   @param payment_method [WhopSDK::Models::Payment::PaymentMethod, nil] The tokenized payment method reference used for this payment. Null if no token w
+      #   @param payment_method_id [String, nil] The stored payment method that was charged, prefixed `payt_`. Null when the meth
       #
       #   @param payment_method_type [Symbol, WhopSDK::Models::PaymentMethodTypes, nil] The different types of payment methods that can be used.
       #
-      #   @param payments_failed [Integer, nil] The number of failed payment attempts for the payment.
+      #   @param payments_failed [Float] How many charge attempts have failed on this payment.
       #
-      #   @param plan [WhopSDK::Models::Payment::Plan, nil] The plan attached to this payment.
+      #   @param plan_id [String, nil] The plan that was charged, prefixed `plan_`.
       #
-      #   @param product [WhopSDK::Models::Payment::Product, nil] The product this payment was made for
+      #   @param product_id [String, nil] The product the plan belongs to, prefixed `prod_`. Null for a plan with no produ
       #
-      #   @param promo_code [WhopSDK::Models::Payment::PromoCode, nil] The promo code used for this payment.
+      #   @param promo_code_id [String, nil] The promo code applied at checkout, prefixed `promo_`, or null.
       #
-      #   @param refundable [Boolean] True only for payments that are `paid`, have not been fully refunded, and were p
+      #   @param refundable [Boolean] True when the payment is `paid`, not yet fully refunded, and its processor suppo
       #
-      #   @param refunded_amount [Float, nil] The payment refund amount(if applicable).
+      #   @param refunded_amount [WhopSDK::Models::Payment::RefundedAmount, nil] How much has been refunded so far, as it settled — refunds convert at the rate i
       #
-      #   @param refunded_at [Time, nil] When the payment was refunded (if applicable).
+      #   @param refunded_at [String, nil] When the payment was refunded, or null.
       #
-      #   @param refunds [Array<WhopSDK::Models::Payment::Refund>] The refunds issued against this payment, newest first, including failed and canc
+      #   @param retryable [Boolean] True when the payment is `open` and Whop can attempt the charge again — see `POS
       #
-      #   @param resolutions [Array<WhopSDK::Models::Payment::Resolution>, nil] The resolution center cases opened by the customer on this payment. Null if the
+      #   @param risk_score [Float, nil] Whop's fraud risk score from 0 (lowest) to 100 (highest), or null when the payme
       #
-      #   @param retryable [Boolean] True when the payment status is `open` and its membership is in one of the retry
+      #   @param risk_signals [Object, nil] The factors behind `risk_score`, grouped by category, or null.
       #
-      #   @param risk_score [Integer, nil] Whop's in-house fraud risk score for this payment, from 0 (lowest risk) to 100 (
+      #   @param settlement_time_at [String, nil] When the funds post to the account's available balance, at midnight UTC. The `le
       #
-      #   @param risk_signals [Hash{Symbol=>Object}, nil] A curated set of factors behind the risk score, grouped by category (business tr
+      #   @param shipment_id [String, nil] The shipment fulfilling this payment, prefixed `ship_`. Null when nothing ships
       #
-      #   @param settlement_amount [Float] The total amount charged to the customer for this payment, including taxes and a
+      #   @param shipping_address [WhopSDK::Models::Payment::ShippingAddress, nil] The shipping address for physical goods, or null.
       #
-      #   @param settlement_currency [Symbol, WhopSDK::Models::Currency] The three-letter ISO currency code for this payment (e.g., 'usd', 'eur').
+      #   @param status [Symbol, WhopSDK::Models::ReceiptStatus] The lifecycle state of the charge: `open` while collection is outstanding, `paid
       #
-      #   @param settlement_exchange_rate [Float, nil] Deprecated. Always returns null.
+      #   @param substatus [Symbol, WhopSDK::Models::FriendlyReceiptStatus] The dashboard's finer-grained reading of the payment, folding in refunds, disput
       #
-      #   @param settlement_time_at [Time, nil] When this payment's funds post to the company's available balance, at midnight U
+      #   @param subtotal [WhopSDK::Models::Payment::Subtotal, nil] The price before discounts, tax and fees.
       #
-      #   @param shipment [WhopSDK::Models::Payment::Shipment, nil] The shipment attached to this payment.
-      #
-      #   @param shipping_address [WhopSDK::Models::Payment::ShippingAddress, nil] The shipping address provided by the customer for physical goods. Null if no shi
-      #
-      #   @param status [Symbol, WhopSDK::Models::ReceiptStatus, nil] The status of a receipt
-      #
-      #   @param substatus [Symbol, WhopSDK::Models::FriendlyReceiptStatus] The friendly status of the payment.
-      #
-      #   @param subtotal [Float, nil] The subtotal to show to the creator (excluding buyer fees).
-      #
-      #   @param tax_amount [Float, nil] The calculated amount of the sales/VAT tax (if applicable).
+      #   @param tax_amount [WhopSDK::Models::Payment::TaxAmount, nil] The sales tax or VAT collected. Null when no tax applied.
       #
       #   @param tax_behavior [Symbol, WhopSDK::Models::ReceiptTaxBehavior, nil] The type of tax inclusivity applied to the receipt, for determining whether the
       #
-      #   @param tax_refunded_amount [Float, nil] The amount of tax that has been refunded (if applicable).
+      #   @param tax_refunded_amount [WhopSDK::Models::Payment::TaxRefundedAmount] How much of the collected tax has been returned to the buyer so far. Zero when t
       #
-      #   @param three_ds_verified [Boolean] Whether 3D Secure authentication was completed for this payment.
+      #   @param three_ds_verified [Boolean] True when the buyer completed 3D Secure for this payment.
       #
-      #   @param total [Float, nil] The total to show to the creator (excluding buyer fees).
+      #   @param total [WhopSDK::Models::Payment::Total, nil] The account-facing total: the price after discounts, plus any tax added on top.
       #
-      #   @param updated_at [Time] The datetime the payment was last updated.
+      #   @param updated_at [String] When the payment last changed, as an ISO 8601 timestamp.
       #
-      #   @param usd_total [Float, nil] The total in USD to show to the creator (excluding buyer fees).
+      #   @param usd_total [WhopSDK::Models::Payment::UsdTotal, nil] The total converted to USD at the time of the charge, for reporting across curre
       #
-      #   @param user [WhopSDK::Models::Payment::User, nil] The user that made this payment.
+      #   @param user [WhopSDK::Models::Payment::User, nil] The buyer. Null when the payment belongs to a company buyer rather than a user.
       #
-      #   @param verification_checks [WhopSDK::Models::Payment::VerificationChecks, nil] The issuer's address and card security code check results for this payment. Null
+      #   @param verification_checks [WhopSDK::Models::Payment::VerificationChecks, nil] The issuer's address and security code check results, or null when the processor
       #
-      #   @param voidable [Boolean] True when the payment is tied to a membership in `past_due`, the payment status
+      #   @param voidable [Boolean] True when the payment is `open` on a past-due membership and its processor suppo
 
-      # @see WhopSDK::Models::Payment#application_fee
-      class ApplicationFee < WhopSDK::Internal::Type::BaseModel
-        # @!attribute id
-        #   The unique identifier for the application fee.
+      # @see WhopSDK::Models::Payment#amount_after_fees
+      class AmountAfterFees < WhopSDK::Internal::Type::BaseModel
+        # @!attribute amount
+        #   The amount in major units, as an exact decimal string — `"10.00"` is ten
+        #   dollars. A string so no float rounds it in transit.
         #
         #   @return [String]
-        required :id, String
-
-        # @!attribute amount
-        #   The application fee amount.
-        #
-        #   @return [Float]
-        required :amount, Float
-
-        # @!attribute amount_captured
-        #   The amount of the application fee that has been captured.
-        #
-        #   @return [Float]
-        required :amount_captured, Float
-
-        # @!attribute amount_refunded
-        #   The amount of the application fee that has been refunded.
-        #
-        #   @return [Float]
-        required :amount_refunded, Float
-
-        # @!attribute created_at
-        #   The datetime the application fee was created.
-        #
-        #   @return [Time]
-        required :created_at, Time
+        required :amount, String
 
         # @!attribute currency
-        #   The currency of the application fee.
+        #   Three-letter ISO 4217 currency code, lowercase.
         #
-        #   @return [Symbol, WhopSDK::Models::Currency]
-        required :currency, enum: -> { WhopSDK::Currency }
+        #   @return [String]
+        required :currency, String
 
-        # @!method initialize(id:, amount:, amount_captured:, amount_refunded:, created_at:, currency:)
-        #   The application fee charged on this payment.
+        # @!attribute decimals
+        #   How many decimal places the amount CARRIES — the precision the charge itself
+        #   runs at.
         #
-        #   @param id [String] The unique identifier for the application fee.
+        #   @return [Integer]
+        required :decimals, Integer
+
+        # @!attribute display_decimals
+        #   How many decimal places to SHOW. Usually equal to `decimals`, and deliberately
+        #   not always: COP is charged in centavos but written in whole pesos, so it is `2`
+        #   and `0`. Format the number in your own locale using this.
         #
-        #   @param amount [Float] The application fee amount.
+        #   @return [Integer]
+        required :display_decimals, Integer
+
+        # @!method initialize(amount:, currency:, decimals:, display_decimals:)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::Payment::AmountAfterFees} for more details.
         #
-        #   @param amount_captured [Float] The amount of the application fee that has been captured.
+        #   What the account keeps: the total less Whop's fees.
         #
-        #   @param amount_refunded [Float] The amount of the application fee that has been refunded.
+        #   @param amount [String] The amount in major units, as an exact decimal string — `"10.00"` is ten dollars
         #
-        #   @param created_at [Time] The datetime the application fee was created.
+        #   @param currency [String] Three-letter ISO 4217 currency code, lowercase.
         #
-        #   @param currency [Symbol, WhopSDK::Models::Currency] The currency of the application fee.
+        #   @param decimals [Integer] How many decimal places the amount CARRIES — the precision the charge itself run
+        #
+        #   @param display_decimals [Integer] How many decimal places to SHOW. Usually equal to `decimals`, and deliberately n
       end
 
       # @see WhopSDK::Models::Payment#billing_address
       class BillingAddress < WhopSDK::Internal::Type::BaseModel
         # @!attribute city
-        #   The city of the address.
+        #   The city.
         #
         #   @return [String, nil]
         required :city, String, nil?: true
 
         # @!attribute country
-        #   The country of the address.
+        #   The ISO 3166-1 alpha-2 country code.
         #
         #   @return [String, nil]
         required :country, String, nil?: true
 
         # @!attribute line1
-        #   The line 1 of the address.
+        #   The first street address line.
         #
         #   @return [String, nil]
         required :line1, String, nil?: true
 
         # @!attribute line2
-        #   The line 2 of the address.
+        #   The second street address line.
         #
         #   @return [String, nil]
         required :line2, String, nil?: true
 
         # @!attribute name
-        #   The name of the customer.
+        #   The name on the address.
         #
         #   @return [String, nil]
         required :name, String, nil?: true
 
         # @!attribute postal_code
-        #   The postal code of the address.
+        #   The postal or ZIP code.
         #
         #   @return [String, nil]
         required :postal_code, String, nil?: true
 
         # @!attribute state
-        #   The state of the address.
+        #   The state, province or region.
         #
         #   @return [String, nil]
         required :state, String, nil?: true
 
         # @!method initialize(city:, country:, line1:, line2:, name:, postal_code:, state:)
-        #   The address of the user who made the payment.
+        #   The billing address the buyer entered, or null.
         #
-        #   @param city [String, nil] The city of the address.
+        #   @param city [String, nil] The city.
         #
-        #   @param country [String, nil] The country of the address.
+        #   @param country [String, nil] The ISO 3166-1 alpha-2 country code.
         #
-        #   @param line1 [String, nil] The line 1 of the address.
+        #   @param line1 [String, nil] The first street address line.
         #
-        #   @param line2 [String, nil] The line 2 of the address.
+        #   @param line2 [String, nil] The second street address line.
         #
-        #   @param name [String, nil] The name of the customer.
+        #   @param name [String, nil] The name on the address.
         #
-        #   @param postal_code [String, nil] The postal code of the address.
+        #   @param postal_code [String, nil] The postal or ZIP code.
         #
-        #   @param state [String, nil] The state of the address.
-      end
-
-      # @see WhopSDK::Models::Payment#company
-      class Company < WhopSDK::Internal::Type::BaseModel
-        # @!attribute id
-        #   The unique identifier for the company.
-        #
-        #   @return [String]
-        required :id, String
-
-        # @!attribute route
-        #   The slug/route of the company on the Whop site.
-        #
-        #   @return [String]
-        required :route, String
-
-        # @!attribute title
-        #   The written name of the company.
-        #
-        #   @return [String]
-        required :title, String
-
-        # @!method initialize(id:, route:, title:)
-        #   The company for the payment.
-        #
-        #   @param id [String] The unique identifier for the company.
-        #
-        #   @param route [String] The slug/route of the company on the Whop site.
-        #
-        #   @param title [String] The written name of the company.
+        #   @param state [String, nil] The state, province or region.
       end
 
       # The reason a payment was declined.
@@ -795,304 +648,6 @@ module WhopSDK
         #   @return [Array<Symbol>]
       end
 
-      class Dispute < WhopSDK::Internal::Type::BaseModel
-        # @!attribute id
-        #   The unique identifier for the dispute.
-        #
-        #   @return [String]
-        required :id, String
-
-        # @!attribute amount
-        #   The disputed amount in the specified currency, formatted as a decimal.
-        #
-        #   @return [Float]
-        required :amount, Float
-
-        # @!attribute currency
-        #   The three-letter ISO currency code for the disputed amount.
-        #
-        #   @return [Symbol, WhopSDK::Models::Currency]
-        required :currency, enum: -> { WhopSDK::Currency }
-
-        # @!attribute editable
-        #   Whether the dispute evidence can still be edited and submitted.
-        #
-        #   @return [Boolean, nil]
-        required :editable, WhopSDK::Internal::Type::Boolean, nil?: true
-
-        # @!attribute needs_response_by
-        #   The deadline by which dispute evidence must be submitted. Null if no response
-        #   deadline is set.
-        #
-        #   @return [Time, nil]
-        required :needs_response_by, Time, nil?: true
-
-        # @!attribute notes
-        #   Additional freeform notes submitted by the company as part of the dispute
-        #   evidence.
-        #
-        #   @return [String, nil]
-        required :notes, String, nil?: true
-
-        # @!attribute reason
-        #   A human-readable reason for the dispute.
-        #
-        #   @return [String, nil]
-        required :reason, String, nil?: true
-
-        # @!attribute status
-        #   The current status of the dispute lifecycle, such as needs_response,
-        #   under_review, won, or lost.
-        #
-        #   @return [Symbol, WhopSDK::Models::DisputeStatuses]
-        required :status, enum: -> { WhopSDK::DisputeStatuses }
-
-        # @!method initialize(id:, amount:, currency:, editable:, needs_response_by:, notes:, reason:, status:)
-        #   Some parameter documentations has been truncated, see
-        #   {WhopSDK::Models::Payment::Dispute} for more details.
-        #
-        #   A dispute is a chargeback or payment challenge filed against a company,
-        #   including evidence and response status.
-        #
-        #   @param id [String] The unique identifier for the dispute.
-        #
-        #   @param amount [Float] The disputed amount in the specified currency, formatted as a decimal.
-        #
-        #   @param currency [Symbol, WhopSDK::Models::Currency] The three-letter ISO currency code for the disputed amount.
-        #
-        #   @param editable [Boolean, nil] Whether the dispute evidence can still be edited and submitted.
-        #
-        #   @param needs_response_by [Time, nil] The deadline by which dispute evidence must be submitted. Null if no response de
-        #
-        #   @param notes [String, nil] Additional freeform notes submitted by the company as part of the dispute eviden
-        #
-        #   @param reason [String, nil] A human-readable reason for the dispute.
-        #
-        #   @param status [Symbol, WhopSDK::Models::DisputeStatuses] The current status of the dispute lifecycle, such as needs_response, under_revie
-      end
-
-      class Fee < WhopSDK::Internal::Type::BaseModel
-        # @!attribute amount
-        #   The value or amount to display for the fee.
-        #
-        #   @return [Float]
-        required :amount, Float
-
-        # @!attribute currency
-        #   The currency of the fee.
-        #
-        #   @return [Symbol, WhopSDK::Models::Currency]
-        required :currency, enum: -> { WhopSDK::Currency }
-
-        # @!attribute name
-        #   The label to display for the fee.
-        #
-        #   @return [String]
-        required :name, String
-
-        # @!attribute type
-        #   The specific origin of the fee, if applicable.
-        #
-        #   @return [Symbol, WhopSDK::Models::Payment::Fee::Type]
-        required :type, enum: -> { WhopSDK::Payment::Fee::Type }
-
-        # @!method initialize(amount:, currency:, name:, type:)
-        #   Represents a fee related to a payment
-        #
-        #   @param amount [Float] The value or amount to display for the fee.
-        #
-        #   @param currency [Symbol, WhopSDK::Models::Currency] The currency of the fee.
-        #
-        #   @param name [String] The label to display for the fee.
-        #
-        #   @param type [Symbol, WhopSDK::Models::Payment::Fee::Type] The specific origin of the fee, if applicable.
-
-        # The specific origin of the fee, if applicable.
-        #
-        # @see WhopSDK::Models::Payment::Fee#type
-        module Type
-          extend WhopSDK::Internal::Type::Enum
-
-          STRIPE_DOMESTIC_PROCESSING_FEE = :stripe_domestic_processing_fee
-          STRIPE_INTERNATIONAL_PROCESSING_FEE = :stripe_international_processing_fee
-          STRIPE_FIXED_PROCESSING_FEE = :stripe_fixed_processing_fee
-          STRIPE_BILLING_FEE = :stripe_billing_fee
-          STRIPE_RADAR_FEE = :stripe_radar_fee
-          SALES_TAX_REMITTANCE = :sales_tax_remittance
-          SALES_TAX_REMITTANCE_REVERSAL = :sales_tax_remittance_reversal
-          STRIPE_SALES_TAX_FEE = :stripe_sales_tax_fee
-          WHOP_PROCESSING_FEE = :whop_processing_fee
-          MARKETPLACE_AFFILIATE_FEE = :marketplace_affiliate_fee
-          AFFILIATE_FEE = :affiliate_fee
-          CRYPTO_FEE = :crypto_fee
-          STRIPE_STANDARD_PROCESSING_FEE = :stripe_standard_processing_fee
-          PAYPAL_FEE = :paypal_fee
-          STRIPE_PAYOUT_FEE = :stripe_payout_fee
-          DISPUTE_FEE = :dispute_fee
-          DISPUTE_ALERT_FEE = :dispute_alert_fee
-          APPLE_PROCESSING_FEE = :apple_processing_fee
-          BUYER_FEE = :buyer_fee
-          SEZZLE_PROCESSING_FEE = :sezzle_processing_fee
-          SPLITIT_PROCESSING_FEE = :splitit_processing_fee
-          PLATFORM_BALANCE_PROCESSING_FEE = :platform_balance_processing_fee
-          PAYMENT_PROCESSING_PERCENTAGE_FEE = :payment_processing_percentage_fee
-          PAYMENT_PROCESSING_FIXED_FEE = :payment_processing_fixed_fee
-          CROSS_BORDER_PERCENTAGE_FEE = :cross_border_percentage_fee
-          FX_PERCENTAGE_FEE = :fx_percentage_fee
-          ORCHESTRATION_PERCENTAGE_FEE = :orchestration_percentage_fee
-          THREE_DS_FIXED_FEE = :three_ds_fixed_fee
-          BILLING_PERCENTAGE_FEE = :billing_percentage_fee
-          REVSHARE_PERCENTAGE_FEE = :revshare_percentage_fee
-          APPLICATION_FEE = :application_fee
-          HIGH_RISK_MERCHANT_FEE = :high_risk_merchant_fee
-
-          # @!method self.values
-          #   @return [Array<Symbol>]
-        end
-      end
-
-      class FinancingTransaction < WhopSDK::Internal::Type::BaseModel
-        # @!attribute id
-        #   The unique identifier for the payment transaction.
-        #
-        #   @return [String]
-        required :id, String
-
-        # @!attribute amount
-        #   The amount of the payment transaction.
-        #
-        #   @return [Float]
-        required :amount, Float
-
-        # @!attribute created_at
-        #   The date and time the payment transaction was created.
-        #
-        #   @return [Time]
-        required :created_at, Time
-
-        # @!attribute status
-        #   The status of the payment transaction.
-        #
-        #   @return [Symbol, WhopSDK::Models::Payment::FinancingTransaction::Status]
-        required :status, enum: -> { WhopSDK::Payment::FinancingTransaction::Status }
-
-        # @!attribute transaction_type
-        #   The type of the payment transaction.
-        #
-        #   @return [Symbol, WhopSDK::Models::Payment::FinancingTransaction::TransactionType]
-        required :transaction_type, enum: -> { WhopSDK::Payment::FinancingTransaction::TransactionType }
-
-        # @!method initialize(id:, amount:, created_at:, status:, transaction_type:)
-        #   A payment transaction.
-        #
-        #   @param id [String] The unique identifier for the payment transaction.
-        #
-        #   @param amount [Float] The amount of the payment transaction.
-        #
-        #   @param created_at [Time] The date and time the payment transaction was created.
-        #
-        #   @param status [Symbol, WhopSDK::Models::Payment::FinancingTransaction::Status] The status of the payment transaction.
-        #
-        #   @param transaction_type [Symbol, WhopSDK::Models::Payment::FinancingTransaction::TransactionType] The type of the payment transaction.
-
-        # The status of the payment transaction.
-        #
-        # @see WhopSDK::Models::Payment::FinancingTransaction#status
-        module Status
-          extend WhopSDK::Internal::Type::Enum
-
-          SUCCEEDED = :succeeded
-          DECLINED = :declined
-          ERROR = :error
-          PENDING = :pending
-          CREATED = :created
-          EXPIRED = :expired
-          WON = :won
-          REJECTED = :rejected
-          LOST = :lost
-          PREVENTED = :prevented
-          CANCELED = :canceled
-
-          # @!method self.values
-          #   @return [Array<Symbol>]
-        end
-
-        # The type of the payment transaction.
-        #
-        # @see WhopSDK::Models::Payment::FinancingTransaction#transaction_type
-        module TransactionType
-          extend WhopSDK::Internal::Type::Enum
-
-          PURCHASE = :purchase
-          AUTHORIZE = :authorize
-          CAPTURE = :capture
-          REFUND = :refund
-          CANCELED = :canceled
-          VERIFY = :verify
-          CHARGEBACK = :chargeback
-          PRE_CHARGEBACK = :pre_chargeback
-          THREE_D_SECURE = :three_d_secure
-          FRAUD_SCREENING = :fraud_screening
-          AUTHORIZATION = :authorization
-          INSTALLMENT = :installment
-
-          # @!method self.values
-          #   @return [Array<Symbol>]
-        end
-      end
-
-      # @see WhopSDK::Models::Payment#member
-      class Member < WhopSDK::Internal::Type::BaseModel
-        # @!attribute id
-        #   The unique identifier for the company member.
-        #
-        #   @return [String]
-        required :id, String
-
-        # @!attribute phone
-        #   The phone number for the member, if available.
-        #
-        #   @return [String, nil]
-        required :phone, String, nil?: true
-
-        # @!method initialize(id:, phone:)
-        #   The member attached to this payment.
-        #
-        #   @param id [String] The unique identifier for the company member.
-        #
-        #   @param phone [String, nil] The phone number for the member, if available.
-      end
-
-      # @see WhopSDK::Models::Payment#membership
-      class Membership < WhopSDK::Internal::Type::BaseModel
-        # @!attribute id
-        #   The unique identifier for the membership.
-        #
-        #   @return [String]
-        required :id, String
-
-        # @!attribute phone_number
-        #   The phone number associated with this membership.
-        #
-        #   @return [String, nil]
-        required :phone_number, String, nil?: true
-
-        # @!attribute status
-        #   The state of the membership.
-        #
-        #   @return [Symbol, WhopSDK::Models::MembershipStatus]
-        required :status, enum: -> { WhopSDK::MembershipStatus }
-
-        # @!method initialize(id:, phone_number:, status:)
-        #   The membership attached to this payment.
-        #
-        #   @param id [String] The unique identifier for the membership.
-        #
-        #   @param phone_number [String, nil] The phone number associated with this membership.
-        #
-        #   @param status [Symbol, WhopSDK::Models::MembershipStatus] The state of the membership.
-      end
-
       # @see WhopSDK::Models::Payment#payment_instrument
       class PaymentInstrument < WhopSDK::Internal::Type::BaseModel
         # @!attribute card
@@ -1118,8 +673,8 @@ module WhopSDK
         #   Installment methods only: how many payments the charge splits into. Data, not
         #   copy — compose and translate the label client-side.
         #
-        #   @return [Integer, nil]
-        required :installment_count, Integer, nil?: true
+        #   @return [Float, nil]
+        required :installment_count, Float, nil?: true
 
         # @!attribute payment_method_type
         #   The payment method type identifier, e.g. `card`, `klarna`, `apple_pay`.
@@ -1131,9 +686,8 @@ module WhopSDK
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::Payment::PaymentInstrument} for more details.
         #
-        #   The instrument this payment was made with, shaped for display: the method type,
-        #   a buyer-facing name, the standard icon set, and the card facts when it was a
-        #   card. Null when the receipt names no payment method.
+        #   The instrument shaped for display: a buyer-facing name, the standard icon set,
+        #   and the card's brand and last four when it was a card.
         #
         #   @param card [WhopSDK::Models::Payment::PaymentInstrument::Card, nil] Card payments only: the card's network and last four.
         #
@@ -1141,7 +695,7 @@ module WhopSDK
         #
         #   @param icons [WhopSDK::Models::Payment::PaymentInstrument::Icons] The standard icon set: square and card shapes, each in light and dark colorways.
         #
-        #   @param installment_count [Integer, nil] Installment methods only: how many payments the charge splits into. Data, not co
+        #   @param installment_count [Float, nil] Installment methods only: how many payments the charge splits into. Data, not co
         #
         #   @param payment_method_type [String] The payment method type identifier, e.g. `card`, `klarna`, `apple_pay`.
 
@@ -1390,557 +944,428 @@ module WhopSDK
         end
       end
 
-      # @see WhopSDK::Models::Payment#payment_method
-      class PaymentMethod < WhopSDK::Internal::Type::BaseModel
-        # @!attribute id
-        #   The unique identifier for the payment token.
-        #
-        #   @return [String]
-        required :id, String
-
-        # @!attribute card
-        #   The card data associated with the payment method, if its a debit or credit card.
-        #
-        #   @return [WhopSDK::Models::Payment::PaymentMethod::Card, nil]
-        required :card, -> { WhopSDK::Payment::PaymentMethod::Card }, nil?: true
-
-        # @!attribute created_at
-        #   The datetime the payment token was created.
-        #
-        #   @return [Time]
-        required :created_at, Time
-
-        # @!attribute payment_method_type
-        #   The payment method type of the payment method
-        #
-        #   @return [Symbol, WhopSDK::Models::PaymentMethodTypes]
-        required :payment_method_type, enum: -> { WhopSDK::PaymentMethodTypes }
-
-        # @!method initialize(id:, card:, created_at:, payment_method_type:)
-        #   Some parameter documentations has been truncated, see
-        #   {WhopSDK::Models::Payment::PaymentMethod} for more details.
-        #
-        #   The tokenized payment method reference used for this payment. Null if no token
-        #   was used.
-        #
-        #   @param id [String] The unique identifier for the payment token.
-        #
-        #   @param card [WhopSDK::Models::Payment::PaymentMethod::Card, nil] The card data associated with the payment method, if its a debit or credit card.
-        #
-        #   @param created_at [Time] The datetime the payment token was created.
-        #
-        #   @param payment_method_type [Symbol, WhopSDK::Models::PaymentMethodTypes] The payment method type of the payment method
-
-        # @see WhopSDK::Models::Payment::PaymentMethod#card
-        class Card < WhopSDK::Internal::Type::BaseModel
-          # @!attribute brand
-          #   Possible card brands that a payment token can have
-          #
-          #   @return [Symbol, WhopSDK::Models::CardBrands, nil]
-          required :brand, enum: -> { WhopSDK::CardBrands }, nil?: true
-
-          # @!attribute exp_month
-          #   The two-digit expiration month of the card (1-12). Null if not available.
-          #
-          #   @return [Integer, nil]
-          required :exp_month, Integer, nil?: true
-
-          # @!attribute exp_year
-          #   The two-digit expiration year of the card (e.g., 27 for 2027). Null if not
-          #   available.
-          #
-          #   @return [Integer, nil]
-          required :exp_year, Integer, nil?: true
-
-          # @!attribute fingerprint
-          #   A stable identifier for the underlying card. Two payment methods with the same
-          #   fingerprint are the same card. Null if not available.
-          #
-          #   @return [String, nil]
-          required :fingerprint, String, nil?: true
-
-          # @!attribute last4
-          #   The last four digits of the card number. Null if not available.
-          #
-          #   @return [String, nil]
-          required :last4, String, nil?: true
-
-          # @!method initialize(brand:, exp_month:, exp_year:, fingerprint:, last4:)
-          #   Some parameter documentations has been truncated, see
-          #   {WhopSDK::Models::Payment::PaymentMethod::Card} for more details.
-          #
-          #   The card data associated with the payment method, if its a debit or credit card.
-          #
-          #   @param brand [Symbol, WhopSDK::Models::CardBrands, nil] Possible card brands that a payment token can have
-          #
-          #   @param exp_month [Integer, nil] The two-digit expiration month of the card (1-12). Null if not available.
-          #
-          #   @param exp_year [Integer, nil] The two-digit expiration year of the card (e.g., 27 for 2027). Null if not avail
-          #
-          #   @param fingerprint [String, nil] A stable identifier for the underlying card. Two payment methods with the same f
-          #
-          #   @param last4 [String, nil] The last four digits of the card number. Null if not available.
-        end
-      end
-
-      # @see WhopSDK::Models::Payment#plan
-      class Plan < WhopSDK::Internal::Type::BaseModel
-        # @!attribute id
-        #   The unique identifier for the plan.
-        #
-        #   @return [String]
-        required :id, String
-
-        # @!attribute internal_notes
-        #   A personal description or notes section for the business.
-        #
-        #   @return [String, nil]
-        required :internal_notes, String, nil?: true
-
-        # @!attribute metadata
-        #   Custom key-value pairs stored on the plan. Included in webhook payloads for
-        #   payment and membership events. Max 50 keys, 100 chars per key, 500 chars per
-        #   string value. The reserved keys `custom_cta` and `custom_cta_url`, when set,
-        #   override the product's checkout call to action for this plan.
-        #
-        #   @return [Hash{Symbol=>Object}, nil]
-        required :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown], nil?: true
-
-        # @!method initialize(id:, internal_notes:, metadata:)
-        #   Some parameter documentations has been truncated, see
-        #   {WhopSDK::Models::Payment::Plan} for more details.
-        #
-        #   The plan attached to this payment.
-        #
-        #   @param id [String] The unique identifier for the plan.
-        #
-        #   @param internal_notes [String, nil] A personal description or notes section for the business.
-        #
-        #   @param metadata [Hash{Symbol=>Object}, nil] Custom key-value pairs stored on the plan. Included in webhook payloads for paym
-      end
-
-      # @see WhopSDK::Models::Payment#product
-      class Product < WhopSDK::Internal::Type::BaseModel
-        # @!attribute id
-        #   The unique identifier for the product.
-        #
-        #   @return [String]
-        required :id, String
-
-        # @!attribute metadata
-        #   Custom key-value pairs stored on the product and included in payment and
-        #   membership webhook payloads. Max 50 keys, 100 characters per key, 500 characters
-        #   per string value.
-        #
-        #   @return [Hash{Symbol=>Object}, nil]
-        required :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown], nil?: true
-
-        # @!attribute route
-        #   URL slug in the product's public link, e.g. `pickaxe-analytics` in
-        #   whop.com/company/pickaxe-analytics.
-        #
-        #   @return [String]
-        required :route, String
-
-        # @!attribute title
-        #   The display name of the product shown to customers on the product page and in
-        #   search results.
-        #
-        #   @return [String]
-        required :title, String
-
-        # @!method initialize(id:, metadata:, route:, title:)
-        #   Some parameter documentations has been truncated, see
-        #   {WhopSDK::Models::Payment::Product} for more details.
-        #
-        #   The product this payment was made for
-        #
-        #   @param id [String] The unique identifier for the product.
-        #
-        #   @param metadata [Hash{Symbol=>Object}, nil] Custom key-value pairs stored on the product and included in payment and members
-        #
-        #   @param route [String] URL slug in the product's public link, e.g. `pickaxe-analytics` in whop.com/comp
-        #
-        #   @param title [String] The display name of the product shown to customers on the product page and in se
-      end
-
-      # @see WhopSDK::Models::Payment#promo_code
-      class PromoCode < WhopSDK::Internal::Type::BaseModel
-        # @!attribute id
-        #   The unique identifier for the promo code.
-        #
-        #   @return [String]
-        required :id, String
-
-        # @!attribute amount_off
-        #   The discount amount. Interpretation depends on promo_type: if 'percentage', this
-        #   is the percentage (e.g., 20 means 20% off); if 'flat_amount', this is dollars
-        #   off (e.g., 10.00 means $10.00 off).
-        #
-        #   @return [Float]
-        required :amount_off, Float
-
-        # @!attribute base_currency
-        #   The monetary currency of the promo code.
-        #
-        #   @return [Symbol, WhopSDK::Models::Currency]
-        required :base_currency, enum: -> { WhopSDK::Currency }
-
-        # @!attribute code
-        #   The specific code used to apply the promo at checkout.
-        #
-        #   @return [String, nil]
-        required :code, String, nil?: true
-
-        # @!attribute number_of_intervals
-        #   The number of months the promo is applied for.
-        #
-        #   @return [Integer, nil]
-        required :number_of_intervals, Integer, nil?: true
-
-        # @!attribute promo_type
-        #   The type (% or flat amount) of the promo.
-        #
-        #   @return [Symbol, WhopSDK::Models::PromoType]
-        required :promo_type, enum: -> { WhopSDK::PromoType }
-
-        # @!method initialize(id:, amount_off:, base_currency:, code:, number_of_intervals:, promo_type:)
-        #   Some parameter documentations has been truncated, see
-        #   {WhopSDK::Models::Payment::PromoCode} for more details.
-        #
-        #   The promo code used for this payment.
-        #
-        #   @param id [String] The unique identifier for the promo code.
-        #
-        #   @param amount_off [Float] The discount amount. Interpretation depends on promo_type: if 'percentage', this
-        #
-        #   @param base_currency [Symbol, WhopSDK::Models::Currency] The monetary currency of the promo code.
-        #
-        #   @param code [String, nil] The specific code used to apply the promo at checkout.
-        #
-        #   @param number_of_intervals [Integer, nil] The number of months the promo is applied for.
-        #
-        #   @param promo_type [Symbol, WhopSDK::Models::PromoType] The type (% or flat amount) of the promo.
-      end
-
-      class Refund < WhopSDK::Internal::Type::BaseModel
-        # @!attribute id
-        #   The unique identifier for the refund.
-        #
-        #   @return [String]
-        required :id, String
-
+      # @see WhopSDK::Models::Payment#refunded_amount
+      class RefundedAmount < WhopSDK::Internal::Type::BaseModel
         # @!attribute amount
-        #   The refunded amount as a decimal in the specified currency, such as 10.43 for
-        #   $10.43 USD.
+        #   The amount in major units, as an exact decimal string — `"10.00"` is ten
+        #   dollars. A string so no float rounds it in transit.
         #
-        #   @return [Float]
-        required :amount, Float
-
-        # @!attribute created_at
-        #   The datetime the refund was created.
-        #
-        #   @return [Time]
-        required :created_at, Time
+        #   @return [String]
+        required :amount, String
 
         # @!attribute currency
-        #   The three-letter ISO currency code for the refunded amount.
+        #   Three-letter ISO 4217 currency code, lowercase.
         #
-        #   @return [Symbol, WhopSDK::Models::Currency]
-        required :currency, enum: -> { WhopSDK::Currency }
+        #   @return [String]
+        required :currency, String
 
-        # @!attribute status
-        #   The current processing status of the refund, such as pending, succeeded, or
-        #   failed.
+        # @!attribute decimals
+        #   How many decimal places the amount CARRIES — the precision the charge itself
+        #   runs at.
         #
-        #   @return [Symbol, WhopSDK::Models::RefundStatus]
-        required :status, enum: -> { WhopSDK::RefundStatus }
+        #   @return [Integer]
+        required :decimals, Integer
 
-        # @!method initialize(id:, amount:, created_at:, currency:, status:)
+        # @!attribute display_decimals
+        #   How many decimal places to SHOW. Usually equal to `decimals`, and deliberately
+        #   not always: COP is charged in centavos but written in whole pesos, so it is `2`
+        #   and `0`. Format the number in your own locale using this.
+        #
+        #   @return [Integer]
+        required :display_decimals, Integer
+
+        # @!method initialize(amount:, currency:, decimals:, display_decimals:)
         #   Some parameter documentations has been truncated, see
-        #   {WhopSDK::Models::Payment::Refund} for more details.
+        #   {WhopSDK::Models::Payment::RefundedAmount} for more details.
         #
-        #   A refund represents a full or partial reversal of a payment, including the
-        #   amount, status, and payment provider.
+        #   How much has been refunded so far, as it settled — refunds convert at the rate
+        #   in force when each one was issued, not the payment's original rate.
         #
-        #   @param id [String] The unique identifier for the refund.
+        #   @param amount [String] The amount in major units, as an exact decimal string — `"10.00"` is ten dollars
         #
-        #   @param amount [Float] The refunded amount as a decimal in the specified currency, such as 10.43 for $1
+        #   @param currency [String] Three-letter ISO 4217 currency code, lowercase.
         #
-        #   @param created_at [Time] The datetime the refund was created.
+        #   @param decimals [Integer] How many decimal places the amount CARRIES — the precision the charge itself run
         #
-        #   @param currency [Symbol, WhopSDK::Models::Currency] The three-letter ISO currency code for the refunded amount.
-        #
-        #   @param status [Symbol, WhopSDK::Models::RefundStatus] The current processing status of the refund, such as pending, succeeded, or fail
-      end
-
-      class Resolution < WhopSDK::Internal::Type::BaseModel
-        # @!attribute id
-        #   The unique identifier for the resolution.
-        #
-        #   @return [String]
-        required :id, String
-
-        # @!attribute customer_appealed
-        #   Whether the customer has filed an appeal after the initial resolution decision.
-        #
-        #   @return [Boolean]
-        required :customer_appealed, WhopSDK::Internal::Type::Boolean
-
-        # @!attribute customer_response_actions
-        #   The list of actions currently available to the customer.
-        #
-        #   @return [Array<Symbol, WhopSDK::Models::ResolutionCenterCaseCustomerResponse>]
-        required :customer_response_actions,
-                 -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::ResolutionCenterCaseCustomerResponse] }
-
-        # @!attribute due_date
-        #   The deadline by which the next response is required. Null if no deadline is
-        #   currently active. As a Unix timestamp.
-        #
-        #   @return [Time, nil]
-        required :due_date, Time, nil?: true
-
-        # @!attribute issue
-        #   The category of the dispute.
-        #
-        #   @return [Symbol, WhopSDK::Models::ResolutionCenterCaseIssueType]
-        required :issue, enum: -> { WhopSDK::ResolutionCenterCaseIssueType }
-
-        # @!attribute merchant_appealed
-        #   Whether the merchant has filed an appeal after the initial resolution decision.
-        #
-        #   @return [Boolean]
-        required :merchant_appealed, WhopSDK::Internal::Type::Boolean
-
-        # @!attribute merchant_response_actions
-        #   The list of actions currently available to the merchant.
-        #
-        #   @return [Array<Symbol, WhopSDK::Models::ResolutionCenterCaseMerchantResponse>]
-        required :merchant_response_actions,
-                 -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::ResolutionCenterCaseMerchantResponse] }
-
-        # @!attribute platform_response_actions
-        #   The list of actions currently available to the Whop platform for moderating this
-        #   resolution.
-        #
-        #   @return [Array<Symbol, WhopSDK::Models::ResolutionCenterCasePlatformResponse>]
-        required :platform_response_actions,
-                 -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::ResolutionCenterCasePlatformResponse] }
-
-        # @!attribute status
-        #   The current status of the resolution case, indicating which party needs to
-        #   respond or if the case is closed.
-        #
-        #   @return [Symbol, WhopSDK::Models::ResolutionCenterCaseStatus]
-        required :status, enum: -> { WhopSDK::ResolutionCenterCaseStatus }
-
-        # @!method initialize(id:, customer_appealed:, customer_response_actions:, due_date:, issue:, merchant_appealed:, merchant_response_actions:, platform_response_actions:, status:)
-        #   Some parameter documentations has been truncated, see
-        #   {WhopSDK::Models::Payment::Resolution} for more details.
-        #
-        #   A resolution center case is a dispute or support case between a user and a
-        #   company, tracking the issue, status, and outcome.
-        #
-        #   @param id [String] The unique identifier for the resolution.
-        #
-        #   @param customer_appealed [Boolean] Whether the customer has filed an appeal after the initial resolution decision.
-        #
-        #   @param customer_response_actions [Array<Symbol, WhopSDK::Models::ResolutionCenterCaseCustomerResponse>] The list of actions currently available to the customer.
-        #
-        #   @param due_date [Time, nil] The deadline by which the next response is required. Null if no deadline is curr
-        #
-        #   @param issue [Symbol, WhopSDK::Models::ResolutionCenterCaseIssueType] The category of the dispute.
-        #
-        #   @param merchant_appealed [Boolean] Whether the merchant has filed an appeal after the initial resolution decision.
-        #
-        #   @param merchant_response_actions [Array<Symbol, WhopSDK::Models::ResolutionCenterCaseMerchantResponse>] The list of actions currently available to the merchant.
-        #
-        #   @param platform_response_actions [Array<Symbol, WhopSDK::Models::ResolutionCenterCasePlatformResponse>] The list of actions currently available to the Whop platform for moderating this
-        #
-        #   @param status [Symbol, WhopSDK::Models::ResolutionCenterCaseStatus] The current status of the resolution case, indicating which party needs to respo
-      end
-
-      # @see WhopSDK::Models::Payment#shipment
-      class Shipment < WhopSDK::Internal::Type::BaseModel
-        # @!attribute id
-        #   The unique identifier for the shipment.
-        #
-        #   @return [String]
-        required :id, String
-
-        # @!attribute carrier
-        #   The shipping carrier detected for this shipment. Null until a tracking update
-        #   identifies it.
-        #
-        #   @return [String, nil]
-        required :carrier, String, nil?: true
-
-        # @!attribute status
-        #   The current delivery status of this shipment.
-        #
-        #   @return [Symbol, WhopSDK::Models::ShipmentStatus]
-        required :status, enum: -> { WhopSDK::ShipmentStatus }
-
-        # @!attribute tracking_number
-        #   The carrier-assigned tracking number used to look up shipment progress.
-        #
-        #   @return [String]
-        required :tracking_number, String
-
-        # @!attribute tracking_url
-        #   A customer-facing URL to track this shipment's progress.
-        #
-        #   @return [String]
-        required :tracking_url, String
-
-        # @!method initialize(id:, carrier:, status:, tracking_number:, tracking_url:)
-        #   Some parameter documentations has been truncated, see
-        #   {WhopSDK::Models::Payment::Shipment} for more details.
-        #
-        #   The shipment attached to this payment.
-        #
-        #   @param id [String] The unique identifier for the shipment.
-        #
-        #   @param carrier [String, nil] The shipping carrier detected for this shipment. Null until a tracking update id
-        #
-        #   @param status [Symbol, WhopSDK::Models::ShipmentStatus] The current delivery status of this shipment.
-        #
-        #   @param tracking_number [String] The carrier-assigned tracking number used to look up shipment progress.
-        #
-        #   @param tracking_url [String] A customer-facing URL to track this shipment's progress.
+        #   @param display_decimals [Integer] How many decimal places to SHOW. Usually equal to `decimals`, and deliberately n
       end
 
       # @see WhopSDK::Models::Payment#shipping_address
       class ShippingAddress < WhopSDK::Internal::Type::BaseModel
         # @!attribute city
-        #   The city of the address.
+        #   The city.
         #
         #   @return [String, nil]
         required :city, String, nil?: true
 
         # @!attribute country
-        #   The country of the address.
+        #   The ISO 3166-1 alpha-2 country code.
         #
         #   @return [String, nil]
         required :country, String, nil?: true
 
         # @!attribute line1
-        #   The line 1 of the address.
+        #   The first street address line.
         #
         #   @return [String, nil]
         required :line1, String, nil?: true
 
         # @!attribute line2
-        #   The line 2 of the address.
+        #   The second street address line.
         #
         #   @return [String, nil]
         required :line2, String, nil?: true
 
         # @!attribute name
-        #   The name of the customer.
+        #   The name on the address.
         #
         #   @return [String, nil]
         required :name, String, nil?: true
 
         # @!attribute postal_code
-        #   The postal code of the address.
+        #   The postal or ZIP code.
         #
         #   @return [String, nil]
         required :postal_code, String, nil?: true
 
         # @!attribute state
-        #   The state of the address.
+        #   The state, province or region.
         #
         #   @return [String, nil]
         required :state, String, nil?: true
 
         # @!method initialize(city:, country:, line1:, line2:, name:, postal_code:, state:)
-        #   The shipping address provided by the customer for physical goods. Null if no
-        #   shipping address was collected.
+        #   The shipping address for physical goods, or null.
         #
-        #   @param city [String, nil] The city of the address.
+        #   @param city [String, nil] The city.
         #
-        #   @param country [String, nil] The country of the address.
+        #   @param country [String, nil] The ISO 3166-1 alpha-2 country code.
         #
-        #   @param line1 [String, nil] The line 1 of the address.
+        #   @param line1 [String, nil] The first street address line.
         #
-        #   @param line2 [String, nil] The line 2 of the address.
+        #   @param line2 [String, nil] The second street address line.
         #
-        #   @param name [String, nil] The name of the customer.
+        #   @param name [String, nil] The name on the address.
         #
-        #   @param postal_code [String, nil] The postal code of the address.
+        #   @param postal_code [String, nil] The postal or ZIP code.
         #
-        #   @param state [String, nil] The state of the address.
+        #   @param state [String, nil] The state, province or region.
+      end
+
+      # @see WhopSDK::Models::Payment#subtotal
+      class Subtotal < WhopSDK::Internal::Type::BaseModel
+        # @!attribute amount
+        #   The amount in major units, as an exact decimal string — `"10.00"` is ten
+        #   dollars. A string so no float rounds it in transit.
+        #
+        #   @return [String]
+        required :amount, String
+
+        # @!attribute currency
+        #   Three-letter ISO 4217 currency code, lowercase.
+        #
+        #   @return [String]
+        required :currency, String
+
+        # @!attribute decimals
+        #   How many decimal places the amount CARRIES — the precision the charge itself
+        #   runs at.
+        #
+        #   @return [Integer]
+        required :decimals, Integer
+
+        # @!attribute display_decimals
+        #   How many decimal places to SHOW. Usually equal to `decimals`, and deliberately
+        #   not always: COP is charged in centavos but written in whole pesos, so it is `2`
+        #   and `0`. Format the number in your own locale using this.
+        #
+        #   @return [Integer]
+        required :display_decimals, Integer
+
+        # @!method initialize(amount:, currency:, decimals:, display_decimals:)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::Payment::Subtotal} for more details.
+        #
+        #   The price before discounts, tax and fees.
+        #
+        #   @param amount [String] The amount in major units, as an exact decimal string — `"10.00"` is ten dollars
+        #
+        #   @param currency [String] Three-letter ISO 4217 currency code, lowercase.
+        #
+        #   @param decimals [Integer] How many decimal places the amount CARRIES — the precision the charge itself run
+        #
+        #   @param display_decimals [Integer] How many decimal places to SHOW. Usually equal to `decimals`, and deliberately n
+      end
+
+      # @see WhopSDK::Models::Payment#tax_amount
+      class TaxAmount < WhopSDK::Internal::Type::BaseModel
+        # @!attribute amount
+        #   The amount in major units, as an exact decimal string — `"10.00"` is ten
+        #   dollars. A string so no float rounds it in transit.
+        #
+        #   @return [String]
+        required :amount, String
+
+        # @!attribute currency
+        #   Three-letter ISO 4217 currency code, lowercase.
+        #
+        #   @return [String]
+        required :currency, String
+
+        # @!attribute decimals
+        #   How many decimal places the amount CARRIES — the precision the charge itself
+        #   runs at.
+        #
+        #   @return [Integer]
+        required :decimals, Integer
+
+        # @!attribute display_decimals
+        #   How many decimal places to SHOW. Usually equal to `decimals`, and deliberately
+        #   not always: COP is charged in centavos but written in whole pesos, so it is `2`
+        #   and `0`. Format the number in your own locale using this.
+        #
+        #   @return [Integer]
+        required :display_decimals, Integer
+
+        # @!method initialize(amount:, currency:, decimals:, display_decimals:)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::Payment::TaxAmount} for more details.
+        #
+        #   The sales tax or VAT collected. Null when no tax applied.
+        #
+        #   @param amount [String] The amount in major units, as an exact decimal string — `"10.00"` is ten dollars
+        #
+        #   @param currency [String] Three-letter ISO 4217 currency code, lowercase.
+        #
+        #   @param decimals [Integer] How many decimal places the amount CARRIES — the precision the charge itself run
+        #
+        #   @param display_decimals [Integer] How many decimal places to SHOW. Usually equal to `decimals`, and deliberately n
+      end
+
+      # @see WhopSDK::Models::Payment#tax_refunded_amount
+      class TaxRefundedAmount < WhopSDK::Internal::Type::BaseModel
+        # @!attribute amount
+        #   The amount in major units, as an exact decimal string — `"10.00"` is ten
+        #   dollars. A string so no float rounds it in transit.
+        #
+        #   @return [String]
+        required :amount, String
+
+        # @!attribute currency
+        #   Three-letter ISO 4217 currency code, lowercase.
+        #
+        #   @return [String]
+        required :currency, String
+
+        # @!attribute decimals
+        #   How many decimal places the amount CARRIES — the precision the charge itself
+        #   runs at.
+        #
+        #   @return [Integer]
+        required :decimals, Integer
+
+        # @!attribute display_decimals
+        #   How many decimal places to SHOW. Usually equal to `decimals`, and deliberately
+        #   not always: COP is charged in centavos but written in whole pesos, so it is `2`
+        #   and `0`. Format the number in your own locale using this.
+        #
+        #   @return [Integer]
+        required :display_decimals, Integer
+
+        # @!method initialize(amount:, currency:, decimals:, display_decimals:)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::Payment::TaxRefundedAmount} for more details.
+        #
+        #   How much of the collected tax has been returned to the buyer so far. Zero when
+        #   the payment carried no tax, or when nothing has been refunded.
+        #
+        #   @param amount [String] The amount in major units, as an exact decimal string — `"10.00"` is ten dollars
+        #
+        #   @param currency [String] Three-letter ISO 4217 currency code, lowercase.
+        #
+        #   @param decimals [Integer] How many decimal places the amount CARRIES — the precision the charge itself run
+        #
+        #   @param display_decimals [Integer] How many decimal places to SHOW. Usually equal to `decimals`, and deliberately n
+      end
+
+      # @see WhopSDK::Models::Payment#total
+      class Total < WhopSDK::Internal::Type::BaseModel
+        # @!attribute amount
+        #   The amount in major units, as an exact decimal string — `"10.00"` is ten
+        #   dollars. A string so no float rounds it in transit.
+        #
+        #   @return [String]
+        required :amount, String
+
+        # @!attribute currency
+        #   Three-letter ISO 4217 currency code, lowercase.
+        #
+        #   @return [String]
+        required :currency, String
+
+        # @!attribute decimals
+        #   How many decimal places the amount CARRIES — the precision the charge itself
+        #   runs at.
+        #
+        #   @return [Integer]
+        required :decimals, Integer
+
+        # @!attribute display_decimals
+        #   How many decimal places to SHOW. Usually equal to `decimals`, and deliberately
+        #   not always: COP is charged in centavos but written in whole pesos, so it is `2`
+        #   and `0`. Format the number in your own locale using this.
+        #
+        #   @return [Integer]
+        required :display_decimals, Integer
+
+        # @!method initialize(amount:, currency:, decimals:, display_decimals:)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::Payment::Total} for more details.
+        #
+        #   The account-facing total: the price after discounts, plus any tax added on top.
+        #   Excludes buyer fees, which the buyer pays above this amount — so this is not
+        #   necessarily what the buyer's statement shows.
+        #
+        #   @param amount [String] The amount in major units, as an exact decimal string — `"10.00"` is ten dollars
+        #
+        #   @param currency [String] Three-letter ISO 4217 currency code, lowercase.
+        #
+        #   @param decimals [Integer] How many decimal places the amount CARRIES — the precision the charge itself run
+        #
+        #   @param display_decimals [Integer] How many decimal places to SHOW. Usually equal to `decimals`, and deliberately n
+      end
+
+      # @see WhopSDK::Models::Payment#usd_total
+      class UsdTotal < WhopSDK::Internal::Type::BaseModel
+        # @!attribute amount
+        #   The amount in major units, as an exact decimal string — `"10.00"` is ten
+        #   dollars. A string so no float rounds it in transit.
+        #
+        #   @return [String]
+        required :amount, String
+
+        # @!attribute currency
+        #   Three-letter ISO 4217 currency code, lowercase.
+        #
+        #   @return [String]
+        required :currency, String
+
+        # @!attribute decimals
+        #   How many decimal places the amount CARRIES — the precision the charge itself
+        #   runs at.
+        #
+        #   @return [Integer]
+        required :decimals, Integer
+
+        # @!attribute display_decimals
+        #   How many decimal places to SHOW. Usually equal to `decimals`, and deliberately
+        #   not always: COP is charged in centavos but written in whole pesos, so it is `2`
+        #   and `0`. Format the number in your own locale using this.
+        #
+        #   @return [Integer]
+        required :display_decimals, Integer
+
+        # @!method initialize(amount:, currency:, decimals:, display_decimals:)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::Payment::UsdTotal} for more details.
+        #
+        #   The total converted to USD at the time of the charge, for reporting across
+        #   currencies. Excludes the adaptive pricing FX markup, which the account does not
+        #   keep.
+        #
+        #   @param amount [String] The amount in major units, as an exact decimal string — `"10.00"` is ten dollars
+        #
+        #   @param currency [String] Three-letter ISO 4217 currency code, lowercase.
+        #
+        #   @param decimals [Integer] How many decimal places the amount CARRIES — the precision the charge itself run
+        #
+        #   @param display_decimals [Integer] How many decimal places to SHOW. Usually equal to `decimals`, and deliberately n
       end
 
       # @see WhopSDK::Models::Payment#user
       class User < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The unique identifier for the user.
+        #   User ID, prefixed `user_`.
         #
         #   @return [String]
         required :id, String
 
-        # @!attribute email
-        #   The user's email address. Requires the member:email:read permission to access.
-        #   Null if not authorized.
-        #
-        #   @return [String, nil]
-        required :email, String, nil?: true
-
         # @!attribute name
-        #   The user's display name shown on their public profile.
+        #   Display name.
         #
         #   @return [String, nil]
         required :name, String, nil?: true
 
+        # @!attribute profile_picture
+        #   Avatar wrapper; its `url` is always present, using a generated placeholder when
+        #   the user set no picture.
+        #
+        #   @return [WhopSDK::Models::Payment::User::ProfilePicture]
+        required :profile_picture, -> { WhopSDK::Payment::User::ProfilePicture }
+
         # @!attribute username
-        #   The user's unique username shown on their public profile.
+        #   Public username.
         #
         #   @return [String]
         required :username, String
 
-        # @!method initialize(id:, email:, name:, username:)
+        # @!method initialize(id:, name:, profile_picture:, username:)
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::Payment::User} for more details.
         #
-        #   The user that made this payment.
+        #   The buyer. Null when the payment belongs to a company buyer rather than a user.
         #
-        #   @param id [String] The unique identifier for the user.
+        #   @param id [String] User ID, prefixed `user_`.
         #
-        #   @param email [String, nil] The user's email address. Requires the member:email:read permission to access. N
+        #   @param name [String, nil] Display name.
         #
-        #   @param name [String, nil] The user's display name shown on their public profile.
+        #   @param profile_picture [WhopSDK::Models::Payment::User::ProfilePicture] Avatar wrapper; its `url` is always present, using a generated placeholder when
         #
-        #   @param username [String] The user's unique username shown on their public profile.
+        #   @param username [String] Public username.
+
+        # @see WhopSDK::Models::Payment::User#profile_picture
+        class ProfilePicture < WhopSDK::Internal::Type::BaseModel
+          # @!attribute url
+          #   Avatar image URL. Always present — a generated placeholder when the user set no
+          #   picture.
+          #
+          #   @return [String]
+          required :url, String
+
+          # @!method initialize(url:)
+          #   Some parameter documentations has been truncated, see
+          #   {WhopSDK::Models::Payment::User::ProfilePicture} for more details.
+          #
+          #   Avatar wrapper; its `url` is always present, using a generated placeholder when
+          #   the user set no picture.
+          #
+          #   @param url [String] Avatar image URL. Always present — a generated placeholder when the user set no
+        end
       end
 
       # @see WhopSDK::Models::Payment#verification_checks
       class VerificationChecks < WhopSDK::Internal::Type::BaseModel
         # @!attribute address_line1
-        #   Whether the billing street address the customer entered matched the address the
-        #   issuer has on file.
+        #   Whether the billing street address the customer entered matched the issuer's
+        #   records.
         #
         #   @return [String, nil]
         required :address_line1, String, nil?: true
 
         # @!attribute card_holder_name
-        #   Whether the cardholder name the customer entered matched the name the issuer has
-        #   on file.
+        #   Whether the cardholder name matched the issuer's records.
         #
         #   @return [String, nil]
         required :card_holder_name, String, nil?: true
 
         # @!attribute card_security_code
-        #   Whether the CVV / CVC the customer entered matched the card.
+        #   Whether the CVV / CVC matched the card.
         #
         #   @return [String, nil]
         required :card_security_code, String, nil?: true
 
         # @!attribute zip_code
-        #   Whether the billing postal code the customer entered matched the postal code the
-        #   issuer has on file.
+        #   Whether the billing postal code matched the issuer's records.
         #
         #   @return [String, nil]
         required :zip_code, String, nil?: true
@@ -1949,16 +1374,16 @@ module WhopSDK
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::Payment::VerificationChecks} for more details.
         #
-        #   The issuer's address and card security code check results for this payment. Null
-        #   when the processor returned none.
+        #   The issuer's address and security code check results, or null when the processor
+        #   returned none.
         #
-        #   @param address_line1 [String, nil] Whether the billing street address the customer entered matched the address the
+        #   @param address_line1 [String, nil] Whether the billing street address the customer entered matched the issuer's rec
         #
-        #   @param card_holder_name [String, nil] Whether the cardholder name the customer entered matched the name the issuer has
+        #   @param card_holder_name [String, nil] Whether the cardholder name matched the issuer's records.
         #
-        #   @param card_security_code [String, nil] Whether the CVV / CVC the customer entered matched the card.
+        #   @param card_security_code [String, nil] Whether the CVV / CVC matched the card.
         #
-        #   @param zip_code [String, nil] Whether the billing postal code the customer entered matched the postal code the
+        #   @param zip_code [String, nil] Whether the billing postal code matched the issuer's records.
       end
     end
   end

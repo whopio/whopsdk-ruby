@@ -3,20 +3,23 @@ module WhopSDK
     class Refunds
       def retrieve: (
         String id,
+        ?api_version_date: String,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Models::RefundRetrieveResponse
 
       def list: (
+        ?account_id: String,
         ?after: String,
         ?before: String,
-        ?company_id: String,
         ?created_after: Time,
         ?created_before: Time,
-        ?direction: WhopSDK::Models::direction,
+        ?direction: WhopSDK::Models::RefundListParams::direction,
         ?first: Integer,
         ?last: Integer,
+        ?order: WhopSDK::Models::RefundListParams::order,
         ?payment_id: String,
         ?user_id: String,
+        ?api_version_date: String,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::RefundListResponse]
 

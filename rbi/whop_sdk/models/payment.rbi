@@ -6,30 +6,31 @@ module WhopSDK
       OrHash =
         T.type_alias { T.any(WhopSDK::Payment, WhopSDK::Internal::AnyHash) }
 
-      # The unique identifier for the payment.
+      # Payment ID, prefixed `pay_`.
       sig { returns(String) }
       attr_accessor :id
 
-      # How much the payment is for after fees
-      sig { returns(Float) }
-      attr_accessor :amount_after_fees
+      # The account that received the payment, prefixed `biz_`.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :account_id
 
-      # The application fee charged on this payment.
-      sig { returns(T.nilable(WhopSDK::Payment::ApplicationFee)) }
-      attr_reader :application_fee
+      # What the account keeps: the total less Whop's fees.
+      sig { returns(WhopSDK::Payment::AmountAfterFees) }
+      attr_reader :amount_after_fees
 
       sig do
         params(
-          application_fee: T.nilable(WhopSDK::Payment::ApplicationFee::OrHash)
+          amount_after_fees: WhopSDK::Payment::AmountAfterFees::OrHash
         ).void
       end
-      attr_writer :application_fee
+      attr_writer :amount_after_fees
 
-      # Whether this payment was auto refunded or not
+      # True when Whop refunded the payment automatically, for example on a dispute
+      # alert.
       sig { returns(T::Boolean) }
       attr_accessor :auto_refunded
 
-      # The address of the user who made the payment.
+      # The billing address the buyer entered, or null.
       sig { returns(T.nilable(WhopSDK::Payment::BillingAddress)) }
       attr_reader :billing_address
 
@@ -44,50 +45,26 @@ module WhopSDK
       sig { returns(T.nilable(WhopSDK::BillingReasons::TaggedSymbol)) }
       attr_accessor :billing_reason
 
-      # Possible card brands that a payment token can have
-      sig { returns(T.nilable(WhopSDK::CardBrands::TaggedSymbol)) }
-      attr_accessor :card_brand
-
-      # The expiration month (1-12) of the card used for this payment. Falls back to the
-      # declined card on failed payments with no saved card. Null when the payment was
-      # not made with a card or the expiry is unavailable.
-      sig { returns(T.nilable(Integer)) }
-      attr_accessor :card_exp_month
-
-      # The four-digit expiration year of the card used for this payment. Falls back to
-      # the declined card on failed payments with no saved card. Null when the payment
-      # was not made with a card or the expiry is unavailable.
-      sig { returns(T.nilable(Integer)) }
-      attr_accessor :card_exp_year
-
-      # The last four digits of the card used to make this payment. Null if the payment
-      # was not made with a card.
-      sig { returns(T.nilable(String)) }
-      attr_accessor :card_last4
-
-      # The ID of the checkout session/configuration that produced this payment, if any.
-      # Use this to map payments back to the checkout configuration that created them.
+      # The checkout configuration the buyer paid through, prefixed `ch_`, or null.
       sig { returns(T.nilable(String)) }
       attr_accessor :checkout_configuration_id
 
-      # The company for the payment.
-      sig { returns(T.nilable(WhopSDK::Payment::Company)) }
-      attr_reader :company
+      # The credential a buyer's surface presents to poll this payment and set its
+      # return URL. Only on payments created from a confirmation token, and always null
+      # in list responses — retrieve the payment for it.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :client_secret
 
-      sig { params(company: T.nilable(WhopSDK::Payment::Company::OrHash)).void }
-      attr_writer :company
-
-      # The datetime the payment was created.
-      sig { returns(Time) }
+      # When the payment was created, as an ISO 8601 timestamp.
+      sig { returns(String) }
       attr_accessor :created_at
 
-      # The three-letter ISO currency code for this payment (e.g., 'usd', 'eur').
+      # The currency the payment settles in, lowercase ISO 4217. Every money field below
+      # is stated in it unless it says otherwise.
       sig { returns(WhopSDK::Currency::TaggedSymbol) }
       attr_accessor :currency
 
-      # Phone number the customer provided at checkout, or their verified phone number
-      # when your checkout requires phone verification. `null` when no phone number was
-      # collected.
+      # The phone number the buyer gave at checkout, when one was collected.
       sig { returns(T.nilable(String)) }
       attr_accessor :customer_phone
 
@@ -95,75 +72,51 @@ module WhopSDK
       sig { returns(T.nilable(WhopSDK::Payment::DeclineCode::TaggedSymbol)) }
       attr_accessor :decline_code
 
-      # When an alert came in that this transaction will be disputed
-      sig { returns(T.nilable(Time)) }
+      # When an issuer warned that this payment will be disputed, or null.
+      sig { returns(T.nilable(String)) }
       attr_accessor :dispute_alerted_at
 
-      # The disputes attached to this payment. Null if the actor in context does not
-      # have the payment:dispute:read permission.
-      sig { returns(T.nilable(T::Array[WhopSDK::Payment::Dispute])) }
-      attr_accessor :disputes
-
-      # If the payment failed, the reason for the failure.
+      # Why the most recent attempt failed, in plain words, or null.
       sig { returns(T.nilable(String)) }
       attr_accessor :failure_message
 
-      # The fees associated with this specific payment.
-      sig { returns(T::Array[WhopSDK::Payment::Fee]) }
-      attr_accessor :fees
-
-      # The number of financing installments for the payment. Present if the payment is
-      # a financing payment (e.g. Splitit, Klarna, etc.).
-      sig { returns(T.nilable(Integer)) }
+      # For installment methods, how many payments the charge splits into.
+      sig { returns(T.nilable(Float)) }
       attr_accessor :financing_installments_count
 
-      # The financing transactions attached to this payment. Present if the payment is a
-      # financing payment (e.g. Splitit, Klarna, etc.).
-      sig { returns(T::Array[WhopSDK::Payment::FinancingTransaction]) }
-      attr_accessor :financing_transactions
+      # When the most recent charge attempt ran, or null.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :last_payment_attempt_at
 
-      # The time of the last payment attempt.
-      sig { returns(T.nilable(Time)) }
-      attr_accessor :last_payment_attempt
+      # The buyer's member record on the account, prefixed `mber_`. Null without the
+      # member:basic:read permission.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :member_id
 
-      # The member attached to this payment.
-      sig { returns(T.nilable(WhopSDK::Payment::Member)) }
-      attr_reader :member
+      # The membership this payment is billed against, prefixed `mem_`. Null for one-off
+      # purchases or without the member:basic:read permission.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :membership_id
 
-      sig { params(member: T.nilable(WhopSDK::Payment::Member::OrHash)).void }
-      attr_writer :member
-
-      # The membership attached to this payment.
-      sig { returns(T.nilable(WhopSDK::Payment::Membership)) }
-      attr_reader :membership
-
-      sig do
-        params(membership: T.nilable(WhopSDK::Payment::Membership::OrHash)).void
-      end
-      attr_writer :membership
-
-      # The custom metadata stored on this payment. This will be copied over to the
-      # checkout configuration for which this payment was made
-      sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
+      # Your own key-value data attached when the payment was created.
+      sig { returns(T.nilable(T.anything)) }
       attr_accessor :metadata
 
-      # Whether this payment is holding funds until the order ships and has no tracking
-      # number yet.
+      # True when funds are held until the order ships and no tracking number has been
+      # added yet. Null without the shipment:basic:read permission.
       sig { returns(T.nilable(T::Boolean)) }
       attr_accessor :needs_tracking
 
-      # The time of the next schedule payment retry.
-      sig { returns(T.nilable(Time)) }
-      attr_accessor :next_payment_attempt
+      # When the next automatic retry is scheduled, or null.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :next_payment_attempt_at
 
-      # The time at which this payment was successfully collected. Null if the payment
-      # has not yet succeeded. As a Unix timestamp.
-      sig { returns(T.nilable(Time)) }
+      # When the money was collected, or null while it has not been.
+      sig { returns(T.nilable(String)) }
       attr_accessor :paid_at
 
-      # The instrument this payment was made with, shaped for display: the method type,
-      # a buyer-facing name, the standard icon set, and the card facts when it was a
-      # card. Null when the receipt names no payment method.
+      # The instrument shaped for display: a buyer-facing name, the standard icon set,
+      # and the card's brand and last four when it was a card.
       sig { returns(T.nilable(WhopSDK::Payment::PaymentInstrument)) }
       attr_reader :payment_instrument
 
@@ -175,124 +128,80 @@ module WhopSDK
       end
       attr_writer :payment_instrument
 
-      # The tokenized payment method reference used for this payment. Null if no token
-      # was used.
-      sig { returns(T.nilable(WhopSDK::Payment::PaymentMethod)) }
-      attr_reader :payment_method
-
-      sig do
-        params(
-          payment_method: T.nilable(WhopSDK::Payment::PaymentMethod::OrHash)
-        ).void
-      end
-      attr_writer :payment_method
+      # The stored payment method that was charged, prefixed `payt_`. Null when the
+      # method was not saved.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :payment_method_id
 
       # The different types of payment methods that can be used.
       sig { returns(T.nilable(WhopSDK::PaymentMethodTypes::TaggedSymbol)) }
       attr_accessor :payment_method_type
 
-      # The number of failed payment attempts for the payment.
-      sig { returns(T.nilable(Integer)) }
+      # How many charge attempts have failed on this payment.
+      sig { returns(Float) }
       attr_accessor :payments_failed
 
-      # The plan attached to this payment.
-      sig { returns(T.nilable(WhopSDK::Payment::Plan)) }
-      attr_reader :plan
+      # The plan that was charged, prefixed `plan_`.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :plan_id
 
-      sig { params(plan: T.nilable(WhopSDK::Payment::Plan::OrHash)).void }
-      attr_writer :plan
+      # The product the plan belongs to, prefixed `prod_`. Null for a plan with no
+      # product.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :product_id
 
-      # The product this payment was made for
-      sig { returns(T.nilable(WhopSDK::Payment::Product)) }
-      attr_reader :product
+      # The promo code applied at checkout, prefixed `promo_`, or null.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :promo_code_id
 
-      sig { params(product: T.nilable(WhopSDK::Payment::Product::OrHash)).void }
-      attr_writer :product
-
-      # The promo code used for this payment.
-      sig { returns(T.nilable(WhopSDK::Payment::PromoCode)) }
-      attr_reader :promo_code
-
-      sig do
-        params(promo_code: T.nilable(WhopSDK::Payment::PromoCode::OrHash)).void
-      end
-      attr_writer :promo_code
-
-      # True only for payments that are `paid`, have not been fully refunded, and were
-      # processed by a payment processor that allows refunds.
+      # True when the payment is `paid`, not yet fully refunded, and its processor
+      # supports refunds.
       sig { returns(T::Boolean) }
       attr_accessor :refundable
 
-      # The payment refund amount(if applicable).
-      sig { returns(T.nilable(Float)) }
-      attr_accessor :refunded_amount
+      # How much has been refunded so far, as it settled — refunds convert at the rate
+      # in force when each one was issued, not the payment's original rate.
+      sig { returns(T.nilable(WhopSDK::Payment::RefundedAmount)) }
+      attr_reader :refunded_amount
 
-      # When the payment was refunded (if applicable).
-      sig { returns(T.nilable(Time)) }
+      sig do
+        params(
+          refunded_amount: T.nilable(WhopSDK::Payment::RefundedAmount::OrHash)
+        ).void
+      end
+      attr_writer :refunded_amount
+
+      # When the payment was refunded, or null.
+      sig { returns(T.nilable(String)) }
       attr_accessor :refunded_at
 
-      # The refunds issued against this payment, newest first, including failed and
-      # canceled refund attempts. Limited to the 100 most recent.
-      sig { returns(T::Array[WhopSDK::Payment::Refund]) }
-      attr_accessor :refunds
-
-      # The resolution center cases opened by the customer on this payment. Null if the
-      # actor in context does not have the payment:resolution_center_case:read
-      # permission.
-      sig { returns(T.nilable(T::Array[WhopSDK::Payment::Resolution])) }
-      attr_accessor :resolutions
-
-      # True when the payment status is `open` and its membership is in one of the
-      # retry-eligible states (`active`, `trialing`, `completed`, or `past_due`), or
-      # when it is a failed initial billing-engine payment on a `drafted` membership
-      # with an unlimited-stock plan; otherwise false. Used to decide if Whop can
-      # attempt the charge again.
+      # True when the payment is `open` and Whop can attempt the charge again — see
+      # `POST /payments/{id}/retry`.
       sig { returns(T::Boolean) }
       attr_accessor :retryable
 
-      # Whop's in-house fraud risk score for this payment, from 0 (lowest risk) to 100
-      # (highest risk). Null when the payment has not been scored or scoring has not yet
-      # completed.
-      sig { returns(T.nilable(Integer)) }
+      # Whop's fraud risk score from 0 (lowest) to 100 (highest), or null when the
+      # payment was not scored.
+      sig { returns(T.nilable(Float)) }
       attr_accessor :risk_score
 
-      # A curated set of factors behind the risk score, grouped by category (business
-      # transaction history, buyer, device). Each entry has a key, human-readable label,
-      # category, and value. Null when there is no risk assessment for this payment.
-      sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
+      # The factors behind `risk_score`, grouped by category, or null.
+      sig { returns(T.nilable(T.anything)) }
       attr_accessor :risk_signals
 
-      # The total amount charged to the customer for this payment, including taxes and
-      # after any discounts. In the currency specified by the currency field.
-      sig { returns(Float) }
-      attr_accessor :settlement_amount
-
-      # The three-letter ISO currency code for this payment (e.g., 'usd', 'eur').
-      sig { returns(WhopSDK::Currency::TaggedSymbol) }
-      attr_accessor :settlement_currency
-
-      # Deprecated. Always returns null.
-      sig { returns(T.nilable(Float)) }
-      attr_accessor :settlement_exchange_rate
-
-      # When this payment's funds post to the company's available balance, at midnight
-      # UTC. Known at payment time and never changes. The
-      # `ledger_account.funds_available` webhook carries the same `settlement_time_at`
-      # when that batch posts — match them to know these funds are now withdrawable.
-      sig { returns(T.nilable(Time)) }
+      # When the funds post to the account's available balance, at midnight UTC. The
+      # `ledger_account.funds_available` webhook carries the same value. Null until the
+      # payment is paid, and always null in list responses — retrieve the payment for
+      # it.
+      sig { returns(T.nilable(String)) }
       attr_accessor :settlement_time_at
 
-      # The shipment attached to this payment.
-      sig { returns(T.nilable(WhopSDK::Payment::Shipment)) }
-      attr_reader :shipment
+      # The shipment fulfilling this payment, prefixed `ship_`. Null when nothing ships
+      # or without the shipment:basic:read permission.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :shipment_id
 
-      sig do
-        params(shipment: T.nilable(WhopSDK::Payment::Shipment::OrHash)).void
-      end
-      attr_writer :shipment
-
-      # The shipping address provided by the customer for physical goods. Null if no
-      # shipping address was collected.
+      # The shipping address for physical goods, or null.
       sig { returns(T.nilable(WhopSDK::Payment::ShippingAddress)) }
       attr_reader :shipping_address
 
@@ -303,56 +212,89 @@ module WhopSDK
       end
       attr_writer :shipping_address
 
-      # The status of a receipt
-      sig { returns(T.nilable(WhopSDK::ReceiptStatus::TaggedSymbol)) }
+      # The lifecycle state of the charge: `open` while collection is outstanding,
+      # `paid` once the money moved, `pending` while a settlement rail clears,
+      # `void`/`uncollectible` when it ended without collecting.
+      sig { returns(WhopSDK::ReceiptStatus::TaggedSymbol) }
       attr_accessor :status
 
-      # The friendly status of the payment.
+      # The dashboard's finer-grained reading of the payment, folding in refunds,
+      # disputes and Resolution Center cases.
       sig { returns(WhopSDK::FriendlyReceiptStatus::TaggedSymbol) }
       attr_accessor :substatus
 
-      # The subtotal to show to the creator (excluding buyer fees).
-      sig { returns(T.nilable(Float)) }
-      attr_accessor :subtotal
+      # The price before discounts, tax and fees.
+      sig { returns(T.nilable(WhopSDK::Payment::Subtotal)) }
+      attr_reader :subtotal
 
-      # The calculated amount of the sales/VAT tax (if applicable).
-      sig { returns(T.nilable(Float)) }
-      attr_accessor :tax_amount
+      sig do
+        params(subtotal: T.nilable(WhopSDK::Payment::Subtotal::OrHash)).void
+      end
+      attr_writer :subtotal
+
+      # The sales tax or VAT collected. Null when no tax applied.
+      sig { returns(T.nilable(WhopSDK::Payment::TaxAmount)) }
+      attr_reader :tax_amount
+
+      sig do
+        params(tax_amount: T.nilable(WhopSDK::Payment::TaxAmount::OrHash)).void
+      end
+      attr_writer :tax_amount
 
       # The type of tax inclusivity applied to the receipt, for determining whether the
       # tax is included in the final price, or paid on top.
       sig { returns(T.nilable(WhopSDK::ReceiptTaxBehavior::TaggedSymbol)) }
       attr_accessor :tax_behavior
 
-      # The amount of tax that has been refunded (if applicable).
-      sig { returns(T.nilable(Float)) }
-      attr_accessor :tax_refunded_amount
+      # How much of the collected tax has been returned to the buyer so far. Zero when
+      # the payment carried no tax, or when nothing has been refunded.
+      sig { returns(WhopSDK::Payment::TaxRefundedAmount) }
+      attr_reader :tax_refunded_amount
 
-      # Whether 3D Secure authentication was completed for this payment.
+      sig do
+        params(
+          tax_refunded_amount: WhopSDK::Payment::TaxRefundedAmount::OrHash
+        ).void
+      end
+      attr_writer :tax_refunded_amount
+
+      # True when the buyer completed 3D Secure for this payment.
       sig { returns(T::Boolean) }
       attr_accessor :three_ds_verified
 
-      # The total to show to the creator (excluding buyer fees).
-      sig { returns(T.nilable(Float)) }
-      attr_accessor :total
+      # The account-facing total: the price after discounts, plus any tax added on top.
+      # Excludes buyer fees, which the buyer pays above this amount — so this is not
+      # necessarily what the buyer's statement shows.
+      sig { returns(T.nilable(WhopSDK::Payment::Total)) }
+      attr_reader :total
 
-      # The datetime the payment was last updated.
-      sig { returns(Time) }
+      sig { params(total: T.nilable(WhopSDK::Payment::Total::OrHash)).void }
+      attr_writer :total
+
+      # When the payment last changed, as an ISO 8601 timestamp.
+      sig { returns(String) }
       attr_accessor :updated_at
 
-      # The total in USD to show to the creator (excluding buyer fees).
-      sig { returns(T.nilable(Float)) }
-      attr_accessor :usd_total
+      # The total converted to USD at the time of the charge, for reporting across
+      # currencies. Excludes the adaptive pricing FX markup, which the account does not
+      # keep.
+      sig { returns(T.nilable(WhopSDK::Payment::UsdTotal)) }
+      attr_reader :usd_total
 
-      # The user that made this payment.
+      sig do
+        params(usd_total: T.nilable(WhopSDK::Payment::UsdTotal::OrHash)).void
+      end
+      attr_writer :usd_total
+
+      # The buyer. Null when the payment belongs to a company buyer rather than a user.
       sig { returns(T.nilable(WhopSDK::Payment::User)) }
       attr_reader :user
 
       sig { params(user: T.nilable(WhopSDK::Payment::User::OrHash)).void }
       attr_writer :user
 
-      # The issuer's address and card security code check results for this payment. Null
-      # when the processor returned none.
+      # The issuer's address and security code check results, or null when the processor
+      # returned none.
       sig { returns(T.nilable(WhopSDK::Payment::VerificationChecks)) }
       attr_reader :verification_checks
 
@@ -364,79 +306,63 @@ module WhopSDK
       end
       attr_writer :verification_checks
 
-      # True when the payment is tied to a membership in `past_due`, the payment status
-      # is `open`, and the processor allows voiding payments; otherwise false.
+      # True when the payment is `open` on a past-due membership and its processor
+      # supports voiding — see `POST /payments/{id}/void`.
       sig { returns(T::Boolean) }
       attr_accessor :voidable
 
-      # A payment represents a completed or attempted charge. Payments track the amount,
-      # status, currency, and payment method used.
       sig do
         params(
           id: String,
-          amount_after_fees: Float,
-          application_fee: T.nilable(WhopSDK::Payment::ApplicationFee::OrHash),
+          account_id: T.nilable(String),
+          amount_after_fees: WhopSDK::Payment::AmountAfterFees::OrHash,
           auto_refunded: T::Boolean,
           billing_address: T.nilable(WhopSDK::Payment::BillingAddress::OrHash),
           billing_reason: T.nilable(WhopSDK::BillingReasons::OrSymbol),
-          card_brand: T.nilable(WhopSDK::CardBrands::OrSymbol),
-          card_exp_month: T.nilable(Integer),
-          card_exp_year: T.nilable(Integer),
-          card_last4: T.nilable(String),
           checkout_configuration_id: T.nilable(String),
-          company: T.nilable(WhopSDK::Payment::Company::OrHash),
-          created_at: Time,
+          client_secret: T.nilable(String),
+          created_at: String,
           currency: WhopSDK::Currency::OrSymbol,
           customer_phone: T.nilable(String),
           decline_code: T.nilable(WhopSDK::Payment::DeclineCode::OrSymbol),
-          dispute_alerted_at: T.nilable(Time),
-          disputes: T.nilable(T::Array[WhopSDK::Payment::Dispute::OrHash]),
+          dispute_alerted_at: T.nilable(String),
           failure_message: T.nilable(String),
-          fees: T::Array[WhopSDK::Payment::Fee::OrHash],
-          financing_installments_count: T.nilable(Integer),
-          financing_transactions:
-            T::Array[WhopSDK::Payment::FinancingTransaction::OrHash],
-          last_payment_attempt: T.nilable(Time),
-          member: T.nilable(WhopSDK::Payment::Member::OrHash),
-          membership: T.nilable(WhopSDK::Payment::Membership::OrHash),
-          metadata: T.nilable(T::Hash[Symbol, T.anything]),
+          financing_installments_count: T.nilable(Float),
+          last_payment_attempt_at: T.nilable(String),
+          member_id: T.nilable(String),
+          membership_id: T.nilable(String),
+          metadata: T.nilable(T.anything),
           needs_tracking: T.nilable(T::Boolean),
-          next_payment_attempt: T.nilable(Time),
-          paid_at: T.nilable(Time),
+          next_payment_attempt_at: T.nilable(String),
+          paid_at: T.nilable(String),
           payment_instrument:
             T.nilable(WhopSDK::Payment::PaymentInstrument::OrHash),
-          payment_method: T.nilable(WhopSDK::Payment::PaymentMethod::OrHash),
+          payment_method_id: T.nilable(String),
           payment_method_type: T.nilable(WhopSDK::PaymentMethodTypes::OrSymbol),
-          payments_failed: T.nilable(Integer),
-          plan: T.nilable(WhopSDK::Payment::Plan::OrHash),
-          product: T.nilable(WhopSDK::Payment::Product::OrHash),
-          promo_code: T.nilable(WhopSDK::Payment::PromoCode::OrHash),
+          payments_failed: Float,
+          plan_id: T.nilable(String),
+          product_id: T.nilable(String),
+          promo_code_id: T.nilable(String),
           refundable: T::Boolean,
-          refunded_amount: T.nilable(Float),
-          refunded_at: T.nilable(Time),
-          refunds: T::Array[WhopSDK::Payment::Refund::OrHash],
-          resolutions:
-            T.nilable(T::Array[WhopSDK::Payment::Resolution::OrHash]),
+          refunded_amount: T.nilable(WhopSDK::Payment::RefundedAmount::OrHash),
+          refunded_at: T.nilable(String),
           retryable: T::Boolean,
-          risk_score: T.nilable(Integer),
-          risk_signals: T.nilable(T::Hash[Symbol, T.anything]),
-          settlement_amount: Float,
-          settlement_currency: WhopSDK::Currency::OrSymbol,
-          settlement_exchange_rate: T.nilable(Float),
-          settlement_time_at: T.nilable(Time),
-          shipment: T.nilable(WhopSDK::Payment::Shipment::OrHash),
+          risk_score: T.nilable(Float),
+          risk_signals: T.nilable(T.anything),
+          settlement_time_at: T.nilable(String),
+          shipment_id: T.nilable(String),
           shipping_address:
             T.nilable(WhopSDK::Payment::ShippingAddress::OrHash),
-          status: T.nilable(WhopSDK::ReceiptStatus::OrSymbol),
+          status: WhopSDK::ReceiptStatus::OrSymbol,
           substatus: WhopSDK::FriendlyReceiptStatus::OrSymbol,
-          subtotal: T.nilable(Float),
-          tax_amount: T.nilable(Float),
+          subtotal: T.nilable(WhopSDK::Payment::Subtotal::OrHash),
+          tax_amount: T.nilable(WhopSDK::Payment::TaxAmount::OrHash),
           tax_behavior: T.nilable(WhopSDK::ReceiptTaxBehavior::OrSymbol),
-          tax_refunded_amount: T.nilable(Float),
+          tax_refunded_amount: WhopSDK::Payment::TaxRefundedAmount::OrHash,
           three_ds_verified: T::Boolean,
-          total: T.nilable(Float),
-          updated_at: Time,
-          usd_total: T.nilable(Float),
+          total: T.nilable(WhopSDK::Payment::Total::OrHash),
+          updated_at: String,
+          usd_total: T.nilable(WhopSDK::Payment::UsdTotal::OrHash),
           user: T.nilable(WhopSDK::Payment::User::OrHash),
           verification_checks:
             T.nilable(WhopSDK::Payment::VerificationChecks::OrHash),
@@ -444,168 +370,136 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The unique identifier for the payment.
+        # Payment ID, prefixed `pay_`.
         id:,
-        # How much the payment is for after fees
+        # The account that received the payment, prefixed `biz_`.
+        account_id:,
+        # What the account keeps: the total less Whop's fees.
         amount_after_fees:,
-        # The application fee charged on this payment.
-        application_fee:,
-        # Whether this payment was auto refunded or not
+        # True when Whop refunded the payment automatically, for example on a dispute
+        # alert.
         auto_refunded:,
-        # The address of the user who made the payment.
+        # The billing address the buyer entered, or null.
         billing_address:,
         # The reason why a specific payment was billed
         billing_reason:,
-        # Possible card brands that a payment token can have
-        card_brand:,
-        # The expiration month (1-12) of the card used for this payment. Falls back to the
-        # declined card on failed payments with no saved card. Null when the payment was
-        # not made with a card or the expiry is unavailable.
-        card_exp_month:,
-        # The four-digit expiration year of the card used for this payment. Falls back to
-        # the declined card on failed payments with no saved card. Null when the payment
-        # was not made with a card or the expiry is unavailable.
-        card_exp_year:,
-        # The last four digits of the card used to make this payment. Null if the payment
-        # was not made with a card.
-        card_last4:,
-        # The ID of the checkout session/configuration that produced this payment, if any.
-        # Use this to map payments back to the checkout configuration that created them.
+        # The checkout configuration the buyer paid through, prefixed `ch_`, or null.
         checkout_configuration_id:,
-        # The company for the payment.
-        company:,
-        # The datetime the payment was created.
+        # The credential a buyer's surface presents to poll this payment and set its
+        # return URL. Only on payments created from a confirmation token, and always null
+        # in list responses — retrieve the payment for it.
+        client_secret:,
+        # When the payment was created, as an ISO 8601 timestamp.
         created_at:,
-        # The three-letter ISO currency code for this payment (e.g., 'usd', 'eur').
+        # The currency the payment settles in, lowercase ISO 4217. Every money field below
+        # is stated in it unless it says otherwise.
         currency:,
-        # Phone number the customer provided at checkout, or their verified phone number
-        # when your checkout requires phone verification. `null` when no phone number was
-        # collected.
+        # The phone number the buyer gave at checkout, when one was collected.
         customer_phone:,
         # The reason a payment was declined.
         decline_code:,
-        # When an alert came in that this transaction will be disputed
+        # When an issuer warned that this payment will be disputed, or null.
         dispute_alerted_at:,
-        # The disputes attached to this payment. Null if the actor in context does not
-        # have the payment:dispute:read permission.
-        disputes:,
-        # If the payment failed, the reason for the failure.
+        # Why the most recent attempt failed, in plain words, or null.
         failure_message:,
-        # The fees associated with this specific payment.
-        fees:,
-        # The number of financing installments for the payment. Present if the payment is
-        # a financing payment (e.g. Splitit, Klarna, etc.).
+        # For installment methods, how many payments the charge splits into.
         financing_installments_count:,
-        # The financing transactions attached to this payment. Present if the payment is a
-        # financing payment (e.g. Splitit, Klarna, etc.).
-        financing_transactions:,
-        # The time of the last payment attempt.
-        last_payment_attempt:,
-        # The member attached to this payment.
-        member:,
-        # The membership attached to this payment.
-        membership:,
-        # The custom metadata stored on this payment. This will be copied over to the
-        # checkout configuration for which this payment was made
+        # When the most recent charge attempt ran, or null.
+        last_payment_attempt_at:,
+        # The buyer's member record on the account, prefixed `mber_`. Null without the
+        # member:basic:read permission.
+        member_id:,
+        # The membership this payment is billed against, prefixed `mem_`. Null for one-off
+        # purchases or without the member:basic:read permission.
+        membership_id:,
+        # Your own key-value data attached when the payment was created.
         metadata:,
-        # Whether this payment is holding funds until the order ships and has no tracking
-        # number yet.
+        # True when funds are held until the order ships and no tracking number has been
+        # added yet. Null without the shipment:basic:read permission.
         needs_tracking:,
-        # The time of the next schedule payment retry.
-        next_payment_attempt:,
-        # The time at which this payment was successfully collected. Null if the payment
-        # has not yet succeeded. As a Unix timestamp.
+        # When the next automatic retry is scheduled, or null.
+        next_payment_attempt_at:,
+        # When the money was collected, or null while it has not been.
         paid_at:,
-        # The instrument this payment was made with, shaped for display: the method type,
-        # a buyer-facing name, the standard icon set, and the card facts when it was a
-        # card. Null when the receipt names no payment method.
+        # The instrument shaped for display: a buyer-facing name, the standard icon set,
+        # and the card's brand and last four when it was a card.
         payment_instrument:,
-        # The tokenized payment method reference used for this payment. Null if no token
-        # was used.
-        payment_method:,
+        # The stored payment method that was charged, prefixed `payt_`. Null when the
+        # method was not saved.
+        payment_method_id:,
         # The different types of payment methods that can be used.
         payment_method_type:,
-        # The number of failed payment attempts for the payment.
+        # How many charge attempts have failed on this payment.
         payments_failed:,
-        # The plan attached to this payment.
-        plan:,
-        # The product this payment was made for
-        product:,
-        # The promo code used for this payment.
-        promo_code:,
-        # True only for payments that are `paid`, have not been fully refunded, and were
-        # processed by a payment processor that allows refunds.
+        # The plan that was charged, prefixed `plan_`.
+        plan_id:,
+        # The product the plan belongs to, prefixed `prod_`. Null for a plan with no
+        # product.
+        product_id:,
+        # The promo code applied at checkout, prefixed `promo_`, or null.
+        promo_code_id:,
+        # True when the payment is `paid`, not yet fully refunded, and its processor
+        # supports refunds.
         refundable:,
-        # The payment refund amount(if applicable).
+        # How much has been refunded so far, as it settled — refunds convert at the rate
+        # in force when each one was issued, not the payment's original rate.
         refunded_amount:,
-        # When the payment was refunded (if applicable).
+        # When the payment was refunded, or null.
         refunded_at:,
-        # The refunds issued against this payment, newest first, including failed and
-        # canceled refund attempts. Limited to the 100 most recent.
-        refunds:,
-        # The resolution center cases opened by the customer on this payment. Null if the
-        # actor in context does not have the payment:resolution_center_case:read
-        # permission.
-        resolutions:,
-        # True when the payment status is `open` and its membership is in one of the
-        # retry-eligible states (`active`, `trialing`, `completed`, or `past_due`), or
-        # when it is a failed initial billing-engine payment on a `drafted` membership
-        # with an unlimited-stock plan; otherwise false. Used to decide if Whop can
-        # attempt the charge again.
+        # True when the payment is `open` and Whop can attempt the charge again — see
+        # `POST /payments/{id}/retry`.
         retryable:,
-        # Whop's in-house fraud risk score for this payment, from 0 (lowest risk) to 100
-        # (highest risk). Null when the payment has not been scored or scoring has not yet
-        # completed.
+        # Whop's fraud risk score from 0 (lowest) to 100 (highest), or null when the
+        # payment was not scored.
         risk_score:,
-        # A curated set of factors behind the risk score, grouped by category (business
-        # transaction history, buyer, device). Each entry has a key, human-readable label,
-        # category, and value. Null when there is no risk assessment for this payment.
+        # The factors behind `risk_score`, grouped by category, or null.
         risk_signals:,
-        # The total amount charged to the customer for this payment, including taxes and
-        # after any discounts. In the currency specified by the currency field.
-        settlement_amount:,
-        # The three-letter ISO currency code for this payment (e.g., 'usd', 'eur').
-        settlement_currency:,
-        # Deprecated. Always returns null.
-        settlement_exchange_rate:,
-        # When this payment's funds post to the company's available balance, at midnight
-        # UTC. Known at payment time and never changes. The
-        # `ledger_account.funds_available` webhook carries the same `settlement_time_at`
-        # when that batch posts — match them to know these funds are now withdrawable.
+        # When the funds post to the account's available balance, at midnight UTC. The
+        # `ledger_account.funds_available` webhook carries the same value. Null until the
+        # payment is paid, and always null in list responses — retrieve the payment for
+        # it.
         settlement_time_at:,
-        # The shipment attached to this payment.
-        shipment:,
-        # The shipping address provided by the customer for physical goods. Null if no
-        # shipping address was collected.
+        # The shipment fulfilling this payment, prefixed `ship_`. Null when nothing ships
+        # or without the shipment:basic:read permission.
+        shipment_id:,
+        # The shipping address for physical goods, or null.
         shipping_address:,
-        # The status of a receipt
+        # The lifecycle state of the charge: `open` while collection is outstanding,
+        # `paid` once the money moved, `pending` while a settlement rail clears,
+        # `void`/`uncollectible` when it ended without collecting.
         status:,
-        # The friendly status of the payment.
+        # The dashboard's finer-grained reading of the payment, folding in refunds,
+        # disputes and Resolution Center cases.
         substatus:,
-        # The subtotal to show to the creator (excluding buyer fees).
+        # The price before discounts, tax and fees.
         subtotal:,
-        # The calculated amount of the sales/VAT tax (if applicable).
+        # The sales tax or VAT collected. Null when no tax applied.
         tax_amount:,
         # The type of tax inclusivity applied to the receipt, for determining whether the
         # tax is included in the final price, or paid on top.
         tax_behavior:,
-        # The amount of tax that has been refunded (if applicable).
+        # How much of the collected tax has been returned to the buyer so far. Zero when
+        # the payment carried no tax, or when nothing has been refunded.
         tax_refunded_amount:,
-        # Whether 3D Secure authentication was completed for this payment.
+        # True when the buyer completed 3D Secure for this payment.
         three_ds_verified:,
-        # The total to show to the creator (excluding buyer fees).
+        # The account-facing total: the price after discounts, plus any tax added on top.
+        # Excludes buyer fees, which the buyer pays above this amount — so this is not
+        # necessarily what the buyer's statement shows.
         total:,
-        # The datetime the payment was last updated.
+        # When the payment last changed, as an ISO 8601 timestamp.
         updated_at:,
-        # The total in USD to show to the creator (excluding buyer fees).
+        # The total converted to USD at the time of the charge, for reporting across
+        # currencies. Excludes the adaptive pricing FX markup, which the account does not
+        # keep.
         usd_total:,
-        # The user that made this payment.
+        # The buyer. Null when the payment belongs to a company buyer rather than a user.
         user:,
-        # The issuer's address and card security code check results for this payment. Null
-        # when the processor returned none.
+        # The issuer's address and security code check results, or null when the processor
+        # returned none.
         verification_checks:,
-        # True when the payment is tied to a membership in `past_due`, the payment status
-        # is `open`, and the processor allows voiding payments; otherwise false.
+        # True when the payment is `open` on a past-due membership and its processor
+        # supports voiding — see `POST /payments/{id}/void`.
         voidable:
       )
       end
@@ -614,68 +508,55 @@ module WhopSDK
         override.returns(
           {
             id: String,
-            amount_after_fees: Float,
-            application_fee: T.nilable(WhopSDK::Payment::ApplicationFee),
+            account_id: T.nilable(String),
+            amount_after_fees: WhopSDK::Payment::AmountAfterFees,
             auto_refunded: T::Boolean,
             billing_address: T.nilable(WhopSDK::Payment::BillingAddress),
             billing_reason: T.nilable(WhopSDK::BillingReasons::TaggedSymbol),
-            card_brand: T.nilable(WhopSDK::CardBrands::TaggedSymbol),
-            card_exp_month: T.nilable(Integer),
-            card_exp_year: T.nilable(Integer),
-            card_last4: T.nilable(String),
             checkout_configuration_id: T.nilable(String),
-            company: T.nilable(WhopSDK::Payment::Company),
-            created_at: Time,
+            client_secret: T.nilable(String),
+            created_at: String,
             currency: WhopSDK::Currency::TaggedSymbol,
             customer_phone: T.nilable(String),
             decline_code:
               T.nilable(WhopSDK::Payment::DeclineCode::TaggedSymbol),
-            dispute_alerted_at: T.nilable(Time),
-            disputes: T.nilable(T::Array[WhopSDK::Payment::Dispute]),
+            dispute_alerted_at: T.nilable(String),
             failure_message: T.nilable(String),
-            fees: T::Array[WhopSDK::Payment::Fee],
-            financing_installments_count: T.nilable(Integer),
-            financing_transactions:
-              T::Array[WhopSDK::Payment::FinancingTransaction],
-            last_payment_attempt: T.nilable(Time),
-            member: T.nilable(WhopSDK::Payment::Member),
-            membership: T.nilable(WhopSDK::Payment::Membership),
-            metadata: T.nilable(T::Hash[Symbol, T.anything]),
+            financing_installments_count: T.nilable(Float),
+            last_payment_attempt_at: T.nilable(String),
+            member_id: T.nilable(String),
+            membership_id: T.nilable(String),
+            metadata: T.nilable(T.anything),
             needs_tracking: T.nilable(T::Boolean),
-            next_payment_attempt: T.nilable(Time),
-            paid_at: T.nilable(Time),
+            next_payment_attempt_at: T.nilable(String),
+            paid_at: T.nilable(String),
             payment_instrument: T.nilable(WhopSDK::Payment::PaymentInstrument),
-            payment_method: T.nilable(WhopSDK::Payment::PaymentMethod),
+            payment_method_id: T.nilable(String),
             payment_method_type:
               T.nilable(WhopSDK::PaymentMethodTypes::TaggedSymbol),
-            payments_failed: T.nilable(Integer),
-            plan: T.nilable(WhopSDK::Payment::Plan),
-            product: T.nilable(WhopSDK::Payment::Product),
-            promo_code: T.nilable(WhopSDK::Payment::PromoCode),
+            payments_failed: Float,
+            plan_id: T.nilable(String),
+            product_id: T.nilable(String),
+            promo_code_id: T.nilable(String),
             refundable: T::Boolean,
-            refunded_amount: T.nilable(Float),
-            refunded_at: T.nilable(Time),
-            refunds: T::Array[WhopSDK::Payment::Refund],
-            resolutions: T.nilable(T::Array[WhopSDK::Payment::Resolution]),
+            refunded_amount: T.nilable(WhopSDK::Payment::RefundedAmount),
+            refunded_at: T.nilable(String),
             retryable: T::Boolean,
-            risk_score: T.nilable(Integer),
-            risk_signals: T.nilable(T::Hash[Symbol, T.anything]),
-            settlement_amount: Float,
-            settlement_currency: WhopSDK::Currency::TaggedSymbol,
-            settlement_exchange_rate: T.nilable(Float),
-            settlement_time_at: T.nilable(Time),
-            shipment: T.nilable(WhopSDK::Payment::Shipment),
+            risk_score: T.nilable(Float),
+            risk_signals: T.nilable(T.anything),
+            settlement_time_at: T.nilable(String),
+            shipment_id: T.nilable(String),
             shipping_address: T.nilable(WhopSDK::Payment::ShippingAddress),
-            status: T.nilable(WhopSDK::ReceiptStatus::TaggedSymbol),
+            status: WhopSDK::ReceiptStatus::TaggedSymbol,
             substatus: WhopSDK::FriendlyReceiptStatus::TaggedSymbol,
-            subtotal: T.nilable(Float),
-            tax_amount: T.nilable(Float),
+            subtotal: T.nilable(WhopSDK::Payment::Subtotal),
+            tax_amount: T.nilable(WhopSDK::Payment::TaxAmount),
             tax_behavior: T.nilable(WhopSDK::ReceiptTaxBehavior::TaggedSymbol),
-            tax_refunded_amount: T.nilable(Float),
+            tax_refunded_amount: WhopSDK::Payment::TaxRefundedAmount,
             three_ds_verified: T::Boolean,
-            total: T.nilable(Float),
-            updated_at: Time,
-            usd_total: T.nilable(Float),
+            total: T.nilable(WhopSDK::Payment::Total),
+            updated_at: String,
+            usd_total: T.nilable(WhopSDK::Payment::UsdTotal),
             user: T.nilable(WhopSDK::Payment::User),
             verification_checks:
               T.nilable(WhopSDK::Payment::VerificationChecks),
@@ -686,72 +567,64 @@ module WhopSDK
       def to_hash
       end
 
-      class ApplicationFee < WhopSDK::Internal::Type::BaseModel
+      class AmountAfterFees < WhopSDK::Internal::Type::BaseModel
         OrHash =
           T.type_alias do
-            T.any(WhopSDK::Payment::ApplicationFee, WhopSDK::Internal::AnyHash)
+            T.any(WhopSDK::Payment::AmountAfterFees, WhopSDK::Internal::AnyHash)
           end
 
-        # The unique identifier for the application fee.
+        # The amount in major units, as an exact decimal string — `"10.00"` is ten
+        # dollars. A string so no float rounds it in transit.
         sig { returns(String) }
-        attr_accessor :id
-
-        # The application fee amount.
-        sig { returns(Float) }
         attr_accessor :amount
 
-        # The amount of the application fee that has been captured.
-        sig { returns(Float) }
-        attr_accessor :amount_captured
-
-        # The amount of the application fee that has been refunded.
-        sig { returns(Float) }
-        attr_accessor :amount_refunded
-
-        # The datetime the application fee was created.
-        sig { returns(Time) }
-        attr_accessor :created_at
-
-        # The currency of the application fee.
-        sig { returns(WhopSDK::Currency::TaggedSymbol) }
+        # Three-letter ISO 4217 currency code, lowercase.
+        sig { returns(String) }
         attr_accessor :currency
 
-        # The application fee charged on this payment.
+        # How many decimal places the amount CARRIES — the precision the charge itself
+        # runs at.
+        sig { returns(Integer) }
+        attr_accessor :decimals
+
+        # How many decimal places to SHOW. Usually equal to `decimals`, and deliberately
+        # not always: COP is charged in centavos but written in whole pesos, so it is `2`
+        # and `0`. Format the number in your own locale using this.
+        sig { returns(Integer) }
+        attr_accessor :display_decimals
+
+        # What the account keeps: the total less Whop's fees.
         sig do
           params(
-            id: String,
-            amount: Float,
-            amount_captured: Float,
-            amount_refunded: Float,
-            created_at: Time,
-            currency: WhopSDK::Currency::OrSymbol
+            amount: String,
+            currency: String,
+            decimals: Integer,
+            display_decimals: Integer
           ).returns(T.attached_class)
         end
         def self.new(
-          # The unique identifier for the application fee.
-          id:,
-          # The application fee amount.
+          # The amount in major units, as an exact decimal string — `"10.00"` is ten
+          # dollars. A string so no float rounds it in transit.
           amount:,
-          # The amount of the application fee that has been captured.
-          amount_captured:,
-          # The amount of the application fee that has been refunded.
-          amount_refunded:,
-          # The datetime the application fee was created.
-          created_at:,
-          # The currency of the application fee.
-          currency:
+          # Three-letter ISO 4217 currency code, lowercase.
+          currency:,
+          # How many decimal places the amount CARRIES — the precision the charge itself
+          # runs at.
+          decimals:,
+          # How many decimal places to SHOW. Usually equal to `decimals`, and deliberately
+          # not always: COP is charged in centavos but written in whole pesos, so it is `2`
+          # and `0`. Format the number in your own locale using this.
+          display_decimals:
         )
         end
 
         sig do
           override.returns(
             {
-              id: String,
-              amount: Float,
-              amount_captured: Float,
-              amount_refunded: Float,
-              created_at: Time,
-              currency: WhopSDK::Currency::TaggedSymbol
+              amount: String,
+              currency: String,
+              decimals: Integer,
+              display_decimals: Integer
             }
           )
         end
@@ -765,35 +638,35 @@ module WhopSDK
             T.any(WhopSDK::Payment::BillingAddress, WhopSDK::Internal::AnyHash)
           end
 
-        # The city of the address.
+        # The city.
         sig { returns(T.nilable(String)) }
         attr_accessor :city
 
-        # The country of the address.
+        # The ISO 3166-1 alpha-2 country code.
         sig { returns(T.nilable(String)) }
         attr_accessor :country
 
-        # The line 1 of the address.
+        # The first street address line.
         sig { returns(T.nilable(String)) }
         attr_accessor :line1
 
-        # The line 2 of the address.
+        # The second street address line.
         sig { returns(T.nilable(String)) }
         attr_accessor :line2
 
-        # The name of the customer.
+        # The name on the address.
         sig { returns(T.nilable(String)) }
         attr_accessor :name
 
-        # The postal code of the address.
+        # The postal or ZIP code.
         sig { returns(T.nilable(String)) }
         attr_accessor :postal_code
 
-        # The state of the address.
+        # The state, province or region.
         sig { returns(T.nilable(String)) }
         attr_accessor :state
 
-        # The address of the user who made the payment.
+        # The billing address the buyer entered, or null.
         sig do
           params(
             city: T.nilable(String),
@@ -806,19 +679,19 @@ module WhopSDK
           ).returns(T.attached_class)
         end
         def self.new(
-          # The city of the address.
+          # The city.
           city:,
-          # The country of the address.
+          # The ISO 3166-1 alpha-2 country code.
           country:,
-          # The line 1 of the address.
+          # The first street address line.
           line1:,
-          # The line 2 of the address.
+          # The second street address line.
           line2:,
-          # The name of the customer.
+          # The name on the address.
           name:,
-          # The postal code of the address.
+          # The postal or ZIP code.
           postal_code:,
-          # The state of the address.
+          # The state, province or region.
           state:
         )
         end
@@ -836,45 +709,6 @@ module WhopSDK
             }
           )
         end
-        def to_hash
-        end
-      end
-
-      class Company < WhopSDK::Internal::Type::BaseModel
-        OrHash =
-          T.type_alias do
-            T.any(WhopSDK::Payment::Company, WhopSDK::Internal::AnyHash)
-          end
-
-        # The unique identifier for the company.
-        sig { returns(String) }
-        attr_accessor :id
-
-        # The slug/route of the company on the Whop site.
-        sig { returns(String) }
-        attr_accessor :route
-
-        # The written name of the company.
-        sig { returns(String) }
-        attr_accessor :title
-
-        # The company for the payment.
-        sig do
-          params(id: String, route: String, title: String).returns(
-            T.attached_class
-          )
-        end
-        def self.new(
-          # The unique identifier for the company.
-          id:,
-          # The slug/route of the company on the Whop site.
-          route:,
-          # The written name of the company.
-          title:
-        )
-        end
-
-        sig { override.returns({ id: String, route: String, title: String }) }
         def to_hash
         end
       end
@@ -1225,626 +1059,6 @@ module WhopSDK
         end
       end
 
-      class Dispute < WhopSDK::Internal::Type::BaseModel
-        OrHash =
-          T.type_alias do
-            T.any(WhopSDK::Payment::Dispute, WhopSDK::Internal::AnyHash)
-          end
-
-        # The unique identifier for the dispute.
-        sig { returns(String) }
-        attr_accessor :id
-
-        # The disputed amount in the specified currency, formatted as a decimal.
-        sig { returns(Float) }
-        attr_accessor :amount
-
-        # The three-letter ISO currency code for the disputed amount.
-        sig { returns(WhopSDK::Currency::TaggedSymbol) }
-        attr_accessor :currency
-
-        # Whether the dispute evidence can still be edited and submitted.
-        sig { returns(T.nilable(T::Boolean)) }
-        attr_accessor :editable
-
-        # The deadline by which dispute evidence must be submitted. Null if no response
-        # deadline is set.
-        sig { returns(T.nilable(Time)) }
-        attr_accessor :needs_response_by
-
-        # Additional freeform notes submitted by the company as part of the dispute
-        # evidence.
-        sig { returns(T.nilable(String)) }
-        attr_accessor :notes
-
-        # A human-readable reason for the dispute.
-        sig { returns(T.nilable(String)) }
-        attr_accessor :reason
-
-        # The current status of the dispute lifecycle, such as needs_response,
-        # under_review, won, or lost.
-        sig { returns(WhopSDK::DisputeStatuses::TaggedSymbol) }
-        attr_accessor :status
-
-        # A dispute is a chargeback or payment challenge filed against a company,
-        # including evidence and response status.
-        sig do
-          params(
-            id: String,
-            amount: Float,
-            currency: WhopSDK::Currency::OrSymbol,
-            editable: T.nilable(T::Boolean),
-            needs_response_by: T.nilable(Time),
-            notes: T.nilable(String),
-            reason: T.nilable(String),
-            status: WhopSDK::DisputeStatuses::OrSymbol
-          ).returns(T.attached_class)
-        end
-        def self.new(
-          # The unique identifier for the dispute.
-          id:,
-          # The disputed amount in the specified currency, formatted as a decimal.
-          amount:,
-          # The three-letter ISO currency code for the disputed amount.
-          currency:,
-          # Whether the dispute evidence can still be edited and submitted.
-          editable:,
-          # The deadline by which dispute evidence must be submitted. Null if no response
-          # deadline is set.
-          needs_response_by:,
-          # Additional freeform notes submitted by the company as part of the dispute
-          # evidence.
-          notes:,
-          # A human-readable reason for the dispute.
-          reason:,
-          # The current status of the dispute lifecycle, such as needs_response,
-          # under_review, won, or lost.
-          status:
-        )
-        end
-
-        sig do
-          override.returns(
-            {
-              id: String,
-              amount: Float,
-              currency: WhopSDK::Currency::TaggedSymbol,
-              editable: T.nilable(T::Boolean),
-              needs_response_by: T.nilable(Time),
-              notes: T.nilable(String),
-              reason: T.nilable(String),
-              status: WhopSDK::DisputeStatuses::TaggedSymbol
-            }
-          )
-        end
-        def to_hash
-        end
-      end
-
-      class Fee < WhopSDK::Internal::Type::BaseModel
-        OrHash =
-          T.type_alias do
-            T.any(WhopSDK::Payment::Fee, WhopSDK::Internal::AnyHash)
-          end
-
-        # The value or amount to display for the fee.
-        sig { returns(Float) }
-        attr_accessor :amount
-
-        # The currency of the fee.
-        sig { returns(WhopSDK::Currency::TaggedSymbol) }
-        attr_accessor :currency
-
-        # The label to display for the fee.
-        sig { returns(String) }
-        attr_accessor :name
-
-        # The specific origin of the fee, if applicable.
-        sig { returns(WhopSDK::Payment::Fee::Type::TaggedSymbol) }
-        attr_accessor :type
-
-        # Represents a fee related to a payment
-        sig do
-          params(
-            amount: Float,
-            currency: WhopSDK::Currency::OrSymbol,
-            name: String,
-            type: WhopSDK::Payment::Fee::Type::OrSymbol
-          ).returns(T.attached_class)
-        end
-        def self.new(
-          # The value or amount to display for the fee.
-          amount:,
-          # The currency of the fee.
-          currency:,
-          # The label to display for the fee.
-          name:,
-          # The specific origin of the fee, if applicable.
-          type:
-        )
-        end
-
-        sig do
-          override.returns(
-            {
-              amount: Float,
-              currency: WhopSDK::Currency::TaggedSymbol,
-              name: String,
-              type: WhopSDK::Payment::Fee::Type::TaggedSymbol
-            }
-          )
-        end
-        def to_hash
-        end
-
-        # The specific origin of the fee, if applicable.
-        module Type
-          extend WhopSDK::Internal::Type::Enum
-
-          TaggedSymbol =
-            T.type_alias { T.all(Symbol, WhopSDK::Payment::Fee::Type) }
-          OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-          STRIPE_DOMESTIC_PROCESSING_FEE =
-            T.let(
-              :stripe_domestic_processing_fee,
-              WhopSDK::Payment::Fee::Type::TaggedSymbol
-            )
-          STRIPE_INTERNATIONAL_PROCESSING_FEE =
-            T.let(
-              :stripe_international_processing_fee,
-              WhopSDK::Payment::Fee::Type::TaggedSymbol
-            )
-          STRIPE_FIXED_PROCESSING_FEE =
-            T.let(
-              :stripe_fixed_processing_fee,
-              WhopSDK::Payment::Fee::Type::TaggedSymbol
-            )
-          STRIPE_BILLING_FEE =
-            T.let(
-              :stripe_billing_fee,
-              WhopSDK::Payment::Fee::Type::TaggedSymbol
-            )
-          STRIPE_RADAR_FEE =
-            T.let(:stripe_radar_fee, WhopSDK::Payment::Fee::Type::TaggedSymbol)
-          SALES_TAX_REMITTANCE =
-            T.let(
-              :sales_tax_remittance,
-              WhopSDK::Payment::Fee::Type::TaggedSymbol
-            )
-          SALES_TAX_REMITTANCE_REVERSAL =
-            T.let(
-              :sales_tax_remittance_reversal,
-              WhopSDK::Payment::Fee::Type::TaggedSymbol
-            )
-          STRIPE_SALES_TAX_FEE =
-            T.let(
-              :stripe_sales_tax_fee,
-              WhopSDK::Payment::Fee::Type::TaggedSymbol
-            )
-          WHOP_PROCESSING_FEE =
-            T.let(
-              :whop_processing_fee,
-              WhopSDK::Payment::Fee::Type::TaggedSymbol
-            )
-          MARKETPLACE_AFFILIATE_FEE =
-            T.let(
-              :marketplace_affiliate_fee,
-              WhopSDK::Payment::Fee::Type::TaggedSymbol
-            )
-          AFFILIATE_FEE =
-            T.let(:affiliate_fee, WhopSDK::Payment::Fee::Type::TaggedSymbol)
-          CRYPTO_FEE =
-            T.let(:crypto_fee, WhopSDK::Payment::Fee::Type::TaggedSymbol)
-          STRIPE_STANDARD_PROCESSING_FEE =
-            T.let(
-              :stripe_standard_processing_fee,
-              WhopSDK::Payment::Fee::Type::TaggedSymbol
-            )
-          PAYPAL_FEE =
-            T.let(:paypal_fee, WhopSDK::Payment::Fee::Type::TaggedSymbol)
-          STRIPE_PAYOUT_FEE =
-            T.let(:stripe_payout_fee, WhopSDK::Payment::Fee::Type::TaggedSymbol)
-          DISPUTE_FEE =
-            T.let(:dispute_fee, WhopSDK::Payment::Fee::Type::TaggedSymbol)
-          DISPUTE_ALERT_FEE =
-            T.let(:dispute_alert_fee, WhopSDK::Payment::Fee::Type::TaggedSymbol)
-          APPLE_PROCESSING_FEE =
-            T.let(
-              :apple_processing_fee,
-              WhopSDK::Payment::Fee::Type::TaggedSymbol
-            )
-          BUYER_FEE =
-            T.let(:buyer_fee, WhopSDK::Payment::Fee::Type::TaggedSymbol)
-          SEZZLE_PROCESSING_FEE =
-            T.let(
-              :sezzle_processing_fee,
-              WhopSDK::Payment::Fee::Type::TaggedSymbol
-            )
-          SPLITIT_PROCESSING_FEE =
-            T.let(
-              :splitit_processing_fee,
-              WhopSDK::Payment::Fee::Type::TaggedSymbol
-            )
-          PLATFORM_BALANCE_PROCESSING_FEE =
-            T.let(
-              :platform_balance_processing_fee,
-              WhopSDK::Payment::Fee::Type::TaggedSymbol
-            )
-          PAYMENT_PROCESSING_PERCENTAGE_FEE =
-            T.let(
-              :payment_processing_percentage_fee,
-              WhopSDK::Payment::Fee::Type::TaggedSymbol
-            )
-          PAYMENT_PROCESSING_FIXED_FEE =
-            T.let(
-              :payment_processing_fixed_fee,
-              WhopSDK::Payment::Fee::Type::TaggedSymbol
-            )
-          CROSS_BORDER_PERCENTAGE_FEE =
-            T.let(
-              :cross_border_percentage_fee,
-              WhopSDK::Payment::Fee::Type::TaggedSymbol
-            )
-          FX_PERCENTAGE_FEE =
-            T.let(:fx_percentage_fee, WhopSDK::Payment::Fee::Type::TaggedSymbol)
-          ORCHESTRATION_PERCENTAGE_FEE =
-            T.let(
-              :orchestration_percentage_fee,
-              WhopSDK::Payment::Fee::Type::TaggedSymbol
-            )
-          THREE_DS_FIXED_FEE =
-            T.let(
-              :three_ds_fixed_fee,
-              WhopSDK::Payment::Fee::Type::TaggedSymbol
-            )
-          BILLING_PERCENTAGE_FEE =
-            T.let(
-              :billing_percentage_fee,
-              WhopSDK::Payment::Fee::Type::TaggedSymbol
-            )
-          REVSHARE_PERCENTAGE_FEE =
-            T.let(
-              :revshare_percentage_fee,
-              WhopSDK::Payment::Fee::Type::TaggedSymbol
-            )
-          APPLICATION_FEE =
-            T.let(:application_fee, WhopSDK::Payment::Fee::Type::TaggedSymbol)
-          HIGH_RISK_MERCHANT_FEE =
-            T.let(
-              :high_risk_merchant_fee,
-              WhopSDK::Payment::Fee::Type::TaggedSymbol
-            )
-
-          sig do
-            override.returns(
-              T::Array[WhopSDK::Payment::Fee::Type::TaggedSymbol]
-            )
-          end
-          def self.values
-          end
-        end
-      end
-
-      class FinancingTransaction < WhopSDK::Internal::Type::BaseModel
-        OrHash =
-          T.type_alias do
-            T.any(
-              WhopSDK::Payment::FinancingTransaction,
-              WhopSDK::Internal::AnyHash
-            )
-          end
-
-        # The unique identifier for the payment transaction.
-        sig { returns(String) }
-        attr_accessor :id
-
-        # The amount of the payment transaction.
-        sig { returns(Float) }
-        attr_accessor :amount
-
-        # The date and time the payment transaction was created.
-        sig { returns(Time) }
-        attr_accessor :created_at
-
-        # The status of the payment transaction.
-        sig do
-          returns(WhopSDK::Payment::FinancingTransaction::Status::TaggedSymbol)
-        end
-        attr_accessor :status
-
-        # The type of the payment transaction.
-        sig do
-          returns(
-            WhopSDK::Payment::FinancingTransaction::TransactionType::TaggedSymbol
-          )
-        end
-        attr_accessor :transaction_type
-
-        # A payment transaction.
-        sig do
-          params(
-            id: String,
-            amount: Float,
-            created_at: Time,
-            status: WhopSDK::Payment::FinancingTransaction::Status::OrSymbol,
-            transaction_type:
-              WhopSDK::Payment::FinancingTransaction::TransactionType::OrSymbol
-          ).returns(T.attached_class)
-        end
-        def self.new(
-          # The unique identifier for the payment transaction.
-          id:,
-          # The amount of the payment transaction.
-          amount:,
-          # The date and time the payment transaction was created.
-          created_at:,
-          # The status of the payment transaction.
-          status:,
-          # The type of the payment transaction.
-          transaction_type:
-        )
-        end
-
-        sig do
-          override.returns(
-            {
-              id: String,
-              amount: Float,
-              created_at: Time,
-              status:
-                WhopSDK::Payment::FinancingTransaction::Status::TaggedSymbol,
-              transaction_type:
-                WhopSDK::Payment::FinancingTransaction::TransactionType::TaggedSymbol
-            }
-          )
-        end
-        def to_hash
-        end
-
-        # The status of the payment transaction.
-        module Status
-          extend WhopSDK::Internal::Type::Enum
-
-          TaggedSymbol =
-            T.type_alias do
-              T.all(Symbol, WhopSDK::Payment::FinancingTransaction::Status)
-            end
-          OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-          SUCCEEDED =
-            T.let(
-              :succeeded,
-              WhopSDK::Payment::FinancingTransaction::Status::TaggedSymbol
-            )
-          DECLINED =
-            T.let(
-              :declined,
-              WhopSDK::Payment::FinancingTransaction::Status::TaggedSymbol
-            )
-          ERROR =
-            T.let(
-              :error,
-              WhopSDK::Payment::FinancingTransaction::Status::TaggedSymbol
-            )
-          PENDING =
-            T.let(
-              :pending,
-              WhopSDK::Payment::FinancingTransaction::Status::TaggedSymbol
-            )
-          CREATED =
-            T.let(
-              :created,
-              WhopSDK::Payment::FinancingTransaction::Status::TaggedSymbol
-            )
-          EXPIRED =
-            T.let(
-              :expired,
-              WhopSDK::Payment::FinancingTransaction::Status::TaggedSymbol
-            )
-          WON =
-            T.let(
-              :won,
-              WhopSDK::Payment::FinancingTransaction::Status::TaggedSymbol
-            )
-          REJECTED =
-            T.let(
-              :rejected,
-              WhopSDK::Payment::FinancingTransaction::Status::TaggedSymbol
-            )
-          LOST =
-            T.let(
-              :lost,
-              WhopSDK::Payment::FinancingTransaction::Status::TaggedSymbol
-            )
-          PREVENTED =
-            T.let(
-              :prevented,
-              WhopSDK::Payment::FinancingTransaction::Status::TaggedSymbol
-            )
-          CANCELED =
-            T.let(
-              :canceled,
-              WhopSDK::Payment::FinancingTransaction::Status::TaggedSymbol
-            )
-
-          sig do
-            override.returns(
-              T::Array[
-                WhopSDK::Payment::FinancingTransaction::Status::TaggedSymbol
-              ]
-            )
-          end
-          def self.values
-          end
-        end
-
-        # The type of the payment transaction.
-        module TransactionType
-          extend WhopSDK::Internal::Type::Enum
-
-          TaggedSymbol =
-            T.type_alias do
-              T.all(
-                Symbol,
-                WhopSDK::Payment::FinancingTransaction::TransactionType
-              )
-            end
-          OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-          PURCHASE =
-            T.let(
-              :purchase,
-              WhopSDK::Payment::FinancingTransaction::TransactionType::TaggedSymbol
-            )
-          AUTHORIZE =
-            T.let(
-              :authorize,
-              WhopSDK::Payment::FinancingTransaction::TransactionType::TaggedSymbol
-            )
-          CAPTURE =
-            T.let(
-              :capture,
-              WhopSDK::Payment::FinancingTransaction::TransactionType::TaggedSymbol
-            )
-          REFUND =
-            T.let(
-              :refund,
-              WhopSDK::Payment::FinancingTransaction::TransactionType::TaggedSymbol
-            )
-          CANCELED =
-            T.let(
-              :canceled,
-              WhopSDK::Payment::FinancingTransaction::TransactionType::TaggedSymbol
-            )
-          VERIFY =
-            T.let(
-              :verify,
-              WhopSDK::Payment::FinancingTransaction::TransactionType::TaggedSymbol
-            )
-          CHARGEBACK =
-            T.let(
-              :chargeback,
-              WhopSDK::Payment::FinancingTransaction::TransactionType::TaggedSymbol
-            )
-          PRE_CHARGEBACK =
-            T.let(
-              :pre_chargeback,
-              WhopSDK::Payment::FinancingTransaction::TransactionType::TaggedSymbol
-            )
-          THREE_D_SECURE =
-            T.let(
-              :three_d_secure,
-              WhopSDK::Payment::FinancingTransaction::TransactionType::TaggedSymbol
-            )
-          FRAUD_SCREENING =
-            T.let(
-              :fraud_screening,
-              WhopSDK::Payment::FinancingTransaction::TransactionType::TaggedSymbol
-            )
-          AUTHORIZATION =
-            T.let(
-              :authorization,
-              WhopSDK::Payment::FinancingTransaction::TransactionType::TaggedSymbol
-            )
-          INSTALLMENT =
-            T.let(
-              :installment,
-              WhopSDK::Payment::FinancingTransaction::TransactionType::TaggedSymbol
-            )
-
-          sig do
-            override.returns(
-              T::Array[
-                WhopSDK::Payment::FinancingTransaction::TransactionType::TaggedSymbol
-              ]
-            )
-          end
-          def self.values
-          end
-        end
-      end
-
-      class Member < WhopSDK::Internal::Type::BaseModel
-        OrHash =
-          T.type_alias do
-            T.any(WhopSDK::Payment::Member, WhopSDK::Internal::AnyHash)
-          end
-
-        # The unique identifier for the company member.
-        sig { returns(String) }
-        attr_accessor :id
-
-        # The phone number for the member, if available.
-        sig { returns(T.nilable(String)) }
-        attr_accessor :phone
-
-        # The member attached to this payment.
-        sig do
-          params(id: String, phone: T.nilable(String)).returns(T.attached_class)
-        end
-        def self.new(
-          # The unique identifier for the company member.
-          id:,
-          # The phone number for the member, if available.
-          phone:
-        )
-        end
-
-        sig { override.returns({ id: String, phone: T.nilable(String) }) }
-        def to_hash
-        end
-      end
-
-      class Membership < WhopSDK::Internal::Type::BaseModel
-        OrHash =
-          T.type_alias do
-            T.any(WhopSDK::Payment::Membership, WhopSDK::Internal::AnyHash)
-          end
-
-        # The unique identifier for the membership.
-        sig { returns(String) }
-        attr_accessor :id
-
-        # The phone number associated with this membership.
-        sig { returns(T.nilable(String)) }
-        attr_accessor :phone_number
-
-        # The state of the membership.
-        sig { returns(WhopSDK::MembershipStatus::TaggedSymbol) }
-        attr_accessor :status
-
-        # The membership attached to this payment.
-        sig do
-          params(
-            id: String,
-            phone_number: T.nilable(String),
-            status: WhopSDK::MembershipStatus::OrSymbol
-          ).returns(T.attached_class)
-        end
-        def self.new(
-          # The unique identifier for the membership.
-          id:,
-          # The phone number associated with this membership.
-          phone_number:,
-          # The state of the membership.
-          status:
-        )
-        end
-
-        sig do
-          override.returns(
-            {
-              id: String,
-              phone_number: T.nilable(String),
-              status: WhopSDK::MembershipStatus::TaggedSymbol
-            }
-          )
-        end
-        def to_hash
-        end
-      end
-
       class PaymentInstrument < WhopSDK::Internal::Type::BaseModel
         OrHash =
           T.type_alias do
@@ -1881,22 +1095,21 @@ module WhopSDK
 
         # Installment methods only: how many payments the charge splits into. Data, not
         # copy — compose and translate the label client-side.
-        sig { returns(T.nilable(Integer)) }
+        sig { returns(T.nilable(Float)) }
         attr_accessor :installment_count
 
         # The payment method type identifier, e.g. `card`, `klarna`, `apple_pay`.
         sig { returns(String) }
         attr_accessor :payment_method_type
 
-        # The instrument this payment was made with, shaped for display: the method type,
-        # a buyer-facing name, the standard icon set, and the card facts when it was a
-        # card. Null when the receipt names no payment method.
+        # The instrument shaped for display: a buyer-facing name, the standard icon set,
+        # and the card's brand and last four when it was a card.
         sig do
           params(
             card: T.nilable(WhopSDK::Payment::PaymentInstrument::Card::OrHash),
             display_name: String,
             icons: WhopSDK::Payment::PaymentInstrument::Icons::OrHash,
-            installment_count: T.nilable(Integer),
+            installment_count: T.nilable(Float),
             payment_method_type: String
           ).returns(T.attached_class)
         end
@@ -1922,7 +1135,7 @@ module WhopSDK
               card: T.nilable(WhopSDK::Payment::PaymentInstrument::Card),
               display_name: String,
               icons: WhopSDK::Payment::PaymentInstrument::Icons,
-              installment_count: T.nilable(Integer),
+              installment_count: T.nilable(Float),
               payment_method_type: String
             }
           )
@@ -2401,604 +1614,65 @@ module WhopSDK
         end
       end
 
-      class PaymentMethod < WhopSDK::Internal::Type::BaseModel
+      class RefundedAmount < WhopSDK::Internal::Type::BaseModel
         OrHash =
           T.type_alias do
-            T.any(WhopSDK::Payment::PaymentMethod, WhopSDK::Internal::AnyHash)
+            T.any(WhopSDK::Payment::RefundedAmount, WhopSDK::Internal::AnyHash)
           end
 
-        # The unique identifier for the payment token.
+        # The amount in major units, as an exact decimal string — `"10.00"` is ten
+        # dollars. A string so no float rounds it in transit.
         sig { returns(String) }
-        attr_accessor :id
-
-        # The card data associated with the payment method, if its a debit or credit card.
-        sig { returns(T.nilable(WhopSDK::Payment::PaymentMethod::Card)) }
-        attr_reader :card
-
-        sig do
-          params(
-            card: T.nilable(WhopSDK::Payment::PaymentMethod::Card::OrHash)
-          ).void
-        end
-        attr_writer :card
-
-        # The datetime the payment token was created.
-        sig { returns(Time) }
-        attr_accessor :created_at
-
-        # The payment method type of the payment method
-        sig { returns(WhopSDK::PaymentMethodTypes::TaggedSymbol) }
-        attr_accessor :payment_method_type
-
-        # The tokenized payment method reference used for this payment. Null if no token
-        # was used.
-        sig do
-          params(
-            id: String,
-            card: T.nilable(WhopSDK::Payment::PaymentMethod::Card::OrHash),
-            created_at: Time,
-            payment_method_type: WhopSDK::PaymentMethodTypes::OrSymbol
-          ).returns(T.attached_class)
-        end
-        def self.new(
-          # The unique identifier for the payment token.
-          id:,
-          # The card data associated with the payment method, if its a debit or credit card.
-          card:,
-          # The datetime the payment token was created.
-          created_at:,
-          # The payment method type of the payment method
-          payment_method_type:
-        )
-        end
-
-        sig do
-          override.returns(
-            {
-              id: String,
-              card: T.nilable(WhopSDK::Payment::PaymentMethod::Card),
-              created_at: Time,
-              payment_method_type: WhopSDK::PaymentMethodTypes::TaggedSymbol
-            }
-          )
-        end
-        def to_hash
-        end
-
-        class Card < WhopSDK::Internal::Type::BaseModel
-          OrHash =
-            T.type_alias do
-              T.any(
-                WhopSDK::Payment::PaymentMethod::Card,
-                WhopSDK::Internal::AnyHash
-              )
-            end
-
-          # Possible card brands that a payment token can have
-          sig { returns(T.nilable(WhopSDK::CardBrands::TaggedSymbol)) }
-          attr_accessor :brand
-
-          # The two-digit expiration month of the card (1-12). Null if not available.
-          sig { returns(T.nilable(Integer)) }
-          attr_accessor :exp_month
-
-          # The two-digit expiration year of the card (e.g., 27 for 2027). Null if not
-          # available.
-          sig { returns(T.nilable(Integer)) }
-          attr_accessor :exp_year
-
-          # A stable identifier for the underlying card. Two payment methods with the same
-          # fingerprint are the same card. Null if not available.
-          sig { returns(T.nilable(String)) }
-          attr_accessor :fingerprint
-
-          # The last four digits of the card number. Null if not available.
-          sig { returns(T.nilable(String)) }
-          attr_accessor :last4
-
-          # The card data associated with the payment method, if its a debit or credit card.
-          sig do
-            params(
-              brand: T.nilable(WhopSDK::CardBrands::OrSymbol),
-              exp_month: T.nilable(Integer),
-              exp_year: T.nilable(Integer),
-              fingerprint: T.nilable(String),
-              last4: T.nilable(String)
-            ).returns(T.attached_class)
-          end
-          def self.new(
-            # Possible card brands that a payment token can have
-            brand:,
-            # The two-digit expiration month of the card (1-12). Null if not available.
-            exp_month:,
-            # The two-digit expiration year of the card (e.g., 27 for 2027). Null if not
-            # available.
-            exp_year:,
-            # A stable identifier for the underlying card. Two payment methods with the same
-            # fingerprint are the same card. Null if not available.
-            fingerprint:,
-            # The last four digits of the card number. Null if not available.
-            last4:
-          )
-          end
-
-          sig do
-            override.returns(
-              {
-                brand: T.nilable(WhopSDK::CardBrands::TaggedSymbol),
-                exp_month: T.nilable(Integer),
-                exp_year: T.nilable(Integer),
-                fingerprint: T.nilable(String),
-                last4: T.nilable(String)
-              }
-            )
-          end
-          def to_hash
-          end
-        end
-      end
-
-      class Plan < WhopSDK::Internal::Type::BaseModel
-        OrHash =
-          T.type_alias do
-            T.any(WhopSDK::Payment::Plan, WhopSDK::Internal::AnyHash)
-          end
-
-        # The unique identifier for the plan.
-        sig { returns(String) }
-        attr_accessor :id
-
-        # A personal description or notes section for the business.
-        sig { returns(T.nilable(String)) }
-        attr_accessor :internal_notes
-
-        # Custom key-value pairs stored on the plan. Included in webhook payloads for
-        # payment and membership events. Max 50 keys, 100 chars per key, 500 chars per
-        # string value. The reserved keys `custom_cta` and `custom_cta_url`, when set,
-        # override the product's checkout call to action for this plan.
-        sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
-        attr_accessor :metadata
-
-        # The plan attached to this payment.
-        sig do
-          params(
-            id: String,
-            internal_notes: T.nilable(String),
-            metadata: T.nilable(T::Hash[Symbol, T.anything])
-          ).returns(T.attached_class)
-        end
-        def self.new(
-          # The unique identifier for the plan.
-          id:,
-          # A personal description or notes section for the business.
-          internal_notes:,
-          # Custom key-value pairs stored on the plan. Included in webhook payloads for
-          # payment and membership events. Max 50 keys, 100 chars per key, 500 chars per
-          # string value. The reserved keys `custom_cta` and `custom_cta_url`, when set,
-          # override the product's checkout call to action for this plan.
-          metadata:
-        )
-        end
-
-        sig do
-          override.returns(
-            {
-              id: String,
-              internal_notes: T.nilable(String),
-              metadata: T.nilable(T::Hash[Symbol, T.anything])
-            }
-          )
-        end
-        def to_hash
-        end
-      end
-
-      class Product < WhopSDK::Internal::Type::BaseModel
-        OrHash =
-          T.type_alias do
-            T.any(WhopSDK::Payment::Product, WhopSDK::Internal::AnyHash)
-          end
-
-        # The unique identifier for the product.
-        sig { returns(String) }
-        attr_accessor :id
-
-        # Custom key-value pairs stored on the product and included in payment and
-        # membership webhook payloads. Max 50 keys, 100 characters per key, 500 characters
-        # per string value.
-        sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
-        attr_accessor :metadata
-
-        # URL slug in the product's public link, e.g. `pickaxe-analytics` in
-        # whop.com/company/pickaxe-analytics.
-        sig { returns(String) }
-        attr_accessor :route
-
-        # The display name of the product shown to customers on the product page and in
-        # search results.
-        sig { returns(String) }
-        attr_accessor :title
-
-        # The product this payment was made for
-        sig do
-          params(
-            id: String,
-            metadata: T.nilable(T::Hash[Symbol, T.anything]),
-            route: String,
-            title: String
-          ).returns(T.attached_class)
-        end
-        def self.new(
-          # The unique identifier for the product.
-          id:,
-          # Custom key-value pairs stored on the product and included in payment and
-          # membership webhook payloads. Max 50 keys, 100 characters per key, 500 characters
-          # per string value.
-          metadata:,
-          # URL slug in the product's public link, e.g. `pickaxe-analytics` in
-          # whop.com/company/pickaxe-analytics.
-          route:,
-          # The display name of the product shown to customers on the product page and in
-          # search results.
-          title:
-        )
-        end
-
-        sig do
-          override.returns(
-            {
-              id: String,
-              metadata: T.nilable(T::Hash[Symbol, T.anything]),
-              route: String,
-              title: String
-            }
-          )
-        end
-        def to_hash
-        end
-      end
-
-      class PromoCode < WhopSDK::Internal::Type::BaseModel
-        OrHash =
-          T.type_alias do
-            T.any(WhopSDK::Payment::PromoCode, WhopSDK::Internal::AnyHash)
-          end
-
-        # The unique identifier for the promo code.
-        sig { returns(String) }
-        attr_accessor :id
-
-        # The discount amount. Interpretation depends on promo_type: if 'percentage', this
-        # is the percentage (e.g., 20 means 20% off); if 'flat_amount', this is dollars
-        # off (e.g., 10.00 means $10.00 off).
-        sig { returns(Float) }
-        attr_accessor :amount_off
-
-        # The monetary currency of the promo code.
-        sig { returns(WhopSDK::Currency::TaggedSymbol) }
-        attr_accessor :base_currency
-
-        # The specific code used to apply the promo at checkout.
-        sig { returns(T.nilable(String)) }
-        attr_accessor :code
-
-        # The number of months the promo is applied for.
-        sig { returns(T.nilable(Integer)) }
-        attr_accessor :number_of_intervals
-
-        # The type (% or flat amount) of the promo.
-        sig { returns(WhopSDK::PromoType::TaggedSymbol) }
-        attr_accessor :promo_type
-
-        # The promo code used for this payment.
-        sig do
-          params(
-            id: String,
-            amount_off: Float,
-            base_currency: WhopSDK::Currency::OrSymbol,
-            code: T.nilable(String),
-            number_of_intervals: T.nilable(Integer),
-            promo_type: WhopSDK::PromoType::OrSymbol
-          ).returns(T.attached_class)
-        end
-        def self.new(
-          # The unique identifier for the promo code.
-          id:,
-          # The discount amount. Interpretation depends on promo_type: if 'percentage', this
-          # is the percentage (e.g., 20 means 20% off); if 'flat_amount', this is dollars
-          # off (e.g., 10.00 means $10.00 off).
-          amount_off:,
-          # The monetary currency of the promo code.
-          base_currency:,
-          # The specific code used to apply the promo at checkout.
-          code:,
-          # The number of months the promo is applied for.
-          number_of_intervals:,
-          # The type (% or flat amount) of the promo.
-          promo_type:
-        )
-        end
-
-        sig do
-          override.returns(
-            {
-              id: String,
-              amount_off: Float,
-              base_currency: WhopSDK::Currency::TaggedSymbol,
-              code: T.nilable(String),
-              number_of_intervals: T.nilable(Integer),
-              promo_type: WhopSDK::PromoType::TaggedSymbol
-            }
-          )
-        end
-        def to_hash
-        end
-      end
-
-      class Refund < WhopSDK::Internal::Type::BaseModel
-        OrHash =
-          T.type_alias do
-            T.any(WhopSDK::Payment::Refund, WhopSDK::Internal::AnyHash)
-          end
-
-        # The unique identifier for the refund.
-        sig { returns(String) }
-        attr_accessor :id
-
-        # The refunded amount as a decimal in the specified currency, such as 10.43 for
-        # $10.43 USD.
-        sig { returns(Float) }
         attr_accessor :amount
 
-        # The datetime the refund was created.
-        sig { returns(Time) }
-        attr_accessor :created_at
-
-        # The three-letter ISO currency code for the refunded amount.
-        sig { returns(WhopSDK::Currency::TaggedSymbol) }
+        # Three-letter ISO 4217 currency code, lowercase.
+        sig { returns(String) }
         attr_accessor :currency
 
-        # The current processing status of the refund, such as pending, succeeded, or
-        # failed.
-        sig { returns(WhopSDK::RefundStatus::TaggedSymbol) }
-        attr_accessor :status
+        # How many decimal places the amount CARRIES — the precision the charge itself
+        # runs at.
+        sig { returns(Integer) }
+        attr_accessor :decimals
 
-        # A refund represents a full or partial reversal of a payment, including the
-        # amount, status, and payment provider.
+        # How many decimal places to SHOW. Usually equal to `decimals`, and deliberately
+        # not always: COP is charged in centavos but written in whole pesos, so it is `2`
+        # and `0`. Format the number in your own locale using this.
+        sig { returns(Integer) }
+        attr_accessor :display_decimals
+
+        # How much has been refunded so far, as it settled — refunds convert at the rate
+        # in force when each one was issued, not the payment's original rate.
         sig do
           params(
-            id: String,
-            amount: Float,
-            created_at: Time,
-            currency: WhopSDK::Currency::OrSymbol,
-            status: WhopSDK::RefundStatus::OrSymbol
+            amount: String,
+            currency: String,
+            decimals: Integer,
+            display_decimals: Integer
           ).returns(T.attached_class)
         end
         def self.new(
-          # The unique identifier for the refund.
-          id:,
-          # The refunded amount as a decimal in the specified currency, such as 10.43 for
-          # $10.43 USD.
+          # The amount in major units, as an exact decimal string — `"10.00"` is ten
+          # dollars. A string so no float rounds it in transit.
           amount:,
-          # The datetime the refund was created.
-          created_at:,
-          # The three-letter ISO currency code for the refunded amount.
+          # Three-letter ISO 4217 currency code, lowercase.
           currency:,
-          # The current processing status of the refund, such as pending, succeeded, or
-          # failed.
-          status:
+          # How many decimal places the amount CARRIES — the precision the charge itself
+          # runs at.
+          decimals:,
+          # How many decimal places to SHOW. Usually equal to `decimals`, and deliberately
+          # not always: COP is charged in centavos but written in whole pesos, so it is `2`
+          # and `0`. Format the number in your own locale using this.
+          display_decimals:
         )
         end
 
         sig do
           override.returns(
             {
-              id: String,
-              amount: Float,
-              created_at: Time,
-              currency: WhopSDK::Currency::TaggedSymbol,
-              status: WhopSDK::RefundStatus::TaggedSymbol
-            }
-          )
-        end
-        def to_hash
-        end
-      end
-
-      class Resolution < WhopSDK::Internal::Type::BaseModel
-        OrHash =
-          T.type_alias do
-            T.any(WhopSDK::Payment::Resolution, WhopSDK::Internal::AnyHash)
-          end
-
-        # The unique identifier for the resolution.
-        sig { returns(String) }
-        attr_accessor :id
-
-        # Whether the customer has filed an appeal after the initial resolution decision.
-        sig { returns(T::Boolean) }
-        attr_accessor :customer_appealed
-
-        # The list of actions currently available to the customer.
-        sig do
-          returns(
-            T::Array[
-              WhopSDK::ResolutionCenterCaseCustomerResponse::TaggedSymbol
-            ]
-          )
-        end
-        attr_accessor :customer_response_actions
-
-        # The deadline by which the next response is required. Null if no deadline is
-        # currently active. As a Unix timestamp.
-        sig { returns(T.nilable(Time)) }
-        attr_accessor :due_date
-
-        # The category of the dispute.
-        sig { returns(WhopSDK::ResolutionCenterCaseIssueType::TaggedSymbol) }
-        attr_accessor :issue
-
-        # Whether the merchant has filed an appeal after the initial resolution decision.
-        sig { returns(T::Boolean) }
-        attr_accessor :merchant_appealed
-
-        # The list of actions currently available to the merchant.
-        sig do
-          returns(
-            T::Array[
-              WhopSDK::ResolutionCenterCaseMerchantResponse::TaggedSymbol
-            ]
-          )
-        end
-        attr_accessor :merchant_response_actions
-
-        # The list of actions currently available to the Whop platform for moderating this
-        # resolution.
-        sig do
-          returns(
-            T::Array[
-              WhopSDK::ResolutionCenterCasePlatformResponse::TaggedSymbol
-            ]
-          )
-        end
-        attr_accessor :platform_response_actions
-
-        # The current status of the resolution case, indicating which party needs to
-        # respond or if the case is closed.
-        sig { returns(WhopSDK::ResolutionCenterCaseStatus::TaggedSymbol) }
-        attr_accessor :status
-
-        # A resolution center case is a dispute or support case between a user and a
-        # company, tracking the issue, status, and outcome.
-        sig do
-          params(
-            id: String,
-            customer_appealed: T::Boolean,
-            customer_response_actions:
-              T::Array[WhopSDK::ResolutionCenterCaseCustomerResponse::OrSymbol],
-            due_date: T.nilable(Time),
-            issue: WhopSDK::ResolutionCenterCaseIssueType::OrSymbol,
-            merchant_appealed: T::Boolean,
-            merchant_response_actions:
-              T::Array[WhopSDK::ResolutionCenterCaseMerchantResponse::OrSymbol],
-            platform_response_actions:
-              T::Array[WhopSDK::ResolutionCenterCasePlatformResponse::OrSymbol],
-            status: WhopSDK::ResolutionCenterCaseStatus::OrSymbol
-          ).returns(T.attached_class)
-        end
-        def self.new(
-          # The unique identifier for the resolution.
-          id:,
-          # Whether the customer has filed an appeal after the initial resolution decision.
-          customer_appealed:,
-          # The list of actions currently available to the customer.
-          customer_response_actions:,
-          # The deadline by which the next response is required. Null if no deadline is
-          # currently active. As a Unix timestamp.
-          due_date:,
-          # The category of the dispute.
-          issue:,
-          # Whether the merchant has filed an appeal after the initial resolution decision.
-          merchant_appealed:,
-          # The list of actions currently available to the merchant.
-          merchant_response_actions:,
-          # The list of actions currently available to the Whop platform for moderating this
-          # resolution.
-          platform_response_actions:,
-          # The current status of the resolution case, indicating which party needs to
-          # respond or if the case is closed.
-          status:
-        )
-        end
-
-        sig do
-          override.returns(
-            {
-              id: String,
-              customer_appealed: T::Boolean,
-              customer_response_actions:
-                T::Array[
-                  WhopSDK::ResolutionCenterCaseCustomerResponse::TaggedSymbol
-                ],
-              due_date: T.nilable(Time),
-              issue: WhopSDK::ResolutionCenterCaseIssueType::TaggedSymbol,
-              merchant_appealed: T::Boolean,
-              merchant_response_actions:
-                T::Array[
-                  WhopSDK::ResolutionCenterCaseMerchantResponse::TaggedSymbol
-                ],
-              platform_response_actions:
-                T::Array[
-                  WhopSDK::ResolutionCenterCasePlatformResponse::TaggedSymbol
-                ],
-              status: WhopSDK::ResolutionCenterCaseStatus::TaggedSymbol
-            }
-          )
-        end
-        def to_hash
-        end
-      end
-
-      class Shipment < WhopSDK::Internal::Type::BaseModel
-        OrHash =
-          T.type_alias do
-            T.any(WhopSDK::Payment::Shipment, WhopSDK::Internal::AnyHash)
-          end
-
-        # The unique identifier for the shipment.
-        sig { returns(String) }
-        attr_accessor :id
-
-        # The shipping carrier detected for this shipment. Null until a tracking update
-        # identifies it.
-        sig { returns(T.nilable(String)) }
-        attr_accessor :carrier
-
-        # The current delivery status of this shipment.
-        sig { returns(WhopSDK::ShipmentStatus::TaggedSymbol) }
-        attr_accessor :status
-
-        # The carrier-assigned tracking number used to look up shipment progress.
-        sig { returns(String) }
-        attr_accessor :tracking_number
-
-        # A customer-facing URL to track this shipment's progress.
-        sig { returns(String) }
-        attr_accessor :tracking_url
-
-        # The shipment attached to this payment.
-        sig do
-          params(
-            id: String,
-            carrier: T.nilable(String),
-            status: WhopSDK::ShipmentStatus::OrSymbol,
-            tracking_number: String,
-            tracking_url: String
-          ).returns(T.attached_class)
-        end
-        def self.new(
-          # The unique identifier for the shipment.
-          id:,
-          # The shipping carrier detected for this shipment. Null until a tracking update
-          # identifies it.
-          carrier:,
-          # The current delivery status of this shipment.
-          status:,
-          # The carrier-assigned tracking number used to look up shipment progress.
-          tracking_number:,
-          # A customer-facing URL to track this shipment's progress.
-          tracking_url:
-        )
-        end
-
-        sig do
-          override.returns(
-            {
-              id: String,
-              carrier: T.nilable(String),
-              status: WhopSDK::ShipmentStatus::TaggedSymbol,
-              tracking_number: String,
-              tracking_url: String
+              amount: String,
+              currency: String,
+              decimals: Integer,
+              display_decimals: Integer
             }
           )
         end
@@ -3012,36 +1686,35 @@ module WhopSDK
             T.any(WhopSDK::Payment::ShippingAddress, WhopSDK::Internal::AnyHash)
           end
 
-        # The city of the address.
+        # The city.
         sig { returns(T.nilable(String)) }
         attr_accessor :city
 
-        # The country of the address.
+        # The ISO 3166-1 alpha-2 country code.
         sig { returns(T.nilable(String)) }
         attr_accessor :country
 
-        # The line 1 of the address.
+        # The first street address line.
         sig { returns(T.nilable(String)) }
         attr_accessor :line1
 
-        # The line 2 of the address.
+        # The second street address line.
         sig { returns(T.nilable(String)) }
         attr_accessor :line2
 
-        # The name of the customer.
+        # The name on the address.
         sig { returns(T.nilable(String)) }
         attr_accessor :name
 
-        # The postal code of the address.
+        # The postal or ZIP code.
         sig { returns(T.nilable(String)) }
         attr_accessor :postal_code
 
-        # The state of the address.
+        # The state, province or region.
         sig { returns(T.nilable(String)) }
         attr_accessor :state
 
-        # The shipping address provided by the customer for physical goods. Null if no
-        # shipping address was collected.
+        # The shipping address for physical goods, or null.
         sig do
           params(
             city: T.nilable(String),
@@ -3054,19 +1727,19 @@ module WhopSDK
           ).returns(T.attached_class)
         end
         def self.new(
-          # The city of the address.
+          # The city.
           city:,
-          # The country of the address.
+          # The ISO 3166-1 alpha-2 country code.
           country:,
-          # The line 1 of the address.
+          # The first street address line.
           line1:,
-          # The line 2 of the address.
+          # The second street address line.
           line2:,
-          # The name of the customer.
+          # The name on the address.
           name:,
-          # The postal code of the address.
+          # The postal or ZIP code.
           postal_code:,
-          # The state of the address.
+          # The state, province or region.
           state:
         )
         end
@@ -3088,47 +1761,387 @@ module WhopSDK
         end
       end
 
+      class Subtotal < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(WhopSDK::Payment::Subtotal, WhopSDK::Internal::AnyHash)
+          end
+
+        # The amount in major units, as an exact decimal string — `"10.00"` is ten
+        # dollars. A string so no float rounds it in transit.
+        sig { returns(String) }
+        attr_accessor :amount
+
+        # Three-letter ISO 4217 currency code, lowercase.
+        sig { returns(String) }
+        attr_accessor :currency
+
+        # How many decimal places the amount CARRIES — the precision the charge itself
+        # runs at.
+        sig { returns(Integer) }
+        attr_accessor :decimals
+
+        # How many decimal places to SHOW. Usually equal to `decimals`, and deliberately
+        # not always: COP is charged in centavos but written in whole pesos, so it is `2`
+        # and `0`. Format the number in your own locale using this.
+        sig { returns(Integer) }
+        attr_accessor :display_decimals
+
+        # The price before discounts, tax and fees.
+        sig do
+          params(
+            amount: String,
+            currency: String,
+            decimals: Integer,
+            display_decimals: Integer
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The amount in major units, as an exact decimal string — `"10.00"` is ten
+          # dollars. A string so no float rounds it in transit.
+          amount:,
+          # Three-letter ISO 4217 currency code, lowercase.
+          currency:,
+          # How many decimal places the amount CARRIES — the precision the charge itself
+          # runs at.
+          decimals:,
+          # How many decimal places to SHOW. Usually equal to `decimals`, and deliberately
+          # not always: COP is charged in centavos but written in whole pesos, so it is `2`
+          # and `0`. Format the number in your own locale using this.
+          display_decimals:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              amount: String,
+              currency: String,
+              decimals: Integer,
+              display_decimals: Integer
+            }
+          )
+        end
+        def to_hash
+        end
+      end
+
+      class TaxAmount < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(WhopSDK::Payment::TaxAmount, WhopSDK::Internal::AnyHash)
+          end
+
+        # The amount in major units, as an exact decimal string — `"10.00"` is ten
+        # dollars. A string so no float rounds it in transit.
+        sig { returns(String) }
+        attr_accessor :amount
+
+        # Three-letter ISO 4217 currency code, lowercase.
+        sig { returns(String) }
+        attr_accessor :currency
+
+        # How many decimal places the amount CARRIES — the precision the charge itself
+        # runs at.
+        sig { returns(Integer) }
+        attr_accessor :decimals
+
+        # How many decimal places to SHOW. Usually equal to `decimals`, and deliberately
+        # not always: COP is charged in centavos but written in whole pesos, so it is `2`
+        # and `0`. Format the number in your own locale using this.
+        sig { returns(Integer) }
+        attr_accessor :display_decimals
+
+        # The sales tax or VAT collected. Null when no tax applied.
+        sig do
+          params(
+            amount: String,
+            currency: String,
+            decimals: Integer,
+            display_decimals: Integer
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The amount in major units, as an exact decimal string — `"10.00"` is ten
+          # dollars. A string so no float rounds it in transit.
+          amount:,
+          # Three-letter ISO 4217 currency code, lowercase.
+          currency:,
+          # How many decimal places the amount CARRIES — the precision the charge itself
+          # runs at.
+          decimals:,
+          # How many decimal places to SHOW. Usually equal to `decimals`, and deliberately
+          # not always: COP is charged in centavos but written in whole pesos, so it is `2`
+          # and `0`. Format the number in your own locale using this.
+          display_decimals:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              amount: String,
+              currency: String,
+              decimals: Integer,
+              display_decimals: Integer
+            }
+          )
+        end
+        def to_hash
+        end
+      end
+
+      class TaxRefundedAmount < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              WhopSDK::Payment::TaxRefundedAmount,
+              WhopSDK::Internal::AnyHash
+            )
+          end
+
+        # The amount in major units, as an exact decimal string — `"10.00"` is ten
+        # dollars. A string so no float rounds it in transit.
+        sig { returns(String) }
+        attr_accessor :amount
+
+        # Three-letter ISO 4217 currency code, lowercase.
+        sig { returns(String) }
+        attr_accessor :currency
+
+        # How many decimal places the amount CARRIES — the precision the charge itself
+        # runs at.
+        sig { returns(Integer) }
+        attr_accessor :decimals
+
+        # How many decimal places to SHOW. Usually equal to `decimals`, and deliberately
+        # not always: COP is charged in centavos but written in whole pesos, so it is `2`
+        # and `0`. Format the number in your own locale using this.
+        sig { returns(Integer) }
+        attr_accessor :display_decimals
+
+        # How much of the collected tax has been returned to the buyer so far. Zero when
+        # the payment carried no tax, or when nothing has been refunded.
+        sig do
+          params(
+            amount: String,
+            currency: String,
+            decimals: Integer,
+            display_decimals: Integer
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The amount in major units, as an exact decimal string — `"10.00"` is ten
+          # dollars. A string so no float rounds it in transit.
+          amount:,
+          # Three-letter ISO 4217 currency code, lowercase.
+          currency:,
+          # How many decimal places the amount CARRIES — the precision the charge itself
+          # runs at.
+          decimals:,
+          # How many decimal places to SHOW. Usually equal to `decimals`, and deliberately
+          # not always: COP is charged in centavos but written in whole pesos, so it is `2`
+          # and `0`. Format the number in your own locale using this.
+          display_decimals:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              amount: String,
+              currency: String,
+              decimals: Integer,
+              display_decimals: Integer
+            }
+          )
+        end
+        def to_hash
+        end
+      end
+
+      class Total < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(WhopSDK::Payment::Total, WhopSDK::Internal::AnyHash)
+          end
+
+        # The amount in major units, as an exact decimal string — `"10.00"` is ten
+        # dollars. A string so no float rounds it in transit.
+        sig { returns(String) }
+        attr_accessor :amount
+
+        # Three-letter ISO 4217 currency code, lowercase.
+        sig { returns(String) }
+        attr_accessor :currency
+
+        # How many decimal places the amount CARRIES — the precision the charge itself
+        # runs at.
+        sig { returns(Integer) }
+        attr_accessor :decimals
+
+        # How many decimal places to SHOW. Usually equal to `decimals`, and deliberately
+        # not always: COP is charged in centavos but written in whole pesos, so it is `2`
+        # and `0`. Format the number in your own locale using this.
+        sig { returns(Integer) }
+        attr_accessor :display_decimals
+
+        # The account-facing total: the price after discounts, plus any tax added on top.
+        # Excludes buyer fees, which the buyer pays above this amount — so this is not
+        # necessarily what the buyer's statement shows.
+        sig do
+          params(
+            amount: String,
+            currency: String,
+            decimals: Integer,
+            display_decimals: Integer
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The amount in major units, as an exact decimal string — `"10.00"` is ten
+          # dollars. A string so no float rounds it in transit.
+          amount:,
+          # Three-letter ISO 4217 currency code, lowercase.
+          currency:,
+          # How many decimal places the amount CARRIES — the precision the charge itself
+          # runs at.
+          decimals:,
+          # How many decimal places to SHOW. Usually equal to `decimals`, and deliberately
+          # not always: COP is charged in centavos but written in whole pesos, so it is `2`
+          # and `0`. Format the number in your own locale using this.
+          display_decimals:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              amount: String,
+              currency: String,
+              decimals: Integer,
+              display_decimals: Integer
+            }
+          )
+        end
+        def to_hash
+        end
+      end
+
+      class UsdTotal < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(WhopSDK::Payment::UsdTotal, WhopSDK::Internal::AnyHash)
+          end
+
+        # The amount in major units, as an exact decimal string — `"10.00"` is ten
+        # dollars. A string so no float rounds it in transit.
+        sig { returns(String) }
+        attr_accessor :amount
+
+        # Three-letter ISO 4217 currency code, lowercase.
+        sig { returns(String) }
+        attr_accessor :currency
+
+        # How many decimal places the amount CARRIES — the precision the charge itself
+        # runs at.
+        sig { returns(Integer) }
+        attr_accessor :decimals
+
+        # How many decimal places to SHOW. Usually equal to `decimals`, and deliberately
+        # not always: COP is charged in centavos but written in whole pesos, so it is `2`
+        # and `0`. Format the number in your own locale using this.
+        sig { returns(Integer) }
+        attr_accessor :display_decimals
+
+        # The total converted to USD at the time of the charge, for reporting across
+        # currencies. Excludes the adaptive pricing FX markup, which the account does not
+        # keep.
+        sig do
+          params(
+            amount: String,
+            currency: String,
+            decimals: Integer,
+            display_decimals: Integer
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The amount in major units, as an exact decimal string — `"10.00"` is ten
+          # dollars. A string so no float rounds it in transit.
+          amount:,
+          # Three-letter ISO 4217 currency code, lowercase.
+          currency:,
+          # How many decimal places the amount CARRIES — the precision the charge itself
+          # runs at.
+          decimals:,
+          # How many decimal places to SHOW. Usually equal to `decimals`, and deliberately
+          # not always: COP is charged in centavos but written in whole pesos, so it is `2`
+          # and `0`. Format the number in your own locale using this.
+          display_decimals:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              amount: String,
+              currency: String,
+              decimals: Integer,
+              display_decimals: Integer
+            }
+          )
+        end
+        def to_hash
+        end
+      end
+
       class User < WhopSDK::Internal::Type::BaseModel
         OrHash =
           T.type_alias do
             T.any(WhopSDK::Payment::User, WhopSDK::Internal::AnyHash)
           end
 
-        # The unique identifier for the user.
+        # User ID, prefixed `user_`.
         sig { returns(String) }
         attr_accessor :id
 
-        # The user's email address. Requires the member:email:read permission to access.
-        # Null if not authorized.
-        sig { returns(T.nilable(String)) }
-        attr_accessor :email
-
-        # The user's display name shown on their public profile.
+        # Display name.
         sig { returns(T.nilable(String)) }
         attr_accessor :name
 
-        # The user's unique username shown on their public profile.
+        # Avatar wrapper; its `url` is always present, using a generated placeholder when
+        # the user set no picture.
+        sig { returns(WhopSDK::Payment::User::ProfilePicture) }
+        attr_reader :profile_picture
+
+        sig do
+          params(
+            profile_picture: WhopSDK::Payment::User::ProfilePicture::OrHash
+          ).void
+        end
+        attr_writer :profile_picture
+
+        # Public username.
         sig { returns(String) }
         attr_accessor :username
 
-        # The user that made this payment.
+        # The buyer. Null when the payment belongs to a company buyer rather than a user.
         sig do
           params(
             id: String,
-            email: T.nilable(String),
             name: T.nilable(String),
+            profile_picture: WhopSDK::Payment::User::ProfilePicture::OrHash,
             username: String
           ).returns(T.attached_class)
         end
         def self.new(
-          # The unique identifier for the user.
+          # User ID, prefixed `user_`.
           id:,
-          # The user's email address. Requires the member:email:read permission to access.
-          # Null if not authorized.
-          email:,
-          # The user's display name shown on their public profile.
+          # Display name.
           name:,
-          # The user's unique username shown on their public profile.
+          # Avatar wrapper; its `url` is always present, using a generated placeholder when
+          # the user set no picture.
+          profile_picture:,
+          # Public username.
           username:
         )
         end
@@ -3137,13 +2150,42 @@ module WhopSDK
           override.returns(
             {
               id: String,
-              email: T.nilable(String),
               name: T.nilable(String),
+              profile_picture: WhopSDK::Payment::User::ProfilePicture,
               username: String
             }
           )
         end
         def to_hash
+        end
+
+        class ProfilePicture < WhopSDK::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                WhopSDK::Payment::User::ProfilePicture,
+                WhopSDK::Internal::AnyHash
+              )
+            end
+
+          # Avatar image URL. Always present — a generated placeholder when the user set no
+          # picture.
+          sig { returns(String) }
+          attr_accessor :url
+
+          # Avatar wrapper; its `url` is always present, using a generated placeholder when
+          # the user set no picture.
+          sig { params(url: String).returns(T.attached_class) }
+          def self.new(
+            # Avatar image URL. Always present — a generated placeholder when the user set no
+            # picture.
+            url:
+          )
+          end
+
+          sig { override.returns({ url: String }) }
+          def to_hash
+          end
         end
       end
 
@@ -3156,27 +2198,25 @@ module WhopSDK
             )
           end
 
-        # Whether the billing street address the customer entered matched the address the
-        # issuer has on file.
+        # Whether the billing street address the customer entered matched the issuer's
+        # records.
         sig { returns(T.nilable(String)) }
         attr_accessor :address_line1
 
-        # Whether the cardholder name the customer entered matched the name the issuer has
-        # on file.
+        # Whether the cardholder name matched the issuer's records.
         sig { returns(T.nilable(String)) }
         attr_accessor :card_holder_name
 
-        # Whether the CVV / CVC the customer entered matched the card.
+        # Whether the CVV / CVC matched the card.
         sig { returns(T.nilable(String)) }
         attr_accessor :card_security_code
 
-        # Whether the billing postal code the customer entered matched the postal code the
-        # issuer has on file.
+        # Whether the billing postal code matched the issuer's records.
         sig { returns(T.nilable(String)) }
         attr_accessor :zip_code
 
-        # The issuer's address and card security code check results for this payment. Null
-        # when the processor returned none.
+        # The issuer's address and security code check results, or null when the processor
+        # returned none.
         sig do
           params(
             address_line1: T.nilable(String),
@@ -3186,16 +2226,14 @@ module WhopSDK
           ).returns(T.attached_class)
         end
         def self.new(
-          # Whether the billing street address the customer entered matched the address the
-          # issuer has on file.
+          # Whether the billing street address the customer entered matched the issuer's
+          # records.
           address_line1:,
-          # Whether the cardholder name the customer entered matched the name the issuer has
-          # on file.
+          # Whether the cardholder name matched the issuer's records.
           card_holder_name:,
-          # Whether the CVV / CVC the customer entered matched the card.
+          # Whether the CVV / CVC matched the card.
           card_security_code:,
-          # Whether the billing postal code the customer entered matched the postal code the
-          # issuer has on file.
+          # Whether the billing postal code matched the issuer's records.
           zip_code:
         )
         end

@@ -20,10 +20,24 @@ module WhopSDK
       sig { returns(T.nilable(Float)) }
       attr_accessor :partial_amount
 
+      sig { returns(T.nilable(String)) }
+      attr_reader :api_version_date
+
+      sig { params(api_version_date: String).void }
+      attr_writer :api_version_date
+
+      sig { returns(T.nilable(String)) }
+      attr_reader :idempotency_key
+
+      sig { params(idempotency_key: String).void }
+      attr_writer :idempotency_key
+
       sig do
         params(
           id: String,
           partial_amount: T.nilable(Float),
+          api_version_date: String,
+          idempotency_key: String,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -33,6 +47,8 @@ module WhopSDK
         # currency (what the buyer paid). For single-currency, this is in the payment
         # currency. If omitted, the full payment amount is refunded.
         partial_amount: nil,
+        api_version_date: nil,
+        idempotency_key: nil,
         request_options: {}
       )
       end
@@ -42,6 +58,8 @@ module WhopSDK
           {
             id: String,
             partial_amount: T.nilable(Float),
+            api_version_date: String,
+            idempotency_key: String,
             request_options: WhopSDK::RequestOptions
           }
         )

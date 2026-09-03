@@ -241,6 +241,15 @@ module WhopSDK
     sig { returns(WhopSDK::Resources::Disputes) }
     attr_reader :disputes
 
+    # A Refund is one reversal of a payment, full or partial. Refunds are issued with
+    # `POST /payments/{id}/refund`; this resource is the record of each one — how much
+    # moved, through which provider, and where it stands (`pending`, `succeeded`,
+    # `failed`).
+    #
+    # List a payment's refunds with `?payment_id=`, or every refund an account issued
+    # with `?account_id=`. `amount` is stated in the payment's settlement currency so
+    # it nets against the payment's `total`; `original_amount` is what the processor
+    # moved.
     sig { returns(WhopSDK::Resources::Refunds) }
     attr_reader :refunds
 

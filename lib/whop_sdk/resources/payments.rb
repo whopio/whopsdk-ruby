@@ -13,191 +13,198 @@ module WhopSDK
     # link a bank account. Use the return_url operation to change where they land
     # afterwards, up until they come back.
     class Payments
-      # Charge a buyer on-session with a `confirmation_token` for the method they
-      # selected, or charge an existing member off-session using a stored payment
-      # method. You can provide an existing plan or create one inline. The endpoint
-      # returns a payment immediately, but processing continues asynchronously. Use
-      # webhooks to learn whether it succeeds or fails, and poll the payment's status
-      # endpoint for any step the buyer must complete.
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::PaymentCreateParams} for more details.
       #
-      # Required permissions:
+      # Charges a buyer for a plan. Pass a payment method already on file (`member_id`
+      # and `payment_method_id`), or a `confirmation_token` describing a method the
+      # buyer just supplied. Collection runs in the background: the response is the
+      # payment as created, not its outcome — poll Retrieve status for how far it has
+      # got and, for a confirmation-token payment, what the buyer must still do.
+      # `plan_id` names the plan to charge for.
       #
-      # - `payment:charge`
-      # - `plan:create`
-      # - `access_pass:create`
-      # - `access_pass:update`
-      # - `plan:basic:read`
-      # - `access_pass:basic:read`
-      # - `member:email:read`
-      # - `member:basic:read`
-      # - `member:phone:read`
-      # - `promo_code:basic:read`
-      # - `shipment:basic:read`
-      # - `payment:dispute:read`
-      # - `payment:resolution_center_case:read`
+      # @overload create(account_id:, plan_id:, capture: nil, confirmation_token: nil, email: nil, member_id: nil, metadata: nil, payment_method_id: nil, promo_code_id: nil, return_url: nil, api_version_date: nil, idempotency_key: nil, request_options: {})
       #
-      # @overload create(body:, request_options: {})
+      # @param account_id [String] Body param: The account to charge for, prefixed `biz_`.
       #
-      # @param body [WhopSDK::Models::PaymentCreateParams::Body::CreatePaymentInputWithPlanAndConfirmationToken, WhopSDK::Models::PaymentCreateParams::Body::CreatePaymentInputWithPlanAndMemberID, WhopSDK::Models::PaymentCreateParams::Body::CreatePaymentInputWithPlanIDAndConfirmationToken, WhopSDK::Models::PaymentCreateParams::Body::CreatePaymentInputWithPlanIDAndMemberID] Parameters for CreatePayment
+      # @param plan_id [String] Body param: The plan to charge for, prefixed `plan_`. It must belong to the acco
+      #
+      # @param capture [Boolean, nil] Body param: Whether to capture a card payment immediately. Defaults to true. Pas
+      #
+      # @param confirmation_token [String, nil] Body param: A confirmation token describing a payment method the buyer just supp
+      #
+      # @param email [String, nil] Body param: Overrides the buyer email carried on the confirmation token, resolvi
+      #
+      # @param member_id [String, nil] Body param: The member to charge, prefixed `mber_`. Required with `payment_metho
+      #
+      # @param metadata [Hash{Symbol=>String}, nil] Body param: Custom metadata to attach to the payment.
+      #
+      # @param payment_method_id [String, nil] Body param: The stored payment method to charge, prefixed `payt_`. It must belon
+      #
+      # @param promo_code_id [String, nil] Body param: An active promo code to apply, prefixed `promo_`. It must belong to
+      #
+      # @param return_url [String, nil] Body param: Where the buyer continues after completing an off-site step. An abso
+      #
+      # @param api_version_date [String] Header param: Pins the request to a dated API version.
+      #
+      # @param idempotency_key [String] Header param: A unique key that makes this request safe to retry. See [Idempoten
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [WhopSDK::Models::PaymentCreateResponse]
+      # @return [WhopSDK::Models::Payment]
       #
       # @see WhopSDK::Models::PaymentCreateParams
       def create(params)
         parsed, options = WhopSDK::PaymentCreateParams.dump_request(params)
+        header_params = {api_version_date: "api-version-date", idempotency_key: "idempotency-key"}
         @client.request(
           method: :post,
           path: "payments",
-          body: parsed[:body],
-          model: WhopSDK::Models::PaymentCreateResponse,
+          headers: parsed.slice(*header_params.keys).transform_keys(header_params),
+          body: parsed.except(*header_params.keys),
+          model: WhopSDK::Payment,
           options: options
         )
       end
 
-      # Retrieves the details of an existing payment.
+      # Returns one payment. Related records are ids — resolve a plan, membership,
+      # member or shipment on its own endpoint, and list this payment's refunds,
+      # disputes or Resolution Center cases with `?payment_id=`.
       #
-      # Required permissions:
+      # @overload retrieve(id, api_version_date: nil, request_options: {})
       #
-      # - `payment:basic:read`
-      # - `plan:basic:read`
-      # - `access_pass:basic:read`
-      # - `member:email:read`
-      # - `member:basic:read`
-      # - `member:phone:read`
-      # - `promo_code:basic:read`
-      # - `shipment:basic:read`
-      # - `payment:dispute:read`
-      # - `payment:resolution_center_case:read`
+      # @param id [String] The payment to retrieve, prefixed `pay_`.
       #
-      # @overload retrieve(id, request_options: {})
-      #
-      # @param id [String] The unique identifier of the payment.
+      # @param api_version_date [String] Pins the request to a dated API version.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [WhopSDK::Models::PaymentRetrieveResponse]
+      # @return [WhopSDK::Models::Payment]
       #
       # @see WhopSDK::Models::PaymentRetrieveParams
       def retrieve(id, params = {})
+        parsed, options = WhopSDK::PaymentRetrieveParams.dump_request(params)
         @client.request(
           method: :get,
           path: ["payments/%1$s", id],
-          model: WhopSDK::Models::PaymentRetrieveResponse,
-          options: params[:request_options]
+          headers: parsed.transform_keys(api_version_date: "api-version-date"),
+          model: WhopSDK::Payment,
+          options: options
         )
       end
 
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::PaymentListParams} for more details.
       #
-      # Returns a paginated list of payments for the actor in context, with optional
-      # filtering by product, plan, status, billing reason, currency, and creation date.
+      # Lists payments, newest first. Without filters this is every payment the caller
+      # can read: a company credential's own account, or for a user every account they
+      # can read payments for. Filters narrow by account, buyer, product, plan,
+      # membership, status, billing reason, currency, and creation window. Filtering by
+      # `billing_reason=subscription_cycle` also matches renewals recorded as
+      # `subscription_update`. `settlement_time_at` is null on list rows — retrieve the
+      # payment for it.
       #
-      # Required permissions:
+      # @overload list(account_id: nil, after: nil, before: nil, billing_reason: nil, created_after: nil, created_before: nil, currency: nil, direction: nil, first: nil, last: nil, member_id: nil, membership_id: nil, order: nil, plan_id: nil, product_id: nil, query: nil, status: nil, user_id: nil, api_version_date: nil, request_options: {})
       #
-      # - `payment:basic:read`
-      # - `plan:basic:read`
-      # - `access_pass:basic:read`
-      # - `member:email:read`
-      # - `member:basic:read`
-      # - `member:phone:read`
-      # - `promo_code:basic:read`
-      # - `shipment:basic:read`
+      # @param account_id [String] Query param: Only payments charged by this account, prefixed `biz_`.
       #
-      # @overload list(after: nil, before: nil, billing_reasons: nil, checkout_configuration_ids: nil, company_id: nil, created_after: nil, created_before: nil, currencies: nil, direction: nil, first: nil, include_free: nil, last: nil, order: nil, plan_ids: nil, product_ids: nil, query: nil, statuses: nil, substatuses: nil, updated_after: nil, updated_before: nil, request_options: {})
+      # @param after [String] Query param: A cursor; returns payments after this position.
       #
-      # @param after [String] Returns the elements in the list that come after the specified cursor.
+      # @param before [String] Query param: A cursor; returns payments before this position.
       #
-      # @param before [String] Returns the elements in the list that come before the specified cursor.
+      # @param billing_reason [Symbol, WhopSDK::Models::PaymentListParams::BillingReason] Query param: Only payments charged for this reason.
       #
-      # @param billing_reasons [Array<Symbol, WhopSDK::Models::BillingReasons>] Filter payments by their billing reason.
+      # @param created_after [Time] Query param: Only payments created after this ISO 8601 timestamp.
       #
-      # @param checkout_configuration_ids [Array<String>] Only return payments from these checkout configurations.
+      # @param created_before [Time] Query param: Only payments created before this ISO 8601 timestamp.
       #
-      # @param company_id [String] The unique identifier of the company to list payments for.
+      # @param currency [String] Query param: Only payments presented in this three-letter currency, such as `usd
       #
-      # @param created_after [Time] Only return payments created after this timestamp.
+      # @param direction [Symbol, WhopSDK::Models::PaymentListParams::Direction] Query param: The sort direction.
       #
-      # @param created_before [Time] Only return payments created before this timestamp.
+      # @param first [Integer] Query param: The number of payments to return.
       #
-      # @param currencies [Array<Symbol, WhopSDK::Models::Currency>] Filter payments by their currency code.
+      # @param last [Integer] Query param: The number of payments to return from the end of the range.
       #
-      # @param direction [Symbol, WhopSDK::Models::Direction] The sort direction for ordering results, either ascending or descending.
+      # @param member_id [String] Query param: Only payments made by this member, prefixed `mber_`.
       #
-      # @param first [Integer] Returns the first _n_ elements from the list.
+      # @param membership_id [String] Query param: Only payments billed under this membership, prefixed `mem_`.
       #
-      # @param include_free [Boolean] Whether to include payments with a zero amount. Defaults to false, so zero-amoun
+      # @param order [Symbol, WhopSDK::Models::PaymentListParams::Order] Query param: The field to sort by.
       #
-      # @param last [Integer] Returns the last _n_ elements from the list.
+      # @param plan_id [String] Query param: Only payments priced by this plan, prefixed `plan_`.
       #
-      # @param order [Symbol, WhopSDK::Models::PaymentListParams::Order] The field to order results by, such as creation date.
+      # @param product_id [String] Query param: Only payments for this product, prefixed `prod_`.
       #
-      # @param plan_ids [Array<String>] Filter payments to only those associated with these specific plan identifiers.
+      # @param query [String] Query param: Search payments by user ID, membership ID, user email, name, or use
       #
-      # @param product_ids [Array<String>] Filter payments to only those associated with these specific product identifiers
+      # @param status [Symbol, WhopSDK::Models::PaymentListParams::Status] Query param: Only payments in this lifecycle state.
       #
-      # @param query [String] Search payments by user ID, membership ID, user email, name, or username. Email
+      # @param user_id [String] Query param: Only payments made by this buyer, prefixed `user_`.
       #
-      # @param statuses [Array<Symbol, WhopSDK::Models::ReceiptStatus>] Filter payments by their current status.
-      #
-      # @param substatuses [Array<Symbol, WhopSDK::Models::FriendlyReceiptStatus>] Filter payments by their current substatus for more granular filtering.
-      #
-      # @param updated_after [Time] Only return payments last updated after this timestamp.
-      #
-      # @param updated_before [Time] Only return payments last updated before this timestamp.
+      # @param api_version_date [String] Header param: Pins the request to a dated API version.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [WhopSDK::Internal::CursorPage<WhopSDK::Models::PaymentListResponse>]
+      # @return [WhopSDK::Internal::CursorPage<WhopSDK::Models::Payment>]
       #
       # @see WhopSDK::Models::PaymentListParams
       def list(params = {})
+        query_params =
+          [
+            :account_id,
+            :after,
+            :before,
+            :billing_reason,
+            :created_after,
+            :created_before,
+            :currency,
+            :direction,
+            :first,
+            :last,
+            :member_id,
+            :membership_id,
+            :order,
+            :plan_id,
+            :product_id,
+            :query,
+            :status,
+            :user_id
+          ]
         parsed, options = WhopSDK::PaymentListParams.dump_request(params)
-        query = WhopSDK::Internal::Util.encode_query_params(parsed)
+        query = WhopSDK::Internal::Util.encode_query_params(parsed.slice(*query_params))
         @client.request(
           method: :get,
           path: "payments",
           query: query,
+          headers: parsed.except(*query_params).transform_keys(api_version_date: "api-version-date"),
           page: WhopSDK::Internal::CursorPage,
-          model: WhopSDK::Models::PaymentListResponse,
+          model: WhopSDK::Payment,
           options: options
         )
       end
 
-      # Returns the list of fees associated with a specific payment, including platform
-      # fees and processing fees.
+      # Returns the fee breakdown of one payment — Whop's fee, processing, affiliate and
+      # other lines — each in the currency it was collected in and converted to the
+      # payment's settlement currency. The list is complete in one page.
       #
-      # Required permissions:
+      # @overload list_fees(id, api_version_date: nil, request_options: {})
       #
-      # - `payment:basic:read`
+      # @param id [String] The payment whose fees to list, prefixed `pay_`.
       #
-      # @overload list_fees(id, after: nil, before: nil, first: nil, last: nil, request_options: {})
-      #
-      # @param id [String] The unique identifier of the payment to list fees for.
-      #
-      # @param after [String] Returns the elements in the list that come after the specified cursor.
-      #
-      # @param before [String] Returns the elements in the list that come before the specified cursor.
-      #
-      # @param first [Integer] Returns the first _n_ elements from the list.
-      #
-      # @param last [Integer] Returns the last _n_ elements from the list.
+      # @param api_version_date [String] Pins the request to a dated API version.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [WhopSDK::Internal::CursorPage<WhopSDK::Models::PaymentListFeesResponse>]
+      # @return [WhopSDK::Models::PaymentListFeesResponse]
       #
       # @see WhopSDK::Models::PaymentListFeesParams
       def list_fees(id, params = {})
         parsed, options = WhopSDK::PaymentListFeesParams.dump_request(params)
-        query = WhopSDK::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: ["payments/%1$s/fees", id],
-          query: query,
-          page: WhopSDK::Internal::CursorPage,
+          headers: parsed.transform_keys(api_version_date: "api-version-date"),
           model: WhopSDK::Models::PaymentListFeesResponse,
           options: options
         )
@@ -206,27 +213,18 @@ module WhopSDK
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::PaymentRefundParams} for more details.
       #
-      # Issue a full or partial refund for a payment. The refund is processed through
+      # Issues a full or partial refund for a payment. The refund is processed through
       # the original payment processor and the membership status is updated accordingly.
       #
-      # Required permissions:
+      # @overload refund(id, partial_amount: nil, api_version_date: nil, idempotency_key: nil, request_options: {})
       #
-      # - `payment:manage`
-      # - `plan:basic:read`
-      # - `access_pass:basic:read`
-      # - `member:email:read`
-      # - `member:basic:read`
-      # - `member:phone:read`
-      # - `promo_code:basic:read`
-      # - `shipment:basic:read`
-      # - `payment:dispute:read`
-      # - `payment:resolution_center_case:read`
+      # @param id [String] Path param: The payment to refund, prefixed `pay_`.
       #
-      # @overload refund(id, partial_amount: nil, request_options: {})
+      # @param partial_amount [Float, nil] Body param: The amount to refund. For multi-currency payments, this is in the ch
       #
-      # @param id [String] The unique identifier of the payment to refund.
+      # @param api_version_date [String] Header param: Pins the request to a dated API version.
       #
-      # @param partial_amount [Float, nil] The amount to refund. For multi-currency payments, this is in the charge currenc
+      # @param idempotency_key [String] Header param: A unique key that makes this request safe to retry. See [Idempoten
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -235,34 +233,30 @@ module WhopSDK
       # @see WhopSDK::Models::PaymentRefundParams
       def refund(id, params = {})
         parsed, options = WhopSDK::PaymentRefundParams.dump_request(params)
+        header_params = {api_version_date: "api-version-date", idempotency_key: "idempotency-key"}
         @client.request(
           method: :post,
           path: ["payments/%1$s/refund", id],
-          body: parsed,
+          headers: parsed.slice(*header_params.keys).transform_keys(header_params),
+          body: parsed.except(*header_params.keys),
           model: WhopSDK::Payment,
           options: options
         )
       end
 
-      # Retry a failed or pending payment. This re-attempts the charge using the
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::PaymentRetryParams} for more details.
+      #
+      # Retries a failed or pending payment. This re-attempts the charge using the
       # original payment method and plan details.
       #
-      # Required permissions:
+      # @overload retry_(id, api_version_date: nil, idempotency_key: nil, request_options: {})
       #
-      # - `payment:manage`
-      # - `plan:basic:read`
-      # - `access_pass:basic:read`
-      # - `member:email:read`
-      # - `member:basic:read`
-      # - `member:phone:read`
-      # - `promo_code:basic:read`
-      # - `shipment:basic:read`
-      # - `payment:dispute:read`
-      # - `payment:resolution_center_case:read`
+      # @param id [String] The payment to retry, prefixed `pay_`.
       #
-      # @overload retry_(id, request_options: {})
+      # @param api_version_date [String] Pins the request to a dated API version.
       #
-      # @param id [String] The unique identifier of the payment to retry.
+      # @param idempotency_key [String] A unique key that makes this request safe to retry. See [Idempotent requests](ht
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -270,33 +264,32 @@ module WhopSDK
       #
       # @see WhopSDK::Models::PaymentRetryParams
       def retry_(id, params = {})
+        parsed, options = WhopSDK::PaymentRetryParams.dump_request(params)
         @client.request(
           method: :post,
           path: ["payments/%1$s/retry", id],
+          headers: parsed.transform_keys(
+            api_version_date: "api-version-date",
+            idempotency_key: "idempotency-key"
+          ),
           model: WhopSDK::Payment,
-          options: params[:request_options]
+          options: options
         )
       end
 
-      # Void a payment that has not yet been settled. Voiding cancels the payment before
-      # it is captured by the payment processor.
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::PaymentVoidParams} for more details.
       #
-      # Required permissions:
+      # Voids a payment that has not yet been settled. Voiding cancels the payment
+      # before it is captured by the payment processor.
       #
-      # - `payment:manage`
-      # - `plan:basic:read`
-      # - `access_pass:basic:read`
-      # - `member:email:read`
-      # - `member:basic:read`
-      # - `member:phone:read`
-      # - `promo_code:basic:read`
-      # - `shipment:basic:read`
-      # - `payment:dispute:read`
-      # - `payment:resolution_center_case:read`
+      # @overload void(id, api_version_date: nil, idempotency_key: nil, request_options: {})
       #
-      # @overload void(id, request_options: {})
+      # @param id [String] The payment to void, prefixed `pay_`.
       #
-      # @param id [String] The unique identifier of the payment to void.
+      # @param api_version_date [String] Pins the request to a dated API version.
+      #
+      # @param idempotency_key [String] A unique key that makes this request safe to retry. See [Idempotent requests](ht
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -304,11 +297,16 @@ module WhopSDK
       #
       # @see WhopSDK::Models::PaymentVoidParams
       def void(id, params = {})
+        parsed, options = WhopSDK::PaymentVoidParams.dump_request(params)
         @client.request(
           method: :post,
           path: ["payments/%1$s/void", id],
+          headers: parsed.transform_keys(
+            api_version_date: "api-version-date",
+            idempotency_key: "idempotency-key"
+          ),
           model: WhopSDK::Payment,
-          options: params[:request_options]
+          options: options
         )
       end
 

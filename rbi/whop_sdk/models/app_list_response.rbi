@@ -106,6 +106,9 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :origin
 
+      sig { returns(T::Array[String]) }
+      attr_accessor :previous_hosted_urls
+
       # Claimed subdomain route where hosted web builds are served (`myapp` for
       # myapp.whop.site), or `null` if no route is claimed.
       sig { returns(T.nilable(String)) }
@@ -146,6 +149,7 @@ module WhopSDK
           name: String,
           openapi_path: T.nilable(String),
           origin: T.nilable(String),
+          previous_hosted_urls: T::Array[String],
           route: T.nilable(String),
           skills_path: T.nilable(String),
           status: WhopSDK::Models::AppListResponse::Status::OrSymbol,
@@ -194,6 +198,7 @@ module WhopSDK
         # Full origin URL of the app's proxied domain, for example
         # https://ab1c2d3e4f.apps.whop.com.
         origin:,
+        previous_hosted_urls:,
         # Claimed subdomain route where hosted web builds are served (`myapp` for
         # myapp.whop.site), or `null` if no route is claimed.
         route:,
@@ -230,6 +235,7 @@ module WhopSDK
             name: String,
             openapi_path: T.nilable(String),
             origin: T.nilable(String),
+            previous_hosted_urls: T::Array[String],
             route: T.nilable(String),
             skills_path: T.nilable(String),
             status: WhopSDK::Models::AppListResponse::Status::TaggedSymbol,

@@ -116,6 +116,14 @@ module WhopSDK
                  -> { WhopSDK::LedgerAccountFundsAvailableWebhookEvent::Data::PayoutAccountDetails },
                  nil?: true
 
+        # @!attribute payout_quote_required
+        #   Whether a payout from this account must be confirmed against a provider-backed
+        #   quote first. When true, create a quote with POST /payouts/quotes and send its
+        #   quote_token when creating the payout.
+        #
+        #   @return [Boolean]
+        required :payout_quote_required, WhopSDK::Internal::Type::Boolean
+
         # @!attribute settlement_time_at
         #   The settlement batch most recently posted to this account's available balance,
         #   at midnight UTC. Every payment settling in that batch carries the same
@@ -138,7 +146,7 @@ module WhopSDK
                  -> { WhopSDK::LedgerAccountFundsAvailableWebhookEvent::Data::TreasuryBalance },
                  nil?: true
 
-        # @!method initialize(id:, balances:, ledger_type:, owner:, payments_approval_status:, payout_account_details:, settlement_time_at:, transfer_fee:, treasury_balance:)
+        # @!method initialize(id:, balances:, ledger_type:, owner:, payments_approval_status:, payout_account_details:, payout_quote_required:, settlement_time_at:, transfer_fee:, treasury_balance:)
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::LedgerAccountFundsAvailableWebhookEvent::Data} for more
         #   details.
@@ -157,6 +165,8 @@ module WhopSDK
         #   @param payments_approval_status [Symbol, WhopSDK::Models::LedgerAccountFundsAvailableWebhookEvent::Data::PaymentsApprovalStatus, nil] The different approval statuses an account can have.
         #
         #   @param payout_account_details [WhopSDK::Models::LedgerAccountFundsAvailableWebhookEvent::Data::PayoutAccountDetails, nil] The payout account associated with the LedgerAccount, if any.
+        #
+        #   @param payout_quote_required [Boolean] Whether a payout from this account must be confirmed against a provider-backed q
         #
         #   @param settlement_time_at [Time, nil] The settlement batch most recently posted to this account's available balance, a
         #

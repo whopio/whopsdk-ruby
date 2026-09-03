@@ -1,7 +1,12 @@
 module WhopSDK
   module Models
     type payment_refund_params =
-      { id: String, partial_amount: Float? }
+      {
+        id: String,
+        partial_amount: Float?,
+        api_version_date: String,
+        idempotency_key: String
+      }
       & WhopSDK::Internal::Type::request_parameters
 
     class PaymentRefundParams < WhopSDK::Internal::Type::BaseModel
@@ -12,15 +17,27 @@ module WhopSDK
 
       attr_accessor partial_amount: Float?
 
+      attr_reader api_version_date: String?
+
+      def api_version_date=: (String) -> String
+
+      attr_reader idempotency_key: String?
+
+      def idempotency_key=: (String) -> String
+
       def initialize: (
         id: String,
         ?partial_amount: Float?,
+        ?api_version_date: String,
+        ?idempotency_key: String,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
       def to_hash: -> {
         id: String,
         partial_amount: Float?,
+        api_version_date: String,
+        idempotency_key: String,
         request_options: WhopSDK::RequestOptions
       }
     end

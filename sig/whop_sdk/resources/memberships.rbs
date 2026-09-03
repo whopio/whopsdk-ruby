@@ -37,7 +37,7 @@ module WhopSDK
         String id,
         free_days: Integer,
         ?request_options: WhopSDK::request_opts
-      ) -> WhopSDK::Membership
+      ) -> WhopSDK::Models::MembershipAddFreeDaysResponse
 
       def cancel: (
         String id,
@@ -66,7 +66,7 @@ module WhopSDK
       def uncancel: (
         String id,
         ?request_options: WhopSDK::request_opts
-      ) -> WhopSDK::Membership
+      ) -> WhopSDK::Models::MembershipUncancelResponse
 
       def initialize: (client: WhopSDK::Client) -> void
     end

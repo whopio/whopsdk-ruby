@@ -135,7 +135,7 @@ module WhopSDK
           id: String,
           free_days: Integer,
           request_options: WhopSDK::RequestOptions::OrHash
-        ).returns(WhopSDK::Membership)
+        ).returns(WhopSDK::Models::MembershipAddFreeDaysResponse)
       end
       def add_free_days(
         # The unique identifier of the membership.
@@ -238,7 +238,7 @@ module WhopSDK
         params(
           id: String,
           request_options: WhopSDK::RequestOptions::OrHash
-        ).returns(WhopSDK::Membership)
+        ).returns(WhopSDK::Models::MembershipUncancelResponse)
       end
       def uncancel(
         # The unique identifier of the membership to uncancel.

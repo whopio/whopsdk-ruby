@@ -7,95 +7,124 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
+      # @!attribute account_id
+      #   Only refunds issued by this account, prefixed `biz_`.
+      #
+      #   @return [String, nil]
+      optional :account_id, String
+
       # @!attribute after
-      #   Returns the elements in the list that come after the specified cursor.
+      #   A cursor; returns refunds after this position.
       #
       #   @return [String, nil]
       optional :after, String
 
       # @!attribute before
-      #   Returns the elements in the list that come before the specified cursor.
+      #   A cursor; returns refunds before this position.
       #
       #   @return [String, nil]
       optional :before, String
 
-      # @!attribute company_id
-      #   Filter refunds to those belonging to this company. Mutually exclusive with
-      #   payment_id and user_id: provide exactly one.
-      #
-      #   @return [String, nil]
-      optional :company_id, String
-
       # @!attribute created_after
-      #   Only return refunds created after this timestamp.
+      #   Only refunds requested after this ISO 8601 timestamp.
       #
       #   @return [Time, nil]
       optional :created_after, Time
 
       # @!attribute created_before
-      #   Only return refunds created before this timestamp.
+      #   Only refunds requested before this ISO 8601 timestamp.
       #
       #   @return [Time, nil]
       optional :created_before, Time
 
       # @!attribute direction
-      #   The sort direction for ordering results, either ascending or descending.
+      #   The sort direction.
       #
-      #   @return [Symbol, WhopSDK::Models::Direction, nil]
-      optional :direction, enum: -> { WhopSDK::Direction }
+      #   @return [Symbol, WhopSDK::Models::RefundListParams::Direction, nil]
+      optional :direction, enum: -> { WhopSDK::RefundListParams::Direction }
 
       # @!attribute first
-      #   Returns the first _n_ elements from the list.
+      #   The number of refunds to return.
       #
       #   @return [Integer, nil]
       optional :first, Integer
 
       # @!attribute last
-      #   Returns the last _n_ elements from the list.
+      #   The number of refunds to return from the end of the range.
       #
       #   @return [Integer, nil]
       optional :last, Integer
 
+      # @!attribute order
+      #   The field to sort by.
+      #
+      #   @return [Symbol, WhopSDK::Models::RefundListParams::Order, nil]
+      optional :order, enum: -> { WhopSDK::RefundListParams::Order }
+
       # @!attribute payment_id
-      #   Filter refunds to those associated with this specific payment. Mutually
-      #   exclusive with company_id and user_id: provide exactly one.
+      #   Only refunds of this payment, prefixed `pay_`.
       #
       #   @return [String, nil]
       optional :payment_id, String
 
       # @!attribute user_id
-      #   Filter refunds to those associated with this specific user. Mutually exclusive
-      #   with payment_id and company_id: provide exactly one. Requires a credential
-      #   belonging to that user; any other credential receives 'You are not authorized'.
+      #   Only refunds to this buyer, prefixed `user_`.
       #
       #   @return [String, nil]
       optional :user_id, String
 
-      # @!method initialize(after: nil, before: nil, company_id: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, payment_id: nil, user_id: nil, request_options: {})
-      #   Some parameter documentations has been truncated, see
-      #   {WhopSDK::Models::RefundListParams} for more details.
+      # @!attribute api_version_date
       #
-      #   @param after [String] Returns the elements in the list that come after the specified cursor.
+      #   @return [String, nil]
+      optional :api_version_date, String
+
+      # @!method initialize(account_id: nil, after: nil, before: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, order: nil, payment_id: nil, user_id: nil, api_version_date: nil, request_options: {})
+      #   @param account_id [String] Only refunds issued by this account, prefixed `biz_`.
       #
-      #   @param before [String] Returns the elements in the list that come before the specified cursor.
+      #   @param after [String] A cursor; returns refunds after this position.
       #
-      #   @param company_id [String] Filter refunds to those belonging to this company. Mutually exclusive with payme
+      #   @param before [String] A cursor; returns refunds before this position.
       #
-      #   @param created_after [Time] Only return refunds created after this timestamp.
+      #   @param created_after [Time] Only refunds requested after this ISO 8601 timestamp.
       #
-      #   @param created_before [Time] Only return refunds created before this timestamp.
+      #   @param created_before [Time] Only refunds requested before this ISO 8601 timestamp.
       #
-      #   @param direction [Symbol, WhopSDK::Models::Direction] The sort direction for ordering results, either ascending or descending.
+      #   @param direction [Symbol, WhopSDK::Models::RefundListParams::Direction] The sort direction.
       #
-      #   @param first [Integer] Returns the first _n_ elements from the list.
+      #   @param first [Integer] The number of refunds to return.
       #
-      #   @param last [Integer] Returns the last _n_ elements from the list.
+      #   @param last [Integer] The number of refunds to return from the end of the range.
       #
-      #   @param payment_id [String] Filter refunds to those associated with this specific payment. Mutually exclusiv
+      #   @param order [Symbol, WhopSDK::Models::RefundListParams::Order] The field to sort by.
       #
-      #   @param user_id [String] Filter refunds to those associated with this specific user. Mutually exclusive w
+      #   @param payment_id [String] Only refunds of this payment, prefixed `pay_`.
+      #
+      #   @param user_id [String] Only refunds to this buyer, prefixed `user_`.
+      #
+      #   @param api_version_date [String]
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
+
+      # The sort direction.
+      module Direction
+        extend WhopSDK::Internal::Type::Enum
+
+        ASC = :asc
+        DESC = :desc
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
+
+      # The field to sort by.
+      module Order
+        extend WhopSDK::Internal::Type::Enum
+
+        CREATED_AT = :created_at
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
     end
   end
 end

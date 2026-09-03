@@ -155,6 +155,9 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :preview_token
 
+      sig { returns(T::Array[String]) }
+      attr_accessor :previous_hosted_urls
+
       # ID of the app's product listing on the Whop app store, or `null` when the app
       # has no associated product.
       sig { returns(T.nilable(String)) }
@@ -259,6 +262,7 @@ module WhopSDK
           openapi_path: T.nilable(String),
           origin: T.nilable(String),
           preview_token: T.nilable(String),
+          previous_hosted_urls: T::Array[String],
           product_id: T.nilable(String),
           production_android_build:
             T.nilable(WhopSDK::App::ProductionAndroidBuild::OrHash),
@@ -347,6 +351,7 @@ module WhopSDK
         # the `__whop_preview` query param (or `x-whop-preview-token` header). `null`
         # unless the caller is a team member who can read the app's developer settings.
         preview_token:,
+        previous_hosted_urls:,
         # ID of the app's product listing on the Whop app store, or `null` when the app
         # has no associated product.
         product_id:,
@@ -407,6 +412,7 @@ module WhopSDK
             openapi_path: T.nilable(String),
             origin: T.nilable(String),
             preview_token: T.nilable(String),
+            previous_hosted_urls: T::Array[String],
             product_id: T.nilable(String),
             production_android_build:
               T.nilable(WhopSDK::App::ProductionAndroidBuild),

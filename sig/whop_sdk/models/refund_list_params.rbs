@@ -2,22 +2,28 @@ module WhopSDK
   module Models
     type refund_list_params =
       {
+        account_id: String,
         after: String,
         before: String,
-        company_id: String,
         created_after: Time,
         created_before: Time,
-        direction: WhopSDK::Models::direction,
+        direction: WhopSDK::Models::RefundListParams::direction,
         first: Integer,
         last: Integer,
+        order: WhopSDK::Models::RefundListParams::order,
         payment_id: String,
-        user_id: String
+        user_id: String,
+        api_version_date: String
       }
       & WhopSDK::Internal::Type::request_parameters
 
     class RefundListParams < WhopSDK::Internal::Type::BaseModel
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
+
+      attr_reader account_id: String?
+
+      def account_id=: (String) -> String
 
       attr_reader after: String?
 
@@ -27,10 +33,6 @@ module WhopSDK
 
       def before=: (String) -> String
 
-      attr_reader company_id: String?
-
-      def company_id=: (String) -> String
-
       attr_reader created_after: Time?
 
       def created_after=: (Time) -> Time
@@ -39,9 +41,11 @@ module WhopSDK
 
       def created_before=: (Time) -> Time
 
-      attr_reader direction: WhopSDK::Models::direction?
+      attr_reader direction: WhopSDK::Models::RefundListParams::direction?
 
-      def direction=: (WhopSDK::Models::direction) -> WhopSDK::Models::direction
+      def direction=: (
+        WhopSDK::Models::RefundListParams::direction
+      ) -> WhopSDK::Models::RefundListParams::direction
 
       attr_reader first: Integer?
 
@@ -51,6 +55,12 @@ module WhopSDK
 
       def last=: (Integer) -> Integer
 
+      attr_reader order: WhopSDK::Models::RefundListParams::order?
+
+      def order=: (
+        WhopSDK::Models::RefundListParams::order
+      ) -> WhopSDK::Models::RefundListParams::order
+
       attr_reader payment_id: String?
 
       def payment_id=: (String) -> String
@@ -59,33 +69,62 @@ module WhopSDK
 
       def user_id=: (String) -> String
 
+      attr_reader api_version_date: String?
+
+      def api_version_date=: (String) -> String
+
       def initialize: (
+        ?account_id: String,
         ?after: String,
         ?before: String,
-        ?company_id: String,
         ?created_after: Time,
         ?created_before: Time,
-        ?direction: WhopSDK::Models::direction,
+        ?direction: WhopSDK::Models::RefundListParams::direction,
         ?first: Integer,
         ?last: Integer,
+        ?order: WhopSDK::Models::RefundListParams::order,
         ?payment_id: String,
         ?user_id: String,
+        ?api_version_date: String,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
       def to_hash: -> {
+        account_id: String,
         after: String,
         before: String,
-        company_id: String,
         created_after: Time,
         created_before: Time,
-        direction: WhopSDK::Models::direction,
+        direction: WhopSDK::Models::RefundListParams::direction,
         first: Integer,
         last: Integer,
+        order: WhopSDK::Models::RefundListParams::order,
         payment_id: String,
         user_id: String,
+        api_version_date: String,
         request_options: WhopSDK::RequestOptions
       }
+
+      type direction = :asc | :desc
+
+      module Direction
+        extend WhopSDK::Internal::Type::Enum
+
+        ASC: :asc
+        DESC: :desc
+
+        def self?.values: -> ::Array[WhopSDK::Models::RefundListParams::direction]
+      end
+
+      type order = :created_at
+
+      module Order
+        extend WhopSDK::Internal::Type::Enum
+
+        CREATED_AT: :created_at
+
+        def self?.values: -> ::Array[WhopSDK::Models::RefundListParams::order]
+      end
     end
   end
 end

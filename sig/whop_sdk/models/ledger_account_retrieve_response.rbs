@@ -8,6 +8,7 @@ module WhopSDK
         owner: WhopSDK::Models::LedgerAccountRetrieveResponse::owner?,
         payments_approval_status: WhopSDK::Models::LedgerAccountRetrieveResponse::payments_approval_status?,
         payout_account_details: WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails?,
+        payout_quote_required: bool,
         settlement_time_at: Time?,
         transfer_fee: Float?,
         treasury_balance: WhopSDK::Models::LedgerAccountRetrieveResponse::TreasuryBalance?
@@ -26,6 +27,8 @@ module WhopSDK
 
       attr_accessor payout_account_details: WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails?
 
+      attr_accessor payout_quote_required: bool
+
       attr_accessor settlement_time_at: Time?
 
       attr_accessor transfer_fee: Float?
@@ -39,6 +42,7 @@ module WhopSDK
         owner: WhopSDK::Models::LedgerAccountRetrieveResponse::owner?,
         payments_approval_status: WhopSDK::Models::LedgerAccountRetrieveResponse::payments_approval_status?,
         payout_account_details: WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails?,
+        payout_quote_required: bool,
         settlement_time_at: Time?,
         transfer_fee: Float?,
         treasury_balance: WhopSDK::Models::LedgerAccountRetrieveResponse::TreasuryBalance?
@@ -51,6 +55,7 @@ module WhopSDK
         owner: WhopSDK::Models::LedgerAccountRetrieveResponse::owner?,
         payments_approval_status: WhopSDK::Models::LedgerAccountRetrieveResponse::payments_approval_status?,
         payout_account_details: WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails?,
+        payout_quote_required: bool,
         settlement_time_at: Time?,
         transfer_fee: Float?,
         treasury_balance: WhopSDK::Models::LedgerAccountRetrieveResponse::TreasuryBalance?

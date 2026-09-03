@@ -117,6 +117,11 @@ module WhopSDK
       #   @return [String, nil]
       required :origin, String, nil?: true
 
+      # @!attribute previous_hosted_urls
+      #
+      #   @return [Array<String>]
+      required :previous_hosted_urls, WhopSDK::Internal::Type::ArrayOf[String]
+
       # @!attribute route
       #   Claimed subdomain route where hosted web builds are served (`myapp` for
       #   myapp.whop.site), or `null` if no route is claimed.
@@ -144,7 +149,7 @@ module WhopSDK
       #   @return [Boolean]
       required :verified, WhopSDK::Internal::Type::Boolean
 
-      # @!method initialize(id:, account:, app_type:, banner_image:, base_url:, businesses_created_count:, businesses_created_logo_urls:, creator:, dashboard_path:, description:, discover_path:, domain_id:, experience_path:, hosted_url:, icon:, name:, openapi_path:, origin:, route:, skills_path:, status:, verified:)
+      # @!method initialize(id:, account:, app_type:, banner_image:, base_url:, businesses_created_count:, businesses_created_logo_urls:, creator:, dashboard_path:, description:, discover_path:, domain_id:, experience_path:, hosted_url:, icon:, name:, openapi_path:, origin:, previous_hosted_urls:, route:, skills_path:, status:, verified:)
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::AppListResponse} for more details.
       #
@@ -183,6 +188,8 @@ module WhopSDK
       #   @param openapi_path [String, nil] URL path to the app's OpenAPI spec file, or `null` when not configured.
       #
       #   @param origin [String, nil] Full origin URL of the app's proxied domain, for example https://ab1c2d3e4f.apps
+      #
+      #   @param previous_hosted_urls [Array<String>]
       #
       #   @param route [String, nil] Claimed subdomain route where hosted web builds are served (`myapp` for myapp.wh
       #

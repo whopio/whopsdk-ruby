@@ -26,7 +26,7 @@ module WhopSDK
       def submit_evidence: (
         String id,
         ?request_options: WhopSDK::request_opts
-      ) -> WhopSDK::Dispute
+      ) -> WhopSDK::Models::DisputeSubmitEvidenceResponse
 
       def update_evidence: (
         String id,
@@ -45,7 +45,7 @@ module WhopSDK
         ?service_date: String?,
         ?uncategorized_attachment: WhopSDK::DisputeUpdateEvidenceParams::UncategorizedAttachment?,
         ?request_options: WhopSDK::request_opts
-      ) -> WhopSDK::Dispute
+      ) -> WhopSDK::Models::DisputeUpdateEvidenceResponse
 
       def initialize: (client: WhopSDK::Client) -> void
     end

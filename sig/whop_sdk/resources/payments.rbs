@@ -2,61 +2,75 @@ module WhopSDK
   module Resources
     class Payments
       def create: (
-        body: WhopSDK::Models::PaymentCreateParams::body,
+        account_id: String,
+        plan_id: String,
+        ?capture: bool?,
+        ?confirmation_token: String?,
+        ?email: String?,
+        ?member_id: String?,
+        ?metadata: ::Hash[Symbol, String]?,
+        ?payment_method_id: String?,
+        ?promo_code_id: String?,
+        ?return_url: String?,
+        ?api_version_date: String,
+        ?idempotency_key: String,
         ?request_options: WhopSDK::request_opts
-      ) -> WhopSDK::Models::PaymentCreateResponse
+      ) -> WhopSDK::Payment
 
       def retrieve: (
         String id,
+        ?api_version_date: String,
         ?request_options: WhopSDK::request_opts
-      ) -> WhopSDK::Models::PaymentRetrieveResponse
+      ) -> WhopSDK::Payment
 
       def list: (
+        ?account_id: String,
         ?after: String,
         ?before: String,
-        ?billing_reasons: ::Array[WhopSDK::Models::billing_reasons],
-        ?checkout_configuration_ids: ::Array[String],
-        ?company_id: String,
+        ?billing_reason: WhopSDK::Models::PaymentListParams::billing_reason,
         ?created_after: Time,
         ?created_before: Time,
-        ?currencies: ::Array[WhopSDK::Models::currency],
-        ?direction: WhopSDK::Models::direction,
+        ?currency: String,
+        ?direction: WhopSDK::Models::PaymentListParams::direction,
         ?first: Integer,
-        ?include_free: bool,
         ?last: Integer,
+        ?member_id: String,
+        ?membership_id: String,
         ?order: WhopSDK::Models::PaymentListParams::order,
-        ?plan_ids: ::Array[String],
-        ?product_ids: ::Array[String],
+        ?plan_id: String,
+        ?product_id: String,
         ?query: String,
-        ?statuses: ::Array[WhopSDK::Models::receipt_status],
-        ?substatuses: ::Array[WhopSDK::Models::friendly_receipt_status],
-        ?updated_after: Time,
-        ?updated_before: Time,
+        ?status: WhopSDK::Models::PaymentListParams::status,
+        ?user_id: String,
+        ?api_version_date: String,
         ?request_options: WhopSDK::request_opts
-      ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::PaymentListResponse]
+      ) -> WhopSDK::Internal::CursorPage[WhopSDK::Payment]
 
       def list_fees: (
         String id,
-        ?after: String,
-        ?before: String,
-        ?first: Integer,
-        ?last: Integer,
+        ?api_version_date: String,
         ?request_options: WhopSDK::request_opts
-      ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::PaymentListFeesResponse]
+      ) -> WhopSDK::Models::PaymentListFeesResponse
 
       def refund: (
         String id,
         ?partial_amount: Float?,
+        ?api_version_date: String,
+        ?idempotency_key: String,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Payment
 
       def retry_: (
         String id,
+        ?api_version_date: String,
+        ?idempotency_key: String,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Payment
 
       def `void`: (
         String id,
+        ?api_version_date: String,
+        ?idempotency_key: String,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Payment
 

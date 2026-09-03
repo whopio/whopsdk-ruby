@@ -20,6 +20,7 @@ module WhopSDK
         name: String,
         openapi_path: String?,
         origin: String?,
+        previous_hosted_urls: ::Array[String],
         route: String?,
         skills_path: String?,
         status: WhopSDK::Models::AppListResponse::status,
@@ -63,6 +64,8 @@ module WhopSDK
 
       attr_accessor origin: String?
 
+      attr_accessor previous_hosted_urls: ::Array[String]
+
       attr_accessor route: String?
 
       attr_accessor skills_path: String?
@@ -90,6 +93,7 @@ module WhopSDK
         name: String,
         openapi_path: String?,
         origin: String?,
+        previous_hosted_urls: ::Array[String],
         route: String?,
         skills_path: String?,
         status: WhopSDK::Models::AppListResponse::status,
@@ -115,6 +119,7 @@ module WhopSDK
         name: String,
         openapi_path: String?,
         origin: String?,
+        previous_hosted_urls: ::Array[String],
         route: String?,
         skills_path: String?,
         status: WhopSDK::Models::AppListResponse::status,

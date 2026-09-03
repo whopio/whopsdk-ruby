@@ -2,78 +2,80 @@
 
 module WhopSDK
   module Resources
+    # A Refund is one reversal of a payment, full or partial. Refunds are issued with
+    # `POST /payments/{id}/refund`; this resource is the record of each one — how much
+    # moved, through which provider, and where it stands (`pending`, `succeeded`,
+    # `failed`).
+    #
+    # List a payment's refunds with `?payment_id=`, or every refund an account issued
+    # with `?account_id=`. `amount` is stated in the payment's settlement currency so
+    # it nets against the payment's `total`; `original_amount` is what the processor
+    # moved.
     class Refunds
-      # Retrieves the details of an existing refund.
-      #
-      # Required permissions:
-      #
-      # - `payment:basic:read`
-      # - `plan:basic:read`
-      # - `access_pass:basic:read`
-      # - `member:email:read`
-      # - `member:basic:read`
-      # - `member:phone:read`
+      # Returns one refund.
       sig do
         params(
           id: String,
+          api_version_date: String,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Models::RefundRetrieveResponse)
       end
       def retrieve(
-        # The unique identifier of the refund.
+        # The refund to retrieve, prefixed `rf_`.
         id,
+        # Pins the request to a dated API version.
+        api_version_date: nil,
         request_options: {}
       )
       end
 
-      # Returns a paginated list of refunds, with optional filtering by payment,
-      # company, user, and creation date.
-      #
-      # Required permissions:
-      #
-      # - `payment:basic:read`
+      # Lists refunds, newest first. Without filters this is every refund the caller can
+      # read; narrow it to one payment with `payment_id`, one account with `account_id`,
+      # or one buyer with `user_id`.
       sig do
         params(
+          account_id: String,
           after: String,
           before: String,
-          company_id: String,
           created_after: Time,
           created_before: Time,
-          direction: WhopSDK::Direction::OrSymbol,
+          direction: WhopSDK::RefundListParams::Direction::OrSymbol,
           first: Integer,
           last: Integer,
+          order: WhopSDK::RefundListParams::Order::OrSymbol,
           payment_id: String,
           user_id: String,
+          api_version_date: String,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(
           WhopSDK::Internal::CursorPage[WhopSDK::Models::RefundListResponse]
         )
       end
       def list(
-        # Returns the elements in the list that come after the specified cursor.
+        # Query param: Only refunds issued by this account, prefixed `biz_`.
+        account_id: nil,
+        # Query param: A cursor; returns refunds after this position.
         after: nil,
-        # Returns the elements in the list that come before the specified cursor.
+        # Query param: A cursor; returns refunds before this position.
         before: nil,
-        # Filter refunds to those belonging to this company. Mutually exclusive with
-        # payment_id and user_id: provide exactly one.
-        company_id: nil,
-        # Only return refunds created after this timestamp.
+        # Query param: Only refunds requested after this ISO 8601 timestamp.
         created_after: nil,
-        # Only return refunds created before this timestamp.
+        # Query param: Only refunds requested before this ISO 8601 timestamp.
         created_before: nil,
-        # The sort direction for ordering results, either ascending or descending.
+        # Query param: The sort direction.
         direction: nil,
-        # Returns the first _n_ elements from the list.
+        # Query param: The number of refunds to return.
         first: nil,
-        # Returns the last _n_ elements from the list.
+        # Query param: The number of refunds to return from the end of the range.
         last: nil,
-        # Filter refunds to those associated with this specific payment. Mutually
-        # exclusive with company_id and user_id: provide exactly one.
+        # Query param: The field to sort by.
+        order: nil,
+        # Query param: Only refunds of this payment, prefixed `pay_`.
         payment_id: nil,
-        # Filter refunds to those associated with this specific user. Mutually exclusive
-        # with payment_id and company_id: provide exactly one. Requires a credential
-        # belonging to that user; any other credential receives 'You are not authorized'.
+        # Query param: Only refunds to this buyer, prefixed `user_`.
         user_id: nil,
+        # Header param: Pins the request to a dated API version.
+        api_version_date: nil,
         request_options: {}
       )
       end

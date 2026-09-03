@@ -3,65 +3,53 @@ module WhopSDK
     type payment =
       {
         id: String,
-        amount_after_fees: Float,
-        application_fee: WhopSDK::Payment::ApplicationFee?,
+        account_id: String?,
+        amount_after_fees: WhopSDK::Payment::AmountAfterFees,
         auto_refunded: bool,
         billing_address: WhopSDK::Payment::BillingAddress?,
         billing_reason: WhopSDK::Models::billing_reasons?,
-        card_brand: WhopSDK::Models::card_brands?,
-        card_exp_month: Integer?,
-        card_exp_year: Integer?,
-        :card_last4 => String?,
         checkout_configuration_id: String?,
-        company: WhopSDK::Payment::Company?,
-        created_at: Time,
+        client_secret: String?,
+        created_at: String,
         currency: WhopSDK::Models::currency,
         customer_phone: String?,
         decline_code: WhopSDK::Models::Payment::decline_code?,
-        dispute_alerted_at: Time?,
-        disputes: ::Array[WhopSDK::Payment::Dispute]?,
+        dispute_alerted_at: String?,
         failure_message: String?,
-        fees: ::Array[WhopSDK::Payment::Fee],
-        financing_installments_count: Integer?,
-        financing_transactions: ::Array[WhopSDK::Payment::FinancingTransaction],
-        last_payment_attempt: Time?,
-        member: WhopSDK::Payment::Member?,
-        membership: WhopSDK::Payment::Membership?,
-        metadata: ::Hash[Symbol, top]?,
+        financing_installments_count: Float?,
+        last_payment_attempt_at: String?,
+        member_id: String?,
+        membership_id: String?,
+        metadata: top?,
         needs_tracking: bool?,
-        next_payment_attempt: Time?,
-        paid_at: Time?,
+        next_payment_attempt_at: String?,
+        paid_at: String?,
         payment_instrument: WhopSDK::Payment::PaymentInstrument?,
-        payment_method: WhopSDK::Payment::PaymentMethod?,
+        payment_method_id: String?,
         payment_method_type: WhopSDK::Models::payment_method_types?,
-        payments_failed: Integer?,
-        plan: WhopSDK::Payment::Plan?,
-        product: WhopSDK::Payment::Product?,
-        promo_code: WhopSDK::Payment::PromoCode?,
+        payments_failed: Float,
+        plan_id: String?,
+        product_id: String?,
+        promo_code_id: String?,
         refundable: bool,
-        refunded_amount: Float?,
-        refunded_at: Time?,
-        refunds: ::Array[WhopSDK::Payment::Refund],
-        resolutions: ::Array[WhopSDK::Payment::Resolution]?,
+        refunded_amount: WhopSDK::Payment::RefundedAmount?,
+        refunded_at: String?,
         retryable: bool,
-        risk_score: Integer?,
-        risk_signals: ::Hash[Symbol, top]?,
-        settlement_amount: Float,
-        settlement_currency: WhopSDK::Models::currency,
-        settlement_exchange_rate: Float?,
-        settlement_time_at: Time?,
-        shipment: WhopSDK::Payment::Shipment?,
+        risk_score: Float?,
+        risk_signals: top?,
+        settlement_time_at: String?,
+        shipment_id: String?,
         shipping_address: WhopSDK::Payment::ShippingAddress?,
-        status: WhopSDK::Models::receipt_status?,
+        status: WhopSDK::Models::receipt_status,
         substatus: WhopSDK::Models::friendly_receipt_status,
-        subtotal: Float?,
-        tax_amount: Float?,
+        subtotal: WhopSDK::Payment::Subtotal?,
+        tax_amount: WhopSDK::Payment::TaxAmount?,
         tax_behavior: WhopSDK::Models::receipt_tax_behavior?,
-        tax_refunded_amount: Float?,
+        tax_refunded_amount: WhopSDK::Payment::TaxRefundedAmount,
         three_ds_verified: bool,
-        total: Float?,
-        updated_at: Time,
-        usd_total: Float?,
+        total: WhopSDK::Payment::Total?,
+        updated_at: String,
+        usd_total: WhopSDK::Payment::UsdTotal?,
         user: WhopSDK::Payment::User?,
         verification_checks: WhopSDK::Payment::VerificationChecks?,
         voidable: bool
@@ -70,9 +58,9 @@ module WhopSDK
     class Payment < WhopSDK::Internal::Type::BaseModel
       attr_accessor id: String
 
-      attr_accessor amount_after_fees: Float
+      attr_accessor account_id: String?
 
-      attr_accessor application_fee: WhopSDK::Payment::ApplicationFee?
+      attr_accessor amount_after_fees: WhopSDK::Payment::AmountAfterFees
 
       attr_accessor auto_refunded: bool
 
@@ -80,19 +68,11 @@ module WhopSDK
 
       attr_accessor billing_reason: WhopSDK::Models::billing_reasons?
 
-      attr_accessor card_brand: WhopSDK::Models::card_brands?
-
-      attr_accessor card_exp_month: Integer?
-
-      attr_accessor card_exp_year: Integer?
-
-      attr_accessor card_last4: String?
-
       attr_accessor checkout_configuration_id: String?
 
-      attr_accessor company: WhopSDK::Payment::Company?
+      attr_accessor client_secret: String?
 
-      attr_accessor created_at: Time
+      attr_accessor created_at: String
 
       attr_accessor currency: WhopSDK::Models::currency
 
@@ -100,93 +80,77 @@ module WhopSDK
 
       attr_accessor decline_code: WhopSDK::Models::Payment::decline_code?
 
-      attr_accessor dispute_alerted_at: Time?
-
-      attr_accessor disputes: ::Array[WhopSDK::Payment::Dispute]?
+      attr_accessor dispute_alerted_at: String?
 
       attr_accessor failure_message: String?
 
-      attr_accessor fees: ::Array[WhopSDK::Payment::Fee]
+      attr_accessor financing_installments_count: Float?
 
-      attr_accessor financing_installments_count: Integer?
+      attr_accessor last_payment_attempt_at: String?
 
-      attr_accessor financing_transactions: ::Array[WhopSDK::Payment::FinancingTransaction]
+      attr_accessor member_id: String?
 
-      attr_accessor last_payment_attempt: Time?
+      attr_accessor membership_id: String?
 
-      attr_accessor member: WhopSDK::Payment::Member?
-
-      attr_accessor membership: WhopSDK::Payment::Membership?
-
-      attr_accessor metadata: ::Hash[Symbol, top]?
+      attr_accessor metadata: top?
 
       attr_accessor needs_tracking: bool?
 
-      attr_accessor next_payment_attempt: Time?
+      attr_accessor next_payment_attempt_at: String?
 
-      attr_accessor paid_at: Time?
+      attr_accessor paid_at: String?
 
       attr_accessor payment_instrument: WhopSDK::Payment::PaymentInstrument?
 
-      attr_accessor payment_method: WhopSDK::Payment::PaymentMethod?
+      attr_accessor payment_method_id: String?
 
       attr_accessor payment_method_type: WhopSDK::Models::payment_method_types?
 
-      attr_accessor payments_failed: Integer?
+      attr_accessor payments_failed: Float
 
-      attr_accessor plan: WhopSDK::Payment::Plan?
+      attr_accessor plan_id: String?
 
-      attr_accessor product: WhopSDK::Payment::Product?
+      attr_accessor product_id: String?
 
-      attr_accessor promo_code: WhopSDK::Payment::PromoCode?
+      attr_accessor promo_code_id: String?
 
       attr_accessor refundable: bool
 
-      attr_accessor refunded_amount: Float?
+      attr_accessor refunded_amount: WhopSDK::Payment::RefundedAmount?
 
-      attr_accessor refunded_at: Time?
-
-      attr_accessor refunds: ::Array[WhopSDK::Payment::Refund]
-
-      attr_accessor resolutions: ::Array[WhopSDK::Payment::Resolution]?
+      attr_accessor refunded_at: String?
 
       attr_accessor retryable: bool
 
-      attr_accessor risk_score: Integer?
+      attr_accessor risk_score: Float?
 
-      attr_accessor risk_signals: ::Hash[Symbol, top]?
+      attr_accessor risk_signals: top?
 
-      attr_accessor settlement_amount: Float
+      attr_accessor settlement_time_at: String?
 
-      attr_accessor settlement_currency: WhopSDK::Models::currency
-
-      attr_accessor settlement_exchange_rate: Float?
-
-      attr_accessor settlement_time_at: Time?
-
-      attr_accessor shipment: WhopSDK::Payment::Shipment?
+      attr_accessor shipment_id: String?
 
       attr_accessor shipping_address: WhopSDK::Payment::ShippingAddress?
 
-      attr_accessor status: WhopSDK::Models::receipt_status?
+      attr_accessor status: WhopSDK::Models::receipt_status
 
       attr_accessor substatus: WhopSDK::Models::friendly_receipt_status
 
-      attr_accessor subtotal: Float?
+      attr_accessor subtotal: WhopSDK::Payment::Subtotal?
 
-      attr_accessor tax_amount: Float?
+      attr_accessor tax_amount: WhopSDK::Payment::TaxAmount?
 
       attr_accessor tax_behavior: WhopSDK::Models::receipt_tax_behavior?
 
-      attr_accessor tax_refunded_amount: Float?
+      attr_accessor tax_refunded_amount: WhopSDK::Payment::TaxRefundedAmount
 
       attr_accessor three_ds_verified: bool
 
-      attr_accessor total: Float?
+      attr_accessor total: WhopSDK::Payment::Total?
 
-      attr_accessor updated_at: Time
+      attr_accessor updated_at: String
 
-      attr_accessor usd_total: Float?
+      attr_accessor usd_total: WhopSDK::Payment::UsdTotal?
 
       attr_accessor user: WhopSDK::Payment::User?
 
@@ -196,65 +160,53 @@ module WhopSDK
 
       def initialize: (
         id: String,
-        amount_after_fees: Float,
-        application_fee: WhopSDK::Payment::ApplicationFee?,
+        account_id: String?,
+        amount_after_fees: WhopSDK::Payment::AmountAfterFees,
         auto_refunded: bool,
         billing_address: WhopSDK::Payment::BillingAddress?,
         billing_reason: WhopSDK::Models::billing_reasons?,
-        card_brand: WhopSDK::Models::card_brands?,
-        card_exp_month: Integer?,
-        card_exp_year: Integer?,
-        card_last4: String?,
         checkout_configuration_id: String?,
-        company: WhopSDK::Payment::Company?,
-        created_at: Time,
+        client_secret: String?,
+        created_at: String,
         currency: WhopSDK::Models::currency,
         customer_phone: String?,
         decline_code: WhopSDK::Models::Payment::decline_code?,
-        dispute_alerted_at: Time?,
-        disputes: ::Array[WhopSDK::Payment::Dispute]?,
+        dispute_alerted_at: String?,
         failure_message: String?,
-        fees: ::Array[WhopSDK::Payment::Fee],
-        financing_installments_count: Integer?,
-        financing_transactions: ::Array[WhopSDK::Payment::FinancingTransaction],
-        last_payment_attempt: Time?,
-        member: WhopSDK::Payment::Member?,
-        membership: WhopSDK::Payment::Membership?,
-        metadata: ::Hash[Symbol, top]?,
+        financing_installments_count: Float?,
+        last_payment_attempt_at: String?,
+        member_id: String?,
+        membership_id: String?,
+        metadata: top?,
         needs_tracking: bool?,
-        next_payment_attempt: Time?,
-        paid_at: Time?,
+        next_payment_attempt_at: String?,
+        paid_at: String?,
         payment_instrument: WhopSDK::Payment::PaymentInstrument?,
-        payment_method: WhopSDK::Payment::PaymentMethod?,
+        payment_method_id: String?,
         payment_method_type: WhopSDK::Models::payment_method_types?,
-        payments_failed: Integer?,
-        plan: WhopSDK::Payment::Plan?,
-        product: WhopSDK::Payment::Product?,
-        promo_code: WhopSDK::Payment::PromoCode?,
+        payments_failed: Float,
+        plan_id: String?,
+        product_id: String?,
+        promo_code_id: String?,
         refundable: bool,
-        refunded_amount: Float?,
-        refunded_at: Time?,
-        refunds: ::Array[WhopSDK::Payment::Refund],
-        resolutions: ::Array[WhopSDK::Payment::Resolution]?,
+        refunded_amount: WhopSDK::Payment::RefundedAmount?,
+        refunded_at: String?,
         retryable: bool,
-        risk_score: Integer?,
-        risk_signals: ::Hash[Symbol, top]?,
-        settlement_amount: Float,
-        settlement_currency: WhopSDK::Models::currency,
-        settlement_exchange_rate: Float?,
-        settlement_time_at: Time?,
-        shipment: WhopSDK::Payment::Shipment?,
+        risk_score: Float?,
+        risk_signals: top?,
+        settlement_time_at: String?,
+        shipment_id: String?,
         shipping_address: WhopSDK::Payment::ShippingAddress?,
-        status: WhopSDK::Models::receipt_status?,
+        status: WhopSDK::Models::receipt_status,
         substatus: WhopSDK::Models::friendly_receipt_status,
-        subtotal: Float?,
-        tax_amount: Float?,
+        subtotal: WhopSDK::Payment::Subtotal?,
+        tax_amount: WhopSDK::Payment::TaxAmount?,
         tax_behavior: WhopSDK::Models::receipt_tax_behavior?,
-        tax_refunded_amount: Float?,
+        tax_refunded_amount: WhopSDK::Payment::TaxRefundedAmount,
         three_ds_verified: bool,
-        total: Float?,
-        updated_at: Time,
-        usd_total: Float?,
+        total: WhopSDK::Payment::Total?,
+        updated_at: String,
+        usd_total: WhopSDK::Payment::UsdTotal?,
         user: WhopSDK::Payment::User?,
         verification_checks: WhopSDK::Payment::VerificationChecks?,
         voidable: bool
@@ -262,109 +214,87 @@ module WhopSDK
 
       def to_hash: -> {
         id: String,
-        amount_after_fees: Float,
-        application_fee: WhopSDK::Payment::ApplicationFee?,
+        account_id: String?,
+        amount_after_fees: WhopSDK::Payment::AmountAfterFees,
         auto_refunded: bool,
         billing_address: WhopSDK::Payment::BillingAddress?,
         billing_reason: WhopSDK::Models::billing_reasons?,
-        card_brand: WhopSDK::Models::card_brands?,
-        card_exp_month: Integer?,
-        card_exp_year: Integer?,
-        :card_last4 => String?,
         checkout_configuration_id: String?,
-        company: WhopSDK::Payment::Company?,
-        created_at: Time,
+        client_secret: String?,
+        created_at: String,
         currency: WhopSDK::Models::currency,
         customer_phone: String?,
         decline_code: WhopSDK::Models::Payment::decline_code?,
-        dispute_alerted_at: Time?,
-        disputes: ::Array[WhopSDK::Payment::Dispute]?,
+        dispute_alerted_at: String?,
         failure_message: String?,
-        fees: ::Array[WhopSDK::Payment::Fee],
-        financing_installments_count: Integer?,
-        financing_transactions: ::Array[WhopSDK::Payment::FinancingTransaction],
-        last_payment_attempt: Time?,
-        member: WhopSDK::Payment::Member?,
-        membership: WhopSDK::Payment::Membership?,
-        metadata: ::Hash[Symbol, top]?,
+        financing_installments_count: Float?,
+        last_payment_attempt_at: String?,
+        member_id: String?,
+        membership_id: String?,
+        metadata: top?,
         needs_tracking: bool?,
-        next_payment_attempt: Time?,
-        paid_at: Time?,
+        next_payment_attempt_at: String?,
+        paid_at: String?,
         payment_instrument: WhopSDK::Payment::PaymentInstrument?,
-        payment_method: WhopSDK::Payment::PaymentMethod?,
+        payment_method_id: String?,
         payment_method_type: WhopSDK::Models::payment_method_types?,
-        payments_failed: Integer?,
-        plan: WhopSDK::Payment::Plan?,
-        product: WhopSDK::Payment::Product?,
-        promo_code: WhopSDK::Payment::PromoCode?,
+        payments_failed: Float,
+        plan_id: String?,
+        product_id: String?,
+        promo_code_id: String?,
         refundable: bool,
-        refunded_amount: Float?,
-        refunded_at: Time?,
-        refunds: ::Array[WhopSDK::Payment::Refund],
-        resolutions: ::Array[WhopSDK::Payment::Resolution]?,
+        refunded_amount: WhopSDK::Payment::RefundedAmount?,
+        refunded_at: String?,
         retryable: bool,
-        risk_score: Integer?,
-        risk_signals: ::Hash[Symbol, top]?,
-        settlement_amount: Float,
-        settlement_currency: WhopSDK::Models::currency,
-        settlement_exchange_rate: Float?,
-        settlement_time_at: Time?,
-        shipment: WhopSDK::Payment::Shipment?,
+        risk_score: Float?,
+        risk_signals: top?,
+        settlement_time_at: String?,
+        shipment_id: String?,
         shipping_address: WhopSDK::Payment::ShippingAddress?,
-        status: WhopSDK::Models::receipt_status?,
+        status: WhopSDK::Models::receipt_status,
         substatus: WhopSDK::Models::friendly_receipt_status,
-        subtotal: Float?,
-        tax_amount: Float?,
+        subtotal: WhopSDK::Payment::Subtotal?,
+        tax_amount: WhopSDK::Payment::TaxAmount?,
         tax_behavior: WhopSDK::Models::receipt_tax_behavior?,
-        tax_refunded_amount: Float?,
+        tax_refunded_amount: WhopSDK::Payment::TaxRefundedAmount,
         three_ds_verified: bool,
-        total: Float?,
-        updated_at: Time,
-        usd_total: Float?,
+        total: WhopSDK::Payment::Total?,
+        updated_at: String,
+        usd_total: WhopSDK::Payment::UsdTotal?,
         user: WhopSDK::Payment::User?,
         verification_checks: WhopSDK::Payment::VerificationChecks?,
         voidable: bool
       }
 
-      type application_fee =
+      type amount_after_fees =
         {
-          id: String,
-          amount: Float,
-          amount_captured: Float,
-          amount_refunded: Float,
-          created_at: Time,
-          currency: WhopSDK::Models::currency
+          amount: String,
+          currency: String,
+          decimals: Integer,
+          display_decimals: Integer
         }
 
-      class ApplicationFee < WhopSDK::Internal::Type::BaseModel
-        attr_accessor id: String
+      class AmountAfterFees < WhopSDK::Internal::Type::BaseModel
+        attr_accessor amount: String
 
-        attr_accessor amount: Float
+        attr_accessor currency: String
 
-        attr_accessor amount_captured: Float
+        attr_accessor decimals: Integer
 
-        attr_accessor amount_refunded: Float
-
-        attr_accessor created_at: Time
-
-        attr_accessor currency: WhopSDK::Models::currency
+        attr_accessor display_decimals: Integer
 
         def initialize: (
-          id: String,
-          amount: Float,
-          amount_captured: Float,
-          amount_refunded: Float,
-          created_at: Time,
-          currency: WhopSDK::Models::currency
+          amount: String,
+          currency: String,
+          decimals: Integer,
+          display_decimals: Integer
         ) -> void
 
         def to_hash: -> {
-          id: String,
-          amount: Float,
-          amount_captured: Float,
-          amount_refunded: Float,
-          created_at: Time,
-          currency: WhopSDK::Models::currency
+          amount: String,
+          currency: String,
+          decimals: Integer,
+          display_decimals: Integer
         }
       end
 
@@ -413,20 +343,6 @@ module WhopSDK
           postal_code: String?,
           state: String?
         }
-      end
-
-      type company = { id: String, route: String, title: String }
-
-      class Company < WhopSDK::Internal::Type::BaseModel
-        attr_accessor id: String
-
-        attr_accessor route: String
-
-        attr_accessor title: String
-
-        def initialize: (id: String, route: String, title: String) -> void
-
-        def to_hash: -> { id: String, route: String, title: String }
       end
 
       type decline_code =
@@ -610,309 +526,12 @@ module WhopSDK
         def self?.values: -> ::Array[WhopSDK::Models::Payment::decline_code]
       end
 
-      type dispute =
-        {
-          id: String,
-          amount: Float,
-          currency: WhopSDK::Models::currency,
-          editable: bool?,
-          needs_response_by: Time?,
-          notes: String?,
-          reason: String?,
-          status: WhopSDK::Models::dispute_statuses
-        }
-
-      class Dispute < WhopSDK::Internal::Type::BaseModel
-        attr_accessor id: String
-
-        attr_accessor amount: Float
-
-        attr_accessor currency: WhopSDK::Models::currency
-
-        attr_accessor editable: bool?
-
-        attr_accessor needs_response_by: Time?
-
-        attr_accessor notes: String?
-
-        attr_accessor reason: String?
-
-        attr_accessor status: WhopSDK::Models::dispute_statuses
-
-        def initialize: (
-          id: String,
-          amount: Float,
-          currency: WhopSDK::Models::currency,
-          editable: bool?,
-          needs_response_by: Time?,
-          notes: String?,
-          reason: String?,
-          status: WhopSDK::Models::dispute_statuses
-        ) -> void
-
-        def to_hash: -> {
-          id: String,
-          amount: Float,
-          currency: WhopSDK::Models::currency,
-          editable: bool?,
-          needs_response_by: Time?,
-          notes: String?,
-          reason: String?,
-          status: WhopSDK::Models::dispute_statuses
-        }
-      end
-
-      type fee =
-        {
-          amount: Float,
-          currency: WhopSDK::Models::currency,
-          name: String,
-          type: WhopSDK::Models::Payment::Fee::type_
-        }
-
-      class Fee < WhopSDK::Internal::Type::BaseModel
-        attr_accessor amount: Float
-
-        attr_accessor currency: WhopSDK::Models::currency
-
-        attr_accessor name: String
-
-        attr_accessor type: WhopSDK::Models::Payment::Fee::type_
-
-        def initialize: (
-          amount: Float,
-          currency: WhopSDK::Models::currency,
-          name: String,
-          type: WhopSDK::Models::Payment::Fee::type_
-        ) -> void
-
-        def to_hash: -> {
-          amount: Float,
-          currency: WhopSDK::Models::currency,
-          name: String,
-          type: WhopSDK::Models::Payment::Fee::type_
-        }
-
-        type type_ =
-          :stripe_domestic_processing_fee
-          | :stripe_international_processing_fee
-          | :stripe_fixed_processing_fee
-          | :stripe_billing_fee
-          | :stripe_radar_fee
-          | :sales_tax_remittance
-          | :sales_tax_remittance_reversal
-          | :stripe_sales_tax_fee
-          | :whop_processing_fee
-          | :marketplace_affiliate_fee
-          | :affiliate_fee
-          | :crypto_fee
-          | :stripe_standard_processing_fee
-          | :paypal_fee
-          | :stripe_payout_fee
-          | :dispute_fee
-          | :dispute_alert_fee
-          | :apple_processing_fee
-          | :buyer_fee
-          | :sezzle_processing_fee
-          | :splitit_processing_fee
-          | :platform_balance_processing_fee
-          | :payment_processing_percentage_fee
-          | :payment_processing_fixed_fee
-          | :cross_border_percentage_fee
-          | :fx_percentage_fee
-          | :orchestration_percentage_fee
-          | :three_ds_fixed_fee
-          | :billing_percentage_fee
-          | :revshare_percentage_fee
-          | :application_fee
-          | :high_risk_merchant_fee
-
-        module Type
-          extend WhopSDK::Internal::Type::Enum
-
-          STRIPE_DOMESTIC_PROCESSING_FEE: :stripe_domestic_processing_fee
-          STRIPE_INTERNATIONAL_PROCESSING_FEE: :stripe_international_processing_fee
-          STRIPE_FIXED_PROCESSING_FEE: :stripe_fixed_processing_fee
-          STRIPE_BILLING_FEE: :stripe_billing_fee
-          STRIPE_RADAR_FEE: :stripe_radar_fee
-          SALES_TAX_REMITTANCE: :sales_tax_remittance
-          SALES_TAX_REMITTANCE_REVERSAL: :sales_tax_remittance_reversal
-          STRIPE_SALES_TAX_FEE: :stripe_sales_tax_fee
-          WHOP_PROCESSING_FEE: :whop_processing_fee
-          MARKETPLACE_AFFILIATE_FEE: :marketplace_affiliate_fee
-          AFFILIATE_FEE: :affiliate_fee
-          CRYPTO_FEE: :crypto_fee
-          STRIPE_STANDARD_PROCESSING_FEE: :stripe_standard_processing_fee
-          PAYPAL_FEE: :paypal_fee
-          STRIPE_PAYOUT_FEE: :stripe_payout_fee
-          DISPUTE_FEE: :dispute_fee
-          DISPUTE_ALERT_FEE: :dispute_alert_fee
-          APPLE_PROCESSING_FEE: :apple_processing_fee
-          BUYER_FEE: :buyer_fee
-          SEZZLE_PROCESSING_FEE: :sezzle_processing_fee
-          SPLITIT_PROCESSING_FEE: :splitit_processing_fee
-          PLATFORM_BALANCE_PROCESSING_FEE: :platform_balance_processing_fee
-          PAYMENT_PROCESSING_PERCENTAGE_FEE: :payment_processing_percentage_fee
-          PAYMENT_PROCESSING_FIXED_FEE: :payment_processing_fixed_fee
-          CROSS_BORDER_PERCENTAGE_FEE: :cross_border_percentage_fee
-          FX_PERCENTAGE_FEE: :fx_percentage_fee
-          ORCHESTRATION_PERCENTAGE_FEE: :orchestration_percentage_fee
-          THREE_DS_FIXED_FEE: :three_ds_fixed_fee
-          BILLING_PERCENTAGE_FEE: :billing_percentage_fee
-          REVSHARE_PERCENTAGE_FEE: :revshare_percentage_fee
-          APPLICATION_FEE: :application_fee
-          HIGH_RISK_MERCHANT_FEE: :high_risk_merchant_fee
-
-          def self?.values: -> ::Array[WhopSDK::Models::Payment::Fee::type_]
-        end
-      end
-
-      type financing_transaction =
-        {
-          id: String,
-          amount: Float,
-          created_at: Time,
-          status: WhopSDK::Models::Payment::FinancingTransaction::status,
-          transaction_type: WhopSDK::Models::Payment::FinancingTransaction::transaction_type
-        }
-
-      class FinancingTransaction < WhopSDK::Internal::Type::BaseModel
-        attr_accessor id: String
-
-        attr_accessor amount: Float
-
-        attr_accessor created_at: Time
-
-        attr_accessor status: WhopSDK::Models::Payment::FinancingTransaction::status
-
-        attr_accessor transaction_type: WhopSDK::Models::Payment::FinancingTransaction::transaction_type
-
-        def initialize: (
-          id: String,
-          amount: Float,
-          created_at: Time,
-          status: WhopSDK::Models::Payment::FinancingTransaction::status,
-          transaction_type: WhopSDK::Models::Payment::FinancingTransaction::transaction_type
-        ) -> void
-
-        def to_hash: -> {
-          id: String,
-          amount: Float,
-          created_at: Time,
-          status: WhopSDK::Models::Payment::FinancingTransaction::status,
-          transaction_type: WhopSDK::Models::Payment::FinancingTransaction::transaction_type
-        }
-
-        type status =
-          :succeeded
-          | :declined
-          | :error
-          | :pending
-          | :created
-          | :expired
-          | :won
-          | :rejected
-          | :lost
-          | :prevented
-          | :canceled
-
-        module Status
-          extend WhopSDK::Internal::Type::Enum
-
-          SUCCEEDED: :succeeded
-          DECLINED: :declined
-          ERROR: :error
-          PENDING: :pending
-          CREATED: :created
-          EXPIRED: :expired
-          WON: :won
-          REJECTED: :rejected
-          LOST: :lost
-          PREVENTED: :prevented
-          CANCELED: :canceled
-
-          def self?.values: -> ::Array[WhopSDK::Models::Payment::FinancingTransaction::status]
-        end
-
-        type transaction_type =
-          :purchase
-          | :authorize
-          | :capture
-          | :refund
-          | :canceled
-          | :verify
-          | :chargeback
-          | :pre_chargeback
-          | :three_d_secure
-          | :fraud_screening
-          | :authorization
-          | :installment
-
-        module TransactionType
-          extend WhopSDK::Internal::Type::Enum
-
-          PURCHASE: :purchase
-          AUTHORIZE: :authorize
-          CAPTURE: :capture
-          REFUND: :refund
-          CANCELED: :canceled
-          VERIFY: :verify
-          CHARGEBACK: :chargeback
-          PRE_CHARGEBACK: :pre_chargeback
-          THREE_D_SECURE: :three_d_secure
-          FRAUD_SCREENING: :fraud_screening
-          AUTHORIZATION: :authorization
-          INSTALLMENT: :installment
-
-          def self?.values: -> ::Array[WhopSDK::Models::Payment::FinancingTransaction::transaction_type]
-        end
-      end
-
-      type member = { id: String, phone: String? }
-
-      class Member < WhopSDK::Internal::Type::BaseModel
-        attr_accessor id: String
-
-        attr_accessor phone: String?
-
-        def initialize: (id: String, phone: String?) -> void
-
-        def to_hash: -> { id: String, phone: String? }
-      end
-
-      type membership =
-        {
-          id: String,
-          phone_number: String?,
-          status: WhopSDK::Models::membership_status
-        }
-
-      class Membership < WhopSDK::Internal::Type::BaseModel
-        attr_accessor id: String
-
-        attr_accessor phone_number: String?
-
-        attr_accessor status: WhopSDK::Models::membership_status
-
-        def initialize: (
-          id: String,
-          phone_number: String?,
-          status: WhopSDK::Models::membership_status
-        ) -> void
-
-        def to_hash: -> {
-          id: String,
-          phone_number: String?,
-          status: WhopSDK::Models::membership_status
-        }
-      end
-
       type payment_instrument =
         {
           card: WhopSDK::Payment::PaymentInstrument::Card?,
           display_name: String,
           icons: WhopSDK::Payment::PaymentInstrument::Icons,
-          installment_count: Integer?,
+          installment_count: Float?,
           payment_method_type: String
         }
 
@@ -923,7 +542,7 @@ module WhopSDK
 
         attr_accessor icons: WhopSDK::Payment::PaymentInstrument::Icons
 
-        attr_accessor installment_count: Integer?
+        attr_accessor installment_count: Float?
 
         attr_accessor payment_method_type: String
 
@@ -931,7 +550,7 @@ module WhopSDK
           card: WhopSDK::Payment::PaymentInstrument::Card?,
           display_name: String,
           icons: WhopSDK::Payment::PaymentInstrument::Icons,
-          installment_count: Integer?,
+          installment_count: Float?,
           payment_method_type: String
         ) -> void
 
@@ -939,7 +558,7 @@ module WhopSDK
           card: WhopSDK::Payment::PaymentInstrument::Card?,
           display_name: String,
           icons: WhopSDK::Payment::PaymentInstrument::Icons,
-          installment_count: Integer?,
+          installment_count: Float?,
           payment_method_type: String
         }
 
@@ -1150,300 +769,35 @@ module WhopSDK
         end
       end
 
-      type payment_method =
+      type refunded_amount =
         {
-          id: String,
-          card: WhopSDK::Payment::PaymentMethod::Card?,
-          created_at: Time,
-          payment_method_type: WhopSDK::Models::payment_method_types
+          amount: String,
+          currency: String,
+          decimals: Integer,
+          display_decimals: Integer
         }
 
-      class PaymentMethod < WhopSDK::Internal::Type::BaseModel
-        attr_accessor id: String
+      class RefundedAmount < WhopSDK::Internal::Type::BaseModel
+        attr_accessor amount: String
 
-        attr_accessor card: WhopSDK::Payment::PaymentMethod::Card?
+        attr_accessor currency: String
 
-        attr_accessor created_at: Time
+        attr_accessor decimals: Integer
 
-        attr_accessor payment_method_type: WhopSDK::Models::payment_method_types
+        attr_accessor display_decimals: Integer
 
         def initialize: (
-          id: String,
-          card: WhopSDK::Payment::PaymentMethod::Card?,
-          created_at: Time,
-          payment_method_type: WhopSDK::Models::payment_method_types
+          amount: String,
+          currency: String,
+          decimals: Integer,
+          display_decimals: Integer
         ) -> void
 
         def to_hash: -> {
-          id: String,
-          card: WhopSDK::Payment::PaymentMethod::Card?,
-          created_at: Time,
-          payment_method_type: WhopSDK::Models::payment_method_types
-        }
-
-        type card =
-          {
-            brand: WhopSDK::Models::card_brands?,
-            exp_month: Integer?,
-            exp_year: Integer?,
-            fingerprint: String?,
-            :last4 => String?
-          }
-
-        class Card < WhopSDK::Internal::Type::BaseModel
-          attr_accessor brand: WhopSDK::Models::card_brands?
-
-          attr_accessor exp_month: Integer?
-
-          attr_accessor exp_year: Integer?
-
-          attr_accessor fingerprint: String?
-
-          attr_accessor last4: String?
-
-          def initialize: (
-            brand: WhopSDK::Models::card_brands?,
-            exp_month: Integer?,
-            exp_year: Integer?,
-            fingerprint: String?,
-            last4: String?
-          ) -> void
-
-          def to_hash: -> {
-            brand: WhopSDK::Models::card_brands?,
-            exp_month: Integer?,
-            exp_year: Integer?,
-            fingerprint: String?,
-            :last4 => String?
-          }
-        end
-      end
-
-      type plan =
-        { id: String, internal_notes: String?, metadata: ::Hash[Symbol, top]? }
-
-      class Plan < WhopSDK::Internal::Type::BaseModel
-        attr_accessor id: String
-
-        attr_accessor internal_notes: String?
-
-        attr_accessor metadata: ::Hash[Symbol, top]?
-
-        def initialize: (
-          id: String,
-          internal_notes: String?,
-          metadata: ::Hash[Symbol, top]?
-        ) -> void
-
-        def to_hash: -> {
-          id: String,
-          internal_notes: String?,
-          metadata: ::Hash[Symbol, top]?
-        }
-      end
-
-      type product =
-        {
-          id: String,
-          metadata: ::Hash[Symbol, top]?,
-          route: String,
-          title: String
-        }
-
-      class Product < WhopSDK::Internal::Type::BaseModel
-        attr_accessor id: String
-
-        attr_accessor metadata: ::Hash[Symbol, top]?
-
-        attr_accessor route: String
-
-        attr_accessor title: String
-
-        def initialize: (
-          id: String,
-          metadata: ::Hash[Symbol, top]?,
-          route: String,
-          title: String
-        ) -> void
-
-        def to_hash: -> {
-          id: String,
-          metadata: ::Hash[Symbol, top]?,
-          route: String,
-          title: String
-        }
-      end
-
-      type promo_code =
-        {
-          id: String,
-          amount_off: Float,
-          base_currency: WhopSDK::Models::currency,
-          code: String?,
-          number_of_intervals: Integer?,
-          promo_type: WhopSDK::Models::promo_type
-        }
-
-      class PromoCode < WhopSDK::Internal::Type::BaseModel
-        attr_accessor id: String
-
-        attr_accessor amount_off: Float
-
-        attr_accessor base_currency: WhopSDK::Models::currency
-
-        attr_accessor code: String?
-
-        attr_accessor number_of_intervals: Integer?
-
-        attr_accessor promo_type: WhopSDK::Models::promo_type
-
-        def initialize: (
-          id: String,
-          amount_off: Float,
-          base_currency: WhopSDK::Models::currency,
-          code: String?,
-          number_of_intervals: Integer?,
-          promo_type: WhopSDK::Models::promo_type
-        ) -> void
-
-        def to_hash: -> {
-          id: String,
-          amount_off: Float,
-          base_currency: WhopSDK::Models::currency,
-          code: String?,
-          number_of_intervals: Integer?,
-          promo_type: WhopSDK::Models::promo_type
-        }
-      end
-
-      type refund =
-        {
-          id: String,
-          amount: Float,
-          created_at: Time,
-          currency: WhopSDK::Models::currency,
-          status: WhopSDK::Models::refund_status
-        }
-
-      class Refund < WhopSDK::Internal::Type::BaseModel
-        attr_accessor id: String
-
-        attr_accessor amount: Float
-
-        attr_accessor created_at: Time
-
-        attr_accessor currency: WhopSDK::Models::currency
-
-        attr_accessor status: WhopSDK::Models::refund_status
-
-        def initialize: (
-          id: String,
-          amount: Float,
-          created_at: Time,
-          currency: WhopSDK::Models::currency,
-          status: WhopSDK::Models::refund_status
-        ) -> void
-
-        def to_hash: -> {
-          id: String,
-          amount: Float,
-          created_at: Time,
-          currency: WhopSDK::Models::currency,
-          status: WhopSDK::Models::refund_status
-        }
-      end
-
-      type resolution =
-        {
-          id: String,
-          customer_appealed: bool,
-          customer_response_actions: ::Array[WhopSDK::Models::resolution_center_case_customer_response],
-          due_date: Time?,
-          issue: WhopSDK::Models::resolution_center_case_issue_type,
-          merchant_appealed: bool,
-          merchant_response_actions: ::Array[WhopSDK::Models::resolution_center_case_merchant_response],
-          platform_response_actions: ::Array[WhopSDK::Models::resolution_center_case_platform_response],
-          status: WhopSDK::Models::resolution_center_case_status
-        }
-
-      class Resolution < WhopSDK::Internal::Type::BaseModel
-        attr_accessor id: String
-
-        attr_accessor customer_appealed: bool
-
-        attr_accessor customer_response_actions: ::Array[WhopSDK::Models::resolution_center_case_customer_response]
-
-        attr_accessor due_date: Time?
-
-        attr_accessor issue: WhopSDK::Models::resolution_center_case_issue_type
-
-        attr_accessor merchant_appealed: bool
-
-        attr_accessor merchant_response_actions: ::Array[WhopSDK::Models::resolution_center_case_merchant_response]
-
-        attr_accessor platform_response_actions: ::Array[WhopSDK::Models::resolution_center_case_platform_response]
-
-        attr_accessor status: WhopSDK::Models::resolution_center_case_status
-
-        def initialize: (
-          id: String,
-          customer_appealed: bool,
-          customer_response_actions: ::Array[WhopSDK::Models::resolution_center_case_customer_response],
-          due_date: Time?,
-          issue: WhopSDK::Models::resolution_center_case_issue_type,
-          merchant_appealed: bool,
-          merchant_response_actions: ::Array[WhopSDK::Models::resolution_center_case_merchant_response],
-          platform_response_actions: ::Array[WhopSDK::Models::resolution_center_case_platform_response],
-          status: WhopSDK::Models::resolution_center_case_status
-        ) -> void
-
-        def to_hash: -> {
-          id: String,
-          customer_appealed: bool,
-          customer_response_actions: ::Array[WhopSDK::Models::resolution_center_case_customer_response],
-          due_date: Time?,
-          issue: WhopSDK::Models::resolution_center_case_issue_type,
-          merchant_appealed: bool,
-          merchant_response_actions: ::Array[WhopSDK::Models::resolution_center_case_merchant_response],
-          platform_response_actions: ::Array[WhopSDK::Models::resolution_center_case_platform_response],
-          status: WhopSDK::Models::resolution_center_case_status
-        }
-      end
-
-      type shipment =
-        {
-          id: String,
-          carrier: String?,
-          status: WhopSDK::Models::shipment_status,
-          tracking_number: String,
-          tracking_url: String
-        }
-
-      class Shipment < WhopSDK::Internal::Type::BaseModel
-        attr_accessor id: String
-
-        attr_accessor carrier: String?
-
-        attr_accessor status: WhopSDK::Models::shipment_status
-
-        attr_accessor tracking_number: String
-
-        attr_accessor tracking_url: String
-
-        def initialize: (
-          id: String,
-          carrier: String?,
-          status: WhopSDK::Models::shipment_status,
-          tracking_number: String,
-          tracking_url: String
-        ) -> void
-
-        def to_hash: -> {
-          id: String,
-          carrier: String?,
-          status: WhopSDK::Models::shipment_status,
-          tracking_number: String,
-          tracking_url: String
+          amount: String,
+          currency: String,
+          decimals: Integer,
+          display_decimals: Integer
         }
       end
 
@@ -1494,31 +848,206 @@ module WhopSDK
         }
       end
 
+      type subtotal =
+        {
+          amount: String,
+          currency: String,
+          decimals: Integer,
+          display_decimals: Integer
+        }
+
+      class Subtotal < WhopSDK::Internal::Type::BaseModel
+        attr_accessor amount: String
+
+        attr_accessor currency: String
+
+        attr_accessor decimals: Integer
+
+        attr_accessor display_decimals: Integer
+
+        def initialize: (
+          amount: String,
+          currency: String,
+          decimals: Integer,
+          display_decimals: Integer
+        ) -> void
+
+        def to_hash: -> {
+          amount: String,
+          currency: String,
+          decimals: Integer,
+          display_decimals: Integer
+        }
+      end
+
+      type tax_amount =
+        {
+          amount: String,
+          currency: String,
+          decimals: Integer,
+          display_decimals: Integer
+        }
+
+      class TaxAmount < WhopSDK::Internal::Type::BaseModel
+        attr_accessor amount: String
+
+        attr_accessor currency: String
+
+        attr_accessor decimals: Integer
+
+        attr_accessor display_decimals: Integer
+
+        def initialize: (
+          amount: String,
+          currency: String,
+          decimals: Integer,
+          display_decimals: Integer
+        ) -> void
+
+        def to_hash: -> {
+          amount: String,
+          currency: String,
+          decimals: Integer,
+          display_decimals: Integer
+        }
+      end
+
+      type tax_refunded_amount =
+        {
+          amount: String,
+          currency: String,
+          decimals: Integer,
+          display_decimals: Integer
+        }
+
+      class TaxRefundedAmount < WhopSDK::Internal::Type::BaseModel
+        attr_accessor amount: String
+
+        attr_accessor currency: String
+
+        attr_accessor decimals: Integer
+
+        attr_accessor display_decimals: Integer
+
+        def initialize: (
+          amount: String,
+          currency: String,
+          decimals: Integer,
+          display_decimals: Integer
+        ) -> void
+
+        def to_hash: -> {
+          amount: String,
+          currency: String,
+          decimals: Integer,
+          display_decimals: Integer
+        }
+      end
+
+      type total =
+        {
+          amount: String,
+          currency: String,
+          decimals: Integer,
+          display_decimals: Integer
+        }
+
+      class Total < WhopSDK::Internal::Type::BaseModel
+        attr_accessor amount: String
+
+        attr_accessor currency: String
+
+        attr_accessor decimals: Integer
+
+        attr_accessor display_decimals: Integer
+
+        def initialize: (
+          amount: String,
+          currency: String,
+          decimals: Integer,
+          display_decimals: Integer
+        ) -> void
+
+        def to_hash: -> {
+          amount: String,
+          currency: String,
+          decimals: Integer,
+          display_decimals: Integer
+        }
+      end
+
+      type usd_total =
+        {
+          amount: String,
+          currency: String,
+          decimals: Integer,
+          display_decimals: Integer
+        }
+
+      class UsdTotal < WhopSDK::Internal::Type::BaseModel
+        attr_accessor amount: String
+
+        attr_accessor currency: String
+
+        attr_accessor decimals: Integer
+
+        attr_accessor display_decimals: Integer
+
+        def initialize: (
+          amount: String,
+          currency: String,
+          decimals: Integer,
+          display_decimals: Integer
+        ) -> void
+
+        def to_hash: -> {
+          amount: String,
+          currency: String,
+          decimals: Integer,
+          display_decimals: Integer
+        }
+      end
+
       type user =
-        { id: String, email: String?, name: String?, username: String }
+        {
+          id: String,
+          name: String?,
+          profile_picture: WhopSDK::Payment::User::ProfilePicture,
+          username: String
+        }
 
       class User < WhopSDK::Internal::Type::BaseModel
         attr_accessor id: String
 
-        attr_accessor email: String?
-
         attr_accessor name: String?
+
+        attr_accessor profile_picture: WhopSDK::Payment::User::ProfilePicture
 
         attr_accessor username: String
 
         def initialize: (
           id: String,
-          email: String?,
           name: String?,
+          profile_picture: WhopSDK::Payment::User::ProfilePicture,
           username: String
         ) -> void
 
         def to_hash: -> {
           id: String,
-          email: String?,
           name: String?,
+          profile_picture: WhopSDK::Payment::User::ProfilePicture,
           username: String
         }
+
+        type profile_picture = { url: String }
+
+        class ProfilePicture < WhopSDK::Internal::Type::BaseModel
+          attr_accessor url: String
+
+          def initialize: (url: String) -> void
+
+          def to_hash: -> { url: String }
+        end
       end
 
       type verification_checks =

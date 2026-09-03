@@ -14,66 +14,27 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :id
 
-      # Returns the elements in the list that come after the specified cursor.
       sig { returns(T.nilable(String)) }
-      attr_reader :after
+      attr_reader :api_version_date
 
-      sig { params(after: String).void }
-      attr_writer :after
-
-      # Returns the elements in the list that come before the specified cursor.
-      sig { returns(T.nilable(String)) }
-      attr_reader :before
-
-      sig { params(before: String).void }
-      attr_writer :before
-
-      # Returns the first _n_ elements from the list.
-      sig { returns(T.nilable(Integer)) }
-      attr_reader :first
-
-      sig { params(first: Integer).void }
-      attr_writer :first
-
-      # Returns the last _n_ elements from the list.
-      sig { returns(T.nilable(Integer)) }
-      attr_reader :last
-
-      sig { params(last: Integer).void }
-      attr_writer :last
+      sig { params(api_version_date: String).void }
+      attr_writer :api_version_date
 
       sig do
         params(
           id: String,
-          after: String,
-          before: String,
-          first: Integer,
-          last: Integer,
+          api_version_date: String,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
-      def self.new(
-        id:,
-        # Returns the elements in the list that come after the specified cursor.
-        after: nil,
-        # Returns the elements in the list that come before the specified cursor.
-        before: nil,
-        # Returns the first _n_ elements from the list.
-        first: nil,
-        # Returns the last _n_ elements from the list.
-        last: nil,
-        request_options: {}
-      )
+      def self.new(id:, api_version_date: nil, request_options: {})
       end
 
       sig do
         override.returns(
           {
             id: String,
-            after: String,
-            before: String,
-            first: Integer,
-            last: Integer,
+            api_version_date: String,
             request_options: WhopSDK::RequestOptions
           }
         )

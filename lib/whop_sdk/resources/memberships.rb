@@ -167,7 +167,7 @@ module WhopSDK
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [WhopSDK::Models::Membership]
+      # @return [WhopSDK::Models::MembershipAddFreeDaysResponse]
       #
       # @see WhopSDK::Models::MembershipAddFreeDaysParams
       def add_free_days(id, params)
@@ -176,7 +176,7 @@ module WhopSDK
           method: :post,
           path: ["memberships/%1$s/add_free_days", id],
           body: parsed,
-          model: WhopSDK::Membership,
+          model: WhopSDK::Models::MembershipAddFreeDaysResponse,
           options: options
         )
       end
@@ -301,14 +301,14 @@ module WhopSDK
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [WhopSDK::Models::Membership]
+      # @return [WhopSDK::Models::MembershipUncancelResponse]
       #
       # @see WhopSDK::Models::MembershipUncancelParams
       def uncancel(id, params = {})
         @client.request(
           method: :post,
           path: ["memberships/%1$s/uncancel", id],
-          model: WhopSDK::Membership,
+          model: WhopSDK::Models::MembershipUncancelResponse,
           options: params[:request_options]
         )
       end

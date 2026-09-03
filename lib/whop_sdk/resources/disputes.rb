@@ -120,14 +120,14 @@ module WhopSDK
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [WhopSDK::Models::Dispute]
+      # @return [WhopSDK::Models::DisputeSubmitEvidenceResponse]
       #
       # @see WhopSDK::Models::DisputeSubmitEvidenceParams
       def submit_evidence(id, params = {})
         @client.request(
           method: :post,
           path: ["disputes/%1$s/submit_evidence", id],
-          model: WhopSDK::Dispute,
+          model: WhopSDK::Models::DisputeSubmitEvidenceResponse,
           options: params[:request_options]
         )
       end
@@ -182,7 +182,7 @@ module WhopSDK
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [WhopSDK::Models::Dispute]
+      # @return [WhopSDK::Models::DisputeUpdateEvidenceResponse]
       #
       # @see WhopSDK::Models::DisputeUpdateEvidenceParams
       def update_evidence(id, params = {})
@@ -191,7 +191,7 @@ module WhopSDK
           method: :post,
           path: ["disputes/%1$s/update_evidence", id],
           body: parsed,
-          model: WhopSDK::Dispute,
+          model: WhopSDK::Models::DisputeUpdateEvidenceResponse,
           options: options
         )
       end

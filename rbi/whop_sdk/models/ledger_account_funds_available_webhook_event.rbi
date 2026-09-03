@@ -177,6 +177,12 @@ module WhopSDK
         end
         attr_writer :payout_account_details
 
+        # Whether a payout from this account must be confirmed against a provider-backed
+        # quote first. When true, create a quote with POST /payouts/quotes and send its
+        # quote_token when creating the payout.
+        sig { returns(T::Boolean) }
+        attr_accessor :payout_quote_required
+
         # The settlement batch most recently posted to this account's available balance,
         # at midnight UTC. Every payment settling in that batch carries the same
         # `settlement_time_at`.
@@ -233,6 +239,7 @@ module WhopSDK
               T.nilable(
                 WhopSDK::LedgerAccountFundsAvailableWebhookEvent::Data::PayoutAccountDetails::OrHash
               ),
+            payout_quote_required: T::Boolean,
             settlement_time_at: T.nilable(Time),
             transfer_fee: T.nilable(Float),
             treasury_balance:
@@ -254,6 +261,10 @@ module WhopSDK
           payments_approval_status:,
           # The payout account associated with the LedgerAccount, if any.
           payout_account_details:,
+          # Whether a payout from this account must be confirmed against a provider-backed
+          # quote first. When true, create a quote with POST /payouts/quotes and send its
+          # quote_token when creating the payout.
+          payout_quote_required:,
           # The settlement batch most recently posted to this account's available balance,
           # at midnight UTC. Every payment settling in that batch carries the same
           # `settlement_time_at`.
@@ -287,6 +298,7 @@ module WhopSDK
                 T.nilable(
                   WhopSDK::LedgerAccountFundsAvailableWebhookEvent::Data::PayoutAccountDetails
                 ),
+              payout_quote_required: T::Boolean,
               settlement_time_at: T.nilable(Time),
               transfer_fee: T.nilable(Float),
               treasury_balance:

@@ -20,6 +20,7 @@ class WhopSDK::Test::Resources::LedgerAccountsTest < WhopSDK::Test::ResourceTest
         owner: WhopSDK::Models::LedgerAccountRetrieveResponse::Owner,
         payments_approval_status: WhopSDK::Models::LedgerAccountRetrieveResponse::PaymentsApprovalStatus | nil,
         payout_account_details: WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails | nil,
+        payout_quote_required: WhopSDK::Internal::Type::Boolean,
         settlement_time_at: Time | nil,
         transfer_fee: Float | nil,
         treasury_balance: WhopSDK::Models::LedgerAccountRetrieveResponse::TreasuryBalance | nil

@@ -41,7 +41,7 @@ whop = WhopSDK::Client.new(
   api_key: ENV["WHOP_API_KEY"] # This is the default and can be omitted
 )
 
-page = whop.payments.list(company_id: "biz_xxxxxxxxxxxxxx")
+page = whop.payments.list
 
 puts(page.id)
 ```
@@ -53,7 +53,7 @@ List methods in the Whop API are paginated.
 This library provides auto-paginating iterators with each list response, so you do not have to request successive pages manually:
 
 ```ruby
-page = whop.payments.list(company_id: "biz_xxxxxxxxxxxxxx")
+page = whop.payments.list
 
 # Fetch single item from page.
 payment = page.data[0]
@@ -80,7 +80,7 @@ When the library is unable to connect to the API, or if the API returns a non-su
 
 ```ruby
 begin
-  payment = whop.payments.list(company_id: "biz_xxxxxxxxxxxxxx")
+  payment = whop.payments.list
 rescue WhopSDK::Errors::APIConnectionError => e
   puts("The server could not be reached")
   puts(e.cause)  # an underlying Exception, likely raised within `net/http`
@@ -123,7 +123,7 @@ whop = WhopSDK::Client.new(
 )
 
 # Or, configure per-request:
-whop.payments.list(company_id: "biz_xxxxxxxxxxxxxx", request_options: {max_retries: 5})
+whop.payments.list(request_options: {max_retries: 5})
 ```
 
 ### Timeouts
@@ -137,7 +137,7 @@ whop = WhopSDK::Client.new(
 )
 
 # Or, configure per-request:
-whop.payments.list(company_id: "biz_xxxxxxxxxxxxxx", request_options: {timeout: 5})
+whop.payments.list(request_options: {timeout: 5})
 ```
 
 On timeout, `WhopSDK::Errors::APITimeoutError` is raised.
@@ -169,7 +169,6 @@ Note: the `extra_` parameters of the same name overrides the documented paramete
 ```ruby
 page =
   whop.payments.list(
-    company_id: "biz_xxxxxxxxxxxxxx",
     request_options: {
       extra_query: {my_query_parameter: value},
       extra_body: {my_body_parameter: value},
@@ -215,17 +214,17 @@ This library provides comprehensive [RBI](https://sorbet.org/docs/rbi) definitio
 You can provide typesafe request parameters like so:
 
 ```ruby
-whop.payments.list(company_id: "biz_xxxxxxxxxxxxxx")
+whop.payments.list
 ```
 
 Or, equivalently:
 
 ```ruby
 # Hashes work, but are not typesafe:
-whop.payments.list(company_id: "biz_xxxxxxxxxxxxxx")
+whop.payments.list
 
 # You can also splat a full Params class:
-params = WhopSDK::PaymentListParams.new(company_id: "biz_xxxxxxxxxxxxxx")
+params = WhopSDK::PaymentListParams.new
 whop.payments.list(**params)
 ```
 

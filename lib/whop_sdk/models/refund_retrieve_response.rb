@@ -5,426 +5,324 @@ module WhopSDK
     # @see WhopSDK::Resources::Refunds#retrieve
     class RefundRetrieveResponse < WhopSDK::Internal::Type::BaseModel
       # @!attribute id
-      #   The unique identifier for the refund.
+      #   Refund ID, prefixed `rf_`.
       #
       #   @return [String]
       required :id, String
 
-      # @!attribute amount
-      #   The refunded amount as a decimal in the specified currency, such as 10.43 for
-      #   $10.43 USD.
+      # @!attribute account_id
+      #   The account that issued the refund, prefixed `biz_`.
       #
-      #   @return [Float]
-      required :amount, Float
+      #   @return [String, nil]
+      required :account_id, String, nil?: true
+
+      # @!attribute amount
+      #   The refunded amount as it settled, in the payment's settlement currency, so
+      #   pages of refunds net against the payment's `refunded_amount`. Converted at the
+      #   rate in force when the refund was issued, not the payment's original rate. Null
+      #   only when no exchange rate is recorded for a legacy multi-currency payment.
+      #
+      #   @return [WhopSDK::Models::RefundRetrieveResponse::Amount, nil]
+      required :amount, -> { WhopSDK::Models::RefundRetrieveResponse::Amount }, nil?: true
 
       # @!attribute created_at
-      #   The datetime the refund was created.
+      #   When the refund was requested, as an ISO 8601 timestamp.
       #
-      #   @return [Time]
-      required :created_at, Time
+      #   @return [String]
+      required :created_at, String
 
-      # @!attribute currency
-      #   The three-letter ISO currency code for the refunded amount.
+      # @!attribute failure_message
+      #   The provider's own explanation of the failure, or null.
       #
-      #   @return [Symbol, WhopSDK::Models::Currency]
-      required :currency, enum: -> { WhopSDK::Currency }
+      #   @return [String, nil]
+      required :failure_message, String, nil?: true
 
-      # @!attribute payment
-      #   The original payment that this refund was issued against. Null if the payment is
-      #   no longer available.
+      # @!attribute failure_reason
+      #   Why the refund failed, normalized across providers. Null unless the refund
+      #   failed or was canceled.
       #
-      #   @return [WhopSDK::Models::RefundRetrieveResponse::Payment, nil]
-      required :payment, -> { WhopSDK::Models::RefundRetrieveResponse::Payment }, nil?: true
+      #   @return [Symbol, WhopSDK::Models::RefundRetrieveResponse::FailureReason, nil]
+      required :failure_reason, enum: -> { WhopSDK::Models::RefundRetrieveResponse::FailureReason }, nil?: true
+
+      # @!attribute original_amount
+      #   The refunded amount in the currency the processor moved.
+      #
+      #   @return [WhopSDK::Models::RefundRetrieveResponse::OriginalAmount]
+      required :original_amount, -> { WhopSDK::Models::RefundRetrieveResponse::OriginalAmount }
+
+      # @!attribute payment_id
+      #   The payment this refund reverses, prefixed `pay_`.
+      #
+      #   @return [String]
+      required :payment_id, String
 
       # @!attribute provider
-      #   The payment provider that processed the refund.
+      #   The payment provider that processed the refund, such as `paypal` or `coinbase`.
       #
-      #   @return [Symbol, WhopSDK::Models::PaymentProvider]
-      required :provider, enum: -> { WhopSDK::PaymentProvider }
+      #   @return [String]
+      required :provider, String
 
       # @!attribute provider_created_at
-      #   The timestamp when the refund was created in the payment provider's system. Null
-      #   if not available from the provider.
+      #   When the provider created the refund, as an ISO 8601 timestamp.
       #
-      #   @return [Time, nil]
-      required :provider_created_at, Time, nil?: true
+      #   @return [String, nil]
+      required :provider_created_at, String, nil?: true
+
+      # @!attribute reason
+      #   Why the refund was issued, when recorded.
+      #
+      #   @return [Symbol, WhopSDK::Models::RefundRetrieveResponse::Reason, nil]
+      required :reason, enum: -> { WhopSDK::Models::RefundRetrieveResponse::Reason }, nil?: true
 
       # @!attribute reference_status
-      #   The status of the refund reference.
+      #   Whether a banking-network tracking reference is available for this refund.
       #
-      #   @return [Symbol, WhopSDK::Models::RefundReferenceStatus, nil]
-      required :reference_status, enum: -> { WhopSDK::RefundReferenceStatus }, nil?: true
+      #   @return [Symbol, WhopSDK::Models::RefundRetrieveResponse::ReferenceStatus, nil]
+      required :reference_status,
+               enum: -> { WhopSDK::Models::RefundRetrieveResponse::ReferenceStatus },
+               nil?: true
 
       # @!attribute reference_type
-      #   The type of refund reference that was made available by the payment provider.
+      #   The kind of tracking reference, such as an acquirer reference number.
       #
-      #   @return [Symbol, WhopSDK::Models::RefundReferenceType, nil]
-      required :reference_type, enum: -> { WhopSDK::RefundReferenceType }, nil?: true
+      #   @return [Symbol, WhopSDK::Models::RefundRetrieveResponse::ReferenceType, nil]
+      required :reference_type, enum: -> { WhopSDK::Models::RefundRetrieveResponse::ReferenceType }, nil?: true
 
       # @!attribute reference_value
-      #   The tracking reference value from the payment processor, used to trace the
-      #   refund through banking networks. Null if no reference was provided.
+      #   The tracking reference the buyer's bank can trace the refund by.
       #
       #   @return [String, nil]
       required :reference_value, String, nil?: true
 
       # @!attribute status
-      #   The current processing status of the refund, such as pending, succeeded, or
-      #   failed.
+      #   Where the refund stands with the processor: `pending`, `requires_action`,
+      #   `succeeded`, `failed`, or `canceled`.
       #
-      #   @return [Symbol, WhopSDK::Models::RefundStatus]
-      required :status, enum: -> { WhopSDK::RefundStatus }
+      #   @return [Symbol, WhopSDK::Models::RefundRetrieveResponse::Status]
+      required :status, enum: -> { WhopSDK::Models::RefundRetrieveResponse::Status }
 
-      # @!method initialize(id:, amount:, created_at:, currency:, payment:, provider:, provider_created_at:, reference_status:, reference_type:, reference_value:, status:)
+      # @!attribute updated_at
+      #   When the refund last changed, as an ISO 8601 timestamp.
+      #
+      #   @return [String]
+      required :updated_at, String
+
+      # @!attribute visa_rdr
+      #   True when the card network initiated the refund through Rapid Dispute
+      #   Resolution.
+      #
+      #   @return [Boolean]
+      required :visa_rdr, WhopSDK::Internal::Type::Boolean
+
+      # @!method initialize(id:, account_id:, amount:, created_at:, failure_message:, failure_reason:, original_amount:, payment_id:, provider:, provider_created_at:, reason:, reference_status:, reference_type:, reference_value:, status:, updated_at:, visa_rdr:)
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::RefundRetrieveResponse} for more details.
       #
-      #   A refund represents a full or partial reversal of a payment, including the
-      #   amount, status, and payment provider.
+      #   @param id [String] Refund ID, prefixed `rf_`.
       #
-      #   @param id [String] The unique identifier for the refund.
+      #   @param account_id [String, nil] The account that issued the refund, prefixed `biz_`.
       #
-      #   @param amount [Float] The refunded amount as a decimal in the specified currency, such as 10.43 for $1
+      #   @param amount [WhopSDK::Models::RefundRetrieveResponse::Amount, nil] The refunded amount as it settled, in the payment's settlement currency, so page
       #
-      #   @param created_at [Time] The datetime the refund was created.
+      #   @param created_at [String] When the refund was requested, as an ISO 8601 timestamp.
       #
-      #   @param currency [Symbol, WhopSDK::Models::Currency] The three-letter ISO currency code for the refunded amount.
+      #   @param failure_message [String, nil] The provider's own explanation of the failure, or null.
       #
-      #   @param payment [WhopSDK::Models::RefundRetrieveResponse::Payment, nil] The original payment that this refund was issued against. Null if the payment is
+      #   @param failure_reason [Symbol, WhopSDK::Models::RefundRetrieveResponse::FailureReason, nil] Why the refund failed, normalized across providers. Null unless the refund faile
       #
-      #   @param provider [Symbol, WhopSDK::Models::PaymentProvider] The payment provider that processed the refund.
+      #   @param original_amount [WhopSDK::Models::RefundRetrieveResponse::OriginalAmount] The refunded amount in the currency the processor moved.
       #
-      #   @param provider_created_at [Time, nil] The timestamp when the refund was created in the payment provider's system. Null
+      #   @param payment_id [String] The payment this refund reverses, prefixed `pay_`.
       #
-      #   @param reference_status [Symbol, WhopSDK::Models::RefundReferenceStatus, nil] The status of the refund reference.
+      #   @param provider [String] The payment provider that processed the refund, such as `paypal` or `coinbase`.
       #
-      #   @param reference_type [Symbol, WhopSDK::Models::RefundReferenceType, nil] The type of refund reference that was made available by the payment provider.
+      #   @param provider_created_at [String, nil] When the provider created the refund, as an ISO 8601 timestamp.
       #
-      #   @param reference_value [String, nil] The tracking reference value from the payment processor, used to trace the refun
+      #   @param reason [Symbol, WhopSDK::Models::RefundRetrieveResponse::Reason, nil] Why the refund was issued, when recorded.
       #
-      #   @param status [Symbol, WhopSDK::Models::RefundStatus] The current processing status of the refund, such as pending, succeeded, or fail
+      #   @param reference_status [Symbol, WhopSDK::Models::RefundRetrieveResponse::ReferenceStatus, nil] Whether a banking-network tracking reference is available for this refund.
+      #
+      #   @param reference_type [Symbol, WhopSDK::Models::RefundRetrieveResponse::ReferenceType, nil] The kind of tracking reference, such as an acquirer reference number.
+      #
+      #   @param reference_value [String, nil] The tracking reference the buyer's bank can trace the refund by.
+      #
+      #   @param status [Symbol, WhopSDK::Models::RefundRetrieveResponse::Status] Where the refund stands with the processor: `pending`, `requires_action`, `succe
+      #
+      #   @param updated_at [String] When the refund last changed, as an ISO 8601 timestamp.
+      #
+      #   @param visa_rdr [Boolean] True when the card network initiated the refund through Rapid Dispute Resolution
 
-      # @see WhopSDK::Models::RefundRetrieveResponse#payment
-      class Payment < WhopSDK::Internal::Type::BaseModel
-        # @!attribute id
-        #   The unique identifier for the payment.
+      # @see WhopSDK::Models::RefundRetrieveResponse#amount
+      class Amount < WhopSDK::Internal::Type::BaseModel
+        # @!attribute amount
+        #   The amount in major units, as an exact decimal string — `"10.00"` is ten
+        #   dollars. A string so no float rounds it in transit.
         #
         #   @return [String]
-        required :id, String
-
-        # @!attribute billing_reason
-        #   The reason why a specific payment was billed
-        #
-        #   @return [Symbol, WhopSDK::Models::BillingReasons, nil]
-        required :billing_reason, enum: -> { WhopSDK::BillingReasons }, nil?: true
-
-        # @!attribute card_brand
-        #   Possible card brands that a payment token can have
-        #
-        #   @return [Symbol, WhopSDK::Models::CardBrands, nil]
-        required :card_brand, enum: -> { WhopSDK::CardBrands }, nil?: true
-
-        # @!attribute card_last4
-        #   The last four digits of the card used to make this payment. Null if the payment
-        #   was not made with a card.
-        #
-        #   @return [String, nil]
-        required :card_last4, String, nil?: true
-
-        # @!attribute created_at
-        #   The datetime the payment was created.
-        #
-        #   @return [Time]
-        required :created_at, Time
+        required :amount, String
 
         # @!attribute currency
-        #   The three-letter ISO currency code for this payment (e.g., 'usd', 'eur').
+        #   Three-letter ISO 4217 currency code, lowercase.
         #
-        #   @return [Symbol, WhopSDK::Models::Currency]
-        required :currency, enum: -> { WhopSDK::Currency }
+        #   @return [String]
+        required :currency, String
 
-        # @!attribute dispute_alerted_at
-        #   When an alert came in that this transaction will be disputed
+        # @!attribute decimals
+        #   How many decimal places the amount CARRIES — the precision the charge itself
+        #   runs at.
         #
-        #   @return [Time, nil]
-        required :dispute_alerted_at, Time, nil?: true
+        #   @return [Integer]
+        required :decimals, Integer
 
-        # @!attribute member
-        #   The member attached to this payment.
+        # @!attribute display_decimals
+        #   How many decimal places to SHOW. Usually equal to `decimals`, and deliberately
+        #   not always: COP is charged in centavos but written in whole pesos, so it is `2`
+        #   and `0`. Format the number in your own locale using this.
         #
-        #   @return [WhopSDK::Models::RefundRetrieveResponse::Payment::Member, nil]
-        required :member, -> { WhopSDK::Models::RefundRetrieveResponse::Payment::Member }, nil?: true
+        #   @return [Integer]
+        required :display_decimals, Integer
 
-        # @!attribute membership
-        #   The membership attached to this payment.
-        #
-        #   @return [WhopSDK::Models::RefundRetrieveResponse::Payment::Membership, nil]
-        required :membership, -> { WhopSDK::Models::RefundRetrieveResponse::Payment::Membership }, nil?: true
-
-        # @!attribute metadata
-        #   The custom metadata stored on this payment. This will be copied over to the
-        #   checkout configuration for which this payment was made
-        #
-        #   @return [Hash{Symbol=>Object}, nil]
-        required :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown], nil?: true
-
-        # @!attribute paid_at
-        #   The time at which this payment was successfully collected. Null if the payment
-        #   has not yet succeeded. As a Unix timestamp.
-        #
-        #   @return [Time, nil]
-        required :paid_at, Time, nil?: true
-
-        # @!attribute payment_method_type
-        #   The different types of payment methods that can be used.
-        #
-        #   @return [Symbol, WhopSDK::Models::PaymentMethodTypes, nil]
-        required :payment_method_type, enum: -> { WhopSDK::PaymentMethodTypes }, nil?: true
-
-        # @!attribute plan
-        #   The plan attached to this payment.
-        #
-        #   @return [WhopSDK::Models::RefundRetrieveResponse::Payment::Plan, nil]
-        required :plan, -> { WhopSDK::Models::RefundRetrieveResponse::Payment::Plan }, nil?: true
-
-        # @!attribute product
-        #   The product this payment was made for
-        #
-        #   @return [WhopSDK::Models::RefundRetrieveResponse::Payment::Product, nil]
-        required :product, -> { WhopSDK::Models::RefundRetrieveResponse::Payment::Product }, nil?: true
-
-        # @!attribute subtotal
-        #   The subtotal to show to the creator (excluding buyer fees).
-        #
-        #   @return [Float, nil]
-        required :subtotal, Float, nil?: true
-
-        # @!attribute tax_amount
-        #   The calculated amount of the sales/VAT tax (if applicable).
-        #
-        #   @return [Float, nil]
-        required :tax_amount, Float, nil?: true
-
-        # @!attribute tax_behavior
-        #   The type of tax inclusivity applied to the receipt, for determining whether the
-        #   tax is included in the final price, or paid on top.
-        #
-        #   @return [Symbol, WhopSDK::Models::ReceiptTaxBehavior, nil]
-        required :tax_behavior, enum: -> { WhopSDK::ReceiptTaxBehavior }, nil?: true
-
-        # @!attribute tax_refunded_amount
-        #   The amount of tax that has been refunded (if applicable).
-        #
-        #   @return [Float, nil]
-        required :tax_refunded_amount, Float, nil?: true
-
-        # @!attribute total
-        #   The total to show to the creator (excluding buyer fees).
-        #
-        #   @return [Float, nil]
-        required :total, Float, nil?: true
-
-        # @!attribute usd_total
-        #   The total in USD to show to the creator (excluding buyer fees).
-        #
-        #   @return [Float, nil]
-        required :usd_total, Float, nil?: true
-
-        # @!attribute user
-        #   The user that made this payment.
-        #
-        #   @return [WhopSDK::Models::RefundRetrieveResponse::Payment::User, nil]
-        required :user, -> { WhopSDK::Models::RefundRetrieveResponse::Payment::User }, nil?: true
-
-        # @!method initialize(id:, billing_reason:, card_brand:, card_last4:, created_at:, currency:, dispute_alerted_at:, member:, membership:, metadata:, paid_at:, payment_method_type:, plan:, product:, subtotal:, tax_amount:, tax_behavior:, tax_refunded_amount:, total:, usd_total:, user:)
+        # @!method initialize(amount:, currency:, decimals:, display_decimals:)
         #   Some parameter documentations has been truncated, see
-        #   {WhopSDK::Models::RefundRetrieveResponse::Payment} for more details.
+        #   {WhopSDK::Models::RefundRetrieveResponse::Amount} for more details.
         #
-        #   The original payment that this refund was issued against. Null if the payment is
-        #   no longer available.
+        #   The refunded amount as it settled, in the payment's settlement currency, so
+        #   pages of refunds net against the payment's `refunded_amount`. Converted at the
+        #   rate in force when the refund was issued, not the payment's original rate. Null
+        #   only when no exchange rate is recorded for a legacy multi-currency payment.
         #
-        #   @param id [String] The unique identifier for the payment.
+        #   @param amount [String] The amount in major units, as an exact decimal string — `"10.00"` is ten dollars
         #
-        #   @param billing_reason [Symbol, WhopSDK::Models::BillingReasons, nil] The reason why a specific payment was billed
+        #   @param currency [String] Three-letter ISO 4217 currency code, lowercase.
         #
-        #   @param card_brand [Symbol, WhopSDK::Models::CardBrands, nil] Possible card brands that a payment token can have
+        #   @param decimals [Integer] How many decimal places the amount CARRIES — the precision the charge itself run
         #
-        #   @param card_last4 [String, nil] The last four digits of the card used to make this payment. Null if the payment
-        #
-        #   @param created_at [Time] The datetime the payment was created.
-        #
-        #   @param currency [Symbol, WhopSDK::Models::Currency] The three-letter ISO currency code for this payment (e.g., 'usd', 'eur').
-        #
-        #   @param dispute_alerted_at [Time, nil] When an alert came in that this transaction will be disputed
-        #
-        #   @param member [WhopSDK::Models::RefundRetrieveResponse::Payment::Member, nil] The member attached to this payment.
-        #
-        #   @param membership [WhopSDK::Models::RefundRetrieveResponse::Payment::Membership, nil] The membership attached to this payment.
-        #
-        #   @param metadata [Hash{Symbol=>Object}, nil] The custom metadata stored on this payment. This will be copied over to the chec
-        #
-        #   @param paid_at [Time, nil] The time at which this payment was successfully collected. Null if the payment h
-        #
-        #   @param payment_method_type [Symbol, WhopSDK::Models::PaymentMethodTypes, nil] The different types of payment methods that can be used.
-        #
-        #   @param plan [WhopSDK::Models::RefundRetrieveResponse::Payment::Plan, nil] The plan attached to this payment.
-        #
-        #   @param product [WhopSDK::Models::RefundRetrieveResponse::Payment::Product, nil] The product this payment was made for
-        #
-        #   @param subtotal [Float, nil] The subtotal to show to the creator (excluding buyer fees).
-        #
-        #   @param tax_amount [Float, nil] The calculated amount of the sales/VAT tax (if applicable).
-        #
-        #   @param tax_behavior [Symbol, WhopSDK::Models::ReceiptTaxBehavior, nil] The type of tax inclusivity applied to the receipt, for determining whether the
-        #
-        #   @param tax_refunded_amount [Float, nil] The amount of tax that has been refunded (if applicable).
-        #
-        #   @param total [Float, nil] The total to show to the creator (excluding buyer fees).
-        #
-        #   @param usd_total [Float, nil] The total in USD to show to the creator (excluding buyer fees).
-        #
-        #   @param user [WhopSDK::Models::RefundRetrieveResponse::Payment::User, nil] The user that made this payment.
+        #   @param display_decimals [Integer] How many decimal places to SHOW. Usually equal to `decimals`, and deliberately n
+      end
 
-        # @see WhopSDK::Models::RefundRetrieveResponse::Payment#member
-        class Member < WhopSDK::Internal::Type::BaseModel
-          # @!attribute id
-          #   The unique identifier for the company member.
-          #
-          #   @return [String]
-          required :id, String
+      # Why the refund failed, normalized across providers. Null unless the refund
+      # failed or was canceled.
+      #
+      # @see WhopSDK::Models::RefundRetrieveResponse#failure_reason
+      module FailureReason
+        extend WhopSDK::Internal::Type::Enum
 
-          # @!attribute phone
-          #   The phone number for the member, if available.
-          #
-          #   @return [String, nil]
-          required :phone, String, nil?: true
+        BANK_DECLINED = :bank_declined
+        EXPIRED_OR_CANCELED_CARD = :expired_or_canceled_card
+        LOST_OR_STOLEN_CARD = :lost_or_stolen_card
+        INSUFFICIENT_FUNDS = :insufficient_funds
+        CHARGE_DISPUTED = :charge_disputed
+        NOT_REFUNDABLE = :not_refundable
+        MERCHANT_REQUEST = :merchant_request
+        UNKNOWN = :unknown
 
-          # @!method initialize(id:, phone:)
-          #   The member attached to this payment.
-          #
-          #   @param id [String] The unique identifier for the company member.
-          #
-          #   @param phone [String, nil] The phone number for the member, if available.
-        end
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
 
-        # @see WhopSDK::Models::RefundRetrieveResponse::Payment#membership
-        class Membership < WhopSDK::Internal::Type::BaseModel
-          # @!attribute id
-          #   The unique identifier for the membership.
-          #
-          #   @return [String]
-          required :id, String
+      # @see WhopSDK::Models::RefundRetrieveResponse#original_amount
+      class OriginalAmount < WhopSDK::Internal::Type::BaseModel
+        # @!attribute amount
+        #   The amount in major units, as an exact decimal string — `"10.00"` is ten
+        #   dollars. A string so no float rounds it in transit.
+        #
+        #   @return [String]
+        required :amount, String
 
-          # @!attribute status
-          #   The state of the membership.
-          #
-          #   @return [Symbol, WhopSDK::Models::MembershipStatus]
-          required :status, enum: -> { WhopSDK::MembershipStatus }
+        # @!attribute currency
+        #   Three-letter ISO 4217 currency code, lowercase.
+        #
+        #   @return [String]
+        required :currency, String
 
-          # @!method initialize(id:, status:)
-          #   The membership attached to this payment.
-          #
-          #   @param id [String] The unique identifier for the membership.
-          #
-          #   @param status [Symbol, WhopSDK::Models::MembershipStatus] The state of the membership.
-        end
+        # @!attribute decimals
+        #   How many decimal places the amount CARRIES — the precision the charge itself
+        #   runs at.
+        #
+        #   @return [Integer]
+        required :decimals, Integer
 
-        # @see WhopSDK::Models::RefundRetrieveResponse::Payment#plan
-        class Plan < WhopSDK::Internal::Type::BaseModel
-          # @!attribute id
-          #   The unique identifier for the plan.
-          #
-          #   @return [String]
-          required :id, String
+        # @!attribute display_decimals
+        #   How many decimal places to SHOW. Usually equal to `decimals`, and deliberately
+        #   not always: COP is charged in centavos but written in whole pesos, so it is `2`
+        #   and `0`. Format the number in your own locale using this.
+        #
+        #   @return [Integer]
+        required :display_decimals, Integer
 
-          # @!attribute metadata
-          #   Custom key-value pairs stored on the plan. Included in webhook payloads for
-          #   payment and membership events. Max 50 keys, 100 chars per key, 500 chars per
-          #   string value. The reserved keys `custom_cta` and `custom_cta_url`, when set,
-          #   override the product's checkout call to action for this plan.
-          #
-          #   @return [Hash{Symbol=>Object}, nil]
-          required :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown], nil?: true
+        # @!method initialize(amount:, currency:, decimals:, display_decimals:)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::RefundRetrieveResponse::OriginalAmount} for more details.
+        #
+        #   The refunded amount in the currency the processor moved.
+        #
+        #   @param amount [String] The amount in major units, as an exact decimal string — `"10.00"` is ten dollars
+        #
+        #   @param currency [String] Three-letter ISO 4217 currency code, lowercase.
+        #
+        #   @param decimals [Integer] How many decimal places the amount CARRIES — the precision the charge itself run
+        #
+        #   @param display_decimals [Integer] How many decimal places to SHOW. Usually equal to `decimals`, and deliberately n
+      end
 
-          # @!method initialize(id:, metadata:)
-          #   Some parameter documentations has been truncated, see
-          #   {WhopSDK::Models::RefundRetrieveResponse::Payment::Plan} for more details.
-          #
-          #   The plan attached to this payment.
-          #
-          #   @param id [String] The unique identifier for the plan.
-          #
-          #   @param metadata [Hash{Symbol=>Object}, nil] Custom key-value pairs stored on the plan. Included in webhook payloads for paym
-        end
+      # Why the refund was issued, when recorded.
+      #
+      # @see WhopSDK::Models::RefundRetrieveResponse#reason
+      module Reason
+        extend WhopSDK::Internal::Type::Enum
 
-        # @see WhopSDK::Models::RefundRetrieveResponse::Payment#product
-        class Product < WhopSDK::Internal::Type::BaseModel
-          # @!attribute id
-          #   The unique identifier for the product.
-          #
-          #   @return [String]
-          required :id, String
+        DUPLICATE = :duplicate
+        FRAUDULENT = :fraudulent
+        REQUESTED_BY_CUSTOMER = :requested_by_customer
+        EXPIRED_UNCAPTURED_CHARGE = :expired_uncaptured_charge
 
-          # @!attribute metadata
-          #   Custom key-value pairs stored on the product and included in payment and
-          #   membership webhook payloads. Max 50 keys, 100 characters per key, 500 characters
-          #   per string value.
-          #
-          #   @return [Hash{Symbol=>Object}, nil]
-          required :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown], nil?: true
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
 
-          # @!method initialize(id:, metadata:)
-          #   Some parameter documentations has been truncated, see
-          #   {WhopSDK::Models::RefundRetrieveResponse::Payment::Product} for more details.
-          #
-          #   The product this payment was made for
-          #
-          #   @param id [String] The unique identifier for the product.
-          #
-          #   @param metadata [Hash{Symbol=>Object}, nil] Custom key-value pairs stored on the product and included in payment and members
-        end
+      # Whether a banking-network tracking reference is available for this refund.
+      #
+      # @see WhopSDK::Models::RefundRetrieveResponse#reference_status
+      module ReferenceStatus
+        extend WhopSDK::Internal::Type::Enum
 
-        # @see WhopSDK::Models::RefundRetrieveResponse::Payment#user
-        class User < WhopSDK::Internal::Type::BaseModel
-          # @!attribute id
-          #   The unique identifier for the user.
-          #
-          #   @return [String]
-          required :id, String
+        AVAILABLE = :available
+        PENDING = :pending
+        UNAVAILABLE = :unavailable
 
-          # @!attribute email
-          #   The user's email address. Requires the member:email:read permission to access.
-          #   Null if not authorized.
-          #
-          #   @return [String, nil]
-          required :email, String, nil?: true
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
 
-          # @!attribute name
-          #   The user's display name shown on their public profile.
-          #
-          #   @return [String, nil]
-          required :name, String, nil?: true
+      # The kind of tracking reference, such as an acquirer reference number.
+      #
+      # @see WhopSDK::Models::RefundRetrieveResponse#reference_type
+      module ReferenceType
+        extend WhopSDK::Internal::Type::Enum
 
-          # @!attribute username
-          #   The user's unique username shown on their public profile.
-          #
-          #   @return [String]
-          required :username, String
+        ACQUIRER_REFERENCE_NUMBER = :acquirer_reference_number
+        RETRIEVAL_REFERENCE_NUMBER = :retrieval_reference_number
+        SYSTEM_TRACE_AUDIT_NUMBER = :system_trace_audit_number
 
-          # @!method initialize(id:, email:, name:, username:)
-          #   Some parameter documentations has been truncated, see
-          #   {WhopSDK::Models::RefundRetrieveResponse::Payment::User} for more details.
-          #
-          #   The user that made this payment.
-          #
-          #   @param id [String] The unique identifier for the user.
-          #
-          #   @param email [String, nil] The user's email address. Requires the member:email:read permission to access. N
-          #
-          #   @param name [String, nil] The user's display name shown on their public profile.
-          #
-          #   @param username [String] The user's unique username shown on their public profile.
-        end
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
+
+      # Where the refund stands with the processor: `pending`, `requires_action`,
+      # `succeeded`, `failed`, or `canceled`.
+      #
+      # @see WhopSDK::Models::RefundRetrieveResponse#status
+      module Status
+        extend WhopSDK::Internal::Type::Enum
+
+        PENDING = :pending
+        REQUIRES_ACTION = :requires_action
+        SUCCEEDED = :succeeded
+        FAILED = :failed
+        CANCELED = :canceled
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
     end
   end

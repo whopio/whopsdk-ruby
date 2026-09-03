@@ -7,98 +7,95 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
+      # @!attribute account_id
+      #   Only payments charged by this account, prefixed `biz_`.
+      #
+      #   @return [String, nil]
+      optional :account_id, String
+
       # @!attribute after
-      #   Returns the elements in the list that come after the specified cursor.
+      #   A cursor; returns payments after this position.
       #
       #   @return [String, nil]
       optional :after, String
 
       # @!attribute before
-      #   Returns the elements in the list that come before the specified cursor.
+      #   A cursor; returns payments before this position.
       #
       #   @return [String, nil]
       optional :before, String
 
-      # @!attribute billing_reasons
-      #   Filter payments by their billing reason.
+      # @!attribute billing_reason
+      #   Only payments charged for this reason.
       #
-      #   @return [Array<Symbol, WhopSDK::Models::BillingReasons>, nil]
-      optional :billing_reasons, -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::BillingReasons] }
-
-      # @!attribute checkout_configuration_ids
-      #   Only return payments from these checkout configurations.
-      #
-      #   @return [Array<String>, nil]
-      optional :checkout_configuration_ids, WhopSDK::Internal::Type::ArrayOf[String]
-
-      # @!attribute company_id
-      #   The unique identifier of the company to list payments for.
-      #
-      #   @return [String, nil]
-      optional :company_id, String
+      #   @return [Symbol, WhopSDK::Models::PaymentListParams::BillingReason, nil]
+      optional :billing_reason, enum: -> { WhopSDK::PaymentListParams::BillingReason }
 
       # @!attribute created_after
-      #   Only return payments created after this timestamp.
+      #   Only payments created after this ISO 8601 timestamp.
       #
       #   @return [Time, nil]
       optional :created_after, Time
 
       # @!attribute created_before
-      #   Only return payments created before this timestamp.
+      #   Only payments created before this ISO 8601 timestamp.
       #
       #   @return [Time, nil]
       optional :created_before, Time
 
-      # @!attribute currencies
-      #   Filter payments by their currency code.
+      # @!attribute currency
+      #   Only payments presented in this three-letter currency, such as `usd`.
       #
-      #   @return [Array<Symbol, WhopSDK::Models::Currency>, nil]
-      optional :currencies, -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::Currency] }
+      #   @return [String, nil]
+      optional :currency, String
 
       # @!attribute direction
-      #   The sort direction for ordering results, either ascending or descending.
+      #   The sort direction.
       #
-      #   @return [Symbol, WhopSDK::Models::Direction, nil]
-      optional :direction, enum: -> { WhopSDK::Direction }
+      #   @return [Symbol, WhopSDK::Models::PaymentListParams::Direction, nil]
+      optional :direction, enum: -> { WhopSDK::PaymentListParams::Direction }
 
       # @!attribute first
-      #   Returns the first _n_ elements from the list.
+      #   The number of payments to return.
       #
       #   @return [Integer, nil]
       optional :first, Integer
 
-      # @!attribute include_free
-      #   Whether to include payments with a zero amount. Defaults to false, so
-      #   zero-amount payments are omitted unless you set this to true — a company whose
-      #   sales are all free plans returns an empty list without it.
-      #
-      #   @return [Boolean, nil]
-      optional :include_free, WhopSDK::Internal::Type::Boolean
-
       # @!attribute last
-      #   Returns the last _n_ elements from the list.
+      #   The number of payments to return from the end of the range.
       #
       #   @return [Integer, nil]
       optional :last, Integer
 
+      # @!attribute member_id
+      #   Only payments made by this member, prefixed `mber_`.
+      #
+      #   @return [String, nil]
+      optional :member_id, String
+
+      # @!attribute membership_id
+      #   Only payments billed under this membership, prefixed `mem_`.
+      #
+      #   @return [String, nil]
+      optional :membership_id, String
+
       # @!attribute order
-      #   The field to order results by, such as creation date.
+      #   The field to sort by.
       #
       #   @return [Symbol, WhopSDK::Models::PaymentListParams::Order, nil]
       optional :order, enum: -> { WhopSDK::PaymentListParams::Order }
 
-      # @!attribute plan_ids
-      #   Filter payments to only those associated with these specific plan identifiers.
+      # @!attribute plan_id
+      #   Only payments priced by this plan, prefixed `plan_`.
       #
-      #   @return [Array<String>, nil]
-      optional :plan_ids, WhopSDK::Internal::Type::ArrayOf[String]
+      #   @return [String, nil]
+      optional :plan_id, String
 
-      # @!attribute product_ids
-      #   Filter payments to only those associated with these specific product
-      #   identifiers.
+      # @!attribute product_id
+      #   Only payments for this product, prefixed `prod_`.
       #
-      #   @return [Array<String>, nil]
-      optional :product_ids, WhopSDK::Internal::Type::ArrayOf[String]
+      #   @return [String, nil]
+      optional :product_id, String
 
       # @!attribute query
       #   Search payments by user ID, membership ID, user email, name, or username. Email
@@ -107,83 +104,115 @@ module WhopSDK
       #   @return [String, nil]
       optional :query, String
 
-      # @!attribute statuses
-      #   Filter payments by their current status.
+      # @!attribute status
+      #   Only payments in this lifecycle state.
       #
-      #   @return [Array<Symbol, WhopSDK::Models::ReceiptStatus>, nil]
-      optional :statuses, -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::ReceiptStatus] }
+      #   @return [Symbol, WhopSDK::Models::PaymentListParams::Status, nil]
+      optional :status, enum: -> { WhopSDK::PaymentListParams::Status }
 
-      # @!attribute substatuses
-      #   Filter payments by their current substatus for more granular filtering.
+      # @!attribute user_id
+      #   Only payments made by this buyer, prefixed `user_`.
       #
-      #   @return [Array<Symbol, WhopSDK::Models::FriendlyReceiptStatus>, nil]
-      optional :substatuses, -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::FriendlyReceiptStatus] }
+      #   @return [String, nil]
+      optional :user_id, String
 
-      # @!attribute updated_after
-      #   Only return payments last updated after this timestamp.
+      # @!attribute api_version_date
       #
-      #   @return [Time, nil]
-      optional :updated_after, Time
+      #   @return [String, nil]
+      optional :api_version_date, String
 
-      # @!attribute updated_before
-      #   Only return payments last updated before this timestamp.
-      #
-      #   @return [Time, nil]
-      optional :updated_before, Time
-
-      # @!method initialize(after: nil, before: nil, billing_reasons: nil, checkout_configuration_ids: nil, company_id: nil, created_after: nil, created_before: nil, currencies: nil, direction: nil, first: nil, include_free: nil, last: nil, order: nil, plan_ids: nil, product_ids: nil, query: nil, statuses: nil, substatuses: nil, updated_after: nil, updated_before: nil, request_options: {})
+      # @!method initialize(account_id: nil, after: nil, before: nil, billing_reason: nil, created_after: nil, created_before: nil, currency: nil, direction: nil, first: nil, last: nil, member_id: nil, membership_id: nil, order: nil, plan_id: nil, product_id: nil, query: nil, status: nil, user_id: nil, api_version_date: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::PaymentListParams} for more details.
       #
-      #   @param after [String] Returns the elements in the list that come after the specified cursor.
+      #   @param account_id [String] Only payments charged by this account, prefixed `biz_`.
       #
-      #   @param before [String] Returns the elements in the list that come before the specified cursor.
+      #   @param after [String] A cursor; returns payments after this position.
       #
-      #   @param billing_reasons [Array<Symbol, WhopSDK::Models::BillingReasons>] Filter payments by their billing reason.
+      #   @param before [String] A cursor; returns payments before this position.
       #
-      #   @param checkout_configuration_ids [Array<String>] Only return payments from these checkout configurations.
+      #   @param billing_reason [Symbol, WhopSDK::Models::PaymentListParams::BillingReason] Only payments charged for this reason.
       #
-      #   @param company_id [String] The unique identifier of the company to list payments for.
+      #   @param created_after [Time] Only payments created after this ISO 8601 timestamp.
       #
-      #   @param created_after [Time] Only return payments created after this timestamp.
+      #   @param created_before [Time] Only payments created before this ISO 8601 timestamp.
       #
-      #   @param created_before [Time] Only return payments created before this timestamp.
+      #   @param currency [String] Only payments presented in this three-letter currency, such as `usd`.
       #
-      #   @param currencies [Array<Symbol, WhopSDK::Models::Currency>] Filter payments by their currency code.
+      #   @param direction [Symbol, WhopSDK::Models::PaymentListParams::Direction] The sort direction.
       #
-      #   @param direction [Symbol, WhopSDK::Models::Direction] The sort direction for ordering results, either ascending or descending.
+      #   @param first [Integer] The number of payments to return.
       #
-      #   @param first [Integer] Returns the first _n_ elements from the list.
+      #   @param last [Integer] The number of payments to return from the end of the range.
       #
-      #   @param include_free [Boolean] Whether to include payments with a zero amount. Defaults to false, so zero-amoun
+      #   @param member_id [String] Only payments made by this member, prefixed `mber_`.
       #
-      #   @param last [Integer] Returns the last _n_ elements from the list.
+      #   @param membership_id [String] Only payments billed under this membership, prefixed `mem_`.
       #
-      #   @param order [Symbol, WhopSDK::Models::PaymentListParams::Order] The field to order results by, such as creation date.
+      #   @param order [Symbol, WhopSDK::Models::PaymentListParams::Order] The field to sort by.
       #
-      #   @param plan_ids [Array<String>] Filter payments to only those associated with these specific plan identifiers.
+      #   @param plan_id [String] Only payments priced by this plan, prefixed `plan_`.
       #
-      #   @param product_ids [Array<String>] Filter payments to only those associated with these specific product identifiers
+      #   @param product_id [String] Only payments for this product, prefixed `prod_`.
       #
       #   @param query [String] Search payments by user ID, membership ID, user email, name, or username. Email
       #
-      #   @param statuses [Array<Symbol, WhopSDK::Models::ReceiptStatus>] Filter payments by their current status.
+      #   @param status [Symbol, WhopSDK::Models::PaymentListParams::Status] Only payments in this lifecycle state.
       #
-      #   @param substatuses [Array<Symbol, WhopSDK::Models::FriendlyReceiptStatus>] Filter payments by their current substatus for more granular filtering.
+      #   @param user_id [String] Only payments made by this buyer, prefixed `user_`.
       #
-      #   @param updated_after [Time] Only return payments last updated after this timestamp.
-      #
-      #   @param updated_before [Time] Only return payments last updated before this timestamp.
+      #   @param api_version_date [String]
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
 
-      # The field to order results by, such as creation date.
+      # Only payments charged for this reason.
+      module BillingReason
+        extend WhopSDK::Internal::Type::Enum
+
+        SUBSCRIPTION_CREATE = :subscription_create
+        SUBSCRIPTION_CYCLE = :subscription_cycle
+        SUBSCRIPTION_UPDATE = :subscription_update
+        ONE_TIME = :one_time
+        MANUAL = :manual
+        SUBSCRIPTION = :subscription
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
+
+      # The sort direction.
+      module Direction
+        extend WhopSDK::Internal::Type::Enum
+
+        ASC = :asc
+        DESC = :desc
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
+
+      # The field to sort by.
       module Order
         extend WhopSDK::Internal::Type::Enum
 
-        FINAL_AMOUNT = :final_amount
         CREATED_AT = :created_at
         PAID_AT = :paid_at
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
+
+      # Only payments in this lifecycle state.
+      module Status
+        extend WhopSDK::Internal::Type::Enum
+
+        OPEN = :open
+        AUTHORIZED = :authorized
+        PAID = :paid
+        PENDING = :pending
+        UNCOLLECTIBLE = :uncollectible
+        UNRESOLVED = :unresolved
+        VOID = :void
 
         # @!method self.values
         #   @return [Array<Symbol>]

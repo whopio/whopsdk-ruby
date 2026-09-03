@@ -3,77 +3,245 @@ module WhopSDK
     type refund_list_response =
       {
         id: String,
-        amount: Float,
-        created_at: Time,
-        currency: WhopSDK::Models::currency,
-        payment: WhopSDK::Models::RefundListResponse::Payment?,
-        provider: WhopSDK::Models::payment_provider,
-        provider_created_at: Time?,
-        reference_status: WhopSDK::Models::refund_reference_status?,
-        reference_type: WhopSDK::Models::refund_reference_type?,
+        account_id: String?,
+        amount: WhopSDK::Models::RefundListResponse::Amount?,
+        created_at: String,
+        failure_message: String?,
+        failure_reason: WhopSDK::Models::RefundListResponse::failure_reason?,
+        original_amount: WhopSDK::Models::RefundListResponse::OriginalAmount,
+        payment_id: String,
+        provider: String,
+        provider_created_at: String?,
+        reason: WhopSDK::Models::RefundListResponse::reason?,
+        reference_status: WhopSDK::Models::RefundListResponse::reference_status?,
+        reference_type: WhopSDK::Models::RefundListResponse::reference_type?,
         reference_value: String?,
-        status: WhopSDK::Models::refund_status
+        status: WhopSDK::Models::RefundListResponse::status,
+        updated_at: String,
+        visa_rdr: bool
       }
 
     class RefundListResponse < WhopSDK::Internal::Type::BaseModel
       attr_accessor id: String
 
-      attr_accessor amount: Float
+      attr_accessor account_id: String?
 
-      attr_accessor created_at: Time
+      attr_accessor amount: WhopSDK::Models::RefundListResponse::Amount?
 
-      attr_accessor currency: WhopSDK::Models::currency
+      attr_accessor created_at: String
 
-      attr_accessor payment: WhopSDK::Models::RefundListResponse::Payment?
+      attr_accessor failure_message: String?
 
-      attr_accessor provider: WhopSDK::Models::payment_provider
+      attr_accessor failure_reason: WhopSDK::Models::RefundListResponse::failure_reason?
 
-      attr_accessor provider_created_at: Time?
+      attr_accessor original_amount: WhopSDK::Models::RefundListResponse::OriginalAmount
 
-      attr_accessor reference_status: WhopSDK::Models::refund_reference_status?
+      attr_accessor payment_id: String
 
-      attr_accessor reference_type: WhopSDK::Models::refund_reference_type?
+      attr_accessor provider: String
+
+      attr_accessor provider_created_at: String?
+
+      attr_accessor reason: WhopSDK::Models::RefundListResponse::reason?
+
+      attr_accessor reference_status: WhopSDK::Models::RefundListResponse::reference_status?
+
+      attr_accessor reference_type: WhopSDK::Models::RefundListResponse::reference_type?
 
       attr_accessor reference_value: String?
 
-      attr_accessor status: WhopSDK::Models::refund_status
+      attr_accessor status: WhopSDK::Models::RefundListResponse::status
+
+      attr_accessor updated_at: String
+
+      attr_accessor visa_rdr: bool
 
       def initialize: (
         id: String,
-        amount: Float,
-        created_at: Time,
-        currency: WhopSDK::Models::currency,
-        payment: WhopSDK::Models::RefundListResponse::Payment?,
-        provider: WhopSDK::Models::payment_provider,
-        provider_created_at: Time?,
-        reference_status: WhopSDK::Models::refund_reference_status?,
-        reference_type: WhopSDK::Models::refund_reference_type?,
+        account_id: String?,
+        amount: WhopSDK::Models::RefundListResponse::Amount?,
+        created_at: String,
+        failure_message: String?,
+        failure_reason: WhopSDK::Models::RefundListResponse::failure_reason?,
+        original_amount: WhopSDK::Models::RefundListResponse::OriginalAmount,
+        payment_id: String,
+        provider: String,
+        provider_created_at: String?,
+        reason: WhopSDK::Models::RefundListResponse::reason?,
+        reference_status: WhopSDK::Models::RefundListResponse::reference_status?,
+        reference_type: WhopSDK::Models::RefundListResponse::reference_type?,
         reference_value: String?,
-        status: WhopSDK::Models::refund_status
+        status: WhopSDK::Models::RefundListResponse::status,
+        updated_at: String,
+        visa_rdr: bool
       ) -> void
 
       def to_hash: -> {
         id: String,
-        amount: Float,
-        created_at: Time,
-        currency: WhopSDK::Models::currency,
-        payment: WhopSDK::Models::RefundListResponse::Payment?,
-        provider: WhopSDK::Models::payment_provider,
-        provider_created_at: Time?,
-        reference_status: WhopSDK::Models::refund_reference_status?,
-        reference_type: WhopSDK::Models::refund_reference_type?,
+        account_id: String?,
+        amount: WhopSDK::Models::RefundListResponse::Amount?,
+        created_at: String,
+        failure_message: String?,
+        failure_reason: WhopSDK::Models::RefundListResponse::failure_reason?,
+        original_amount: WhopSDK::Models::RefundListResponse::OriginalAmount,
+        payment_id: String,
+        provider: String,
+        provider_created_at: String?,
+        reason: WhopSDK::Models::RefundListResponse::reason?,
+        reference_status: WhopSDK::Models::RefundListResponse::reference_status?,
+        reference_type: WhopSDK::Models::RefundListResponse::reference_type?,
         reference_value: String?,
-        status: WhopSDK::Models::refund_status
+        status: WhopSDK::Models::RefundListResponse::status,
+        updated_at: String,
+        visa_rdr: bool
       }
 
-      type payment = { id: String }
+      type amount =
+        {
+          amount: String,
+          currency: String,
+          decimals: Integer,
+          display_decimals: Integer
+        }
 
-      class Payment < WhopSDK::Internal::Type::BaseModel
-        attr_accessor id: String
+      class Amount < WhopSDK::Internal::Type::BaseModel
+        attr_accessor amount: String
 
-        def initialize: (id: String) -> void
+        attr_accessor currency: String
 
-        def to_hash: -> { id: String }
+        attr_accessor decimals: Integer
+
+        attr_accessor display_decimals: Integer
+
+        def initialize: (
+          amount: String,
+          currency: String,
+          decimals: Integer,
+          display_decimals: Integer
+        ) -> void
+
+        def to_hash: -> {
+          amount: String,
+          currency: String,
+          decimals: Integer,
+          display_decimals: Integer
+        }
+      end
+
+      type failure_reason =
+        :bank_declined
+        | :expired_or_canceled_card
+        | :lost_or_stolen_card
+        | :insufficient_funds
+        | :charge_disputed
+        | :not_refundable
+        | :merchant_request
+        | :unknown
+
+      module FailureReason
+        extend WhopSDK::Internal::Type::Enum
+
+        BANK_DECLINED: :bank_declined
+        EXPIRED_OR_CANCELED_CARD: :expired_or_canceled_card
+        LOST_OR_STOLEN_CARD: :lost_or_stolen_card
+        INSUFFICIENT_FUNDS: :insufficient_funds
+        CHARGE_DISPUTED: :charge_disputed
+        NOT_REFUNDABLE: :not_refundable
+        MERCHANT_REQUEST: :merchant_request
+        UNKNOWN: :unknown
+
+        def self?.values: -> ::Array[WhopSDK::Models::RefundListResponse::failure_reason]
+      end
+
+      type original_amount =
+        {
+          amount: String,
+          currency: String,
+          decimals: Integer,
+          display_decimals: Integer
+        }
+
+      class OriginalAmount < WhopSDK::Internal::Type::BaseModel
+        attr_accessor amount: String
+
+        attr_accessor currency: String
+
+        attr_accessor decimals: Integer
+
+        attr_accessor display_decimals: Integer
+
+        def initialize: (
+          amount: String,
+          currency: String,
+          decimals: Integer,
+          display_decimals: Integer
+        ) -> void
+
+        def to_hash: -> {
+          amount: String,
+          currency: String,
+          decimals: Integer,
+          display_decimals: Integer
+        }
+      end
+
+      type reason =
+        :duplicate
+        | :fraudulent
+        | :requested_by_customer
+        | :expired_uncaptured_charge
+
+      module Reason
+        extend WhopSDK::Internal::Type::Enum
+
+        DUPLICATE: :duplicate
+        FRAUDULENT: :fraudulent
+        REQUESTED_BY_CUSTOMER: :requested_by_customer
+        EXPIRED_UNCAPTURED_CHARGE: :expired_uncaptured_charge
+
+        def self?.values: -> ::Array[WhopSDK::Models::RefundListResponse::reason]
+      end
+
+      type reference_status = :available | :pending | :unavailable
+
+      module ReferenceStatus
+        extend WhopSDK::Internal::Type::Enum
+
+        AVAILABLE: :available
+        PENDING: :pending
+        UNAVAILABLE: :unavailable
+
+        def self?.values: -> ::Array[WhopSDK::Models::RefundListResponse::reference_status]
+      end
+
+      type reference_type =
+        :acquirer_reference_number
+        | :retrieval_reference_number
+        | :system_trace_audit_number
+
+      module ReferenceType
+        extend WhopSDK::Internal::Type::Enum
+
+        ACQUIRER_REFERENCE_NUMBER: :acquirer_reference_number
+        RETRIEVAL_REFERENCE_NUMBER: :retrieval_reference_number
+        SYSTEM_TRACE_AUDIT_NUMBER: :system_trace_audit_number
+
+        def self?.values: -> ::Array[WhopSDK::Models::RefundListResponse::reference_type]
+      end
+
+      type status =
+        :pending | :requires_action | :succeeded | :failed | :canceled
+
+      module Status
+        extend WhopSDK::Internal::Type::Enum
+
+        PENDING: :pending
+        REQUIRES_ACTION: :requires_action
+        SUCCEEDED: :succeeded
+        FAILED: :failed
+        CANCELED: :canceled
+
+        def self?.values: -> ::Array[WhopSDK::Models::RefundListResponse::status]
       end
     end
   end

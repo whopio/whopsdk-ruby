@@ -94,7 +94,7 @@ module WhopSDK
         params(
           id: String,
           request_options: WhopSDK::RequestOptions::OrHash
-        ).returns(WhopSDK::Dispute)
+        ).returns(WhopSDK::Models::DisputeSubmitEvidenceResponse)
       end
       def submit_evidence(
         # The unique identifier of the dispute to submit to the payment processor for
@@ -146,7 +146,7 @@ module WhopSDK
               WhopSDK::DisputeUpdateEvidenceParams::UncategorizedAttachment::OrHash
             ),
           request_options: WhopSDK::RequestOptions::OrHash
-        ).returns(WhopSDK::Dispute)
+        ).returns(WhopSDK::Models::DisputeUpdateEvidenceResponse)
       end
       def update_evidence(
         # The unique identifier of the dispute to update.

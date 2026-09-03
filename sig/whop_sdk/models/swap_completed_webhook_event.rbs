@@ -1034,6 +1034,7 @@ module WhopSDK
             estimated_arrival: Time?,
             from_amount: String?,
             from_currency: String?,
+            notes: String?,
             payer_name: String?,
             payment_amount: WhopSDK::SwapCompletedWebhookEvent::Data::Source::PaymentAmount?,
             payment_method_type: String?,
@@ -1069,6 +1070,8 @@ module WhopSDK
           attr_accessor from_amount: String?
 
           attr_accessor from_currency: String?
+
+          attr_accessor notes: String?
 
           attr_accessor payer_name: String?
 
@@ -1107,6 +1110,7 @@ module WhopSDK
             ?estimated_arrival: Time?,
             ?from_amount: String?,
             ?from_currency: String?,
+            ?notes: String?,
             ?payer_name: String?,
             ?payment_amount: WhopSDK::SwapCompletedWebhookEvent::Data::Source::PaymentAmount?,
             ?payment_method_type: String?,
@@ -1133,6 +1137,7 @@ module WhopSDK
             estimated_arrival: Time?,
             from_amount: String?,
             from_currency: String?,
+            notes: String?,
             payer_name: String?,
             payment_amount: WhopSDK::SwapCompletedWebhookEvent::Data::Source::PaymentAmount?,
             payment_method_type: String?,

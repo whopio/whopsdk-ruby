@@ -1162,6 +1162,12 @@ module WhopSDK
           #   @return [String, nil]
           optional :from_currency, String, nil?: true
 
+          # @!attribute notes
+          #   Memo attached to the transfer source, or null when none was provided.
+          #
+          #   @return [String, nil]
+          optional :notes, String, nil?: true
+
           # @!attribute payer_name
           #   Name of the entity processing the payout (payout sources only; requires
           #   payout:withdrawal:read).
@@ -1253,7 +1259,7 @@ module WhopSDK
           #   @return [String, nil]
           optional :tx_hash, String, nil?: true
 
-          # @!method initialize(id:, object:, amount_float: nil, card_brand: nil, chain: nil, claim_url: nil, created_at: nil, estimated_arrival: nil, from_amount: nil, from_currency: nil, payer_name: nil, payment_amount: nil, payment_method_type: nil, payment_processor: nil, payout_destination: nil, payout_token_nickname: nil, reason: nil, risk_review_hold: nil, sender_address: nil, status: nil, to_amount: nil, to_currency: nil, tx_hash: nil)
+          # @!method initialize(id:, object:, amount_float: nil, card_brand: nil, chain: nil, claim_url: nil, created_at: nil, estimated_arrival: nil, from_amount: nil, from_currency: nil, notes: nil, payer_name: nil, payment_amount: nil, payment_method_type: nil, payment_processor: nil, payout_destination: nil, payout_token_nickname: nil, reason: nil, risk_review_hold: nil, sender_address: nil, status: nil, to_amount: nil, to_currency: nil, tx_hash: nil)
           #   Some parameter documentations has been truncated, see
           #   {WhopSDK::Models::DepositSucceededWebhookEvent::Data::Source} for more details.
           #
@@ -1278,6 +1284,8 @@ module WhopSDK
           #   @param from_amount [String, nil] Amount converted out of from_currency as a decimal string (swap sources only).
           #
           #   @param from_currency [String, nil] Lowercase currency code converted from (swap sources only).
+          #
+          #   @param notes [String, nil] Memo attached to the transfer source, or null when none was provided.
           #
           #   @param payer_name [String, nil] Name of the entity processing the payout (payout sources only; requires payout:w
           #

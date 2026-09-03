@@ -2402,6 +2402,10 @@ module WhopSDK
           sig { returns(T.nilable(String)) }
           attr_accessor :from_currency
 
+          # Memo attached to the transfer source, or null when none was provided.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :notes
+
           # Name of the entity processing the payout (payout sources only; requires
           # payout:withdrawal:read).
           sig { returns(T.nilable(String)) }
@@ -2508,6 +2512,7 @@ module WhopSDK
               estimated_arrival: T.nilable(Time),
               from_amount: T.nilable(String),
               from_currency: T.nilable(String),
+              notes: T.nilable(String),
               payer_name: T.nilable(String),
               payment_amount:
                 T.nilable(
@@ -2552,6 +2557,8 @@ module WhopSDK
             from_amount: nil,
             # Lowercase currency code converted from (swap sources only).
             from_currency: nil,
+            # Memo attached to the transfer source, or null when none was provided.
+            notes: nil,
             # Name of the entity processing the payout (payout sources only; requires
             # payout:withdrawal:read).
             payer_name: nil,
@@ -2603,6 +2610,7 @@ module WhopSDK
                 estimated_arrival: T.nilable(Time),
                 from_amount: T.nilable(String),
                 from_currency: T.nilable(String),
+                notes: T.nilable(String),
                 payer_name: T.nilable(String),
                 payment_amount:
                   T.nilable(

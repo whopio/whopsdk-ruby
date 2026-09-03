@@ -4,7 +4,7 @@ module Whop_sdk
   module DmChannels
     module Types
       class CreateDmChannelsRequest < Internal::Types::Model
-        field :company_id, -> { String }, optional: true, nullable: false
+        field :account_id, -> { String }, optional: true, nullable: false
 
         field :custom_name, -> { String }, optional: true, nullable: false
 

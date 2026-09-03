@@ -14,8 +14,6 @@ module Whop_sdk
 
         field :member_id, -> { String }, optional: true, nullable: false
 
-        field :company_id, -> { String }, optional: true, nullable: false
-
         field :direction, -> { Whop_sdk::Types::Direction }, optional: true, nullable: false
 
         field :created_before, -> { String }, optional: true, nullable: false
@@ -35,6 +33,8 @@ module Whop_sdk
         field :expired, -> { Internal::Types::Boolean }, optional: true, nullable: false
 
         field :broken, -> { Internal::Types::Boolean }, optional: true, nullable: false
+
+        field :account_id, -> { String }, optional: true, nullable: false
       end
     end
   end

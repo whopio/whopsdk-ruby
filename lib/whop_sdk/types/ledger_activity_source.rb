@@ -22,6 +22,8 @@ module Whop_sdk
 
       field :id, -> { String }, optional: false, nullable: false
 
+      field :notes, -> { String }, optional: true, nullable: false
+
       field :object, -> { String }, optional: false, nullable: false
 
       field :payer_name, -> { String }, optional: true, nullable: false

@@ -27,17 +27,17 @@ module Whop_sdk
       # @option params [String, nil] :before
       # @option params [Integer, nil] :first
       # @option params [Integer, nil] :last
-      # @option params [String, nil] :company_id
       # @option params [Whop_sdk::Types::SupportChannelView, nil] :view
       # @option params [Boolean, nil] :open
       # @option params [Whop_sdk::Types::Direction, nil] :direction
       # @option params [Whop_sdk::Types::MessageChannelOrder, nil] :order
+      # @option params [String, nil] :account_id
       #
       # @example
       #   client.support_channels.list(
       #     first: 42,
       #     last: 42,
-      #     company_id: "biz_xxxxxxxxxxxxxx"
+      #     account_id: "biz_xxxxxxxxxxxxxx"
       #   )
       #
       # @return [Whop_sdk::SupportChannels::Types::ListSupportChannelsResponse]
@@ -48,11 +48,11 @@ module Whop_sdk
         query_params["before"] = params[:before] if params.key?(:before)
         query_params["first"] = params[:first] if params.key?(:first)
         query_params["last"] = params[:last] if params.key?(:last)
-        query_params["company_id"] = params[:company_id] if params.key?(:company_id)
         query_params["view"] = params[:view] if params.key?(:view)
         query_params["open"] = params[:open] if params.key?(:open)
         query_params["direction"] = params[:direction] if params.key?(:direction)
         query_params["order"] = params[:order] if params.key?(:order)
+        query_params["account_id"] = params[:account_id] if params.key?(:account_id)
 
         Whop_sdk::Internal::CursorItemIterator.new(
           cursor_field: :end_cursor,
@@ -99,7 +99,7 @@ module Whop_sdk
       #
       # @example
       #   client.support_channels.create(
-      #     company_id: "biz_xxxxxxxxxxxxxx",
+      #     account_id: "biz_xxxxxxxxxxxxxx",
       #     user_id: "user_xxxxxxxxxxxxx"
       #   )
       #

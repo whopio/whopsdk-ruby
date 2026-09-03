@@ -12,8 +12,6 @@ module Whop_sdk
 
         field :last, -> { Integer }, optional: true, nullable: false
 
-        field :company_id, -> { String }, optional: true, nullable: false
-
         field :user_id, -> { String }, optional: true, nullable: false
 
         field :role, -> { Whop_sdk::Types::AuthorizedUserRoles }, optional: true, nullable: false
@@ -21,6 +19,8 @@ module Whop_sdk
         field :created_before, -> { String }, optional: true, nullable: false
 
         field :created_after, -> { String }, optional: true, nullable: false
+
+        field :account_id, -> { String }, optional: true, nullable: false
       end
     end
   end

@@ -12,7 +12,7 @@ module Whop_sdk
 
         field :last, -> { Integer }, optional: true, nullable: false
 
-        field :company_id, -> { String }, optional: false, nullable: false
+        field :account_id, -> { String }, optional: false, nullable: false
       end
     end
   end

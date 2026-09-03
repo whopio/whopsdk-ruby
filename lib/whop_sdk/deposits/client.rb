@@ -21,7 +21,7 @@ module Whop_sdk
       # @option request_options [Integer] :timeout_in_seconds
       #
       # @example
-      #   client.deposits.create(destination: "destination")
+      #   client.deposits.create(destination: "biz_xxxxxxxxxxxxxx")
       #
       # @return [Whop_sdk::Deposits::Types::CreateDepositsResponse]
       def create(request_options: {}, **params)

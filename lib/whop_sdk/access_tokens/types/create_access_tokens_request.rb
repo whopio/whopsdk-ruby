@@ -4,7 +4,7 @@ module Whop_sdk
   module AccessTokens
     module Types
       class CreateAccessTokensRequest < Internal::Types::Model
-        field :company_id, -> { String }, optional: true, nullable: false
+        field :account_id, -> { String }, optional: true, nullable: false
 
         field :expires_at, -> { String }, optional: true, nullable: false
 

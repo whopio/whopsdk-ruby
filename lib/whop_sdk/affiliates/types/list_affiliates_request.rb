@@ -12,8 +12,6 @@ module Whop_sdk
 
         field :last, -> { Integer }, optional: true, nullable: false
 
-        field :company_id, -> { String }, optional: false, nullable: false
-
         field :direction, -> { Whop_sdk::Types::Direction }, optional: true, nullable: false
 
         field :order, -> { Whop_sdk::Types::AffiliatesSortableColumns }, optional: true, nullable: false
@@ -21,6 +19,8 @@ module Whop_sdk
         field :query, -> { String }, optional: true, nullable: false
 
         field :status, -> { Whop_sdk::Types::Status }, optional: true, nullable: false
+
+        field :account_id, -> { String }, optional: false, nullable: false
       end
     end
   end

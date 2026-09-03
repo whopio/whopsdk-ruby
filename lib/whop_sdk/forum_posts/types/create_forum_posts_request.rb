@@ -4,9 +4,9 @@ module Whop_sdk
   module ForumPosts
     module Types
       class CreateForumPostsRequest < Internal::Types::Model
-        field :attachments, -> { Internal::Types::Array[Whop_sdk::ForumPosts::Types::CreateForumPostsRequestAttachmentsItem] }, optional: true, nullable: false
+        field :account_id, -> { String }, optional: true, nullable: false
 
-        field :company_id, -> { String }, optional: true, nullable: false
+        field :attachments, -> { Internal::Types::Array[Whop_sdk::ForumPosts::Types::CreateForumPostsRequestAttachmentsItem] }, optional: true, nullable: false
 
         field :content, -> { String }, optional: true, nullable: false
 

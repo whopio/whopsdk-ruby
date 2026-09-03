@@ -29,16 +29,16 @@ module Whop_sdk
       # @option params [String, nil] :before
       # @option params [Integer, nil] :first
       # @option params [Integer, nil] :last
-      # @option params [String] :company_id
       # @option params [String, nil] :user_id
       # @option params [Whop_sdk::Types::CompanyTokenTransactionTypes, nil] :transaction_type
+      # @option params [String] :account_id
       #
       # @example
       #   client.company_token_transactions.list(
       #     first: 42,
       #     last: 42,
-      #     company_id: "biz_xxxxxxxxxxxxxx",
-      #     user_id: "user_xxxxxxxxxxxxx"
+      #     user_id: "user_xxxxxxxxxxxxx",
+      #     account_id: "biz_xxxxxxxxxxxxxx"
       #   )
       #
       # @return [Whop_sdk::CompanyTokenTransactions::Types::ListCompanyTokenTransactionsResponse]
@@ -49,9 +49,9 @@ module Whop_sdk
         query_params["before"] = params[:before] if params.key?(:before)
         query_params["first"] = params[:first] if params.key?(:first)
         query_params["last"] = params[:last] if params.key?(:last)
-        query_params["company_id"] = params[:company_id] if params.key?(:company_id)
         query_params["user_id"] = params[:user_id] if params.key?(:user_id)
         query_params["transaction_type"] = params[:transaction_type] if params.key?(:transaction_type)
+        query_params["account_id"] = params[:account_id] if params.key?(:account_id)
 
         Whop_sdk::Internal::CursorItemIterator.new(
           cursor_field: :end_cursor,

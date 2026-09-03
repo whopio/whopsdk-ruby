@@ -26,8 +26,8 @@ module Whop_sdk
       #
       # @example
       #   client.topups.create(
+      #     account_id: "biz_xxxxxxxxxxxxxx",
       #     amount: 6.9,
-      #     company_id: "biz_xxxxxxxxxxxxxx",
       #     currency: "usd",
       #     payment_method_id: "pmt_xxxxxxxxxxxxxx"
       #   )

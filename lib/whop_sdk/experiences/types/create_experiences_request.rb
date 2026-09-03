@@ -4,9 +4,9 @@ module Whop_sdk
   module Experiences
     module Types
       class CreateExperiencesRequest < Internal::Types::Model
-        field :app_id, -> { String }, optional: false, nullable: false
+        field :account_id, -> { String }, optional: false, nullable: false
 
-        field :company_id, -> { String }, optional: false, nullable: false
+        field :app_id, -> { String }, optional: false, nullable: false
 
         field :is_public, -> { Internal::Types::Boolean }, optional: true, nullable: false
 

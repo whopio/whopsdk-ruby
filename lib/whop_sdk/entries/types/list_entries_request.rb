@@ -12,8 +12,6 @@ module Whop_sdk
 
         field :last, -> { Integer }, optional: true, nullable: false
 
-        field :company_id, -> { String }, optional: false, nullable: false
-
         field :direction, -> { Whop_sdk::Types::Direction }, optional: true, nullable: false
 
         field :order, -> { Whop_sdk::Types::EntriesSortableColumns }, optional: true, nullable: false
@@ -27,6 +25,8 @@ module Whop_sdk
         field :created_before, -> { String }, optional: true, nullable: false
 
         field :created_after, -> { String }, optional: true, nullable: false
+
+        field :account_id, -> { String }, optional: false, nullable: false
       end
     end
   end

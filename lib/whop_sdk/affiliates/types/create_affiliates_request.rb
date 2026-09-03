@@ -4,7 +4,7 @@ module Whop_sdk
   module Affiliates
     module Types
       class CreateAffiliatesRequest < Internal::Types::Model
-        field :company_id, -> { String }, optional: false, nullable: false
+        field :account_id, -> { String }, optional: false, nullable: false
 
         field :user_identifier, -> { String }, optional: false, nullable: false
       end

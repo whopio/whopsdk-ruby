@@ -6,9 +6,9 @@ module Whop_sdk
       class RetrievePaymentMethodsRequest < Internal::Types::Model
         field :id, -> { String }, optional: false, nullable: false
 
-        field :company_id, -> { String }, optional: true, nullable: false
-
         field :member_id, -> { String }, optional: true, nullable: false
+
+        field :account_id, -> { String }, optional: true, nullable: false
       end
     end
   end

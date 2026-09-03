@@ -4,7 +4,7 @@ module Whop_sdk
   module Leads
     module Types
       class CreateLeadsRequest < Internal::Types::Model
-        field :company_id, -> { String }, optional: false, nullable: false
+        field :account_id, -> { String }, optional: false, nullable: false
 
         field :metadata, -> { Internal::Types::Hash[String, Object] }, optional: true, nullable: false
 

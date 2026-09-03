@@ -4,7 +4,7 @@ module Whop_sdk
   module FeeMarkups
     module Types
       class CreateFeeMarkupsRequest < Internal::Types::Model
-        field :company_id, -> { String }, optional: false, nullable: false
+        field :account_id, -> { String }, optional: false, nullable: false
 
         field :fee_type, -> { Whop_sdk::Types::FeeMarkupTypes }, optional: false, nullable: false
 

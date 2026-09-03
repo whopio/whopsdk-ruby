@@ -23,21 +23,21 @@ module Whop_sdk
       # @option params [String, nil] :before
       # @option params [Integer, nil] :first
       # @option params [Integer, nil] :last
-      # @option params [String] :company_id
       # @option params [String, nil] :product_id
       # @option params [String, nil] :app_id
       # @option params [String, nil] :created_before
       # @option params [String, nil] :created_after
+      # @option params [String] :account_id
       #
       # @example
       #   client.experiences.list(
       #     first: 42,
       #     last: 42,
-      #     company_id: "biz_xxxxxxxxxxxxxx",
       #     product_id: "prod_xxxxxxxxxxxxx",
       #     app_id: "app_xxxxxxxxxxxxxx",
       #     created_before: "2023-12-01T05:00:00Z",
-      #     created_after: "2023-12-01T05:00:00Z"
+      #     created_after: "2023-12-01T05:00:00Z",
+      #     account_id: "biz_xxxxxxxxxxxxxx"
       #   )
       #
       # @return [Whop_sdk::Experiences::Types::ListExperiencesResponse]
@@ -48,11 +48,11 @@ module Whop_sdk
         query_params["before"] = params[:before] if params.key?(:before)
         query_params["first"] = params[:first] if params.key?(:first)
         query_params["last"] = params[:last] if params.key?(:last)
-        query_params["company_id"] = params[:company_id] if params.key?(:company_id)
         query_params["product_id"] = params[:product_id] if params.key?(:product_id)
         query_params["app_id"] = params[:app_id] if params.key?(:app_id)
         query_params["created_before"] = params[:created_before] if params.key?(:created_before)
         query_params["created_after"] = params[:created_after] if params.key?(:created_after)
+        query_params["account_id"] = params[:account_id] if params.key?(:account_id)
 
         Whop_sdk::Internal::CursorItemIterator.new(
           cursor_field: :end_cursor,
@@ -96,8 +96,8 @@ module Whop_sdk
       #
       # @example
       #   client.experiences.create(
-      #     app_id: "app_xxxxxxxxxxxxxx",
-      #     company_id: "biz_xxxxxxxxxxxxxx"
+      #     account_id: "biz_xxxxxxxxxxxxxx",
+      #     app_id: "app_xxxxxxxxxxxxxx"
       #   )
       #
       # @return [Whop_sdk::Types::Experience]

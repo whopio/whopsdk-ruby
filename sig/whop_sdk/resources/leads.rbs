@@ -2,7 +2,7 @@ module WhopSDK
   module Resources
     class Leads
       def create: (
-        company_id: String,
+        account_id: String,
         ?metadata: ::Hash[Symbol, top]?,
         ?product_id: String?,
         ?referrer: String?,
@@ -23,7 +23,7 @@ module WhopSDK
       ) -> WhopSDK::Lead
 
       def list: (
-        company_id: String,
+        account_id: String,
         ?after: String,
         ?before: String,
         ?created_after: Time,

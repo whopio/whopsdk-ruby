@@ -11,9 +11,9 @@ module WhopSDK
       # user is derived from the token. Use this token with Whop's web and mobile
       # embedded components.
       #
-      # @overload create(company_id: nil, expires_at: nil, scoped_actions: nil, user_id: nil, request_options: {})
+      # @overload create(account_id: nil, expires_at: nil, scoped_actions: nil, user_id: nil, request_options: {})
       #
-      # @param company_id [String, nil] The unique identifier of the company to generate the token for, starting with 'b
+      # @param account_id [String, nil] The unique identifier of the company to generate the token for, starting with 'b
       #
       # @param expires_at [Time, nil] The expiration timestamp for the access token. Defaults to 1 hour from now, with
       #

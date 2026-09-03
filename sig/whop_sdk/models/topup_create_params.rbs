@@ -2,8 +2,8 @@ module WhopSDK
   module Models
     type topup_create_params =
       {
+        account_id: String,
         amount: Float,
-        company_id: String,
         currency: WhopSDK::Models::currency,
         payment_method_id: String
       }
@@ -13,25 +13,25 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      attr_accessor amount: Float
+      attr_accessor account_id: String
 
-      attr_accessor company_id: String
+      attr_accessor amount: Float
 
       attr_accessor currency: WhopSDK::Models::currency
 
       attr_accessor payment_method_id: String
 
       def initialize: (
+        account_id: String,
         amount: Float,
-        company_id: String,
         currency: WhopSDK::Models::currency,
         payment_method_id: String,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
       def to_hash: -> {
+        account_id: String,
         amount: Float,
-        company_id: String,
         currency: WhopSDK::Models::currency,
         payment_method_id: String,
         request_options: WhopSDK::RequestOptions

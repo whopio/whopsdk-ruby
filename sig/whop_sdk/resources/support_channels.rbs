@@ -2,7 +2,7 @@ module WhopSDK
   module Resources
     class SupportChannels
       def create: (
-        company_id: String,
+        account_id: String,
         user_id: String,
         ?custom_name: String?,
         ?notifications_enabled: bool?,
@@ -15,9 +15,9 @@ module WhopSDK
       ) -> WhopSDK::SupportChannel
 
       def list: (
+        ?account_id: String,
         ?after: String,
         ?before: String,
-        ?company_id: String,
         ?direction: WhopSDK::Models::direction,
         ?first: Integer,
         ?last: Integer,

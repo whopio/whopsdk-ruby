@@ -13,11 +13,11 @@ module WhopSDK
       #
       # - `member:payment_methods:read`
       #
-      # @overload retrieve(id, company_id: nil, member_id: nil, request_options: {})
+      # @overload retrieve(id, account_id: nil, member_id: nil, request_options: {})
       #
       # @param id [String] The unique identifier of the payment method.
       #
-      # @param company_id [String] The unique identifier of the company. Provide either this or member_id, not both
+      # @param account_id [String] The unique identifier of the company. Provide either this or member_id, not both
       #
       # @param member_id [String] The unique identifier of the member. Provide either this or company_id, not both
       #
@@ -50,7 +50,9 @@ module WhopSDK
       #
       # - `member:payment_methods:read`
       #
-      # @overload list(after: nil, before: nil, broken: nil, card_brands: nil, card_funding_types: nil, company_id: nil, created_after: nil, created_before: nil, direction: nil, expired: nil, first: nil, future_usage: nil, has_payer_document: nil, last: nil, member_id: nil, payment_method_types: nil, request_options: {})
+      # @overload list(account_id: nil, after: nil, before: nil, broken: nil, card_brands: nil, card_funding_types: nil, created_after: nil, created_before: nil, direction: nil, expired: nil, first: nil, future_usage: nil, has_payer_document: nil, last: nil, member_id: nil, payment_method_types: nil, request_options: {})
+      #
+      # @param account_id [String] The unique identifier of the company. Provide either this or member_id, not both
       #
       # @param after [String] Returns the elements in the list that come after the specified cursor.
       #
@@ -61,8 +63,6 @@ module WhopSDK
       # @param card_brands [Array<Symbol, WhopSDK::Models::CardBrands>] Only return cards on these networks, such as the networks the seller accepts. Pa
       #
       # @param card_funding_types [Array<Symbol, WhopSDK::Models::PaymentMethodListParams::CardFundingType>] Only return cards funded this way. A card whose funding could not be determined
-      #
-      # @param company_id [String] The unique identifier of the company. Provide either this or member_id, not both
       #
       # @param created_after [Time] Only return payment methods created after this timestamp.
       #

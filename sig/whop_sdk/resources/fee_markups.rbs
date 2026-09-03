@@ -2,7 +2,7 @@ module WhopSDK
   module Resources
     class FeeMarkups
       def create: (
-        company_id: String,
+        account_id: String,
         fee_type: WhopSDK::Models::fee_markup_type,
         ?fixed_fee_usd: Float?,
         ?metadata: ::Hash[Symbol, top]?,
@@ -12,7 +12,7 @@ module WhopSDK
       ) -> WhopSDK::Models::FeeMarkupCreateResponse
 
       def list: (
-        company_id: String,
+        account_id: String,
         ?after: String,
         ?before: String,
         ?first: Integer,

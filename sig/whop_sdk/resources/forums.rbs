@@ -17,7 +17,7 @@ module WhopSDK
       ) -> WhopSDK::Forum
 
       def list: (
-        company_id: String,
+        account_id: String,
         ?after: String,
         ?before: String,
         ?first: Integer,

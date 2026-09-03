@@ -8,7 +8,7 @@ class WhopSDK::Test::Resources::AuthorizedUsersTest < WhopSDK::Test::ResourceTes
 
     response =
       @whop.authorized_users.create(
-        company_id: "biz_xxxxxxxxxxxxxx",
+        account_id: "biz_xxxxxxxxxxxxxx",
         role: :owner,
         user_id: "user_xxxxxxxxxxxxx"
       )

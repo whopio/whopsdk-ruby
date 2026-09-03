@@ -8,8 +8,8 @@ module WhopSDK
       # - `experience:create`
       sig do
         params(
+          account_id: String,
           app_id: String,
-          company_id: String,
           is_public: T.nilable(T::Boolean),
           logo: T.nilable(WhopSDK::ExperienceCreateParams::Logo::OrHash),
           name: T.nilable(String),
@@ -19,10 +19,10 @@ module WhopSDK
         ).returns(WhopSDK::Experience)
       end
       def create(
+        # The unique identifier of the company to create this experience for.
+        account_id:,
         # The unique identifier of the app that powers this experience.
         app_id:,
-        # The unique identifier of the company to create this experience for.
-        company_id:,
         # Whether the experience is publicly accessible without a membership.
         is_public: nil,
         # A logo image displayed alongside the experience name.
@@ -95,7 +95,7 @@ module WhopSDK
       # filtering by product and app.
       sig do
         params(
-          company_id: String,
+          account_id: String,
           after: String,
           app_id: String,
           before: String,
@@ -111,7 +111,7 @@ module WhopSDK
       end
       def list(
         # The unique identifier of the company to list experiences for.
-        company_id:,
+        account_id:,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
         # Filter to only experiences powered by this app identifier.

@@ -11,13 +11,13 @@ module WhopSDK
           T.any(WhopSDK::ExperienceCreateParams, WhopSDK::Internal::AnyHash)
         end
 
+      # The unique identifier of the company to create this experience for.
+      sig { returns(String) }
+      attr_accessor :account_id
+
       # The unique identifier of the app that powers this experience.
       sig { returns(String) }
       attr_accessor :app_id
-
-      # The unique identifier of the company to create this experience for.
-      sig { returns(String) }
-      attr_accessor :company_id
 
       # Whether the experience is publicly accessible without a membership.
       sig { returns(T.nilable(T::Boolean)) }
@@ -49,8 +49,8 @@ module WhopSDK
 
       sig do
         params(
+          account_id: String,
           app_id: String,
-          company_id: String,
           is_public: T.nilable(T::Boolean),
           logo: T.nilable(WhopSDK::ExperienceCreateParams::Logo::OrHash),
           name: T.nilable(String),
@@ -60,10 +60,10 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
+        # The unique identifier of the company to create this experience for.
+        account_id:,
         # The unique identifier of the app that powers this experience.
         app_id:,
-        # The unique identifier of the company to create this experience for.
-        company_id:,
         # Whether the experience is publicly accessible without a membership.
         is_public: nil,
         # A logo image displayed alongside the experience name.
@@ -82,8 +82,8 @@ module WhopSDK
       sig do
         override.returns(
           {
+            account_id: String,
             app_id: String,
-            company_id: String,
             is_public: T.nilable(T::Boolean),
             logo: T.nilable(WhopSDK::ExperienceCreateParams::Logo),
             name: T.nilable(String),

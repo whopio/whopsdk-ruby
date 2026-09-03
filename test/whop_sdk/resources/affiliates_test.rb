@@ -6,7 +6,7 @@ class WhopSDK::Test::Resources::AffiliatesTest < WhopSDK::Test::ResourceTest
   def test_create_required_params
     skip("Mock server tests are disabled")
 
-    response = @whop.affiliates.create(company_id: "biz_xxxxxxxxxxxxxx", user_identifier: "user_identifier")
+    response = @whop.affiliates.create(account_id: "biz_xxxxxxxxxxxxxx", user_identifier: "user_identifier")
 
     assert_pattern do
       response => WhopSDK::Affiliate
@@ -64,7 +64,7 @@ class WhopSDK::Test::Resources::AffiliatesTest < WhopSDK::Test::ResourceTest
   def test_list_required_params
     skip("Mock server tests are disabled")
 
-    response = @whop.affiliates.list(company_id: "biz_xxxxxxxxxxxxxx")
+    response = @whop.affiliates.list(account_id: "biz_xxxxxxxxxxxxxx")
 
     assert_pattern do
       response => WhopSDK::Internal::CursorPage

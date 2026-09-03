@@ -14,13 +14,13 @@ module WhopSDK
       #
       # - `forum:post:create`
       #
-      # @overload create(experience_id:, attachments: nil, company_id: nil, content: nil, is_mention: nil, parent_id: nil, paywall_amount: nil, paywall_currency: nil, pinned: nil, poll: nil, rich_content: nil, title: nil, visibility: nil, request_options: {})
+      # @overload create(experience_id:, account_id: nil, attachments: nil, content: nil, is_mention: nil, parent_id: nil, paywall_amount: nil, paywall_currency: nil, pinned: nil, poll: nil, rich_content: nil, title: nil, visibility: nil, request_options: {})
       #
       # @param experience_id [String] The unique identifier of the experience to create this post in. For example, 'ex
       #
-      # @param attachments [Array<WhopSDK::Models::ForumPostCreateParams::Attachment>, nil] A list of file attachments to include with the post, such as images or videos.
+      # @param account_id [String, nil] The unique identifier of the company whose public forum to post in. Required whe
       #
-      # @param company_id [String, nil] The unique identifier of the company whose public forum to post in. Required whe
+      # @param attachments [Array<WhopSDK::Models::ForumPostCreateParams::Attachment>, nil] A list of file attachments to include with the post, such as images or videos.
       #
       # @param content [String, nil] The main body of the post in Markdown format. For example, 'Check out this
       # \*\*upd

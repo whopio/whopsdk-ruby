@@ -13,9 +13,9 @@ module WhopSDK
       # - `authorized_user:create`
       # - `member:email:read`
       #
-      # @overload create(company_id:, role:, user_id:, elevation: nil, send_emails: nil, request_options: {})
+      # @overload create(account_id:, role:, user_id:, elevation: nil, send_emails: nil, request_options: {})
       #
-      # @param company_id [String] The ID of the company to add the authorized user to.
+      # @param account_id [String] The ID of the company to add the authorized user to.
       #
       # @param role [Symbol, WhopSDK::Models::AuthorizedUserCreateParams::Role] The role to assign to the authorized user within the company. Supported roles: '
       #
@@ -77,13 +77,13 @@ module WhopSDK
       # - `company:authorized_user:read`
       # - `member:email:read`
       #
-      # @overload list(after: nil, before: nil, company_id: nil, created_after: nil, created_before: nil, first: nil, last: nil, role: nil, user_id: nil, request_options: {})
+      # @overload list(account_id: nil, after: nil, before: nil, created_after: nil, created_before: nil, first: nil, last: nil, role: nil, user_id: nil, request_options: {})
+      #
+      # @param account_id [String] The unique identifier of the company to list authorized users for.
       #
       # @param after [String] Returns the elements in the list that come after the specified cursor.
       #
       # @param before [String] Returns the elements in the list that come before the specified cursor.
-      #
-      # @param company_id [String] The unique identifier of the company to list authorized users for.
       #
       # @param created_after [Time] Only return authorized users created after this timestamp.
       #
@@ -124,11 +124,11 @@ module WhopSDK
       #
       # - `authorized_user:delete`
       #
-      # @overload delete(id, company_id: nil, request_options: {})
+      # @overload delete(id, account_id: nil, request_options: {})
       #
       # @param id [String] The ID of the authorized user or user to remove.
       #
-      # @param company_id [String] The ID of the company the authorized user belongs to. Optional if the authorized
+      # @param account_id [String] The ID of the company the authorized user belongs to. Optional if the authorized
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

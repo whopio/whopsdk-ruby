@@ -2,7 +2,7 @@ module WhopSDK
   module Models
     type entry_list_params =
       {
-        company_id: String,
+        account_id: String,
         after: String,
         before: String,
         created_after: Time,
@@ -21,7 +21,7 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      attr_accessor company_id: String
+      attr_accessor account_id: String
 
       attr_reader after: String?
 
@@ -72,7 +72,7 @@ module WhopSDK
       ) -> ::Array[WhopSDK::Models::entry_status]
 
       def initialize: (
-        company_id: String,
+        account_id: String,
         ?after: String,
         ?before: String,
         ?created_after: Time,
@@ -88,7 +88,7 @@ module WhopSDK
       ) -> void
 
       def to_hash: -> {
-        company_id: String,
+        account_id: String,
         after: String,
         before: String,
         created_after: Time,

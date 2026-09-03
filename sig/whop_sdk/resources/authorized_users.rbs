@@ -2,7 +2,7 @@ module WhopSDK
   module Resources
     class AuthorizedUsers
       def create: (
-        company_id: String,
+        account_id: String,
         role: WhopSDK::Models::AuthorizedUserCreateParams::role,
         user_id: String,
         ?elevation: WhopSDK::AuthorizedUserCreateParams::Elevation?,
@@ -16,9 +16,9 @@ module WhopSDK
       ) -> WhopSDK::AuthorizedUser
 
       def list: (
+        ?account_id: String,
         ?after: String,
         ?before: String,
-        ?company_id: String,
         ?created_after: Time,
         ?created_before: Time,
         ?first: Integer,
@@ -30,7 +30,7 @@ module WhopSDK
 
       def delete: (
         String id,
-        ?company_id: String,
+        ?account_id: String,
         ?request_options: WhopSDK::request_opts
       ) -> bool
 

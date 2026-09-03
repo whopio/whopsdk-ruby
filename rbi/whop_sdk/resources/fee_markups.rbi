@@ -11,7 +11,7 @@ module WhopSDK
       # - `company:update_child_fees`
       sig do
         params(
-          company_id: String,
+          account_id: String,
           fee_type: WhopSDK::FeeMarkupType::OrSymbol,
           fixed_fee_usd: T.nilable(Float),
           metadata: T.nilable(T::Hash[Symbol, T.anything]),
@@ -22,7 +22,7 @@ module WhopSDK
       end
       def create(
         # The unique identifier of the company to create or update the fee markup for.
-        company_id:,
+        account_id:,
         # The type of fee this markup applies to, such as processing or platform fees.
         fee_type:,
         # The fixed fee amount in USD to charge per transaction. Must be between 0 and 50.
@@ -45,7 +45,7 @@ module WhopSDK
       # - `company:update_child_fees`
       sig do
         params(
-          company_id: String,
+          account_id: String,
           after: String,
           before: String,
           first: Integer,
@@ -58,7 +58,7 @@ module WhopSDK
       def list(
         # The unique identifier of the company to list fee markups for. Pass a platform
         # account identifier to retrieve platform default markups.
-        company_id:,
+        account_id:,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
         # Returns the elements in the list that come before the specified cursor.

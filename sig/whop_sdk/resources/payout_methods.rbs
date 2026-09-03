@@ -7,7 +7,7 @@ module WhopSDK
       ) -> WhopSDK::Models::PayoutMethodRetrieveResponse
 
       def list: (
-        company_id: String,
+        account_id: String,
         ?after: String,
         ?before: String,
         ?first: Integer,

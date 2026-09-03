@@ -79,9 +79,9 @@ module WhopSDK
       #
       # - `chat:read`
       #
-      # @overload list(company_id:, after: nil, before: nil, first: nil, last: nil, product_id: nil, request_options: {})
+      # @overload list(account_id:, after: nil, before: nil, first: nil, last: nil, product_id: nil, request_options: {})
       #
-      # @param company_id [String] The unique identifier of the company to list chat channels for.
+      # @param account_id [String] The unique identifier of the company to list chat channels for.
       #
       # @param after [String] Returns the elements in the list that come after the specified cursor.
       #

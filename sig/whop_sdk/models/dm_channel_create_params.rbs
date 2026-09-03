@@ -3,7 +3,7 @@ module WhopSDK
     type dm_channel_create_params =
       {
         with_user_ids: ::Array[String],
-        company_id: String?,
+        account_id: String?,
         custom_name: String?,
         notifications_enabled: bool?
       }
@@ -15,7 +15,7 @@ module WhopSDK
 
       attr_accessor with_user_ids: ::Array[String]
 
-      attr_accessor company_id: String?
+      attr_accessor account_id: String?
 
       attr_accessor custom_name: String?
 
@@ -23,7 +23,7 @@ module WhopSDK
 
       def initialize: (
         with_user_ids: ::Array[String],
-        ?company_id: String?,
+        ?account_id: String?,
         ?custom_name: String?,
         ?notifications_enabled: bool?,
         ?request_options: WhopSDK::request_opts
@@ -31,7 +31,7 @@ module WhopSDK
 
       def to_hash: -> {
         with_user_ids: ::Array[String],
-        company_id: String?,
+        account_id: String?,
         custom_name: String?,
         notifications_enabled: bool?,
         request_options: WhopSDK::RequestOptions

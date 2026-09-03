@@ -8,8 +8,8 @@ class WhopSDK::Test::Resources::TopupsTest < WhopSDK::Test::ResourceTest
 
     response =
       @whop.topups.create(
+        account_id: "biz_xxxxxxxxxxxxxx",
         amount: 6.9,
-        company_id: "biz_xxxxxxxxxxxxxx",
         currency: :usd,
         payment_method_id: "pmt_xxxxxxxxxxxxxx"
       )

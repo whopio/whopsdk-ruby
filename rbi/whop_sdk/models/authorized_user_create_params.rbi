@@ -13,7 +13,7 @@ module WhopSDK
 
       # The ID of the company to add the authorized user to.
       sig { returns(String) }
-      attr_accessor :company_id
+      attr_accessor :account_id
 
       # The role to assign to the authorized user within the company. Supported roles:
       # 'moderator', 'sales_manager'.
@@ -42,7 +42,7 @@ module WhopSDK
 
       sig do
         params(
-          company_id: String,
+          account_id: String,
           role: WhopSDK::AuthorizedUserCreateParams::Role::OrSymbol,
           user_id: String,
           elevation:
@@ -53,7 +53,7 @@ module WhopSDK
       end
       def self.new(
         # The ID of the company to add the authorized user to.
-        company_id:,
+        account_id:,
         # The role to assign to the authorized user within the company. Supported roles:
         # 'moderator', 'sales_manager'.
         role:,
@@ -70,7 +70,7 @@ module WhopSDK
       sig do
         override.returns(
           {
-            company_id: String,
+            account_id: String,
             role: WhopSDK::AuthorizedUserCreateParams::Role::OrSymbol,
             user_id: String,
             elevation:

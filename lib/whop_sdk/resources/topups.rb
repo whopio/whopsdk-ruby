@@ -13,11 +13,11 @@ module WhopSDK
       #
       # - `payment:charge`
       #
-      # @overload create(amount:, company_id:, currency:, payment_method_id:, request_options: {})
+      # @overload create(account_id:, amount:, currency:, payment_method_id:, request_options: {})
+      #
+      # @param account_id [String] The unique identifier of the company to add funds to, starting with 'biz\_'.
       #
       # @param amount [Float] The amount to add to the balance in the specified currency. For example, 50.00 f
-      #
-      # @param company_id [String] The unique identifier of the company to add funds to, starting with 'biz\_'.
       #
       # @param currency [Symbol, WhopSDK::Models::Currency] The currency for the top-up amount, such as 'usd'.
       #

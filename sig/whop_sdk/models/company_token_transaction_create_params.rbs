@@ -30,8 +30,8 @@ module WhopSDK
 
         type create_company_token_transaction_input_transaction_type_transfer =
           {
+            account_id: String,
             amount: Float,
-            company_id: String,
             destination_user_id: String,
             transaction_type: :transfer,
             user_id: String,
@@ -40,9 +40,9 @@ module WhopSDK
           }
 
         class CreateCompanyTokenTransactionInputTransactionTypeTransfer < WhopSDK::Internal::Type::BaseModel
-          attr_accessor amount: Float
+          attr_accessor account_id: String
 
-          attr_accessor company_id: String
+          attr_accessor amount: Float
 
           attr_accessor destination_user_id: String
 
@@ -55,8 +55,8 @@ module WhopSDK
           attr_accessor idempotency_key: String?
 
           def initialize: (
+            account_id: String,
             amount: Float,
-            company_id: String,
             destination_user_id: String,
             user_id: String,
             ?description: String?,
@@ -65,8 +65,8 @@ module WhopSDK
           ) -> void
 
           def to_hash: -> {
+            account_id: String,
             amount: Float,
-            company_id: String,
             destination_user_id: String,
             transaction_type: :transfer,
             user_id: String,
@@ -77,8 +77,8 @@ module WhopSDK
 
         type create_company_token_transaction_input_transaction_type_add =
           {
+            account_id: String,
             amount: Float,
-            company_id: String,
             transaction_type: :add,
             user_id: String,
             description: String?,
@@ -86,9 +86,9 @@ module WhopSDK
           }
 
         class CreateCompanyTokenTransactionInputTransactionTypeAdd < WhopSDK::Internal::Type::BaseModel
-          attr_accessor amount: Float
+          attr_accessor account_id: String
 
-          attr_accessor company_id: String
+          attr_accessor amount: Float
 
           attr_accessor transaction_type: :add
 
@@ -99,8 +99,8 @@ module WhopSDK
           attr_accessor idempotency_key: String?
 
           def initialize: (
+            account_id: String,
             amount: Float,
-            company_id: String,
             user_id: String,
             ?description: String?,
             ?idempotency_key: String?,
@@ -108,8 +108,8 @@ module WhopSDK
           ) -> void
 
           def to_hash: -> {
+            account_id: String,
             amount: Float,
-            company_id: String,
             transaction_type: :add,
             user_id: String,
             description: String?,
@@ -119,8 +119,8 @@ module WhopSDK
 
         type create_company_token_transaction_input_transaction_type_subtract =
           {
+            account_id: String,
             amount: Float,
-            company_id: String,
             transaction_type: :subtract,
             user_id: String,
             description: String?,
@@ -128,9 +128,9 @@ module WhopSDK
           }
 
         class CreateCompanyTokenTransactionInputTransactionTypeSubtract < WhopSDK::Internal::Type::BaseModel
-          attr_accessor amount: Float
+          attr_accessor account_id: String
 
-          attr_accessor company_id: String
+          attr_accessor amount: Float
 
           attr_accessor transaction_type: :subtract
 
@@ -141,8 +141,8 @@ module WhopSDK
           attr_accessor idempotency_key: String?
 
           def initialize: (
+            account_id: String,
             amount: Float,
-            company_id: String,
             user_id: String,
             ?description: String?,
             ?idempotency_key: String?,
@@ -150,8 +150,8 @@ module WhopSDK
           ) -> void
 
           def to_hash: -> {
+            account_id: String,
             amount: Float,
-            company_id: String,
             transaction_type: :subtract,
             user_id: String,
             description: String?,

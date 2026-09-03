@@ -13,7 +13,7 @@ module WhopSDK
 
       # The unique identifier of the company to list chat channels for.
       sig { returns(String) }
-      attr_accessor :company_id
+      attr_accessor :account_id
 
       # Returns the elements in the list that come after the specified cursor.
       sig { returns(T.nilable(String)) }
@@ -53,7 +53,7 @@ module WhopSDK
 
       sig do
         params(
-          company_id: String,
+          account_id: String,
           after: String,
           before: String,
           first: Integer,
@@ -64,7 +64,7 @@ module WhopSDK
       end
       def self.new(
         # The unique identifier of the company to list chat channels for.
-        company_id:,
+        account_id:,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
@@ -83,7 +83,7 @@ module WhopSDK
       sig do
         override.returns(
           {
-            company_id: String,
+            account_id: String,
             after: String,
             before: String,
             first: Integer,

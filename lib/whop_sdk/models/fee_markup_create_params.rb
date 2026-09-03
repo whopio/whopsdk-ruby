@@ -7,11 +7,11 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      # @!attribute company_id
+      # @!attribute account_id
       #   The unique identifier of the company to create or update the fee markup for.
       #
       #   @return [String]
-      required :company_id, String
+      required :account_id, String
 
       # @!attribute fee_type
       #   The type of fee this markup applies to, such as processing or platform fees.
@@ -43,11 +43,11 @@ module WhopSDK
       #   @return [Float, nil]
       optional :percentage_fee, Float, nil?: true
 
-      # @!method initialize(company_id:, fee_type:, fixed_fee_usd: nil, metadata: nil, notes: nil, percentage_fee: nil, request_options: {})
+      # @!method initialize(account_id:, fee_type:, fixed_fee_usd: nil, metadata: nil, notes: nil, percentage_fee: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::FeeMarkupCreateParams} for more details.
       #
-      #   @param company_id [String] The unique identifier of the company to create or update the fee markup for.
+      #   @param account_id [String] The unique identifier of the company to create or update the fee markup for.
       #
       #   @param fee_type [Symbol, WhopSDK::Models::FeeMarkupType] The type of fee this markup applies to, such as processing or platform fees.
       #

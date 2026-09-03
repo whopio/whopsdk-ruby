@@ -2,7 +2,7 @@ module WhopSDK
   module Models
     type experience_list_params =
       {
-        company_id: String,
+        account_id: String,
         after: String,
         app_id: String,
         before: String,
@@ -18,7 +18,7 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      attr_accessor company_id: String
+      attr_accessor account_id: String
 
       attr_reader after: String?
 
@@ -53,7 +53,7 @@ module WhopSDK
       def product_id=: (String) -> String
 
       def initialize: (
-        company_id: String,
+        account_id: String,
         ?after: String,
         ?app_id: String,
         ?before: String,
@@ -66,7 +66,7 @@ module WhopSDK
       ) -> void
 
       def to_hash: -> {
-        company_id: String,
+        account_id: String,
         after: String,
         app_id: String,
         before: String,

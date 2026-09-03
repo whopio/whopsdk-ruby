@@ -14,7 +14,7 @@ module WhopSDK
       # The unique identifier of the company to generate the token for, starting with
       # 'biz\_'. The API key must have permission to access this company.
       sig { returns(T.nilable(String)) }
-      attr_accessor :company_id
+      attr_accessor :account_id
 
       # The expiration timestamp for the access token. Defaults to 1 hour from now, with
       # a maximum of 3 hours.
@@ -34,7 +34,7 @@ module WhopSDK
 
       sig do
         params(
-          company_id: T.nilable(String),
+          account_id: T.nilable(String),
           expires_at: T.nilable(Time),
           scoped_actions: T.nilable(T::Array[String]),
           user_id: T.nilable(String),
@@ -44,7 +44,7 @@ module WhopSDK
       def self.new(
         # The unique identifier of the company to generate the token for, starting with
         # 'biz\_'. The API key must have permission to access this company.
-        company_id: nil,
+        account_id: nil,
         # The expiration timestamp for the access token. Defaults to 1 hour from now, with
         # a maximum of 3 hours.
         expires_at: nil,
@@ -62,7 +62,7 @@ module WhopSDK
       sig do
         override.returns(
           {
-            company_id: T.nilable(String),
+            account_id: T.nilable(String),
             expires_at: T.nilable(Time),
             scoped_actions: T.nilable(T::Array[String]),
             user_id: T.nilable(String),

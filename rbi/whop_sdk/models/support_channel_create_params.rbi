@@ -13,7 +13,7 @@ module WhopSDK
 
       # The unique identifier of the company to create the support channel in.
       sig { returns(String) }
-      attr_accessor :company_id
+      attr_accessor :account_id
 
       # The user ID (e.g. 'user_xxxxx') or username of the customer to open a support
       # channel for.
@@ -31,7 +31,7 @@ module WhopSDK
 
       sig do
         params(
-          company_id: String,
+          account_id: String,
           user_id: String,
           custom_name: T.nilable(String),
           notifications_enabled: T.nilable(T::Boolean),
@@ -40,7 +40,7 @@ module WhopSDK
       end
       def self.new(
         # The unique identifier of the company to create the support channel in.
-        company_id:,
+        account_id:,
         # The user ID (e.g. 'user_xxxxx') or username of the customer to open a support
         # channel for.
         user_id:,
@@ -56,7 +56,7 @@ module WhopSDK
       sig do
         override.returns(
           {
-            company_id: String,
+            account_id: String,
             user_id: String,
             custom_name: T.nilable(String),
             notifications_enabled: T.nilable(T::Boolean),

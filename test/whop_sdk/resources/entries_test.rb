@@ -28,7 +28,7 @@ class WhopSDK::Test::Resources::EntriesTest < WhopSDK::Test::ResourceTest
   def test_list_required_params
     skip("Mock server tests are disabled")
 
-    response = @whop.entries.list(company_id: "biz_xxxxxxxxxxxxxx")
+    response = @whop.entries.list(account_id: "biz_xxxxxxxxxxxxxx")
 
     assert_pattern do
       response => WhopSDK::Internal::CursorPage

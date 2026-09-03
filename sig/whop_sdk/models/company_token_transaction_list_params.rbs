@@ -2,7 +2,7 @@ module WhopSDK
   module Models
     type company_token_transaction_list_params =
       {
-        company_id: String,
+        account_id: String,
         after: String,
         before: String,
         first: Integer,
@@ -16,7 +16,7 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      attr_accessor company_id: String
+      attr_accessor account_id: String
 
       attr_reader after: String?
 
@@ -45,7 +45,7 @@ module WhopSDK
       def user_id=: (String) -> String
 
       def initialize: (
-        company_id: String,
+        account_id: String,
         ?after: String,
         ?before: String,
         ?first: Integer,
@@ -56,7 +56,7 @@ module WhopSDK
       ) -> void
 
       def to_hash: -> {
-        company_id: String,
+        account_id: String,
         after: String,
         before: String,
         first: Integer,

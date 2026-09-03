@@ -11,7 +11,7 @@ module WhopSDK
       # - `support_chat:create`
       sig do
         params(
-          company_id: String,
+          account_id: String,
           user_id: String,
           custom_name: T.nilable(String),
           notifications_enabled: T.nilable(T::Boolean),
@@ -20,7 +20,7 @@ module WhopSDK
       end
       def create(
         # The unique identifier of the company to create the support channel in.
-        company_id:,
+        account_id:,
         # The user ID (e.g. 'user_xxxxx') or username of the customer to open a support
         # channel for.
         user_id:,
@@ -59,9 +59,9 @@ module WhopSDK
       # - `support_chat:read`
       sig do
         params(
+          account_id: String,
           after: String,
           before: String,
-          company_id: String,
           direction: WhopSDK::Direction::OrSymbol,
           first: Integer,
           last: Integer,
@@ -76,14 +76,14 @@ module WhopSDK
         )
       end
       def list(
+        # The unique identifier of the company to list support channels for. Includes
+        # channels of child companies. When omitted, returns support channels across all
+        # companies the user has access to.
+        account_id: nil,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
-        # The unique identifier of the company to list support channels for. Includes
-        # channels of child companies. When omitted, returns support channels across all
-        # companies the user has access to.
-        company_id: nil,
         # The sort direction for the results. Use 'asc' for oldest first or 'desc' for
         # newest first.
         direction: nil,

@@ -19,7 +19,7 @@ module WhopSDK
       # The unique identifier of the company to scope this DM channel to. When set, the
       # channel is visible only within that company context.
       sig { returns(T.nilable(String)) }
-      attr_accessor :company_id
+      attr_accessor :account_id
 
       # A custom display name for the DM channel. For example, 'Project Discussion'.
       sig { returns(T.nilable(String)) }
@@ -33,7 +33,7 @@ module WhopSDK
       sig do
         params(
           with_user_ids: T::Array[String],
-          company_id: T.nilable(String),
+          account_id: T.nilable(String),
           custom_name: T.nilable(String),
           notifications_enabled: T.nilable(T::Boolean),
           request_options: WhopSDK::RequestOptions::OrHash
@@ -45,7 +45,7 @@ module WhopSDK
         with_user_ids:,
         # The unique identifier of the company to scope this DM channel to. When set, the
         # channel is visible only within that company context.
-        company_id: nil,
+        account_id: nil,
         # A custom display name for the DM channel. For example, 'Project Discussion'.
         custom_name: nil,
         # Whether Whop app notifications are enabled for this direct message channel.
@@ -59,7 +59,7 @@ module WhopSDK
         override.returns(
           {
             with_user_ids: T::Array[String],
-            company_id: T.nilable(String),
+            account_id: T.nilable(String),
             custom_name: T.nilable(String),
             notifications_enabled: T.nilable(T::Boolean),
             request_options: WhopSDK::RequestOptions

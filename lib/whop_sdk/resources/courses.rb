@@ -128,13 +128,13 @@ module WhopSDK
       #
       # - `courses:read`
       #
-      # @overload list(after: nil, before: nil, company_id: nil, experience_id: nil, first: nil, last: nil, request_options: {})
+      # @overload list(account_id: nil, after: nil, before: nil, experience_id: nil, first: nil, last: nil, request_options: {})
+      #
+      # @param account_id [String] The unique identifier of the company to list courses for.
       #
       # @param after [String] Returns the elements in the list that come after the specified cursor.
       #
       # @param before [String] Returns the elements in the list that come before the specified cursor.
-      #
-      # @param company_id [String] The unique identifier of the company to list courses for.
       #
       # @param experience_id [String] The unique identifier of the experience to list courses for.
       #

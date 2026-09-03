@@ -10,11 +10,11 @@ module WhopSDK
       #
       # - `experience:create`
       #
-      # @overload create(app_id:, company_id:, is_public: nil, logo: nil, name: nil, notifications_enabled: nil, section_id: nil, request_options: {})
+      # @overload create(account_id:, app_id:, is_public: nil, logo: nil, name: nil, notifications_enabled: nil, section_id: nil, request_options: {})
+      #
+      # @param account_id [String] The unique identifier of the company to create this experience for.
       #
       # @param app_id [String] The unique identifier of the app that powers this experience.
-      #
-      # @param company_id [String] The unique identifier of the company to create this experience for.
       #
       # @param is_public [Boolean, nil] Whether the experience is publicly accessible without a membership.
       #
@@ -106,9 +106,9 @@ module WhopSDK
       # Returns a paginated list of experiences belonging to a company, with optional
       # filtering by product and app.
       #
-      # @overload list(company_id:, after: nil, app_id: nil, before: nil, created_after: nil, created_before: nil, first: nil, last: nil, product_id: nil, request_options: {})
+      # @overload list(account_id:, after: nil, app_id: nil, before: nil, created_after: nil, created_before: nil, first: nil, last: nil, product_id: nil, request_options: {})
       #
-      # @param company_id [String] The unique identifier of the company to list experiences for.
+      # @param account_id [String] The unique identifier of the company to list experiences for.
       #
       # @param after [String] Returns the elements in the list that come after the specified cursor.
       #

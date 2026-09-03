@@ -3,7 +3,7 @@ module WhopSDK
     class DmChannels
       def create: (
         with_user_ids: ::Array[String],
-        ?company_id: String?,
+        ?account_id: String?,
         ?custom_name: String?,
         ?notifications_enabled: bool?,
         ?request_options: WhopSDK::request_opts
@@ -21,9 +21,9 @@ module WhopSDK
       ) -> WhopSDK::DmChannel
 
       def list: (
+        ?account_id: String,
         ?after: String,
         ?before: String,
-        ?company_id: String,
         ?first: Integer,
         ?last: Integer,
         ?request_options: WhopSDK::request_opts

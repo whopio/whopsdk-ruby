@@ -29,8 +29,8 @@ module WhopSDK
 
         type create_invoice_input_with_product =
           {
+            account_id: String,
             collection_method: WhopSDK::Models::collection_method,
-            company_id: String,
             plan: WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProduct::Plan,
             product: WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProduct::Product,
             automatically_finalizes_at: Time?,
@@ -49,9 +49,9 @@ module WhopSDK
           }
 
         class CreateInvoiceInputWithProduct < WhopSDK::Internal::Type::BaseModel
-          attr_accessor collection_method: WhopSDK::Models::collection_method
+          attr_accessor account_id: String
 
-          attr_accessor company_id: String
+          attr_accessor collection_method: WhopSDK::Models::collection_method
 
           attr_accessor plan: WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProduct::Plan
 
@@ -84,8 +84,8 @@ module WhopSDK
           attr_accessor subscription_billing_anchor_at: Time?
 
           def initialize: (
+            account_id: String,
             collection_method: WhopSDK::Models::collection_method,
-            company_id: String,
             plan: WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProduct::Plan,
             product: WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProduct::Product,
             ?automatically_finalizes_at: Time?,
@@ -104,8 +104,8 @@ module WhopSDK
           ) -> void
 
           def to_hash: -> {
+            account_id: String,
             collection_method: WhopSDK::Models::collection_method,
-            company_id: String,
             plan: WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProduct::Plan,
             product: WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProduct::Product,
             automatically_finalizes_at: Time?,
@@ -392,8 +392,8 @@ module WhopSDK
 
         type create_invoice_input_with_product_id =
           {
+            account_id: String,
             collection_method: WhopSDK::Models::collection_method,
-            company_id: String,
             plan: WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductID::Plan,
             product_id: String,
             automatically_finalizes_at: Time?,
@@ -412,9 +412,9 @@ module WhopSDK
           }
 
         class CreateInvoiceInputWithProductID < WhopSDK::Internal::Type::BaseModel
-          attr_accessor collection_method: WhopSDK::Models::collection_method
+          attr_accessor account_id: String
 
-          attr_accessor company_id: String
+          attr_accessor collection_method: WhopSDK::Models::collection_method
 
           attr_accessor plan: WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductID::Plan
 
@@ -447,8 +447,8 @@ module WhopSDK
           attr_accessor subscription_billing_anchor_at: Time?
 
           def initialize: (
+            account_id: String,
             collection_method: WhopSDK::Models::collection_method,
-            company_id: String,
             plan: WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductID::Plan,
             product_id: String,
             ?automatically_finalizes_at: Time?,
@@ -467,8 +467,8 @@ module WhopSDK
           ) -> void
 
           def to_hash: -> {
+            account_id: String,
             collection_method: WhopSDK::Models::collection_method,
-            company_id: String,
             plan: WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductID::Plan,
             product_id: String,
             automatically_finalizes_at: Time?,

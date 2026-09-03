@@ -4,7 +4,7 @@ module WhopSDK
       attr_reader overrides: WhopSDK::Resources::Affiliates::Overrides
 
       def create: (
-        company_id: String,
+        account_id: String,
         user_identifier: String,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Affiliate
@@ -15,7 +15,7 @@ module WhopSDK
       ) -> WhopSDK::Affiliate
 
       def list: (
-        company_id: String,
+        account_id: String,
         ?after: String,
         ?before: String,
         ?direction: WhopSDK::Models::direction,

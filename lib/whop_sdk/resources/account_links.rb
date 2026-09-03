@@ -9,9 +9,9 @@ module WhopSDK
       # Generate a URL that directs a sub-merchant to their account portal, such as the
       # hosted payouts dashboard or the KYC onboarding flow.
       #
-      # @overload create(company_id:, refresh_url:, return_url:, use_case:, request_options: {})
+      # @overload create(account_id:, refresh_url:, return_url:, use_case:, request_options: {})
       #
-      # @param company_id [String] The unique identifier of the company to generate the link for, starting with 'bi
+      # @param account_id [String] The unique identifier of the company to generate the link for, starting with 'bi
       #
       # @param refresh_url [String] The URL to redirect the user to if the session expires and needs to be re-authen
       #

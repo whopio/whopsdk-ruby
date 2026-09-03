@@ -7,11 +7,11 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      # @!attribute company_id
+      # @!attribute account_id
       #   The unique identifier of the company to create the support channel in.
       #
       #   @return [String]
-      required :company_id, String
+      required :account_id, String
 
       # @!attribute user_id
       #   The user ID (e.g. 'user_xxxxx') or username of the customer to open a support
@@ -33,11 +33,11 @@ module WhopSDK
       #   @return [Boolean, nil]
       optional :notifications_enabled, WhopSDK::Internal::Type::Boolean, nil?: true
 
-      # @!method initialize(company_id:, user_id:, custom_name: nil, notifications_enabled: nil, request_options: {})
+      # @!method initialize(account_id:, user_id:, custom_name: nil, notifications_enabled: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::SupportChannelCreateParams} for more details.
       #
-      #   @param company_id [String] The unique identifier of the company to create the support channel in.
+      #   @param account_id [String] The unique identifier of the company to create the support channel in.
       #
       #   @param user_id [String] The user ID (e.g. 'user_xxxxx') or username of the customer to open a support ch
       #

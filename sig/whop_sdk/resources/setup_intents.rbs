@@ -7,7 +7,7 @@ module WhopSDK
       ) -> WhopSDK::SetupIntent
 
       def list: (
-        company_id: String,
+        account_id: String,
         ?after: String,
         ?before: String,
         ?created_after: Time,

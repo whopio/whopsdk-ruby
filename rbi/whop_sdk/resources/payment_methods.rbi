@@ -12,7 +12,7 @@ module WhopSDK
       sig do
         params(
           id: String,
-          company_id: String,
+          account_id: String,
           member_id: String,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Models::PaymentMethodRetrieveResponse::Variants)
@@ -22,7 +22,7 @@ module WhopSDK
         id,
         # The unique identifier of the company. Provide either this or member_id, not
         # both. Omit both to address your own saved payment methods.
-        company_id: nil,
+        account_id: nil,
         # The unique identifier of the member. Provide either this or company_id, not
         # both. Omit both to address your own saved payment methods.
         member_id: nil,
@@ -40,6 +40,7 @@ module WhopSDK
       # - `member:payment_methods:read`
       sig do
         params(
+          account_id: String,
           after: String,
           before: String,
           broken: T::Boolean,
@@ -48,7 +49,6 @@ module WhopSDK
             T::Array[
               WhopSDK::PaymentMethodListParams::CardFundingType::OrSymbol
             ],
-          company_id: String,
           created_after: Time,
           created_before: Time,
           direction: WhopSDK::Direction::OrSymbol,
@@ -67,6 +67,9 @@ module WhopSDK
         )
       end
       def list(
+        # The unique identifier of the company. Provide either this or member_id, not
+        # both. Omit both to address your own saved payment methods.
+        account_id: nil,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
@@ -80,9 +83,6 @@ module WhopSDK
         # Only return cards funded this way. A card whose funding could not be determined
         # is excluded, and payment methods that are not cards are unaffected.
         card_funding_types: nil,
-        # The unique identifier of the company. Provide either this or member_id, not
-        # both. Omit both to address your own saved payment methods.
-        company_id: nil,
         # Only return payment methods created after this timestamp.
         created_after: nil,
         # Only return payment methods created before this timestamp.

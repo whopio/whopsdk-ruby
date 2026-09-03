@@ -12,9 +12,9 @@ module WhopSDK
       #
       # - `affiliate:create`
       #
-      # @overload create(company_id:, user_identifier:, request_options: {})
+      # @overload create(account_id:, user_identifier:, request_options: {})
       #
-      # @param company_id [String] The ID of the company to create the affiliate for.
+      # @param account_id [String] The ID of the company to create the affiliate for.
       #
       # @param user_identifier [String] The user identifier (username, email, user ID, or Discord ID).
       #
@@ -65,9 +65,9 @@ module WhopSDK
       #
       # - `affiliate:basic:read`
       #
-      # @overload list(company_id:, after: nil, before: nil, direction: nil, first: nil, last: nil, order: nil, query: nil, status: nil, request_options: {})
+      # @overload list(account_id:, after: nil, before: nil, direction: nil, first: nil, last: nil, order: nil, query: nil, status: nil, request_options: {})
       #
-      # @param company_id [String] The unique identifier of the company to list affiliates for.
+      # @param account_id [String] The unique identifier of the company to list affiliates for.
       #
       # @param after [String] Returns the elements in the list that come after the specified cursor.
       #

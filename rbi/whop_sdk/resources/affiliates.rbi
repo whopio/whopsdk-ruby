@@ -13,14 +13,14 @@ module WhopSDK
       # - `affiliate:create`
       sig do
         params(
-          company_id: String,
+          account_id: String,
           user_identifier: String,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Affiliate)
       end
       def create(
         # The ID of the company to create the affiliate for.
-        company_id:,
+        account_id:,
         # The user identifier (username, email, user ID, or Discord ID).
         user_identifier:,
         request_options: {}
@@ -53,7 +53,7 @@ module WhopSDK
       # - `affiliate:basic:read`
       sig do
         params(
-          company_id: String,
+          account_id: String,
           after: String,
           before: String,
           direction: WhopSDK::Direction::OrSymbol,
@@ -69,7 +69,7 @@ module WhopSDK
       end
       def list(
         # The unique identifier of the company to list affiliates for.
-        company_id:,
+        account_id:,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
         # Returns the elements in the list that come before the specified cursor.

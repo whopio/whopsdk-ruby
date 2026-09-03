@@ -7,6 +7,14 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
+      # @!attribute account_id
+      #   The unique identifier of the company to list support channels for. Includes
+      #   channels of child companies. When omitted, returns support channels across all
+      #   companies the user has access to.
+      #
+      #   @return [String, nil]
+      optional :account_id, String
+
       # @!attribute after
       #   Returns the elements in the list that come after the specified cursor.
       #
@@ -18,14 +26,6 @@ module WhopSDK
       #
       #   @return [String, nil]
       optional :before, String
-
-      # @!attribute company_id
-      #   The unique identifier of the company to list support channels for. Includes
-      #   channels of child companies. When omitted, returns support channels across all
-      #   companies the user has access to.
-      #
-      #   @return [String, nil]
-      optional :company_id, String
 
       # @!attribute direction
       #   The sort direction for the results. Use 'asc' for oldest first or 'desc' for
@@ -68,15 +68,15 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::SupportChannelListParams::View, nil]
       optional :view, enum: -> { WhopSDK::SupportChannelListParams::View }
 
-      # @!method initialize(after: nil, before: nil, company_id: nil, direction: nil, first: nil, last: nil, open_: nil, order: nil, view: nil, request_options: {})
+      # @!method initialize(account_id: nil, after: nil, before: nil, direction: nil, first: nil, last: nil, open_: nil, order: nil, view: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::SupportChannelListParams} for more details.
+      #
+      #   @param account_id [String] The unique identifier of the company to list support channels for. Includes chan
       #
       #   @param after [String] Returns the elements in the list that come after the specified cursor.
       #
       #   @param before [String] Returns the elements in the list that come before the specified cursor.
-      #
-      #   @param company_id [String] The unique identifier of the company to list support channels for. Includes chan
       #
       #   @param direction [Symbol, WhopSDK::Models::Direction] The sort direction for the results. Use 'asc' for oldest first or 'desc' for new
       #

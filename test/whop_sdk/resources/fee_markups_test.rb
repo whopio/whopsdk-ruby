@@ -7,7 +7,7 @@ class WhopSDK::Test::Resources::FeeMarkupsTest < WhopSDK::Test::ResourceTest
     skip("Mock server tests are disabled")
 
     response =
-      @whop.fee_markups.create(company_id: "biz_xxxxxxxxxxxxxx", fee_type: :crypto_withdrawal_markup)
+      @whop.fee_markups.create(account_id: "biz_xxxxxxxxxxxxxx", fee_type: :crypto_withdrawal_markup)
 
     assert_pattern do
       response => WhopSDK::Models::FeeMarkupCreateResponse
@@ -29,7 +29,7 @@ class WhopSDK::Test::Resources::FeeMarkupsTest < WhopSDK::Test::ResourceTest
   def test_list_required_params
     skip("Mock server tests are disabled")
 
-    response = @whop.fee_markups.list(company_id: "biz_xxxxxxxxxxxxxx")
+    response = @whop.fee_markups.list(account_id: "biz_xxxxxxxxxxxxxx")
 
     assert_pattern do
       response => WhopSDK::Internal::CursorPage

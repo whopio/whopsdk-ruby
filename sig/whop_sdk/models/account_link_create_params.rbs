@@ -2,7 +2,7 @@ module WhopSDK
   module Models
     type account_link_create_params =
       {
-        company_id: String,
+        account_id: String,
         refresh_url: String,
         return_url: String,
         use_case: WhopSDK::Models::AccountLinkCreateParams::use_case
@@ -13,7 +13,7 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      attr_accessor company_id: String
+      attr_accessor account_id: String
 
       attr_accessor refresh_url: String
 
@@ -22,7 +22,7 @@ module WhopSDK
       attr_accessor use_case: WhopSDK::Models::AccountLinkCreateParams::use_case
 
       def initialize: (
-        company_id: String,
+        account_id: String,
         refresh_url: String,
         return_url: String,
         use_case: WhopSDK::Models::AccountLinkCreateParams::use_case,
@@ -30,7 +30,7 @@ module WhopSDK
       ) -> void
 
       def to_hash: -> {
-        company_id: String,
+        account_id: String,
         refresh_url: String,
         return_url: String,
         use_case: WhopSDK::Models::AccountLinkCreateParams::use_case,

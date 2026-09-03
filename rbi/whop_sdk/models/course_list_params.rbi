@@ -11,6 +11,13 @@ module WhopSDK
           T.any(WhopSDK::CourseListParams, WhopSDK::Internal::AnyHash)
         end
 
+      # The unique identifier of the company to list courses for.
+      sig { returns(T.nilable(String)) }
+      attr_reader :account_id
+
+      sig { params(account_id: String).void }
+      attr_writer :account_id
+
       # Returns the elements in the list that come after the specified cursor.
       sig { returns(T.nilable(String)) }
       attr_reader :after
@@ -24,13 +31,6 @@ module WhopSDK
 
       sig { params(before: String).void }
       attr_writer :before
-
-      # The unique identifier of the company to list courses for.
-      sig { returns(T.nilable(String)) }
-      attr_reader :company_id
-
-      sig { params(company_id: String).void }
-      attr_writer :company_id
 
       # The unique identifier of the experience to list courses for.
       sig { returns(T.nilable(String)) }
@@ -55,9 +55,9 @@ module WhopSDK
 
       sig do
         params(
+          account_id: String,
           after: String,
           before: String,
-          company_id: String,
           experience_id: String,
           first: Integer,
           last: Integer,
@@ -65,12 +65,12 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
+        # The unique identifier of the company to list courses for.
+        account_id: nil,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
-        # The unique identifier of the company to list courses for.
-        company_id: nil,
         # The unique identifier of the experience to list courses for.
         experience_id: nil,
         # Returns the first _n_ elements from the list.
@@ -84,9 +84,9 @@ module WhopSDK
       sig do
         override.returns(
           {
+            account_id: String,
             after: String,
             before: String,
-            company_id: String,
             experience_id: String,
             first: Integer,
             last: Integer,

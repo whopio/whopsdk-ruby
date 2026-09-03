@@ -2,9 +2,9 @@ module WhopSDK
   module Models
     type support_channel_list_params =
       {
+        account_id: String,
         after: String,
         before: String,
-        company_id: String,
         direction: WhopSDK::Models::direction,
         first: Integer,
         last: Integer,
@@ -18,6 +18,10 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
+      attr_reader account_id: String?
+
+      def account_id=: (String) -> String
+
       attr_reader after: String?
 
       def after=: (String) -> String
@@ -25,10 +29,6 @@ module WhopSDK
       attr_reader before: String?
 
       def before=: (String) -> String
-
-      attr_reader company_id: String?
-
-      def company_id=: (String) -> String
 
       attr_reader direction: WhopSDK::Models::direction?
 
@@ -59,9 +59,9 @@ module WhopSDK
       ) -> WhopSDK::Models::SupportChannelListParams::view
 
       def initialize: (
+        ?account_id: String,
         ?after: String,
         ?before: String,
-        ?company_id: String,
         ?direction: WhopSDK::Models::direction,
         ?first: Integer,
         ?last: Integer,
@@ -72,9 +72,9 @@ module WhopSDK
       ) -> void
 
       def to_hash: -> {
+        account_id: String,
         after: String,
         before: String,
-        company_id: String,
         direction: WhopSDK::Models::direction,
         first: Integer,
         last: Integer,

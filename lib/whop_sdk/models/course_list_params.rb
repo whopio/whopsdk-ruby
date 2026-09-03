@@ -7,6 +7,12 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
+      # @!attribute account_id
+      #   The unique identifier of the company to list courses for.
+      #
+      #   @return [String, nil]
+      optional :account_id, String
+
       # @!attribute after
       #   Returns the elements in the list that come after the specified cursor.
       #
@@ -18,12 +24,6 @@ module WhopSDK
       #
       #   @return [String, nil]
       optional :before, String
-
-      # @!attribute company_id
-      #   The unique identifier of the company to list courses for.
-      #
-      #   @return [String, nil]
-      optional :company_id, String
 
       # @!attribute experience_id
       #   The unique identifier of the experience to list courses for.
@@ -43,12 +43,12 @@ module WhopSDK
       #   @return [Integer, nil]
       optional :last, Integer
 
-      # @!method initialize(after: nil, before: nil, company_id: nil, experience_id: nil, first: nil, last: nil, request_options: {})
+      # @!method initialize(account_id: nil, after: nil, before: nil, experience_id: nil, first: nil, last: nil, request_options: {})
+      #   @param account_id [String] The unique identifier of the company to list courses for.
+      #
       #   @param after [String] Returns the elements in the list that come after the specified cursor.
       #
       #   @param before [String] Returns the elements in the list that come before the specified cursor.
-      #
-      #   @param company_id [String] The unique identifier of the company to list courses for.
       #
       #   @param experience_id [String] The unique identifier of the experience to list courses for.
       #

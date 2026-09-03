@@ -11,7 +11,7 @@ module WhopSDK
       # - `member:email:read`
       sig do
         params(
-          company_id: String,
+          account_id: String,
           role: WhopSDK::AuthorizedUserCreateParams::Role::OrSymbol,
           user_id: String,
           elevation:
@@ -22,7 +22,7 @@ module WhopSDK
       end
       def create(
         # The ID of the company to add the authorized user to.
-        company_id:,
+        account_id:,
         # The role to assign to the authorized user within the company. Supported roles:
         # 'moderator', 'sales_manager'.
         role:,
@@ -64,9 +64,9 @@ module WhopSDK
       # - `member:email:read`
       sig do
         params(
+          account_id: String,
           after: String,
           before: String,
-          company_id: String,
           created_after: Time,
           created_before: Time,
           first: Integer,
@@ -81,12 +81,12 @@ module WhopSDK
         )
       end
       def list(
+        # The unique identifier of the company to list authorized users for.
+        account_id: nil,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
-        # The unique identifier of the company to list authorized users for.
-        company_id: nil,
         # Only return authorized users created after this timestamp.
         created_after: nil,
         # Only return authorized users created before this timestamp.
@@ -112,7 +112,7 @@ module WhopSDK
       sig do
         params(
           id: String,
-          company_id: String,
+          account_id: String,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T::Boolean)
       end
@@ -121,7 +121,7 @@ module WhopSDK
         id,
         # The ID of the company the authorized user belongs to. Optional if the authorized
         # user ID is provided.
-        company_id: nil,
+        account_id: nil,
         request_options: {}
       )
       end

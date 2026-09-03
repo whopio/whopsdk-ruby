@@ -9,8 +9,8 @@ class WhopSDK::Test::Resources::InvoicesTest < WhopSDK::Test::ResourceTest
     response =
       @whop.invoices.create(
         body: {
+          account_id: "biz_xxxxxxxxxxxxxx",
           collection_method: :send_invoice,
-          company_id: "biz_xxxxxxxxxxxxxx",
           plan: {},
           product: {title: "title"}
         }

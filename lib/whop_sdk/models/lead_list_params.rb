@@ -7,11 +7,11 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      # @!attribute company_id
+      # @!attribute account_id
       #   The unique identifier of the company to list leads for.
       #
       #   @return [String]
-      required :company_id, String
+      required :account_id, String
 
       # @!attribute after
       #   Returns the elements in the list that come after the specified cursor.
@@ -55,8 +55,8 @@ module WhopSDK
       #   @return [Array<String>, nil]
       optional :product_ids, WhopSDK::Internal::Type::ArrayOf[String]
 
-      # @!method initialize(company_id:, after: nil, before: nil, created_after: nil, created_before: nil, first: nil, last: nil, product_ids: nil, request_options: {})
-      #   @param company_id [String] The unique identifier of the company to list leads for.
+      # @!method initialize(account_id:, after: nil, before: nil, created_after: nil, created_before: nil, first: nil, last: nil, product_ids: nil, request_options: {})
+      #   @param account_id [String] The unique identifier of the company to list leads for.
       #
       #   @param after [String] Returns the elements in the list that come after the specified cursor.
       #

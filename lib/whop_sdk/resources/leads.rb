@@ -16,9 +16,9 @@ module WhopSDK
       # - `access_pass:basic:read`
       # - `member:basic:read`
       #
-      # @overload create(company_id:, metadata: nil, product_id: nil, referrer: nil, user_id: nil, request_options: {})
+      # @overload create(account_id:, metadata: nil, product_id: nil, referrer: nil, user_id: nil, request_options: {})
       #
-      # @param company_id [String] The unique identifier of the company to create the lead for, starting with
+      # @param account_id [String] The unique identifier of the company to create the lead for, starting with
       # 'biz\_
       #
       # @param metadata [Hash{Symbol=>Object}, nil] A JSON object of custom metadata to attach to the lead for tracking purposes.
@@ -112,9 +112,9 @@ module WhopSDK
       # - `access_pass:basic:read`
       # - `member:basic:read`
       #
-      # @overload list(company_id:, after: nil, before: nil, created_after: nil, created_before: nil, first: nil, last: nil, product_ids: nil, request_options: {})
+      # @overload list(account_id:, after: nil, before: nil, created_after: nil, created_before: nil, first: nil, last: nil, product_ids: nil, request_options: {})
       #
-      # @param company_id [String] The unique identifier of the company to list leads for.
+      # @param account_id [String] The unique identifier of the company to list leads for.
       #
       # @param after [String] Returns the elements in the list that come after the specified cursor.
       #

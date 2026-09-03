@@ -11,6 +11,13 @@ module WhopSDK
           T.any(WhopSDK::AuthorizedUserListParams, WhopSDK::Internal::AnyHash)
         end
 
+      # The unique identifier of the company to list authorized users for.
+      sig { returns(T.nilable(String)) }
+      attr_reader :account_id
+
+      sig { params(account_id: String).void }
+      attr_writer :account_id
+
       # Returns the elements in the list that come after the specified cursor.
       sig { returns(T.nilable(String)) }
       attr_reader :after
@@ -24,13 +31,6 @@ module WhopSDK
 
       sig { params(before: String).void }
       attr_writer :before
-
-      # The unique identifier of the company to list authorized users for.
-      sig { returns(T.nilable(String)) }
-      attr_reader :company_id
-
-      sig { params(company_id: String).void }
-      attr_writer :company_id
 
       # Only return authorized users created after this timestamp.
       sig { returns(T.nilable(Time)) }
@@ -77,9 +77,9 @@ module WhopSDK
 
       sig do
         params(
+          account_id: String,
           after: String,
           before: String,
-          company_id: String,
           created_after: Time,
           created_before: Time,
           first: Integer,
@@ -90,12 +90,12 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
+        # The unique identifier of the company to list authorized users for.
+        account_id: nil,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
-        # The unique identifier of the company to list authorized users for.
-        company_id: nil,
         # Only return authorized users created after this timestamp.
         created_after: nil,
         # Only return authorized users created before this timestamp.
@@ -116,9 +116,9 @@ module WhopSDK
       sig do
         override.returns(
           {
+            account_id: String,
             after: String,
             before: String,
-            company_id: String,
             created_after: Time,
             created_before: Time,
             first: Integer,

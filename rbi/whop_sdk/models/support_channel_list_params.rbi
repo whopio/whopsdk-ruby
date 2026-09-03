@@ -11,6 +11,15 @@ module WhopSDK
           T.any(WhopSDK::SupportChannelListParams, WhopSDK::Internal::AnyHash)
         end
 
+      # The unique identifier of the company to list support channels for. Includes
+      # channels of child companies. When omitted, returns support channels across all
+      # companies the user has access to.
+      sig { returns(T.nilable(String)) }
+      attr_reader :account_id
+
+      sig { params(account_id: String).void }
+      attr_writer :account_id
+
       # Returns the elements in the list that come after the specified cursor.
       sig { returns(T.nilable(String)) }
       attr_reader :after
@@ -24,15 +33,6 @@ module WhopSDK
 
       sig { params(before: String).void }
       attr_writer :before
-
-      # The unique identifier of the company to list support channels for. Includes
-      # channels of child companies. When omitted, returns support channels across all
-      # companies the user has access to.
-      sig { returns(T.nilable(String)) }
-      attr_reader :company_id
-
-      sig { params(company_id: String).void }
-      attr_writer :company_id
 
       # The sort direction for the results. Use 'asc' for oldest first or 'desc' for
       # newest first.
@@ -91,9 +91,9 @@ module WhopSDK
 
       sig do
         params(
+          account_id: String,
           after: String,
           before: String,
-          company_id: String,
           direction: WhopSDK::Direction::OrSymbol,
           first: Integer,
           last: Integer,
@@ -104,14 +104,14 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
+        # The unique identifier of the company to list support channels for. Includes
+        # channels of child companies. When omitted, returns support channels across all
+        # companies the user has access to.
+        account_id: nil,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
-        # The unique identifier of the company to list support channels for. Includes
-        # channels of child companies. When omitted, returns support channels across all
-        # companies the user has access to.
-        company_id: nil,
         # The sort direction for the results. Use 'asc' for oldest first or 'desc' for
         # newest first.
         direction: nil,
@@ -136,9 +136,9 @@ module WhopSDK
       sig do
         override.returns(
           {
+            account_id: String,
             after: String,
             before: String,
-            company_id: String,
             direction: WhopSDK::Direction::OrSymbol,
             first: Integer,
             last: Integer,

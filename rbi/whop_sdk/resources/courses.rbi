@@ -130,9 +130,9 @@ module WhopSDK
       # - `courses:read`
       sig do
         params(
+          account_id: String,
           after: String,
           before: String,
-          company_id: String,
           experience_id: String,
           first: Integer,
           last: Integer,
@@ -142,12 +142,12 @@ module WhopSDK
         )
       end
       def list(
+        # The unique identifier of the company to list courses for.
+        account_id: nil,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
-        # The unique identifier of the company to list courses for.
-        company_id: nil,
         # The unique identifier of the experience to list courses for.
         experience_id: nil,
         # Returns the first _n_ elements from the list.

@@ -2,8 +2,8 @@ module WhopSDK
   module Resources
     class Experiences
       def create: (
+        account_id: String,
         app_id: String,
-        company_id: String,
         ?is_public: bool?,
         ?logo: WhopSDK::ExperienceCreateParams::Logo?,
         ?name: String?,
@@ -30,7 +30,7 @@ module WhopSDK
       ) -> WhopSDK::Experience
 
       def list: (
-        company_id: String,
+        account_id: String,
         ?after: String,
         ?app_id: String,
         ?before: String,

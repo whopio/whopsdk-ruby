@@ -2,7 +2,7 @@ module WhopSDK
   module Resources
     class AccessTokens
       def create: (
-        ?company_id: String?,
+        ?account_id: String?,
         ?expires_at: Time?,
         ?scoped_actions: ::Array[String]?,
         ?user_id: String?,

@@ -7,11 +7,11 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      # @!attribute company_id
+      # @!attribute account_id
       #   The ID of the company to create the affiliate for.
       #
       #   @return [String]
-      required :company_id, String
+      required :account_id, String
 
       # @!attribute user_identifier
       #   The user identifier (username, email, user ID, or Discord ID).
@@ -19,8 +19,8 @@ module WhopSDK
       #   @return [String]
       required :user_identifier, String
 
-      # @!method initialize(company_id:, user_identifier:, request_options: {})
-      #   @param company_id [String] The ID of the company to create the affiliate for.
+      # @!method initialize(account_id:, user_identifier:, request_options: {})
+      #   @param account_id [String] The ID of the company to create the affiliate for.
       #
       #   @param user_identifier [String] The user identifier (username, email, user ID, or Discord ID).
       #

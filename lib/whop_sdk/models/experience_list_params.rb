@@ -7,11 +7,11 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      # @!attribute company_id
+      # @!attribute account_id
       #   The unique identifier of the company to list experiences for.
       #
       #   @return [String]
-      required :company_id, String
+      required :account_id, String
 
       # @!attribute after
       #   Returns the elements in the list that come after the specified cursor.
@@ -61,8 +61,8 @@ module WhopSDK
       #   @return [String, nil]
       optional :product_id, String
 
-      # @!method initialize(company_id:, after: nil, app_id: nil, before: nil, created_after: nil, created_before: nil, first: nil, last: nil, product_id: nil, request_options: {})
-      #   @param company_id [String] The unique identifier of the company to list experiences for.
+      # @!method initialize(account_id:, after: nil, app_id: nil, before: nil, created_after: nil, created_before: nil, first: nil, last: nil, product_id: nil, request_options: {})
+      #   @param account_id [String] The unique identifier of the company to list experiences for.
       #
       #   @param after [String] Returns the elements in the list that come after the specified cursor.
       #

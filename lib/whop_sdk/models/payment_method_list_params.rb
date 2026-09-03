@@ -7,6 +7,13 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
+      # @!attribute account_id
+      #   The unique identifier of the company. Provide either this or member_id, not
+      #   both. Omit both to address your own saved payment methods.
+      #
+      #   @return [String, nil]
+      optional :account_id, String
+
       # @!attribute after
       #   Returns the elements in the list that come after the specified cursor.
       #
@@ -40,13 +47,6 @@ module WhopSDK
       #   @return [Array<Symbol, WhopSDK::Models::PaymentMethodListParams::CardFundingType>, nil]
       optional :card_funding_types,
                -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::PaymentMethodListParams::CardFundingType] }
-
-      # @!attribute company_id
-      #   The unique identifier of the company. Provide either this or member_id, not
-      #   both. Omit both to address your own saved payment methods.
-      #
-      #   @return [String, nil]
-      optional :company_id, String
 
       # @!attribute created_after
       #   Only return payment methods created after this timestamp.
@@ -116,9 +116,11 @@ module WhopSDK
       #   @return [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>, nil]
       optional :payment_method_types, -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::PaymentMethodTypes] }
 
-      # @!method initialize(after: nil, before: nil, broken: nil, card_brands: nil, card_funding_types: nil, company_id: nil, created_after: nil, created_before: nil, direction: nil, expired: nil, first: nil, future_usage: nil, has_payer_document: nil, last: nil, member_id: nil, payment_method_types: nil, request_options: {})
+      # @!method initialize(account_id: nil, after: nil, before: nil, broken: nil, card_brands: nil, card_funding_types: nil, created_after: nil, created_before: nil, direction: nil, expired: nil, first: nil, future_usage: nil, has_payer_document: nil, last: nil, member_id: nil, payment_method_types: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::PaymentMethodListParams} for more details.
+      #
+      #   @param account_id [String] The unique identifier of the company. Provide either this or member_id, not both
       #
       #   @param after [String] Returns the elements in the list that come after the specified cursor.
       #
@@ -129,8 +131,6 @@ module WhopSDK
       #   @param card_brands [Array<Symbol, WhopSDK::Models::CardBrands>] Only return cards on these networks, such as the networks the seller accepts. Pa
       #
       #   @param card_funding_types [Array<Symbol, WhopSDK::Models::PaymentMethodListParams::CardFundingType>] Only return cards funded this way. A card whose funding could not be determined
-      #
-      #   @param company_id [String] The unique identifier of the company. Provide either this or member_id, not both
       #
       #   @param created_after [Time] Only return payment methods created after this timestamp.
       #

@@ -12,7 +12,7 @@ module WhopSDK
       sig do
         params(
           with_user_ids: T::Array[String],
-          company_id: T.nilable(String),
+          account_id: T.nilable(String),
           custom_name: T.nilable(String),
           notifications_enabled: T.nilable(T::Boolean),
           request_options: WhopSDK::RequestOptions::OrHash
@@ -24,7 +24,7 @@ module WhopSDK
         with_user_ids:,
         # The unique identifier of the company to scope this DM channel to. When set, the
         # channel is visible only within that company context.
-        company_id: nil,
+        account_id: nil,
         # A custom display name for the DM channel. For example, 'Project Discussion'.
         custom_name: nil,
         # Whether Whop app notifications are enabled for this direct message channel.
@@ -84,9 +84,9 @@ module WhopSDK
       # - `dms:read`
       sig do
         params(
+          account_id: String,
           after: String,
           before: String,
-          company_id: String,
           first: Integer,
           last: Integer,
           request_options: WhopSDK::RequestOptions::OrHash
@@ -95,13 +95,13 @@ module WhopSDK
         )
       end
       def list(
+        # The unique identifier of a company to filter DM channels by. Only returns
+        # channels scoped to this company.
+        account_id: nil,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
-        # The unique identifier of a company to filter DM channels by. Only returns
-        # channels scoped to this company.
-        company_id: nil,
         # Returns the first _n_ elements from the list.
         first: nil,
         # Returns the last _n_ elements from the list.

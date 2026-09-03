@@ -7,11 +7,11 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      # @!attribute company_id
+      # @!attribute account_id
       #   The unique identifier of the company to list waitlist entries for.
       #
       #   @return [String]
-      required :company_id, String
+      required :account_id, String
 
       # @!attribute after
       #   Returns the elements in the list that come after the specified cursor.
@@ -79,8 +79,8 @@ module WhopSDK
       #   @return [Array<Symbol, WhopSDK::Models::EntryStatus>, nil]
       optional :statuses, -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::EntryStatus] }
 
-      # @!method initialize(company_id:, after: nil, before: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, order: nil, plan_ids: nil, product_ids: nil, statuses: nil, request_options: {})
-      #   @param company_id [String] The unique identifier of the company to list waitlist entries for.
+      # @!method initialize(account_id:, after: nil, before: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, order: nil, plan_ids: nil, product_ids: nil, statuses: nil, request_options: {})
+      #   @param account_id [String] The unique identifier of the company to list waitlist entries for.
       #
       #   @param after [String] Returns the elements in the list that come after the specified cursor.
       #

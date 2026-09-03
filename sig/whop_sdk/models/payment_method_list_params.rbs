@@ -2,12 +2,12 @@ module WhopSDK
   module Models
     type payment_method_list_params =
       {
+        account_id: String,
         after: String,
         before: String,
         broken: bool,
         card_brands: ::Array[WhopSDK::Models::card_brands],
         card_funding_types: ::Array[WhopSDK::Models::PaymentMethodListParams::card_funding_type],
-        company_id: String,
         created_after: Time,
         created_before: Time,
         direction: WhopSDK::Models::direction,
@@ -24,6 +24,10 @@ module WhopSDK
     class PaymentMethodListParams < WhopSDK::Internal::Type::BaseModel
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
+
+      attr_reader account_id: String?
+
+      def account_id=: (String) -> String
 
       attr_reader after: String?
 
@@ -48,10 +52,6 @@ module WhopSDK
       def card_funding_types=: (
         ::Array[WhopSDK::Models::PaymentMethodListParams::card_funding_type]
       ) -> ::Array[WhopSDK::Models::PaymentMethodListParams::card_funding_type]
-
-      attr_reader company_id: String?
-
-      def company_id=: (String) -> String
 
       attr_reader created_after: Time?
 
@@ -98,12 +98,12 @@ module WhopSDK
       ) -> ::Array[WhopSDK::Models::payment_method_types]
 
       def initialize: (
+        ?account_id: String,
         ?after: String,
         ?before: String,
         ?broken: bool,
         ?card_brands: ::Array[WhopSDK::Models::card_brands],
         ?card_funding_types: ::Array[WhopSDK::Models::PaymentMethodListParams::card_funding_type],
-        ?company_id: String,
         ?created_after: Time,
         ?created_before: Time,
         ?direction: WhopSDK::Models::direction,
@@ -118,12 +118,12 @@ module WhopSDK
       ) -> void
 
       def to_hash: -> {
+        account_id: String,
         after: String,
         before: String,
         broken: bool,
         card_brands: ::Array[WhopSDK::Models::card_brands],
         card_funding_types: ::Array[WhopSDK::Models::PaymentMethodListParams::card_funding_type],
-        company_id: String,
         created_after: Time,
         created_before: Time,
         direction: WhopSDK::Models::direction,

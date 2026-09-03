@@ -7,7 +7,7 @@ module WhopSDK
       # hosted payouts dashboard or the KYC onboarding flow.
       sig do
         params(
-          company_id: String,
+          account_id: String,
           refresh_url: String,
           return_url: String,
           use_case: WhopSDK::AccountLinkCreateParams::UseCase::OrSymbol,
@@ -17,7 +17,7 @@ module WhopSDK
       def create(
         # The unique identifier of the company to generate the link for, starting with
         # 'biz\_'. Must be a sub-merchant of the API key's company.
-        company_id:,
+        account_id:,
         # The URL to redirect the user to if the session expires and needs to be
         # re-authenticated, such as 'https://example.com/refresh'.
         refresh_url:,

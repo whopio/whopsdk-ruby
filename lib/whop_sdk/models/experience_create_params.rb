@@ -7,17 +7,17 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
+      # @!attribute account_id
+      #   The unique identifier of the company to create this experience for.
+      #
+      #   @return [String]
+      required :account_id, String
+
       # @!attribute app_id
       #   The unique identifier of the app that powers this experience.
       #
       #   @return [String]
       required :app_id, String
-
-      # @!attribute company_id
-      #   The unique identifier of the company to create this experience for.
-      #
-      #   @return [String]
-      required :company_id, String
 
       # @!attribute is_public
       #   Whether the experience is publicly accessible without a membership.
@@ -50,13 +50,13 @@ module WhopSDK
       #   @return [String, nil]
       optional :section_id, String, nil?: true
 
-      # @!method initialize(app_id:, company_id:, is_public: nil, logo: nil, name: nil, notifications_enabled: nil, section_id: nil, request_options: {})
+      # @!method initialize(account_id:, app_id:, is_public: nil, logo: nil, name: nil, notifications_enabled: nil, section_id: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::ExperienceCreateParams} for more details.
       #
-      #   @param app_id [String] The unique identifier of the app that powers this experience.
+      #   @param account_id [String] The unique identifier of the company to create this experience for.
       #
-      #   @param company_id [String] The unique identifier of the company to create this experience for.
+      #   @param app_id [String] The unique identifier of the app that powers this experience.
       #
       #   @param is_public [Boolean, nil] Whether the experience is publicly accessible without a membership.
       #

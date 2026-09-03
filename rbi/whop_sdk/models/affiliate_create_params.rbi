@@ -13,7 +13,7 @@ module WhopSDK
 
       # The ID of the company to create the affiliate for.
       sig { returns(String) }
-      attr_accessor :company_id
+      attr_accessor :account_id
 
       # The user identifier (username, email, user ID, or Discord ID).
       sig { returns(String) }
@@ -21,14 +21,14 @@ module WhopSDK
 
       sig do
         params(
-          company_id: String,
+          account_id: String,
           user_identifier: String,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
         # The ID of the company to create the affiliate for.
-        company_id:,
+        account_id:,
         # The user identifier (username, email, user ID, or Discord ID).
         user_identifier:,
         request_options: {}
@@ -38,7 +38,7 @@ module WhopSDK
       sig do
         override.returns(
           {
-            company_id: String,
+            account_id: String,
             user_identifier: String,
             request_options: WhopSDK::RequestOptions
           }

@@ -7,12 +7,12 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      # @!attribute company_id
+      # @!attribute account_id
       #   The unique identifier of the company to generate the link for, starting with
       #   'biz\_'. Must be a sub-merchant of the API key's company.
       #
       #   @return [String]
-      required :company_id, String
+      required :account_id, String
 
       # @!attribute refresh_url
       #   The URL to redirect the user to if the session expires and needs to be
@@ -35,11 +35,11 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::AccountLinkCreateParams::UseCase]
       required :use_case, enum: -> { WhopSDK::AccountLinkCreateParams::UseCase }
 
-      # @!method initialize(company_id:, refresh_url:, return_url:, use_case:, request_options: {})
+      # @!method initialize(account_id:, refresh_url:, return_url:, use_case:, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::AccountLinkCreateParams} for more details.
       #
-      #   @param company_id [String] The unique identifier of the company to generate the link for, starting with 'bi
+      #   @param account_id [String] The unique identifier of the company to generate the link for, starting with 'bi
       #
       #   @param refresh_url [String] The URL to redirect the user to if the session expires and needs to be re-authen
       #

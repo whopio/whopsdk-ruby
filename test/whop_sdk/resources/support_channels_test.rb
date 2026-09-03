@@ -6,7 +6,7 @@ class WhopSDK::Test::Resources::SupportChannelsTest < WhopSDK::Test::ResourceTes
   def test_create_required_params
     skip("Mock server tests are disabled")
 
-    response = @whop.support_channels.create(company_id: "biz_xxxxxxxxxxxxxx", user_id: "user_xxxxxxxxxxxxx")
+    response = @whop.support_channels.create(account_id: "biz_xxxxxxxxxxxxxx", user_id: "user_xxxxxxxxxxxxx")
 
     assert_pattern do
       response => WhopSDK::SupportChannel

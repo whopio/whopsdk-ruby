@@ -130,10 +130,10 @@ module WhopSDK
       # - `invoice:basic:read`
       sig do
         params(
+          account_id: String,
           after: String,
           before: String,
           collection_methods: T::Array[WhopSDK::CollectionMethod::OrSymbol],
-          company_id: String,
           created_after: Time,
           created_before: Time,
           direction: WhopSDK::Direction::OrSymbol,
@@ -146,14 +146,14 @@ module WhopSDK
         ).returns(WhopSDK::Internal::CursorPage[WhopSDK::InvoiceListItem])
       end
       def list(
+        # The unique identifier of the company to list invoices for.
+        account_id: nil,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
         # Filter invoices by their collection method.
         collection_methods: nil,
-        # The unique identifier of the company to list invoices for.
-        company_id: nil,
         # Only return invoices created after this timestamp.
         created_after: nil,
         # Only return invoices created before this timestamp.

@@ -7,6 +7,12 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
+      # @!attribute account_id
+      #   The unique identifier of the company to list authorized users for.
+      #
+      #   @return [String, nil]
+      optional :account_id, String
+
       # @!attribute after
       #   Returns the elements in the list that come after the specified cursor.
       #
@@ -18,12 +24,6 @@ module WhopSDK
       #
       #   @return [String, nil]
       optional :before, String
-
-      # @!attribute company_id
-      #   The unique identifier of the company to list authorized users for.
-      #
-      #   @return [String, nil]
-      optional :company_id, String
 
       # @!attribute created_after
       #   Only return authorized users created after this timestamp.
@@ -62,15 +62,15 @@ module WhopSDK
       #   @return [String, nil]
       optional :user_id, String
 
-      # @!method initialize(after: nil, before: nil, company_id: nil, created_after: nil, created_before: nil, first: nil, last: nil, role: nil, user_id: nil, request_options: {})
+      # @!method initialize(account_id: nil, after: nil, before: nil, created_after: nil, created_before: nil, first: nil, last: nil, role: nil, user_id: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::AuthorizedUserListParams} for more details.
+      #
+      #   @param account_id [String] The unique identifier of the company to list authorized users for.
       #
       #   @param after [String] Returns the elements in the list that come after the specified cursor.
       #
       #   @param before [String] Returns the elements in the list that come before the specified cursor.
-      #
-      #   @param company_id [String] The unique identifier of the company to list authorized users for.
       #
       #   @param created_after [Time] Only return authorized users created after this timestamp.
       #

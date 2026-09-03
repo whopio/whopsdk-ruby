@@ -14,12 +14,12 @@ module WhopSDK
       #   @return [Array<String>]
       required :with_user_ids, WhopSDK::Internal::Type::ArrayOf[String]
 
-      # @!attribute company_id
+      # @!attribute account_id
       #   The unique identifier of the company to scope this DM channel to. When set, the
       #   channel is visible only within that company context.
       #
       #   @return [String, nil]
-      optional :company_id, String, nil?: true
+      optional :account_id, String, nil?: true
 
       # @!attribute custom_name
       #   A custom display name for the DM channel. For example, 'Project Discussion'.
@@ -34,13 +34,13 @@ module WhopSDK
       #   @return [Boolean, nil]
       optional :notifications_enabled, WhopSDK::Internal::Type::Boolean, nil?: true
 
-      # @!method initialize(with_user_ids:, company_id: nil, custom_name: nil, notifications_enabled: nil, request_options: {})
+      # @!method initialize(with_user_ids:, account_id: nil, custom_name: nil, notifications_enabled: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::DmChannelCreateParams} for more details.
       #
       #   @param with_user_ids [Array<String>] The list of user identifiers to include in the DM channel. Each entry can be an
       #
-      #   @param company_id [String, nil] The unique identifier of the company to scope this DM channel to. When set, the
+      #   @param account_id [String, nil] The unique identifier of the company to scope this DM channel to. When set, the
       #
       #   @param custom_name [String, nil] A custom display name for the DM channel. For example, 'Project Discussion'.
       #

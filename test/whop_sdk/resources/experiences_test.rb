@@ -6,7 +6,7 @@ class WhopSDK::Test::Resources::ExperiencesTest < WhopSDK::Test::ResourceTest
   def test_create_required_params
     skip("Mock server tests are disabled")
 
-    response = @whop.experiences.create(app_id: "app_xxxxxxxxxxxxxx", company_id: "biz_xxxxxxxxxxxxxx")
+    response = @whop.experiences.create(account_id: "biz_xxxxxxxxxxxxxx", app_id: "app_xxxxxxxxxxxxxx")
 
     assert_pattern do
       response => WhopSDK::Experience
@@ -78,7 +78,7 @@ class WhopSDK::Test::Resources::ExperiencesTest < WhopSDK::Test::ResourceTest
   def test_list_required_params
     skip("Mock server tests are disabled")
 
-    response = @whop.experiences.list(company_id: "biz_xxxxxxxxxxxxxx")
+    response = @whop.experiences.list(account_id: "biz_xxxxxxxxxxxxxx")
 
     assert_pattern do
       response => WhopSDK::Internal::CursorPage

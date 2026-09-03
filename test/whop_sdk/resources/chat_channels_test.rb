@@ -52,7 +52,7 @@ class WhopSDK::Test::Resources::ChatChannelsTest < WhopSDK::Test::ResourceTest
   def test_list_required_params
     skip("Mock server tests are disabled")
 
-    response = @whop.chat_channels.list(company_id: "biz_xxxxxxxxxxxxxx")
+    response = @whop.chat_channels.list(account_id: "biz_xxxxxxxxxxxxxx")
 
     assert_pattern do
       response => WhopSDK::Internal::CursorPage

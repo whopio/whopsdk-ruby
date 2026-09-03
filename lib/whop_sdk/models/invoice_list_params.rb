@@ -7,6 +7,12 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
+      # @!attribute account_id
+      #   The unique identifier of the company to list invoices for.
+      #
+      #   @return [String, nil]
+      optional :account_id, String
+
       # @!attribute after
       #   Returns the elements in the list that come after the specified cursor.
       #
@@ -24,12 +30,6 @@ module WhopSDK
       #
       #   @return [Array<Symbol, WhopSDK::Models::CollectionMethod>, nil]
       optional :collection_methods, -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::CollectionMethod] }
-
-      # @!attribute company_id
-      #   The unique identifier of the company to list invoices for.
-      #
-      #   @return [String, nil]
-      optional :company_id, String
 
       # @!attribute created_after
       #   Only return invoices created after this timestamp.
@@ -80,17 +80,17 @@ module WhopSDK
       #   @return [Array<Symbol, WhopSDK::Models::InvoiceStatus>, nil]
       optional :statuses, -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::InvoiceStatus] }
 
-      # @!method initialize(after: nil, before: nil, collection_methods: nil, company_id: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, order: nil, product_ids: nil, statuses: nil, request_options: {})
+      # @!method initialize(account_id: nil, after: nil, before: nil, collection_methods: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, order: nil, product_ids: nil, statuses: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::InvoiceListParams} for more details.
+      #
+      #   @param account_id [String] The unique identifier of the company to list invoices for.
       #
       #   @param after [String] Returns the elements in the list that come after the specified cursor.
       #
       #   @param before [String] Returns the elements in the list that come before the specified cursor.
       #
       #   @param collection_methods [Array<Symbol, WhopSDK::Models::CollectionMethod>] Filter invoices by their collection method.
-      #
-      #   @param company_id [String] The unique identifier of the company to list invoices for.
       #
       #   @param created_after [Time] Only return invoices created after this timestamp.
       #

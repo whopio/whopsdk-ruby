@@ -11,14 +11,14 @@ module WhopSDK
           T.any(WhopSDK::TopupCreateParams, WhopSDK::Internal::AnyHash)
         end
 
+      # The unique identifier of the company to add funds to, starting with 'biz\_'.
+      sig { returns(String) }
+      attr_accessor :account_id
+
       # The amount to add to the balance in the specified currency. For example, 50.00
       # for $50.00 USD.
       sig { returns(Float) }
       attr_accessor :amount
-
-      # The unique identifier of the company to add funds to, starting with 'biz\_'.
-      sig { returns(String) }
-      attr_accessor :company_id
 
       # The currency for the top-up amount, such as 'usd'.
       sig { returns(WhopSDK::Currency::OrSymbol) }
@@ -30,19 +30,19 @@ module WhopSDK
 
       sig do
         params(
+          account_id: String,
           amount: Float,
-          company_id: String,
           currency: WhopSDK::Currency::OrSymbol,
           payment_method_id: String,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
+        # The unique identifier of the company to add funds to, starting with 'biz\_'.
+        account_id:,
         # The amount to add to the balance in the specified currency. For example, 50.00
         # for $50.00 USD.
         amount:,
-        # The unique identifier of the company to add funds to, starting with 'biz\_'.
-        company_id:,
         # The currency for the top-up amount, such as 'usd'.
         currency:,
         # The unique identifier of the stored payment method to charge for the top-up.
@@ -54,8 +54,8 @@ module WhopSDK
       sig do
         override.returns(
           {
+            account_id: String,
             amount: Float,
-            company_id: String,
             currency: WhopSDK::Currency::OrSymbol,
             payment_method_id: String,
             request_options: WhopSDK::RequestOptions

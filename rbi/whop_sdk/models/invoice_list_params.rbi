@@ -11,6 +11,13 @@ module WhopSDK
           T.any(WhopSDK::InvoiceListParams, WhopSDK::Internal::AnyHash)
         end
 
+      # The unique identifier of the company to list invoices for.
+      sig { returns(T.nilable(String)) }
+      attr_reader :account_id
+
+      sig { params(account_id: String).void }
+      attr_writer :account_id
+
       # Returns the elements in the list that come after the specified cursor.
       sig { returns(T.nilable(String)) }
       attr_reader :after
@@ -35,13 +42,6 @@ module WhopSDK
         ).void
       end
       attr_writer :collection_methods
-
-      # The unique identifier of the company to list invoices for.
-      sig { returns(T.nilable(String)) }
-      attr_reader :company_id
-
-      sig { params(company_id: String).void }
-      attr_writer :company_id
 
       # Only return invoices created after this timestamp.
       sig { returns(T.nilable(Time)) }
@@ -102,10 +102,10 @@ module WhopSDK
 
       sig do
         params(
+          account_id: String,
           after: String,
           before: String,
           collection_methods: T::Array[WhopSDK::CollectionMethod::OrSymbol],
-          company_id: String,
           created_after: Time,
           created_before: Time,
           direction: WhopSDK::Direction::OrSymbol,
@@ -118,14 +118,14 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
+        # The unique identifier of the company to list invoices for.
+        account_id: nil,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
         # Filter invoices by their collection method.
         collection_methods: nil,
-        # The unique identifier of the company to list invoices for.
-        company_id: nil,
         # Only return invoices created after this timestamp.
         created_after: nil,
         # Only return invoices created before this timestamp.
@@ -150,10 +150,10 @@ module WhopSDK
       sig do
         override.returns(
           {
+            account_id: String,
             after: String,
             before: String,
             collection_methods: T::Array[WhopSDK::CollectionMethod::OrSymbol],
-            company_id: String,
             created_after: Time,
             created_before: Time,
             direction: WhopSDK::Direction::OrSymbol,

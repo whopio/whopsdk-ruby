@@ -7,18 +7,18 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
+      # @!attribute account_id
+      #   The unique identifier of the company to add funds to, starting with 'biz\_'.
+      #
+      #   @return [String]
+      required :account_id, String
+
       # @!attribute amount
       #   The amount to add to the balance in the specified currency. For example, 50.00
       #   for $50.00 USD.
       #
       #   @return [Float]
       required :amount, Float
-
-      # @!attribute company_id
-      #   The unique identifier of the company to add funds to, starting with 'biz\_'.
-      #
-      #   @return [String]
-      required :company_id, String
 
       # @!attribute currency
       #   The currency for the top-up amount, such as 'usd'.
@@ -32,13 +32,13 @@ module WhopSDK
       #   @return [String]
       required :payment_method_id, String
 
-      # @!method initialize(amount:, company_id:, currency:, payment_method_id:, request_options: {})
+      # @!method initialize(account_id:, amount:, currency:, payment_method_id:, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::TopupCreateParams} for more details.
       #
-      #   @param amount [Float] The amount to add to the balance in the specified currency. For example, 50.00 f
+      #   @param account_id [String] The unique identifier of the company to add funds to, starting with 'biz\_'.
       #
-      #   @param company_id [String] The unique identifier of the company to add funds to, starting with 'biz\_'.
+      #   @param amount [Float] The amount to add to the balance in the specified currency. For example, 50.00 f
       #
       #   @param currency [Symbol, WhopSDK::Models::Currency] The currency for the top-up amount, such as 'usd'.
       #

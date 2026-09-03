@@ -8,7 +8,7 @@ class WhopSDK::Test::Resources::AccountLinksTest < WhopSDK::Test::ResourceTest
 
     response =
       @whop.account_links.create(
-        company_id: "biz_xxxxxxxxxxxxxx",
+        account_id: "biz_xxxxxxxxxxxxxx",
         refresh_url: "refresh_url",
         return_url: "return_url",
         use_case: :account_onboarding

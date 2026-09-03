@@ -20,10 +20,10 @@ module WhopSDK
       # The unique identifier of the company. Provide either this or member_id, not
       # both. Omit both to address your own saved payment methods.
       sig { returns(T.nilable(String)) }
-      attr_reader :company_id
+      attr_reader :account_id
 
-      sig { params(company_id: String).void }
-      attr_writer :company_id
+      sig { params(account_id: String).void }
+      attr_writer :account_id
 
       # The unique identifier of the member. Provide either this or company_id, not
       # both. Omit both to address your own saved payment methods.
@@ -36,7 +36,7 @@ module WhopSDK
       sig do
         params(
           id: String,
-          company_id: String,
+          account_id: String,
           member_id: String,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
@@ -45,7 +45,7 @@ module WhopSDK
         id:,
         # The unique identifier of the company. Provide either this or member_id, not
         # both. Omit both to address your own saved payment methods.
-        company_id: nil,
+        account_id: nil,
         # The unique identifier of the member. Provide either this or company_id, not
         # both. Omit both to address your own saved payment methods.
         member_id: nil,
@@ -57,7 +57,7 @@ module WhopSDK
         override.returns(
           {
             id: String,
-            company_id: String,
+            account_id: String,
             member_id: String,
             request_options: WhopSDK::RequestOptions
           }

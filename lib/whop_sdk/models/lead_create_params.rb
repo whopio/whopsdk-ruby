@@ -7,12 +7,12 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      # @!attribute company_id
+      # @!attribute account_id
       #   The unique identifier of the company to create the lead for, starting with
       #   'biz\_'.
       #
       #   @return [String]
-      required :company_id, String
+      required :account_id, String
 
       # @!attribute metadata
       #   A JSON object of custom metadata to attach to the lead for tracking purposes.
@@ -41,11 +41,11 @@ module WhopSDK
       #   @return [String, nil]
       optional :user_id, String, nil?: true
 
-      # @!method initialize(company_id:, metadata: nil, product_id: nil, referrer: nil, user_id: nil, request_options: {})
+      # @!method initialize(account_id:, metadata: nil, product_id: nil, referrer: nil, user_id: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::LeadCreateParams} for more details.
       #
-      #   @param company_id [String] The unique identifier of the company to create the lead for, starting with
+      #   @param account_id [String] The unique identifier of the company to create the lead for, starting with
       #   'biz\_
       #
       #   @param metadata [Hash{Symbol=>Object}, nil] A JSON object of custom metadata to attach to the lead for tracking purposes.

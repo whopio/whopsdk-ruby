@@ -13,11 +13,11 @@ module WhopSDK
       #
       # - `dms:channel:manage`
       #
-      # @overload create(with_user_ids:, company_id: nil, custom_name: nil, notifications_enabled: nil, request_options: {})
+      # @overload create(with_user_ids:, account_id: nil, custom_name: nil, notifications_enabled: nil, request_options: {})
       #
       # @param with_user_ids [Array<String>] The list of user identifiers to include in the DM channel. Each entry can be an
       #
-      # @param company_id [String, nil] The unique identifier of the company to scope this DM channel to. When set, the
+      # @param account_id [String, nil] The unique identifier of the company to scope this DM channel to. When set, the
       #
       # @param custom_name [String, nil] A custom display name for the DM channel. For example, 'Project Discussion'.
       #
@@ -107,13 +107,13 @@ module WhopSDK
       #
       # - `dms:read`
       #
-      # @overload list(after: nil, before: nil, company_id: nil, first: nil, last: nil, request_options: {})
+      # @overload list(account_id: nil, after: nil, before: nil, first: nil, last: nil, request_options: {})
+      #
+      # @param account_id [String] The unique identifier of a company to filter DM channels by. Only returns channe
       #
       # @param after [String] Returns the elements in the list that come after the specified cursor.
       #
       # @param before [String] Returns the elements in the list that come before the specified cursor.
-      #
-      # @param company_id [String] The unique identifier of a company to filter DM channels by. Only returns channe
       #
       # @param first [Integer] Returns the first _n_ elements from the list.
       #

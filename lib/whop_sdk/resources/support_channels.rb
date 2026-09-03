@@ -13,9 +13,9 @@ module WhopSDK
       #
       # - `support_chat:create`
       #
-      # @overload create(company_id:, user_id:, custom_name: nil, notifications_enabled: nil, request_options: {})
+      # @overload create(account_id:, user_id:, custom_name: nil, notifications_enabled: nil, request_options: {})
       #
-      # @param company_id [String] The unique identifier of the company to create the support channel in.
+      # @param account_id [String] The unique identifier of the company to create the support channel in.
       #
       # @param user_id [String] The user ID (e.g. 'user_xxxxx') or username of the customer to open a support ch
       #
@@ -73,13 +73,13 @@ module WhopSDK
       #
       # - `support_chat:read`
       #
-      # @overload list(after: nil, before: nil, company_id: nil, direction: nil, first: nil, last: nil, open_: nil, order: nil, view: nil, request_options: {})
+      # @overload list(account_id: nil, after: nil, before: nil, direction: nil, first: nil, last: nil, open_: nil, order: nil, view: nil, request_options: {})
+      #
+      # @param account_id [String] The unique identifier of the company to list support channels for. Includes chan
       #
       # @param after [String] Returns the elements in the list that come after the specified cursor.
       #
       # @param before [String] Returns the elements in the list that come before the specified cursor.
-      #
-      # @param company_id [String] The unique identifier of the company to list support channels for. Includes chan
       #
       # @param direction [Symbol, WhopSDK::Models::Direction] The sort direction for the results. Use 'asc' for oldest first or 'desc' for new
       #

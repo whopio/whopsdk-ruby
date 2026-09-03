@@ -7,11 +7,11 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      # @!attribute company_id
+      # @!attribute account_id
       #   The ID of the company to add the authorized user to.
       #
       #   @return [String]
-      required :company_id, String
+      required :account_id, String
 
       # @!attribute role
       #   The role to assign to the authorized user within the company. Supported roles:
@@ -38,11 +38,11 @@ module WhopSDK
       #   @return [Boolean, nil]
       optional :send_emails, WhopSDK::Internal::Type::Boolean, nil?: true
 
-      # @!method initialize(company_id:, role:, user_id:, elevation: nil, send_emails: nil, request_options: {})
+      # @!method initialize(account_id:, role:, user_id:, elevation: nil, send_emails: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::AuthorizedUserCreateParams} for more details.
       #
-      #   @param company_id [String] The ID of the company to add the authorized user to.
+      #   @param account_id [String] The ID of the company to add the authorized user to.
       #
       #   @param role [Symbol, WhopSDK::Models::AuthorizedUserCreateParams::Role] The role to assign to the authorized user within the company. Supported roles: '
       #

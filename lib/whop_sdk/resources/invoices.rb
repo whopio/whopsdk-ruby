@@ -130,15 +130,15 @@ module WhopSDK
       #
       # - `invoice:basic:read`
       #
-      # @overload list(after: nil, before: nil, collection_methods: nil, company_id: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, order: nil, product_ids: nil, statuses: nil, request_options: {})
+      # @overload list(account_id: nil, after: nil, before: nil, collection_methods: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, order: nil, product_ids: nil, statuses: nil, request_options: {})
+      #
+      # @param account_id [String] The unique identifier of the company to list invoices for.
       #
       # @param after [String] Returns the elements in the list that come after the specified cursor.
       #
       # @param before [String] Returns the elements in the list that come before the specified cursor.
       #
       # @param collection_methods [Array<Symbol, WhopSDK::Models::CollectionMethod>] Filter invoices by their collection method.
-      #
-      # @param company_id [String] The unique identifier of the company to list invoices for.
       #
       # @param created_after [Time] Only return invoices created after this timestamp.
       #

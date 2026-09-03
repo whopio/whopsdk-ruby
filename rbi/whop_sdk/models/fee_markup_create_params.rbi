@@ -13,7 +13,7 @@ module WhopSDK
 
       # The unique identifier of the company to create or update the fee markup for.
       sig { returns(String) }
-      attr_accessor :company_id
+      attr_accessor :account_id
 
       # The type of fee this markup applies to, such as processing or platform fees.
       sig { returns(WhopSDK::FeeMarkupType::OrSymbol) }
@@ -37,7 +37,7 @@ module WhopSDK
 
       sig do
         params(
-          company_id: String,
+          account_id: String,
           fee_type: WhopSDK::FeeMarkupType::OrSymbol,
           fixed_fee_usd: T.nilable(Float),
           metadata: T.nilable(T::Hash[Symbol, T.anything]),
@@ -48,7 +48,7 @@ module WhopSDK
       end
       def self.new(
         # The unique identifier of the company to create or update the fee markup for.
-        company_id:,
+        account_id:,
         # The type of fee this markup applies to, such as processing or platform fees.
         fee_type:,
         # The fixed fee amount in USD to charge per transaction. Must be between 0 and 50.
@@ -66,7 +66,7 @@ module WhopSDK
       sig do
         override.returns(
           {
-            company_id: String,
+            account_id: String,
             fee_type: WhopSDK::FeeMarkupType::OrSymbol,
             fixed_fee_usd: T.nilable(Float),
             metadata: T.nilable(T::Hash[Symbol, T.anything]),

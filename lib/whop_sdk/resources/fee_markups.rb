@@ -13,9 +13,9 @@ module WhopSDK
       #
       # - `company:update_child_fees`
       #
-      # @overload create(company_id:, fee_type:, fixed_fee_usd: nil, metadata: nil, notes: nil, percentage_fee: nil, request_options: {})
+      # @overload create(account_id:, fee_type:, fixed_fee_usd: nil, metadata: nil, notes: nil, percentage_fee: nil, request_options: {})
       #
-      # @param company_id [String] The unique identifier of the company to create or update the fee markup for.
+      # @param account_id [String] The unique identifier of the company to create or update the fee markup for.
       #
       # @param fee_type [Symbol, WhopSDK::Models::FeeMarkupType] The type of fee this markup applies to, such as processing or platform fees.
       #
@@ -53,9 +53,9 @@ module WhopSDK
       #
       # - `company:update_child_fees`
       #
-      # @overload list(company_id:, after: nil, before: nil, first: nil, last: nil, request_options: {})
+      # @overload list(account_id:, after: nil, before: nil, first: nil, last: nil, request_options: {})
       #
-      # @param company_id [String] The unique identifier of the company to list fee markups for. Pass a platform ac
+      # @param account_id [String] The unique identifier of the company to list fee markups for. Pass a platform ac
       #
       # @param after [String] Returns the elements in the list that come after the specified cursor.
       #

@@ -3,18 +3,18 @@ module WhopSDK
     class PaymentMethods
       def retrieve: (
         String id,
-        ?company_id: String,
+        ?account_id: String,
         ?member_id: String,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Models::payment_method_retrieve_response
 
       def list: (
+        ?account_id: String,
         ?after: String,
         ?before: String,
         ?broken: bool,
         ?card_brands: ::Array[WhopSDK::Models::card_brands],
         ?card_funding_types: ::Array[WhopSDK::Models::PaymentMethodListParams::card_funding_type],
-        ?company_id: String,
         ?created_after: Time,
         ?created_before: Time,
         ?direction: WhopSDK::Models::direction,

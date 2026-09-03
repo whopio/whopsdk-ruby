@@ -13,11 +13,11 @@ module WhopSDK
       sig do
         params(
           experience_id: String,
+          account_id: T.nilable(String),
           attachments:
             T.nilable(
               T::Array[WhopSDK::ForumPostCreateParams::Attachment::OrHash]
             ),
-          company_id: T.nilable(String),
           content: T.nilable(String),
           is_mention: T.nilable(T::Boolean),
           parent_id: T.nilable(String),
@@ -36,11 +36,11 @@ module WhopSDK
         # 'exp_xxxxx'. Pass 'public' along with company_id to automatically use the
         # company's public forum.
         experience_id:,
-        # A list of file attachments to include with the post, such as images or videos.
-        attachments: nil,
         # The unique identifier of the company whose public forum to post in. Required
         # when experience_id is 'public'. For example, 'biz_xxxxx'.
-        company_id: nil,
+        account_id: nil,
+        # A list of file attachments to include with the post, such as images or videos.
+        attachments: nil,
         # The main body of the post in Markdown format. For example, 'Check out this
         # **update**'. Hidden if the post is paywalled and the viewer has not purchased
         # access.

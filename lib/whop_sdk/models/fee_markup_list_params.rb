@@ -7,12 +7,12 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      # @!attribute company_id
+      # @!attribute account_id
       #   The unique identifier of the company to list fee markups for. Pass a platform
       #   account identifier to retrieve platform default markups.
       #
       #   @return [String]
-      required :company_id, String
+      required :account_id, String
 
       # @!attribute after
       #   Returns the elements in the list that come after the specified cursor.
@@ -38,11 +38,11 @@ module WhopSDK
       #   @return [Integer, nil]
       optional :last, Integer
 
-      # @!method initialize(company_id:, after: nil, before: nil, first: nil, last: nil, request_options: {})
+      # @!method initialize(account_id:, after: nil, before: nil, first: nil, last: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::FeeMarkupListParams} for more details.
       #
-      #   @param company_id [String] The unique identifier of the company to list fee markups for. Pass a platform ac
+      #   @param account_id [String] The unique identifier of the company to list fee markups for. Pass a platform ac
       #
       #   @param after [String] Returns the elements in the list that come after the specified cursor.
       #

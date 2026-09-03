@@ -14,7 +14,7 @@ module WhopSDK
       # The unique identifier of the company to create the lead for, starting with
       # 'biz\_'.
       sig { returns(String) }
-      attr_accessor :company_id
+      attr_accessor :account_id
 
       # A JSON object of custom metadata to attach to the lead for tracking purposes.
       sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
@@ -37,7 +37,7 @@ module WhopSDK
 
       sig do
         params(
-          company_id: String,
+          account_id: String,
           metadata: T.nilable(T::Hash[Symbol, T.anything]),
           product_id: T.nilable(String),
           referrer: T.nilable(String),
@@ -48,7 +48,7 @@ module WhopSDK
       def self.new(
         # The unique identifier of the company to create the lead for, starting with
         # 'biz\_'.
-        company_id:,
+        account_id:,
         # A JSON object of custom metadata to attach to the lead for tracking purposes.
         metadata: nil,
         # The unique identifier of the product the lead is interested in, starting with
@@ -67,7 +67,7 @@ module WhopSDK
       sig do
         override.returns(
           {
-            company_id: String,
+            account_id: String,
             metadata: T.nilable(T::Hash[Symbol, T.anything]),
             product_id: T.nilable(String),
             referrer: T.nilable(String),

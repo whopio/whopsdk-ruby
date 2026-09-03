@@ -14,7 +14,7 @@ module WhopSDK
       # - `member:basic:read`
       sig do
         params(
-          company_id: String,
+          account_id: String,
           metadata: T.nilable(T::Hash[Symbol, T.anything]),
           product_id: T.nilable(String),
           referrer: T.nilable(String),
@@ -25,7 +25,7 @@ module WhopSDK
       def create(
         # The unique identifier of the company to create the lead for, starting with
         # 'biz\_'.
-        company_id:,
+        account_id:,
         # A JSON object of custom metadata to attach to the lead for tracking purposes.
         metadata: nil,
         # The unique identifier of the product the lead is interested in, starting with
@@ -101,7 +101,7 @@ module WhopSDK
       # - `member:basic:read`
       sig do
         params(
-          company_id: String,
+          account_id: String,
           after: String,
           before: String,
           created_after: Time,
@@ -116,7 +116,7 @@ module WhopSDK
       end
       def list(
         # The unique identifier of the company to list leads for.
-        company_id:,
+        account_id:,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
         # Returns the elements in the list that come before the specified cursor.

@@ -9,8 +9,8 @@ class WhopSDK::Test::Resources::CompanyTokenTransactionsTest < WhopSDK::Test::Re
     response =
       @whop.company_token_transactions.create(
         body: {
+          account_id: "biz_xxxxxxxxxxxxxx",
           amount: 6.9,
-          company_id: "biz_xxxxxxxxxxxxxx",
           destination_user_id: "destination_user_id",
           transaction_type: :transfer,
           user_id: "user_xxxxxxxxxxxxx"
@@ -65,7 +65,7 @@ class WhopSDK::Test::Resources::CompanyTokenTransactionsTest < WhopSDK::Test::Re
   def test_list_required_params
     skip("Mock server tests are disabled")
 
-    response = @whop.company_token_transactions.list(company_id: "biz_xxxxxxxxxxxxxx")
+    response = @whop.company_token_transactions.list(account_id: "biz_xxxxxxxxxxxxxx")
 
     assert_pattern do
       response => WhopSDK::Internal::CursorPage

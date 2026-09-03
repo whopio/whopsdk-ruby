@@ -34,9 +34,9 @@ module WhopSDK
       ) -> WhopSDK::Course
 
       def list: (
+        ?account_id: String,
         ?after: String,
         ?before: String,
-        ?company_id: String,
         ?experience_id: String,
         ?first: Integer,
         ?last: Integer,

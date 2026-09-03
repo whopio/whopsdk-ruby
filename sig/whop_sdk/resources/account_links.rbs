@@ -2,7 +2,7 @@ module WhopSDK
   module Resources
     class AccountLinks
       def create: (
-        company_id: String,
+        account_id: String,
         refresh_url: String,
         return_url: String,
         use_case: WhopSDK::Models::AccountLinkCreateParams::use_case,

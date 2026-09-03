@@ -68,7 +68,7 @@ module WhopSDK
       # - `forum:read`
       sig do
         params(
-          company_id: String,
+          account_id: String,
           after: String,
           before: String,
           first: Integer,
@@ -81,7 +81,7 @@ module WhopSDK
       end
       def list(
         # The unique identifier of the company to list forums for.
-        company_id:,
+        account_id:,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
         # Returns the elements in the list that come before the specified cursor.

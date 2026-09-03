@@ -7,6 +7,13 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
+      # @!attribute account_id
+      #   The unique identifier of a company to filter DM channels by. Only returns
+      #   channels scoped to this company.
+      #
+      #   @return [String, nil]
+      optional :account_id, String
+
       # @!attribute after
       #   Returns the elements in the list that come after the specified cursor.
       #
@@ -18,13 +25,6 @@ module WhopSDK
       #
       #   @return [String, nil]
       optional :before, String
-
-      # @!attribute company_id
-      #   The unique identifier of a company to filter DM channels by. Only returns
-      #   channels scoped to this company.
-      #
-      #   @return [String, nil]
-      optional :company_id, String
 
       # @!attribute first
       #   Returns the first _n_ elements from the list.
@@ -38,15 +38,15 @@ module WhopSDK
       #   @return [Integer, nil]
       optional :last, Integer
 
-      # @!method initialize(after: nil, before: nil, company_id: nil, first: nil, last: nil, request_options: {})
+      # @!method initialize(account_id: nil, after: nil, before: nil, first: nil, last: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::DmChannelListParams} for more details.
+      #
+      #   @param account_id [String] The unique identifier of a company to filter DM channels by. Only returns channe
       #
       #   @param after [String] Returns the elements in the list that come after the specified cursor.
       #
       #   @param before [String] Returns the elements in the list that come before the specified cursor.
-      #
-      #   @param company_id [String] The unique identifier of a company to filter DM channels by. Only returns channe
       #
       #   @param first [Integer] Returns the first _n_ elements from the list.
       #

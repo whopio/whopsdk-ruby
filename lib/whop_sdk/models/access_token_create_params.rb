@@ -7,12 +7,12 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      # @!attribute company_id
+      # @!attribute account_id
       #   The unique identifier of the company to generate the token for, starting with
       #   'biz\_'. The API key must have permission to access this company.
       #
       #   @return [String, nil]
-      optional :company_id, String, nil?: true
+      optional :account_id, String, nil?: true
 
       # @!attribute expires_at
       #   The expiration timestamp for the access token. Defaults to 1 hour from now, with
@@ -36,11 +36,11 @@ module WhopSDK
       #   @return [String, nil]
       optional :user_id, String, nil?: true
 
-      # @!method initialize(company_id: nil, expires_at: nil, scoped_actions: nil, user_id: nil, request_options: {})
+      # @!method initialize(account_id: nil, expires_at: nil, scoped_actions: nil, user_id: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::AccessTokenCreateParams} for more details.
       #
-      #   @param company_id [String, nil] The unique identifier of the company to generate the token for, starting with 'b
+      #   @param account_id [String, nil] The unique identifier of the company to generate the token for, starting with 'b
       #
       #   @param expires_at [Time, nil] The expiration timestamp for the access token. Defaults to 1 hour from now, with
       #

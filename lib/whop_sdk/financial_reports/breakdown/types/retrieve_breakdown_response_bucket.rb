@@ -11,6 +11,7 @@ module Whop_sdk
           PAYMENTS = "payments"
           REFUNDS = "refunds"
           ADS = "ads"
+          APPLICATION_FEES = "application_fees"
           CARD_SPEND = "card_spend"
           CARD_AUTHORIZATION_RELEASES = "card_authorization_releases"
           WITHDRAWALS = "withdrawals"

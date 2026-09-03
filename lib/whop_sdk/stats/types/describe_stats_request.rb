@@ -6,9 +6,9 @@ module Whop_sdk
       class DescribeStatsRequest < Internal::Types::Model
         field :resource, -> { String }, optional: true, nullable: false
 
-        field :company_id, -> { String }, optional: true, nullable: false
-
         field :user_id, -> { String }, optional: true, nullable: false
+
+        field :account_id, -> { String }, optional: true, nullable: false
       end
     end
   end

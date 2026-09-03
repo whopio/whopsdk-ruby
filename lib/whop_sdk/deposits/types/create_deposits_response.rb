@@ -10,8 +10,6 @@ module Whop_sdk
 
         field :hosted_url, -> { String }, optional: false, nullable: true
 
-        field :metadata, -> { Internal::Types::Hash[String, Object] }, optional: false, nullable: false
-
         field :methods, -> { Whop_sdk::Deposits::Types::CreateDepositsResponseMethods }, optional: false, nullable: false
 
         field :object, -> { Whop_sdk::Deposits::Types::CreateDepositsResponseObject }, optional: false, nullable: false

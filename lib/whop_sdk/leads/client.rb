@@ -29,18 +29,18 @@ module Whop_sdk
       # @option params [String, nil] :before
       # @option params [Integer, nil] :first
       # @option params [Integer, nil] :last
-      # @option params [String] :company_id
       # @option params [String, nil] :created_after
       # @option params [String, nil] :created_before
       # @option params [String, nil] :product_ids
+      # @option params [String] :account_id
       #
       # @example
       #   client.leads.list(
       #     first: 42,
       #     last: 42,
-      #     company_id: "biz_xxxxxxxxxxxxxx",
       #     created_after: "2023-12-01T05:00:00Z",
-      #     created_before: "2023-12-01T05:00:00Z"
+      #     created_before: "2023-12-01T05:00:00Z",
+      #     account_id: "biz_xxxxxxxxxxxxxx"
       #   )
       #
       # @return [Whop_sdk::Leads::Types::ListLeadsResponse]
@@ -51,10 +51,10 @@ module Whop_sdk
         query_params["before"] = params[:before] if params.key?(:before)
         query_params["first"] = params[:first] if params.key?(:first)
         query_params["last"] = params[:last] if params.key?(:last)
-        query_params["company_id"] = params[:company_id] if params.key?(:company_id)
         query_params["created_after"] = params[:created_after] if params.key?(:created_after)
         query_params["created_before"] = params[:created_before] if params.key?(:created_before)
         query_params["product_ids"] = params[:product_ids] if params.key?(:product_ids)
+        query_params["account_id"] = params[:account_id] if params.key?(:account_id)
 
         Whop_sdk::Internal::CursorItemIterator.new(
           cursor_field: :end_cursor,
@@ -102,7 +102,7 @@ module Whop_sdk
       # @option request_options [Integer] :timeout_in_seconds
       #
       # @example
-      #   client.leads.create(company_id: "biz_xxxxxxxxxxxxxx")
+      #   client.leads.create(account_id: "biz_xxxxxxxxxxxxxx")
       #
       # @return [Whop_sdk::Types::Lead]
       def create(request_options: {}, **params)

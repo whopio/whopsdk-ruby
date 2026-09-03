@@ -27,17 +27,17 @@ module Whop_sdk
       # @option params [String, nil] :before
       # @option params [Integer, nil] :first
       # @option params [Integer, nil] :last
-      # @option params [String] :company_id
       # @option params [Whop_sdk::Types::Direction, nil] :direction
       # @option params [Whop_sdk::Types::AffiliatesSortableColumns, nil] :order
       # @option params [String, nil] :query
       # @option params [Whop_sdk::Types::Status, nil] :status
+      # @option params [String] :account_id
       #
       # @example
       #   client.affiliates.list(
       #     first: 42,
       #     last: 42,
-      #     company_id: "biz_xxxxxxxxxxxxxx"
+      #     account_id: "biz_xxxxxxxxxxxxxx"
       #   )
       #
       # @return [Whop_sdk::Affiliates::Types::ListAffiliatesResponse]
@@ -48,11 +48,11 @@ module Whop_sdk
         query_params["before"] = params[:before] if params.key?(:before)
         query_params["first"] = params[:first] if params.key?(:first)
         query_params["last"] = params[:last] if params.key?(:last)
-        query_params["company_id"] = params[:company_id] if params.key?(:company_id)
         query_params["direction"] = params[:direction] if params.key?(:direction)
         query_params["order"] = params[:order] if params.key?(:order)
         query_params["query"] = params[:query] if params.key?(:query)
         query_params["status"] = params[:status] if params.key?(:status)
+        query_params["account_id"] = params[:account_id] if params.key?(:account_id)
 
         Whop_sdk::Internal::CursorItemIterator.new(
           cursor_field: :end_cursor,
@@ -98,7 +98,7 @@ module Whop_sdk
       #
       # @example
       #   client.affiliates.create(
-      #     company_id: "biz_xxxxxxxxxxxxxx",
+      #     account_id: "biz_xxxxxxxxxxxxxx",
       #     user_identifier: "user_identifier"
       #   )
       #

@@ -4,7 +4,7 @@ module Whop_sdk
   module AccountLinks
     module Types
       class CreateAccountLinksRequest < Internal::Types::Model
-        field :company_id, -> { String }, optional: false, nullable: false
+        field :account_id, -> { String }, optional: false, nullable: false
 
         field :refresh_url, -> { String }, optional: false, nullable: false
 

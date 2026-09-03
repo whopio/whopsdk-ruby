@@ -26,15 +26,15 @@ module Whop_sdk
       # @option params [String, nil] :before
       # @option params [Integer, nil] :first
       # @option params [Integer, nil] :last
-      # @option params [String] :company_id
       # @option params [String, nil] :product_id
+      # @option params [String] :account_id
       #
       # @example
       #   client.chat_channels.list(
       #     first: 42,
       #     last: 42,
-      #     company_id: "biz_xxxxxxxxxxxxxx",
-      #     product_id: "prod_xxxxxxxxxxxxx"
+      #     product_id: "prod_xxxxxxxxxxxxx",
+      #     account_id: "biz_xxxxxxxxxxxxxx"
       #   )
       #
       # @return [Whop_sdk::ChatChannels::Types::ListChatChannelsResponse]
@@ -45,8 +45,8 @@ module Whop_sdk
         query_params["before"] = params[:before] if params.key?(:before)
         query_params["first"] = params[:first] if params.key?(:first)
         query_params["last"] = params[:last] if params.key?(:last)
-        query_params["company_id"] = params[:company_id] if params.key?(:company_id)
         query_params["product_id"] = params[:product_id] if params.key?(:product_id)
+        query_params["account_id"] = params[:account_id] if params.key?(:account_id)
 
         Whop_sdk::Internal::CursorItemIterator.new(
           cursor_field: :end_cursor,

@@ -29,7 +29,6 @@ module Whop_sdk
       # @option params [Integer, nil] :first
       # @option params [Integer, nil] :last
       # @option params [String, nil] :member_id
-      # @option params [String, nil] :company_id
       # @option params [Whop_sdk::Types::Direction, nil] :direction
       # @option params [String, nil] :created_before
       # @option params [String, nil] :created_after
@@ -40,15 +39,16 @@ module Whop_sdk
       # @option params [Boolean, nil] :has_payer_document
       # @option params [Boolean, nil] :expired
       # @option params [Boolean, nil] :broken
+      # @option params [String, nil] :account_id
       #
       # @example
       #   client.payment_methods.list(
       #     first: 42,
       #     last: 42,
       #     member_id: "mber_xxxxxxxxxxxxx",
-      #     company_id: "biz_xxxxxxxxxxxxxx",
       #     created_before: "2023-12-01T05:00:00Z",
-      #     created_after: "2023-12-01T05:00:00Z"
+      #     created_after: "2023-12-01T05:00:00Z",
+      #     account_id: "biz_xxxxxxxxxxxxxx"
       #   )
       #
       # @return [Whop_sdk::PaymentMethods::Types::ListPaymentMethodsResponse]
@@ -60,7 +60,6 @@ module Whop_sdk
         query_params["first"] = params[:first] if params.key?(:first)
         query_params["last"] = params[:last] if params.key?(:last)
         query_params["member_id"] = params[:member_id] if params.key?(:member_id)
-        query_params["company_id"] = params[:company_id] if params.key?(:company_id)
         query_params["direction"] = params[:direction] if params.key?(:direction)
         query_params["created_before"] = params[:created_before] if params.key?(:created_before)
         query_params["created_after"] = params[:created_after] if params.key?(:created_after)
@@ -71,6 +70,7 @@ module Whop_sdk
         query_params["has_payer_document"] = params[:has_payer_document] if params.key?(:has_payer_document)
         query_params["expired"] = params[:expired] if params.key?(:expired)
         query_params["broken"] = params[:broken] if params.key?(:broken)
+        query_params["account_id"] = params[:account_id] if params.key?(:account_id)
 
         Whop_sdk::Internal::CursorItemIterator.new(
           cursor_field: :end_cursor,
@@ -115,22 +115,22 @@ module Whop_sdk
       # @option request_options [Hash{String => Object}] :additional_body_parameters
       # @option request_options [Integer] :timeout_in_seconds
       # @option params [String] :id
-      # @option params [String, nil] :company_id
       # @option params [String, nil] :member_id
+      # @option params [String, nil] :account_id
       #
       # @example
       #   client.payment_methods.retrieve(
       #     id: "payt_xxxxxxxxxxxxx",
-      #     company_id: "biz_xxxxxxxxxxxxxx",
-      #     member_id: "mber_xxxxxxxxxxxxx"
+      #     member_id: "mber_xxxxxxxxxxxxx",
+      #     account_id: "biz_xxxxxxxxxxxxxx"
       #   )
       #
       # @return [Whop_sdk::Types::PaymentMethod]
       def retrieve(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
         query_params = {}
-        query_params["company_id"] = params[:company_id] if params.key?(:company_id)
         query_params["member_id"] = params[:member_id] if params.key?(:member_id)
+        query_params["account_id"] = params[:account_id] if params.key?(:account_id)
 
         request = Whop_sdk::Internal::JSON::Request.new(
           base_url: request_options[:base_url],
@@ -166,22 +166,22 @@ module Whop_sdk
       # @option request_options [Hash{String => Object}] :additional_body_parameters
       # @option request_options [Integer] :timeout_in_seconds
       # @option params [String] :id
-      # @option params [String, nil] :company_id
       # @option params [String, nil] :member_id
+      # @option params [String, nil] :account_id
       #
       # @example
       #   client.payment_methods.delete_payment_method(
       #     id: "payt_xxxxxxxxxxxxx",
-      #     company_id: "biz_xxxxxxxxxxxxxx",
-      #     member_id: "mber_xxxxxxxxxxxxx"
+      #     member_id: "mber_xxxxxxxxxxxxx",
+      #     account_id: "biz_xxxxxxxxxxxxxx"
       #   )
       #
       # @return [Boolean]
       def delete_payment_method(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
         query_params = {}
-        query_params["company_id"] = params[:company_id] if params.key?(:company_id)
         query_params["member_id"] = params[:member_id] if params.key?(:member_id)
+        query_params["account_id"] = params[:account_id] if params.key?(:account_id)
 
         request = Whop_sdk::Internal::JSON::Request.new(
           base_url: request_options[:base_url],

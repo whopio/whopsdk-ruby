@@ -27,7 +27,6 @@ module Whop_sdk
       # @option params [String, nil] :before
       # @option params [Integer, nil] :first
       # @option params [Integer, nil] :last
-      # @option params [String, nil] :company_id
       # @option params [Whop_sdk::Types::Direction, nil] :direction
       # @option params [String, nil] :product_ids
       # @option params [Whop_sdk::Types::InvoiceCollectionMethods, nil] :collection_methods
@@ -35,14 +34,15 @@ module Whop_sdk
       # @option params [Whop_sdk::Types::InvoicesSortableColumns, nil] :order
       # @option params [String, nil] :created_before
       # @option params [String, nil] :created_after
+      # @option params [String, nil] :account_id
       #
       # @example
       #   client.invoices.list(
       #     first: 42,
       #     last: 42,
-      #     company_id: "biz_xxxxxxxxxxxxxx",
       #     created_before: "2023-12-01T05:00:00Z",
-      #     created_after: "2023-12-01T05:00:00Z"
+      #     created_after: "2023-12-01T05:00:00Z",
+      #     account_id: "biz_xxxxxxxxxxxxxx"
       #   )
       #
       # @return [Whop_sdk::Invoices::Types::ListInvoicesResponse]
@@ -53,7 +53,6 @@ module Whop_sdk
         query_params["before"] = params[:before] if params.key?(:before)
         query_params["first"] = params[:first] if params.key?(:first)
         query_params["last"] = params[:last] if params.key?(:last)
-        query_params["company_id"] = params[:company_id] if params.key?(:company_id)
         query_params["direction"] = params[:direction] if params.key?(:direction)
         query_params["product_ids"] = params[:product_ids] if params.key?(:product_ids)
         query_params["collection_methods"] = params[:collection_methods] if params.key?(:collection_methods)
@@ -61,6 +60,7 @@ module Whop_sdk
         query_params["order"] = params[:order] if params.key?(:order)
         query_params["created_before"] = params[:created_before] if params.key?(:created_before)
         query_params["created_after"] = params[:created_after] if params.key?(:created_after)
+        query_params["account_id"] = params[:account_id] if params.key?(:account_id)
 
         Whop_sdk::Internal::CursorItemIterator.new(
           cursor_field: :end_cursor,
@@ -110,8 +110,8 @@ module Whop_sdk
       #
       # @example
       #   client.invoices.create(
+      #     account_id: "biz_xxxxxxxxxxxxxx",
       #     collection_method: "send_invoice",
-      #     company_id: "biz_xxxxxxxxxxxxxx",
       #     plan: {},
       #     product: {
       #       title: "title"

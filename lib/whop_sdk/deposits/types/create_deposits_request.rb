@@ -6,11 +6,7 @@ module Whop_sdk
       class CreateDepositsRequest < Internal::Types::Model
         field :amount, -> { Integer }, optional: true, nullable: false
 
-        field :destination, -> { Whop_sdk::Deposits::Types::CreateDepositsRequestDestination }, optional: false, nullable: false
-
-        field :metadata, -> { Internal::Types::Hash[String, Object] }, optional: true, nullable: false
-
-        field :network, -> { Whop_sdk::Deposits::Types::CreateDepositsRequestNetwork }, optional: true, nullable: false
+        field :destination, -> { String }, optional: false, nullable: false
       end
     end
   end

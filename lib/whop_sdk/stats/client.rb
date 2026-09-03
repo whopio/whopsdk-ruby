@@ -59,13 +59,13 @@ module Whop_sdk
       # @option request_options [Hash{String => Object}] :additional_body_parameters
       # @option request_options [Integer] :timeout_in_seconds
       # @option params [String, nil] :resource
-      # @option params [String, nil] :company_id
       # @option params [String, nil] :user_id
+      # @option params [String, nil] :account_id
       #
       # @example
       #   client.stats.describe_stats(
-      #     company_id: "biz_xxxxxxxxxxxxxx",
-      #     user_id: "user_xxxxxxxxxxxxx"
+      #     user_id: "user_xxxxxxxxxxxxx",
+      #     account_id: "biz_xxxxxxxxxxxxxx"
       #   )
       #
       # @return [Whop_sdk::Stats::Types::DescribeStatsResponse]
@@ -73,8 +73,8 @@ module Whop_sdk
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
         query_params = {}
         query_params["resource"] = params[:resource] if params.key?(:resource)
-        query_params["company_id"] = params[:company_id] if params.key?(:company_id)
         query_params["user_id"] = params[:user_id] if params.key?(:user_id)
+        query_params["account_id"] = params[:account_id] if params.key?(:account_id)
 
         request = Whop_sdk::Internal::JSON::Request.new(
           base_url: request_options[:base_url],
@@ -116,16 +116,16 @@ module Whop_sdk
       # @option params [String, nil] :time_zone
       # @option params [String, nil] :from
       # @option params [String, nil] :to
-      # @option params [String, nil] :company_id
       # @option params [String, nil] :user_id
+      # @option params [String, nil] :account_id
       #
       # @example
       #   client.stats.metric_stats(
       #     resource: "resource",
       #     from: "2023-12-01T05:00:00Z",
       #     to: "2023-12-01T05:00:00Z",
-      #     company_id: "biz_xxxxxxxxxxxxxx",
-      #     user_id: "user_xxxxxxxxxxxxx"
+      #     user_id: "user_xxxxxxxxxxxxx",
+      #     account_id: "biz_xxxxxxxxxxxxxx"
       #   )
       #
       # @return [Whop_sdk::Stats::Types::MetricStatsResponse]
@@ -139,8 +139,8 @@ module Whop_sdk
         query_params["time_zone"] = params[:time_zone] if params.key?(:time_zone)
         query_params["from"] = params[:from] if params.key?(:from)
         query_params["to"] = params[:to] if params.key?(:to)
-        query_params["company_id"] = params[:company_id] if params.key?(:company_id)
         query_params["user_id"] = params[:user_id] if params.key?(:user_id)
+        query_params["account_id"] = params[:account_id] if params.key?(:account_id)
 
         request = Whop_sdk::Internal::JSON::Request.new(
           base_url: request_options[:base_url],
@@ -182,8 +182,8 @@ module Whop_sdk
       # @option params [String, nil] :cursor
       # @option params [String, nil] :sort
       # @option params [Whop_sdk::Types::Direction, nil] :sort_direction
-      # @option params [String, nil] :company_id
       # @option params [String, nil] :user_id
+      # @option params [String, nil] :account_id
       #
       # @example
       #   client.stats.raw_stats(
@@ -191,8 +191,8 @@ module Whop_sdk
       #     from: "2023-12-01T05:00:00Z",
       #     to: "2023-12-01T05:00:00Z",
       #     limit: 42,
-      #     company_id: "biz_xxxxxxxxxxxxxx",
-      #     user_id: "user_xxxxxxxxxxxxx"
+      #     user_id: "user_xxxxxxxxxxxxx",
+      #     account_id: "biz_xxxxxxxxxxxxxx"
       #   )
       #
       # @return [Whop_sdk::Stats::Types::RawStatsResponse]
@@ -206,8 +206,8 @@ module Whop_sdk
         query_params["cursor"] = params[:cursor] if params.key?(:cursor)
         query_params["sort"] = params[:sort] if params.key?(:sort)
         query_params["sort_direction"] = params[:sort_direction] if params.key?(:sort_direction)
-        query_params["company_id"] = params[:company_id] if params.key?(:company_id)
         query_params["user_id"] = params[:user_id] if params.key?(:user_id)
+        query_params["account_id"] = params[:account_id] if params.key?(:account_id)
 
         request = Whop_sdk::Internal::JSON::Request.new(
           base_url: request_options[:base_url],

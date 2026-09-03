@@ -7,6 +7,7 @@ module Whop_sdk
 
       REDIRECT = "redirect"
       PROGRAMATIC = "programatic"
+      WHOP_AI = "whop_ai"
     end
   end
 end

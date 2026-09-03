@@ -27,14 +27,14 @@ module Whop_sdk
       # @option params [Integer, nil] :first
       # @option params [Integer, nil] :last
       # @option params [String, nil] :experience_id
-      # @option params [String, nil] :company_id
+      # @option params [String, nil] :account_id
       #
       # @example
       #   client.courses.list(
       #     first: 42,
       #     last: 42,
       #     experience_id: "exp_xxxxxxxxxxxxxx",
-      #     company_id: "biz_xxxxxxxxxxxxxx"
+      #     account_id: "biz_xxxxxxxxxxxxxx"
       #   )
       #
       # @return [Whop_sdk::Courses::Types::ListCoursesResponse]
@@ -46,7 +46,7 @@ module Whop_sdk
         query_params["first"] = params[:first] if params.key?(:first)
         query_params["last"] = params[:last] if params.key?(:last)
         query_params["experience_id"] = params[:experience_id] if params.key?(:experience_id)
-        query_params["company_id"] = params[:company_id] if params.key?(:company_id)
+        query_params["account_id"] = params[:account_id] if params.key?(:account_id)
 
         Whop_sdk::Internal::CursorItemIterator.new(
           cursor_field: :end_cursor,

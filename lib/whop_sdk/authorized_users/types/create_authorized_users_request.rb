@@ -4,7 +4,7 @@ module Whop_sdk
   module AuthorizedUsers
     module Types
       class CreateAuthorizedUsersRequest < Internal::Types::Model
-        field :company_id, -> { String }, optional: false, nullable: false
+        field :account_id, -> { String }, optional: false, nullable: false
 
         field :elevation, -> { Whop_sdk::AuthorizedUsers::Types::CreateAuthorizedUsersRequestElevation }, optional: true, nullable: false
 

@@ -4,7 +4,7 @@ module Whop_sdk
   module SupportChannels
     module Types
       class CreateSupportChannelsRequest < Internal::Types::Model
-        field :company_id, -> { String }, optional: false, nullable: false
+        field :account_id, -> { String }, optional: false, nullable: false
 
         field :custom_name, -> { String }, optional: true, nullable: false
 

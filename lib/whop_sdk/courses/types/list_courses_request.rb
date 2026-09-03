@@ -14,7 +14,7 @@ module Whop_sdk
 
         field :experience_id, -> { String }, optional: true, nullable: false
 
-        field :company_id, -> { String }, optional: true, nullable: false
+        field :account_id, -> { String }, optional: true, nullable: false
       end
     end
   end

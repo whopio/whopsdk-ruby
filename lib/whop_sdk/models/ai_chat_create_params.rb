@@ -13,12 +13,12 @@ module WhopSDK
       #   @return [String]
       required :message_text, String
 
-      # @!attribute current_company_id
-      #   The unique identifier of the company to set as context for the AI chat (e.g.,
+      # @!attribute current_account_id
+      #   The unique identifier of the account to set as context for the AI chat (e.g.,
       #   "biz_XXXXX").
       #
       #   @return [String, nil]
-      optional :current_company_id, String, nil?: true
+      optional :current_account_id, String, nil?: true
 
       # @!attribute message_attachments
       #   A list of previously uploaded file attachments to include with the first
@@ -48,13 +48,13 @@ module WhopSDK
       #   @return [String, nil]
       optional :title, String, nil?: true
 
-      # @!method initialize(message_text:, current_company_id: nil, message_attachments: nil, message_source: nil, suggestion_type: nil, title: nil, request_options: {})
+      # @!method initialize(message_text:, current_account_id: nil, message_attachments: nil, message_source: nil, suggestion_type: nil, title: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::AIChatCreateParams} for more details.
       #
       #   @param message_text [String] The text content of the first message to send to the AI agent.
       #
-      #   @param current_company_id [String, nil] The unique identifier of the company to set as context for the AI chat (e.g., "b
+      #   @param current_account_id [String, nil] The unique identifier of the account to set as context for the AI chat (e.g., "b
       #
       #   @param message_attachments [Array<WhopSDK::Models::AIChatCreateParams::MessageAttachment>, nil] A list of previously uploaded file attachments to include with the first message
       #

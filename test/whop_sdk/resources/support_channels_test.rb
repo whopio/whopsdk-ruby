@@ -15,7 +15,7 @@ class WhopSDK::Test::Resources::SupportChannelsTest < WhopSDK::Test::ResourceTes
     assert_pattern do
       response => {
         id: String,
-        company_id: String | nil,
+        account_id: String | nil,
         custom_name: String | nil,
         customer_user: WhopSDK::SupportChannel::CustomerUser | nil,
         last_message_at: Time | nil,
@@ -36,7 +36,7 @@ class WhopSDK::Test::Resources::SupportChannelsTest < WhopSDK::Test::ResourceTes
     assert_pattern do
       response => {
         id: String,
-        company_id: String | nil,
+        account_id: String | nil,
         custom_name: String | nil,
         customer_user: WhopSDK::SupportChannel::CustomerUser | nil,
         last_message_at: Time | nil,
@@ -64,7 +64,7 @@ class WhopSDK::Test::Resources::SupportChannelsTest < WhopSDK::Test::ResourceTes
     assert_pattern do
       row => {
         id: String,
-        company_id: String | nil,
+        account_id: String | nil,
         custom_name: String | nil,
         customer_user: WhopSDK::Models::SupportChannelListResponse::CustomerUser | nil,
         last_message_at: Time | nil,

@@ -7,7 +7,7 @@ module WhopSDK
       # {WhopSDK::Models::PaymentMethodRetrieveParams} for more details.
       #
       # Retrieves the details of an existing payment method. Addresses a member's wallet
-      # when member_id or company_id is given, otherwise your own.
+      # when member_id or account_id is given, otherwise your own.
       #
       # Required permissions:
       #
@@ -19,7 +19,7 @@ module WhopSDK
       #
       # @param account_id [String] The unique identifier of the company. Provide either this or member_id, not both
       #
-      # @param member_id [String] The unique identifier of the member. Provide either this or company_id, not both
+      # @param member_id [String] The unique identifier of the member. Provide either this or account_id, not both
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -80,7 +80,7 @@ module WhopSDK
       #
       # @param last [Integer] Returns the last _n_ elements from the list.
       #
-      # @param member_id [String] The unique identifier of the member to list payment methods for. Omit this and c
+      # @param member_id [String] The unique identifier of the member to list payment methods for. Omit this and a
       #
       # @param payment_method_types [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>] Only return payment methods of these types. Pass the eligible `type` values from
       #

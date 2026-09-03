@@ -3,7 +3,7 @@ module WhopSDK
     type ai_chat_update_params =
       {
         id: String,
-        current_company_id: String?,
+        current_account_id: String?,
         notification_preference: WhopSDK::Models::notification_preferences?,
         title: String?
       }
@@ -15,7 +15,7 @@ module WhopSDK
 
       attr_accessor id: String
 
-      attr_accessor current_company_id: String?
+      attr_accessor current_account_id: String?
 
       attr_accessor notification_preference: WhopSDK::Models::notification_preferences?
 
@@ -23,7 +23,7 @@ module WhopSDK
 
       def initialize: (
         id: String,
-        ?current_company_id: String?,
+        ?current_account_id: String?,
         ?notification_preference: WhopSDK::Models::notification_preferences?,
         ?title: String?,
         ?request_options: WhopSDK::request_opts
@@ -31,7 +31,7 @@ module WhopSDK
 
       def to_hash: -> {
         id: String,
-        current_company_id: String?,
+        current_account_id: String?,
         notification_preference: WhopSDK::Models::notification_preferences?,
         title: String?,
         request_options: WhopSDK::RequestOptions

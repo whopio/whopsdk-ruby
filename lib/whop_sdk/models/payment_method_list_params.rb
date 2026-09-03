@@ -103,7 +103,7 @@ module WhopSDK
 
       # @!attribute member_id
       #   The unique identifier of the member to list payment methods for. Omit this and
-      #   company_id to list your own saved payment methods.
+      #   account_id to list your own saved payment methods.
       #
       #   @return [String, nil]
       optional :member_id, String
@@ -148,7 +148,7 @@ module WhopSDK
       #
       #   @param last [Integer] Returns the last _n_ elements from the list.
       #
-      #   @param member_id [String] The unique identifier of the member to list payment methods for. Omit this and c
+      #   @param member_id [String] The unique identifier of the member to list payment methods for. Omit this and a
       #
       #   @param payment_method_types [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>] Only return payment methods of these types. Pass the eligible `type` values from
       #

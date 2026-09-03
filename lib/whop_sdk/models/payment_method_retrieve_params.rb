@@ -20,7 +20,7 @@ module WhopSDK
       optional :account_id, String
 
       # @!attribute member_id
-      #   The unique identifier of the member. Provide either this or company_id, not
+      #   The unique identifier of the member. Provide either this or account_id, not
       #   both. Omit both to address your own saved payment methods.
       #
       #   @return [String, nil]
@@ -34,7 +34,7 @@ module WhopSDK
       #
       #   @param account_id [String] The unique identifier of the company. Provide either this or member_id, not both
       #
-      #   @param member_id [String] The unique identifier of the member. Provide either this or company_id, not both
+      #   @param member_id [String] The unique identifier of the member. Provide either this or account_id, not both
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
     end

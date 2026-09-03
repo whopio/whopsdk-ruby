@@ -3,7 +3,7 @@ module WhopSDK
     type support_channel_list_response =
       {
         id: String,
-        company_id: String?,
+        account_id: String?,
         custom_name: String?,
         customer_user: WhopSDK::Models::SupportChannelListResponse::CustomerUser?,
         last_message_at: Time?,
@@ -13,7 +13,7 @@ module WhopSDK
     class SupportChannelListResponse < WhopSDK::Internal::Type::BaseModel
       attr_accessor id: String
 
-      attr_accessor company_id: String?
+      attr_accessor account_id: String?
 
       attr_accessor custom_name: String?
 
@@ -25,7 +25,7 @@ module WhopSDK
 
       def initialize: (
         id: String,
-        company_id: String?,
+        account_id: String?,
         custom_name: String?,
         customer_user: WhopSDK::Models::SupportChannelListResponse::CustomerUser?,
         last_message_at: Time?,
@@ -34,7 +34,7 @@ module WhopSDK
 
       def to_hash: -> {
         id: String,
-        company_id: String?,
+        account_id: String?,
         custom_name: String?,
         customer_user: WhopSDK::Models::SupportChannelListResponse::CustomerUser?,
         last_message_at: Time?,

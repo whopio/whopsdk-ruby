@@ -10,12 +10,12 @@ module WhopSDK
       #   @return [String]
       required :id, String
 
-      # @!attribute company_id
-      #   The unique identifier of the company associated with this channel. Null if this
-      #   is not a support or company-scoped conversation.
+      # @!attribute account_id
+      #   The unique identifier of the account associated with this channel. Null if this
+      #   is not a support or account-scoped conversation.
       #
       #   @return [String, nil]
-      required :company_id, String, nil?: true
+      required :account_id, String, nil?: true
 
       # @!attribute custom_name
       #   A custom display name assigned to this channel by the user. Null if no custom
@@ -45,7 +45,7 @@ module WhopSDK
       #   @return [Time, nil]
       required :resolved_at, Time, nil?: true
 
-      # @!method initialize(id:, company_id:, custom_name:, customer_user:, last_message_at:, resolved_at:)
+      # @!method initialize(id:, account_id:, custom_name:, customer_user:, last_message_at:, resolved_at:)
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::SupportChannelListResponse} for more details.
       #
@@ -54,7 +54,7 @@ module WhopSDK
       #
       #   @param id [String] The unique identifier for the entity
       #
-      #   @param company_id [String, nil] The unique identifier of the company associated with this channel. Null if this
+      #   @param account_id [String, nil] The unique identifier of the account associated with this channel. Null if this
       #
       #   @param custom_name [String, nil] A custom display name assigned to this channel by the user. Null if no custom na
       #

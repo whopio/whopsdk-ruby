@@ -12,11 +12,11 @@ module WhopSDK
       #
       # - `ai_chat:create`
       #
-      # @overload create(message_text:, current_company_id: nil, message_attachments: nil, message_source: nil, suggestion_type: nil, title: nil, request_options: {})
+      # @overload create(message_text:, current_account_id: nil, message_attachments: nil, message_source: nil, suggestion_type: nil, title: nil, request_options: {})
       #
       # @param message_text [String] The text content of the first message to send to the AI agent.
       #
-      # @param current_company_id [String, nil] The unique identifier of the company to set as context for the AI chat (e.g., "b
+      # @param current_account_id [String, nil] The unique identifier of the account to set as context for the AI chat (e.g., "b
       #
       # @param message_attachments [Array<WhopSDK::Models::AIChatCreateParams::MessageAttachment>, nil] A list of previously uploaded file attachments to include with the first message
       #
@@ -65,18 +65,18 @@ module WhopSDK
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::AIChatUpdateParams} for more details.
       #
-      # Update an AI chat's title, notification preferences, or associated company
+      # Update an AI chat's title, notification preferences, or associated account
       # context.
       #
       # Required permissions:
       #
       # - `ai_chat:update`
       #
-      # @overload update(id, current_company_id: nil, notification_preference: nil, title: nil, request_options: {})
+      # @overload update(id, current_account_id: nil, notification_preference: nil, title: nil, request_options: {})
       #
       # @param id [String] The unique identifier of the AI chat to update (e.g., "ai_chat_XXXXX").
       #
-      # @param current_company_id [String, nil] The unique identifier of the company to set as context for the AI chat (e.g., "b
+      # @param current_account_id [String, nil] The unique identifier of the account to set as context for the AI chat (e.g., "b
       #
       # @param notification_preference [Symbol, WhopSDK::Models::NotificationPreferences, nil] The notification preference for an AI chat
       #

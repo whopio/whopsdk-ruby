@@ -25,7 +25,7 @@ module WhopSDK
       sig { params(account_id: String).void }
       attr_writer :account_id
 
-      # The unique identifier of the member. Provide either this or company_id, not
+      # The unique identifier of the member. Provide either this or account_id, not
       # both. Omit both to address your own saved payment methods.
       sig { returns(T.nilable(String)) }
       attr_reader :member_id
@@ -46,7 +46,7 @@ module WhopSDK
         # The unique identifier of the company. Provide either this or member_id, not
         # both. Omit both to address your own saved payment methods.
         account_id: nil,
-        # The unique identifier of the member. Provide either this or company_id, not
+        # The unique identifier of the member. Provide either this or account_id, not
         # both. Omit both to address your own saved payment methods.
         member_id: nil,
         request_options: {}

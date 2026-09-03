@@ -11,7 +11,7 @@ module WhopSDK
       sig do
         params(
           message_text: String,
-          current_company_id: T.nilable(String),
+          current_account_id: T.nilable(String),
           message_attachments:
             T.nilable(
               T::Array[WhopSDK::AIChatCreateParams::MessageAttachment::OrHash]
@@ -26,9 +26,9 @@ module WhopSDK
       def create(
         # The text content of the first message to send to the AI agent.
         message_text:,
-        # The unique identifier of the company to set as context for the AI chat (e.g.,
+        # The unique identifier of the account to set as context for the AI chat (e.g.,
         # "biz_XXXXX").
-        current_company_id: nil,
+        current_account_id: nil,
         # A list of previously uploaded file attachments to include with the first
         # message.
         message_attachments: nil,
@@ -57,7 +57,7 @@ module WhopSDK
       )
       end
 
-      # Update an AI chat's title, notification preferences, or associated company
+      # Update an AI chat's title, notification preferences, or associated account
       # context.
       #
       # Required permissions:
@@ -66,7 +66,7 @@ module WhopSDK
       sig do
         params(
           id: String,
-          current_company_id: T.nilable(String),
+          current_account_id: T.nilable(String),
           notification_preference:
             T.nilable(WhopSDK::NotificationPreferences::OrSymbol),
           title: T.nilable(String),
@@ -76,9 +76,9 @@ module WhopSDK
       def update(
         # The unique identifier of the AI chat to update (e.g., "ai_chat_XXXXX").
         id,
-        # The unique identifier of the company to set as context for the AI chat (e.g.,
+        # The unique identifier of the account to set as context for the AI chat (e.g.,
         # "biz_XXXXX").
-        current_company_id: nil,
+        current_account_id: nil,
         # The notification preference for an AI chat
         notification_preference: nil,
         # The new display title for the AI chat thread (e.g., "Help with billing").

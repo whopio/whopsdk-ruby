@@ -15,10 +15,10 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :message_text
 
-      # The unique identifier of the company to set as context for the AI chat (e.g.,
+      # The unique identifier of the account to set as context for the AI chat (e.g.,
       # "biz_XXXXX").
       sig { returns(T.nilable(String)) }
-      attr_accessor :current_company_id
+      attr_accessor :current_account_id
 
       # A list of previously uploaded file attachments to include with the first
       # message.
@@ -47,7 +47,7 @@ module WhopSDK
       sig do
         params(
           message_text: String,
-          current_company_id: T.nilable(String),
+          current_account_id: T.nilable(String),
           message_attachments:
             T.nilable(
               T::Array[WhopSDK::AIChatCreateParams::MessageAttachment::OrHash]
@@ -62,9 +62,9 @@ module WhopSDK
       def self.new(
         # The text content of the first message to send to the AI agent.
         message_text:,
-        # The unique identifier of the company to set as context for the AI chat (e.g.,
+        # The unique identifier of the account to set as context for the AI chat (e.g.,
         # "biz_XXXXX").
-        current_company_id: nil,
+        current_account_id: nil,
         # A list of previously uploaded file attachments to include with the first
         # message.
         message_attachments: nil,
@@ -83,7 +83,7 @@ module WhopSDK
         override.returns(
           {
             message_text: String,
-            current_company_id: T.nilable(String),
+            current_account_id: T.nilable(String),
             message_attachments:
               T.nilable(
                 T::Array[WhopSDK::AIChatCreateParams::MessageAttachment]

@@ -12,8 +12,8 @@ module WhopSDK
         end
 
       # The unique identifier of the experience to create this post in. For example,
-      # 'exp_xxxxx'. Pass 'public' along with company_id to automatically use the
-      # company's public forum.
+      # 'exp_xxxxx'. Pass 'public' along with account_id to automatically use the
+      # account's public forum.
       sig { returns(String) }
       attr_accessor :experience_id
 
@@ -105,8 +105,8 @@ module WhopSDK
       end
       def self.new(
         # The unique identifier of the experience to create this post in. For example,
-        # 'exp_xxxxx'. Pass 'public' along with company_id to automatically use the
-        # company's public forum.
+        # 'exp_xxxxx'. Pass 'public' along with account_id to automatically use the
+        # account's public forum.
         experience_id:,
         # The unique identifier of the company whose public forum to post in. Required
         # when experience_id is 'public'. For example, 'biz_xxxxx'.

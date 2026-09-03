@@ -15,10 +15,10 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :id
 
-      # The unique identifier of the company associated with this channel. Null if this
-      # is not a support or company-scoped conversation.
+      # The unique identifier of the account associated with this channel. Null if this
+      # is not a support or account-scoped conversation.
       sig { returns(T.nilable(String)) }
-      attr_accessor :company_id
+      attr_accessor :account_id
 
       # A custom display name assigned to this channel by the user. Null if no custom
       # name has been set.
@@ -59,7 +59,7 @@ module WhopSDK
       sig do
         params(
           id: String,
-          company_id: T.nilable(String),
+          account_id: T.nilable(String),
           custom_name: T.nilable(String),
           customer_user:
             T.nilable(
@@ -72,9 +72,9 @@ module WhopSDK
       def self.new(
         # The unique identifier for the entity
         id:,
-        # The unique identifier of the company associated with this channel. Null if this
-        # is not a support or company-scoped conversation.
-        company_id:,
+        # The unique identifier of the account associated with this channel. Null if this
+        # is not a support or account-scoped conversation.
+        account_id:,
         # A custom display name assigned to this channel by the user. Null if no custom
         # name has been set.
         custom_name:,
@@ -94,7 +94,7 @@ module WhopSDK
         override.returns(
           {
             id: String,
-            company_id: T.nilable(String),
+            account_id: T.nilable(String),
             custom_name: T.nilable(String),
             customer_user:
               T.nilable(

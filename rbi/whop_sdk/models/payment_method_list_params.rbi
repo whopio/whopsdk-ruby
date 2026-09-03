@@ -142,7 +142,7 @@ module WhopSDK
       attr_writer :last
 
       # The unique identifier of the member to list payment methods for. Omit this and
-      # company_id to list your own saved payment methods.
+      # account_id to list your own saved payment methods.
       sig { returns(T.nilable(String)) }
       attr_reader :member_id
 
@@ -227,7 +227,7 @@ module WhopSDK
         # Returns the last _n_ elements from the list.
         last: nil,
         # The unique identifier of the member to list payment methods for. Omit this and
-        # company_id to list your own saved payment methods.
+        # account_id to list your own saved payment methods.
         member_id: nil,
         # Only return payment methods of these types. Pass the eligible `type` values from
         # the payment method types catalogue so the list holds nothing the purchase cannot

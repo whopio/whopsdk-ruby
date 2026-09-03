@@ -4,7 +4,7 @@ module WhopSDK
   module Resources
     class PaymentMethods
       # Retrieves the details of an existing payment method. Addresses a member's wallet
-      # when member_id or company_id is given, otherwise your own.
+      # when member_id or account_id is given, otherwise your own.
       #
       # Required permissions:
       #
@@ -23,7 +23,7 @@ module WhopSDK
         # The unique identifier of the company. Provide either this or member_id, not
         # both. Omit both to address your own saved payment methods.
         account_id: nil,
-        # The unique identifier of the member. Provide either this or company_id, not
+        # The unique identifier of the member. Provide either this or account_id, not
         # both. Omit both to address your own saved payment methods.
         member_id: nil,
         request_options: {}
@@ -105,7 +105,7 @@ module WhopSDK
         # Returns the last _n_ elements from the list.
         last: nil,
         # The unique identifier of the member to list payment methods for. Omit this and
-        # company_id to list your own saved payment methods.
+        # account_id to list your own saved payment methods.
         member_id: nil,
         # Only return payment methods of these types. Pass the eligible `type` values from
         # the payment method types catalogue so the list holds nothing the purchase cannot

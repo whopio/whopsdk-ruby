@@ -3,7 +3,7 @@ module WhopSDK
     class AIChats
       def create: (
         message_text: String,
-        ?current_company_id: String?,
+        ?current_account_id: String?,
         ?message_attachments: ::Array[WhopSDK::AIChatCreateParams::MessageAttachment]?,
         ?message_source: WhopSDK::Models::AIChatCreateParams::message_source?,
         ?suggestion_type: String?,
@@ -18,7 +18,7 @@ module WhopSDK
 
       def update: (
         String id,
-        ?current_company_id: String?,
+        ?current_account_id: String?,
         ?notification_preference: WhopSDK::Models::notification_preferences?,
         ?title: String?,
         ?request_options: WhopSDK::request_opts

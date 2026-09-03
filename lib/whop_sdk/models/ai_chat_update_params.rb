@@ -12,12 +12,12 @@ module WhopSDK
       #   @return [String]
       required :id, String
 
-      # @!attribute current_company_id
-      #   The unique identifier of the company to set as context for the AI chat (e.g.,
+      # @!attribute current_account_id
+      #   The unique identifier of the account to set as context for the AI chat (e.g.,
       #   "biz_XXXXX").
       #
       #   @return [String, nil]
-      optional :current_company_id, String, nil?: true
+      optional :current_account_id, String, nil?: true
 
       # @!attribute notification_preference
       #   The notification preference for an AI chat
@@ -31,13 +31,13 @@ module WhopSDK
       #   @return [String, nil]
       optional :title, String, nil?: true
 
-      # @!method initialize(id:, current_company_id: nil, notification_preference: nil, title: nil, request_options: {})
+      # @!method initialize(id:, current_account_id: nil, notification_preference: nil, title: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::AIChatUpdateParams} for more details.
       #
       #   @param id [String]
       #
-      #   @param current_company_id [String, nil] The unique identifier of the company to set as context for the AI chat (e.g., "b
+      #   @param current_account_id [String, nil] The unique identifier of the account to set as context for the AI chat (e.g., "b
       #
       #   @param notification_preference [Symbol, WhopSDK::Models::NotificationPreferences, nil] The notification preference for an AI chat
       #

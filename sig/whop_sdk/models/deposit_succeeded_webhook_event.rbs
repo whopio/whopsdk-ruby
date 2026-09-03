@@ -314,6 +314,11 @@ module WhopSDK
           | :withdrawal_reclassification
           | :withdrawal_reversal
           | :withdrawal_topup_adjustment
+          | :deposit
+          | :wallet_transfer_incoming
+          | :wallet_transfer_outgoing
+          | :swap_source
+          | :swap_target
 
         module LineType
           extend WhopSDK::Internal::Type::Enum
@@ -446,6 +451,11 @@ module WhopSDK
           WITHDRAWAL_RECLASSIFICATION: :withdrawal_reclassification
           WITHDRAWAL_REVERSAL: :withdrawal_reversal
           WITHDRAWAL_TOPUP_ADJUSTMENT: :withdrawal_topup_adjustment
+          DEPOSIT: :deposit
+          WALLET_TRANSFER_INCOMING: :wallet_transfer_incoming
+          WALLET_TRANSFER_OUTGOING: :wallet_transfer_outgoing
+          SWAP_SOURCE: :swap_source
+          SWAP_TARGET: :swap_target
 
           def self?.values: -> ::Array[WhopSDK::Models::DepositSucceededWebhookEvent::Data::line_type]
         end

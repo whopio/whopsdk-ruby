@@ -15206,6 +15206,11 @@ module WhopSDK
                 :submit_information_request,
                 WhopSDK::AccountUpdatedWebhookEvent::Data::RequiredAction::Action::TaggedSymbol
               )
+            UPDATE_AUTOMATIC_WITHDRAWAL_METHOD =
+              T.let(
+                :update_automatic_withdrawal_method,
+                WhopSDK::AccountUpdatedWebhookEvent::Data::RequiredAction::Action::TaggedSymbol
+              )
             REAUTHORIZE_PAYOUT_METHODS =
               T.let(
                 :reauthorize_payout_methods,

@@ -1094,6 +1094,31 @@ module WhopSDK
               :withdrawal_topup_adjustment,
               WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
             )
+          DEPOSIT =
+            T.let(
+              :deposit,
+              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+            )
+          WALLET_TRANSFER_INCOMING =
+            T.let(
+              :wallet_transfer_incoming,
+              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+            )
+          WALLET_TRANSFER_OUTGOING =
+            T.let(
+              :wallet_transfer_outgoing,
+              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+            )
+          SWAP_SOURCE =
+            T.let(
+              :swap_source,
+              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+            )
+          SWAP_TARGET =
+            T.let(
+              :swap_target,
+              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+            )
 
           sig do
             override.returns(

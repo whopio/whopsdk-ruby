@@ -11,7 +11,7 @@ module Whop_sdk
       end
 
       # Create a short-lived access token for authenticating API requests. When using API key authentication, provide
-      # company_id or user_id. When using OAuth, the user is derived from the token. Use this token with Whop's web and
+      # account_id or user_id. When using OAuth, the user is derived from the token. Use this token with Whop's web and
       # mobile embedded components.
       #
       # @param request_options [Hash]

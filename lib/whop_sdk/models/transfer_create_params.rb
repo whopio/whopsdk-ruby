@@ -40,6 +40,20 @@ module WhopSDK
       #   @return [Time, nil]
       optional :expires_at, Time, nil?: true
 
+      # @!attribute feed_id
+      #   Ledger transfers only. The feed the transfer was initiated from. Given with
+      #   `feed_type`, the payment receipt posts into that feed instead of a direct
+      #   message.
+      #
+      #   @return [String, nil]
+      optional :feed_id, String, nil?: true
+
+      # @!attribute feed_type
+      #   Ledger transfers only. The type of the feed named by `feed_id`.
+      #
+      #   @return [Symbol, WhopSDK::Models::TransferCreateParams::FeedType, nil]
+      optional :feed_type, enum: -> { WhopSDK::TransferCreateParams::FeedType }, nil?: true
+
       # @!attribute idempotence_key
       #   Ledger transfers and wallet sends. A unique key that makes retries safe.
       #   Retrying with the same key returns the original transfer, or attaches to the
@@ -88,7 +102,7 @@ module WhopSDK
       #   @return [String, nil]
       optional :idempotency_key, String
 
-      # @!method initialize(amount:, origin_id:, currency: nil, destination_id: nil, expires_at: nil, idempotence_key: nil, metadata: nil, notes: nil, redeemable_count: nil, type: nil, api_version_date: nil, idempotency_key: nil, request_options: {})
+      # @!method initialize(amount:, origin_id:, currency: nil, destination_id: nil, expires_at: nil, feed_id: nil, feed_type: nil, idempotence_key: nil, metadata: nil, notes: nil, redeemable_count: nil, type: nil, api_version_date: nil, idempotency_key: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::TransferCreateParams} for more details.
       #
@@ -101,6 +115,10 @@ module WhopSDK
       #   @param destination_id [String] The recipient. Required for ledger and wallet*send (a user*/biz*/ldgr* ID, or —
       #
       #   @param expires_at [Time, nil] claim_link only. Link expiry as an ISO 8601 timestamp. Defaults to 24 hours from
+      #
+      #   @param feed_id [String, nil] Ledger transfers only. The feed the transfer was initiated from. Given with `fee
+      #
+      #   @param feed_type [Symbol, WhopSDK::Models::TransferCreateParams::FeedType, nil] Ledger transfers only. The type of the feed named by `feed_id`.
       #
       #   @param idempotence_key [String, nil] Ledger transfers and wallet sends. A unique key that makes retries safe. Retryin
       #
@@ -117,6 +135,21 @@ module WhopSDK
       #   @param idempotency_key [String]
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
+
+      # Ledger transfers only. The type of the feed named by `feed_id`.
+      module FeedType
+        extend WhopSDK::Internal::Type::Enum
+
+        DMS_FEED = :dms_feed
+        CHAT_FEED = :chat_feed
+        FORUM_FEED = :forum_feed
+        LIVESTREAM_FEED = :livestream_feed
+        UNIVERSAL_POST = :universal_post
+        USER = :user
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
 
       # The kind of money movement, which decides what comes back. Defaults to ledger.
       # `ledger` moves credit between two Whop balances and returns a `transfer`;

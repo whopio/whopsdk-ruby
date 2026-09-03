@@ -16,7 +16,7 @@ module WhopSDK
       # Moves money between accounts, or into a claim link anyone with the URL can
       # redeem.
       #
-      # @overload create(amount:, origin_id:, currency: nil, destination_id: nil, expires_at: nil, idempotence_key: nil, metadata: nil, notes: nil, redeemable_count: nil, type: nil, api_version_date: nil, idempotency_key: nil, request_options: {})
+      # @overload create(amount:, origin_id:, currency: nil, destination_id: nil, expires_at: nil, feed_id: nil, feed_type: nil, idempotence_key: nil, metadata: nil, notes: nil, redeemable_count: nil, type: nil, api_version_date: nil, idempotency_key: nil, request_options: {})
       #
       # @param amount [Float] Body param: The amount to move, in the transfer currency. For example 25.00.
       #
@@ -28,6 +28,10 @@ module WhopSDK
       # user*/biz\_/ldg
       #
       # @param expires_at [Time, nil] Body param: claim_link only. Link expiry as an ISO 8601 timestamp. Defaults to 2
+      #
+      # @param feed_id [String, nil] Body param: Ledger transfers only. The feed the transfer was initiated from. Giv
+      #
+      # @param feed_type [Symbol, WhopSDK::Models::TransferCreateParams::FeedType, nil] Body param: Ledger transfers only. The type of the feed named by `feed_id`.
       #
       # @param idempotence_key [String, nil] Body param: Ledger transfers and wallet sends. A unique key that makes retries s
       #

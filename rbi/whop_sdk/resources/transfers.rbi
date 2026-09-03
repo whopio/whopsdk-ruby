@@ -19,6 +19,9 @@ module WhopSDK
           currency: String,
           destination_id: String,
           expires_at: T.nilable(Time),
+          feed_id: T.nilable(String),
+          feed_type:
+            T.nilable(WhopSDK::TransferCreateParams::FeedType::OrSymbol),
           idempotence_key: T.nilable(String),
           metadata: T.nilable(T::Hash[Symbol, T.anything]),
           notes: T.nilable(String),
@@ -43,6 +46,12 @@ module WhopSDK
         # Body param: claim_link only. Link expiry as an ISO 8601 timestamp. Defaults to
         # 24 hours from creation.
         expires_at: nil,
+        # Body param: Ledger transfers only. The feed the transfer was initiated from.
+        # Given with `feed_type`, the payment receipt posts into that feed instead of a
+        # direct message.
+        feed_id: nil,
+        # Body param: Ledger transfers only. The type of the feed named by `feed_id`.
+        feed_type: nil,
         # Body param: Ledger transfers and wallet sends. A unique key that makes retries
         # safe. Retrying with the same key returns the original transfer, or attaches to
         # the original wallet send, instead of moving money twice.

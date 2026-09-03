@@ -7,6 +7,8 @@ module WhopSDK
         currency: String,
         destination_id: String,
         expires_at: Time?,
+        feed_id: String?,
+        feed_type: WhopSDK::Models::TransferCreateParams::feed_type?,
         idempotence_key: String?,
         metadata: ::Hash[Symbol, top]?,
         notes: String?,
@@ -34,6 +36,10 @@ module WhopSDK
       def destination_id=: (String) -> String
 
       attr_accessor expires_at: Time?
+
+      attr_accessor feed_id: String?
+
+      attr_accessor feed_type: WhopSDK::Models::TransferCreateParams::feed_type?
 
       attr_accessor idempotence_key: String?
 
@@ -65,6 +71,8 @@ module WhopSDK
         ?currency: String,
         ?destination_id: String,
         ?expires_at: Time?,
+        ?feed_id: String?,
+        ?feed_type: WhopSDK::Models::TransferCreateParams::feed_type?,
         ?idempotence_key: String?,
         ?metadata: ::Hash[Symbol, top]?,
         ?notes: String?,
@@ -81,6 +89,8 @@ module WhopSDK
         currency: String,
         destination_id: String,
         expires_at: Time?,
+        feed_id: String?,
+        feed_type: WhopSDK::Models::TransferCreateParams::feed_type?,
         idempotence_key: String?,
         metadata: ::Hash[Symbol, top]?,
         notes: String?,
@@ -90,6 +100,27 @@ module WhopSDK
         idempotency_key: String,
         request_options: WhopSDK::RequestOptions
       }
+
+      type feed_type =
+        :dms_feed
+        | :chat_feed
+        | :forum_feed
+        | :livestream_feed
+        | :universal_post
+        | :user
+
+      module FeedType
+        extend WhopSDK::Internal::Type::Enum
+
+        DMS_FEED: :dms_feed
+        CHAT_FEED: :chat_feed
+        FORUM_FEED: :forum_feed
+        LIVESTREAM_FEED: :livestream_feed
+        UNIVERSAL_POST: :universal_post
+        USER: :user
+
+        def self?.values: -> ::Array[WhopSDK::Models::TransferCreateParams::feed_type]
+      end
 
       type type_ = :ledger | :wallet_send | :claim_link
 

@@ -5,7 +5,7 @@ module Whop_sdk
     # A messaging channel that can be a one-on-one DM, group chat, company support conversation, or platform-level
     # direct message.
     class SupportChannel < Internal::Types::Model
-      field :company_id, -> { String }, optional: false, nullable: true
+      field :account_id, -> { String }, optional: false, nullable: true
 
       field :custom_name, -> { String }, optional: false, nullable: true
 

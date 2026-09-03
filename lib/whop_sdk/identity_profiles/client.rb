@@ -10,8 +10,8 @@ module Whop_sdk
         @client = client
       end
 
-      # Returns a paginated list of identity profiles. When company_id is provided, lists IPs currently linked to that
-      # company's ledger. When omitted, lists IPs linked to any ledger the actor can read (including child companies
+      # Returns a paginated list of identity profiles. When account_id is provided, lists IPs currently linked to that
+      # account's ledger. When omitted, lists IPs linked to any ledger the actor can read (including child accounts
       # under a parent).
       #
       # Required permissions:

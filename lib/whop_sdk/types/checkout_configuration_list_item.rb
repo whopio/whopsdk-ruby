@@ -5,9 +5,9 @@ module Whop_sdk
     # A checkout configuration is a reusable configuration for a checkout, including the plan, affiliate, and custom
     # metadata. Payments and memberships created from a checkout session inherit its metadata.
     class CheckoutConfigurationListItem < Internal::Types::Model
-      field :affiliate_code, -> { String }, optional: false, nullable: true
+      field :account_id, -> { String }, optional: false, nullable: false
 
-      field :company_id, -> { String }, optional: false, nullable: false
+      field :affiliate_code, -> { String }, optional: false, nullable: true
 
       field :currency, -> { Whop_sdk::Types::Currencies }, optional: false, nullable: true
 

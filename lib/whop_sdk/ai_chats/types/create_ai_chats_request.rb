@@ -4,7 +4,7 @@ module Whop_sdk
   module AiChats
     module Types
       class CreateAiChatsRequest < Internal::Types::Model
-        field :current_company_id, -> { String }, optional: true, nullable: false
+        field :current_account_id, -> { String }, optional: true, nullable: false
 
         field :message_attachments, -> { Internal::Types::Array[Whop_sdk::AiChats::Types::CreateAiChatsRequestMessageAttachmentsItem] }, optional: true, nullable: false
 

@@ -12,9 +12,9 @@ module Whop_sdk
 
         field :in_currency, -> { String }, optional: true, nullable: false
 
-        field :from_date, -> { String }, optional: true, nullable: false
+        field :from, -> { String }, optional: true, nullable: false
 
-        field :to_date, -> { String }, optional: true, nullable: false
+        field :to, -> { String }, optional: true, nullable: false
 
         field :group_by, -> { Whop_sdk::FinancialReports::Types::RetrieveFinancialReportsRequestGroupBy }, optional: true, nullable: false
 

@@ -37,6 +37,8 @@ module Whop_sdk
 
       field :source, -> { Whop_sdk::Types::LedgerActivitySource }, optional: false, nullable: true
 
+      field :usd_amount, -> { String }, optional: false, nullable: true
+
       field :user_email, -> { String }, optional: true, nullable: false
 
       field :user_id, -> { String }, optional: true, nullable: false

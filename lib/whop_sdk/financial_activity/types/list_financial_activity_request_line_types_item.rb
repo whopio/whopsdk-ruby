@@ -69,6 +69,7 @@ module Whop_sdk
         MISC_PURCHASE = "misc_purchase"
         MISC_REFUND = "misc_refund"
         MISC_REVERSAL = "misc_reversal"
+        ONBOARDING_REWARD = "onboarding_reward"
         ONCHAIN_DEPOSIT = "onchain_deposit"
         ONCHAIN_SWAP_SOURCE = "onchain_swap_source"
         ONCHAIN_SWAP_TARGET = "onchain_swap_target"

@@ -12,6 +12,8 @@ module Whop_sdk
           MERCHANT = "merchant"
           PAYOUT_DESTINATION = "payout_destination"
           BALANCE = "balance"
+          WITHDRAWAL_ADJUSTMENT = "withdrawal_adjustment"
+          AD_CAMPAIGN = "ad_campaign"
         end
       end
     end

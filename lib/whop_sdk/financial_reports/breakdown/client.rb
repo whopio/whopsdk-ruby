@@ -24,8 +24,10 @@ module Whop_sdk
         # @option params [Whop_sdk::FinancialReports::Breakdown::Types::RetrieveBreakdownRequestBucket] :bucket
         # @option params [Whop_sdk::FinancialReports::Breakdown::Types::RetrieveBreakdownRequestDirection] :direction
         # @option params [String] :currency
-        # @option params [String] :from_date
-        # @option params [String] :to_date
+        # @option params [String] :from
+        # @option params [String] :to
+        # @option params [Whop_sdk::FinancialReports::Breakdown::Types::RetrieveBreakdownRequestGroupBy, nil] :group_by
+        # @option params [String, nil] :timezone
         #
         # @example
         #   client.financial_reports.breakdown.retrieve(
@@ -33,8 +35,8 @@ module Whop_sdk
         #     bucket: "transfers",
         #     direction: "money_in",
         #     currency: "currency",
-        #     from_date: "from_date",
-        #     to_date: "to_date"
+        #     from: "2024-01-15T09:30:00Z",
+        #     to: "2024-01-15T09:30:00Z"
         #   )
         #
         # @return [Whop_sdk::FinancialReports::Breakdown::Types::RetrieveBreakdownResponse]
@@ -45,8 +47,10 @@ module Whop_sdk
           query_params["bucket"] = params[:bucket] if params.key?(:bucket)
           query_params["direction"] = params[:direction] if params.key?(:direction)
           query_params["currency"] = params[:currency] if params.key?(:currency)
-          query_params["from_date"] = params[:from_date] if params.key?(:from_date)
-          query_params["to_date"] = params[:to_date] if params.key?(:to_date)
+          query_params["from"] = params[:from] if params.key?(:from)
+          query_params["to"] = params[:to] if params.key?(:to)
+          query_params["group_by"] = params[:group_by] if params.key?(:group_by)
+          query_params["timezone"] = params[:timezone] if params.key?(:timezone)
 
           request = Whop_sdk::Internal::JSON::Request.new(
             base_url: request_options[:base_url],

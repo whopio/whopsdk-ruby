@@ -84,7 +84,7 @@ module Whop_sdk
       # Sends money from an account or user balance to a saved payout method for that owner.
       #
       # @param request_options [Hash]
-      # @param params [Whop_sdk::Payouts::Types::CreatePayoutsRequestBody]
+      # @param params [Whop_sdk::Payouts::Types::CreatePayoutsRequest]
       # @option request_options [String] :base_url
       # @option request_options [Hash{String => Object}] :additional_headers
       # @option request_options [Hash{String => Object}] :additional_query_parameters
@@ -92,9 +92,10 @@ module Whop_sdk
       # @option request_options [Integer] :timeout_in_seconds
       #
       # @example
-      #   client.payouts.create(request: {
-      #     key: "value"
-      #   })
+      #   client.payouts.create(
+      #     amount: 50,
+      #     payout_method_id: "potk_xxxxxxxxxxxxxx"
+      #   )
       #
       # @return [Whop_sdk::Payouts::Types::CreatePayoutsResponse]
       def create(request_options: {}, **params)
@@ -103,7 +104,7 @@ module Whop_sdk
           base_url: request_options[:base_url],
           method: "POST",
           path: "payouts",
-          body: Whop_sdk::Payouts::Types::CreatePayoutsRequestBody.new(params).to_h,
+          body: Whop_sdk::Payouts::Types::CreatePayoutsRequest.new(params).to_h,
           request_options: request_options
         )
         begin

@@ -16,6 +16,8 @@ module Whop_sdk
 
         field :speed, -> { Whop_sdk::Payouts::Types::CreateQuotePayoutsRequestSpeed }, optional: true, nullable: false
 
+        field :statement_descriptor, -> { String }, optional: true, nullable: false
+
         field :user_id, -> { String }, optional: true, nullable: false
       end
     end

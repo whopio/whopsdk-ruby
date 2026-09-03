@@ -7,6 +7,8 @@ module Whop_sdk
         class RetrieveBreakdownResponseItemsItem < Internal::Types::Model
           field :amount, -> { Whop_sdk::Types::Money }, optional: false, nullable: false
 
+          field :avatar, -> { Whop_sdk::FinancialReports::Breakdown::Types::RetrieveBreakdownResponseItemsItemAvatar }, optional: false, nullable: true
+
           field :image_url, -> { String }, optional: false, nullable: true
 
           field :key, -> { String }, optional: false, nullable: false

@@ -3,17 +3,26 @@
 module Whop_sdk
   module Payments
     module Types
-      # Parameters for CreatePayment
       class CreatePaymentsRequest < Internal::Types::Model
-        extend Whop_sdk::Internal::Types::Union
+        field :account_id, -> { String }, optional: false, nullable: false
 
-        member -> { Whop_sdk::Payments::Types::CreatePaymentsRequestZero }
+        field :capture, -> { Internal::Types::Boolean }, optional: true, nullable: false
 
-        member -> { Whop_sdk::Payments::Types::CreatePaymentsRequestOne }
+        field :confirmation_token, -> { String }, optional: true, nullable: false
 
-        member -> { Whop_sdk::Payments::Types::CreatePaymentsRequestTwo }
+        field :email, -> { String }, optional: true, nullable: false
 
-        member -> { Whop_sdk::Payments::Types::CreatePaymentsRequestThree }
+        field :member_id, -> { String }, optional: true, nullable: false
+
+        field :metadata, -> { Internal::Types::Hash[String, String] }, optional: true, nullable: false
+
+        field :payment_method_id, -> { String }, optional: true, nullable: false
+
+        field :plan_id, -> { String }, optional: false, nullable: false
+
+        field :promo_code_id, -> { String }, optional: true, nullable: false
+
+        field :return_url, -> { String }, optional: true, nullable: false
       end
     end
   end

@@ -10,18 +10,11 @@ module Whop_sdk
         @client = client
       end
 
-      # Returns a paginated list of payments for the actor in context, with optional filtering by product, plan, status,
-      # billing reason, currency, and creation date.
-      #
-      # Required permissions:
-      #  - `payment:basic:read`
-      #  - `plan:basic:read`
-      #  - `access_pass:basic:read`
-      #  - `member:email:read`
-      #  - `member:basic:read`
-      #  - `member:phone:read`
-      #  - `promo_code:basic:read`
-      #  - `shipment:basic:read`
+      # Lists payments, newest first. Without filters this is every payment the caller can read: a company credential's
+      # own account, or for a user every account they can read payments for. Filters narrow by account, buyer, product,
+      # plan, membership, status, billing reason, currency, and creation window. Filtering by
+      # `billing_reason=subscription_cycle` also matches renewals recorded as `subscription_update`.
+      # `settlement_time_at` is null on list rows — retrieve the payment for it.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -30,62 +23,50 @@ module Whop_sdk
       # @option request_options [Hash{String => Object}] :additional_query_parameters
       # @option request_options [Hash{String => Object}] :additional_body_parameters
       # @option request_options [Integer] :timeout_in_seconds
-      # @option params [String, nil] :after
-      # @option params [String, nil] :before
-      # @option params [Integer, nil] :first
-      # @option params [Integer, nil] :last
-      # @option params [String, nil] :company_id
-      # @option params [Whop_sdk::Types::Direction, nil] :direction
-      # @option params [Whop_sdk::Types::ReceiptV2Order, nil] :order
-      # @option params [String, nil] :product_ids
-      # @option params [Whop_sdk::Types::BillingReasons, nil] :billing_reasons
-      # @option params [Whop_sdk::Types::Currencies, nil] :currencies
-      # @option params [String, nil] :plan_ids
-      # @option params [Whop_sdk::Types::ReceiptStatus, nil] :statuses
-      # @option params [Whop_sdk::Types::FriendlyReceiptStatus, nil] :substatuses
-      # @option params [Boolean, nil] :include_free
+      # @option params [String, nil] :account_id
+      # @option params [Whop_sdk::Payments::Types::ListPaymentsRequestStatus, nil] :status
+      # @option params [Whop_sdk::Payments::Types::ListPaymentsRequestBillingReason, nil] :billing_reason
+      # @option params [String, nil] :currency
+      # @option params [String, nil] :user_id
+      # @option params [String, nil] :query
+      # @option params [String, nil] :member_id
+      # @option params [String, nil] :membership_id
+      # @option params [String, nil] :product_id
+      # @option params [String, nil] :plan_id
       # @option params [String, nil] :created_before
       # @option params [String, nil] :created_after
-      # @option params [String, nil] :updated_before
-      # @option params [String, nil] :updated_after
-      # @option params [String, nil] :query
-      # @option params [String, nil] :checkout_configuration_ids
+      # @option params [Whop_sdk::Payments::Types::ListPaymentsRequestOrder, nil] :order
+      # @option params [Whop_sdk::Payments::Types::ListPaymentsRequestDirection, nil] :direction
+      # @option params [Integer, nil] :first
+      # @option params [String, nil] :after
+      # @option params [Integer, nil] :last
+      # @option params [String, nil] :before
       #
       # @example
-      #   client.payments.list(
-      #     first: 42,
-      #     last: 42,
-      #     company_id: "biz_xxxxxxxxxxxxxx",
-      #     created_before: "2023-12-01T05:00:00Z",
-      #     created_after: "2023-12-01T05:00:00Z",
-      #     updated_before: "2023-12-01T05:00:00Z",
-      #     updated_after: "2023-12-01T05:00:00Z"
-      #   )
+      #   client.payments.list
       #
       # @return [Whop_sdk::Payments::Types::ListPaymentsResponse]
       def list(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
         query_params = {}
-        query_params["after"] = params[:after] if params.key?(:after)
-        query_params["before"] = params[:before] if params.key?(:before)
-        query_params["first"] = params[:first] if params.key?(:first)
-        query_params["last"] = params[:last] if params.key?(:last)
-        query_params["company_id"] = params[:company_id] if params.key?(:company_id)
-        query_params["direction"] = params[:direction] if params.key?(:direction)
-        query_params["order"] = params[:order] if params.key?(:order)
-        query_params["product_ids"] = params[:product_ids] if params.key?(:product_ids)
-        query_params["billing_reasons"] = params[:billing_reasons] if params.key?(:billing_reasons)
-        query_params["currencies"] = params[:currencies] if params.key?(:currencies)
-        query_params["plan_ids"] = params[:plan_ids] if params.key?(:plan_ids)
-        query_params["statuses"] = params[:statuses] if params.key?(:statuses)
-        query_params["substatuses"] = params[:substatuses] if params.key?(:substatuses)
-        query_params["include_free"] = params[:include_free] if params.key?(:include_free)
+        query_params["account_id"] = params[:account_id] if params.key?(:account_id)
+        query_params["status"] = params[:status] if params.key?(:status)
+        query_params["billing_reason"] = params[:billing_reason] if params.key?(:billing_reason)
+        query_params["currency"] = params[:currency] if params.key?(:currency)
+        query_params["user_id"] = params[:user_id] if params.key?(:user_id)
+        query_params["query"] = params[:query] if params.key?(:query)
+        query_params["member_id"] = params[:member_id] if params.key?(:member_id)
+        query_params["membership_id"] = params[:membership_id] if params.key?(:membership_id)
+        query_params["product_id"] = params[:product_id] if params.key?(:product_id)
+        query_params["plan_id"] = params[:plan_id] if params.key?(:plan_id)
         query_params["created_before"] = params[:created_before] if params.key?(:created_before)
         query_params["created_after"] = params[:created_after] if params.key?(:created_after)
-        query_params["updated_before"] = params[:updated_before] if params.key?(:updated_before)
-        query_params["updated_after"] = params[:updated_after] if params.key?(:updated_after)
-        query_params["query"] = params[:query] if params.key?(:query)
-        query_params["checkout_configuration_ids"] = params[:checkout_configuration_ids] if params.key?(:checkout_configuration_ids)
+        query_params["order"] = params[:order] if params.key?(:order)
+        query_params["direction"] = params[:direction] if params.key?(:direction)
+        query_params["first"] = params[:first] if params.key?(:first)
+        query_params["after"] = params[:after] if params.key?(:after)
+        query_params["last"] = params[:last] if params.key?(:last)
+        query_params["before"] = params[:before] if params.key?(:before)
 
         Whop_sdk::Internal::CursorItemIterator.new(
           cursor_field: :end_cursor,
@@ -116,25 +97,10 @@ module Whop_sdk
         end
       end
 
-      # Charge a buyer on-session with a `confirmation_token` for the method they selected, or charge an existing member
-      # off-session using a stored payment method. You can provide an existing plan or create one inline. The endpoint
-      # returns a payment immediately, but processing continues asynchronously. Use webhooks to learn whether it
-      # succeeds or fails, and poll the payment's status endpoint for any step the buyer must complete.
-      #
-      # Required permissions:
-      #  - `payment:charge`
-      #  - `plan:create`
-      #  - `access_pass:create`
-      #  - `access_pass:update`
-      #  - `plan:basic:read`
-      #  - `access_pass:basic:read`
-      #  - `member:email:read`
-      #  - `member:basic:read`
-      #  - `member:phone:read`
-      #  - `promo_code:basic:read`
-      #  - `shipment:basic:read`
-      #  - `payment:dispute:read`
-      #  - `payment:resolution_center_case:read`
+      # Charges a buyer for a plan. Pass a payment method already on file (`member_id` and `payment_method_id`), or a
+      # `confirmation_token` describing a method the buyer just supplied. Collection runs in the background: the
+      # response is the payment as created, not its outcome — poll Retrieve status for how far it has got and, for a
+      # confirmation-token payment, what the buyer must still do. `plan_id` names the plan to charge for.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::Payments::Types::CreatePaymentsRequest]
@@ -146,14 +112,11 @@ module Whop_sdk
       #
       # @example
       #   client.payments.create(
-      #     company_id: "biz_xxxxxxxxxxxxxx",
-      #     confirmation_token: "confirmation_token",
-      #     plan: {
-      #       currency: "usd"
-      #     }
+      #     account_id: "biz_xxxxxxxxxxxxxx",
+      #     plan_id: "plan_xxxxxxxxxxxxxx"
       #   )
       #
-      # @return [Whop_sdk::Payments::Types::CreatePaymentsResponse]
+      # @return [Whop_sdk::Types::Payment]
       def create(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
         request = Whop_sdk::Internal::JSON::Request.new(
@@ -170,26 +133,15 @@ module Whop_sdk
         end
         code = response.code.to_i
         if code.between?(200, 299)
-          Whop_sdk::Payments::Types::CreatePaymentsResponse.load(response.body)
+          Whop_sdk::Types::Payment.load(response.body)
         else
           error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)
         end
       end
 
-      # Retrieves the details of an existing payment.
-      #
-      # Required permissions:
-      #  - `payment:basic:read`
-      #  - `plan:basic:read`
-      #  - `access_pass:basic:read`
-      #  - `member:email:read`
-      #  - `member:basic:read`
-      #  - `member:phone:read`
-      #  - `promo_code:basic:read`
-      #  - `shipment:basic:read`
-      #  - `payment:dispute:read`
-      #  - `payment:resolution_center_case:read`
+      # Returns one payment. Related records are ids — resolve a plan, membership, member or shipment on its own
+      # endpoint, and list this payment's refunds, disputes or Resolution Center cases with `?payment_id=`.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -201,9 +153,9 @@ module Whop_sdk
       # @option params [String] :id
       #
       # @example
-      #   client.payments.retrieve(id: "pay_xxxxxxxxxxxxxx")
+      #   client.payments.retrieve(id: "id")
       #
-      # @return [Whop_sdk::Payments::Types::RetrievePaymentsResponse]
+      # @return [Whop_sdk::Types::Payment]
       def retrieve(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
         request = Whop_sdk::Internal::JSON::Request.new(
@@ -219,7 +171,7 @@ module Whop_sdk
         end
         code = response.code.to_i
         if code.between?(200, 299)
-          Whop_sdk::Payments::Types::RetrievePaymentsResponse.load(response.body)
+          Whop_sdk::Types::Payment.load(response.body)
         else
           error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)
@@ -265,10 +217,9 @@ module Whop_sdk
         end
       end
 
-      # Returns the list of fees associated with a specific payment, including platform fees and processing fees.
-      #
-      # Required permissions:
-      #  - `payment:basic:read`
+      # Returns the fee breakdown of one payment — Whop's fee, processing, affiliate and other lines — each in the
+      # currency it was collected in and converted to the payment's settlement currency. The list is complete in one
+      # page.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -278,70 +229,35 @@ module Whop_sdk
       # @option request_options [Hash{String => Object}] :additional_body_parameters
       # @option request_options [Integer] :timeout_in_seconds
       # @option params [String] :id
-      # @option params [String, nil] :after
-      # @option params [String, nil] :before
-      # @option params [Integer, nil] :first
-      # @option params [Integer, nil] :last
       #
       # @example
-      #   client.payments.list_fees(
-      #     id: "pay_xxxxxxxxxxxxxx",
-      #     first: 42,
-      #     last: 42
-      #   )
+      #   client.payments.list_fees(id: "id")
       #
       # @return [Whop_sdk::Payments::Types::ListFeesPaymentsResponse]
       def list_fees(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
-        query_params = {}
-        query_params["after"] = params[:after] if params.key?(:after)
-        query_params["before"] = params[:before] if params.key?(:before)
-        query_params["first"] = params[:first] if params.key?(:first)
-        query_params["last"] = params[:last] if params.key?(:last)
-
-        Whop_sdk::Internal::CursorItemIterator.new(
-          cursor_field: :end_cursor,
-          item_field: :data,
-          initial_cursor: query_params["after"]
-        ) do |next_cursor|
-          query_params["after"] = next_cursor
-          request = Whop_sdk::Internal::JSON::Request.new(
-            base_url: request_options[:base_url],
-            method: "GET",
-            path: "payments/#{URI.encode_uri_component(params[:id].to_s)}/fees",
-            query: query_params,
-            request_options: request_options
-          )
-          begin
-            response = @client.send(request)
-          rescue Net::HTTPRequestTimeout
-            raise Whop_sdk::Errors::TimeoutError
-          end
-          code = response.code.to_i
-          if code.between?(200, 299)
-            parsed_response = Whop_sdk::Payments::Types::ListFeesPaymentsResponse.load(response.body)
-            [parsed_response, response]
-          else
-            error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
-            raise error_class.new(response.body, code: code)
-          end
+        request = Whop_sdk::Internal::JSON::Request.new(
+          base_url: request_options[:base_url],
+          method: "GET",
+          path: "payments/#{URI.encode_uri_component(params[:id].to_s)}/fees",
+          request_options: request_options
+        )
+        begin
+          response = @client.send(request)
+        rescue Net::HTTPRequestTimeout
+          raise Whop_sdk::Errors::TimeoutError
+        end
+        code = response.code.to_i
+        if code.between?(200, 299)
+          Whop_sdk::Payments::Types::ListFeesPaymentsResponse.load(response.body)
+        else
+          error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
+          raise error_class.new(response.body, code: code)
         end
       end
 
-      # Issue a full or partial refund for a payment. The refund is processed through the original payment processor and
-      # the membership status is updated accordingly.
-      #
-      # Required permissions:
-      #  - `payment:manage`
-      #  - `plan:basic:read`
-      #  - `access_pass:basic:read`
-      #  - `member:email:read`
-      #  - `member:basic:read`
-      #  - `member:phone:read`
-      #  - `promo_code:basic:read`
-      #  - `shipment:basic:read`
-      #  - `payment:dispute:read`
-      #  - `payment:resolution_center_case:read`
+      # Issues a full or partial refund for a payment. The refund is processed through the original payment processor
+      # and the membership status is updated accordingly.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::Payments::Types::RefundPaymentsRequest]
@@ -353,7 +269,7 @@ module Whop_sdk
       # @option params [String] :id
       #
       # @example
-      #   client.payments.refund(id: "pay_xxxxxxxxxxxxxx")
+      #   client.payments.refund(id: "id")
       #
       # @return [Whop_sdk::Types::Payment]
       def refund(request_options: {}, **params)
@@ -383,20 +299,8 @@ module Whop_sdk
         end
       end
 
-      # Retry a failed or pending payment. This re-attempts the charge using the original payment method and plan
+      # Retries a failed or pending payment. This re-attempts the charge using the original payment method and plan
       # details.
-      #
-      # Required permissions:
-      #  - `payment:manage`
-      #  - `plan:basic:read`
-      #  - `access_pass:basic:read`
-      #  - `member:email:read`
-      #  - `member:basic:read`
-      #  - `member:phone:read`
-      #  - `promo_code:basic:read`
-      #  - `shipment:basic:read`
-      #  - `payment:dispute:read`
-      #  - `payment:resolution_center_case:read`
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -408,7 +312,7 @@ module Whop_sdk
       # @option params [String] :id
       #
       # @example
-      #   client.payments.retry_(id: "pay_xxxxxxxxxxxxxx")
+      #   client.payments.retry_(id: "id")
       #
       # @return [Whop_sdk::Types::Payment]
       def retry_(request_options: {}, **params)
@@ -433,20 +337,8 @@ module Whop_sdk
         end
       end
 
-      # Void a payment that has not yet been settled. Voiding cancels the payment before it is captured by the payment
+      # Voids a payment that has not yet been settled. Voiding cancels the payment before it is captured by the payment
       # processor.
-      #
-      # Required permissions:
-      #  - `payment:manage`
-      #  - `plan:basic:read`
-      #  - `access_pass:basic:read`
-      #  - `member:email:read`
-      #  - `member:basic:read`
-      #  - `member:phone:read`
-      #  - `promo_code:basic:read`
-      #  - `shipment:basic:read`
-      #  - `payment:dispute:read`
-      #  - `payment:resolution_center_case:read`
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -458,7 +350,7 @@ module Whop_sdk
       # @option params [String] :id
       #
       # @example
-      #   client.payments.void(id: "pay_xxxxxxxxxxxxxx")
+      #   client.payments.void(id: "id")
       #
       # @return [Whop_sdk::Types::Payment]
       def void(request_options: {}, **params)

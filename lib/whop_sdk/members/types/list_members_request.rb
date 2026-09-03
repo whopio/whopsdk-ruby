@@ -10,6 +10,8 @@ module Whop_sdk
 
         field :status, -> { Whop_sdk::Members::Types::ListMembersRequestStatus }, optional: true, nullable: false
 
+        field :user_ids, -> { String }, optional: true, nullable: false
+
         field :query, -> { String }, optional: true, nullable: false
 
         field :created_after, -> { String }, optional: true, nullable: false

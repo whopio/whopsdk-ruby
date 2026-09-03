@@ -16,6 +16,8 @@ module Whop_sdk
 
       field :payout_account_details, -> { Whop_sdk::Types::LedgerAccountPayoutAccountDetails }, optional: false, nullable: true
 
+      field :payout_quote_required, -> { Internal::Types::Boolean }, optional: false, nullable: false
+
       field :settlement_time_at, -> { String }, optional: false, nullable: true
 
       field :transfer_fee, -> { Integer }, optional: false, nullable: true

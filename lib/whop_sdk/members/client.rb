@@ -23,6 +23,7 @@ module Whop_sdk
       # @option params [String, nil] :account_id
       # @option params [Whop_sdk::Members::Types::ListMembersRequestAccessLevel, nil] :access_level
       # @option params [Whop_sdk::Members::Types::ListMembersRequestStatus, nil] :status
+      # @option params [String, nil] :user_ids
       # @option params [String, nil] :query
       # @option params [String, nil] :created_after
       # @option params [String, nil] :created_before
@@ -34,7 +35,7 @@ module Whop_sdk
       # @option params [String, nil] :before
       #
       # @example
-      #   client.members.list
+      #   client.members.list(user_ids: ["user_xxxxxxxxxxxxxx"])
       #
       # @return [Whop_sdk::Members::Types::ListMembersResponse]
       def list(request_options: {}, **params)
@@ -43,6 +44,7 @@ module Whop_sdk
         query_params["account_id"] = params[:account_id] if params.key?(:account_id)
         query_params["access_level"] = params[:access_level] if params.key?(:access_level)
         query_params["status"] = params[:status] if params.key?(:status)
+        query_params["user_ids"] = params[:user_ids] if params.key?(:user_ids)
         query_params["query"] = params[:query] if params.key?(:query)
         query_params["created_after"] = params[:created_after] if params.key?(:created_after)
         query_params["created_before"] = params[:created_before] if params.key?(:created_before)

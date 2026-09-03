@@ -24,8 +24,8 @@ module Whop_sdk
       # @option params [Whop_sdk::FinancialReports::Types::RetrieveFinancialReportsRequestReportType] :report_type
       # @option params [String, nil] :currency
       # @option params [String, nil] :in_currency
-      # @option params [String, nil] :from_date
-      # @option params [String, nil] :to_date
+      # @option params [String, nil] :from
+      # @option params [String, nil] :to
       # @option params [Whop_sdk::FinancialReports::Types::RetrieveFinancialReportsRequestGroupBy, nil] :group_by
       # @option params [String, nil] :timezone
       # @option params [Whop_sdk::FinancialReports::Types::RetrieveFinancialReportsRequestLineTypesItem, nil] :line_types
@@ -48,8 +48,8 @@ module Whop_sdk
         query_params["report_type"] = params[:report_type] if params.key?(:report_type)
         query_params["currency"] = params[:currency] if params.key?(:currency)
         query_params["in_currency"] = params[:in_currency] if params.key?(:in_currency)
-        query_params["from_date"] = params[:from_date] if params.key?(:from_date)
-        query_params["to_date"] = params[:to_date] if params.key?(:to_date)
+        query_params["from"] = params[:from] if params.key?(:from)
+        query_params["to"] = params[:to] if params.key?(:to)
         query_params["group_by"] = params[:group_by] if params.key?(:group_by)
         query_params["timezone"] = params[:timezone] if params.key?(:timezone)
         query_params["line_types"] = params[:line_types] if params.key?(:line_types)

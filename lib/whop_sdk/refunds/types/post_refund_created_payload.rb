@@ -10,7 +10,7 @@ module Whop_sdk
 
         field :api_version_date, -> { String }, optional: false, nullable: true
 
-        field :data, -> { Whop_sdk::Types::Refund }, optional: false, nullable: false
+        field :data, -> { Whop_sdk::Types::RefundLegacy }, optional: false, nullable: false
 
         field :id, -> { String }, optional: false, nullable: false
 

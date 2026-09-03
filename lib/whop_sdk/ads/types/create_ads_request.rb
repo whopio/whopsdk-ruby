@@ -26,6 +26,8 @@ module Whop_sdk
 
         field :multi_advertiser_ads, -> { Internal::Types::Boolean }, optional: true, nullable: false
 
+        field :music, -> { Whop_sdk::Ads::Types::CreateAdsRequestMusic }, optional: true, nullable: false
+
         field :post_source, -> { Whop_sdk::Ads::Types::CreateAdsRequestPostSource }, optional: true, nullable: false
 
         field :primary_texts, -> { Internal::Types::Array[String] }, optional: true, nullable: false

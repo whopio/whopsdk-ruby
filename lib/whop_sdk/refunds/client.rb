@@ -10,10 +10,8 @@ module Whop_sdk
         @client = client
       end
 
-      # Returns a paginated list of refunds, with optional filtering by payment, company, user, and creation date.
-      #
-      # Required permissions:
-      #  - `payment:basic:read`
+      # Lists refunds, newest first. Without filters this is every refund the caller can read; narrow it to one payment
+      # with `payment_id`, one account with `account_id`, or one buyer with `user_id`.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -22,42 +20,36 @@ module Whop_sdk
       # @option request_options [Hash{String => Object}] :additional_query_parameters
       # @option request_options [Hash{String => Object}] :additional_body_parameters
       # @option request_options [Integer] :timeout_in_seconds
-      # @option params [String, nil] :after
-      # @option params [String, nil] :before
-      # @option params [Integer, nil] :first
-      # @option params [Integer, nil] :last
+      # @option params [String, nil] :account_id
       # @option params [String, nil] :payment_id
-      # @option params [String, nil] :company_id
       # @option params [String, nil] :user_id
-      # @option params [Whop_sdk::Types::Direction, nil] :direction
       # @option params [String, nil] :created_before
       # @option params [String, nil] :created_after
+      # @option params [Whop_sdk::Refunds::Types::ListRefundsRequestOrder, nil] :order
+      # @option params [Whop_sdk::Refunds::Types::ListRefundsRequestDirection, nil] :direction
+      # @option params [Integer, nil] :first
+      # @option params [String, nil] :after
+      # @option params [Integer, nil] :last
+      # @option params [String, nil] :before
       #
       # @example
-      #   client.refunds.list(
-      #     first: 42,
-      #     last: 42,
-      #     payment_id: "pay_xxxxxxxxxxxxxx",
-      #     company_id: "biz_xxxxxxxxxxxxxx",
-      #     user_id: "user_xxxxxxxxxxxxx",
-      #     created_before: "2023-12-01T05:00:00Z",
-      #     created_after: "2023-12-01T05:00:00Z"
-      #   )
+      #   client.refunds.list
       #
       # @return [Whop_sdk::Refunds::Types::ListRefundsResponse]
       def list(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
         query_params = {}
-        query_params["after"] = params[:after] if params.key?(:after)
-        query_params["before"] = params[:before] if params.key?(:before)
-        query_params["first"] = params[:first] if params.key?(:first)
-        query_params["last"] = params[:last] if params.key?(:last)
+        query_params["account_id"] = params[:account_id] if params.key?(:account_id)
         query_params["payment_id"] = params[:payment_id] if params.key?(:payment_id)
-        query_params["company_id"] = params[:company_id] if params.key?(:company_id)
         query_params["user_id"] = params[:user_id] if params.key?(:user_id)
-        query_params["direction"] = params[:direction] if params.key?(:direction)
         query_params["created_before"] = params[:created_before] if params.key?(:created_before)
         query_params["created_after"] = params[:created_after] if params.key?(:created_after)
+        query_params["order"] = params[:order] if params.key?(:order)
+        query_params["direction"] = params[:direction] if params.key?(:direction)
+        query_params["first"] = params[:first] if params.key?(:first)
+        query_params["after"] = params[:after] if params.key?(:after)
+        query_params["last"] = params[:last] if params.key?(:last)
+        query_params["before"] = params[:before] if params.key?(:before)
 
         Whop_sdk::Internal::CursorItemIterator.new(
           cursor_field: :end_cursor,
@@ -88,15 +80,7 @@ module Whop_sdk
         end
       end
 
-      # Retrieves the details of an existing refund.
-      #
-      # Required permissions:
-      #  - `payment:basic:read`
-      #  - `plan:basic:read`
-      #  - `access_pass:basic:read`
-      #  - `member:email:read`
-      #  - `member:basic:read`
-      #  - `member:phone:read`
+      # Returns one refund.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -108,7 +92,7 @@ module Whop_sdk
       # @option params [String] :id
       #
       # @example
-      #   client.refunds.retrieve(id: "rf_xxxxxxxxxxxxxxx")
+      #   client.refunds.retrieve(id: "id")
       #
       # @return [Whop_sdk::Types::Refund]
       def retrieve(request_options: {}, **params)

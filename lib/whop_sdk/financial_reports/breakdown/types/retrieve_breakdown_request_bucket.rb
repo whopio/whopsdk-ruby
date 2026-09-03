@@ -9,7 +9,10 @@ module Whop_sdk
 
           TRANSFERS = "transfers"
           PAYMENTS = "payments"
+          REFUNDS = "refunds"
+          ADS = "ads"
           CARD_SPEND = "card_spend"
+          CARD_AUTHORIZATION_RELEASES = "card_authorization_releases"
           WITHDRAWALS = "withdrawals"
           SWAPS = "swaps"
         end

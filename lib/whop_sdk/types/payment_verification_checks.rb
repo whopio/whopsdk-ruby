@@ -2,7 +2,6 @@
 
 module Whop_sdk
   module Types
-    # The issuer's address and card security code check results for this payment. Null when the processor returned none.
     class PaymentVerificationChecks < Internal::Types::Model
       field :address_line1, -> { String }, optional: false, nullable: true
 

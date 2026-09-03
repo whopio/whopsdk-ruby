@@ -89,6 +89,8 @@ module Whop_sdk
 
       field :multi_advertiser_ads, -> { Internal::Types::Boolean }, optional: true, nullable: false
 
+      field :music, -> { Whop_sdk::Types::AdMusic }, optional: true, nullable: false
+
       field :post_id, -> { String }, optional: false, nullable: true
 
       field :post_source, -> { Whop_sdk::Types::AdPostSource }, optional: false, nullable: true

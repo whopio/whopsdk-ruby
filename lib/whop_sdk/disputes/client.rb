@@ -271,7 +271,7 @@ module Whop_sdk
       # @example
       #   client.disputes.submit_evidence_dispute(id: "dspt_xxxxxxxxxxxxx")
       #
-      # @return [Whop_sdk::Types::Dispute]
+      # @return [Whop_sdk::Types::DisputeLegacy]
       def submit_evidence_dispute(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
         request = Whop_sdk::Internal::JSON::Request.new(
@@ -287,7 +287,7 @@ module Whop_sdk
         end
         code = response.code.to_i
         if code.between?(200, 299)
-          Whop_sdk::Types::Dispute.load(response.body)
+          Whop_sdk::Types::DisputeLegacy.load(response.body)
         else
           error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)
@@ -318,7 +318,7 @@ module Whop_sdk
       # @example
       #   client.disputes.update_evidence_dispute(id: "dspt_xxxxxxxxxxxxx")
       #
-      # @return [Whop_sdk::Types::Dispute]
+      # @return [Whop_sdk::Types::DisputeLegacy]
       def update_evidence_dispute(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
         request_data = Whop_sdk::Disputes::Types::UpdateEvidenceDisputeRequest.new(params).to_h
@@ -339,7 +339,7 @@ module Whop_sdk
         end
         code = response.code.to_i
         if code.between?(200, 299)
-          Whop_sdk::Types::Dispute.load(response.body)
+          Whop_sdk::Types::DisputeLegacy.load(response.body)
         else
           error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)

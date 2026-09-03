@@ -13,9 +13,13 @@ module Whop_sdk
 
           field :currency, -> { String }, optional: false, nullable: false
 
-          field :from_date, -> { String }, optional: false, nullable: false
+          field :from, -> { String }, optional: false, nullable: false
 
-          field :to_date, -> { String }, optional: false, nullable: false
+          field :to, -> { String }, optional: false, nullable: false
+
+          field :group_by, -> { Whop_sdk::FinancialReports::Breakdown::Types::RetrieveBreakdownRequestGroupBy }, optional: true, nullable: false
+
+          field :timezone, -> { String }, optional: true, nullable: false
         end
       end
     end

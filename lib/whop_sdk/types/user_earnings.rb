@@ -7,6 +7,8 @@ module Whop_sdk
 
       field :owned_accounts, -> { Whop_sdk::Types::UserEarningsAmount }, optional: false, nullable: false
 
+      field :partners, -> { Whop_sdk::Types::UserEarningsAmount }, optional: false, nullable: false
+
       field :personal, -> { Whop_sdk::Types::UserEarningsAmount }, optional: false, nullable: false
 
       field :total, -> { Whop_sdk::Types::UserEarningsAmount }, optional: false, nullable: false

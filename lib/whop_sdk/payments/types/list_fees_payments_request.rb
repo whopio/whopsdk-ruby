@@ -5,14 +5,6 @@ module Whop_sdk
     module Types
       class ListFeesPaymentsRequest < Internal::Types::Model
         field :id, -> { String }, optional: false, nullable: false
-
-        field :after, -> { String }, optional: true, nullable: false
-
-        field :before, -> { String }, optional: true, nullable: false
-
-        field :first, -> { Integer }, optional: true, nullable: false
-
-        field :last, -> { Integer }, optional: true, nullable: false
       end
     end
   end

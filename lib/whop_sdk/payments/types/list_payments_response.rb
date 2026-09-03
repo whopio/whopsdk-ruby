@@ -3,11 +3,10 @@
 module Whop_sdk
   module Payments
     module Types
-      # The connection type for Receipt.
       class ListPaymentsResponse < Internal::Types::Model
-        field :data, -> { Internal::Types::Array[Whop_sdk::Types::PaymentListItem] }, optional: false, nullable: false
+        field :data, -> { Internal::Types::Array[Whop_sdk::Types::Payment] }, optional: false, nullable: false
 
-        field :page_info, -> { Whop_sdk::Types::PageInfo }, optional: false, nullable: false
+        field :page_info, -> { Whop_sdk::Payments::Types::ListPaymentsResponsePageInfo }, optional: false, nullable: false
       end
     end
   end

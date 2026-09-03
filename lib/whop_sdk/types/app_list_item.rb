@@ -39,6 +39,8 @@ module Whop_sdk
 
       field :origin, -> { String }, optional: false, nullable: true
 
+      field :previous_hosted_urls, -> { Internal::Types::Array[String] }, optional: false, nullable: false
+
       field :route, -> { String }, optional: false, nullable: true
 
       field :skills_path, -> { String }, optional: false, nullable: true

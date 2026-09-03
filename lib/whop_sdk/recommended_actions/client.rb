@@ -97,7 +97,8 @@ module Whop_sdk
       end
 
       # Records that the caller ran a recommended action chain. Nothing is executed server-side yet — the client follows
-      # the chain's step CTAs itself; this writes the `recommended_action_chain.executed` analytics event.
+      # the chain's step CTAs itself; this writes the `recommended_action_chain.executed` analytics event and a
+      # `redirected` execution per step.
       #
       # @param request_options [Hash]
       # @param params [Hash]

@@ -5,6 +5,8 @@ module Whop_sdk
     module Types
       class ListRecommendedActionsResponse < Internal::Types::Model
         field :data, -> { Internal::Types::Array[Whop_sdk::Types::AccountRecommendedActionChain] }, optional: false, nullable: false
+
+        field :generation_pending, -> { Internal::Types::Boolean }, optional: false, nullable: false
       end
     end
   end

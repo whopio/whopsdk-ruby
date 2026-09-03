@@ -275,7 +275,7 @@ module Whop_sdk
       #     entity_suffix: "LLC",
       #     entity_type: "llc",
       #     expedite_ein: true,
-      #     formation_state: "TX",
+      #     formation_state: "WY",
       #     founders: [{
       #       address: {
       #         city: "Austin",

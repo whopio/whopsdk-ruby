@@ -55,6 +55,8 @@ module Whop_sdk
 
       field :preview_token, -> { String }, optional: false, nullable: true
 
+      field :previous_hosted_urls, -> { Internal::Types::Array[String] }, optional: false, nullable: false
+
       field :product_id, -> { String }, optional: false, nullable: true
 
       field :production_android_build, -> { Whop_sdk::Types::AppProductionBuild }, optional: false, nullable: true

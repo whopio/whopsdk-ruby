@@ -16,6 +16,8 @@ module Whop_sdk
           field :items, -> { Internal::Types::Array[Whop_sdk::FinancialReports::Breakdown::Types::RetrieveBreakdownResponseItemsItem] }, optional: false, nullable: false
 
           field :other_amount, -> { Whop_sdk::Types::Money }, optional: false, nullable: true
+
+          field :other_name, -> { String }, optional: false, nullable: false
         end
       end
     end

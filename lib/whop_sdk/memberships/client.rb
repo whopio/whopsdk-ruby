@@ -230,7 +230,7 @@ module Whop_sdk
       #     free_days: 42
       #   )
       #
-      # @return [Whop_sdk::Types::Membership]
+      # @return [Whop_sdk::Types::MembershipLegacy]
       def add_free_days_membership(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
         request_data = Whop_sdk::Memberships::Types::AddFreeDaysMembershipRequest.new(params).to_h
@@ -251,7 +251,7 @@ module Whop_sdk
         end
         code = response.code.to_i
         if code.between?(200, 299)
-          Whop_sdk::Types::Membership.load(response.body)
+          Whop_sdk::Types::MembershipLegacy.load(response.body)
         else
           error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)
@@ -450,7 +450,7 @@ module Whop_sdk
       # @example
       #   client.memberships.resync_access_membership(id: "mem_xxxxxxxxxxxxxx")
       #
-      # @return [Whop_sdk::Types::Membership]
+      # @return [Whop_sdk::Types::MembershipLegacy]
       def resync_access_membership(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
         request = Whop_sdk::Internal::JSON::Request.new(
@@ -466,7 +466,7 @@ module Whop_sdk
         end
         code = response.code.to_i
         if code.between?(200, 299)
-          Whop_sdk::Types::Membership.load(response.body)
+          Whop_sdk::Types::MembershipLegacy.load(response.body)
         else
           error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)
@@ -532,7 +532,7 @@ module Whop_sdk
       # @example
       #   client.memberships.uncancel_membership(id: "mem_xxxxxxxxxxxxxx")
       #
-      # @return [Whop_sdk::Types::Membership]
+      # @return [Whop_sdk::Types::MembershipLegacy]
       def uncancel_membership(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
         request = Whop_sdk::Internal::JSON::Request.new(
@@ -548,7 +548,7 @@ module Whop_sdk
         end
         code = response.code.to_i
         if code.between?(200, 299)
-          Whop_sdk::Types::Membership.load(response.body)
+          Whop_sdk::Types::MembershipLegacy.load(response.body)
         else
           error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)

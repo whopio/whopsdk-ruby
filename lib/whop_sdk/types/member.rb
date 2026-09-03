@@ -19,6 +19,8 @@ module Whop_sdk
 
       field :status, -> { Whop_sdk::Types::MemberStatus }, optional: false, nullable: false
 
+      field :token_balance, -> { Integer }, optional: false, nullable: false
+
       field :user, -> { Whop_sdk::Types::UserSummary }, optional: false, nullable: true
     end
   end

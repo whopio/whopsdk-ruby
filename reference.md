@@ -965,7 +965,7 @@ client.accounts.form_company(
   entity_suffix: "LLC",
   entity_type: "llc",
   expedite_ein: true,
-  formation_state: "TX",
+  formation_state: "WY",
   founders: [{
     address: {
       city: "Austin",
@@ -1079,7 +1079,7 @@ client.accounts.form_company(
 <dl>
 <dd>
 
-**formation_state:** `Whop_sdk::Accounts::Types::FormCompanyAccountsRequestFormationState` — Two-letter code of the US state (or `DC`) to form the company in.
+**formation_state:** `Whop_sdk::Accounts::Types::FormCompanyAccountsRequestFormationState` — Two-letter code of the US state (or `DC`) to form the company in. We recommend `WY` because Wyoming formations are completed the same day.
     
 </dd>
 </dl>
@@ -2494,7 +2494,7 @@ client.ad_groups.create(ad_campaign_id: "adcamp_xxxxxxxxxxxxxx")
 <dl>
 <dd>
 
-**dynamic_creative:** `Internal::Types::Boolean` — Let the ad platform automatically mix and match this ad group's creatives and copy to find the best-performing combinations. Set at creation; can't be changed afterward.
+**dynamic_creative:** `Internal::Types::Boolean` — Whether the ad platform automatically mixes and matches this ad group's creatives and copy to find the best-performing combinations. Meta has deprecated it and rejects `true`; ad groups already using it keep it, and it can't be changed afterward.
     
 </dd>
 </dl>
@@ -3456,140 +3456,6 @@ client.ad_groups.unpause(id: "id")
 </dl>
 </details>
 
-## AdReports
-<details><summary><code>client.ad_reports.<a href="/lib/whop_sdk/ad_reports/client.rb">retrieve</a>() -> Whop_sdk::Types::AdReport</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Performance report for a company, ad campaigns, ad groups, or ads. Always returns aggregate `summary` totals summed across the scope. Set `granularity` to additionally get a time series, or set `breakdown` (`campaign`/`ad_group`/`ad`) to additionally get per-entity rows inside the requested scope. Exactly one of `companyId`, `adCampaignIds`, `adGroupIds`, or `adIds` must be provided.
-
-Required permissions:
- - `ad_campaign:stats:read`
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```ruby
-client.ad_reports.retrieve(
-  company_id: "biz_xxxxxxxxxxxxxx",
-  from: "2023-12-01T05:00:00Z",
-  to: "2023-12-01T05:00:00Z"
-)
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**ad_campaign_ids:** `String` — Scope the report to these ad campaigns (max 100); stats are summed across them. Mutually exclusive with `companyId`, `adGroupIds`, and `adIds`.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**ad_group_ids:** `String` — Scope the report to these ad groups (max 100); stats are summed across them. Mutually exclusive with `companyId`, `adCampaignIds`, and `adIds`.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**ad_ids:** `String` — Scope the report to these ads (max 100); stats are summed across them. Mutually exclusive with `companyId`, `adCampaignIds`, and `adGroupIds`.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**breakdown:** `Whop_sdk::Types::AdReportBreakdownLevels` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**company_id:** `String` — The unique identifier of a company. Mutually exclusive with `adCampaignIds`, `adGroupIds`, and `adIds`. Use with `breakdown` to fan out across every campaign, ad group, or ad in the company without paging.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**currency:** `String` — ISO 4217 currency code to report `spend` in. Defaults to the company's ads reporting currency.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**from:** `String` — Inclusive start of the reporting window.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**granularity:** `Whop_sdk::Types::Granularities` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**to:** `String` — Inclusive end of the reporting window.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request_options:** `Whop_sdk::AdReports::RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
 ## Ads
 <details><summary><code>client.ads.<a href="/lib/whop_sdk/ads/client.rb">list</a>() -> Whop_sdk::Ads::Types::ListAdsResponse</code></summary>
 <dl>
@@ -3866,7 +3732,7 @@ client.ads.create
 <dl>
 <dd>
 
-**creatives:** `Internal::Types::Array[Whop_sdk::Ads::Types::CreateAdsRequestCreativesItem]` — The ad's creative assets. Each entry is an uploaded file id with an optional format; omit format for the original asset. Two or more entries with no format become a carousel (2-10 attachments), in order, sharing the ad's copy.
+**creatives:** `Internal::Types::Array[Whop_sdk::Ads::Types::CreateAdsRequestCreativesItem]` — The ad's creative assets. Each entry is an uploaded file id with an optional format; omit format for the original asset. Entries with no format become a carousel's ordered cards, sharing the ad's copy — 2-10 of them on Meta, while TikTok runs even a single image as a one-card carousel.
     
 </dd>
 </dl>
@@ -3923,6 +3789,14 @@ client.ads.create
 <dd>
 
 **multi_advertiser_ads:** `Internal::Types::Boolean` — Whether the ad can appear alongside other advertisers' ads in the same unit. Defaults to true.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**music:** `Whop_sdk::Ads::Types::CreateAdsRequestMusic` — The looping track a TikTok carousel ad plays — an MP3 you uploaded, no larger than 10MB. Required for TikTok carousels (image creatives); TikTok-only.
     
 </dd>
 </dl>
@@ -4204,7 +4078,7 @@ client.ads.update(id: "id")
 <dl>
 <dd>
 
-**creatives:** `Internal::Types::Array[Whop_sdk::Ads::Types::UpdateAdsRequestCreativesItem]` — The ad's creative assets. Each entry is an uploaded file id with an optional format; omit format for the original asset. Replaces a live ad's creative on the platform. Two or more entries with no format replace it with a carousel (2-10 attachments), in order, sharing the ad's copy.
+**creatives:** `Internal::Types::Array[Whop_sdk::Ads::Types::UpdateAdsRequestCreativesItem]` — The ad's creative assets. Each entry is an uploaded file id with an optional format; omit format for the original asset. Replaces a live ad's creative on the platform. Entries with no format replace it with a carousel's ordered cards — 2-10 of them on Meta, while TikTok runs even a single image as a one-card carousel.
     
 </dd>
 </dl>
@@ -4261,6 +4135,14 @@ client.ads.update(id: "id")
 <dd>
 
 **multi_advertiser_ads:** `Internal::Types::Boolean` — Whether the ad can appear alongside other advertisers' ads in the same unit. Defaults to true.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**music:** `Whop_sdk::Ads::Types::UpdateAdsRequestMusic` — The looping track a TikTok carousel ad plays — an MP3 you uploaded, no larger than 10MB. Omitted leaves the ad's music untouched. Null removes it before launch; a submitted carousel takes a replacement track instead. TikTok-only.
     
 </dd>
 </dl>
@@ -10610,571 +10492,6 @@ client.checkout_configurations.delete(id: "id")
 </dl>
 </details>
 
-## Companies
-<details><summary><code>client.companies.<a href="/lib/whop_sdk/companies/client.rb">list</a>() -> Whop_sdk::Companies::Types::ListCompaniesResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a paginated list of companies. When parent_company_id is provided, lists connected accounts under that platform. When omitted, lists companies the current user has access to.
-
-Required permissions:
- - `company:basic:read`
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```ruby
-client.companies.list(
-  first: 42,
-  last: 42,
-  created_before: "2023-12-01T05:00:00Z",
-  created_after: "2023-12-01T05:00:00Z"
-)
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**after:** `String` — Returns the elements in the list that come after the specified cursor.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**before:** `String` — Returns the elements in the list that come before the specified cursor.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**first:** `Integer` — Returns the first _n_ elements from the list.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**last:** `Integer` — Returns the last _n_ elements from the list.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**parent_company_id:** `String` — The unique identifier of the parent platform company. When provided, lists connected accounts under that platform. Omit to list the current user's own companies.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**direction:** `Whop_sdk::Types::Direction` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**created_before:** `String` — Only return companies created before this timestamp.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**created_after:** `String` — Only return companies created after this timestamp.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request_options:** `Whop_sdk::Companies::RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.companies.<a href="/lib/whop_sdk/companies/client.rb">create</a>(request) -> Whop_sdk::Types::Company</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Create a new company. Pass parent_company_id to create a connected account under a platform, or omit it to create a company for the current user.
-
-Required permissions:
- - `company:create`
- - `company:basic:read`
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```ruby
-client.companies.create(title: "title")
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**country:** `Whop_sdk::Types::Countries` — The country the company is located in. Defaults to the parent company's country for connected accounts, or the owner's IP-derived country.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**description:** `String` — A promotional pitch displayed to potential customers on the company's store page.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**email:** `String` — The email address of the user who will own the connected account. Required when parent_company_id is provided.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**logo:** `Whop_sdk::Companies::Types::CreateCompaniesRequestLogo` — The company's logo image. Accepts PNG, JPEG, or GIF format.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**metadata:** `Internal::Types::Hash[String, Object]` — A key-value JSON object of custom metadata to store on the company.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**parent_company_id:** `String` — The unique identifier of the parent platform company. When provided, creates a connected account under that platform. Omit to create a company for the current user.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**send_customer_emails:** `Internal::Types::Boolean` — Whether Whop sends transactional emails to customers on behalf of this company. Only applies when creating a connected account.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**title:** `String` — The display name of the company shown to customers.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request_options:** `Whop_sdk::Companies::RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.companies.<a href="/lib/whop_sdk/companies/client.rb">retrieve</a>(id:) -> Whop_sdk::Types::Company</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Retrieves the details of an existing company.
-
-Required permissions:
- - `company:basic:read`
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```ruby
-client.companies.retrieve(id: "biz_xxxxxxxxxxxxxx")
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` — The unique identifier or route slug of the company.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request_options:** `Whop_sdk::Companies::RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.companies.<a href="/lib/whop_sdk/companies/client.rb">update</a>(id:, request) -> Whop_sdk::Types::Company</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Update a company's title, description, logo, and other settings.
-
-Required permissions:
- - `company:update`
- - `company:basic:read`
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```ruby
-client.companies.update(id: "biz_xxxxxxxxxxxxxx")
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` — The unique identifier of the company to update.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**affiliate_application_required:** `Internal::Types::Boolean` — Whether prospective affiliates must submit an application before they can promote this company.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**affiliate_instructions:** `String` — Guidelines and instructions shown to affiliates explaining how to promote this company's products.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**banner_image:** `Whop_sdk::Companies::Types::UpdateCompaniesRequestBannerImage` — The company's banner image. Accepts PNG or JPEG format.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**description:** `String` — A promotional pitch displayed to potential customers on the company's store page.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**featured_affiliate_product_id:** `String` — The ID of the product to feature on this company's affiliate page. Pass null to clear.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**logo:** `Whop_sdk::Companies::Types::UpdateCompaniesRequestLogo` — The company's logo image. Accepts PNG, JPEG, or GIF format.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**route:** `String` — The unique URL slug for the company's store page. Must be lowercase and can include hyphens (e.g., 'my-company'). If not provided, the route will remain unchanged.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**send_customer_emails:** `Internal::Types::Boolean` — Whether Whop sends transactional emails (receipts, renewals, cancelations) to customers on behalf of this company.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**social_links:** `Internal::Types::Array[Whop_sdk::Companies::Types::UpdateCompaniesRequestSocialLinksItem]` — The social media links to display on the company's store page. Pass the full list of desired social links — any existing links not included will be removed.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**target_audience:** `String` — The target audience for this company (e.g., 'beginner day traders aged 18-25 looking to learn options').
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**title:** `String` — The display name of the company shown to customers.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request_options:** `Whop_sdk::Companies::RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.companies.<a href="/lib/whop_sdk/companies/client.rb">create_api_key</a>(parent_company_id:, request) -> Whop_sdk::Companies::Types::CreateAPIKeyCompaniesResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Create an API key for a connected account (child company) owned by a parent company.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```ruby
-client.companies.create_api_key(
-  parent_company_id: "parent_company_id",
-  child_company_id: "child_company_id"
-)
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**parent_company_id:** `String` — The unique identifier of the parent platform company (e.g. 'biz_xxx').
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**child_company_id:** `String` — The unique identifier of the connected account to create the API key for (e.g. 'biz_xxx').
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**name:** `String` — A human-readable name for the API key, such as 'Production API Key'.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**permissions:** `Internal::Types::Array[Whop_sdk::Companies::Types::CreateAPIKeyCompaniesRequestPermissionsItem]` — Granular permission statements defining which actions this API key can perform. Either permissions or role must be provided.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**role:** `Whop_sdk::Types::PermissionSystemRoles` — A system role to inherit permissions from (e.g. owner, admin, moderator). Either role or permissions must be provided.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request_options:** `Whop_sdk::Companies::RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
 ## CompanyTokenTransactions
 <details><summary><code>client.company_token_transactions.<a href="/lib/whop_sdk/company_token_transactions/client.rb">list</a>() -> Whop_sdk::CompanyTokenTransactions::Types::ListCompanyTokenTransactionsResponse</code></summary>
 <dl>
@@ -14363,7 +13680,7 @@ client.disputes.submit(id: "id")
 </dl>
 </details>
 
-<details><summary><code>client.disputes.<a href="/lib/whop_sdk/disputes/client.rb">submit_evidence_dispute</a>(id:) -> Whop_sdk::Types::Dispute</code></summary>
+<details><summary><code>client.disputes.<a href="/lib/whop_sdk/disputes/client.rb">submit_evidence_dispute</a>(id:) -> Whop_sdk::Types::DisputeLegacy</code></summary>
 <dl>
 <dd>
 
@@ -14435,7 +13752,7 @@ client.disputes.submit_evidence_dispute(id: "dspt_xxxxxxxxxxxxx")
 </dl>
 </details>
 
-<details><summary><code>client.disputes.<a href="/lib/whop_sdk/disputes/client.rb">update_evidence_dispute</a>(id:, request) -> Whop_sdk::Types::Dispute</code></summary>
+<details><summary><code>client.disputes.<a href="/lib/whop_sdk/disputes/client.rb">update_evidence_dispute</a>(id:, request) -> Whop_sdk::Types::DisputeLegacy</code></summary>
 <dl>
 <dd>
 
@@ -18288,7 +17605,7 @@ client.financial_reports.retrieve(
 <dl>
 <dd>
 
-**from_date:** `String` — Start of the report window as an ISO 8601 timestamp (UTC). Required for platform-wide (global) reports.
+**from:** `String` — Start of the report window as an ISO 8601 timestamp. Required for platform-wide (global) reports.
     
 </dd>
 </dl>
@@ -18296,7 +17613,7 @@ client.financial_reports.retrieve(
 <dl>
 <dd>
 
-**to_date:** `String` — End of the report window as an ISO 8601 timestamp (UTC). Required for platform-wide (global) reports.
+**to:** `String` — Exclusive end of the report window as an ISO 8601 timestamp. Required for platform-wide (global) reports.
     
 </dd>
 </dl>
@@ -18312,7 +17629,7 @@ client.financial_reports.retrieve(
 <dl>
 <dd>
 
-**timezone:** `String` — IANA timezone (for example `America/New_York`) used to bucket report periods and to interpret calendar-day boundaries for balance snapshots. Defaults to UTC. from_date/to_date remain exact instants regardless of this setting.
+**timezone:** `String` — IANA timezone (for example `America/New_York`) used to bucket report periods. Defaults to UTC. `from` and `to` remain exact instants.
     
 </dd>
 </dl>
@@ -18336,7 +17653,7 @@ client.financial_reports.retrieve(
 <dl>
 <dd>
 
-**cumulative:** `Internal::Types::Boolean` — Platform-wide (global) reports only: when true, return cumulative balances as of to_date (all history, no lower bound) instead of activity within the period.
+**cumulative:** `Internal::Types::Boolean` — Platform-wide (global) reports only: when true, return cumulative balances as of to (all history, no lower bound) instead of activity within the period.
     
 </dd>
 </dl>
@@ -20918,7 +20235,7 @@ Lists the members of an account. A member is one buyer's relationship with the a
 <dd>
 
 ```ruby
-client.members.list
+client.members.list(user_ids: ["user_xxxxxxxxxxxxxx"])
 ```
 </dd>
 </dl>
@@ -20950,6 +20267,14 @@ client.members.list
 <dd>
 
 **status:** `Whop_sdk::Members::Types::ListMembersRequestStatus` — Filter by whether the member is still part of the account.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**user_ids:** `String` — Only return members whose users match these `user_` identifiers.
     
 </dd>
 </dl>
@@ -21467,7 +20792,7 @@ client.memberships.update(id: "id")
 </dl>
 </details>
 
-<details><summary><code>client.memberships.<a href="/lib/whop_sdk/memberships/client.rb">add_free_days_membership</a>(id:, request) -> Whop_sdk::Types::Membership</code></summary>
+<details><summary><code>client.memberships.<a href="/lib/whop_sdk/memberships/client.rb">add_free_days_membership</a>(id:, request) -> Whop_sdk::Types::MembershipLegacy</code></summary>
 <dl>
 <dd>
 
@@ -21828,7 +21153,7 @@ client.memberships.resume(id: "id")
 </dl>
 </details>
 
-<details><summary><code>client.memberships.<a href="/lib/whop_sdk/memberships/client.rb">resync_access_membership</a>(id:) -> Whop_sdk::Types::Membership</code></summary>
+<details><summary><code>client.memberships.<a href="/lib/whop_sdk/memberships/client.rb">resync_access_membership</a>(id:) -> Whop_sdk::Types::MembershipLegacy</code></summary>
 <dl>
 <dd>
 
@@ -21957,7 +21282,7 @@ client.memberships.transfer(id: "id")
 </dl>
 </details>
 
-<details><summary><code>client.memberships.<a href="/lib/whop_sdk/memberships/client.rb">uncancel_membership</a>(id:) -> Whop_sdk::Types::Membership</code></summary>
+<details><summary><code>client.memberships.<a href="/lib/whop_sdk/memberships/client.rb">uncancel_membership</a>(id:) -> Whop_sdk::Types::MembershipLegacy</code></summary>
 <dl>
 <dd>
 
@@ -23903,17 +23228,7 @@ client.payment_methods.delete_payment_method(
 <dl>
 <dd>
 
-Returns a paginated list of payments for the actor in context, with optional filtering by product, plan, status, billing reason, currency, and creation date.
-
-Required permissions:
- - `payment:basic:read`
- - `plan:basic:read`
- - `access_pass:basic:read`
- - `member:email:read`
- - `member:basic:read`
- - `member:phone:read`
- - `promo_code:basic:read`
- - `shipment:basic:read`
+Lists payments, newest first. Without filters this is every payment the caller can read: a company credential's own account, or for a user every account they can read payments for. Filters narrow by account, buyer, product, plan, membership, status, billing reason, currency, and creation window. Filtering by `billing_reason=subscription_cycle` also matches renewals recorded as `subscription_update`. `settlement_time_at` is null on list rows — retrieve the payment for it.
 </dd>
 </dl>
 </dd>
@@ -23928,15 +23243,7 @@ Required permissions:
 <dd>
 
 ```ruby
-client.payments.list(
-  first: 42,
-  last: 42,
-  company_id: "biz_xxxxxxxxxxxxxx",
-  created_before: "2023-12-01T05:00:00Z",
-  created_after: "2023-12-01T05:00:00Z",
-  updated_before: "2023-12-01T05:00:00Z",
-  updated_after: "2023-12-01T05:00:00Z"
-)
+client.payments.list
 ```
 </dd>
 </dl>
@@ -23951,7 +23258,7 @@ client.payments.list(
 <dl>
 <dd>
 
-**after:** `String` — Returns the elements in the list that come after the specified cursor.
+**account_id:** `String` — Only payments charged by this account, prefixed `biz_`.
     
 </dd>
 </dl>
@@ -23959,7 +23266,7 @@ client.payments.list(
 <dl>
 <dd>
 
-**before:** `String` — Returns the elements in the list that come before the specified cursor.
+**status:** `Whop_sdk::Payments::Types::ListPaymentsRequestStatus` — Only payments in this lifecycle state.
     
 </dd>
 </dl>
@@ -23967,7 +23274,7 @@ client.payments.list(
 <dl>
 <dd>
 
-**first:** `Integer` — Returns the first _n_ elements from the list.
+**billing_reason:** `Whop_sdk::Payments::Types::ListPaymentsRequestBillingReason` — Only payments charged for this reason.
     
 </dd>
 </dl>
@@ -23975,7 +23282,7 @@ client.payments.list(
 <dl>
 <dd>
 
-**last:** `Integer` — Returns the last _n_ elements from the list.
+**currency:** `String` — Only payments presented in this three-letter currency, such as `usd`.
     
 </dd>
 </dl>
@@ -23983,111 +23290,7 @@ client.payments.list(
 <dl>
 <dd>
 
-**company_id:** `String` — The unique identifier of the company to list payments for.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**direction:** `Whop_sdk::Types::Direction` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**order:** `Whop_sdk::Types::ReceiptV2Order` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**product_ids:** `String` — Filter payments to only those associated with these specific product identifiers.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**billing_reasons:** `Whop_sdk::Types::BillingReasons` — Filter payments by their billing reason.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**currencies:** `Whop_sdk::Types::Currencies` — Filter payments by their currency code.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**plan_ids:** `String` — Filter payments to only those associated with these specific plan identifiers.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**statuses:** `Whop_sdk::Types::ReceiptStatus` — Filter payments by their current status.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**substatuses:** `Whop_sdk::Types::FriendlyReceiptStatus` — Filter payments by their current substatus for more granular filtering.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**include_free:** `Internal::Types::Boolean` — Whether to include payments with a zero amount. Defaults to false, so zero-amount payments are omitted unless you set this to true — a company whose sales are all free plans returns an empty list without it.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**created_before:** `String` — Only return payments created before this timestamp.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**created_after:** `String` — Only return payments created after this timestamp.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**updated_before:** `String` — Only return payments last updated before this timestamp.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**updated_after:** `String` — Only return payments last updated after this timestamp.
+**user_id:** `String` — Only payments made by this buyer, prefixed `user_`.
     
 </dd>
 </dl>
@@ -24103,7 +23306,95 @@ client.payments.list(
 <dl>
 <dd>
 
-**checkout_configuration_ids:** `String` — Only return payments from these checkout configurations.
+**member_id:** `String` — Only payments made by this member, prefixed `mber_`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**membership_id:** `String` — Only payments billed under this membership, prefixed `mem_`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**product_id:** `String` — Only payments for this product, prefixed `prod_`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**plan_id:** `String` — Only payments priced by this plan, prefixed `plan_`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**created_before:** `String` — Only payments created before this ISO 8601 timestamp.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**created_after:** `String` — Only payments created after this ISO 8601 timestamp.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**order:** `Whop_sdk::Payments::Types::ListPaymentsRequestOrder` — The field to sort by.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**direction:** `Whop_sdk::Payments::Types::ListPaymentsRequestDirection` — The sort direction.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**first:** `Integer` — The number of payments to return.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**after:** `String` — A cursor; returns payments after this position.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**last:** `Integer` — The number of payments to return from the end of the range.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**before:** `String` — A cursor; returns payments before this position.
     
 </dd>
 </dl>
@@ -24123,7 +23414,7 @@ client.payments.list(
 </dl>
 </details>
 
-<details><summary><code>client.payments.<a href="/lib/whop_sdk/payments/client.rb">create</a>(request) -> Whop_sdk::Payments::Types::CreatePaymentsResponse</code></summary>
+<details><summary><code>client.payments.<a href="/lib/whop_sdk/payments/client.rb">create</a>(request) -> Whop_sdk::Types::Payment</code></summary>
 <dl>
 <dd>
 
@@ -24135,22 +23426,7 @@ client.payments.list(
 <dl>
 <dd>
 
-Charge a buyer on-session with a `confirmation_token` for the method they selected, or charge an existing member off-session using a stored payment method. You can provide an existing plan or create one inline. The endpoint returns a payment immediately, but processing continues asynchronously. Use webhooks to learn whether it succeeds or fails, and poll the payment's status endpoint for any step the buyer must complete.
-
-Required permissions:
- - `payment:charge`
- - `plan:create`
- - `access_pass:create`
- - `access_pass:update`
- - `plan:basic:read`
- - `access_pass:basic:read`
- - `member:email:read`
- - `member:basic:read`
- - `member:phone:read`
- - `promo_code:basic:read`
- - `shipment:basic:read`
- - `payment:dispute:read`
- - `payment:resolution_center_case:read`
+Charges a buyer for a plan. Pass a payment method already on file (`member_id` and `payment_method_id`), or a `confirmation_token` describing a method the buyer just supplied. Collection runs in the background: the response is the payment as created, not its outcome — poll Retrieve status for how far it has got and, for a confirmation-token payment, what the buyer must still do. `plan_id` names the plan to charge for.
 </dd>
 </dl>
 </dd>
@@ -24166,11 +23442,8 @@ Required permissions:
 
 ```ruby
 client.payments.create(
-  company_id: "biz_xxxxxxxxxxxxxx",
-  confirmation_token: "confirmation_token",
-  plan: {
-    currency: "usd"
-  }
+  account_id: "biz_xxxxxxxxxxxxxx",
+  plan_id: "plan_xxxxxxxxxxxxxx"
 )
 ```
 </dd>
@@ -24186,7 +23459,79 @@ client.payments.create(
 <dl>
 <dd>
 
-**request:** `Whop_sdk::Payments::Types::CreatePaymentsRequest` — Parameters for CreatePayment
+**account_id:** `String` — The account to charge for, prefixed `biz_`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**capture:** `Internal::Types::Boolean` — Whether to capture a card payment immediately. Defaults to true. Pass false to place an authorization hold that must be captured in full within five days via the capture endpoint.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**confirmation_token:** `String` — A confirmation token describing a payment method the buyer just supplied. Provide this instead of `member_id` and `payment_method_id`; the buyer is resolved from the token's billing email, or from `email`. The buyer may still have a step to complete — poll the payment's status for what to do next.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**email:** `String` — Overrides the buyer email carried on the confirmation token, resolving or creating the user the payment belongs to. Ignored unless `confirmation_token` is provided, and when the token was created by a signed-in buyer.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**member_id:** `String` — The member to charge, prefixed `mber_`. Required with `payment_method_id` unless `confirmation_token` is provided.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**metadata:** `Internal::Types::Hash[String, String]` — Custom metadata to attach to the payment.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**payment_method_id:** `String` — The stored payment method to charge, prefixed `payt_`. It must belong to the member. Required unless `confirmation_token` is provided.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**plan_id:** `String` — The plan to charge for, prefixed `plan_`. It must belong to the account.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**promo_code_id:** `String` — An active promo code to apply, prefixed `promo_`. It must belong to the account and be valid for the plan.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**return_url:** `String` — Where the buyer continues after completing an off-site step. An absolute https URL without credentials, at most 2,048 characters. Ignored unless `confirmation_token` is provided.
     
 </dd>
 </dl>
@@ -24206,7 +23551,7 @@ client.payments.create(
 </dl>
 </details>
 
-<details><summary><code>client.payments.<a href="/lib/whop_sdk/payments/client.rb">retrieve</a>(id:) -> Whop_sdk::Payments::Types::RetrievePaymentsResponse</code></summary>
+<details><summary><code>client.payments.<a href="/lib/whop_sdk/payments/client.rb">retrieve</a>(id:) -> Whop_sdk::Types::Payment</code></summary>
 <dl>
 <dd>
 
@@ -24218,19 +23563,7 @@ client.payments.create(
 <dl>
 <dd>
 
-Retrieves the details of an existing payment.
-
-Required permissions:
- - `payment:basic:read`
- - `plan:basic:read`
- - `access_pass:basic:read`
- - `member:email:read`
- - `member:basic:read`
- - `member:phone:read`
- - `promo_code:basic:read`
- - `shipment:basic:read`
- - `payment:dispute:read`
- - `payment:resolution_center_case:read`
+Returns one payment. Related records are ids — resolve a plan, membership, member or shipment on its own endpoint, and list this payment's refunds, disputes or Resolution Center cases with `?payment_id=`.
 </dd>
 </dl>
 </dd>
@@ -24245,7 +23578,7 @@ Required permissions:
 <dd>
 
 ```ruby
-client.payments.retrieve(id: "pay_xxxxxxxxxxxxxx")
+client.payments.retrieve(id: "id")
 ```
 </dd>
 </dl>
@@ -24260,7 +23593,7 @@ client.payments.retrieve(id: "pay_xxxxxxxxxxxxxx")
 <dl>
 <dd>
 
-**id:** `String` — The unique identifier of the payment.
+**id:** `String` — The payment to retrieve, prefixed `pay_`.
     
 </dd>
 </dl>
@@ -24354,10 +23687,7 @@ client.payments.capture(id: "id")
 <dl>
 <dd>
 
-Returns the list of fees associated with a specific payment, including platform fees and processing fees.
-
-Required permissions:
- - `payment:basic:read`
+Returns the fee breakdown of one payment — Whop's fee, processing, affiliate and other lines — each in the currency it was collected in and converted to the payment's settlement currency. The list is complete in one page.
 </dd>
 </dl>
 </dd>
@@ -24372,11 +23702,7 @@ Required permissions:
 <dd>
 
 ```ruby
-client.payments.list_fees(
-  id: "pay_xxxxxxxxxxxxxx",
-  first: 42,
-  last: 42
-)
+client.payments.list_fees(id: "id")
 ```
 </dd>
 </dl>
@@ -24391,39 +23717,7 @@ client.payments.list_fees(
 <dl>
 <dd>
 
-**id:** `String` — The unique identifier of the payment to list fees for.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**after:** `String` — Returns the elements in the list that come after the specified cursor.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**before:** `String` — Returns the elements in the list that come before the specified cursor.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**first:** `Integer` — Returns the first _n_ elements from the list.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**last:** `Integer` — Returns the last _n_ elements from the list.
+**id:** `String` — The payment whose fees to list, prefixed `pay_`.
     
 </dd>
 </dl>
@@ -24455,19 +23749,7 @@ client.payments.list_fees(
 <dl>
 <dd>
 
-Issue a full or partial refund for a payment. The refund is processed through the original payment processor and the membership status is updated accordingly.
-
-Required permissions:
- - `payment:manage`
- - `plan:basic:read`
- - `access_pass:basic:read`
- - `member:email:read`
- - `member:basic:read`
- - `member:phone:read`
- - `promo_code:basic:read`
- - `shipment:basic:read`
- - `payment:dispute:read`
- - `payment:resolution_center_case:read`
+Issues a full or partial refund for a payment. The refund is processed through the original payment processor and the membership status is updated accordingly.
 </dd>
 </dl>
 </dd>
@@ -24482,7 +23764,7 @@ Required permissions:
 <dd>
 
 ```ruby
-client.payments.refund(id: "pay_xxxxxxxxxxxxxx")
+client.payments.refund(id: "id")
 ```
 </dd>
 </dl>
@@ -24497,7 +23779,7 @@ client.payments.refund(id: "pay_xxxxxxxxxxxxxx")
 <dl>
 <dd>
 
-**id:** `String` — The unique identifier of the payment to refund.
+**id:** `String` — The payment to refund, prefixed `pay_`.
     
 </dd>
 </dl>
@@ -24537,19 +23819,7 @@ client.payments.refund(id: "pay_xxxxxxxxxxxxxx")
 <dl>
 <dd>
 
-Retry a failed or pending payment. This re-attempts the charge using the original payment method and plan details.
-
-Required permissions:
- - `payment:manage`
- - `plan:basic:read`
- - `access_pass:basic:read`
- - `member:email:read`
- - `member:basic:read`
- - `member:phone:read`
- - `promo_code:basic:read`
- - `shipment:basic:read`
- - `payment:dispute:read`
- - `payment:resolution_center_case:read`
+Retries a failed or pending payment. This re-attempts the charge using the original payment method and plan details.
 </dd>
 </dl>
 </dd>
@@ -24564,7 +23834,7 @@ Required permissions:
 <dd>
 
 ```ruby
-client.payments.retry_(id: "pay_xxxxxxxxxxxxxx")
+client.payments.retry_(id: "id")
 ```
 </dd>
 </dl>
@@ -24579,7 +23849,7 @@ client.payments.retry_(id: "pay_xxxxxxxxxxxxxx")
 <dl>
 <dd>
 
-**id:** `String` — The unique identifier of the payment to retry.
+**id:** `String` — The payment to retry, prefixed `pay_`.
     
 </dd>
 </dl>
@@ -24611,19 +23881,7 @@ client.payments.retry_(id: "pay_xxxxxxxxxxxxxx")
 <dl>
 <dd>
 
-Void a payment that has not yet been settled. Voiding cancels the payment before it is captured by the payment processor.
-
-Required permissions:
- - `payment:manage`
- - `plan:basic:read`
- - `access_pass:basic:read`
- - `member:email:read`
- - `member:basic:read`
- - `member:phone:read`
- - `promo_code:basic:read`
- - `shipment:basic:read`
- - `payment:dispute:read`
- - `payment:resolution_center_case:read`
+Voids a payment that has not yet been settled. Voiding cancels the payment before it is captured by the payment processor.
 </dd>
 </dl>
 </dd>
@@ -24638,7 +23896,7 @@ Required permissions:
 <dd>
 
 ```ruby
-client.payments.void(id: "pay_xxxxxxxxxxxxxx")
+client.payments.void(id: "id")
 ```
 </dd>
 </dl>
@@ -24653,7 +23911,7 @@ client.payments.void(id: "pay_xxxxxxxxxxxxxx")
 <dl>
 <dd>
 
-**id:** `String` — The unique identifier of the payment to void.
+**id:** `String` — The payment to void, prefixed `pay_`.
     
 </dd>
 </dl>
@@ -25219,9 +24477,10 @@ Sends money from an account or user balance to a saved payout method for that ow
 <dd>
 
 ```ruby
-client.payouts.create(request: {
-  key: "value"
-})
+client.payouts.create(
+  amount: 50,
+  payout_method_id: "potk_xxxxxxxxxxxxxx"
+)
 ```
 </dd>
 </dl>
@@ -25236,7 +24495,95 @@ client.payouts.create(request: {
 <dl>
 <dd>
 
-**request:** `Whop_sdk::Payouts::Types::CreatePayoutsRequestBody` 
+**account_id:** `String` — Account to pay out from, prefixed `biz_`. Provide exactly one of `account_id` or `user_id`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**acknowledge_bank_warning:** `Internal::Types::Boolean` — Set to `true` to continue when the destination bank could not confirm the payout method account holder's name, or `false` to have the payout refused in that case so the account holder can correct the name or link their bank first. Omitting the field skips the warning gate — a client that cannot show the warning keeps its pre-gate behavior.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**amount:** `Integer` — The amount to pay out in the specified currency.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**currency:** `String` — The currency to pay out. Balances are held per currency and the payout draws only from the balance in this currency, so match the currency the funds arrived in — for example `cad` for an account funded by CAD transfers. When omitted, uses `usd` if that balance can cover a withdrawal, otherwise the account's only other funded currency.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**metadata:** `Internal::Types::Hash[String, String]` — Key-value data to attach to the payout, echoed on every read and in webhook payloads. At most 50 keys, key names up to 40 characters, string values up to 500 characters. Never store secrets or regulated personal data here — webhook bodies are retained for delivery inspection.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**notes:** `String` — Free-form notes to attach to the payout, with a maximum of 255 characters. Omit or pass `null` for no notes.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**payout_method_id:** `String` — The saved payout method to deliver to (a potk_ identifier).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**platform_covers_fees:** `Internal::Types::Boolean` — Whether the parent platform covers the payout fee instead of the account being paid out. Omit to use the platform's configured fee coverage policy; pass `false` to opt out of it. `true` is only accepted for accounts that belong to a platform, and requires the platform's policy to cover this payout method's category or a caller authorized to manage the platform's child account fees.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**quote_token:** `String` — The server-signed quote_token returned by POST /payouts/quotes. Required when the ledger account's payout_quote_required is true; a payout without it is refused with the invalid_payout_quote error type. When provided, Whop will not commit a provider payout below the destination amount the quote showed.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**speed:** `Whop_sdk::Payouts::Types::CreatePayoutsRequestSpeed` — How fast the funds should arrive. `instant` is only accepted when the account and payout method are eligible; otherwise the payout is rejected.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**statement_descriptor:** `String` — Text that appears on the recipient's bank statement. Must be 5-22 alphanumeric characters (A-Z, a-z, 0-9). Without a `quote_token`, omit or pass `null` to use the default descriptor. With a `quote_token`, set this value when creating the quote; the payout request may omit it but cannot add or change it.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**user_id:** `String` — User to pay out from, prefixed `user_`. Provide exactly one of `account_id` or `user_id`.
     
 </dd>
 </dl>
@@ -25317,7 +24664,7 @@ client.payouts.create_quote(
 <dl>
 <dd>
 
-**currency:** `String` — The balance currency to pay out.
+**currency:** `String` — The currency to pay out. When omitted, uses `usd` if that balance can cover a withdrawal, otherwise the account's only other funded currency.
     
 </dd>
 </dl>
@@ -25342,6 +24689,14 @@ client.payouts.create_quote(
 <dd>
 
 **speed:** `Whop_sdk::Payouts::Types::CreateQuotePayoutsRequestSpeed` — How fast the funds should arrive.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**statement_descriptor:** `String` — Text that appears on the recipient's bank statement. Must be 5-22 alphanumeric characters (A-Z, a-z, 0-9). Omit or pass `null` to use the default descriptor.
     
 </dd>
 </dl>
@@ -28685,7 +28040,7 @@ client.recommended_actions.retrieve(id: "id")
 <dl>
 <dd>
 
-Records that the caller ran a recommended action chain. Nothing is executed server-side yet — the client follows the chain's step CTAs itself; this writes the `recommended_action_chain.executed` analytics event.
+Records that the caller ran a recommended action chain. Nothing is executed server-side yet — the client follows the chain's step CTAs itself; this writes the `recommended_action_chain.executed` analytics event and a `redirected` execution per step.
 </dd>
 </dl>
 </dd>
@@ -28826,10 +28181,7 @@ client.recommended_actions.list_executions(id: "id")
 <dl>
 <dd>
 
-Returns a paginated list of refunds, with optional filtering by payment, company, user, and creation date.
-
-Required permissions:
- - `payment:basic:read`
+Lists refunds, newest first. Without filters this is every refund the caller can read; narrow it to one payment with `payment_id`, one account with `account_id`, or one buyer with `user_id`.
 </dd>
 </dl>
 </dd>
@@ -28844,15 +28196,7 @@ Required permissions:
 <dd>
 
 ```ruby
-client.refunds.list(
-  first: 42,
-  last: 42,
-  payment_id: "pay_xxxxxxxxxxxxxx",
-  company_id: "biz_xxxxxxxxxxxxxx",
-  user_id: "user_xxxxxxxxxxxxx",
-  created_before: "2023-12-01T05:00:00Z",
-  created_after: "2023-12-01T05:00:00Z"
-)
+client.refunds.list
 ```
 </dd>
 </dl>
@@ -28867,7 +28211,7 @@ client.refunds.list(
 <dl>
 <dd>
 
-**after:** `String` — Returns the elements in the list that come after the specified cursor.
+**account_id:** `String` — Only refunds issued by this account, prefixed `biz_`.
     
 </dd>
 </dl>
@@ -28875,7 +28219,7 @@ client.refunds.list(
 <dl>
 <dd>
 
-**before:** `String` — Returns the elements in the list that come before the specified cursor.
+**payment_id:** `String` — Only refunds of this payment, prefixed `pay_`.
     
 </dd>
 </dl>
@@ -28883,7 +28227,7 @@ client.refunds.list(
 <dl>
 <dd>
 
-**first:** `Integer` — Returns the first _n_ elements from the list.
+**user_id:** `String` — Only refunds to this buyer, prefixed `user_`.
     
 </dd>
 </dl>
@@ -28891,7 +28235,7 @@ client.refunds.list(
 <dl>
 <dd>
 
-**last:** `Integer` — Returns the last _n_ elements from the list.
+**created_before:** `String` — Only refunds requested before this ISO 8601 timestamp.
     
 </dd>
 </dl>
@@ -28899,7 +28243,7 @@ client.refunds.list(
 <dl>
 <dd>
 
-**payment_id:** `String` — Filter refunds to those associated with this specific payment. Mutually exclusive with company_id and user_id: provide exactly one.
+**created_after:** `String` — Only refunds requested after this ISO 8601 timestamp.
     
 </dd>
 </dl>
@@ -28907,7 +28251,7 @@ client.refunds.list(
 <dl>
 <dd>
 
-**company_id:** `String` — Filter refunds to those belonging to this company. Mutually exclusive with payment_id and user_id: provide exactly one.
+**order:** `Whop_sdk::Refunds::Types::ListRefundsRequestOrder` — The field to sort by.
     
 </dd>
 </dl>
@@ -28915,7 +28259,7 @@ client.refunds.list(
 <dl>
 <dd>
 
-**user_id:** `String` — Filter refunds to those associated with this specific user. Mutually exclusive with payment_id and company_id: provide exactly one. Requires a credential belonging to that user; any other credential receives 'You are not authorized'.
+**direction:** `Whop_sdk::Refunds::Types::ListRefundsRequestDirection` — The sort direction.
     
 </dd>
 </dl>
@@ -28923,7 +28267,7 @@ client.refunds.list(
 <dl>
 <dd>
 
-**direction:** `Whop_sdk::Types::Direction` 
+**first:** `Integer` — The number of refunds to return.
     
 </dd>
 </dl>
@@ -28931,7 +28275,7 @@ client.refunds.list(
 <dl>
 <dd>
 
-**created_before:** `String` — Only return refunds created before this timestamp.
+**after:** `String` — A cursor; returns refunds after this position.
     
 </dd>
 </dl>
@@ -28939,7 +28283,15 @@ client.refunds.list(
 <dl>
 <dd>
 
-**created_after:** `String` — Only return refunds created after this timestamp.
+**last:** `Integer` — The number of refunds to return from the end of the range.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**before:** `String` — A cursor; returns refunds before this position.
     
 </dd>
 </dl>
@@ -28971,15 +28323,7 @@ client.refunds.list(
 <dl>
 <dd>
 
-Retrieves the details of an existing refund.
-
-Required permissions:
- - `payment:basic:read`
- - `plan:basic:read`
- - `access_pass:basic:read`
- - `member:email:read`
- - `member:basic:read`
- - `member:phone:read`
+Returns one refund.
 </dd>
 </dl>
 </dd>
@@ -28994,7 +28338,7 @@ Required permissions:
 <dd>
 
 ```ruby
-client.refunds.retrieve(id: "rf_xxxxxxxxxxxxxxx")
+client.refunds.retrieve(id: "id")
 ```
 </dd>
 </dl>
@@ -29009,7 +28353,7 @@ client.refunds.retrieve(id: "rf_xxxxxxxxxxxxxxx")
 <dl>
 <dd>
 
-**id:** `String` — The unique identifier of the refund.
+**id:** `String` — The refund to retrieve, prefixed `rf_`.
     
 </dd>
 </dl>
@@ -36643,8 +35987,8 @@ client.financial_reports.breakdown.retrieve(
   bucket: "transfers",
   direction: "money_in",
   currency: "currency",
-  from_date: "from_date",
-  to_date: "to_date"
+  from: "2024-01-15T09:30:00Z",
+  to: "2024-01-15T09:30:00Z"
 )
 ```
 </dd>
@@ -36692,7 +36036,7 @@ client.financial_reports.breakdown.retrieve(
 <dl>
 <dd>
 
-**from_date:** `String` — Start of the report window as an ISO 8601 timestamp.
+**from:** `String` — Start of the report window as an ISO 8601 timestamp.
     
 </dd>
 </dl>
@@ -36700,7 +36044,23 @@ client.financial_reports.breakdown.retrieve(
 <dl>
 <dd>
 
-**to_date:** `String` — Exclusive end of the report window as an ISO 8601 timestamp.
+**to:** `String` — Exclusive end of the report window as an ISO 8601 timestamp.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**group_by:** `Whop_sdk::FinancialReports::Breakdown::Types::RetrieveBreakdownRequestGroupBy` — Period grouping used by the parent report.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**timezone:** `String` — IANA timezone used by the parent report to bucket periods. Defaults to UTC.
     
 </dd>
 </dl>

@@ -14,6 +14,8 @@ module Whop_sdk
 
         field :instant, -> { Whop_sdk::Payouts::Types::PostPayoutMethodCreatedPayloadDataQuoteInstant }, optional: false, nullable: true
 
+        field :instant_unavailable_reason, -> { Whop_sdk::Payouts::Types::PostPayoutMethodCreatedPayloadDataQuoteInstantUnavailableReason }, optional: false, nullable: true
+
         field :max_limit, -> { Integer }, optional: false, nullable: true
 
         field :min_limit, -> { Integer }, optional: false, nullable: false

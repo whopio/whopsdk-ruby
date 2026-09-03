@@ -16,6 +16,7 @@ class WhopSDK::Test::Resources::SupportChannelsTest < WhopSDK::Test::ResourceTes
       response => {
         id: String,
         account_id: String | nil,
+        company_id: String | nil,
         custom_name: String | nil,
         customer_user: WhopSDK::SupportChannel::CustomerUser | nil,
         last_message_at: Time | nil,
@@ -37,6 +38,7 @@ class WhopSDK::Test::Resources::SupportChannelsTest < WhopSDK::Test::ResourceTes
       response => {
         id: String,
         account_id: String | nil,
+        company_id: String | nil,
         custom_name: String | nil,
         customer_user: WhopSDK::SupportChannel::CustomerUser | nil,
         last_message_at: Time | nil,
@@ -65,6 +67,7 @@ class WhopSDK::Test::Resources::SupportChannelsTest < WhopSDK::Test::ResourceTes
       row => {
         id: String,
         account_id: String | nil,
+        company_id: String | nil,
         custom_name: String | nil,
         customer_user: WhopSDK::Models::SupportChannelListResponse::CustomerUser | nil,
         last_message_at: Time | nil,

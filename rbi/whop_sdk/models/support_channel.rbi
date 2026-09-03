@@ -17,6 +17,11 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :account_id
 
+      # The unique identifier of the account associated with this channel. Null if this
+      # is not a support or account-scoped conversation.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :company_id
+
       # A custom display name assigned to this channel by the user. Null if no custom
       # name has been set.
       sig { returns(T.nilable(String)) }
@@ -51,6 +56,7 @@ module WhopSDK
         params(
           id: String,
           account_id: T.nilable(String),
+          company_id: T.nilable(String),
           custom_name: T.nilable(String),
           customer_user:
             T.nilable(WhopSDK::SupportChannel::CustomerUser::OrHash),
@@ -64,6 +70,9 @@ module WhopSDK
         # The unique identifier of the account associated with this channel. Null if this
         # is not a support or account-scoped conversation.
         account_id:,
+        # The unique identifier of the account associated with this channel. Null if this
+        # is not a support or account-scoped conversation.
+        company_id:,
         # A custom display name assigned to this channel by the user. Null if no custom
         # name has been set.
         custom_name:,
@@ -84,6 +93,7 @@ module WhopSDK
           {
             id: String,
             account_id: T.nilable(String),
+            company_id: T.nilable(String),
             custom_name: T.nilable(String),
             customer_user: T.nilable(WhopSDK::SupportChannel::CustomerUser),
             last_message_at: T.nilable(Time),

@@ -79,6 +79,9 @@ module WhopSDK
       NG_USSD = :ng_ussd
       NG_WALLET = :ng_wallet
       NZ_BANK_ACCOUNT = :nz_bank_account
+      ONEY = :oney
+      ONEY_3X = :oney_3x
+      ONEY_4X = :oney_4x
       OXXO = :oxxo
       P24 = :p24
       PAGO_EFECTIVO = :pago_efectivo

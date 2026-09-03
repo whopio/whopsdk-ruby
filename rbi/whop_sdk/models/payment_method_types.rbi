@@ -105,6 +105,9 @@ module WhopSDK
       NG_WALLET = T.let(:ng_wallet, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       NZ_BANK_ACCOUNT =
         T.let(:nz_bank_account, WhopSDK::PaymentMethodTypes::TaggedSymbol)
+      ONEY = T.let(:oney, WhopSDK::PaymentMethodTypes::TaggedSymbol)
+      ONEY_3X = T.let(:oney_3x, WhopSDK::PaymentMethodTypes::TaggedSymbol)
+      ONEY_4X = T.let(:oney_4x, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       OXXO = T.let(:oxxo, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       P24 = T.let(:p24, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       PAGO_EFECTIVO =

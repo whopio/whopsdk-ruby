@@ -249,33 +249,37 @@ module WhopSDK
 
       type payment_method_configuration =
         {
-          disabled: ::Array[String],
-          enabled: ::Array[String],
+          disabled: ::Array[WhopSDK::Models::payment_method_types],
+          enabled: ::Array[WhopSDK::Models::payment_method_types],
           include_platform_defaults: bool
         }
 
       class PaymentMethodConfiguration < WhopSDK::Internal::Type::BaseModel
-        attr_reader disabled: ::Array[String]?
+        attr_reader disabled: ::Array[WhopSDK::Models::payment_method_types]?
 
-        def disabled=: (::Array[String]) -> ::Array[String]
+        def disabled=: (
+          ::Array[WhopSDK::Models::payment_method_types]
+        ) -> ::Array[WhopSDK::Models::payment_method_types]
 
-        attr_reader enabled: ::Array[String]?
+        attr_reader enabled: ::Array[WhopSDK::Models::payment_method_types]?
 
-        def enabled=: (::Array[String]) -> ::Array[String]
+        def enabled=: (
+          ::Array[WhopSDK::Models::payment_method_types]
+        ) -> ::Array[WhopSDK::Models::payment_method_types]
 
         attr_reader include_platform_defaults: bool?
 
         def include_platform_defaults=: (bool) -> bool
 
         def initialize: (
-          ?disabled: ::Array[String],
-          ?enabled: ::Array[String],
+          ?disabled: ::Array[WhopSDK::Models::payment_method_types],
+          ?enabled: ::Array[WhopSDK::Models::payment_method_types],
           ?include_platform_defaults: bool
         ) -> void
 
         def to_hash: -> {
-          disabled: ::Array[String],
-          enabled: ::Array[String],
+          disabled: ::Array[WhopSDK::Models::payment_method_types],
+          enabled: ::Array[WhopSDK::Models::payment_method_types],
           include_platform_defaults: bool
         }
       end

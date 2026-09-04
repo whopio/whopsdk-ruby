@@ -179,6 +179,15 @@ module WhopSDK
         sig { returns(T::Boolean) }
         attr_accessor :escalated
 
+        sig do
+          returns(
+            T::Array[
+              WhopSDK::ResolutionCenterCaseCreatedWebhookEvent::Data::LineItem
+            ]
+          )
+        end
+        attr_accessor :line_items
+
         # Who prevailed on the claim. `null` until the case closes. Read `refund` for
         # whether any money actually moved.
         sig do
@@ -273,6 +282,10 @@ module WhopSDK
             currency: T.nilable(String),
             customer_appealed: T::Boolean,
             escalated: T::Boolean,
+            line_items:
+              T::Array[
+                WhopSDK::ResolutionCenterCaseCreatedWebhookEvent::Data::LineItem::OrHash
+              ],
             outcome:
               T.nilable(
                 WhopSDK::ResolutionCenterCaseCreatedWebhookEvent::Data::Outcome::OrSymbol
@@ -312,6 +325,7 @@ module WhopSDK
           # Whether Whop is involved — either reviewing the case, or waiting on the side
           # named by `status` for something it asked for while reviewing.
           escalated:,
+          line_items:,
           # Who prevailed on the claim. `null` until the case closes. Read `refund` for
           # whether any money actually moved.
           outcome:,
@@ -360,6 +374,10 @@ module WhopSDK
               currency: T.nilable(String),
               customer_appealed: T::Boolean,
               escalated: T::Boolean,
+              line_items:
+                T::Array[
+                  WhopSDK::ResolutionCenterCaseCreatedWebhookEvent::Data::LineItem
+                ],
               outcome:
                 T.nilable(
                   WhopSDK::ResolutionCenterCaseCreatedWebhookEvent::Data::Outcome::TaggedSymbol
@@ -536,6 +554,83 @@ module WhopSDK
                 name: T.nilable(String),
                 user_id: T.nilable(String),
                 username: T.nilable(String)
+              }
+            )
+          end
+          def to_hash
+          end
+        end
+
+        class LineItem < WhopSDK::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                WhopSDK::ResolutionCenterCaseCreatedWebhookEvent::Data::LineItem,
+                WhopSDK::Internal::AnyHash
+              )
+            end
+
+          # Line item ID, prefixed `li_`. Null when the payment predates item snapshots and
+          # the item is read from the payment's plan.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :id
+
+          # The item's name as shown at checkout — the product title, else the plan title.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :label
+
+          # The plan bought, prefixed `plan_`. Null when the plan has since been deleted.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :plan_id
+
+          # The product the plan belongs to, prefixed `prod_`. On a payment that predates
+          # item snapshots this falls back to the plan's product, so it can be set where the
+          # case's own `product_id` is null. Null for a plan with no product.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :product_id
+
+          # How many units were bought.
+          sig { returns(Float) }
+          attr_accessor :quantity
+
+          # Everything the disputed payment charged for, in purchase order. `product_id` and
+          # `plan_id` name the first of these; a cart's later items appear only here. A
+          # payment made before items were recorded lists the single item its plan implies.
+          # Empty when the payment is not linked to a plan.
+          sig do
+            params(
+              id: T.nilable(String),
+              label: T.nilable(String),
+              plan_id: T.nilable(String),
+              product_id: T.nilable(String),
+              quantity: Float
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # Line item ID, prefixed `li_`. Null when the payment predates item snapshots and
+            # the item is read from the payment's plan.
+            id:,
+            # The item's name as shown at checkout — the product title, else the plan title.
+            label:,
+            # The plan bought, prefixed `plan_`. Null when the plan has since been deleted.
+            plan_id:,
+            # The product the plan belongs to, prefixed `prod_`. On a payment that predates
+            # item snapshots this falls back to the plan's product, so it can be set where the
+            # case's own `product_id` is null. Null for a plan with no product.
+            product_id:,
+            # How many units were bought.
+            quantity:
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                id: T.nilable(String),
+                label: T.nilable(String),
+                plan_id: T.nilable(String),
+                product_id: T.nilable(String),
+                quantity: Float
               }
             )
           end

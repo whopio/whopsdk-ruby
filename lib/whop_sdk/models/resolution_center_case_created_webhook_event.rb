@@ -128,6 +128,12 @@ module WhopSDK
         #   @return [Boolean]
         required :escalated, WhopSDK::Internal::Type::Boolean
 
+        # @!attribute line_items
+        #
+        #   @return [Array<WhopSDK::Models::ResolutionCenterCaseCreatedWebhookEvent::Data::LineItem>]
+        required :line_items,
+                 -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::ResolutionCenterCaseCreatedWebhookEvent::Data::LineItem] }
+
         # @!attribute outcome
         #   Who prevailed on the claim. `null` until the case closes. Read `refund` for
         #   whether any money actually moved.
@@ -196,7 +202,7 @@ module WhopSDK
         #   @return [String]
         required :updated_at, String
 
-        # @!method initialize(id:, account:, amount:, available_actions:, buyer:, created_at:, currency:, customer_appealed:, escalated:, outcome:, payment:, plan_id:, product_id:, reason:, refund:, response_due_at:, status:, updated_at:)
+        # @!method initialize(id:, account:, amount:, available_actions:, buyer:, created_at:, currency:, customer_appealed:, escalated:, line_items:, outcome:, payment:, plan_id:, product_id:, reason:, refund:, response_due_at:, status:, updated_at:)
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::ResolutionCenterCaseCreatedWebhookEvent::Data} for more
         #   details.
@@ -218,6 +224,8 @@ module WhopSDK
         #   @param customer_appealed [Boolean] Whether the customer has appealed a decision on this case.
         #
         #   @param escalated [Boolean] Whether Whop is involved — either reviewing the case, or waiting on the side nam
+        #
+        #   @param line_items [Array<WhopSDK::Models::ResolutionCenterCaseCreatedWebhookEvent::Data::LineItem>]
         #
         #   @param outcome [Symbol, WhopSDK::Models::ResolutionCenterCaseCreatedWebhookEvent::Data::Outcome, nil] Who prevailed on the claim. `null` until the case closes. Read `refund` for whet
         #
@@ -325,6 +333,61 @@ module WhopSDK
           #   @param user_id [String, nil] The customer's user ID, prefixed `user_`.
           #
           #   @param username [String, nil] The customer's Whop username.
+        end
+
+        class LineItem < WhopSDK::Internal::Type::BaseModel
+          # @!attribute id
+          #   Line item ID, prefixed `li_`. Null when the payment predates item snapshots and
+          #   the item is read from the payment's plan.
+          #
+          #   @return [String, nil]
+          required :id, String, nil?: true
+
+          # @!attribute label
+          #   The item's name as shown at checkout — the product title, else the plan title.
+          #
+          #   @return [String, nil]
+          required :label, String, nil?: true
+
+          # @!attribute plan_id
+          #   The plan bought, prefixed `plan_`. Null when the plan has since been deleted.
+          #
+          #   @return [String, nil]
+          required :plan_id, String, nil?: true
+
+          # @!attribute product_id
+          #   The product the plan belongs to, prefixed `prod_`. On a payment that predates
+          #   item snapshots this falls back to the plan's product, so it can be set where the
+          #   case's own `product_id` is null. Null for a plan with no product.
+          #
+          #   @return [String, nil]
+          required :product_id, String, nil?: true
+
+          # @!attribute quantity
+          #   How many units were bought.
+          #
+          #   @return [Float]
+          required :quantity, Float
+
+          # @!method initialize(id:, label:, plan_id:, product_id:, quantity:)
+          #   Some parameter documentations has been truncated, see
+          #   {WhopSDK::Models::ResolutionCenterCaseCreatedWebhookEvent::Data::LineItem} for
+          #   more details.
+          #
+          #   Everything the disputed payment charged for, in purchase order. `product_id` and
+          #   `plan_id` name the first of these; a cart's later items appear only here. A
+          #   payment made before items were recorded lists the single item its plan implies.
+          #   Empty when the payment is not linked to a plan.
+          #
+          #   @param id [String, nil] Line item ID, prefixed `li_`. Null when the payment predates item snapshots and
+          #
+          #   @param label [String, nil] The item's name as shown at checkout — the product title, else the plan title.
+          #
+          #   @param plan_id [String, nil] The plan bought, prefixed `plan_`. Null when the plan has since been deleted.
+          #
+          #   @param product_id [String, nil] The product the plan belongs to, prefixed `prod_`. On a payment that predates it
+          #
+          #   @param quantity [Float] How many units were bought.
         end
 
         # Who prevailed on the claim. `null` until the case closes. Read `refund` for

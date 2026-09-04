@@ -11,6 +11,7 @@ module WhopSDK
         currency: String?,
         customer_appealed: bool,
         escalated: bool,
+        line_items: ::Array[WhopSDK::Models::ResolutionCenterCaseListResponse::LineItem],
         outcome: WhopSDK::Models::ResolutionCenterCaseListResponse::outcome?,
         payment: WhopSDK::Models::ResolutionCenterCaseListResponse::Payment,
         plan_id: String?,
@@ -41,6 +42,8 @@ module WhopSDK
 
       attr_accessor escalated: bool
 
+      attr_accessor line_items: ::Array[WhopSDK::Models::ResolutionCenterCaseListResponse::LineItem]
+
       attr_accessor outcome: WhopSDK::Models::ResolutionCenterCaseListResponse::outcome?
 
       attr_accessor payment: WhopSDK::Models::ResolutionCenterCaseListResponse::Payment
@@ -69,6 +72,7 @@ module WhopSDK
         currency: String?,
         customer_appealed: bool,
         escalated: bool,
+        line_items: ::Array[WhopSDK::Models::ResolutionCenterCaseListResponse::LineItem],
         outcome: WhopSDK::Models::ResolutionCenterCaseListResponse::outcome?,
         payment: WhopSDK::Models::ResolutionCenterCaseListResponse::Payment,
         plan_id: String?,
@@ -90,6 +94,7 @@ module WhopSDK
         currency: String?,
         customer_appealed: bool,
         escalated: bool,
+        line_items: ::Array[WhopSDK::Models::ResolutionCenterCaseListResponse::LineItem],
         outcome: WhopSDK::Models::ResolutionCenterCaseListResponse::outcome?,
         payment: WhopSDK::Models::ResolutionCenterCaseListResponse::Payment,
         plan_id: String?,
@@ -163,6 +168,43 @@ module WhopSDK
           name: String?,
           user_id: String?,
           username: String?
+        }
+      end
+
+      type line_item =
+        {
+          id: String?,
+          label: String?,
+          plan_id: String?,
+          product_id: String?,
+          quantity: Float
+        }
+
+      class LineItem < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String?
+
+        attr_accessor label: String?
+
+        attr_accessor plan_id: String?
+
+        attr_accessor product_id: String?
+
+        attr_accessor quantity: Float
+
+        def initialize: (
+          id: String?,
+          label: String?,
+          plan_id: String?,
+          product_id: String?,
+          quantity: Float
+        ) -> void
+
+        def to_hash: -> {
+          id: String?,
+          label: String?,
+          plan_id: String?,
+          product_id: String?,
+          quantity: Float
         }
       end
 

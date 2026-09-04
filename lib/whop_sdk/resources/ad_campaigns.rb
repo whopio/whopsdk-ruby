@@ -208,7 +208,7 @@ module WhopSDK
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::AdCampaignUnpauseParams} for more details.
       #
-      # Resumes a paused ad campaign.
+      # Resumes a paused ad campaign. Requires an ads payment method on the account.
       #
       # @overload unpause(id, api_version_date: nil, idempotency_key: nil, request_options: {})
       #

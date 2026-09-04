@@ -75,7 +75,7 @@ module WhopSDK
         # Body param: An image displayed on the product page to represent this plan.
         image: nil,
         # Body param: Initial amount charged in the plan's currency, e.g. 10.43 for
-        # $10.43.
+        # $10.43. A paid fiat plan charges at least 1.00 in its currency; use 0 for free.
         initial_price: nil,
         # Body param: Private notes visible only to the account owner. Not shown to
         # customers.
@@ -100,7 +100,7 @@ module WhopSDK
         # Body param: Sales method for this plan.
         release_method: nil,
         # Body param: The amount charged each billing period for recurring plans, in the
-        # plan's currency.
+        # plan's currency. A paid fiat plan charges at least 1.00 in its currency.
         renewal_price: nil,
         # Body param: Installment payments required before the subscription pauses.
         split_pay_required_payments: nil,
@@ -216,7 +216,7 @@ module WhopSDK
         # Body param: An image displayed on the product page to represent this plan.
         image: nil,
         # Body param: Initial amount charged in the plan's currency, e.g. 10.43 for
-        # $10.43.
+        # $10.43. A paid fiat plan charges at least 1.00 in its currency; use 0 for free.
         initial_price: nil,
         # Body param: Private notes visible only to the account owner. Not shown to
         # customers.
@@ -240,7 +240,7 @@ module WhopSDK
         # Body param: Sales method for this plan.
         release_method: nil,
         # Body param: The amount charged each billing period for recurring plans, in the
-        # plan's currency.
+        # plan's currency. A paid fiat plan charges at least 1.00 in its currency.
         renewal_price: nil,
         # Body param: The maximum number of units available for purchase. Ignored when
         # unlimited_stock is true.

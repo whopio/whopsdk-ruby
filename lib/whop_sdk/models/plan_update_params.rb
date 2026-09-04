@@ -78,7 +78,8 @@ module WhopSDK
       optional :image, -> { WhopSDK::PlanUpdateParams::Image }, nil?: true
 
       # @!attribute initial_price
-      #   Initial amount charged in the plan's currency, e.g. 10.43 for $10.43.
+      #   Initial amount charged in the plan's currency, e.g. 10.43 for $10.43. A paid
+      #   fiat plan charges at least 1.00 in its currency; use 0 for free.
       #
       #   @return [Float, nil]
       optional :initial_price, Float, nil?: true
@@ -129,7 +130,7 @@ module WhopSDK
 
       # @!attribute renewal_price
       #   The amount charged each billing period for recurring plans, in the plan's
-      #   currency.
+      #   currency. A paid fiat plan charges at least 1.00 in its currency.
       #
       #   @return [Float, nil]
       optional :renewal_price, Float, nil?: true
@@ -214,7 +215,7 @@ module WhopSDK
       #
       #   @param image [WhopSDK::Models::PlanUpdateParams::Image, nil] An image displayed on the product page to represent this plan.
       #
-      #   @param initial_price [Float, nil] Initial amount charged in the plan's currency, e.g. 10.43 for $10.43.
+      #   @param initial_price [Float, nil] Initial amount charged in the plan's currency, e.g. 10.43 for $10.43. A paid fia
       #
       #   @param internal_notes [String, nil] Private notes visible only to the account owner. Not shown to customers.
       #

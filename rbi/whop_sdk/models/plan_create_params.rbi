@@ -62,7 +62,8 @@ module WhopSDK
       end
       attr_writer :image
 
-      # Initial amount charged in the plan's currency, e.g. 10.43 for $10.43.
+      # Initial amount charged in the plan's currency, e.g. 10.43 for $10.43. A paid
+      # fiat plan charges at least 1.00 in its currency; use 0 for free.
       sig { returns(T.nilable(Float)) }
       attr_accessor :initial_price
 
@@ -127,7 +128,7 @@ module WhopSDK
       attr_writer :release_method
 
       # The amount charged each billing period for recurring plans, in the plan's
-      # currency.
+      # currency. A paid fiat plan charges at least 1.00 in its currency.
       sig { returns(T.nilable(Float)) }
       attr_accessor :renewal_price
 
@@ -235,7 +236,8 @@ module WhopSDK
         expiration_days: nil,
         # An image displayed on the product page to represent this plan.
         image: nil,
-        # Initial amount charged in the plan's currency, e.g. 10.43 for $10.43.
+        # Initial amount charged in the plan's currency, e.g. 10.43 for $10.43. A paid
+        # fiat plan charges at least 1.00 in its currency; use 0 for free.
         initial_price: nil,
         # Private notes visible only to the account owner. Not shown to customers.
         internal_notes: nil,
@@ -258,7 +260,7 @@ module WhopSDK
         # Sales method for this plan.
         release_method: nil,
         # The amount charged each billing period for recurring plans, in the plan's
-        # currency.
+        # currency. A paid fiat plan charges at least 1.00 in its currency.
         renewal_price: nil,
         # Installment payments required before the subscription pauses.
         split_pay_required_payments: nil,

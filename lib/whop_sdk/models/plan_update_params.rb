@@ -334,18 +334,14 @@ module WhopSDK
 
       class PaymentMethodConfiguration < WhopSDK::Internal::Type::BaseModel
         # @!attribute disabled
-        #   Payment method types explicitly disabled for this plan — the `type` values from
-        #   the payment method types catalogue.
         #
-        #   @return [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>, nil]
-        optional :disabled, -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::PaymentMethodTypes] }
+        #   @return [Array<String>, nil]
+        optional :disabled, WhopSDK::Internal::Type::ArrayOf[String]
 
         # @!attribute enabled
-        #   Payment method types explicitly enabled for this plan — the `type` values from
-        #   the payment method types catalogue.
         #
-        #   @return [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>, nil]
-        optional :enabled, -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::PaymentMethodTypes] }
+        #   @return [Array<String>, nil]
+        optional :enabled, WhopSDK::Internal::Type::ArrayOf[String]
 
         # @!attribute include_platform_defaults
         #
@@ -353,17 +349,11 @@ module WhopSDK
         optional :include_platform_defaults, WhopSDK::Internal::Type::Boolean
 
         # @!method initialize(disabled: nil, enabled: nil, include_platform_defaults: nil)
-        #   Some parameter documentations has been truncated, see
-        #   {WhopSDK::Models::PlanUpdateParams::PaymentMethodConfiguration} for more
-        #   details.
-        #
         #   Explicit payment method configuration for the plan. When not provided, the
         #   account's defaults apply.
         #
-        #   @param disabled [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>] Payment method types explicitly disabled for this plan — the `type` values from
-        #
-        #   @param enabled [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>] Payment method types explicitly enabled for this plan — the `type` values from t
-        #
+        #   @param disabled [Array<String>]
+        #   @param enabled [Array<String>]
         #   @param include_platform_defaults [Boolean]
       end
 

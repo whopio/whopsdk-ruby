@@ -492,28 +492,16 @@ module WhopSDK
             )
           end
 
-        # Payment method types explicitly disabled for this plan — the `type` values from
-        # the payment method types catalogue.
-        sig do
-          returns(T.nilable(T::Array[WhopSDK::PaymentMethodTypes::OrSymbol]))
-        end
+        sig { returns(T.nilable(T::Array[String])) }
         attr_reader :disabled
 
-        sig do
-          params(disabled: T::Array[WhopSDK::PaymentMethodTypes::OrSymbol]).void
-        end
+        sig { params(disabled: T::Array[String]).void }
         attr_writer :disabled
 
-        # Payment method types explicitly enabled for this plan — the `type` values from
-        # the payment method types catalogue.
-        sig do
-          returns(T.nilable(T::Array[WhopSDK::PaymentMethodTypes::OrSymbol]))
-        end
+        sig { returns(T.nilable(T::Array[String])) }
         attr_reader :enabled
 
-        sig do
-          params(enabled: T::Array[WhopSDK::PaymentMethodTypes::OrSymbol]).void
-        end
+        sig { params(enabled: T::Array[String]).void }
         attr_writer :enabled
 
         sig { returns(T.nilable(T::Boolean)) }
@@ -526,17 +514,13 @@ module WhopSDK
         # account's defaults apply.
         sig do
           params(
-            disabled: T::Array[WhopSDK::PaymentMethodTypes::OrSymbol],
-            enabled: T::Array[WhopSDK::PaymentMethodTypes::OrSymbol],
+            disabled: T::Array[String],
+            enabled: T::Array[String],
             include_platform_defaults: T::Boolean
           ).returns(T.attached_class)
         end
         def self.new(
-          # Payment method types explicitly disabled for this plan — the `type` values from
-          # the payment method types catalogue.
           disabled: nil,
-          # Payment method types explicitly enabled for this plan — the `type` values from
-          # the payment method types catalogue.
           enabled: nil,
           include_platform_defaults: nil
         )
@@ -545,8 +529,8 @@ module WhopSDK
         sig do
           override.returns(
             {
-              disabled: T::Array[WhopSDK::PaymentMethodTypes::OrSymbol],
-              enabled: T::Array[WhopSDK::PaymentMethodTypes::OrSymbol],
+              disabled: T::Array[String],
+              enabled: T::Array[String],
               include_platform_defaults: T::Boolean
             }
           )

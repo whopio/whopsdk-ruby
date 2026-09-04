@@ -148,40 +148,6 @@ module WhopSDK
       end
 
       # Some parameter documentations has been truncated, see
-      # {WhopSDK::Models::MembershipAddFreeDaysParams} for more details.
-      #
-      # Add free days to extend a membership's current billing period, expiration date,
-      # or Stripe trial.
-      #
-      # Required permissions:
-      #
-      # - `member:manage`
-      # - `member:email:read`
-      # - `member:basic:read`
-      #
-      # @overload add_free_days(id, free_days:, request_options: {})
-      #
-      # @param id [String] The unique identifier of the membership.
-      #
-      # @param free_days [Integer] The number of free days to add (1-1095). Extends the billing period, expiration
-      #
-      # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
-      #
-      # @return [WhopSDK::Models::MembershipAddFreeDaysResponse]
-      #
-      # @see WhopSDK::Models::MembershipAddFreeDaysParams
-      def add_free_days(id, params)
-        parsed, options = WhopSDK::MembershipAddFreeDaysParams.dump_request(params)
-        @client.request(
-          method: :post,
-          path: ["memberships/%1$s/add_free_days", id],
-          body: parsed,
-          model: WhopSDK::Models::MembershipAddFreeDaysResponse,
-          options: options
-        )
-      end
-
-      # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::MembershipCancelParams} for more details.
       #
       # Cancels a membership. Pass `cancel_at_period_end: true` to stop auto-renewal and
@@ -283,33 +249,6 @@ module WhopSDK
           ),
           model: WhopSDK::Membership,
           options: options
-        )
-      end
-
-      # Reverse a pending cancellation for a membership that was scheduled to cancel at
-      # period end.
-      #
-      # Required permissions:
-      #
-      # - `member:manage`
-      # - `member:email:read`
-      # - `member:basic:read`
-      #
-      # @overload uncancel(id, request_options: {})
-      #
-      # @param id [String] The unique identifier of the membership to uncancel.
-      #
-      # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
-      #
-      # @return [WhopSDK::Models::MembershipUncancelResponse]
-      #
-      # @see WhopSDK::Models::MembershipUncancelParams
-      def uncancel(id, params = {})
-        @client.request(
-          method: :post,
-          path: ["memberships/%1$s/uncancel", id],
-          model: WhopSDK::Models::MembershipUncancelResponse,
-          options: params[:request_options]
         )
       end
 

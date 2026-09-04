@@ -304,11 +304,7 @@ module WhopSDK
 
   DisputeStatuses = WhopSDK::Models::DisputeStatuses
 
-  DisputeSubmitEvidenceParams = WhopSDK::Models::DisputeSubmitEvidenceParams
-
   DisputeUpdatedWebhookEvent = WhopSDK::Models::DisputeUpdatedWebhookEvent
-
-  DisputeUpdateEvidenceParams = WhopSDK::Models::DisputeUpdateEvidenceParams
 
   DmChannel = WhopSDK::Models::DmChannel
 
@@ -498,8 +494,6 @@ module WhopSDK
   MembershipActivatedWebhookEvent =
     WhopSDK::Models::MembershipActivatedWebhookEvent
 
-  MembershipAddFreeDaysParams = WhopSDK::Models::MembershipAddFreeDaysParams
-
   MembershipCancelAtPeriodEndChangedWebhookEvent =
     WhopSDK::Models::MembershipCancelAtPeriodEndChangedWebhookEvent
 
@@ -520,8 +514,6 @@ module WhopSDK
 
   MembershipTrialEndingSoonWebhookEvent =
     WhopSDK::Models::MembershipTrialEndingSoonWebhookEvent
-
-  MembershipUncancelParams = WhopSDK::Models::MembershipUncancelParams
 
   MembershipUpdateParams = WhopSDK::Models::MembershipUpdateParams
 

@@ -33,12 +33,6 @@ module WhopSDK
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Internal::CursorPage[WhopSDK::Membership]
 
-      def add_free_days: (
-        String id,
-        free_days: Integer,
-        ?request_options: WhopSDK::request_opts
-      ) -> WhopSDK::Models::MembershipAddFreeDaysResponse
-
       def cancel: (
         String id,
         ?cancel_at_period_end: bool,
@@ -62,11 +56,6 @@ module WhopSDK
         ?idempotency_key: String,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Membership
-
-      def uncancel: (
-        String id,
-        ?request_options: WhopSDK::request_opts
-      ) -> WhopSDK::Models::MembershipUncancelResponse
 
       def initialize: (client: WhopSDK::Client) -> void
     end

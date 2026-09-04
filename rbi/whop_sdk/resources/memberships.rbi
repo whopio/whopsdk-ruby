@@ -122,31 +122,6 @@ module WhopSDK
       )
       end
 
-      # Add free days to extend a membership's current billing period, expiration date,
-      # or Stripe trial.
-      #
-      # Required permissions:
-      #
-      # - `member:manage`
-      # - `member:email:read`
-      # - `member:basic:read`
-      sig do
-        params(
-          id: String,
-          free_days: Integer,
-          request_options: WhopSDK::RequestOptions::OrHash
-        ).returns(WhopSDK::Models::MembershipAddFreeDaysResponse)
-      end
-      def add_free_days(
-        # The unique identifier of the membership.
-        id,
-        # The number of free days to add (1-1095). Extends the billing period, expiration
-        # date, or Stripe trial depending on plan type.
-        free_days:,
-        request_options: {}
-      )
-      end
-
       # Cancels a membership. Pass `cancel_at_period_end: true` to stop auto-renewal and
       # keep access until the current billing period ends. Omit it (or pass `false`) to
       # revoke access immediately. Buyers cannot cancel buy-now-pay-later (`splitit`,
@@ -222,27 +197,6 @@ module WhopSDK
         # A unique key that makes this request safe to retry. See
         # [Idempotent requests](https://docs.whop.com/developer/api/idempotency).
         idempotency_key: nil,
-        request_options: {}
-      )
-      end
-
-      # Reverse a pending cancellation for a membership that was scheduled to cancel at
-      # period end.
-      #
-      # Required permissions:
-      #
-      # - `member:manage`
-      # - `member:email:read`
-      # - `member:basic:read`
-      sig do
-        params(
-          id: String,
-          request_options: WhopSDK::RequestOptions::OrHash
-        ).returns(WhopSDK::Models::MembershipUncancelResponse)
-      end
-      def uncancel(
-        # The unique identifier of the membership to uncancel.
-        id,
         request_options: {}
       )
       end

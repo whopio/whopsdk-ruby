@@ -8,8 +8,8 @@ module WhopSDK
       include WhopSDK::Internal::Type::RequestParameters
 
       # @!attribute account_id
-      #   The unique identifier of the account to create this plan for. Defaults to the
-      #   caller's account.
+      #   The unique identifier of the account to create this plan for. Required when
+      #   authenticating as a user; an account API key supplies its own account.
       #
       #   @return [String, nil]
       optional :account_id, String
@@ -185,7 +185,7 @@ module WhopSDK
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::PlanCreateParams} for more details.
       #
-      #   @param account_id [String] The unique identifier of the account to create this plan for. Defaults to the ca
+      #   @param account_id [String] The unique identifier of the account to create this plan for. Required when auth
       #
       #   @param adaptive_pricing_enabled [Boolean, nil] Whether this plan accepts local currency payments via adaptive pricing.
       #

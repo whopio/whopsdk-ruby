@@ -17,7 +17,7 @@ module WhopSDK
       #
       # @overload create(account_id: nil, adaptive_pricing_enabled: nil, billing_period: nil, checkout_styling: nil, currency: nil, custom_fields: nil, description: nil, expiration_days: nil, image: nil, initial_price: nil, internal_notes: nil, metadata: nil, override_tax_type: nil, payment_method_configuration: nil, plan_type: nil, product_id: nil, release_method: nil, renewal_price: nil, split_pay_required_payments: nil, stock: nil, three_ds_level: nil, title: nil, trial_period_days: nil, unlimited_stock: nil, visibility: nil, api_version_date: nil, idempotency_key: nil, request_options: {})
       #
-      # @param account_id [String] Body param: The unique identifier of the account to create this plan for. Defaul
+      # @param account_id [String] Body param: The unique identifier of the account to create this plan for. Requir
       #
       # @param adaptive_pricing_enabled [Boolean, nil] Body param: Whether this plan accepts local currency payments via adaptive prici
       #

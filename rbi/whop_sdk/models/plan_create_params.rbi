@@ -11,8 +11,8 @@ module WhopSDK
           T.any(WhopSDK::PlanCreateParams, WhopSDK::Internal::AnyHash)
         end
 
-      # The unique identifier of the account to create this plan for. Defaults to the
-      # caller's account.
+      # The unique identifier of the account to create this plan for. Required when
+      # authenticating as a user; an account API key supplies its own account.
       sig { returns(T.nilable(String)) }
       attr_reader :account_id
 
@@ -215,8 +215,8 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The unique identifier of the account to create this plan for. Defaults to the
-        # caller's account.
+        # The unique identifier of the account to create this plan for. Required when
+        # authenticating as a user; an account API key supplies its own account.
         account_id: nil,
         # Whether this plan accepts local currency payments via adaptive pricing.
         adaptive_pricing_enabled: nil,

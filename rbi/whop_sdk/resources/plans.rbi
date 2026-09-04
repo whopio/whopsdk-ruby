@@ -50,7 +50,8 @@ module WhopSDK
       end
       def create(
         # Body param: The unique identifier of the account to create this plan for.
-        # Defaults to the caller's account.
+        # Required when authenticating as a user; an account API key supplies its own
+        # account.
         account_id: nil,
         # Body param: Whether this plan accepts local currency payments via adaptive
         # pricing.

@@ -3,6 +3,7 @@ module WhopSDK
     type ai_chat_list_params =
       {
         after: String,
+        agent_identifier: WhopSDK::Models::AIChatListParams::agent_identifier,
         before: String,
         first: Integer,
         last: Integer,
@@ -17,6 +18,12 @@ module WhopSDK
       attr_reader after: String?
 
       def after=: (String) -> String
+
+      attr_reader agent_identifier: WhopSDK::Models::AIChatListParams::agent_identifier?
+
+      def agent_identifier=: (
+        WhopSDK::Models::AIChatListParams::agent_identifier
+      ) -> WhopSDK::Models::AIChatListParams::agent_identifier
 
       attr_reader before: String?
 
@@ -36,6 +43,7 @@ module WhopSDK
 
       def initialize: (
         ?after: String,
+        ?agent_identifier: WhopSDK::Models::AIChatListParams::agent_identifier,
         ?before: String,
         ?first: Integer,
         ?last: Integer,
@@ -45,12 +53,24 @@ module WhopSDK
 
       def to_hash: -> {
         after: String,
+        agent_identifier: WhopSDK::Models::AIChatListParams::agent_identifier,
         before: String,
         first: Integer,
         last: Integer,
         only_active_crons: bool,
         request_options: WhopSDK::RequestOptions
       }
+
+      type agent_identifier = :general | :support
+
+      module AgentIdentifier
+        extend WhopSDK::Internal::Type::Enum
+
+        GENERAL: :general
+        SUPPORT: :support
+
+        def self?.values: -> ::Array[WhopSDK::Models::AIChatListParams::agent_identifier]
+      end
     end
   end
 end

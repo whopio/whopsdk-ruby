@@ -15,6 +15,7 @@ class WhopSDK::Test::Resources::AIChatsTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
+        agent_identifier: WhopSDK::AIChat::AgentIdentifier,
         blended_token_usage: String,
         created_at: Time,
         last_message_at: Time | nil,
@@ -39,6 +40,7 @@ class WhopSDK::Test::Resources::AIChatsTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
+        agent_identifier: WhopSDK::AIChat::AgentIdentifier,
         blended_token_usage: String,
         created_at: Time,
         last_message_at: Time | nil,
@@ -63,6 +65,7 @@ class WhopSDK::Test::Resources::AIChatsTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
+        agent_identifier: WhopSDK::AIChat::AgentIdentifier,
         blended_token_usage: String,
         created_at: Time,
         last_message_at: Time | nil,
@@ -94,6 +97,7 @@ class WhopSDK::Test::Resources::AIChatsTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       row => {
         id: String,
+        agent_identifier: WhopSDK::Models::AIChatListResponse::AgentIdentifier,
         blended_token_usage: String,
         created_at: Time,
         last_message_at: Time | nil,

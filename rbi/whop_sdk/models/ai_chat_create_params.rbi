@@ -15,6 +15,14 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :message_text
 
+      # The AI agent that handles an AI chat.
+      sig do
+        returns(
+          T.nilable(WhopSDK::AIChatCreateParams::AgentIdentifier::OrSymbol)
+        )
+      end
+      attr_accessor :agent_identifier
+
       # The unique identifier of the account to set as context for the AI chat (e.g.,
       # "biz_XXXXX").
       sig { returns(T.nilable(String)) }
@@ -47,6 +55,8 @@ module WhopSDK
       sig do
         params(
           message_text: String,
+          agent_identifier:
+            T.nilable(WhopSDK::AIChatCreateParams::AgentIdentifier::OrSymbol),
           current_account_id: T.nilable(String),
           message_attachments:
             T.nilable(
@@ -62,6 +72,8 @@ module WhopSDK
       def self.new(
         # The text content of the first message to send to the AI agent.
         message_text:,
+        # The AI agent that handles an AI chat.
+        agent_identifier: nil,
         # The unique identifier of the account to set as context for the AI chat (e.g.,
         # "biz_XXXXX").
         current_account_id: nil,
@@ -83,6 +95,8 @@ module WhopSDK
         override.returns(
           {
             message_text: String,
+            agent_identifier:
+              T.nilable(WhopSDK::AIChatCreateParams::AgentIdentifier::OrSymbol),
             current_account_id: T.nilable(String),
             message_attachments:
               T.nilable(
@@ -97,6 +111,36 @@ module WhopSDK
         )
       end
       def to_hash
+      end
+
+      # The AI agent that handles an AI chat.
+      module AgentIdentifier
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias do
+            T.all(Symbol, WhopSDK::AIChatCreateParams::AgentIdentifier)
+          end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        GENERAL =
+          T.let(
+            :general,
+            WhopSDK::AIChatCreateParams::AgentIdentifier::TaggedSymbol
+          )
+        SUPPORT =
+          T.let(
+            :support,
+            WhopSDK::AIChatCreateParams::AgentIdentifier::TaggedSymbol
+          )
+
+        sig do
+          override.returns(
+            T::Array[WhopSDK::AIChatCreateParams::AgentIdentifier::TaggedSymbol]
+          )
+        end
+        def self.values
+        end
       end
 
       class MessageAttachment < WhopSDK::Internal::Type::BaseModel

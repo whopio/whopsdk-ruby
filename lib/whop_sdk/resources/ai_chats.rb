@@ -12,9 +12,11 @@ module WhopSDK
       #
       # - `ai_chat:create`
       #
-      # @overload create(message_text:, current_account_id: nil, message_attachments: nil, message_source: nil, suggestion_type: nil, title: nil, request_options: {})
+      # @overload create(message_text:, agent_identifier: nil, current_account_id: nil, message_attachments: nil, message_source: nil, suggestion_type: nil, title: nil, request_options: {})
       #
       # @param message_text [String] The text content of the first message to send to the AI agent.
+      #
+      # @param agent_identifier [Symbol, WhopSDK::Models::AIChatCreateParams::AgentIdentifier, nil] The AI agent that handles an AI chat.
       #
       # @param current_account_id [String, nil] The unique identifier of the account to set as context for the AI chat (e.g., "b
       #
@@ -100,9 +102,11 @@ module WhopSDK
 
       # Returns a paginated list of AI chat threads for the current authenticated user.
       #
-      # @overload list(after: nil, before: nil, first: nil, last: nil, only_active_crons: nil, request_options: {})
+      # @overload list(after: nil, agent_identifier: nil, before: nil, first: nil, last: nil, only_active_crons: nil, request_options: {})
       #
       # @param after [String] Returns the elements in the list that come after the specified cursor.
+      #
+      # @param agent_identifier [Symbol, WhopSDK::Models::AIChatListParams::AgentIdentifier] Only return chats handled by this agent.
       #
       # @param before [String] Returns the elements in the list that come before the specified cursor.
       #

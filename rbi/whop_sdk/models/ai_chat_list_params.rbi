@@ -18,6 +18,19 @@ module WhopSDK
       sig { params(after: String).void }
       attr_writer :after
 
+      # Only return chats handled by this agent.
+      sig do
+        returns(T.nilable(WhopSDK::AIChatListParams::AgentIdentifier::OrSymbol))
+      end
+      attr_reader :agent_identifier
+
+      sig do
+        params(
+          agent_identifier: WhopSDK::AIChatListParams::AgentIdentifier::OrSymbol
+        ).void
+      end
+      attr_writer :agent_identifier
+
       # Returns the elements in the list that come before the specified cursor.
       sig { returns(T.nilable(String)) }
       attr_reader :before
@@ -49,6 +62,8 @@ module WhopSDK
       sig do
         params(
           after: String,
+          agent_identifier:
+            WhopSDK::AIChatListParams::AgentIdentifier::OrSymbol,
           before: String,
           first: Integer,
           last: Integer,
@@ -59,6 +74,8 @@ module WhopSDK
       def self.new(
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
+        # Only return chats handled by this agent.
+        agent_identifier: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
         # Returns the first _n_ elements from the list.
@@ -75,6 +92,8 @@ module WhopSDK
         override.returns(
           {
             after: String,
+            agent_identifier:
+              WhopSDK::AIChatListParams::AgentIdentifier::OrSymbol,
             before: String,
             first: Integer,
             last: Integer,
@@ -84,6 +103,36 @@ module WhopSDK
         )
       end
       def to_hash
+      end
+
+      # Only return chats handled by this agent.
+      module AgentIdentifier
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias do
+            T.all(Symbol, WhopSDK::AIChatListParams::AgentIdentifier)
+          end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        GENERAL =
+          T.let(
+            :general,
+            WhopSDK::AIChatListParams::AgentIdentifier::TaggedSymbol
+          )
+        SUPPORT =
+          T.let(
+            :support,
+            WhopSDK::AIChatListParams::AgentIdentifier::TaggedSymbol
+          )
+
+        sig do
+          override.returns(
+            T::Array[WhopSDK::AIChatListParams::AgentIdentifier::TaggedSymbol]
+          )
+        end
+        def self.values
+        end
       end
     end
   end

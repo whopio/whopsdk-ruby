@@ -3,6 +3,7 @@ module WhopSDK
     type ai_chat_create_params =
       {
         message_text: String,
+        agent_identifier: WhopSDK::Models::AIChatCreateParams::agent_identifier?,
         current_account_id: String?,
         message_attachments: ::Array[WhopSDK::AIChatCreateParams::MessageAttachment]?,
         message_source: WhopSDK::Models::AIChatCreateParams::message_source?,
@@ -17,6 +18,8 @@ module WhopSDK
 
       attr_accessor message_text: String
 
+      attr_accessor agent_identifier: WhopSDK::Models::AIChatCreateParams::agent_identifier?
+
       attr_accessor current_account_id: String?
 
       attr_accessor message_attachments: ::Array[WhopSDK::AIChatCreateParams::MessageAttachment]?
@@ -29,6 +32,7 @@ module WhopSDK
 
       def initialize: (
         message_text: String,
+        ?agent_identifier: WhopSDK::Models::AIChatCreateParams::agent_identifier?,
         ?current_account_id: String?,
         ?message_attachments: ::Array[WhopSDK::AIChatCreateParams::MessageAttachment]?,
         ?message_source: WhopSDK::Models::AIChatCreateParams::message_source?,
@@ -39,6 +43,7 @@ module WhopSDK
 
       def to_hash: -> {
         message_text: String,
+        agent_identifier: WhopSDK::Models::AIChatCreateParams::agent_identifier?,
         current_account_id: String?,
         message_attachments: ::Array[WhopSDK::AIChatCreateParams::MessageAttachment]?,
         message_source: WhopSDK::Models::AIChatCreateParams::message_source?,
@@ -46,6 +51,17 @@ module WhopSDK
         title: String?,
         request_options: WhopSDK::RequestOptions
       }
+
+      type agent_identifier = :general | :support
+
+      module AgentIdentifier
+        extend WhopSDK::Internal::Type::Enum
+
+        GENERAL: :general
+        SUPPORT: :support
+
+        def self?.values: -> ::Array[WhopSDK::Models::AIChatCreateParams::agent_identifier]
+      end
 
       type message_attachment = { id: String }
 

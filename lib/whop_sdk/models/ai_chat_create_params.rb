@@ -13,6 +13,12 @@ module WhopSDK
       #   @return [String]
       required :message_text, String
 
+      # @!attribute agent_identifier
+      #   The AI agent that handles an AI chat.
+      #
+      #   @return [Symbol, WhopSDK::Models::AIChatCreateParams::AgentIdentifier, nil]
+      optional :agent_identifier, enum: -> { WhopSDK::AIChatCreateParams::AgentIdentifier }, nil?: true
+
       # @!attribute current_account_id
       #   The unique identifier of the account to set as context for the AI chat (e.g.,
       #   "biz_XXXXX").
@@ -48,11 +54,13 @@ module WhopSDK
       #   @return [String, nil]
       optional :title, String, nil?: true
 
-      # @!method initialize(message_text:, current_account_id: nil, message_attachments: nil, message_source: nil, suggestion_type: nil, title: nil, request_options: {})
+      # @!method initialize(message_text:, agent_identifier: nil, current_account_id: nil, message_attachments: nil, message_source: nil, suggestion_type: nil, title: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::AIChatCreateParams} for more details.
       #
       #   @param message_text [String] The text content of the first message to send to the AI agent.
+      #
+      #   @param agent_identifier [Symbol, WhopSDK::Models::AIChatCreateParams::AgentIdentifier, nil] The AI agent that handles an AI chat.
       #
       #   @param current_account_id [String, nil] The unique identifier of the account to set as context for the AI chat (e.g., "b
       #
@@ -65,6 +73,17 @@ module WhopSDK
       #   @param title [String, nil] An optional display title for the AI chat thread (e.g., "Help with billing").
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
+
+      # The AI agent that handles an AI chat.
+      module AgentIdentifier
+        extend WhopSDK::Internal::Type::Enum
+
+        GENERAL = :general
+        SUPPORT = :support
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
 
       class MessageAttachment < WhopSDK::Internal::Type::BaseModel
         # @!attribute id

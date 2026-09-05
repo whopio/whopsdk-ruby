@@ -10,6 +10,13 @@ module WhopSDK
       #   @return [String]
       required :id, String
 
+      # @!attribute agent_identifier
+      #   The AI agent that handles this chat. Set when the chat is created and fixed for
+      #   its lifetime.
+      #
+      #   @return [Symbol, WhopSDK::Models::AIChat::AgentIdentifier]
+      required :agent_identifier, enum: -> { WhopSDK::AIChat::AgentIdentifier }
+
       # @!attribute blended_token_usage
       #   The total number of tokens consumed across all messages in this conversation.
       #
@@ -61,7 +68,7 @@ module WhopSDK
       #   @return [WhopSDK::Models::AIChat::User]
       required :user, -> { WhopSDK::AIChat::User }
 
-      # @!method initialize(id:, blended_token_usage:, created_at:, last_message_at:, message_count:, notification_preference:, title:, updated_at:, user:)
+      # @!method initialize(id:, agent_identifier:, blended_token_usage:, created_at:, last_message_at:, message_count:, notification_preference:, title:, updated_at:, user:)
       #   Some parameter documentations has been truncated, see {WhopSDK::Models::AIChat}
       #   for more details.
       #
@@ -69,6 +76,8 @@ module WhopSDK
       #   automation.
       #
       #   @param id [String] The unique identifier for the ai chat.
+      #
+      #   @param agent_identifier [Symbol, WhopSDK::Models::AIChat::AgentIdentifier] The AI agent that handles this chat. Set when the chat is created and fixed for
       #
       #   @param blended_token_usage [String] The total number of tokens consumed across all messages in this conversation.
       #
@@ -85,6 +94,20 @@ module WhopSDK
       #   @param updated_at [Time] The datetime the ai chat was last updated.
       #
       #   @param user [WhopSDK::Models::AIChat::User] The user who owns this AI chat conversation.
+
+      # The AI agent that handles this chat. Set when the chat is created and fixed for
+      # its lifetime.
+      #
+      # @see WhopSDK::Models::AIChat#agent_identifier
+      module AgentIdentifier
+        extend WhopSDK::Internal::Type::Enum
+
+        GENERAL = :general
+        SUPPORT = :support
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
 
       # @see WhopSDK::Models::AIChat#user
       class User < WhopSDK::Internal::Type::BaseModel

@@ -3,6 +3,7 @@ module WhopSDK
     class AIChats
       def create: (
         message_text: String,
+        ?agent_identifier: WhopSDK::Models::AIChatCreateParams::agent_identifier?,
         ?current_account_id: String?,
         ?message_attachments: ::Array[WhopSDK::AIChatCreateParams::MessageAttachment]?,
         ?message_source: WhopSDK::Models::AIChatCreateParams::message_source?,
@@ -26,6 +27,7 @@ module WhopSDK
 
       def list: (
         ?after: String,
+        ?agent_identifier: WhopSDK::Models::AIChatListParams::agent_identifier,
         ?before: String,
         ?first: Integer,
         ?last: Integer,

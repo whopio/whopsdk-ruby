@@ -3,6 +3,7 @@ module WhopSDK
     type ai_chat =
       {
         id: String,
+        agent_identifier: WhopSDK::Models::AIChat::agent_identifier,
         blended_token_usage: String,
         created_at: Time,
         last_message_at: Time?,
@@ -15,6 +16,8 @@ module WhopSDK
 
     class AIChat < WhopSDK::Internal::Type::BaseModel
       attr_accessor id: String
+
+      attr_accessor agent_identifier: WhopSDK::Models::AIChat::agent_identifier
 
       attr_accessor blended_token_usage: String
 
@@ -34,6 +37,7 @@ module WhopSDK
 
       def initialize: (
         id: String,
+        agent_identifier: WhopSDK::Models::AIChat::agent_identifier,
         blended_token_usage: String,
         created_at: Time,
         last_message_at: Time?,
@@ -46,6 +50,7 @@ module WhopSDK
 
       def to_hash: -> {
         id: String,
+        agent_identifier: WhopSDK::Models::AIChat::agent_identifier,
         blended_token_usage: String,
         created_at: Time,
         last_message_at: Time?,
@@ -55,6 +60,17 @@ module WhopSDK
         updated_at: Time,
         user: WhopSDK::AIChat::User
       }
+
+      type agent_identifier = :general | :support
+
+      module AgentIdentifier
+        extend WhopSDK::Internal::Type::Enum
+
+        GENERAL: :general
+        SUPPORT: :support
+
+        def self?.values: -> ::Array[WhopSDK::Models::AIChat::agent_identifier]
+      end
 
       type user = { id: String }
 

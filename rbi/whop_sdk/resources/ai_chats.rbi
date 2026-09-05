@@ -11,6 +11,8 @@ module WhopSDK
       sig do
         params(
           message_text: String,
+          agent_identifier:
+            T.nilable(WhopSDK::AIChatCreateParams::AgentIdentifier::OrSymbol),
           current_account_id: T.nilable(String),
           message_attachments:
             T.nilable(
@@ -26,6 +28,8 @@ module WhopSDK
       def create(
         # The text content of the first message to send to the AI agent.
         message_text:,
+        # The AI agent that handles an AI chat.
+        agent_identifier: nil,
         # The unique identifier of the account to set as context for the AI chat (e.g.,
         # "biz_XXXXX").
         current_account_id: nil,
@@ -91,6 +95,8 @@ module WhopSDK
       sig do
         params(
           after: String,
+          agent_identifier:
+            WhopSDK::AIChatListParams::AgentIdentifier::OrSymbol,
           before: String,
           first: Integer,
           last: Integer,
@@ -103,6 +109,8 @@ module WhopSDK
       def list(
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
+        # Only return chats handled by this agent.
+        agent_identifier: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
         # Returns the first _n_ elements from the list.

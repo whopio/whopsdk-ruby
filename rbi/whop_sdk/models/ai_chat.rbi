@@ -10,6 +10,11 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :id
 
+      # The AI agent that handles this chat. Set when the chat is created and fixed for
+      # its lifetime.
+      sig { returns(WhopSDK::AIChat::AgentIdentifier::TaggedSymbol) }
+      attr_accessor :agent_identifier
+
       # The total number of tokens consumed across all messages in this conversation.
       sig { returns(String) }
       attr_accessor :blended_token_usage
@@ -53,6 +58,7 @@ module WhopSDK
       sig do
         params(
           id: String,
+          agent_identifier: WhopSDK::AIChat::AgentIdentifier::OrSymbol,
           blended_token_usage: String,
           created_at: Time,
           last_message_at: T.nilable(Time),
@@ -66,6 +72,9 @@ module WhopSDK
       def self.new(
         # The unique identifier for the ai chat.
         id:,
+        # The AI agent that handles this chat. Set when the chat is created and fixed for
+        # its lifetime.
+        agent_identifier:,
         # The total number of tokens consumed across all messages in this conversation.
         blended_token_usage:,
         # The datetime the ai chat was created.
@@ -92,6 +101,7 @@ module WhopSDK
         override.returns(
           {
             id: String,
+            agent_identifier: WhopSDK::AIChat::AgentIdentifier::TaggedSymbol,
             blended_token_usage: String,
             created_at: Time,
             last_message_at: T.nilable(Time),
@@ -105,6 +115,29 @@ module WhopSDK
         )
       end
       def to_hash
+      end
+
+      # The AI agent that handles this chat. Set when the chat is created and fixed for
+      # its lifetime.
+      module AgentIdentifier
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias { T.all(Symbol, WhopSDK::AIChat::AgentIdentifier) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        GENERAL =
+          T.let(:general, WhopSDK::AIChat::AgentIdentifier::TaggedSymbol)
+        SUPPORT =
+          T.let(:support, WhopSDK::AIChat::AgentIdentifier::TaggedSymbol)
+
+        sig do
+          override.returns(
+            T::Array[WhopSDK::AIChat::AgentIdentifier::TaggedSymbol]
+          )
+        end
+        def self.values
+        end
       end
 
       class User < WhopSDK::Internal::Type::BaseModel

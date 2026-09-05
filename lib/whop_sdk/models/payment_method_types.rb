@@ -65,6 +65,8 @@ module WhopSDK
       MB_WAY = :mb_way
       M_PESA = :m_pesa
       MERCADO_PAGO = :mercado_pago
+      MERCADO_PAGO_AR = :mercado_pago_ar
+      MERCADO_PAGO_MX = :mercado_pago_mx
       MOBILEPAY = :mobilepay
       MODO = :modo
       MONDU = :mondu
@@ -78,10 +80,12 @@ module WhopSDK
       NG_MARKET = :ng_market
       NG_USSD = :ng_ussd
       NG_WALLET = :ng_wallet
+      NUPAY = :nupay
       NZ_BANK_ACCOUNT = :nz_bank_account
       ONEY = :oney
       ONEY_3X = :oney_3x
       ONEY_4X = :oney_4x
+      OPAY = :opay
       OXXO = :oxxo
       P24 = :p24
       PAGO_EFECTIVO = :pago_efectivo
@@ -121,6 +125,7 @@ module WhopSDK
       US_BANK_ACCOUNT = :us_bank_account
       US_BANK_TRANSFER = :us_bank_transfer
       VENMO = :venmo
+      VERVE = :verve
       VIPPS = :vipps
       WEBPAY = :webpay
       WECHAT_PAY = :wechat_pay

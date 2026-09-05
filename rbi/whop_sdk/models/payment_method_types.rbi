@@ -89,6 +89,10 @@ module WhopSDK
       M_PESA = T.let(:m_pesa, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       MERCADO_PAGO =
         T.let(:mercado_pago, WhopSDK::PaymentMethodTypes::TaggedSymbol)
+      MERCADO_PAGO_AR =
+        T.let(:mercado_pago_ar, WhopSDK::PaymentMethodTypes::TaggedSymbol)
+      MERCADO_PAGO_MX =
+        T.let(:mercado_pago_mx, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       MOBILEPAY = T.let(:mobilepay, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       MODO = T.let(:modo, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       MONDU = T.let(:mondu, WhopSDK::PaymentMethodTypes::TaggedSymbol)
@@ -103,11 +107,13 @@ module WhopSDK
       NG_MARKET = T.let(:ng_market, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       NG_USSD = T.let(:ng_ussd, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       NG_WALLET = T.let(:ng_wallet, WhopSDK::PaymentMethodTypes::TaggedSymbol)
+      NUPAY = T.let(:nupay, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       NZ_BANK_ACCOUNT =
         T.let(:nz_bank_account, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       ONEY = T.let(:oney, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       ONEY_3X = T.let(:oney_3x, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       ONEY_4X = T.let(:oney_4x, WhopSDK::PaymentMethodTypes::TaggedSymbol)
+      OPAY = T.let(:opay, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       OXXO = T.let(:oxxo, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       P24 = T.let(:p24, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       PAGO_EFECTIVO =
@@ -155,6 +161,7 @@ module WhopSDK
       US_BANK_TRANSFER =
         T.let(:us_bank_transfer, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       VENMO = T.let(:venmo, WhopSDK::PaymentMethodTypes::TaggedSymbol)
+      VERVE = T.let(:verve, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       VIPPS = T.let(:vipps, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       WEBPAY = T.let(:webpay, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       WECHAT_PAY = T.let(:wechat_pay, WhopSDK::PaymentMethodTypes::TaggedSymbol)

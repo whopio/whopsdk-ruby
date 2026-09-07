@@ -9,7 +9,9 @@ module WhopSDK
         T.type_alias do
           T.any(
             WhopSDK::AccountUpdatedWebhookEvent,
+            WhopSDK::AdUpdatedWebhookEvent,
             WhopSDK::AdCampaignPaymentFailedWebhookEvent,
+            WhopSDK::AdCampaignUpdatedWebhookEvent,
             WhopSDK::CardCanceledWebhookEvent,
             WhopSDK::CardCreatedWebhookEvent,
             WhopSDK::CardFrozenWebhookEvent,

@@ -2,7 +2,7 @@
 
 module WhopSDK
   module Models
-    class AdCampaignPaymentFailedWebhookEvent < WhopSDK::Internal::Type::BaseModel
+    class AdCampaignUpdatedWebhookEvent < WhopSDK::Internal::Type::BaseModel
       # @!attribute id
       #   A unique ID for every single webhook request
       #
@@ -23,8 +23,8 @@ module WhopSDK
 
       # @!attribute data
       #
-      #   @return [WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data]
-      required :data, -> { WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data }
+      #   @return [WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data]
+      required :data, -> { WhopSDK::AdCampaignUpdatedWebhookEvent::Data }
 
       # @!attribute timestamp
       #   The timestamp in ISO 8601 format that the webhook was sent at on the server
@@ -35,8 +35,8 @@ module WhopSDK
       # @!attribute type
       #   The webhook event type
       #
-      #   @return [Symbol, :"ad_campaign.payment_failed"]
-      required :type, const: :"ad_campaign.payment_failed"
+      #   @return [Symbol, :"ad_campaign.updated"]
+      required :type, const: :"ad_campaign.updated"
 
       # @!attribute account_id
       #   The account ID that this webhook event is associated with
@@ -51,15 +51,15 @@ module WhopSDK
       #   @return [Object, nil]
       optional :previous_attributes, WhopSDK::Internal::Type::Unknown
 
-      # @!method initialize(id:, api_version_date:, data:, timestamp:, account_id: nil, previous_attributes: nil, api_version: :v1, type: :"ad_campaign.payment_failed")
+      # @!method initialize(id:, api_version_date:, data:, timestamp:, account_id: nil, previous_attributes: nil, api_version: :v1, type: :"ad_campaign.updated")
       #   Some parameter documentations has been truncated, see
-      #   {WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent} for more details.
+      #   {WhopSDK::Models::AdCampaignUpdatedWebhookEvent} for more details.
       #
       #   @param id [String] A unique ID for every single webhook request
       #
       #   @param api_version_date [String, nil] The dated API version (Api-Version-Date) the payload is serialized to
       #
-      #   @param data [WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data]
+      #   @param data [WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data]
       #
       #   @param timestamp [Time] The timestamp in ISO 8601 format that the webhook was sent at on the server
       #
@@ -69,9 +69,9 @@ module WhopSDK
       #
       #   @param api_version [Symbol, :v1] The API version for this webhook
       #
-      #   @param type [Symbol, :"ad_campaign.payment_failed"] The webhook event type
+      #   @param type [Symbol, :"ad_campaign.updated"] The webhook event type
 
-      # @see WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent#data
+      # @see WhopSDK::Models::AdCampaignUpdatedWebhookEvent#data
       class Data < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
         #   Unique identifier for the ad campaign, prefixed `adcamp_`.
@@ -90,18 +90,20 @@ module WhopSDK
         #   Which level owns the budget: the whole campaign (`ad_campaign`) or each ad group
         #   individually (`ad_group`).
         #
-        #   @return [Symbol, WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::BudgetOptimization, nil]
+        #   @return [Symbol, WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data::BudgetOptimization, nil]
         required :budget_optimization,
-                 enum: -> { WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::BudgetOptimization },
+                 enum: -> { WhopSDK::AdCampaignUpdatedWebhookEvent::Data::BudgetOptimization },
                  nil?: true
 
         # @!attribute budget_type
         #   Whether `budget_amount` is spent per day (`daily`) or over the campaign's full
         #   run (`lifetime`).
         #
-        #   @return [Symbol, WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::BudgetType, nil]
+        #   @return [Symbol, WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data::BudgetType, nil]
         required :budget_type,
-                 enum: -> { WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::BudgetType },
+                 enum: -> {
+                   WhopSDK::AdCampaignUpdatedWebhookEvent::Data::BudgetType
+                 },
                  nil?: true
 
         # @!attribute created_at
@@ -114,22 +116,20 @@ module WhopSDK
         #   Whether the campaign's ads are delivering right now, and if not, why. When
         #   several states apply at once, the highest-precedence one is returned.
         #
-        #   @return [Symbol, WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::DeliveryStatus]
-        required :delivery_status, enum: -> { WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::DeliveryStatus }
+        #   @return [Symbol, WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data::DeliveryStatus]
+        required :delivery_status, enum: -> { WhopSDK::AdCampaignUpdatedWebhookEvent::Data::DeliveryStatus }
 
         # @!attribute issues
         #
-        #   @return [Array<WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::Issue>]
+        #   @return [Array<WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data::Issue>]
         required :issues,
-                 -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::Issue] }
+                 -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::AdCampaignUpdatedWebhookEvent::Data::Issue] }
 
         # @!attribute objective
         #   The goal the campaign optimizes toward.
         #
-        #   @return [Symbol, WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::Objective, nil]
-        required :objective,
-                 enum: -> { WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::Objective },
-                 nil?: true
+        #   @return [Symbol, WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data::Objective, nil]
+        required :objective, enum: -> { WhopSDK::AdCampaignUpdatedWebhookEvent::Data::Objective }, nil?: true
 
         # @!attribute optimization_goal
         #   The event the campaign optimizes for when a single goal is set campaign-wide.
@@ -141,20 +141,20 @@ module WhopSDK
         # @!attribute platform
         #   The ad network the campaign runs on.
         #
-        #   @return [Symbol, WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::Platform]
-        required :platform, enum: -> { WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::Platform }
+        #   @return [Symbol, WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data::Platform]
+        required :platform, enum: -> { WhopSDK::AdCampaignUpdatedWebhookEvent::Data::Platform }
 
         # @!attribute special_ad_categories
         #
-        #   @return [Array<Symbol, WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::SpecialAdCategory>]
+        #   @return [Array<Symbol, WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data::SpecialAdCategory>]
         required :special_ad_categories,
-                 -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::SpecialAdCategory] }
+                 -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::AdCampaignUpdatedWebhookEvent::Data::SpecialAdCategory] }
 
         # @!attribute status
         #   The lifecycle status of the ad campaign.
         #
-        #   @return [Symbol, WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::Status]
-        required :status, enum: -> { WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::Status }
+        #   @return [Symbol, WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data::Status]
+        required :status, enum: -> { WhopSDK::AdCampaignUpdatedWebhookEvent::Data::Status }
 
         # @!attribute title
         #   Display name of the ad campaign.
@@ -173,51 +173,47 @@ module WhopSDK
         #   the budget, `average_target` holds an average cost per result, and
         #   `maximum_target` never bids above a cap.
         #
-        #   @return [Symbol, WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::BidType, nil]
-        optional :bid_type,
-                 enum: -> {
-                   WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::BidType
-                 },
-                 nil?: true
+        #   @return [Symbol, WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data::BidType, nil]
+        optional :bid_type, enum: -> { WhopSDK::AdCampaignUpdatedWebhookEvent::Data::BidType }, nil?: true
 
         # @!method initialize(id:, budget_amount:, budget_optimization:, budget_type:, created_at:, delivery_status:, issues:, objective:, optimization_goal:, platform:, special_ad_categories:, status:, title:, updated_at:, bid_type: nil)
         #   Some parameter documentations has been truncated, see
-        #   {WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data} for more details.
+        #   {WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data} for more details.
         #
         #   @param id [String] Unique identifier for the ad campaign, prefixed `adcamp_`.
         #
         #   @param budget_amount [Float, nil] The campaign's budget, in the ad account's currency. `null` when each ad group s
         #
-        #   @param budget_optimization [Symbol, WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::BudgetOptimization, nil] Which level owns the budget: the whole campaign (`ad_campaign`) or each ad group
+        #   @param budget_optimization [Symbol, WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data::BudgetOptimization, nil] Which level owns the budget: the whole campaign (`ad_campaign`) or each ad group
         #
-        #   @param budget_type [Symbol, WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::BudgetType, nil] Whether `budget_amount` is spent per day (`daily`) or over the campaign's full r
+        #   @param budget_type [Symbol, WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data::BudgetType, nil] Whether `budget_amount` is spent per day (`daily`) or over the campaign's full r
         #
         #   @param created_at [String] When the campaign was created, as an ISO 8601 timestamp.
         #
-        #   @param delivery_status [Symbol, WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::DeliveryStatus] Whether the campaign's ads are delivering right now, and if not, why. When sever
+        #   @param delivery_status [Symbol, WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data::DeliveryStatus] Whether the campaign's ads are delivering right now, and if not, why. When sever
         #
-        #   @param issues [Array<WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::Issue>]
+        #   @param issues [Array<WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data::Issue>]
         #
-        #   @param objective [Symbol, WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::Objective, nil] The goal the campaign optimizes toward.
+        #   @param objective [Symbol, WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data::Objective, nil] The goal the campaign optimizes toward.
         #
         #   @param optimization_goal [String, nil] The event the campaign optimizes for when a single goal is set campaign-wide. `n
         #
-        #   @param platform [Symbol, WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::Platform] The ad network the campaign runs on.
+        #   @param platform [Symbol, WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data::Platform] The ad network the campaign runs on.
         #
-        #   @param special_ad_categories [Array<Symbol, WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::SpecialAdCategory>]
+        #   @param special_ad_categories [Array<Symbol, WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data::SpecialAdCategory>]
         #
-        #   @param status [Symbol, WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::Status] The lifecycle status of the ad campaign.
+        #   @param status [Symbol, WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data::Status] The lifecycle status of the ad campaign.
         #
         #   @param title [String] Display name of the ad campaign.
         #
         #   @param updated_at [String] When the campaign was last updated, as an ISO 8601 timestamp.
         #
-        #   @param bid_type [Symbol, WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::BidType, nil] How delivery bids in the ad auction: `minimum_cost` gets the most results for th
+        #   @param bid_type [Symbol, WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data::BidType, nil] How delivery bids in the ad auction: `minimum_cost` gets the most results for th
 
         # Which level owns the budget: the whole campaign (`ad_campaign`) or each ad group
         # individually (`ad_group`).
         #
-        # @see WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data#budget_optimization
+        # @see WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data#budget_optimization
         module BudgetOptimization
           extend WhopSDK::Internal::Type::Enum
 
@@ -231,7 +227,7 @@ module WhopSDK
         # Whether `budget_amount` is spent per day (`daily`) or over the campaign's full
         # run (`lifetime`).
         #
-        # @see WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data#budget_type
+        # @see WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data#budget_type
         module BudgetType
           extend WhopSDK::Internal::Type::Enum
 
@@ -245,7 +241,7 @@ module WhopSDK
         # Whether the campaign's ads are delivering right now, and if not, why. When
         # several states apply at once, the highest-precedence one is returned.
         #
-        # @see WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data#delivery_status
+        # @see WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data#delivery_status
         module DeliveryStatus
           extend WhopSDK::Internal::Type::Enum
 
@@ -288,9 +284,8 @@ module WhopSDK
           # @!attribute resource_type
           #   The type of resource the issue is attached to.
           #
-          #   @return [Symbol, WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::Issue::ResourceType]
-          required :resource_type,
-                   enum: -> { WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::Issue::ResourceType }
+          #   @return [Symbol, WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data::Issue::ResourceType]
+          required :resource_type, enum: -> { WhopSDK::AdCampaignUpdatedWebhookEvent::Data::Issue::ResourceType }
 
           # @!method initialize(id:, message:, resource_id:, resource_type:)
           #   Open issues affecting the campaign and its descendant ad groups and ads.
@@ -301,11 +296,11 @@ module WhopSDK
           #
           #   @param resource_id [String, nil] The ID of the campaign, ad group, or ad the issue is attached to.
           #
-          #   @param resource_type [Symbol, WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::Issue::ResourceType] The type of resource the issue is attached to.
+          #   @param resource_type [Symbol, WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data::Issue::ResourceType] The type of resource the issue is attached to.
 
           # The type of resource the issue is attached to.
           #
-          # @see WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::Issue#resource_type
+          # @see WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data::Issue#resource_type
           module ResourceType
             extend WhopSDK::Internal::Type::Enum
 
@@ -320,7 +315,7 @@ module WhopSDK
 
         # The goal the campaign optimizes toward.
         #
-        # @see WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data#objective
+        # @see WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data#objective
         module Objective
           extend WhopSDK::Internal::Type::Enum
 
@@ -336,7 +331,7 @@ module WhopSDK
 
         # The ad network the campaign runs on.
         #
-        # @see WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data#platform
+        # @see WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data#platform
         module Platform
           extend WhopSDK::Internal::Type::Enum
 
@@ -363,7 +358,7 @@ module WhopSDK
 
         # The lifecycle status of the ad campaign.
         #
-        # @see WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data#status
+        # @see WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data#status
         module Status
           extend WhopSDK::Internal::Type::Enum
 
@@ -388,7 +383,7 @@ module WhopSDK
         # the budget, `average_target` holds an average cost per result, and
         # `maximum_target` never bids above a cap.
         #
-        # @see WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data#bid_type
+        # @see WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data#bid_type
         module BidType
           extend WhopSDK::Internal::Type::Enum
 

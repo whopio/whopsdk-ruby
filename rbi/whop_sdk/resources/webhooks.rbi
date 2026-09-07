@@ -169,7 +169,9 @@ module WhopSDK
         ).returns(
           T.any(
             WhopSDK::AccountUpdatedWebhookEvent,
+            WhopSDK::AdUpdatedWebhookEvent,
             WhopSDK::AdCampaignPaymentFailedWebhookEvent,
+            WhopSDK::AdCampaignUpdatedWebhookEvent,
             WhopSDK::CardCanceledWebhookEvent,
             WhopSDK::CardCreatedWebhookEvent,
             WhopSDK::CardFrozenWebhookEvent,

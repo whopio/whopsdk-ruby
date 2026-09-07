@@ -1,29 +1,29 @@
 module WhopSDK
   module Models
-    type ad_campaign_payment_failed_webhook_event =
+    type ad_campaign_updated_webhook_event =
       {
         id: String,
         api_version: :v1,
         api_version_date: String?,
-        data: WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data,
+        data: WhopSDK::AdCampaignUpdatedWebhookEvent::Data,
         timestamp: Time,
-        type: :"ad_campaign.payment_failed",
+        type: :"ad_campaign.updated",
         account_id: String?,
         previous_attributes: top
       }
 
-    class AdCampaignPaymentFailedWebhookEvent < WhopSDK::Internal::Type::BaseModel
+    class AdCampaignUpdatedWebhookEvent < WhopSDK::Internal::Type::BaseModel
       attr_accessor id: String
 
       attr_accessor api_version: :v1
 
       attr_accessor api_version_date: String?
 
-      attr_accessor data: WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data
+      attr_accessor data: WhopSDK::AdCampaignUpdatedWebhookEvent::Data
 
       attr_accessor timestamp: Time
 
-      attr_accessor type: :"ad_campaign.payment_failed"
+      attr_accessor type: :"ad_campaign.updated"
 
       attr_accessor account_id: String?
 
@@ -34,21 +34,21 @@ module WhopSDK
       def initialize: (
         id: String,
         api_version_date: String?,
-        data: WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data,
+        data: WhopSDK::AdCampaignUpdatedWebhookEvent::Data,
         timestamp: Time,
         ?account_id: String?,
         ?previous_attributes: top,
         ?api_version: :v1,
-        ?type: :"ad_campaign.payment_failed"
+        ?type: :"ad_campaign.updated"
       ) -> void
 
       def to_hash: -> {
         id: String,
         api_version: :v1,
         api_version_date: String?,
-        data: WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data,
+        data: WhopSDK::AdCampaignUpdatedWebhookEvent::Data,
         timestamp: Time,
-        type: :"ad_campaign.payment_failed",
+        type: :"ad_campaign.updated",
         account_id: String?,
         previous_attributes: top
       }
@@ -57,19 +57,19 @@ module WhopSDK
         {
           id: String,
           budget_amount: Float?,
-          budget_optimization: WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::budget_optimization?,
-          budget_type: WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::budget_type?,
+          budget_optimization: WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data::budget_optimization?,
+          budget_type: WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data::budget_type?,
           created_at: String,
-          delivery_status: WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::delivery_status,
-          issues: ::Array[WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::Issue],
-          objective: WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::objective?,
+          delivery_status: WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data::delivery_status,
+          issues: ::Array[WhopSDK::AdCampaignUpdatedWebhookEvent::Data::Issue],
+          objective: WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data::objective?,
           optimization_goal: String?,
-          platform: WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::platform,
-          special_ad_categories: ::Array[WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::special_ad_category],
-          status: WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::status,
+          platform: WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data::platform,
+          special_ad_categories: ::Array[WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data::special_ad_category],
+          status: WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data::status,
           title: String,
           updated_at: String,
-          bid_type: WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::bid_type?
+          bid_type: WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data::bid_type?
         }
 
       class Data < WhopSDK::Internal::Type::BaseModel
@@ -77,66 +77,66 @@ module WhopSDK
 
         attr_accessor budget_amount: Float?
 
-        attr_accessor budget_optimization: WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::budget_optimization?
+        attr_accessor budget_optimization: WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data::budget_optimization?
 
-        attr_accessor budget_type: WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::budget_type?
+        attr_accessor budget_type: WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data::budget_type?
 
         attr_accessor created_at: String
 
-        attr_accessor delivery_status: WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::delivery_status
+        attr_accessor delivery_status: WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data::delivery_status
 
-        attr_accessor issues: ::Array[WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::Issue]
+        attr_accessor issues: ::Array[WhopSDK::AdCampaignUpdatedWebhookEvent::Data::Issue]
 
-        attr_accessor objective: WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::objective?
+        attr_accessor objective: WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data::objective?
 
         attr_accessor optimization_goal: String?
 
-        attr_accessor platform: WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::platform
+        attr_accessor platform: WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data::platform
 
-        attr_accessor special_ad_categories: ::Array[WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::special_ad_category]
+        attr_accessor special_ad_categories: ::Array[WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data::special_ad_category]
 
-        attr_accessor status: WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::status
+        attr_accessor status: WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data::status
 
         attr_accessor title: String
 
         attr_accessor updated_at: String
 
-        attr_accessor bid_type: WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::bid_type?
+        attr_accessor bid_type: WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data::bid_type?
 
         def initialize: (
           id: String,
           budget_amount: Float?,
-          budget_optimization: WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::budget_optimization?,
-          budget_type: WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::budget_type?,
+          budget_optimization: WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data::budget_optimization?,
+          budget_type: WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data::budget_type?,
           created_at: String,
-          delivery_status: WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::delivery_status,
-          issues: ::Array[WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::Issue],
-          objective: WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::objective?,
+          delivery_status: WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data::delivery_status,
+          issues: ::Array[WhopSDK::AdCampaignUpdatedWebhookEvent::Data::Issue],
+          objective: WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data::objective?,
           optimization_goal: String?,
-          platform: WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::platform,
-          special_ad_categories: ::Array[WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::special_ad_category],
-          status: WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::status,
+          platform: WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data::platform,
+          special_ad_categories: ::Array[WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data::special_ad_category],
+          status: WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data::status,
           title: String,
           updated_at: String,
-          ?bid_type: WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::bid_type?
+          ?bid_type: WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data::bid_type?
         ) -> void
 
         def to_hash: -> {
           id: String,
           budget_amount: Float?,
-          budget_optimization: WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::budget_optimization?,
-          budget_type: WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::budget_type?,
+          budget_optimization: WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data::budget_optimization?,
+          budget_type: WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data::budget_type?,
           created_at: String,
-          delivery_status: WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::delivery_status,
-          issues: ::Array[WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::Issue],
-          objective: WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::objective?,
+          delivery_status: WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data::delivery_status,
+          issues: ::Array[WhopSDK::AdCampaignUpdatedWebhookEvent::Data::Issue],
+          objective: WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data::objective?,
           optimization_goal: String?,
-          platform: WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::platform,
-          special_ad_categories: ::Array[WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::special_ad_category],
-          status: WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::status,
+          platform: WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data::platform,
+          special_ad_categories: ::Array[WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data::special_ad_category],
+          status: WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data::status,
           title: String,
           updated_at: String,
-          bid_type: WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::bid_type?
+          bid_type: WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data::bid_type?
         }
 
         type budget_optimization = :ad_campaign | :ad_group
@@ -147,7 +147,7 @@ module WhopSDK
           AD_CAMPAIGN: :ad_campaign
           AD_GROUP: :ad_group
 
-          def self?.values: -> ::Array[WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::budget_optimization]
+          def self?.values: -> ::Array[WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data::budget_optimization]
         end
 
         type budget_type = :daily | :lifetime
@@ -158,7 +158,7 @@ module WhopSDK
           DAILY: :daily
           LIFETIME: :lifetime
 
-          def self?.values: -> ::Array[WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::budget_type]
+          def self?.values: -> ::Array[WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data::budget_type]
         end
 
         type delivery_status =
@@ -191,7 +191,7 @@ module WhopSDK
           AD_GROUPS_OFF: :ad_groups_off
           ACTIVE: :active
 
-          def self?.values: -> ::Array[WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::delivery_status]
+          def self?.values: -> ::Array[WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data::delivery_status]
         end
 
         type issue =
@@ -199,7 +199,7 @@ module WhopSDK
             id: String,
             message: String,
             resource_id: String?,
-            resource_type: WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::Issue::resource_type
+            resource_type: WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data::Issue::resource_type
           }
 
         class Issue < WhopSDK::Internal::Type::BaseModel
@@ -209,20 +209,20 @@ module WhopSDK
 
           attr_accessor resource_id: String?
 
-          attr_accessor resource_type: WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::Issue::resource_type
+          attr_accessor resource_type: WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data::Issue::resource_type
 
           def initialize: (
             id: String,
             message: String,
             resource_id: String?,
-            resource_type: WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::Issue::resource_type
+            resource_type: WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data::Issue::resource_type
           ) -> void
 
           def to_hash: -> {
             id: String,
             message: String,
             resource_id: String?,
-            resource_type: WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::Issue::resource_type
+            resource_type: WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data::Issue::resource_type
           }
 
           type resource_type = :ad_campaign | :ad_group | :ad
@@ -234,7 +234,7 @@ module WhopSDK
             AD_GROUP: :ad_group
             AD: :ad
 
-            def self?.values: -> ::Array[WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::Issue::resource_type]
+            def self?.values: -> ::Array[WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data::Issue::resource_type]
           end
         end
 
@@ -249,7 +249,7 @@ module WhopSDK
           LEADS: :leads
           SALES: :sales
 
-          def self?.values: -> ::Array[WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::objective]
+          def self?.values: -> ::Array[WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data::objective]
         end
 
         type platform = :meta | :tiktok
@@ -260,7 +260,7 @@ module WhopSDK
           META: :meta
           TIKTOK: :tiktok
 
-          def self?.values: -> ::Array[WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::platform]
+          def self?.values: -> ::Array[WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data::platform]
         end
 
         type special_ad_category =
@@ -274,7 +274,7 @@ module WhopSDK
           FINANCIAL_PRODUCTS: :financial_products
           POLITICS: :politics
 
-          def self?.values: -> ::Array[WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::special_ad_category]
+          def self?.values: -> ::Array[WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data::special_ad_category]
         end
 
         type status =
@@ -307,7 +307,7 @@ module WhopSDK
           IMPORTED: :imported
           DUPLICATING: :duplicating
 
-          def self?.values: -> ::Array[WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::status]
+          def self?.values: -> ::Array[WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data::status]
         end
 
         type bid_type = :minimum_cost | :average_target | :maximum_target
@@ -319,7 +319,7 @@ module WhopSDK
           AVERAGE_TARGET: :average_target
           MAXIMUM_TARGET: :maximum_target
 
-          def self?.values: -> ::Array[WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::bid_type]
+          def self?.values: -> ::Array[WhopSDK::Models::AdCampaignUpdatedWebhookEvent::Data::bid_type]
         end
       end
     end

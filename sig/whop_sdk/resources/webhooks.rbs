@@ -54,7 +54,9 @@ module WhopSDK
         headers: ::Hash[String, String],
         ?key: String?
       ) -> (WhopSDK::AccountUpdatedWebhookEvent
+      | WhopSDK::AdUpdatedWebhookEvent
       | WhopSDK::AdCampaignPaymentFailedWebhookEvent
+      | WhopSDK::AdCampaignUpdatedWebhookEvent
       | WhopSDK::CardCanceledWebhookEvent
       | WhopSDK::CardCreatedWebhookEvent
       | WhopSDK::CardFrozenWebhookEvent

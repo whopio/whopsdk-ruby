@@ -10,9 +10,9 @@ module WhopSDK
       #   case unwrap_webhook_event
       #   when WhopSDK::AccountUpdatedWebhookEvent
       #     puts(unwrap_webhook_event.id)
-      #   when WhopSDK::AdCampaignPaymentFailedWebhookEvent
+      #   when WhopSDK::AdUpdatedWebhookEvent
       #     puts(unwrap_webhook_event.api_version)
-      #   when WhopSDK::CardCanceledWebhookEvent
+      #   when WhopSDK::AdCampaignPaymentFailedWebhookEvent
       #     puts(unwrap_webhook_event.api_version_date)
       #   else
       #     puts(unwrap_webhook_event)
@@ -22,9 +22,9 @@ module WhopSDK
       #   case unwrap_webhook_event
       #   in {type: :"account.updated", id: id, api_version: api_version, api_version_date: api_version_date}
       #     puts(id)
-      #   in {type: :"ad_campaign.payment_failed", id: id, api_version: api_version, api_version_date: api_version_date}
+      #   in {type: :"ad.updated", id: id, api_version: api_version, api_version_date: api_version_date}
       #     puts(api_version)
-      #   in {type: :"card.canceled", id: id, api_version: api_version, api_version_date: api_version_date}
+      #   in {type: :"ad_campaign.payment_failed", id: id, api_version: api_version, api_version_date: api_version_date}
       #     puts(api_version_date)
       #   else
       #     puts(unwrap_webhook_event)

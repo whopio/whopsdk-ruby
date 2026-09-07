@@ -2,11 +2,11 @@
 
 module WhopSDK
   module Models
-    class AdCampaignPaymentFailedWebhookEvent < WhopSDK::Internal::Type::BaseModel
+    class AdCampaignUpdatedWebhookEvent < WhopSDK::Internal::Type::BaseModel
       OrHash =
         T.type_alias do
           T.any(
-            WhopSDK::AdCampaignPaymentFailedWebhookEvent,
+            WhopSDK::AdCampaignUpdatedWebhookEvent,
             WhopSDK::Internal::AnyHash
           )
         end
@@ -23,13 +23,11 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :api_version_date
 
-      sig { returns(WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data) }
+      sig { returns(WhopSDK::AdCampaignUpdatedWebhookEvent::Data) }
       attr_reader :data
 
       sig do
-        params(
-          data: WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::OrHash
-        ).void
+        params(data: WhopSDK::AdCampaignUpdatedWebhookEvent::Data::OrHash).void
       end
       attr_writer :data
 
@@ -57,7 +55,7 @@ module WhopSDK
         params(
           id: String,
           api_version_date: T.nilable(String),
-          data: WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::OrHash,
+          data: WhopSDK::AdCampaignUpdatedWebhookEvent::Data::OrHash,
           timestamp: Time,
           account_id: T.nilable(String),
           previous_attributes: T.anything,
@@ -81,7 +79,7 @@ module WhopSDK
         # The API version for this webhook
         api_version: :v1,
         # The webhook event type
-        type: :"ad_campaign.payment_failed"
+        type: :"ad_campaign.updated"
       )
       end
 
@@ -91,7 +89,7 @@ module WhopSDK
             id: String,
             api_version: Symbol,
             api_version_date: T.nilable(String),
-            data: WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data,
+            data: WhopSDK::AdCampaignUpdatedWebhookEvent::Data,
             timestamp: Time,
             type: Symbol,
             account_id: T.nilable(String),
@@ -106,7 +104,7 @@ module WhopSDK
         OrHash =
           T.type_alias do
             T.any(
-              WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data,
+              WhopSDK::AdCampaignUpdatedWebhookEvent::Data,
               WhopSDK::Internal::AnyHash
             )
           end
@@ -125,7 +123,7 @@ module WhopSDK
         sig do
           returns(
             T.nilable(
-              WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::BudgetOptimization::TaggedSymbol
+              WhopSDK::AdCampaignUpdatedWebhookEvent::Data::BudgetOptimization::TaggedSymbol
             )
           )
         end
@@ -136,7 +134,7 @@ module WhopSDK
         sig do
           returns(
             T.nilable(
-              WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::BudgetType::TaggedSymbol
+              WhopSDK::AdCampaignUpdatedWebhookEvent::Data::BudgetType::TaggedSymbol
             )
           )
         end
@@ -150,15 +148,13 @@ module WhopSDK
         # several states apply at once, the highest-precedence one is returned.
         sig do
           returns(
-            WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::DeliveryStatus::TaggedSymbol
+            WhopSDK::AdCampaignUpdatedWebhookEvent::Data::DeliveryStatus::TaggedSymbol
           )
         end
         attr_accessor :delivery_status
 
         sig do
-          returns(
-            T::Array[WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::Issue]
-          )
+          returns(T::Array[WhopSDK::AdCampaignUpdatedWebhookEvent::Data::Issue])
         end
         attr_accessor :issues
 
@@ -166,7 +162,7 @@ module WhopSDK
         sig do
           returns(
             T.nilable(
-              WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::Objective::TaggedSymbol
+              WhopSDK::AdCampaignUpdatedWebhookEvent::Data::Objective::TaggedSymbol
             )
           )
         end
@@ -180,7 +176,7 @@ module WhopSDK
         # The ad network the campaign runs on.
         sig do
           returns(
-            WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::Platform::TaggedSymbol
+            WhopSDK::AdCampaignUpdatedWebhookEvent::Data::Platform::TaggedSymbol
           )
         end
         attr_accessor :platform
@@ -188,7 +184,7 @@ module WhopSDK
         sig do
           returns(
             T::Array[
-              WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::SpecialAdCategory::TaggedSymbol
+              WhopSDK::AdCampaignUpdatedWebhookEvent::Data::SpecialAdCategory::TaggedSymbol
             ]
           )
         end
@@ -197,7 +193,7 @@ module WhopSDK
         # The lifecycle status of the ad campaign.
         sig do
           returns(
-            WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::Status::TaggedSymbol
+            WhopSDK::AdCampaignUpdatedWebhookEvent::Data::Status::TaggedSymbol
           )
         end
         attr_accessor :status
@@ -216,7 +212,7 @@ module WhopSDK
         sig do
           returns(
             T.nilable(
-              WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::BidType::TaggedSymbol
+              WhopSDK::AdCampaignUpdatedWebhookEvent::Data::BidType::TaggedSymbol
             )
           )
         end
@@ -228,37 +224,37 @@ module WhopSDK
             budget_amount: T.nilable(Float),
             budget_optimization:
               T.nilable(
-                WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::BudgetOptimization::OrSymbol
+                WhopSDK::AdCampaignUpdatedWebhookEvent::Data::BudgetOptimization::OrSymbol
               ),
             budget_type:
               T.nilable(
-                WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::BudgetType::OrSymbol
+                WhopSDK::AdCampaignUpdatedWebhookEvent::Data::BudgetType::OrSymbol
               ),
             created_at: String,
             delivery_status:
-              WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::DeliveryStatus::OrSymbol,
+              WhopSDK::AdCampaignUpdatedWebhookEvent::Data::DeliveryStatus::OrSymbol,
             issues:
               T::Array[
-                WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::Issue::OrHash
+                WhopSDK::AdCampaignUpdatedWebhookEvent::Data::Issue::OrHash
               ],
             objective:
               T.nilable(
-                WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::Objective::OrSymbol
+                WhopSDK::AdCampaignUpdatedWebhookEvent::Data::Objective::OrSymbol
               ),
             optimization_goal: T.nilable(String),
             platform:
-              WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::Platform::OrSymbol,
+              WhopSDK::AdCampaignUpdatedWebhookEvent::Data::Platform::OrSymbol,
             special_ad_categories:
               T::Array[
-                WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::SpecialAdCategory::OrSymbol
+                WhopSDK::AdCampaignUpdatedWebhookEvent::Data::SpecialAdCategory::OrSymbol
               ],
             status:
-              WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::Status::OrSymbol,
+              WhopSDK::AdCampaignUpdatedWebhookEvent::Data::Status::OrSymbol,
             title: String,
             updated_at: String,
             bid_type:
               T.nilable(
-                WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::BidType::OrSymbol
+                WhopSDK::AdCampaignUpdatedWebhookEvent::Data::BidType::OrSymbol
               )
           ).returns(T.attached_class)
         end
@@ -308,37 +304,35 @@ module WhopSDK
               budget_amount: T.nilable(Float),
               budget_optimization:
                 T.nilable(
-                  WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::BudgetOptimization::TaggedSymbol
+                  WhopSDK::AdCampaignUpdatedWebhookEvent::Data::BudgetOptimization::TaggedSymbol
                 ),
               budget_type:
                 T.nilable(
-                  WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::BudgetType::TaggedSymbol
+                  WhopSDK::AdCampaignUpdatedWebhookEvent::Data::BudgetType::TaggedSymbol
                 ),
               created_at: String,
               delivery_status:
-                WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::DeliveryStatus::TaggedSymbol,
+                WhopSDK::AdCampaignUpdatedWebhookEvent::Data::DeliveryStatus::TaggedSymbol,
               issues:
-                T::Array[
-                  WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::Issue
-                ],
+                T::Array[WhopSDK::AdCampaignUpdatedWebhookEvent::Data::Issue],
               objective:
                 T.nilable(
-                  WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::Objective::TaggedSymbol
+                  WhopSDK::AdCampaignUpdatedWebhookEvent::Data::Objective::TaggedSymbol
                 ),
               optimization_goal: T.nilable(String),
               platform:
-                WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::Platform::TaggedSymbol,
+                WhopSDK::AdCampaignUpdatedWebhookEvent::Data::Platform::TaggedSymbol,
               special_ad_categories:
                 T::Array[
-                  WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::SpecialAdCategory::TaggedSymbol
+                  WhopSDK::AdCampaignUpdatedWebhookEvent::Data::SpecialAdCategory::TaggedSymbol
                 ],
               status:
-                WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::Status::TaggedSymbol,
+                WhopSDK::AdCampaignUpdatedWebhookEvent::Data::Status::TaggedSymbol,
               title: String,
               updated_at: String,
               bid_type:
                 T.nilable(
-                  WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::BidType::TaggedSymbol
+                  WhopSDK::AdCampaignUpdatedWebhookEvent::Data::BidType::TaggedSymbol
                 )
             }
           )
@@ -355,7 +349,7 @@ module WhopSDK
             T.type_alias do
               T.all(
                 Symbol,
-                WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::BudgetOptimization
+                WhopSDK::AdCampaignUpdatedWebhookEvent::Data::BudgetOptimization
               )
             end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -363,18 +357,18 @@ module WhopSDK
           AD_CAMPAIGN =
             T.let(
               :ad_campaign,
-              WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::BudgetOptimization::TaggedSymbol
+              WhopSDK::AdCampaignUpdatedWebhookEvent::Data::BudgetOptimization::TaggedSymbol
             )
           AD_GROUP =
             T.let(
               :ad_group,
-              WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::BudgetOptimization::TaggedSymbol
+              WhopSDK::AdCampaignUpdatedWebhookEvent::Data::BudgetOptimization::TaggedSymbol
             )
 
           sig do
             override.returns(
               T::Array[
-                WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::BudgetOptimization::TaggedSymbol
+                WhopSDK::AdCampaignUpdatedWebhookEvent::Data::BudgetOptimization::TaggedSymbol
               ]
             )
           end
@@ -391,7 +385,7 @@ module WhopSDK
             T.type_alias do
               T.all(
                 Symbol,
-                WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::BudgetType
+                WhopSDK::AdCampaignUpdatedWebhookEvent::Data::BudgetType
               )
             end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -399,18 +393,18 @@ module WhopSDK
           DAILY =
             T.let(
               :daily,
-              WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::BudgetType::TaggedSymbol
+              WhopSDK::AdCampaignUpdatedWebhookEvent::Data::BudgetType::TaggedSymbol
             )
           LIFETIME =
             T.let(
               :lifetime,
-              WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::BudgetType::TaggedSymbol
+              WhopSDK::AdCampaignUpdatedWebhookEvent::Data::BudgetType::TaggedSymbol
             )
 
           sig do
             override.returns(
               T::Array[
-                WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::BudgetType::TaggedSymbol
+                WhopSDK::AdCampaignUpdatedWebhookEvent::Data::BudgetType::TaggedSymbol
               ]
             )
           end
@@ -427,7 +421,7 @@ module WhopSDK
             T.type_alias do
               T.all(
                 Symbol,
-                WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::DeliveryStatus
+                WhopSDK::AdCampaignUpdatedWebhookEvent::Data::DeliveryStatus
               )
             end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -435,68 +429,68 @@ module WhopSDK
           PAYMENT_FAILED =
             T.let(
               :payment_failed,
-              WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::DeliveryStatus::TaggedSymbol
+              WhopSDK::AdCampaignUpdatedWebhookEvent::Data::DeliveryStatus::TaggedSymbol
             )
           ALL_ADS_REJECTED =
             T.let(
               :all_ads_rejected,
-              WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::DeliveryStatus::TaggedSymbol
+              WhopSDK::AdCampaignUpdatedWebhookEvent::Data::DeliveryStatus::TaggedSymbol
             )
           DRAFT =
             T.let(
               :draft,
-              WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::DeliveryStatus::TaggedSymbol
+              WhopSDK::AdCampaignUpdatedWebhookEvent::Data::DeliveryStatus::TaggedSymbol
             )
           NO_AD_GROUPS =
             T.let(
               :no_ad_groups,
-              WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::DeliveryStatus::TaggedSymbol
+              WhopSDK::AdCampaignUpdatedWebhookEvent::Data::DeliveryStatus::TaggedSymbol
             )
           NO_ADS =
             T.let(
               :no_ads,
-              WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::DeliveryStatus::TaggedSymbol
+              WhopSDK::AdCampaignUpdatedWebhookEvent::Data::DeliveryStatus::TaggedSymbol
             )
           PAUSED =
             T.let(
               :paused,
-              WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::DeliveryStatus::TaggedSymbol
+              WhopSDK::AdCampaignUpdatedWebhookEvent::Data::DeliveryStatus::TaggedSymbol
             )
           PROCESSING =
             T.let(
               :processing,
-              WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::DeliveryStatus::TaggedSymbol
+              WhopSDK::AdCampaignUpdatedWebhookEvent::Data::DeliveryStatus::TaggedSymbol
             )
           ISSUES =
             T.let(
               :issues,
-              WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::DeliveryStatus::TaggedSymbol
+              WhopSDK::AdCampaignUpdatedWebhookEvent::Data::DeliveryStatus::TaggedSymbol
             )
           SCHEDULED =
             T.let(
               :scheduled,
-              WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::DeliveryStatus::TaggedSymbol
+              WhopSDK::AdCampaignUpdatedWebhookEvent::Data::DeliveryStatus::TaggedSymbol
             )
           COMPLETED =
             T.let(
               :completed,
-              WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::DeliveryStatus::TaggedSymbol
+              WhopSDK::AdCampaignUpdatedWebhookEvent::Data::DeliveryStatus::TaggedSymbol
             )
           AD_GROUPS_OFF =
             T.let(
               :ad_groups_off,
-              WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::DeliveryStatus::TaggedSymbol
+              WhopSDK::AdCampaignUpdatedWebhookEvent::Data::DeliveryStatus::TaggedSymbol
             )
           ACTIVE =
             T.let(
               :active,
-              WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::DeliveryStatus::TaggedSymbol
+              WhopSDK::AdCampaignUpdatedWebhookEvent::Data::DeliveryStatus::TaggedSymbol
             )
 
           sig do
             override.returns(
               T::Array[
-                WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::DeliveryStatus::TaggedSymbol
+                WhopSDK::AdCampaignUpdatedWebhookEvent::Data::DeliveryStatus::TaggedSymbol
               ]
             )
           end
@@ -508,7 +502,7 @@ module WhopSDK
           OrHash =
             T.type_alias do
               T.any(
-                WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::Issue,
+                WhopSDK::AdCampaignUpdatedWebhookEvent::Data::Issue,
                 WhopSDK::Internal::AnyHash
               )
             end
@@ -528,7 +522,7 @@ module WhopSDK
           # The type of resource the issue is attached to.
           sig do
             returns(
-              WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::Issue::ResourceType::TaggedSymbol
+              WhopSDK::AdCampaignUpdatedWebhookEvent::Data::Issue::ResourceType::TaggedSymbol
             )
           end
           attr_accessor :resource_type
@@ -540,7 +534,7 @@ module WhopSDK
               message: String,
               resource_id: T.nilable(String),
               resource_type:
-                WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::Issue::ResourceType::OrSymbol
+                WhopSDK::AdCampaignUpdatedWebhookEvent::Data::Issue::ResourceType::OrSymbol
             ).returns(T.attached_class)
           end
           def self.new(
@@ -562,7 +556,7 @@ module WhopSDK
                 message: String,
                 resource_id: T.nilable(String),
                 resource_type:
-                  WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::Issue::ResourceType::TaggedSymbol
+                  WhopSDK::AdCampaignUpdatedWebhookEvent::Data::Issue::ResourceType::TaggedSymbol
               }
             )
           end
@@ -577,7 +571,7 @@ module WhopSDK
               T.type_alias do
                 T.all(
                   Symbol,
-                  WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::Issue::ResourceType
+                  WhopSDK::AdCampaignUpdatedWebhookEvent::Data::Issue::ResourceType
                 )
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -585,23 +579,23 @@ module WhopSDK
             AD_CAMPAIGN =
               T.let(
                 :ad_campaign,
-                WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::Issue::ResourceType::TaggedSymbol
+                WhopSDK::AdCampaignUpdatedWebhookEvent::Data::Issue::ResourceType::TaggedSymbol
               )
             AD_GROUP =
               T.let(
                 :ad_group,
-                WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::Issue::ResourceType::TaggedSymbol
+                WhopSDK::AdCampaignUpdatedWebhookEvent::Data::Issue::ResourceType::TaggedSymbol
               )
             AD =
               T.let(
                 :ad,
-                WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::Issue::ResourceType::TaggedSymbol
+                WhopSDK::AdCampaignUpdatedWebhookEvent::Data::Issue::ResourceType::TaggedSymbol
               )
 
             sig do
               override.returns(
                 T::Array[
-                  WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::Issue::ResourceType::TaggedSymbol
+                  WhopSDK::AdCampaignUpdatedWebhookEvent::Data::Issue::ResourceType::TaggedSymbol
                 ]
               )
             end
@@ -618,7 +612,7 @@ module WhopSDK
             T.type_alias do
               T.all(
                 Symbol,
-                WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::Objective
+                WhopSDK::AdCampaignUpdatedWebhookEvent::Data::Objective
               )
             end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -626,33 +620,33 @@ module WhopSDK
           AWARENESS =
             T.let(
               :awareness,
-              WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::Objective::TaggedSymbol
+              WhopSDK::AdCampaignUpdatedWebhookEvent::Data::Objective::TaggedSymbol
             )
           TRAFFIC =
             T.let(
               :traffic,
-              WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::Objective::TaggedSymbol
+              WhopSDK::AdCampaignUpdatedWebhookEvent::Data::Objective::TaggedSymbol
             )
           ENGAGEMENT =
             T.let(
               :engagement,
-              WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::Objective::TaggedSymbol
+              WhopSDK::AdCampaignUpdatedWebhookEvent::Data::Objective::TaggedSymbol
             )
           LEADS =
             T.let(
               :leads,
-              WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::Objective::TaggedSymbol
+              WhopSDK::AdCampaignUpdatedWebhookEvent::Data::Objective::TaggedSymbol
             )
           SALES =
             T.let(
               :sales,
-              WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::Objective::TaggedSymbol
+              WhopSDK::AdCampaignUpdatedWebhookEvent::Data::Objective::TaggedSymbol
             )
 
           sig do
             override.returns(
               T::Array[
-                WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::Objective::TaggedSymbol
+                WhopSDK::AdCampaignUpdatedWebhookEvent::Data::Objective::TaggedSymbol
               ]
             )
           end
@@ -668,7 +662,7 @@ module WhopSDK
             T.type_alias do
               T.all(
                 Symbol,
-                WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::Platform
+                WhopSDK::AdCampaignUpdatedWebhookEvent::Data::Platform
               )
             end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -676,18 +670,18 @@ module WhopSDK
           META =
             T.let(
               :meta,
-              WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::Platform::TaggedSymbol
+              WhopSDK::AdCampaignUpdatedWebhookEvent::Data::Platform::TaggedSymbol
             )
           TIKTOK =
             T.let(
               :tiktok,
-              WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::Platform::TaggedSymbol
+              WhopSDK::AdCampaignUpdatedWebhookEvent::Data::Platform::TaggedSymbol
             )
 
           sig do
             override.returns(
               T::Array[
-                WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::Platform::TaggedSymbol
+                WhopSDK::AdCampaignUpdatedWebhookEvent::Data::Platform::TaggedSymbol
               ]
             )
           end
@@ -704,7 +698,7 @@ module WhopSDK
             T.type_alias do
               T.all(
                 Symbol,
-                WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::SpecialAdCategory
+                WhopSDK::AdCampaignUpdatedWebhookEvent::Data::SpecialAdCategory
               )
             end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -712,28 +706,28 @@ module WhopSDK
           HOUSING =
             T.let(
               :housing,
-              WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::SpecialAdCategory::TaggedSymbol
+              WhopSDK::AdCampaignUpdatedWebhookEvent::Data::SpecialAdCategory::TaggedSymbol
             )
           EMPLOYMENT =
             T.let(
               :employment,
-              WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::SpecialAdCategory::TaggedSymbol
+              WhopSDK::AdCampaignUpdatedWebhookEvent::Data::SpecialAdCategory::TaggedSymbol
             )
           FINANCIAL_PRODUCTS =
             T.let(
               :financial_products,
-              WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::SpecialAdCategory::TaggedSymbol
+              WhopSDK::AdCampaignUpdatedWebhookEvent::Data::SpecialAdCategory::TaggedSymbol
             )
           POLITICS =
             T.let(
               :politics,
-              WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::SpecialAdCategory::TaggedSymbol
+              WhopSDK::AdCampaignUpdatedWebhookEvent::Data::SpecialAdCategory::TaggedSymbol
             )
 
           sig do
             override.returns(
               T::Array[
-                WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::SpecialAdCategory::TaggedSymbol
+                WhopSDK::AdCampaignUpdatedWebhookEvent::Data::SpecialAdCategory::TaggedSymbol
               ]
             )
           end
@@ -749,7 +743,7 @@ module WhopSDK
             T.type_alias do
               T.all(
                 Symbol,
-                WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::Status
+                WhopSDK::AdCampaignUpdatedWebhookEvent::Data::Status
               )
             end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -757,68 +751,68 @@ module WhopSDK
           ACTIVE =
             T.let(
               :active,
-              WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::Status::TaggedSymbol
+              WhopSDK::AdCampaignUpdatedWebhookEvent::Data::Status::TaggedSymbol
             )
           PAUSED =
             T.let(
               :paused,
-              WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::Status::TaggedSymbol
+              WhopSDK::AdCampaignUpdatedWebhookEvent::Data::Status::TaggedSymbol
             )
           INACTIVE =
             T.let(
               :inactive,
-              WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::Status::TaggedSymbol
+              WhopSDK::AdCampaignUpdatedWebhookEvent::Data::Status::TaggedSymbol
             )
           STALE =
             T.let(
               :stale,
-              WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::Status::TaggedSymbol
+              WhopSDK::AdCampaignUpdatedWebhookEvent::Data::Status::TaggedSymbol
             )
           PENDING_REFUND =
             T.let(
               :pending_refund,
-              WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::Status::TaggedSymbol
+              WhopSDK::AdCampaignUpdatedWebhookEvent::Data::Status::TaggedSymbol
             )
           PAYMENT_FAILED =
             T.let(
               :payment_failed,
-              WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::Status::TaggedSymbol
+              WhopSDK::AdCampaignUpdatedWebhookEvent::Data::Status::TaggedSymbol
             )
           DRAFT =
             T.let(
               :draft,
-              WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::Status::TaggedSymbol
+              WhopSDK::AdCampaignUpdatedWebhookEvent::Data::Status::TaggedSymbol
             )
           IN_REVIEW =
             T.let(
               :in_review,
-              WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::Status::TaggedSymbol
+              WhopSDK::AdCampaignUpdatedWebhookEvent::Data::Status::TaggedSymbol
             )
           FLAGGED =
             T.let(
               :flagged,
-              WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::Status::TaggedSymbol
+              WhopSDK::AdCampaignUpdatedWebhookEvent::Data::Status::TaggedSymbol
             )
           IMPORTING =
             T.let(
               :importing,
-              WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::Status::TaggedSymbol
+              WhopSDK::AdCampaignUpdatedWebhookEvent::Data::Status::TaggedSymbol
             )
           IMPORTED =
             T.let(
               :imported,
-              WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::Status::TaggedSymbol
+              WhopSDK::AdCampaignUpdatedWebhookEvent::Data::Status::TaggedSymbol
             )
           DUPLICATING =
             T.let(
               :duplicating,
-              WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::Status::TaggedSymbol
+              WhopSDK::AdCampaignUpdatedWebhookEvent::Data::Status::TaggedSymbol
             )
 
           sig do
             override.returns(
               T::Array[
-                WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::Status::TaggedSymbol
+                WhopSDK::AdCampaignUpdatedWebhookEvent::Data::Status::TaggedSymbol
               ]
             )
           end
@@ -836,7 +830,7 @@ module WhopSDK
             T.type_alias do
               T.all(
                 Symbol,
-                WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::BidType
+                WhopSDK::AdCampaignUpdatedWebhookEvent::Data::BidType
               )
             end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -844,23 +838,23 @@ module WhopSDK
           MINIMUM_COST =
             T.let(
               :minimum_cost,
-              WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::BidType::TaggedSymbol
+              WhopSDK::AdCampaignUpdatedWebhookEvent::Data::BidType::TaggedSymbol
             )
           AVERAGE_TARGET =
             T.let(
               :average_target,
-              WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::BidType::TaggedSymbol
+              WhopSDK::AdCampaignUpdatedWebhookEvent::Data::BidType::TaggedSymbol
             )
           MAXIMUM_TARGET =
             T.let(
               :maximum_target,
-              WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::BidType::TaggedSymbol
+              WhopSDK::AdCampaignUpdatedWebhookEvent::Data::BidType::TaggedSymbol
             )
 
           sig do
             override.returns(
               T::Array[
-                WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::BidType::TaggedSymbol
+                WhopSDK::AdCampaignUpdatedWebhookEvent::Data::BidType::TaggedSymbol
               ]
             )
           end

@@ -1,0 +1,791 @@
+module WhopSDK
+  module Models
+    type ad_updated_webhook_event =
+      {
+        id: String,
+        api_version: :v1,
+        api_version_date: String?,
+        data: WhopSDK::AdUpdatedWebhookEvent::Data,
+        timestamp: Time,
+        type: :"ad.updated",
+        account_id: String?,
+        previous_attributes: top
+      }
+
+    class AdUpdatedWebhookEvent < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor api_version: :v1
+
+      attr_accessor api_version_date: String?
+
+      attr_accessor data: WhopSDK::AdUpdatedWebhookEvent::Data
+
+      attr_accessor timestamp: Time
+
+      attr_accessor type: :"ad.updated"
+
+      attr_accessor account_id: String?
+
+      attr_reader previous_attributes: top?
+
+      def previous_attributes=: (top) -> top
+
+      def initialize: (
+        id: String,
+        api_version_date: String?,
+        data: WhopSDK::AdUpdatedWebhookEvent::Data,
+        timestamp: Time,
+        ?account_id: String?,
+        ?previous_attributes: top,
+        ?api_version: :v1,
+        ?type: :"ad.updated"
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        api_version: :v1,
+        api_version_date: String?,
+        data: WhopSDK::AdUpdatedWebhookEvent::Data,
+        timestamp: Time,
+        type: :"ad.updated",
+        account_id: String?,
+        previous_attributes: top
+      }
+
+      type data =
+        {
+          id: String,
+          ad_campaign: WhopSDK::AdUpdatedWebhookEvent::Data::AdCampaign,
+          ad_group: WhopSDK::AdUpdatedWebhookEvent::Data::AdGroup,
+          call_to_action: WhopSDK::Models::AdUpdatedWebhookEvent::Data::call_to_action?,
+          created_at: String,
+          creatives: ::Array[WhopSDK::AdUpdatedWebhookEvent::Data::Creative],
+          delivery_status: WhopSDK::Models::AdUpdatedWebhookEvent::Data::delivery_status,
+          descriptions: ::Array[String],
+          existing_post_id: String?,
+          headlines: ::Array[String],
+          issues: ::Array[WhopSDK::AdUpdatedWebhookEvent::Data::Issue],
+          post_id: String?,
+          post_source: WhopSDK::Models::AdUpdatedWebhookEvent::Data::post_source?,
+          post_thumbnail_url: String?,
+          primary_texts: ::Array[String],
+          social_accounts: ::Array[WhopSDK::AdUpdatedWebhookEvent::Data::SocialAccount],
+          status: WhopSDK::Models::AdUpdatedWebhookEvent::Data::status,
+          title: String?,
+          updated_at: String,
+          url: String?,
+          url_parameters: top,
+          lead_form: WhopSDK::AdUpdatedWebhookEvent::Data::LeadForm?,
+          lead_form_id: String?,
+          messaging_config: WhopSDK::AdUpdatedWebhookEvent::Data::MessagingConfig?,
+          multi_advertiser_ads: bool,
+          music: WhopSDK::AdUpdatedWebhookEvent::Data::Music?
+        }
+
+      class Data < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor ad_campaign: WhopSDK::AdUpdatedWebhookEvent::Data::AdCampaign
+
+        attr_accessor ad_group: WhopSDK::AdUpdatedWebhookEvent::Data::AdGroup
+
+        attr_accessor call_to_action: WhopSDK::Models::AdUpdatedWebhookEvent::Data::call_to_action?
+
+        attr_accessor created_at: String
+
+        attr_accessor creatives: ::Array[WhopSDK::AdUpdatedWebhookEvent::Data::Creative]
+
+        attr_accessor delivery_status: WhopSDK::Models::AdUpdatedWebhookEvent::Data::delivery_status
+
+        attr_accessor descriptions: ::Array[String]
+
+        attr_accessor existing_post_id: String?
+
+        attr_accessor headlines: ::Array[String]
+
+        attr_accessor issues: ::Array[WhopSDK::AdUpdatedWebhookEvent::Data::Issue]
+
+        attr_accessor post_id: String?
+
+        attr_accessor post_source: WhopSDK::Models::AdUpdatedWebhookEvent::Data::post_source?
+
+        attr_accessor post_thumbnail_url: String?
+
+        attr_accessor primary_texts: ::Array[String]
+
+        attr_accessor social_accounts: ::Array[WhopSDK::AdUpdatedWebhookEvent::Data::SocialAccount]
+
+        attr_accessor status: WhopSDK::Models::AdUpdatedWebhookEvent::Data::status
+
+        attr_accessor title: String?
+
+        attr_accessor updated_at: String
+
+        attr_accessor url: String?
+
+        attr_accessor url_parameters: top
+
+        attr_accessor lead_form: WhopSDK::AdUpdatedWebhookEvent::Data::LeadForm?
+
+        attr_accessor lead_form_id: String?
+
+        attr_accessor messaging_config: WhopSDK::AdUpdatedWebhookEvent::Data::MessagingConfig?
+
+        attr_reader multi_advertiser_ads: bool?
+
+        def multi_advertiser_ads=: (bool) -> bool
+
+        attr_accessor music: WhopSDK::AdUpdatedWebhookEvent::Data::Music?
+
+        def initialize: (
+          id: String,
+          ad_campaign: WhopSDK::AdUpdatedWebhookEvent::Data::AdCampaign,
+          ad_group: WhopSDK::AdUpdatedWebhookEvent::Data::AdGroup,
+          call_to_action: WhopSDK::Models::AdUpdatedWebhookEvent::Data::call_to_action?,
+          created_at: String,
+          creatives: ::Array[WhopSDK::AdUpdatedWebhookEvent::Data::Creative],
+          delivery_status: WhopSDK::Models::AdUpdatedWebhookEvent::Data::delivery_status,
+          descriptions: ::Array[String],
+          existing_post_id: String?,
+          headlines: ::Array[String],
+          issues: ::Array[WhopSDK::AdUpdatedWebhookEvent::Data::Issue],
+          post_id: String?,
+          post_source: WhopSDK::Models::AdUpdatedWebhookEvent::Data::post_source?,
+          post_thumbnail_url: String?,
+          primary_texts: ::Array[String],
+          social_accounts: ::Array[WhopSDK::AdUpdatedWebhookEvent::Data::SocialAccount],
+          status: WhopSDK::Models::AdUpdatedWebhookEvent::Data::status,
+          title: String?,
+          updated_at: String,
+          url: String?,
+          url_parameters: top,
+          ?lead_form: WhopSDK::AdUpdatedWebhookEvent::Data::LeadForm?,
+          ?lead_form_id: String?,
+          ?messaging_config: WhopSDK::AdUpdatedWebhookEvent::Data::MessagingConfig?,
+          ?multi_advertiser_ads: bool,
+          ?music: WhopSDK::AdUpdatedWebhookEvent::Data::Music?
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          ad_campaign: WhopSDK::AdUpdatedWebhookEvent::Data::AdCampaign,
+          ad_group: WhopSDK::AdUpdatedWebhookEvent::Data::AdGroup,
+          call_to_action: WhopSDK::Models::AdUpdatedWebhookEvent::Data::call_to_action?,
+          created_at: String,
+          creatives: ::Array[WhopSDK::AdUpdatedWebhookEvent::Data::Creative],
+          delivery_status: WhopSDK::Models::AdUpdatedWebhookEvent::Data::delivery_status,
+          descriptions: ::Array[String],
+          existing_post_id: String?,
+          headlines: ::Array[String],
+          issues: ::Array[WhopSDK::AdUpdatedWebhookEvent::Data::Issue],
+          post_id: String?,
+          post_source: WhopSDK::Models::AdUpdatedWebhookEvent::Data::post_source?,
+          post_thumbnail_url: String?,
+          primary_texts: ::Array[String],
+          social_accounts: ::Array[WhopSDK::AdUpdatedWebhookEvent::Data::SocialAccount],
+          status: WhopSDK::Models::AdUpdatedWebhookEvent::Data::status,
+          title: String?,
+          updated_at: String,
+          url: String?,
+          url_parameters: top,
+          lead_form: WhopSDK::AdUpdatedWebhookEvent::Data::LeadForm?,
+          lead_form_id: String?,
+          messaging_config: WhopSDK::AdUpdatedWebhookEvent::Data::MessagingConfig?,
+          multi_advertiser_ads: bool,
+          music: WhopSDK::AdUpdatedWebhookEvent::Data::Music?
+        }
+
+        type ad_campaign = { id: String }
+
+        class AdCampaign < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          def initialize: (id: String) -> void
+
+          def to_hash: -> { id: String }
+        end
+
+        type ad_group = { id: String }
+
+        class AdGroup < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          def initialize: (id: String) -> void
+
+          def to_hash: -> { id: String }
+        end
+
+        type call_to_action =
+          :learn_more
+          | :shop_now
+          | :sign_up
+          | :subscribe
+          | :get_started
+          | :book_now
+          | :apply_now
+          | :contact_us
+          | :download
+          | :order_now
+          | :buy_now
+          | :get_quote
+          | :message_page
+          | :whatsapp_message
+          | :instagram_message
+          | :call_now
+          | :get_directions
+          | :send_updates
+          | :get_offer
+          | :watch_more
+          | :listen_now
+          | :play_game
+          | :open_link
+          | :no_button
+          | :get_offer_view
+          | :get_event_tickets
+          | :see_menu
+          | :request_time
+          | :event_rsvp
+          | :see_details
+          | :view_instagram_profile
+
+        module CallToAction
+          extend WhopSDK::Internal::Type::Enum
+
+          LEARN_MORE: :learn_more
+          SHOP_NOW: :shop_now
+          SIGN_UP: :sign_up
+          SUBSCRIBE: :subscribe
+          GET_STARTED: :get_started
+          BOOK_NOW: :book_now
+          APPLY_NOW: :apply_now
+          CONTACT_US: :contact_us
+          DOWNLOAD: :download
+          ORDER_NOW: :order_now
+          BUY_NOW: :buy_now
+          GET_QUOTE: :get_quote
+          MESSAGE_PAGE: :message_page
+          WHATSAPP_MESSAGE: :whatsapp_message
+          INSTAGRAM_MESSAGE: :instagram_message
+          CALL_NOW: :call_now
+          GET_DIRECTIONS: :get_directions
+          SEND_UPDATES: :send_updates
+          GET_OFFER: :get_offer
+          WATCH_MORE: :watch_more
+          LISTEN_NOW: :listen_now
+          PLAY_GAME: :play_game
+          OPEN_LINK: :open_link
+          NO_BUTTON: :no_button
+          GET_OFFER_VIEW: :get_offer_view
+          GET_EVENT_TICKETS: :get_event_tickets
+          SEE_MENU: :see_menu
+          REQUEST_TIME: :request_time
+          EVENT_RSVP: :event_rsvp
+          SEE_DETAILS: :see_details
+          VIEW_INSTAGRAM_PROFILE: :view_instagram_profile
+
+          def self?.values: -> ::Array[WhopSDK::Models::AdUpdatedWebhookEvent::Data::call_to_action]
+        end
+
+        type creative =
+          {
+            id: String,
+            crop: WhopSDK::AdUpdatedWebhookEvent::Data::Creative::Crop?,
+            format_: WhopSDK::Models::AdUpdatedWebhookEvent::Data::Creative::format_?,
+            media_type: String?,
+            url: String?
+          }
+
+        class Creative < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor crop: WhopSDK::AdUpdatedWebhookEvent::Data::Creative::Crop?
+
+          attr_accessor format_: WhopSDK::Models::AdUpdatedWebhookEvent::Data::Creative::format_?
+
+          attr_accessor media_type: String?
+
+          attr_accessor url: String?
+
+          def initialize: (
+            id: String,
+            crop: WhopSDK::AdUpdatedWebhookEvent::Data::Creative::Crop?,
+            format_: WhopSDK::Models::AdUpdatedWebhookEvent::Data::Creative::format_?,
+            media_type: String?,
+            url: String?
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            crop: WhopSDK::AdUpdatedWebhookEvent::Data::Creative::Crop?,
+            format_: WhopSDK::Models::AdUpdatedWebhookEvent::Data::Creative::format_?,
+            media_type: String?,
+            url: String?
+          }
+
+          type crop = { height: Float, width: Float, x: Float, y_: Float }
+
+          class Crop < WhopSDK::Internal::Type::BaseModel
+            attr_accessor height: Float
+
+            attr_accessor width: Float
+
+            attr_accessor x: Float
+
+            attr_accessor y_: Float
+
+            def initialize: (
+              height: Float,
+              width: Float,
+              x: Float,
+              y_: Float
+            ) -> void
+
+            def to_hash: -> { height: Float, width: Float, x: Float, y_: Float }
+          end
+
+          type format_ = :square | :vertical | :horizontal
+
+          module Format
+            extend WhopSDK::Internal::Type::Enum
+
+            SQUARE: :square
+            VERTICAL: :vertical
+            HORIZONTAL: :horizontal
+
+            def self?.values: -> ::Array[WhopSDK::Models::AdUpdatedWebhookEvent::Data::Creative::format_]
+          end
+        end
+
+        type delivery_status =
+          :rejected
+          | :in_review
+          | :draft
+          | :campaign_paused
+          | :ad_group_paused
+          | :paused
+          | :processing
+          | :issues
+          | :scheduled
+          | :learning_limited
+          | :learning
+          | :active
+
+        module DeliveryStatus
+          extend WhopSDK::Internal::Type::Enum
+
+          REJECTED: :rejected
+          IN_REVIEW: :in_review
+          DRAFT: :draft
+          CAMPAIGN_PAUSED: :campaign_paused
+          AD_GROUP_PAUSED: :ad_group_paused
+          PAUSED: :paused
+          PROCESSING: :processing
+          ISSUES: :issues
+          SCHEDULED: :scheduled
+          LEARNING_LIMITED: :learning_limited
+          LEARNING: :learning
+          ACTIVE: :active
+
+          def self?.values: -> ::Array[WhopSDK::Models::AdUpdatedWebhookEvent::Data::delivery_status]
+        end
+
+        type issue =
+          {
+            id: String,
+            message: String,
+            resource_id: String?,
+            resource_type: WhopSDK::Models::AdUpdatedWebhookEvent::Data::Issue::resource_type
+          }
+
+        class Issue < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor message: String
+
+          attr_accessor resource_id: String?
+
+          attr_accessor resource_type: WhopSDK::Models::AdUpdatedWebhookEvent::Data::Issue::resource_type
+
+          def initialize: (
+            id: String,
+            message: String,
+            resource_id: String?,
+            resource_type: WhopSDK::Models::AdUpdatedWebhookEvent::Data::Issue::resource_type
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            message: String,
+            resource_id: String?,
+            resource_type: WhopSDK::Models::AdUpdatedWebhookEvent::Data::Issue::resource_type
+          }
+
+          type resource_type = :ad_campaign | :ad_group | :ad
+
+          module ResourceType
+            extend WhopSDK::Internal::Type::Enum
+
+            AD_CAMPAIGN: :ad_campaign
+            AD_GROUP: :ad_group
+            AD: :ad
+
+            def self?.values: -> ::Array[WhopSDK::Models::AdUpdatedWebhookEvent::Data::Issue::resource_type]
+          end
+        end
+
+        type post_source = :facebook | :instagram
+
+        module PostSource
+          extend WhopSDK::Internal::Type::Enum
+
+          FACEBOOK: :facebook
+          INSTAGRAM: :instagram
+
+          def self?.values: -> ::Array[WhopSDK::Models::AdUpdatedWebhookEvent::Data::post_source]
+        end
+
+        type social_account = { id: String }
+
+        class SocialAccount < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          def initialize: (id: String) -> void
+
+          def to_hash: -> { id: String }
+        end
+
+        type status = :active | :paused | :in_review | :rejected
+
+        module Status
+          extend WhopSDK::Internal::Type::Enum
+
+          ACTIVE: :active
+          PAUSED: :paused
+          IN_REVIEW: :in_review
+          REJECTED: :rejected
+
+          def self?.values: -> ::Array[WhopSDK::Models::AdUpdatedWebhookEvent::Data::status]
+        end
+
+        type lead_form =
+          {
+            completion: WhopSDK::AdUpdatedWebhookEvent::Data::LeadForm::Completion?,
+            disclaimer: WhopSDK::AdUpdatedWebhookEvent::Data::LeadForm::Disclaimer?,
+            form_type: WhopSDK::Models::AdUpdatedWebhookEvent::Data::LeadForm::form_type,
+            intro: WhopSDK::AdUpdatedWebhookEvent::Data::LeadForm::Intro?,
+            name: String?,
+            phone_verification: bool,
+            privacy_policy: WhopSDK::AdUpdatedWebhookEvent::Data::LeadForm::PrivacyPolicy?,
+            questions: ::Array[WhopSDK::AdUpdatedWebhookEvent::Data::LeadForm::Question]
+          }
+
+        class LeadForm < WhopSDK::Internal::Type::BaseModel
+          attr_accessor completion: WhopSDK::AdUpdatedWebhookEvent::Data::LeadForm::Completion?
+
+          attr_accessor disclaimer: WhopSDK::AdUpdatedWebhookEvent::Data::LeadForm::Disclaimer?
+
+          attr_accessor form_type: WhopSDK::Models::AdUpdatedWebhookEvent::Data::LeadForm::form_type
+
+          attr_accessor intro: WhopSDK::AdUpdatedWebhookEvent::Data::LeadForm::Intro?
+
+          attr_accessor name: String?
+
+          attr_accessor phone_verification: bool
+
+          attr_accessor privacy_policy: WhopSDK::AdUpdatedWebhookEvent::Data::LeadForm::PrivacyPolicy?
+
+          attr_accessor questions: ::Array[WhopSDK::AdUpdatedWebhookEvent::Data::LeadForm::Question]
+
+          def initialize: (
+            completion: WhopSDK::AdUpdatedWebhookEvent::Data::LeadForm::Completion?,
+            disclaimer: WhopSDK::AdUpdatedWebhookEvent::Data::LeadForm::Disclaimer?,
+            form_type: WhopSDK::Models::AdUpdatedWebhookEvent::Data::LeadForm::form_type,
+            intro: WhopSDK::AdUpdatedWebhookEvent::Data::LeadForm::Intro?,
+            name: String?,
+            phone_verification: bool,
+            privacy_policy: WhopSDK::AdUpdatedWebhookEvent::Data::LeadForm::PrivacyPolicy?,
+            questions: ::Array[WhopSDK::AdUpdatedWebhookEvent::Data::LeadForm::Question]
+          ) -> void
+
+          def to_hash: -> {
+            completion: WhopSDK::AdUpdatedWebhookEvent::Data::LeadForm::Completion?,
+            disclaimer: WhopSDK::AdUpdatedWebhookEvent::Data::LeadForm::Disclaimer?,
+            form_type: WhopSDK::Models::AdUpdatedWebhookEvent::Data::LeadForm::form_type,
+            intro: WhopSDK::AdUpdatedWebhookEvent::Data::LeadForm::Intro?,
+            name: String?,
+            phone_verification: bool,
+            privacy_policy: WhopSDK::AdUpdatedWebhookEvent::Data::LeadForm::PrivacyPolicy?,
+            questions: ::Array[WhopSDK::AdUpdatedWebhookEvent::Data::LeadForm::Question]
+          }
+
+          type completion =
+            {
+              button_text: String?,
+              description: String?,
+              headline: String?,
+              url: String?
+            }
+
+          class Completion < WhopSDK::Internal::Type::BaseModel
+            attr_accessor button_text: String?
+
+            attr_accessor description: String?
+
+            attr_accessor headline: String?
+
+            attr_accessor url: String?
+
+            def initialize: (
+              button_text: String?,
+              description: String?,
+              headline: String?,
+              url: String?
+            ) -> void
+
+            def to_hash: -> {
+              button_text: String?,
+              description: String?,
+              headline: String?,
+              url: String?
+            }
+          end
+
+          type disclaimer =
+            {
+              body: String?,
+              checkboxes: ::Array[WhopSDK::AdUpdatedWebhookEvent::Data::LeadForm::Disclaimer::Checkbox],
+              title: String?
+            }
+
+          class Disclaimer < WhopSDK::Internal::Type::BaseModel
+            attr_accessor body: String?
+
+            attr_accessor checkboxes: ::Array[WhopSDK::AdUpdatedWebhookEvent::Data::LeadForm::Disclaimer::Checkbox]
+
+            attr_accessor title: String?
+
+            def initialize: (
+              body: String?,
+              checkboxes: ::Array[WhopSDK::AdUpdatedWebhookEvent::Data::LeadForm::Disclaimer::Checkbox],
+              title: String?
+            ) -> void
+
+            def to_hash: -> {
+              body: String?,
+              checkboxes: ::Array[WhopSDK::AdUpdatedWebhookEvent::Data::LeadForm::Disclaimer::Checkbox],
+              title: String?
+            }
+
+            type checkbox =
+              {
+                checked_by_default: bool?,
+                key: String?,
+                required: bool?,
+                text: String
+              }
+
+            class Checkbox < WhopSDK::Internal::Type::BaseModel
+              attr_accessor checked_by_default: bool?
+
+              attr_accessor key: String?
+
+              attr_accessor required: bool?
+
+              attr_accessor text: String
+
+              def initialize: (
+                checked_by_default: bool?,
+                key: String?,
+                required: bool?,
+                text: String
+              ) -> void
+
+              def to_hash: -> {
+                checked_by_default: bool?,
+                key: String?,
+                required: bool?,
+                text: String
+              }
+            end
+          end
+
+          type form_type = :more_volume | :higher_intent
+
+          module FormType
+            extend WhopSDK::Internal::Type::Enum
+
+            MORE_VOLUME: :more_volume
+            HIGHER_INTENT: :higher_intent
+
+            def self?.values: -> ::Array[WhopSDK::Models::AdUpdatedWebhookEvent::Data::LeadForm::form_type]
+          end
+
+          type intro = { description: String?, headline: String? }
+
+          class Intro < WhopSDK::Internal::Type::BaseModel
+            attr_accessor description: String?
+
+            attr_accessor headline: String?
+
+            def initialize: (description: String?, headline: String?) -> void
+
+            def to_hash: -> { description: String?, headline: String? }
+          end
+
+          type privacy_policy = { link_text: String?, url: String }
+
+          class PrivacyPolicy < WhopSDK::Internal::Type::BaseModel
+            attr_accessor link_text: String?
+
+            attr_accessor url: String
+
+            def initialize: (link_text: String?, url: String) -> void
+
+            def to_hash: -> { link_text: String?, url: String }
+          end
+
+          type question =
+            {
+              type: String,
+              format_: String,
+              label: String,
+              options: ::Array[WhopSDK::AdUpdatedWebhookEvent::Data::LeadForm::Question::Option]
+            }
+
+          class Question < WhopSDK::Internal::Type::BaseModel
+            attr_accessor type: String
+
+            attr_reader format_: String?
+
+            def format_=: (String) -> String
+
+            attr_reader label: String?
+
+            def label=: (String) -> String
+
+            attr_reader options: ::Array[WhopSDK::AdUpdatedWebhookEvent::Data::LeadForm::Question::Option]?
+
+            def options=: (
+              ::Array[WhopSDK::AdUpdatedWebhookEvent::Data::LeadForm::Question::Option]
+            ) -> ::Array[WhopSDK::AdUpdatedWebhookEvent::Data::LeadForm::Question::Option]
+
+            def initialize: (
+              type: String,
+              ?format_: String,
+              ?label: String,
+              ?options: ::Array[WhopSDK::AdUpdatedWebhookEvent::Data::LeadForm::Question::Option]
+            ) -> void
+
+            def to_hash: -> {
+              type: String,
+              format_: String,
+              label: String,
+              options: ::Array[WhopSDK::AdUpdatedWebhookEvent::Data::LeadForm::Question::Option]
+            }
+
+            type option =
+              {
+                value: String,
+                key: String?,
+                logic: WhopSDK::AdUpdatedWebhookEvent::Data::LeadForm::Question::Option::Logic
+              }
+
+            class Option < WhopSDK::Internal::Type::BaseModel
+              attr_accessor value: String
+
+              attr_accessor key: String?
+
+              attr_reader logic: WhopSDK::AdUpdatedWebhookEvent::Data::LeadForm::Question::Option::Logic?
+
+              def logic=: (
+                WhopSDK::AdUpdatedWebhookEvent::Data::LeadForm::Question::Option::Logic
+              ) -> WhopSDK::AdUpdatedWebhookEvent::Data::LeadForm::Question::Option::Logic
+
+              def initialize: (
+                value: String,
+                ?key: String?,
+                ?logic: WhopSDK::AdUpdatedWebhookEvent::Data::LeadForm::Question::Option::Logic
+              ) -> void
+
+              def to_hash: -> {
+                value: String,
+                key: String?,
+                logic: WhopSDK::AdUpdatedWebhookEvent::Data::LeadForm::Question::Option::Logic
+              }
+
+              type logic =
+                {
+                  action: WhopSDK::Models::AdUpdatedWebhookEvent::Data::LeadForm::Question::Option::Logic::action,
+                  target_end_page_index: Float,
+                  target_question_index: Float
+                }
+
+              class Logic < WhopSDK::Internal::Type::BaseModel
+                attr_accessor action: WhopSDK::Models::AdUpdatedWebhookEvent::Data::LeadForm::Question::Option::Logic::action
+
+                attr_reader target_end_page_index: Float?
+
+                def target_end_page_index=: (Float) -> Float
+
+                attr_reader target_question_index: Float?
+
+                def target_question_index=: (Float) -> Float
+
+                def initialize: (
+                  action: WhopSDK::Models::AdUpdatedWebhookEvent::Data::LeadForm::Question::Option::Logic::action,
+                  ?target_end_page_index: Float,
+                  ?target_question_index: Float
+                ) -> void
+
+                def to_hash: -> {
+                  action: WhopSDK::Models::AdUpdatedWebhookEvent::Data::LeadForm::Question::Option::Logic::action,
+                  target_end_page_index: Float,
+                  target_question_index: Float
+                }
+
+                type action = :go_to_question | :submit_form | :close_form
+
+                module Action
+                  extend WhopSDK::Internal::Type::Enum
+
+                  GO_TO_QUESTION: :go_to_question
+                  SUBMIT_FORM: :submit_form
+                  CLOSE_FORM: :close_form
+
+                  def self?.values: -> ::Array[WhopSDK::Models::AdUpdatedWebhookEvent::Data::LeadForm::Question::Option::Logic::action]
+                end
+              end
+            end
+          end
+        end
+
+        type messaging_config = { keyword: String?, message: String? }
+
+        class MessagingConfig < WhopSDK::Internal::Type::BaseModel
+          attr_accessor keyword: String?
+
+          attr_accessor message: String?
+
+          def initialize: (keyword: String?, message: String?) -> void
+
+          def to_hash: -> { keyword: String?, message: String? }
+        end
+
+        type music = { id: String, name: String?, url: String? }
+
+        class Music < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor name: String?
+
+          attr_accessor url: String?
+
+          def initialize: (id: String, name: String?, url: String?) -> void
+
+          def to_hash: -> { id: String, name: String?, url: String? }
+        end
+      end
+    end
+  end
+end

@@ -138,6 +138,8 @@ module WhopSDK
         SHIPMENT_UPDATED = :"shipment.updated"
         MEMBER_CREATED = :"member.created"
         AD_CAMPAIGN_PAYMENT_FAILED = :"ad_campaign.payment_failed"
+        AD_CAMPAIGN_UPDATED = :"ad_campaign.updated"
+        AD_UPDATED = :"ad.updated"
         CHAT_MESSAGE_CREATED = :"chat.message.created"
         CHAT_REACTION_CREATED = :"chat.reaction.created"
         PAYMENT_CREATED = :"payment.created"

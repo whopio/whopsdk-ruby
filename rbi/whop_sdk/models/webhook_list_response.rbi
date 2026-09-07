@@ -614,6 +614,16 @@ module WhopSDK
             :"ad_campaign.payment_failed",
             WhopSDK::Models::WebhookListResponse::Event::TaggedSymbol
           )
+        AD_CAMPAIGN_UPDATED =
+          T.let(
+            :"ad_campaign.updated",
+            WhopSDK::Models::WebhookListResponse::Event::TaggedSymbol
+          )
+        AD_UPDATED =
+          T.let(
+            :"ad.updated",
+            WhopSDK::Models::WebhookListResponse::Event::TaggedSymbol
+          )
         CHAT_MESSAGE_CREATED =
           T.let(
             :"chat.message.created",

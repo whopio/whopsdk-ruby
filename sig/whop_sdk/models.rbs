@@ -23,6 +23,8 @@ module WhopSDK
 
   class AdCampaignUnpauseParams = WhopSDK::Models::AdCampaignUnpauseParams
 
+  class AdCampaignUpdatedWebhookEvent = WhopSDK::Models::AdCampaignUpdatedWebhookEvent
+
   class AdCampaignUpdateParams = WhopSDK::Models::AdCampaignUpdateParams
 
   class AdGroup = WhopSDK::Models::AdGroup
@@ -46,6 +48,8 @@ module WhopSDK
   class AdRetrieveParams = WhopSDK::Models::AdRetrieveParams
 
   class AdUnpauseParams = WhopSDK::Models::AdUnpauseParams
+
+  class AdUpdatedWebhookEvent = WhopSDK::Models::AdUpdatedWebhookEvent
 
   class Affiliate = WhopSDK::Models::Affiliate
 

@@ -2,7 +2,9 @@ module WhopSDK
   module Models
     type unwrap_webhook_event =
       WhopSDK::AccountUpdatedWebhookEvent
+      | WhopSDK::AdUpdatedWebhookEvent
       | WhopSDK::AdCampaignPaymentFailedWebhookEvent
+      | WhopSDK::AdCampaignUpdatedWebhookEvent
       | WhopSDK::CardCanceledWebhookEvent
       | WhopSDK::CardCreatedWebhookEvent
       | WhopSDK::CardFrozenWebhookEvent

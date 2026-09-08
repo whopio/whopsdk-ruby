@@ -222,6 +222,7 @@ module Whop_sdk
       WEBHOOK_RECEIVE_CHAT = "webhook_receive:chat"
       WEBHOOK_RECEIVE_ENTRIES = "webhook_receive:entries"
       WEBHOOK_RECEIVE_AD_CAMPAIGNS = "webhook_receive:ad_campaigns"
+      WEBHOOK_RECEIVE_ADS = "webhook_receive:ads"
       WEBHOOK_RECEIVE_PRODUCTS = "webhook_receive:products"
       WEBHOOK_RECEIVE_PLANS = "webhook_receive:plans"
       WEBHOOK_RECEIVE_SHIPMENTS = "webhook_receive:shipments"

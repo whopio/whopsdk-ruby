@@ -12,6 +12,7 @@ module Whop_sdk
           REFERRAL_EXPIRES_AT = "referral_expires_at"
           PAYOUT_PERCENTAGE = "payout_percentage"
           VOLUME_USD = "volume_usd"
+          VOLUME30D_USD = "volume_30d_usd"
           EARNINGS_USD = "earnings_usd"
         end
       end

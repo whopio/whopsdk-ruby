@@ -12,6 +12,8 @@ module Whop_sdk
 
         field :canceled, -> { Internal::Types::Boolean }, optional: true, nullable: false
 
+        field :cardholder, -> { Whop_sdk::Cards::Types::UpdateCardsRequestCardholder }, optional: true, nullable: false
+
         field :frozen, -> { Internal::Types::Boolean }, optional: true, nullable: false
 
         field :name, -> { String }, optional: true, nullable: false

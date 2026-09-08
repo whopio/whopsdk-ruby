@@ -61,6 +61,8 @@ module Whop_sdk
 
       field :promo_code_id, -> { String }, optional: false, nullable: true
 
+      field :recovery_url, -> { String }, optional: false, nullable: true
+
       field :refundable, -> { Internal::Types::Boolean }, optional: false, nullable: false
 
       field :refunded_amount, -> { Whop_sdk::Types::Money }, optional: false, nullable: true

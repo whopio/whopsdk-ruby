@@ -12,6 +12,8 @@ module Whop_sdk
 
         field :last, -> { Integer }, optional: true, nullable: false
 
+        field :agent_identifier, -> { Whop_sdk::Types::AiChatAgentIdentifiers }, optional: true, nullable: false
+
         field :only_active_crons, -> { Internal::Types::Boolean }, optional: true, nullable: false
       end
     end

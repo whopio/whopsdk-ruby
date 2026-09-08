@@ -9,6 +9,8 @@ module Whop_sdk
 
           field :awaiting_settlement, -> { String }, optional: false, nullable: false
 
+          field :last30d, -> { String }, optional: false, nullable: false, api_name: "last_30d"
+
           field :settled, -> { String }, optional: false, nullable: false
         end
       end

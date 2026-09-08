@@ -23,6 +23,8 @@ module Whop_sdk
 
         field :payer_document, -> { Whop_sdk::ConfirmationTokens::Types::CreateConfirmationTokensRequestPaymentMethodPayerDocument }, optional: true, nullable: false
 
+        field :redirect, -> { Whop_sdk::ConfirmationTokens::Types::CreateConfirmationTokensRequestPaymentMethodRedirect }, optional: true, nullable: false
+
         field :saved, -> { Whop_sdk::ConfirmationTokens::Types::CreateConfirmationTokensRequestPaymentMethodSaved }, optional: true, nullable: false
 
         field :type, -> { String }, optional: true, nullable: false

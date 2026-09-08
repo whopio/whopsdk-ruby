@@ -10,7 +10,8 @@ module Whop_sdk
         @client = client
       end
 
-      # Retrieve the deposit methods for an account, including crypto and bank transfer.
+      # Retrieve the deposit methods for an account, including crypto and bank transfer. Crypto deposits require a $10
+      # minimum.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::Deposits::Types::CreateDepositsRequest]

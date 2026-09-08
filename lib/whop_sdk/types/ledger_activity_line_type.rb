@@ -133,6 +133,11 @@ module Whop_sdk
       WITHDRAWAL_RECLASSIFICATION = "withdrawal_reclassification"
       WITHDRAWAL_REVERSAL = "withdrawal_reversal"
       WITHDRAWAL_TOPUP_ADJUSTMENT = "withdrawal_topup_adjustment"
+      DEPOSIT = "deposit"
+      WALLET_TRANSFER_INCOMING = "wallet_transfer_incoming"
+      WALLET_TRANSFER_OUTGOING = "wallet_transfer_outgoing"
+      SWAP_SOURCE = "swap_source"
+      SWAP_TARGET = "swap_target"
     end
   end
 end

@@ -4,6 +4,8 @@ module Whop_sdk
   module Types
     # An AI-powered chat conversation belonging to a user, with optional scheduled automation.
     class AiChatListItem < Internal::Types::Model
+      field :agent_identifier, -> { Whop_sdk::Types::AiChatAgentIdentifiers }, optional: false, nullable: false
+
       field :blended_token_usage, -> { String }, optional: false, nullable: false
 
       field :created_at, -> { String }, optional: false, nullable: false

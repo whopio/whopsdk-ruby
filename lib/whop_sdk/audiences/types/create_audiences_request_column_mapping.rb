@@ -3,7 +3,7 @@
 module Whop_sdk
   module Audiences
     module Types
-      # Custom audiences only. Maps supported identity fields to CSV column headers. Map at least one of `email` or
+      # CSV audiences only. Maps supported identity fields to CSV column headers. Map at least one of `email` or
       # `phone`.
       class CreateAudiencesRequestColumnMapping < Internal::Types::Model
         field :country, -> { String }, optional: true, nullable: false

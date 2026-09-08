@@ -375,6 +375,46 @@ module Whop_sdk
         end
       end
 
+      # Starts a fresh on-session attempt with the saved card for a subscription renewal that is waiting on the customer
+      # to authenticate; the bank's step then arrives in `next_action` on the following status reads. Only the payment's
+      # own customer may call it — with the payment's `client_secret` or their own session — and it is a no-op for any
+      # payment that is not a parked renewal.
+      #
+      # @param request_options [Hash]
+      # @param params [Hash]
+      # @option request_options [String] :base_url
+      # @option request_options [Hash{String => Object}] :additional_headers
+      # @option request_options [Hash{String => Object}] :additional_query_parameters
+      # @option request_options [Hash{String => Object}] :additional_body_parameters
+      # @option request_options [Integer] :timeout_in_seconds
+      # @option params [String] :payment_id
+      #
+      # @example
+      #   client.payments.resume(payment_id: "payment_id")
+      #
+      # @return [Whop_sdk::Types::PaymentStatus]
+      def resume(request_options: {}, **params)
+        params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
+        request = Whop_sdk::Internal::JSON::Request.new(
+          base_url: request_options[:base_url],
+          method: "POST",
+          path: "payments/#{URI.encode_uri_component(params[:payment_id].to_s)}/resume",
+          request_options: request_options
+        )
+        begin
+          response = @client.send(request)
+        rescue Net::HTTPRequestTimeout
+          raise Whop_sdk::Errors::TimeoutError
+        end
+        code = response.code.to_i
+        if code.between?(200, 299)
+          Whop_sdk::Types::PaymentStatus.load(response.body)
+        else
+          error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
+          raise error_class.new(response.body, code: code)
+        end
+      end
+
       # Changes where the buyer lands after completing an off-site step, up until they return. Accepts either a secret
       # key or the payment's own `client_secret`, so the surface that knows the final destination can set it.
       #

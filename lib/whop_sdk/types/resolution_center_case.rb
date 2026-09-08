@@ -21,6 +21,8 @@ module Whop_sdk
 
       field :id, -> { String }, optional: false, nullable: false
 
+      field :line_items, -> { Internal::Types::Array[Whop_sdk::Types::ResolutionLineItem] }, optional: false, nullable: false
+
       field :outcome, -> { Whop_sdk::Types::ResolutionCenterCaseOutcome }, optional: false, nullable: true
 
       field :payment, -> { Whop_sdk::Types::ResolutionPayment }, optional: false, nullable: false

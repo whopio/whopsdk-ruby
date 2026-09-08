@@ -10,7 +10,7 @@ module Whop_sdk
         @client = client
       end
 
-      # Lists uploaded customer-list audiences for an account. Pass `audience_id` to return a specific audience.
+      # List custom and lookalike audiences for an account. Pass `audience_id` to return a specific audience.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -69,14 +69,10 @@ module Whop_sdk
         end
       end
 
-      # Creates an audience. Default (`audience_type` omitted or `custom`): creates one audience from an uploaded
-      # customer identity CSV file (`name`, `column_mapping`, and `file_id` required) and starts processing it; responds
-      # with the audience object. With `filters`: creates an audience from saved People filters (`name` required) —
-      # membership is built from the account's People data, and `auto_refresh` decides whether it keeps tracking the
-      # filters or keeps whoever matched at creation. With `audience_type: lookalike`: creates a ladder of Meta
-      # lookalike audiences from an existing ready custom audience (`source_audience_id`, `count`, and `percentage`
-      # required) — `count` equal similarity bands slicing the top `percentage`% (3 audiences at 6% = 0–2%, 2–4%, 4–6%),
-      # each returned as its own audience in a `{ data: [...] }` envelope.
+      # Create an audience from a customer list, your account's Whop People data, or engagement with videos, lead forms,
+      # Instagram profiles, or Facebook pages. Create lookalike audiences to reach people similar to an existing
+      # audience. Processing runs asynchronously. Custom creation returns one audience; lookalike creation returns the
+      # requested similarity bands in `data`.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::Audiences::Types::CreateAudiencesRequest]
@@ -87,7 +83,15 @@ module Whop_sdk
       # @option request_options [Integer] :timeout_in_seconds
       #
       # @example
-      #   client.audiences.create(account_id: "biz_xxxxxxxxxxxxxx")
+      #   client.audiences.create(
+      #     account_id: "biz_xxxxxxxxxxxxxx",
+      #     engagement: {
+      #       include: [],
+      #       platform: "meta"
+      #     },
+      #     name: "Page engagers",
+      #     source_type: "engagement"
+      #   )
       #
       # @return [Whop_sdk::Audiences::Types::CreateAudiencesResponse]
       def create(request_options: {}, **params)

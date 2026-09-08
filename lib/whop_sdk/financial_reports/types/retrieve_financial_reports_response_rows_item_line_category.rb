@@ -257,6 +257,7 @@ module Whop_sdk
         SALES_TAX_REMITTANCE_REVERSAL = "sales_tax_remittance_reversal"
         SALES_TAX_REMITTED = "sales_tax_remitted"
         SETTLEMENT_ROUNDING_VARIANCE = "settlement_rounding_variance"
+        SETTLEMENT_SHORTFALL_LOSS = "settlement_shortfall_loss"
         SOFTWARE_RENTAL_REVSHARE = "software_rental_revshare"
         SOFTWARE_RENTAL_TRANSACTION = "software_rental_transaction"
         STRIPE_DOMESTIC_PROCESSING_FEE = "stripe_domestic_processing_fee"

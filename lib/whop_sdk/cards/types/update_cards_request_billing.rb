@@ -3,8 +3,8 @@
 module Whop_sdk
   module Cards
     module Types
-      # New billing address. Requires line1, city, region, postal_code, and country_code. On an invited card, passing
-      # billing alone (as the invited user) completes onboarding and starts card provisioning.
+      # The billing address. On an issued card this replaces the card's billing address and region is also required. On
+      # an invited card, sending it as the invited user completes onboarding and starts card provisioning.
       class UpdateCardsRequestBilling < Internal::Types::Model
         field :city, -> { String }, optional: false, nullable: false
 
@@ -16,7 +16,7 @@ module Whop_sdk
 
         field :postal_code, -> { String }, optional: false, nullable: false
 
-        field :region, -> { String }, optional: false, nullable: false
+        field :region, -> { String }, optional: true, nullable: false
       end
     end
   end

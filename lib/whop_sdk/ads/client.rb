@@ -98,7 +98,8 @@ module Whop_sdk
         end
       end
 
-      # Creates an ad in an ad group.
+      # Creates an ad in an ad group. Any campaign status other than `draft` launches the campaign, which requires an
+      # ads payment method on the account.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::Ads::Types::CreateAdsRequest]

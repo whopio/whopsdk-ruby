@@ -14,6 +14,8 @@ module Whop_sdk
 
         field :metadata, -> { Internal::Types::Hash[String, Object] }, optional: true, nullable: false
 
+        field :send_customer_emails, -> { Internal::Types::Boolean }, optional: true, nullable: false
+
         field :title, -> { String }, optional: true, nullable: false
       end
     end

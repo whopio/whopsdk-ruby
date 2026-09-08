@@ -375,7 +375,7 @@ module Whop_sdk
         end
       end
 
-      # Resumes a paused ad campaign.
+      # Resumes a paused ad campaign. Requires an ads payment method on the account.
       #
       # @param request_options [Hash]
       # @param params [Hash]

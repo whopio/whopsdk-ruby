@@ -7,6 +7,7 @@ module Whop_sdk
 
       CSV_UPLOAD = "csv_upload"
       PEOPLE_FILTER = "people_filter"
+      ENGAGEMENT = "engagement"
     end
   end
 end

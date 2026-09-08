@@ -12,6 +12,10 @@ module Whop_sdk
 
         field :expires_at, -> { String }, optional: true, nullable: false
 
+        field :feed_id, -> { String }, optional: true, nullable: false
+
+        field :feed_type, -> { Whop_sdk::Transfers::Types::CreateTransfersRequestFeedType }, optional: true, nullable: false
+
         field :idempotence_key, -> { String }, optional: true, nullable: false
 
         field :metadata, -> { Internal::Types::Hash[String, Object] }, optional: true, nullable: false

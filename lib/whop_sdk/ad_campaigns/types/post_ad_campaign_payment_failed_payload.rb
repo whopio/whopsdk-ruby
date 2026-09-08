@@ -10,7 +10,7 @@ module Whop_sdk
 
         field :api_version_date, -> { String }, optional: false, nullable: true
 
-        field :data, -> { Whop_sdk::Types::AdCampaign }, optional: false, nullable: false
+        field :data, -> { Whop_sdk::AdCampaigns::Types::PostAdCampaignPaymentFailedPayloadData }, optional: false, nullable: false
 
         field :id, -> { String }, optional: false, nullable: false
 

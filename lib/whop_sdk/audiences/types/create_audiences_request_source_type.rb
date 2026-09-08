@@ -1,0 +1,15 @@
+# frozen_string_literal: true
+
+module Whop_sdk
+  module Audiences
+    module Types
+      module CreateAudiencesRequestSourceType
+        extend Whop_sdk::Internal::Types::Enum
+
+        CSV_UPLOAD = "csv_upload"
+        PEOPLE_FILTER = "people_filter"
+        ENGAGEMENT = "engagement"
+      end
+    end
+  end
+end

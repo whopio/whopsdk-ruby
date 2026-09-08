@@ -9,6 +9,8 @@ module Whop_sdk
 
       field :affiliate_code, -> { String }, optional: false, nullable: true
 
+      field :company_id, -> { String }, optional: false, nullable: false
+
       field :currency, -> { Whop_sdk::Types::Currencies }, optional: false, nullable: true
 
       field :id, -> { String }, optional: false, nullable: false

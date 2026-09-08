@@ -19,6 +19,7 @@ module Whop_sdk
         FX = "fx"
         LEGACY = "legacy"
         MISC = "misc"
+        OPERATIONAL_COSTS = "operational_costs"
         OTHER = "other"
         PAYMENTS = "payments"
         REFUNDS = "refunds"

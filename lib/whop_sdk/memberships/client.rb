@@ -208,56 +208,6 @@ module Whop_sdk
         end
       end
 
-      # Add free days to extend a membership's current billing period, expiration date, or Stripe trial.
-      #
-      # Required permissions:
-      #  - `member:manage`
-      #  - `member:email:read`
-      #  - `member:basic:read`
-      #
-      # @param request_options [Hash]
-      # @param params [Whop_sdk::Memberships::Types::AddFreeDaysMembershipRequest]
-      # @option request_options [String] :base_url
-      # @option request_options [Hash{String => Object}] :additional_headers
-      # @option request_options [Hash{String => Object}] :additional_query_parameters
-      # @option request_options [Hash{String => Object}] :additional_body_parameters
-      # @option request_options [Integer] :timeout_in_seconds
-      # @option params [String] :id
-      #
-      # @example
-      #   client.memberships.add_free_days_membership(
-      #     id: "mem_xxxxxxxxxxxxxx",
-      #     free_days: 42
-      #   )
-      #
-      # @return [Whop_sdk::Types::MembershipLegacy]
-      def add_free_days_membership(request_options: {}, **params)
-        params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
-        request_data = Whop_sdk::Memberships::Types::AddFreeDaysMembershipRequest.new(params).to_h
-        non_body_param_names = %w[id]
-        body = request_data.except(*non_body_param_names)
-
-        request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
-          method: "POST",
-          path: "memberships/#{URI.encode_uri_component(params[:id].to_s)}/add_free_days",
-          body: body,
-          request_options: request_options
-        )
-        begin
-          response = @client.send(request)
-        rescue Net::HTTPRequestTimeout
-          raise Whop_sdk::Errors::TimeoutError
-        end
-        code = response.code.to_i
-        if code.between?(200, 299)
-          Whop_sdk::Types::MembershipLegacy.load(response.body)
-        else
-          error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
-          raise error_class.new(response.body, code: code)
-        end
-      end
-
       # Cancels a membership. Pass `cancel_at_period_end: true` to stop auto-renewal and keep access until the current
       # billing period ends. Omit it (or pass `false`) to revoke access immediately. Buyers cannot cancel
       # buy-now-pay-later (`splitit`, `sezzle`) or non-trial split-pay memberships.
@@ -428,15 +378,10 @@ module Whop_sdk
         end
       end
 
-      # Re-run access fulfillment for a membership. Recomputes the member's content access on Whop, re-validates their
+      # Re-runs access fulfillment for a membership: recomputes the member's content access on Whop, re-validates their
       # Discord link (re-adding them to the server and re-assigning roles if needed), and re-fulfills TradingView
-      # indicator access. Telegram access is invite-based and cannot be resynced here. The outcome is written to the
-      # membership's logs.
-      #
-      # Required permissions:
-      #  - `membership:resync_access`
-      #  - `member:email:read`
-      #  - `member:basic:read`
+      # indicator access. Telegram access is invite-based and is not resynced. The work runs in the background and the
+      # outcome is written to the membership's logs.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -448,10 +393,10 @@ module Whop_sdk
       # @option params [String] :id
       #
       # @example
-      #   client.memberships.resync_access_membership(id: "mem_xxxxxxxxxxxxxx")
+      #   client.memberships.resync_access(id: "id")
       #
-      # @return [Whop_sdk::Types::MembershipLegacy]
-      def resync_access_membership(request_options: {}, **params)
+      # @return [Whop_sdk::Types::Membership]
+      def resync_access(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
         request = Whop_sdk::Internal::JSON::Request.new(
           base_url: request_options[:base_url],
@@ -466,7 +411,7 @@ module Whop_sdk
         end
         code = response.code.to_i
         if code.between?(200, 299)
-          Whop_sdk::Types::MembershipLegacy.load(response.body)
+          Whop_sdk::Types::Membership.load(response.body)
         else
           error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)
@@ -507,48 +452,6 @@ module Whop_sdk
         code = response.code.to_i
         if code.between?(200, 299)
           Whop_sdk::Memberships::Types::TransferMembershipsResponse.load(response.body)
-        else
-          error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
-          raise error_class.new(response.body, code: code)
-        end
-      end
-
-      # Reverse a pending cancellation for a membership that was scheduled to cancel at period end.
-      #
-      # Required permissions:
-      #  - `member:manage`
-      #  - `member:email:read`
-      #  - `member:basic:read`
-      #
-      # @param request_options [Hash]
-      # @param params [Hash]
-      # @option request_options [String] :base_url
-      # @option request_options [Hash{String => Object}] :additional_headers
-      # @option request_options [Hash{String => Object}] :additional_query_parameters
-      # @option request_options [Hash{String => Object}] :additional_body_parameters
-      # @option request_options [Integer] :timeout_in_seconds
-      # @option params [String] :id
-      #
-      # @example
-      #   client.memberships.uncancel_membership(id: "mem_xxxxxxxxxxxxxx")
-      #
-      # @return [Whop_sdk::Types::MembershipLegacy]
-      def uncancel_membership(request_options: {}, **params)
-        params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
-        request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
-          method: "POST",
-          path: "memberships/#{URI.encode_uri_component(params[:id].to_s)}/uncancel",
-          request_options: request_options
-        )
-        begin
-          response = @client.send(request)
-        rescue Net::HTTPRequestTimeout
-          raise Whop_sdk::Errors::TimeoutError
-        end
-        code = response.code.to_i
-        if code.between?(200, 299)
-          Whop_sdk::Types::MembershipLegacy.load(response.body)
         else
           error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)

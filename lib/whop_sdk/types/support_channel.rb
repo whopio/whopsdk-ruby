@@ -7,6 +7,8 @@ module Whop_sdk
     class SupportChannel < Internal::Types::Model
       field :account_id, -> { String }, optional: false, nullable: true
 
+      field :company_id, -> { String }, optional: false, nullable: true
+
       field :custom_name, -> { String }, optional: false, nullable: true
 
       field :customer_user, -> { Whop_sdk::Types::SupportChannelCustomerUser }, optional: false, nullable: true

@@ -14,6 +14,8 @@ module Whop_sdk
 
         field :count, -> { Integer }, optional: true, nullable: false
 
+        field :engagement, -> { Whop_sdk::Audiences::Types::CreateAudiencesRequestEngagement }, optional: true, nullable: false
+
         field :file_id, -> { String }, optional: true, nullable: false
 
         field :filters, -> { Internal::Types::Hash[String, Object] }, optional: true, nullable: false
@@ -23,6 +25,8 @@ module Whop_sdk
         field :percentage, -> { Integer }, optional: true, nullable: false
 
         field :source_audience_id, -> { String }, optional: true, nullable: false
+
+        field :source_type, -> { Whop_sdk::Audiences::Types::CreateAudiencesRequestSourceType }, optional: true, nullable: false
       end
     end
   end

@@ -5,6 +5,8 @@ module Whop_sdk
     class SocialAccountPost < Internal::Types::Model
       field :call_to_action, -> { Whop_sdk::Types::SocialAccountPostCallToAction }, optional: false, nullable: true
 
+      field :caption, -> { String }, optional: false, nullable: true
+
       field :destination_url, -> { String }, optional: false, nullable: true
 
       field :embed_url, -> { String }, optional: false, nullable: true
@@ -16,6 +18,8 @@ module Whop_sdk
       field :restrictions, -> { Internal::Types::Array[Whop_sdk::Types::SocialAccountPostRestrictionsItem] }, optional: false, nullable: false
 
       field :thumbnail_url, -> { String }, optional: false, nullable: true
+
+      field :video_id, -> { String }, optional: false, nullable: true
     end
   end
 end

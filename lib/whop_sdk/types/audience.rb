@@ -9,6 +9,8 @@ module Whop_sdk
 
       field :created_at, -> { String }, optional: false, nullable: false
 
+      field :engagement, -> { Whop_sdk::Types::AudienceEngagement }, optional: false, nullable: true
+
       field :error_message, -> { String }, optional: false, nullable: true
 
       field :filters, -> { Internal::Types::Hash[String, Object] }, optional: false, nullable: true

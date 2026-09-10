@@ -114,6 +114,11 @@ module Whop_sdk
       @cards ||= Whop_sdk::Cards::Client.new(client: @raw_client)
     end
 
+    # @return [Whop_sdk::CashbackRules::Client]
+    def cashback_rules
+      @cashback_rules ||= Whop_sdk::CashbackRules::Client.new(client: @raw_client)
+    end
+
     # @return [Whop_sdk::ChatChannels::Client]
     def chat_channels
       @chat_channels ||= Whop_sdk::ChatChannels::Client.new(client: @raw_client)

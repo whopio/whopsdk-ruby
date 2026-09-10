@@ -9799,6 +9799,224 @@ client.cards.update(id: "id")
 </dl>
 </details>
 
+## Cashback Rules
+<details><summary><code>client.cashback_rules.<a href="/lib/whop_sdk/cashback_rules/client.rb">create</a>(request) -> Whop_sdk::Types::CashbackRule</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a future-dated card cashback rule funded by the authenticated platform account. Requires payout:transfer_funds. Both the raw merchant name and four-digit MCC are required. Optionally limit the rule to one direct connected account. The funding account is derived from the credential and cannot be supplied. Creation does not transfer funds. Supports Idempotency-Key for safe retries.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.cashback_rules.create(
+  merchant_category_code: "5734",
+  merchant_name: "ACME SOFTWARE",
+  rate_bps: 500,
+  starts_at: "2026-01-01T12:00:00Z"
+)
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**description:** `String` — Optional description of the rule.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**expires_at:** `String` — Exclusive end, strictly later than starts_at. Omit or set null for no expiration.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**merchant_category_code:** `String` — Four-digit MCC, including leading zeros. Must match together with merchant_name.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**merchant_name:** `String` — Raw merchant name reported by the card provider, not the enriched display name. Matched with the MCC; not a substring or wildcard.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**rate_bps:** `Integer` — Cashback rate in basis points: 500 means 5%.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**scoped_account_id:** `String` — Account ID prefixed biz_ belonging to a direct connected account. Omit or set null to designate all direct connected accounts.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**starts_at:** `String` — Inclusive start, strictly later than the current time, as an ISO 8601 timestamp.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Whop_sdk::CashbackRules::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.cashback_rules.<a href="/lib/whop_sdk/cashback_rules/client.rb">list</a>() -> Whop_sdk::CashbackRules::Types::ListCashbackRulesResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists all cashback rules funded by the authenticated platform account. Includes scheduled, expired, and discarded rules. Requires payout:transfer:read. Account-scoped credentials are required; there is no caller-supplied funding-account filter.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.cashback_rules.list
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**first:** `Integer` — Number of rules to return from the start of the page.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**after:** `String` — Return rules after this cursor.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**last:** `Integer` — Number of rules to return from the end of the page.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**before:** `String` — Return rules before this cursor.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**order:** `Whop_sdk::CashbackRules::Types::ListCashbackRulesRequestOrder` — Field to sort by. Defaults to created_at.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**direction:** `Whop_sdk::CashbackRules::Types::ListCashbackRulesRequestDirection` — Sort direction. Defaults to desc.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Whop_sdk::CashbackRules::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## ChatChannels
 <details><summary><code>client.chat_channels.<a href="/lib/whop_sdk/chat_channels/client.rb">list</a>() -> Whop_sdk::ChatChannels::Types::ListChatChannelsResponse</code></summary>
 <dl>

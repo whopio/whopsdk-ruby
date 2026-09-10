@@ -18,7 +18,9 @@ module Whop_sdk
 
         field :payment_method_id, -> { String }, optional: true, nullable: false
 
-        field :plan_id, -> { String }, optional: false, nullable: false
+        field :plan, -> { Whop_sdk::Payments::Types::CreatePaymentsRequestPlan }, optional: true, nullable: false
+
+        field :plan_id, -> { String }, optional: true, nullable: false
 
         field :promo_code_id, -> { String }, optional: true, nullable: false
 

@@ -100,7 +100,8 @@ module Whop_sdk
       # Charges a buyer for a plan. Pass a payment method already on file (`member_id` and `payment_method_id`), or a
       # `confirmation_token` describing a method the buyer just supplied. Collection runs in the background: the
       # response is the payment as created, not its outcome — poll Retrieve status for how far it has got and, for a
-      # confirmation-token payment, what the buyer must still do. `plan_id` names the plan to charge for.
+      # confirmation-token payment, what the buyer must still do. Pass `plan_id` for an existing plan or `plan` to find
+      # or create one inline.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::Payments::Types::CreatePaymentsRequest]
@@ -111,10 +112,7 @@ module Whop_sdk
       # @option request_options [Integer] :timeout_in_seconds
       #
       # @example
-      #   client.payments.create(
-      #     account_id: "biz_xxxxxxxxxxxxxx",
-      #     plan_id: "plan_xxxxxxxxxxxxxx"
-      #   )
+      #   client.payments.create(account_id: "biz_xxxxxxxxxxxxxx")
       #
       # @return [Whop_sdk::Types::Payment]
       def create(request_options: {}, **params)

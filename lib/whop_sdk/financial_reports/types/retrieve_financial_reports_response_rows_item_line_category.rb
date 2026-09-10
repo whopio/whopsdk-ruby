@@ -173,6 +173,8 @@ module Whop_sdk
         PLATFORM_EARNING = "platform_earning"
         PLATFORM_EARNING_SETTLEMENT = "platform_earning_settlement"
         PLATFORM_EARNING_UNRECONCILED_CLEARING = "platform_earning_unreconciled_clearing"
+        PLATFORM_MARKUP_FEE = "platform_markup_fee"
+        PLATFORM_MARKUP_FEE_PAYOUT = "platform_markup_fee_payout"
         PROMO_REVERSAL = "promo_reversal"
         PSP_ACCELERATED_SETTLEMENT_FEE = "psp_accelerated_settlement_fee"
         PSP_ACCOUNT_DEBIT = "psp_account_debit"

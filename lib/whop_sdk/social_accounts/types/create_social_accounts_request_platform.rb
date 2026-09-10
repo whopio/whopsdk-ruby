@@ -7,6 +7,7 @@ module Whop_sdk
         extend Whop_sdk::Internal::Types::Enum
 
         FACEBOOK = "facebook"
+        TIKTOK = "tiktok"
       end
     end
   end

@@ -7,6 +7,7 @@ module Whop_sdk
 
       KYC_INCOMPLETE = "kyc_incomplete"
       PENDING_INFORMATION_REQUEST = "pending_information_request"
+      WITHDRAWALS_DISABLED = "withdrawals_disabled"
     end
   end
 end

@@ -105,6 +105,8 @@ module Whop_sdk
         PLATFORM_BALANCE_TRANSFER_OUTGOING = "platform_balance_transfer_outgoing"
         PLATFORM_COVERED_DISPUTE = "platform_covered_dispute"
         PLATFORM_EARNING = "platform_earning"
+        PLATFORM_MARKUP_FEE = "platform_markup_fee"
+        PLATFORM_MARKUP_FEE_PAYOUT = "platform_markup_fee_payout"
         PROMO_REVERSAL = "promo_reversal"
         REFERRAL_BONUS = "referral_bonus"
         RESOLUTION_CENTER_REFUND = "resolution_center_refund"

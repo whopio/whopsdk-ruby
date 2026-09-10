@@ -3,6 +3,8 @@
 module Whop_sdk
   module Types
     class PaymentStatus < Internal::Types::Model
+      field :account, -> { Whop_sdk::Types::AccountSummary }, optional: false, nullable: true
+
       field :capture_expires_at, -> { String }, optional: false, nullable: true
 
       field :id, -> { String }, optional: false, nullable: false

@@ -21,6 +21,8 @@ module Whop_sdk
 
       field :currency, -> { Whop_sdk::Types::Currencies }, optional: false, nullable: false
 
+      field :customer_email, -> { String }, optional: false, nullable: true
+
       field :customer_phone, -> { String }, optional: false, nullable: true
 
       field :decline_code, -> { Whop_sdk::Types::PaymentDeclineCodes }, optional: false, nullable: true
@@ -56,6 +58,8 @@ module Whop_sdk
       field :payments_failed, -> { Integer }, optional: false, nullable: false
 
       field :plan_id, -> { String }, optional: false, nullable: true
+
+      field :presentment_total, -> { Whop_sdk::Types::Money }, optional: false, nullable: true
 
       field :product_id, -> { String }, optional: false, nullable: true
 

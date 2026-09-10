@@ -6,6 +6,7 @@ module Whop_sdk
       extend Whop_sdk::Internal::Types::Enum
 
       DEPOSIT_FUNDS = "deposit_funds"
+      ACCEPT_AIRWALLEX_TERMS = "accept_airwallex_terms"
       SUBMIT_INFORMATION_REQUEST = "submit_information_request"
       UPDATE_AUTOMATIC_WITHDRAWAL_METHOD = "update_automatic_withdrawal_method"
       REAUTHORIZE_PAYOUT_METHODS = "reauthorize_payout_methods"

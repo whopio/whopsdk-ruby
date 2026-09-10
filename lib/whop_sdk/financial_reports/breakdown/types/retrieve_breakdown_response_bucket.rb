@@ -17,6 +17,7 @@ module Whop_sdk
           WITHDRAWALS = "withdrawals"
           WITHDRAWAL_MARKUP = "withdrawal_markup"
           SWAPS = "swaps"
+          CARD_LOADS = "card_loads"
         end
       end
     end

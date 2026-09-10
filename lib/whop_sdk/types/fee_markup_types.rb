@@ -10,6 +10,7 @@ module Whop_sdk
       NEXT_DAY_BANK_WITHDRAWAL_MARKUP = "next_day_bank_withdrawal_markup"
       BANK_WIRE_WITHDRAWAL_MARKUP = "bank_wire_withdrawal_markup"
       DIGITAL_WALLET_WITHDRAWAL_MARKUP = "digital_wallet_withdrawal_markup"
+      TRANSFER_MARKUP = "transfer_markup"
       CRYPTO_DEPOSIT_MARKUP = "crypto_deposit_markup"
       BANK_DEPOSIT_MARKUP = "bank_deposit_markup"
     end

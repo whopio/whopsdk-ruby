@@ -72,6 +72,7 @@ module Whop_sdk
         SHIPMENT_CREATED = "shipment.created"
         SHIPMENT_UPDATED = "shipment.updated"
         MEMBER_CREATED = "member.created"
+        MEMBER_UPDATED = "member.updated"
         AD_CAMPAIGN_PAYMENT_FAILED = "ad_campaign.payment_failed"
         AD_CAMPAIGN_UPDATED = "ad_campaign.updated"
         AD_UPDATED = "ad.updated"

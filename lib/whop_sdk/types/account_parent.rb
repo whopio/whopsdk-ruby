@@ -3,6 +3,8 @@
 module Whop_sdk
   module Types
     class AccountParent < Internal::Types::Model
+      field :fees, -> { Internal::Types::Hash[String, Whop_sdk::Types::AccountParentFeesValue] }, optional: true, nullable: false
+
       field :id, -> { String }, optional: false, nullable: false
 
       field :logo_url, -> { String }, optional: false, nullable: true

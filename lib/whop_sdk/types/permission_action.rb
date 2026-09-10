@@ -251,6 +251,7 @@ module Whop_sdk
       NOTIFICATION_CREATE = "notification:create"
       USER_BALANCE_READ = "user:balance:read"
       USER_EMAIL_READ = "user:email:read"
+      USER_PAYMENT_CHARGE = "user:payment:charge"
       USER_STAFF_READ = "user:staff:read"
       OAUTH_TOKEN_EXCHANGE = "oauth:token_exchange"
       OPENID = "openid"

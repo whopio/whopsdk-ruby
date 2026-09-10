@@ -79,7 +79,7 @@ module Whop_sdk
         end
       end
 
-      # Creates or returns a Whop-managed Facebook page for an account.
+      # Creates or returns a Whop-managed Facebook page or TikTok account for an account.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::SocialAccounts::Types::CreateSocialAccountsRequest]

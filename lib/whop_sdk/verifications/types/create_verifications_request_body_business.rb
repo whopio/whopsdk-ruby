@@ -29,6 +29,8 @@ module Whop_sdk
         field :share_token, -> { String }, optional: true, nullable: false
 
         field :tax_identification_number, -> { String }, optional: true, nullable: false
+
+        field :verification_id, -> { String }, optional: true, nullable: false
       end
     end
   end

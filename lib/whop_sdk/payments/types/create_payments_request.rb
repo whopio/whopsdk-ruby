@@ -23,6 +23,8 @@ module Whop_sdk
         field :promo_code_id, -> { String }, optional: true, nullable: false
 
         field :return_url, -> { String }, optional: true, nullable: false
+
+        field :statement_descriptor, -> { String }, optional: true, nullable: false
       end
     end
   end

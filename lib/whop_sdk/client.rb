@@ -9,7 +9,7 @@ module Whop_sdk
     # @param max_retries [Integer]
     #
     # @return [void]
-    def initialize(token:, base_url: nil, api_version_date: "2026-09-06", idempotency_key: nil, max_retries: 2)
+    def initialize(token:, base_url: nil, api_version_date: "2026-09-09", idempotency_key: nil, max_retries: 2)
       headers = {
         "X-Fern-Language" => "Ruby",
         Authorization: "Bearer #{token}",
@@ -182,6 +182,11 @@ module Whop_sdk
     # @return [Whop_sdk::DmMembers::Client]
     def dm_members
       @dm_members ||= Whop_sdk::DmMembers::Client.new(client: @raw_client)
+    end
+
+    # @return [Whop_sdk::Domains::Client]
+    def domains
+      @domains ||= Whop_sdk::Domains::Client.new(client: @raw_client)
     end
 
     # @return [Whop_sdk::Entries::Client]

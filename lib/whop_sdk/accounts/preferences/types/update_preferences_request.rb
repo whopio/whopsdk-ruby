@@ -17,6 +17,8 @@ module Whop_sdk
 
           field :cards_auto_top_up, -> { Internal::Types::Boolean }, optional: true, nullable: false
 
+          field :cards_notifications, -> { Internal::Types::Boolean }, optional: true, nullable: false
+
           field :dispute_fighter_enabled, -> { Internal::Types::Boolean }, optional: true, nullable: false
         end
       end

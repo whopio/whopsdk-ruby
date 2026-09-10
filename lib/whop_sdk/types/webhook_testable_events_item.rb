@@ -6,6 +6,8 @@ module Whop_sdk
       extend Whop_sdk::Internal::Types::Enum
 
       ACCOUNT_UPDATED = "account.updated"
+      ACCOUNT_FINANCING_APPROVED = "account.financing_approved"
+      ACCOUNT_FINANCING_DENIED = "account.financing_denied"
       INVOICE_CREATED = "invoice.created"
       INVOICE_MARKED_UNCOLLECTIBLE = "invoice.marked_uncollectible"
       INVOICE_PAID = "invoice.paid"

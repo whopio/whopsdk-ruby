@@ -5,6 +5,8 @@ module Whop_sdk
     class Product < Internal::Types::Model
       field :account, -> { Internal::Types::Hash[String, Object] }, optional: false, nullable: true
 
+      field :average_review_rating, -> { Integer }, optional: false, nullable: false
+
       field :created_at, -> { String }, optional: false, nullable: false
 
       field :custom_cta, -> { Whop_sdk::Types::ProductCustomCta }, optional: false, nullable: true

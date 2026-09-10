@@ -31,6 +31,8 @@ module Whop_sdk
 
       field :issuer_comments, -> { Internal::Types::Array[Whop_sdk::Types::DisputeIssuerComment] }, optional: false, nullable: false
 
+      field :line_items, -> { Internal::Types::Array[Whop_sdk::Types::ReceiptLineItem] }, optional: false, nullable: false
+
       field :payment, -> { Whop_sdk::Types::DisputePayment }, optional: false, nullable: true
 
       field :plan_id, -> { String }, optional: false, nullable: true

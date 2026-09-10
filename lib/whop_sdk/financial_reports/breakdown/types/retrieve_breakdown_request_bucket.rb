@@ -15,6 +15,7 @@ module Whop_sdk
           CARD_SPEND = "card_spend"
           CARD_AUTHORIZATION_RELEASES = "card_authorization_releases"
           WITHDRAWALS = "withdrawals"
+          WITHDRAWAL_MARKUP = "withdrawal_markup"
           SWAPS = "swaps"
         end
       end

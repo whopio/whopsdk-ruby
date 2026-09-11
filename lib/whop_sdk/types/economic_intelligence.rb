@@ -13,13 +13,7 @@ module Whop_sdk
 
       field :execution_type, -> { Whop_sdk::Types::EconomicIntelligenceExecutionType }, optional: false, nullable: false
 
-      field :expected_delta, -> { Whop_sdk::Types::Money }, optional: false, nullable: true
-
-      field :expected_ledger_line, -> { String }, optional: false, nullable: true
-
       field :id, -> { String }, optional: false, nullable: false
-
-      field :inference_version, -> { String }, optional: false, nullable: false
 
       field :input, -> { String }, optional: false, nullable: true
 

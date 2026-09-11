@@ -17,6 +17,8 @@ module Whop_sdk
 
       field :bank_code, -> { String }, optional: true, nullable: false
 
+      field :bank_code_label, -> { String }, optional: true, nullable: false
+
       field :bank_name, -> { String }, optional: true, nullable: false
 
       field :beneficiary_document, -> { String }, optional: true, nullable: false

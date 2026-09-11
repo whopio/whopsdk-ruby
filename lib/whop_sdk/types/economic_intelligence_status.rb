@@ -2,13 +2,14 @@
 
 module Whop_sdk
   module Types
-    module AccountRecommendedActionChainStepStatus
+    module EconomicIntelligenceStatus
       extend Whop_sdk::Internal::Types::Enum
 
+      QUEUED = "queued"
       PENDING = "pending"
-      REDIRECTED = "redirected"
-      RUNNING = "running"
-      SUCCEEDED = "succeeded"
+      READY = "ready"
+      EXECUTED = "executed"
+      SUPERSEDED = "superseded"
       FAILED = "failed"
     end
   end

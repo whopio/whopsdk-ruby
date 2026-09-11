@@ -14,6 +14,7 @@ module Whop_sdk
           KYC_COMPLETED = "kyc_completed"
           RMI_CLEAR = "rmi_clear"
           IDENTITY_RFI_CLEAR = "identity_rfi_clear"
+          GUARDIAN_ID_CLEAR = "guardian_id_clear"
           ECOMMERCE_FULFILLMENT_CONNECTED = "ecommerce_fulfillment_connected"
           BLOCK_MOVE_MONEY_OUT = "block_move_money_out"
           BLOCK_MOVE_MONEY_OUT_SET_BY_PARENT = "block_move_money_out_set_by_parent"

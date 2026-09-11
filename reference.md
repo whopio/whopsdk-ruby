@@ -36280,6 +36280,14 @@ client.accounts.preferences.update(account_id: "account_id")
 <dl>
 <dd>
 
+**economic_intelligence:** `Internal::Types::Boolean` — Whether economic intelligence is enabled for the account. Requires company:update permission and an existing ledger account.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **request_options:** `Whop_sdk::Accounts::Preferences::RequestOptions` 
     
 </dd>

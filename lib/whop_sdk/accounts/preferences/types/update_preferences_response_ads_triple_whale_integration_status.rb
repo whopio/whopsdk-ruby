@@ -9,7 +9,7 @@ module Whop_sdk
 
           CONNECTED = "connected"
           NOT_CONNECTED = "not_connected"
-          REQUIRES_SHOPIFY_STORE = "requires_shopify_store"
+          REQUIRES_SHOP_DOMAIN = "requires_shop_domain"
         end
       end
     end

@@ -10364,7 +10364,7 @@ client.chat_channels.update(id: "id")
 <dl>
 <dd>
 
-**user_posts_cooldown_seconds:** `Integer` — The minimum number of seconds a user must wait between sending messages in this chat channel.
+**user_posts_cooldown_seconds:** `Integer` — The minimum number of seconds a user must wait between sending messages in this chat channel. Pass null or 0 to remove the cooldown.
     
 </dd>
 </dl>

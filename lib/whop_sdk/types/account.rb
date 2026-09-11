@@ -29,6 +29,8 @@ module Whop_sdk
 
       field :description, -> { String }, optional: false, nullable: true
 
+      field :economic_intelligence, -> { Internal::Types::Boolean }, optional: false, nullable: false
+
       field :email, -> { String }, optional: false, nullable: true
 
       field :eula, -> { Whop_sdk::Types::File }, optional: false, nullable: true

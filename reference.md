@@ -653,7 +653,7 @@ client.accounts.update(id: "id")
 <dl>
 <dd>
 
-**business_type:** `Whop_sdk::Accounts::Types::UpdateAccountsRequestBusinessType` — High-level business category for the account. See the [business types and industries glossary](/api-reference/beta/accounts/account#business-types-and-industries-glossary) for valid values.
+**business_type:** `String` — High-level business category for the account. See the [business types and industries glossary](/api-reference/beta/accounts/account#business-types-and-industries-glossary) for valid values.
     
 </dd>
 </dl>
@@ -701,7 +701,7 @@ client.accounts.update(id: "id")
 <dl>
 <dd>
 
-**industry_group:** `Whop_sdk::Accounts::Types::UpdateAccountsRequestIndustryGroup` — Account industry group. See the [business types and industries glossary](/api-reference/beta/accounts/account#business-types-and-industries-glossary) for valid values.
+**industry_group:** `String` — Account industry group. See the [business types and industries glossary](/api-reference/beta/accounts/account#business-types-and-industries-glossary) for valid values.
     
 </dd>
 </dl>

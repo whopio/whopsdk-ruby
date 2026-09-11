@@ -11,7 +11,7 @@ module Whop_sdk
 
       field :business_name, -> { String }, optional: false, nullable: true
 
-      field :business_type, -> { Whop_sdk::Types::AccountBusinessType }, optional: false, nullable: true
+      field :business_type, -> { String }, optional: false, nullable: true
 
       field :can_transfer_pending_balance_to_children, -> { Internal::Types::Boolean }, optional: false, nullable: false
 
@@ -37,7 +37,7 @@ module Whop_sdk
 
       field :id, -> { String }, optional: false, nullable: false
 
-      field :industry_group, -> { Whop_sdk::Types::AccountIndustryGroup }, optional: false, nullable: true
+      field :industry_group, -> { String }, optional: false, nullable: true
 
       field :industry_type, -> { String }, optional: false, nullable: true
 

@@ -1,0 +1,184 @@
+module WhopSDK
+  module Models
+    type member_updated_webhook_event =
+      {
+        id: String,
+        api_version: :v1,
+        api_version_date: String?,
+        data: WhopSDK::MemberUpdatedWebhookEvent::Data,
+        timestamp: Time,
+        type: :"member.updated",
+        account_id: String?,
+        previous_attributes: top
+      }
+
+    class MemberUpdatedWebhookEvent < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor api_version: :v1
+
+      attr_accessor api_version_date: String?
+
+      attr_accessor data: WhopSDK::MemberUpdatedWebhookEvent::Data
+
+      attr_accessor timestamp: Time
+
+      attr_accessor type: :"member.updated"
+
+      attr_accessor account_id: String?
+
+      attr_reader previous_attributes: top?
+
+      def previous_attributes=: (top) -> top
+
+      def initialize: (
+        id: String,
+        api_version_date: String?,
+        data: WhopSDK::MemberUpdatedWebhookEvent::Data,
+        timestamp: Time,
+        ?account_id: String?,
+        ?previous_attributes: top,
+        ?api_version: :v1,
+        ?type: :"member.updated"
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        api_version: :v1,
+        api_version_date: String?,
+        data: WhopSDK::MemberUpdatedWebhookEvent::Data,
+        timestamp: Time,
+        type: :"member.updated",
+        account_id: String?,
+        previous_attributes: top
+      }
+
+      type data =
+        {
+          id: String,
+          access_level: WhopSDK::Models::MemberUpdatedWebhookEvent::Data::access_level,
+          account_id: String,
+          created_at: String,
+          joined_at: String,
+          last_accessed_at: String?,
+          phone_number: String?,
+          status: WhopSDK::Models::MemberUpdatedWebhookEvent::Data::status,
+          token_balance: Float,
+          user: WhopSDK::MemberUpdatedWebhookEvent::Data::User?
+        }
+
+      class Data < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor access_level: WhopSDK::Models::MemberUpdatedWebhookEvent::Data::access_level
+
+        attr_accessor account_id: String
+
+        attr_accessor created_at: String
+
+        attr_accessor joined_at: String
+
+        attr_accessor last_accessed_at: String?
+
+        attr_accessor phone_number: String?
+
+        attr_accessor status: WhopSDK::Models::MemberUpdatedWebhookEvent::Data::status
+
+        attr_accessor token_balance: Float
+
+        attr_accessor user: WhopSDK::MemberUpdatedWebhookEvent::Data::User?
+
+        def initialize: (
+          id: String,
+          access_level: WhopSDK::Models::MemberUpdatedWebhookEvent::Data::access_level,
+          account_id: String,
+          created_at: String,
+          joined_at: String,
+          last_accessed_at: String?,
+          phone_number: String?,
+          status: WhopSDK::Models::MemberUpdatedWebhookEvent::Data::status,
+          token_balance: Float,
+          user: WhopSDK::MemberUpdatedWebhookEvent::Data::User?
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          access_level: WhopSDK::Models::MemberUpdatedWebhookEvent::Data::access_level,
+          account_id: String,
+          created_at: String,
+          joined_at: String,
+          last_accessed_at: String?,
+          phone_number: String?,
+          status: WhopSDK::Models::MemberUpdatedWebhookEvent::Data::status,
+          token_balance: Float,
+          user: WhopSDK::MemberUpdatedWebhookEvent::Data::User?
+        }
+
+        type access_level = :no_access | :admin | :customer
+
+        module AccessLevel
+          extend WhopSDK::Internal::Type::Enum
+
+          NO_ACCESS: :no_access
+          ADMIN: :admin
+          CUSTOMER: :customer
+
+          def self?.values: -> ::Array[WhopSDK::Models::MemberUpdatedWebhookEvent::Data::access_level]
+        end
+
+        type status = :joined | :left
+
+        module Status
+          extend WhopSDK::Internal::Type::Enum
+
+          JOINED: :joined
+          LEFT: :left
+
+          def self?.values: -> ::Array[WhopSDK::Models::MemberUpdatedWebhookEvent::Data::status]
+        end
+
+        type user =
+          {
+            id: String,
+            name: String?,
+            profile_picture: WhopSDK::MemberUpdatedWebhookEvent::Data::User::ProfilePicture,
+            username: String
+          }
+
+        class User < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor name: String?
+
+          attr_accessor profile_picture: WhopSDK::MemberUpdatedWebhookEvent::Data::User::ProfilePicture
+
+          attr_accessor username: String
+
+          def initialize: (
+            id: String,
+            name: String?,
+            profile_picture: WhopSDK::MemberUpdatedWebhookEvent::Data::User::ProfilePicture,
+            username: String
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            name: String?,
+            profile_picture: WhopSDK::MemberUpdatedWebhookEvent::Data::User::ProfilePicture,
+            username: String
+          }
+
+          type profile_picture = { url: String }
+
+          class ProfilePicture < WhopSDK::Internal::Type::BaseModel
+            attr_accessor url: String
+
+            def initialize: (url: String) -> void
+
+            def to_hash: -> { url: String }
+          end
+        end
+      end
+    end
+  end
+end

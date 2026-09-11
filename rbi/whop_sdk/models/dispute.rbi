@@ -81,6 +81,9 @@ module WhopSDK
       sig { returns(T::Array[WhopSDK::Dispute::IssuerComment]) }
       attr_accessor :issuer_comments
 
+      sig { returns(T::Array[WhopSDK::Dispute::LineItem]) }
+      attr_accessor :line_items
+
       # The payment being disputed.
       sig { returns(T.nilable(WhopSDK::Dispute::Payment)) }
       attr_reader :payment
@@ -101,13 +104,13 @@ module WhopSDK
       sig { returns(T::Boolean) }
       attr_accessor :rapid_dispute_resolution
 
-      # Why the customer says they are disputing, normalized across card networks.
-      # `other` covers a code Whop has not categorized yet — read `reason_code` for the
-      # raw value.
+      # Why the customer says they are disputing, normalized across processors and card
+      # networks. `other` covers a processor reason Whop has not categorized yet.
       sig { returns(WhopSDK::Dispute::Reason::TaggedSymbol) }
       attr_accessor :reason
 
-      # The raw card-network or processor reason code, such as `10.4`.
+      # The raw card-network or processor reason code, such as `10.4`. Informational
+      # only — `reason` is not derived from it.
       sig { returns(T.nilable(String)) }
       attr_accessor :reason_code
 
@@ -140,6 +143,7 @@ module WhopSDK
             T.nilable(WhopSDK::Dispute::GeneratedResponseAttachment::OrHash),
           inquiry: T::Boolean,
           issuer_comments: T::Array[WhopSDK::Dispute::IssuerComment::OrHash],
+          line_items: T::Array[WhopSDK::Dispute::LineItem::OrHash],
           payment: T.nilable(WhopSDK::Dispute::Payment::OrHash),
           plan_id: T.nilable(String),
           product_id: T.nilable(String),
@@ -182,6 +186,7 @@ module WhopSDK
         # follow the same lifecycle but move no funds unless one escalates.
         inquiry:,
         issuer_comments:,
+        line_items:,
         # The payment being disputed.
         payment:,
         # The plan the disputed payment was made on, prefixed `plan_`.
@@ -191,11 +196,11 @@ module WhopSDK
         # Whether Visa Rapid Dispute Resolution settled this automatically. These refund
         # the customer without an evidence round.
         rapid_dispute_resolution:,
-        # Why the customer says they are disputing, normalized across card networks.
-        # `other` covers a code Whop has not categorized yet — read `reason_code` for the
-        # raw value.
+        # Why the customer says they are disputing, normalized across processors and card
+        # networks. `other` covers a processor reason Whop has not categorized yet.
         reason:,
-        # The raw card-network or processor reason code, such as `10.4`.
+        # The raw card-network or processor reason code, such as `10.4`. Informational
+        # only — `reason` is not derived from it.
         reason_code:,
         # Where the dispute stands. `needs_response` is awaiting evidence, `under_review`
         # is with the processor, `won` returned the funds to the seller, `lost` returned
@@ -226,6 +231,7 @@ module WhopSDK
               T.nilable(WhopSDK::Dispute::GeneratedResponseAttachment),
             inquiry: T::Boolean,
             issuer_comments: T::Array[WhopSDK::Dispute::IssuerComment],
+            line_items: T::Array[WhopSDK::Dispute::LineItem],
             payment: T.nilable(WhopSDK::Dispute::Payment),
             plan_id: T.nilable(String),
             product_id: T.nilable(String),
@@ -1409,6 +1415,187 @@ module WhopSDK
         end
       end
 
+      class LineItem < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(WhopSDK::Dispute::LineItem, WhopSDK::Internal::AnyHash)
+          end
+
+        # Line item ID, prefixed `li_`. Null when the payment predates item snapshots and
+        # the item is read from the payment's plan.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :id
+
+        # The item's name as shown at checkout — the product title, else the plan title.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :label
+
+        # The plan bought, prefixed `plan_`. Null when the plan has since been deleted.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :plan_id
+
+        # The plan's current title, or `null` when the plan has been deleted or has no
+        # title.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :plan_title
+
+        # The product the plan belongs to, prefixed `prod_`. On a payment that predates
+        # item snapshots this falls back to the plan's product, so it can be set where the
+        # parent's own `product_id` is null. Null for a plan with no product.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :product_id
+
+        # The product's current title, or `null` when the item has no product.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :product_title
+
+        # How many units were bought.
+        sig { returns(Float) }
+        attr_accessor :quantity
+
+        # The recorded amount for this item's full quantity, before discounts, tax, and
+        # fees, in its purchase currency. This is not the amount being contested. Returns
+        # `null` when no item amount was recorded.
+        sig { returns(T.nilable(WhopSDK::Dispute::LineItem::Subtotal)) }
+        attr_reader :subtotal
+
+        sig do
+          params(
+            subtotal: T.nilable(WhopSDK::Dispute::LineItem::Subtotal::OrHash)
+          ).void
+        end
+        attr_writer :subtotal
+
+        # Everything the disputed payment charged for, in purchase order. `product_id` and
+        # `plan_id` name the first of these; a cart's later items appear only here. A
+        # payment made before items were recorded lists the single item its plan implies.
+        # Empty when the payment is not linked to a plan.
+        sig do
+          params(
+            id: T.nilable(String),
+            label: T.nilable(String),
+            plan_id: T.nilable(String),
+            plan_title: T.nilable(String),
+            product_id: T.nilable(String),
+            product_title: T.nilable(String),
+            quantity: Float,
+            subtotal: T.nilable(WhopSDK::Dispute::LineItem::Subtotal::OrHash)
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # Line item ID, prefixed `li_`. Null when the payment predates item snapshots and
+          # the item is read from the payment's plan.
+          id:,
+          # The item's name as shown at checkout — the product title, else the plan title.
+          label:,
+          # The plan bought, prefixed `plan_`. Null when the plan has since been deleted.
+          plan_id:,
+          # The plan's current title, or `null` when the plan has been deleted or has no
+          # title.
+          plan_title:,
+          # The product the plan belongs to, prefixed `prod_`. On a payment that predates
+          # item snapshots this falls back to the plan's product, so it can be set where the
+          # parent's own `product_id` is null. Null for a plan with no product.
+          product_id:,
+          # The product's current title, or `null` when the item has no product.
+          product_title:,
+          # How many units were bought.
+          quantity:,
+          # The recorded amount for this item's full quantity, before discounts, tax, and
+          # fees, in its purchase currency. This is not the amount being contested. Returns
+          # `null` when no item amount was recorded.
+          subtotal:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              id: T.nilable(String),
+              label: T.nilable(String),
+              plan_id: T.nilable(String),
+              plan_title: T.nilable(String),
+              product_id: T.nilable(String),
+              product_title: T.nilable(String),
+              quantity: Float,
+              subtotal: T.nilable(WhopSDK::Dispute::LineItem::Subtotal)
+            }
+          )
+        end
+        def to_hash
+        end
+
+        class Subtotal < WhopSDK::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                WhopSDK::Dispute::LineItem::Subtotal,
+                WhopSDK::Internal::AnyHash
+              )
+            end
+
+          # The amount in major units, as an exact decimal string — `"10.00"` is ten
+          # dollars. A string so no float rounds it in transit.
+          sig { returns(String) }
+          attr_accessor :amount
+
+          # Three-letter ISO 4217 currency code, lowercase.
+          sig { returns(String) }
+          attr_accessor :currency
+
+          # How many decimal places the amount CARRIES — the precision the charge itself
+          # runs at.
+          sig { returns(Integer) }
+          attr_accessor :decimals
+
+          # How many decimal places to SHOW. Usually equal to `decimals`, and deliberately
+          # not always: COP is charged in centavos but written in whole pesos, so it is `2`
+          # and `0`. Format the number in your own locale using this.
+          sig { returns(Integer) }
+          attr_accessor :display_decimals
+
+          # The recorded amount for this item's full quantity, before discounts, tax, and
+          # fees, in its purchase currency. This is not the amount being contested. Returns
+          # `null` when no item amount was recorded.
+          sig do
+            params(
+              amount: String,
+              currency: String,
+              decimals: Integer,
+              display_decimals: Integer
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # The amount in major units, as an exact decimal string — `"10.00"` is ten
+            # dollars. A string so no float rounds it in transit.
+            amount:,
+            # Three-letter ISO 4217 currency code, lowercase.
+            currency:,
+            # How many decimal places the amount CARRIES — the precision the charge itself
+            # runs at.
+            decimals:,
+            # How many decimal places to SHOW. Usually equal to `decimals`, and deliberately
+            # not always: COP is charged in centavos but written in whole pesos, so it is `2`
+            # and `0`. Format the number in your own locale using this.
+            display_decimals:
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                amount: String,
+                currency: String,
+                decimals: Integer,
+                display_decimals: Integer
+              }
+            )
+          end
+          def to_hash
+          end
+        end
+      end
+
       class Payment < WhopSDK::Internal::Type::BaseModel
         OrHash =
           T.type_alias do
@@ -1530,7 +1717,8 @@ module WhopSDK
               )
             end
 
-          # Card payments only: the card's network and last four.
+          # Card payments only: the card's network, last four, and issuer identification
+          # number.
           sig do
             returns(
               T.nilable(WhopSDK::Dispute::Payment::PaymentInstrument::Card)
@@ -1590,7 +1778,8 @@ module WhopSDK
             ).returns(T.attached_class)
           end
           def self.new(
-            # Card payments only: the card's network and last four.
+            # Card payments only: the card's network, last four, and issuer identification
+            # number.
             card:,
             # Buyer-facing instrument name — "Visa •••• 4242" when the card surfaced, else the
             # method's own name ("Klarna").
@@ -1634,27 +1823,46 @@ module WhopSDK
             sig { returns(String) }
             attr_accessor :brand
 
+            # The issuer identification number, also called the BIN: the card's leading six or
+            # eight digits, which identify the issuing bank. Null when the processor did not
+            # report it.
+            sig { returns(T.nilable(String)) }
+            attr_accessor :issuer_identification_number
+
             # The card's last four digits, when captured.
             sig { returns(T.nilable(String)) }
             attr_accessor :last4
 
-            # Card payments only: the card's network and last four.
+            # Card payments only: the card's network, last four, and issuer identification
+            # number.
             sig do
-              params(brand: String, last4: T.nilable(String)).returns(
-                T.attached_class
-              )
+              params(
+                brand: String,
+                issuer_identification_number: T.nilable(String),
+                last4: T.nilable(String)
+              ).returns(T.attached_class)
             end
             def self.new(
               # The network identifier (`visa`, `amex`, …), matching `card.networks` entries and
               # saved card payment methods.
               brand:,
+              # The issuer identification number, also called the BIN: the card's leading six or
+              # eight digits, which identify the issuing bank. Null when the processor did not
+              # report it.
+              issuer_identification_number:,
               # The card's last four digits, when captured.
               last4:
             )
             end
 
             sig do
-              override.returns({ brand: String, last4: T.nilable(String) })
+              override.returns(
+                {
+                  brand: String,
+                  issuer_identification_number: T.nilable(String),
+                  last4: T.nilable(String)
+                }
+              )
             end
             def to_hash
             end
@@ -2116,9 +2324,8 @@ module WhopSDK
         end
       end
 
-      # Why the customer says they are disputing, normalized across card networks.
-      # `other` covers a code Whop has not categorized yet — read `reason_code` for the
-      # raw value.
+      # Why the customer says they are disputing, normalized across processors and card
+      # networks. `other` covers a processor reason Whop has not categorized yet.
       module Reason
         extend WhopSDK::Internal::Type::Enum
 

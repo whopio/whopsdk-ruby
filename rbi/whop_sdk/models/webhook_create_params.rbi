@@ -134,6 +134,16 @@ module WhopSDK
             :"account.updated",
             WhopSDK::WebhookCreateParams::Event::TaggedSymbol
           )
+        ACCOUNT_FINANCING_APPROVED =
+          T.let(
+            :"account.financing_approved",
+            WhopSDK::WebhookCreateParams::Event::TaggedSymbol
+          )
+        ACCOUNT_FINANCING_DENIED =
+          T.let(
+            :"account.financing_denied",
+            WhopSDK::WebhookCreateParams::Event::TaggedSymbol
+          )
         INVOICE_CREATED =
           T.let(
             :"invoice.created",
@@ -447,6 +457,11 @@ module WhopSDK
         MEMBER_CREATED =
           T.let(
             :"member.created",
+            WhopSDK::WebhookCreateParams::Event::TaggedSymbol
+          )
+        MEMBER_UPDATED =
+          T.let(
+            :"member.updated",
             WhopSDK::WebhookCreateParams::Event::TaggedSymbol
           )
         AD_CAMPAIGN_PAYMENT_FAILED =

@@ -45,6 +45,10 @@ module WhopSDK
 
   AccessTokenCreateParams = WhopSDK::Models::AccessTokenCreateParams
 
+  AccountFinancingApprovedWebhookEvent = WhopSDK::Models::AccountFinancingApprovedWebhookEvent
+
+  AccountFinancingDeniedWebhookEvent = WhopSDK::Models::AccountFinancingDeniedWebhookEvent
+
   AccountLinkCreateParams = WhopSDK::Models::AccountLinkCreateParams
 
   AccountUpdatedWebhookEvent = WhopSDK::Models::AccountUpdatedWebhookEvent
@@ -528,6 +532,8 @@ module WhopSDK
   MembershipUpdateParams = WhopSDK::Models::MembershipUpdateParams
 
   MemberStatuses = WhopSDK::Models::MemberStatuses
+
+  MemberUpdatedWebhookEvent = WhopSDK::Models::MemberUpdatedWebhookEvent
 
   Message = WhopSDK::Models::Message
 

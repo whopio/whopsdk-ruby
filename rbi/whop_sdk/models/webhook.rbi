@@ -231,6 +231,16 @@ module WhopSDK
 
         ACCOUNT_UPDATED =
           T.let(:"account.updated", WhopSDK::Webhook::Event::TaggedSymbol)
+        ACCOUNT_FINANCING_APPROVED =
+          T.let(
+            :"account.financing_approved",
+            WhopSDK::Webhook::Event::TaggedSymbol
+          )
+        ACCOUNT_FINANCING_DENIED =
+          T.let(
+            :"account.financing_denied",
+            WhopSDK::Webhook::Event::TaggedSymbol
+          )
         INVOICE_CREATED =
           T.let(:"invoice.created", WhopSDK::Webhook::Event::TaggedSymbol)
         INVOICE_MARKED_UNCOLLECTIBLE =
@@ -438,6 +448,8 @@ module WhopSDK
           T.let(:"shipment.updated", WhopSDK::Webhook::Event::TaggedSymbol)
         MEMBER_CREATED =
           T.let(:"member.created", WhopSDK::Webhook::Event::TaggedSymbol)
+        MEMBER_UPDATED =
+          T.let(:"member.updated", WhopSDK::Webhook::Event::TaggedSymbol)
         AD_CAMPAIGN_PAYMENT_FAILED =
           T.let(
             :"ad_campaign.payment_failed",
@@ -544,6 +556,16 @@ module WhopSDK
         ACCOUNT_UPDATED =
           T.let(
             :"account.updated",
+            WhopSDK::Webhook::TestableEvent::TaggedSymbol
+          )
+        ACCOUNT_FINANCING_APPROVED =
+          T.let(
+            :"account.financing_approved",
+            WhopSDK::Webhook::TestableEvent::TaggedSymbol
+          )
+        ACCOUNT_FINANCING_DENIED =
+          T.let(
+            :"account.financing_denied",
             WhopSDK::Webhook::TestableEvent::TaggedSymbol
           )
         INVOICE_CREATED =
@@ -838,6 +860,11 @@ module WhopSDK
         MEMBER_CREATED =
           T.let(
             :"member.created",
+            WhopSDK::Webhook::TestableEvent::TaggedSymbol
+          )
+        MEMBER_UPDATED =
+          T.let(
+            :"member.updated",
             WhopSDK::Webhook::TestableEvent::TaggedSymbol
           )
         AD_CAMPAIGN_PAYMENT_FAILED =

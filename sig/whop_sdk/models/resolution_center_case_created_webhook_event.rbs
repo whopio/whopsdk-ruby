@@ -229,8 +229,11 @@ module WhopSDK
             id: String?,
             label: String?,
             plan_id: String?,
+            plan_title: String?,
             product_id: String?,
-            quantity: Float
+            product_title: String?,
+            quantity: Float,
+            subtotal: WhopSDK::ResolutionCenterCaseCreatedWebhookEvent::Data::LineItem::Subtotal?
           }
 
         class LineItem < WhopSDK::Internal::Type::BaseModel
@@ -240,25 +243,69 @@ module WhopSDK
 
           attr_accessor plan_id: String?
 
+          attr_accessor plan_title: String?
+
           attr_accessor product_id: String?
 
+          attr_accessor product_title: String?
+
           attr_accessor quantity: Float
+
+          attr_accessor subtotal: WhopSDK::ResolutionCenterCaseCreatedWebhookEvent::Data::LineItem::Subtotal?
 
           def initialize: (
             id: String?,
             label: String?,
             plan_id: String?,
+            plan_title: String?,
             product_id: String?,
-            quantity: Float
+            product_title: String?,
+            quantity: Float,
+            subtotal: WhopSDK::ResolutionCenterCaseCreatedWebhookEvent::Data::LineItem::Subtotal?
           ) -> void
 
           def to_hash: -> {
             id: String?,
             label: String?,
             plan_id: String?,
+            plan_title: String?,
             product_id: String?,
-            quantity: Float
+            product_title: String?,
+            quantity: Float,
+            subtotal: WhopSDK::ResolutionCenterCaseCreatedWebhookEvent::Data::LineItem::Subtotal?
           }
+
+          type subtotal =
+            {
+              amount: String,
+              currency: String,
+              decimals: Integer,
+              display_decimals: Integer
+            }
+
+          class Subtotal < WhopSDK::Internal::Type::BaseModel
+            attr_accessor amount: String
+
+            attr_accessor currency: String
+
+            attr_accessor decimals: Integer
+
+            attr_accessor display_decimals: Integer
+
+            def initialize: (
+              amount: String,
+              currency: String,
+              decimals: Integer,
+              display_decimals: Integer
+            ) -> void
+
+            def to_hash: -> {
+              amount: String,
+              currency: String,
+              decimals: Integer,
+              display_decimals: Integer
+            }
+          end
         end
 
         type outcome = :customer_won | :merchant_won | :withdrawn

@@ -79,6 +79,13 @@ module WhopSDK
       #   @return [String]
       required :domain_id, String
 
+      # @!attribute domains
+      #
+      #   @return [Array<WhopSDK::Models::AppListResponse::Domain>, nil]
+      required :domains,
+               -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::Models::AppListResponse::Domain] },
+               nil?: true
+
       # @!attribute experience_path
       #   URL path for the member-facing hub view, or `null` when not configured.
       #
@@ -149,7 +156,7 @@ module WhopSDK
       #   @return [Boolean]
       required :verified, WhopSDK::Internal::Type::Boolean
 
-      # @!method initialize(id:, account:, app_type:, banner_image:, base_url:, businesses_created_count:, businesses_created_logo_urls:, creator:, dashboard_path:, description:, discover_path:, domain_id:, experience_path:, hosted_url:, icon:, name:, openapi_path:, origin:, previous_hosted_urls:, route:, skills_path:, status:, verified:)
+      # @!method initialize(id:, account:, app_type:, banner_image:, base_url:, businesses_created_count:, businesses_created_logo_urls:, creator:, dashboard_path:, description:, discover_path:, domain_id:, domains:, experience_path:, hosted_url:, icon:, name:, openapi_path:, origin:, previous_hosted_urls:, route:, skills_path:, status:, verified:)
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::AppListResponse} for more details.
       #
@@ -176,6 +183,8 @@ module WhopSDK
       #   @param discover_path [String, nil] URL path for the discover view, or `null` when not configured.
       #
       #   @param domain_id [String] Subdomain identifier for the app's proxied URL, forming https://{domain_id}.apps
+      #
+      #   @param domains [Array<WhopSDK::Models::AppListResponse::Domain>, nil]
       #
       #   @param experience_path [String, nil] URL path for the member-facing hub view, or `null` when not configured.
       #
@@ -225,7 +234,19 @@ module WhopSDK
         #   @return [String]
         required :title, String
 
-        # @!method initialize(id:, logo_url:, route:, title:)
+        # @!attribute fees
+        #   Markup rates this parent charges the connected account being read, keyed by fee
+        #   type (for example `crypto_deposit_markup`), each with `percentage_fee` and
+        #   `fixed_fee_usd`. Resolved with the connected account's own overrides winning
+        #   over the platform default.
+        #
+        #   @return [Hash{Symbol=>WhopSDK::Models::AppListResponse::Account::Fee}, nil]
+        optional :fees, -> { WhopSDK::Internal::Type::HashOf[WhopSDK::Models::AppListResponse::Account::Fee] }
+
+        # @!method initialize(id:, logo_url:, route:, title:, fees: nil)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::AppListResponse::Account} for more details.
+        #
         #   The account that owns the app.
         #
         #   @param id [String] Account ID, prefixed `biz_`.
@@ -235,6 +256,27 @@ module WhopSDK
         #   @param route [String] Account public route identifier.
         #
         #   @param title [String] Account display name.
+        #
+        #   @param fees [Hash{Symbol=>WhopSDK::Models::AppListResponse::Account::Fee}] Markup rates this parent charges the connected account being read, keyed by fee
+
+        class Fee < WhopSDK::Internal::Type::BaseModel
+          # @!attribute fixed_fee_usd
+          #   Fixed markup in US dollars per transaction.
+          #
+          #   @return [Float]
+          required :fixed_fee_usd, Float
+
+          # @!attribute percentage_fee
+          #   Percentage of the transaction charged as markup.
+          #
+          #   @return [Float]
+          required :percentage_fee, Float
+
+          # @!method initialize(fixed_fee_usd:, percentage_fee:)
+          #   @param fixed_fee_usd [Float] Fixed markup in US dollars per transaction.
+          #
+          #   @param percentage_fee [Float] Percentage of the transaction charged as markup.
+        end
       end
 
       # The type of end-user the app is built for.
@@ -295,6 +337,54 @@ module WhopSDK
         #   @param name [String, nil] Display name.
         #
         #   @param username [String] Public username.
+      end
+
+      class Domain < WhopSDK::Internal::Type::BaseModel
+        # @!attribute id
+        #   Domain ID, prefixed `dom_`.
+        #
+        #   @return [String]
+        required :id, String
+
+        # @!attribute domain
+        #   Normalized hostname assigned to this app.
+        #
+        #   @return [String]
+        required :domain, String
+
+        # @!attribute status
+        #   Domain lifecycle status, matching the domain resource.
+        #
+        #   @return [Symbol, WhopSDK::Models::AppListResponse::Domain::Status]
+        required :status, enum: -> { WhopSDK::Models::AppListResponse::Domain::Status }
+
+        # @!method initialize(id:, domain:, status:)
+        #   Custom domain claims and assignments for this app, excluding removed domains.
+        #   Empty when none exist; `null` when the caller lacks the account's
+        #   `developer:basic:read` permission.
+        #
+        #   @param id [String] Domain ID, prefixed `dom_`.
+        #
+        #   @param domain [String] Normalized hostname assigned to this app.
+        #
+        #   @param status [Symbol, WhopSDK::Models::AppListResponse::Domain::Status] Domain lifecycle status, matching the domain resource.
+
+        # Domain lifecycle status, matching the domain resource.
+        #
+        # @see WhopSDK::Models::AppListResponse::Domain#status
+        module Status
+          extend WhopSDK::Internal::Type::Enum
+
+          PENDING_VERIFICATION = :pending_verification
+          PROVISIONING = :provisioning
+          ACTIVE = :active
+          ACTION_REQUIRED = :action_required
+          DELETING = :deleting
+          REMOVED = :removed
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
       end
 
       # @see WhopSDK::Models::AppListResponse#icon

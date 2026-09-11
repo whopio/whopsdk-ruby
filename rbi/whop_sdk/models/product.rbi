@@ -14,6 +14,11 @@ module WhopSDK
       sig { returns(T.nilable(T.anything)) }
       attr_accessor :account
 
+      # Average star rating across published reviews for this product, from `1.0` to
+      # `5.0`. Returns `0.0` when no published-review rating is available.
+      sig { returns(Float) }
+      attr_accessor :average_review_rating
+
       # When the product was created, as an ISO 8601 timestamp.
       sig { returns(String) }
       attr_accessor :created_at
@@ -134,6 +139,7 @@ module WhopSDK
         params(
           id: String,
           account: T.nilable(T.anything),
+          average_review_rating: Float,
           created_at: String,
           custom_cta: T.nilable(WhopSDK::Product::CustomCta::OrSymbol),
           custom_cta_url: T.nilable(String),
@@ -168,6 +174,9 @@ module WhopSDK
         id:,
         # Account that sells this product.
         account:,
+        # Average star rating across published reviews for this product, from `1.0` to
+        # `5.0`. Returns `0.0` when no published-review rating is available.
+        average_review_rating:,
         # When the product was created, as an ISO 8601 timestamp.
         created_at:,
         # Call-to-action button label shown on the product purchase page.
@@ -227,6 +236,7 @@ module WhopSDK
           {
             id: String,
             account: T.nilable(T.anything),
+            average_review_rating: Float,
             created_at: String,
             custom_cta: T.nilable(WhopSDK::Product::CustomCta::TaggedSymbol),
             custom_cta_url: T.nilable(String),

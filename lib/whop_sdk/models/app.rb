@@ -111,6 +111,11 @@ module WhopSDK
       #   @return [String]
       required :domain_id, String
 
+      # @!attribute domains
+      #
+      #   @return [Array<WhopSDK::Models::App::Domain>, nil]
+      required :domains, -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::App::Domain] }, nil?: true
+
       # @!attribute elements_used
       #
       #   @return [Array<Symbol, WhopSDK::Models::App::ElementsUsed>]
@@ -257,7 +262,7 @@ module WhopSDK
       #   @return [Boolean]
       required :verified, WhopSDK::Internal::Type::Boolean
 
-      # @!method initialize(id:, account:, api_key:, app_store_description:, app_type:, banner_image:, base_url:, businesses_created_count:, businesses_created_logo_urls:, creator:, dashboard_path:, default_api_key:, deployment:, description:, discover_path:, domain_id:, elements_used:, experience_path:, hosted_url:, icon:, marketplace_status:, name:, oauth_client_type:, openapi_path:, origin:, preview_token:, previous_hosted_urls:, product_id:, production_android_build:, production_ios_build:, production_web_build:, redirect_uris:, requested_permissions:, required_scopes:, route:, secrets:, skills_path:, status:, verified:)
+      # @!method initialize(id:, account:, api_key:, app_store_description:, app_type:, banner_image:, base_url:, businesses_created_count:, businesses_created_logo_urls:, creator:, dashboard_path:, default_api_key:, deployment:, description:, discover_path:, domain_id:, domains:, elements_used:, experience_path:, hosted_url:, icon:, marketplace_status:, name:, oauth_client_type:, openapi_path:, origin:, preview_token:, previous_hosted_urls:, product_id:, production_android_build:, production_ios_build:, production_web_build:, redirect_uris:, requested_permissions:, required_scopes:, route:, secrets:, skills_path:, status:, verified:)
       #   Some parameter documentations has been truncated, see {WhopSDK::Models::App} for
       #   more details.
       #
@@ -292,6 +297,8 @@ module WhopSDK
       #   @param discover_path [String, nil] URL path for the discover view, or `null` when not configured.
       #
       #   @param domain_id [String] Subdomain identifier for the app's proxied URL, forming https://{domain_id}.apps
+      #
+      #   @param domains [Array<WhopSDK::Models::App::Domain>, nil]
       #
       #   @param elements_used [Array<Symbol, WhopSDK::Models::App::ElementsUsed>]
       #
@@ -365,7 +372,19 @@ module WhopSDK
         #   @return [String]
         required :title, String
 
-        # @!method initialize(id:, logo_url:, route:, title:)
+        # @!attribute fees
+        #   Markup rates this parent charges the connected account being read, keyed by fee
+        #   type (for example `crypto_deposit_markup`), each with `percentage_fee` and
+        #   `fixed_fee_usd`. Resolved with the connected account's own overrides winning
+        #   over the platform default.
+        #
+        #   @return [Hash{Symbol=>WhopSDK::Models::App::Account::Fee}, nil]
+        optional :fees, -> { WhopSDK::Internal::Type::HashOf[WhopSDK::App::Account::Fee] }
+
+        # @!method initialize(id:, logo_url:, route:, title:, fees: nil)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::App::Account} for more details.
+        #
         #   The account that owns the app.
         #
         #   @param id [String] Account ID, prefixed `biz_`.
@@ -375,6 +394,27 @@ module WhopSDK
         #   @param route [String] Account public route identifier.
         #
         #   @param title [String] Account display name.
+        #
+        #   @param fees [Hash{Symbol=>WhopSDK::Models::App::Account::Fee}] Markup rates this parent charges the connected account being read, keyed by fee
+
+        class Fee < WhopSDK::Internal::Type::BaseModel
+          # @!attribute fixed_fee_usd
+          #   Fixed markup in US dollars per transaction.
+          #
+          #   @return [Float]
+          required :fixed_fee_usd, Float
+
+          # @!attribute percentage_fee
+          #   Percentage of the transaction charged as markup.
+          #
+          #   @return [Float]
+          required :percentage_fee, Float
+
+          # @!method initialize(fixed_fee_usd:, percentage_fee:)
+          #   @param fixed_fee_usd [Float] Fixed markup in US dollars per transaction.
+          #
+          #   @param percentage_fee [Float] Percentage of the transaction charged as markup.
+        end
       end
 
       # @see WhopSDK::Models::App#api_key
@@ -662,6 +702,54 @@ module WhopSDK
           PUBLISHING = :publishing
           FAILED = :failed
           NO_SOURCE = :no_source
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
+      end
+
+      class Domain < WhopSDK::Internal::Type::BaseModel
+        # @!attribute id
+        #   Domain ID, prefixed `dom_`.
+        #
+        #   @return [String]
+        required :id, String
+
+        # @!attribute domain
+        #   Normalized hostname assigned to this app.
+        #
+        #   @return [String]
+        required :domain, String
+
+        # @!attribute status
+        #   Domain lifecycle status, matching the domain resource.
+        #
+        #   @return [Symbol, WhopSDK::Models::App::Domain::Status]
+        required :status, enum: -> { WhopSDK::App::Domain::Status }
+
+        # @!method initialize(id:, domain:, status:)
+        #   Custom domain claims and assignments for this app, excluding removed domains.
+        #   Empty when none exist; `null` when the caller lacks the account's
+        #   `developer:basic:read` permission.
+        #
+        #   @param id [String] Domain ID, prefixed `dom_`.
+        #
+        #   @param domain [String] Normalized hostname assigned to this app.
+        #
+        #   @param status [Symbol, WhopSDK::Models::App::Domain::Status] Domain lifecycle status, matching the domain resource.
+
+        # Domain lifecycle status, matching the domain resource.
+        #
+        # @see WhopSDK::Models::App::Domain#status
+        module Status
+          extend WhopSDK::Internal::Type::Enum
+
+          PENDING_VERIFICATION = :pending_verification
+          PROVISIONING = :provisioning
+          ACTIVE = :active
+          ACTION_REQUIRED = :action_required
+          DELETING = :deleting
+          REMOVED = :removed
 
           # @!method self.values
           #   @return [Array<Symbol>]

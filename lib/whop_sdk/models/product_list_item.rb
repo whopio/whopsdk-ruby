@@ -15,6 +15,13 @@ module WhopSDK
       #   @return [Object, nil]
       required :account, WhopSDK::Internal::Type::Unknown, nil?: true
 
+      # @!attribute average_review_rating
+      #   Average star rating across published reviews for this product, from `1.0` to
+      #   `5.0`. Returns `0.0` when no published-review rating is available.
+      #
+      #   @return [Float]
+      required :average_review_rating, Float
+
       # @!attribute created_at
       #   When the product was created, as an ISO 8601 timestamp.
       #
@@ -105,13 +112,15 @@ module WhopSDK
       #   @return [String, nil]
       required :visibility, String, nil?: true
 
-      # @!method initialize(id:, account:, created_at:, default_plan:, description:, external_identifier:, gallery_images:, headline:, labels:, member_count:, metadata:, published_reviews_count:, route:, title:, updated_at:, verified:, visibility:)
+      # @!method initialize(id:, account:, average_review_rating:, created_at:, default_plan:, description:, external_identifier:, gallery_images:, headline:, labels:, member_count:, metadata:, published_reviews_count:, route:, title:, updated_at:, verified:, visibility:)
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::ProductListItem} for more details.
       #
       #   @param id [String] Product ID, prefixed `prod_`.
       #
       #   @param account [Object, nil] Account that sells this product.
+      #
+      #   @param average_review_rating [Float] Average star rating across published reviews for this product, from `1.0` to `5.
       #
       #   @param created_at [String] When the product was created, as an ISO 8601 timestamp.
       #

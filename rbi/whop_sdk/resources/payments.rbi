@@ -17,20 +17,22 @@ module WhopSDK
       # and `payment_method_id`), or a `confirmation_token` describing a method the
       # buyer just supplied. Collection runs in the background: the response is the
       # payment as created, not its outcome — poll Retrieve status for how far it has
-      # got and, for a confirmation-token payment, what the buyer must still do.
-      # `plan_id` names the plan to charge for.
+      # got and, for a confirmation-token payment, what the buyer must still do. Pass
+      # `plan_id` for an existing plan or `plan` to find or create one inline.
       sig do
         params(
           account_id: String,
-          plan_id: String,
           capture: T.nilable(T::Boolean),
           confirmation_token: T.nilable(String),
           email: T.nilable(String),
           member_id: T.nilable(String),
           metadata: T.nilable(T::Hash[Symbol, String]),
           payment_method_id: T.nilable(String),
+          plan: WhopSDK::PaymentCreateParams::Plan::OrHash,
+          plan_id: String,
           promo_code_id: T.nilable(String),
           return_url: T.nilable(String),
+          statement_descriptor: T.nilable(String),
           api_version_date: String,
           idempotency_key: String,
           request_options: WhopSDK::RequestOptions::OrHash
@@ -39,9 +41,6 @@ module WhopSDK
       def create(
         # Body param: The account to charge for, prefixed `biz_`.
         account_id:,
-        # Body param: The plan to charge for, prefixed `plan_`. It must belong to the
-        # account.
-        plan_id:,
         # Body param: Whether to capture a card payment immediately. Defaults to true.
         # Pass false to place an authorization hold that must be captured in full within
         # five days via the capture endpoint.
@@ -64,6 +63,13 @@ module WhopSDK
         # Body param: The stored payment method to charge, prefixed `payt_`. It must
         # belong to the member. Required unless `confirmation_token` is provided.
         payment_method_id: nil,
+        # Body param: Find or create a plan for this payment. Mutually exclusive with
+        # `plan_id`. Creating a plan requires plan:create; creating or updating a product
+        # requires the corresponding product permission.
+        plan: nil,
+        # Body param: The plan to charge for, prefixed `plan_`. It must belong to the
+        # account. Mutually exclusive with `plan`.
+        plan_id: nil,
         # Body param: An active promo code to apply, prefixed `promo_`. It must belong to
         # the account and be valid for the plan.
         promo_code_id: nil,
@@ -71,6 +77,12 @@ module WhopSDK
         # absolute https URL without credentials, at most 2,048 characters. Ignored unless
         # `confirmation_token` is provided.
         return_url: nil,
+        # Body param: Overrides the text on the buyer's card statement for this payment
+        # only. Takes precedence over the product's and account's custom descriptors, and
+        # changes neither. Must start with `WHOP*`, be 5-22 characters, contain at least
+        # one letter, and use only Latin letters, numbers, spaces, underscores, hyphens,
+        # or asterisks.
+        statement_descriptor: nil,
         # Header param: Pins the request to a dated API version.
         api_version_date: nil,
         # Header param: A unique key that makes this request safe to retry. See

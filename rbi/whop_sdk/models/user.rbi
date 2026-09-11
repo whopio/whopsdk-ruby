@@ -1192,12 +1192,12 @@ module WhopSDK
         attr_accessor :scopes
 
         # The URL where the social account can be accessed on the platform. Null while a
-        # Whop-owned page is still being provisioned.
+        # Whop-owned account is still being provisioned.
         sig { returns(T.nilable(String)) }
         attr_accessor :url
 
-        # The username of the social account on the platform. Null while a Whop-owned page
-        # is still being provisioned.
+        # The username of the social account on the platform. Null while a Whop-owned
+        # account is still being provisioned.
         sig { returns(T.nilable(String)) }
         attr_accessor :username
 
@@ -1247,10 +1247,10 @@ module WhopSDK
           profile_picture_url:,
           scopes:,
           # The URL where the social account can be accessed on the platform. Null while a
-          # Whop-owned page is still being provisioned.
+          # Whop-owned account is still being provisioned.
           url:,
-          # The username of the social account on the platform. Null while a Whop-owned page
-          # is still being provisioned.
+          # The username of the social account on the platform. Null while a Whop-owned
+          # account is still being provisioned.
           username:,
           # Whether the social account is verified on the platform.
           verified:

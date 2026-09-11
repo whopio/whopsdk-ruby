@@ -8,11 +8,11 @@ module WhopSDK
       # @example
       #   # `unwrap_webhook_event` is a `WhopSDK::UnwrapWebhookEvent`
       #   case unwrap_webhook_event
-      #   when WhopSDK::AccountUpdatedWebhookEvent
+      #   when WhopSDK::AccountFinancingApprovedWebhookEvent
       #     puts(unwrap_webhook_event.id)
-      #   when WhopSDK::AdUpdatedWebhookEvent
+      #   when WhopSDK::AccountFinancingDeniedWebhookEvent
       #     puts(unwrap_webhook_event.api_version)
-      #   when WhopSDK::AdCampaignPaymentFailedWebhookEvent
+      #   when WhopSDK::AccountUpdatedWebhookEvent
       #     puts(unwrap_webhook_event.api_version_date)
       #   else
       #     puts(unwrap_webhook_event)
@@ -20,11 +20,11 @@ module WhopSDK
       #
       # @example
       #   case unwrap_webhook_event
-      #   in {type: :"account.updated", id: id, api_version: api_version, api_version_date: api_version_date}
+      #   in {type: :"account.financing_approved", id: id, api_version: api_version, api_version_date: api_version_date}
       #     puts(id)
-      #   in {type: :"ad.updated", id: id, api_version: api_version, api_version_date: api_version_date}
+      #   in {type: :"account.financing_denied", id: id, api_version: api_version, api_version_date: api_version_date}
       #     puts(api_version)
-      #   in {type: :"ad_campaign.payment_failed", id: id, api_version: api_version, api_version_date: api_version_date}
+      #   in {type: :"account.updated", id: id, api_version: api_version, api_version_date: api_version_date}
       #     puts(api_version_date)
       #   else
       #     puts(unwrap_webhook_event)

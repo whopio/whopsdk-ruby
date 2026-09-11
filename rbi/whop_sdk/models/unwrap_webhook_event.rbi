@@ -8,6 +8,8 @@ module WhopSDK
       Variants =
         T.type_alias do
           T.any(
+            WhopSDK::AccountFinancingApprovedWebhookEvent,
+            WhopSDK::AccountFinancingDeniedWebhookEvent,
             WhopSDK::AccountUpdatedWebhookEvent,
             WhopSDK::AdUpdatedWebhookEvent,
             WhopSDK::AdCampaignPaymentFailedWebhookEvent,
@@ -46,6 +48,7 @@ module WhopSDK
             WhopSDK::InvoiceVoidedWebhookEvent,
             WhopSDK::LedgerAccountFundsAvailableWebhookEvent,
             WhopSDK::MemberCreatedWebhookEvent,
+            WhopSDK::MemberUpdatedWebhookEvent,
             WhopSDK::MembershipActivatedWebhookEvent,
             WhopSDK::MembershipCancelAtPeriodEndChangedWebhookEvent,
             WhopSDK::MembershipDeactivatedWebhookEvent,

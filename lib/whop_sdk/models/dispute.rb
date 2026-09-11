@@ -95,6 +95,11 @@ module WhopSDK
       #   @return [Array<WhopSDK::Models::Dispute::IssuerComment>]
       required :issuer_comments, -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::Dispute::IssuerComment] }
 
+      # @!attribute line_items
+      #
+      #   @return [Array<WhopSDK::Models::Dispute::LineItem>]
+      required :line_items, -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::Dispute::LineItem] }
+
       # @!attribute payment
       #   The payment being disputed.
       #
@@ -121,15 +126,15 @@ module WhopSDK
       required :rapid_dispute_resolution, WhopSDK::Internal::Type::Boolean
 
       # @!attribute reason
-      #   Why the customer says they are disputing, normalized across card networks.
-      #   `other` covers a code Whop has not categorized yet — read `reason_code` for the
-      #   raw value.
+      #   Why the customer says they are disputing, normalized across processors and card
+      #   networks. `other` covers a processor reason Whop has not categorized yet.
       #
       #   @return [Symbol, WhopSDK::Models::Dispute::Reason]
       required :reason, enum: -> { WhopSDK::Dispute::Reason }
 
       # @!attribute reason_code
-      #   The raw card-network or processor reason code, such as `10.4`.
+      #   The raw card-network or processor reason code, such as `10.4`. Informational
+      #   only — `reason` is not derived from it.
       #
       #   @return [String, nil]
       required :reason_code, String, nil?: true
@@ -149,7 +154,7 @@ module WhopSDK
       #   @return [String]
       required :updated_at, String
 
-      # @!method initialize(id:, account_id:, amount:, buyer:, created_at:, currency:, evidence:, evidence_due_at:, evidence_editable:, evidence_locked_reason:, evidence_submitted_at:, generated_response_attachment:, inquiry:, issuer_comments:, payment:, plan_id:, product_id:, rapid_dispute_resolution:, reason:, reason_code:, status:, updated_at:)
+      # @!method initialize(id:, account_id:, amount:, buyer:, created_at:, currency:, evidence:, evidence_due_at:, evidence_editable:, evidence_locked_reason:, evidence_submitted_at:, generated_response_attachment:, inquiry:, issuer_comments:, line_items:, payment:, plan_id:, product_id:, rapid_dispute_resolution:, reason:, reason_code:, status:, updated_at:)
       #   Some parameter documentations has been truncated, see {WhopSDK::Models::Dispute}
       #   for more details.
       #
@@ -181,6 +186,8 @@ module WhopSDK
       #
       #   @param issuer_comments [Array<WhopSDK::Models::Dispute::IssuerComment>]
       #
+      #   @param line_items [Array<WhopSDK::Models::Dispute::LineItem>]
+      #
       #   @param payment [WhopSDK::Models::Dispute::Payment, nil] The payment being disputed.
       #
       #   @param plan_id [String, nil] The plan the disputed payment was made on, prefixed `plan_`.
@@ -189,9 +196,9 @@ module WhopSDK
       #
       #   @param rapid_dispute_resolution [Boolean] Whether Visa Rapid Dispute Resolution settled this automatically. These refund t
       #
-      #   @param reason [Symbol, WhopSDK::Models::Dispute::Reason] Why the customer says they are disputing, normalized across card networks. `othe
+      #   @param reason [Symbol, WhopSDK::Models::Dispute::Reason] Why the customer says they are disputing, normalized across processors and card
       #
-      #   @param reason_code [String, nil] The raw card-network or processor reason code, such as `10.4`.
+      #   @param reason_code [String, nil] The raw card-network or processor reason code, such as `10.4`. Informational onl
       #
       #   @param status [Symbol, WhopSDK::Models::Dispute::Status] Where the dispute stands. `needs_response` is awaiting evidence, `under_review`
       #
@@ -914,6 +921,134 @@ module WhopSDK
         #   @param text [String] What the issuer wrote, as received.
       end
 
+      class LineItem < WhopSDK::Internal::Type::BaseModel
+        # @!attribute id
+        #   Line item ID, prefixed `li_`. Null when the payment predates item snapshots and
+        #   the item is read from the payment's plan.
+        #
+        #   @return [String, nil]
+        required :id, String, nil?: true
+
+        # @!attribute label
+        #   The item's name as shown at checkout — the product title, else the plan title.
+        #
+        #   @return [String, nil]
+        required :label, String, nil?: true
+
+        # @!attribute plan_id
+        #   The plan bought, prefixed `plan_`. Null when the plan has since been deleted.
+        #
+        #   @return [String, nil]
+        required :plan_id, String, nil?: true
+
+        # @!attribute plan_title
+        #   The plan's current title, or `null` when the plan has been deleted or has no
+        #   title.
+        #
+        #   @return [String, nil]
+        required :plan_title, String, nil?: true
+
+        # @!attribute product_id
+        #   The product the plan belongs to, prefixed `prod_`. On a payment that predates
+        #   item snapshots this falls back to the plan's product, so it can be set where the
+        #   parent's own `product_id` is null. Null for a plan with no product.
+        #
+        #   @return [String, nil]
+        required :product_id, String, nil?: true
+
+        # @!attribute product_title
+        #   The product's current title, or `null` when the item has no product.
+        #
+        #   @return [String, nil]
+        required :product_title, String, nil?: true
+
+        # @!attribute quantity
+        #   How many units were bought.
+        #
+        #   @return [Float]
+        required :quantity, Float
+
+        # @!attribute subtotal
+        #   The recorded amount for this item's full quantity, before discounts, tax, and
+        #   fees, in its purchase currency. This is not the amount being contested. Returns
+        #   `null` when no item amount was recorded.
+        #
+        #   @return [WhopSDK::Models::Dispute::LineItem::Subtotal, nil]
+        required :subtotal, -> { WhopSDK::Dispute::LineItem::Subtotal }, nil?: true
+
+        # @!method initialize(id:, label:, plan_id:, plan_title:, product_id:, product_title:, quantity:, subtotal:)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::Dispute::LineItem} for more details.
+        #
+        #   Everything the disputed payment charged for, in purchase order. `product_id` and
+        #   `plan_id` name the first of these; a cart's later items appear only here. A
+        #   payment made before items were recorded lists the single item its plan implies.
+        #   Empty when the payment is not linked to a plan.
+        #
+        #   @param id [String, nil] Line item ID, prefixed `li_`. Null when the payment predates item snapshots and
+        #
+        #   @param label [String, nil] The item's name as shown at checkout — the product title, else the plan title.
+        #
+        #   @param plan_id [String, nil] The plan bought, prefixed `plan_`. Null when the plan has since been deleted.
+        #
+        #   @param plan_title [String, nil] The plan's current title, or `null` when the plan has been deleted or has no tit
+        #
+        #   @param product_id [String, nil] The product the plan belongs to, prefixed `prod_`. On a payment that predates it
+        #
+        #   @param product_title [String, nil] The product's current title, or `null` when the item has no product.
+        #
+        #   @param quantity [Float] How many units were bought.
+        #
+        #   @param subtotal [WhopSDK::Models::Dispute::LineItem::Subtotal, nil] The recorded amount for this item's full quantity, before discounts, tax, and fe
+
+        # @see WhopSDK::Models::Dispute::LineItem#subtotal
+        class Subtotal < WhopSDK::Internal::Type::BaseModel
+          # @!attribute amount
+          #   The amount in major units, as an exact decimal string — `"10.00"` is ten
+          #   dollars. A string so no float rounds it in transit.
+          #
+          #   @return [String]
+          required :amount, String
+
+          # @!attribute currency
+          #   Three-letter ISO 4217 currency code, lowercase.
+          #
+          #   @return [String]
+          required :currency, String
+
+          # @!attribute decimals
+          #   How many decimal places the amount CARRIES — the precision the charge itself
+          #   runs at.
+          #
+          #   @return [Integer]
+          required :decimals, Integer
+
+          # @!attribute display_decimals
+          #   How many decimal places to SHOW. Usually equal to `decimals`, and deliberately
+          #   not always: COP is charged in centavos but written in whole pesos, so it is `2`
+          #   and `0`. Format the number in your own locale using this.
+          #
+          #   @return [Integer]
+          required :display_decimals, Integer
+
+          # @!method initialize(amount:, currency:, decimals:, display_decimals:)
+          #   Some parameter documentations has been truncated, see
+          #   {WhopSDK::Models::Dispute::LineItem::Subtotal} for more details.
+          #
+          #   The recorded amount for this item's full quantity, before discounts, tax, and
+          #   fees, in its purchase currency. This is not the amount being contested. Returns
+          #   `null` when no item amount was recorded.
+          #
+          #   @param amount [String] The amount in major units, as an exact decimal string — `"10.00"` is ten dollars
+          #
+          #   @param currency [String] Three-letter ISO 4217 currency code, lowercase.
+          #
+          #   @param decimals [Integer] How many decimal places the amount CARRIES — the precision the charge itself run
+          #
+          #   @param display_decimals [Integer] How many decimal places to SHOW. Usually equal to `decimals`, and deliberately n
+        end
+      end
+
       # @see WhopSDK::Models::Dispute#payment
       class Payment < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
@@ -1000,7 +1135,8 @@ module WhopSDK
         # @see WhopSDK::Models::Dispute::Payment#payment_instrument
         class PaymentInstrument < WhopSDK::Internal::Type::BaseModel
           # @!attribute card
-          #   Card payments only: the card's network and last four.
+          #   Card payments only: the card's network, last four, and issuer identification
+          #   number.
           #
           #   @return [WhopSDK::Models::Dispute::Payment::PaymentInstrument::Card, nil]
           required :card, -> { WhopSDK::Dispute::Payment::PaymentInstrument::Card }, nil?: true
@@ -1039,7 +1175,7 @@ module WhopSDK
           #   a buyer-facing name, the standard icon set, and the card facts when it was a
           #   card. Null when the payment names no method.
           #
-          #   @param card [WhopSDK::Models::Dispute::Payment::PaymentInstrument::Card, nil] Card payments only: the card's network and last four.
+          #   @param card [WhopSDK::Models::Dispute::Payment::PaymentInstrument::Card, nil] Card payments only: the card's network, last four, and issuer identification num
           #
           #   @param display_name [String] Buyer-facing instrument name — "Visa •••• 4242" when the card surfaced, else the
           #
@@ -1058,19 +1194,30 @@ module WhopSDK
             #   @return [String]
             required :brand, String
 
+            # @!attribute issuer_identification_number
+            #   The issuer identification number, also called the BIN: the card's leading six or
+            #   eight digits, which identify the issuing bank. Null when the processor did not
+            #   report it.
+            #
+            #   @return [String, nil]
+            required :issuer_identification_number, String, nil?: true
+
             # @!attribute last4
             #   The card's last four digits, when captured.
             #
             #   @return [String, nil]
             required :last4, String, nil?: true
 
-            # @!method initialize(brand:, last4:)
+            # @!method initialize(brand:, issuer_identification_number:, last4:)
             #   Some parameter documentations has been truncated, see
             #   {WhopSDK::Models::Dispute::Payment::PaymentInstrument::Card} for more details.
             #
-            #   Card payments only: the card's network and last four.
+            #   Card payments only: the card's network, last four, and issuer identification
+            #   number.
             #
             #   @param brand [String] The network identifier (`visa`, `amex`, …), matching `card.networks` entries and
+            #
+            #   @param issuer_identification_number [String, nil] The issuer identification number, also called the BIN: the card's leading six or
             #
             #   @param last4 [String, nil] The card's last four digits, when captured.
           end
@@ -1295,9 +1442,8 @@ module WhopSDK
         end
       end
 
-      # Why the customer says they are disputing, normalized across card networks.
-      # `other` covers a code Whop has not categorized yet — read `reason_code` for the
-      # raw value.
+      # Why the customer says they are disputing, normalized across processors and card
+      # networks. `other` covers a processor reason Whop has not categorized yet.
       #
       # @see WhopSDK::Models::Dispute#reason
       module Reason

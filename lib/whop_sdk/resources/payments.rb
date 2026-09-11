@@ -20,14 +20,12 @@ module WhopSDK
       # and `payment_method_id`), or a `confirmation_token` describing a method the
       # buyer just supplied. Collection runs in the background: the response is the
       # payment as created, not its outcome — poll Retrieve status for how far it has
-      # got and, for a confirmation-token payment, what the buyer must still do.
-      # `plan_id` names the plan to charge for.
+      # got and, for a confirmation-token payment, what the buyer must still do. Pass
+      # `plan_id` for an existing plan or `plan` to find or create one inline.
       #
-      # @overload create(account_id:, plan_id:, capture: nil, confirmation_token: nil, email: nil, member_id: nil, metadata: nil, payment_method_id: nil, promo_code_id: nil, return_url: nil, api_version_date: nil, idempotency_key: nil, request_options: {})
+      # @overload create(account_id:, capture: nil, confirmation_token: nil, email: nil, member_id: nil, metadata: nil, payment_method_id: nil, plan: nil, plan_id: nil, promo_code_id: nil, return_url: nil, statement_descriptor: nil, api_version_date: nil, idempotency_key: nil, request_options: {})
       #
       # @param account_id [String] Body param: The account to charge for, prefixed `biz_`.
-      #
-      # @param plan_id [String] Body param: The plan to charge for, prefixed `plan_`. It must belong to the acco
       #
       # @param capture [Boolean, nil] Body param: Whether to capture a card payment immediately. Defaults to true. Pas
       #
@@ -41,9 +39,15 @@ module WhopSDK
       #
       # @param payment_method_id [String, nil] Body param: The stored payment method to charge, prefixed `payt_`. It must belon
       #
+      # @param plan [WhopSDK::Models::PaymentCreateParams::Plan] Body param: Find or create a plan for this payment. Mutually exclusive with `pla
+      #
+      # @param plan_id [String] Body param: The plan to charge for, prefixed `plan_`. It must belong to the acco
+      #
       # @param promo_code_id [String, nil] Body param: An active promo code to apply, prefixed `promo_`. It must belong to
       #
       # @param return_url [String, nil] Body param: Where the buyer continues after completing an off-site step. An abso
+      #
+      # @param statement_descriptor [String, nil] Body param: Overrides the text on the buyer's card statement for this payment on
       #
       # @param api_version_date [String] Header param: Pins the request to a dated API version.
       #

@@ -14,6 +14,7 @@ module WhopSDK
         description: String?,
         discover_path: String?,
         domain_id: String,
+        domains: ::Array[WhopSDK::Models::AppListResponse::Domain]?,
         experience_path: String?,
         hosted_url: String?,
         icon: WhopSDK::Models::AppListResponse::Icon,
@@ -52,6 +53,8 @@ module WhopSDK
 
       attr_accessor domain_id: String
 
+      attr_accessor domains: ::Array[WhopSDK::Models::AppListResponse::Domain]?
+
       attr_accessor experience_path: String?
 
       attr_accessor hosted_url: String?
@@ -87,6 +90,7 @@ module WhopSDK
         description: String?,
         discover_path: String?,
         domain_id: String,
+        domains: ::Array[WhopSDK::Models::AppListResponse::Domain]?,
         experience_path: String?,
         hosted_url: String?,
         icon: WhopSDK::Models::AppListResponse::Icon,
@@ -113,6 +117,7 @@ module WhopSDK
         description: String?,
         discover_path: String?,
         domain_id: String,
+        domains: ::Array[WhopSDK::Models::AppListResponse::Domain]?,
         experience_path: String?,
         hosted_url: String?,
         icon: WhopSDK::Models::AppListResponse::Icon,
@@ -127,7 +132,13 @@ module WhopSDK
       }
 
       type account =
-        { id: String, logo_url: String?, route: String, title: String }
+        {
+          id: String,
+          logo_url: String?,
+          route: String,
+          title: String,
+          fees: ::Hash[Symbol, WhopSDK::Models::AppListResponse::Account::Fee]
+        }
 
       class Account < WhopSDK::Internal::Type::BaseModel
         attr_accessor id: String
@@ -138,19 +149,39 @@ module WhopSDK
 
         attr_accessor title: String
 
+        attr_reader fees: ::Hash[Symbol, WhopSDK::Models::AppListResponse::Account::Fee]?
+
+        def fees=: (
+          ::Hash[Symbol, WhopSDK::Models::AppListResponse::Account::Fee]
+        ) -> ::Hash[Symbol, WhopSDK::Models::AppListResponse::Account::Fee]
+
         def initialize: (
           id: String,
           logo_url: String?,
           route: String,
-          title: String
+          title: String,
+          ?fees: ::Hash[Symbol, WhopSDK::Models::AppListResponse::Account::Fee]
         ) -> void
 
         def to_hash: -> {
           id: String,
           logo_url: String?,
           route: String,
-          title: String
+          title: String,
+          fees: ::Hash[Symbol, WhopSDK::Models::AppListResponse::Account::Fee]
         }
+
+        type fee = { fixed_fee_usd: Float, percentage_fee: Float }
+
+        class Fee < WhopSDK::Internal::Type::BaseModel
+          attr_accessor fixed_fee_usd: Float
+
+          attr_accessor percentage_fee: Float
+
+          def initialize: (fixed_fee_usd: Float, percentage_fee: Float) -> void
+
+          def to_hash: -> { fixed_fee_usd: Float, percentage_fee: Float }
+        end
       end
 
       type app_type = :b2b_app | :b2c_app | :company_app | :component | :website
@@ -189,6 +220,54 @@ module WhopSDK
         def initialize: (id: String, name: String?, username: String) -> void
 
         def to_hash: -> { id: String, name: String?, username: String }
+      end
+
+      type domain =
+        {
+          id: String,
+          domain: String,
+          status: WhopSDK::Models::AppListResponse::Domain::status
+        }
+
+      class Domain < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor domain: String
+
+        attr_accessor status: WhopSDK::Models::AppListResponse::Domain::status
+
+        def initialize: (
+          id: String,
+          domain: String,
+          status: WhopSDK::Models::AppListResponse::Domain::status
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          domain: String,
+          status: WhopSDK::Models::AppListResponse::Domain::status
+        }
+
+        type status =
+          :pending_verification
+          | :provisioning
+          | :active
+          | :action_required
+          | :deleting
+          | :removed
+
+        module Status
+          extend WhopSDK::Internal::Type::Enum
+
+          PENDING_VERIFICATION: :pending_verification
+          PROVISIONING: :provisioning
+          ACTIVE: :active
+          ACTION_REQUIRED: :action_required
+          DELETING: :deleting
+          REMOVED: :removed
+
+          def self?.values: -> ::Array[WhopSDK::Models::AppListResponse::Domain::status]
+        end
       end
 
       type icon = { url: String }

@@ -28,10 +28,14 @@ module WhopSDK
           :digital_wallet_withdrawal_markup,
           WhopSDK::FeeMarkupType::TaggedSymbol
         )
+      TRANSFER_MARKUP =
+        T.let(:transfer_markup, WhopSDK::FeeMarkupType::TaggedSymbol)
       CRYPTO_DEPOSIT_MARKUP =
         T.let(:crypto_deposit_markup, WhopSDK::FeeMarkupType::TaggedSymbol)
       BANK_DEPOSIT_MARKUP =
         T.let(:bank_deposit_markup, WhopSDK::FeeMarkupType::TaggedSymbol)
+      CRYPTO_SWAP_MARKUP =
+        T.let(:crypto_swap_markup, WhopSDK::FeeMarkupType::TaggedSymbol)
 
       sig { override.returns(T::Array[WhopSDK::FeeMarkupType::TaggedSymbol]) }
       def self.values

@@ -16,6 +16,7 @@ module WhopSDK
         generated_response_attachment: WhopSDK::Dispute::GeneratedResponseAttachment?,
         inquiry: bool,
         issuer_comments: ::Array[WhopSDK::Dispute::IssuerComment],
+        line_items: ::Array[WhopSDK::Dispute::LineItem],
         payment: WhopSDK::Dispute::Payment?,
         plan_id: String?,
         product_id: String?,
@@ -55,6 +56,8 @@ module WhopSDK
 
       attr_accessor issuer_comments: ::Array[WhopSDK::Dispute::IssuerComment]
 
+      attr_accessor line_items: ::Array[WhopSDK::Dispute::LineItem]
+
       attr_accessor payment: WhopSDK::Dispute::Payment?
 
       attr_accessor plan_id: String?
@@ -86,6 +89,7 @@ module WhopSDK
         generated_response_attachment: WhopSDK::Dispute::GeneratedResponseAttachment?,
         inquiry: bool,
         issuer_comments: ::Array[WhopSDK::Dispute::IssuerComment],
+        line_items: ::Array[WhopSDK::Dispute::LineItem],
         payment: WhopSDK::Dispute::Payment?,
         plan_id: String?,
         product_id: String?,
@@ -111,6 +115,7 @@ module WhopSDK
         generated_response_attachment: WhopSDK::Dispute::GeneratedResponseAttachment?,
         inquiry: bool,
         issuer_comments: ::Array[WhopSDK::Dispute::IssuerComment],
+        line_items: ::Array[WhopSDK::Dispute::LineItem],
         payment: WhopSDK::Dispute::Payment?,
         plan_id: String?,
         product_id: String?,
@@ -626,6 +631,90 @@ module WhopSDK
         def to_hash: -> { received_at: String?, text: String }
       end
 
+      type line_item =
+        {
+          id: String?,
+          label: String?,
+          plan_id: String?,
+          plan_title: String?,
+          product_id: String?,
+          product_title: String?,
+          quantity: Float,
+          subtotal: WhopSDK::Dispute::LineItem::Subtotal?
+        }
+
+      class LineItem < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String?
+
+        attr_accessor label: String?
+
+        attr_accessor plan_id: String?
+
+        attr_accessor plan_title: String?
+
+        attr_accessor product_id: String?
+
+        attr_accessor product_title: String?
+
+        attr_accessor quantity: Float
+
+        attr_accessor subtotal: WhopSDK::Dispute::LineItem::Subtotal?
+
+        def initialize: (
+          id: String?,
+          label: String?,
+          plan_id: String?,
+          plan_title: String?,
+          product_id: String?,
+          product_title: String?,
+          quantity: Float,
+          subtotal: WhopSDK::Dispute::LineItem::Subtotal?
+        ) -> void
+
+        def to_hash: -> {
+          id: String?,
+          label: String?,
+          plan_id: String?,
+          plan_title: String?,
+          product_id: String?,
+          product_title: String?,
+          quantity: Float,
+          subtotal: WhopSDK::Dispute::LineItem::Subtotal?
+        }
+
+        type subtotal =
+          {
+            amount: String,
+            currency: String,
+            decimals: Integer,
+            display_decimals: Integer
+          }
+
+        class Subtotal < WhopSDK::Internal::Type::BaseModel
+          attr_accessor amount: String
+
+          attr_accessor currency: String
+
+          attr_accessor decimals: Integer
+
+          attr_accessor display_decimals: Integer
+
+          def initialize: (
+            amount: String,
+            currency: String,
+            decimals: Integer,
+            display_decimals: Integer
+          ) -> void
+
+          def to_hash: -> {
+            amount: String,
+            currency: String,
+            decimals: Integer,
+            display_decimals: Integer
+          }
+        end
+      end
+
       type payment =
         {
           id: String,
@@ -718,16 +807,31 @@ module WhopSDK
             payment_method_type: String
           }
 
-          type card = { brand: String, :last4 => String? }
+          type card =
+            {
+              brand: String,
+              issuer_identification_number: String?,
+              :last4 => String?
+            }
 
           class Card < WhopSDK::Internal::Type::BaseModel
             attr_accessor brand: String
 
+            attr_accessor issuer_identification_number: String?
+
             attr_accessor last4: String?
 
-            def initialize: (brand: String, last4: String?) -> void
+            def initialize: (
+              brand: String,
+              issuer_identification_number: String?,
+              last4: String?
+            ) -> void
 
-            def to_hash: -> { brand: String, :last4 => String? }
+            def to_hash: -> {
+              brand: String,
+              issuer_identification_number: String?,
+              :last4 => String?
+            }
           end
 
           type icons =

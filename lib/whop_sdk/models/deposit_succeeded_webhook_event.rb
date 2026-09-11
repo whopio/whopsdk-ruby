@@ -385,6 +385,8 @@ module WhopSDK
           PLATFORM_BALANCE_TRANSFER_OUTGOING = :platform_balance_transfer_outgoing
           PLATFORM_COVERED_DISPUTE = :platform_covered_dispute
           PLATFORM_EARNING = :platform_earning
+          PLATFORM_MARKUP_FEE = :platform_markup_fee
+          PLATFORM_MARKUP_FEE_PAYOUT = :platform_markup_fee_payout
           PROMO_REVERSAL = :promo_reversal
           REFERRAL_BONUS = :referral_bonus
           RESOLUTION_CENTER_REFUND = :resolution_center_refund
@@ -1168,7 +1170,8 @@ module WhopSDK
           optional :from_currency, String, nil?: true
 
           # @!attribute notes
-          #   Memo attached to the transfer source, or null when none was provided.
+          #   Memo attached to the transfer or payout source, or null when none was provided
+          #   (on payout sources requires payout:withdrawal:read).
           #
           #   @return [String, nil]
           optional :notes, String, nil?: true
@@ -1290,7 +1293,7 @@ module WhopSDK
           #
           #   @param from_currency [String, nil] Lowercase currency code converted from (swap sources only).
           #
-          #   @param notes [String, nil] Memo attached to the transfer source, or null when none was provided.
+          #   @param notes [String, nil] Memo attached to the transfer or payout source, or null when none was provided (
           #
           #   @param payer_name [String, nil] Name of the entity processing the payout (payout sources only; requires payout:w
           #

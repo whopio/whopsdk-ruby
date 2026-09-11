@@ -4,6 +4,7 @@ module WhopSDK
       {
         id: String,
         account: top?,
+        average_review_rating: Float,
         created_at: String,
         default_plan: WhopSDK::ProductListItem::DefaultPlan?,
         description: String?,
@@ -25,6 +26,8 @@ module WhopSDK
       attr_accessor id: String
 
       attr_accessor account: top?
+
+      attr_accessor average_review_rating: Float
 
       attr_accessor created_at: String
 
@@ -59,6 +62,7 @@ module WhopSDK
       def initialize: (
         id: String,
         account: top?,
+        average_review_rating: Float,
         created_at: String,
         default_plan: WhopSDK::ProductListItem::DefaultPlan?,
         description: String?,
@@ -79,6 +83,7 @@ module WhopSDK
       def to_hash: -> {
         id: String,
         account: top?,
+        average_review_rating: Float,
         created_at: String,
         default_plan: WhopSDK::ProductListItem::DefaultPlan?,
         description: String?,

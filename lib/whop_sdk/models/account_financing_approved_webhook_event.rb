@@ -2,7 +2,7 @@
 
 module WhopSDK
   module Models
-    class AccountUpdatedWebhookEvent < WhopSDK::Internal::Type::BaseModel
+    class AccountFinancingApprovedWebhookEvent < WhopSDK::Internal::Type::BaseModel
       # @!attribute id
       #   A unique ID for every single webhook request
       #
@@ -23,8 +23,8 @@ module WhopSDK
 
       # @!attribute data
       #
-      #   @return [WhopSDK::Models::AccountUpdatedWebhookEvent::Data]
-      required :data, -> { WhopSDK::AccountUpdatedWebhookEvent::Data }
+      #   @return [WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data]
+      required :data, -> { WhopSDK::AccountFinancingApprovedWebhookEvent::Data }
 
       # @!attribute timestamp
       #   The timestamp in ISO 8601 format that the webhook was sent at on the server
@@ -35,8 +35,8 @@ module WhopSDK
       # @!attribute type
       #   The webhook event type
       #
-      #   @return [Symbol, :"account.updated"]
-      required :type, const: :"account.updated"
+      #   @return [Symbol, :"account.financing_approved"]
+      required :type, const: :"account.financing_approved"
 
       # @!attribute account_id
       #   The account ID that this webhook event is associated with
@@ -51,15 +51,15 @@ module WhopSDK
       #   @return [Object, nil]
       optional :previous_attributes, WhopSDK::Internal::Type::Unknown
 
-      # @!method initialize(id:, api_version_date:, data:, timestamp:, account_id: nil, previous_attributes: nil, api_version: :v1, type: :"account.updated")
+      # @!method initialize(id:, api_version_date:, data:, timestamp:, account_id: nil, previous_attributes: nil, api_version: :v1, type: :"account.financing_approved")
       #   Some parameter documentations has been truncated, see
-      #   {WhopSDK::Models::AccountUpdatedWebhookEvent} for more details.
+      #   {WhopSDK::Models::AccountFinancingApprovedWebhookEvent} for more details.
       #
       #   @param id [String] A unique ID for every single webhook request
       #
       #   @param api_version_date [String, nil] The dated API version (Api-Version-Date) the payload is serialized to
       #
-      #   @param data [WhopSDK::Models::AccountUpdatedWebhookEvent::Data]
+      #   @param data [WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data]
       #
       #   @param timestamp [Time] The timestamp in ISO 8601 format that the webhook was sent at on the server
       #
@@ -69,9 +69,9 @@ module WhopSDK
       #
       #   @param api_version [Symbol, :v1] The API version for this webhook
       #
-      #   @param type [Symbol, :"account.updated"] The webhook event type
+      #   @param type [Symbol, :"account.financing_approved"] The webhook event type
 
-      # @see WhopSDK::Models::AccountUpdatedWebhookEvent#data
+      # @see WhopSDK::Models::AccountFinancingApprovedWebhookEvent#data
       class Data < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
         #   Account ID, prefixed `biz_`.
@@ -81,9 +81,9 @@ module WhopSDK
 
         # @!attribute balances
         #
-        #   @return [Array<WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Balance>]
+        #   @return [Array<WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Balance>]
         required :balances,
-                 -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::AccountUpdatedWebhookEvent::Data::Balance] }
+                 -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Balance] }
 
         # @!attribute banner_image_url
         #   Account banner image URL.
@@ -124,16 +124,18 @@ module WhopSDK
         #   (onboarding or review in progress). Computed only on `retrieve` and `me` for
         #   callers with `company:balance:read` scope; `null` otherwise.
         #
-        #   @return [WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities, nil]
-        required :capabilities, -> { WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities }, nil?: true
+        #   @return [WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Capabilities, nil]
+        required :capabilities,
+                 -> { WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities },
+                 nil?: true
 
         # @!attribute cards
         #   Whop Cards application details for the account. Computed only on `retrieve` and
         #   `me` for callers with `company:balance:read` scope; `null` otherwise, or when
         #   the account has no card application.
         #
-        #   @return [WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Cards, nil]
-        required :cards, -> { WhopSDK::AccountUpdatedWebhookEvent::Data::Cards }, nil?: true
+        #   @return [WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Cards, nil]
+        required :cards, -> { WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Cards }, nil?: true
 
         # @!attribute collect_vat_id
         #   Whether checkout shows a VAT/tax ID field for buyers to optionally enter. Does
@@ -149,8 +151,8 @@ module WhopSDK
         #   documents and signatures awaiting action. Empty when the formation state is
         #   temporarily unavailable.
         #
-        #   @return [WhopSDK::Models::AccountUpdatedWebhookEvent::Data::CompanyFormation]
-        required :company_formation, -> { WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation }
+        #   @return [WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation]
+        required :company_formation, -> { WhopSDK::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation }
 
         # @!attribute country
         #   Country where the account is located.
@@ -186,14 +188,14 @@ module WhopSDK
         #   The account's end-user license agreement document, or `null` if they have not
         #   published one.
         #
-        #   @return [WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Eula, nil]
-        required :eula, -> { WhopSDK::AccountUpdatedWebhookEvent::Data::Eula }, nil?: true
+        #   @return [WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Eula, nil]
+        required :eula, -> { WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Eula }, nil?: true
 
         # @!attribute home_preferences
         #
-        #   @return [Array<Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::HomePreference>]
+        #   @return [Array<Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::HomePreference>]
         required :home_preferences,
-                 -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::AccountUpdatedWebhookEvent::Data::HomePreference] }
+                 -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::AccountFinancingApprovedWebhookEvent::Data::HomePreference] }
 
         # @!attribute industry_group
         #   Account industry group. See the
@@ -232,9 +234,9 @@ module WhopSDK
         # @!attribute onboarding_type
         #   Type of onboarding the account has completed.
         #
-        #   @return [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::OnboardingType, nil]
+        #   @return [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::OnboardingType, nil]
         required :onboarding_type,
-                 enum: -> { WhopSDK::AccountUpdatedWebhookEvent::Data::OnboardingType },
+                 enum: -> { WhopSDK::AccountFinancingApprovedWebhookEvent::Data::OnboardingType },
                  nil?: true
 
         # @!attribute opengraph_image_url
@@ -246,9 +248,9 @@ module WhopSDK
         # @!attribute opengraph_image_variant
         #   Account Open Graph image variant.
         #
-        #   @return [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::OpengraphImageVariant, nil]
+        #   @return [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::OpengraphImageVariant, nil]
         required :opengraph_image_variant,
-                 enum: -> { WhopSDK::AccountUpdatedWebhookEvent::Data::OpengraphImageVariant },
+                 enum: -> { WhopSDK::AccountFinancingApprovedWebhookEvent::Data::OpengraphImageVariant },
                  nil?: true
 
         # @!attribute other_business_description
@@ -267,32 +269,34 @@ module WhopSDK
         #   The single user who owns the account, whose email is the `email` above. Distinct
         #   from the `owner` role on team members, which any number of them can hold.
         #
-        #   @return [WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Owner]
-        required :owner, -> { WhopSDK::AccountUpdatedWebhookEvent::Data::Owner }
+        #   @return [WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Owner]
+        required :owner, -> { WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Owner }
 
         # @!attribute parent_account
         #   Parent account for connected accounts, or `null` for standalone accounts.
         #
-        #   @return [WhopSDK::Models::AccountUpdatedWebhookEvent::Data::ParentAccount, nil]
-        required :parent_account, -> { WhopSDK::AccountUpdatedWebhookEvent::Data::ParentAccount }, nil?: true
+        #   @return [WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::ParentAccount, nil]
+        required :parent_account,
+                 -> { WhopSDK::AccountFinancingApprovedWebhookEvent::Data::ParentAccount },
+                 nil?: true
 
         # @!attribute payment_controls
         #   Payment health controls currently applied to the account. Computed only on
         #   `retrieve` and `me` for callers with `company:balance:read` scope; `null`
         #   otherwise.
         #
-        #   @return [WhopSDK::Models::AccountUpdatedWebhookEvent::Data::PaymentControls, nil]
+        #   @return [WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::PaymentControls, nil]
         required :payment_controls,
-                 -> {
-                   WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls
-                 },
+                 -> { WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PaymentControls },
                  nil?: true
 
         # @!attribute privacy_policy
         #   The account's privacy policy document, or `null` if they have not published one.
         #
-        #   @return [WhopSDK::Models::AccountUpdatedWebhookEvent::Data::PrivacyPolicy, nil]
-        required :privacy_policy, -> { WhopSDK::AccountUpdatedWebhookEvent::Data::PrivacyPolicy }, nil?: true
+        #   @return [WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::PrivacyPolicy, nil]
+        required :privacy_policy,
+                 -> { WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PrivacyPolicy },
+                 nil?: true
 
         # @!attribute product_tax_code
         #   Tax classification code applied by default to the account's products, with `id`,
@@ -307,10 +311,10 @@ module WhopSDK
         #   DEPRECATED: Use the `GET /economic_intelligence?account_id={account_id}`
         #   endpoint instead.
         #
-        #   @return [Array<WhopSDK::Models::AccountUpdatedWebhookEvent::Data::RecommendedAction>, nil]
+        #   @return [Array<WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::RecommendedAction>, nil]
         required :recommended_actions,
                  -> {
-                   WhopSDK::Internal::Type::ArrayOf[WhopSDK::AccountUpdatedWebhookEvent::Data::RecommendedAction]
+                   WhopSDK::Internal::Type::ArrayOf[WhopSDK::AccountFinancingApprovedWebhookEvent::Data::RecommendedAction]
                  },
                  nil?: true
 
@@ -322,18 +326,20 @@ module WhopSDK
 
         # @!attribute required_actions
         #
-        #   @return [Array<WhopSDK::Models::AccountUpdatedWebhookEvent::Data::RequiredAction>, nil]
+        #   @return [Array<WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::RequiredAction>, nil]
         required :required_actions,
                  -> {
-                   WhopSDK::Internal::Type::ArrayOf[WhopSDK::AccountUpdatedWebhookEvent::Data::RequiredAction]
+                   WhopSDK::Internal::Type::ArrayOf[WhopSDK::AccountFinancingApprovedWebhookEvent::Data::RequiredAction]
                  },
                  nil?: true
 
         # @!attribute return_policy
         #   The account's return policy document, or `null` if they have not published one.
         #
-        #   @return [WhopSDK::Models::AccountUpdatedWebhookEvent::Data::ReturnPolicy, nil]
-        required :return_policy, -> { WhopSDK::AccountUpdatedWebhookEvent::Data::ReturnPolicy }, nil?: true
+        #   @return [WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::ReturnPolicy, nil]
+        required :return_policy,
+                 -> { WhopSDK::AccountFinancingApprovedWebhookEvent::Data::ReturnPolicy },
+                 nil?: true
 
         # @!attribute route
         #   Account public route identifier.
@@ -367,9 +373,9 @@ module WhopSDK
 
         # @!attribute social_links
         #
-        #   @return [Array<WhopSDK::Models::AccountUpdatedWebhookEvent::Data::SocialLink>]
+        #   @return [Array<WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::SocialLink>]
         required :social_links,
-                 -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::AccountUpdatedWebhookEvent::Data::SocialLink] }
+                 -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::AccountFinancingApprovedWebhookEvent::Data::SocialLink] }
 
         # @!attribute stablecoin_rails
         #   Whether the account settles on stablecoin rails — its balance is held on-chain
@@ -396,8 +402,8 @@ module WhopSDK
         # @!attribute store_page_config
         #   Account store page display configuration.
         #
-        #   @return [WhopSDK::Models::AccountUpdatedWebhookEvent::Data::StorePageConfig]
-        required :store_page_config, -> { WhopSDK::AccountUpdatedWebhookEvent::Data::StorePageConfig }
+        #   @return [WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::StorePageConfig]
+        required :store_page_config, -> { WhopSDK::AccountFinancingApprovedWebhookEvent::Data::StorePageConfig }
 
         # @!attribute target_audience
         #   Target audience for this account.
@@ -412,9 +418,9 @@ module WhopSDK
 
         # @!attribute tax_identifiers
         #
-        #   @return [Array<WhopSDK::Models::AccountUpdatedWebhookEvent::Data::TaxIdentifier>]
+        #   @return [Array<WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier>]
         required :tax_identifiers,
-                 -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier] }
+                 -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier] }
 
         # @!attribute tax_remitted_by
         #   Who calculates and remits tax for the account: `whop` (Whop calculates and
@@ -422,9 +428,9 @@ module WhopSDK
         #   (neither; the account is responsible). `null` until the account enrolls in the
         #   Whop tax service.
         #
-        #   @return [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::TaxRemittedBy, nil]
+        #   @return [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::TaxRemittedBy, nil]
         required :tax_remitted_by,
-                 enum: -> { WhopSDK::AccountUpdatedWebhookEvent::Data::TaxRemittedBy },
+                 enum: -> { WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxRemittedBy },
                  nil?: true
 
         # @!attribute tax_type
@@ -432,29 +438,29 @@ module WhopSDK
         #   listed price) or `exclusive` (tax added on top). Defaults to `exclusive` when
         #   unset; `null` only when the account has no payment connection.
         #
-        #   @return [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::TaxType, nil]
-        required :tax_type, enum: -> { WhopSDK::AccountUpdatedWebhookEvent::Data::TaxType }, nil?: true
+        #   @return [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::TaxType, nil]
+        required :tax_type,
+                 enum: -> {
+                   WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxType
+                 },
+                 nil?: true
 
         # @!attribute terms_of_service
         #   The account's terms of service document, or `null` if they have not published
         #   one.
         #
-        #   @return [WhopSDK::Models::AccountUpdatedWebhookEvent::Data::TermsOfService, nil]
+        #   @return [WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::TermsOfService, nil]
         required :terms_of_service,
-                 -> {
-                   WhopSDK::AccountUpdatedWebhookEvent::Data::TermsOfService
-                 },
+                 -> { WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TermsOfService },
                  nil?: true
 
         # @!attribute three_ds_level
         #   Account-level 3D Secure behavior. `mandate_challenge` requires cardholder
         #   verification on supported card payments; `null` uses the standard checkout flow.
         #
-        #   @return [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::ThreeDSLevel, nil]
+        #   @return [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::ThreeDSLevel, nil]
         required :three_ds_level,
-                 enum: -> {
-                   WhopSDK::AccountUpdatedWebhookEvent::Data::ThreeDSLevel
-                 },
+                 enum: -> { WhopSDK::AccountFinancingApprovedWebhookEvent::Data::ThreeDSLevel },
                  nil?: true
 
         # @!attribute title
@@ -503,16 +509,16 @@ module WhopSDK
         # @!attribute wallet
         #   Account primary crypto wallet, or `null` if none has been provisioned.
         #
-        #   @return [WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Wallet, nil]
-        required :wallet, -> { WhopSDK::AccountUpdatedWebhookEvent::Data::Wallet }, nil?: true
+        #   @return [WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Wallet, nil]
+        required :wallet, -> { WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Wallet }, nil?: true
 
         # @!method initialize(id:, balances:, banner_image_url:, business_address:, business_name:, business_type:, can_transfer_pending_balance_to_children:, capabilities:, cards:, collect_vat_id:, company_formation:, country:, created_at:, description:, economic_intelligence:, email:, eula:, home_preferences:, industry_group:, industry_type:, invoice_prefix:, logo_url:, metadata:, onboarding_type:, opengraph_image_url:, opengraph_image_variant:, other_business_description:, other_industry_description:, owner:, parent_account:, payment_controls:, privacy_policy:, product_tax_code:, recommended_actions:, require_2fa:, required_actions:, return_policy:, route:, send_customer_emails:, show_joined_whops:, show_reviews_dtc:, show_user_directory:, social_links:, stablecoin_rails:, status:, status_reason:, store_page_config:, target_audience:, tax_collection_enabled_states:, tax_identifiers:, tax_remitted_by:, tax_type:, terms_of_service:, three_ds_level:, title:, total_earned_usd:, total_usd:, use_logo_as_opengraph_image_fallback:, verification:, volume_usd:, wallet:)
         #   Some parameter documentations has been truncated, see
-        #   {WhopSDK::Models::AccountUpdatedWebhookEvent::Data} for more details.
+        #   {WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data} for more details.
         #
         #   @param id [String] Account ID, prefixed `biz_`.
         #
-        #   @param balances [Array<WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Balance>]
+        #   @param balances [Array<WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Balance>]
         #
         #   @param banner_image_url [String, nil] Account banner image URL.
         #
@@ -524,13 +530,13 @@ module WhopSDK
         #
         #   @param can_transfer_pending_balance_to_children [Boolean] Whether pending funds may be transferred from this platform account to its conne
         #
-        #   @param capabilities [WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities, nil] Payment rails enabled for this account, each `active`, `inactive`, or `pending`
+        #   @param capabilities [WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Capabilities, nil] Payment rails enabled for this account, each `active`, `inactive`, or `pending`
         #
-        #   @param cards [WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Cards, nil] Whop Cards application details for the account. Computed only on `retrieve` and
+        #   @param cards [WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Cards, nil] Whop Cards application details for the account. Computed only on `retrieve` and
         #
         #   @param collect_vat_id [Boolean] Whether checkout shows a VAT/tax ID field for buyers to optionally enter. Does n
         #
-        #   @param company_formation [WhopSDK::Models::AccountUpdatedWebhookEvent::Data::CompanyFormation] Company formation state for the account, managed through [Form Company](/api-ref
+        #   @param company_formation [WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation] Company formation state for the account, managed through [Form Company](/api-ref
         #
         #   @param country [String, nil] Country where the account is located.
         #
@@ -542,9 +548,9 @@ module WhopSDK
         #
         #   @param email [String, nil] Account owner email address.
         #
-        #   @param eula [WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Eula, nil] The account's end-user license agreement document, or `null` if they have not pu
+        #   @param eula [WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Eula, nil] The account's end-user license agreement document, or `null` if they have not pu
         #
-        #   @param home_preferences [Array<Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::HomePreference>]
+        #   @param home_preferences [Array<Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::HomePreference>]
         #
         #   @param industry_group [String, nil] Account industry group. See the [business types and industries glossary](/api-re
         #
@@ -556,33 +562,33 @@ module WhopSDK
         #
         #   @param metadata [Object] Arbitrary key/value metadata supplied at account creation.
         #
-        #   @param onboarding_type [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::OnboardingType, nil] Type of onboarding the account has completed.
+        #   @param onboarding_type [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::OnboardingType, nil] Type of onboarding the account has completed.
         #
         #   @param opengraph_image_url [String, nil] Account Open Graph image URL.
         #
-        #   @param opengraph_image_variant [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::OpengraphImageVariant, nil] Account Open Graph image variant.
+        #   @param opengraph_image_variant [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::OpengraphImageVariant, nil] Account Open Graph image variant.
         #
         #   @param other_business_description [String, nil] Business type details when business_type is `other`.
         #
         #   @param other_industry_description [String, nil] Industry details when industry_type is `other`.
         #
-        #   @param owner [WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Owner] The single user who owns the account, whose email is the `email` above. Distinct
+        #   @param owner [WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Owner] The single user who owns the account, whose email is the `email` above. Distinct
         #
-        #   @param parent_account [WhopSDK::Models::AccountUpdatedWebhookEvent::Data::ParentAccount, nil] Parent account for connected accounts, or `null` for standalone accounts.
+        #   @param parent_account [WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::ParentAccount, nil] Parent account for connected accounts, or `null` for standalone accounts.
         #
-        #   @param payment_controls [WhopSDK::Models::AccountUpdatedWebhookEvent::Data::PaymentControls, nil] Payment health controls currently applied to the account. Computed only on `retr
+        #   @param payment_controls [WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::PaymentControls, nil] Payment health controls currently applied to the account. Computed only on `retr
         #
-        #   @param privacy_policy [WhopSDK::Models::AccountUpdatedWebhookEvent::Data::PrivacyPolicy, nil] The account's privacy policy document, or `null` if they have not published one.
+        #   @param privacy_policy [WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::PrivacyPolicy, nil] The account's privacy policy document, or `null` if they have not published one.
         #
         #   @param product_tax_code [Object, nil] Tax classification code applied by default to the account's products, with `id`,
         #
-        #   @param recommended_actions [Array<WhopSDK::Models::AccountUpdatedWebhookEvent::Data::RecommendedAction>, nil] DEPRECATED: Use the `GET /economic_intelligence?account_id={account_id}` endpoin
+        #   @param recommended_actions [Array<WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::RecommendedAction>, nil] DEPRECATED: Use the `GET /economic_intelligence?account_id={account_id}` endpoin
         #
         #   @param require_2fa [Boolean] Whether authorized users must enable two-factor authentication.
         #
-        #   @param required_actions [Array<WhopSDK::Models::AccountUpdatedWebhookEvent::Data::RequiredAction>, nil]
+        #   @param required_actions [Array<WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::RequiredAction>, nil]
         #
-        #   @param return_policy [WhopSDK::Models::AccountUpdatedWebhookEvent::Data::ReturnPolicy, nil] The account's return policy document, or `null` if they have not published one.
+        #   @param return_policy [WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::ReturnPolicy, nil] The account's return policy document, or `null` if they have not published one.
         #
         #   @param route [String] Account public route identifier.
         #
@@ -594,7 +600,7 @@ module WhopSDK
         #
         #   @param show_user_directory [Boolean] Whether the account shows users in the user directory.
         #
-        #   @param social_links [Array<WhopSDK::Models::AccountUpdatedWebhookEvent::Data::SocialLink>]
+        #   @param social_links [Array<WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::SocialLink>]
         #
         #   @param stablecoin_rails [Boolean] Whether the account settles on stablecoin rails — its balance is held on-chain a
         #
@@ -602,21 +608,21 @@ module WhopSDK
         #
         #   @param status_reason [String, nil] Why the account was suspended, in language safe to show the account owner. Compu
         #
-        #   @param store_page_config [WhopSDK::Models::AccountUpdatedWebhookEvent::Data::StorePageConfig] Account store page display configuration.
+        #   @param store_page_config [WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::StorePageConfig] Account store page display configuration.
         #
         #   @param target_audience [String, nil] Target audience for this account.
         #
         #   @param tax_collection_enabled_states [Array<String>]
         #
-        #   @param tax_identifiers [Array<WhopSDK::Models::AccountUpdatedWebhookEvent::Data::TaxIdentifier>]
+        #   @param tax_identifiers [Array<WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier>]
         #
-        #   @param tax_remitted_by [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::TaxRemittedBy, nil] Who calculates and remits tax for the account: `whop` (Whop calculates and remit
+        #   @param tax_remitted_by [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::TaxRemittedBy, nil] Who calculates and remits tax for the account: `whop` (Whop calculates and remit
         #
-        #   @param tax_type [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::TaxType, nil] How tax is applied to the account's prices: `inclusive` (tax included in the lis
+        #   @param tax_type [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::TaxType, nil] How tax is applied to the account's prices: `inclusive` (tax included in the lis
         #
-        #   @param terms_of_service [WhopSDK::Models::AccountUpdatedWebhookEvent::Data::TermsOfService, nil] The account's terms of service document, or `null` if they have not published on
+        #   @param terms_of_service [WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::TermsOfService, nil] The account's terms of service document, or `null` if they have not published on
         #
-        #   @param three_ds_level [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::ThreeDSLevel, nil] Account-level 3D Secure behavior. `mandate_challenge` requires cardholder verifi
+        #   @param three_ds_level [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::ThreeDSLevel, nil] Account-level 3D Secure behavior. `mandate_challenge` requires cardholder verifi
         #
         #   @param title [String] Account display name.
         #
@@ -630,7 +636,7 @@ module WhopSDK
         #
         #   @param volume_usd [Float, nil] Lifetime volume through the account — sales plus transfers received — normalized
         #
-        #   @param wallet [WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Wallet, nil] Account primary crypto wallet, or `null` if none has been provisioned.
+        #   @param wallet [WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Wallet, nil] Account primary crypto wallet, or `null` if none has been provisioned.
 
         class Balance < WhopSDK::Internal::Type::BaseModel
           # @!attribute balance
@@ -645,8 +651,8 @@ module WhopSDK
           #   On-chain crypto is entirely available; good_funds and fiat cash can have pending
           #   or reserve portions.
           #
-          #   @return [WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Balance::Breakdown]
-          required :breakdown, -> { WhopSDK::AccountUpdatedWebhookEvent::Data::Balance::Breakdown }
+          #   @return [WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Balance::Breakdown]
+          required :breakdown, -> { WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Balance::Breakdown }
 
           # @!attribute icon_url
           #   Holding icon URL.
@@ -680,13 +686,14 @@ module WhopSDK
 
           # @!method initialize(balance:, breakdown:, icon_url:, name:, price_usd:, symbol:, value_usd:)
           #   Some parameter documentations has been truncated, see
-          #   {WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Balance} for more details.
+          #   {WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Balance} for more
+          #   details.
           #
           #   Account holdings, each with USD value. Empty when `total_usd` is `null`.
           #
           #   @param balance [String] Total amount held in native units, as a decimal string.
           #
-          #   @param breakdown [WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Balance::Breakdown] Balance split into available, pending, and reserve amounts, as native-unit decim
+          #   @param breakdown [WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Balance::Breakdown] Balance split into available, pending, and reserve amounts, as native-unit decim
           #
           #   @param icon_url [String, nil] Holding icon URL.
           #
@@ -698,7 +705,7 @@ module WhopSDK
           #
           #   @param value_usd [String, nil] Holding USD value, or `null` when no exchange rate is available.
 
-          # @see WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Balance#breakdown
+          # @see WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Balance#breakdown
           class Breakdown < WhopSDK::Internal::Type::BaseModel
             # @!attribute available
             #   Amount you can spend, send, or withdraw now, in native units, as a decimal
@@ -723,9 +730,9 @@ module WhopSDK
 
             # @!attribute pending_settlements
             #
-            #   @return [Array<WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Balance::Breakdown::PendingSettlement>]
+            #   @return [Array<WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Balance::Breakdown::PendingSettlement>]
             required :pending_settlements,
-                     -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::AccountUpdatedWebhookEvent::Data::Balance::Breakdown::PendingSettlement] }
+                     -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Balance::Breakdown::PendingSettlement] }
 
             # @!attribute reserve
             #   Amount held back, in native units, as a decimal string. Retrieve the account's
@@ -736,8 +743,8 @@ module WhopSDK
 
             # @!method initialize(available:, in_transit:, pending:, pending_settlements:, reserve:)
             #   Some parameter documentations has been truncated, see
-            #   {WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Balance::Breakdown} for more
-            #   details.
+            #   {WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Balance::Breakdown}
+            #   for more details.
             #
             #   Balance split into available, pending, and reserve amounts, as native-unit
             #   decimal strings, with the days the pending amount is expected to settle.
@@ -750,7 +757,7 @@ module WhopSDK
             #
             #   @param pending [String] Amount from recent payments still settling, in native units, as a decimal string
             #
-            #   @param pending_settlements [Array<WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Balance::Breakdown::PendingSettlement>]
+            #   @param pending_settlements [Array<WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Balance::Breakdown::PendingSettlement>]
             #
             #   @param reserve [String] Amount held back, in native units, as a decimal string. Retrieve the account's r
 
@@ -779,124 +786,128 @@ module WhopSDK
           end
         end
 
-        # @see WhopSDK::Models::AccountUpdatedWebhookEvent::Data#capabilities
+        # @see WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data#capabilities
         class Capabilities < WhopSDK::Internal::Type::BaseModel
           # @!attribute accept_bank_payments
           #   Bank payins: debits, transfers, and local bank rails
           #
-          #   @return [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::AcceptBankPayments]
+          #   @return [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Capabilities::AcceptBankPayments]
           required :accept_bank_payments,
-                   enum: -> { WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::AcceptBankPayments }
+                   enum: -> { WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::AcceptBankPayments }
 
           # @!attribute accept_bnpl_payments
           #   Buy-now-pay-later payins; requires approval
           #
-          #   @return [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::AcceptBnplPayments]
+          #   @return [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Capabilities::AcceptBnplPayments]
           required :accept_bnpl_payments,
-                   enum: -> { WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::AcceptBnplPayments }
+                   enum: -> { WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::AcceptBnplPayments }
 
           # @!attribute accept_card_payments
           #   Card payins, including Apple Pay and Google Pay
           #
-          #   @return [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::AcceptCardPayments]
+          #   @return [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Capabilities::AcceptCardPayments]
           required :accept_card_payments,
-                   enum: -> { WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::AcceptCardPayments }
+                   enum: -> { WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::AcceptCardPayments }
 
           # @!attribute bank_deposit
           #   Deposits by bank wire or ACH to the account's virtual bank account
           #
-          #   @return [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::BankDeposit]
-          required :bank_deposit, enum: -> { WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::BankDeposit }
+          #   @return [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Capabilities::BankDeposit]
+          required :bank_deposit,
+                   enum: -> { WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::BankDeposit }
 
           # @!attribute card_deposit
           #   Balance top-ups by charging a stored payment method
           #
-          #   @return [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::CardDeposit]
-          required :card_deposit, enum: -> { WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::CardDeposit }
+          #   @return [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Capabilities::CardDeposit]
+          required :card_deposit,
+                   enum: -> { WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::CardDeposit }
 
           # @!attribute card_issuing
           #   Issuing Whop cards; requires card application approval
           #
-          #   @return [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::CardIssuing]
-          required :card_issuing, enum: -> { WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::CardIssuing }
+          #   @return [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Capabilities::CardIssuing]
+          required :card_issuing,
+                   enum: -> { WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::CardIssuing }
 
           # @!attribute crypto_deposit
           #   On-chain deposits to the account's crypto wallet
           #
-          #   @return [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::CryptoDeposit]
+          #   @return [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Capabilities::CryptoDeposit]
           required :crypto_deposit,
-                   enum: -> { WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::CryptoDeposit }
+                   enum: -> { WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::CryptoDeposit }
 
           # @!attribute crypto_payout
           #   On-chain payouts to a crypto wallet
           #
-          #   @return [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::CryptoPayout]
+          #   @return [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Capabilities::CryptoPayout]
           required :crypto_payout,
-                   enum: -> { WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::CryptoPayout }
+                   enum: -> { WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::CryptoPayout }
 
           # @!attribute instant_payout
           #   Instant payouts to an eligible payout destination
           #
-          #   @return [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::InstantPayout]
+          #   @return [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Capabilities::InstantPayout]
           required :instant_payout,
-                   enum: -> { WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::InstantPayout }
+                   enum: -> { WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::InstantPayout }
 
           # @!attribute run_ads
           #   Launching ad campaigns through Whop Ads. `inactive` while a requested ads
           #   services agreement is awaiting the account's signature.
           #
-          #   @return [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::RunAds]
-          required :run_ads, enum: -> { WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::RunAds }
+          #   @return [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Capabilities::RunAds]
+          required :run_ads, enum: -> { WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::RunAds }
 
           # @!attribute standard_payout
           #   Standard payouts to an external payout destination
           #
-          #   @return [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::StandardPayout]
+          #   @return [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Capabilities::StandardPayout]
           required :standard_payout,
-                   enum: -> { WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::StandardPayout }
+                   enum: -> { WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::StandardPayout }
 
           # @!attribute transfer
           #   Transfers to other accounts
           #
-          #   @return [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::Transfer]
-          required :transfer, enum: -> { WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::Transfer }
+          #   @return [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Capabilities::Transfer]
+          required :transfer,
+                   enum: -> { WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::Transfer }
 
           # @!method initialize(accept_bank_payments:, accept_bnpl_payments:, accept_card_payments:, bank_deposit:, card_deposit:, card_issuing:, crypto_deposit:, crypto_payout:, instant_payout:, run_ads:, standard_payout:, transfer:)
           #   Some parameter documentations has been truncated, see
-          #   {WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities} for more
-          #   details.
+          #   {WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Capabilities} for
+          #   more details.
           #
           #   Payment rails enabled for this account, each `active`, `inactive`, or `pending`
           #   (onboarding or review in progress). Computed only on `retrieve` and `me` for
           #   callers with `company:balance:read` scope; `null` otherwise.
           #
-          #   @param accept_bank_payments [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::AcceptBankPayments] Bank payins: debits, transfers, and local bank rails
+          #   @param accept_bank_payments [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Capabilities::AcceptBankPayments] Bank payins: debits, transfers, and local bank rails
           #
-          #   @param accept_bnpl_payments [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::AcceptBnplPayments] Buy-now-pay-later payins; requires approval
+          #   @param accept_bnpl_payments [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Capabilities::AcceptBnplPayments] Buy-now-pay-later payins; requires approval
           #
-          #   @param accept_card_payments [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::AcceptCardPayments] Card payins, including Apple Pay and Google Pay
+          #   @param accept_card_payments [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Capabilities::AcceptCardPayments] Card payins, including Apple Pay and Google Pay
           #
-          #   @param bank_deposit [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::BankDeposit] Deposits by bank wire or ACH to the account's virtual bank account
+          #   @param bank_deposit [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Capabilities::BankDeposit] Deposits by bank wire or ACH to the account's virtual bank account
           #
-          #   @param card_deposit [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::CardDeposit] Balance top-ups by charging a stored payment method
+          #   @param card_deposit [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Capabilities::CardDeposit] Balance top-ups by charging a stored payment method
           #
-          #   @param card_issuing [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::CardIssuing] Issuing Whop cards; requires card application approval
+          #   @param card_issuing [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Capabilities::CardIssuing] Issuing Whop cards; requires card application approval
           #
-          #   @param crypto_deposit [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::CryptoDeposit] On-chain deposits to the account's crypto wallet
+          #   @param crypto_deposit [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Capabilities::CryptoDeposit] On-chain deposits to the account's crypto wallet
           #
-          #   @param crypto_payout [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::CryptoPayout] On-chain payouts to a crypto wallet
+          #   @param crypto_payout [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Capabilities::CryptoPayout] On-chain payouts to a crypto wallet
           #
-          #   @param instant_payout [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::InstantPayout] Instant payouts to an eligible payout destination
+          #   @param instant_payout [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Capabilities::InstantPayout] Instant payouts to an eligible payout destination
           #
-          #   @param run_ads [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::RunAds] Launching ad campaigns through Whop Ads. `inactive` while a requested ads servic
+          #   @param run_ads [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Capabilities::RunAds] Launching ad campaigns through Whop Ads. `inactive` while a requested ads servic
           #
-          #   @param standard_payout [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::StandardPayout] Standard payouts to an external payout destination
+          #   @param standard_payout [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Capabilities::StandardPayout] Standard payouts to an external payout destination
           #
-          #   @param transfer [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::Transfer] Transfers to other accounts
+          #   @param transfer [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Capabilities::Transfer] Transfers to other accounts
 
           # Bank payins: debits, transfers, and local bank rails
           #
-          # @see WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities#accept_bank_payments
+          # @see WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Capabilities#accept_bank_payments
           module AcceptBankPayments
             extend WhopSDK::Internal::Type::Enum
 
@@ -910,7 +921,7 @@ module WhopSDK
 
           # Buy-now-pay-later payins; requires approval
           #
-          # @see WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities#accept_bnpl_payments
+          # @see WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Capabilities#accept_bnpl_payments
           module AcceptBnplPayments
             extend WhopSDK::Internal::Type::Enum
 
@@ -924,7 +935,7 @@ module WhopSDK
 
           # Card payins, including Apple Pay and Google Pay
           #
-          # @see WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities#accept_card_payments
+          # @see WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Capabilities#accept_card_payments
           module AcceptCardPayments
             extend WhopSDK::Internal::Type::Enum
 
@@ -938,7 +949,7 @@ module WhopSDK
 
           # Deposits by bank wire or ACH to the account's virtual bank account
           #
-          # @see WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities#bank_deposit
+          # @see WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Capabilities#bank_deposit
           module BankDeposit
             extend WhopSDK::Internal::Type::Enum
 
@@ -952,7 +963,7 @@ module WhopSDK
 
           # Balance top-ups by charging a stored payment method
           #
-          # @see WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities#card_deposit
+          # @see WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Capabilities#card_deposit
           module CardDeposit
             extend WhopSDK::Internal::Type::Enum
 
@@ -966,7 +977,7 @@ module WhopSDK
 
           # Issuing Whop cards; requires card application approval
           #
-          # @see WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities#card_issuing
+          # @see WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Capabilities#card_issuing
           module CardIssuing
             extend WhopSDK::Internal::Type::Enum
 
@@ -980,7 +991,7 @@ module WhopSDK
 
           # On-chain deposits to the account's crypto wallet
           #
-          # @see WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities#crypto_deposit
+          # @see WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Capabilities#crypto_deposit
           module CryptoDeposit
             extend WhopSDK::Internal::Type::Enum
 
@@ -994,7 +1005,7 @@ module WhopSDK
 
           # On-chain payouts to a crypto wallet
           #
-          # @see WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities#crypto_payout
+          # @see WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Capabilities#crypto_payout
           module CryptoPayout
             extend WhopSDK::Internal::Type::Enum
 
@@ -1008,7 +1019,7 @@ module WhopSDK
 
           # Instant payouts to an eligible payout destination
           #
-          # @see WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities#instant_payout
+          # @see WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Capabilities#instant_payout
           module InstantPayout
             extend WhopSDK::Internal::Type::Enum
 
@@ -1023,7 +1034,7 @@ module WhopSDK
           # Launching ad campaigns through Whop Ads. `inactive` while a requested ads
           # services agreement is awaiting the account's signature.
           #
-          # @see WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities#run_ads
+          # @see WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Capabilities#run_ads
           module RunAds
             extend WhopSDK::Internal::Type::Enum
 
@@ -1037,7 +1048,7 @@ module WhopSDK
 
           # Standard payouts to an external payout destination
           #
-          # @see WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities#standard_payout
+          # @see WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Capabilities#standard_payout
           module StandardPayout
             extend WhopSDK::Internal::Type::Enum
 
@@ -1051,7 +1062,7 @@ module WhopSDK
 
           # Transfers to other accounts
           #
-          # @see WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities#transfer
+          # @see WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Capabilities#transfer
           module Transfer
             extend WhopSDK::Internal::Type::Enum
 
@@ -1064,15 +1075,19 @@ module WhopSDK
           end
         end
 
-        # @see WhopSDK::Models::AccountUpdatedWebhookEvent::Data#cards
+        # @see WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data#cards
         class Cards < WhopSDK::Internal::Type::BaseModel
           # @!attribute kind
           #   Whether the card application verifies a business (`business`, KYB) or a person
           #   (`individual`, consumer identity). `null` when the application is not yet linked
           #   to a verification.
           #
-          #   @return [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Cards::Kind, nil]
-          required :kind, enum: -> { WhopSDK::AccountUpdatedWebhookEvent::Data::Cards::Kind }, nil?: true
+          #   @return [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Cards::Kind, nil]
+          required :kind,
+                   enum: -> {
+                     WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Cards::Kind
+                   },
+                   nil?: true
 
           # @!attribute status
           #   Where the card application stands. `approved` means cards can be issued.
@@ -1081,27 +1096,28 @@ module WhopSDK
           #   fixable reason and must be resubmitted. `pending` and `manual_review` are in
           #   flight. `denied`, `locked`, and `canceled` are terminal.
           #
-          #   @return [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Cards::Status]
-          required :status, enum: -> { WhopSDK::AccountUpdatedWebhookEvent::Data::Cards::Status }
+          #   @return [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Cards::Status]
+          required :status, enum: -> { WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Cards::Status }
 
           # @!method initialize(kind:, status:)
           #   Some parameter documentations has been truncated, see
-          #   {WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Cards} for more details.
+          #   {WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Cards} for more
+          #   details.
           #
           #   Whop Cards application details for the account. Computed only on `retrieve` and
           #   `me` for callers with `company:balance:read` scope; `null` otherwise, or when
           #   the account has no card application.
           #
-          #   @param kind [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Cards::Kind, nil] Whether the card application verifies a business (`business`, KYB) or a person (
+          #   @param kind [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Cards::Kind, nil] Whether the card application verifies a business (`business`, KYB) or a person (
           #
-          #   @param status [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Cards::Status] Where the card application stands. `approved` means cards can be issued.
+          #   @param status [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Cards::Status] Where the card application stands. `approved` means cards can be issued.
           #   `needs\_
 
           # Whether the card application verifies a business (`business`, KYB) or a person
           # (`individual`, consumer identity). `null` when the application is not yet linked
           # to a verification.
           #
-          # @see WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Cards#kind
+          # @see WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Cards#kind
           module Kind
             extend WhopSDK::Internal::Type::Enum
 
@@ -1118,7 +1134,7 @@ module WhopSDK
           # fixable reason and must be resubmitted. `pending` and `manual_review` are in
           # flight. `denied`, `locked`, and `canceled` are terminal.
           #
-          # @see WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Cards#status
+          # @see WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Cards#status
           module Status
             extend WhopSDK::Internal::Type::Enum
 
@@ -1136,13 +1152,13 @@ module WhopSDK
           end
         end
 
-        # @see WhopSDK::Models::AccountUpdatedWebhookEvent::Data#company_formation
+        # @see WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data#company_formation
         class CompanyFormation < WhopSDK::Internal::Type::BaseModel
           # @!attribute documents
           #
-          #   @return [Array<WhopSDK::Models::AccountUpdatedWebhookEvent::Data::CompanyFormation::Document>, nil]
+          #   @return [Array<WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Document>, nil]
           optional :documents,
-                   -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Document] }
+                   -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Document] }
 
           # @!attribute ein_registered
           #   Whether the company's EIN has been issued by the IRS. Present once `status`
@@ -1162,8 +1178,9 @@ module WhopSDK
           #   IRS forms still awaiting a founder's signature, each with a hosted signing URL.
           #   Present once `status` leaves `draft`; empty when nothing needs signing.
           #
-          #   @return [WhopSDK::Models::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures, nil]
-          optional :signatures, -> { WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures }
+          #   @return [WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Signatures, nil]
+          optional :signatures,
+                   -> { WhopSDK::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Signatures }
 
           # @!attribute state_registered
           #   Whether the state formation filing is complete. Present once `status` leaves
@@ -1174,13 +1191,14 @@ module WhopSDK
 
           # @!attribute status
           #
-          #   @return [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::CompanyFormation::Status, nil]
-          optional :status, enum: -> { WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Status }
+          #   @return [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Status, nil]
+          optional :status,
+                   enum: -> { WhopSDK::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Status }
 
           # @!method initialize(documents: nil, ein_registered: nil, legal_name: nil, signatures: nil, state_registered: nil, status: nil)
           #   Some parameter documentations has been truncated, see
-          #   {WhopSDK::Models::AccountUpdatedWebhookEvent::Data::CompanyFormation} for more
-          #   details.
+          #   {WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation}
+          #   for more details.
           #
           #   Company formation state for the account, managed through
           #   [Form Company](/api-reference/beta/accounts/form-company). A `draft` `status`
@@ -1188,17 +1206,17 @@ module WhopSDK
           #   documents and signatures awaiting action. Empty when the formation state is
           #   temporarily unavailable.
           #
-          #   @param documents [Array<WhopSDK::Models::AccountUpdatedWebhookEvent::Data::CompanyFormation::Document>]
+          #   @param documents [Array<WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Document>]
           #
           #   @param ein_registered [Boolean] Whether the company's EIN has been issued by the IRS. Present once `status` leav
           #
           #   @param legal_name [String, nil] Registered company name including the entity ending, for example `Acme, LLC`. Pr
           #
-          #   @param signatures [WhopSDK::Models::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures] IRS forms still awaiting a founder's signature, each with a hosted signing URL.
+          #   @param signatures [WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Signatures] IRS forms still awaiting a founder's signature, each with a hosted signing URL.
           #
           #   @param state_registered [Boolean] Whether the state formation filing is complete. Present once `status` leaves `dr
           #
-          #   @param status [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::CompanyFormation::Status]
+          #   @param status [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Status]
 
           class Document < WhopSDK::Internal::Type::BaseModel
             # @!attribute id
@@ -1229,7 +1247,7 @@ module WhopSDK
 
             # @!method initialize(id:, name:, type:, url:)
             #   Some parameter documentations has been truncated, see
-            #   {WhopSDK::Models::AccountUpdatedWebhookEvent::Data::CompanyFormation::Document}
+            #   {WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Document}
             #   for more details.
             #
             #   Formation documents available for download, such as the Articles of Organization
@@ -1244,44 +1262,45 @@ module WhopSDK
             #   @param url [String] CDN URL for downloading the document.
           end
 
-          # @see WhopSDK::Models::AccountUpdatedWebhookEvent::Data::CompanyFormation#signatures
+          # @see WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation#signatures
           class Signatures < WhopSDK::Internal::Type::BaseModel
             # @!attribute form8821
             #   Signature state for IRS Form 8821, the tax information authorization. Present
             #   only while the form still needs the founder's action.
             #
-            #   @return [WhopSDK::Models::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures::Form8821, nil]
+            #   @return [WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Signatures::Form8821, nil]
             optional :form8821,
-                     -> { WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures::Form8821 }
+                     -> { WhopSDK::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Signatures::Form8821 }
 
             # @!attribute ss4
             #   Signature state for IRS Form SS-4, the EIN application. Present only while the
             #   form still needs the founder's action.
             #
-            #   @return [WhopSDK::Models::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures::Ss4, nil]
-            optional :ss4, -> { WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures::Ss4 }
+            #   @return [WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Signatures::Ss4, nil]
+            optional :ss4,
+                     -> { WhopSDK::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Signatures::Ss4 }
 
             # @!method initialize(form8821: nil, ss4: nil)
             #   Some parameter documentations has been truncated, see
-            #   {WhopSDK::Models::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures}
+            #   {WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Signatures}
             #   for more details.
             #
             #   IRS forms still awaiting a founder's signature, each with a hosted signing URL.
             #   Present once `status` leaves `draft`; empty when nothing needs signing.
             #
-            #   @param form8821 [WhopSDK::Models::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures::Form8821] Signature state for IRS Form 8821, the tax information authorization. Present on
+            #   @param form8821 [WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Signatures::Form8821] Signature state for IRS Form 8821, the tax information authorization. Present on
             #
-            #   @param ss4 [WhopSDK::Models::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures::Ss4] Signature state for IRS Form SS-4, the EIN application. Present only while the f
+            #   @param ss4 [WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Signatures::Ss4] Signature state for IRS Form SS-4, the EIN application. Present only while the f
 
-            # @see WhopSDK::Models::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures#form8821
+            # @see WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Signatures#form8821
             class Form8821 < WhopSDK::Internal::Type::BaseModel
               # @!attribute status
               #   `pending` when a signing session is ready for the founder; `unknown` when the
               #   signature state could not be determined.
               #
-              #   @return [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures::Form8821::Status]
+              #   @return [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Signatures::Form8821::Status]
               required :status,
-                       enum: -> { WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures::Form8821::Status }
+                       enum: -> { WhopSDK::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Signatures::Form8821::Status }
 
               # @!attribute expires_at
               #   When the signing URL expires, as an ISO 8601 timestamp. Present while `status`
@@ -1299,13 +1318,13 @@ module WhopSDK
 
               # @!method initialize(status:, expires_at: nil, url: nil)
               #   Some parameter documentations has been truncated, see
-              #   {WhopSDK::Models::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures::Form8821}
+              #   {WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Signatures::Form8821}
               #   for more details.
               #
               #   Signature state for IRS Form 8821, the tax information authorization. Present
               #   only while the form still needs the founder's action.
               #
-              #   @param status [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures::Form8821::Status] `pending` when a signing session is ready for the founder; `unknown` when the si
+              #   @param status [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Signatures::Form8821::Status] `pending` when a signing session is ready for the founder; `unknown` when the si
               #
               #   @param expires_at [String] When the signing URL expires, as an ISO 8601 timestamp. Present while `status` i
               #
@@ -1314,7 +1333,7 @@ module WhopSDK
               # `pending` when a signing session is ready for the founder; `unknown` when the
               # signature state could not be determined.
               #
-              # @see WhopSDK::Models::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures::Form8821#status
+              # @see WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Signatures::Form8821#status
               module Status
                 extend WhopSDK::Internal::Type::Enum
 
@@ -1326,15 +1345,15 @@ module WhopSDK
               end
             end
 
-            # @see WhopSDK::Models::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures#ss4
+            # @see WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Signatures#ss4
             class Ss4 < WhopSDK::Internal::Type::BaseModel
               # @!attribute status
               #   `pending` when a signing session is ready for the founder; `unknown` when the
               #   signature state could not be determined.
               #
-              #   @return [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures::Ss4::Status]
+              #   @return [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Signatures::Ss4::Status]
               required :status,
-                       enum: -> { WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures::Ss4::Status }
+                       enum: -> { WhopSDK::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Signatures::Ss4::Status }
 
               # @!attribute expires_at
               #   When the signing URL expires, as an ISO 8601 timestamp. Present while `status`
@@ -1352,13 +1371,13 @@ module WhopSDK
 
               # @!method initialize(status:, expires_at: nil, url: nil)
               #   Some parameter documentations has been truncated, see
-              #   {WhopSDK::Models::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures::Ss4}
+              #   {WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Signatures::Ss4}
               #   for more details.
               #
               #   Signature state for IRS Form SS-4, the EIN application. Present only while the
               #   form still needs the founder's action.
               #
-              #   @param status [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures::Ss4::Status] `pending` when a signing session is ready for the founder; `unknown` when the si
+              #   @param status [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Signatures::Ss4::Status] `pending` when a signing session is ready for the founder; `unknown` when the si
               #
               #   @param expires_at [String] When the signing URL expires, as an ISO 8601 timestamp. Present while `status` i
               #
@@ -1367,7 +1386,7 @@ module WhopSDK
               # `pending` when a signing session is ready for the founder; `unknown` when the
               # signature state could not be determined.
               #
-              # @see WhopSDK::Models::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures::Ss4#status
+              # @see WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Signatures::Ss4#status
               module Status
                 extend WhopSDK::Internal::Type::Enum
 
@@ -1380,7 +1399,7 @@ module WhopSDK
             end
           end
 
-          # @see WhopSDK::Models::AccountUpdatedWebhookEvent::Data::CompanyFormation#status
+          # @see WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation#status
           module Status
             extend WhopSDK::Internal::Type::Enum
 
@@ -1395,7 +1414,7 @@ module WhopSDK
           end
         end
 
-        # @see WhopSDK::Models::AccountUpdatedWebhookEvent::Data#eula
+        # @see WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data#eula
         class Eula < WhopSDK::Internal::Type::BaseModel
           # @!attribute id
           #   The file's ID, prefixed `file_`.
@@ -1436,8 +1455,9 @@ module WhopSDK
           # @!attribute upload_status
           #   Where the file is in its upload lifecycle.
           #
-          #   @return [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Eula::UploadStatus]
-          required :upload_status, enum: -> { WhopSDK::AccountUpdatedWebhookEvent::Data::Eula::UploadStatus }
+          #   @return [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Eula::UploadStatus]
+          required :upload_status,
+                   enum: -> { WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Eula::UploadStatus }
 
           # @!attribute url
           #   A URL to download the file: a permanent CDN URL for public files, a signed
@@ -1450,8 +1470,8 @@ module WhopSDK
           #   `public` files are served via an unsigned CDN URL; `private` files via a signed,
           #   expiring URL.
           #
-          #   @return [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Eula::Visibility]
-          required :visibility, enum: -> { WhopSDK::AccountUpdatedWebhookEvent::Data::Eula::Visibility }
+          #   @return [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Eula::Visibility]
+          required :visibility, enum: -> { WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Eula::Visibility }
 
           # @!attribute multipart_chunk_size
           #   The byte size each part (except the last) must be. Present only on create, and
@@ -1469,10 +1489,10 @@ module WhopSDK
 
           # @!attribute multipart_upload_urls
           #
-          #   @return [Array<WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Eula::MultipartUploadURL>, nil]
+          #   @return [Array<WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Eula::MultipartUploadURL>, nil]
           optional :multipart_upload_urls,
                    -> {
-                     WhopSDK::Internal::Type::ArrayOf[WhopSDK::AccountUpdatedWebhookEvent::Data::Eula::MultipartUploadURL]
+                     WhopSDK::Internal::Type::ArrayOf[WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Eula::MultipartUploadURL]
                    },
                    nil?: true
 
@@ -1491,7 +1511,8 @@ module WhopSDK
 
           # @!method initialize(id:, content_type:, created_at:, filename:, object:, size:, upload_status:, url:, visibility:, multipart_chunk_size: nil, multipart_upload_id: nil, multipart_upload_urls: nil, upload_headers: nil, upload_url: nil)
           #   Some parameter documentations has been truncated, see
-          #   {WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Eula} for more details.
+          #   {WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Eula} for more
+          #   details.
           #
           #   The account's end-user license agreement document, or `null` if they have not
           #   published one.
@@ -1508,17 +1529,17 @@ module WhopSDK
           #
           #   @param size [Integer, nil] The file size in bytes. `null` until the upload has finished.
           #
-          #   @param upload_status [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Eula::UploadStatus] Where the file is in its upload lifecycle.
+          #   @param upload_status [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Eula::UploadStatus] Where the file is in its upload lifecycle.
           #
           #   @param url [String, nil] A URL to download the file: a permanent CDN URL for public files, a signed expir
           #
-          #   @param visibility [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Eula::Visibility] `public` files are served via an unsigned CDN URL; `private` files via a signed,
+          #   @param visibility [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Eula::Visibility] `public` files are served via an unsigned CDN URL; `private` files via a signed,
           #
           #   @param multipart_chunk_size [Integer, nil] The byte size each part (except the last) must be. Present only on create, and o
           #
           #   @param multipart_upload_id [String, nil] The ID of the multipart upload, passed back to `complete`. Present only on creat
           #
-          #   @param multipart_upload_urls [Array<WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Eula::MultipartUploadURL>, nil]
+          #   @param multipart_upload_urls [Array<WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Eula::MultipartUploadURL>, nil]
           #
           #   @param upload_headers [Object] Headers to send with the upload PUT. Present only on create.
           #
@@ -1526,7 +1547,7 @@ module WhopSDK
 
           # Where the file is in its upload lifecycle.
           #
-          # @see WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Eula#upload_status
+          # @see WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Eula#upload_status
           module UploadStatus
             extend WhopSDK::Internal::Type::Enum
 
@@ -1542,7 +1563,7 @@ module WhopSDK
           # `public` files are served via an unsigned CDN URL; `private` files via a signed,
           # expiring URL.
           #
-          # @see WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Eula#visibility
+          # @see WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Eula#visibility
           module Visibility
             extend WhopSDK::Internal::Type::Enum
 
@@ -1589,7 +1610,7 @@ module WhopSDK
 
         # Type of onboarding the account has completed.
         #
-        # @see WhopSDK::Models::AccountUpdatedWebhookEvent::Data#onboarding_type
+        # @see WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data#onboarding_type
         module OnboardingType
           extend WhopSDK::Internal::Type::Enum
 
@@ -1602,7 +1623,7 @@ module WhopSDK
 
         # Account Open Graph image variant.
         #
-        # @see WhopSDK::Models::AccountUpdatedWebhookEvent::Data#opengraph_image_variant
+        # @see WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data#opengraph_image_variant
         module OpengraphImageVariant
           extend WhopSDK::Internal::Type::Enum
 
@@ -1614,7 +1635,7 @@ module WhopSDK
           #   @return [Array<Symbol>]
         end
 
-        # @see WhopSDK::Models::AccountUpdatedWebhookEvent::Data#owner
+        # @see WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data#owner
         class Owner < WhopSDK::Internal::Type::BaseModel
           # @!attribute id
           #   User ID, prefixed `user_`.
@@ -1632,8 +1653,9 @@ module WhopSDK
           #   Avatar wrapper; its `url` is always present, using a generated placeholder when
           #   the user set no picture.
           #
-          #   @return [WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Owner::ProfilePicture]
-          required :profile_picture, -> { WhopSDK::AccountUpdatedWebhookEvent::Data::Owner::ProfilePicture }
+          #   @return [WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Owner::ProfilePicture]
+          required :profile_picture,
+                   -> { WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Owner::ProfilePicture }
 
           # @!attribute username
           #   Public username.
@@ -1643,7 +1665,8 @@ module WhopSDK
 
           # @!method initialize(id:, name:, profile_picture:, username:)
           #   Some parameter documentations has been truncated, see
-          #   {WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Owner} for more details.
+          #   {WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Owner} for more
+          #   details.
           #
           #   The single user who owns the account, whose email is the `email` above. Distinct
           #   from the `owner` role on team members, which any number of them can hold.
@@ -1652,11 +1675,11 @@ module WhopSDK
           #
           #   @param name [String, nil] Display name.
           #
-          #   @param profile_picture [WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Owner::ProfilePicture] Avatar wrapper; its `url` is always present, using a generated placeholder when
+          #   @param profile_picture [WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Owner::ProfilePicture] Avatar wrapper; its `url` is always present, using a generated placeholder when
           #
           #   @param username [String] Public username.
 
-          # @see WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Owner#profile_picture
+          # @see WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Owner#profile_picture
           class ProfilePicture < WhopSDK::Internal::Type::BaseModel
             # @!attribute url
             #   Avatar image URL. Always present — a generated placeholder when the user set no
@@ -1667,8 +1690,8 @@ module WhopSDK
 
             # @!method initialize(url:)
             #   Some parameter documentations has been truncated, see
-            #   {WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Owner::ProfilePicture} for
-            #   more details.
+            #   {WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Owner::ProfilePicture}
+            #   for more details.
             #
             #   Avatar wrapper; its `url` is always present, using a generated placeholder when
             #   the user set no picture.
@@ -1677,7 +1700,7 @@ module WhopSDK
           end
         end
 
-        # @see WhopSDK::Models::AccountUpdatedWebhookEvent::Data#parent_account
+        # @see WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data#parent_account
         class ParentAccount < WhopSDK::Internal::Type::BaseModel
           # @!attribute id
           #   Account ID, prefixed `biz_`.
@@ -1709,14 +1732,14 @@ module WhopSDK
           #   `fixed_fee_usd`. Resolved with the connected account's own overrides winning
           #   over the platform default.
           #
-          #   @return [Hash{Symbol=>WhopSDK::Models::AccountUpdatedWebhookEvent::Data::ParentAccount::Fee}, nil]
+          #   @return [Hash{Symbol=>WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::ParentAccount::Fee}, nil]
           optional :fees,
-                   -> { WhopSDK::Internal::Type::HashOf[WhopSDK::AccountUpdatedWebhookEvent::Data::ParentAccount::Fee] }
+                   -> { WhopSDK::Internal::Type::HashOf[WhopSDK::AccountFinancingApprovedWebhookEvent::Data::ParentAccount::Fee] }
 
           # @!method initialize(id:, logo_url:, route:, title:, fees: nil)
           #   Some parameter documentations has been truncated, see
-          #   {WhopSDK::Models::AccountUpdatedWebhookEvent::Data::ParentAccount} for more
-          #   details.
+          #   {WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::ParentAccount} for
+          #   more details.
           #
           #   Parent account for connected accounts, or `null` for standalone accounts.
           #
@@ -1728,7 +1751,7 @@ module WhopSDK
           #
           #   @param title [String] Account display name.
           #
-          #   @param fees [Hash{Symbol=>WhopSDK::Models::AccountUpdatedWebhookEvent::Data::ParentAccount::Fee}] Markup rates this parent charges the connected account being read, keyed by fee
+          #   @param fees [Hash{Symbol=>WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::ParentAccount::Fee}] Markup rates this parent charges the connected account being read, keyed by fee
 
           class Fee < WhopSDK::Internal::Type::BaseModel
             # @!attribute fixed_fee_usd
@@ -1750,14 +1773,14 @@ module WhopSDK
           end
         end
 
-        # @see WhopSDK::Models::AccountUpdatedWebhookEvent::Data#payment_controls
+        # @see WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data#payment_controls
         class PaymentControls < WhopSDK::Internal::Type::BaseModel
           # @!attribute dispute_alert_auto_refund
           #   Automatic refund settings for pre-chargeback dispute alerts.
           #
-          #   @return [WhopSDK::Models::AccountUpdatedWebhookEvent::Data::PaymentControls::DisputeAlertAutoRefund]
+          #   @return [WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::DisputeAlertAutoRefund]
           required :dispute_alert_auto_refund,
-                   -> { WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls::DisputeAlertAutoRefund }
+                   -> { WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::DisputeAlertAutoRefund }
 
           # @!attribute dispute_alert_fee_usd
           #   Fee charged for each dispute alert in USD. `null` when unavailable.
@@ -1801,21 +1824,21 @@ module WhopSDK
           # @!attribute reserve
           #   Reserve currently applied to incoming payment volume.
           #
-          #   @return [WhopSDK::Models::AccountUpdatedWebhookEvent::Data::PaymentControls::Reserve]
-          required :reserve, -> { WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls::Reserve }
+          #   @return [WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::Reserve]
+          required :reserve, -> { WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::Reserve }
 
           # @!attribute resolution_center_auto_refund
           #   Automatic refund settings for resolution center cases.
           #
-          #   @return [WhopSDK::Models::AccountUpdatedWebhookEvent::Data::PaymentControls::ResolutionCenterAutoRefund]
+          #   @return [WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::ResolutionCenterAutoRefund]
           required :resolution_center_auto_refund,
-                   -> { WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls::ResolutionCenterAutoRefund }
+                   -> { WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::ResolutionCenterAutoRefund }
 
           # @!attribute restricted_payment_methods
           #
-          #   @return [Array<Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::PaymentControls::RestrictedPaymentMethod>]
+          #   @return [Array<Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::RestrictedPaymentMethod>]
           required :restricted_payment_methods,
-                   -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls::RestrictedPaymentMethod] }
+                   -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::RestrictedPaymentMethod] }
 
           # @!attribute undated_pending_reason
           #   Why pending funds without a settlement date aren't moving yet. `kyc_incomplete`
@@ -1824,30 +1847,30 @@ module WhopSDK
           #   become available. `null` when there's no reason to show — still clearing, or
           #   held for a reason that isn't named here.
           #
-          #   @return [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::PaymentControls::UndatedPendingReason, nil]
+          #   @return [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::UndatedPendingReason, nil]
           required :undated_pending_reason,
                    enum: -> {
-                     WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls::UndatedPendingReason
+                     WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::UndatedPendingReason
                    },
                    nil?: true
 
           # @!attribute withdrawal_schedule
           #   How the account's balance automatically withdraws.
           #
-          #   @return [WhopSDK::Models::AccountUpdatedWebhookEvent::Data::PaymentControls::WithdrawalSchedule]
+          #   @return [WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::WithdrawalSchedule]
           required :withdrawal_schedule,
-                   -> { WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls::WithdrawalSchedule }
+                   -> { WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::WithdrawalSchedule }
 
           # @!method initialize(dispute_alert_auto_refund:, dispute_alert_fee_usd:, enforce_3ds:, financing_disabled:, high_risk_processing_fee_percentage:, pending_auto_topup_fee_percentage:, pending_balance_delay_days:, reserve:, resolution_center_auto_refund:, restricted_payment_methods:, undated_pending_reason:, withdrawal_schedule:)
           #   Some parameter documentations has been truncated, see
-          #   {WhopSDK::Models::AccountUpdatedWebhookEvent::Data::PaymentControls} for more
-          #   details.
+          #   {WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::PaymentControls}
+          #   for more details.
           #
           #   Payment health controls currently applied to the account. Computed only on
           #   `retrieve` and `me` for callers with `company:balance:read` scope; `null`
           #   otherwise.
           #
-          #   @param dispute_alert_auto_refund [WhopSDK::Models::AccountUpdatedWebhookEvent::Data::PaymentControls::DisputeAlertAutoRefund] Automatic refund settings for pre-chargeback dispute alerts.
+          #   @param dispute_alert_auto_refund [WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::DisputeAlertAutoRefund] Automatic refund settings for pre-chargeback dispute alerts.
           #
           #   @param dispute_alert_fee_usd [Float, nil] Fee charged for each dispute alert in USD. `null` when unavailable.
           #
@@ -1861,17 +1884,17 @@ module WhopSDK
           #
           #   @param pending_balance_delay_days [Integer] Additional days payments remain pending before becoming available.
           #
-          #   @param reserve [WhopSDK::Models::AccountUpdatedWebhookEvent::Data::PaymentControls::Reserve] Reserve currently applied to incoming payment volume.
+          #   @param reserve [WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::Reserve] Reserve currently applied to incoming payment volume.
           #
-          #   @param resolution_center_auto_refund [WhopSDK::Models::AccountUpdatedWebhookEvent::Data::PaymentControls::ResolutionCenterAutoRefund] Automatic refund settings for resolution center cases.
+          #   @param resolution_center_auto_refund [WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::ResolutionCenterAutoRefund] Automatic refund settings for resolution center cases.
           #
-          #   @param restricted_payment_methods [Array<Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::PaymentControls::RestrictedPaymentMethod>]
+          #   @param restricted_payment_methods [Array<Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::RestrictedPaymentMethod>]
           #
-          #   @param undated_pending_reason [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::PaymentControls::UndatedPendingReason, nil] Why pending funds without a settlement date aren't moving yet. `kyc_incomplete`
+          #   @param undated_pending_reason [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::UndatedPendingReason, nil] Why pending funds without a settlement date aren't moving yet. `kyc_incomplete`
           #
-          #   @param withdrawal_schedule [WhopSDK::Models::AccountUpdatedWebhookEvent::Data::PaymentControls::WithdrawalSchedule] How the account's balance automatically withdraws.
+          #   @param withdrawal_schedule [WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::WithdrawalSchedule] How the account's balance automatically withdraws.
 
-          # @see WhopSDK::Models::AccountUpdatedWebhookEvent::Data::PaymentControls#dispute_alert_auto_refund
+          # @see WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::PaymentControls#dispute_alert_auto_refund
           class DisputeAlertAutoRefund < WhopSDK::Internal::Type::BaseModel
             # @!attribute locked
             #   Whether the account owner is prevented from changing this threshold.
@@ -1888,7 +1911,7 @@ module WhopSDK
 
             # @!method initialize(locked:, threshold_usd:)
             #   Some parameter documentations has been truncated, see
-            #   {WhopSDK::Models::AccountUpdatedWebhookEvent::Data::PaymentControls::DisputeAlertAutoRefund}
+            #   {WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::DisputeAlertAutoRefund}
             #   for more details.
             #
             #   Automatic refund settings for pre-chargeback dispute alerts.
@@ -1898,7 +1921,7 @@ module WhopSDK
             #   @param threshold_usd [Float, nil] Maximum dispute alert amount automatically refunded in USD. `null` when automati
           end
 
-          # @see WhopSDK::Models::AccountUpdatedWebhookEvent::Data::PaymentControls#reserve
+          # @see WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::PaymentControls#reserve
           class Reserve < WhopSDK::Internal::Type::BaseModel
             # @!attribute hold_period_days
             #   Number of days reserved funds are held before release.
@@ -1915,7 +1938,7 @@ module WhopSDK
 
             # @!method initialize(hold_period_days:, percentage:)
             #   Some parameter documentations has been truncated, see
-            #   {WhopSDK::Models::AccountUpdatedWebhookEvent::Data::PaymentControls::Reserve}
+            #   {WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::Reserve}
             #   for more details.
             #
             #   Reserve currently applied to incoming payment volume.
@@ -1925,7 +1948,7 @@ module WhopSDK
             #   @param percentage [Float, nil] Percentage of incoming payment volume held in reserve. `null` when no reserve is
           end
 
-          # @see WhopSDK::Models::AccountUpdatedWebhookEvent::Data::PaymentControls#resolution_center_auto_refund
+          # @see WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::PaymentControls#resolution_center_auto_refund
           class ResolutionCenterAutoRefund < WhopSDK::Internal::Type::BaseModel
             # @!attribute card_threshold_usd
             #   Maximum card-funded resolution center case amount automatically refunded in USD.
@@ -1956,7 +1979,7 @@ module WhopSDK
 
             # @!method initialize(card_threshold_usd:, financing_threshold_usd:, locked:, paypal_threshold_usd:)
             #   Some parameter documentations has been truncated, see
-            #   {WhopSDK::Models::AccountUpdatedWebhookEvent::Data::PaymentControls::ResolutionCenterAutoRefund}
+            #   {WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::ResolutionCenterAutoRefund}
             #   for more details.
             #
             #   Automatic refund settings for resolution center cases.
@@ -1990,7 +2013,7 @@ module WhopSDK
           # become available. `null` when there's no reason to show — still clearing, or
           # held for a reason that isn't named here.
           #
-          # @see WhopSDK::Models::AccountUpdatedWebhookEvent::Data::PaymentControls#undated_pending_reason
+          # @see WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::PaymentControls#undated_pending_reason
           module UndatedPendingReason
             extend WhopSDK::Internal::Type::Enum
 
@@ -2002,7 +2025,7 @@ module WhopSDK
             #   @return [Array<Symbol>]
           end
 
-          # @see WhopSDK::Models::AccountUpdatedWebhookEvent::Data::PaymentControls#withdrawal_schedule
+          # @see WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::PaymentControls#withdrawal_schedule
           class WithdrawalSchedule < WhopSDK::Internal::Type::BaseModel
             # @!attribute day
             #   Day the automatic withdrawal runs on: 0-6 (Sunday-Saturday) for `weekly`, 1-31
@@ -2014,9 +2037,9 @@ module WhopSDK
             # @!attribute frequency
             #   How often the account's balance automatically withdraws.
             #
-            #   @return [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::PaymentControls::WithdrawalSchedule::Frequency]
+            #   @return [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::WithdrawalSchedule::Frequency]
             required :frequency,
-                     enum: -> { WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls::WithdrawalSchedule::Frequency }
+                     enum: -> { WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::WithdrawalSchedule::Frequency }
 
             # @!attribute next_payout_date
             #   Next date the automatic withdrawal is scheduled to run, as an ISO 8601 date.
@@ -2027,20 +2050,20 @@ module WhopSDK
 
             # @!method initialize(day:, frequency:, next_payout_date:)
             #   Some parameter documentations has been truncated, see
-            #   {WhopSDK::Models::AccountUpdatedWebhookEvent::Data::PaymentControls::WithdrawalSchedule}
+            #   {WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::WithdrawalSchedule}
             #   for more details.
             #
             #   How the account's balance automatically withdraws.
             #
             #   @param day [Integer, nil] Day the automatic withdrawal runs on: 0-6 (Sunday-Saturday) for `weekly`, 1-31 f
             #
-            #   @param frequency [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::PaymentControls::WithdrawalSchedule::Frequency] How often the account's balance automatically withdraws.
+            #   @param frequency [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::WithdrawalSchedule::Frequency] How often the account's balance automatically withdraws.
             #
             #   @param next_payout_date [String, nil] Next date the automatic withdrawal is scheduled to run, as an ISO 8601 date. `nu
 
             # How often the account's balance automatically withdraws.
             #
-            # @see WhopSDK::Models::AccountUpdatedWebhookEvent::Data::PaymentControls::WithdrawalSchedule#frequency
+            # @see WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::WithdrawalSchedule#frequency
             module Frequency
               extend WhopSDK::Internal::Type::Enum
 
@@ -2055,7 +2078,7 @@ module WhopSDK
           end
         end
 
-        # @see WhopSDK::Models::AccountUpdatedWebhookEvent::Data#privacy_policy
+        # @see WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data#privacy_policy
         class PrivacyPolicy < WhopSDK::Internal::Type::BaseModel
           # @!attribute id
           #   The file's ID, prefixed `file_`.
@@ -2096,9 +2119,9 @@ module WhopSDK
           # @!attribute upload_status
           #   Where the file is in its upload lifecycle.
           #
-          #   @return [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::PrivacyPolicy::UploadStatus]
+          #   @return [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::PrivacyPolicy::UploadStatus]
           required :upload_status,
-                   enum: -> { WhopSDK::AccountUpdatedWebhookEvent::Data::PrivacyPolicy::UploadStatus }
+                   enum: -> { WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PrivacyPolicy::UploadStatus }
 
           # @!attribute url
           #   A URL to download the file: a permanent CDN URL for public files, a signed
@@ -2111,8 +2134,9 @@ module WhopSDK
           #   `public` files are served via an unsigned CDN URL; `private` files via a signed,
           #   expiring URL.
           #
-          #   @return [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::PrivacyPolicy::Visibility]
-          required :visibility, enum: -> { WhopSDK::AccountUpdatedWebhookEvent::Data::PrivacyPolicy::Visibility }
+          #   @return [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::PrivacyPolicy::Visibility]
+          required :visibility,
+                   enum: -> { WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PrivacyPolicy::Visibility }
 
           # @!attribute multipart_chunk_size
           #   The byte size each part (except the last) must be. Present only on create, and
@@ -2130,10 +2154,10 @@ module WhopSDK
 
           # @!attribute multipart_upload_urls
           #
-          #   @return [Array<WhopSDK::Models::AccountUpdatedWebhookEvent::Data::PrivacyPolicy::MultipartUploadURL>, nil]
+          #   @return [Array<WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::PrivacyPolicy::MultipartUploadURL>, nil]
           optional :multipart_upload_urls,
                    -> {
-                     WhopSDK::Internal::Type::ArrayOf[WhopSDK::AccountUpdatedWebhookEvent::Data::PrivacyPolicy::MultipartUploadURL]
+                     WhopSDK::Internal::Type::ArrayOf[WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PrivacyPolicy::MultipartUploadURL]
                    },
                    nil?: true
 
@@ -2152,8 +2176,8 @@ module WhopSDK
 
           # @!method initialize(id:, content_type:, created_at:, filename:, object:, size:, upload_status:, url:, visibility:, multipart_chunk_size: nil, multipart_upload_id: nil, multipart_upload_urls: nil, upload_headers: nil, upload_url: nil)
           #   Some parameter documentations has been truncated, see
-          #   {WhopSDK::Models::AccountUpdatedWebhookEvent::Data::PrivacyPolicy} for more
-          #   details.
+          #   {WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::PrivacyPolicy} for
+          #   more details.
           #
           #   The account's privacy policy document, or `null` if they have not published one.
           #
@@ -2169,17 +2193,17 @@ module WhopSDK
           #
           #   @param size [Integer, nil] The file size in bytes. `null` until the upload has finished.
           #
-          #   @param upload_status [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::PrivacyPolicy::UploadStatus] Where the file is in its upload lifecycle.
+          #   @param upload_status [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::PrivacyPolicy::UploadStatus] Where the file is in its upload lifecycle.
           #
           #   @param url [String, nil] A URL to download the file: a permanent CDN URL for public files, a signed expir
           #
-          #   @param visibility [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::PrivacyPolicy::Visibility] `public` files are served via an unsigned CDN URL; `private` files via a signed,
+          #   @param visibility [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::PrivacyPolicy::Visibility] `public` files are served via an unsigned CDN URL; `private` files via a signed,
           #
           #   @param multipart_chunk_size [Integer, nil] The byte size each part (except the last) must be. Present only on create, and o
           #
           #   @param multipart_upload_id [String, nil] The ID of the multipart upload, passed back to `complete`. Present only on creat
           #
-          #   @param multipart_upload_urls [Array<WhopSDK::Models::AccountUpdatedWebhookEvent::Data::PrivacyPolicy::MultipartUploadURL>, nil]
+          #   @param multipart_upload_urls [Array<WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::PrivacyPolicy::MultipartUploadURL>, nil]
           #
           #   @param upload_headers [Object] Headers to send with the upload PUT. Present only on create.
           #
@@ -2187,7 +2211,7 @@ module WhopSDK
 
           # Where the file is in its upload lifecycle.
           #
-          # @see WhopSDK::Models::AccountUpdatedWebhookEvent::Data::PrivacyPolicy#upload_status
+          # @see WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::PrivacyPolicy#upload_status
           module UploadStatus
             extend WhopSDK::Internal::Type::Enum
 
@@ -2203,7 +2227,7 @@ module WhopSDK
           # `public` files are served via an unsigned CDN URL; `private` files via a signed,
           # expiring URL.
           #
-          # @see WhopSDK::Models::AccountUpdatedWebhookEvent::Data::PrivacyPolicy#visibility
+          # @see WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::PrivacyPolicy#visibility
           module Visibility
             extend WhopSDK::Internal::Type::Enum
 
@@ -2242,8 +2266,9 @@ module WhopSDK
           #   The recommendation; new values may be added, so handle unknown actions
           #   gracefully
           #
-          #   @return [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::RecommendedAction::Action]
-          required :action, enum: -> { WhopSDK::AccountUpdatedWebhookEvent::Data::RecommendedAction::Action }
+          #   @return [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::RecommendedAction::Action]
+          required :action,
+                   enum: -> { WhopSDK::AccountFinancingApprovedWebhookEvent::Data::RecommendedAction::Action }
 
           # @!attribute blocked_capabilities
           #
@@ -2289,8 +2314,9 @@ module WhopSDK
           # @!attribute status
           #   Always optional — never blocking
           #
-          #   @return [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::RecommendedAction::Status]
-          required :status, enum: -> { WhopSDK::AccountUpdatedWebhookEvent::Data::RecommendedAction::Status }
+          #   @return [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::RecommendedAction::Status]
+          required :status,
+                   enum: -> { WhopSDK::AccountFinancingApprovedWebhookEvent::Data::RecommendedAction::Status }
 
           # @!attribute title
           #   Headline for the recommendation
@@ -2300,15 +2326,15 @@ module WhopSDK
 
           # @!method initialize(action:, blocked_capabilities:, cta:, cta_label:, description:, icon_url:, impact_score:, reasoning:, status:, title:)
           #   Some parameter documentations has been truncated, see
-          #   {WhopSDK::Models::AccountUpdatedWebhookEvent::Data::RecommendedAction} for more
-          #   details.
+          #   {WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::RecommendedAction}
+          #   for more details.
           #
           #   Deprecated: use the `GET /economic_intelligence?account_id={account_id}`
           #   endpoint instead. Optional actions that unlock capabilities or grow the account,
           #   same shape as `required_actions`. Computed only on `retrieve` and `me`; `null`
           #   otherwise.
           #
-          #   @param action [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::RecommendedAction::Action] The recommendation; new values may be added, so handle unknown actions gracefull
+          #   @param action [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::RecommendedAction::Action] The recommendation; new values may be added, so handle unknown actions gracefull
           #
           #   @param blocked_capabilities [Array<String>]
           #
@@ -2324,14 +2350,14 @@ module WhopSDK
           #
           #   @param reasoning [String, nil] Why this action was recommended, or `null`
           #
-          #   @param status [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::RecommendedAction::Status] Always optional — never blocking
+          #   @param status [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::RecommendedAction::Status] Always optional — never blocking
           #
           #   @param title [String] Headline for the recommendation
 
           # The recommendation; new values may be added, so handle unknown actions
           # gracefully
           #
-          # @see WhopSDK::Models::AccountUpdatedWebhookEvent::Data::RecommendedAction#action
+          # @see WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::RecommendedAction#action
           module Action
             extend WhopSDK::Internal::Type::Enum
 
@@ -2362,7 +2388,7 @@ module WhopSDK
 
           # Always optional — never blocking
           #
-          # @see WhopSDK::Models::AccountUpdatedWebhookEvent::Data::RecommendedAction#status
+          # @see WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::RecommendedAction#status
           module Status
             extend WhopSDK::Internal::Type::Enum
 
@@ -2378,8 +2404,8 @@ module WhopSDK
           #   What the holder must do; new values may be added, so handle unknown actions
           #   gracefully
           #
-          #   @return [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::RequiredAction::Action]
-          required :action, enum: -> { WhopSDK::AccountUpdatedWebhookEvent::Data::RequiredAction::Action }
+          #   @return [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::RequiredAction::Action]
+          required :action, enum: -> { WhopSDK::AccountFinancingApprovedWebhookEvent::Data::RequiredAction::Action }
 
           # @!attribute blocked_capabilities
           #
@@ -2413,8 +2439,8 @@ module WhopSDK
           # @!attribute status
           #   required (act now) or pending (under review)
           #
-          #   @return [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::RequiredAction::Status]
-          required :status, enum: -> { WhopSDK::AccountUpdatedWebhookEvent::Data::RequiredAction::Status }
+          #   @return [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::RequiredAction::Status]
+          required :status, enum: -> { WhopSDK::AccountFinancingApprovedWebhookEvent::Data::RequiredAction::Status }
 
           # @!attribute title
           #   Headline for the action
@@ -2424,14 +2450,14 @@ module WhopSDK
 
           # @!method initialize(action:, blocked_capabilities:, cta:, cta_label:, description:, icon_url:, status:, title:)
           #   Some parameter documentations has been truncated, see
-          #   {WhopSDK::Models::AccountUpdatedWebhookEvent::Data::RequiredAction} for more
-          #   details.
+          #   {WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::RequiredAction}
+          #   for more details.
           #
           #   Actions the account owner must take to unblock capabilities like payouts and
           #   card spend, ordered by display priority. Computed only on `retrieve` and `me`
           #   for callers with `company:balance:read` scope; `null` otherwise.
           #
-          #   @param action [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::RequiredAction::Action] What the holder must do; new values may be added, so handle unknown actions grac
+          #   @param action [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::RequiredAction::Action] What the holder must do; new values may be added, so handle unknown actions grac
           #
           #   @param blocked_capabilities [Array<String>]
           #
@@ -2443,14 +2469,14 @@ module WhopSDK
           #
           #   @param icon_url [String, nil] The URL of the action's illustration icon, or null if it has none
           #
-          #   @param status [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::RequiredAction::Status] required (act now) or pending (under review)
+          #   @param status [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::RequiredAction::Status] required (act now) or pending (under review)
           #
           #   @param title [String] Headline for the action
 
           # What the holder must do; new values may be added, so handle unknown actions
           # gracefully
           #
-          # @see WhopSDK::Models::AccountUpdatedWebhookEvent::Data::RequiredAction#action
+          # @see WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::RequiredAction#action
           module Action
             extend WhopSDK::Internal::Type::Enum
 
@@ -2474,7 +2500,7 @@ module WhopSDK
 
           # required (act now) or pending (under review)
           #
-          # @see WhopSDK::Models::AccountUpdatedWebhookEvent::Data::RequiredAction#status
+          # @see WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::RequiredAction#status
           module Status
             extend WhopSDK::Internal::Type::Enum
 
@@ -2486,7 +2512,7 @@ module WhopSDK
           end
         end
 
-        # @see WhopSDK::Models::AccountUpdatedWebhookEvent::Data#return_policy
+        # @see WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data#return_policy
         class ReturnPolicy < WhopSDK::Internal::Type::BaseModel
           # @!attribute id
           #   The file's ID, prefixed `file_`.
@@ -2527,9 +2553,9 @@ module WhopSDK
           # @!attribute upload_status
           #   Where the file is in its upload lifecycle.
           #
-          #   @return [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::ReturnPolicy::UploadStatus]
+          #   @return [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::ReturnPolicy::UploadStatus]
           required :upload_status,
-                   enum: -> { WhopSDK::AccountUpdatedWebhookEvent::Data::ReturnPolicy::UploadStatus }
+                   enum: -> { WhopSDK::AccountFinancingApprovedWebhookEvent::Data::ReturnPolicy::UploadStatus }
 
           # @!attribute url
           #   A URL to download the file: a permanent CDN URL for public files, a signed
@@ -2542,8 +2568,9 @@ module WhopSDK
           #   `public` files are served via an unsigned CDN URL; `private` files via a signed,
           #   expiring URL.
           #
-          #   @return [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::ReturnPolicy::Visibility]
-          required :visibility, enum: -> { WhopSDK::AccountUpdatedWebhookEvent::Data::ReturnPolicy::Visibility }
+          #   @return [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::ReturnPolicy::Visibility]
+          required :visibility,
+                   enum: -> { WhopSDK::AccountFinancingApprovedWebhookEvent::Data::ReturnPolicy::Visibility }
 
           # @!attribute multipart_chunk_size
           #   The byte size each part (except the last) must be. Present only on create, and
@@ -2561,10 +2588,10 @@ module WhopSDK
 
           # @!attribute multipart_upload_urls
           #
-          #   @return [Array<WhopSDK::Models::AccountUpdatedWebhookEvent::Data::ReturnPolicy::MultipartUploadURL>, nil]
+          #   @return [Array<WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::ReturnPolicy::MultipartUploadURL>, nil]
           optional :multipart_upload_urls,
                    -> {
-                     WhopSDK::Internal::Type::ArrayOf[WhopSDK::AccountUpdatedWebhookEvent::Data::ReturnPolicy::MultipartUploadURL]
+                     WhopSDK::Internal::Type::ArrayOf[WhopSDK::AccountFinancingApprovedWebhookEvent::Data::ReturnPolicy::MultipartUploadURL]
                    },
                    nil?: true
 
@@ -2583,8 +2610,8 @@ module WhopSDK
 
           # @!method initialize(id:, content_type:, created_at:, filename:, object:, size:, upload_status:, url:, visibility:, multipart_chunk_size: nil, multipart_upload_id: nil, multipart_upload_urls: nil, upload_headers: nil, upload_url: nil)
           #   Some parameter documentations has been truncated, see
-          #   {WhopSDK::Models::AccountUpdatedWebhookEvent::Data::ReturnPolicy} for more
-          #   details.
+          #   {WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::ReturnPolicy} for
+          #   more details.
           #
           #   The account's return policy document, or `null` if they have not published one.
           #
@@ -2600,17 +2627,17 @@ module WhopSDK
           #
           #   @param size [Integer, nil] The file size in bytes. `null` until the upload has finished.
           #
-          #   @param upload_status [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::ReturnPolicy::UploadStatus] Where the file is in its upload lifecycle.
+          #   @param upload_status [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::ReturnPolicy::UploadStatus] Where the file is in its upload lifecycle.
           #
           #   @param url [String, nil] A URL to download the file: a permanent CDN URL for public files, a signed expir
           #
-          #   @param visibility [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::ReturnPolicy::Visibility] `public` files are served via an unsigned CDN URL; `private` files via a signed,
+          #   @param visibility [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::ReturnPolicy::Visibility] `public` files are served via an unsigned CDN URL; `private` files via a signed,
           #
           #   @param multipart_chunk_size [Integer, nil] The byte size each part (except the last) must be. Present only on create, and o
           #
           #   @param multipart_upload_id [String, nil] The ID of the multipart upload, passed back to `complete`. Present only on creat
           #
-          #   @param multipart_upload_urls [Array<WhopSDK::Models::AccountUpdatedWebhookEvent::Data::ReturnPolicy::MultipartUploadURL>, nil]
+          #   @param multipart_upload_urls [Array<WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::ReturnPolicy::MultipartUploadURL>, nil]
           #
           #   @param upload_headers [Object] Headers to send with the upload PUT. Present only on create.
           #
@@ -2618,7 +2645,7 @@ module WhopSDK
 
           # Where the file is in its upload lifecycle.
           #
-          # @see WhopSDK::Models::AccountUpdatedWebhookEvent::Data::ReturnPolicy#upload_status
+          # @see WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::ReturnPolicy#upload_status
           module UploadStatus
             extend WhopSDK::Internal::Type::Enum
 
@@ -2634,7 +2661,7 @@ module WhopSDK
           # `public` files are served via an unsigned CDN URL; `private` files via a signed,
           # expiring URL.
           #
-          # @see WhopSDK::Models::AccountUpdatedWebhookEvent::Data::ReturnPolicy#visibility
+          # @see WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::ReturnPolicy#visibility
           module Visibility
             extend WhopSDK::Internal::Type::Enum
 
@@ -2690,8 +2717,8 @@ module WhopSDK
           # @!attribute website
           #   The social platform for this link
           #
-          #   @return [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::SocialLink::Website]
-          required :website, enum: -> { WhopSDK::AccountUpdatedWebhookEvent::Data::SocialLink::Website }
+          #   @return [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::SocialLink::Website]
+          required :website, enum: -> { WhopSDK::AccountFinancingApprovedWebhookEvent::Data::SocialLink::Website }
 
           # @!method initialize(id:, title:, url:, website:)
           #   Account social links.
@@ -2702,11 +2729,11 @@ module WhopSDK
           #
           #   @param url [String] The social link URL
           #
-          #   @param website [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::SocialLink::Website] The social platform for this link
+          #   @param website [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::SocialLink::Website] The social platform for this link
 
           # The social platform for this link
           #
-          # @see WhopSDK::Models::AccountUpdatedWebhookEvent::Data::SocialLink#website
+          # @see WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::SocialLink#website
           module Website
             extend WhopSDK::Internal::Type::Enum
 
@@ -2725,30 +2752,34 @@ module WhopSDK
           end
         end
 
-        # @see WhopSDK::Models::AccountUpdatedWebhookEvent::Data#store_page_config
+        # @see WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data#store_page_config
         class StorePageConfig < WhopSDK::Internal::Type::BaseModel
           # @!attribute accent_color
           #   Accent color used on the account store page.
           #
-          #   @return [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::StorePageConfig::AccentColor, nil]
+          #   @return [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::StorePageConfig::AccentColor, nil]
           required :accent_color,
-                   enum: -> { WhopSDK::AccountUpdatedWebhookEvent::Data::StorePageConfig::AccentColor },
+                   enum: -> {
+                     WhopSDK::AccountFinancingApprovedWebhookEvent::Data::StorePageConfig::AccentColor
+                   },
                    nil?: true
 
           # @!attribute layout
           #   Layout used on the account store page.
           #
-          #   @return [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::StorePageConfig::Layout, nil]
+          #   @return [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::StorePageConfig::Layout, nil]
           required :layout,
-                   enum: -> { WhopSDK::AccountUpdatedWebhookEvent::Data::StorePageConfig::Layout },
+                   enum: -> { WhopSDK::AccountFinancingApprovedWebhookEvent::Data::StorePageConfig::Layout },
                    nil?: true
 
           # @!attribute profile_variant
           #   Profile presentation used on the account store page.
           #
-          #   @return [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::StorePageConfig::ProfileVariant, nil]
+          #   @return [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::StorePageConfig::ProfileVariant, nil]
           required :profile_variant,
-                   enum: -> { WhopSDK::AccountUpdatedWebhookEvent::Data::StorePageConfig::ProfileVariant },
+                   enum: -> {
+                     WhopSDK::AccountFinancingApprovedWebhookEvent::Data::StorePageConfig::ProfileVariant
+                   },
                    nil?: true
 
           # @!attribute whop_affiliate_link
@@ -2760,17 +2791,17 @@ module WhopSDK
           # @!method initialize(accent_color:, layout:, profile_variant:, whop_affiliate_link:)
           #   Account store page display configuration.
           #
-          #   @param accent_color [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::StorePageConfig::AccentColor, nil] Accent color used on the account store page.
+          #   @param accent_color [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::StorePageConfig::AccentColor, nil] Accent color used on the account store page.
           #
-          #   @param layout [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::StorePageConfig::Layout, nil] Layout used on the account store page.
+          #   @param layout [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::StorePageConfig::Layout, nil] Layout used on the account store page.
           #
-          #   @param profile_variant [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::StorePageConfig::ProfileVariant, nil] Profile presentation used on the account store page.
+          #   @param profile_variant [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::StorePageConfig::ProfileVariant, nil] Profile presentation used on the account store page.
           #
           #   @param whop_affiliate_link [Boolean] Whether the account store page shows a Whop affiliate link.
 
           # Accent color used on the account store page.
           #
-          # @see WhopSDK::Models::AccountUpdatedWebhookEvent::Data::StorePageConfig#accent_color
+          # @see WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::StorePageConfig#accent_color
           module AccentColor
             extend WhopSDK::Internal::Type::Enum
 
@@ -2809,7 +2840,7 @@ module WhopSDK
 
           # Layout used on the account store page.
           #
-          # @see WhopSDK::Models::AccountUpdatedWebhookEvent::Data::StorePageConfig#layout
+          # @see WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::StorePageConfig#layout
           module Layout
             extend WhopSDK::Internal::Type::Enum
 
@@ -2822,7 +2853,7 @@ module WhopSDK
 
           # Profile presentation used on the account store page.
           #
-          # @see WhopSDK::Models::AccountUpdatedWebhookEvent::Data::StorePageConfig#profile_variant
+          # @see WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::StorePageConfig#profile_variant
           module ProfileVariant
             extend WhopSDK::Internal::Type::Enum
 
@@ -2844,8 +2875,9 @@ module WhopSDK
           # @!attribute tax_id_type
           #   Tax ID type.
           #
-          #   @return [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType]
-          required :tax_id_type, enum: -> { WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType }
+          #   @return [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType]
+          required :tax_id_type,
+                   enum: -> { WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType }
 
           # @!attribute tax_id_value
           #   Tax ID value.
@@ -2858,13 +2890,13 @@ module WhopSDK
           #
           #   @param id [String] Tax identifier ID.
           #
-          #   @param tax_id_type [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType] Tax ID type.
+          #   @param tax_id_type [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType] Tax ID type.
           #
           #   @param tax_id_value [String] Tax ID value.
 
           # Tax ID type.
           #
-          # @see WhopSDK::Models::AccountUpdatedWebhookEvent::Data::TaxIdentifier#tax_id_type
+          # @see WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier#tax_id_type
           module TaxIDType
             extend WhopSDK::Internal::Type::Enum
 
@@ -2992,7 +3024,7 @@ module WhopSDK
         # (neither; the account is responsible). `null` until the account enrolls in the
         # Whop tax service.
         #
-        # @see WhopSDK::Models::AccountUpdatedWebhookEvent::Data#tax_remitted_by
+        # @see WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data#tax_remitted_by
         module TaxRemittedBy
           extend WhopSDK::Internal::Type::Enum
 
@@ -3008,7 +3040,7 @@ module WhopSDK
         # listed price) or `exclusive` (tax added on top). Defaults to `exclusive` when
         # unset; `null` only when the account has no payment connection.
         #
-        # @see WhopSDK::Models::AccountUpdatedWebhookEvent::Data#tax_type
+        # @see WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data#tax_type
         module TaxType
           extend WhopSDK::Internal::Type::Enum
 
@@ -3019,7 +3051,7 @@ module WhopSDK
           #   @return [Array<Symbol>]
         end
 
-        # @see WhopSDK::Models::AccountUpdatedWebhookEvent::Data#terms_of_service
+        # @see WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data#terms_of_service
         class TermsOfService < WhopSDK::Internal::Type::BaseModel
           # @!attribute id
           #   The file's ID, prefixed `file_`.
@@ -3060,9 +3092,9 @@ module WhopSDK
           # @!attribute upload_status
           #   Where the file is in its upload lifecycle.
           #
-          #   @return [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::TermsOfService::UploadStatus]
+          #   @return [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::TermsOfService::UploadStatus]
           required :upload_status,
-                   enum: -> { WhopSDK::AccountUpdatedWebhookEvent::Data::TermsOfService::UploadStatus }
+                   enum: -> { WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TermsOfService::UploadStatus }
 
           # @!attribute url
           #   A URL to download the file: a permanent CDN URL for public files, a signed
@@ -3075,8 +3107,9 @@ module WhopSDK
           #   `public` files are served via an unsigned CDN URL; `private` files via a signed,
           #   expiring URL.
           #
-          #   @return [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::TermsOfService::Visibility]
-          required :visibility, enum: -> { WhopSDK::AccountUpdatedWebhookEvent::Data::TermsOfService::Visibility }
+          #   @return [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::TermsOfService::Visibility]
+          required :visibility,
+                   enum: -> { WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TermsOfService::Visibility }
 
           # @!attribute multipart_chunk_size
           #   The byte size each part (except the last) must be. Present only on create, and
@@ -3094,10 +3127,10 @@ module WhopSDK
 
           # @!attribute multipart_upload_urls
           #
-          #   @return [Array<WhopSDK::Models::AccountUpdatedWebhookEvent::Data::TermsOfService::MultipartUploadURL>, nil]
+          #   @return [Array<WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::TermsOfService::MultipartUploadURL>, nil]
           optional :multipart_upload_urls,
                    -> {
-                     WhopSDK::Internal::Type::ArrayOf[WhopSDK::AccountUpdatedWebhookEvent::Data::TermsOfService::MultipartUploadURL]
+                     WhopSDK::Internal::Type::ArrayOf[WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TermsOfService::MultipartUploadURL]
                    },
                    nil?: true
 
@@ -3116,8 +3149,8 @@ module WhopSDK
 
           # @!method initialize(id:, content_type:, created_at:, filename:, object:, size:, upload_status:, url:, visibility:, multipart_chunk_size: nil, multipart_upload_id: nil, multipart_upload_urls: nil, upload_headers: nil, upload_url: nil)
           #   Some parameter documentations has been truncated, see
-          #   {WhopSDK::Models::AccountUpdatedWebhookEvent::Data::TermsOfService} for more
-          #   details.
+          #   {WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::TermsOfService}
+          #   for more details.
           #
           #   The account's terms of service document, or `null` if they have not published
           #   one.
@@ -3134,17 +3167,17 @@ module WhopSDK
           #
           #   @param size [Integer, nil] The file size in bytes. `null` until the upload has finished.
           #
-          #   @param upload_status [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::TermsOfService::UploadStatus] Where the file is in its upload lifecycle.
+          #   @param upload_status [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::TermsOfService::UploadStatus] Where the file is in its upload lifecycle.
           #
           #   @param url [String, nil] A URL to download the file: a permanent CDN URL for public files, a signed expir
           #
-          #   @param visibility [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::TermsOfService::Visibility] `public` files are served via an unsigned CDN URL; `private` files via a signed,
+          #   @param visibility [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::TermsOfService::Visibility] `public` files are served via an unsigned CDN URL; `private` files via a signed,
           #
           #   @param multipart_chunk_size [Integer, nil] The byte size each part (except the last) must be. Present only on create, and o
           #
           #   @param multipart_upload_id [String, nil] The ID of the multipart upload, passed back to `complete`. Present only on creat
           #
-          #   @param multipart_upload_urls [Array<WhopSDK::Models::AccountUpdatedWebhookEvent::Data::TermsOfService::MultipartUploadURL>, nil]
+          #   @param multipart_upload_urls [Array<WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::TermsOfService::MultipartUploadURL>, nil]
           #
           #   @param upload_headers [Object] Headers to send with the upload PUT. Present only on create.
           #
@@ -3152,7 +3185,7 @@ module WhopSDK
 
           # Where the file is in its upload lifecycle.
           #
-          # @see WhopSDK::Models::AccountUpdatedWebhookEvent::Data::TermsOfService#upload_status
+          # @see WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::TermsOfService#upload_status
           module UploadStatus
             extend WhopSDK::Internal::Type::Enum
 
@@ -3168,7 +3201,7 @@ module WhopSDK
           # `public` files are served via an unsigned CDN URL; `private` files via a signed,
           # expiring URL.
           #
-          # @see WhopSDK::Models::AccountUpdatedWebhookEvent::Data::TermsOfService#visibility
+          # @see WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::TermsOfService#visibility
           module Visibility
             extend WhopSDK::Internal::Type::Enum
 
@@ -3205,7 +3238,7 @@ module WhopSDK
         # Account-level 3D Secure behavior. `mandate_challenge` requires cardholder
         # verification on supported card payments; `null` uses the standard checkout flow.
         #
-        # @see WhopSDK::Models::AccountUpdatedWebhookEvent::Data#three_ds_level
+        # @see WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data#three_ds_level
         module ThreeDSLevel
           extend WhopSDK::Internal::Type::Enum
 
@@ -3215,7 +3248,7 @@ module WhopSDK
           #   @return [Array<Symbol>]
         end
 
-        # @see WhopSDK::Models::AccountUpdatedWebhookEvent::Data#wallet
+        # @see WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data#wallet
         class Wallet < WhopSDK::Internal::Type::BaseModel
           # @!attribute id
           #   Wallet ID, prefixed `wallet_`.
@@ -3232,8 +3265,8 @@ module WhopSDK
           # @!attribute network
           #   The blockchain network the wallet lives on
           #
-          #   @return [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Wallet::Network]
-          required :network, enum: -> { WhopSDK::AccountUpdatedWebhookEvent::Data::Wallet::Network }
+          #   @return [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Wallet::Network]
+          required :network, enum: -> { WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Wallet::Network }
 
           # @!method initialize(id:, address:, network:)
           #   Account primary crypto wallet, or `null` if none has been provisioned.
@@ -3242,11 +3275,11 @@ module WhopSDK
           #
           #   @param address [String] The on-chain address of the wallet
           #
-          #   @param network [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Wallet::Network] The blockchain network the wallet lives on
+          #   @param network [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Wallet::Network] The blockchain network the wallet lives on
 
           # The blockchain network the wallet lives on
           #
-          # @see WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Wallet#network
+          # @see WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Wallet#network
           module Network
             extend WhopSDK::Internal::Type::Enum
 

@@ -67,6 +67,13 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::Currency]
       required :currency, enum: -> { WhopSDK::Currency }
 
+      # @!attribute customer_email
+      #   The buyer's email address. Null without `member:email:read` on the account or
+      #   when the buyer has no assigned email.
+      #
+      #   @return [String, nil]
+      required :customer_email, String, nil?: true
+
       # @!attribute customer_phone
       #   The phone number the buyer gave at checkout, when one was collected.
       #
@@ -144,7 +151,8 @@ module WhopSDK
 
       # @!attribute payment_instrument
       #   The instrument shaped for display: a buyer-facing name, the standard icon set,
-      #   and the card's brand and last four when it was a card.
+      #   and the card's brand, last four and issuer identification number when it was a
+      #   card.
       #
       #   @return [WhopSDK::Models::Payment::PaymentInstrument, nil]
       required :payment_instrument, -> { WhopSDK::Payment::PaymentInstrument }, nil?: true
@@ -174,6 +182,13 @@ module WhopSDK
       #   @return [String, nil]
       required :plan_id, String, nil?: true
 
+      # @!attribute presentment_total
+      #   The account-facing total in the currency presented to the buyer, before
+      #   conversion into the settlement currency. Excludes buyer fees.
+      #
+      #   @return [WhopSDK::Models::Payment::PresentmentTotal, nil]
+      required :presentment_total, -> { WhopSDK::Payment::PresentmentTotal }, nil?: true
+
       # @!attribute product_id
       #   The product the plan belongs to, prefixed `prod_`. Null for a plan with no
       #   product.
@@ -186,6 +201,14 @@ module WhopSDK
       #
       #   @return [String, nil]
       required :promo_code_id, String, nil?: true
+
+      # @!attribute recovery_url
+      #   Whop-hosted URL where the buyer can sign in and complete 3D Secure for a failed
+      #   subscription renewal. Null when recovery is unavailable, you lack
+      #   `member:basic:read`, or in list responses. Retrieve the payment for it.
+      #
+      #   @return [String, nil]
+      required :recovery_url, String, nil?: true
 
       # @!attribute refundable
       #   True when the payment is `paid`, not yet fully refunded, and its processor
@@ -325,8 +348,8 @@ module WhopSDK
       required :user, -> { WhopSDK::Payment::User }, nil?: true
 
       # @!attribute verification_checks
-      #   The issuer's address and security code check results, or null when the processor
-      #   returned none.
+      #   The Address Verification Service (AVS), cardholder name, and Card Verification
+      #   Value (CVV/CVC) results, or null when the processor returned none.
       #
       #   @return [WhopSDK::Models::Payment::VerificationChecks, nil]
       required :verification_checks, -> { WhopSDK::Payment::VerificationChecks }, nil?: true
@@ -338,7 +361,7 @@ module WhopSDK
       #   @return [Boolean]
       required :voidable, WhopSDK::Internal::Type::Boolean
 
-      # @!method initialize(id:, account_id:, amount_after_fees:, auto_refunded:, billing_address:, billing_reason:, checkout_configuration_id:, client_secret:, created_at:, currency:, customer_phone:, decline_code:, dispute_alerted_at:, failure_message:, financing_installments_count:, last_payment_attempt_at:, member_id:, membership_id:, metadata:, needs_tracking:, next_payment_attempt_at:, paid_at:, payment_instrument:, payment_method_id:, payment_method_type:, payments_failed:, plan_id:, product_id:, promo_code_id:, refundable:, refunded_amount:, refunded_at:, retryable:, risk_score:, risk_signals:, settlement_time_at:, shipment_id:, shipping_address:, status:, substatus:, subtotal:, tax_amount:, tax_behavior:, tax_refunded_amount:, three_ds_verified:, total:, updated_at:, usd_total:, user:, verification_checks:, voidable:)
+      # @!method initialize(id:, account_id:, amount_after_fees:, auto_refunded:, billing_address:, billing_reason:, checkout_configuration_id:, client_secret:, created_at:, currency:, customer_email:, customer_phone:, decline_code:, dispute_alerted_at:, failure_message:, financing_installments_count:, last_payment_attempt_at:, member_id:, membership_id:, metadata:, needs_tracking:, next_payment_attempt_at:, paid_at:, payment_instrument:, payment_method_id:, payment_method_type:, payments_failed:, plan_id:, presentment_total:, product_id:, promo_code_id:, recovery_url:, refundable:, refunded_amount:, refunded_at:, retryable:, risk_score:, risk_signals:, settlement_time_at:, shipment_id:, shipping_address:, status:, substatus:, subtotal:, tax_amount:, tax_behavior:, tax_refunded_amount:, three_ds_verified:, total:, updated_at:, usd_total:, user:, verification_checks:, voidable:)
       #   Some parameter documentations has been truncated, see {WhopSDK::Models::Payment}
       #   for more details.
       #
@@ -361,6 +384,8 @@ module WhopSDK
       #   @param created_at [String] When the payment was created, as an ISO 8601 timestamp.
       #
       #   @param currency [Symbol, WhopSDK::Models::Currency] The currency the payment settles in, lowercase ISO 4217. Every money field below
+      #
+      #   @param customer_email [String, nil] The buyer's email address. Null without `member:email:read` on the account or wh
       #
       #   @param customer_phone [String, nil] The phone number the buyer gave at checkout, when one was collected.
       #
@@ -396,9 +421,13 @@ module WhopSDK
       #
       #   @param plan_id [String, nil] The plan that was charged, prefixed `plan_`.
       #
+      #   @param presentment_total [WhopSDK::Models::Payment::PresentmentTotal, nil] The account-facing total in the currency presented to the buyer, before conversi
+      #
       #   @param product_id [String, nil] The product the plan belongs to, prefixed `prod_`. Null for a plan with no produ
       #
       #   @param promo_code_id [String, nil] The promo code applied at checkout, prefixed `promo_`, or null.
+      #
+      #   @param recovery_url [String, nil] Whop-hosted URL where the buyer can sign in and complete 3D Secure for a failed
       #
       #   @param refundable [Boolean] True when the payment is `paid`, not yet fully refunded, and its processor suppo
       #
@@ -440,7 +469,7 @@ module WhopSDK
       #
       #   @param user [WhopSDK::Models::Payment::User, nil] The buyer. Null when the payment belongs to a company buyer rather than a user.
       #
-      #   @param verification_checks [WhopSDK::Models::Payment::VerificationChecks, nil] The issuer's address and security code check results, or null when the processor
+      #   @param verification_checks [WhopSDK::Models::Payment::VerificationChecks, nil] The Address Verification Service (AVS), cardholder name, and Card Verification V
       #
       #   @param voidable [Boolean] True when the payment is `open` on a past-due membership and its processor suppo
 
@@ -651,7 +680,8 @@ module WhopSDK
       # @see WhopSDK::Models::Payment#payment_instrument
       class PaymentInstrument < WhopSDK::Internal::Type::BaseModel
         # @!attribute card
-        #   Card payments only: the card's network and last four.
+        #   Card payments only: the card's network, last four, and issuer identification
+        #   number.
         #
         #   @return [WhopSDK::Models::Payment::PaymentInstrument::Card, nil]
         required :card, -> { WhopSDK::Payment::PaymentInstrument::Card }, nil?: true
@@ -687,9 +717,10 @@ module WhopSDK
         #   {WhopSDK::Models::Payment::PaymentInstrument} for more details.
         #
         #   The instrument shaped for display: a buyer-facing name, the standard icon set,
-        #   and the card's brand and last four when it was a card.
+        #   and the card's brand, last four and issuer identification number when it was a
+        #   card.
         #
-        #   @param card [WhopSDK::Models::Payment::PaymentInstrument::Card, nil] Card payments only: the card's network and last four.
+        #   @param card [WhopSDK::Models::Payment::PaymentInstrument::Card, nil] Card payments only: the card's network, last four, and issuer identification num
         #
         #   @param display_name [String] Buyer-facing instrument name — "Visa •••• 4242" when the card surfaced, else the
         #
@@ -708,19 +739,30 @@ module WhopSDK
           #   @return [String]
           required :brand, String
 
+          # @!attribute issuer_identification_number
+          #   The issuer identification number, also called the BIN: the card's leading six or
+          #   eight digits, which identify the issuing bank. Null when the processor did not
+          #   report it.
+          #
+          #   @return [String, nil]
+          required :issuer_identification_number, String, nil?: true
+
           # @!attribute last4
           #   The card's last four digits, when captured.
           #
           #   @return [String, nil]
           required :last4, String, nil?: true
 
-          # @!method initialize(brand:, last4:)
+          # @!method initialize(brand:, issuer_identification_number:, last4:)
           #   Some parameter documentations has been truncated, see
           #   {WhopSDK::Models::Payment::PaymentInstrument::Card} for more details.
           #
-          #   Card payments only: the card's network and last four.
+          #   Card payments only: the card's network, last four, and issuer identification
+          #   number.
           #
           #   @param brand [String] The network identifier (`visa`, `amex`, …), matching `card.networks` entries and
+          #
+          #   @param issuer_identification_number [String, nil] The issuer identification number, also called the BIN: the card's leading six or
           #
           #   @param last4 [String, nil] The card's last four digits, when captured.
         end
@@ -942,6 +984,52 @@ module WhopSDK
             end
           end
         end
+      end
+
+      # @see WhopSDK::Models::Payment#presentment_total
+      class PresentmentTotal < WhopSDK::Internal::Type::BaseModel
+        # @!attribute amount
+        #   The amount in major units, as an exact decimal string — `"10.00"` is ten
+        #   dollars. A string so no float rounds it in transit.
+        #
+        #   @return [String]
+        required :amount, String
+
+        # @!attribute currency
+        #   Three-letter ISO 4217 currency code, lowercase.
+        #
+        #   @return [String]
+        required :currency, String
+
+        # @!attribute decimals
+        #   How many decimal places the amount CARRIES — the precision the charge itself
+        #   runs at.
+        #
+        #   @return [Integer]
+        required :decimals, Integer
+
+        # @!attribute display_decimals
+        #   How many decimal places to SHOW. Usually equal to `decimals`, and deliberately
+        #   not always: COP is charged in centavos but written in whole pesos, so it is `2`
+        #   and `0`. Format the number in your own locale using this.
+        #
+        #   @return [Integer]
+        required :display_decimals, Integer
+
+        # @!method initialize(amount:, currency:, decimals:, display_decimals:)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::Payment::PresentmentTotal} for more details.
+        #
+        #   The account-facing total in the currency presented to the buyer, before
+        #   conversion into the settlement currency. Excludes buyer fees.
+        #
+        #   @param amount [String] The amount in major units, as an exact decimal string — `"10.00"` is ten dollars
+        #
+        #   @param currency [String] Three-letter ISO 4217 currency code, lowercase.
+        #
+        #   @param decimals [Integer] How many decimal places the amount CARRIES — the precision the charge itself run
+        #
+        #   @param display_decimals [Integer] How many decimal places to SHOW. Usually equal to `decimals`, and deliberately n
       end
 
       # @see WhopSDK::Models::Payment#refunded_amount
@@ -1346,8 +1434,7 @@ module WhopSDK
       # @see WhopSDK::Models::Payment#verification_checks
       class VerificationChecks < WhopSDK::Internal::Type::BaseModel
         # @!attribute address_line1
-        #   Whether the billing street address the customer entered matched the issuer's
-        #   records.
+        #   The Address Verification Service (AVS) result for the billing street address.
         #
         #   @return [String, nil]
         required :address_line1, String, nil?: true
@@ -1359,31 +1446,28 @@ module WhopSDK
         required :card_holder_name, String, nil?: true
 
         # @!attribute card_security_code
-        #   Whether the CVV / CVC matched the card.
+        #   The Card Verification Value (CVV/CVC) result.
         #
         #   @return [String, nil]
         required :card_security_code, String, nil?: true
 
         # @!attribute zip_code
-        #   Whether the billing postal code matched the issuer's records.
+        #   The Address Verification Service (AVS) result for the billing postal code.
         #
         #   @return [String, nil]
         required :zip_code, String, nil?: true
 
         # @!method initialize(address_line1:, card_holder_name:, card_security_code:, zip_code:)
-        #   Some parameter documentations has been truncated, see
-        #   {WhopSDK::Models::Payment::VerificationChecks} for more details.
+        #   The Address Verification Service (AVS), cardholder name, and Card Verification
+        #   Value (CVV/CVC) results, or null when the processor returned none.
         #
-        #   The issuer's address and security code check results, or null when the processor
-        #   returned none.
-        #
-        #   @param address_line1 [String, nil] Whether the billing street address the customer entered matched the issuer's rec
+        #   @param address_line1 [String, nil] The Address Verification Service (AVS) result for the billing street address.
         #
         #   @param card_holder_name [String, nil] Whether the cardholder name matched the issuer's records.
         #
-        #   @param card_security_code [String, nil] Whether the CVV / CVC matched the card.
+        #   @param card_security_code [String, nil] The Card Verification Value (CVV/CVC) result.
         #
-        #   @param zip_code [String, nil] Whether the billing postal code matched the issuer's records.
+        #   @param zip_code [String, nil] The Address Verification Service (AVS) result for the billing postal code.
       end
     end
   end

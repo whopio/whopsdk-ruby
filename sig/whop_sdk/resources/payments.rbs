@@ -3,15 +3,17 @@ module WhopSDK
     class Payments
       def create: (
         account_id: String,
-        plan_id: String,
         ?capture: bool?,
         ?confirmation_token: String?,
         ?email: String?,
         ?member_id: String?,
         ?metadata: ::Hash[Symbol, String]?,
         ?payment_method_id: String?,
+        ?plan: WhopSDK::PaymentCreateParams::Plan,
+        ?plan_id: String,
         ?promo_code_id: String?,
         ?return_url: String?,
+        ?statement_descriptor: String?,
         ?api_version_date: String,
         ?idempotency_key: String,
         ?request_options: WhopSDK::request_opts

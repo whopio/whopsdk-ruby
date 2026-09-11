@@ -65,9 +65,11 @@ module WhopSDK
       )
       end
 
-      # Retrieves an app by ID, claimed route, or proxy domain id. Credential fields
-      # (api_key, default_api_key, secrets) render `null` unless the caller has the
-      # corresponding developer permission on the owning account.
+      # Retrieves an app by ID, claimed route, active verified custom hostname, or proxy
+      # domain id. Custom hostnames return 404 for inactive assignments, suspended
+      # accounts, or deleted apps. Credential fields (api_key, default_api_key, secrets)
+      # render `null` unless the caller has the corresponding developer permission on
+      # the owning account.
       sig do
         params(
           id: String,
@@ -76,7 +78,8 @@ module WhopSDK
         ).returns(WhopSDK::App)
       end
       def retrieve(
-        # App ID (prefixed `app_`), the app's claimed route, or its proxy domain id.
+        # App ID (prefixed `app_`). Retrieval also accepts the app's claimed route, an
+        # active verified custom hostname, or its proxy domain id.
         id,
         # Pins the request to a dated API version.
         api_version_date: nil,
@@ -115,8 +118,8 @@ module WhopSDK
         ).returns(WhopSDK::App)
       end
       def update(
-        # Path param: App ID (prefixed `app_`), the app's claimed route, or its proxy
-        # domain id.
+        # Path param: App ID (prefixed `app_`). Retrieval also accepts the app's claimed
+        # route, an active verified custom hostname, or its proxy domain id.
         id,
         # Body param: The detailed description shown on the app store's in-depth app view
         # page.

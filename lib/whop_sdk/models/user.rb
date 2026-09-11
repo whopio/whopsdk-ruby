@@ -837,14 +837,14 @@ module WhopSDK
 
         # @!attribute url
         #   The URL where the social account can be accessed on the platform. Null while a
-        #   Whop-owned page is still being provisioned.
+        #   Whop-owned account is still being provisioned.
         #
         #   @return [String, nil]
         required :url, String, nil?: true
 
         # @!attribute username
-        #   The username of the social account on the platform. Null while a Whop-owned page
-        #   is still being provisioned.
+        #   The username of the social account on the platform. Null while a Whop-owned
+        #   account is still being provisioned.
         #
         #   @return [String, nil]
         required :username, String, nil?: true
@@ -882,7 +882,7 @@ module WhopSDK
         #
         #   @param url [String, nil] The URL where the social account can be accessed on the platform. Null while a W
         #
-        #   @param username [String, nil] The username of the social account on the platform. Null while a Whop-owned page
+        #   @param username [String, nil] The username of the social account on the platform. Null while a Whop-owned acco
         #
         #   @param verified [Boolean] Whether the social account is verified on the platform.
 

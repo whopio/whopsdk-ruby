@@ -62,13 +62,18 @@ module WhopSDK
         )
       end
 
-      # Retrieves an app by ID, claimed route, or proxy domain id. Credential fields
-      # (api_key, default_api_key, secrets) render `null` unless the caller has the
-      # corresponding developer permission on the owning account.
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::AppRetrieveParams} for more details.
+      #
+      # Retrieves an app by ID, claimed route, active verified custom hostname, or proxy
+      # domain id. Custom hostnames return 404 for inactive assignments, suspended
+      # accounts, or deleted apps. Credential fields (api_key, default_api_key, secrets)
+      # render `null` unless the caller has the corresponding developer permission on
+      # the owning account.
       #
       # @overload retrieve(id, api_version_date: nil, request_options: {})
       #
-      # @param id [String] App ID (prefixed `app_`), the app's claimed route, or its proxy domain id.
+      # @param id [String] App ID (prefixed `app_`). Retrieval also accepts the app's claimed route, an act
       #
       # @param api_version_date [String] Pins the request to a dated API version.
       #
@@ -96,7 +101,7 @@ module WhopSDK
       #
       # @overload update(id, app_store_description: nil, app_type: nil, base_url: nil, dashboard_path: nil, description: nil, discover_path: nil, experience_path: nil, icon: nil, name: nil, oauth_client_type: nil, openapi_path: nil, production_android_build_id: nil, production_ios_build_id: nil, production_web_build_id: nil, redirect_uris: nil, required_scopes: nil, route: nil, secrets: nil, skills_path: nil, status: nil, api_version_date: nil, request_options: {})
       #
-      # @param id [String] Path param: App ID (prefixed `app_`), the app's claimed route, or its proxy doma
+      # @param id [String] Path param: App ID (prefixed `app_`). Retrieval also accepts the app's claimed r
       #
       # @param app_store_description [String] Body param: The detailed description shown on the app store's in-depth app view
       #

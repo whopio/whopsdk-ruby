@@ -107,6 +107,9 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :domain_id
 
+      sig { returns(T.nilable(T::Array[WhopSDK::App::Domain])) }
+      attr_accessor :domains
+
       sig { returns(T::Array[WhopSDK::App::ElementsUsed::TaggedSymbol]) }
       attr_accessor :elements_used
 
@@ -251,6 +254,7 @@ module WhopSDK
           description: T.nilable(String),
           discover_path: T.nilable(String),
           domain_id: String,
+          domains: T.nilable(T::Array[WhopSDK::App::Domain::OrHash]),
           elements_used: T::Array[WhopSDK::App::ElementsUsed::OrSymbol],
           experience_path: T.nilable(String),
           hosted_url: T.nilable(String),
@@ -326,6 +330,7 @@ module WhopSDK
         # Subdomain identifier for the app's proxied URL, forming
         # https://{domain_id}.apps.whop.com.
         domain_id:,
+        domains:,
         elements_used:,
         # URL path for the member-facing hub view, or `null` when not configured.
         experience_path:,
@@ -401,6 +406,7 @@ module WhopSDK
             description: T.nilable(String),
             discover_path: T.nilable(String),
             domain_id: String,
+            domains: T.nilable(T::Array[WhopSDK::App::Domain]),
             elements_used: T::Array[WhopSDK::App::ElementsUsed::TaggedSymbol],
             experience_path: T.nilable(String),
             hosted_url: T.nilable(String),
@@ -455,13 +461,26 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :title
 
+        # Markup rates this parent charges the connected account being read, keyed by fee
+        # type (for example `crypto_deposit_markup`), each with `percentage_fee` and
+        # `fixed_fee_usd`. Resolved with the connected account's own overrides winning
+        # over the platform default.
+        sig { returns(T.nilable(T::Hash[Symbol, WhopSDK::App::Account::Fee])) }
+        attr_reader :fees
+
+        sig do
+          params(fees: T::Hash[Symbol, WhopSDK::App::Account::Fee::OrHash]).void
+        end
+        attr_writer :fees
+
         # The account that owns the app.
         sig do
           params(
             id: String,
             logo_url: T.nilable(String),
             route: String,
-            title: String
+            title: String,
+            fees: T::Hash[Symbol, WhopSDK::App::Account::Fee::OrHash]
           ).returns(T.attached_class)
         end
         def self.new(
@@ -472,7 +491,12 @@ module WhopSDK
           # Account public route identifier.
           route:,
           # Account display name.
-          title:
+          title:,
+          # Markup rates this parent charges the connected account being read, keyed by fee
+          # type (for example `crypto_deposit_markup`), each with `percentage_fee` and
+          # `fixed_fee_usd`. Resolved with the connected account's own overrides winning
+          # over the platform default.
+          fees: nil
         )
         end
 
@@ -482,11 +506,46 @@ module WhopSDK
               id: String,
               logo_url: T.nilable(String),
               route: String,
-              title: String
+              title: String,
+              fees: T::Hash[Symbol, WhopSDK::App::Account::Fee]
             }
           )
         end
         def to_hash
+        end
+
+        class Fee < WhopSDK::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(WhopSDK::App::Account::Fee, WhopSDK::Internal::AnyHash)
+            end
+
+          # Fixed markup in US dollars per transaction.
+          sig { returns(Float) }
+          attr_accessor :fixed_fee_usd
+
+          # Percentage of the transaction charged as markup.
+          sig { returns(Float) }
+          attr_accessor :percentage_fee
+
+          sig do
+            params(fixed_fee_usd: Float, percentage_fee: Float).returns(
+              T.attached_class
+            )
+          end
+          def self.new(
+            # Fixed markup in US dollars per transaction.
+            fixed_fee_usd:,
+            # Percentage of the transaction charged as markup.
+            percentage_fee:
+          )
+          end
+
+          sig do
+            override.returns({ fixed_fee_usd: Float, percentage_fee: Float })
+          end
+          def to_hash
+          end
         end
       end
 
@@ -880,6 +939,88 @@ module WhopSDK
           sig do
             override.returns(
               T::Array[WhopSDK::App::Deployment::Status::TaggedSymbol]
+            )
+          end
+          def self.values
+          end
+        end
+      end
+
+      class Domain < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(WhopSDK::App::Domain, WhopSDK::Internal::AnyHash)
+          end
+
+        # Domain ID, prefixed `dom_`.
+        sig { returns(String) }
+        attr_accessor :id
+
+        # Normalized hostname assigned to this app.
+        sig { returns(String) }
+        attr_accessor :domain
+
+        # Domain lifecycle status, matching the domain resource.
+        sig { returns(WhopSDK::App::Domain::Status::TaggedSymbol) }
+        attr_accessor :status
+
+        # Custom domain claims and assignments for this app, excluding removed domains.
+        # Empty when none exist; `null` when the caller lacks the account's
+        # `developer:basic:read` permission.
+        sig do
+          params(
+            id: String,
+            domain: String,
+            status: WhopSDK::App::Domain::Status::OrSymbol
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # Domain ID, prefixed `dom_`.
+          id:,
+          # Normalized hostname assigned to this app.
+          domain:,
+          # Domain lifecycle status, matching the domain resource.
+          status:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              id: String,
+              domain: String,
+              status: WhopSDK::App::Domain::Status::TaggedSymbol
+            }
+          )
+        end
+        def to_hash
+        end
+
+        # Domain lifecycle status, matching the domain resource.
+        module Status
+          extend WhopSDK::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias { T.all(Symbol, WhopSDK::App::Domain::Status) }
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          PENDING_VERIFICATION =
+            T.let(
+              :pending_verification,
+              WhopSDK::App::Domain::Status::TaggedSymbol
+            )
+          PROVISIONING =
+            T.let(:provisioning, WhopSDK::App::Domain::Status::TaggedSymbol)
+          ACTIVE = T.let(:active, WhopSDK::App::Domain::Status::TaggedSymbol)
+          ACTION_REQUIRED =
+            T.let(:action_required, WhopSDK::App::Domain::Status::TaggedSymbol)
+          DELETING =
+            T.let(:deleting, WhopSDK::App::Domain::Status::TaggedSymbol)
+          REMOVED = T.let(:removed, WhopSDK::App::Domain::Status::TaggedSymbol)
+
+          sig do
+            override.returns(
+              T::Array[WhopSDK::App::Domain::Status::TaggedSymbol]
             )
           end
           def self.values

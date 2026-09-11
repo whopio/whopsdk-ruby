@@ -583,15 +583,46 @@ module WhopSDK
           sig { returns(T.nilable(String)) }
           attr_accessor :plan_id
 
+          # The plan's current title, or `null` when the plan has been deleted or has no
+          # title.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :plan_title
+
           # The product the plan belongs to, prefixed `prod_`. On a payment that predates
           # item snapshots this falls back to the plan's product, so it can be set where the
-          # case's own `product_id` is null. Null for a plan with no product.
+          # parent's own `product_id` is null. Null for a plan with no product.
           sig { returns(T.nilable(String)) }
           attr_accessor :product_id
+
+          # The product's current title, or `null` when the item has no product.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :product_title
 
           # How many units were bought.
           sig { returns(Float) }
           attr_accessor :quantity
+
+          # The recorded amount for this item's full quantity, before discounts, tax, and
+          # fees, in its purchase currency. This is not the amount being contested. Returns
+          # `null` when no item amount was recorded.
+          sig do
+            returns(
+              T.nilable(
+                WhopSDK::ResolutionCenterCaseUpdatedWebhookEvent::Data::LineItem::Subtotal
+              )
+            )
+          end
+          attr_reader :subtotal
+
+          sig do
+            params(
+              subtotal:
+                T.nilable(
+                  WhopSDK::ResolutionCenterCaseUpdatedWebhookEvent::Data::LineItem::Subtotal::OrHash
+                )
+            ).void
+          end
+          attr_writer :subtotal
 
           # Everything the disputed payment charged for, in purchase order. `product_id` and
           # `plan_id` name the first of these; a cart's later items appear only here. A
@@ -602,8 +633,14 @@ module WhopSDK
               id: T.nilable(String),
               label: T.nilable(String),
               plan_id: T.nilable(String),
+              plan_title: T.nilable(String),
               product_id: T.nilable(String),
-              quantity: Float
+              product_title: T.nilable(String),
+              quantity: Float,
+              subtotal:
+                T.nilable(
+                  WhopSDK::ResolutionCenterCaseUpdatedWebhookEvent::Data::LineItem::Subtotal::OrHash
+                )
             ).returns(T.attached_class)
           end
           def self.new(
@@ -614,12 +651,21 @@ module WhopSDK
             label:,
             # The plan bought, prefixed `plan_`. Null when the plan has since been deleted.
             plan_id:,
+            # The plan's current title, or `null` when the plan has been deleted or has no
+            # title.
+            plan_title:,
             # The product the plan belongs to, prefixed `prod_`. On a payment that predates
             # item snapshots this falls back to the plan's product, so it can be set where the
-            # case's own `product_id` is null. Null for a plan with no product.
+            # parent's own `product_id` is null. Null for a plan with no product.
             product_id:,
+            # The product's current title, or `null` when the item has no product.
+            product_title:,
             # How many units were bought.
-            quantity:
+            quantity:,
+            # The recorded amount for this item's full quantity, before discounts, tax, and
+            # fees, in its purchase currency. This is not the amount being contested. Returns
+            # `null` when no item amount was recorded.
+            subtotal:
           )
           end
 
@@ -629,12 +675,88 @@ module WhopSDK
                 id: T.nilable(String),
                 label: T.nilable(String),
                 plan_id: T.nilable(String),
+                plan_title: T.nilable(String),
                 product_id: T.nilable(String),
-                quantity: Float
+                product_title: T.nilable(String),
+                quantity: Float,
+                subtotal:
+                  T.nilable(
+                    WhopSDK::ResolutionCenterCaseUpdatedWebhookEvent::Data::LineItem::Subtotal
+                  )
               }
             )
           end
           def to_hash
+          end
+
+          class Subtotal < WhopSDK::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  WhopSDK::ResolutionCenterCaseUpdatedWebhookEvent::Data::LineItem::Subtotal,
+                  WhopSDK::Internal::AnyHash
+                )
+              end
+
+            # The amount in major units, as an exact decimal string — `"10.00"` is ten
+            # dollars. A string so no float rounds it in transit.
+            sig { returns(String) }
+            attr_accessor :amount
+
+            # Three-letter ISO 4217 currency code, lowercase.
+            sig { returns(String) }
+            attr_accessor :currency
+
+            # How many decimal places the amount CARRIES — the precision the charge itself
+            # runs at.
+            sig { returns(Integer) }
+            attr_accessor :decimals
+
+            # How many decimal places to SHOW. Usually equal to `decimals`, and deliberately
+            # not always: COP is charged in centavos but written in whole pesos, so it is `2`
+            # and `0`. Format the number in your own locale using this.
+            sig { returns(Integer) }
+            attr_accessor :display_decimals
+
+            # The recorded amount for this item's full quantity, before discounts, tax, and
+            # fees, in its purchase currency. This is not the amount being contested. Returns
+            # `null` when no item amount was recorded.
+            sig do
+              params(
+                amount: String,
+                currency: String,
+                decimals: Integer,
+                display_decimals: Integer
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # The amount in major units, as an exact decimal string — `"10.00"` is ten
+              # dollars. A string so no float rounds it in transit.
+              amount:,
+              # Three-letter ISO 4217 currency code, lowercase.
+              currency:,
+              # How many decimal places the amount CARRIES — the precision the charge itself
+              # runs at.
+              decimals:,
+              # How many decimal places to SHOW. Usually equal to `decimals`, and deliberately
+              # not always: COP is charged in centavos but written in whole pesos, so it is `2`
+              # and `0`. Format the number in your own locale using this.
+              display_decimals:
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  amount: String,
+                  currency: String,
+                  decimals: Integer,
+                  display_decimals: Integer
+                }
+              )
+            end
+            def to_hash
+            end
           end
         end
 

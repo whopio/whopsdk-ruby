@@ -64,6 +64,11 @@ module WhopSDK
       sig { returns(WhopSDK::Currency::TaggedSymbol) }
       attr_accessor :currency
 
+      # The buyer's email address. Null without `member:email:read` on the account or
+      # when the buyer has no assigned email.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :customer_email
+
       # The phone number the buyer gave at checkout, when one was collected.
       sig { returns(T.nilable(String)) }
       attr_accessor :customer_phone
@@ -116,7 +121,8 @@ module WhopSDK
       attr_accessor :paid_at
 
       # The instrument shaped for display: a buyer-facing name, the standard icon set,
-      # and the card's brand and last four when it was a card.
+      # and the card's brand, last four and issuer identification number when it was a
+      # card.
       sig { returns(T.nilable(WhopSDK::Payment::PaymentInstrument)) }
       attr_reader :payment_instrument
 
@@ -145,6 +151,19 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :plan_id
 
+      # The account-facing total in the currency presented to the buyer, before
+      # conversion into the settlement currency. Excludes buyer fees.
+      sig { returns(T.nilable(WhopSDK::Payment::PresentmentTotal)) }
+      attr_reader :presentment_total
+
+      sig do
+        params(
+          presentment_total:
+            T.nilable(WhopSDK::Payment::PresentmentTotal::OrHash)
+        ).void
+      end
+      attr_writer :presentment_total
+
       # The product the plan belongs to, prefixed `prod_`. Null for a plan with no
       # product.
       sig { returns(T.nilable(String)) }
@@ -153,6 +172,12 @@ module WhopSDK
       # The promo code applied at checkout, prefixed `promo_`, or null.
       sig { returns(T.nilable(String)) }
       attr_accessor :promo_code_id
+
+      # Whop-hosted URL where the buyer can sign in and complete 3D Secure for a failed
+      # subscription renewal. Null when recovery is unavailable, you lack
+      # `member:basic:read`, or in list responses. Retrieve the payment for it.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :recovery_url
 
       # True when the payment is `paid`, not yet fully refunded, and its processor
       # supports refunds.
@@ -293,8 +318,8 @@ module WhopSDK
       sig { params(user: T.nilable(WhopSDK::Payment::User::OrHash)).void }
       attr_writer :user
 
-      # The issuer's address and security code check results, or null when the processor
-      # returned none.
+      # The Address Verification Service (AVS), cardholder name, and Card Verification
+      # Value (CVV/CVC) results, or null when the processor returned none.
       sig { returns(T.nilable(WhopSDK::Payment::VerificationChecks)) }
       attr_reader :verification_checks
 
@@ -323,6 +348,7 @@ module WhopSDK
           client_secret: T.nilable(String),
           created_at: String,
           currency: WhopSDK::Currency::OrSymbol,
+          customer_email: T.nilable(String),
           customer_phone: T.nilable(String),
           decline_code: T.nilable(WhopSDK::Payment::DeclineCode::OrSymbol),
           dispute_alerted_at: T.nilable(String),
@@ -341,8 +367,11 @@ module WhopSDK
           payment_method_type: T.nilable(WhopSDK::PaymentMethodTypes::OrSymbol),
           payments_failed: Float,
           plan_id: T.nilable(String),
+          presentment_total:
+            T.nilable(WhopSDK::Payment::PresentmentTotal::OrHash),
           product_id: T.nilable(String),
           promo_code_id: T.nilable(String),
+          recovery_url: T.nilable(String),
           refundable: T::Boolean,
           refunded_amount: T.nilable(WhopSDK::Payment::RefundedAmount::OrHash),
           refunded_at: T.nilable(String),
@@ -394,6 +423,9 @@ module WhopSDK
         # The currency the payment settles in, lowercase ISO 4217. Every money field below
         # is stated in it unless it says otherwise.
         currency:,
+        # The buyer's email address. Null without `member:email:read` on the account or
+        # when the buyer has no assigned email.
+        customer_email:,
         # The phone number the buyer gave at checkout, when one was collected.
         customer_phone:,
         # The reason a payment was declined.
@@ -422,7 +454,8 @@ module WhopSDK
         # When the money was collected, or null while it has not been.
         paid_at:,
         # The instrument shaped for display: a buyer-facing name, the standard icon set,
-        # and the card's brand and last four when it was a card.
+        # and the card's brand, last four and issuer identification number when it was a
+        # card.
         payment_instrument:,
         # The stored payment method that was charged, prefixed `payt_`. Null when the
         # method was not saved.
@@ -433,11 +466,18 @@ module WhopSDK
         payments_failed:,
         # The plan that was charged, prefixed `plan_`.
         plan_id:,
+        # The account-facing total in the currency presented to the buyer, before
+        # conversion into the settlement currency. Excludes buyer fees.
+        presentment_total:,
         # The product the plan belongs to, prefixed `prod_`. Null for a plan with no
         # product.
         product_id:,
         # The promo code applied at checkout, prefixed `promo_`, or null.
         promo_code_id:,
+        # Whop-hosted URL where the buyer can sign in and complete 3D Secure for a failed
+        # subscription renewal. Null when recovery is unavailable, you lack
+        # `member:basic:read`, or in list responses. Retrieve the payment for it.
+        recovery_url:,
         # True when the payment is `paid`, not yet fully refunded, and its processor
         # supports refunds.
         refundable:,
@@ -495,8 +535,8 @@ module WhopSDK
         usd_total:,
         # The buyer. Null when the payment belongs to a company buyer rather than a user.
         user:,
-        # The issuer's address and security code check results, or null when the processor
-        # returned none.
+        # The Address Verification Service (AVS), cardholder name, and Card Verification
+        # Value (CVV/CVC) results, or null when the processor returned none.
         verification_checks:,
         # True when the payment is `open` on a past-due membership and its processor
         # supports voiding — see `POST /payments/{id}/void`.
@@ -517,6 +557,7 @@ module WhopSDK
             client_secret: T.nilable(String),
             created_at: String,
             currency: WhopSDK::Currency::TaggedSymbol,
+            customer_email: T.nilable(String),
             customer_phone: T.nilable(String),
             decline_code:
               T.nilable(WhopSDK::Payment::DeclineCode::TaggedSymbol),
@@ -536,8 +577,10 @@ module WhopSDK
               T.nilable(WhopSDK::PaymentMethodTypes::TaggedSymbol),
             payments_failed: Float,
             plan_id: T.nilable(String),
+            presentment_total: T.nilable(WhopSDK::Payment::PresentmentTotal),
             product_id: T.nilable(String),
             promo_code_id: T.nilable(String),
+            recovery_url: T.nilable(String),
             refundable: T::Boolean,
             refunded_amount: T.nilable(WhopSDK::Payment::RefundedAmount),
             refunded_at: T.nilable(String),
@@ -1068,7 +1111,8 @@ module WhopSDK
             )
           end
 
-        # Card payments only: the card's network and last four.
+        # Card payments only: the card's network, last four, and issuer identification
+        # number.
         sig { returns(T.nilable(WhopSDK::Payment::PaymentInstrument::Card)) }
         attr_reader :card
 
@@ -1103,7 +1147,8 @@ module WhopSDK
         attr_accessor :payment_method_type
 
         # The instrument shaped for display: a buyer-facing name, the standard icon set,
-        # and the card's brand and last four when it was a card.
+        # and the card's brand, last four and issuer identification number when it was a
+        # card.
         sig do
           params(
             card: T.nilable(WhopSDK::Payment::PaymentInstrument::Card::OrHash),
@@ -1114,7 +1159,8 @@ module WhopSDK
           ).returns(T.attached_class)
         end
         def self.new(
-          # Card payments only: the card's network and last four.
+          # Card payments only: the card's network, last four, and issuer identification
+          # number.
           card:,
           # Buyer-facing instrument name — "Visa •••• 4242" when the card surfaced, else the
           # method's own name ("Klarna").
@@ -1157,26 +1203,47 @@ module WhopSDK
           sig { returns(String) }
           attr_accessor :brand
 
+          # The issuer identification number, also called the BIN: the card's leading six or
+          # eight digits, which identify the issuing bank. Null when the processor did not
+          # report it.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :issuer_identification_number
+
           # The card's last four digits, when captured.
           sig { returns(T.nilable(String)) }
           attr_accessor :last4
 
-          # Card payments only: the card's network and last four.
+          # Card payments only: the card's network, last four, and issuer identification
+          # number.
           sig do
-            params(brand: String, last4: T.nilable(String)).returns(
-              T.attached_class
-            )
+            params(
+              brand: String,
+              issuer_identification_number: T.nilable(String),
+              last4: T.nilable(String)
+            ).returns(T.attached_class)
           end
           def self.new(
             # The network identifier (`visa`, `amex`, …), matching `card.networks` entries and
             # saved card payment methods.
             brand:,
+            # The issuer identification number, also called the BIN: the card's leading six or
+            # eight digits, which identify the issuing bank. Null when the processor did not
+            # report it.
+            issuer_identification_number:,
             # The card's last four digits, when captured.
             last4:
           )
           end
 
-          sig { override.returns({ brand: String, last4: T.nilable(String) }) }
+          sig do
+            override.returns(
+              {
+                brand: String,
+                issuer_identification_number: T.nilable(String),
+                last4: T.nilable(String)
+              }
+            )
+          end
           def to_hash
           end
         end
@@ -1611,6 +1678,75 @@ module WhopSDK
               end
             end
           end
+        end
+      end
+
+      class PresentmentTotal < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              WhopSDK::Payment::PresentmentTotal,
+              WhopSDK::Internal::AnyHash
+            )
+          end
+
+        # The amount in major units, as an exact decimal string — `"10.00"` is ten
+        # dollars. A string so no float rounds it in transit.
+        sig { returns(String) }
+        attr_accessor :amount
+
+        # Three-letter ISO 4217 currency code, lowercase.
+        sig { returns(String) }
+        attr_accessor :currency
+
+        # How many decimal places the amount CARRIES — the precision the charge itself
+        # runs at.
+        sig { returns(Integer) }
+        attr_accessor :decimals
+
+        # How many decimal places to SHOW. Usually equal to `decimals`, and deliberately
+        # not always: COP is charged in centavos but written in whole pesos, so it is `2`
+        # and `0`. Format the number in your own locale using this.
+        sig { returns(Integer) }
+        attr_accessor :display_decimals
+
+        # The account-facing total in the currency presented to the buyer, before
+        # conversion into the settlement currency. Excludes buyer fees.
+        sig do
+          params(
+            amount: String,
+            currency: String,
+            decimals: Integer,
+            display_decimals: Integer
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The amount in major units, as an exact decimal string — `"10.00"` is ten
+          # dollars. A string so no float rounds it in transit.
+          amount:,
+          # Three-letter ISO 4217 currency code, lowercase.
+          currency:,
+          # How many decimal places the amount CARRIES — the precision the charge itself
+          # runs at.
+          decimals:,
+          # How many decimal places to SHOW. Usually equal to `decimals`, and deliberately
+          # not always: COP is charged in centavos but written in whole pesos, so it is `2`
+          # and `0`. Format the number in your own locale using this.
+          display_decimals:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              amount: String,
+              currency: String,
+              decimals: Integer,
+              display_decimals: Integer
+            }
+          )
+        end
+        def to_hash
         end
       end
 
@@ -2198,8 +2334,7 @@ module WhopSDK
             )
           end
 
-        # Whether the billing street address the customer entered matched the issuer's
-        # records.
+        # The Address Verification Service (AVS) result for the billing street address.
         sig { returns(T.nilable(String)) }
         attr_accessor :address_line1
 
@@ -2207,16 +2342,16 @@ module WhopSDK
         sig { returns(T.nilable(String)) }
         attr_accessor :card_holder_name
 
-        # Whether the CVV / CVC matched the card.
+        # The Card Verification Value (CVV/CVC) result.
         sig { returns(T.nilable(String)) }
         attr_accessor :card_security_code
 
-        # Whether the billing postal code matched the issuer's records.
+        # The Address Verification Service (AVS) result for the billing postal code.
         sig { returns(T.nilable(String)) }
         attr_accessor :zip_code
 
-        # The issuer's address and security code check results, or null when the processor
-        # returned none.
+        # The Address Verification Service (AVS), cardholder name, and Card Verification
+        # Value (CVV/CVC) results, or null when the processor returned none.
         sig do
           params(
             address_line1: T.nilable(String),
@@ -2226,14 +2361,13 @@ module WhopSDK
           ).returns(T.attached_class)
         end
         def self.new(
-          # Whether the billing street address the customer entered matched the issuer's
-          # records.
+          # The Address Verification Service (AVS) result for the billing street address.
           address_line1:,
           # Whether the cardholder name matched the issuer's records.
           card_holder_name:,
-          # Whether the CVV / CVC matched the card.
+          # The Card Verification Value (CVV/CVC) result.
           card_security_code:,
-          # Whether the billing postal code matched the issuer's records.
+          # The Address Verification Service (AVS) result for the billing postal code.
           zip_code:
         )
         end

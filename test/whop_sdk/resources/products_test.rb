@@ -16,6 +16,7 @@ class WhopSDK::Test::Resources::ProductsTest < WhopSDK::Test::ResourceTest
       response => {
         id: String,
         account: WhopSDK::Internal::Type::Unknown | nil,
+        average_review_rating: Float,
         created_at: String,
         custom_cta: WhopSDK::Product::CustomCta | nil,
         custom_cta_url: String | nil,
@@ -58,6 +59,7 @@ class WhopSDK::Test::Resources::ProductsTest < WhopSDK::Test::ResourceTest
       response => {
         id: String,
         account: WhopSDK::Internal::Type::Unknown | nil,
+        average_review_rating: Float,
         created_at: String,
         custom_cta: WhopSDK::Product::CustomCta | nil,
         custom_cta_url: String | nil,
@@ -100,6 +102,7 @@ class WhopSDK::Test::Resources::ProductsTest < WhopSDK::Test::ResourceTest
       response => {
         id: String,
         account: WhopSDK::Internal::Type::Unknown | nil,
+        average_review_rating: Float,
         created_at: String,
         custom_cta: WhopSDK::Product::CustomCta | nil,
         custom_cta_url: String | nil,
@@ -149,6 +152,7 @@ class WhopSDK::Test::Resources::ProductsTest < WhopSDK::Test::ResourceTest
       row => {
         id: String,
         account: WhopSDK::Internal::Type::Unknown | nil,
+        average_review_rating: Float,
         created_at: String,
         default_plan: WhopSDK::ProductListItem::DefaultPlan | nil,
         description: String | nil,

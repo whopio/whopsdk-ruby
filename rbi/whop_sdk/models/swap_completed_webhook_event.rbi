@@ -944,6 +944,16 @@ module WhopSDK
               :platform_earning,
               WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
             )
+          PLATFORM_MARKUP_FEE =
+            T.let(
+              :platform_markup_fee,
+              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+            )
+          PLATFORM_MARKUP_FEE_PAYOUT =
+            T.let(
+              :platform_markup_fee_payout,
+              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+            )
           PROMO_REVERSAL =
             T.let(
               :promo_reversal,
@@ -2415,7 +2425,8 @@ module WhopSDK
           sig { returns(T.nilable(String)) }
           attr_accessor :from_currency
 
-          # Memo attached to the transfer source, or null when none was provided.
+          # Memo attached to the transfer or payout source, or null when none was provided
+          # (on payout sources requires payout:withdrawal:read).
           sig { returns(T.nilable(String)) }
           attr_accessor :notes
 
@@ -2570,7 +2581,8 @@ module WhopSDK
             from_amount: nil,
             # Lowercase currency code converted from (swap sources only).
             from_currency: nil,
-            # Memo attached to the transfer source, or null when none was provided.
+            # Memo attached to the transfer or payout source, or null when none was provided
+            # (on payout sources requires payout:withdrawal:read).
             notes: nil,
             # Name of the entity processing the payout (payout sources only; requires
             # payout:withdrawal:read).

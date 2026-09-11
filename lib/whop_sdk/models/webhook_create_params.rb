@@ -83,6 +83,8 @@ module WhopSDK
         extend WhopSDK::Internal::Type::Enum
 
         ACCOUNT_UPDATED = :"account.updated"
+        ACCOUNT_FINANCING_APPROVED = :"account.financing_approved"
+        ACCOUNT_FINANCING_DENIED = :"account.financing_denied"
         INVOICE_CREATED = :"invoice.created"
         INVOICE_MARKED_UNCOLLECTIBLE = :"invoice.marked_uncollectible"
         INVOICE_PAID = :"invoice.paid"
@@ -146,6 +148,7 @@ module WhopSDK
         SHIPMENT_CREATED = :"shipment.created"
         SHIPMENT_UPDATED = :"shipment.updated"
         MEMBER_CREATED = :"member.created"
+        MEMBER_UPDATED = :"member.updated"
         AD_CAMPAIGN_PAYMENT_FAILED = :"ad_campaign.payment_failed"
         AD_CAMPAIGN_UPDATED = :"ad_campaign.updated"
         AD_UPDATED = :"ad.updated"

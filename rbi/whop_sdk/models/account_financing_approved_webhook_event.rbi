@@ -2,10 +2,13 @@
 
 module WhopSDK
   module Models
-    class AccountUpdatedWebhookEvent < WhopSDK::Internal::Type::BaseModel
+    class AccountFinancingApprovedWebhookEvent < WhopSDK::Internal::Type::BaseModel
       OrHash =
         T.type_alias do
-          T.any(WhopSDK::AccountUpdatedWebhookEvent, WhopSDK::Internal::AnyHash)
+          T.any(
+            WhopSDK::AccountFinancingApprovedWebhookEvent,
+            WhopSDK::Internal::AnyHash
+          )
         end
 
       # A unique ID for every single webhook request
@@ -20,11 +23,13 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :api_version_date
 
-      sig { returns(WhopSDK::AccountUpdatedWebhookEvent::Data) }
+      sig { returns(WhopSDK::AccountFinancingApprovedWebhookEvent::Data) }
       attr_reader :data
 
       sig do
-        params(data: WhopSDK::AccountUpdatedWebhookEvent::Data::OrHash).void
+        params(
+          data: WhopSDK::AccountFinancingApprovedWebhookEvent::Data::OrHash
+        ).void
       end
       attr_writer :data
 
@@ -52,7 +57,7 @@ module WhopSDK
         params(
           id: String,
           api_version_date: T.nilable(String),
-          data: WhopSDK::AccountUpdatedWebhookEvent::Data::OrHash,
+          data: WhopSDK::AccountFinancingApprovedWebhookEvent::Data::OrHash,
           timestamp: Time,
           account_id: T.nilable(String),
           previous_attributes: T.anything,
@@ -76,7 +81,7 @@ module WhopSDK
         # The API version for this webhook
         api_version: :v1,
         # The webhook event type
-        type: :"account.updated"
+        type: :"account.financing_approved"
       )
       end
 
@@ -86,7 +91,7 @@ module WhopSDK
             id: String,
             api_version: Symbol,
             api_version_date: T.nilable(String),
-            data: WhopSDK::AccountUpdatedWebhookEvent::Data,
+            data: WhopSDK::AccountFinancingApprovedWebhookEvent::Data,
             timestamp: Time,
             type: Symbol,
             account_id: T.nilable(String),
@@ -101,7 +106,7 @@ module WhopSDK
         OrHash =
           T.type_alias do
             T.any(
-              WhopSDK::AccountUpdatedWebhookEvent::Data,
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data,
               WhopSDK::Internal::AnyHash
             )
           end
@@ -111,7 +116,11 @@ module WhopSDK
         attr_accessor :id
 
         sig do
-          returns(T::Array[WhopSDK::AccountUpdatedWebhookEvent::Data::Balance])
+          returns(
+            T::Array[
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Balance
+            ]
+          )
         end
         attr_accessor :balances
 
@@ -144,7 +153,9 @@ module WhopSDK
         # callers with `company:balance:read` scope; `null` otherwise.
         sig do
           returns(
-            T.nilable(WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities)
+            T.nilable(
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities
+            )
           )
         end
         attr_reader :capabilities
@@ -153,7 +164,7 @@ module WhopSDK
           params(
             capabilities:
               T.nilable(
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::OrHash
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::OrHash
               )
           ).void
         end
@@ -163,7 +174,11 @@ module WhopSDK
         # `me` for callers with `company:balance:read` scope; `null` otherwise, or when
         # the account has no card application.
         sig do
-          returns(T.nilable(WhopSDK::AccountUpdatedWebhookEvent::Data::Cards))
+          returns(
+            T.nilable(
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Cards
+            )
+          )
         end
         attr_reader :cards
 
@@ -171,7 +186,7 @@ module WhopSDK
           params(
             cards:
               T.nilable(
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Cards::OrHash
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Cards::OrHash
               )
           ).void
         end
@@ -188,14 +203,16 @@ module WhopSDK
         # documents and signatures awaiting action. Empty when the formation state is
         # temporarily unavailable.
         sig do
-          returns(WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation)
+          returns(
+            WhopSDK::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation
+          )
         end
         attr_reader :company_formation
 
         sig do
           params(
             company_formation:
-              WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::OrHash
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::OrHash
           ).void
         end
         attr_writer :company_formation
@@ -223,14 +240,18 @@ module WhopSDK
         # The account's end-user license agreement document, or `null` if they have not
         # published one.
         sig do
-          returns(T.nilable(WhopSDK::AccountUpdatedWebhookEvent::Data::Eula))
+          returns(
+            T.nilable(WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Eula)
+          )
         end
         attr_reader :eula
 
         sig do
           params(
             eula:
-              T.nilable(WhopSDK::AccountUpdatedWebhookEvent::Data::Eula::OrHash)
+              T.nilable(
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Eula::OrHash
+              )
           ).void
         end
         attr_writer :eula
@@ -238,7 +259,7 @@ module WhopSDK
         sig do
           returns(
             T::Array[
-              WhopSDK::AccountUpdatedWebhookEvent::Data::HomePreference::TaggedSymbol
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::HomePreference::TaggedSymbol
             ]
           )
         end
@@ -272,7 +293,7 @@ module WhopSDK
         sig do
           returns(
             T.nilable(
-              WhopSDK::AccountUpdatedWebhookEvent::Data::OnboardingType::TaggedSymbol
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::OnboardingType::TaggedSymbol
             )
           )
         end
@@ -286,7 +307,7 @@ module WhopSDK
         sig do
           returns(
             T.nilable(
-              WhopSDK::AccountUpdatedWebhookEvent::Data::OpengraphImageVariant::TaggedSymbol
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::OpengraphImageVariant::TaggedSymbol
             )
           )
         end
@@ -302,12 +323,15 @@ module WhopSDK
 
         # The single user who owns the account, whose email is the `email` above. Distinct
         # from the `owner` role on team members, which any number of them can hold.
-        sig { returns(WhopSDK::AccountUpdatedWebhookEvent::Data::Owner) }
+        sig do
+          returns(WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Owner)
+        end
         attr_reader :owner
 
         sig do
           params(
-            owner: WhopSDK::AccountUpdatedWebhookEvent::Data::Owner::OrHash
+            owner:
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Owner::OrHash
           ).void
         end
         attr_writer :owner
@@ -315,7 +339,9 @@ module WhopSDK
         # Parent account for connected accounts, or `null` for standalone accounts.
         sig do
           returns(
-            T.nilable(WhopSDK::AccountUpdatedWebhookEvent::Data::ParentAccount)
+            T.nilable(
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::ParentAccount
+            )
           )
         end
         attr_reader :parent_account
@@ -324,7 +350,7 @@ module WhopSDK
           params(
             parent_account:
               T.nilable(
-                WhopSDK::AccountUpdatedWebhookEvent::Data::ParentAccount::OrHash
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::ParentAccount::OrHash
               )
           ).void
         end
@@ -336,7 +362,7 @@ module WhopSDK
         sig do
           returns(
             T.nilable(
-              WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PaymentControls
             )
           )
         end
@@ -346,7 +372,7 @@ module WhopSDK
           params(
             payment_controls:
               T.nilable(
-                WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls::OrHash
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::OrHash
               )
           ).void
         end
@@ -355,7 +381,9 @@ module WhopSDK
         # The account's privacy policy document, or `null` if they have not published one.
         sig do
           returns(
-            T.nilable(WhopSDK::AccountUpdatedWebhookEvent::Data::PrivacyPolicy)
+            T.nilable(
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PrivacyPolicy
+            )
           )
         end
         attr_reader :privacy_policy
@@ -364,7 +392,7 @@ module WhopSDK
           params(
             privacy_policy:
               T.nilable(
-                WhopSDK::AccountUpdatedWebhookEvent::Data::PrivacyPolicy::OrHash
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PrivacyPolicy::OrHash
               )
           ).void
         end
@@ -381,7 +409,7 @@ module WhopSDK
           returns(
             T.nilable(
               T::Array[
-                WhopSDK::AccountUpdatedWebhookEvent::Data::RecommendedAction
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::RecommendedAction
               ]
             )
           )
@@ -396,7 +424,7 @@ module WhopSDK
           returns(
             T.nilable(
               T::Array[
-                WhopSDK::AccountUpdatedWebhookEvent::Data::RequiredAction
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::RequiredAction
               ]
             )
           )
@@ -406,7 +434,9 @@ module WhopSDK
         # The account's return policy document, or `null` if they have not published one.
         sig do
           returns(
-            T.nilable(WhopSDK::AccountUpdatedWebhookEvent::Data::ReturnPolicy)
+            T.nilable(
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::ReturnPolicy
+            )
           )
         end
         attr_reader :return_policy
@@ -415,7 +445,7 @@ module WhopSDK
           params(
             return_policy:
               T.nilable(
-                WhopSDK::AccountUpdatedWebhookEvent::Data::ReturnPolicy::OrHash
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::ReturnPolicy::OrHash
               )
           ).void
         end
@@ -443,7 +473,9 @@ module WhopSDK
 
         sig do
           returns(
-            T::Array[WhopSDK::AccountUpdatedWebhookEvent::Data::SocialLink]
+            T::Array[
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::SocialLink
+            ]
           )
         end
         attr_accessor :social_links
@@ -466,14 +498,16 @@ module WhopSDK
 
         # Account store page display configuration.
         sig do
-          returns(WhopSDK::AccountUpdatedWebhookEvent::Data::StorePageConfig)
+          returns(
+            WhopSDK::AccountFinancingApprovedWebhookEvent::Data::StorePageConfig
+          )
         end
         attr_reader :store_page_config
 
         sig do
           params(
             store_page_config:
-              WhopSDK::AccountUpdatedWebhookEvent::Data::StorePageConfig::OrHash
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::StorePageConfig::OrHash
           ).void
         end
         attr_writer :store_page_config
@@ -487,7 +521,9 @@ module WhopSDK
 
         sig do
           returns(
-            T::Array[WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier]
+            T::Array[
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier
+            ]
           )
         end
         attr_accessor :tax_identifiers
@@ -499,7 +535,7 @@ module WhopSDK
         sig do
           returns(
             T.nilable(
-              WhopSDK::AccountUpdatedWebhookEvent::Data::TaxRemittedBy::TaggedSymbol
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxRemittedBy::TaggedSymbol
             )
           )
         end
@@ -511,7 +547,7 @@ module WhopSDK
         sig do
           returns(
             T.nilable(
-              WhopSDK::AccountUpdatedWebhookEvent::Data::TaxType::TaggedSymbol
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxType::TaggedSymbol
             )
           )
         end
@@ -521,7 +557,9 @@ module WhopSDK
         # one.
         sig do
           returns(
-            T.nilable(WhopSDK::AccountUpdatedWebhookEvent::Data::TermsOfService)
+            T.nilable(
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TermsOfService
+            )
           )
         end
         attr_reader :terms_of_service
@@ -530,7 +568,7 @@ module WhopSDK
           params(
             terms_of_service:
               T.nilable(
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TermsOfService::OrHash
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TermsOfService::OrHash
               )
           ).void
         end
@@ -541,7 +579,7 @@ module WhopSDK
         sig do
           returns(
             T.nilable(
-              WhopSDK::AccountUpdatedWebhookEvent::Data::ThreeDSLevel::TaggedSymbol
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::ThreeDSLevel::TaggedSymbol
             )
           )
         end
@@ -580,7 +618,11 @@ module WhopSDK
 
         # Account primary crypto wallet, or `null` if none has been provisioned.
         sig do
-          returns(T.nilable(WhopSDK::AccountUpdatedWebhookEvent::Data::Wallet))
+          returns(
+            T.nilable(
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Wallet
+            )
+          )
         end
         attr_reader :wallet
 
@@ -588,7 +630,7 @@ module WhopSDK
           params(
             wallet:
               T.nilable(
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Wallet::OrHash
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Wallet::OrHash
               )
           ).void
         end
@@ -599,7 +641,7 @@ module WhopSDK
             id: String,
             balances:
               T::Array[
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Balance::OrHash
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Balance::OrHash
               ],
             banner_image_url: T.nilable(String),
             business_address: T.nilable(T.anything),
@@ -608,15 +650,15 @@ module WhopSDK
             can_transfer_pending_balance_to_children: T::Boolean,
             capabilities:
               T.nilable(
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::OrHash
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::OrHash
               ),
             cards:
               T.nilable(
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Cards::OrHash
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Cards::OrHash
               ),
             collect_vat_id: T::Boolean,
             company_formation:
-              WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::OrHash,
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::OrHash,
             country: T.nilable(String),
             created_at: String,
             description: T.nilable(String),
@@ -624,11 +666,11 @@ module WhopSDK
             email: T.nilable(String),
             eula:
               T.nilable(
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Eula::OrHash
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Eula::OrHash
               ),
             home_preferences:
               T::Array[
-                WhopSDK::AccountUpdatedWebhookEvent::Data::HomePreference::OrSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::HomePreference::OrSymbol
               ],
             industry_group: T.nilable(String),
             industry_type: T.nilable(String),
@@ -637,45 +679,46 @@ module WhopSDK
             metadata: T.anything,
             onboarding_type:
               T.nilable(
-                WhopSDK::AccountUpdatedWebhookEvent::Data::OnboardingType::OrSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::OnboardingType::OrSymbol
               ),
             opengraph_image_url: T.nilable(String),
             opengraph_image_variant:
               T.nilable(
-                WhopSDK::AccountUpdatedWebhookEvent::Data::OpengraphImageVariant::OrSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::OpengraphImageVariant::OrSymbol
               ),
             other_business_description: T.nilable(String),
             other_industry_description: T.nilable(String),
-            owner: WhopSDK::AccountUpdatedWebhookEvent::Data::Owner::OrHash,
+            owner:
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Owner::OrHash,
             parent_account:
               T.nilable(
-                WhopSDK::AccountUpdatedWebhookEvent::Data::ParentAccount::OrHash
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::ParentAccount::OrHash
               ),
             payment_controls:
               T.nilable(
-                WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls::OrHash
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::OrHash
               ),
             privacy_policy:
               T.nilable(
-                WhopSDK::AccountUpdatedWebhookEvent::Data::PrivacyPolicy::OrHash
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PrivacyPolicy::OrHash
               ),
             product_tax_code: T.nilable(T.anything),
             recommended_actions:
               T.nilable(
                 T::Array[
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::RecommendedAction::OrHash
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::RecommendedAction::OrHash
                 ]
               ),
             require_2fa: T::Boolean,
             required_actions:
               T.nilable(
                 T::Array[
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::RequiredAction::OrHash
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::RequiredAction::OrHash
                 ]
               ),
             return_policy:
               T.nilable(
-                WhopSDK::AccountUpdatedWebhookEvent::Data::ReturnPolicy::OrHash
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::ReturnPolicy::OrHash
               ),
             route: String,
             send_customer_emails: T::Boolean,
@@ -684,34 +727,34 @@ module WhopSDK
             show_user_directory: T::Boolean,
             social_links:
               T::Array[
-                WhopSDK::AccountUpdatedWebhookEvent::Data::SocialLink::OrHash
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::SocialLink::OrHash
               ],
             stablecoin_rails: T::Boolean,
             status: T.nilable(String),
             status_reason: T.nilable(String),
             store_page_config:
-              WhopSDK::AccountUpdatedWebhookEvent::Data::StorePageConfig::OrHash,
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::StorePageConfig::OrHash,
             target_audience: T.nilable(String),
             tax_collection_enabled_states: T::Array[String],
             tax_identifiers:
               T::Array[
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::OrHash
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::OrHash
               ],
             tax_remitted_by:
               T.nilable(
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxRemittedBy::OrSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxRemittedBy::OrSymbol
               ),
             tax_type:
               T.nilable(
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxType::OrSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxType::OrSymbol
               ),
             terms_of_service:
               T.nilable(
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TermsOfService::OrHash
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TermsOfService::OrHash
               ),
             three_ds_level:
               T.nilable(
-                WhopSDK::AccountUpdatedWebhookEvent::Data::ThreeDSLevel::OrSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::ThreeDSLevel::OrSymbol
               ),
             title: String,
             total_earned_usd: T.nilable(Float),
@@ -721,7 +764,7 @@ module WhopSDK
             volume_usd: T.nilable(Float),
             wallet:
               T.nilable(
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Wallet::OrHash
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Wallet::OrHash
               )
           ).returns(T.attached_class)
         end
@@ -891,7 +934,9 @@ module WhopSDK
             {
               id: String,
               balances:
-                T::Array[WhopSDK::AccountUpdatedWebhookEvent::Data::Balance],
+                T::Array[
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Balance
+                ],
               banner_image_url: T.nilable(String),
               business_address: T.nilable(T.anything),
               business_name: T.nilable(String),
@@ -899,22 +944,27 @@ module WhopSDK
               can_transfer_pending_balance_to_children: T::Boolean,
               capabilities:
                 T.nilable(
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities
                 ),
               cards:
-                T.nilable(WhopSDK::AccountUpdatedWebhookEvent::Data::Cards),
+                T.nilable(
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Cards
+                ),
               collect_vat_id: T::Boolean,
               company_formation:
-                WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation,
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation,
               country: T.nilable(String),
               created_at: String,
               description: T.nilable(String),
               economic_intelligence: T::Boolean,
               email: T.nilable(String),
-              eula: T.nilable(WhopSDK::AccountUpdatedWebhookEvent::Data::Eula),
+              eula:
+                T.nilable(
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Eula
+                ),
               home_preferences:
                 T::Array[
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::HomePreference::TaggedSymbol
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::HomePreference::TaggedSymbol
                 ],
               industry_group: T.nilable(String),
               industry_type: T.nilable(String),
@@ -923,45 +973,45 @@ module WhopSDK
               metadata: T.anything,
               onboarding_type:
                 T.nilable(
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::OnboardingType::TaggedSymbol
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::OnboardingType::TaggedSymbol
                 ),
               opengraph_image_url: T.nilable(String),
               opengraph_image_variant:
                 T.nilable(
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::OpengraphImageVariant::TaggedSymbol
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::OpengraphImageVariant::TaggedSymbol
                 ),
               other_business_description: T.nilable(String),
               other_industry_description: T.nilable(String),
-              owner: WhopSDK::AccountUpdatedWebhookEvent::Data::Owner,
+              owner: WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Owner,
               parent_account:
                 T.nilable(
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::ParentAccount
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::ParentAccount
                 ),
               payment_controls:
                 T.nilable(
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PaymentControls
                 ),
               privacy_policy:
                 T.nilable(
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::PrivacyPolicy
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PrivacyPolicy
                 ),
               product_tax_code: T.nilable(T.anything),
               recommended_actions:
                 T.nilable(
                   T::Array[
-                    WhopSDK::AccountUpdatedWebhookEvent::Data::RecommendedAction
+                    WhopSDK::AccountFinancingApprovedWebhookEvent::Data::RecommendedAction
                   ]
                 ),
               require_2fa: T::Boolean,
               required_actions:
                 T.nilable(
                   T::Array[
-                    WhopSDK::AccountUpdatedWebhookEvent::Data::RequiredAction
+                    WhopSDK::AccountFinancingApprovedWebhookEvent::Data::RequiredAction
                   ]
                 ),
               return_policy:
                 T.nilable(
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::ReturnPolicy
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::ReturnPolicy
                 ),
               route: String,
               send_customer_emails: T::Boolean,
@@ -969,33 +1019,35 @@ module WhopSDK
               show_reviews_dtc: T::Boolean,
               show_user_directory: T::Boolean,
               social_links:
-                T::Array[WhopSDK::AccountUpdatedWebhookEvent::Data::SocialLink],
+                T::Array[
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::SocialLink
+                ],
               stablecoin_rails: T::Boolean,
               status: T.nilable(String),
               status_reason: T.nilable(String),
               store_page_config:
-                WhopSDK::AccountUpdatedWebhookEvent::Data::StorePageConfig,
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::StorePageConfig,
               target_audience: T.nilable(String),
               tax_collection_enabled_states: T::Array[String],
               tax_identifiers:
                 T::Array[
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier
                 ],
               tax_remitted_by:
                 T.nilable(
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::TaxRemittedBy::TaggedSymbol
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxRemittedBy::TaggedSymbol
                 ),
               tax_type:
                 T.nilable(
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::TaxType::TaggedSymbol
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxType::TaggedSymbol
                 ),
               terms_of_service:
                 T.nilable(
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::TermsOfService
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TermsOfService
                 ),
               three_ds_level:
                 T.nilable(
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::ThreeDSLevel::TaggedSymbol
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::ThreeDSLevel::TaggedSymbol
                 ),
               title: String,
               total_earned_usd: T.nilable(Float),
@@ -1004,7 +1056,9 @@ module WhopSDK
               verification: T.anything,
               volume_usd: T.nilable(Float),
               wallet:
-                T.nilable(WhopSDK::AccountUpdatedWebhookEvent::Data::Wallet)
+                T.nilable(
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Wallet
+                )
             }
           )
         end
@@ -1015,7 +1069,7 @@ module WhopSDK
           OrHash =
             T.type_alias do
               T.any(
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Balance,
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Balance,
                 WhopSDK::Internal::AnyHash
               )
             end
@@ -1030,7 +1084,7 @@ module WhopSDK
           # or reserve portions.
           sig do
             returns(
-              WhopSDK::AccountUpdatedWebhookEvent::Data::Balance::Breakdown
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Balance::Breakdown
             )
           end
           attr_reader :breakdown
@@ -1038,7 +1092,7 @@ module WhopSDK
           sig do
             params(
               breakdown:
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Balance::Breakdown::OrHash
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Balance::Breakdown::OrHash
             ).void
           end
           attr_writer :breakdown
@@ -1068,7 +1122,7 @@ module WhopSDK
             params(
               balance: String,
               breakdown:
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Balance::Breakdown::OrHash,
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Balance::Breakdown::OrHash,
               icon_url: T.nilable(String),
               name: String,
               price_usd: T.nilable(Float),
@@ -1102,7 +1156,7 @@ module WhopSDK
               {
                 balance: String,
                 breakdown:
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::Balance::Breakdown,
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Balance::Breakdown,
                 icon_url: T.nilable(String),
                 name: String,
                 price_usd: T.nilable(Float),
@@ -1118,7 +1172,7 @@ module WhopSDK
             OrHash =
               T.type_alias do
                 T.any(
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::Balance::Breakdown,
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Balance::Breakdown,
                   WhopSDK::Internal::AnyHash
                 )
               end
@@ -1141,7 +1195,7 @@ module WhopSDK
             sig do
               returns(
                 T::Array[
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::Balance::Breakdown::PendingSettlement
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Balance::Breakdown::PendingSettlement
                 ]
               )
             end
@@ -1163,7 +1217,7 @@ module WhopSDK
                 pending: String,
                 pending_settlements:
                   T::Array[
-                    WhopSDK::AccountUpdatedWebhookEvent::Data::Balance::Breakdown::PendingSettlement::OrHash
+                    WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Balance::Breakdown::PendingSettlement::OrHash
                   ],
                 reserve: String
               ).returns(T.attached_class)
@@ -1193,7 +1247,7 @@ module WhopSDK
                   pending: String,
                   pending_settlements:
                     T::Array[
-                      WhopSDK::AccountUpdatedWebhookEvent::Data::Balance::Breakdown::PendingSettlement
+                      WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Balance::Breakdown::PendingSettlement
                     ],
                   reserve: String
                 }
@@ -1206,7 +1260,7 @@ module WhopSDK
               OrHash =
                 T.type_alias do
                   T.any(
-                    WhopSDK::AccountUpdatedWebhookEvent::Data::Balance::Breakdown::PendingSettlement,
+                    WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Balance::Breakdown::PendingSettlement,
                     WhopSDK::Internal::AnyHash
                   )
                 end
@@ -1244,7 +1298,7 @@ module WhopSDK
           OrHash =
             T.type_alias do
               T.any(
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities,
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities,
                 WhopSDK::Internal::AnyHash
               )
             end
@@ -1252,7 +1306,7 @@ module WhopSDK
           # Bank payins: debits, transfers, and local bank rails
           sig do
             returns(
-              WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::AcceptBankPayments::TaggedSymbol
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::AcceptBankPayments::TaggedSymbol
             )
           end
           attr_accessor :accept_bank_payments
@@ -1260,7 +1314,7 @@ module WhopSDK
           # Buy-now-pay-later payins; requires approval
           sig do
             returns(
-              WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::AcceptBnplPayments::TaggedSymbol
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::AcceptBnplPayments::TaggedSymbol
             )
           end
           attr_accessor :accept_bnpl_payments
@@ -1268,7 +1322,7 @@ module WhopSDK
           # Card payins, including Apple Pay and Google Pay
           sig do
             returns(
-              WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::AcceptCardPayments::TaggedSymbol
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::AcceptCardPayments::TaggedSymbol
             )
           end
           attr_accessor :accept_card_payments
@@ -1276,7 +1330,7 @@ module WhopSDK
           # Deposits by bank wire or ACH to the account's virtual bank account
           sig do
             returns(
-              WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::BankDeposit::TaggedSymbol
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::BankDeposit::TaggedSymbol
             )
           end
           attr_accessor :bank_deposit
@@ -1284,7 +1338,7 @@ module WhopSDK
           # Balance top-ups by charging a stored payment method
           sig do
             returns(
-              WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::CardDeposit::TaggedSymbol
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::CardDeposit::TaggedSymbol
             )
           end
           attr_accessor :card_deposit
@@ -1292,7 +1346,7 @@ module WhopSDK
           # Issuing Whop cards; requires card application approval
           sig do
             returns(
-              WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::CardIssuing::TaggedSymbol
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::CardIssuing::TaggedSymbol
             )
           end
           attr_accessor :card_issuing
@@ -1300,7 +1354,7 @@ module WhopSDK
           # On-chain deposits to the account's crypto wallet
           sig do
             returns(
-              WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::CryptoDeposit::TaggedSymbol
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::CryptoDeposit::TaggedSymbol
             )
           end
           attr_accessor :crypto_deposit
@@ -1308,7 +1362,7 @@ module WhopSDK
           # On-chain payouts to a crypto wallet
           sig do
             returns(
-              WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::CryptoPayout::TaggedSymbol
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::CryptoPayout::TaggedSymbol
             )
           end
           attr_accessor :crypto_payout
@@ -1316,7 +1370,7 @@ module WhopSDK
           # Instant payouts to an eligible payout destination
           sig do
             returns(
-              WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::InstantPayout::TaggedSymbol
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::InstantPayout::TaggedSymbol
             )
           end
           attr_accessor :instant_payout
@@ -1325,7 +1379,7 @@ module WhopSDK
           # services agreement is awaiting the account's signature.
           sig do
             returns(
-              WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::RunAds::TaggedSymbol
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::RunAds::TaggedSymbol
             )
           end
           attr_accessor :run_ads
@@ -1333,7 +1387,7 @@ module WhopSDK
           # Standard payouts to an external payout destination
           sig do
             returns(
-              WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::StandardPayout::TaggedSymbol
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::StandardPayout::TaggedSymbol
             )
           end
           attr_accessor :standard_payout
@@ -1341,7 +1395,7 @@ module WhopSDK
           # Transfers to other accounts
           sig do
             returns(
-              WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::Transfer::TaggedSymbol
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::Transfer::TaggedSymbol
             )
           end
           attr_accessor :transfer
@@ -1352,29 +1406,29 @@ module WhopSDK
           sig do
             params(
               accept_bank_payments:
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::AcceptBankPayments::OrSymbol,
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::AcceptBankPayments::OrSymbol,
               accept_bnpl_payments:
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::AcceptBnplPayments::OrSymbol,
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::AcceptBnplPayments::OrSymbol,
               accept_card_payments:
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::AcceptCardPayments::OrSymbol,
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::AcceptCardPayments::OrSymbol,
               bank_deposit:
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::BankDeposit::OrSymbol,
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::BankDeposit::OrSymbol,
               card_deposit:
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::CardDeposit::OrSymbol,
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::CardDeposit::OrSymbol,
               card_issuing:
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::CardIssuing::OrSymbol,
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::CardIssuing::OrSymbol,
               crypto_deposit:
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::CryptoDeposit::OrSymbol,
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::CryptoDeposit::OrSymbol,
               crypto_payout:
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::CryptoPayout::OrSymbol,
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::CryptoPayout::OrSymbol,
               instant_payout:
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::InstantPayout::OrSymbol,
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::InstantPayout::OrSymbol,
               run_ads:
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::RunAds::OrSymbol,
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::RunAds::OrSymbol,
               standard_payout:
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::StandardPayout::OrSymbol,
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::StandardPayout::OrSymbol,
               transfer:
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::Transfer::OrSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::Transfer::OrSymbol
             ).returns(T.attached_class)
           end
           def self.new(
@@ -1410,29 +1464,29 @@ module WhopSDK
             override.returns(
               {
                 accept_bank_payments:
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::AcceptBankPayments::TaggedSymbol,
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::AcceptBankPayments::TaggedSymbol,
                 accept_bnpl_payments:
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::AcceptBnplPayments::TaggedSymbol,
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::AcceptBnplPayments::TaggedSymbol,
                 accept_card_payments:
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::AcceptCardPayments::TaggedSymbol,
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::AcceptCardPayments::TaggedSymbol,
                 bank_deposit:
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::BankDeposit::TaggedSymbol,
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::BankDeposit::TaggedSymbol,
                 card_deposit:
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::CardDeposit::TaggedSymbol,
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::CardDeposit::TaggedSymbol,
                 card_issuing:
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::CardIssuing::TaggedSymbol,
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::CardIssuing::TaggedSymbol,
                 crypto_deposit:
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::CryptoDeposit::TaggedSymbol,
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::CryptoDeposit::TaggedSymbol,
                 crypto_payout:
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::CryptoPayout::TaggedSymbol,
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::CryptoPayout::TaggedSymbol,
                 instant_payout:
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::InstantPayout::TaggedSymbol,
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::InstantPayout::TaggedSymbol,
                 run_ads:
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::RunAds::TaggedSymbol,
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::RunAds::TaggedSymbol,
                 standard_payout:
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::StandardPayout::TaggedSymbol,
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::StandardPayout::TaggedSymbol,
                 transfer:
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::Transfer::TaggedSymbol
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::Transfer::TaggedSymbol
               }
             )
           end
@@ -1447,7 +1501,7 @@ module WhopSDK
               T.type_alias do
                 T.all(
                   Symbol,
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::AcceptBankPayments
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::AcceptBankPayments
                 )
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -1455,23 +1509,23 @@ module WhopSDK
             ACTIVE =
               T.let(
                 :active,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::AcceptBankPayments::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::AcceptBankPayments::TaggedSymbol
               )
             INACTIVE =
               T.let(
                 :inactive,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::AcceptBankPayments::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::AcceptBankPayments::TaggedSymbol
               )
             PENDING =
               T.let(
                 :pending,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::AcceptBankPayments::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::AcceptBankPayments::TaggedSymbol
               )
 
             sig do
               override.returns(
                 T::Array[
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::AcceptBankPayments::TaggedSymbol
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::AcceptBankPayments::TaggedSymbol
                 ]
               )
             end
@@ -1487,7 +1541,7 @@ module WhopSDK
               T.type_alias do
                 T.all(
                   Symbol,
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::AcceptBnplPayments
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::AcceptBnplPayments
                 )
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -1495,23 +1549,23 @@ module WhopSDK
             ACTIVE =
               T.let(
                 :active,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::AcceptBnplPayments::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::AcceptBnplPayments::TaggedSymbol
               )
             INACTIVE =
               T.let(
                 :inactive,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::AcceptBnplPayments::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::AcceptBnplPayments::TaggedSymbol
               )
             PENDING =
               T.let(
                 :pending,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::AcceptBnplPayments::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::AcceptBnplPayments::TaggedSymbol
               )
 
             sig do
               override.returns(
                 T::Array[
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::AcceptBnplPayments::TaggedSymbol
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::AcceptBnplPayments::TaggedSymbol
                 ]
               )
             end
@@ -1527,7 +1581,7 @@ module WhopSDK
               T.type_alias do
                 T.all(
                   Symbol,
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::AcceptCardPayments
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::AcceptCardPayments
                 )
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -1535,23 +1589,23 @@ module WhopSDK
             ACTIVE =
               T.let(
                 :active,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::AcceptCardPayments::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::AcceptCardPayments::TaggedSymbol
               )
             INACTIVE =
               T.let(
                 :inactive,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::AcceptCardPayments::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::AcceptCardPayments::TaggedSymbol
               )
             PENDING =
               T.let(
                 :pending,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::AcceptCardPayments::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::AcceptCardPayments::TaggedSymbol
               )
 
             sig do
               override.returns(
                 T::Array[
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::AcceptCardPayments::TaggedSymbol
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::AcceptCardPayments::TaggedSymbol
                 ]
               )
             end
@@ -1567,7 +1621,7 @@ module WhopSDK
               T.type_alias do
                 T.all(
                   Symbol,
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::BankDeposit
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::BankDeposit
                 )
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -1575,23 +1629,23 @@ module WhopSDK
             ACTIVE =
               T.let(
                 :active,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::BankDeposit::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::BankDeposit::TaggedSymbol
               )
             INACTIVE =
               T.let(
                 :inactive,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::BankDeposit::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::BankDeposit::TaggedSymbol
               )
             PENDING =
               T.let(
                 :pending,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::BankDeposit::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::BankDeposit::TaggedSymbol
               )
 
             sig do
               override.returns(
                 T::Array[
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::BankDeposit::TaggedSymbol
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::BankDeposit::TaggedSymbol
                 ]
               )
             end
@@ -1607,7 +1661,7 @@ module WhopSDK
               T.type_alias do
                 T.all(
                   Symbol,
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::CardDeposit
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::CardDeposit
                 )
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -1615,23 +1669,23 @@ module WhopSDK
             ACTIVE =
               T.let(
                 :active,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::CardDeposit::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::CardDeposit::TaggedSymbol
               )
             INACTIVE =
               T.let(
                 :inactive,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::CardDeposit::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::CardDeposit::TaggedSymbol
               )
             PENDING =
               T.let(
                 :pending,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::CardDeposit::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::CardDeposit::TaggedSymbol
               )
 
             sig do
               override.returns(
                 T::Array[
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::CardDeposit::TaggedSymbol
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::CardDeposit::TaggedSymbol
                 ]
               )
             end
@@ -1647,7 +1701,7 @@ module WhopSDK
               T.type_alias do
                 T.all(
                   Symbol,
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::CardIssuing
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::CardIssuing
                 )
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -1655,23 +1709,23 @@ module WhopSDK
             ACTIVE =
               T.let(
                 :active,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::CardIssuing::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::CardIssuing::TaggedSymbol
               )
             INACTIVE =
               T.let(
                 :inactive,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::CardIssuing::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::CardIssuing::TaggedSymbol
               )
             PENDING =
               T.let(
                 :pending,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::CardIssuing::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::CardIssuing::TaggedSymbol
               )
 
             sig do
               override.returns(
                 T::Array[
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::CardIssuing::TaggedSymbol
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::CardIssuing::TaggedSymbol
                 ]
               )
             end
@@ -1687,7 +1741,7 @@ module WhopSDK
               T.type_alias do
                 T.all(
                   Symbol,
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::CryptoDeposit
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::CryptoDeposit
                 )
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -1695,23 +1749,23 @@ module WhopSDK
             ACTIVE =
               T.let(
                 :active,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::CryptoDeposit::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::CryptoDeposit::TaggedSymbol
               )
             INACTIVE =
               T.let(
                 :inactive,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::CryptoDeposit::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::CryptoDeposit::TaggedSymbol
               )
             PENDING =
               T.let(
                 :pending,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::CryptoDeposit::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::CryptoDeposit::TaggedSymbol
               )
 
             sig do
               override.returns(
                 T::Array[
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::CryptoDeposit::TaggedSymbol
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::CryptoDeposit::TaggedSymbol
                 ]
               )
             end
@@ -1727,7 +1781,7 @@ module WhopSDK
               T.type_alias do
                 T.all(
                   Symbol,
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::CryptoPayout
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::CryptoPayout
                 )
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -1735,23 +1789,23 @@ module WhopSDK
             ACTIVE =
               T.let(
                 :active,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::CryptoPayout::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::CryptoPayout::TaggedSymbol
               )
             INACTIVE =
               T.let(
                 :inactive,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::CryptoPayout::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::CryptoPayout::TaggedSymbol
               )
             PENDING =
               T.let(
                 :pending,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::CryptoPayout::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::CryptoPayout::TaggedSymbol
               )
 
             sig do
               override.returns(
                 T::Array[
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::CryptoPayout::TaggedSymbol
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::CryptoPayout::TaggedSymbol
                 ]
               )
             end
@@ -1767,7 +1821,7 @@ module WhopSDK
               T.type_alias do
                 T.all(
                   Symbol,
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::InstantPayout
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::InstantPayout
                 )
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -1775,23 +1829,23 @@ module WhopSDK
             ACTIVE =
               T.let(
                 :active,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::InstantPayout::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::InstantPayout::TaggedSymbol
               )
             INACTIVE =
               T.let(
                 :inactive,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::InstantPayout::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::InstantPayout::TaggedSymbol
               )
             PENDING =
               T.let(
                 :pending,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::InstantPayout::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::InstantPayout::TaggedSymbol
               )
 
             sig do
               override.returns(
                 T::Array[
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::InstantPayout::TaggedSymbol
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::InstantPayout::TaggedSymbol
                 ]
               )
             end
@@ -1808,7 +1862,7 @@ module WhopSDK
               T.type_alias do
                 T.all(
                   Symbol,
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::RunAds
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::RunAds
                 )
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -1816,23 +1870,23 @@ module WhopSDK
             ACTIVE =
               T.let(
                 :active,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::RunAds::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::RunAds::TaggedSymbol
               )
             INACTIVE =
               T.let(
                 :inactive,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::RunAds::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::RunAds::TaggedSymbol
               )
             PENDING =
               T.let(
                 :pending,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::RunAds::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::RunAds::TaggedSymbol
               )
 
             sig do
               override.returns(
                 T::Array[
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::RunAds::TaggedSymbol
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::RunAds::TaggedSymbol
                 ]
               )
             end
@@ -1848,7 +1902,7 @@ module WhopSDK
               T.type_alias do
                 T.all(
                   Symbol,
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::StandardPayout
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::StandardPayout
                 )
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -1856,23 +1910,23 @@ module WhopSDK
             ACTIVE =
               T.let(
                 :active,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::StandardPayout::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::StandardPayout::TaggedSymbol
               )
             INACTIVE =
               T.let(
                 :inactive,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::StandardPayout::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::StandardPayout::TaggedSymbol
               )
             PENDING =
               T.let(
                 :pending,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::StandardPayout::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::StandardPayout::TaggedSymbol
               )
 
             sig do
               override.returns(
                 T::Array[
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::StandardPayout::TaggedSymbol
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::StandardPayout::TaggedSymbol
                 ]
               )
             end
@@ -1888,7 +1942,7 @@ module WhopSDK
               T.type_alias do
                 T.all(
                   Symbol,
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::Transfer
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::Transfer
                 )
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -1896,23 +1950,23 @@ module WhopSDK
             ACTIVE =
               T.let(
                 :active,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::Transfer::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::Transfer::TaggedSymbol
               )
             INACTIVE =
               T.let(
                 :inactive,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::Transfer::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::Transfer::TaggedSymbol
               )
             PENDING =
               T.let(
                 :pending,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::Transfer::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::Transfer::TaggedSymbol
               )
 
             sig do
               override.returns(
                 T::Array[
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities::Transfer::TaggedSymbol
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Capabilities::Transfer::TaggedSymbol
                 ]
               )
             end
@@ -1925,7 +1979,7 @@ module WhopSDK
           OrHash =
             T.type_alias do
               T.any(
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Cards,
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Cards,
                 WhopSDK::Internal::AnyHash
               )
             end
@@ -1936,7 +1990,7 @@ module WhopSDK
           sig do
             returns(
               T.nilable(
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Cards::Kind::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Cards::Kind::TaggedSymbol
               )
             )
           end
@@ -1949,7 +2003,7 @@ module WhopSDK
           # flight. `denied`, `locked`, and `canceled` are terminal.
           sig do
             returns(
-              WhopSDK::AccountUpdatedWebhookEvent::Data::Cards::Status::TaggedSymbol
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Cards::Status::TaggedSymbol
             )
           end
           attr_accessor :status
@@ -1961,10 +2015,10 @@ module WhopSDK
             params(
               kind:
                 T.nilable(
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::Cards::Kind::OrSymbol
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Cards::Kind::OrSymbol
                 ),
               status:
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Cards::Status::OrSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Cards::Status::OrSymbol
             ).returns(T.attached_class)
           end
           def self.new(
@@ -1986,10 +2040,10 @@ module WhopSDK
               {
                 kind:
                   T.nilable(
-                    WhopSDK::AccountUpdatedWebhookEvent::Data::Cards::Kind::TaggedSymbol
+                    WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Cards::Kind::TaggedSymbol
                   ),
                 status:
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::Cards::Status::TaggedSymbol
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Cards::Status::TaggedSymbol
               }
             )
           end
@@ -2006,7 +2060,7 @@ module WhopSDK
               T.type_alias do
                 T.all(
                   Symbol,
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::Cards::Kind
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Cards::Kind
                 )
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -2014,18 +2068,18 @@ module WhopSDK
             INDIVIDUAL =
               T.let(
                 :individual,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Cards::Kind::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Cards::Kind::TaggedSymbol
               )
             BUSINESS =
               T.let(
                 :business,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Cards::Kind::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Cards::Kind::TaggedSymbol
               )
 
             sig do
               override.returns(
                 T::Array[
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::Cards::Kind::TaggedSymbol
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Cards::Kind::TaggedSymbol
                 ]
               )
             end
@@ -2045,7 +2099,7 @@ module WhopSDK
               T.type_alias do
                 T.all(
                   Symbol,
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::Cards::Status
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Cards::Status
                 )
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -2053,48 +2107,48 @@ module WhopSDK
             APPROVED =
               T.let(
                 :approved,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Cards::Status::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Cards::Status::TaggedSymbol
               )
             PENDING =
               T.let(
                 :pending,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Cards::Status::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Cards::Status::TaggedSymbol
               )
             MANUAL_REVIEW =
               T.let(
                 :manual_review,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Cards::Status::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Cards::Status::TaggedSymbol
               )
             DENIED =
               T.let(
                 :denied,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Cards::Status::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Cards::Status::TaggedSymbol
               )
             LOCKED =
               T.let(
                 :locked,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Cards::Status::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Cards::Status::TaggedSymbol
               )
             CANCELED =
               T.let(
                 :canceled,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Cards::Status::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Cards::Status::TaggedSymbol
               )
             NEEDS_VERIFICATION =
               T.let(
                 :needs_verification,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Cards::Status::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Cards::Status::TaggedSymbol
               )
             NEEDS_INFORMATION =
               T.let(
                 :needs_information,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Cards::Status::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Cards::Status::TaggedSymbol
               )
 
             sig do
               override.returns(
                 T::Array[
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::Cards::Status::TaggedSymbol
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Cards::Status::TaggedSymbol
                 ]
               )
             end
@@ -2107,7 +2161,7 @@ module WhopSDK
           OrHash =
             T.type_alias do
               T.any(
-                WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation,
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation,
                 WhopSDK::Internal::AnyHash
               )
             end
@@ -2116,7 +2170,7 @@ module WhopSDK
             returns(
               T.nilable(
                 T::Array[
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Document
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Document
                 ]
               )
             )
@@ -2127,7 +2181,7 @@ module WhopSDK
             params(
               documents:
                 T::Array[
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Document::OrHash
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Document::OrHash
                 ]
             ).void
           end
@@ -2151,7 +2205,7 @@ module WhopSDK
           sig do
             returns(
               T.nilable(
-                WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Signatures
               )
             )
           end
@@ -2160,7 +2214,7 @@ module WhopSDK
           sig do
             params(
               signatures:
-                WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures::OrHash
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Signatures::OrHash
             ).void
           end
           attr_writer :signatures
@@ -2176,7 +2230,7 @@ module WhopSDK
           sig do
             returns(
               T.nilable(
-                WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Status::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Status::TaggedSymbol
               )
             )
           end
@@ -2185,7 +2239,7 @@ module WhopSDK
           sig do
             params(
               status:
-                WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Status::OrSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Status::OrSymbol
             ).void
           end
           attr_writer :status
@@ -2199,15 +2253,15 @@ module WhopSDK
             params(
               documents:
                 T::Array[
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Document::OrHash
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Document::OrHash
                 ],
               ein_registered: T::Boolean,
               legal_name: T.nilable(String),
               signatures:
-                WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures::OrHash,
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Signatures::OrHash,
               state_registered: T::Boolean,
               status:
-                WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Status::OrSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Status::OrSymbol
             ).returns(T.attached_class)
           end
           def self.new(
@@ -2233,15 +2287,15 @@ module WhopSDK
               {
                 documents:
                   T::Array[
-                    WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Document
+                    WhopSDK::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Document
                   ],
                 ein_registered: T::Boolean,
                 legal_name: T.nilable(String),
                 signatures:
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures,
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Signatures,
                 state_registered: T::Boolean,
                 status:
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Status::TaggedSymbol
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Status::TaggedSymbol
               }
             )
           end
@@ -2252,7 +2306,7 @@ module WhopSDK
             OrHash =
               T.type_alias do
                 T.any(
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Document,
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Document,
                   WhopSDK::Internal::AnyHash
                 )
               end
@@ -2312,7 +2366,7 @@ module WhopSDK
             OrHash =
               T.type_alias do
                 T.any(
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures,
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Signatures,
                   WhopSDK::Internal::AnyHash
                 )
               end
@@ -2322,7 +2376,7 @@ module WhopSDK
             sig do
               returns(
                 T.nilable(
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures::Form8821
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Signatures::Form8821
                 )
               )
             end
@@ -2331,7 +2385,7 @@ module WhopSDK
             sig do
               params(
                 form8821:
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures::Form8821::OrHash
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Signatures::Form8821::OrHash
               ).void
             end
             attr_writer :form8821
@@ -2341,7 +2395,7 @@ module WhopSDK
             sig do
               returns(
                 T.nilable(
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures::Ss4
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Signatures::Ss4
                 )
               )
             end
@@ -2350,7 +2404,7 @@ module WhopSDK
             sig do
               params(
                 ss4:
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures::Ss4::OrHash
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Signatures::Ss4::OrHash
               ).void
             end
             attr_writer :ss4
@@ -2360,9 +2414,9 @@ module WhopSDK
             sig do
               params(
                 form8821:
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures::Form8821::OrHash,
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Signatures::Form8821::OrHash,
                 ss4:
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures::Ss4::OrHash
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Signatures::Ss4::OrHash
               ).returns(T.attached_class)
             end
             def self.new(
@@ -2379,9 +2433,9 @@ module WhopSDK
               override.returns(
                 {
                   form8821:
-                    WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures::Form8821,
+                    WhopSDK::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Signatures::Form8821,
                   ss4:
-                    WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures::Ss4
+                    WhopSDK::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Signatures::Ss4
                 }
               )
             end
@@ -2392,7 +2446,7 @@ module WhopSDK
               OrHash =
                 T.type_alias do
                   T.any(
-                    WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures::Form8821,
+                    WhopSDK::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Signatures::Form8821,
                     WhopSDK::Internal::AnyHash
                   )
                 end
@@ -2401,7 +2455,7 @@ module WhopSDK
               # signature state could not be determined.
               sig do
                 returns(
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures::Form8821::Status::TaggedSymbol
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Signatures::Form8821::Status::TaggedSymbol
                 )
               end
               attr_accessor :status
@@ -2427,7 +2481,7 @@ module WhopSDK
               sig do
                 params(
                   status:
-                    WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures::Form8821::Status::OrSymbol,
+                    WhopSDK::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Signatures::Form8821::Status::OrSymbol,
                   expires_at: String,
                   url: String
                 ).returns(T.attached_class)
@@ -2449,7 +2503,7 @@ module WhopSDK
                 override.returns(
                   {
                     status:
-                      WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures::Form8821::Status::TaggedSymbol,
+                      WhopSDK::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Signatures::Form8821::Status::TaggedSymbol,
                     expires_at: String,
                     url: String
                   }
@@ -2467,7 +2521,7 @@ module WhopSDK
                   T.type_alias do
                     T.all(
                       Symbol,
-                      WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures::Form8821::Status
+                      WhopSDK::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Signatures::Form8821::Status
                     )
                   end
                 OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -2475,18 +2529,18 @@ module WhopSDK
                 PENDING =
                   T.let(
                     :pending,
-                    WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures::Form8821::Status::TaggedSymbol
+                    WhopSDK::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Signatures::Form8821::Status::TaggedSymbol
                   )
                 UNKNOWN =
                   T.let(
                     :unknown,
-                    WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures::Form8821::Status::TaggedSymbol
+                    WhopSDK::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Signatures::Form8821::Status::TaggedSymbol
                   )
 
                 sig do
                   override.returns(
                     T::Array[
-                      WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures::Form8821::Status::TaggedSymbol
+                      WhopSDK::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Signatures::Form8821::Status::TaggedSymbol
                     ]
                   )
                 end
@@ -2499,7 +2553,7 @@ module WhopSDK
               OrHash =
                 T.type_alias do
                   T.any(
-                    WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures::Ss4,
+                    WhopSDK::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Signatures::Ss4,
                     WhopSDK::Internal::AnyHash
                   )
                 end
@@ -2508,7 +2562,7 @@ module WhopSDK
               # signature state could not be determined.
               sig do
                 returns(
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures::Ss4::Status::TaggedSymbol
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Signatures::Ss4::Status::TaggedSymbol
                 )
               end
               attr_accessor :status
@@ -2534,7 +2588,7 @@ module WhopSDK
               sig do
                 params(
                   status:
-                    WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures::Ss4::Status::OrSymbol,
+                    WhopSDK::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Signatures::Ss4::Status::OrSymbol,
                   expires_at: String,
                   url: String
                 ).returns(T.attached_class)
@@ -2556,7 +2610,7 @@ module WhopSDK
                 override.returns(
                   {
                     status:
-                      WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures::Ss4::Status::TaggedSymbol,
+                      WhopSDK::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Signatures::Ss4::Status::TaggedSymbol,
                     expires_at: String,
                     url: String
                   }
@@ -2574,7 +2628,7 @@ module WhopSDK
                   T.type_alias do
                     T.all(
                       Symbol,
-                      WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures::Ss4::Status
+                      WhopSDK::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Signatures::Ss4::Status
                     )
                   end
                 OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -2582,18 +2636,18 @@ module WhopSDK
                 PENDING =
                   T.let(
                     :pending,
-                    WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures::Ss4::Status::TaggedSymbol
+                    WhopSDK::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Signatures::Ss4::Status::TaggedSymbol
                   )
                 UNKNOWN =
                   T.let(
                     :unknown,
-                    WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures::Ss4::Status::TaggedSymbol
+                    WhopSDK::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Signatures::Ss4::Status::TaggedSymbol
                   )
 
                 sig do
                   override.returns(
                     T::Array[
-                      WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures::Ss4::Status::TaggedSymbol
+                      WhopSDK::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Signatures::Ss4::Status::TaggedSymbol
                     ]
                   )
                 end
@@ -2610,7 +2664,7 @@ module WhopSDK
               T.type_alias do
                 T.all(
                   Symbol,
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Status
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Status
                 )
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -2618,33 +2672,33 @@ module WhopSDK
             DRAFT =
               T.let(
                 :draft,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Status::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Status::TaggedSymbol
               )
             PROCESSING =
               T.let(
                 :processing,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Status::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Status::TaggedSymbol
               )
             FILED =
               T.let(
                 :filed,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Status::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Status::TaggedSymbol
               )
             REJECTED =
               T.let(
                 :rejected,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Status::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Status::TaggedSymbol
               )
             COMPLETED =
               T.let(
                 :completed,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Status::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Status::TaggedSymbol
               )
 
             sig do
               override.returns(
                 T::Array[
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Status::TaggedSymbol
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::CompanyFormation::Status::TaggedSymbol
                 ]
               )
             end
@@ -2657,7 +2711,7 @@ module WhopSDK
           OrHash =
             T.type_alias do
               T.any(
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Eula,
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Eula,
                 WhopSDK::Internal::AnyHash
               )
             end
@@ -2689,7 +2743,7 @@ module WhopSDK
           # Where the file is in its upload lifecycle.
           sig do
             returns(
-              WhopSDK::AccountUpdatedWebhookEvent::Data::Eula::UploadStatus::TaggedSymbol
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Eula::UploadStatus::TaggedSymbol
             )
           end
           attr_accessor :upload_status
@@ -2703,7 +2757,7 @@ module WhopSDK
           # expiring URL.
           sig do
             returns(
-              WhopSDK::AccountUpdatedWebhookEvent::Data::Eula::Visibility::TaggedSymbol
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Eula::Visibility::TaggedSymbol
             )
           end
           attr_accessor :visibility
@@ -2722,7 +2776,7 @@ module WhopSDK
             returns(
               T.nilable(
                 T::Array[
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::Eula::MultipartUploadURL
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Eula::MultipartUploadURL
                 ]
               )
             )
@@ -2752,16 +2806,16 @@ module WhopSDK
               object: String,
               size: T.nilable(Integer),
               upload_status:
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Eula::UploadStatus::OrSymbol,
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Eula::UploadStatus::OrSymbol,
               url: T.nilable(String),
               visibility:
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Eula::Visibility::OrSymbol,
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Eula::Visibility::OrSymbol,
               multipart_chunk_size: T.nilable(Integer),
               multipart_upload_id: T.nilable(String),
               multipart_upload_urls:
                 T.nilable(
                   T::Array[
-                    WhopSDK::AccountUpdatedWebhookEvent::Data::Eula::MultipartUploadURL::OrHash
+                    WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Eula::MultipartUploadURL::OrHash
                   ]
                 ),
               upload_headers: T.anything,
@@ -2814,16 +2868,16 @@ module WhopSDK
                 object: String,
                 size: T.nilable(Integer),
                 upload_status:
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::Eula::UploadStatus::TaggedSymbol,
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Eula::UploadStatus::TaggedSymbol,
                 url: T.nilable(String),
                 visibility:
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::Eula::Visibility::TaggedSymbol,
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Eula::Visibility::TaggedSymbol,
                 multipart_chunk_size: T.nilable(Integer),
                 multipart_upload_id: T.nilable(String),
                 multipart_upload_urls:
                   T.nilable(
                     T::Array[
-                      WhopSDK::AccountUpdatedWebhookEvent::Data::Eula::MultipartUploadURL
+                      WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Eula::MultipartUploadURL
                     ]
                   ),
                 upload_headers: T.anything,
@@ -2842,7 +2896,7 @@ module WhopSDK
               T.type_alias do
                 T.all(
                   Symbol,
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::Eula::UploadStatus
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Eula::UploadStatus
                 )
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -2850,28 +2904,28 @@ module WhopSDK
             PENDING =
               T.let(
                 :pending,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Eula::UploadStatus::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Eula::UploadStatus::TaggedSymbol
               )
             PROCESSING =
               T.let(
                 :processing,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Eula::UploadStatus::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Eula::UploadStatus::TaggedSymbol
               )
             READY =
               T.let(
                 :ready,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Eula::UploadStatus::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Eula::UploadStatus::TaggedSymbol
               )
             FAILED =
               T.let(
                 :failed,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Eula::UploadStatus::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Eula::UploadStatus::TaggedSymbol
               )
 
             sig do
               override.returns(
                 T::Array[
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::Eula::UploadStatus::TaggedSymbol
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Eula::UploadStatus::TaggedSymbol
                 ]
               )
             end
@@ -2888,7 +2942,7 @@ module WhopSDK
               T.type_alias do
                 T.all(
                   Symbol,
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::Eula::Visibility
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Eula::Visibility
                 )
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -2896,18 +2950,18 @@ module WhopSDK
             PUBLIC =
               T.let(
                 :public,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Eula::Visibility::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Eula::Visibility::TaggedSymbol
               )
             PRIVATE =
               T.let(
                 :private,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Eula::Visibility::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Eula::Visibility::TaggedSymbol
               )
 
             sig do
               override.returns(
                 T::Array[
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::Eula::Visibility::TaggedSymbol
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Eula::Visibility::TaggedSymbol
                 ]
               )
             end
@@ -2919,7 +2973,7 @@ module WhopSDK
             OrHash =
               T.type_alias do
                 T.any(
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::Eula::MultipartUploadURL,
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Eula::MultipartUploadURL,
                   WhopSDK::Internal::AnyHash
                 )
               end
@@ -2961,7 +3015,7 @@ module WhopSDK
             T.type_alias do
               T.all(
                 Symbol,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::HomePreference
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::HomePreference
               )
             end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -2969,18 +3023,18 @@ module WhopSDK
           HIDE_MEMBER_COUNT =
             T.let(
               :hide_member_count,
-              WhopSDK::AccountUpdatedWebhookEvent::Data::HomePreference::TaggedSymbol
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::HomePreference::TaggedSymbol
             )
           HIDE_MEMBERS_CARD =
             T.let(
               :hide_members_card,
-              WhopSDK::AccountUpdatedWebhookEvent::Data::HomePreference::TaggedSymbol
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::HomePreference::TaggedSymbol
             )
 
           sig do
             override.returns(
               T::Array[
-                WhopSDK::AccountUpdatedWebhookEvent::Data::HomePreference::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::HomePreference::TaggedSymbol
               ]
             )
           end
@@ -2996,7 +3050,7 @@ module WhopSDK
             T.type_alias do
               T.all(
                 Symbol,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::OnboardingType
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::OnboardingType
               )
             end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -3004,18 +3058,18 @@ module WhopSDK
           PLATFORM =
             T.let(
               :platform,
-              WhopSDK::AccountUpdatedWebhookEvent::Data::OnboardingType::TaggedSymbol
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::OnboardingType::TaggedSymbol
             )
           SELLER =
             T.let(
               :seller,
-              WhopSDK::AccountUpdatedWebhookEvent::Data::OnboardingType::TaggedSymbol
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::OnboardingType::TaggedSymbol
             )
 
           sig do
             override.returns(
               T::Array[
-                WhopSDK::AccountUpdatedWebhookEvent::Data::OnboardingType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::OnboardingType::TaggedSymbol
               ]
             )
           end
@@ -3031,7 +3085,7 @@ module WhopSDK
             T.type_alias do
               T.all(
                 Symbol,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::OpengraphImageVariant
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::OpengraphImageVariant
               )
             end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -3039,23 +3093,23 @@ module WhopSDK
           WHITE =
             T.let(
               :white,
-              WhopSDK::AccountUpdatedWebhookEvent::Data::OpengraphImageVariant::TaggedSymbol
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::OpengraphImageVariant::TaggedSymbol
             )
           BLACK =
             T.let(
               :black,
-              WhopSDK::AccountUpdatedWebhookEvent::Data::OpengraphImageVariant::TaggedSymbol
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::OpengraphImageVariant::TaggedSymbol
             )
           ORANGE =
             T.let(
               :orange,
-              WhopSDK::AccountUpdatedWebhookEvent::Data::OpengraphImageVariant::TaggedSymbol
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::OpengraphImageVariant::TaggedSymbol
             )
 
           sig do
             override.returns(
               T::Array[
-                WhopSDK::AccountUpdatedWebhookEvent::Data::OpengraphImageVariant::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::OpengraphImageVariant::TaggedSymbol
               ]
             )
           end
@@ -3067,7 +3121,7 @@ module WhopSDK
           OrHash =
             T.type_alias do
               T.any(
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Owner,
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Owner,
                 WhopSDK::Internal::AnyHash
               )
             end
@@ -3084,7 +3138,7 @@ module WhopSDK
           # the user set no picture.
           sig do
             returns(
-              WhopSDK::AccountUpdatedWebhookEvent::Data::Owner::ProfilePicture
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Owner::ProfilePicture
             )
           end
           attr_reader :profile_picture
@@ -3092,7 +3146,7 @@ module WhopSDK
           sig do
             params(
               profile_picture:
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Owner::ProfilePicture::OrHash
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Owner::ProfilePicture::OrHash
             ).void
           end
           attr_writer :profile_picture
@@ -3108,7 +3162,7 @@ module WhopSDK
               id: String,
               name: T.nilable(String),
               profile_picture:
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Owner::ProfilePicture::OrHash,
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Owner::ProfilePicture::OrHash,
               username: String
             ).returns(T.attached_class)
           end
@@ -3131,7 +3185,7 @@ module WhopSDK
                 id: String,
                 name: T.nilable(String),
                 profile_picture:
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::Owner::ProfilePicture,
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Owner::ProfilePicture,
                 username: String
               }
             )
@@ -3143,7 +3197,7 @@ module WhopSDK
             OrHash =
               T.type_alias do
                 T.any(
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::Owner::ProfilePicture,
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Owner::ProfilePicture,
                   WhopSDK::Internal::AnyHash
                 )
               end
@@ -3173,7 +3227,7 @@ module WhopSDK
           OrHash =
             T.type_alias do
               T.any(
-                WhopSDK::AccountUpdatedWebhookEvent::Data::ParentAccount,
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::ParentAccount,
                 WhopSDK::Internal::AnyHash
               )
             end
@@ -3203,7 +3257,7 @@ module WhopSDK
               T.nilable(
                 T::Hash[
                   Symbol,
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::ParentAccount::Fee
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::ParentAccount::Fee
                 ]
               )
             )
@@ -3215,7 +3269,7 @@ module WhopSDK
               fees:
                 T::Hash[
                   Symbol,
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::ParentAccount::Fee::OrHash
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::ParentAccount::Fee::OrHash
                 ]
             ).void
           end
@@ -3231,7 +3285,7 @@ module WhopSDK
               fees:
                 T::Hash[
                   Symbol,
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::ParentAccount::Fee::OrHash
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::ParentAccount::Fee::OrHash
                 ]
             ).returns(T.attached_class)
           end
@@ -3262,7 +3316,7 @@ module WhopSDK
                 fees:
                   T::Hash[
                     Symbol,
-                    WhopSDK::AccountUpdatedWebhookEvent::Data::ParentAccount::Fee
+                    WhopSDK::AccountFinancingApprovedWebhookEvent::Data::ParentAccount::Fee
                   ]
               }
             )
@@ -3274,7 +3328,7 @@ module WhopSDK
             OrHash =
               T.type_alias do
                 T.any(
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::ParentAccount::Fee,
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::ParentAccount::Fee,
                   WhopSDK::Internal::AnyHash
                 )
               end
@@ -3312,7 +3366,7 @@ module WhopSDK
           OrHash =
             T.type_alias do
               T.any(
-                WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls,
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PaymentControls,
                 WhopSDK::Internal::AnyHash
               )
             end
@@ -3320,7 +3374,7 @@ module WhopSDK
           # Automatic refund settings for pre-chargeback dispute alerts.
           sig do
             returns(
-              WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls::DisputeAlertAutoRefund
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::DisputeAlertAutoRefund
             )
           end
           attr_reader :dispute_alert_auto_refund
@@ -3328,7 +3382,7 @@ module WhopSDK
           sig do
             params(
               dispute_alert_auto_refund:
-                WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls::DisputeAlertAutoRefund::OrHash
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::DisputeAlertAutoRefund::OrHash
             ).void
           end
           attr_writer :dispute_alert_auto_refund
@@ -3363,7 +3417,7 @@ module WhopSDK
           # Reserve currently applied to incoming payment volume.
           sig do
             returns(
-              WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls::Reserve
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::Reserve
             )
           end
           attr_reader :reserve
@@ -3371,7 +3425,7 @@ module WhopSDK
           sig do
             params(
               reserve:
-                WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls::Reserve::OrHash
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::Reserve::OrHash
             ).void
           end
           attr_writer :reserve
@@ -3379,7 +3433,7 @@ module WhopSDK
           # Automatic refund settings for resolution center cases.
           sig do
             returns(
-              WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls::ResolutionCenterAutoRefund
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::ResolutionCenterAutoRefund
             )
           end
           attr_reader :resolution_center_auto_refund
@@ -3387,7 +3441,7 @@ module WhopSDK
           sig do
             params(
               resolution_center_auto_refund:
-                WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls::ResolutionCenterAutoRefund::OrHash
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::ResolutionCenterAutoRefund::OrHash
             ).void
           end
           attr_writer :resolution_center_auto_refund
@@ -3395,7 +3449,7 @@ module WhopSDK
           sig do
             returns(
               T::Array[
-                WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls::RestrictedPaymentMethod::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::RestrictedPaymentMethod::TaggedSymbol
               ]
             )
           end
@@ -3409,7 +3463,7 @@ module WhopSDK
           sig do
             returns(
               T.nilable(
-                WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls::UndatedPendingReason::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::UndatedPendingReason::TaggedSymbol
               )
             )
           end
@@ -3418,7 +3472,7 @@ module WhopSDK
           # How the account's balance automatically withdraws.
           sig do
             returns(
-              WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls::WithdrawalSchedule
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::WithdrawalSchedule
             )
           end
           attr_reader :withdrawal_schedule
@@ -3426,7 +3480,7 @@ module WhopSDK
           sig do
             params(
               withdrawal_schedule:
-                WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls::WithdrawalSchedule::OrHash
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::WithdrawalSchedule::OrHash
             ).void
           end
           attr_writer :withdrawal_schedule
@@ -3437,7 +3491,7 @@ module WhopSDK
           sig do
             params(
               dispute_alert_auto_refund:
-                WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls::DisputeAlertAutoRefund::OrHash,
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::DisputeAlertAutoRefund::OrHash,
               dispute_alert_fee_usd: T.nilable(Float),
               enforce_3ds: T::Boolean,
               financing_disabled: T::Boolean,
@@ -3445,19 +3499,19 @@ module WhopSDK
               pending_auto_topup_fee_percentage: Float,
               pending_balance_delay_days: Integer,
               reserve:
-                WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls::Reserve::OrHash,
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::Reserve::OrHash,
               resolution_center_auto_refund:
-                WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls::ResolutionCenterAutoRefund::OrHash,
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::ResolutionCenterAutoRefund::OrHash,
               restricted_payment_methods:
                 T::Array[
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls::RestrictedPaymentMethod::OrSymbol
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::RestrictedPaymentMethod::OrSymbol
                 ],
               undated_pending_reason:
                 T.nilable(
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls::UndatedPendingReason::OrSymbol
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::UndatedPendingReason::OrSymbol
                 ),
               withdrawal_schedule:
-                WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls::WithdrawalSchedule::OrHash
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::WithdrawalSchedule::OrHash
             ).returns(T.attached_class)
           end
           def self.new(
@@ -3498,7 +3552,7 @@ module WhopSDK
             override.returns(
               {
                 dispute_alert_auto_refund:
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls::DisputeAlertAutoRefund,
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::DisputeAlertAutoRefund,
                 dispute_alert_fee_usd: T.nilable(Float),
                 enforce_3ds: T::Boolean,
                 financing_disabled: T::Boolean,
@@ -3506,19 +3560,19 @@ module WhopSDK
                 pending_auto_topup_fee_percentage: Float,
                 pending_balance_delay_days: Integer,
                 reserve:
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls::Reserve,
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::Reserve,
                 resolution_center_auto_refund:
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls::ResolutionCenterAutoRefund,
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::ResolutionCenterAutoRefund,
                 restricted_payment_methods:
                   T::Array[
-                    WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls::RestrictedPaymentMethod::TaggedSymbol
+                    WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::RestrictedPaymentMethod::TaggedSymbol
                   ],
                 undated_pending_reason:
                   T.nilable(
-                    WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls::UndatedPendingReason::TaggedSymbol
+                    WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::UndatedPendingReason::TaggedSymbol
                   ),
                 withdrawal_schedule:
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls::WithdrawalSchedule
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::WithdrawalSchedule
               }
             )
           end
@@ -3529,7 +3583,7 @@ module WhopSDK
             OrHash =
               T.type_alias do
                 T.any(
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls::DisputeAlertAutoRefund,
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::DisputeAlertAutoRefund,
                   WhopSDK::Internal::AnyHash
                 )
               end
@@ -3572,7 +3626,7 @@ module WhopSDK
             OrHash =
               T.type_alias do
                 T.any(
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls::Reserve,
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::Reserve,
                   WhopSDK::Internal::AnyHash
                 )
               end
@@ -3615,7 +3669,7 @@ module WhopSDK
             OrHash =
               T.type_alias do
                 T.any(
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls::ResolutionCenterAutoRefund,
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::ResolutionCenterAutoRefund,
                   WhopSDK::Internal::AnyHash
                 )
               end
@@ -3686,7 +3740,7 @@ module WhopSDK
               T.type_alias do
                 T.all(
                   Symbol,
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls::RestrictedPaymentMethod
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::RestrictedPaymentMethod
                 )
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -3694,28 +3748,28 @@ module WhopSDK
             CARD_VISA =
               T.let(
                 :card_visa,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls::RestrictedPaymentMethod::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::RestrictedPaymentMethod::TaggedSymbol
               )
             CARD_MASTERCARD =
               T.let(
                 :card_mastercard,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls::RestrictedPaymentMethod::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::RestrictedPaymentMethod::TaggedSymbol
               )
             CARD_AMERICAN_EXPRESS =
               T.let(
                 :card_american_express,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls::RestrictedPaymentMethod::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::RestrictedPaymentMethod::TaggedSymbol
               )
             CARD_DISCOVER_GLOBAL_NETWORK =
               T.let(
                 :card_discover_global_network,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls::RestrictedPaymentMethod::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::RestrictedPaymentMethod::TaggedSymbol
               )
 
             sig do
               override.returns(
                 T::Array[
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls::RestrictedPaymentMethod::TaggedSymbol
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::RestrictedPaymentMethod::TaggedSymbol
                 ]
               )
             end
@@ -3735,7 +3789,7 @@ module WhopSDK
               T.type_alias do
                 T.all(
                   Symbol,
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls::UndatedPendingReason
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::UndatedPendingReason
                 )
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -3743,23 +3797,23 @@ module WhopSDK
             KYC_INCOMPLETE =
               T.let(
                 :kyc_incomplete,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls::UndatedPendingReason::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::UndatedPendingReason::TaggedSymbol
               )
             PENDING_INFORMATION_REQUEST =
               T.let(
                 :pending_information_request,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls::UndatedPendingReason::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::UndatedPendingReason::TaggedSymbol
               )
             WITHDRAWALS_DISABLED =
               T.let(
                 :withdrawals_disabled,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls::UndatedPendingReason::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::UndatedPendingReason::TaggedSymbol
               )
 
             sig do
               override.returns(
                 T::Array[
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls::UndatedPendingReason::TaggedSymbol
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::UndatedPendingReason::TaggedSymbol
                 ]
               )
             end
@@ -3771,7 +3825,7 @@ module WhopSDK
             OrHash =
               T.type_alias do
                 T.any(
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls::WithdrawalSchedule,
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::WithdrawalSchedule,
                   WhopSDK::Internal::AnyHash
                 )
               end
@@ -3784,7 +3838,7 @@ module WhopSDK
             # How often the account's balance automatically withdraws.
             sig do
               returns(
-                WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls::WithdrawalSchedule::Frequency::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::WithdrawalSchedule::Frequency::TaggedSymbol
               )
             end
             attr_accessor :frequency
@@ -3799,7 +3853,7 @@ module WhopSDK
               params(
                 day: T.nilable(Integer),
                 frequency:
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls::WithdrawalSchedule::Frequency::OrSymbol,
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::WithdrawalSchedule::Frequency::OrSymbol,
                 next_payout_date: T.nilable(String)
               ).returns(T.attached_class)
             end
@@ -3820,7 +3874,7 @@ module WhopSDK
                 {
                   day: T.nilable(Integer),
                   frequency:
-                    WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls::WithdrawalSchedule::Frequency::TaggedSymbol,
+                    WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::WithdrawalSchedule::Frequency::TaggedSymbol,
                   next_payout_date: T.nilable(String)
                 }
               )
@@ -3836,7 +3890,7 @@ module WhopSDK
                 T.type_alias do
                   T.all(
                     Symbol,
-                    WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls::WithdrawalSchedule::Frequency
+                    WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::WithdrawalSchedule::Frequency
                   )
                 end
               OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -3844,28 +3898,28 @@ module WhopSDK
               MANUAL =
                 T.let(
                   :manual,
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls::WithdrawalSchedule::Frequency::TaggedSymbol
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::WithdrawalSchedule::Frequency::TaggedSymbol
                 )
               DAILY =
                 T.let(
                   :daily,
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls::WithdrawalSchedule::Frequency::TaggedSymbol
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::WithdrawalSchedule::Frequency::TaggedSymbol
                 )
               WEEKLY =
                 T.let(
                   :weekly,
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls::WithdrawalSchedule::Frequency::TaggedSymbol
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::WithdrawalSchedule::Frequency::TaggedSymbol
                 )
               MONTHLY =
                 T.let(
                   :monthly,
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls::WithdrawalSchedule::Frequency::TaggedSymbol
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::WithdrawalSchedule::Frequency::TaggedSymbol
                 )
 
               sig do
                 override.returns(
                   T::Array[
-                    WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls::WithdrawalSchedule::Frequency::TaggedSymbol
+                    WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PaymentControls::WithdrawalSchedule::Frequency::TaggedSymbol
                   ]
                 )
               end
@@ -3879,7 +3933,7 @@ module WhopSDK
           OrHash =
             T.type_alias do
               T.any(
-                WhopSDK::AccountUpdatedWebhookEvent::Data::PrivacyPolicy,
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PrivacyPolicy,
                 WhopSDK::Internal::AnyHash
               )
             end
@@ -3911,7 +3965,7 @@ module WhopSDK
           # Where the file is in its upload lifecycle.
           sig do
             returns(
-              WhopSDK::AccountUpdatedWebhookEvent::Data::PrivacyPolicy::UploadStatus::TaggedSymbol
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PrivacyPolicy::UploadStatus::TaggedSymbol
             )
           end
           attr_accessor :upload_status
@@ -3925,7 +3979,7 @@ module WhopSDK
           # expiring URL.
           sig do
             returns(
-              WhopSDK::AccountUpdatedWebhookEvent::Data::PrivacyPolicy::Visibility::TaggedSymbol
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PrivacyPolicy::Visibility::TaggedSymbol
             )
           end
           attr_accessor :visibility
@@ -3944,7 +3998,7 @@ module WhopSDK
             returns(
               T.nilable(
                 T::Array[
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::PrivacyPolicy::MultipartUploadURL
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PrivacyPolicy::MultipartUploadURL
                 ]
               )
             )
@@ -3973,16 +4027,16 @@ module WhopSDK
               object: String,
               size: T.nilable(Integer),
               upload_status:
-                WhopSDK::AccountUpdatedWebhookEvent::Data::PrivacyPolicy::UploadStatus::OrSymbol,
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PrivacyPolicy::UploadStatus::OrSymbol,
               url: T.nilable(String),
               visibility:
-                WhopSDK::AccountUpdatedWebhookEvent::Data::PrivacyPolicy::Visibility::OrSymbol,
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PrivacyPolicy::Visibility::OrSymbol,
               multipart_chunk_size: T.nilable(Integer),
               multipart_upload_id: T.nilable(String),
               multipart_upload_urls:
                 T.nilable(
                   T::Array[
-                    WhopSDK::AccountUpdatedWebhookEvent::Data::PrivacyPolicy::MultipartUploadURL::OrHash
+                    WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PrivacyPolicy::MultipartUploadURL::OrHash
                   ]
                 ),
               upload_headers: T.anything,
@@ -4035,16 +4089,16 @@ module WhopSDK
                 object: String,
                 size: T.nilable(Integer),
                 upload_status:
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::PrivacyPolicy::UploadStatus::TaggedSymbol,
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PrivacyPolicy::UploadStatus::TaggedSymbol,
                 url: T.nilable(String),
                 visibility:
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::PrivacyPolicy::Visibility::TaggedSymbol,
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PrivacyPolicy::Visibility::TaggedSymbol,
                 multipart_chunk_size: T.nilable(Integer),
                 multipart_upload_id: T.nilable(String),
                 multipart_upload_urls:
                   T.nilable(
                     T::Array[
-                      WhopSDK::AccountUpdatedWebhookEvent::Data::PrivacyPolicy::MultipartUploadURL
+                      WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PrivacyPolicy::MultipartUploadURL
                     ]
                   ),
                 upload_headers: T.anything,
@@ -4063,7 +4117,7 @@ module WhopSDK
               T.type_alias do
                 T.all(
                   Symbol,
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::PrivacyPolicy::UploadStatus
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PrivacyPolicy::UploadStatus
                 )
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -4071,28 +4125,28 @@ module WhopSDK
             PENDING =
               T.let(
                 :pending,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::PrivacyPolicy::UploadStatus::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PrivacyPolicy::UploadStatus::TaggedSymbol
               )
             PROCESSING =
               T.let(
                 :processing,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::PrivacyPolicy::UploadStatus::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PrivacyPolicy::UploadStatus::TaggedSymbol
               )
             READY =
               T.let(
                 :ready,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::PrivacyPolicy::UploadStatus::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PrivacyPolicy::UploadStatus::TaggedSymbol
               )
             FAILED =
               T.let(
                 :failed,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::PrivacyPolicy::UploadStatus::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PrivacyPolicy::UploadStatus::TaggedSymbol
               )
 
             sig do
               override.returns(
                 T::Array[
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::PrivacyPolicy::UploadStatus::TaggedSymbol
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PrivacyPolicy::UploadStatus::TaggedSymbol
                 ]
               )
             end
@@ -4109,7 +4163,7 @@ module WhopSDK
               T.type_alias do
                 T.all(
                   Symbol,
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::PrivacyPolicy::Visibility
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PrivacyPolicy::Visibility
                 )
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -4117,18 +4171,18 @@ module WhopSDK
             PUBLIC =
               T.let(
                 :public,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::PrivacyPolicy::Visibility::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PrivacyPolicy::Visibility::TaggedSymbol
               )
             PRIVATE =
               T.let(
                 :private,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::PrivacyPolicy::Visibility::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PrivacyPolicy::Visibility::TaggedSymbol
               )
 
             sig do
               override.returns(
                 T::Array[
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::PrivacyPolicy::Visibility::TaggedSymbol
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PrivacyPolicy::Visibility::TaggedSymbol
                 ]
               )
             end
@@ -4140,7 +4194,7 @@ module WhopSDK
             OrHash =
               T.type_alias do
                 T.any(
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::PrivacyPolicy::MultipartUploadURL,
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::PrivacyPolicy::MultipartUploadURL,
                   WhopSDK::Internal::AnyHash
                 )
               end
@@ -4178,7 +4232,7 @@ module WhopSDK
           OrHash =
             T.type_alias do
               T.any(
-                WhopSDK::AccountUpdatedWebhookEvent::Data::RecommendedAction,
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::RecommendedAction,
                 WhopSDK::Internal::AnyHash
               )
             end
@@ -4187,7 +4241,7 @@ module WhopSDK
           # gracefully
           sig do
             returns(
-              WhopSDK::AccountUpdatedWebhookEvent::Data::RecommendedAction::Action::TaggedSymbol
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::RecommendedAction::Action::TaggedSymbol
             )
           end
           attr_accessor :action
@@ -4222,7 +4276,7 @@ module WhopSDK
           # Always optional — never blocking
           sig do
             returns(
-              WhopSDK::AccountUpdatedWebhookEvent::Data::RecommendedAction::Status::TaggedSymbol
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::RecommendedAction::Status::TaggedSymbol
             )
           end
           attr_accessor :status
@@ -4238,7 +4292,7 @@ module WhopSDK
           sig do
             params(
               action:
-                WhopSDK::AccountUpdatedWebhookEvent::Data::RecommendedAction::Action::OrSymbol,
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::RecommendedAction::Action::OrSymbol,
               blocked_capabilities: T::Array[String],
               cta: String,
               cta_label: String,
@@ -4247,7 +4301,7 @@ module WhopSDK
               impact_score: T.nilable(Integer),
               reasoning: T.nilable(String),
               status:
-                WhopSDK::AccountUpdatedWebhookEvent::Data::RecommendedAction::Status::OrSymbol,
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::RecommendedAction::Status::OrSymbol,
               title: String
             ).returns(T.attached_class)
           end
@@ -4279,7 +4333,7 @@ module WhopSDK
             override.returns(
               {
                 action:
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::RecommendedAction::Action::TaggedSymbol,
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::RecommendedAction::Action::TaggedSymbol,
                 blocked_capabilities: T::Array[String],
                 cta: String,
                 cta_label: String,
@@ -4288,7 +4342,7 @@ module WhopSDK
                 impact_score: T.nilable(Integer),
                 reasoning: T.nilable(String),
                 status:
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::RecommendedAction::Status::TaggedSymbol,
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::RecommendedAction::Status::TaggedSymbol,
                 title: String
               }
             )
@@ -4305,7 +4359,7 @@ module WhopSDK
               T.type_alias do
                 T.all(
                   Symbol,
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::RecommendedAction::Action
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::RecommendedAction::Action
                 )
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -4313,108 +4367,108 @@ module WhopSDK
             THEME_BUSINESS =
               T.let(
                 :theme_business,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::RecommendedAction::Action::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::RecommendedAction::Action::TaggedSymbol
               )
             CREATE_PRODUCT =
               T.let(
                 :create_product,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::RecommendedAction::Action::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::RecommendedAction::Action::TaggedSymbol
               )
             CREATE_PLAN =
               T.let(
                 :create_plan,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::RecommendedAction::Action::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::RecommendedAction::Action::TaggedSymbol
               )
             VERIFY_IDENTITY =
               T.let(
                 :verify_identity,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::RecommendedAction::Action::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::RecommendedAction::Action::TaggedSymbol
               )
             CONNECT_AFFILIATE_PROGRAM =
               T.let(
                 :connect_affiliate_program,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::RecommendedAction::Action::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::RecommendedAction::Action::TaggedSymbol
               )
             CREATE_PROMOTION =
               T.let(
                 :create_promotion,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::RecommendedAction::Action::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::RecommendedAction::Action::TaggedSymbol
               )
             MIGRATE_FROM_STRIPE =
               T.let(
                 :migrate_from_stripe,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::RecommendedAction::Action::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::RecommendedAction::Action::TaggedSymbol
               )
             ACCEPT_FIRST_PAYMENT =
               T.let(
                 :accept_first_payment,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::RecommendedAction::Action::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::RecommendedAction::Action::TaggedSymbol
               )
             LAUNCH_FIRST_AD =
               T.let(
                 :launch_first_ad,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::RecommendedAction::Action::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::RecommendedAction::Action::TaggedSymbol
               )
             LAUNCH_DRAFT_CAMPAIGN =
               T.let(
                 :launch_draft_campaign,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::RecommendedAction::Action::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::RecommendedAction::Action::TaggedSymbol
               )
             INCREASE_AD_BUDGET =
               T.let(
                 :increase_ad_budget,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::RecommendedAction::Action::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::RecommendedAction::Action::TaggedSymbol
               )
             REFRESH_AD_CREATIVES =
               T.let(
                 :refresh_ad_creatives,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::RecommendedAction::Action::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::RecommendedAction::Action::TaggedSymbol
               )
             FIX_AD_BILLING =
               T.let(
                 :fix_ad_billing,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::RecommendedAction::Action::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::RecommendedAction::Action::TaggedSymbol
               )
             EXCLUDE_CUSTOMERS_FROM_ADS =
               T.let(
                 :exclude_customers_from_ads,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::RecommendedAction::Action::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::RecommendedAction::Action::TaggedSymbol
               )
             RETARGET_ABANDONED_CHECKOUTS =
               T.let(
                 :retarget_abandoned_checkouts,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::RecommendedAction::Action::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::RecommendedAction::Action::TaggedSymbol
               )
             FIX_FUNNEL_DROPOFF =
               T.let(
                 :fix_funnel_dropoff,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::RecommendedAction::Action::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::RecommendedAction::Action::TaggedSymbol
               )
             INVITE_TEAM_MEMBER =
               T.let(
                 :invite_team_member,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::RecommendedAction::Action::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::RecommendedAction::Action::TaggedSymbol
               )
             ENABLE_TAX_COLLECTION =
               T.let(
                 :enable_tax_collection,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::RecommendedAction::Action::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::RecommendedAction::Action::TaggedSymbol
               )
             CREATE_CARD =
               T.let(
                 :create_card,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::RecommendedAction::Action::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::RecommendedAction::Action::TaggedSymbol
               )
             APPLY_FOR_FINANCING =
               T.let(
                 :apply_for_financing,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::RecommendedAction::Action::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::RecommendedAction::Action::TaggedSymbol
               )
 
             sig do
               override.returns(
                 T::Array[
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::RecommendedAction::Action::TaggedSymbol
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::RecommendedAction::Action::TaggedSymbol
                 ]
               )
             end
@@ -4430,7 +4484,7 @@ module WhopSDK
               T.type_alias do
                 T.all(
                   Symbol,
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::RecommendedAction::Status
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::RecommendedAction::Status
                 )
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -4438,13 +4492,13 @@ module WhopSDK
             OPTIONAL =
               T.let(
                 :optional,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::RecommendedAction::Status::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::RecommendedAction::Status::TaggedSymbol
               )
 
             sig do
               override.returns(
                 T::Array[
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::RecommendedAction::Status::TaggedSymbol
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::RecommendedAction::Status::TaggedSymbol
                 ]
               )
             end
@@ -4457,7 +4511,7 @@ module WhopSDK
           OrHash =
             T.type_alias do
               T.any(
-                WhopSDK::AccountUpdatedWebhookEvent::Data::RequiredAction,
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::RequiredAction,
                 WhopSDK::Internal::AnyHash
               )
             end
@@ -4466,7 +4520,7 @@ module WhopSDK
           # gracefully
           sig do
             returns(
-              WhopSDK::AccountUpdatedWebhookEvent::Data::RequiredAction::Action::TaggedSymbol
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::RequiredAction::Action::TaggedSymbol
             )
           end
           attr_accessor :action
@@ -4493,7 +4547,7 @@ module WhopSDK
           # required (act now) or pending (under review)
           sig do
             returns(
-              WhopSDK::AccountUpdatedWebhookEvent::Data::RequiredAction::Status::TaggedSymbol
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::RequiredAction::Status::TaggedSymbol
             )
           end
           attr_accessor :status
@@ -4508,14 +4562,14 @@ module WhopSDK
           sig do
             params(
               action:
-                WhopSDK::AccountUpdatedWebhookEvent::Data::RequiredAction::Action::OrSymbol,
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::RequiredAction::Action::OrSymbol,
               blocked_capabilities: T::Array[String],
               cta: T.nilable(String),
               cta_label: String,
               description: String,
               icon_url: T.nilable(String),
               status:
-                WhopSDK::AccountUpdatedWebhookEvent::Data::RequiredAction::Status::OrSymbol,
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::RequiredAction::Status::OrSymbol,
               title: String
             ).returns(T.attached_class)
           end
@@ -4543,14 +4597,14 @@ module WhopSDK
             override.returns(
               {
                 action:
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::RequiredAction::Action::TaggedSymbol,
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::RequiredAction::Action::TaggedSymbol,
                 blocked_capabilities: T::Array[String],
                 cta: T.nilable(String),
                 cta_label: String,
                 description: String,
                 icon_url: T.nilable(String),
                 status:
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::RequiredAction::Status::TaggedSymbol,
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::RequiredAction::Status::TaggedSymbol,
                 title: String
               }
             )
@@ -4567,7 +4621,7 @@ module WhopSDK
               T.type_alias do
                 T.all(
                   Symbol,
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::RequiredAction::Action
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::RequiredAction::Action
                 )
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -4575,73 +4629,73 @@ module WhopSDK
             DEPOSIT_FUNDS =
               T.let(
                 :deposit_funds,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::RequiredAction::Action::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::RequiredAction::Action::TaggedSymbol
               )
             ACCEPT_AIRWALLEX_TERMS =
               T.let(
                 :accept_airwallex_terms,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::RequiredAction::Action::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::RequiredAction::Action::TaggedSymbol
               )
             SUBMIT_INFORMATION_REQUEST =
               T.let(
                 :submit_information_request,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::RequiredAction::Action::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::RequiredAction::Action::TaggedSymbol
               )
             UPDATE_AUTOMATIC_WITHDRAWAL_METHOD =
               T.let(
                 :update_automatic_withdrawal_method,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::RequiredAction::Action::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::RequiredAction::Action::TaggedSymbol
               )
             REAUTHORIZE_PAYOUT_METHODS =
               T.let(
                 :reauthorize_payout_methods,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::RequiredAction::Action::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::RequiredAction::Action::TaggedSymbol
               )
             UPDATE_PAYOUT_PROFILE =
               T.let(
                 :update_payout_profile,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::RequiredAction::Action::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::RequiredAction::Action::TaggedSymbol
               )
             CARD_USAGE_REVIEW =
               T.let(
                 :card_usage_review,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::RequiredAction::Action::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::RequiredAction::Action::TaggedSymbol
               )
             VERIFY_IDENTITY =
               T.let(
                 :verify_identity,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::RequiredAction::Action::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::RequiredAction::Action::TaggedSymbol
               )
             SIGN_FORMATION_DOCUMENTS =
               T.let(
                 :sign_formation_documents,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::RequiredAction::Action::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::RequiredAction::Action::TaggedSymbol
               )
             CONNECT_FULFILLMENT_TRACKER =
               T.let(
                 :connect_fulfillment_tracker,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::RequiredAction::Action::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::RequiredAction::Action::TaggedSymbol
               )
             SETUP_APPLE_PAY_DOMAINS =
               T.let(
                 :setup_apple_pay_domains,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::RequiredAction::Action::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::RequiredAction::Action::TaggedSymbol
               )
             CONFIGURE_TAX_REMITTER =
               T.let(
                 :configure_tax_remitter,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::RequiredAction::Action::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::RequiredAction::Action::TaggedSymbol
               )
             ADD_VAT_REGISTRATION =
               T.let(
                 :add_vat_registration,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::RequiredAction::Action::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::RequiredAction::Action::TaggedSymbol
               )
 
             sig do
               override.returns(
                 T::Array[
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::RequiredAction::Action::TaggedSymbol
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::RequiredAction::Action::TaggedSymbol
                 ]
               )
             end
@@ -4657,7 +4711,7 @@ module WhopSDK
               T.type_alias do
                 T.all(
                   Symbol,
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::RequiredAction::Status
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::RequiredAction::Status
                 )
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -4665,18 +4719,18 @@ module WhopSDK
             REQUIRED =
               T.let(
                 :required,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::RequiredAction::Status::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::RequiredAction::Status::TaggedSymbol
               )
             PENDING =
               T.let(
                 :pending,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::RequiredAction::Status::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::RequiredAction::Status::TaggedSymbol
               )
 
             sig do
               override.returns(
                 T::Array[
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::RequiredAction::Status::TaggedSymbol
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::RequiredAction::Status::TaggedSymbol
                 ]
               )
             end
@@ -4689,7 +4743,7 @@ module WhopSDK
           OrHash =
             T.type_alias do
               T.any(
-                WhopSDK::AccountUpdatedWebhookEvent::Data::ReturnPolicy,
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::ReturnPolicy,
                 WhopSDK::Internal::AnyHash
               )
             end
@@ -4721,7 +4775,7 @@ module WhopSDK
           # Where the file is in its upload lifecycle.
           sig do
             returns(
-              WhopSDK::AccountUpdatedWebhookEvent::Data::ReturnPolicy::UploadStatus::TaggedSymbol
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::ReturnPolicy::UploadStatus::TaggedSymbol
             )
           end
           attr_accessor :upload_status
@@ -4735,7 +4789,7 @@ module WhopSDK
           # expiring URL.
           sig do
             returns(
-              WhopSDK::AccountUpdatedWebhookEvent::Data::ReturnPolicy::Visibility::TaggedSymbol
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::ReturnPolicy::Visibility::TaggedSymbol
             )
           end
           attr_accessor :visibility
@@ -4754,7 +4808,7 @@ module WhopSDK
             returns(
               T.nilable(
                 T::Array[
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::ReturnPolicy::MultipartUploadURL
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::ReturnPolicy::MultipartUploadURL
                 ]
               )
             )
@@ -4783,16 +4837,16 @@ module WhopSDK
               object: String,
               size: T.nilable(Integer),
               upload_status:
-                WhopSDK::AccountUpdatedWebhookEvent::Data::ReturnPolicy::UploadStatus::OrSymbol,
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::ReturnPolicy::UploadStatus::OrSymbol,
               url: T.nilable(String),
               visibility:
-                WhopSDK::AccountUpdatedWebhookEvent::Data::ReturnPolicy::Visibility::OrSymbol,
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::ReturnPolicy::Visibility::OrSymbol,
               multipart_chunk_size: T.nilable(Integer),
               multipart_upload_id: T.nilable(String),
               multipart_upload_urls:
                 T.nilable(
                   T::Array[
-                    WhopSDK::AccountUpdatedWebhookEvent::Data::ReturnPolicy::MultipartUploadURL::OrHash
+                    WhopSDK::AccountFinancingApprovedWebhookEvent::Data::ReturnPolicy::MultipartUploadURL::OrHash
                   ]
                 ),
               upload_headers: T.anything,
@@ -4845,16 +4899,16 @@ module WhopSDK
                 object: String,
                 size: T.nilable(Integer),
                 upload_status:
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::ReturnPolicy::UploadStatus::TaggedSymbol,
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::ReturnPolicy::UploadStatus::TaggedSymbol,
                 url: T.nilable(String),
                 visibility:
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::ReturnPolicy::Visibility::TaggedSymbol,
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::ReturnPolicy::Visibility::TaggedSymbol,
                 multipart_chunk_size: T.nilable(Integer),
                 multipart_upload_id: T.nilable(String),
                 multipart_upload_urls:
                   T.nilable(
                     T::Array[
-                      WhopSDK::AccountUpdatedWebhookEvent::Data::ReturnPolicy::MultipartUploadURL
+                      WhopSDK::AccountFinancingApprovedWebhookEvent::Data::ReturnPolicy::MultipartUploadURL
                     ]
                   ),
                 upload_headers: T.anything,
@@ -4873,7 +4927,7 @@ module WhopSDK
               T.type_alias do
                 T.all(
                   Symbol,
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::ReturnPolicy::UploadStatus
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::ReturnPolicy::UploadStatus
                 )
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -4881,28 +4935,28 @@ module WhopSDK
             PENDING =
               T.let(
                 :pending,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::ReturnPolicy::UploadStatus::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::ReturnPolicy::UploadStatus::TaggedSymbol
               )
             PROCESSING =
               T.let(
                 :processing,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::ReturnPolicy::UploadStatus::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::ReturnPolicy::UploadStatus::TaggedSymbol
               )
             READY =
               T.let(
                 :ready,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::ReturnPolicy::UploadStatus::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::ReturnPolicy::UploadStatus::TaggedSymbol
               )
             FAILED =
               T.let(
                 :failed,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::ReturnPolicy::UploadStatus::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::ReturnPolicy::UploadStatus::TaggedSymbol
               )
 
             sig do
               override.returns(
                 T::Array[
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::ReturnPolicy::UploadStatus::TaggedSymbol
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::ReturnPolicy::UploadStatus::TaggedSymbol
                 ]
               )
             end
@@ -4919,7 +4973,7 @@ module WhopSDK
               T.type_alias do
                 T.all(
                   Symbol,
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::ReturnPolicy::Visibility
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::ReturnPolicy::Visibility
                 )
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -4927,18 +4981,18 @@ module WhopSDK
             PUBLIC =
               T.let(
                 :public,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::ReturnPolicy::Visibility::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::ReturnPolicy::Visibility::TaggedSymbol
               )
             PRIVATE =
               T.let(
                 :private,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::ReturnPolicy::Visibility::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::ReturnPolicy::Visibility::TaggedSymbol
               )
 
             sig do
               override.returns(
                 T::Array[
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::ReturnPolicy::Visibility::TaggedSymbol
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::ReturnPolicy::Visibility::TaggedSymbol
                 ]
               )
             end
@@ -4950,7 +5004,7 @@ module WhopSDK
             OrHash =
               T.type_alias do
                 T.any(
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::ReturnPolicy::MultipartUploadURL,
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::ReturnPolicy::MultipartUploadURL,
                   WhopSDK::Internal::AnyHash
                 )
               end
@@ -4988,7 +5042,7 @@ module WhopSDK
           OrHash =
             T.type_alias do
               T.any(
-                WhopSDK::AccountUpdatedWebhookEvent::Data::SocialLink,
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::SocialLink,
                 WhopSDK::Internal::AnyHash
               )
             end
@@ -5008,7 +5062,7 @@ module WhopSDK
           # The social platform for this link
           sig do
             returns(
-              WhopSDK::AccountUpdatedWebhookEvent::Data::SocialLink::Website::TaggedSymbol
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::SocialLink::Website::TaggedSymbol
             )
           end
           attr_accessor :website
@@ -5020,7 +5074,7 @@ module WhopSDK
               title: T.nilable(String),
               url: String,
               website:
-                WhopSDK::AccountUpdatedWebhookEvent::Data::SocialLink::Website::OrSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::SocialLink::Website::OrSymbol
             ).returns(T.attached_class)
           end
           def self.new(
@@ -5042,7 +5096,7 @@ module WhopSDK
                 title: T.nilable(String),
                 url: String,
                 website:
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::SocialLink::Website::TaggedSymbol
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::SocialLink::Website::TaggedSymbol
               }
             )
           end
@@ -5057,7 +5111,7 @@ module WhopSDK
               T.type_alias do
                 T.all(
                   Symbol,
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::SocialLink::Website
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::SocialLink::Website
                 )
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -5065,53 +5119,53 @@ module WhopSDK
             X =
               T.let(
                 :x,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::SocialLink::Website::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::SocialLink::Website::TaggedSymbol
               )
             INSTAGRAM =
               T.let(
                 :instagram,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::SocialLink::Website::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::SocialLink::Website::TaggedSymbol
               )
             FACEBOOK =
               T.let(
                 :facebook,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::SocialLink::Website::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::SocialLink::Website::TaggedSymbol
               )
             TIKTOK =
               T.let(
                 :tiktok,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::SocialLink::Website::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::SocialLink::Website::TaggedSymbol
               )
             YOUTUBE =
               T.let(
                 :youtube,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::SocialLink::Website::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::SocialLink::Website::TaggedSymbol
               )
             LINKEDIN =
               T.let(
                 :linkedin,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::SocialLink::Website::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::SocialLink::Website::TaggedSymbol
               )
             TWITCH =
               T.let(
                 :twitch,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::SocialLink::Website::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::SocialLink::Website::TaggedSymbol
               )
             WEBSITE =
               T.let(
                 :website,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::SocialLink::Website::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::SocialLink::Website::TaggedSymbol
               )
             CUSTOM =
               T.let(
                 :custom,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::SocialLink::Website::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::SocialLink::Website::TaggedSymbol
               )
 
             sig do
               override.returns(
                 T::Array[
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::SocialLink::Website::TaggedSymbol
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::SocialLink::Website::TaggedSymbol
                 ]
               )
             end
@@ -5124,7 +5178,7 @@ module WhopSDK
           OrHash =
             T.type_alias do
               T.any(
-                WhopSDK::AccountUpdatedWebhookEvent::Data::StorePageConfig,
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::StorePageConfig,
                 WhopSDK::Internal::AnyHash
               )
             end
@@ -5133,7 +5187,7 @@ module WhopSDK
           sig do
             returns(
               T.nilable(
-                WhopSDK::AccountUpdatedWebhookEvent::Data::StorePageConfig::AccentColor::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::StorePageConfig::AccentColor::TaggedSymbol
               )
             )
           end
@@ -5143,7 +5197,7 @@ module WhopSDK
           sig do
             returns(
               T.nilable(
-                WhopSDK::AccountUpdatedWebhookEvent::Data::StorePageConfig::Layout::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::StorePageConfig::Layout::TaggedSymbol
               )
             )
           end
@@ -5153,7 +5207,7 @@ module WhopSDK
           sig do
             returns(
               T.nilable(
-                WhopSDK::AccountUpdatedWebhookEvent::Data::StorePageConfig::ProfileVariant::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::StorePageConfig::ProfileVariant::TaggedSymbol
               )
             )
           end
@@ -5168,15 +5222,15 @@ module WhopSDK
             params(
               accent_color:
                 T.nilable(
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::StorePageConfig::AccentColor::OrSymbol
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::StorePageConfig::AccentColor::OrSymbol
                 ),
               layout:
                 T.nilable(
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::StorePageConfig::Layout::OrSymbol
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::StorePageConfig::Layout::OrSymbol
                 ),
               profile_variant:
                 T.nilable(
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::StorePageConfig::ProfileVariant::OrSymbol
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::StorePageConfig::ProfileVariant::OrSymbol
                 ),
               whop_affiliate_link: T::Boolean
             ).returns(T.attached_class)
@@ -5198,15 +5252,15 @@ module WhopSDK
               {
                 accent_color:
                   T.nilable(
-                    WhopSDK::AccountUpdatedWebhookEvent::Data::StorePageConfig::AccentColor::TaggedSymbol
+                    WhopSDK::AccountFinancingApprovedWebhookEvent::Data::StorePageConfig::AccentColor::TaggedSymbol
                   ),
                 layout:
                   T.nilable(
-                    WhopSDK::AccountUpdatedWebhookEvent::Data::StorePageConfig::Layout::TaggedSymbol
+                    WhopSDK::AccountFinancingApprovedWebhookEvent::Data::StorePageConfig::Layout::TaggedSymbol
                   ),
                 profile_variant:
                   T.nilable(
-                    WhopSDK::AccountUpdatedWebhookEvent::Data::StorePageConfig::ProfileVariant::TaggedSymbol
+                    WhopSDK::AccountFinancingApprovedWebhookEvent::Data::StorePageConfig::ProfileVariant::TaggedSymbol
                   ),
                 whop_affiliate_link: T::Boolean
               }
@@ -5223,7 +5277,7 @@ module WhopSDK
               T.type_alias do
                 T.all(
                   Symbol,
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::StorePageConfig::AccentColor
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::StorePageConfig::AccentColor
                 )
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -5231,148 +5285,148 @@ module WhopSDK
             RUBY =
               T.let(
                 :ruby,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::StorePageConfig::AccentColor::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::StorePageConfig::AccentColor::TaggedSymbol
               )
             TOMATO =
               T.let(
                 :tomato,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::StorePageConfig::AccentColor::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::StorePageConfig::AccentColor::TaggedSymbol
               )
             RED =
               T.let(
                 :red,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::StorePageConfig::AccentColor::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::StorePageConfig::AccentColor::TaggedSymbol
               )
             CRIMSON =
               T.let(
                 :crimson,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::StorePageConfig::AccentColor::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::StorePageConfig::AccentColor::TaggedSymbol
               )
             PINK =
               T.let(
                 :pink,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::StorePageConfig::AccentColor::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::StorePageConfig::AccentColor::TaggedSymbol
               )
             PLUM =
               T.let(
                 :plum,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::StorePageConfig::AccentColor::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::StorePageConfig::AccentColor::TaggedSymbol
               )
             PURPLE =
               T.let(
                 :purple,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::StorePageConfig::AccentColor::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::StorePageConfig::AccentColor::TaggedSymbol
               )
             VIOLET =
               T.let(
                 :violet,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::StorePageConfig::AccentColor::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::StorePageConfig::AccentColor::TaggedSymbol
               )
             IRIS =
               T.let(
                 :iris,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::StorePageConfig::AccentColor::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::StorePageConfig::AccentColor::TaggedSymbol
               )
             CYAN =
               T.let(
                 :cyan,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::StorePageConfig::AccentColor::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::StorePageConfig::AccentColor::TaggedSymbol
               )
             TEAL =
               T.let(
                 :teal,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::StorePageConfig::AccentColor::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::StorePageConfig::AccentColor::TaggedSymbol
               )
             JADE =
               T.let(
                 :jade,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::StorePageConfig::AccentColor::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::StorePageConfig::AccentColor::TaggedSymbol
               )
             GREEN =
               T.let(
                 :green,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::StorePageConfig::AccentColor::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::StorePageConfig::AccentColor::TaggedSymbol
               )
             GRASS =
               T.let(
                 :grass,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::StorePageConfig::AccentColor::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::StorePageConfig::AccentColor::TaggedSymbol
               )
             BROWN =
               T.let(
                 :brown,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::StorePageConfig::AccentColor::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::StorePageConfig::AccentColor::TaggedSymbol
               )
             BLUE =
               T.let(
                 :blue,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::StorePageConfig::AccentColor::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::StorePageConfig::AccentColor::TaggedSymbol
               )
             ORANGE =
               T.let(
                 :orange,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::StorePageConfig::AccentColor::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::StorePageConfig::AccentColor::TaggedSymbol
               )
             INDIGO =
               T.let(
                 :indigo,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::StorePageConfig::AccentColor::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::StorePageConfig::AccentColor::TaggedSymbol
               )
             SKY =
               T.let(
                 :sky,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::StorePageConfig::AccentColor::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::StorePageConfig::AccentColor::TaggedSymbol
               )
             MINT =
               T.let(
                 :mint,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::StorePageConfig::AccentColor::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::StorePageConfig::AccentColor::TaggedSymbol
               )
             YELLOW =
               T.let(
                 :yellow,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::StorePageConfig::AccentColor::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::StorePageConfig::AccentColor::TaggedSymbol
               )
             AMBER =
               T.let(
                 :amber,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::StorePageConfig::AccentColor::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::StorePageConfig::AccentColor::TaggedSymbol
               )
             LIME =
               T.let(
                 :lime,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::StorePageConfig::AccentColor::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::StorePageConfig::AccentColor::TaggedSymbol
               )
             LEMON =
               T.let(
                 :lemon,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::StorePageConfig::AccentColor::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::StorePageConfig::AccentColor::TaggedSymbol
               )
             MAGENTA =
               T.let(
                 :magenta,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::StorePageConfig::AccentColor::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::StorePageConfig::AccentColor::TaggedSymbol
               )
             GOLD =
               T.let(
                 :gold,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::StorePageConfig::AccentColor::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::StorePageConfig::AccentColor::TaggedSymbol
               )
             BRONZE =
               T.let(
                 :bronze,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::StorePageConfig::AccentColor::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::StorePageConfig::AccentColor::TaggedSymbol
               )
             GRAY =
               T.let(
                 :gray,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::StorePageConfig::AccentColor::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::StorePageConfig::AccentColor::TaggedSymbol
               )
 
             sig do
               override.returns(
                 T::Array[
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::StorePageConfig::AccentColor::TaggedSymbol
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::StorePageConfig::AccentColor::TaggedSymbol
                 ]
               )
             end
@@ -5388,7 +5442,7 @@ module WhopSDK
               T.type_alias do
                 T.all(
                   Symbol,
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::StorePageConfig::Layout
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::StorePageConfig::Layout
                 )
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -5396,18 +5450,18 @@ module WhopSDK
             FEATURED =
               T.let(
                 :featured,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::StorePageConfig::Layout::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::StorePageConfig::Layout::TaggedSymbol
               )
             COMPACT =
               T.let(
                 :compact,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::StorePageConfig::Layout::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::StorePageConfig::Layout::TaggedSymbol
               )
 
             sig do
               override.returns(
                 T::Array[
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::StorePageConfig::Layout::TaggedSymbol
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::StorePageConfig::Layout::TaggedSymbol
                 ]
               )
             end
@@ -5423,7 +5477,7 @@ module WhopSDK
               T.type_alias do
                 T.all(
                   Symbol,
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::StorePageConfig::ProfileVariant
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::StorePageConfig::ProfileVariant
                 )
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -5431,18 +5485,18 @@ module WhopSDK
             PERSONAL =
               T.let(
                 :personal,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::StorePageConfig::ProfileVariant::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::StorePageConfig::ProfileVariant::TaggedSymbol
               )
             BUSINESS =
               T.let(
                 :business,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::StorePageConfig::ProfileVariant::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::StorePageConfig::ProfileVariant::TaggedSymbol
               )
 
             sig do
               override.returns(
                 T::Array[
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::StorePageConfig::ProfileVariant::TaggedSymbol
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::StorePageConfig::ProfileVariant::TaggedSymbol
                 ]
               )
             end
@@ -5455,7 +5509,7 @@ module WhopSDK
           OrHash =
             T.type_alias do
               T.any(
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier,
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier,
                 WhopSDK::Internal::AnyHash
               )
             end
@@ -5467,7 +5521,7 @@ module WhopSDK
           # Tax ID type.
           sig do
             returns(
-              WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
             )
           end
           attr_accessor :tax_id_type
@@ -5481,7 +5535,7 @@ module WhopSDK
             params(
               id: String,
               tax_id_type:
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::OrSymbol,
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::OrSymbol,
               tax_id_value: String
             ).returns(T.attached_class)
           end
@@ -5500,7 +5554,7 @@ module WhopSDK
               {
                 id: String,
                 tax_id_type:
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol,
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol,
                 tax_id_value: String
               }
             )
@@ -5516,7 +5570,7 @@ module WhopSDK
               T.type_alias do
                 T.all(
                   Symbol,
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType
                 )
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -5524,573 +5578,573 @@ module WhopSDK
             AD_NRT =
               T.let(
                 :ad_nrt,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             AO_TIN =
               T.let(
                 :ao_tin,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             AR_CUIT =
               T.let(
                 :ar_cuit,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             AL_TIN =
               T.let(
                 :al_tin,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             AM_TIN =
               T.let(
                 :am_tin,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             AW_TIN =
               T.let(
                 :aw_tin,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             AU_ABN =
               T.let(
                 :au_abn,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             AU_ARN =
               T.let(
                 :au_arn,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             EU_VAT =
               T.let(
                 :eu_vat,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             AZ_TIN =
               T.let(
                 :az_tin,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             BS_TIN =
               T.let(
                 :bs_tin,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             BH_VAT =
               T.let(
                 :bh_vat,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             BD_BIN =
               T.let(
                 :bd_bin,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             BB_TIN =
               T.let(
                 :bb_tin,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             BY_TIN =
               T.let(
                 :by_tin,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             BJ_IFU =
               T.let(
                 :bj_ifu,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             BO_TIN =
               T.let(
                 :bo_tin,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             BA_TIN =
               T.let(
                 :ba_tin,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             BR_CNPJ =
               T.let(
                 :br_cnpj,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             BR_CPF =
               T.let(
                 :br_cpf,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             BG_UIC =
               T.let(
                 :bg_uic,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             BF_IFU =
               T.let(
                 :bf_ifu,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             KH_TIN =
               T.let(
                 :kh_tin,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             CM_NIU =
               T.let(
                 :cm_niu,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             CA_BN =
               T.let(
                 :ca_bn,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             CA_GST_HST =
               T.let(
                 :ca_gst_hst,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             CA_PST_BC =
               T.let(
                 :ca_pst_bc,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             CA_PST_MB =
               T.let(
                 :ca_pst_mb,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             CA_PST_SK =
               T.let(
                 :ca_pst_sk,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             CA_QST =
               T.let(
                 :ca_qst,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             CV_NIF =
               T.let(
                 :cv_nif,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             CL_TIN =
               T.let(
                 :cl_tin,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             CN_TIN =
               T.let(
                 :cn_tin,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             CO_NIT =
               T.let(
                 :co_nit,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             CD_NIF =
               T.let(
                 :cd_nif,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             CR_TIN =
               T.let(
                 :cr_tin,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             HR_OIB =
               T.let(
                 :hr_oib,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             DO_RCN =
               T.let(
                 :do_rcn,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             EC_RUC =
               T.let(
                 :ec_ruc,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             EG_TIN =
               T.let(
                 :eg_tin,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             SV_NIT =
               T.let(
                 :sv_nit,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             ET_TIN =
               T.let(
                 :et_tin,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             EU_OSS_VAT =
               T.let(
                 :eu_oss_vat,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             GE_VAT =
               T.let(
                 :ge_vat,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             GH_TIN =
               T.let(
                 :gh_tin,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             DE_STN =
               T.let(
                 :de_stn,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             GB_VAT =
               T.let(
                 :gb_vat,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             GN_NIF =
               T.let(
                 :gn_nif,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             HK_BR =
               T.let(
                 :hk_br,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             HU_TIN =
               T.let(
                 :hu_tin,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             IS_VAT =
               T.let(
                 :is_vat,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             IN_GST =
               T.let(
                 :in_gst,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             ID_NPWP =
               T.let(
                 :id_npwp,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             IL_VAT =
               T.let(
                 :il_vat,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             JP_CN =
               T.let(
                 :jp_cn,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             JP_RN =
               T.let(
                 :jp_rn,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             JP_TRN =
               T.let(
                 :jp_trn,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             KZ_BIN =
               T.let(
                 :kz_bin,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             KE_PIN =
               T.let(
                 :ke_pin,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             KG_TIN =
               T.let(
                 :kg_tin,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             LA_TIN =
               T.let(
                 :la_tin,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             LI_UID =
               T.let(
                 :li_uid,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             LI_VAT =
               T.let(
                 :li_vat,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             MY_FRP =
               T.let(
                 :my_frp,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             MY_ITN =
               T.let(
                 :my_itn,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             MY_SST =
               T.let(
                 :my_sst,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             MR_NIF =
               T.let(
                 :mr_nif,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             MX_RFC =
               T.let(
                 :mx_rfc,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             MD_VAT =
               T.let(
                 :md_vat,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             ME_PIB =
               T.let(
                 :me_pib,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             MA_VAT =
               T.let(
                 :ma_vat,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             NP_PAN =
               T.let(
                 :np_pan,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             NZ_GST =
               T.let(
                 :nz_gst,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             NG_TIN =
               T.let(
                 :ng_tin,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             MK_VAT =
               T.let(
                 :mk_vat,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             NO_VAT =
               T.let(
                 :no_vat,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             NO_VOEC =
               T.let(
                 :no_voec,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             OM_VAT =
               T.let(
                 :om_vat,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             PE_RUC =
               T.let(
                 :pe_ruc,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             PH_TIN =
               T.let(
                 :ph_tin,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             PL_NIP =
               T.let(
                 :pl_nip,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             RO_TIN =
               T.let(
                 :ro_tin,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             RU_INN =
               T.let(
                 :ru_inn,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             RU_KPP =
               T.let(
                 :ru_kpp,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             SA_VAT =
               T.let(
                 :sa_vat,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             SN_NINEA =
               T.let(
                 :sn_ninea,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             RS_PIB =
               T.let(
                 :rs_pib,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             SG_GST =
               T.let(
                 :sg_gst,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             SG_UEN =
               T.let(
                 :sg_uen,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             SI_TIN =
               T.let(
                 :si_tin,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             ZA_VAT =
               T.let(
                 :za_vat,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             KR_BRN =
               T.let(
                 :kr_brn,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             ES_CIF =
               T.let(
                 :es_cif,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             CH_UID =
               T.let(
                 :ch_uid,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             CH_VAT =
               T.let(
                 :ch_vat,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             TW_VAT =
               T.let(
                 :tw_vat,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             TJ_TIN =
               T.let(
                 :tj_tin,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             TZ_VAT =
               T.let(
                 :tz_vat,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             TH_VAT =
               T.let(
                 :th_vat,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             TR_TIN =
               T.let(
                 :tr_tin,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             UG_TIN =
               T.let(
                 :ug_tin,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             UA_VAT =
               T.let(
                 :ua_vat,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             AE_TRN =
               T.let(
                 :ae_trn,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             US_EIN =
               T.let(
                 :us_ein,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             UY_RUC =
               T.let(
                 :uy_ruc,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             UZ_TIN =
               T.let(
                 :uz_tin,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             UZ_VAT =
               T.let(
                 :uz_vat,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             VE_RIF =
               T.let(
                 :ve_rif,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             VN_TIN =
               T.let(
                 :vn_tin,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             ZM_TIN =
               T.let(
                 :zm_tin,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             ZW_TIN =
               T.let(
                 :zw_tin,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             SR_FIN =
               T.let(
                 :sr_fin,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
             XI_VAT =
               T.let(
                 :xi_vat,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
               )
 
             sig do
               override.returns(
                 T::Array[
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxIdentifier::TaxIDType::TaggedSymbol
                 ]
               )
             end
@@ -6110,7 +6164,7 @@ module WhopSDK
             T.type_alias do
               T.all(
                 Symbol,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxRemittedBy
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxRemittedBy
               )
             end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -6118,23 +6172,23 @@ module WhopSDK
           WHOP =
             T.let(
               :whop,
-              WhopSDK::AccountUpdatedWebhookEvent::Data::TaxRemittedBy::TaggedSymbol
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxRemittedBy::TaggedSymbol
             )
           SELF =
             T.let(
               :self,
-              WhopSDK::AccountUpdatedWebhookEvent::Data::TaxRemittedBy::TaggedSymbol
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxRemittedBy::TaggedSymbol
             )
           NONE =
             T.let(
               :none,
-              WhopSDK::AccountUpdatedWebhookEvent::Data::TaxRemittedBy::TaggedSymbol
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxRemittedBy::TaggedSymbol
             )
 
           sig do
             override.returns(
               T::Array[
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxRemittedBy::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxRemittedBy::TaggedSymbol
               ]
             )
           end
@@ -6150,25 +6204,28 @@ module WhopSDK
 
           TaggedSymbol =
             T.type_alias do
-              T.all(Symbol, WhopSDK::AccountUpdatedWebhookEvent::Data::TaxType)
+              T.all(
+                Symbol,
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxType
+              )
             end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
 
           INCLUSIVE =
             T.let(
               :inclusive,
-              WhopSDK::AccountUpdatedWebhookEvent::Data::TaxType::TaggedSymbol
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxType::TaggedSymbol
             )
           EXCLUSIVE =
             T.let(
               :exclusive,
-              WhopSDK::AccountUpdatedWebhookEvent::Data::TaxType::TaggedSymbol
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxType::TaggedSymbol
             )
 
           sig do
             override.returns(
               T::Array[
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TaxType::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TaxType::TaggedSymbol
               ]
             )
           end
@@ -6180,7 +6237,7 @@ module WhopSDK
           OrHash =
             T.type_alias do
               T.any(
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TermsOfService,
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TermsOfService,
                 WhopSDK::Internal::AnyHash
               )
             end
@@ -6212,7 +6269,7 @@ module WhopSDK
           # Where the file is in its upload lifecycle.
           sig do
             returns(
-              WhopSDK::AccountUpdatedWebhookEvent::Data::TermsOfService::UploadStatus::TaggedSymbol
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TermsOfService::UploadStatus::TaggedSymbol
             )
           end
           attr_accessor :upload_status
@@ -6226,7 +6283,7 @@ module WhopSDK
           # expiring URL.
           sig do
             returns(
-              WhopSDK::AccountUpdatedWebhookEvent::Data::TermsOfService::Visibility::TaggedSymbol
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TermsOfService::Visibility::TaggedSymbol
             )
           end
           attr_accessor :visibility
@@ -6245,7 +6302,7 @@ module WhopSDK
             returns(
               T.nilable(
                 T::Array[
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::TermsOfService::MultipartUploadURL
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TermsOfService::MultipartUploadURL
                 ]
               )
             )
@@ -6275,16 +6332,16 @@ module WhopSDK
               object: String,
               size: T.nilable(Integer),
               upload_status:
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TermsOfService::UploadStatus::OrSymbol,
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TermsOfService::UploadStatus::OrSymbol,
               url: T.nilable(String),
               visibility:
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TermsOfService::Visibility::OrSymbol,
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TermsOfService::Visibility::OrSymbol,
               multipart_chunk_size: T.nilable(Integer),
               multipart_upload_id: T.nilable(String),
               multipart_upload_urls:
                 T.nilable(
                   T::Array[
-                    WhopSDK::AccountUpdatedWebhookEvent::Data::TermsOfService::MultipartUploadURL::OrHash
+                    WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TermsOfService::MultipartUploadURL::OrHash
                   ]
                 ),
               upload_headers: T.anything,
@@ -6337,16 +6394,16 @@ module WhopSDK
                 object: String,
                 size: T.nilable(Integer),
                 upload_status:
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::TermsOfService::UploadStatus::TaggedSymbol,
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TermsOfService::UploadStatus::TaggedSymbol,
                 url: T.nilable(String),
                 visibility:
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::TermsOfService::Visibility::TaggedSymbol,
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TermsOfService::Visibility::TaggedSymbol,
                 multipart_chunk_size: T.nilable(Integer),
                 multipart_upload_id: T.nilable(String),
                 multipart_upload_urls:
                   T.nilable(
                     T::Array[
-                      WhopSDK::AccountUpdatedWebhookEvent::Data::TermsOfService::MultipartUploadURL
+                      WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TermsOfService::MultipartUploadURL
                     ]
                   ),
                 upload_headers: T.anything,
@@ -6365,7 +6422,7 @@ module WhopSDK
               T.type_alias do
                 T.all(
                   Symbol,
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::TermsOfService::UploadStatus
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TermsOfService::UploadStatus
                 )
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -6373,28 +6430,28 @@ module WhopSDK
             PENDING =
               T.let(
                 :pending,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TermsOfService::UploadStatus::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TermsOfService::UploadStatus::TaggedSymbol
               )
             PROCESSING =
               T.let(
                 :processing,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TermsOfService::UploadStatus::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TermsOfService::UploadStatus::TaggedSymbol
               )
             READY =
               T.let(
                 :ready,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TermsOfService::UploadStatus::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TermsOfService::UploadStatus::TaggedSymbol
               )
             FAILED =
               T.let(
                 :failed,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TermsOfService::UploadStatus::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TermsOfService::UploadStatus::TaggedSymbol
               )
 
             sig do
               override.returns(
                 T::Array[
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::TermsOfService::UploadStatus::TaggedSymbol
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TermsOfService::UploadStatus::TaggedSymbol
                 ]
               )
             end
@@ -6411,7 +6468,7 @@ module WhopSDK
               T.type_alias do
                 T.all(
                   Symbol,
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::TermsOfService::Visibility
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TermsOfService::Visibility
                 )
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -6419,18 +6476,18 @@ module WhopSDK
             PUBLIC =
               T.let(
                 :public,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TermsOfService::Visibility::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TermsOfService::Visibility::TaggedSymbol
               )
             PRIVATE =
               T.let(
                 :private,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::TermsOfService::Visibility::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TermsOfService::Visibility::TaggedSymbol
               )
 
             sig do
               override.returns(
                 T::Array[
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::TermsOfService::Visibility::TaggedSymbol
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TermsOfService::Visibility::TaggedSymbol
                 ]
               )
             end
@@ -6442,7 +6499,7 @@ module WhopSDK
             OrHash =
               T.type_alias do
                 T.any(
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::TermsOfService::MultipartUploadURL,
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::TermsOfService::MultipartUploadURL,
                   WhopSDK::Internal::AnyHash
                 )
               end
@@ -6485,7 +6542,7 @@ module WhopSDK
             T.type_alias do
               T.all(
                 Symbol,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::ThreeDSLevel
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::ThreeDSLevel
               )
             end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -6493,13 +6550,13 @@ module WhopSDK
           MANDATE_CHALLENGE =
             T.let(
               :mandate_challenge,
-              WhopSDK::AccountUpdatedWebhookEvent::Data::ThreeDSLevel::TaggedSymbol
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::ThreeDSLevel::TaggedSymbol
             )
 
           sig do
             override.returns(
               T::Array[
-                WhopSDK::AccountUpdatedWebhookEvent::Data::ThreeDSLevel::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::ThreeDSLevel::TaggedSymbol
               ]
             )
           end
@@ -6511,7 +6568,7 @@ module WhopSDK
           OrHash =
             T.type_alias do
               T.any(
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Wallet,
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Wallet,
                 WhopSDK::Internal::AnyHash
               )
             end
@@ -6527,7 +6584,7 @@ module WhopSDK
           # The blockchain network the wallet lives on
           sig do
             returns(
-              WhopSDK::AccountUpdatedWebhookEvent::Data::Wallet::Network::TaggedSymbol
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Wallet::Network::TaggedSymbol
             )
           end
           attr_accessor :network
@@ -6538,7 +6595,7 @@ module WhopSDK
               id: String,
               address: String,
               network:
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Wallet::Network::OrSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Wallet::Network::OrSymbol
             ).returns(T.attached_class)
           end
           def self.new(
@@ -6557,7 +6614,7 @@ module WhopSDK
                 id: String,
                 address: String,
                 network:
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::Wallet::Network::TaggedSymbol
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Wallet::Network::TaggedSymbol
               }
             )
           end
@@ -6572,7 +6629,7 @@ module WhopSDK
               T.type_alias do
                 T.all(
                   Symbol,
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::Wallet::Network
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Wallet::Network
                 )
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -6580,23 +6637,23 @@ module WhopSDK
             SOLANA =
               T.let(
                 :solana,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Wallet::Network::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Wallet::Network::TaggedSymbol
               )
             ETHEREUM =
               T.let(
                 :ethereum,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Wallet::Network::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Wallet::Network::TaggedSymbol
               )
             BITCOIN =
               T.let(
                 :bitcoin,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::Wallet::Network::TaggedSymbol
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Wallet::Network::TaggedSymbol
               )
 
             sig do
               override.returns(
                 T::Array[
-                  WhopSDK::AccountUpdatedWebhookEvent::Data::Wallet::Network::TaggedSymbol
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Wallet::Network::TaggedSymbol
                 ]
               )
             end

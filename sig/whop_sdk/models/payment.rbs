@@ -12,6 +12,7 @@ module WhopSDK
         client_secret: String?,
         created_at: String,
         currency: WhopSDK::Models::currency,
+        customer_email: String?,
         customer_phone: String?,
         decline_code: WhopSDK::Models::Payment::decline_code?,
         dispute_alerted_at: String?,
@@ -29,8 +30,10 @@ module WhopSDK
         payment_method_type: WhopSDK::Models::payment_method_types?,
         payments_failed: Float,
         plan_id: String?,
+        presentment_total: WhopSDK::Payment::PresentmentTotal?,
         product_id: String?,
         promo_code_id: String?,
+        recovery_url: String?,
         refundable: bool,
         refunded_amount: WhopSDK::Payment::RefundedAmount?,
         refunded_at: String?,
@@ -76,6 +79,8 @@ module WhopSDK
 
       attr_accessor currency: WhopSDK::Models::currency
 
+      attr_accessor customer_email: String?
+
       attr_accessor customer_phone: String?
 
       attr_accessor decline_code: WhopSDK::Models::Payment::decline_code?
@@ -110,9 +115,13 @@ module WhopSDK
 
       attr_accessor plan_id: String?
 
+      attr_accessor presentment_total: WhopSDK::Payment::PresentmentTotal?
+
       attr_accessor product_id: String?
 
       attr_accessor promo_code_id: String?
+
+      attr_accessor recovery_url: String?
 
       attr_accessor refundable: bool
 
@@ -169,6 +178,7 @@ module WhopSDK
         client_secret: String?,
         created_at: String,
         currency: WhopSDK::Models::currency,
+        customer_email: String?,
         customer_phone: String?,
         decline_code: WhopSDK::Models::Payment::decline_code?,
         dispute_alerted_at: String?,
@@ -186,8 +196,10 @@ module WhopSDK
         payment_method_type: WhopSDK::Models::payment_method_types?,
         payments_failed: Float,
         plan_id: String?,
+        presentment_total: WhopSDK::Payment::PresentmentTotal?,
         product_id: String?,
         promo_code_id: String?,
+        recovery_url: String?,
         refundable: bool,
         refunded_amount: WhopSDK::Payment::RefundedAmount?,
         refunded_at: String?,
@@ -223,6 +235,7 @@ module WhopSDK
         client_secret: String?,
         created_at: String,
         currency: WhopSDK::Models::currency,
+        customer_email: String?,
         customer_phone: String?,
         decline_code: WhopSDK::Models::Payment::decline_code?,
         dispute_alerted_at: String?,
@@ -240,8 +253,10 @@ module WhopSDK
         payment_method_type: WhopSDK::Models::payment_method_types?,
         payments_failed: Float,
         plan_id: String?,
+        presentment_total: WhopSDK::Payment::PresentmentTotal?,
         product_id: String?,
         promo_code_id: String?,
+        recovery_url: String?,
         refundable: bool,
         refunded_amount: WhopSDK::Payment::RefundedAmount?,
         refunded_at: String?,
@@ -562,16 +577,31 @@ module WhopSDK
           payment_method_type: String
         }
 
-        type card = { brand: String, :last4 => String? }
+        type card =
+          {
+            brand: String,
+            issuer_identification_number: String?,
+            :last4 => String?
+          }
 
         class Card < WhopSDK::Internal::Type::BaseModel
           attr_accessor brand: String
 
+          attr_accessor issuer_identification_number: String?
+
           attr_accessor last4: String?
 
-          def initialize: (brand: String, last4: String?) -> void
+          def initialize: (
+            brand: String,
+            issuer_identification_number: String?,
+            last4: String?
+          ) -> void
 
-          def to_hash: -> { brand: String, :last4 => String? }
+          def to_hash: -> {
+            brand: String,
+            issuer_identification_number: String?,
+            :last4 => String?
+          }
         end
 
         type icons =
@@ -767,6 +797,38 @@ module WhopSDK
             end
           end
         end
+      end
+
+      type presentment_total =
+        {
+          amount: String,
+          currency: String,
+          decimals: Integer,
+          display_decimals: Integer
+        }
+
+      class PresentmentTotal < WhopSDK::Internal::Type::BaseModel
+        attr_accessor amount: String
+
+        attr_accessor currency: String
+
+        attr_accessor decimals: Integer
+
+        attr_accessor display_decimals: Integer
+
+        def initialize: (
+          amount: String,
+          currency: String,
+          decimals: Integer,
+          display_decimals: Integer
+        ) -> void
+
+        def to_hash: -> {
+          amount: String,
+          currency: String,
+          decimals: Integer,
+          display_decimals: Integer
+        }
       end
 
       type refunded_amount =

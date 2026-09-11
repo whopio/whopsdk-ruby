@@ -1,29 +1,29 @@
 module WhopSDK
   module Models
-    type account_updated_webhook_event =
+    type account_financing_denied_webhook_event =
       {
         id: String,
         api_version: :v1,
         api_version_date: String?,
-        data: WhopSDK::AccountUpdatedWebhookEvent::Data,
+        data: WhopSDK::AccountFinancingDeniedWebhookEvent::Data,
         timestamp: Time,
-        type: :"account.updated",
+        type: :"account.financing_denied",
         account_id: String?,
         previous_attributes: top
       }
 
-    class AccountUpdatedWebhookEvent < WhopSDK::Internal::Type::BaseModel
+    class AccountFinancingDeniedWebhookEvent < WhopSDK::Internal::Type::BaseModel
       attr_accessor id: String
 
       attr_accessor api_version: :v1
 
       attr_accessor api_version_date: String?
 
-      attr_accessor data: WhopSDK::AccountUpdatedWebhookEvent::Data
+      attr_accessor data: WhopSDK::AccountFinancingDeniedWebhookEvent::Data
 
       attr_accessor timestamp: Time
 
-      attr_accessor type: :"account.updated"
+      attr_accessor type: :"account.financing_denied"
 
       attr_accessor account_id: String?
 
@@ -34,21 +34,21 @@ module WhopSDK
       def initialize: (
         id: String,
         api_version_date: String?,
-        data: WhopSDK::AccountUpdatedWebhookEvent::Data,
+        data: WhopSDK::AccountFinancingDeniedWebhookEvent::Data,
         timestamp: Time,
         ?account_id: String?,
         ?previous_attributes: top,
         ?api_version: :v1,
-        ?type: :"account.updated"
+        ?type: :"account.financing_denied"
       ) -> void
 
       def to_hash: -> {
         id: String,
         api_version: :v1,
         api_version_date: String?,
-        data: WhopSDK::AccountUpdatedWebhookEvent::Data,
+        data: WhopSDK::AccountFinancingDeniedWebhookEvent::Data,
         timestamp: Time,
-        type: :"account.updated",
+        type: :"account.financing_denied",
         account_id: String?,
         previous_attributes: top
       }
@@ -56,72 +56,72 @@ module WhopSDK
       type data =
         {
           id: String,
-          balances: ::Array[WhopSDK::AccountUpdatedWebhookEvent::Data::Balance],
+          balances: ::Array[WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Balance],
           banner_image_url: String?,
           business_address: top?,
           business_name: String?,
           business_type: String?,
           can_transfer_pending_balance_to_children: bool,
-          capabilities: WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities?,
-          cards: WhopSDK::AccountUpdatedWebhookEvent::Data::Cards?,
+          capabilities: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Capabilities?,
+          cards: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Cards?,
           collect_vat_id: bool,
-          company_formation: WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation,
+          company_formation: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::CompanyFormation,
           country: String?,
           created_at: String,
           description: String?,
           economic_intelligence: bool,
           email: String?,
-          eula: WhopSDK::AccountUpdatedWebhookEvent::Data::Eula?,
-          home_preferences: ::Array[WhopSDK::Models::AccountUpdatedWebhookEvent::Data::home_preference],
+          eula: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Eula?,
+          home_preferences: ::Array[WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::home_preference],
           industry_group: String?,
           industry_type: String?,
           invoice_prefix: String?,
           logo_url: String?,
           metadata: top,
-          onboarding_type: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::onboarding_type?,
+          onboarding_type: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::onboarding_type?,
           opengraph_image_url: String?,
-          opengraph_image_variant: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::opengraph_image_variant?,
+          opengraph_image_variant: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::opengraph_image_variant?,
           other_business_description: String?,
           other_industry_description: String?,
-          owner: WhopSDK::AccountUpdatedWebhookEvent::Data::Owner,
-          parent_account: WhopSDK::AccountUpdatedWebhookEvent::Data::ParentAccount?,
-          payment_controls: WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls?,
-          privacy_policy: WhopSDK::AccountUpdatedWebhookEvent::Data::PrivacyPolicy?,
+          owner: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Owner,
+          parent_account: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::ParentAccount?,
+          payment_controls: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::PaymentControls?,
+          privacy_policy: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::PrivacyPolicy?,
           product_tax_code: top?,
-          recommended_actions: ::Array[WhopSDK::AccountUpdatedWebhookEvent::Data::RecommendedAction]?,
+          recommended_actions: ::Array[WhopSDK::AccountFinancingDeniedWebhookEvent::Data::RecommendedAction]?,
           :require_2fa => bool,
-          required_actions: ::Array[WhopSDK::AccountUpdatedWebhookEvent::Data::RequiredAction]?,
-          return_policy: WhopSDK::AccountUpdatedWebhookEvent::Data::ReturnPolicy?,
+          required_actions: ::Array[WhopSDK::AccountFinancingDeniedWebhookEvent::Data::RequiredAction]?,
+          return_policy: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::ReturnPolicy?,
           route: String,
           send_customer_emails: bool,
           show_joined_whops: bool,
           show_reviews_dtc: bool,
           show_user_directory: bool,
-          social_links: ::Array[WhopSDK::AccountUpdatedWebhookEvent::Data::SocialLink],
+          social_links: ::Array[WhopSDK::AccountFinancingDeniedWebhookEvent::Data::SocialLink],
           stablecoin_rails: bool,
           status: String?,
           status_reason: String?,
-          store_page_config: WhopSDK::AccountUpdatedWebhookEvent::Data::StorePageConfig,
+          store_page_config: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::StorePageConfig,
           target_audience: String?,
           tax_collection_enabled_states: ::Array[String],
-          tax_identifiers: ::Array[WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier],
-          tax_remitted_by: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::tax_remitted_by?,
-          tax_type: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::tax_type?,
-          terms_of_service: WhopSDK::AccountUpdatedWebhookEvent::Data::TermsOfService?,
-          three_ds_level: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::three_ds_level?,
+          tax_identifiers: ::Array[WhopSDK::AccountFinancingDeniedWebhookEvent::Data::TaxIdentifier],
+          tax_remitted_by: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::tax_remitted_by?,
+          tax_type: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::tax_type?,
+          terms_of_service: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::TermsOfService?,
+          three_ds_level: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::three_ds_level?,
           title: String,
           total_earned_usd: Float?,
           total_usd: String?,
           use_logo_as_opengraph_image_fallback: bool,
           verification: top,
           volume_usd: Float?,
-          wallet: WhopSDK::AccountUpdatedWebhookEvent::Data::Wallet?
+          wallet: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Wallet?
         }
 
       class Data < WhopSDK::Internal::Type::BaseModel
         attr_accessor id: String
 
-        attr_accessor balances: ::Array[WhopSDK::AccountUpdatedWebhookEvent::Data::Balance]
+        attr_accessor balances: ::Array[WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Balance]
 
         attr_accessor banner_image_url: String?
 
@@ -133,13 +133,13 @@ module WhopSDK
 
         attr_accessor can_transfer_pending_balance_to_children: bool
 
-        attr_accessor capabilities: WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities?
+        attr_accessor capabilities: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Capabilities?
 
-        attr_accessor cards: WhopSDK::AccountUpdatedWebhookEvent::Data::Cards?
+        attr_accessor cards: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Cards?
 
         attr_accessor collect_vat_id: bool
 
-        attr_accessor company_formation: WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation
+        attr_accessor company_formation: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::CompanyFormation
 
         attr_accessor country: String?
 
@@ -151,9 +151,9 @@ module WhopSDK
 
         attr_accessor email: String?
 
-        attr_accessor eula: WhopSDK::AccountUpdatedWebhookEvent::Data::Eula?
+        attr_accessor eula: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Eula?
 
-        attr_accessor home_preferences: ::Array[WhopSDK::Models::AccountUpdatedWebhookEvent::Data::home_preference]
+        attr_accessor home_preferences: ::Array[WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::home_preference]
 
         attr_accessor industry_group: String?
 
@@ -165,33 +165,33 @@ module WhopSDK
 
         attr_accessor metadata: top
 
-        attr_accessor onboarding_type: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::onboarding_type?
+        attr_accessor onboarding_type: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::onboarding_type?
 
         attr_accessor opengraph_image_url: String?
 
-        attr_accessor opengraph_image_variant: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::opengraph_image_variant?
+        attr_accessor opengraph_image_variant: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::opengraph_image_variant?
 
         attr_accessor other_business_description: String?
 
         attr_accessor other_industry_description: String?
 
-        attr_accessor owner: WhopSDK::AccountUpdatedWebhookEvent::Data::Owner
+        attr_accessor owner: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Owner
 
-        attr_accessor parent_account: WhopSDK::AccountUpdatedWebhookEvent::Data::ParentAccount?
+        attr_accessor parent_account: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::ParentAccount?
 
-        attr_accessor payment_controls: WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls?
+        attr_accessor payment_controls: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::PaymentControls?
 
-        attr_accessor privacy_policy: WhopSDK::AccountUpdatedWebhookEvent::Data::PrivacyPolicy?
+        attr_accessor privacy_policy: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::PrivacyPolicy?
 
         attr_accessor product_tax_code: top?
 
-        attr_accessor recommended_actions: ::Array[WhopSDK::AccountUpdatedWebhookEvent::Data::RecommendedAction]?
+        attr_accessor recommended_actions: ::Array[WhopSDK::AccountFinancingDeniedWebhookEvent::Data::RecommendedAction]?
 
         attr_accessor require_2fa: bool
 
-        attr_accessor required_actions: ::Array[WhopSDK::AccountUpdatedWebhookEvent::Data::RequiredAction]?
+        attr_accessor required_actions: ::Array[WhopSDK::AccountFinancingDeniedWebhookEvent::Data::RequiredAction]?
 
-        attr_accessor return_policy: WhopSDK::AccountUpdatedWebhookEvent::Data::ReturnPolicy?
+        attr_accessor return_policy: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::ReturnPolicy?
 
         attr_accessor route: String
 
@@ -203,7 +203,7 @@ module WhopSDK
 
         attr_accessor show_user_directory: bool
 
-        attr_accessor social_links: ::Array[WhopSDK::AccountUpdatedWebhookEvent::Data::SocialLink]
+        attr_accessor social_links: ::Array[WhopSDK::AccountFinancingDeniedWebhookEvent::Data::SocialLink]
 
         attr_accessor stablecoin_rails: bool
 
@@ -211,21 +211,21 @@ module WhopSDK
 
         attr_accessor status_reason: String?
 
-        attr_accessor store_page_config: WhopSDK::AccountUpdatedWebhookEvent::Data::StorePageConfig
+        attr_accessor store_page_config: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::StorePageConfig
 
         attr_accessor target_audience: String?
 
         attr_accessor tax_collection_enabled_states: ::Array[String]
 
-        attr_accessor tax_identifiers: ::Array[WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier]
+        attr_accessor tax_identifiers: ::Array[WhopSDK::AccountFinancingDeniedWebhookEvent::Data::TaxIdentifier]
 
-        attr_accessor tax_remitted_by: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::tax_remitted_by?
+        attr_accessor tax_remitted_by: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::tax_remitted_by?
 
-        attr_accessor tax_type: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::tax_type?
+        attr_accessor tax_type: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::tax_type?
 
-        attr_accessor terms_of_service: WhopSDK::AccountUpdatedWebhookEvent::Data::TermsOfService?
+        attr_accessor terms_of_service: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::TermsOfService?
 
-        attr_accessor three_ds_level: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::three_ds_level?
+        attr_accessor three_ds_level: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::three_ds_level?
 
         attr_accessor title: String
 
@@ -239,140 +239,140 @@ module WhopSDK
 
         attr_accessor volume_usd: Float?
 
-        attr_accessor wallet: WhopSDK::AccountUpdatedWebhookEvent::Data::Wallet?
+        attr_accessor wallet: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Wallet?
 
         def initialize: (
           id: String,
-          balances: ::Array[WhopSDK::AccountUpdatedWebhookEvent::Data::Balance],
+          balances: ::Array[WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Balance],
           banner_image_url: String?,
           business_address: top?,
           business_name: String?,
           business_type: String?,
           can_transfer_pending_balance_to_children: bool,
-          capabilities: WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities?,
-          cards: WhopSDK::AccountUpdatedWebhookEvent::Data::Cards?,
+          capabilities: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Capabilities?,
+          cards: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Cards?,
           collect_vat_id: bool,
-          company_formation: WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation,
+          company_formation: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::CompanyFormation,
           country: String?,
           created_at: String,
           description: String?,
           economic_intelligence: bool,
           email: String?,
-          eula: WhopSDK::AccountUpdatedWebhookEvent::Data::Eula?,
-          home_preferences: ::Array[WhopSDK::Models::AccountUpdatedWebhookEvent::Data::home_preference],
+          eula: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Eula?,
+          home_preferences: ::Array[WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::home_preference],
           industry_group: String?,
           industry_type: String?,
           invoice_prefix: String?,
           logo_url: String?,
           metadata: top,
-          onboarding_type: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::onboarding_type?,
+          onboarding_type: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::onboarding_type?,
           opengraph_image_url: String?,
-          opengraph_image_variant: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::opengraph_image_variant?,
+          opengraph_image_variant: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::opengraph_image_variant?,
           other_business_description: String?,
           other_industry_description: String?,
-          owner: WhopSDK::AccountUpdatedWebhookEvent::Data::Owner,
-          parent_account: WhopSDK::AccountUpdatedWebhookEvent::Data::ParentAccount?,
-          payment_controls: WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls?,
-          privacy_policy: WhopSDK::AccountUpdatedWebhookEvent::Data::PrivacyPolicy?,
+          owner: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Owner,
+          parent_account: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::ParentAccount?,
+          payment_controls: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::PaymentControls?,
+          privacy_policy: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::PrivacyPolicy?,
           product_tax_code: top?,
-          recommended_actions: ::Array[WhopSDK::AccountUpdatedWebhookEvent::Data::RecommendedAction]?,
+          recommended_actions: ::Array[WhopSDK::AccountFinancingDeniedWebhookEvent::Data::RecommendedAction]?,
           require_2fa: bool,
-          required_actions: ::Array[WhopSDK::AccountUpdatedWebhookEvent::Data::RequiredAction]?,
-          return_policy: WhopSDK::AccountUpdatedWebhookEvent::Data::ReturnPolicy?,
+          required_actions: ::Array[WhopSDK::AccountFinancingDeniedWebhookEvent::Data::RequiredAction]?,
+          return_policy: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::ReturnPolicy?,
           route: String,
           send_customer_emails: bool,
           show_joined_whops: bool,
           show_reviews_dtc: bool,
           show_user_directory: bool,
-          social_links: ::Array[WhopSDK::AccountUpdatedWebhookEvent::Data::SocialLink],
+          social_links: ::Array[WhopSDK::AccountFinancingDeniedWebhookEvent::Data::SocialLink],
           stablecoin_rails: bool,
           status: String?,
           status_reason: String?,
-          store_page_config: WhopSDK::AccountUpdatedWebhookEvent::Data::StorePageConfig,
+          store_page_config: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::StorePageConfig,
           target_audience: String?,
           tax_collection_enabled_states: ::Array[String],
-          tax_identifiers: ::Array[WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier],
-          tax_remitted_by: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::tax_remitted_by?,
-          tax_type: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::tax_type?,
-          terms_of_service: WhopSDK::AccountUpdatedWebhookEvent::Data::TermsOfService?,
-          three_ds_level: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::three_ds_level?,
+          tax_identifiers: ::Array[WhopSDK::AccountFinancingDeniedWebhookEvent::Data::TaxIdentifier],
+          tax_remitted_by: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::tax_remitted_by?,
+          tax_type: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::tax_type?,
+          terms_of_service: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::TermsOfService?,
+          three_ds_level: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::three_ds_level?,
           title: String,
           total_earned_usd: Float?,
           total_usd: String?,
           use_logo_as_opengraph_image_fallback: bool,
           verification: top,
           volume_usd: Float?,
-          wallet: WhopSDK::AccountUpdatedWebhookEvent::Data::Wallet?
+          wallet: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Wallet?
         ) -> void
 
         def to_hash: -> {
           id: String,
-          balances: ::Array[WhopSDK::AccountUpdatedWebhookEvent::Data::Balance],
+          balances: ::Array[WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Balance],
           banner_image_url: String?,
           business_address: top?,
           business_name: String?,
           business_type: String?,
           can_transfer_pending_balance_to_children: bool,
-          capabilities: WhopSDK::AccountUpdatedWebhookEvent::Data::Capabilities?,
-          cards: WhopSDK::AccountUpdatedWebhookEvent::Data::Cards?,
+          capabilities: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Capabilities?,
+          cards: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Cards?,
           collect_vat_id: bool,
-          company_formation: WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation,
+          company_formation: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::CompanyFormation,
           country: String?,
           created_at: String,
           description: String?,
           economic_intelligence: bool,
           email: String?,
-          eula: WhopSDK::AccountUpdatedWebhookEvent::Data::Eula?,
-          home_preferences: ::Array[WhopSDK::Models::AccountUpdatedWebhookEvent::Data::home_preference],
+          eula: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Eula?,
+          home_preferences: ::Array[WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::home_preference],
           industry_group: String?,
           industry_type: String?,
           invoice_prefix: String?,
           logo_url: String?,
           metadata: top,
-          onboarding_type: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::onboarding_type?,
+          onboarding_type: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::onboarding_type?,
           opengraph_image_url: String?,
-          opengraph_image_variant: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::opengraph_image_variant?,
+          opengraph_image_variant: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::opengraph_image_variant?,
           other_business_description: String?,
           other_industry_description: String?,
-          owner: WhopSDK::AccountUpdatedWebhookEvent::Data::Owner,
-          parent_account: WhopSDK::AccountUpdatedWebhookEvent::Data::ParentAccount?,
-          payment_controls: WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls?,
-          privacy_policy: WhopSDK::AccountUpdatedWebhookEvent::Data::PrivacyPolicy?,
+          owner: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Owner,
+          parent_account: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::ParentAccount?,
+          payment_controls: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::PaymentControls?,
+          privacy_policy: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::PrivacyPolicy?,
           product_tax_code: top?,
-          recommended_actions: ::Array[WhopSDK::AccountUpdatedWebhookEvent::Data::RecommendedAction]?,
+          recommended_actions: ::Array[WhopSDK::AccountFinancingDeniedWebhookEvent::Data::RecommendedAction]?,
           :require_2fa => bool,
-          required_actions: ::Array[WhopSDK::AccountUpdatedWebhookEvent::Data::RequiredAction]?,
-          return_policy: WhopSDK::AccountUpdatedWebhookEvent::Data::ReturnPolicy?,
+          required_actions: ::Array[WhopSDK::AccountFinancingDeniedWebhookEvent::Data::RequiredAction]?,
+          return_policy: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::ReturnPolicy?,
           route: String,
           send_customer_emails: bool,
           show_joined_whops: bool,
           show_reviews_dtc: bool,
           show_user_directory: bool,
-          social_links: ::Array[WhopSDK::AccountUpdatedWebhookEvent::Data::SocialLink],
+          social_links: ::Array[WhopSDK::AccountFinancingDeniedWebhookEvent::Data::SocialLink],
           stablecoin_rails: bool,
           status: String?,
           status_reason: String?,
-          store_page_config: WhopSDK::AccountUpdatedWebhookEvent::Data::StorePageConfig,
+          store_page_config: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::StorePageConfig,
           target_audience: String?,
           tax_collection_enabled_states: ::Array[String],
-          tax_identifiers: ::Array[WhopSDK::AccountUpdatedWebhookEvent::Data::TaxIdentifier],
-          tax_remitted_by: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::tax_remitted_by?,
-          tax_type: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::tax_type?,
-          terms_of_service: WhopSDK::AccountUpdatedWebhookEvent::Data::TermsOfService?,
-          three_ds_level: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::three_ds_level?,
+          tax_identifiers: ::Array[WhopSDK::AccountFinancingDeniedWebhookEvent::Data::TaxIdentifier],
+          tax_remitted_by: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::tax_remitted_by?,
+          tax_type: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::tax_type?,
+          terms_of_service: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::TermsOfService?,
+          three_ds_level: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::three_ds_level?,
           title: String,
           total_earned_usd: Float?,
           total_usd: String?,
           use_logo_as_opengraph_image_fallback: bool,
           verification: top,
           volume_usd: Float?,
-          wallet: WhopSDK::AccountUpdatedWebhookEvent::Data::Wallet?
+          wallet: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Wallet?
         }
 
         type balance =
           {
             balance: String,
-            breakdown: WhopSDK::AccountUpdatedWebhookEvent::Data::Balance::Breakdown,
+            breakdown: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Balance::Breakdown,
             icon_url: String?,
             name: String,
             price_usd: Float?,
@@ -383,7 +383,7 @@ module WhopSDK
         class Balance < WhopSDK::Internal::Type::BaseModel
           attr_accessor balance: String
 
-          attr_accessor breakdown: WhopSDK::AccountUpdatedWebhookEvent::Data::Balance::Breakdown
+          attr_accessor breakdown: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Balance::Breakdown
 
           attr_accessor icon_url: String?
 
@@ -397,7 +397,7 @@ module WhopSDK
 
           def initialize: (
             balance: String,
-            breakdown: WhopSDK::AccountUpdatedWebhookEvent::Data::Balance::Breakdown,
+            breakdown: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Balance::Breakdown,
             icon_url: String?,
             name: String,
             price_usd: Float?,
@@ -407,7 +407,7 @@ module WhopSDK
 
           def to_hash: -> {
             balance: String,
-            breakdown: WhopSDK::AccountUpdatedWebhookEvent::Data::Balance::Breakdown,
+            breakdown: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Balance::Breakdown,
             icon_url: String?,
             name: String,
             price_usd: Float?,
@@ -420,7 +420,7 @@ module WhopSDK
               available: String,
               in_transit: String,
               pending: String,
-              pending_settlements: ::Array[WhopSDK::AccountUpdatedWebhookEvent::Data::Balance::Breakdown::PendingSettlement],
+              pending_settlements: ::Array[WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Balance::Breakdown::PendingSettlement],
               reserve: String
             }
 
@@ -431,7 +431,7 @@ module WhopSDK
 
             attr_accessor pending: String
 
-            attr_accessor pending_settlements: ::Array[WhopSDK::AccountUpdatedWebhookEvent::Data::Balance::Breakdown::PendingSettlement]
+            attr_accessor pending_settlements: ::Array[WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Balance::Breakdown::PendingSettlement]
 
             attr_accessor reserve: String
 
@@ -439,7 +439,7 @@ module WhopSDK
               available: String,
               in_transit: String,
               pending: String,
-              pending_settlements: ::Array[WhopSDK::AccountUpdatedWebhookEvent::Data::Balance::Breakdown::PendingSettlement],
+              pending_settlements: ::Array[WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Balance::Breakdown::PendingSettlement],
               reserve: String
             ) -> void
 
@@ -447,7 +447,7 @@ module WhopSDK
               available: String,
               in_transit: String,
               pending: String,
-              pending_settlements: ::Array[WhopSDK::AccountUpdatedWebhookEvent::Data::Balance::Breakdown::PendingSettlement],
+              pending_settlements: ::Array[WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Balance::Breakdown::PendingSettlement],
               reserve: String
             }
 
@@ -467,73 +467,73 @@ module WhopSDK
 
         type capabilities =
           {
-            accept_bank_payments: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::accept_bank_payments,
-            accept_bnpl_payments: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::accept_bnpl_payments,
-            accept_card_payments: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::accept_card_payments,
-            bank_deposit: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::bank_deposit,
-            card_deposit: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::card_deposit,
-            card_issuing: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::card_issuing,
-            crypto_deposit: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::crypto_deposit,
-            crypto_payout: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::crypto_payout,
-            instant_payout: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::instant_payout,
-            run_ads: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::run_ads,
-            standard_payout: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::standard_payout,
-            transfer: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::transfer
+            accept_bank_payments: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Capabilities::accept_bank_payments,
+            accept_bnpl_payments: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Capabilities::accept_bnpl_payments,
+            accept_card_payments: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Capabilities::accept_card_payments,
+            bank_deposit: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Capabilities::bank_deposit,
+            card_deposit: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Capabilities::card_deposit,
+            card_issuing: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Capabilities::card_issuing,
+            crypto_deposit: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Capabilities::crypto_deposit,
+            crypto_payout: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Capabilities::crypto_payout,
+            instant_payout: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Capabilities::instant_payout,
+            run_ads: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Capabilities::run_ads,
+            standard_payout: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Capabilities::standard_payout,
+            transfer: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Capabilities::transfer
           }
 
         class Capabilities < WhopSDK::Internal::Type::BaseModel
-          attr_accessor accept_bank_payments: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::accept_bank_payments
+          attr_accessor accept_bank_payments: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Capabilities::accept_bank_payments
 
-          attr_accessor accept_bnpl_payments: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::accept_bnpl_payments
+          attr_accessor accept_bnpl_payments: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Capabilities::accept_bnpl_payments
 
-          attr_accessor accept_card_payments: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::accept_card_payments
+          attr_accessor accept_card_payments: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Capabilities::accept_card_payments
 
-          attr_accessor bank_deposit: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::bank_deposit
+          attr_accessor bank_deposit: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Capabilities::bank_deposit
 
-          attr_accessor card_deposit: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::card_deposit
+          attr_accessor card_deposit: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Capabilities::card_deposit
 
-          attr_accessor card_issuing: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::card_issuing
+          attr_accessor card_issuing: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Capabilities::card_issuing
 
-          attr_accessor crypto_deposit: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::crypto_deposit
+          attr_accessor crypto_deposit: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Capabilities::crypto_deposit
 
-          attr_accessor crypto_payout: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::crypto_payout
+          attr_accessor crypto_payout: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Capabilities::crypto_payout
 
-          attr_accessor instant_payout: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::instant_payout
+          attr_accessor instant_payout: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Capabilities::instant_payout
 
-          attr_accessor run_ads: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::run_ads
+          attr_accessor run_ads: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Capabilities::run_ads
 
-          attr_accessor standard_payout: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::standard_payout
+          attr_accessor standard_payout: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Capabilities::standard_payout
 
-          attr_accessor transfer: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::transfer
+          attr_accessor transfer: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Capabilities::transfer
 
           def initialize: (
-            accept_bank_payments: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::accept_bank_payments,
-            accept_bnpl_payments: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::accept_bnpl_payments,
-            accept_card_payments: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::accept_card_payments,
-            bank_deposit: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::bank_deposit,
-            card_deposit: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::card_deposit,
-            card_issuing: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::card_issuing,
-            crypto_deposit: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::crypto_deposit,
-            crypto_payout: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::crypto_payout,
-            instant_payout: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::instant_payout,
-            run_ads: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::run_ads,
-            standard_payout: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::standard_payout,
-            transfer: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::transfer
+            accept_bank_payments: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Capabilities::accept_bank_payments,
+            accept_bnpl_payments: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Capabilities::accept_bnpl_payments,
+            accept_card_payments: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Capabilities::accept_card_payments,
+            bank_deposit: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Capabilities::bank_deposit,
+            card_deposit: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Capabilities::card_deposit,
+            card_issuing: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Capabilities::card_issuing,
+            crypto_deposit: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Capabilities::crypto_deposit,
+            crypto_payout: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Capabilities::crypto_payout,
+            instant_payout: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Capabilities::instant_payout,
+            run_ads: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Capabilities::run_ads,
+            standard_payout: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Capabilities::standard_payout,
+            transfer: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Capabilities::transfer
           ) -> void
 
           def to_hash: -> {
-            accept_bank_payments: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::accept_bank_payments,
-            accept_bnpl_payments: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::accept_bnpl_payments,
-            accept_card_payments: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::accept_card_payments,
-            bank_deposit: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::bank_deposit,
-            card_deposit: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::card_deposit,
-            card_issuing: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::card_issuing,
-            crypto_deposit: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::crypto_deposit,
-            crypto_payout: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::crypto_payout,
-            instant_payout: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::instant_payout,
-            run_ads: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::run_ads,
-            standard_payout: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::standard_payout,
-            transfer: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::transfer
+            accept_bank_payments: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Capabilities::accept_bank_payments,
+            accept_bnpl_payments: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Capabilities::accept_bnpl_payments,
+            accept_card_payments: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Capabilities::accept_card_payments,
+            bank_deposit: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Capabilities::bank_deposit,
+            card_deposit: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Capabilities::card_deposit,
+            card_issuing: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Capabilities::card_issuing,
+            crypto_deposit: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Capabilities::crypto_deposit,
+            crypto_payout: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Capabilities::crypto_payout,
+            instant_payout: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Capabilities::instant_payout,
+            run_ads: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Capabilities::run_ads,
+            standard_payout: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Capabilities::standard_payout,
+            transfer: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Capabilities::transfer
           }
 
           type accept_bank_payments = :active | :inactive | :pending
@@ -545,7 +545,7 @@ module WhopSDK
             INACTIVE: :inactive
             PENDING: :pending
 
-            def self?.values: -> ::Array[WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::accept_bank_payments]
+            def self?.values: -> ::Array[WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Capabilities::accept_bank_payments]
           end
 
           type accept_bnpl_payments = :active | :inactive | :pending
@@ -557,7 +557,7 @@ module WhopSDK
             INACTIVE: :inactive
             PENDING: :pending
 
-            def self?.values: -> ::Array[WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::accept_bnpl_payments]
+            def self?.values: -> ::Array[WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Capabilities::accept_bnpl_payments]
           end
 
           type accept_card_payments = :active | :inactive | :pending
@@ -569,7 +569,7 @@ module WhopSDK
             INACTIVE: :inactive
             PENDING: :pending
 
-            def self?.values: -> ::Array[WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::accept_card_payments]
+            def self?.values: -> ::Array[WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Capabilities::accept_card_payments]
           end
 
           type bank_deposit = :active | :inactive | :pending
@@ -581,7 +581,7 @@ module WhopSDK
             INACTIVE: :inactive
             PENDING: :pending
 
-            def self?.values: -> ::Array[WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::bank_deposit]
+            def self?.values: -> ::Array[WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Capabilities::bank_deposit]
           end
 
           type card_deposit = :active | :inactive | :pending
@@ -593,7 +593,7 @@ module WhopSDK
             INACTIVE: :inactive
             PENDING: :pending
 
-            def self?.values: -> ::Array[WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::card_deposit]
+            def self?.values: -> ::Array[WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Capabilities::card_deposit]
           end
 
           type card_issuing = :active | :inactive | :pending
@@ -605,7 +605,7 @@ module WhopSDK
             INACTIVE: :inactive
             PENDING: :pending
 
-            def self?.values: -> ::Array[WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::card_issuing]
+            def self?.values: -> ::Array[WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Capabilities::card_issuing]
           end
 
           type crypto_deposit = :active | :inactive | :pending
@@ -617,7 +617,7 @@ module WhopSDK
             INACTIVE: :inactive
             PENDING: :pending
 
-            def self?.values: -> ::Array[WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::crypto_deposit]
+            def self?.values: -> ::Array[WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Capabilities::crypto_deposit]
           end
 
           type crypto_payout = :active | :inactive | :pending
@@ -629,7 +629,7 @@ module WhopSDK
             INACTIVE: :inactive
             PENDING: :pending
 
-            def self?.values: -> ::Array[WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::crypto_payout]
+            def self?.values: -> ::Array[WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Capabilities::crypto_payout]
           end
 
           type instant_payout = :active | :inactive | :pending
@@ -641,7 +641,7 @@ module WhopSDK
             INACTIVE: :inactive
             PENDING: :pending
 
-            def self?.values: -> ::Array[WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::instant_payout]
+            def self?.values: -> ::Array[WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Capabilities::instant_payout]
           end
 
           type run_ads = :active | :inactive | :pending
@@ -653,7 +653,7 @@ module WhopSDK
             INACTIVE: :inactive
             PENDING: :pending
 
-            def self?.values: -> ::Array[WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::run_ads]
+            def self?.values: -> ::Array[WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Capabilities::run_ads]
           end
 
           type standard_payout = :active | :inactive | :pending
@@ -665,7 +665,7 @@ module WhopSDK
             INACTIVE: :inactive
             PENDING: :pending
 
-            def self?.values: -> ::Array[WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::standard_payout]
+            def self?.values: -> ::Array[WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Capabilities::standard_payout]
           end
 
           type transfer = :active | :inactive | :pending
@@ -677,29 +677,29 @@ module WhopSDK
             INACTIVE: :inactive
             PENDING: :pending
 
-            def self?.values: -> ::Array[WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Capabilities::transfer]
+            def self?.values: -> ::Array[WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Capabilities::transfer]
           end
         end
 
         type cards =
           {
-            kind: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Cards::kind?,
-            status: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Cards::status
+            kind: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Cards::kind?,
+            status: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Cards::status
           }
 
         class Cards < WhopSDK::Internal::Type::BaseModel
-          attr_accessor kind: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Cards::kind?
+          attr_accessor kind: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Cards::kind?
 
-          attr_accessor status: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Cards::status
+          attr_accessor status: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Cards::status
 
           def initialize: (
-            kind: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Cards::kind?,
-            status: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Cards::status
+            kind: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Cards::kind?,
+            status: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Cards::status
           ) -> void
 
           def to_hash: -> {
-            kind: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Cards::kind?,
-            status: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Cards::status
+            kind: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Cards::kind?,
+            status: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Cards::status
           }
 
           type kind = :individual | :business
@@ -710,7 +710,7 @@ module WhopSDK
             INDIVIDUAL: :individual
             BUSINESS: :business
 
-            def self?.values: -> ::Array[WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Cards::kind]
+            def self?.values: -> ::Array[WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Cards::kind]
           end
 
           type status =
@@ -735,26 +735,26 @@ module WhopSDK
             NEEDS_VERIFICATION: :needs_verification
             NEEDS_INFORMATION: :needs_information
 
-            def self?.values: -> ::Array[WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Cards::status]
+            def self?.values: -> ::Array[WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Cards::status]
           end
         end
 
         type company_formation =
           {
-            documents: ::Array[WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Document],
+            documents: ::Array[WhopSDK::AccountFinancingDeniedWebhookEvent::Data::CompanyFormation::Document],
             ein_registered: bool,
             legal_name: String?,
-            signatures: WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures,
+            signatures: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::CompanyFormation::Signatures,
             state_registered: bool,
-            status: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::CompanyFormation::status
+            status: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::CompanyFormation::status
           }
 
         class CompanyFormation < WhopSDK::Internal::Type::BaseModel
-          attr_reader documents: ::Array[WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Document]?
+          attr_reader documents: ::Array[WhopSDK::AccountFinancingDeniedWebhookEvent::Data::CompanyFormation::Document]?
 
           def documents=: (
-            ::Array[WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Document]
-          ) -> ::Array[WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Document]
+            ::Array[WhopSDK::AccountFinancingDeniedWebhookEvent::Data::CompanyFormation::Document]
+          ) -> ::Array[WhopSDK::AccountFinancingDeniedWebhookEvent::Data::CompanyFormation::Document]
 
           attr_reader ein_registered: bool?
 
@@ -762,38 +762,38 @@ module WhopSDK
 
           attr_accessor legal_name: String?
 
-          attr_reader signatures: WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures?
+          attr_reader signatures: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::CompanyFormation::Signatures?
 
           def signatures=: (
-            WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures
-          ) -> WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures
+            WhopSDK::AccountFinancingDeniedWebhookEvent::Data::CompanyFormation::Signatures
+          ) -> WhopSDK::AccountFinancingDeniedWebhookEvent::Data::CompanyFormation::Signatures
 
           attr_reader state_registered: bool?
 
           def state_registered=: (bool) -> bool
 
-          attr_reader status: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::CompanyFormation::status?
+          attr_reader status: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::CompanyFormation::status?
 
           def status=: (
-            WhopSDK::Models::AccountUpdatedWebhookEvent::Data::CompanyFormation::status
-          ) -> WhopSDK::Models::AccountUpdatedWebhookEvent::Data::CompanyFormation::status
+            WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::CompanyFormation::status
+          ) -> WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::CompanyFormation::status
 
           def initialize: (
-            ?documents: ::Array[WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Document],
+            ?documents: ::Array[WhopSDK::AccountFinancingDeniedWebhookEvent::Data::CompanyFormation::Document],
             ?ein_registered: bool,
             ?legal_name: String?,
-            ?signatures: WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures,
+            ?signatures: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::CompanyFormation::Signatures,
             ?state_registered: bool,
-            ?status: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::CompanyFormation::status
+            ?status: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::CompanyFormation::status
           ) -> void
 
           def to_hash: -> {
-            documents: ::Array[WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Document],
+            documents: ::Array[WhopSDK::AccountFinancingDeniedWebhookEvent::Data::CompanyFormation::Document],
             ein_registered: bool,
             legal_name: String?,
-            signatures: WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures,
+            signatures: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::CompanyFormation::Signatures,
             state_registered: bool,
-            status: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::CompanyFormation::status
+            status: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::CompanyFormation::status
           }
 
           type document =
@@ -825,42 +825,42 @@ module WhopSDK
 
           type signatures =
             {
-              :form8821 => WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures::Form8821,
-              :ss4 => WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures::Ss4
+              :form8821 => WhopSDK::AccountFinancingDeniedWebhookEvent::Data::CompanyFormation::Signatures::Form8821,
+              :ss4 => WhopSDK::AccountFinancingDeniedWebhookEvent::Data::CompanyFormation::Signatures::Ss4
             }
 
           class Signatures < WhopSDK::Internal::Type::BaseModel
-            attr_reader form8821: WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures::Form8821?
+            attr_reader form8821: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::CompanyFormation::Signatures::Form8821?
 
             def form8821=: (
-              WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures::Form8821
-            ) -> WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures::Form8821
+              WhopSDK::AccountFinancingDeniedWebhookEvent::Data::CompanyFormation::Signatures::Form8821
+            ) -> WhopSDK::AccountFinancingDeniedWebhookEvent::Data::CompanyFormation::Signatures::Form8821
 
-            attr_reader ss4: WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures::Ss4?
+            attr_reader ss4: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::CompanyFormation::Signatures::Ss4?
 
             def ss4=: (
-              WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures::Ss4
-            ) -> WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures::Ss4
+              WhopSDK::AccountFinancingDeniedWebhookEvent::Data::CompanyFormation::Signatures::Ss4
+            ) -> WhopSDK::AccountFinancingDeniedWebhookEvent::Data::CompanyFormation::Signatures::Ss4
 
             def initialize: (
-              ?form8821: WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures::Form8821,
-              ?ss4: WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures::Ss4
+              ?form8821: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::CompanyFormation::Signatures::Form8821,
+              ?ss4: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::CompanyFormation::Signatures::Ss4
             ) -> void
 
             def to_hash: -> {
-              :form8821 => WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures::Form8821,
-              :ss4 => WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures::Ss4
+              :form8821 => WhopSDK::AccountFinancingDeniedWebhookEvent::Data::CompanyFormation::Signatures::Form8821,
+              :ss4 => WhopSDK::AccountFinancingDeniedWebhookEvent::Data::CompanyFormation::Signatures::Ss4
             }
 
             type form8821 =
               {
-                status: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures::Form8821::status,
+                status: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::CompanyFormation::Signatures::Form8821::status,
                 expires_at: String,
                 url: String
               }
 
             class Form8821 < WhopSDK::Internal::Type::BaseModel
-              attr_accessor status: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures::Form8821::status
+              attr_accessor status: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::CompanyFormation::Signatures::Form8821::status
 
               attr_reader expires_at: String?
 
@@ -871,13 +871,13 @@ module WhopSDK
               def url=: (String) -> String
 
               def initialize: (
-                status: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures::Form8821::status,
+                status: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::CompanyFormation::Signatures::Form8821::status,
                 ?expires_at: String,
                 ?url: String
               ) -> void
 
               def to_hash: -> {
-                status: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures::Form8821::status,
+                status: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::CompanyFormation::Signatures::Form8821::status,
                 expires_at: String,
                 url: String
               }
@@ -890,19 +890,19 @@ module WhopSDK
                 PENDING: :pending
                 UNKNOWN: :unknown
 
-                def self?.values: -> ::Array[WhopSDK::Models::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures::Form8821::status]
+                def self?.values: -> ::Array[WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::CompanyFormation::Signatures::Form8821::status]
               end
             end
 
             type ss4 =
               {
-                status: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures::Ss4::status,
+                status: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::CompanyFormation::Signatures::Ss4::status,
                 expires_at: String,
                 url: String
               }
 
             class Ss4 < WhopSDK::Internal::Type::BaseModel
-              attr_accessor status: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures::Ss4::status
+              attr_accessor status: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::CompanyFormation::Signatures::Ss4::status
 
               attr_reader expires_at: String?
 
@@ -913,13 +913,13 @@ module WhopSDK
               def url=: (String) -> String
 
               def initialize: (
-                status: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures::Ss4::status,
+                status: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::CompanyFormation::Signatures::Ss4::status,
                 ?expires_at: String,
                 ?url: String
               ) -> void
 
               def to_hash: -> {
-                status: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures::Ss4::status,
+                status: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::CompanyFormation::Signatures::Ss4::status,
                 expires_at: String,
                 url: String
               }
@@ -932,7 +932,7 @@ module WhopSDK
                 PENDING: :pending
                 UNKNOWN: :unknown
 
-                def self?.values: -> ::Array[WhopSDK::Models::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures::Ss4::status]
+                def self?.values: -> ::Array[WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::CompanyFormation::Signatures::Ss4::status]
               end
             end
           end
@@ -948,7 +948,7 @@ module WhopSDK
             REJECTED: :rejected
             COMPLETED: :completed
 
-            def self?.values: -> ::Array[WhopSDK::Models::AccountUpdatedWebhookEvent::Data::CompanyFormation::status]
+            def self?.values: -> ::Array[WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::CompanyFormation::status]
           end
         end
 
@@ -960,12 +960,12 @@ module WhopSDK
             filename: String?,
             object: String,
             size: Integer?,
-            upload_status: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Eula::upload_status,
+            upload_status: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Eula::upload_status,
             url: String?,
-            visibility: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Eula::visibility,
+            visibility: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Eula::visibility,
             multipart_chunk_size: Integer?,
             multipart_upload_id: String?,
-            multipart_upload_urls: ::Array[WhopSDK::AccountUpdatedWebhookEvent::Data::Eula::MultipartUploadURL]?,
+            multipart_upload_urls: ::Array[WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Eula::MultipartUploadURL]?,
             upload_headers: top,
             upload_url: String?
           }
@@ -983,17 +983,17 @@ module WhopSDK
 
           attr_accessor size: Integer?
 
-          attr_accessor upload_status: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Eula::upload_status
+          attr_accessor upload_status: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Eula::upload_status
 
           attr_accessor url: String?
 
-          attr_accessor visibility: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Eula::visibility
+          attr_accessor visibility: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Eula::visibility
 
           attr_accessor multipart_chunk_size: Integer?
 
           attr_accessor multipart_upload_id: String?
 
-          attr_accessor multipart_upload_urls: ::Array[WhopSDK::AccountUpdatedWebhookEvent::Data::Eula::MultipartUploadURL]?
+          attr_accessor multipart_upload_urls: ::Array[WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Eula::MultipartUploadURL]?
 
           attr_reader upload_headers: top?
 
@@ -1008,12 +1008,12 @@ module WhopSDK
             filename: String?,
             object: String,
             size: Integer?,
-            upload_status: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Eula::upload_status,
+            upload_status: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Eula::upload_status,
             url: String?,
-            visibility: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Eula::visibility,
+            visibility: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Eula::visibility,
             ?multipart_chunk_size: Integer?,
             ?multipart_upload_id: String?,
-            ?multipart_upload_urls: ::Array[WhopSDK::AccountUpdatedWebhookEvent::Data::Eula::MultipartUploadURL]?,
+            ?multipart_upload_urls: ::Array[WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Eula::MultipartUploadURL]?,
             ?upload_headers: top,
             ?upload_url: String?
           ) -> void
@@ -1025,12 +1025,12 @@ module WhopSDK
             filename: String?,
             object: String,
             size: Integer?,
-            upload_status: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Eula::upload_status,
+            upload_status: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Eula::upload_status,
             url: String?,
-            visibility: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Eula::visibility,
+            visibility: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Eula::visibility,
             multipart_chunk_size: Integer?,
             multipart_upload_id: String?,
-            multipart_upload_urls: ::Array[WhopSDK::AccountUpdatedWebhookEvent::Data::Eula::MultipartUploadURL]?,
+            multipart_upload_urls: ::Array[WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Eula::MultipartUploadURL]?,
             upload_headers: top,
             upload_url: String?
           }
@@ -1045,7 +1045,7 @@ module WhopSDK
             READY: :ready
             FAILED: :failed
 
-            def self?.values: -> ::Array[WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Eula::upload_status]
+            def self?.values: -> ::Array[WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Eula::upload_status]
           end
 
           type visibility = :public | :private
@@ -1056,7 +1056,7 @@ module WhopSDK
             PUBLIC: :public
             PRIVATE: :private
 
-            def self?.values: -> ::Array[WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Eula::visibility]
+            def self?.values: -> ::Array[WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Eula::visibility]
           end
 
           type multipart_upload_url = { part_number: Integer, url: String }
@@ -1080,7 +1080,7 @@ module WhopSDK
           HIDE_MEMBER_COUNT: :hide_member_count
           HIDE_MEMBERS_CARD: :hide_members_card
 
-          def self?.values: -> ::Array[WhopSDK::Models::AccountUpdatedWebhookEvent::Data::home_preference]
+          def self?.values: -> ::Array[WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::home_preference]
         end
 
         type onboarding_type = :platform | :seller
@@ -1091,7 +1091,7 @@ module WhopSDK
           PLATFORM: :platform
           SELLER: :seller
 
-          def self?.values: -> ::Array[WhopSDK::Models::AccountUpdatedWebhookEvent::Data::onboarding_type]
+          def self?.values: -> ::Array[WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::onboarding_type]
         end
 
         type opengraph_image_variant = :white | :black | :orange
@@ -1103,14 +1103,14 @@ module WhopSDK
           BLACK: :black
           ORANGE: :orange
 
-          def self?.values: -> ::Array[WhopSDK::Models::AccountUpdatedWebhookEvent::Data::opengraph_image_variant]
+          def self?.values: -> ::Array[WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::opengraph_image_variant]
         end
 
         type owner =
           {
             id: String,
             name: String?,
-            profile_picture: WhopSDK::AccountUpdatedWebhookEvent::Data::Owner::ProfilePicture,
+            profile_picture: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Owner::ProfilePicture,
             username: String
           }
 
@@ -1119,21 +1119,21 @@ module WhopSDK
 
           attr_accessor name: String?
 
-          attr_accessor profile_picture: WhopSDK::AccountUpdatedWebhookEvent::Data::Owner::ProfilePicture
+          attr_accessor profile_picture: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Owner::ProfilePicture
 
           attr_accessor username: String
 
           def initialize: (
             id: String,
             name: String?,
-            profile_picture: WhopSDK::AccountUpdatedWebhookEvent::Data::Owner::ProfilePicture,
+            profile_picture: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Owner::ProfilePicture,
             username: String
           ) -> void
 
           def to_hash: -> {
             id: String,
             name: String?,
-            profile_picture: WhopSDK::AccountUpdatedWebhookEvent::Data::Owner::ProfilePicture,
+            profile_picture: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Owner::ProfilePicture,
             username: String
           }
 
@@ -1154,7 +1154,7 @@ module WhopSDK
             logo_url: String?,
             route: String,
             title: String,
-            fees: ::Hash[Symbol, WhopSDK::AccountUpdatedWebhookEvent::Data::ParentAccount::Fee]
+            fees: ::Hash[Symbol, WhopSDK::AccountFinancingDeniedWebhookEvent::Data::ParentAccount::Fee]
           }
 
         class ParentAccount < WhopSDK::Internal::Type::BaseModel
@@ -1166,18 +1166,18 @@ module WhopSDK
 
           attr_accessor title: String
 
-          attr_reader fees: ::Hash[Symbol, WhopSDK::AccountUpdatedWebhookEvent::Data::ParentAccount::Fee]?
+          attr_reader fees: ::Hash[Symbol, WhopSDK::AccountFinancingDeniedWebhookEvent::Data::ParentAccount::Fee]?
 
           def fees=: (
-            ::Hash[Symbol, WhopSDK::AccountUpdatedWebhookEvent::Data::ParentAccount::Fee]
-          ) -> ::Hash[Symbol, WhopSDK::AccountUpdatedWebhookEvent::Data::ParentAccount::Fee]
+            ::Hash[Symbol, WhopSDK::AccountFinancingDeniedWebhookEvent::Data::ParentAccount::Fee]
+          ) -> ::Hash[Symbol, WhopSDK::AccountFinancingDeniedWebhookEvent::Data::ParentAccount::Fee]
 
           def initialize: (
             id: String,
             logo_url: String?,
             route: String,
             title: String,
-            ?fees: ::Hash[Symbol, WhopSDK::AccountUpdatedWebhookEvent::Data::ParentAccount::Fee]
+            ?fees: ::Hash[Symbol, WhopSDK::AccountFinancingDeniedWebhookEvent::Data::ParentAccount::Fee]
           ) -> void
 
           def to_hash: -> {
@@ -1185,7 +1185,7 @@ module WhopSDK
             logo_url: String?,
             route: String,
             title: String,
-            fees: ::Hash[Symbol, WhopSDK::AccountUpdatedWebhookEvent::Data::ParentAccount::Fee]
+            fees: ::Hash[Symbol, WhopSDK::AccountFinancingDeniedWebhookEvent::Data::ParentAccount::Fee]
           }
 
           type fee = { fixed_fee_usd: Float, percentage_fee: Float }
@@ -1206,22 +1206,22 @@ module WhopSDK
 
         type payment_controls =
           {
-            dispute_alert_auto_refund: WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls::DisputeAlertAutoRefund,
+            dispute_alert_auto_refund: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::PaymentControls::DisputeAlertAutoRefund,
             dispute_alert_fee_usd: Float?,
             :enforce_3ds => bool,
             financing_disabled: bool,
             high_risk_processing_fee_percentage: Float,
             pending_auto_topup_fee_percentage: Float,
             pending_balance_delay_days: Integer,
-            reserve: WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls::Reserve,
-            resolution_center_auto_refund: WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls::ResolutionCenterAutoRefund,
-            restricted_payment_methods: ::Array[WhopSDK::Models::AccountUpdatedWebhookEvent::Data::PaymentControls::restricted_payment_method],
-            undated_pending_reason: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::PaymentControls::undated_pending_reason?,
-            withdrawal_schedule: WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls::WithdrawalSchedule
+            reserve: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::PaymentControls::Reserve,
+            resolution_center_auto_refund: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::PaymentControls::ResolutionCenterAutoRefund,
+            restricted_payment_methods: ::Array[WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::PaymentControls::restricted_payment_method],
+            undated_pending_reason: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::PaymentControls::undated_pending_reason?,
+            withdrawal_schedule: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::PaymentControls::WithdrawalSchedule
           }
 
         class PaymentControls < WhopSDK::Internal::Type::BaseModel
-          attr_accessor dispute_alert_auto_refund: WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls::DisputeAlertAutoRefund
+          attr_accessor dispute_alert_auto_refund: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::PaymentControls::DisputeAlertAutoRefund
 
           attr_accessor dispute_alert_fee_usd: Float?
 
@@ -1235,44 +1235,44 @@ module WhopSDK
 
           attr_accessor pending_balance_delay_days: Integer
 
-          attr_accessor reserve: WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls::Reserve
+          attr_accessor reserve: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::PaymentControls::Reserve
 
-          attr_accessor resolution_center_auto_refund: WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls::ResolutionCenterAutoRefund
+          attr_accessor resolution_center_auto_refund: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::PaymentControls::ResolutionCenterAutoRefund
 
-          attr_accessor restricted_payment_methods: ::Array[WhopSDK::Models::AccountUpdatedWebhookEvent::Data::PaymentControls::restricted_payment_method]
+          attr_accessor restricted_payment_methods: ::Array[WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::PaymentControls::restricted_payment_method]
 
-          attr_accessor undated_pending_reason: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::PaymentControls::undated_pending_reason?
+          attr_accessor undated_pending_reason: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::PaymentControls::undated_pending_reason?
 
-          attr_accessor withdrawal_schedule: WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls::WithdrawalSchedule
+          attr_accessor withdrawal_schedule: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::PaymentControls::WithdrawalSchedule
 
           def initialize: (
-            dispute_alert_auto_refund: WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls::DisputeAlertAutoRefund,
+            dispute_alert_auto_refund: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::PaymentControls::DisputeAlertAutoRefund,
             dispute_alert_fee_usd: Float?,
             enforce_3ds: bool,
             financing_disabled: bool,
             high_risk_processing_fee_percentage: Float,
             pending_auto_topup_fee_percentage: Float,
             pending_balance_delay_days: Integer,
-            reserve: WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls::Reserve,
-            resolution_center_auto_refund: WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls::ResolutionCenterAutoRefund,
-            restricted_payment_methods: ::Array[WhopSDK::Models::AccountUpdatedWebhookEvent::Data::PaymentControls::restricted_payment_method],
-            undated_pending_reason: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::PaymentControls::undated_pending_reason?,
-            withdrawal_schedule: WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls::WithdrawalSchedule
+            reserve: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::PaymentControls::Reserve,
+            resolution_center_auto_refund: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::PaymentControls::ResolutionCenterAutoRefund,
+            restricted_payment_methods: ::Array[WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::PaymentControls::restricted_payment_method],
+            undated_pending_reason: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::PaymentControls::undated_pending_reason?,
+            withdrawal_schedule: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::PaymentControls::WithdrawalSchedule
           ) -> void
 
           def to_hash: -> {
-            dispute_alert_auto_refund: WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls::DisputeAlertAutoRefund,
+            dispute_alert_auto_refund: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::PaymentControls::DisputeAlertAutoRefund,
             dispute_alert_fee_usd: Float?,
             :enforce_3ds => bool,
             financing_disabled: bool,
             high_risk_processing_fee_percentage: Float,
             pending_auto_topup_fee_percentage: Float,
             pending_balance_delay_days: Integer,
-            reserve: WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls::Reserve,
-            resolution_center_auto_refund: WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls::ResolutionCenterAutoRefund,
-            restricted_payment_methods: ::Array[WhopSDK::Models::AccountUpdatedWebhookEvent::Data::PaymentControls::restricted_payment_method],
-            undated_pending_reason: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::PaymentControls::undated_pending_reason?,
-            withdrawal_schedule: WhopSDK::AccountUpdatedWebhookEvent::Data::PaymentControls::WithdrawalSchedule
+            reserve: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::PaymentControls::Reserve,
+            resolution_center_auto_refund: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::PaymentControls::ResolutionCenterAutoRefund,
+            restricted_payment_methods: ::Array[WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::PaymentControls::restricted_payment_method],
+            undated_pending_reason: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::PaymentControls::undated_pending_reason?,
+            withdrawal_schedule: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::PaymentControls::WithdrawalSchedule
           }
 
           type dispute_alert_auto_refund =
@@ -1349,7 +1349,7 @@ module WhopSDK
             CARD_AMERICAN_EXPRESS: :card_american_express
             CARD_DISCOVER_GLOBAL_NETWORK: :card_discover_global_network
 
-            def self?.values: -> ::Array[WhopSDK::Models::AccountUpdatedWebhookEvent::Data::PaymentControls::restricted_payment_method]
+            def self?.values: -> ::Array[WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::PaymentControls::restricted_payment_method]
           end
 
           type undated_pending_reason =
@@ -1364,32 +1364,32 @@ module WhopSDK
             PENDING_INFORMATION_REQUEST: :pending_information_request
             WITHDRAWALS_DISABLED: :withdrawals_disabled
 
-            def self?.values: -> ::Array[WhopSDK::Models::AccountUpdatedWebhookEvent::Data::PaymentControls::undated_pending_reason]
+            def self?.values: -> ::Array[WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::PaymentControls::undated_pending_reason]
           end
 
           type withdrawal_schedule =
             {
               day: Integer?,
-              frequency: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::PaymentControls::WithdrawalSchedule::frequency,
+              frequency: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::PaymentControls::WithdrawalSchedule::frequency,
               next_payout_date: String?
             }
 
           class WithdrawalSchedule < WhopSDK::Internal::Type::BaseModel
             attr_accessor day: Integer?
 
-            attr_accessor frequency: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::PaymentControls::WithdrawalSchedule::frequency
+            attr_accessor frequency: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::PaymentControls::WithdrawalSchedule::frequency
 
             attr_accessor next_payout_date: String?
 
             def initialize: (
               day: Integer?,
-              frequency: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::PaymentControls::WithdrawalSchedule::frequency,
+              frequency: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::PaymentControls::WithdrawalSchedule::frequency,
               next_payout_date: String?
             ) -> void
 
             def to_hash: -> {
               day: Integer?,
-              frequency: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::PaymentControls::WithdrawalSchedule::frequency,
+              frequency: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::PaymentControls::WithdrawalSchedule::frequency,
               next_payout_date: String?
             }
 
@@ -1403,7 +1403,7 @@ module WhopSDK
               WEEKLY: :weekly
               MONTHLY: :monthly
 
-              def self?.values: -> ::Array[WhopSDK::Models::AccountUpdatedWebhookEvent::Data::PaymentControls::WithdrawalSchedule::frequency]
+              def self?.values: -> ::Array[WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::PaymentControls::WithdrawalSchedule::frequency]
             end
           end
         end
@@ -1416,12 +1416,12 @@ module WhopSDK
             filename: String?,
             object: String,
             size: Integer?,
-            upload_status: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::PrivacyPolicy::upload_status,
+            upload_status: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::PrivacyPolicy::upload_status,
             url: String?,
-            visibility: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::PrivacyPolicy::visibility,
+            visibility: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::PrivacyPolicy::visibility,
             multipart_chunk_size: Integer?,
             multipart_upload_id: String?,
-            multipart_upload_urls: ::Array[WhopSDK::AccountUpdatedWebhookEvent::Data::PrivacyPolicy::MultipartUploadURL]?,
+            multipart_upload_urls: ::Array[WhopSDK::AccountFinancingDeniedWebhookEvent::Data::PrivacyPolicy::MultipartUploadURL]?,
             upload_headers: top,
             upload_url: String?
           }
@@ -1439,17 +1439,17 @@ module WhopSDK
 
           attr_accessor size: Integer?
 
-          attr_accessor upload_status: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::PrivacyPolicy::upload_status
+          attr_accessor upload_status: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::PrivacyPolicy::upload_status
 
           attr_accessor url: String?
 
-          attr_accessor visibility: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::PrivacyPolicy::visibility
+          attr_accessor visibility: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::PrivacyPolicy::visibility
 
           attr_accessor multipart_chunk_size: Integer?
 
           attr_accessor multipart_upload_id: String?
 
-          attr_accessor multipart_upload_urls: ::Array[WhopSDK::AccountUpdatedWebhookEvent::Data::PrivacyPolicy::MultipartUploadURL]?
+          attr_accessor multipart_upload_urls: ::Array[WhopSDK::AccountFinancingDeniedWebhookEvent::Data::PrivacyPolicy::MultipartUploadURL]?
 
           attr_reader upload_headers: top?
 
@@ -1464,12 +1464,12 @@ module WhopSDK
             filename: String?,
             object: String,
             size: Integer?,
-            upload_status: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::PrivacyPolicy::upload_status,
+            upload_status: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::PrivacyPolicy::upload_status,
             url: String?,
-            visibility: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::PrivacyPolicy::visibility,
+            visibility: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::PrivacyPolicy::visibility,
             ?multipart_chunk_size: Integer?,
             ?multipart_upload_id: String?,
-            ?multipart_upload_urls: ::Array[WhopSDK::AccountUpdatedWebhookEvent::Data::PrivacyPolicy::MultipartUploadURL]?,
+            ?multipart_upload_urls: ::Array[WhopSDK::AccountFinancingDeniedWebhookEvent::Data::PrivacyPolicy::MultipartUploadURL]?,
             ?upload_headers: top,
             ?upload_url: String?
           ) -> void
@@ -1481,12 +1481,12 @@ module WhopSDK
             filename: String?,
             object: String,
             size: Integer?,
-            upload_status: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::PrivacyPolicy::upload_status,
+            upload_status: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::PrivacyPolicy::upload_status,
             url: String?,
-            visibility: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::PrivacyPolicy::visibility,
+            visibility: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::PrivacyPolicy::visibility,
             multipart_chunk_size: Integer?,
             multipart_upload_id: String?,
-            multipart_upload_urls: ::Array[WhopSDK::AccountUpdatedWebhookEvent::Data::PrivacyPolicy::MultipartUploadURL]?,
+            multipart_upload_urls: ::Array[WhopSDK::AccountFinancingDeniedWebhookEvent::Data::PrivacyPolicy::MultipartUploadURL]?,
             upload_headers: top,
             upload_url: String?
           }
@@ -1501,7 +1501,7 @@ module WhopSDK
             READY: :ready
             FAILED: :failed
 
-            def self?.values: -> ::Array[WhopSDK::Models::AccountUpdatedWebhookEvent::Data::PrivacyPolicy::upload_status]
+            def self?.values: -> ::Array[WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::PrivacyPolicy::upload_status]
           end
 
           type visibility = :public | :private
@@ -1512,7 +1512,7 @@ module WhopSDK
             PUBLIC: :public
             PRIVATE: :private
 
-            def self?.values: -> ::Array[WhopSDK::Models::AccountUpdatedWebhookEvent::Data::PrivacyPolicy::visibility]
+            def self?.values: -> ::Array[WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::PrivacyPolicy::visibility]
           end
 
           type multipart_upload_url = { part_number: Integer, url: String }
@@ -1530,7 +1530,7 @@ module WhopSDK
 
         type recommended_action =
           {
-            action: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::RecommendedAction::action,
+            action: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::RecommendedAction::action,
             blocked_capabilities: ::Array[String],
             cta: String,
             cta_label: String,
@@ -1538,12 +1538,12 @@ module WhopSDK
             icon_url: String?,
             impact_score: Integer?,
             reasoning: String?,
-            status: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::RecommendedAction::status,
+            status: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::RecommendedAction::status,
             title: String
           }
 
         class RecommendedAction < WhopSDK::Internal::Type::BaseModel
-          attr_accessor action: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::RecommendedAction::action
+          attr_accessor action: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::RecommendedAction::action
 
           attr_accessor blocked_capabilities: ::Array[String]
 
@@ -1559,12 +1559,12 @@ module WhopSDK
 
           attr_accessor reasoning: String?
 
-          attr_accessor status: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::RecommendedAction::status
+          attr_accessor status: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::RecommendedAction::status
 
           attr_accessor title: String
 
           def initialize: (
-            action: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::RecommendedAction::action,
+            action: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::RecommendedAction::action,
             blocked_capabilities: ::Array[String],
             cta: String,
             cta_label: String,
@@ -1572,12 +1572,12 @@ module WhopSDK
             icon_url: String?,
             impact_score: Integer?,
             reasoning: String?,
-            status: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::RecommendedAction::status,
+            status: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::RecommendedAction::status,
             title: String
           ) -> void
 
           def to_hash: -> {
-            action: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::RecommendedAction::action,
+            action: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::RecommendedAction::action,
             blocked_capabilities: ::Array[String],
             cta: String,
             cta_label: String,
@@ -1585,7 +1585,7 @@ module WhopSDK
             icon_url: String?,
             impact_score: Integer?,
             reasoning: String?,
-            status: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::RecommendedAction::status,
+            status: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::RecommendedAction::status,
             title: String
           }
 
@@ -1635,7 +1635,7 @@ module WhopSDK
             CREATE_CARD: :create_card
             APPLY_FOR_FINANCING: :apply_for_financing
 
-            def self?.values: -> ::Array[WhopSDK::Models::AccountUpdatedWebhookEvent::Data::RecommendedAction::action]
+            def self?.values: -> ::Array[WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::RecommendedAction::action]
           end
 
           type status = :optional
@@ -1645,24 +1645,24 @@ module WhopSDK
 
             OPTIONAL: :optional
 
-            def self?.values: -> ::Array[WhopSDK::Models::AccountUpdatedWebhookEvent::Data::RecommendedAction::status]
+            def self?.values: -> ::Array[WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::RecommendedAction::status]
           end
         end
 
         type required_action =
           {
-            action: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::RequiredAction::action,
+            action: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::RequiredAction::action,
             blocked_capabilities: ::Array[String],
             cta: String?,
             cta_label: String,
             description: String,
             icon_url: String?,
-            status: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::RequiredAction::status,
+            status: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::RequiredAction::status,
             title: String
           }
 
         class RequiredAction < WhopSDK::Internal::Type::BaseModel
-          attr_accessor action: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::RequiredAction::action
+          attr_accessor action: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::RequiredAction::action
 
           attr_accessor blocked_capabilities: ::Array[String]
 
@@ -1674,29 +1674,29 @@ module WhopSDK
 
           attr_accessor icon_url: String?
 
-          attr_accessor status: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::RequiredAction::status
+          attr_accessor status: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::RequiredAction::status
 
           attr_accessor title: String
 
           def initialize: (
-            action: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::RequiredAction::action,
+            action: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::RequiredAction::action,
             blocked_capabilities: ::Array[String],
             cta: String?,
             cta_label: String,
             description: String,
             icon_url: String?,
-            status: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::RequiredAction::status,
+            status: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::RequiredAction::status,
             title: String
           ) -> void
 
           def to_hash: -> {
-            action: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::RequiredAction::action,
+            action: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::RequiredAction::action,
             blocked_capabilities: ::Array[String],
             cta: String?,
             cta_label: String,
             description: String,
             icon_url: String?,
-            status: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::RequiredAction::status,
+            status: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::RequiredAction::status,
             title: String
           }
 
@@ -1732,7 +1732,7 @@ module WhopSDK
             CONFIGURE_TAX_REMITTER: :configure_tax_remitter
             ADD_VAT_REGISTRATION: :add_vat_registration
 
-            def self?.values: -> ::Array[WhopSDK::Models::AccountUpdatedWebhookEvent::Data::RequiredAction::action]
+            def self?.values: -> ::Array[WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::RequiredAction::action]
           end
 
           type status = :required | :pending
@@ -1743,7 +1743,7 @@ module WhopSDK
             REQUIRED: :required
             PENDING: :pending
 
-            def self?.values: -> ::Array[WhopSDK::Models::AccountUpdatedWebhookEvent::Data::RequiredAction::status]
+            def self?.values: -> ::Array[WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::RequiredAction::status]
           end
         end
 
@@ -1755,12 +1755,12 @@ module WhopSDK
             filename: String?,
             object: String,
             size: Integer?,
-            upload_status: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::ReturnPolicy::upload_status,
+            upload_status: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::ReturnPolicy::upload_status,
             url: String?,
-            visibility: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::ReturnPolicy::visibility,
+            visibility: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::ReturnPolicy::visibility,
             multipart_chunk_size: Integer?,
             multipart_upload_id: String?,
-            multipart_upload_urls: ::Array[WhopSDK::AccountUpdatedWebhookEvent::Data::ReturnPolicy::MultipartUploadURL]?,
+            multipart_upload_urls: ::Array[WhopSDK::AccountFinancingDeniedWebhookEvent::Data::ReturnPolicy::MultipartUploadURL]?,
             upload_headers: top,
             upload_url: String?
           }
@@ -1778,17 +1778,17 @@ module WhopSDK
 
           attr_accessor size: Integer?
 
-          attr_accessor upload_status: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::ReturnPolicy::upload_status
+          attr_accessor upload_status: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::ReturnPolicy::upload_status
 
           attr_accessor url: String?
 
-          attr_accessor visibility: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::ReturnPolicy::visibility
+          attr_accessor visibility: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::ReturnPolicy::visibility
 
           attr_accessor multipart_chunk_size: Integer?
 
           attr_accessor multipart_upload_id: String?
 
-          attr_accessor multipart_upload_urls: ::Array[WhopSDK::AccountUpdatedWebhookEvent::Data::ReturnPolicy::MultipartUploadURL]?
+          attr_accessor multipart_upload_urls: ::Array[WhopSDK::AccountFinancingDeniedWebhookEvent::Data::ReturnPolicy::MultipartUploadURL]?
 
           attr_reader upload_headers: top?
 
@@ -1803,12 +1803,12 @@ module WhopSDK
             filename: String?,
             object: String,
             size: Integer?,
-            upload_status: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::ReturnPolicy::upload_status,
+            upload_status: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::ReturnPolicy::upload_status,
             url: String?,
-            visibility: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::ReturnPolicy::visibility,
+            visibility: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::ReturnPolicy::visibility,
             ?multipart_chunk_size: Integer?,
             ?multipart_upload_id: String?,
-            ?multipart_upload_urls: ::Array[WhopSDK::AccountUpdatedWebhookEvent::Data::ReturnPolicy::MultipartUploadURL]?,
+            ?multipart_upload_urls: ::Array[WhopSDK::AccountFinancingDeniedWebhookEvent::Data::ReturnPolicy::MultipartUploadURL]?,
             ?upload_headers: top,
             ?upload_url: String?
           ) -> void
@@ -1820,12 +1820,12 @@ module WhopSDK
             filename: String?,
             object: String,
             size: Integer?,
-            upload_status: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::ReturnPolicy::upload_status,
+            upload_status: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::ReturnPolicy::upload_status,
             url: String?,
-            visibility: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::ReturnPolicy::visibility,
+            visibility: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::ReturnPolicy::visibility,
             multipart_chunk_size: Integer?,
             multipart_upload_id: String?,
-            multipart_upload_urls: ::Array[WhopSDK::AccountUpdatedWebhookEvent::Data::ReturnPolicy::MultipartUploadURL]?,
+            multipart_upload_urls: ::Array[WhopSDK::AccountFinancingDeniedWebhookEvent::Data::ReturnPolicy::MultipartUploadURL]?,
             upload_headers: top,
             upload_url: String?
           }
@@ -1840,7 +1840,7 @@ module WhopSDK
             READY: :ready
             FAILED: :failed
 
-            def self?.values: -> ::Array[WhopSDK::Models::AccountUpdatedWebhookEvent::Data::ReturnPolicy::upload_status]
+            def self?.values: -> ::Array[WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::ReturnPolicy::upload_status]
           end
 
           type visibility = :public | :private
@@ -1851,7 +1851,7 @@ module WhopSDK
             PUBLIC: :public
             PRIVATE: :private
 
-            def self?.values: -> ::Array[WhopSDK::Models::AccountUpdatedWebhookEvent::Data::ReturnPolicy::visibility]
+            def self?.values: -> ::Array[WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::ReturnPolicy::visibility]
           end
 
           type multipart_upload_url = { part_number: Integer, url: String }
@@ -1872,7 +1872,7 @@ module WhopSDK
             id: String,
             title: String?,
             url: String,
-            website: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::SocialLink::website
+            website: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::SocialLink::website
           }
 
         class SocialLink < WhopSDK::Internal::Type::BaseModel
@@ -1882,20 +1882,20 @@ module WhopSDK
 
           attr_accessor url: String
 
-          attr_accessor website: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::SocialLink::website
+          attr_accessor website: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::SocialLink::website
 
           def initialize: (
             id: String,
             title: String?,
             url: String,
-            website: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::SocialLink::website
+            website: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::SocialLink::website
           ) -> void
 
           def to_hash: -> {
             id: String,
             title: String?,
             url: String,
-            website: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::SocialLink::website
+            website: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::SocialLink::website
           }
 
           type website =
@@ -1922,38 +1922,38 @@ module WhopSDK
             WEBSITE: :website
             CUSTOM: :custom
 
-            def self?.values: -> ::Array[WhopSDK::Models::AccountUpdatedWebhookEvent::Data::SocialLink::website]
+            def self?.values: -> ::Array[WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::SocialLink::website]
           end
         end
 
         type store_page_config =
           {
-            accent_color: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::StorePageConfig::accent_color?,
-            layout: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::StorePageConfig::layout?,
-            profile_variant: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::StorePageConfig::profile_variant?,
+            accent_color: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::StorePageConfig::accent_color?,
+            layout: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::StorePageConfig::layout?,
+            profile_variant: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::StorePageConfig::profile_variant?,
             whop_affiliate_link: bool
           }
 
         class StorePageConfig < WhopSDK::Internal::Type::BaseModel
-          attr_accessor accent_color: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::StorePageConfig::accent_color?
+          attr_accessor accent_color: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::StorePageConfig::accent_color?
 
-          attr_accessor layout: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::StorePageConfig::layout?
+          attr_accessor layout: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::StorePageConfig::layout?
 
-          attr_accessor profile_variant: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::StorePageConfig::profile_variant?
+          attr_accessor profile_variant: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::StorePageConfig::profile_variant?
 
           attr_accessor whop_affiliate_link: bool
 
           def initialize: (
-            accent_color: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::StorePageConfig::accent_color?,
-            layout: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::StorePageConfig::layout?,
-            profile_variant: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::StorePageConfig::profile_variant?,
+            accent_color: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::StorePageConfig::accent_color?,
+            layout: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::StorePageConfig::layout?,
+            profile_variant: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::StorePageConfig::profile_variant?,
             whop_affiliate_link: bool
           ) -> void
 
           def to_hash: -> {
-            accent_color: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::StorePageConfig::accent_color?,
-            layout: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::StorePageConfig::layout?,
-            profile_variant: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::StorePageConfig::profile_variant?,
+            accent_color: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::StorePageConfig::accent_color?,
+            layout: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::StorePageConfig::layout?,
+            profile_variant: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::StorePageConfig::profile_variant?,
             whop_affiliate_link: bool
           }
 
@@ -2019,7 +2019,7 @@ module WhopSDK
             BRONZE: :bronze
             GRAY: :gray
 
-            def self?.values: -> ::Array[WhopSDK::Models::AccountUpdatedWebhookEvent::Data::StorePageConfig::accent_color]
+            def self?.values: -> ::Array[WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::StorePageConfig::accent_color]
           end
 
           type layout = :featured | :compact
@@ -2030,7 +2030,7 @@ module WhopSDK
             FEATURED: :featured
             COMPACT: :compact
 
-            def self?.values: -> ::Array[WhopSDK::Models::AccountUpdatedWebhookEvent::Data::StorePageConfig::layout]
+            def self?.values: -> ::Array[WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::StorePageConfig::layout]
           end
 
           type profile_variant = :personal | :business
@@ -2041,33 +2041,33 @@ module WhopSDK
             PERSONAL: :personal
             BUSINESS: :business
 
-            def self?.values: -> ::Array[WhopSDK::Models::AccountUpdatedWebhookEvent::Data::StorePageConfig::profile_variant]
+            def self?.values: -> ::Array[WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::StorePageConfig::profile_variant]
           end
         end
 
         type tax_identifier =
           {
             id: String,
-            tax_id_type: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::TaxIdentifier::tax_id_type,
+            tax_id_type: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::TaxIdentifier::tax_id_type,
             tax_id_value: String
           }
 
         class TaxIdentifier < WhopSDK::Internal::Type::BaseModel
           attr_accessor id: String
 
-          attr_accessor tax_id_type: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::TaxIdentifier::tax_id_type
+          attr_accessor tax_id_type: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::TaxIdentifier::tax_id_type
 
           attr_accessor tax_id_value: String
 
           def initialize: (
             id: String,
-            tax_id_type: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::TaxIdentifier::tax_id_type,
+            tax_id_type: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::TaxIdentifier::tax_id_type,
             tax_id_value: String
           ) -> void
 
           def to_hash: -> {
             id: String,
-            tax_id_type: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::TaxIdentifier::tax_id_type,
+            tax_id_type: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::TaxIdentifier::tax_id_type,
             tax_id_value: String
           }
 
@@ -2303,7 +2303,7 @@ module WhopSDK
             SR_FIN: :sr_fin
             XI_VAT: :xi_vat
 
-            def self?.values: -> ::Array[WhopSDK::Models::AccountUpdatedWebhookEvent::Data::TaxIdentifier::tax_id_type]
+            def self?.values: -> ::Array[WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::TaxIdentifier::tax_id_type]
           end
         end
 
@@ -2316,7 +2316,7 @@ module WhopSDK
           SELF: :self
           NONE: :none
 
-          def self?.values: -> ::Array[WhopSDK::Models::AccountUpdatedWebhookEvent::Data::tax_remitted_by]
+          def self?.values: -> ::Array[WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::tax_remitted_by]
         end
 
         type tax_type = :inclusive | :exclusive
@@ -2327,7 +2327,7 @@ module WhopSDK
           INCLUSIVE: :inclusive
           EXCLUSIVE: :exclusive
 
-          def self?.values: -> ::Array[WhopSDK::Models::AccountUpdatedWebhookEvent::Data::tax_type]
+          def self?.values: -> ::Array[WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::tax_type]
         end
 
         type terms_of_service =
@@ -2338,12 +2338,12 @@ module WhopSDK
             filename: String?,
             object: String,
             size: Integer?,
-            upload_status: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::TermsOfService::upload_status,
+            upload_status: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::TermsOfService::upload_status,
             url: String?,
-            visibility: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::TermsOfService::visibility,
+            visibility: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::TermsOfService::visibility,
             multipart_chunk_size: Integer?,
             multipart_upload_id: String?,
-            multipart_upload_urls: ::Array[WhopSDK::AccountUpdatedWebhookEvent::Data::TermsOfService::MultipartUploadURL]?,
+            multipart_upload_urls: ::Array[WhopSDK::AccountFinancingDeniedWebhookEvent::Data::TermsOfService::MultipartUploadURL]?,
             upload_headers: top,
             upload_url: String?
           }
@@ -2361,17 +2361,17 @@ module WhopSDK
 
           attr_accessor size: Integer?
 
-          attr_accessor upload_status: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::TermsOfService::upload_status
+          attr_accessor upload_status: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::TermsOfService::upload_status
 
           attr_accessor url: String?
 
-          attr_accessor visibility: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::TermsOfService::visibility
+          attr_accessor visibility: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::TermsOfService::visibility
 
           attr_accessor multipart_chunk_size: Integer?
 
           attr_accessor multipart_upload_id: String?
 
-          attr_accessor multipart_upload_urls: ::Array[WhopSDK::AccountUpdatedWebhookEvent::Data::TermsOfService::MultipartUploadURL]?
+          attr_accessor multipart_upload_urls: ::Array[WhopSDK::AccountFinancingDeniedWebhookEvent::Data::TermsOfService::MultipartUploadURL]?
 
           attr_reader upload_headers: top?
 
@@ -2386,12 +2386,12 @@ module WhopSDK
             filename: String?,
             object: String,
             size: Integer?,
-            upload_status: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::TermsOfService::upload_status,
+            upload_status: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::TermsOfService::upload_status,
             url: String?,
-            visibility: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::TermsOfService::visibility,
+            visibility: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::TermsOfService::visibility,
             ?multipart_chunk_size: Integer?,
             ?multipart_upload_id: String?,
-            ?multipart_upload_urls: ::Array[WhopSDK::AccountUpdatedWebhookEvent::Data::TermsOfService::MultipartUploadURL]?,
+            ?multipart_upload_urls: ::Array[WhopSDK::AccountFinancingDeniedWebhookEvent::Data::TermsOfService::MultipartUploadURL]?,
             ?upload_headers: top,
             ?upload_url: String?
           ) -> void
@@ -2403,12 +2403,12 @@ module WhopSDK
             filename: String?,
             object: String,
             size: Integer?,
-            upload_status: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::TermsOfService::upload_status,
+            upload_status: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::TermsOfService::upload_status,
             url: String?,
-            visibility: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::TermsOfService::visibility,
+            visibility: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::TermsOfService::visibility,
             multipart_chunk_size: Integer?,
             multipart_upload_id: String?,
-            multipart_upload_urls: ::Array[WhopSDK::AccountUpdatedWebhookEvent::Data::TermsOfService::MultipartUploadURL]?,
+            multipart_upload_urls: ::Array[WhopSDK::AccountFinancingDeniedWebhookEvent::Data::TermsOfService::MultipartUploadURL]?,
             upload_headers: top,
             upload_url: String?
           }
@@ -2423,7 +2423,7 @@ module WhopSDK
             READY: :ready
             FAILED: :failed
 
-            def self?.values: -> ::Array[WhopSDK::Models::AccountUpdatedWebhookEvent::Data::TermsOfService::upload_status]
+            def self?.values: -> ::Array[WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::TermsOfService::upload_status]
           end
 
           type visibility = :public | :private
@@ -2434,7 +2434,7 @@ module WhopSDK
             PUBLIC: :public
             PRIVATE: :private
 
-            def self?.values: -> ::Array[WhopSDK::Models::AccountUpdatedWebhookEvent::Data::TermsOfService::visibility]
+            def self?.values: -> ::Array[WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::TermsOfService::visibility]
           end
 
           type multipart_upload_url = { part_number: Integer, url: String }
@@ -2457,14 +2457,14 @@ module WhopSDK
 
           MANDATE_CHALLENGE: :mandate_challenge
 
-          def self?.values: -> ::Array[WhopSDK::Models::AccountUpdatedWebhookEvent::Data::three_ds_level]
+          def self?.values: -> ::Array[WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::three_ds_level]
         end
 
         type wallet =
           {
             id: String,
             address: String,
-            network: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Wallet::network
+            network: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Wallet::network
           }
 
         class Wallet < WhopSDK::Internal::Type::BaseModel
@@ -2472,18 +2472,18 @@ module WhopSDK
 
           attr_accessor address: String
 
-          attr_accessor network: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Wallet::network
+          attr_accessor network: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Wallet::network
 
           def initialize: (
             id: String,
             address: String,
-            network: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Wallet::network
+            network: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Wallet::network
           ) -> void
 
           def to_hash: -> {
             id: String,
             address: String,
-            network: WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Wallet::network
+            network: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Wallet::network
           }
 
           type network = :solana | :ethereum | :bitcoin
@@ -2495,7 +2495,7 @@ module WhopSDK
             ETHEREUM: :ethereum
             BITCOIN: :bitcoin
 
-            def self?.values: -> ::Array[WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Wallet::network]
+            def self?.values: -> ::Array[WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Wallet::network]
           end
         end
       end

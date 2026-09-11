@@ -355,13 +355,26 @@ module WhopSDK
           #   @return [String, nil]
           required :plan_id, String, nil?: true
 
+          # @!attribute plan_title
+          #   The plan's current title, or `null` when the plan has been deleted or has no
+          #   title.
+          #
+          #   @return [String, nil]
+          required :plan_title, String, nil?: true
+
           # @!attribute product_id
           #   The product the plan belongs to, prefixed `prod_`. On a payment that predates
           #   item snapshots this falls back to the plan's product, so it can be set where the
-          #   case's own `product_id` is null. Null for a plan with no product.
+          #   parent's own `product_id` is null. Null for a plan with no product.
           #
           #   @return [String, nil]
           required :product_id, String, nil?: true
+
+          # @!attribute product_title
+          #   The product's current title, or `null` when the item has no product.
+          #
+          #   @return [String, nil]
+          required :product_title, String, nil?: true
 
           # @!attribute quantity
           #   How many units were bought.
@@ -369,7 +382,17 @@ module WhopSDK
           #   @return [Float]
           required :quantity, Float
 
-          # @!method initialize(id:, label:, plan_id:, product_id:, quantity:)
+          # @!attribute subtotal
+          #   The recorded amount for this item's full quantity, before discounts, tax, and
+          #   fees, in its purchase currency. This is not the amount being contested. Returns
+          #   `null` when no item amount was recorded.
+          #
+          #   @return [WhopSDK::Models::ResolutionCenterCaseUpdatedWebhookEvent::Data::LineItem::Subtotal, nil]
+          required :subtotal,
+                   -> { WhopSDK::ResolutionCenterCaseUpdatedWebhookEvent::Data::LineItem::Subtotal },
+                   nil?: true
+
+          # @!method initialize(id:, label:, plan_id:, plan_title:, product_id:, product_title:, quantity:, subtotal:)
           #   Some parameter documentations has been truncated, see
           #   {WhopSDK::Models::ResolutionCenterCaseUpdatedWebhookEvent::Data::LineItem} for
           #   more details.
@@ -385,9 +408,63 @@ module WhopSDK
           #
           #   @param plan_id [String, nil] The plan bought, prefixed `plan_`. Null when the plan has since been deleted.
           #
+          #   @param plan_title [String, nil] The plan's current title, or `null` when the plan has been deleted or has no tit
+          #
           #   @param product_id [String, nil] The product the plan belongs to, prefixed `prod_`. On a payment that predates it
           #
+          #   @param product_title [String, nil] The product's current title, or `null` when the item has no product.
+          #
           #   @param quantity [Float] How many units were bought.
+          #
+          #   @param subtotal [WhopSDK::Models::ResolutionCenterCaseUpdatedWebhookEvent::Data::LineItem::Subtotal, nil] The recorded amount for this item's full quantity, before discounts, tax, and fe
+
+          # @see WhopSDK::Models::ResolutionCenterCaseUpdatedWebhookEvent::Data::LineItem#subtotal
+          class Subtotal < WhopSDK::Internal::Type::BaseModel
+            # @!attribute amount
+            #   The amount in major units, as an exact decimal string — `"10.00"` is ten
+            #   dollars. A string so no float rounds it in transit.
+            #
+            #   @return [String]
+            required :amount, String
+
+            # @!attribute currency
+            #   Three-letter ISO 4217 currency code, lowercase.
+            #
+            #   @return [String]
+            required :currency, String
+
+            # @!attribute decimals
+            #   How many decimal places the amount CARRIES — the precision the charge itself
+            #   runs at.
+            #
+            #   @return [Integer]
+            required :decimals, Integer
+
+            # @!attribute display_decimals
+            #   How many decimal places to SHOW. Usually equal to `decimals`, and deliberately
+            #   not always: COP is charged in centavos but written in whole pesos, so it is `2`
+            #   and `0`. Format the number in your own locale using this.
+            #
+            #   @return [Integer]
+            required :display_decimals, Integer
+
+            # @!method initialize(amount:, currency:, decimals:, display_decimals:)
+            #   Some parameter documentations has been truncated, see
+            #   {WhopSDK::Models::ResolutionCenterCaseUpdatedWebhookEvent::Data::LineItem::Subtotal}
+            #   for more details.
+            #
+            #   The recorded amount for this item's full quantity, before discounts, tax, and
+            #   fees, in its purchase currency. This is not the amount being contested. Returns
+            #   `null` when no item amount was recorded.
+            #
+            #   @param amount [String] The amount in major units, as an exact decimal string — `"10.00"` is ten dollars
+            #
+            #   @param currency [String] Three-letter ISO 4217 currency code, lowercase.
+            #
+            #   @param decimals [Integer] How many decimal places the amount CARRIES — the precision the charge itself run
+            #
+            #   @param display_decimals [Integer] How many decimal places to SHOW. Usually equal to `decimals`, and deliberately n
+          end
         end
 
         # Who prevailed on the claim. `null` until the case closes. Read `refund` for

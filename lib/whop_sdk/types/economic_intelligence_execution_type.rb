@@ -2,11 +2,9 @@
 
 module Whop_sdk
   module Types
-    module AccountRecommendedActionChainStepExecutionType
+    module EconomicIntelligenceExecutionType
       extend Whop_sdk::Internal::Types::Enum
 
-      REDIRECT = "redirect"
-      PROGRAMATIC = "programatic"
       WHOP_AI = "whop_ai"
     end
   end

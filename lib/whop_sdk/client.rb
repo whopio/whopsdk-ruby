@@ -194,6 +194,11 @@ module Whop_sdk
       @domains ||= Whop_sdk::Domains::Client.new(client: @raw_client)
     end
 
+    # @return [Whop_sdk::EconomicIntelligence::Client]
+    def economic_intelligence
+      @economic_intelligence ||= Whop_sdk::EconomicIntelligence::Client.new(client: @raw_client)
+    end
+
     # @return [Whop_sdk::Entries::Client]
     def entries
       @entries ||= Whop_sdk::Entries::Client.new(client: @raw_client)
@@ -357,11 +362,6 @@ module Whop_sdk
     # @return [Whop_sdk::Reactions::Client]
     def reactions
       @reactions ||= Whop_sdk::Reactions::Client.new(client: @raw_client)
-    end
-
-    # @return [Whop_sdk::RecommendedActions::Client]
-    def recommended_actions
-      @recommended_actions ||= Whop_sdk::RecommendedActions::Client.new(client: @raw_client)
     end
 
     # @return [Whop_sdk::Refunds::Client]

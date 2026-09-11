@@ -5,6 +5,8 @@ module Whop_sdk
     class PaymentMethodDisplayPreview < Internal::Types::Model
       field :brand, -> { String }, optional: true, nullable: false
 
+      field :fingerprint, -> { String }, optional: true, nullable: false
+
       field :last4, -> { String }, optional: true, nullable: false
     end
   end

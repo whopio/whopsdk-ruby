@@ -16,6 +16,12 @@ module Whop_sdk
           CARD_AUTHORIZATION_RELEASES = "card_authorization_releases"
           WITHDRAWALS = "withdrawals"
           WITHDRAWAL_MARKUP = "withdrawal_markup"
+          PLATFORM_MARKUP = "platform_markup"
+          CLAWBACKS = "clawbacks"
+          DISPUTES = "disputes"
+          AFFILIATE_EARNINGS = "affiliate_earnings"
+          AFFILIATE_PAYOUTS = "affiliate_payouts"
+          REVENUE_SHARE = "revenue_share"
           SWAPS = "swaps"
           CARD_LOADS = "card_loads"
         end

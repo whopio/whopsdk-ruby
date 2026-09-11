@@ -115,6 +115,51 @@ module Whop_sdk
           end
         end
       end
+
+      # Updates a cashback rule funded by the authenticated platform account. Requires payout:transfer_funds. Only
+      # merchant_name, merchant_category_code, description, and expires_at can change; starts_at, rate_bps,
+      # funding_account_id, and scoped_account_id are immutable. Omitted fields stay unchanged. Scheduled, active, and
+      # expired rules can be updated; discarded rules cannot. Updating a rule does not transfer funds.
+      #
+      # @param request_options [Hash]
+      # @param params [Whop_sdk::CashbackRules::Types::UpdateCashbackRulesRequest]
+      # @option request_options [String] :base_url
+      # @option request_options [Hash{String => Object}] :additional_headers
+      # @option request_options [Hash{String => Object}] :additional_query_parameters
+      # @option request_options [Hash{String => Object}] :additional_body_parameters
+      # @option request_options [Integer] :timeout_in_seconds
+      # @option params [String] :id
+      #
+      # @example
+      #   client.cashback_rules.update(id: "id")
+      #
+      # @return [Whop_sdk::Types::CashbackRule]
+      def update(request_options: {}, **params)
+        params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
+        request_data = Whop_sdk::CashbackRules::Types::UpdateCashbackRulesRequest.new(params).to_h
+        non_body_param_names = %w[id]
+        body = request_data.except(*non_body_param_names)
+
+        request = Whop_sdk::Internal::JSON::Request.new(
+          base_url: request_options[:base_url],
+          method: "PATCH",
+          path: "cashback_rules/#{URI.encode_uri_component(params[:id].to_s)}",
+          body: body,
+          request_options: request_options
+        )
+        begin
+          response = @client.send(request)
+        rescue Net::HTTPRequestTimeout
+          raise Whop_sdk::Errors::TimeoutError
+        end
+        code = response.code.to_i
+        if code.between?(200, 299)
+          Whop_sdk::Types::CashbackRule.load(response.body)
+        else
+          error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
+          raise error_class.new(response.body, code: code)
+        end
+      end
     end
   end
 end

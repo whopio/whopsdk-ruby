@@ -16,7 +16,7 @@ module Whop_sdk
 
         field :business_name, -> { String }, optional: true, nullable: false
 
-        field :business_type, -> { Whop_sdk::Accounts::Types::UpdateAccountsRequestBusinessType }, optional: true, nullable: false
+        field :business_type, -> { String }, optional: true, nullable: false
 
         field :collect_vat_id, -> { Internal::Types::Boolean }, optional: true, nullable: false
 
@@ -28,7 +28,7 @@ module Whop_sdk
 
         field :home_preferences, -> { Internal::Types::Array[Whop_sdk::Accounts::Types::UpdateAccountsRequestHomePreferencesItem] }, optional: true, nullable: false
 
-        field :industry_group, -> { Whop_sdk::Accounts::Types::UpdateAccountsRequestIndustryGroup }, optional: true, nullable: false
+        field :industry_group, -> { String }, optional: true, nullable: false
 
         field :industry_type, -> { String }, optional: true, nullable: false
 

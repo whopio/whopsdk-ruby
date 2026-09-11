@@ -33,7 +33,7 @@ module WhopSDK
 
       # @!attribute user_posts_cooldown_seconds
       #   The minimum number of seconds a user must wait between sending messages in this
-      #   chat channel.
+      #   chat channel. Pass null or 0 to remove the cooldown.
       #
       #   @return [Integer, nil]
       optional :user_posts_cooldown_seconds, Integer, nil?: true

@@ -51,7 +51,7 @@ module WhopSDK
         # channel. For example, ['spam', 'scam'].
         banned_words: nil,
         # The minimum number of seconds a user must wait between sending messages in this
-        # chat channel.
+        # chat channel. Pass null or 0 to remove the cooldown.
         user_posts_cooldown_seconds: nil,
         # Who can post on a chat feed
         who_can_post: nil,

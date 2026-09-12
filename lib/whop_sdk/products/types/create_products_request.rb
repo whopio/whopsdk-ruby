@@ -16,6 +16,8 @@ module Whop_sdk
 
         field :description, -> { String }, optional: true, nullable: false
 
+        field :gallery_images, -> { Internal::Types::Array[Whop_sdk::Products::Types::CreateProductsRequestGalleryImagesItem] }, optional: true, nullable: false
+
         field :global_affiliate_percentage, -> { Integer }, optional: true, nullable: false
 
         field :global_affiliate_status, -> { Whop_sdk::Products::Types::CreateProductsRequestGlobalAffiliateStatus }, optional: true, nullable: false

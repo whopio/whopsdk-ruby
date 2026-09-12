@@ -2,7 +2,7 @@
 
 module Whop_sdk
   module Types
-    # Source of this ledger activity.
+    # Source of this ledger activity. Platform markup fees use object platform_fee and the ledger activity ID.
     class LedgerActivitySource < Internal::Types::Model
       field :amount_float, -> { Integer }, optional: true, nullable: false
 
@@ -15,6 +15,8 @@ module Whop_sdk
       field :created_at, -> { String }, optional: true, nullable: false
 
       field :estimated_arrival, -> { String }, optional: true, nullable: false
+
+      field :fee_kind, -> { Whop_sdk::Types::LedgerActivitySourceFeeKind }, optional: true, nullable: false
 
       field :from_amount, -> { String }, optional: true, nullable: false
 

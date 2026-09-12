@@ -27877,6 +27877,14 @@ client.products.create(title: "Interior Deep Clean")
 <dl>
 <dd>
 
+**gallery_images:** `Internal::Types::Array[Whop_sdk::Products::Types::CreateProductsRequestGalleryImagesItem]` — Images or videos displayed in the product gallery, in display order. Replaces the existing gallery. Send an empty array to clear it; omit or pass null to leave it unchanged. A banner image does not populate the gallery.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **global_affiliate_percentage:** `Integer` — The commission rate affiliates earn.
     
 </dd>
@@ -28176,6 +28184,14 @@ client.products.update(id: "id")
 <dd>
 
 **description:** `String` — A written description displayed on the product page.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**gallery_images:** `Internal::Types::Array[Whop_sdk::Products::Types::UpdateProductsRequestGalleryImagesItem]` — Images or videos displayed in the product gallery, in display order. Replaces the existing gallery. Send an empty array to clear it; omit or pass null to leave it unchanged. A banner image does not populate the gallery.
     
 </dd>
 </dl>

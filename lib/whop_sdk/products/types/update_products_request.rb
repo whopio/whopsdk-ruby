@@ -10,6 +10,8 @@ module Whop_sdk
 
         field :description, -> { String }, optional: true, nullable: false
 
+        field :gallery_images, -> { Internal::Types::Array[Whop_sdk::Products::Types::UpdateProductsRequestGalleryImagesItem] }, optional: true, nullable: false
+
         field :headline, -> { String }, optional: true, nullable: false
 
         field :labels, -> { Internal::Types::Array[String] }, optional: true, nullable: false

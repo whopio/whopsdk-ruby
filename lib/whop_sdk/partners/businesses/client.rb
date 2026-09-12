@@ -33,6 +33,7 @@ module Whop_sdk
         # @option params [String, nil] :referred_user_id
         # @option params [String, nil] :referred_username
         # @option params [Whop_sdk::Partners::Businesses::Types::ListBusinessesRequestTier, nil] :tier
+        # @option params [String, nil] :business_prefix_query
         #
         # @example
         #   client.partners.businesses.list
@@ -54,6 +55,7 @@ module Whop_sdk
           query_params["referred_user_id"] = params[:referred_user_id] if params.key?(:referred_user_id)
           query_params["referred_username"] = params[:referred_username] if params.key?(:referred_username)
           query_params["tier"] = params[:tier] if params.key?(:tier)
+          query_params["business_prefix_query"] = params[:business_prefix_query] if params.key?(:business_prefix_query)
 
           Whop_sdk::Internal::CursorItemIterator.new(
             cursor_field: :end_cursor,

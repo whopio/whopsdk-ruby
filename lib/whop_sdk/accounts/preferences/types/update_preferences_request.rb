@@ -7,6 +7,8 @@ module Whop_sdk
         class UpdatePreferencesRequest < Internal::Types::Model
           field :account_id, -> { String }, optional: false, nullable: false
 
+          field :ads_certifications, -> { Internal::Types::Hash[String, Whop_sdk::Accounts::Preferences::Types::UpdatePreferencesRequestAdsCertificationsValue] }, optional: true, nullable: false
+
           field :ads_payment_methods, -> { Whop_sdk::Accounts::Preferences::Types::UpdatePreferencesRequestAdsPaymentMethods }, optional: true, nullable: false
 
           field :ads_reporting_currency, -> { String }, optional: true, nullable: false

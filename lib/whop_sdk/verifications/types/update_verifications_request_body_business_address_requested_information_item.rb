@@ -15,6 +15,8 @@ module Whop_sdk
         field :value, -> { String }, optional: true, nullable: false
 
         field :value_type, -> { Whop_sdk::Verifications::Types::UpdateVerificationsRequestBodyBusinessAddressRequestedInformationItemValueType }, optional: true, nullable: false
+
+        field :values, -> { Internal::Types::Array[String] }, optional: true, nullable: false
       end
     end
   end

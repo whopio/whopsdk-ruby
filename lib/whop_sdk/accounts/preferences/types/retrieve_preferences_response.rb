@@ -7,6 +7,8 @@ module Whop_sdk
         class RetrievePreferencesResponse < Internal::Types::Model
           field :ads_agreement, -> { Whop_sdk::Accounts::Preferences::Types::RetrievePreferencesResponseAdsAgreement }, optional: false, nullable: false
 
+          field :ads_certifications, -> { Internal::Types::Array[Whop_sdk::Accounts::Preferences::Types::RetrievePreferencesResponseAdsCertificationsItem] }, optional: false, nullable: false
+
           field :ads_payment_methods, -> { Whop_sdk::Accounts::Preferences::Types::RetrievePreferencesResponseAdsPaymentMethods }, optional: false, nullable: true
 
           field :ads_reporting_currency, -> { String }, optional: false, nullable: false

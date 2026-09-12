@@ -213,6 +213,7 @@ module Whop_sdk
       WEBHOOK_RECEIVE_LEDGER_ACCOUNTS = "webhook_receive:ledger_accounts"
       WEBHOOK_RECEIVE_ACCOUNTS = "webhook_receive:accounts"
       WEBHOOK_RECEIVE_DEPOSITS = "webhook_receive:deposits"
+      WEBHOOK_RECEIVE_FINANCIAL_ACTIVITY = "webhook_receive:financial_activity"
       WEBHOOK_RECEIVE_TRANSFERS = "webhook_receive:transfers"
       WEBHOOK_RECEIVE_CARD_TRANSACTIONS = "webhook_receive:card_transactions"
       WEBHOOK_RECEIVE_CARDS = "webhook_receive:cards"

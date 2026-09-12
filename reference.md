@@ -37477,6 +37477,14 @@ client.partners.businesses.list
 <dl>
 <dd>
 
+**business_prefix_query:** `String` — Case-insensitive business-name prefix, or an exact `biz_` account ID. Surrounding whitespace is ignored; blank values apply no filter.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **request_options:** `Whop_sdk::Partners::Businesses::RequestOptions` 
     
 </dd>

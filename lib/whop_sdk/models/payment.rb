@@ -253,9 +253,9 @@ module WhopSDK
 
       # @!attribute settlement_time_at
       #   When the funds post to the account's available balance, at midnight UTC. The
-      #   `ledger_account.funds_available` webhook carries the same value. Null until the
-      #   payment is paid, and always null in list responses — retrieve the payment for
-      #   it.
+      #   `financial_activity.funds_available` webhook's `posted_at` carries the same
+      #   value when the settlement that clears it posts. Null until the payment is paid,
+      #   and always null in list responses — retrieve the payment for it.
       #
       #   @return [String, nil]
       required :settlement_time_at, String, nil?: true
@@ -442,7 +442,7 @@ module WhopSDK
       #
       #   @param risk_signals [Object, nil] The factors behind `risk_score`, grouped by category, or null.
       #
-      #   @param settlement_time_at [String, nil] When the funds post to the account's available balance, at midnight UTC. The `le
+      #   @param settlement_time_at [String, nil] When the funds post to the account's available balance, at midnight UTC. The `fi
       #
       #   @param shipment_id [String, nil] The shipment fulfilling this payment, prefixed `ship_`. Null when nothing ships
       #

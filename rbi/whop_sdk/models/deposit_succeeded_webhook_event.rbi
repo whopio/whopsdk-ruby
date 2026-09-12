@@ -468,6 +468,11 @@ module WhopSDK
             end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
 
+          ACCOUNT_SETTLEMENT =
+            T.let(
+              :account_settlement,
+              WhopSDK::DepositSucceededWebhookEvent::Data::LineType::TaggedSymbol
+            )
           AD_BUDGET_RELEASE =
             T.let(
               :ad_budget_release,

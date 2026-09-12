@@ -2,10 +2,13 @@
 
 module WhopSDK
   module Models
-    class SwapCompletedWebhookEvent < WhopSDK::Internal::Type::BaseModel
+    class FinancialActivityFundsAvailableWebhookEvent < WhopSDK::Internal::Type::BaseModel
       OrHash =
         T.type_alias do
-          T.any(WhopSDK::SwapCompletedWebhookEvent, WhopSDK::Internal::AnyHash)
+          T.any(
+            WhopSDK::FinancialActivityFundsAvailableWebhookEvent,
+            WhopSDK::Internal::AnyHash
+          )
         end
 
       # A unique ID for every single webhook request
@@ -20,11 +23,16 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :api_version_date
 
-      sig { returns(WhopSDK::SwapCompletedWebhookEvent::Data) }
+      sig do
+        returns(WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data)
+      end
       attr_reader :data
 
       sig do
-        params(data: WhopSDK::SwapCompletedWebhookEvent::Data::OrHash).void
+        params(
+          data:
+            WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::OrHash
+        ).void
       end
       attr_writer :data
 
@@ -52,7 +60,8 @@ module WhopSDK
         params(
           id: String,
           api_version_date: T.nilable(String),
-          data: WhopSDK::SwapCompletedWebhookEvent::Data::OrHash,
+          data:
+            WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::OrHash,
           timestamp: Time,
           account_id: T.nilable(String),
           previous_attributes: T.anything,
@@ -76,7 +85,7 @@ module WhopSDK
         # The API version for this webhook
         api_version: :v1,
         # The webhook event type
-        type: :"swap.completed"
+        type: :"financial_activity.funds_available"
       )
       end
 
@@ -86,7 +95,7 @@ module WhopSDK
             id: String,
             api_version: Symbol,
             api_version_date: T.nilable(String),
-            data: WhopSDK::SwapCompletedWebhookEvent::Data,
+            data: WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data,
             timestamp: Time,
             type: Symbol,
             account_id: T.nilable(String),
@@ -101,7 +110,7 @@ module WhopSDK
         OrHash =
           T.type_alias do
             T.any(
-              WhopSDK::SwapCompletedWebhookEvent::Data,
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data,
               WhopSDK::Internal::AnyHash
             )
           end
@@ -124,12 +133,17 @@ module WhopSDK
         attr_accessor :available_at
 
         # Currency for this ledger activity.
-        sig { returns(WhopSDK::SwapCompletedWebhookEvent::Data::Currency) }
+        sig do
+          returns(
+            WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Currency
+          )
+        end
         attr_reader :currency
 
         sig do
           params(
-            currency: WhopSDK::SwapCompletedWebhookEvent::Data::Currency::OrHash
+            currency:
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Currency::OrHash
           ).void
         end
         attr_writer :currency
@@ -137,14 +151,14 @@ module WhopSDK
         # The ledger line category this activity was posted under.
         sig do
           returns(
-            WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+            WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
           )
         end
         attr_accessor :line_type
 
         sig do
           returns(
-            WhopSDK::SwapCompletedWebhookEvent::Data::Object::TaggedSymbol
+            WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Object::TaggedSymbol
           )
         end
         attr_accessor :object
@@ -157,7 +171,7 @@ module WhopSDK
         sig do
           returns(
             T.nilable(
-              WhopSDK::SwapCompletedWebhookEvent::Data::Resource::Variants
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::Variants
             )
           )
         end
@@ -166,7 +180,11 @@ module WhopSDK
         # Source of this ledger activity. Platform markup fees use object platform_fee and
         # the ledger activity ID.
         sig do
-          returns(T.nilable(WhopSDK::SwapCompletedWebhookEvent::Data::Source))
+          returns(
+            T.nilable(
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Source
+            )
+          )
         end
         attr_reader :source
 
@@ -174,7 +192,7 @@ module WhopSDK
           params(
             source:
               T.nilable(
-                WhopSDK::SwapCompletedWebhookEvent::Data::Source::OrHash
+                WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Source::OrHash
               )
           ).void
         end
@@ -193,7 +211,7 @@ module WhopSDK
         sig do
           returns(
             T.nilable(
-              WhopSDK::SwapCompletedWebhookEvent::Data::Account::Variants
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Account::Variants
             )
           )
         end
@@ -203,8 +221,8 @@ module WhopSDK
           params(
             account:
               T.any(
-                WhopSDK::SwapCompletedWebhookEvent::Data::Account::UnionMember0::OrHash,
-                WhopSDK::SwapCompletedWebhookEvent::Data::Account::UnionMember1::OrHash
+                WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Account::UnionMember0::OrHash,
+                WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Account::UnionMember1::OrHash
               )
           ).void
         end
@@ -220,7 +238,11 @@ module WhopSDK
         # Payment related to this ledger activity. Included when rich resource hydration
         # is enabled and the movement is tied to a payment.
         sig do
-          returns(T.nilable(WhopSDK::SwapCompletedWebhookEvent::Data::Payment))
+          returns(
+            T.nilable(
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Payment
+            )
+          )
         end
         attr_reader :payment
 
@@ -228,7 +250,7 @@ module WhopSDK
           params(
             payment:
               T.nilable(
-                WhopSDK::SwapCompletedWebhookEvent::Data::Payment::OrHash
+                WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Payment::OrHash
               )
           ).void
         end
@@ -272,37 +294,38 @@ module WhopSDK
             amount: String,
             available_at: T.nilable(Time),
             currency:
-              WhopSDK::SwapCompletedWebhookEvent::Data::Currency::OrHash,
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Currency::OrHash,
             line_type:
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::OrSymbol,
-            object: WhopSDK::SwapCompletedWebhookEvent::Data::Object::OrSymbol,
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::OrSymbol,
+            object:
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Object::OrSymbol,
             posted_at: Time,
             resource:
               T.nilable(
                 T.any(
-                  WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember0::OrHash,
-                  WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember1::OrHash,
-                  WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember2::OrHash,
-                  WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember3::OrHash,
-                  WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember4::OrHash,
-                  WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember5::OrHash,
-                  WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember6::OrHash
+                  WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember0::OrHash,
+                  WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember1::OrHash,
+                  WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember2::OrHash,
+                  WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3::OrHash,
+                  WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember4::OrHash,
+                  WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember5::OrHash,
+                  WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember6::OrHash
                 )
               ),
             source:
               T.nilable(
-                WhopSDK::SwapCompletedWebhookEvent::Data::Source::OrHash
+                WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Source::OrHash
               ),
             usd_amount: T.nilable(String),
             account:
               T.any(
-                WhopSDK::SwapCompletedWebhookEvent::Data::Account::UnionMember0::OrHash,
-                WhopSDK::SwapCompletedWebhookEvent::Data::Account::UnionMember1::OrHash
+                WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Account::UnionMember0::OrHash,
+                WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Account::UnionMember1::OrHash
               ),
             ledger_account_id: T.nilable(String),
             payment:
               T.nilable(
-                WhopSDK::SwapCompletedWebhookEvent::Data::Payment::OrHash
+                WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Payment::OrHash
               ),
             payment_id: T.nilable(String),
             plan_id: T.nilable(String),
@@ -380,24 +403,29 @@ module WhopSDK
               id: String,
               amount: String,
               available_at: T.nilable(Time),
-              currency: WhopSDK::SwapCompletedWebhookEvent::Data::Currency,
+              currency:
+                WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Currency,
               line_type:
-                WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol,
+                WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol,
               object:
-                WhopSDK::SwapCompletedWebhookEvent::Data::Object::TaggedSymbol,
+                WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Object::TaggedSymbol,
               posted_at: Time,
               resource:
                 T.nilable(
-                  WhopSDK::SwapCompletedWebhookEvent::Data::Resource::Variants
+                  WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::Variants
                 ),
               source:
-                T.nilable(WhopSDK::SwapCompletedWebhookEvent::Data::Source),
+                T.nilable(
+                  WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Source
+                ),
               usd_amount: T.nilable(String),
               account:
-                WhopSDK::SwapCompletedWebhookEvent::Data::Account::Variants,
+                WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Account::Variants,
               ledger_account_id: T.nilable(String),
               payment:
-                T.nilable(WhopSDK::SwapCompletedWebhookEvent::Data::Payment),
+                T.nilable(
+                  WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Payment
+                ),
               payment_id: T.nilable(String),
               plan_id: T.nilable(String),
               plan_name: T.nilable(String),
@@ -416,7 +444,7 @@ module WhopSDK
           OrHash =
             T.type_alias do
               T.any(
-                WhopSDK::SwapCompletedWebhookEvent::Data::Currency,
+                WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Currency,
                 WhopSDK::Internal::AnyHash
               )
             end
@@ -452,695 +480,698 @@ module WhopSDK
 
           TaggedSymbol =
             T.type_alias do
-              T.all(Symbol, WhopSDK::SwapCompletedWebhookEvent::Data::LineType)
+              T.all(
+                Symbol,
+                WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType
+              )
             end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
 
           ACCOUNT_SETTLEMENT =
             T.let(
               :account_settlement,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           AD_BUDGET_RELEASE =
             T.let(
               :ad_budget_release,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           AD_CAMPAIGN_BUDGET =
             T.let(
               :ad_campaign_budget,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           AD_PUBLISHER_PAYOUT =
             T.let(
               :ad_publisher_payout,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           AD_PUBLISHER_PAYOUT_RECEIVED =
             T.let(
               :ad_publisher_payout_received,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           AD_SPEND_CHARGE =
             T.let(
               :ad_spend_charge,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           AFFILIATE_FEE =
             T.let(
               :affiliate_fee,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           AIRDROP =
             T.let(
               :airdrop,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           AIRDROP_LINK_CREATED =
             T.let(
               :airdrop_link_created,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           AIRDROP_LINK_REDEEMED =
             T.let(
               :airdrop_link_redeemed,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           AIRDROP_LINK_RETURNED =
             T.let(
               :airdrop_link_returned,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           AIRDROP_REVERSAL =
             T.let(
               :airdrop_reversal,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           APPLICATION_FEE =
             T.let(
               :application_fee,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           APPLICATION_FEE_PAYOUT =
             T.let(
               :application_fee_payout,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           BALANCE_RESERVATION =
             T.let(
               :balance_reservation,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           BALANCE_RESERVATION_REVERSAL =
             T.let(
               :balance_reservation_reversal,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           BANK_TRANSFER =
             T.let(
               :bank_transfer,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           BILLING_PERCENTAGE_FEE =
             T.let(
               :billing_percentage_fee,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           BUYER_FEE =
             T.let(
               :buyer_fee,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           CARD_INTERCHANGE =
             T.let(
               :card_interchange,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           CARD_LOAD_DEPOSIT =
             T.let(
               :card_load_deposit,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           CARD_LOAD_TRANSFER =
             T.let(
               :card_load_transfer,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           CARD_SPEND_AUTHORIZATION =
             T.let(
               :card_spend_authorization,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           CARD_SPEND_AUTHORIZATION_VOID =
             T.let(
               :card_spend_authorization_void,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           CARD_SPEND_REFUND =
             T.let(
               :card_spend_refund,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           CARD_UNLOAD_DEPOSIT =
             T.let(
               :card_unload_deposit,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           CARD_UNLOAD_TRANSFER =
             T.let(
               :card_unload_transfer,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           COMPANY_REFERRAL =
             T.let(
               :company_referral,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           CONNECTED_ACCOUNT_NEGATIVE_BALANCE =
             T.let(
               :connected_account_negative_balance,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           CROSS_BORDER_PERCENTAGE_FEE =
             T.let(
               :cross_border_percentage_fee,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           CURRENCY_CONVERSION_INCOMING =
             T.let(
               :currency_conversion_incoming,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           CURRENCY_CONVERSION_OUTGOING =
             T.let(
               :currency_conversion_outgoing,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           DISPUTE_ALERT_FEE =
             T.let(
               :dispute_alert_fee,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           DISPUTE_HOLD_ADJUSTMENT =
             T.let(
               :dispute_hold_adjustment,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           DISPUTE_REPRESENTMENT_FEE =
             T.let(
               :dispute_representment_fee,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           EXTERNAL_CARD_LOAD_DEPOSIT =
             T.let(
               :external_card_load_deposit,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           FRAUD_PREVENTION_FEE =
             T.let(
               :fraud_prevention_fee,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           FX_PERCENTAGE_FEE =
             T.let(
               :fx_percentage_fee,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           HIGH_RISK_MERCHANT_FEE =
             T.let(
               :high_risk_merchant_fee,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           INSTALLMENT_DEFAULT =
             T.let(
               :installment_default,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           INTERNAL_BALANCE_TRANSFER_INCOMING =
             T.let(
               :internal_balance_transfer_incoming,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           INTERNAL_BALANCE_TRANSFER_OUTGOING =
             T.let(
               :internal_balance_transfer_outgoing,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           INTERNAL_WITHDRAWAL =
             T.let(
               :internal_withdrawal,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           INTERNAL_WITHDRAWAL_COMPLETE =
             T.let(
               :internal_withdrawal_complete,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           INTERNAL_WITHDRAWAL_FEE =
             T.let(
               :internal_withdrawal_fee,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           INTERNAL_WITHDRAWAL_FEE_REVERSAL =
             T.let(
               :internal_withdrawal_fee_reversal,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           INTERNAL_WITHDRAWAL_IN_TRANSIT =
             T.let(
               :internal_withdrawal_in_transit,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           INTERNAL_WITHDRAWAL_IN_TRANSIT_REVERSAL =
             T.let(
               :internal_withdrawal_in_transit_reversal,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           INTERNAL_WITHDRAWAL_MARKUP_FEE =
             T.let(
               :internal_withdrawal_markup_fee,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           INTERNAL_WITHDRAWAL_MARKUP_FEE_PAYOUT =
             T.let(
               :internal_withdrawal_markup_fee_payout,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           INTERNAL_WITHDRAWAL_MARKUP_FEE_PAYOUT_REVERSAL =
             T.let(
               :internal_withdrawal_markup_fee_payout_reversal,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           INTERNAL_WITHDRAWAL_MARKUP_FEE_REVERSAL =
             T.let(
               :internal_withdrawal_markup_fee_reversal,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           INTERNAL_WITHDRAWAL_REVERSAL =
             T.let(
               :internal_withdrawal_reversal,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           LEGACY_CRYPTO_PAYMENT =
             T.let(
               :legacy_crypto_payment,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           LEGACY_PAYMENT =
             T.let(
               :legacy_payment,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           LEGACY_PAYMENT_REFUND =
             T.let(
               :legacy_payment_refund,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           LICENSE_SALE =
             T.let(
               :license_sale,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           LICENSE_SALE_COMMISSION =
             T.let(
               :license_sale_commission,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           LICENSE_SALE_REVENUE =
             T.let(
               :license_sale_revenue,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           MARKETPLACE_AFFILIATE_FEE =
             T.let(
               :marketplace_affiliate_fee,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           MISC_PURCHASE =
             T.let(
               :misc_purchase,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           MISC_REFUND =
             T.let(
               :misc_refund,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           MISC_REVERSAL =
             T.let(
               :misc_reversal,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           ONBOARDING_REWARD =
             T.let(
               :onboarding_reward,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           ONCHAIN_DEPOSIT =
             T.let(
               :onchain_deposit,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           ONCHAIN_SWAP_SOURCE =
             T.let(
               :onchain_swap_source,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           ONCHAIN_SWAP_TARGET =
             T.let(
               :onchain_swap_target,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           ONCHAIN_WALLET_TRANSFER_INCOMING =
             T.let(
               :onchain_wallet_transfer_incoming,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           ONCHAIN_WALLET_TRANSFER_OUTGOING =
             T.let(
               :onchain_wallet_transfer_outgoing,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           ONCHAIN_WITHDRAWAL =
             T.let(
               :onchain_withdrawal,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           ORCHESTRATION_PERCENTAGE_FEE =
             T.let(
               :orchestration_percentage_fee,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           PASSTHROUGH_GMV =
             T.let(
               :passthrough_gmv,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           PAYMENT_DISPUTE =
             T.let(
               :payment_dispute,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           PAYMENT_DISPUTE_ADJUSTMENT =
             T.let(
               :payment_dispute_adjustment,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           PAYMENT_DISPUTE_FEE =
             T.let(
               :payment_dispute_fee,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           PAYMENT_DISPUTE_REVERSAL =
             T.let(
               :payment_dispute_reversal,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           PAYMENT_GROSS =
             T.let(
               :payment_gross,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           PAYMENT_GROSS_REVERSAL =
             T.let(
               :payment_gross_reversal,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           PAYMENT_PROCESSING_FIXED_FEE =
             T.let(
               :payment_processing_fixed_fee,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           PAYMENT_PROCESSING_PERCENTAGE_FEE =
             T.let(
               :payment_processing_percentage_fee,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           PAYMENT_REFERRAL =
             T.let(
               :payment_referral,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           PAYMENT_REFERRAL_REFUND =
             T.let(
               :payment_referral_refund,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           PAYMENT_REFERRAL_REVERSAL =
             T.let(
               :payment_referral_reversal,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           PAYMENT_REFUND =
             T.let(
               :payment_refund,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           PAYMENT_REFUND_REVERSAL =
             T.let(
               :payment_refund_reversal,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           PAYMENT_REVSHARE =
             T.let(
               :payment_revshare,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           PAYMENT_REVSHARE_PAYOUT =
             T.let(
               :payment_revshare_payout,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           PAYMENT_REVSHARE_REFUND =
             T.let(
               :payment_revshare_refund,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           PAYMENT_REVSHARE_REVERSAL =
             T.let(
               :payment_revshare_reversal,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           PAYOUT_FEE =
             T.let(
               :payout_fee,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           PLATFORM_AFFILIATE_PAYMENT =
             T.let(
               :platform_affiliate_payment,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           PLATFORM_AFFILIATE_PAYMENT_REVERSAL =
             T.let(
               :platform_affiliate_payment_reversal,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           PLATFORM_BALANCE_PAYMENT =
             T.let(
               :platform_balance_payment,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           PLATFORM_BALANCE_PAYMENT_REFUND =
             T.let(
               :platform_balance_payment_refund,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           PLATFORM_BALANCE_TRANSFER_FEE =
             T.let(
               :platform_balance_transfer_fee,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           PLATFORM_BALANCE_TRANSFER_INCOMING =
             T.let(
               :platform_balance_transfer_incoming,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           PLATFORM_BALANCE_TRANSFER_OUTGOING =
             T.let(
               :platform_balance_transfer_outgoing,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           PLATFORM_COVERED_DISPUTE =
             T.let(
               :platform_covered_dispute,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           PLATFORM_EARNING =
             T.let(
               :platform_earning,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           PLATFORM_MARKUP_FEE =
             T.let(
               :platform_markup_fee,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           PLATFORM_MARKUP_FEE_PAYOUT =
             T.let(
               :platform_markup_fee_payout,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           PROMO_REVERSAL =
             T.let(
               :promo_reversal,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           REFERRAL_BONUS =
             T.let(
               :referral_bonus,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           RESOLUTION_CENTER_REFUND =
             T.let(
               :resolution_center_refund,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           REVSHARE_PERCENTAGE_FEE =
             T.let(
               :revshare_percentage_fee,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           SALES_TAX_FEE =
             T.let(
               :sales_tax_fee,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           SALES_TAX_REMITTANCE =
             T.let(
               :sales_tax_remittance,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           SALES_TAX_REMITTANCE_REVERSAL =
             T.let(
               :sales_tax_remittance_reversal,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           SOFTWARE_RENTAL_REVSHARE =
             T.let(
               :software_rental_revshare,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           SOFTWARE_RENTAL_TRANSACTION =
             T.let(
               :software_rental_transaction,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           STRIPE_DOMESTIC_PROCESSING_FEE =
             T.let(
               :stripe_domestic_processing_fee,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           STRIPE_INTERNATIONAL_PROCESSING_FEE =
             T.let(
               :stripe_international_processing_fee,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           SWAP_FEE =
             T.let(
               :swap_fee,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           THREE_DS_FIXED_FEE =
             T.let(
               :three_ds_fixed_fee,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           TOPUP =
             T.let(
               :topup,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           TOPUP_FEE =
             T.let(
               :topup_fee,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           TOPUP_REVERSAL =
             T.let(
               :topup_reversal,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           TREASURY_PAYIN =
             T.let(
               :treasury_payin,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           WHOP_PROCESSING_FEE =
             T.let(
               :whop_processing_fee,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           WITHDRAWAL =
             T.let(
               :withdrawal,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           WITHDRAWAL_CLAWBACK =
             T.let(
               :withdrawal_clawback,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           WITHDRAWAL_CLAWBACK_REVERSAL =
             T.let(
               :withdrawal_clawback_reversal,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           WITHDRAWAL_FEE =
             T.let(
               :withdrawal_fee,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           WITHDRAWAL_FEE_REVERSAL =
             T.let(
               :withdrawal_fee_reversal,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           WITHDRAWAL_MARKUP_FEE =
             T.let(
               :withdrawal_markup_fee,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           WITHDRAWAL_MARKUP_FEE_PAYOUT =
             T.let(
               :withdrawal_markup_fee_payout,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           WITHDRAWAL_MARKUP_FEE_PAYOUT_REVERSAL =
             T.let(
               :withdrawal_markup_fee_payout_reversal,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           WITHDRAWAL_MARKUP_FEE_REVERSAL =
             T.let(
               :withdrawal_markup_fee_reversal,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           WITHDRAWAL_RECLASSIFICATION =
             T.let(
               :withdrawal_reclassification,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           WITHDRAWAL_REVERSAL =
             T.let(
               :withdrawal_reversal,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           WITHDRAWAL_TOPUP_ADJUSTMENT =
             T.let(
               :withdrawal_topup_adjustment,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           DEPOSIT =
             T.let(
               :deposit,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           WALLET_TRANSFER_INCOMING =
             T.let(
               :wallet_transfer_incoming,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           WALLET_TRANSFER_OUTGOING =
             T.let(
               :wallet_transfer_outgoing,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           SWAP_SOURCE =
             T.let(
               :swap_source,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
           SWAP_TARGET =
             T.let(
               :swap_target,
-              WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
 
           sig do
             override.returns(
               T::Array[
-                WhopSDK::SwapCompletedWebhookEvent::Data::LineType::TaggedSymbol
+                WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
               ]
             )
           end
@@ -1153,20 +1184,23 @@ module WhopSDK
 
           TaggedSymbol =
             T.type_alias do
-              T.all(Symbol, WhopSDK::SwapCompletedWebhookEvent::Data::Object)
+              T.all(
+                Symbol,
+                WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Object
+              )
             end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
 
           LEDGER_ACTIVITY =
             T.let(
               :ledger_activity,
-              WhopSDK::SwapCompletedWebhookEvent::Data::Object::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Object::TaggedSymbol
             )
 
           sig do
             override.returns(
               T::Array[
-                WhopSDK::SwapCompletedWebhookEvent::Data::Object::TaggedSymbol
+                WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Object::TaggedSymbol
               ]
             )
           end
@@ -1181,13 +1215,13 @@ module WhopSDK
           Variants =
             T.type_alias do
               T.any(
-                WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember0,
-                WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember1,
-                WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember2,
-                WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember3,
-                WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember4,
-                WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember5,
-                WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember6
+                WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember0,
+                WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember1,
+                WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember2,
+                WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3,
+                WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember4,
+                WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember5,
+                WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember6
               )
             end
 
@@ -1195,7 +1229,7 @@ module WhopSDK
             OrHash =
               T.type_alias do
                 T.any(
-                  WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember0,
+                  WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember0,
                   WhopSDK::Internal::AnyHash
                 )
               end
@@ -1210,7 +1244,7 @@ module WhopSDK
 
             sig do
               returns(
-                WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember0::Object::TaggedSymbol
+                WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember0::Object::TaggedSymbol
               )
             end
             attr_accessor :object
@@ -1228,7 +1262,7 @@ module WhopSDK
                 id: String,
                 logo_url: T.nilable(String),
                 object:
-                  WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember0::Object::OrSymbol,
+                  WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember0::Object::OrSymbol,
                 route: T.nilable(String),
                 title: T.nilable(String)
               ).returns(T.attached_class)
@@ -1252,7 +1286,7 @@ module WhopSDK
                   id: String,
                   logo_url: T.nilable(String),
                   object:
-                    WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember0::Object::TaggedSymbol,
+                    WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember0::Object::TaggedSymbol,
                   route: T.nilable(String),
                   title: T.nilable(String)
                 }
@@ -1268,7 +1302,7 @@ module WhopSDK
                 T.type_alias do
                   T.all(
                     Symbol,
-                    WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember0::Object
+                    WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember0::Object
                   )
                 end
               OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -1276,13 +1310,13 @@ module WhopSDK
               ACCOUNT =
                 T.let(
                   :account,
-                  WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember0::Object::TaggedSymbol
+                  WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember0::Object::TaggedSymbol
                 )
 
               sig do
                 override.returns(
                   T::Array[
-                    WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember0::Object::TaggedSymbol
+                    WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember0::Object::TaggedSymbol
                   ]
                 )
               end
@@ -1295,7 +1329,7 @@ module WhopSDK
             OrHash =
               T.type_alias do
                 T.any(
-                  WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember1,
+                  WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember1,
                   WhopSDK::Internal::AnyHash
                 )
               end
@@ -1310,7 +1344,7 @@ module WhopSDK
 
             sig do
               returns(
-                WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember1::Object::TaggedSymbol
+                WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember1::Object::TaggedSymbol
               )
             end
             attr_accessor :object
@@ -1328,7 +1362,7 @@ module WhopSDK
                 id: String,
                 name: T.nilable(String),
                 object:
-                  WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember1::Object::OrSymbol,
+                  WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember1::Object::OrSymbol,
                 profile_picture_url: T.nilable(String),
                 username: T.nilable(String)
               ).returns(T.attached_class)
@@ -1352,7 +1386,7 @@ module WhopSDK
                   id: String,
                   name: T.nilable(String),
                   object:
-                    WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember1::Object::TaggedSymbol,
+                    WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember1::Object::TaggedSymbol,
                   profile_picture_url: T.nilable(String),
                   username: T.nilable(String)
                 }
@@ -1368,7 +1402,7 @@ module WhopSDK
                 T.type_alias do
                   T.all(
                     Symbol,
-                    WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember1::Object
+                    WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember1::Object
                   )
                 end
               OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -1376,13 +1410,13 @@ module WhopSDK
               USER =
                 T.let(
                   :user,
-                  WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember1::Object::TaggedSymbol
+                  WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember1::Object::TaggedSymbol
                 )
 
               sig do
                 override.returns(
                   T::Array[
-                    WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember1::Object::TaggedSymbol
+                    WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember1::Object::TaggedSymbol
                   ]
                 )
               end
@@ -1395,7 +1429,7 @@ module WhopSDK
             OrHash =
               T.type_alias do
                 T.any(
-                  WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember2,
+                  WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember2,
                   WhopSDK::Internal::AnyHash
                 )
               end
@@ -1406,7 +1440,7 @@ module WhopSDK
 
             sig do
               returns(
-                WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember2::Object::TaggedSymbol
+                WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember2::Object::TaggedSymbol
               )
             end
             attr_accessor :object
@@ -1423,7 +1457,7 @@ module WhopSDK
               params(
                 id: String,
                 object:
-                  WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember2::Object::OrSymbol,
+                  WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember2::Object::OrSymbol,
                 status: String,
                 title: String
               ).returns(T.attached_class)
@@ -1444,7 +1478,7 @@ module WhopSDK
                 {
                   id: String,
                   object:
-                    WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember2::Object::TaggedSymbol,
+                    WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember2::Object::TaggedSymbol,
                   status: String,
                   title: String
                 }
@@ -1460,7 +1494,7 @@ module WhopSDK
                 T.type_alias do
                   T.all(
                     Symbol,
-                    WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember2::Object
+                    WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember2::Object
                   )
                 end
               OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -1468,13 +1502,13 @@ module WhopSDK
               BOUNTY =
                 T.let(
                   :bounty,
-                  WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember2::Object::TaggedSymbol
+                  WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember2::Object::TaggedSymbol
                 )
 
               sig do
                 override.returns(
                   T::Array[
-                    WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember2::Object::TaggedSymbol
+                    WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember2::Object::TaggedSymbol
                   ]
                 )
               end
@@ -1487,7 +1521,7 @@ module WhopSDK
             OrHash =
               T.type_alias do
                 T.any(
-                  WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember3,
+                  WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3,
                   WhopSDK::Internal::AnyHash
                 )
               end
@@ -1498,7 +1532,7 @@ module WhopSDK
 
             sig do
               returns(
-                WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember3::Object::TaggedSymbol
+                WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3::Object::TaggedSymbol
               )
             end
             attr_accessor :object
@@ -1506,7 +1540,7 @@ module WhopSDK
             sig do
               returns(
                 T.nilable(
-                  WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember3::Owner::Variants
+                  WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3::Owner::Variants
                 )
               )
             end
@@ -1516,12 +1550,12 @@ module WhopSDK
               params(
                 id: String,
                 object:
-                  WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember3::Object::OrSymbol,
+                  WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3::Object::OrSymbol,
                 owner:
                   T.nilable(
                     T.any(
-                      WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember0::OrHash,
-                      WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember1::OrHash
+                      WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember0::OrHash,
+                      WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember1::OrHash
                     )
                   )
               ).returns(T.attached_class)
@@ -1539,10 +1573,10 @@ module WhopSDK
                 {
                   id: String,
                   object:
-                    WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember3::Object::TaggedSymbol,
+                    WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3::Object::TaggedSymbol,
                   owner:
                     T.nilable(
-                      WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember3::Owner::Variants
+                      WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3::Owner::Variants
                     )
                 }
               )
@@ -1557,7 +1591,7 @@ module WhopSDK
                 T.type_alias do
                   T.all(
                     Symbol,
-                    WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember3::Object
+                    WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3::Object
                   )
                 end
               OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -1565,13 +1599,13 @@ module WhopSDK
               LEDGER_ACCOUNT =
                 T.let(
                   :ledger_account,
-                  WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember3::Object::TaggedSymbol
+                  WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3::Object::TaggedSymbol
                 )
 
               sig do
                 override.returns(
                   T::Array[
-                    WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember3::Object::TaggedSymbol
+                    WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3::Object::TaggedSymbol
                   ]
                 )
               end
@@ -1585,8 +1619,8 @@ module WhopSDK
               Variants =
                 T.type_alias do
                   T.any(
-                    WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember0,
-                    WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember1
+                    WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember0,
+                    WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember1
                   )
                 end
 
@@ -1594,7 +1628,7 @@ module WhopSDK
                 OrHash =
                   T.type_alias do
                     T.any(
-                      WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember0,
+                      WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember0,
                       WhopSDK::Internal::AnyHash
                     )
                   end
@@ -1609,7 +1643,7 @@ module WhopSDK
 
                 sig do
                   returns(
-                    WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember0::Object::TaggedSymbol
+                    WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember0::Object::TaggedSymbol
                   )
                 end
                 attr_accessor :object
@@ -1627,7 +1661,7 @@ module WhopSDK
                     id: String,
                     logo_url: T.nilable(String),
                     object:
-                      WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember0::Object::OrSymbol,
+                      WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember0::Object::OrSymbol,
                     route: T.nilable(String),
                     title: T.nilable(String)
                   ).returns(T.attached_class)
@@ -1651,7 +1685,7 @@ module WhopSDK
                       id: String,
                       logo_url: T.nilable(String),
                       object:
-                        WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember0::Object::TaggedSymbol,
+                        WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember0::Object::TaggedSymbol,
                       route: T.nilable(String),
                       title: T.nilable(String)
                     }
@@ -1667,7 +1701,7 @@ module WhopSDK
                     T.type_alias do
                       T.all(
                         Symbol,
-                        WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember0::Object
+                        WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember0::Object
                       )
                     end
                   OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -1675,13 +1709,13 @@ module WhopSDK
                   ACCOUNT =
                     T.let(
                       :account,
-                      WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember0::Object::TaggedSymbol
+                      WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember0::Object::TaggedSymbol
                     )
 
                   sig do
                     override.returns(
                       T::Array[
-                        WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember0::Object::TaggedSymbol
+                        WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember0::Object::TaggedSymbol
                       ]
                     )
                   end
@@ -1694,7 +1728,7 @@ module WhopSDK
                 OrHash =
                   T.type_alias do
                     T.any(
-                      WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember1,
+                      WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember1,
                       WhopSDK::Internal::AnyHash
                     )
                   end
@@ -1709,7 +1743,7 @@ module WhopSDK
 
                 sig do
                   returns(
-                    WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember1::Object::TaggedSymbol
+                    WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember1::Object::TaggedSymbol
                   )
                 end
                 attr_accessor :object
@@ -1727,7 +1761,7 @@ module WhopSDK
                     id: String,
                     name: T.nilable(String),
                     object:
-                      WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember1::Object::OrSymbol,
+                      WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember1::Object::OrSymbol,
                     profile_picture_url: T.nilable(String),
                     username: T.nilable(String)
                   ).returns(T.attached_class)
@@ -1751,7 +1785,7 @@ module WhopSDK
                       id: String,
                       name: T.nilable(String),
                       object:
-                        WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember1::Object::TaggedSymbol,
+                        WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember1::Object::TaggedSymbol,
                       profile_picture_url: T.nilable(String),
                       username: T.nilable(String)
                     }
@@ -1767,7 +1801,7 @@ module WhopSDK
                     T.type_alias do
                       T.all(
                         Symbol,
-                        WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember1::Object
+                        WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember1::Object
                       )
                     end
                   OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -1775,13 +1809,13 @@ module WhopSDK
                   USER =
                     T.let(
                       :user,
-                      WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember1::Object::TaggedSymbol
+                      WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember1::Object::TaggedSymbol
                     )
 
                   sig do
                     override.returns(
                       T::Array[
-                        WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember1::Object::TaggedSymbol
+                        WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember1::Object::TaggedSymbol
                       ]
                     )
                   end
@@ -1793,7 +1827,7 @@ module WhopSDK
               sig do
                 override.returns(
                   T::Array[
-                    WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember3::Owner::Variants
+                    WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3::Owner::Variants
                   ]
                 )
               end
@@ -1806,7 +1840,7 @@ module WhopSDK
             OrHash =
               T.type_alias do
                 T.any(
-                  WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember4,
+                  WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember4,
                   WhopSDK::Internal::AnyHash
                 )
               end
@@ -1818,7 +1852,7 @@ module WhopSDK
             sig do
               returns(
                 T.nilable(
-                  WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember4::Bank
+                  WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember4::Bank
                 )
               )
             end
@@ -1828,7 +1862,7 @@ module WhopSDK
               params(
                 bank:
                   T.nilable(
-                    WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember4::Bank::OrHash
+                    WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember4::Bank::OrHash
                   )
               ).void
             end
@@ -1837,7 +1871,7 @@ module WhopSDK
             sig do
               returns(
                 T.nilable(
-                  WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember4::Card
+                  WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember4::Card
                 )
               )
             end
@@ -1847,7 +1881,7 @@ module WhopSDK
               params(
                 card:
                   T.nilable(
-                    WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember4::Card::OrHash
+                    WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember4::Card::OrHash
                   )
               ).void
             end
@@ -1863,7 +1897,7 @@ module WhopSDK
 
             sig do
               returns(
-                WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember4::Object::TaggedSymbol
+                WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember4::Object::TaggedSymbol
               )
             end
             attr_accessor :object
@@ -1877,16 +1911,16 @@ module WhopSDK
                 id: String,
                 bank:
                   T.nilable(
-                    WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember4::Bank::OrHash
+                    WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember4::Bank::OrHash
                   ),
                 card:
                   T.nilable(
-                    WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember4::Card::OrHash
+                    WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember4::Card::OrHash
                   ),
                 email_identifier: T.nilable(String),
                 gateway_type: T.nilable(String),
                 object:
-                  WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember4::Object::OrSymbol,
+                  WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember4::Object::OrSymbol,
                 payment_method_type: T.nilable(String)
               ).returns(T.attached_class)
             end
@@ -1911,16 +1945,16 @@ module WhopSDK
                   id: String,
                   bank:
                     T.nilable(
-                      WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember4::Bank
+                      WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember4::Bank
                     ),
                   card:
                     T.nilable(
-                      WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember4::Card
+                      WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember4::Card
                     ),
                   email_identifier: T.nilable(String),
                   gateway_type: T.nilable(String),
                   object:
-                    WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember4::Object::TaggedSymbol,
+                    WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember4::Object::TaggedSymbol,
                   payment_method_type: T.nilable(String)
                 }
               )
@@ -1932,7 +1966,7 @@ module WhopSDK
               OrHash =
                 T.type_alias do
                   T.any(
-                    WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember4::Bank,
+                    WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember4::Bank,
                     WhopSDK::Internal::AnyHash
                   )
                 end
@@ -1991,7 +2025,7 @@ module WhopSDK
               OrHash =
                 T.type_alias do
                   T.any(
-                    WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember4::Card,
+                    WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember4::Card,
                     WhopSDK::Internal::AnyHash
                   )
                 end
@@ -2053,7 +2087,7 @@ module WhopSDK
                 T.type_alias do
                   T.all(
                     Symbol,
-                    WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember4::Object
+                    WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember4::Object
                   )
                 end
               OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -2061,13 +2095,13 @@ module WhopSDK
               PAYMENT_METHOD =
                 T.let(
                   :payment_method,
-                  WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember4::Object::TaggedSymbol
+                  WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember4::Object::TaggedSymbol
                 )
 
               sig do
                 override.returns(
                   T::Array[
-                    WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember4::Object::TaggedSymbol
+                    WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember4::Object::TaggedSymbol
                   ]
                 )
               end
@@ -2080,7 +2114,7 @@ module WhopSDK
             OrHash =
               T.type_alias do
                 T.any(
-                  WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember5,
+                  WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember5,
                   WhopSDK::Internal::AnyHash
                 )
               end
@@ -2107,7 +2141,7 @@ module WhopSDK
 
             sig do
               returns(
-                WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember5::Object::TaggedSymbol
+                WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember5::Object::TaggedSymbol
               )
             end
             attr_accessor :object
@@ -2124,7 +2158,7 @@ module WhopSDK
                 institution_name: T.nilable(String),
                 nickname: T.nilable(String),
                 object:
-                  WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember5::Object::OrSymbol,
+                  WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember5::Object::OrSymbol,
                 provider: T.nilable(String)
               ).returns(T.attached_class)
             end
@@ -2154,7 +2188,7 @@ module WhopSDK
                   institution_name: T.nilable(String),
                   nickname: T.nilable(String),
                   object:
-                    WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember5::Object::TaggedSymbol,
+                    WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember5::Object::TaggedSymbol,
                   provider: T.nilable(String)
                 }
               )
@@ -2169,7 +2203,7 @@ module WhopSDK
                 T.type_alias do
                   T.all(
                     Symbol,
-                    WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember5::Object
+                    WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember5::Object
                   )
                 end
               OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -2177,13 +2211,13 @@ module WhopSDK
               PAYOUT_METHOD =
                 T.let(
                   :payout_method,
-                  WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember5::Object::TaggedSymbol
+                  WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember5::Object::TaggedSymbol
                 )
 
               sig do
                 override.returns(
                   T::Array[
-                    WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember5::Object::TaggedSymbol
+                    WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember5::Object::TaggedSymbol
                   ]
                 )
               end
@@ -2196,7 +2230,7 @@ module WhopSDK
             OrHash =
               T.type_alias do
                 T.any(
-                  WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember6,
+                  WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember6,
                   WhopSDK::Internal::AnyHash
                 )
               end
@@ -2245,7 +2279,7 @@ module WhopSDK
 
             sig do
               returns(
-                WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember6::Object::TaggedSymbol
+                WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember6::Object::TaggedSymbol
               )
             end
             attr_accessor :object
@@ -2276,7 +2310,7 @@ module WhopSDK
                 merchant_icon_url: T.nilable(String),
                 merchant_name: T.nilable(String),
                 object:
-                  WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember6::Object::OrSymbol,
+                  WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember6::Object::OrSymbol,
                 posted_at: T.nilable(Time),
                 status: T.nilable(String),
                 usd_amount: T.nilable(String)
@@ -2330,7 +2364,7 @@ module WhopSDK
                   merchant_icon_url: T.nilable(String),
                   merchant_name: T.nilable(String),
                   object:
-                    WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember6::Object::TaggedSymbol,
+                    WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember6::Object::TaggedSymbol,
                   posted_at: T.nilable(Time),
                   status: T.nilable(String),
                   usd_amount: T.nilable(String)
@@ -2347,7 +2381,7 @@ module WhopSDK
                 T.type_alias do
                   T.all(
                     Symbol,
-                    WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember6::Object
+                    WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember6::Object
                   )
                 end
               OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -2355,13 +2389,13 @@ module WhopSDK
               CARD_TRANSACTION =
                 T.let(
                   :card_transaction,
-                  WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember6::Object::TaggedSymbol
+                  WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember6::Object::TaggedSymbol
                 )
 
               sig do
                 override.returns(
                   T::Array[
-                    WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember6::Object::TaggedSymbol
+                    WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember6::Object::TaggedSymbol
                   ]
                 )
               end
@@ -2373,7 +2407,7 @@ module WhopSDK
           sig do
             override.returns(
               T::Array[
-                WhopSDK::SwapCompletedWebhookEvent::Data::Resource::Variants
+                WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::Variants
               ]
             )
           end
@@ -2385,7 +2419,7 @@ module WhopSDK
           OrHash =
             T.type_alias do
               T.any(
-                WhopSDK::SwapCompletedWebhookEvent::Data::Source,
+                WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Source,
                 WhopSDK::Internal::AnyHash
               )
             end
@@ -2431,7 +2465,7 @@ module WhopSDK
           sig do
             returns(
               T.nilable(
-                WhopSDK::SwapCompletedWebhookEvent::Data::Source::FeeKind::TaggedSymbol
+                WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Source::FeeKind::TaggedSymbol
               )
             )
           end
@@ -2459,7 +2493,7 @@ module WhopSDK
           sig do
             returns(
               T.nilable(
-                WhopSDK::SwapCompletedWebhookEvent::Data::Source::PaymentAmount
+                WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Source::PaymentAmount
               )
             )
           end
@@ -2469,7 +2503,7 @@ module WhopSDK
             params(
               payment_amount:
                 T.nilable(
-                  WhopSDK::SwapCompletedWebhookEvent::Data::Source::PaymentAmount::OrHash
+                  WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Source::PaymentAmount::OrHash
                 )
             ).void
           end
@@ -2487,7 +2521,7 @@ module WhopSDK
           sig do
             returns(
               T.nilable(
-                WhopSDK::SwapCompletedWebhookEvent::Data::Source::PayoutDestination
+                WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Source::PayoutDestination
               )
             )
           end
@@ -2497,7 +2531,7 @@ module WhopSDK
             params(
               payout_destination:
                 T.nilable(
-                  WhopSDK::SwapCompletedWebhookEvent::Data::Source::PayoutDestination::OrHash
+                  WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Source::PayoutDestination::OrHash
                 )
             ).void
           end
@@ -2557,7 +2591,7 @@ module WhopSDK
               estimated_arrival: T.nilable(Time),
               fee_kind:
                 T.nilable(
-                  WhopSDK::SwapCompletedWebhookEvent::Data::Source::FeeKind::OrSymbol
+                  WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Source::FeeKind::OrSymbol
                 ),
               from_amount: T.nilable(String),
               from_currency: T.nilable(String),
@@ -2565,13 +2599,13 @@ module WhopSDK
               payer_name: T.nilable(String),
               payment_amount:
                 T.nilable(
-                  WhopSDK::SwapCompletedWebhookEvent::Data::Source::PaymentAmount::OrHash
+                  WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Source::PaymentAmount::OrHash
                 ),
               payment_method_type: T.nilable(String),
               payment_processor: T.nilable(String),
               payout_destination:
                 T.nilable(
-                  WhopSDK::SwapCompletedWebhookEvent::Data::Source::PayoutDestination::OrHash
+                  WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Source::PayoutDestination::OrHash
                 ),
               payout_token_nickname: T.nilable(String),
               reason: T.nilable(String),
@@ -2665,7 +2699,7 @@ module WhopSDK
                 estimated_arrival: T.nilable(Time),
                 fee_kind:
                   T.nilable(
-                    WhopSDK::SwapCompletedWebhookEvent::Data::Source::FeeKind::TaggedSymbol
+                    WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Source::FeeKind::TaggedSymbol
                   ),
                 from_amount: T.nilable(String),
                 from_currency: T.nilable(String),
@@ -2673,13 +2707,13 @@ module WhopSDK
                 payer_name: T.nilable(String),
                 payment_amount:
                   T.nilable(
-                    WhopSDK::SwapCompletedWebhookEvent::Data::Source::PaymentAmount
+                    WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Source::PaymentAmount
                   ),
                 payment_method_type: T.nilable(String),
                 payment_processor: T.nilable(String),
                 payout_destination:
                   T.nilable(
-                    WhopSDK::SwapCompletedWebhookEvent::Data::Source::PayoutDestination
+                    WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Source::PayoutDestination
                   ),
                 payout_token_nickname: T.nilable(String),
                 reason: T.nilable(String),
@@ -2706,7 +2740,7 @@ module WhopSDK
               T.type_alias do
                 T.all(
                   Symbol,
-                  WhopSDK::SwapCompletedWebhookEvent::Data::Source::FeeKind
+                  WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Source::FeeKind
                 )
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -2714,33 +2748,33 @@ module WhopSDK
             PAYOUT =
               T.let(
                 :payout,
-                WhopSDK::SwapCompletedWebhookEvent::Data::Source::FeeKind::TaggedSymbol
+                WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Source::FeeKind::TaggedSymbol
               )
             TRANSFER =
               T.let(
                 :transfer,
-                WhopSDK::SwapCompletedWebhookEvent::Data::Source::FeeKind::TaggedSymbol
+                WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Source::FeeKind::TaggedSymbol
               )
             DEPOSIT =
               T.let(
                 :deposit,
-                WhopSDK::SwapCompletedWebhookEvent::Data::Source::FeeKind::TaggedSymbol
+                WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Source::FeeKind::TaggedSymbol
               )
             SWAP =
               T.let(
                 :swap,
-                WhopSDK::SwapCompletedWebhookEvent::Data::Source::FeeKind::TaggedSymbol
+                WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Source::FeeKind::TaggedSymbol
               )
             CARD_SPEND =
               T.let(
                 :card_spend,
-                WhopSDK::SwapCompletedWebhookEvent::Data::Source::FeeKind::TaggedSymbol
+                WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Source::FeeKind::TaggedSymbol
               )
 
             sig do
               override.returns(
                 T::Array[
-                  WhopSDK::SwapCompletedWebhookEvent::Data::Source::FeeKind::TaggedSymbol
+                  WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Source::FeeKind::TaggedSymbol
                 ]
               )
             end
@@ -2752,7 +2786,7 @@ module WhopSDK
             OrHash =
               T.type_alias do
                 T.any(
-                  WhopSDK::SwapCompletedWebhookEvent::Data::Source::PaymentAmount,
+                  WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Source::PaymentAmount,
                   WhopSDK::Internal::AnyHash
                 )
               end
@@ -2820,7 +2854,7 @@ module WhopSDK
             OrHash =
               T.type_alias do
                 T.any(
-                  WhopSDK::SwapCompletedWebhookEvent::Data::Source::PayoutDestination,
+                  WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Source::PayoutDestination,
                   WhopSDK::Internal::AnyHash
                 )
               end
@@ -2859,8 +2893,8 @@ module WhopSDK
           Variants =
             T.type_alias do
               T.any(
-                WhopSDK::SwapCompletedWebhookEvent::Data::Account::UnionMember0,
-                WhopSDK::SwapCompletedWebhookEvent::Data::Account::UnionMember1
+                WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Account::UnionMember0,
+                WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Account::UnionMember1
               )
             end
 
@@ -2868,7 +2902,7 @@ module WhopSDK
             OrHash =
               T.type_alias do
                 T.any(
-                  WhopSDK::SwapCompletedWebhookEvent::Data::Account::UnionMember0,
+                  WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Account::UnionMember0,
                   WhopSDK::Internal::AnyHash
                 )
               end
@@ -2883,7 +2917,7 @@ module WhopSDK
 
             sig do
               returns(
-                WhopSDK::SwapCompletedWebhookEvent::Data::Account::UnionMember0::Object::TaggedSymbol
+                WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Account::UnionMember0::Object::TaggedSymbol
               )
             end
             attr_accessor :object
@@ -2901,7 +2935,7 @@ module WhopSDK
                 id: String,
                 logo_url: T.nilable(String),
                 object:
-                  WhopSDK::SwapCompletedWebhookEvent::Data::Account::UnionMember0::Object::OrSymbol,
+                  WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Account::UnionMember0::Object::OrSymbol,
                 route: T.nilable(String),
                 title: T.nilable(String)
               ).returns(T.attached_class)
@@ -2925,7 +2959,7 @@ module WhopSDK
                   id: String,
                   logo_url: T.nilable(String),
                   object:
-                    WhopSDK::SwapCompletedWebhookEvent::Data::Account::UnionMember0::Object::TaggedSymbol,
+                    WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Account::UnionMember0::Object::TaggedSymbol,
                   route: T.nilable(String),
                   title: T.nilable(String)
                 }
@@ -2941,7 +2975,7 @@ module WhopSDK
                 T.type_alias do
                   T.all(
                     Symbol,
-                    WhopSDK::SwapCompletedWebhookEvent::Data::Account::UnionMember0::Object
+                    WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Account::UnionMember0::Object
                   )
                 end
               OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -2949,13 +2983,13 @@ module WhopSDK
               ACCOUNT =
                 T.let(
                   :account,
-                  WhopSDK::SwapCompletedWebhookEvent::Data::Account::UnionMember0::Object::TaggedSymbol
+                  WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Account::UnionMember0::Object::TaggedSymbol
                 )
 
               sig do
                 override.returns(
                   T::Array[
-                    WhopSDK::SwapCompletedWebhookEvent::Data::Account::UnionMember0::Object::TaggedSymbol
+                    WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Account::UnionMember0::Object::TaggedSymbol
                   ]
                 )
               end
@@ -2968,7 +3002,7 @@ module WhopSDK
             OrHash =
               T.type_alias do
                 T.any(
-                  WhopSDK::SwapCompletedWebhookEvent::Data::Account::UnionMember1,
+                  WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Account::UnionMember1,
                   WhopSDK::Internal::AnyHash
                 )
               end
@@ -2983,7 +3017,7 @@ module WhopSDK
 
             sig do
               returns(
-                WhopSDK::SwapCompletedWebhookEvent::Data::Account::UnionMember1::Object::TaggedSymbol
+                WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Account::UnionMember1::Object::TaggedSymbol
               )
             end
             attr_accessor :object
@@ -3001,7 +3035,7 @@ module WhopSDK
                 id: String,
                 name: T.nilable(String),
                 object:
-                  WhopSDK::SwapCompletedWebhookEvent::Data::Account::UnionMember1::Object::OrSymbol,
+                  WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Account::UnionMember1::Object::OrSymbol,
                 profile_picture_url: T.nilable(String),
                 username: T.nilable(String)
               ).returns(T.attached_class)
@@ -3025,7 +3059,7 @@ module WhopSDK
                   id: String,
                   name: T.nilable(String),
                   object:
-                    WhopSDK::SwapCompletedWebhookEvent::Data::Account::UnionMember1::Object::TaggedSymbol,
+                    WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Account::UnionMember1::Object::TaggedSymbol,
                   profile_picture_url: T.nilable(String),
                   username: T.nilable(String)
                 }
@@ -3041,7 +3075,7 @@ module WhopSDK
                 T.type_alias do
                   T.all(
                     Symbol,
-                    WhopSDK::SwapCompletedWebhookEvent::Data::Account::UnionMember1::Object
+                    WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Account::UnionMember1::Object
                   )
                 end
               OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -3049,13 +3083,13 @@ module WhopSDK
               USER =
                 T.let(
                   :user,
-                  WhopSDK::SwapCompletedWebhookEvent::Data::Account::UnionMember1::Object::TaggedSymbol
+                  WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Account::UnionMember1::Object::TaggedSymbol
                 )
 
               sig do
                 override.returns(
                   T::Array[
-                    WhopSDK::SwapCompletedWebhookEvent::Data::Account::UnionMember1::Object::TaggedSymbol
+                    WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Account::UnionMember1::Object::TaggedSymbol
                   ]
                 )
               end
@@ -3067,7 +3101,7 @@ module WhopSDK
           sig do
             override.returns(
               T::Array[
-                WhopSDK::SwapCompletedWebhookEvent::Data::Account::Variants
+                WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Account::Variants
               ]
             )
           end
@@ -3079,7 +3113,7 @@ module WhopSDK
           OrHash =
             T.type_alias do
               T.any(
-                WhopSDK::SwapCompletedWebhookEvent::Data::Payment,
+                WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Payment,
                 WhopSDK::Internal::AnyHash
               )
             end
@@ -3092,7 +3126,7 @@ module WhopSDK
           sig do
             returns(
               T.nilable(
-                WhopSDK::SwapCompletedWebhookEvent::Data::Payment::Amount
+                WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Payment::Amount
               )
             )
           end
@@ -3102,7 +3136,7 @@ module WhopSDK
             params(
               amount:
                 T.nilable(
-                  WhopSDK::SwapCompletedWebhookEvent::Data::Payment::Amount::OrHash
+                  WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Payment::Amount::OrHash
                 )
             ).void
           end
@@ -3122,7 +3156,7 @@ module WhopSDK
 
           sig do
             returns(
-              WhopSDK::SwapCompletedWebhookEvent::Data::Payment::Object::TaggedSymbol
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Payment::Object::TaggedSymbol
             )
           end
           attr_accessor :object
@@ -3138,7 +3172,9 @@ module WhopSDK
           # Plan associated with the payment, when applicable.
           sig do
             returns(
-              T.nilable(WhopSDK::SwapCompletedWebhookEvent::Data::Payment::Plan)
+              T.nilable(
+                WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Payment::Plan
+              )
             )
           end
           attr_reader :plan
@@ -3147,7 +3183,7 @@ module WhopSDK
             params(
               plan:
                 T.nilable(
-                  WhopSDK::SwapCompletedWebhookEvent::Data::Payment::Plan::OrHash
+                  WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Payment::Plan::OrHash
                 )
             ).void
           end
@@ -3157,7 +3193,7 @@ module WhopSDK
           sig do
             returns(
               T.nilable(
-                WhopSDK::SwapCompletedWebhookEvent::Data::Payment::Product
+                WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Payment::Product
               )
             )
           end
@@ -3167,7 +3203,7 @@ module WhopSDK
             params(
               product:
                 T.nilable(
-                  WhopSDK::SwapCompletedWebhookEvent::Data::Payment::Product::OrHash
+                  WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Payment::Product::OrHash
                 )
             ).void
           end
@@ -3176,7 +3212,9 @@ module WhopSDK
           # Customer associated with the payment. Email requires member:email:read.
           sig do
             returns(
-              T.nilable(WhopSDK::SwapCompletedWebhookEvent::Data::Payment::User)
+              T.nilable(
+                WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Payment::User
+              )
             )
           end
           attr_reader :user
@@ -3185,7 +3223,7 @@ module WhopSDK
             params(
               user:
                 T.nilable(
-                  WhopSDK::SwapCompletedWebhookEvent::Data::Payment::User::OrHash
+                  WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Payment::User::OrHash
                 )
             ).void
           end
@@ -3198,26 +3236,26 @@ module WhopSDK
               id: String,
               amount:
                 T.nilable(
-                  WhopSDK::SwapCompletedWebhookEvent::Data::Payment::Amount::OrHash
+                  WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Payment::Amount::OrHash
                 ),
               card_brand: T.nilable(String),
               card_last4: T.nilable(String),
               created_at: Time,
               object:
-                WhopSDK::SwapCompletedWebhookEvent::Data::Payment::Object::OrSymbol,
+                WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Payment::Object::OrSymbol,
               payment_method_type: T.nilable(String),
               payment_processor: T.nilable(String),
               plan:
                 T.nilable(
-                  WhopSDK::SwapCompletedWebhookEvent::Data::Payment::Plan::OrHash
+                  WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Payment::Plan::OrHash
                 ),
               product:
                 T.nilable(
-                  WhopSDK::SwapCompletedWebhookEvent::Data::Payment::Product::OrHash
+                  WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Payment::Product::OrHash
                 ),
               user:
                 T.nilable(
-                  WhopSDK::SwapCompletedWebhookEvent::Data::Payment::User::OrHash
+                  WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Payment::User::OrHash
                 )
             ).returns(T.attached_class)
           end
@@ -3252,26 +3290,26 @@ module WhopSDK
                 id: String,
                 amount:
                   T.nilable(
-                    WhopSDK::SwapCompletedWebhookEvent::Data::Payment::Amount
+                    WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Payment::Amount
                   ),
                 card_brand: T.nilable(String),
                 card_last4: T.nilable(String),
                 created_at: Time,
                 object:
-                  WhopSDK::SwapCompletedWebhookEvent::Data::Payment::Object::TaggedSymbol,
+                  WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Payment::Object::TaggedSymbol,
                 payment_method_type: T.nilable(String),
                 payment_processor: T.nilable(String),
                 plan:
                   T.nilable(
-                    WhopSDK::SwapCompletedWebhookEvent::Data::Payment::Plan
+                    WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Payment::Plan
                   ),
                 product:
                   T.nilable(
-                    WhopSDK::SwapCompletedWebhookEvent::Data::Payment::Product
+                    WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Payment::Product
                   ),
                 user:
                   T.nilable(
-                    WhopSDK::SwapCompletedWebhookEvent::Data::Payment::User
+                    WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Payment::User
                   )
               }
             )
@@ -3283,7 +3321,7 @@ module WhopSDK
             OrHash =
               T.type_alias do
                 T.any(
-                  WhopSDK::SwapCompletedWebhookEvent::Data::Payment::Amount,
+                  WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Payment::Amount,
                   WhopSDK::Internal::AnyHash
                 )
               end
@@ -3354,7 +3392,7 @@ module WhopSDK
               T.type_alias do
                 T.all(
                   Symbol,
-                  WhopSDK::SwapCompletedWebhookEvent::Data::Payment::Object
+                  WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Payment::Object
                 )
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -3362,13 +3400,13 @@ module WhopSDK
             PAYMENT =
               T.let(
                 :payment,
-                WhopSDK::SwapCompletedWebhookEvent::Data::Payment::Object::TaggedSymbol
+                WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Payment::Object::TaggedSymbol
               )
 
             sig do
               override.returns(
                 T::Array[
-                  WhopSDK::SwapCompletedWebhookEvent::Data::Payment::Object::TaggedSymbol
+                  WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Payment::Object::TaggedSymbol
                 ]
               )
             end
@@ -3380,7 +3418,7 @@ module WhopSDK
             OrHash =
               T.type_alias do
                 T.any(
-                  WhopSDK::SwapCompletedWebhookEvent::Data::Payment::Plan,
+                  WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Payment::Plan,
                   WhopSDK::Internal::AnyHash
                 )
               end
@@ -3416,7 +3454,7 @@ module WhopSDK
             OrHash =
               T.type_alias do
                 T.any(
-                  WhopSDK::SwapCompletedWebhookEvent::Data::Payment::Product,
+                  WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Payment::Product,
                   WhopSDK::Internal::AnyHash
                 )
               end
@@ -3448,7 +3486,7 @@ module WhopSDK
             OrHash =
               T.type_alias do
                 T.any(
-                  WhopSDK::SwapCompletedWebhookEvent::Data::Payment::User,
+                  WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Payment::User,
                   WhopSDK::Internal::AnyHash
                 )
               end

@@ -377,6 +377,8 @@ module WhopSDK
 
   module FileVisibility = WhopSDK::Models::FileVisibility
 
+  class FinancialActivityFundsAvailableWebhookEvent = WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent
+
   class Forum = WhopSDK::Models::Forum
 
   class ForumListParams = WhopSDK::Models::ForumListParams

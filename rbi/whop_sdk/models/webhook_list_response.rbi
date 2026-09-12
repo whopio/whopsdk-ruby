@@ -389,6 +389,11 @@ module WhopSDK
             :"deposit.succeeded",
             WhopSDK::Models::WebhookListResponse::Event::TaggedSymbol
           )
+        FINANCIAL_ACTIVITY_FUNDS_AVAILABLE =
+          T.let(
+            :"financial_activity.funds_available",
+            WhopSDK::Models::WebhookListResponse::Event::TaggedSymbol
+          )
         TRANSFER_CREATED =
           T.let(
             :"transfer.created",

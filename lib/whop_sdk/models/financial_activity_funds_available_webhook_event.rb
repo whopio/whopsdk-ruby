@@ -2,7 +2,7 @@
 
 module WhopSDK
   module Models
-    class DepositSucceededWebhookEvent < WhopSDK::Internal::Type::BaseModel
+    class FinancialActivityFundsAvailableWebhookEvent < WhopSDK::Internal::Type::BaseModel
       # @!attribute id
       #   A unique ID for every single webhook request
       #
@@ -23,8 +23,8 @@ module WhopSDK
 
       # @!attribute data
       #
-      #   @return [WhopSDK::Models::DepositSucceededWebhookEvent::Data]
-      required :data, -> { WhopSDK::DepositSucceededWebhookEvent::Data }
+      #   @return [WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data]
+      required :data, -> { WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data }
 
       # @!attribute timestamp
       #   The timestamp in ISO 8601 format that the webhook was sent at on the server
@@ -35,8 +35,8 @@ module WhopSDK
       # @!attribute type
       #   The webhook event type
       #
-      #   @return [Symbol, :"deposit.succeeded"]
-      required :type, const: :"deposit.succeeded"
+      #   @return [Symbol, :"financial_activity.funds_available"]
+      required :type, const: :"financial_activity.funds_available"
 
       # @!attribute account_id
       #   The account ID that this webhook event is associated with
@@ -51,15 +51,15 @@ module WhopSDK
       #   @return [Object, nil]
       optional :previous_attributes, WhopSDK::Internal::Type::Unknown
 
-      # @!method initialize(id:, api_version_date:, data:, timestamp:, account_id: nil, previous_attributes: nil, api_version: :v1, type: :"deposit.succeeded")
+      # @!method initialize(id:, api_version_date:, data:, timestamp:, account_id: nil, previous_attributes: nil, api_version: :v1, type: :"financial_activity.funds_available")
       #   Some parameter documentations has been truncated, see
-      #   {WhopSDK::Models::DepositSucceededWebhookEvent} for more details.
+      #   {WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent} for more details.
       #
       #   @param id [String] A unique ID for every single webhook request
       #
       #   @param api_version_date [String, nil] The dated API version (Api-Version-Date) the payload is serialized to
       #
-      #   @param data [WhopSDK::Models::DepositSucceededWebhookEvent::Data]
+      #   @param data [WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data]
       #
       #   @param timestamp [Time] The timestamp in ISO 8601 format that the webhook was sent at on the server
       #
@@ -69,9 +69,9 @@ module WhopSDK
       #
       #   @param api_version [Symbol, :v1] The API version for this webhook
       #
-      #   @param type [Symbol, :"deposit.succeeded"] The webhook event type
+      #   @param type [Symbol, :"financial_activity.funds_available"] The webhook event type
 
-      # @see WhopSDK::Models::DepositSucceededWebhookEvent#data
+      # @see WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent#data
       class Data < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
         #   Ledger activity ID.
@@ -99,19 +99,19 @@ module WhopSDK
         # @!attribute currency
         #   Currency for this ledger activity.
         #
-        #   @return [WhopSDK::Models::DepositSucceededWebhookEvent::Data::Currency]
-        required :currency, -> { WhopSDK::DepositSucceededWebhookEvent::Data::Currency }
+        #   @return [WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Currency]
+        required :currency, -> { WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Currency }
 
         # @!attribute line_type
         #   The ledger line category this activity was posted under.
         #
-        #   @return [Symbol, WhopSDK::Models::DepositSucceededWebhookEvent::Data::LineType]
-        required :line_type, enum: -> { WhopSDK::DepositSucceededWebhookEvent::Data::LineType }
+        #   @return [Symbol, WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::LineType]
+        required :line_type, enum: -> { WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType }
 
         # @!attribute object
         #
-        #   @return [Symbol, WhopSDK::Models::DepositSucceededWebhookEvent::Data::Object]
-        required :object, enum: -> { WhopSDK::DepositSucceededWebhookEvent::Data::Object }
+        #   @return [Symbol, WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Object]
+        required :object, enum: -> { WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Object }
 
         # @!attribute posted_at
         #   When the activity posted to the ledger.
@@ -122,15 +122,21 @@ module WhopSDK
         # @!attribute resource
         #   Resource associated with this ledger activity.
         #
-        #   @return [WhopSDK::Models::DepositSucceededWebhookEvent::Data::Resource::UnionMember0, WhopSDK::Models::DepositSucceededWebhookEvent::Data::Resource::UnionMember1, WhopSDK::Models::DepositSucceededWebhookEvent::Data::Resource::UnionMember2, WhopSDK::Models::DepositSucceededWebhookEvent::Data::Resource::UnionMember3, WhopSDK::Models::DepositSucceededWebhookEvent::Data::Resource::UnionMember4, WhopSDK::Models::DepositSucceededWebhookEvent::Data::Resource::UnionMember5, WhopSDK::Models::DepositSucceededWebhookEvent::Data::Resource::UnionMember6, nil]
-        required :resource, union: -> { WhopSDK::DepositSucceededWebhookEvent::Data::Resource }, nil?: true
+        #   @return [WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember0, WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember1, WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember2, WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3, WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember4, WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember5, WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember6, nil]
+        required :resource,
+                 union: -> { WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource },
+                 nil?: true
 
         # @!attribute source
         #   Source of this ledger activity. Platform markup fees use object platform_fee and
         #   the ledger activity ID.
         #
-        #   @return [WhopSDK::Models::DepositSucceededWebhookEvent::Data::Source, nil]
-        required :source, -> { WhopSDK::DepositSucceededWebhookEvent::Data::Source }, nil?: true
+        #   @return [WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Source, nil]
+        required :source,
+                 -> {
+                   WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Source
+                 },
+                 nil?: true
 
         # @!attribute usd_amount
         #   Dollar value of this movement as a decimal string, signed like `amount`.
@@ -146,8 +152,8 @@ module WhopSDK
         #   The viewer account that owns this row's ledger. Present only when the response
         #   aggregates owned accounts (include_owned_accounts=true); omitted otherwise.
         #
-        #   @return [WhopSDK::Models::DepositSucceededWebhookEvent::Data::Account::UnionMember0, WhopSDK::Models::DepositSucceededWebhookEvent::Data::Account::UnionMember1, nil]
-        optional :account, union: -> { WhopSDK::DepositSucceededWebhookEvent::Data::Account }
+        #   @return [WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Account::UnionMember0, WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Account::UnionMember1, nil]
+        optional :account, union: -> { WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Account }
 
         # @!attribute ledger_account_id
         #   The ledger account (a ldgr\_ identifier) this row belongs to. Present only when
@@ -162,8 +168,12 @@ module WhopSDK
         #   Payment related to this ledger activity. Included when rich resource hydration
         #   is enabled and the movement is tied to a payment.
         #
-        #   @return [WhopSDK::Models::DepositSucceededWebhookEvent::Data::Payment, nil]
-        optional :payment, -> { WhopSDK::DepositSucceededWebhookEvent::Data::Payment }, nil?: true
+        #   @return [WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Payment, nil]
+        optional :payment,
+                 -> {
+                   WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Payment
+                 },
+                 nil?: true
 
         # @!attribute payment_id
         #   Payment ID for any payment-related activity, including refunds and disputes.
@@ -215,7 +225,8 @@ module WhopSDK
 
         # @!method initialize(id:, amount:, available_at:, currency:, line_type:, object:, posted_at:, resource:, source:, usd_amount:, account: nil, ledger_account_id: nil, payment: nil, payment_id: nil, plan_id: nil, plan_name: nil, product_id: nil, product_name: nil, user_email: nil, user_id: nil, user_name: nil)
         #   Some parameter documentations has been truncated, see
-        #   {WhopSDK::Models::DepositSucceededWebhookEvent::Data} for more details.
+        #   {WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data} for more
+        #   details.
         #
         #   @param id [String] Ledger activity ID.
         #
@@ -223,26 +234,26 @@ module WhopSDK
         #
         #   @param available_at [Time, nil] ISO 8601 timestamp these funds became (or are scheduled to become) withdrawable:
         #
-        #   @param currency [WhopSDK::Models::DepositSucceededWebhookEvent::Data::Currency] Currency for this ledger activity.
+        #   @param currency [WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Currency] Currency for this ledger activity.
         #
-        #   @param line_type [Symbol, WhopSDK::Models::DepositSucceededWebhookEvent::Data::LineType] The ledger line category this activity was posted under.
+        #   @param line_type [Symbol, WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::LineType] The ledger line category this activity was posted under.
         #
-        #   @param object [Symbol, WhopSDK::Models::DepositSucceededWebhookEvent::Data::Object]
+        #   @param object [Symbol, WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Object]
         #
         #   @param posted_at [Time] When the activity posted to the ledger.
         #
-        #   @param resource [WhopSDK::Models::DepositSucceededWebhookEvent::Data::Resource::UnionMember0, WhopSDK::Models::DepositSucceededWebhookEvent::Data::Resource::UnionMember1, WhopSDK::Models::DepositSucceededWebhookEvent::Data::Resource::UnionMember2, WhopSDK::Models::DepositSucceededWebhookEvent::Data::Resource::UnionMember3, WhopSDK::Models::DepositSucceededWebhookEvent::Data::Resource::UnionMember4, WhopSDK::Models::DepositSucceededWebhookEvent::Data::Resource::UnionMember5, WhopSDK::Models::DepositSucceededWebhookEvent::Data::Resource::UnionMember6, nil] Resource associated with this ledger activity.
+        #   @param resource [WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember0, WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember1, WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember2, WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3, WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember4, WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember5, WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember6, nil] Resource associated with this ledger activity.
         #
-        #   @param source [WhopSDK::Models::DepositSucceededWebhookEvent::Data::Source, nil] Source of this ledger activity. Platform markup fees use object platform_fee and
+        #   @param source [WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Source, nil] Source of this ledger activity. Platform markup fees use object platform_fee and
         #
         #   @param usd_amount [String, nil] Dollar value of this movement as a decimal string, signed like `amount`. Convert
         #
-        #   @param account [WhopSDK::Models::DepositSucceededWebhookEvent::Data::Account::UnionMember0, WhopSDK::Models::DepositSucceededWebhookEvent::Data::Account::UnionMember1] The viewer account that owns this row's ledger. Present only when the response a
+        #   @param account [WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Account::UnionMember0, WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Account::UnionMember1] The viewer account that owns this row's ledger. Present only when the response a
         #
         #   @param ledger_account_id [String, nil] The ledger account (a ldgr\_ identifier) this row belongs to. Present only when
         #   t
         #
-        #   @param payment [WhopSDK::Models::DepositSucceededWebhookEvent::Data::Payment, nil] Payment related to this ledger activity. Included when rich resource hydration i
+        #   @param payment [WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Payment, nil] Payment related to this ledger activity. Included when rich resource hydration i
         #
         #   @param payment_id [String, nil] Payment ID for any payment-related activity, including refunds and disputes.
         #
@@ -260,7 +271,7 @@ module WhopSDK
         #
         #   @param user_name [String, nil] Display name of the customer associated with the payment.
 
-        # @see WhopSDK::Models::DepositSucceededWebhookEvent::Data#currency
+        # @see WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data#currency
         class Currency < WhopSDK::Internal::Type::BaseModel
           # @!attribute code
           #   Currency code.
@@ -284,7 +295,7 @@ module WhopSDK
 
         # The ledger line category this activity was posted under.
         #
-        # @see WhopSDK::Models::DepositSucceededWebhookEvent::Data#line_type
+        # @see WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data#line_type
         module LineType
           extend WhopSDK::Internal::Type::Enum
 
@@ -429,7 +440,7 @@ module WhopSDK
           #   @return [Array<Symbol>]
         end
 
-        # @see WhopSDK::Models::DepositSucceededWebhookEvent::Data#object
+        # @see WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data#object
         module Object
           extend WhopSDK::Internal::Type::Enum
 
@@ -441,23 +452,23 @@ module WhopSDK
 
         # Resource associated with this ledger activity.
         #
-        # @see WhopSDK::Models::DepositSucceededWebhookEvent::Data#resource
+        # @see WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data#resource
         module Resource
           extend WhopSDK::Internal::Type::Union
 
-          variant -> { WhopSDK::DepositSucceededWebhookEvent::Data::Resource::UnionMember0 }
+          variant -> { WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember0 }
 
-          variant -> { WhopSDK::DepositSucceededWebhookEvent::Data::Resource::UnionMember1 }
+          variant -> { WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember1 }
 
-          variant -> { WhopSDK::DepositSucceededWebhookEvent::Data::Resource::UnionMember2 }
+          variant -> { WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember2 }
 
-          variant -> { WhopSDK::DepositSucceededWebhookEvent::Data::Resource::UnionMember3 }
+          variant -> { WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3 }
 
-          variant -> { WhopSDK::DepositSucceededWebhookEvent::Data::Resource::UnionMember4 }
+          variant -> { WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember4 }
 
-          variant -> { WhopSDK::DepositSucceededWebhookEvent::Data::Resource::UnionMember5 }
+          variant -> { WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember5 }
 
-          variant -> { WhopSDK::DepositSucceededWebhookEvent::Data::Resource::UnionMember6 }
+          variant -> { WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember6 }
 
           class UnionMember0 < WhopSDK::Internal::Type::BaseModel
             # @!attribute id
@@ -474,8 +485,9 @@ module WhopSDK
 
             # @!attribute object
             #
-            #   @return [Symbol, WhopSDK::Models::DepositSucceededWebhookEvent::Data::Resource::UnionMember0::Object]
-            required :object, enum: -> { WhopSDK::DepositSucceededWebhookEvent::Data::Resource::UnionMember0::Object }
+            #   @return [Symbol, WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember0::Object]
+            required :object,
+                     enum: -> { WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember0::Object }
 
             # @!attribute route
             #   Account route.
@@ -494,13 +506,13 @@ module WhopSDK
             #
             #   @param logo_url [String, nil] Account logo URL.
             #
-            #   @param object [Symbol, WhopSDK::Models::DepositSucceededWebhookEvent::Data::Resource::UnionMember0::Object]
+            #   @param object [Symbol, WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember0::Object]
             #
             #   @param route [String, nil] Account route.
             #
             #   @param title [String, nil] Account display name.
 
-            # @see WhopSDK::Models::DepositSucceededWebhookEvent::Data::Resource::UnionMember0#object
+            # @see WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember0#object
             module Object
               extend WhopSDK::Internal::Type::Enum
 
@@ -526,8 +538,9 @@ module WhopSDK
 
             # @!attribute object
             #
-            #   @return [Symbol, WhopSDK::Models::DepositSucceededWebhookEvent::Data::Resource::UnionMember1::Object]
-            required :object, enum: -> { WhopSDK::DepositSucceededWebhookEvent::Data::Resource::UnionMember1::Object }
+            #   @return [Symbol, WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember1::Object]
+            required :object,
+                     enum: -> { WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember1::Object }
 
             # @!attribute profile_picture_url
             #   User profile image URL.
@@ -546,13 +559,13 @@ module WhopSDK
             #
             #   @param name [String, nil] User display name.
             #
-            #   @param object [Symbol, WhopSDK::Models::DepositSucceededWebhookEvent::Data::Resource::UnionMember1::Object]
+            #   @param object [Symbol, WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember1::Object]
             #
             #   @param profile_picture_url [String, nil] User profile image URL.
             #
             #   @param username [String, nil] User's username.
 
-            # @see WhopSDK::Models::DepositSucceededWebhookEvent::Data::Resource::UnionMember1#object
+            # @see WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember1#object
             module Object
               extend WhopSDK::Internal::Type::Enum
 
@@ -572,8 +585,9 @@ module WhopSDK
 
             # @!attribute object
             #
-            #   @return [Symbol, WhopSDK::Models::DepositSucceededWebhookEvent::Data::Resource::UnionMember2::Object]
-            required :object, enum: -> { WhopSDK::DepositSucceededWebhookEvent::Data::Resource::UnionMember2::Object }
+            #   @return [Symbol, WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember2::Object]
+            required :object,
+                     enum: -> { WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember2::Object }
 
             # @!attribute status
             #   Bounty lifecycle status.
@@ -590,13 +604,13 @@ module WhopSDK
             # @!method initialize(id:, object:, status:, title:)
             #   @param id [String] Bounty ID.
             #
-            #   @param object [Symbol, WhopSDK::Models::DepositSucceededWebhookEvent::Data::Resource::UnionMember2::Object]
+            #   @param object [Symbol, WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember2::Object]
             #
             #   @param status [String] Bounty lifecycle status.
             #
             #   @param title [String] Bounty title.
 
-            # @see WhopSDK::Models::DepositSucceededWebhookEvent::Data::Resource::UnionMember2#object
+            # @see WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember2#object
             module Object
               extend WhopSDK::Internal::Type::Enum
 
@@ -616,24 +630,27 @@ module WhopSDK
 
             # @!attribute object
             #
-            #   @return [Symbol, WhopSDK::Models::DepositSucceededWebhookEvent::Data::Resource::UnionMember3::Object]
-            required :object, enum: -> { WhopSDK::DepositSucceededWebhookEvent::Data::Resource::UnionMember3::Object }
+            #   @return [Symbol, WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3::Object]
+            required :object,
+                     enum: -> { WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3::Object }
 
             # @!attribute owner
             #
-            #   @return [WhopSDK::Models::DepositSucceededWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember0, WhopSDK::Models::DepositSucceededWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember1, nil]
+            #   @return [WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember0, WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember1, nil]
             required :owner,
-                     union: -> { WhopSDK::DepositSucceededWebhookEvent::Data::Resource::UnionMember3::Owner },
+                     union: -> {
+                       WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3::Owner
+                     },
                      nil?: true
 
             # @!method initialize(id:, object:, owner:)
             #   @param id [String] Ledger account ID.
             #
-            #   @param object [Symbol, WhopSDK::Models::DepositSucceededWebhookEvent::Data::Resource::UnionMember3::Object]
+            #   @param object [Symbol, WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3::Object]
             #
-            #   @param owner [WhopSDK::Models::DepositSucceededWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember0, WhopSDK::Models::DepositSucceededWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember1, nil]
+            #   @param owner [WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember0, WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember1, nil]
 
-            # @see WhopSDK::Models::DepositSucceededWebhookEvent::Data::Resource::UnionMember3#object
+            # @see WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3#object
             module Object
               extend WhopSDK::Internal::Type::Enum
 
@@ -643,13 +660,13 @@ module WhopSDK
               #   @return [Array<Symbol>]
             end
 
-            # @see WhopSDK::Models::DepositSucceededWebhookEvent::Data::Resource::UnionMember3#owner
+            # @see WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3#owner
             module Owner
               extend WhopSDK::Internal::Type::Union
 
-              variant -> { WhopSDK::DepositSucceededWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember0 }
+              variant -> { WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember0 }
 
-              variant -> { WhopSDK::DepositSucceededWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember1 }
+              variant -> { WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember1 }
 
               class UnionMember0 < WhopSDK::Internal::Type::BaseModel
                 # @!attribute id
@@ -666,9 +683,9 @@ module WhopSDK
 
                 # @!attribute object
                 #
-                #   @return [Symbol, WhopSDK::Models::DepositSucceededWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember0::Object]
+                #   @return [Symbol, WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember0::Object]
                 required :object,
-                         enum: -> { WhopSDK::DepositSucceededWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember0::Object }
+                         enum: -> { WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember0::Object }
 
                 # @!attribute route
                 #   Account route.
@@ -687,13 +704,13 @@ module WhopSDK
                 #
                 #   @param logo_url [String, nil] Account logo URL.
                 #
-                #   @param object [Symbol, WhopSDK::Models::DepositSucceededWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember0::Object]
+                #   @param object [Symbol, WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember0::Object]
                 #
                 #   @param route [String, nil] Account route.
                 #
                 #   @param title [String, nil] Account display name.
 
-                # @see WhopSDK::Models::DepositSucceededWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember0#object
+                # @see WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember0#object
                 module Object
                   extend WhopSDK::Internal::Type::Enum
 
@@ -719,9 +736,9 @@ module WhopSDK
 
                 # @!attribute object
                 #
-                #   @return [Symbol, WhopSDK::Models::DepositSucceededWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember1::Object]
+                #   @return [Symbol, WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember1::Object]
                 required :object,
-                         enum: -> { WhopSDK::DepositSucceededWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember1::Object }
+                         enum: -> { WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember1::Object }
 
                 # @!attribute profile_picture_url
                 #   User profile image URL.
@@ -740,13 +757,13 @@ module WhopSDK
                 #
                 #   @param name [String, nil] User display name.
                 #
-                #   @param object [Symbol, WhopSDK::Models::DepositSucceededWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember1::Object]
+                #   @param object [Symbol, WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember1::Object]
                 #
                 #   @param profile_picture_url [String, nil] User profile image URL.
                 #
                 #   @param username [String, nil] User's username.
 
-                # @see WhopSDK::Models::DepositSucceededWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember1#object
+                # @see WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember1#object
                 module Object
                   extend WhopSDK::Internal::Type::Enum
 
@@ -758,7 +775,7 @@ module WhopSDK
               end
 
               # @!method self.variants
-              #   @return [Array(WhopSDK::Models::DepositSucceededWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember0, WhopSDK::Models::DepositSucceededWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember1)]
+              #   @return [Array(WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember0, WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember1)]
             end
           end
 
@@ -771,16 +788,20 @@ module WhopSDK
 
             # @!attribute bank
             #
-            #   @return [WhopSDK::Models::DepositSucceededWebhookEvent::Data::Resource::UnionMember4::Bank, nil]
+            #   @return [WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember4::Bank, nil]
             required :bank,
-                     -> { WhopSDK::DepositSucceededWebhookEvent::Data::Resource::UnionMember4::Bank },
+                     -> {
+                       WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember4::Bank
+                     },
                      nil?: true
 
             # @!attribute card
             #
-            #   @return [WhopSDK::Models::DepositSucceededWebhookEvent::Data::Resource::UnionMember4::Card, nil]
+            #   @return [WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember4::Card, nil]
             required :card,
-                     -> { WhopSDK::DepositSucceededWebhookEvent::Data::Resource::UnionMember4::Card },
+                     -> {
+                       WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember4::Card
+                     },
                      nil?: true
 
             # @!attribute email_identifier
@@ -797,8 +818,9 @@ module WhopSDK
 
             # @!attribute object
             #
-            #   @return [Symbol, WhopSDK::Models::DepositSucceededWebhookEvent::Data::Resource::UnionMember4::Object]
-            required :object, enum: -> { WhopSDK::DepositSucceededWebhookEvent::Data::Resource::UnionMember4::Object }
+            #   @return [Symbol, WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember4::Object]
+            required :object,
+                     enum: -> { WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember4::Object }
 
             # @!attribute payment_method_type
             #   Payment method type.
@@ -809,19 +831,19 @@ module WhopSDK
             # @!method initialize(id:, bank:, card:, email_identifier:, gateway_type:, object:, payment_method_type:)
             #   @param id [String] Payment method ID.
             #
-            #   @param bank [WhopSDK::Models::DepositSucceededWebhookEvent::Data::Resource::UnionMember4::Bank, nil]
+            #   @param bank [WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember4::Bank, nil]
             #
-            #   @param card [WhopSDK::Models::DepositSucceededWebhookEvent::Data::Resource::UnionMember4::Card, nil]
+            #   @param card [WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember4::Card, nil]
             #
             #   @param email_identifier [String, nil] Email identifier for email-based payment methods.
             #
             #   @param gateway_type [String, nil] Payment gateway type.
             #
-            #   @param object [Symbol, WhopSDK::Models::DepositSucceededWebhookEvent::Data::Resource::UnionMember4::Object]
+            #   @param object [Symbol, WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember4::Object]
             #
             #   @param payment_method_type [String, nil] Payment method type.
 
-            # @see WhopSDK::Models::DepositSucceededWebhookEvent::Data::Resource::UnionMember4#bank
+            # @see WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember4#bank
             class Bank < WhopSDK::Internal::Type::BaseModel
               # @!attribute account_name
               #   Bank account holder name.
@@ -857,7 +879,7 @@ module WhopSDK
               #   @param last4 [String, nil] Last four digits of the bank account.
             end
 
-            # @see WhopSDK::Models::DepositSucceededWebhookEvent::Data::Resource::UnionMember4#card
+            # @see WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember4#card
             class Card < WhopSDK::Internal::Type::BaseModel
               # @!attribute brand
               #   Card brand.
@@ -893,7 +915,7 @@ module WhopSDK
               #   @param last4 [String, nil] Last four digits of the card.
             end
 
-            # @see WhopSDK::Models::DepositSucceededWebhookEvent::Data::Resource::UnionMember4#object
+            # @see WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember4#object
             module Object
               extend WhopSDK::Internal::Type::Enum
 
@@ -937,8 +959,9 @@ module WhopSDK
 
             # @!attribute object
             #
-            #   @return [Symbol, WhopSDK::Models::DepositSucceededWebhookEvent::Data::Resource::UnionMember5::Object]
-            required :object, enum: -> { WhopSDK::DepositSucceededWebhookEvent::Data::Resource::UnionMember5::Object }
+            #   @return [Symbol, WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember5::Object]
+            required :object,
+                     enum: -> { WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember5::Object }
 
             # @!attribute provider
             #   Payout provider.
@@ -957,11 +980,11 @@ module WhopSDK
             #
             #   @param nickname [String, nil] Payout method nickname.
             #
-            #   @param object [Symbol, WhopSDK::Models::DepositSucceededWebhookEvent::Data::Resource::UnionMember5::Object]
+            #   @param object [Symbol, WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember5::Object]
             #
             #   @param provider [String, nil] Payout provider.
 
-            # @see WhopSDK::Models::DepositSucceededWebhookEvent::Data::Resource::UnionMember5#object
+            # @see WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember5#object
             module Object
               extend WhopSDK::Internal::Type::Enum
 
@@ -1037,8 +1060,9 @@ module WhopSDK
 
             # @!attribute object
             #
-            #   @return [Symbol, WhopSDK::Models::DepositSucceededWebhookEvent::Data::Resource::UnionMember6::Object]
-            required :object, enum: -> { WhopSDK::DepositSucceededWebhookEvent::Data::Resource::UnionMember6::Object }
+            #   @return [Symbol, WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember6::Object]
+            required :object,
+                     enum: -> { WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember6::Object }
 
             # @!attribute posted_at
             #   ISO 8601 timestamp the transaction was settled by the card network.
@@ -1061,7 +1085,7 @@ module WhopSDK
 
             # @!method initialize(id:, authorized_at:, card_id:, cashback_usd:, declined_reason:, local_amount:, local_currency:, merchant_category:, merchant_icon_url:, merchant_name:, object:, posted_at:, status:, usd_amount:)
             #   Some parameter documentations has been truncated, see
-            #   {WhopSDK::Models::DepositSucceededWebhookEvent::Data::Resource::UnionMember6}
+            #   {WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember6}
             #   for more details.
             #
             #   @param id [String] Card transaction ID.
@@ -1084,7 +1108,7 @@ module WhopSDK
             #
             #   @param merchant_name [String, nil] Merchant display name.
             #
-            #   @param object [Symbol, WhopSDK::Models::DepositSucceededWebhookEvent::Data::Resource::UnionMember6::Object]
+            #   @param object [Symbol, WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember6::Object]
             #
             #   @param posted_at [Time, nil] ISO 8601 timestamp the transaction was settled by the card network.
             #
@@ -1092,7 +1116,7 @@ module WhopSDK
             #
             #   @param usd_amount [String, nil] The processor-settled USD amount as a decimal string. The ledger's USDT leg is p
 
-            # @see WhopSDK::Models::DepositSucceededWebhookEvent::Data::Resource::UnionMember6#object
+            # @see WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember6#object
             module Object
               extend WhopSDK::Internal::Type::Enum
 
@@ -1104,10 +1128,10 @@ module WhopSDK
           end
 
           # @!method self.variants
-          #   @return [Array(WhopSDK::Models::DepositSucceededWebhookEvent::Data::Resource::UnionMember0, WhopSDK::Models::DepositSucceededWebhookEvent::Data::Resource::UnionMember1, WhopSDK::Models::DepositSucceededWebhookEvent::Data::Resource::UnionMember2, WhopSDK::Models::DepositSucceededWebhookEvent::Data::Resource::UnionMember3, WhopSDK::Models::DepositSucceededWebhookEvent::Data::Resource::UnionMember4, WhopSDK::Models::DepositSucceededWebhookEvent::Data::Resource::UnionMember5, WhopSDK::Models::DepositSucceededWebhookEvent::Data::Resource::UnionMember6)]
+          #   @return [Array(WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember0, WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember1, WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember2, WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3, WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember4, WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember5, WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember6)]
         end
 
-        # @see WhopSDK::Models::DepositSucceededWebhookEvent::Data#source
+        # @see WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data#source
         class Source < WhopSDK::Internal::Type::BaseModel
           # @!attribute id
           #
@@ -1165,11 +1189,9 @@ module WhopSDK
           #   platform_markup_fee_payout, including when include_resource is false. Null when
           #   the originating action is unavailable; omitted on other source types.
           #
-          #   @return [Symbol, WhopSDK::Models::DepositSucceededWebhookEvent::Data::Source::FeeKind, nil]
+          #   @return [Symbol, WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Source::FeeKind, nil]
           optional :fee_kind,
-                   enum: -> {
-                     WhopSDK::DepositSucceededWebhookEvent::Data::Source::FeeKind
-                   },
+                   enum: -> { WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Source::FeeKind },
                    nil?: true
 
           # @!attribute from_amount
@@ -1201,9 +1223,9 @@ module WhopSDK
           # @!attribute payment_amount
           #   Total charged by the payment source.
           #
-          #   @return [WhopSDK::Models::DepositSucceededWebhookEvent::Data::Source::PaymentAmount, nil]
+          #   @return [WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Source::PaymentAmount, nil]
           optional :payment_amount,
-                   -> { WhopSDK::DepositSucceededWebhookEvent::Data::Source::PaymentAmount },
+                   -> { WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Source::PaymentAmount },
                    nil?: true
 
           # @!attribute payment_method_type
@@ -1221,9 +1243,11 @@ module WhopSDK
           # @!attribute payout_destination
           #   Payout destination display info (payout sources only).
           #
-          #   @return [WhopSDK::Models::DepositSucceededWebhookEvent::Data::Source::PayoutDestination, nil]
+          #   @return [WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Source::PayoutDestination, nil]
           optional :payout_destination,
-                   -> { WhopSDK::DepositSucceededWebhookEvent::Data::Source::PayoutDestination },
+                   -> {
+                     WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Source::PayoutDestination
+                   },
                    nil?: true
 
           # @!attribute payout_token_nickname
@@ -1284,7 +1308,8 @@ module WhopSDK
 
           # @!method initialize(id:, object:, amount_float: nil, card_brand: nil, chain: nil, claim_url: nil, created_at: nil, estimated_arrival: nil, fee_kind: nil, from_amount: nil, from_currency: nil, notes: nil, payer_name: nil, payment_amount: nil, payment_method_type: nil, payment_processor: nil, payout_destination: nil, payout_token_nickname: nil, reason: nil, risk_review_hold: nil, sender_address: nil, status: nil, to_amount: nil, to_currency: nil, tx_hash: nil)
           #   Some parameter documentations has been truncated, see
-          #   {WhopSDK::Models::DepositSucceededWebhookEvent::Data::Source} for more details.
+          #   {WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Source} for
+          #   more details.
           #
           #   Source of this ledger activity. Platform markup fees use object platform_fee and
           #   the ledger activity ID.
@@ -1305,7 +1330,7 @@ module WhopSDK
           #
           #   @param estimated_arrival [Time, nil] Estimated arrival as an ISO 8601 timestamp (payout sources only; requires payout
           #
-          #   @param fee_kind [Symbol, WhopSDK::Models::DepositSucceededWebhookEvent::Data::Source::FeeKind, nil] Action that generated a platform markup fee: deposit, swap, transfer, card_spend
+          #   @param fee_kind [Symbol, WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Source::FeeKind, nil] Action that generated a platform markup fee: deposit, swap, transfer, card_spend
           #
           #   @param from_amount [String, nil] Amount converted out of from_currency as a decimal string (swap sources only).
           #
@@ -1315,13 +1340,13 @@ module WhopSDK
           #
           #   @param payer_name [String, nil] Name of the entity processing the payout (payout sources only; requires payout:w
           #
-          #   @param payment_amount [WhopSDK::Models::DepositSucceededWebhookEvent::Data::Source::PaymentAmount, nil] Total charged by the payment source.
+          #   @param payment_amount [WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Source::PaymentAmount, nil] Total charged by the payment source.
           #
           #   @param payment_method_type [String, nil] Payment method used by the payment source.
           #
           #   @param payment_processor [String, nil] Processor used by the payment source.
           #
-          #   @param payout_destination [WhopSDK::Models::DepositSucceededWebhookEvent::Data::Source::PayoutDestination, nil] Payout destination display info (payout sources only).
+          #   @param payout_destination [WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Source::PayoutDestination, nil] Payout destination display info (payout sources only).
           #
           #   @param payout_token_nickname [String, nil] Saved payout destination nickname (payout sources only).
           #
@@ -1344,7 +1369,7 @@ module WhopSDK
           # platform_markup_fee_payout, including when include_resource is false. Null when
           # the originating action is unavailable; omitted on other source types.
           #
-          # @see WhopSDK::Models::DepositSucceededWebhookEvent::Data::Source#fee_kind
+          # @see WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Source#fee_kind
           module FeeKind
             extend WhopSDK::Internal::Type::Enum
 
@@ -1358,7 +1383,7 @@ module WhopSDK
             #   @return [Array<Symbol>]
           end
 
-          # @see WhopSDK::Models::DepositSucceededWebhookEvent::Data::Source#payment_amount
+          # @see WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Source#payment_amount
           class PaymentAmount < WhopSDK::Internal::Type::BaseModel
             # @!attribute amount
             #   The amount in major units, as an exact decimal string — `"10.00"` is ten
@@ -1390,8 +1415,8 @@ module WhopSDK
 
             # @!method initialize(amount:, currency:, decimals:, display_decimals:)
             #   Some parameter documentations has been truncated, see
-            #   {WhopSDK::Models::DepositSucceededWebhookEvent::Data::Source::PaymentAmount} for
-            #   more details.
+            #   {WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Source::PaymentAmount}
+            #   for more details.
             #
             #   Total charged by the payment source.
             #
@@ -1404,7 +1429,7 @@ module WhopSDK
             #   @param display_decimals [Integer] How many decimal places to SHOW. Usually equal to `decimals`, and deliberately n
           end
 
-          # @see WhopSDK::Models::DepositSucceededWebhookEvent::Data::Source#payout_destination
+          # @see WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Source#payout_destination
           class PayoutDestination < WhopSDK::Internal::Type::BaseModel
             # @!attribute icon_url
             #
@@ -1427,13 +1452,13 @@ module WhopSDK
         # The viewer account that owns this row's ledger. Present only when the response
         # aggregates owned accounts (include_owned_accounts=true); omitted otherwise.
         #
-        # @see WhopSDK::Models::DepositSucceededWebhookEvent::Data#account
+        # @see WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data#account
         module Account
           extend WhopSDK::Internal::Type::Union
 
-          variant -> { WhopSDK::DepositSucceededWebhookEvent::Data::Account::UnionMember0 }
+          variant -> { WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Account::UnionMember0 }
 
-          variant -> { WhopSDK::DepositSucceededWebhookEvent::Data::Account::UnionMember1 }
+          variant -> { WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Account::UnionMember1 }
 
           class UnionMember0 < WhopSDK::Internal::Type::BaseModel
             # @!attribute id
@@ -1450,8 +1475,9 @@ module WhopSDK
 
             # @!attribute object
             #
-            #   @return [Symbol, WhopSDK::Models::DepositSucceededWebhookEvent::Data::Account::UnionMember0::Object]
-            required :object, enum: -> { WhopSDK::DepositSucceededWebhookEvent::Data::Account::UnionMember0::Object }
+            #   @return [Symbol, WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Account::UnionMember0::Object]
+            required :object,
+                     enum: -> { WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Account::UnionMember0::Object }
 
             # @!attribute route
             #   Account route.
@@ -1470,13 +1496,13 @@ module WhopSDK
             #
             #   @param logo_url [String, nil] Account logo URL.
             #
-            #   @param object [Symbol, WhopSDK::Models::DepositSucceededWebhookEvent::Data::Account::UnionMember0::Object]
+            #   @param object [Symbol, WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Account::UnionMember0::Object]
             #
             #   @param route [String, nil] Account route.
             #
             #   @param title [String, nil] Account display name.
 
-            # @see WhopSDK::Models::DepositSucceededWebhookEvent::Data::Account::UnionMember0#object
+            # @see WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Account::UnionMember0#object
             module Object
               extend WhopSDK::Internal::Type::Enum
 
@@ -1502,8 +1528,9 @@ module WhopSDK
 
             # @!attribute object
             #
-            #   @return [Symbol, WhopSDK::Models::DepositSucceededWebhookEvent::Data::Account::UnionMember1::Object]
-            required :object, enum: -> { WhopSDK::DepositSucceededWebhookEvent::Data::Account::UnionMember1::Object }
+            #   @return [Symbol, WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Account::UnionMember1::Object]
+            required :object,
+                     enum: -> { WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Account::UnionMember1::Object }
 
             # @!attribute profile_picture_url
             #   User profile image URL.
@@ -1522,13 +1549,13 @@ module WhopSDK
             #
             #   @param name [String, nil] User display name.
             #
-            #   @param object [Symbol, WhopSDK::Models::DepositSucceededWebhookEvent::Data::Account::UnionMember1::Object]
+            #   @param object [Symbol, WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Account::UnionMember1::Object]
             #
             #   @param profile_picture_url [String, nil] User profile image URL.
             #
             #   @param username [String, nil] User's username.
 
-            # @see WhopSDK::Models::DepositSucceededWebhookEvent::Data::Account::UnionMember1#object
+            # @see WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Account::UnionMember1#object
             module Object
               extend WhopSDK::Internal::Type::Enum
 
@@ -1540,10 +1567,10 @@ module WhopSDK
           end
 
           # @!method self.variants
-          #   @return [Array(WhopSDK::Models::DepositSucceededWebhookEvent::Data::Account::UnionMember0, WhopSDK::Models::DepositSucceededWebhookEvent::Data::Account::UnionMember1)]
+          #   @return [Array(WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Account::UnionMember0, WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Account::UnionMember1)]
         end
 
-        # @see WhopSDK::Models::DepositSucceededWebhookEvent::Data#payment
+        # @see WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data#payment
         class Payment < WhopSDK::Internal::Type::BaseModel
           # @!attribute id
           #   Payment ID, prefixed `pay_`.
@@ -1554,8 +1581,10 @@ module WhopSDK
           # @!attribute amount
           #   Total charged by the payment.
           #
-          #   @return [WhopSDK::Models::DepositSucceededWebhookEvent::Data::Payment::Amount, nil]
-          required :amount, -> { WhopSDK::DepositSucceededWebhookEvent::Data::Payment::Amount }, nil?: true
+          #   @return [WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Payment::Amount, nil]
+          required :amount,
+                   -> { WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Payment::Amount },
+                   nil?: true
 
           # @!attribute card_brand
           #   Card brand, when the customer paid by card.
@@ -1577,8 +1606,8 @@ module WhopSDK
 
           # @!attribute object
           #
-          #   @return [Symbol, WhopSDK::Models::DepositSucceededWebhookEvent::Data::Payment::Object]
-          required :object, enum: -> { WhopSDK::DepositSucceededWebhookEvent::Data::Payment::Object }
+          #   @return [Symbol, WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Payment::Object]
+          required :object, enum: -> { WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Payment::Object }
 
           # @!attribute payment_method_type
           #   How the customer paid, such as `card` or `paypal`.
@@ -1595,20 +1624,26 @@ module WhopSDK
           # @!attribute plan
           #   Plan associated with the payment, when applicable.
           #
-          #   @return [WhopSDK::Models::DepositSucceededWebhookEvent::Data::Payment::Plan, nil]
-          required :plan, -> { WhopSDK::DepositSucceededWebhookEvent::Data::Payment::Plan }, nil?: true
+          #   @return [WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Payment::Plan, nil]
+          required :plan,
+                   -> { WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Payment::Plan },
+                   nil?: true
 
           # @!attribute product
           #   Product associated with the payment, when applicable.
           #
-          #   @return [WhopSDK::Models::DepositSucceededWebhookEvent::Data::Payment::Product, nil]
-          required :product, -> { WhopSDK::DepositSucceededWebhookEvent::Data::Payment::Product }, nil?: true
+          #   @return [WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Payment::Product, nil]
+          required :product,
+                   -> { WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Payment::Product },
+                   nil?: true
 
           # @!attribute user
           #   Customer associated with the payment. Email requires member:email:read.
           #
-          #   @return [WhopSDK::Models::DepositSucceededWebhookEvent::Data::Payment::User, nil]
-          required :user, -> { WhopSDK::DepositSucceededWebhookEvent::Data::Payment::User }, nil?: true
+          #   @return [WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Payment::User, nil]
+          required :user,
+                   -> { WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Payment::User },
+                   nil?: true
 
           # @!method initialize(id:, amount:, card_brand:, card_last4:, created_at:, object:, payment_method_type:, payment_processor:, plan:, product:, user:)
           #   Payment related to this ledger activity. Included when rich resource hydration
@@ -1616,7 +1651,7 @@ module WhopSDK
           #
           #   @param id [String] Payment ID, prefixed `pay_`.
           #
-          #   @param amount [WhopSDK::Models::DepositSucceededWebhookEvent::Data::Payment::Amount, nil] Total charged by the payment.
+          #   @param amount [WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Payment::Amount, nil] Total charged by the payment.
           #
           #   @param card_brand [String, nil] Card brand, when the customer paid by card.
           #
@@ -1624,19 +1659,19 @@ module WhopSDK
           #
           #   @param created_at [Time] When the payment was created.
           #
-          #   @param object [Symbol, WhopSDK::Models::DepositSucceededWebhookEvent::Data::Payment::Object]
+          #   @param object [Symbol, WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Payment::Object]
           #
           #   @param payment_method_type [String, nil] How the customer paid, such as `card` or `paypal`.
           #
           #   @param payment_processor [String, nil] Processor that handled the payment, such as `stripe`.
           #
-          #   @param plan [WhopSDK::Models::DepositSucceededWebhookEvent::Data::Payment::Plan, nil] Plan associated with the payment, when applicable.
+          #   @param plan [WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Payment::Plan, nil] Plan associated with the payment, when applicable.
           #
-          #   @param product [WhopSDK::Models::DepositSucceededWebhookEvent::Data::Payment::Product, nil] Product associated with the payment, when applicable.
+          #   @param product [WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Payment::Product, nil] Product associated with the payment, when applicable.
           #
-          #   @param user [WhopSDK::Models::DepositSucceededWebhookEvent::Data::Payment::User, nil] Customer associated with the payment. Email requires member:email:read.
+          #   @param user [WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Payment::User, nil] Customer associated with the payment. Email requires member:email:read.
 
-          # @see WhopSDK::Models::DepositSucceededWebhookEvent::Data::Payment#amount
+          # @see WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Payment#amount
           class Amount < WhopSDK::Internal::Type::BaseModel
             # @!attribute amount
             #   The amount in major units, as an exact decimal string — `"10.00"` is ten
@@ -1668,8 +1703,8 @@ module WhopSDK
 
             # @!method initialize(amount:, currency:, decimals:, display_decimals:)
             #   Some parameter documentations has been truncated, see
-            #   {WhopSDK::Models::DepositSucceededWebhookEvent::Data::Payment::Amount} for more
-            #   details.
+            #   {WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Payment::Amount}
+            #   for more details.
             #
             #   Total charged by the payment.
             #
@@ -1682,7 +1717,7 @@ module WhopSDK
             #   @param display_decimals [Integer] How many decimal places to SHOW. Usually equal to `decimals`, and deliberately n
           end
 
-          # @see WhopSDK::Models::DepositSucceededWebhookEvent::Data::Payment#object
+          # @see WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Payment#object
           module Object
             extend WhopSDK::Internal::Type::Enum
 
@@ -1692,7 +1727,7 @@ module WhopSDK
             #   @return [Array<Symbol>]
           end
 
-          # @see WhopSDK::Models::DepositSucceededWebhookEvent::Data::Payment#plan
+          # @see WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Payment#plan
           class Plan < WhopSDK::Internal::Type::BaseModel
             # @!attribute id
             #   Plan ID, prefixed `plan_`.
@@ -1714,7 +1749,7 @@ module WhopSDK
             #   @param name [String, nil] Plan name.
           end
 
-          # @see WhopSDK::Models::DepositSucceededWebhookEvent::Data::Payment#product
+          # @see WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Payment#product
           class Product < WhopSDK::Internal::Type::BaseModel
             # @!attribute id
             #   Product ID, prefixed `prod_`.
@@ -1736,7 +1771,7 @@ module WhopSDK
             #   @param name [String] Product name.
           end
 
-          # @see WhopSDK::Models::DepositSucceededWebhookEvent::Data::Payment#user
+          # @see WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Payment#user
           class User < WhopSDK::Internal::Type::BaseModel
             # @!attribute id
             #   Customer ID, prefixed `user_`.

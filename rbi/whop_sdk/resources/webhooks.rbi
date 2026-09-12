@@ -200,6 +200,7 @@ module WhopSDK
             WhopSDK::EntryDeniedWebhookEvent,
             WhopSDK::ExportCompletedWebhookEvent,
             WhopSDK::ExportFailedWebhookEvent,
+            WhopSDK::FinancialActivityFundsAvailableWebhookEvent,
             WhopSDK::IdentityProfileUpdatedWebhookEvent,
             WhopSDK::InvoiceCreatedWebhookEvent,
             WhopSDK::InvoiceMarkedUncollectibleWebhookEvent,

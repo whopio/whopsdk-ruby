@@ -186,7 +186,8 @@ module WhopSDK
         end
 
         type line_type =
-          :ad_budget_release
+          :account_settlement
+          | :ad_budget_release
           | :ad_campaign_budget
           | :ad_publisher_payout
           | :ad_publisher_payout_received
@@ -325,6 +326,7 @@ module WhopSDK
         module LineType
           extend WhopSDK::Internal::Type::Enum
 
+          ACCOUNT_SETTLEMENT: :account_settlement
           AD_BUDGET_RELEASE: :ad_budget_release
           AD_CAMPAIGN_BUDGET: :ad_campaign_budget
           AD_PUBLISHER_PAYOUT: :ad_publisher_payout

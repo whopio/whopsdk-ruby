@@ -1,29 +1,29 @@
 module WhopSDK
   module Models
-    type swap_completed_webhook_event =
+    type financial_activity_funds_available_webhook_event =
       {
         id: String,
         api_version: :v1,
         api_version_date: String?,
-        data: WhopSDK::SwapCompletedWebhookEvent::Data,
+        data: WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data,
         timestamp: Time,
-        type: :"swap.completed",
+        type: :"financial_activity.funds_available",
         account_id: String?,
         previous_attributes: top
       }
 
-    class SwapCompletedWebhookEvent < WhopSDK::Internal::Type::BaseModel
+    class FinancialActivityFundsAvailableWebhookEvent < WhopSDK::Internal::Type::BaseModel
       attr_accessor id: String
 
       attr_accessor api_version: :v1
 
       attr_accessor api_version_date: String?
 
-      attr_accessor data: WhopSDK::SwapCompletedWebhookEvent::Data
+      attr_accessor data: WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data
 
       attr_accessor timestamp: Time
 
-      attr_accessor type: :"swap.completed"
+      attr_accessor type: :"financial_activity.funds_available"
 
       attr_accessor account_id: String?
 
@@ -34,21 +34,21 @@ module WhopSDK
       def initialize: (
         id: String,
         api_version_date: String?,
-        data: WhopSDK::SwapCompletedWebhookEvent::Data,
+        data: WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data,
         timestamp: Time,
         ?account_id: String?,
         ?previous_attributes: top,
         ?api_version: :v1,
-        ?type: :"swap.completed"
+        ?type: :"financial_activity.funds_available"
       ) -> void
 
       def to_hash: -> {
         id: String,
         api_version: :v1,
         api_version_date: String?,
-        data: WhopSDK::SwapCompletedWebhookEvent::Data,
+        data: WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data,
         timestamp: Time,
-        type: :"swap.completed",
+        type: :"financial_activity.funds_available",
         account_id: String?,
         previous_attributes: top
       }
@@ -58,16 +58,16 @@ module WhopSDK
           id: String,
           amount: String,
           available_at: Time?,
-          currency: WhopSDK::SwapCompletedWebhookEvent::Data::Currency,
-          line_type: WhopSDK::Models::SwapCompletedWebhookEvent::Data::line_type,
-          object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::object,
+          currency: WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Currency,
+          line_type: WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::line_type,
+          object: WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::object,
           posted_at: Time,
-          resource: WhopSDK::Models::SwapCompletedWebhookEvent::Data::resource?,
-          source: WhopSDK::SwapCompletedWebhookEvent::Data::Source?,
+          resource: WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::resource?,
+          source: WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Source?,
           usd_amount: String?,
-          account: WhopSDK::Models::SwapCompletedWebhookEvent::Data::account,
+          account: WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::account,
           ledger_account_id: String?,
-          payment: WhopSDK::SwapCompletedWebhookEvent::Data::Payment?,
+          payment: WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Payment?,
           payment_id: String?,
           plan_id: String?,
           plan_name: String?,
@@ -85,29 +85,29 @@ module WhopSDK
 
         attr_accessor available_at: Time?
 
-        attr_accessor currency: WhopSDK::SwapCompletedWebhookEvent::Data::Currency
+        attr_accessor currency: WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Currency
 
-        attr_accessor line_type: WhopSDK::Models::SwapCompletedWebhookEvent::Data::line_type
+        attr_accessor line_type: WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::line_type
 
-        attr_accessor object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::object
+        attr_accessor object: WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::object
 
         attr_accessor posted_at: Time
 
-        attr_accessor resource: WhopSDK::Models::SwapCompletedWebhookEvent::Data::resource?
+        attr_accessor resource: WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::resource?
 
-        attr_accessor source: WhopSDK::SwapCompletedWebhookEvent::Data::Source?
+        attr_accessor source: WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Source?
 
         attr_accessor usd_amount: String?
 
-        attr_reader account: WhopSDK::Models::SwapCompletedWebhookEvent::Data::account?
+        attr_reader account: WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::account?
 
         def account=: (
-          WhopSDK::Models::SwapCompletedWebhookEvent::Data::account
-        ) -> WhopSDK::Models::SwapCompletedWebhookEvent::Data::account
+          WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::account
+        ) -> WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::account
 
         attr_accessor ledger_account_id: String?
 
-        attr_accessor payment: WhopSDK::SwapCompletedWebhookEvent::Data::Payment?
+        attr_accessor payment: WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Payment?
 
         attr_accessor payment_id: String?
 
@@ -129,16 +129,16 @@ module WhopSDK
           id: String,
           amount: String,
           available_at: Time?,
-          currency: WhopSDK::SwapCompletedWebhookEvent::Data::Currency,
-          line_type: WhopSDK::Models::SwapCompletedWebhookEvent::Data::line_type,
-          object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::object,
+          currency: WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Currency,
+          line_type: WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::line_type,
+          object: WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::object,
           posted_at: Time,
-          resource: WhopSDK::Models::SwapCompletedWebhookEvent::Data::resource?,
-          source: WhopSDK::SwapCompletedWebhookEvent::Data::Source?,
+          resource: WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::resource?,
+          source: WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Source?,
           usd_amount: String?,
-          ?account: WhopSDK::Models::SwapCompletedWebhookEvent::Data::account,
+          ?account: WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::account,
           ?ledger_account_id: String?,
-          ?payment: WhopSDK::SwapCompletedWebhookEvent::Data::Payment?,
+          ?payment: WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Payment?,
           ?payment_id: String?,
           ?plan_id: String?,
           ?plan_name: String?,
@@ -153,16 +153,16 @@ module WhopSDK
           id: String,
           amount: String,
           available_at: Time?,
-          currency: WhopSDK::SwapCompletedWebhookEvent::Data::Currency,
-          line_type: WhopSDK::Models::SwapCompletedWebhookEvent::Data::line_type,
-          object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::object,
+          currency: WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Currency,
+          line_type: WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::line_type,
+          object: WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::object,
           posted_at: Time,
-          resource: WhopSDK::Models::SwapCompletedWebhookEvent::Data::resource?,
-          source: WhopSDK::SwapCompletedWebhookEvent::Data::Source?,
+          resource: WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::resource?,
+          source: WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Source?,
           usd_amount: String?,
-          account: WhopSDK::Models::SwapCompletedWebhookEvent::Data::account,
+          account: WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::account,
           ledger_account_id: String?,
-          payment: WhopSDK::SwapCompletedWebhookEvent::Data::Payment?,
+          payment: WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Payment?,
           payment_id: String?,
           plan_id: String?,
           plan_name: String?,
@@ -463,7 +463,7 @@ module WhopSDK
           SWAP_SOURCE: :swap_source
           SWAP_TARGET: :swap_target
 
-          def self?.values: -> ::Array[WhopSDK::Models::SwapCompletedWebhookEvent::Data::line_type]
+          def self?.values: -> ::Array[WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::line_type]
         end
 
         type object = :ledger_activity
@@ -473,17 +473,17 @@ module WhopSDK
 
           LEDGER_ACTIVITY: :ledger_activity
 
-          def self?.values: -> ::Array[WhopSDK::Models::SwapCompletedWebhookEvent::Data::object]
+          def self?.values: -> ::Array[WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::object]
         end
 
         type resource =
-          WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember0
-          | WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember1
-          | WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember2
-          | WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember3
-          | WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember4
-          | WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember5
-          | WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember6
+          WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember0
+          | WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember1
+          | WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember2
+          | WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3
+          | WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember4
+          | WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember5
+          | WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember6
 
         module Resource
           extend WhopSDK::Internal::Type::Union
@@ -492,7 +492,7 @@ module WhopSDK
             {
               id: String,
               logo_url: String?,
-              object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember0::object,
+              object: WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember0::object,
               route: String?,
               title: String?
             }
@@ -502,7 +502,7 @@ module WhopSDK
 
             attr_accessor logo_url: String?
 
-            attr_accessor object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember0::object
+            attr_accessor object: WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember0::object
 
             attr_accessor route: String?
 
@@ -511,7 +511,7 @@ module WhopSDK
             def initialize: (
               id: String,
               logo_url: String?,
-              object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember0::object,
+              object: WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember0::object,
               route: String?,
               title: String?
             ) -> void
@@ -519,7 +519,7 @@ module WhopSDK
             def to_hash: -> {
               id: String,
               logo_url: String?,
-              object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember0::object,
+              object: WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember0::object,
               route: String?,
               title: String?
             }
@@ -531,7 +531,7 @@ module WhopSDK
 
               ACCOUNT: :account
 
-              def self?.values: -> ::Array[WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember0::object]
+              def self?.values: -> ::Array[WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember0::object]
             end
           end
 
@@ -539,7 +539,7 @@ module WhopSDK
             {
               id: String,
               name: String?,
-              object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember1::object,
+              object: WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember1::object,
               profile_picture_url: String?,
               username: String?
             }
@@ -549,7 +549,7 @@ module WhopSDK
 
             attr_accessor name: String?
 
-            attr_accessor object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember1::object
+            attr_accessor object: WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember1::object
 
             attr_accessor profile_picture_url: String?
 
@@ -558,7 +558,7 @@ module WhopSDK
             def initialize: (
               id: String,
               name: String?,
-              object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember1::object,
+              object: WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember1::object,
               profile_picture_url: String?,
               username: String?
             ) -> void
@@ -566,7 +566,7 @@ module WhopSDK
             def to_hash: -> {
               id: String,
               name: String?,
-              object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember1::object,
+              object: WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember1::object,
               profile_picture_url: String?,
               username: String?
             }
@@ -578,14 +578,14 @@ module WhopSDK
 
               USER: :user
 
-              def self?.values: -> ::Array[WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember1::object]
+              def self?.values: -> ::Array[WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember1::object]
             end
           end
 
           type union_member2 =
             {
               id: String,
-              object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember2::object,
+              object: WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember2::object,
               status: String,
               title: String
             }
@@ -593,7 +593,7 @@ module WhopSDK
           class UnionMember2 < WhopSDK::Internal::Type::BaseModel
             attr_accessor id: String
 
-            attr_accessor object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember2::object
+            attr_accessor object: WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember2::object
 
             attr_accessor status: String
 
@@ -601,14 +601,14 @@ module WhopSDK
 
             def initialize: (
               id: String,
-              object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember2::object,
+              object: WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember2::object,
               status: String,
               title: String
             ) -> void
 
             def to_hash: -> {
               id: String,
-              object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember2::object,
+              object: WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember2::object,
               status: String,
               title: String
             }
@@ -620,34 +620,34 @@ module WhopSDK
 
               BOUNTY: :bounty
 
-              def self?.values: -> ::Array[WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember2::object]
+              def self?.values: -> ::Array[WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember2::object]
             end
           end
 
           type union_member3 =
             {
               id: String,
-              object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember3::object,
-              owner: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember3::owner?
+              object: WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3::object,
+              owner: WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3::owner?
             }
 
           class UnionMember3 < WhopSDK::Internal::Type::BaseModel
             attr_accessor id: String
 
-            attr_accessor object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember3::object
+            attr_accessor object: WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3::object
 
-            attr_accessor owner: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember3::owner?
+            attr_accessor owner: WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3::owner?
 
             def initialize: (
               id: String,
-              object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember3::object,
-              owner: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember3::owner?
+              object: WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3::object,
+              owner: WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3::owner?
             ) -> void
 
             def to_hash: -> {
               id: String,
-              object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember3::object,
-              owner: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember3::owner?
+              object: WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3::object,
+              owner: WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3::owner?
             }
 
             type object = :ledger_account
@@ -657,12 +657,12 @@ module WhopSDK
 
               LEDGER_ACCOUNT: :ledger_account
 
-              def self?.values: -> ::Array[WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember3::object]
+              def self?.values: -> ::Array[WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3::object]
             end
 
             type owner =
-              WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember0
-              | WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember1
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember0
+              | WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember1
 
             module Owner
               extend WhopSDK::Internal::Type::Union
@@ -671,7 +671,7 @@ module WhopSDK
                 {
                   id: String,
                   logo_url: String?,
-                  object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember0::object,
+                  object: WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember0::object,
                   route: String?,
                   title: String?
                 }
@@ -681,7 +681,7 @@ module WhopSDK
 
                 attr_accessor logo_url: String?
 
-                attr_accessor object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember0::object
+                attr_accessor object: WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember0::object
 
                 attr_accessor route: String?
 
@@ -690,7 +690,7 @@ module WhopSDK
                 def initialize: (
                   id: String,
                   logo_url: String?,
-                  object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember0::object,
+                  object: WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember0::object,
                   route: String?,
                   title: String?
                 ) -> void
@@ -698,7 +698,7 @@ module WhopSDK
                 def to_hash: -> {
                   id: String,
                   logo_url: String?,
-                  object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember0::object,
+                  object: WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember0::object,
                   route: String?,
                   title: String?
                 }
@@ -710,7 +710,7 @@ module WhopSDK
 
                   ACCOUNT: :account
 
-                  def self?.values: -> ::Array[WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember0::object]
+                  def self?.values: -> ::Array[WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember0::object]
                 end
               end
 
@@ -718,7 +718,7 @@ module WhopSDK
                 {
                   id: String,
                   name: String?,
-                  object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember1::object,
+                  object: WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember1::object,
                   profile_picture_url: String?,
                   username: String?
                 }
@@ -728,7 +728,7 @@ module WhopSDK
 
                 attr_accessor name: String?
 
-                attr_accessor object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember1::object
+                attr_accessor object: WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember1::object
 
                 attr_accessor profile_picture_url: String?
 
@@ -737,7 +737,7 @@ module WhopSDK
                 def initialize: (
                   id: String,
                   name: String?,
-                  object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember1::object,
+                  object: WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember1::object,
                   profile_picture_url: String?,
                   username: String?
                 ) -> void
@@ -745,7 +745,7 @@ module WhopSDK
                 def to_hash: -> {
                   id: String,
                   name: String?,
-                  object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember1::object,
+                  object: WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember1::object,
                   profile_picture_url: String?,
                   username: String?
                 }
@@ -757,57 +757,57 @@ module WhopSDK
 
                   USER: :user
 
-                  def self?.values: -> ::Array[WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember1::object]
+                  def self?.values: -> ::Array[WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3::Owner::UnionMember1::object]
                 end
               end
 
-              def self?.variants: -> ::Array[WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember3::owner]
+              def self?.variants: -> ::Array[WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember3::owner]
             end
           end
 
           type union_member4 =
             {
               id: String,
-              bank: WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember4::Bank?,
-              card: WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember4::Card?,
+              bank: WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember4::Bank?,
+              card: WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember4::Card?,
               email_identifier: String?,
               gateway_type: String?,
-              object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember4::object,
+              object: WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember4::object,
               payment_method_type: String?
             }
 
           class UnionMember4 < WhopSDK::Internal::Type::BaseModel
             attr_accessor id: String
 
-            attr_accessor bank: WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember4::Bank?
+            attr_accessor bank: WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember4::Bank?
 
-            attr_accessor card: WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember4::Card?
+            attr_accessor card: WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember4::Card?
 
             attr_accessor email_identifier: String?
 
             attr_accessor gateway_type: String?
 
-            attr_accessor object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember4::object
+            attr_accessor object: WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember4::object
 
             attr_accessor payment_method_type: String?
 
             def initialize: (
               id: String,
-              bank: WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember4::Bank?,
-              card: WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember4::Card?,
+              bank: WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember4::Bank?,
+              card: WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember4::Card?,
               email_identifier: String?,
               gateway_type: String?,
-              object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember4::object,
+              object: WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember4::object,
               payment_method_type: String?
             ) -> void
 
             def to_hash: -> {
               id: String,
-              bank: WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember4::Bank?,
-              card: WhopSDK::SwapCompletedWebhookEvent::Data::Resource::UnionMember4::Card?,
+              bank: WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember4::Bank?,
+              card: WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember4::Card?,
               email_identifier: String?,
               gateway_type: String?,
-              object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember4::object,
+              object: WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember4::object,
               payment_method_type: String?
             }
 
@@ -882,7 +882,7 @@ module WhopSDK
 
               PAYMENT_METHOD: :payment_method
 
-              def self?.values: -> ::Array[WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember4::object]
+              def self?.values: -> ::Array[WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember4::object]
             end
           end
 
@@ -893,7 +893,7 @@ module WhopSDK
               destination_currency_code: String?,
               institution_name: String?,
               nickname: String?,
-              object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember5::object,
+              object: WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember5::object,
               provider: String?
             }
 
@@ -908,7 +908,7 @@ module WhopSDK
 
             attr_accessor nickname: String?
 
-            attr_accessor object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember5::object
+            attr_accessor object: WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember5::object
 
             attr_accessor provider: String?
 
@@ -918,7 +918,7 @@ module WhopSDK
               destination_currency_code: String?,
               institution_name: String?,
               nickname: String?,
-              object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember5::object,
+              object: WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember5::object,
               provider: String?
             ) -> void
 
@@ -928,7 +928,7 @@ module WhopSDK
               destination_currency_code: String?,
               institution_name: String?,
               nickname: String?,
-              object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember5::object,
+              object: WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember5::object,
               provider: String?
             }
 
@@ -939,7 +939,7 @@ module WhopSDK
 
               PAYOUT_METHOD: :payout_method
 
-              def self?.values: -> ::Array[WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember5::object]
+              def self?.values: -> ::Array[WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember5::object]
             end
           end
 
@@ -955,7 +955,7 @@ module WhopSDK
               merchant_category: String?,
               merchant_icon_url: String?,
               merchant_name: String?,
-              object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember6::object,
+              object: WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember6::object,
               posted_at: Time?,
               status: String?,
               usd_amount: String?
@@ -982,7 +982,7 @@ module WhopSDK
 
             attr_accessor merchant_name: String?
 
-            attr_accessor object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember6::object
+            attr_accessor object: WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember6::object
 
             attr_accessor posted_at: Time?
 
@@ -1001,7 +1001,7 @@ module WhopSDK
               merchant_category: String?,
               merchant_icon_url: String?,
               merchant_name: String?,
-              object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember6::object,
+              object: WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember6::object,
               posted_at: Time?,
               status: String?,
               usd_amount: String?
@@ -1018,7 +1018,7 @@ module WhopSDK
               merchant_category: String?,
               merchant_icon_url: String?,
               merchant_name: String?,
-              object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember6::object,
+              object: WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember6::object,
               posted_at: Time?,
               status: String?,
               usd_amount: String?
@@ -1031,11 +1031,11 @@ module WhopSDK
 
               CARD_TRANSACTION: :card_transaction
 
-              def self?.values: -> ::Array[WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember6::object]
+              def self?.values: -> ::Array[WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Resource::UnionMember6::object]
             end
           end
 
-          def self?.variants: -> ::Array[WhopSDK::Models::SwapCompletedWebhookEvent::Data::resource]
+          def self?.variants: -> ::Array[WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::resource]
         end
 
         type source =
@@ -1048,15 +1048,15 @@ module WhopSDK
             claim_url: String?,
             created_at: Time?,
             estimated_arrival: Time?,
-            fee_kind: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Source::fee_kind?,
+            fee_kind: WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Source::fee_kind?,
             from_amount: String?,
             from_currency: String?,
             notes: String?,
             payer_name: String?,
-            payment_amount: WhopSDK::SwapCompletedWebhookEvent::Data::Source::PaymentAmount?,
+            payment_amount: WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Source::PaymentAmount?,
             payment_method_type: String?,
             payment_processor: String?,
-            payout_destination: WhopSDK::SwapCompletedWebhookEvent::Data::Source::PayoutDestination?,
+            payout_destination: WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Source::PayoutDestination?,
             payout_token_nickname: String?,
             reason: String?,
             risk_review_hold: bool?,
@@ -1084,7 +1084,7 @@ module WhopSDK
 
           attr_accessor estimated_arrival: Time?
 
-          attr_accessor fee_kind: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Source::fee_kind?
+          attr_accessor fee_kind: WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Source::fee_kind?
 
           attr_accessor from_amount: String?
 
@@ -1094,13 +1094,13 @@ module WhopSDK
 
           attr_accessor payer_name: String?
 
-          attr_accessor payment_amount: WhopSDK::SwapCompletedWebhookEvent::Data::Source::PaymentAmount?
+          attr_accessor payment_amount: WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Source::PaymentAmount?
 
           attr_accessor payment_method_type: String?
 
           attr_accessor payment_processor: String?
 
-          attr_accessor payout_destination: WhopSDK::SwapCompletedWebhookEvent::Data::Source::PayoutDestination?
+          attr_accessor payout_destination: WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Source::PayoutDestination?
 
           attr_accessor payout_token_nickname: String?
 
@@ -1127,15 +1127,15 @@ module WhopSDK
             ?claim_url: String?,
             ?created_at: Time?,
             ?estimated_arrival: Time?,
-            ?fee_kind: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Source::fee_kind?,
+            ?fee_kind: WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Source::fee_kind?,
             ?from_amount: String?,
             ?from_currency: String?,
             ?notes: String?,
             ?payer_name: String?,
-            ?payment_amount: WhopSDK::SwapCompletedWebhookEvent::Data::Source::PaymentAmount?,
+            ?payment_amount: WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Source::PaymentAmount?,
             ?payment_method_type: String?,
             ?payment_processor: String?,
-            ?payout_destination: WhopSDK::SwapCompletedWebhookEvent::Data::Source::PayoutDestination?,
+            ?payout_destination: WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Source::PayoutDestination?,
             ?payout_token_nickname: String?,
             ?reason: String?,
             ?risk_review_hold: bool?,
@@ -1155,15 +1155,15 @@ module WhopSDK
             claim_url: String?,
             created_at: Time?,
             estimated_arrival: Time?,
-            fee_kind: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Source::fee_kind?,
+            fee_kind: WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Source::fee_kind?,
             from_amount: String?,
             from_currency: String?,
             notes: String?,
             payer_name: String?,
-            payment_amount: WhopSDK::SwapCompletedWebhookEvent::Data::Source::PaymentAmount?,
+            payment_amount: WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Source::PaymentAmount?,
             payment_method_type: String?,
             payment_processor: String?,
-            payout_destination: WhopSDK::SwapCompletedWebhookEvent::Data::Source::PayoutDestination?,
+            payout_destination: WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Source::PayoutDestination?,
             payout_token_nickname: String?,
             reason: String?,
             risk_review_hold: bool?,
@@ -1185,7 +1185,7 @@ module WhopSDK
             SWAP: :swap
             CARD_SPEND: :card_spend
 
-            def self?.values: -> ::Array[WhopSDK::Models::SwapCompletedWebhookEvent::Data::Source::fee_kind]
+            def self?.values: -> ::Array[WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Source::fee_kind]
           end
 
           type payment_amount =
@@ -1234,8 +1234,8 @@ module WhopSDK
         end
 
         type account =
-          WhopSDK::SwapCompletedWebhookEvent::Data::Account::UnionMember0
-          | WhopSDK::SwapCompletedWebhookEvent::Data::Account::UnionMember1
+          WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Account::UnionMember0
+          | WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Account::UnionMember1
 
         module Account
           extend WhopSDK::Internal::Type::Union
@@ -1244,7 +1244,7 @@ module WhopSDK
             {
               id: String,
               logo_url: String?,
-              object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Account::UnionMember0::object,
+              object: WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Account::UnionMember0::object,
               route: String?,
               title: String?
             }
@@ -1254,7 +1254,7 @@ module WhopSDK
 
             attr_accessor logo_url: String?
 
-            attr_accessor object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Account::UnionMember0::object
+            attr_accessor object: WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Account::UnionMember0::object
 
             attr_accessor route: String?
 
@@ -1263,7 +1263,7 @@ module WhopSDK
             def initialize: (
               id: String,
               logo_url: String?,
-              object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Account::UnionMember0::object,
+              object: WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Account::UnionMember0::object,
               route: String?,
               title: String?
             ) -> void
@@ -1271,7 +1271,7 @@ module WhopSDK
             def to_hash: -> {
               id: String,
               logo_url: String?,
-              object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Account::UnionMember0::object,
+              object: WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Account::UnionMember0::object,
               route: String?,
               title: String?
             }
@@ -1283,7 +1283,7 @@ module WhopSDK
 
               ACCOUNT: :account
 
-              def self?.values: -> ::Array[WhopSDK::Models::SwapCompletedWebhookEvent::Data::Account::UnionMember0::object]
+              def self?.values: -> ::Array[WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Account::UnionMember0::object]
             end
           end
 
@@ -1291,7 +1291,7 @@ module WhopSDK
             {
               id: String,
               name: String?,
-              object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Account::UnionMember1::object,
+              object: WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Account::UnionMember1::object,
               profile_picture_url: String?,
               username: String?
             }
@@ -1301,7 +1301,7 @@ module WhopSDK
 
             attr_accessor name: String?
 
-            attr_accessor object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Account::UnionMember1::object
+            attr_accessor object: WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Account::UnionMember1::object
 
             attr_accessor profile_picture_url: String?
 
@@ -1310,7 +1310,7 @@ module WhopSDK
             def initialize: (
               id: String,
               name: String?,
-              object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Account::UnionMember1::object,
+              object: WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Account::UnionMember1::object,
               profile_picture_url: String?,
               username: String?
             ) -> void
@@ -1318,7 +1318,7 @@ module WhopSDK
             def to_hash: -> {
               id: String,
               name: String?,
-              object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Account::UnionMember1::object,
+              object: WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Account::UnionMember1::object,
               profile_picture_url: String?,
               username: String?
             }
@@ -1330,32 +1330,32 @@ module WhopSDK
 
               USER: :user
 
-              def self?.values: -> ::Array[WhopSDK::Models::SwapCompletedWebhookEvent::Data::Account::UnionMember1::object]
+              def self?.values: -> ::Array[WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Account::UnionMember1::object]
             end
           end
 
-          def self?.variants: -> ::Array[WhopSDK::Models::SwapCompletedWebhookEvent::Data::account]
+          def self?.variants: -> ::Array[WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::account]
         end
 
         type payment =
           {
             id: String,
-            amount: WhopSDK::SwapCompletedWebhookEvent::Data::Payment::Amount?,
+            amount: WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Payment::Amount?,
             card_brand: String?,
             :card_last4 => String?,
             created_at: Time,
-            object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Payment::object,
+            object: WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Payment::object,
             payment_method_type: String?,
             payment_processor: String?,
-            plan: WhopSDK::SwapCompletedWebhookEvent::Data::Payment::Plan?,
-            product: WhopSDK::SwapCompletedWebhookEvent::Data::Payment::Product?,
-            user: WhopSDK::SwapCompletedWebhookEvent::Data::Payment::User?
+            plan: WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Payment::Plan?,
+            product: WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Payment::Product?,
+            user: WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Payment::User?
           }
 
         class Payment < WhopSDK::Internal::Type::BaseModel
           attr_accessor id: String
 
-          attr_accessor amount: WhopSDK::SwapCompletedWebhookEvent::Data::Payment::Amount?
+          attr_accessor amount: WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Payment::Amount?
 
           attr_accessor card_brand: String?
 
@@ -1363,44 +1363,44 @@ module WhopSDK
 
           attr_accessor created_at: Time
 
-          attr_accessor object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Payment::object
+          attr_accessor object: WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Payment::object
 
           attr_accessor payment_method_type: String?
 
           attr_accessor payment_processor: String?
 
-          attr_accessor plan: WhopSDK::SwapCompletedWebhookEvent::Data::Payment::Plan?
+          attr_accessor plan: WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Payment::Plan?
 
-          attr_accessor product: WhopSDK::SwapCompletedWebhookEvent::Data::Payment::Product?
+          attr_accessor product: WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Payment::Product?
 
-          attr_accessor user: WhopSDK::SwapCompletedWebhookEvent::Data::Payment::User?
+          attr_accessor user: WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Payment::User?
 
           def initialize: (
             id: String,
-            amount: WhopSDK::SwapCompletedWebhookEvent::Data::Payment::Amount?,
+            amount: WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Payment::Amount?,
             card_brand: String?,
             card_last4: String?,
             created_at: Time,
-            object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Payment::object,
+            object: WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Payment::object,
             payment_method_type: String?,
             payment_processor: String?,
-            plan: WhopSDK::SwapCompletedWebhookEvent::Data::Payment::Plan?,
-            product: WhopSDK::SwapCompletedWebhookEvent::Data::Payment::Product?,
-            user: WhopSDK::SwapCompletedWebhookEvent::Data::Payment::User?
+            plan: WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Payment::Plan?,
+            product: WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Payment::Product?,
+            user: WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Payment::User?
           ) -> void
 
           def to_hash: -> {
             id: String,
-            amount: WhopSDK::SwapCompletedWebhookEvent::Data::Payment::Amount?,
+            amount: WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Payment::Amount?,
             card_brand: String?,
             :card_last4 => String?,
             created_at: Time,
-            object: WhopSDK::Models::SwapCompletedWebhookEvent::Data::Payment::object,
+            object: WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Payment::object,
             payment_method_type: String?,
             payment_processor: String?,
-            plan: WhopSDK::SwapCompletedWebhookEvent::Data::Payment::Plan?,
-            product: WhopSDK::SwapCompletedWebhookEvent::Data::Payment::Product?,
-            user: WhopSDK::SwapCompletedWebhookEvent::Data::Payment::User?
+            plan: WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Payment::Plan?,
+            product: WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Payment::Product?,
+            user: WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::Payment::User?
           }
 
           type amount =
@@ -1442,7 +1442,7 @@ module WhopSDK
 
             PAYMENT: :payment
 
-            def self?.values: -> ::Array[WhopSDK::Models::SwapCompletedWebhookEvent::Data::Payment::object]
+            def self?.values: -> ::Array[WhopSDK::Models::FinancialActivityFundsAvailableWebhookEvent::Data::Payment::object]
           end
 
           type plan = { id: String, name: String? }

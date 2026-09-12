@@ -68,6 +68,11 @@ module WhopSDK
         T.let(:"swap.completed", WhopSDK::WebhookEvent::TaggedSymbol)
       DEPOSIT_SUCCEEDED =
         T.let(:"deposit.succeeded", WhopSDK::WebhookEvent::TaggedSymbol)
+      FINANCIAL_ACTIVITY_FUNDS_AVAILABLE =
+        T.let(
+          :"financial_activity.funds_available",
+          WhopSDK::WebhookEvent::TaggedSymbol
+        )
       TRANSFER_CREATED =
         T.let(:"transfer.created", WhopSDK::WebhookEvent::TaggedSymbol)
       TRANSFER_COMPLETED =

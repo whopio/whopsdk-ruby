@@ -288,6 +288,7 @@ module WhopSDK
         module LineType
           extend WhopSDK::Internal::Type::Enum
 
+          ACCOUNT_SETTLEMENT = :account_settlement
           AD_BUDGET_RELEASE = :ad_budget_release
           AD_CAMPAIGN_BUDGET = :ad_campaign_budget
           AD_PUBLISHER_PAYOUT = :ad_publisher_payout

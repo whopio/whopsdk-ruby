@@ -29,6 +29,7 @@ module Whop_sdk
         LEDGER_ACCOUNT_FUNDS_AVAILABLE = "ledger_account.funds_available"
         SWAP_COMPLETED = "swap.completed"
         DEPOSIT_SUCCEEDED = "deposit.succeeded"
+        FINANCIAL_ACTIVITY_FUNDS_AVAILABLE = "financial_activity.funds_available"
         TRANSFER_CREATED = "transfer.created"
         TRANSFER_COMPLETED = "transfer.completed"
         TRANSFER_FAILED = "transfer.failed"

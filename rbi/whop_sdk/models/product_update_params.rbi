@@ -32,6 +32,14 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :description
 
+      # Images or videos displayed in the product gallery, in display order. Replaces
+      # the existing gallery. Send an empty array to clear it; omit or pass null to
+      # leave it unchanged. A banner image does not populate the gallery.
+      sig do
+        returns(T.nilable(T::Array[WhopSDK::ProductUpdateParams::GalleryImage]))
+      end
+      attr_accessor :gallery_images
+
       # A short marketing headline for the product page.
       sig { returns(T.nilable(String)) }
       attr_accessor :headline
@@ -81,6 +89,10 @@ module WhopSDK
           banner_image:
             T.nilable(WhopSDK::ProductUpdateParams::BannerImage::OrHash),
           description: T.nilable(String),
+          gallery_images:
+            T.nilable(
+              T::Array[WhopSDK::ProductUpdateParams::GalleryImage::OrHash]
+            ),
           headline: T.nilable(String),
           labels: T.nilable(T::Array[String]),
           metadata: T.nilable(T.anything),
@@ -100,6 +112,10 @@ module WhopSDK
         banner_image: nil,
         # A written description displayed on the product page.
         description: nil,
+        # Images or videos displayed in the product gallery, in display order. Replaces
+        # the existing gallery. Send an empty array to clear it; omit or pass null to
+        # leave it unchanged. A banner image does not populate the gallery.
+        gallery_images: nil,
         # A short marketing headline for the product page.
         headline: nil,
         # Labels used to group products into collections. Replaces the existing labels.
@@ -128,6 +144,8 @@ module WhopSDK
             id: String,
             banner_image: T.nilable(WhopSDK::ProductUpdateParams::BannerImage),
             description: T.nilable(String),
+            gallery_images:
+              T.nilable(T::Array[WhopSDK::ProductUpdateParams::GalleryImage]),
             headline: T.nilable(String),
             labels: T.nilable(T::Array[String]),
             metadata: T.nilable(T.anything),
@@ -176,6 +194,45 @@ module WhopSDK
           # The tag of an already-uploaded attachment.
           id: nil,
           # The signed id of a completed direct upload.
+          direct_upload_id: nil
+        )
+        end
+
+        sig { override.returns({ id: String, direct_upload_id: String }) }
+        def to_hash
+        end
+      end
+
+      class GalleryImage < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              WhopSDK::ProductUpdateParams::GalleryImage,
+              WhopSDK::Internal::AnyHash
+            )
+          end
+
+        # The tag of an already-uploaded attachment.
+        sig { returns(T.nilable(String)) }
+        attr_reader :id
+
+        sig { params(id: String).void }
+        attr_writer :id
+
+        # The signed ID of a completed direct upload, as an alternative to id.
+        sig { returns(T.nilable(String)) }
+        attr_reader :direct_upload_id
+
+        sig { params(direct_upload_id: String).void }
+        attr_writer :direct_upload_id
+
+        sig do
+          params(id: String, direct_upload_id: String).returns(T.attached_class)
+        end
+        def self.new(
+          # The tag of an already-uploaded attachment.
+          id: nil,
+          # The signed ID of a completed direct upload, as an alternative to id.
           direct_upload_id: nil
         )
         end

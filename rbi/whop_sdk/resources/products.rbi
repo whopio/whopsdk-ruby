@@ -19,6 +19,10 @@ module WhopSDK
           custom_cta_url: T.nilable(String),
           custom_statement_descriptor: T.nilable(String),
           description: T.nilable(String),
+          gallery_images:
+            T.nilable(
+              T::Array[WhopSDK::ProductCreateParams::GalleryImage::OrHash]
+            ),
           global_affiliate_percentage: T.nilable(Float),
           global_affiliate_status:
             WhopSDK::ProductCreateParams::GlobalAffiliateStatus::OrSymbol,
@@ -53,6 +57,10 @@ module WhopSDK
         custom_statement_descriptor: nil,
         # Body param: A written description displayed on the product page.
         description: nil,
+        # Body param: Images or videos displayed in the product gallery, in display order.
+        # Replaces the existing gallery. Send an empty array to clear it; omit or pass
+        # null to leave it unchanged. A banner image does not populate the gallery.
+        gallery_images: nil,
         # Body param: The commission rate affiliates earn.
         global_affiliate_percentage: nil,
         # Body param: The enrollment status in the global affiliate program.
@@ -114,6 +122,10 @@ module WhopSDK
           banner_image:
             T.nilable(WhopSDK::ProductUpdateParams::BannerImage::OrHash),
           description: T.nilable(String),
+          gallery_images:
+            T.nilable(
+              T::Array[WhopSDK::ProductUpdateParams::GalleryImage::OrHash]
+            ),
           headline: T.nilable(String),
           labels: T.nilable(T::Array[String]),
           metadata: T.nilable(T.anything),
@@ -134,6 +146,10 @@ module WhopSDK
         banner_image: nil,
         # Body param: A written description displayed on the product page.
         description: nil,
+        # Body param: Images or videos displayed in the product gallery, in display order.
+        # Replaces the existing gallery. Send an empty array to clear it; omit or pass
+        # null to leave it unchanged. A banner image does not populate the gallery.
+        gallery_images: nil,
         # Body param: A short marketing headline for the product page.
         headline: nil,
         # Body param: Labels used to group products into collections. Replaces the

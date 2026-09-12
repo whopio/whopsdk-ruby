@@ -49,6 +49,16 @@ module WhopSDK
       #   @return [String, nil]
       optional :description, String, nil?: true
 
+      # @!attribute gallery_images
+      #   Images or videos displayed in the product gallery, in display order. Replaces
+      #   the existing gallery. Send an empty array to clear it; omit or pass null to
+      #   leave it unchanged. A banner image does not populate the gallery.
+      #
+      #   @return [Array<WhopSDK::Models::ProductCreateParams::GalleryImage>, nil]
+      optional :gallery_images,
+               -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::ProductCreateParams::GalleryImage] },
+               nil?: true
+
       # @!attribute global_affiliate_percentage
       #   The commission rate affiliates earn.
       #
@@ -134,7 +144,7 @@ module WhopSDK
       #   @return [String, nil]
       optional :idempotency_key, String
 
-      # @!method initialize(title:, account_id: nil, collect_shipping_address: nil, custom_cta: nil, custom_cta_url: nil, custom_statement_descriptor: nil, description: nil, global_affiliate_percentage: nil, global_affiliate_status: nil, headline: nil, labels: nil, member_affiliate_percentage: nil, member_affiliate_status: nil, metadata: nil, product_tax_code_id: nil, redirect_purchase_url: nil, route: nil, send_welcome_message: nil, visibility: nil, api_version_date: nil, idempotency_key: nil, request_options: {})
+      # @!method initialize(title:, account_id: nil, collect_shipping_address: nil, custom_cta: nil, custom_cta_url: nil, custom_statement_descriptor: nil, description: nil, gallery_images: nil, global_affiliate_percentage: nil, global_affiliate_status: nil, headline: nil, labels: nil, member_affiliate_percentage: nil, member_affiliate_status: nil, metadata: nil, product_tax_code_id: nil, redirect_purchase_url: nil, route: nil, send_welcome_message: nil, visibility: nil, api_version_date: nil, idempotency_key: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::ProductCreateParams} for more details.
       #
@@ -151,6 +161,8 @@ module WhopSDK
       #   @param custom_statement_descriptor [String, nil] Custom bank statement descriptor. Must start with WHOP\*.
       #
       #   @param description [String, nil] A written description displayed on the product page.
+      #
+      #   @param gallery_images [Array<WhopSDK::Models::ProductCreateParams::GalleryImage>, nil] Images or videos displayed in the product gallery, in display order. Replaces th
       #
       #   @param global_affiliate_percentage [Float, nil] The commission rate affiliates earn.
       #
@@ -202,6 +214,25 @@ module WhopSDK
 
         # @!method self.values
         #   @return [Array<Symbol>]
+      end
+
+      class GalleryImage < WhopSDK::Internal::Type::BaseModel
+        # @!attribute id
+        #   The tag of an already-uploaded attachment.
+        #
+        #   @return [String, nil]
+        optional :id, String
+
+        # @!attribute direct_upload_id
+        #   The signed ID of a completed direct upload, as an alternative to id.
+        #
+        #   @return [String, nil]
+        optional :direct_upload_id, String
+
+        # @!method initialize(id: nil, direct_upload_id: nil)
+        #   @param id [String] The tag of an already-uploaded attachment.
+        #
+        #   @param direct_upload_id [String] The signed ID of a completed direct upload, as an alternative to id.
       end
 
       # The enrollment status in the global affiliate program.

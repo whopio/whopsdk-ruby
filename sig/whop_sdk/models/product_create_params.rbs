@@ -9,6 +9,7 @@ module WhopSDK
         custom_cta_url: String?,
         custom_statement_descriptor: String?,
         description: String?,
+        gallery_images: ::Array[WhopSDK::ProductCreateParams::GalleryImage]?,
         global_affiliate_percentage: Float?,
         global_affiliate_status: WhopSDK::Models::ProductCreateParams::global_affiliate_status,
         headline: String?,
@@ -45,6 +46,8 @@ module WhopSDK
       attr_accessor custom_statement_descriptor: String?
 
       attr_accessor description: String?
+
+      attr_accessor gallery_images: ::Array[WhopSDK::ProductCreateParams::GalleryImage]?
 
       attr_accessor global_affiliate_percentage: Float?
 
@@ -96,6 +99,7 @@ module WhopSDK
         ?custom_cta_url: String?,
         ?custom_statement_descriptor: String?,
         ?description: String?,
+        ?gallery_images: ::Array[WhopSDK::ProductCreateParams::GalleryImage]?,
         ?global_affiliate_percentage: Float?,
         ?global_affiliate_status: WhopSDK::Models::ProductCreateParams::global_affiliate_status,
         ?headline: String?,
@@ -121,6 +125,7 @@ module WhopSDK
         custom_cta_url: String?,
         custom_statement_descriptor: String?,
         description: String?,
+        gallery_images: ::Array[WhopSDK::ProductCreateParams::GalleryImage]?,
         global_affiliate_percentage: Float?,
         global_affiliate_status: WhopSDK::Models::ProductCreateParams::global_affiliate_status,
         headline: String?,
@@ -171,6 +176,22 @@ module WhopSDK
         COMPLETE_ORDER: :complete_order
 
         def self?.values: -> ::Array[WhopSDK::Models::ProductCreateParams::custom_cta]
+      end
+
+      type gallery_image = { id: String, direct_upload_id: String }
+
+      class GalleryImage < WhopSDK::Internal::Type::BaseModel
+        attr_reader id: String?
+
+        def id=: (String) -> String
+
+        attr_reader direct_upload_id: String?
+
+        def direct_upload_id=: (String) -> String
+
+        def initialize: (?id: String, ?direct_upload_id: String) -> void
+
+        def to_hash: -> { id: String, direct_upload_id: String }
       end
 
       type global_affiliate_status = :enabled | :disabled

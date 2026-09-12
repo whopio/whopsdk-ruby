@@ -126,7 +126,8 @@ module WhopSDK
         required :resource, union: -> { WhopSDK::SwapCompletedWebhookEvent::Data::Resource }, nil?: true
 
         # @!attribute source
-        #   Source of this ledger activity.
+        #   Source of this ledger activity. Platform markup fees use object platform_fee and
+        #   the ledger activity ID.
         #
         #   @return [WhopSDK::Models::SwapCompletedWebhookEvent::Data::Source, nil]
         required :source, -> { WhopSDK::SwapCompletedWebhookEvent::Data::Source }, nil?: true
@@ -232,7 +233,7 @@ module WhopSDK
         #
         #   @param resource [WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember0, WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember1, WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember2, WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember3, WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember4, WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember5, WhopSDK::Models::SwapCompletedWebhookEvent::Data::Resource::UnionMember6, nil] Resource associated with this ledger activity.
         #
-        #   @param source [WhopSDK::Models::SwapCompletedWebhookEvent::Data::Source, nil] Source of this ledger activity.
+        #   @param source [WhopSDK::Models::SwapCompletedWebhookEvent::Data::Source, nil] Source of this ledger activity. Platform markup fees use object platform_fee and
         #
         #   @param usd_amount [String, nil] Dollar value of this movement as a decimal string, signed like `amount`. Convert
         #
@@ -1161,6 +1162,19 @@ module WhopSDK
           #   @return [Time, nil]
           optional :estimated_arrival, Time, nil?: true
 
+          # @!attribute fee_kind
+          #   Action that generated a platform markup fee: deposit, swap, transfer,
+          #   card_spend, or payout. Present for platform_markup_fee and
+          #   platform_markup_fee_payout, including when include_resource is false. Null when
+          #   the originating action is unavailable; omitted on other source types.
+          #
+          #   @return [Symbol, WhopSDK::Models::SwapCompletedWebhookEvent::Data::Source::FeeKind, nil]
+          optional :fee_kind,
+                   enum: -> {
+                     WhopSDK::SwapCompletedWebhookEvent::Data::Source::FeeKind
+                   },
+                   nil?: true
+
           # @!attribute from_amount
           #   Amount converted out of from_currency as a decimal string (swap sources only).
           #
@@ -1271,11 +1285,12 @@ module WhopSDK
           #   @return [String, nil]
           optional :tx_hash, String, nil?: true
 
-          # @!method initialize(id:, object:, amount_float: nil, card_brand: nil, chain: nil, claim_url: nil, created_at: nil, estimated_arrival: nil, from_amount: nil, from_currency: nil, notes: nil, payer_name: nil, payment_amount: nil, payment_method_type: nil, payment_processor: nil, payout_destination: nil, payout_token_nickname: nil, reason: nil, risk_review_hold: nil, sender_address: nil, status: nil, to_amount: nil, to_currency: nil, tx_hash: nil)
+          # @!method initialize(id:, object:, amount_float: nil, card_brand: nil, chain: nil, claim_url: nil, created_at: nil, estimated_arrival: nil, fee_kind: nil, from_amount: nil, from_currency: nil, notes: nil, payer_name: nil, payment_amount: nil, payment_method_type: nil, payment_processor: nil, payout_destination: nil, payout_token_nickname: nil, reason: nil, risk_review_hold: nil, sender_address: nil, status: nil, to_amount: nil, to_currency: nil, tx_hash: nil)
           #   Some parameter documentations has been truncated, see
           #   {WhopSDK::Models::SwapCompletedWebhookEvent::Data::Source} for more details.
           #
-          #   Source of this ledger activity.
+          #   Source of this ledger activity. Platform markup fees use object platform_fee and
+          #   the ledger activity ID.
           #
           #   @param id [String]
           #
@@ -1292,6 +1307,8 @@ module WhopSDK
           #   @param created_at [Time, nil] Payout creation time as an ISO 8601 timestamp (payout sources only; requires pay
           #
           #   @param estimated_arrival [Time, nil] Estimated arrival as an ISO 8601 timestamp (payout sources only; requires payout
+          #
+          #   @param fee_kind [Symbol, WhopSDK::Models::SwapCompletedWebhookEvent::Data::Source::FeeKind, nil] Action that generated a platform markup fee: deposit, swap, transfer, card_spend
           #
           #   @param from_amount [String, nil] Amount converted out of from_currency as a decimal string (swap sources only).
           #
@@ -1324,6 +1341,25 @@ module WhopSDK
           #   @param to_currency [String, nil] Lowercase currency code converted to (swap sources only).
           #
           #   @param tx_hash [String, nil] On-chain transaction hash (onchain_transaction and swap sources only).
+
+          # Action that generated a platform markup fee: deposit, swap, transfer,
+          # card_spend, or payout. Present for platform_markup_fee and
+          # platform_markup_fee_payout, including when include_resource is false. Null when
+          # the originating action is unavailable; omitted on other source types.
+          #
+          # @see WhopSDK::Models::SwapCompletedWebhookEvent::Data::Source#fee_kind
+          module FeeKind
+            extend WhopSDK::Internal::Type::Enum
+
+            PAYOUT = :payout
+            TRANSFER = :transfer
+            DEPOSIT = :deposit
+            SWAP = :swap
+            CARD_SPEND = :card_spend
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
+          end
 
           # @see WhopSDK::Models::SwapCompletedWebhookEvent::Data::Source#payment_amount
           class PaymentAmount < WhopSDK::Internal::Type::BaseModel

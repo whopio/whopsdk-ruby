@@ -26,6 +26,16 @@ module WhopSDK
       #   @return [String, nil]
       optional :description, String, nil?: true
 
+      # @!attribute gallery_images
+      #   Images or videos displayed in the product gallery, in display order. Replaces
+      #   the existing gallery. Send an empty array to clear it; omit or pass null to
+      #   leave it unchanged. A banner image does not populate the gallery.
+      #
+      #   @return [Array<WhopSDK::Models::ProductUpdateParams::GalleryImage>, nil]
+      optional :gallery_images,
+               -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::ProductUpdateParams::GalleryImage] },
+               nil?: true
+
       # @!attribute headline
       #   A short marketing headline for the product page.
       #
@@ -76,7 +86,7 @@ module WhopSDK
       #   @return [String, nil]
       optional :api_version_date, String
 
-      # @!method initialize(id:, banner_image: nil, description: nil, headline: nil, labels: nil, metadata: nil, product_tax_code_id: nil, send_welcome_message: nil, title: nil, visibility: nil, api_version_date: nil, request_options: {})
+      # @!method initialize(id:, banner_image: nil, description: nil, gallery_images: nil, headline: nil, labels: nil, metadata: nil, product_tax_code_id: nil, send_welcome_message: nil, title: nil, visibility: nil, api_version_date: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::ProductUpdateParams} for more details.
       #
@@ -85,6 +95,8 @@ module WhopSDK
       #   @param banner_image [WhopSDK::Models::ProductUpdateParams::BannerImage, nil] A wide image for the product, shown on the product page and on listing cards. Pa
       #
       #   @param description [String, nil] A written description displayed on the product page.
+      #
+      #   @param gallery_images [Array<WhopSDK::Models::ProductUpdateParams::GalleryImage>, nil] Images or videos displayed in the product gallery, in display order. Replaces th
       #
       #   @param headline [String, nil] A short marketing headline for the product page.
       #
@@ -125,6 +137,25 @@ module WhopSDK
         #   @param id [String] The tag of an already-uploaded attachment.
         #
         #   @param direct_upload_id [String] The signed id of a completed direct upload.
+      end
+
+      class GalleryImage < WhopSDK::Internal::Type::BaseModel
+        # @!attribute id
+        #   The tag of an already-uploaded attachment.
+        #
+        #   @return [String, nil]
+        optional :id, String
+
+        # @!attribute direct_upload_id
+        #   The signed ID of a completed direct upload, as an alternative to id.
+        #
+        #   @return [String, nil]
+        optional :direct_upload_id, String
+
+        # @!method initialize(id: nil, direct_upload_id: nil)
+        #   @param id [String] The tag of an already-uploaded attachment.
+        #
+        #   @param direct_upload_id [String] The signed ID of a completed direct upload, as an alternative to id.
       end
     end
   end

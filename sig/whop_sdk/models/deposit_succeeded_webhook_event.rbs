@@ -1046,6 +1046,7 @@ module WhopSDK
             claim_url: String?,
             created_at: Time?,
             estimated_arrival: Time?,
+            fee_kind: WhopSDK::Models::DepositSucceededWebhookEvent::Data::Source::fee_kind?,
             from_amount: String?,
             from_currency: String?,
             notes: String?,
@@ -1080,6 +1081,8 @@ module WhopSDK
           attr_accessor created_at: Time?
 
           attr_accessor estimated_arrival: Time?
+
+          attr_accessor fee_kind: WhopSDK::Models::DepositSucceededWebhookEvent::Data::Source::fee_kind?
 
           attr_accessor from_amount: String?
 
@@ -1122,6 +1125,7 @@ module WhopSDK
             ?claim_url: String?,
             ?created_at: Time?,
             ?estimated_arrival: Time?,
+            ?fee_kind: WhopSDK::Models::DepositSucceededWebhookEvent::Data::Source::fee_kind?,
             ?from_amount: String?,
             ?from_currency: String?,
             ?notes: String?,
@@ -1149,6 +1153,7 @@ module WhopSDK
             claim_url: String?,
             created_at: Time?,
             estimated_arrival: Time?,
+            fee_kind: WhopSDK::Models::DepositSucceededWebhookEvent::Data::Source::fee_kind?,
             from_amount: String?,
             from_currency: String?,
             notes: String?,
@@ -1166,6 +1171,20 @@ module WhopSDK
             to_currency: String?,
             tx_hash: String?
           }
+
+          type fee_kind = :payout | :transfer | :deposit | :swap | :card_spend
+
+          module FeeKind
+            extend WhopSDK::Internal::Type::Enum
+
+            PAYOUT: :payout
+            TRANSFER: :transfer
+            DEPOSIT: :deposit
+            SWAP: :swap
+            CARD_SPEND: :card_spend
+
+            def self?.values: -> ::Array[WhopSDK::Models::DepositSucceededWebhookEvent::Data::Source::fee_kind]
+          end
 
           type payment_amount =
             {

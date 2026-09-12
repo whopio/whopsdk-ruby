@@ -5,6 +5,7 @@ module WhopSDK
         id: String,
         banner_image: WhopSDK::ProductUpdateParams::BannerImage?,
         description: String?,
+        gallery_images: ::Array[WhopSDK::ProductUpdateParams::GalleryImage]?,
         headline: String?,
         labels: ::Array[String]?,
         metadata: top?,
@@ -25,6 +26,8 @@ module WhopSDK
       attr_accessor banner_image: WhopSDK::ProductUpdateParams::BannerImage?
 
       attr_accessor description: String?
+
+      attr_accessor gallery_images: ::Array[WhopSDK::ProductUpdateParams::GalleryImage]?
 
       attr_accessor headline: String?
 
@@ -52,6 +55,7 @@ module WhopSDK
         id: String,
         ?banner_image: WhopSDK::ProductUpdateParams::BannerImage?,
         ?description: String?,
+        ?gallery_images: ::Array[WhopSDK::ProductUpdateParams::GalleryImage]?,
         ?headline: String?,
         ?labels: ::Array[String]?,
         ?metadata: top?,
@@ -67,6 +71,7 @@ module WhopSDK
         id: String,
         banner_image: WhopSDK::ProductUpdateParams::BannerImage?,
         description: String?,
+        gallery_images: ::Array[WhopSDK::ProductUpdateParams::GalleryImage]?,
         headline: String?,
         labels: ::Array[String]?,
         metadata: top?,
@@ -81,6 +86,22 @@ module WhopSDK
       type banner_image = { id: String, direct_upload_id: String }
 
       class BannerImage < WhopSDK::Internal::Type::BaseModel
+        attr_reader id: String?
+
+        def id=: (String) -> String
+
+        attr_reader direct_upload_id: String?
+
+        def direct_upload_id=: (String) -> String
+
+        def initialize: (?id: String, ?direct_upload_id: String) -> void
+
+        def to_hash: -> { id: String, direct_upload_id: String }
+      end
+
+      type gallery_image = { id: String, direct_upload_id: String }
+
+      class GalleryImage < WhopSDK::Internal::Type::BaseModel
         attr_reader id: String?
 
         def id=: (String) -> String

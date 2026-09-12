@@ -163,7 +163,8 @@ module WhopSDK
         end
         attr_accessor :resource
 
-        # Source of this ledger activity.
+        # Source of this ledger activity. Platform markup fees use object platform_fee and
+        # the ledger activity ID.
         sig do
           returns(T.nilable(WhopSDK::SwapCompletedWebhookEvent::Data::Source))
         end
@@ -334,7 +335,8 @@ module WhopSDK
           posted_at:,
           # Resource associated with this ledger activity.
           resource:,
-          # Source of this ledger activity.
+          # Source of this ledger activity. Platform markup fees use object platform_fee and
+          # the ledger activity ID.
           source:,
           # Dollar value of this movement as a decimal string, signed like `amount`.
           # Converted from the posted amount at the rate that was live when the line posted
@@ -2417,6 +2419,19 @@ module WhopSDK
           sig { returns(T.nilable(Time)) }
           attr_accessor :estimated_arrival
 
+          # Action that generated a platform markup fee: deposit, swap, transfer,
+          # card_spend, or payout. Present for platform_markup_fee and
+          # platform_markup_fee_payout, including when include_resource is false. Null when
+          # the originating action is unavailable; omitted on other source types.
+          sig do
+            returns(
+              T.nilable(
+                WhopSDK::SwapCompletedWebhookEvent::Data::Source::FeeKind::TaggedSymbol
+              )
+            )
+          end
+          attr_accessor :fee_kind
+
           # Amount converted out of from_currency as a decimal string (swap sources only).
           sig { returns(T.nilable(String)) }
           attr_accessor :from_amount
@@ -2523,7 +2538,8 @@ module WhopSDK
           sig { returns(T.nilable(String)) }
           attr_accessor :tx_hash
 
-          # Source of this ledger activity.
+          # Source of this ledger activity. Platform markup fees use object platform_fee and
+          # the ledger activity ID.
           sig do
             params(
               id: String,
@@ -2534,6 +2550,10 @@ module WhopSDK
               claim_url: T.nilable(String),
               created_at: T.nilable(Time),
               estimated_arrival: T.nilable(Time),
+              fee_kind:
+                T.nilable(
+                  WhopSDK::SwapCompletedWebhookEvent::Data::Source::FeeKind::OrSymbol
+                ),
               from_amount: T.nilable(String),
               from_currency: T.nilable(String),
               notes: T.nilable(String),
@@ -2577,6 +2597,11 @@ module WhopSDK
             # Estimated arrival as an ISO 8601 timestamp (payout sources only; requires
             # payout:withdrawal:read).
             estimated_arrival: nil,
+            # Action that generated a platform markup fee: deposit, swap, transfer,
+            # card_spend, or payout. Present for platform_markup_fee and
+            # platform_markup_fee_payout, including when include_resource is false. Null when
+            # the originating action is unavailable; omitted on other source types.
+            fee_kind: nil,
             # Amount converted out of from_currency as a decimal string (swap sources only).
             from_amount: nil,
             # Lowercase currency code converted from (swap sources only).
@@ -2633,6 +2658,10 @@ module WhopSDK
                 claim_url: T.nilable(String),
                 created_at: T.nilable(Time),
                 estimated_arrival: T.nilable(Time),
+                fee_kind:
+                  T.nilable(
+                    WhopSDK::SwapCompletedWebhookEvent::Data::Source::FeeKind::TaggedSymbol
+                  ),
                 from_amount: T.nilable(String),
                 from_currency: T.nilable(String),
                 notes: T.nilable(String),
@@ -2659,6 +2688,59 @@ module WhopSDK
             )
           end
           def to_hash
+          end
+
+          # Action that generated a platform markup fee: deposit, swap, transfer,
+          # card_spend, or payout. Present for platform_markup_fee and
+          # platform_markup_fee_payout, including when include_resource is false. Null when
+          # the originating action is unavailable; omitted on other source types.
+          module FeeKind
+            extend WhopSDK::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(
+                  Symbol,
+                  WhopSDK::SwapCompletedWebhookEvent::Data::Source::FeeKind
+                )
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            PAYOUT =
+              T.let(
+                :payout,
+                WhopSDK::SwapCompletedWebhookEvent::Data::Source::FeeKind::TaggedSymbol
+              )
+            TRANSFER =
+              T.let(
+                :transfer,
+                WhopSDK::SwapCompletedWebhookEvent::Data::Source::FeeKind::TaggedSymbol
+              )
+            DEPOSIT =
+              T.let(
+                :deposit,
+                WhopSDK::SwapCompletedWebhookEvent::Data::Source::FeeKind::TaggedSymbol
+              )
+            SWAP =
+              T.let(
+                :swap,
+                WhopSDK::SwapCompletedWebhookEvent::Data::Source::FeeKind::TaggedSymbol
+              )
+            CARD_SPEND =
+              T.let(
+                :card_spend,
+                WhopSDK::SwapCompletedWebhookEvent::Data::Source::FeeKind::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  WhopSDK::SwapCompletedWebhookEvent::Data::Source::FeeKind::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
+            end
           end
 
           class PaymentAmount < WhopSDK::Internal::Type::BaseModel

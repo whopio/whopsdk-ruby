@@ -13,7 +13,7 @@ module WhopSDK
       #
       # Creates a new product for an account.
       #
-      # @overload create(title:, account_id: nil, collect_shipping_address: nil, custom_cta: nil, custom_cta_url: nil, custom_statement_descriptor: nil, description: nil, global_affiliate_percentage: nil, global_affiliate_status: nil, headline: nil, labels: nil, member_affiliate_percentage: nil, member_affiliate_status: nil, metadata: nil, product_tax_code_id: nil, redirect_purchase_url: nil, route: nil, send_welcome_message: nil, visibility: nil, api_version_date: nil, idempotency_key: nil, request_options: {})
+      # @overload create(title:, account_id: nil, collect_shipping_address: nil, custom_cta: nil, custom_cta_url: nil, custom_statement_descriptor: nil, description: nil, gallery_images: nil, global_affiliate_percentage: nil, global_affiliate_status: nil, headline: nil, labels: nil, member_affiliate_percentage: nil, member_affiliate_status: nil, metadata: nil, product_tax_code_id: nil, redirect_purchase_url: nil, route: nil, send_welcome_message: nil, visibility: nil, api_version_date: nil, idempotency_key: nil, request_options: {})
       #
       # @param title [String] Body param: The display name of the product. Maximum 80 characters.
       #
@@ -28,6 +28,8 @@ module WhopSDK
       # @param custom_statement_descriptor [String, nil] Body param: Custom bank statement descriptor. Must start with WHOP\*.
       #
       # @param description [String, nil] Body param: A written description displayed on the product page.
+      #
+      # @param gallery_images [Array<WhopSDK::Models::ProductCreateParams::GalleryImage>, nil] Body param: Images or videos displayed in the product gallery, in display order.
       #
       # @param global_affiliate_percentage [Float, nil] Body param: The commission rate affiliates earn.
       #
@@ -104,13 +106,15 @@ module WhopSDK
       #
       # Updates an existing product.
       #
-      # @overload update(id, banner_image: nil, description: nil, headline: nil, labels: nil, metadata: nil, product_tax_code_id: nil, send_welcome_message: nil, title: nil, visibility: nil, api_version_date: nil, request_options: {})
+      # @overload update(id, banner_image: nil, description: nil, gallery_images: nil, headline: nil, labels: nil, metadata: nil, product_tax_code_id: nil, send_welcome_message: nil, title: nil, visibility: nil, api_version_date: nil, request_options: {})
       #
       # @param id [String] Path param: The unique identifier of the product.
       #
       # @param banner_image [WhopSDK::Models::ProductUpdateParams::BannerImage, nil] Body param: A wide image for the product, shown on the product page and on listi
       #
       # @param description [String, nil] Body param: A written description displayed on the product page.
+      #
+      # @param gallery_images [Array<WhopSDK::Models::ProductUpdateParams::GalleryImage>, nil] Body param: Images or videos displayed in the product gallery, in display order.
       #
       # @param headline [String, nil] Body param: A short marketing headline for the product page.
       #

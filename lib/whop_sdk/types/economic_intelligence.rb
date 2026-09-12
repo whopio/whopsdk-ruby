@@ -11,8 +11,6 @@ module Whop_sdk
 
       field :executed_at, -> { String }, optional: false, nullable: true
 
-      field :execution_type, -> { Whop_sdk::Types::EconomicIntelligenceExecutionType }, optional: false, nullable: false
-
       field :id, -> { String }, optional: false, nullable: false
 
       field :input, -> { String }, optional: false, nullable: true

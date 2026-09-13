@@ -5,7 +5,7 @@ module Whop_sdk
     module Businesses
       module Earnings
         module Types
-          class ListEarningsResponseDataItemResourceCreatedAt < Internal::Types::Model
+          class ListEarningsResponseDataItemResourceCurrency < Internal::Types::Model
             field :created_at, -> { String }, optional: false, nullable: false
 
             field :currency, -> { String }, optional: false, nullable: true
@@ -14,7 +14,7 @@ module Whop_sdk
 
             field :merchant_name, -> { String }, optional: false, nullable: true
 
-            field :object, -> { Whop_sdk::Partners::Businesses::Earnings::Types::ListEarningsResponseDataItemResourceCreatedAtObject }, optional: false, nullable: false
+            field :object, -> { Whop_sdk::Partners::Businesses::Earnings::Types::ListEarningsResponseDataItemResourceCurrencyObject }, optional: false, nullable: false
           end
         end
       end

@@ -11,6 +11,8 @@ module Whop_sdk
 
       field :partner, -> { Whop_sdk::Types::UserSummary }, optional: false, nullable: false
 
+      field :partner_reward_amount, -> { Whop_sdk::Types::Money }, optional: false, nullable: true
+
       field :qualification_amount, -> { Whop_sdk::Types::Money }, optional: false, nullable: true
 
       field :qualification_income_source, -> { Whop_sdk::Types::OnboardingRewardQualificationIncomeSource }, optional: false, nullable: true

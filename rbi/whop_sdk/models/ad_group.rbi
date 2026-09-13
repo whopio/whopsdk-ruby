@@ -44,7 +44,8 @@ module WhopSDK
       attr_accessor :budget_amount
 
       # Whether `budget_amount` is spent per day (`daily`) or over the ad group's full
-      # run (`lifetime`).
+      # run (`lifetime`). A `lifetime` ad group also needs `ends_at`, at least 24 hours
+      # after it starts.
       sig { returns(T.nilable(WhopSDK::AdGroup::BudgetType::TaggedSymbol)) }
       attr_accessor :budget_type
 
@@ -488,7 +489,8 @@ module WhopSDK
         # set on the campaign instead.
         budget_amount:,
         # Whether `budget_amount` is spent per day (`daily`) or over the ad group's full
-        # run (`lifetime`).
+        # run (`lifetime`). A `lifetime` ad group also needs `ends_at`, at least 24 hours
+        # after it starts.
         budget_type:,
         # Clicks divided by impressions, between 0 and 1.
         click_through_rate:,
@@ -825,7 +827,8 @@ module WhopSDK
       end
 
       # Whether `budget_amount` is spent per day (`daily`) or over the ad group's full
-      # run (`lifetime`).
+      # run (`lifetime`). A `lifetime` ad group also needs `ends_at`, at least 24 hours
+      # after it starts.
       module BudgetType
         extend WhopSDK::Internal::Type::Enum
 

@@ -12,6 +12,7 @@ module Whop_sdk
             AD_SPEND = "ad_spend"
             TRANSFER = "transfer"
             CARD_INTERCHANGE = "card_interchange"
+            ONBOARDING_REWARD = "onboarding_reward"
           end
         end
       end

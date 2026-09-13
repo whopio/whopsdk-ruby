@@ -5,7 +5,7 @@ module Whop_sdk
     module Businesses
       module Earnings
         module Types
-          module ListEarningsResponseDataItemResourceCreatedAtObject
+          module ListEarningsResponseDataItemResourceCurrencyObject
             extend Whop_sdk::Internal::Types::Enum
 
             CARD_TRANSACTION = "card_transaction"

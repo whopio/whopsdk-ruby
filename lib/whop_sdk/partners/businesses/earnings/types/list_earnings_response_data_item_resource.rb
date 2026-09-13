@@ -14,7 +14,9 @@ module Whop_sdk
 
             member -> { Whop_sdk::Partners::Businesses::Earnings::Types::ListEarningsResponseDataItemResourceOne }
 
-            member -> { Whop_sdk::Partners::Businesses::Earnings::Types::ListEarningsResponseDataItemResourceCreatedAt }
+            member -> { Whop_sdk::Partners::Businesses::Earnings::Types::ListEarningsResponseDataItemResourceCurrency }
+
+            member -> { Whop_sdk::Partners::Businesses::Earnings::Types::ListEarningsResponseDataItemResourceBusinessID }
           end
         end
       end

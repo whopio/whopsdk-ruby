@@ -8,6 +8,7 @@ module Whop_sdk
 
         ARB = "ARB"
         BNB = "BNB"
+        BTC = "BTC"
         ETH = "ETH"
         EURC = "EURC"
         HYPE = "HYPE"

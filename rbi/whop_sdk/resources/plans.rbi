@@ -328,8 +328,8 @@ module WhopSDK
       )
       end
 
-      # Permanently delete a plan from a product. Existing memberships on this plan will
-      # not be affected.
+      # Delete a plan from a product. It stops selling immediately; existing memberships
+      # on this plan will not be affected.
       sig do
         params(
           id: String,

@@ -164,7 +164,8 @@ module Whop_sdk
         end
       end
 
-      # Permanently delete a plan from a product. Existing memberships on this plan will not be affected.
+      # Delete a plan from a product. It stops selling immediately; existing memberships on this plan will not be
+      # affected.
       #
       # @param request_options [Hash]
       # @param params [Hash]

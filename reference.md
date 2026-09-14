@@ -435,6 +435,14 @@ client.accounts.create
 <dl>
 <dd>
 
+**website:** `String` — The account's business website, as an `http` or `https` URL of at most 255 characters. Also added to the account's `social_links` as a `website` entry.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **request_options:** `Whop_sdk::Accounts::RequestOptions` 
     
 </dd>
@@ -910,6 +918,14 @@ client.accounts.update(id: "id")
 <dd>
 
 **use_logo_as_opengraph_image_fallback:** `Internal::Types::Boolean` — Whether the account uses its logo as the fallback Open Graph image.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**website:** `String` — The account's business website, as an `http` or `https` URL of at most 255 characters. Also added to the account's `social_links` as a `website` entry. Pass `null` to clear the website; existing social links are left unchanged.
     
 </dd>
 </dl>

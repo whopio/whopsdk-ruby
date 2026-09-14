@@ -124,6 +124,8 @@ module Whop_sdk
       field :volume_usd, -> { Integer }, optional: false, nullable: true
 
       field :wallet, -> { Whop_sdk::Types::AccountWallet }, optional: false, nullable: true
+
+      field :website, -> { String }, optional: false, nullable: true
     end
   end
 end

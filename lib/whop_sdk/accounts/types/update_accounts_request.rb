@@ -81,6 +81,8 @@ module Whop_sdk
         field :title, -> { String }, optional: true, nullable: false
 
         field :use_logo_as_opengraph_image_fallback, -> { Internal::Types::Boolean }, optional: true, nullable: false
+
+        field :website, -> { String }, optional: true, nullable: false
       end
     end
   end

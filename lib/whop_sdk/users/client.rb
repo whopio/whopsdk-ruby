@@ -80,6 +80,7 @@ module Whop_sdk
       # @option request_options [Hash{String => Object}] :additional_body_parameters
       # @option request_options [Integer] :timeout_in_seconds
       # @option params [String, nil] :account_id
+      # @option params [Boolean, nil] :include_balance
       # @option params [Boolean, nil] :include_balance_history
       # @option params [String, nil] :from
       # @option params [String, nil] :to
@@ -94,6 +95,7 @@ module Whop_sdk
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
         query_params = {}
         query_params["account_id"] = params[:account_id] if params.key?(:account_id)
+        query_params["include_balance"] = params[:include_balance] if params.key?(:include_balance)
         query_params["include_balance_history"] = params[:include_balance_history] if params.key?(:include_balance_history)
         query_params["from"] = params[:from] if params.key?(:from)
         query_params["to"] = params[:to] if params.key?(:to)
@@ -184,6 +186,7 @@ module Whop_sdk
       # @option request_options [Integer] :timeout_in_seconds
       # @option params [String] :id
       # @option params [String, nil] :account_id
+      # @option params [Boolean, nil] :include_balance
       # @option params [Boolean, nil] :include_balance_history
       # @option params [String, nil] :from
       # @option params [String, nil] :to
@@ -198,6 +201,7 @@ module Whop_sdk
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
         query_params = {}
         query_params["account_id"] = params[:account_id] if params.key?(:account_id)
+        query_params["include_balance"] = params[:include_balance] if params.key?(:include_balance)
         query_params["include_balance_history"] = params[:include_balance_history] if params.key?(:include_balance_history)
         query_params["from"] = params[:from] if params.key?(:from)
         query_params["to"] = params[:to] if params.key?(:to)

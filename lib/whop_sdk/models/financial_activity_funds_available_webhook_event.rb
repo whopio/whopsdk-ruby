@@ -326,6 +326,8 @@ module WhopSDK
           CARD_SPEND_REFUND = :card_spend_refund
           CARD_UNLOAD_DEPOSIT = :card_unload_deposit
           CARD_UNLOAD_TRANSFER = :card_unload_transfer
+          CASHBACK = :cashback
+          CASHBACK_FUNDING = :cashback_funding
           COMPANY_REFERRAL = :company_referral
           CONNECTED_ACCOUNT_NEGATIVE_BALANCE = :connected_account_negative_balance
           CROSS_BORDER_PERCENTAGE_FEE = :cross_border_percentage_fee

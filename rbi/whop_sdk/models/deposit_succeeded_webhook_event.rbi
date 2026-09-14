@@ -603,6 +603,16 @@ module WhopSDK
               :card_unload_transfer,
               WhopSDK::DepositSucceededWebhookEvent::Data::LineType::TaggedSymbol
             )
+          CASHBACK =
+            T.let(
+              :cashback,
+              WhopSDK::DepositSucceededWebhookEvent::Data::LineType::TaggedSymbol
+            )
+          CASHBACK_FUNDING =
+            T.let(
+              :cashback_funding,
+              WhopSDK::DepositSucceededWebhookEvent::Data::LineType::TaggedSymbol
+            )
           COMPANY_REFERRAL =
             T.let(
               :company_referral,

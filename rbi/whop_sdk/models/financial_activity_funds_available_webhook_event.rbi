@@ -622,6 +622,16 @@ module WhopSDK
               :card_unload_transfer,
               WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
+          CASHBACK =
+            T.let(
+              :cashback,
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
+            )
+          CASHBACK_FUNDING =
+            T.let(
+              :cashback_funding,
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
+            )
           COMPANY_REFERRAL =
             T.let(
               :company_referral,

@@ -10,6 +10,7 @@ module WhopSDK
       | :crypto_deposit_markup
       | :bank_deposit_markup
       | :crypto_swap_markup
+      | :payment_markup
 
     module FeeMarkupType
       extend WhopSDK::Internal::Type::Enum
@@ -23,6 +24,7 @@ module WhopSDK
       CRYPTO_DEPOSIT_MARKUP: :crypto_deposit_markup
       BANK_DEPOSIT_MARKUP: :bank_deposit_markup
       CRYPTO_SWAP_MARKUP: :crypto_swap_markup
+      PAYMENT_MARKUP: :payment_markup
 
       def self?.values: -> ::Array[WhopSDK::Models::fee_markup_type]
     end

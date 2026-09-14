@@ -36,6 +36,8 @@ module WhopSDK
         T.let(:bank_deposit_markup, WhopSDK::FeeMarkupType::TaggedSymbol)
       CRYPTO_SWAP_MARKUP =
         T.let(:crypto_swap_markup, WhopSDK::FeeMarkupType::TaggedSymbol)
+      PAYMENT_MARKUP =
+        T.let(:payment_markup, WhopSDK::FeeMarkupType::TaggedSymbol)
 
       sig { override.returns(T::Array[WhopSDK::FeeMarkupType::TaggedSymbol]) }
       def self.values

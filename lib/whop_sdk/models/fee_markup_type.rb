@@ -15,6 +15,7 @@ module WhopSDK
       CRYPTO_DEPOSIT_MARKUP = :crypto_deposit_markup
       BANK_DEPOSIT_MARKUP = :bank_deposit_markup
       CRYPTO_SWAP_MARKUP = :crypto_swap_markup
+      PAYMENT_MARKUP = :payment_markup
 
       # @!method self.values
       #   @return [Array<Symbol>]

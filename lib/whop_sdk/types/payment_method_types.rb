@@ -118,6 +118,7 @@ module Whop_sdk
       SUNBIT = "sunbit"
       SWISH = "swish"
       TAMARA = "tamara"
+      TOUCH_N_GO = "touch_n_go"
       TWINT = "twint"
       UPI = "upi"
       US_BANK_ACCOUNT = "us_bank_account"

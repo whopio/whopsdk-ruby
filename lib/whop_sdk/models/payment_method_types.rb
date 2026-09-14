@@ -22,7 +22,6 @@ module WhopSDK
       BANCONTACT = :bancontact
       BANK_WIRE = :bank_wire
       BILLIE = :billie
-      BIZUM = :bizum
       BLIK = :blik
       BOLETO = :boleto
       BRE_B = :bre_b

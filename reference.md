@@ -15347,7 +15347,7 @@ client.economic_intelligence.list
 </dl>
 </details>
 
-<details><summary><code>client.economic_intelligence.<a href="/lib/whop_sdk/economic_intelligence/client.rb">run</a>(request) -> Whop_sdk::Types::EconomicIntelligence</code></summary>
+<details><summary><code>client.economic_intelligence.<a href="/lib/whop_sdk/economic_intelligence/client.rb">create</a>(request) -> Whop_sdk::Types::EconomicIntelligence</code></summary>
 <dl>
 <dd>
 
@@ -15374,7 +15374,7 @@ Harnesses Economic Intelligence to generate recommended actions that lead the bu
 <dd>
 
 ```ruby
-client.economic_intelligence.run(input: "get more repeat buyers for my taurine supplement")
+client.economic_intelligence.create(input: "I sell $79 customized gym straps. The number of purchases per day fell from 84 to 66 since June and my ads cost per signup doubled to $38. Half the leads never open the checkout. I want to win back churned visitors and lift conversion without cutting the price, and I can spend up to $500 this month on it.")
 ```
 </dd>
 </dl>
@@ -15398,6 +15398,87 @@ client.economic_intelligence.run(input: "get more repeat buyers for my taurine s
 <dd>
 
 **input:** `String` — What the owner wants, in their own words. Up to 1000 characters.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Whop_sdk::EconomicIntelligence::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.economic_intelligence.<a href="/lib/whop_sdk/economic_intelligence/client.rb">update</a>(id:, request) -> Whop_sdk::Types::EconomicIntelligence</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retires a `ready` recommendation the owner no longer wants by setting its status to `superseded`. It leaves the ready list and stays in the account's history.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.economic_intelligence.update(
+  id: "id",
+  status: "superseded"
+)
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — Recommendation ID, prefixed `reca_`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**account_id:** `String` — Account ID, prefixed `biz_`. Defaults to the API key's own account.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**status:** `Whop_sdk::EconomicIntelligence::Types::UpdateEconomicIntelligenceRequestStatus` — The status to move the recommendation to. Only `superseded` is accepted.
     
 </dd>
 </dl>

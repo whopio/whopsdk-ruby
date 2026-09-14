@@ -506,7 +506,14 @@ module WhopSDK
         #   @return [WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Wallet, nil]
         required :wallet, -> { WhopSDK::AccountUpdatedWebhookEvent::Data::Wallet }, nil?: true
 
-        # @!method initialize(id:, balances:, banner_image_url:, business_address:, business_name:, business_type:, can_transfer_pending_balance_to_children:, capabilities:, cards:, collect_vat_id:, company_formation:, country:, created_at:, description:, economic_intelligence:, email:, eula:, home_preferences:, industry_group:, industry_type:, invoice_prefix:, logo_url:, metadata:, onboarding_type:, opengraph_image_url:, opengraph_image_variant:, other_business_description:, other_industry_description:, owner:, parent_account:, payment_controls:, privacy_policy:, product_tax_code:, recommended_actions:, require_2fa:, required_actions:, return_policy:, route:, send_customer_emails:, show_joined_whops:, show_reviews_dtc:, show_user_directory:, social_links:, stablecoin_rails:, status:, status_reason:, store_page_config:, target_audience:, tax_collection_enabled_states:, tax_identifiers:, tax_remitted_by:, tax_type:, terms_of_service:, three_ds_level:, title:, total_earned_usd:, total_usd:, use_logo_as_opengraph_image_fallback:, verification:, volume_usd:, wallet:)
+        # @!attribute website
+        #   The account's business website URL, or `null` if none has been provided. Setting
+        #   it also adds a `website` entry to `social_links`.
+        #
+        #   @return [String, nil]
+        required :website, String, nil?: true
+
+        # @!method initialize(id:, balances:, banner_image_url:, business_address:, business_name:, business_type:, can_transfer_pending_balance_to_children:, capabilities:, cards:, collect_vat_id:, company_formation:, country:, created_at:, description:, economic_intelligence:, email:, eula:, home_preferences:, industry_group:, industry_type:, invoice_prefix:, logo_url:, metadata:, onboarding_type:, opengraph_image_url:, opengraph_image_variant:, other_business_description:, other_industry_description:, owner:, parent_account:, payment_controls:, privacy_policy:, product_tax_code:, recommended_actions:, require_2fa:, required_actions:, return_policy:, route:, send_customer_emails:, show_joined_whops:, show_reviews_dtc:, show_user_directory:, social_links:, stablecoin_rails:, status:, status_reason:, store_page_config:, target_audience:, tax_collection_enabled_states:, tax_identifiers:, tax_remitted_by:, tax_type:, terms_of_service:, three_ds_level:, title:, total_earned_usd:, total_usd:, use_logo_as_opengraph_image_fallback:, verification:, volume_usd:, wallet:, website:)
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::AccountUpdatedWebhookEvent::Data} for more details.
         #
@@ -631,6 +638,8 @@ module WhopSDK
         #   @param volume_usd [Float, nil] Lifetime volume through the account — sales plus transfers received — normalized
         #
         #   @param wallet [WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Wallet, nil] Account primary crypto wallet, or `null` if none has been provisioned.
+        #
+        #   @param website [String, nil] The account's business website URL, or `null` if none has been provided. Setting
 
         class Balance < WhopSDK::Internal::Type::BaseModel
           # @!attribute balance

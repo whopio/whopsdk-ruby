@@ -630,6 +630,11 @@ module WhopSDK
         end
         attr_writer :wallet
 
+        # The account's business website URL, or `null` if none has been provided. Setting
+        # it also adds a `website` entry to `social_links`.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :website
+
         sig do
           params(
             id: String,
@@ -759,7 +764,8 @@ module WhopSDK
             wallet:
               T.nilable(
                 WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Wallet::OrHash
-              )
+              ),
+            website: T.nilable(String)
           ).returns(T.attached_class)
         end
         def self.new(
@@ -919,7 +925,10 @@ module WhopSDK
           # `null` otherwise.
           volume_usd:,
           # Account primary crypto wallet, or `null` if none has been provisioned.
-          wallet:
+          wallet:,
+          # The account's business website URL, or `null` if none has been provided. Setting
+          # it also adds a `website` entry to `social_links`.
+          website:
         )
         end
 
@@ -1052,7 +1061,8 @@ module WhopSDK
               wallet:
                 T.nilable(
                   WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Wallet
-                )
+                ),
+              website: T.nilable(String)
             }
           )
         end

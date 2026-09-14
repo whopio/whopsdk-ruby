@@ -115,7 +115,8 @@ module WhopSDK
           use_logo_as_opengraph_image_fallback: bool,
           verification: top,
           volume_usd: Float?,
-          wallet: WhopSDK::AccountUpdatedWebhookEvent::Data::Wallet?
+          wallet: WhopSDK::AccountUpdatedWebhookEvent::Data::Wallet?,
+          website: String?
         }
 
       class Data < WhopSDK::Internal::Type::BaseModel
@@ -241,6 +242,8 @@ module WhopSDK
 
         attr_accessor wallet: WhopSDK::AccountUpdatedWebhookEvent::Data::Wallet?
 
+        attr_accessor website: String?
+
         def initialize: (
           id: String,
           balances: ::Array[WhopSDK::AccountUpdatedWebhookEvent::Data::Balance],
@@ -302,7 +305,8 @@ module WhopSDK
           use_logo_as_opengraph_image_fallback: bool,
           verification: top,
           volume_usd: Float?,
-          wallet: WhopSDK::AccountUpdatedWebhookEvent::Data::Wallet?
+          wallet: WhopSDK::AccountUpdatedWebhookEvent::Data::Wallet?,
+          website: String?
         ) -> void
 
         def to_hash: -> {
@@ -366,7 +370,8 @@ module WhopSDK
           use_logo_as_opengraph_image_fallback: bool,
           verification: top,
           volume_usd: Float?,
-          wallet: WhopSDK::AccountUpdatedWebhookEvent::Data::Wallet?
+          wallet: WhopSDK::AccountUpdatedWebhookEvent::Data::Wallet?,
+          website: String?
         }
 
         type balance =

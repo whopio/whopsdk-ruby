@@ -8,6 +8,8 @@ module Whop_sdk
 
         field :account_id, -> { String }, optional: true, nullable: false
 
+        field :include_balance, -> { Internal::Types::Boolean }, optional: true, nullable: false
+
         field :include_balance_history, -> { Internal::Types::Boolean }, optional: true, nullable: false
 
         field :from, -> { String }, optional: true, nullable: false

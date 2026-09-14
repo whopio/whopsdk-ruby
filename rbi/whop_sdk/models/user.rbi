@@ -12,7 +12,7 @@ module WhopSDK
       # The user's balance: personal cash + crypto + in-flight treasury deposits, plus
       # account balances for accounts they own. Computed only on the self view
       # (retrieved with the reserved id `me`) for callers with balance-read scope;
-      # `null` otherwise.
+      # `null` otherwise, or when `include_balance=false`.
       sig { returns(T.nilable(WhopSDK::User::Balance)) }
       attr_reader :balance
 
@@ -132,7 +132,7 @@ module WhopSDK
         # The user's balance: personal cash + crypto + in-flight treasury deposits, plus
         # account balances for accounts they own. Computed only on the self view
         # (retrieved with the reserved id `me`) for callers with balance-read scope;
-        # `null` otherwise.
+        # `null` otherwise, or when `include_balance=false`.
         balance:,
         # The user's cumulative wallet balance over time (USD `{ t, v }` points plus
         # last/min/max), for the balance chart. Opt in with `include_balance_history=true`
@@ -244,7 +244,7 @@ module WhopSDK
         # The user's balance: personal cash + crypto + in-flight treasury deposits, plus
         # account balances for accounts they own. Computed only on the self view
         # (retrieved with the reserved id `me`) for callers with balance-read scope;
-        # `null` otherwise.
+        # `null` otherwise, or when `include_balance=false`.
         sig do
           params(
             businesses: T::Array[WhopSDK::User::Balance::Business::OrHash],

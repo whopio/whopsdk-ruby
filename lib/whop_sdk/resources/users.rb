@@ -20,13 +20,15 @@ module WhopSDK
       # opt-in `balance_history`. They are always `null` when addressing a user by tag
       # or username.
       #
-      # @overload retrieve(id, account_id: nil, from: nil, include_balance_history: nil, interval: nil, time_zone: nil, to: nil, api_version_date: nil, request_options: {})
+      # @overload retrieve(id, account_id: nil, from: nil, include_balance: nil, include_balance_history: nil, interval: nil, time_zone: nil, to: nil, api_version_date: nil, request_options: {})
       #
       # @param id [String] Path param: User ID (prefixed `user_`), username, or `me` for the authenticated
       #
       # @param account_id [String] Query param: When set, returns the user's account-specific profile overrides for
       #
       # @param from [String] Query param: Balance-history window start, ISO 8601 date or datetime. Defaults t
+      #
+      # @param include_balance [Boolean] Query param: Compute live wallet and owned-account balances on the self view (de
       #
       # @param include_balance_history [Boolean] Query param: Also compute your balance history (opt-in; runs a heavier query). O
       #
@@ -44,7 +46,8 @@ module WhopSDK
       #
       # @see WhopSDK::Models::UserRetrieveParams
       def retrieve(id, params = {})
-        query_params = [:account_id, :from, :include_balance_history, :interval, :time_zone, :to]
+        query_params =
+          [:account_id, :from, :include_balance, :include_balance_history, :interval, :time_zone, :to]
         parsed, options = WhopSDK::UserRetrieveParams.dump_request(params)
         query = WhopSDK::Internal::Util.encode_query_params(parsed.slice(*query_params))
         @client.request(

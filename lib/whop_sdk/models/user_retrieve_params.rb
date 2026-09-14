@@ -26,6 +26,14 @@ module WhopSDK
       #   @return [String, nil]
       optional :from, String
 
+      # @!attribute include_balance
+      #   Compute live wallet and owned-account balances on the self view (default true).
+      #   Set false for identity-only reads. Ignored when the id is not `me` or the caller
+      #   lacks balance-read scope.
+      #
+      #   @return [Boolean, nil]
+      optional :include_balance, WhopSDK::Internal::Type::Boolean
+
       # @!attribute include_balance_history
       #   Also compute your balance history (opt-in; runs a heavier query). Only applies
       #   when the id is `me`; ignored for callers without balance-read scope.
@@ -59,7 +67,7 @@ module WhopSDK
       #   @return [String, nil]
       optional :api_version_date, String
 
-      # @!method initialize(id:, account_id: nil, from: nil, include_balance_history: nil, interval: nil, time_zone: nil, to: nil, api_version_date: nil, request_options: {})
+      # @!method initialize(id:, account_id: nil, from: nil, include_balance: nil, include_balance_history: nil, interval: nil, time_zone: nil, to: nil, api_version_date: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::UserRetrieveParams} for more details.
       #
@@ -68,6 +76,8 @@ module WhopSDK
       #   @param account_id [String] When set, returns the user's account-specific profile overrides for this account
       #
       #   @param from [String] Balance-history window start, ISO 8601 date or datetime. Defaults to 30 days ago
+      #
+      #   @param include_balance [Boolean] Compute live wallet and owned-account balances on the self view (default true).
       #
       #   @param include_balance_history [Boolean] Also compute your balance history (opt-in; runs a heavier query). Only applies w
       #

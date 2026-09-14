@@ -14,7 +14,7 @@ module WhopSDK
       #   The user's balance: personal cash + crypto + in-flight treasury deposits, plus
       #   account balances for accounts they own. Computed only on the self view
       #   (retrieved with the reserved id `me`) for callers with balance-read scope;
-      #   `null` otherwise.
+      #   `null` otherwise, or when `include_balance=false`.
       #
       #   @return [WhopSDK::Models::User::Balance, nil]
       required :balance, -> { WhopSDK::User::Balance }, nil?: true
@@ -206,7 +206,7 @@ module WhopSDK
         #   The user's balance: personal cash + crypto + in-flight treasury deposits, plus
         #   account balances for accounts they own. Computed only on the self view
         #   (retrieved with the reserved id `me`) for callers with balance-read scope;
-        #   `null` otherwise.
+        #   `null` otherwise, or when `include_balance=false`.
         #
         #   @param businesses [Array<WhopSDK::Models::User::Balance::Business>]
         #

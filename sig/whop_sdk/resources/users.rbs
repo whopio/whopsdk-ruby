@@ -5,6 +5,7 @@ module WhopSDK
         String id,
         ?account_id: String,
         ?from: String,
+        ?include_balance: bool,
         ?include_balance_history: bool,
         ?interval: WhopSDK::Models::UserRetrieveParams::interval,
         ?time_zone: String,

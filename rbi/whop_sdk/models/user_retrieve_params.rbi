@@ -30,6 +30,15 @@ module WhopSDK
       sig { params(from: String).void }
       attr_writer :from
 
+      # Compute live wallet and owned-account balances on the self view (default true).
+      # Set false for identity-only reads. Ignored when the id is not `me` or the caller
+      # lacks balance-read scope.
+      sig { returns(T.nilable(T::Boolean)) }
+      attr_reader :include_balance
+
+      sig { params(include_balance: T::Boolean).void }
+      attr_writer :include_balance
+
       # Also compute your balance history (opt-in; runs a heavier query). Only applies
       # when the id is `me`; ignored for callers without balance-read scope.
       sig { returns(T.nilable(T::Boolean)) }
@@ -77,6 +86,7 @@ module WhopSDK
           id: String,
           account_id: String,
           from: String,
+          include_balance: T::Boolean,
           include_balance_history: T::Boolean,
           interval: WhopSDK::UserRetrieveParams::Interval::OrSymbol,
           time_zone: String,
@@ -93,6 +103,10 @@ module WhopSDK
         # Balance-history window start, ISO 8601 date or datetime. Defaults to 30 days
         # ago. Only used with `include_balance_history`.
         from: nil,
+        # Compute live wallet and owned-account balances on the self view (default true).
+        # Set false for identity-only reads. Ignored when the id is not `me` or the caller
+        # lacks balance-read scope.
+        include_balance: nil,
         # Also compute your balance history (opt-in; runs a heavier query). Only applies
         # when the id is `me`; ignored for callers without balance-read scope.
         include_balance_history: nil,
@@ -116,6 +130,7 @@ module WhopSDK
             id: String,
             account_id: String,
             from: String,
+            include_balance: T::Boolean,
             include_balance_history: T::Boolean,
             interval: WhopSDK::UserRetrieveParams::Interval::OrSymbol,
             time_zone: String,

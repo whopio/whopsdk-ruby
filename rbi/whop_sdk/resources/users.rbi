@@ -21,6 +21,7 @@ module WhopSDK
           id: String,
           account_id: String,
           from: String,
+          include_balance: T::Boolean,
           include_balance_history: T::Boolean,
           interval: WhopSDK::UserRetrieveParams::Interval::OrSymbol,
           time_zone: String,
@@ -39,6 +40,10 @@ module WhopSDK
         # Query param: Balance-history window start, ISO 8601 date or datetime. Defaults
         # to 30 days ago. Only used with `include_balance_history`.
         from: nil,
+        # Query param: Compute live wallet and owned-account balances on the self view
+        # (default true). Set false for identity-only reads. Ignored when the id is not
+        # `me` or the caller lacks balance-read scope.
+        include_balance: nil,
         # Query param: Also compute your balance history (opt-in; runs a heavier query).
         # Only applies when the id is `me`; ignored for callers without balance-read
         # scope.

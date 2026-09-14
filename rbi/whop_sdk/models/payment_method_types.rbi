@@ -153,6 +153,7 @@ module WhopSDK
       SUNBIT = T.let(:sunbit, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       SWISH = T.let(:swish, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       TAMARA = T.let(:tamara, WhopSDK::PaymentMethodTypes::TaggedSymbol)
+      TOUCH_N_GO = T.let(:touch_n_go, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       TWINT = T.let(:twint, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       UPI = T.let(:upi, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       US_BANK_ACCOUNT =

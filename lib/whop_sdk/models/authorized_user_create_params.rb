@@ -61,6 +61,7 @@ module WhopSDK
 
         OWNER = :owner
         ADMIN = :admin
+        PARTNER = :partner
         SALES_MANAGER = :sales_manager
         MODERATOR = :moderator
         ADVERTISER = :advertiser

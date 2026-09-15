@@ -2416,8 +2416,8 @@ module WhopSDK
               end
               attr_accessor :status
 
-              # When the signing URL expires, as an ISO 8601 timestamp. Present while `status`
-              # is `pending`.
+              # When the signing URL expires, as an ISO 8601 timestamp. Present only when the
+              # signing URL is included.
               sig { returns(T.nilable(String)) }
               attr_reader :expires_at
 
@@ -2425,7 +2425,7 @@ module WhopSDK
               attr_writer :expires_at
 
               # Hosted signing URL where the founder completes the form. Present while `status`
-              # is `pending`.
+              # is `pending` and the caller has `incorporation:write`. Omitted from webhooks.
               sig { returns(T.nilable(String)) }
               attr_reader :url
 
@@ -2446,11 +2446,11 @@ module WhopSDK
                 # `pending` when a signing session is ready for the founder; `unknown` when the
                 # signature state could not be determined.
                 status:,
-                # When the signing URL expires, as an ISO 8601 timestamp. Present while `status`
-                # is `pending`.
+                # When the signing URL expires, as an ISO 8601 timestamp. Present only when the
+                # signing URL is included.
                 expires_at: nil,
                 # Hosted signing URL where the founder completes the form. Present while `status`
-                # is `pending`.
+                # is `pending` and the caller has `incorporation:write`. Omitted from webhooks.
                 url: nil
               )
               end
@@ -2523,8 +2523,8 @@ module WhopSDK
               end
               attr_accessor :status
 
-              # When the signing URL expires, as an ISO 8601 timestamp. Present while `status`
-              # is `pending`.
+              # When the signing URL expires, as an ISO 8601 timestamp. Present only when the
+              # signing URL is included.
               sig { returns(T.nilable(String)) }
               attr_reader :expires_at
 
@@ -2532,7 +2532,7 @@ module WhopSDK
               attr_writer :expires_at
 
               # Hosted signing URL where the founder completes the form. Present while `status`
-              # is `pending`.
+              # is `pending` and the caller has `incorporation:write`. Omitted from webhooks.
               sig { returns(T.nilable(String)) }
               attr_reader :url
 
@@ -2553,11 +2553,11 @@ module WhopSDK
                 # `pending` when a signing session is ready for the founder; `unknown` when the
                 # signature state could not be determined.
                 status:,
-                # When the signing URL expires, as an ISO 8601 timestamp. Present while `status`
-                # is `pending`.
+                # When the signing URL expires, as an ISO 8601 timestamp. Present only when the
+                # signing URL is included.
                 expires_at: nil,
                 # Hosted signing URL where the founder completes the form. Present while `status`
-                # is `pending`.
+                # is `pending` and the caller has `incorporation:write`. Omitted from webhooks.
                 url: nil
               )
               end

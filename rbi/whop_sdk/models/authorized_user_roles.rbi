@@ -12,6 +12,7 @@ module WhopSDK
 
       OWNER = T.let(:owner, WhopSDK::AuthorizedUserRoles::TaggedSymbol)
       ADMIN = T.let(:admin, WhopSDK::AuthorizedUserRoles::TaggedSymbol)
+      PARTNER = T.let(:partner, WhopSDK::AuthorizedUserRoles::TaggedSymbol)
       SALES_MANAGER =
         T.let(:sales_manager, WhopSDK::AuthorizedUserRoles::TaggedSymbol)
       MODERATOR = T.let(:moderator, WhopSDK::AuthorizedUserRoles::TaggedSymbol)

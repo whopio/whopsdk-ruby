@@ -98,6 +98,11 @@ module WhopSDK
           T.let(:owner, WhopSDK::AuthorizedUserCreateParams::Role::TaggedSymbol)
         ADMIN =
           T.let(:admin, WhopSDK::AuthorizedUserCreateParams::Role::TaggedSymbol)
+        PARTNER =
+          T.let(
+            :partner,
+            WhopSDK::AuthorizedUserCreateParams::Role::TaggedSymbol
+          )
         SALES_MANAGER =
           T.let(
             :sales_manager,

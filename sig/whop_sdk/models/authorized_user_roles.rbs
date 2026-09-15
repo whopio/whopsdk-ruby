@@ -3,6 +3,7 @@ module WhopSDK
     type authorized_user_roles =
       :owner
       | :admin
+      | :partner
       | :sales_manager
       | :moderator
       | :advertiser
@@ -17,6 +18,7 @@ module WhopSDK
 
       OWNER: :owner
       ADMIN: :admin
+      PARTNER: :partner
       SALES_MANAGER: :sales_manager
       MODERATOR: :moderator
       ADVERTISER: :advertiser

@@ -2454,7 +2454,8 @@ module WhopSDK
           sig { returns(T.nilable(String)) }
           attr_accessor :chain
 
-          # Public claim URL for the airdrop link (airdrop_link sources only).
+          # The airdrop's claim URL. Null unless the caller can manage claim links on the
+          # funding company or withdraw from the funding personal balance.
           sig { returns(T.nilable(String)) }
           attr_accessor :claim_url
 
@@ -2638,7 +2639,8 @@ module WhopSDK
             # Chain the deposit landed on, for example plasma (onchain_transaction sources
             # only).
             chain: nil,
-            # Public claim URL for the airdrop link (airdrop_link sources only).
+            # The airdrop's claim URL. Null unless the caller can manage claim links on the
+            # funding company or withdraw from the funding personal balance.
             claim_url: nil,
             # Payout creation time as an ISO 8601 timestamp (payout sources only; requires
             # payout:withdrawal:read).

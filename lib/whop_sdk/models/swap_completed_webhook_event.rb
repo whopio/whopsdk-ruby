@@ -1146,7 +1146,8 @@ module WhopSDK
           optional :chain, String, nil?: true
 
           # @!attribute claim_url
-          #   Public claim URL for the airdrop link (airdrop_link sources only).
+          #   The airdrop's claim URL. Null unless the caller can manage claim links on the
+          #   funding company or withdraw from the funding personal balance.
           #
           #   @return [String, nil]
           optional :claim_url, String, nil?: true
@@ -1305,7 +1306,7 @@ module WhopSDK
           #
           #   @param chain [String, nil] Chain the deposit landed on, for example plasma (onchain_transaction sources onl
           #
-          #   @param claim_url [String, nil] Public claim URL for the airdrop link (airdrop_link sources only).
+          #   @param claim_url [String, nil] The airdrop's claim URL. Null unless the caller can manage claim links on the fu
           #
           #   @param created_at [Time, nil] Payout creation time as an ISO 8601 timestamp (payout sources only; requires pay
           #

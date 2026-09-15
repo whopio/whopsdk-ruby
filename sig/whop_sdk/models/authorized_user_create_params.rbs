@@ -42,13 +42,15 @@ module WhopSDK
         request_options: WhopSDK::RequestOptions
       }
 
-      type role = :owner | :admin | :sales_manager | :moderator | :advertiser
+      type role =
+        :owner | :admin | :partner | :sales_manager | :moderator | :advertiser
 
       module Role
         extend WhopSDK::Internal::Type::Enum
 
         OWNER: :owner
         ADMIN: :admin
+        PARTNER: :partner
         SALES_MANAGER: :sales_manager
         MODERATOR: :moderator
         ADVERTISER: :advertiser

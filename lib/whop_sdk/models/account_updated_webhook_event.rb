@@ -1293,15 +1293,15 @@ module WhopSDK
                        enum: -> { WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures::Form8821::Status }
 
               # @!attribute expires_at
-              #   When the signing URL expires, as an ISO 8601 timestamp. Present while `status`
-              #   is `pending`.
+              #   When the signing URL expires, as an ISO 8601 timestamp. Present only when the
+              #   signing URL is included.
               #
               #   @return [String, nil]
               optional :expires_at, String
 
               # @!attribute url
               #   Hosted signing URL where the founder completes the form. Present while `status`
-              #   is `pending`.
+              #   is `pending` and the caller has `incorporation:write`. Omitted from webhooks.
               #
               #   @return [String, nil]
               optional :url, String
@@ -1316,7 +1316,7 @@ module WhopSDK
               #
               #   @param status [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures::Form8821::Status] `pending` when a signing session is ready for the founder; `unknown` when the si
               #
-              #   @param expires_at [String] When the signing URL expires, as an ISO 8601 timestamp. Present while `status` i
+              #   @param expires_at [String] When the signing URL expires, as an ISO 8601 timestamp. Present only when the si
               #
               #   @param url [String] Hosted signing URL where the founder completes the form. Present while `status`
 
@@ -1346,15 +1346,15 @@ module WhopSDK
                        enum: -> { WhopSDK::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures::Ss4::Status }
 
               # @!attribute expires_at
-              #   When the signing URL expires, as an ISO 8601 timestamp. Present while `status`
-              #   is `pending`.
+              #   When the signing URL expires, as an ISO 8601 timestamp. Present only when the
+              #   signing URL is included.
               #
               #   @return [String, nil]
               optional :expires_at, String
 
               # @!attribute url
               #   Hosted signing URL where the founder completes the form. Present while `status`
-              #   is `pending`.
+              #   is `pending` and the caller has `incorporation:write`. Omitted from webhooks.
               #
               #   @return [String, nil]
               optional :url, String
@@ -1369,7 +1369,7 @@ module WhopSDK
               #
               #   @param status [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::CompanyFormation::Signatures::Ss4::Status] `pending` when a signing session is ready for the founder; `unknown` when the si
               #
-              #   @param expires_at [String] When the signing URL expires, as an ISO 8601 timestamp. Present while `status` i
+              #   @param expires_at [String] When the signing URL expires, as an ISO 8601 timestamp. Present only when the si
               #
               #   @param url [String] Hosted signing URL where the founder completes the form. Present while `status`
 

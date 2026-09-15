@@ -109,8 +109,8 @@ module Whop_sdk
         end
       end
 
-      # Retires a `ready` recommendation the owner no longer wants by setting its status to `superseded`. It leaves the
-      # ready list and stays in the account's history.
+      # Records approval with `executed`, or retires an unwanted recommendation with `superseded`. Both replenish the
+      # ready inventory. Supplying a rejection reason also allows retiring an executed recommendation.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::EconomicIntelligence::Types::UpdateEconomicIntelligenceRequest]
@@ -125,7 +125,7 @@ module Whop_sdk
       # @example
       #   client.economic_intelligence.update(
       #     id: "id",
-      #     status: "superseded"
+      #     status: "executed"
       #   )
       #
       # @return [Whop_sdk::Types::EconomicIntelligence]

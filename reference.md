@@ -33391,7 +33391,7 @@ client.team_members.create(
 <dl>
 <dd>
 
-**role:** `Whop_sdk::TeamMembers::Types::CreateTeamMembersRequestRole` — The system role to grant.
+**role:** `Whop_sdk::TeamMembers::Types::CreateTeamMembersRequestRole` — The system role to grant. Partners must pass all certification quizzes.
     
 </dd>
 </dl>
@@ -33596,7 +33596,7 @@ client.team_members.update(
 <dl>
 <dd>
 
-**role:** `Whop_sdk::TeamMembers::Types::UpdateTeamMembersRequestRole` — The system role to grant.
+**role:** `Whop_sdk::TeamMembers::Types::UpdateTeamMembersRequestRole` — The system role to grant. Partners must pass all certification quizzes.
     
 </dd>
 </dl>

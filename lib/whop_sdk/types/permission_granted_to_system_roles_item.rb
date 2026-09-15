@@ -10,6 +10,7 @@ module Whop_sdk
       MODERATOR = "moderator"
       SALES_MANAGER = "sales_manager"
       ADVERTISER = "advertiser"
+      PARTNER = "partner"
     end
   end
 end

@@ -6,6 +6,7 @@ module Whop_sdk
       module UpdateEconomicIntelligenceRequestStatus
         extend Whop_sdk::Internal::Types::Enum
 
+        EXECUTED = "executed"
         SUPERSEDED = "superseded"
       end
     end

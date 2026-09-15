@@ -15445,7 +15445,7 @@ client.economic_intelligence.create(input: "I sell $79 customized gym straps. Th
 <dl>
 <dd>
 
-Retires a `ready` recommendation the owner no longer wants by setting its status to `superseded`. It leaves the ready list and stays in the account's history.
+Records approval with `executed`, or retires an unwanted recommendation with `superseded`. Both replenish the ready inventory. Supplying a rejection reason also allows retiring an executed recommendation.
 </dd>
 </dl>
 </dd>
@@ -15462,7 +15462,7 @@ Retires a `ready` recommendation the owner no longer wants by setting its status
 ```ruby
 client.economic_intelligence.update(
   id: "id",
-  status: "superseded"
+  status: "executed"
 )
 ```
 </dd>
@@ -15494,7 +15494,15 @@ client.economic_intelligence.update(
 <dl>
 <dd>
 
-**status:** `Whop_sdk::EconomicIntelligence::Types::UpdateEconomicIntelligenceRequestStatus` — The status to move the recommendation to. Only `superseded` is accepted.
+**reason:** `String` — Why the recommendation was rejected. Used as feedback when replenishing recommendations.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**status:** `Whop_sdk::EconomicIntelligence::Types::UpdateEconomicIntelligenceRequestStatus` — Use `executed` after approval to start the action, or `superseded` to reject it.
     
 </dd>
 </dl>

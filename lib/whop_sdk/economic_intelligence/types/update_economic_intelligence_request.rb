@@ -8,6 +8,8 @@ module Whop_sdk
 
         field :account_id, -> { String }, optional: true, nullable: false
 
+        field :reason, -> { String }, optional: true, nullable: false
+
         field :status, -> { Whop_sdk::EconomicIntelligence::Types::UpdateEconomicIntelligenceRequestStatus }, optional: false, nullable: false
       end
     end

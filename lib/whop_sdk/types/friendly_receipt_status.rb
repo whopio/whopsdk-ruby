@@ -9,6 +9,7 @@ module Whop_sdk
       REQUIRES_CAPTURE = "requires_capture"
       PENDING = "pending"
       FAILED = "failed"
+      BLOCKED = "blocked"
       PAST_DUE = "past_due"
       CANCELED = "canceled"
       PRICE_TOO_LOW = "price_too_low"

@@ -57,7 +57,8 @@ module WhopSDK
       #
       # @param stock [Integer, nil] Body param: The maximum number of units available for purchase. Ignored when unl
       #
-      # @param three_ds_level [Symbol, WhopSDK::Models::PlanCreateParams::ThreeDSLevel, nil] Body param: 3D Secure behavior for this plan. Send `null` to inherit the account
+      # @param three_ds_level [Symbol, WhopSDK::Models::PlanCreateParams::ThreeDSLevel, nil] Body param: 3D Secure behavior for supported on-session card payments.
+      # `mandate\_
       #
       # @param title [String, nil] Body param: The display name of the plan shown to customers on the product page.
       #
@@ -165,7 +166,8 @@ module WhopSDK
       #
       # @param strike_through_renewal_price [Float, nil] Body param: A comparison price displayed with a strikethrough for the renewal pr
       #
-      # @param three_ds_level [Symbol, WhopSDK::Models::PlanUpdateParams::ThreeDSLevel, nil] Body param: 3D Secure behavior for this plan. Send `null` to inherit the account
+      # @param three_ds_level [Symbol, WhopSDK::Models::PlanUpdateParams::ThreeDSLevel, nil] Body param: 3D Secure behavior for supported on-session card payments.
+      # `mandate\_
       #
       # @param title [String, nil] Body param: The display name of the plan shown to customers on the product page.
       #

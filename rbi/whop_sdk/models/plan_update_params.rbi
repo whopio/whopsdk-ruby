@@ -140,7 +140,13 @@ module WhopSDK
       sig { returns(T.nilable(Float)) }
       attr_accessor :strike_through_renewal_price
 
-      # 3D Secure behavior for this plan. Send `null` to inherit the account default.
+      # 3D Secure behavior for supported on-session card payments. `mandate_challenge`
+      # requires a 3DS challenge before payment processing; `mandate_if_required`
+      # mandates a challenge only when the payment processor requires it;
+      # `frictionless_if_required` uses the regular frictionless 3DS flow. Payments of
+      # $1,000 or more use `mandate_if_required` unless `mandate_challenge` is selected.
+      # Risk and authentication recovery requirements can override the preference. Send
+      # `null` to inherit the account default.
       sig do
         returns(T.nilable(WhopSDK::PlanUpdateParams::ThreeDSLevel::OrSymbol))
       end
@@ -265,7 +271,13 @@ module WhopSDK
         strike_through_initial_price: nil,
         # A comparison price displayed with a strikethrough for the renewal price.
         strike_through_renewal_price: nil,
-        # 3D Secure behavior for this plan. Send `null` to inherit the account default.
+        # 3D Secure behavior for supported on-session card payments. `mandate_challenge`
+        # requires a 3DS challenge before payment processing; `mandate_if_required`
+        # mandates a challenge only when the payment processor requires it;
+        # `frictionless_if_required` uses the regular frictionless 3DS flow. Payments of
+        # $1,000 or more use `mandate_if_required` unless `mandate_challenge` is selected.
+        # Risk and authentication recovery requirements can override the preference. Send
+        # `null` to inherit the account default.
         three_ds_level: nil,
         # The display name of the plan shown to customers on the product page.
         title: nil,
@@ -537,7 +549,13 @@ module WhopSDK
         end
       end
 
-      # 3D Secure behavior for this plan. Send `null` to inherit the account default.
+      # 3D Secure behavior for supported on-session card payments. `mandate_challenge`
+      # requires a 3DS challenge before payment processing; `mandate_if_required`
+      # mandates a challenge only when the payment processor requires it;
+      # `frictionless_if_required` uses the regular frictionless 3DS flow. Payments of
+      # $1,000 or more use `mandate_if_required` unless `mandate_challenge` is selected.
+      # Risk and authentication recovery requirements can override the preference. Send
+      # `null` to inherit the account default.
       module ThreeDSLevel
         extend WhopSDK::Internal::Type::Enum
 
@@ -552,9 +570,14 @@ module WhopSDK
             :mandate_challenge,
             WhopSDK::PlanUpdateParams::ThreeDSLevel::TaggedSymbol
           )
-        FRICTIONLESS =
+        MANDATE_IF_REQUIRED =
           T.let(
-            :frictionless,
+            :mandate_if_required,
+            WhopSDK::PlanUpdateParams::ThreeDSLevel::TaggedSymbol
+          )
+        FRICTIONLESS_IF_REQUIRED =
+          T.let(
+            :frictionless_if_required,
             WhopSDK::PlanUpdateParams::ThreeDSLevel::TaggedSymbol
           )
 

@@ -457,8 +457,13 @@ module WhopSDK
                  nil?: true
 
         # @!attribute three_ds_level
-        #   Account-level 3D Secure behavior. `mandate_challenge` requires cardholder
-        #   verification on supported card payments; `null` uses the standard checkout flow.
+        #   3D Secure behavior for supported on-session card payments. `mandate_challenge`
+        #   requires a 3DS challenge before payment processing; `mandate_if_required`
+        #   mandates a challenge only when the payment processor requires it;
+        #   `frictionless_if_required` uses the regular frictionless 3DS flow. Payments of
+        #   $1,000 or more use `mandate_if_required` unless `mandate_challenge` is selected.
+        #   Risk and authentication recovery requirements can override the preference.
+        #   `null` uses the standard checkout flow.
         #
         #   @return [Symbol, WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::ThreeDSLevel, nil]
         required :three_ds_level,
@@ -631,7 +636,7 @@ module WhopSDK
         #
         #   @param terms_of_service [WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::TermsOfService, nil] The account's terms of service document, or `null` if they have not published on
         #
-        #   @param three_ds_level [Symbol, WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::ThreeDSLevel, nil] Account-level 3D Secure behavior. `mandate_challenge` requires cardholder verifi
+        #   @param three_ds_level [Symbol, WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::ThreeDSLevel, nil] 3D Secure behavior for supported on-session card payments. `mandate_challenge` r
         #
         #   @param title [String] Account display name.
         #
@@ -3242,14 +3247,21 @@ module WhopSDK
           end
         end
 
-        # Account-level 3D Secure behavior. `mandate_challenge` requires cardholder
-        # verification on supported card payments; `null` uses the standard checkout flow.
+        # 3D Secure behavior for supported on-session card payments. `mandate_challenge`
+        # requires a 3DS challenge before payment processing; `mandate_if_required`
+        # mandates a challenge only when the payment processor requires it;
+        # `frictionless_if_required` uses the regular frictionless 3DS flow. Payments of
+        # $1,000 or more use `mandate_if_required` unless `mandate_challenge` is selected.
+        # Risk and authentication recovery requirements can override the preference.
+        # `null` uses the standard checkout flow.
         #
         # @see WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data#three_ds_level
         module ThreeDSLevel
           extend WhopSDK::Internal::Type::Enum
 
           MANDATE_CHALLENGE = :mandate_challenge
+          MANDATE_IF_REQUIRED = :mandate_if_required
+          FRICTIONLESS_IF_REQUIRED = :frictionless_if_required
 
           # @!method self.values
           #   @return [Array<Symbol>]

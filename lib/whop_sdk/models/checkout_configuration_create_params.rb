@@ -67,7 +67,14 @@ module WhopSDK
       optional :redirect_url, String, nil?: true
 
       # @!attribute three_ds_level
-      #   3D Secure behavior for this checkout.
+      #   3D Secure behavior for supported on-session card payments. `mandate_challenge`
+      #   requires a 3DS challenge before payment processing; `mandate_if_required`
+      #   mandates a challenge only when the payment processor requires it;
+      #   `frictionless_if_required` uses the regular frictionless 3DS flow. Payments of
+      #   $1,000 or more use `mandate_if_required` unless `mandate_challenge` is selected.
+      #   Risk and authentication recovery requirements can override the preference.
+      #   Applies in setup mode; `null` uses frictionless 3DS. Payment mode uses the plan
+      #   policy.
       #
       #   @return [Symbol, WhopSDK::Models::CheckoutConfigurationCreateParams::ThreeDSLevel, nil]
       optional :three_ds_level,
@@ -106,7 +113,7 @@ module WhopSDK
       #
       #   @param redirect_url [String, nil] URL customers are sent to after checkout.
       #
-      #   @param three_ds_level [Symbol, WhopSDK::Models::CheckoutConfigurationCreateParams::ThreeDSLevel, nil] 3D Secure behavior for this checkout.
+      #   @param three_ds_level [Symbol, WhopSDK::Models::CheckoutConfigurationCreateParams::ThreeDSLevel, nil] 3D Secure behavior for supported on-session card payments. `mandate_challenge` r
       #
       #   @param api_version_date [String]
       #
@@ -257,7 +264,13 @@ module WhopSDK
         optional :stock, Integer, nil?: true
 
         # @!attribute three_ds_level
-        #   3D Secure behavior for the inline plan, or `null` to use the account default.
+        #   3D Secure behavior for supported on-session card payments. `mandate_challenge`
+        #   requires a 3DS challenge before payment processing; `mandate_if_required`
+        #   mandates a challenge only when the payment processor requires it;
+        #   `frictionless_if_required` uses the regular frictionless 3DS flow. Payments of
+        #   $1,000 or more use `mandate_if_required` unless `mandate_challenge` is selected.
+        #   Risk and authentication recovery requirements can override the preference.
+        #   `null` inherits the account default.
         #
         #   @return [Symbol, WhopSDK::Models::CheckoutConfigurationCreateParams::Plan::ThreeDSLevel, nil]
         optional :three_ds_level,
@@ -327,7 +340,7 @@ module WhopSDK
         #
         #   @param stock [Integer, nil] Units available for purchase.
         #
-        #   @param three_ds_level [Symbol, WhopSDK::Models::CheckoutConfigurationCreateParams::Plan::ThreeDSLevel, nil] 3D Secure behavior for the inline plan, or `null` to use the account default.
+        #   @param three_ds_level [Symbol, WhopSDK::Models::CheckoutConfigurationCreateParams::Plan::ThreeDSLevel, nil] 3D Secure behavior for supported on-session card payments. `mandate_challenge` r
         #
         #   @param title [String, nil] Plan display name shown to customers.
         #
@@ -393,14 +406,21 @@ module WhopSDK
           #   @return [Array<Symbol>]
         end
 
-        # 3D Secure behavior for the inline plan, or `null` to use the account default.
+        # 3D Secure behavior for supported on-session card payments. `mandate_challenge`
+        # requires a 3DS challenge before payment processing; `mandate_if_required`
+        # mandates a challenge only when the payment processor requires it;
+        # `frictionless_if_required` uses the regular frictionless 3DS flow. Payments of
+        # $1,000 or more use `mandate_if_required` unless `mandate_challenge` is selected.
+        # Risk and authentication recovery requirements can override the preference.
+        # `null` inherits the account default.
         #
         # @see WhopSDK::Models::CheckoutConfigurationCreateParams::Plan#three_ds_level
         module ThreeDSLevel
           extend WhopSDK::Internal::Type::Enum
 
           MANDATE_CHALLENGE = :mandate_challenge
-          FRICTIONLESS = :frictionless
+          MANDATE_IF_REQUIRED = :mandate_if_required
+          FRICTIONLESS_IF_REQUIRED = :frictionless_if_required
 
           # @!method self.values
           #   @return [Array<Symbol>]
@@ -422,12 +442,20 @@ module WhopSDK
         end
       end
 
-      # 3D Secure behavior for this checkout.
+      # 3D Secure behavior for supported on-session card payments. `mandate_challenge`
+      # requires a 3DS challenge before payment processing; `mandate_if_required`
+      # mandates a challenge only when the payment processor requires it;
+      # `frictionless_if_required` uses the regular frictionless 3DS flow. Payments of
+      # $1,000 or more use `mandate_if_required` unless `mandate_challenge` is selected.
+      # Risk and authentication recovery requirements can override the preference.
+      # Applies in setup mode; `null` uses frictionless 3DS. Payment mode uses the plan
+      # policy.
       module ThreeDSLevel
         extend WhopSDK::Internal::Type::Enum
 
         MANDATE_CHALLENGE = :mandate_challenge
-        FRICTIONLESS = :frictionless
+        MANDATE_IF_REQUIRED = :mandate_if_required
+        FRICTIONLESS_IF_REQUIRED = :frictionless_if_required
 
         # @!method self.values
         #   @return [Array<Symbol>]

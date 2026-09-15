@@ -23,6 +23,7 @@ module WhopSDK
 
       # @!attribute banned_words
       #   A list of words that are automatically filtered from messages in this chat.
+      #   Empty unless the caller has permission to moderate this chat.
       #
       #   @return [Array<String>]
       required :banned_words, WhopSDK::Internal::Type::ArrayOf[String]
@@ -65,7 +66,7 @@ module WhopSDK
       #
       #   @param ban_urls [Boolean] Whether URL links are blocked from being posted in this chat.
       #
-      #   @param banned_words [Array<String>] A list of words that are automatically filtered from messages in this chat.
+      #   @param banned_words [Array<String>] A list of words that are automatically filtered from messages in this chat. Empt
       #
       #   @param experience [WhopSDK::Models::ChatChannel::Experience] The experience this chat feed is attached to.
       #

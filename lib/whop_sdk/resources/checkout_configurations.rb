@@ -36,7 +36,8 @@ module WhopSDK
       #
       # @param redirect_url [String, nil] Body param: URL customers are sent to after checkout.
       #
-      # @param three_ds_level [Symbol, WhopSDK::Models::CheckoutConfigurationCreateParams::ThreeDSLevel, nil] Body param: 3D Secure behavior for this checkout.
+      # @param three_ds_level [Symbol, WhopSDK::Models::CheckoutConfigurationCreateParams::ThreeDSLevel, nil] Body param: 3D Secure behavior for supported on-session card payments.
+      # `mandate\_
       #
       # @param api_version_date [String] Header param: Pins the request to a dated API version.
       #

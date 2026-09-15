@@ -277,13 +277,15 @@ module WhopSDK
         def self?.values: -> ::Array[WhopSDK::Models::PlanListResponse::release_method]
       end
 
-      type three_ds_level = :mandate_challenge | :frictionless
+      type three_ds_level =
+        :mandate_challenge | :mandate_if_required | :frictionless_if_required
 
       module ThreeDSLevel
         extend WhopSDK::Internal::Type::Enum
 
         MANDATE_CHALLENGE: :mandate_challenge
-        FRICTIONLESS: :frictionless
+        MANDATE_IF_REQUIRED: :mandate_if_required
+        FRICTIONLESS_IF_REQUIRED: :frictionless_if_required
 
         def self?.values: -> ::Array[WhopSDK::Models::PlanListResponse::three_ds_level]
       end

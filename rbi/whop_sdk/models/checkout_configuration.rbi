@@ -90,7 +90,14 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :redirect_url
 
-      # 3D Secure behavior for this checkout, or `null` to use the account default.
+      # 3D Secure behavior for supported on-session card payments. `mandate_challenge`
+      # requires a 3DS challenge before payment processing; `mandate_if_required`
+      # mandates a challenge only when the payment processor requires it;
+      # `frictionless_if_required` uses the regular frictionless 3DS flow. Payments of
+      # $1,000 or more use `mandate_if_required` unless `mandate_challenge` is selected.
+      # Risk and authentication recovery requirements can override the preference.
+      # Applies in setup mode; `null` uses frictionless 3DS. Payment mode uses the plan
+      # policy.
       sig do
         returns(
           T.nilable(WhopSDK::CheckoutConfiguration::ThreeDSLevel::OrSymbol)
@@ -159,7 +166,14 @@ module WhopSDK
         # URL customers are sent to after checkout, or `null` when no redirect is
         # configured.
         redirect_url:,
-        # 3D Secure behavior for this checkout, or `null` to use the account default.
+        # 3D Secure behavior for supported on-session card payments. `mandate_challenge`
+        # requires a 3DS challenge before payment processing; `mandate_if_required`
+        # mandates a challenge only when the payment processor requires it;
+        # `frictionless_if_required` uses the regular frictionless 3DS flow. Payments of
+        # $1,000 or more use `mandate_if_required` unless `mandate_challenge` is selected.
+        # Risk and authentication recovery requirements can override the preference.
+        # Applies in setup mode; `null` uses frictionless 3DS. Payment mode uses the plan
+        # policy.
         three_ds_level:,
         # When the checkout configuration was last updated, as an ISO 8601 timestamp.
         updated_at:
@@ -525,7 +539,13 @@ module WhopSDK
         sig { returns(Float) }
         attr_accessor :renewal_price
 
-        # 3D Secure behavior for this plan, or `null` to use the account default.
+        # 3D Secure behavior for supported on-session card payments. `mandate_challenge`
+        # requires a 3DS challenge before payment processing; `mandate_if_required`
+        # mandates a challenge only when the payment processor requires it;
+        # `frictionless_if_required` uses the regular frictionless 3DS flow. Payments of
+        # $1,000 or more use `mandate_if_required` unless `mandate_challenge` is selected.
+        # Risk and authentication recovery requirements can override the preference.
+        # `null` inherits the account default.
         sig do
           returns(
             T.nilable(
@@ -586,7 +606,13 @@ module WhopSDK
           release_method:,
           # Recurring price charged each billing period.
           renewal_price:,
-          # 3D Secure behavior for this plan, or `null` to use the account default.
+          # 3D Secure behavior for supported on-session card payments. `mandate_challenge`
+          # requires a 3DS challenge before payment processing; `mandate_if_required`
+          # mandates a challenge only when the payment processor requires it;
+          # `frictionless_if_required` uses the regular frictionless 3DS flow. Payments of
+          # $1,000 or more use `mandate_if_required` unless `mandate_challenge` is selected.
+          # Risk and authentication recovery requirements can override the preference.
+          # `null` inherits the account default.
           three_ds_level:,
           # Free trial days before the first renewal charge.
           trial_period_days:,
@@ -686,7 +712,13 @@ module WhopSDK
           end
         end
 
-        # 3D Secure behavior for this plan, or `null` to use the account default.
+        # 3D Secure behavior for supported on-session card payments. `mandate_challenge`
+        # requires a 3DS challenge before payment processing; `mandate_if_required`
+        # mandates a challenge only when the payment processor requires it;
+        # `frictionless_if_required` uses the regular frictionless 3DS flow. Payments of
+        # $1,000 or more use `mandate_if_required` unless `mandate_challenge` is selected.
+        # Risk and authentication recovery requirements can override the preference.
+        # `null` inherits the account default.
         module ThreeDSLevel
           extend WhopSDK::Internal::Type::Enum
 
@@ -701,9 +733,14 @@ module WhopSDK
               :mandate_challenge,
               WhopSDK::CheckoutConfiguration::Plan::ThreeDSLevel::TaggedSymbol
             )
-          FRICTIONLESS =
+          MANDATE_IF_REQUIRED =
             T.let(
-              :frictionless,
+              :mandate_if_required,
+              WhopSDK::CheckoutConfiguration::Plan::ThreeDSLevel::TaggedSymbol
+            )
+          FRICTIONLESS_IF_REQUIRED =
+            T.let(
+              :frictionless_if_required,
               WhopSDK::CheckoutConfiguration::Plan::ThreeDSLevel::TaggedSymbol
             )
 
@@ -761,7 +798,14 @@ module WhopSDK
         end
       end
 
-      # 3D Secure behavior for this checkout, or `null` to use the account default.
+      # 3D Secure behavior for supported on-session card payments. `mandate_challenge`
+      # requires a 3DS challenge before payment processing; `mandate_if_required`
+      # mandates a challenge only when the payment processor requires it;
+      # `frictionless_if_required` uses the regular frictionless 3DS flow. Payments of
+      # $1,000 or more use `mandate_if_required` unless `mandate_challenge` is selected.
+      # Risk and authentication recovery requirements can override the preference.
+      # Applies in setup mode; `null` uses frictionless 3DS. Payment mode uses the plan
+      # policy.
       module ThreeDSLevel
         extend WhopSDK::Internal::Type::Enum
 
@@ -776,9 +820,14 @@ module WhopSDK
             :mandate_challenge,
             WhopSDK::CheckoutConfiguration::ThreeDSLevel::TaggedSymbol
           )
-        FRICTIONLESS =
+        MANDATE_IF_REQUIRED =
           T.let(
-            :frictionless,
+            :mandate_if_required,
+            WhopSDK::CheckoutConfiguration::ThreeDSLevel::TaggedSymbol
+          )
+        FRICTIONLESS_IF_REQUIRED =
+          T.let(
+            :frictionless_if_required,
             WhopSDK::CheckoutConfiguration::ThreeDSLevel::TaggedSymbol
           )
 

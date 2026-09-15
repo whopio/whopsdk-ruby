@@ -24,6 +24,7 @@ module WhopSDK
       attr_accessor :ban_urls
 
       # A list of words that are automatically filtered from messages in this chat.
+      # Empty unless the caller has permission to moderate this chat.
       sig { returns(T::Array[String]) }
       attr_accessor :banned_words
 
@@ -75,6 +76,7 @@ module WhopSDK
         # Whether URL links are blocked from being posted in this chat.
         ban_urls:,
         # A list of words that are automatically filtered from messages in this chat.
+        # Empty unless the caller has permission to moderate this chat.
         banned_words:,
         # The experience this chat feed is attached to.
         experience:,

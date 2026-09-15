@@ -2,7 +2,7 @@
 
 module Whop_sdk
   module Types
-    module OnboardingRewardStatus
+    module PartnerRewardLinkStatus
       extend Whop_sdk::Internal::Types::Enum
 
       AVAILABLE = "available"

@@ -2,11 +2,11 @@
 
 module Whop_sdk
   module Types
-    module OnboardingRewardQualificationIncomeSource
+    module PartnerPayoutTierTier
       extend Whop_sdk::Internal::Types::Enum
 
-      SALES = "sales"
-      AD_SPEND = "ad_spend"
+      FIRST = "first"
+      SECOND = "second"
     end
   end
 end

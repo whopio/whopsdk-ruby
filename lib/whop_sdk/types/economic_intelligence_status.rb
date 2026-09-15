@@ -10,7 +10,6 @@ module Whop_sdk
       READY = "ready"
       EXECUTED = "executed"
       SUPERSEDED = "superseded"
-      FAILED = "failed"
     end
   end
 end

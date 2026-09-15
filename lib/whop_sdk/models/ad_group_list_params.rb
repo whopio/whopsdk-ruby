@@ -27,7 +27,8 @@ module WhopSDK
       optional :ad_campaign_ids, WhopSDK::Internal::Type::ArrayOf[String]
 
       # @!attribute after
-      #   Cursor to fetch the page after (from page_info.end_cursor).
+      #   Return results after this cursor. Use `page_info.end_cursor` from the previous
+      #   response to fetch the next page.
       #
       #   @return [String, nil]
       optional :after, String
@@ -42,7 +43,8 @@ module WhopSDK
       optional :attribution_model, enum: -> { WhopSDK::AdGroupListParams::AttributionModel }
 
       # @!attribute before
-      #   Cursor to fetch the page before (from page_info.start_cursor).
+      #   Return results before this cursor. Use `page_info.start_cursor` from the
+      #   previous response to fetch the previous page.
       #
       #   @return [String, nil]
       optional :before, String
@@ -66,13 +68,13 @@ module WhopSDK
       optional :direction, enum: -> { WhopSDK::AdGroupListParams::Direction }
 
       # @!attribute first
-      #   The number of ad groups to return.
+      #   Number of results to return from the start of the range.
       #
       #   @return [Integer, nil]
       optional :first, Integer
 
       # @!attribute last
-      #   The number of ad groups to return from the end of the range.
+      #   Number of results to return from the end of the range.
       #
       #   @return [Integer, nil]
       optional :last, Integer
@@ -133,11 +135,11 @@ module WhopSDK
       #
       #   @param ad_campaign_ids [Array<String>] Filter to ad groups in these campaigns (max 100). Repeat the parameter for each
       #
-      #   @param after [String] Cursor to fetch the page after (from page_info.end_cursor).
+      #   @param after [String] Return results after this cursor. Use `page_info.end_cursor` from the previous r
       #
       #   @param attribution_model [Symbol, WhopSDK::Models::AdGroupListParams::AttributionModel] Attribution model the conversion stats count under (defaults to last_touch). Und
       #
-      #   @param before [String] Cursor to fetch the page before (from page_info.start_cursor).
+      #   @param before [String] Return results before this cursor. Use `page_info.start_cursor` from the previou
       #
       #   @param created_after [String] Only return ad groups created after this timestamp.
       #
@@ -145,9 +147,9 @@ module WhopSDK
       #
       #   @param direction [Symbol, WhopSDK::Models::AdGroupListParams::Direction] The sort direction. Defaults to desc.
       #
-      #   @param first [Integer] The number of ad groups to return.
+      #   @param first [Integer] Number of results to return from the start of the range.
       #
-      #   @param last [Integer] The number of ad groups to return from the end of the range.
+      #   @param last [Integer] Number of results to return from the end of the range.
       #
       #   @param order [Symbol, WhopSDK::Models::AdGroupListParams::Order] The field to sort by. Defaults to created_at. Stat columns (spend, impressions,
       #

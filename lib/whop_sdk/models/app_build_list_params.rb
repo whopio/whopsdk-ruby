@@ -14,13 +14,15 @@ module WhopSDK
       required :app_id, String
 
       # @!attribute after
-      #   A cursor; returns builds after this position.
+      #   Return results after this cursor. Use `page_info.end_cursor` from the previous
+      #   response to fetch the next page.
       #
       #   @return [String, nil]
       optional :after, String
 
       # @!attribute before
-      #   A cursor; returns builds before this position.
+      #   Return results before this cursor. Use `page_info.start_cursor` from the
+      #   previous response to fetch the previous page.
       #
       #   @return [String, nil]
       optional :before, String
@@ -38,13 +40,13 @@ module WhopSDK
       optional :created_before, union: -> { WhopSDK::AppBuildListParams::CreatedBefore }
 
       # @!attribute first
-      #   The number of builds to return (default 20, max 100).
+      #   Number of results to return from the start of the range.
       #
       #   @return [Integer, nil]
       optional :first, Integer
 
       # @!attribute last
-      #   The number of builds to return from the end of the range.
+      #   Number of results to return from the end of the range.
       #
       #   @return [Integer, nil]
       optional :last, Integer
@@ -67,19 +69,22 @@ module WhopSDK
       optional :api_version_date, String
 
       # @!method initialize(app_id:, after: nil, before: nil, created_after: nil, created_before: nil, first: nil, last: nil, platform: nil, status: nil, api_version_date: nil, request_options: {})
+      #   Some parameter documentations has been truncated, see
+      #   {WhopSDK::Models::AppBuildListParams} for more details.
+      #
       #   @param app_id [String] The app to list builds for, prefixed `app_`.
       #
-      #   @param after [String] A cursor; returns builds after this position.
+      #   @param after [String] Return results after this cursor. Use `page_info.end_cursor` from the previous r
       #
-      #   @param before [String] A cursor; returns builds before this position.
+      #   @param before [String] Return results before this cursor. Use `page_info.start_cursor` from the previou
       #
       #   @param created_after [Integer, String] Only return builds created after this ISO 8601 timestamp.
       #
       #   @param created_before [Integer, String] Only return builds created before this ISO 8601 timestamp.
       #
-      #   @param first [Integer] The number of builds to return (default 20, max 100).
+      #   @param first [Integer] Number of results to return from the start of the range.
       #
-      #   @param last [Integer] The number of builds to return from the end of the range.
+      #   @param last [Integer] Number of results to return from the end of the range.
       #
       #   @param platform [Symbol, WhopSDK::Models::AppBuildListParams::Platform] Filter builds by target platform.
       #

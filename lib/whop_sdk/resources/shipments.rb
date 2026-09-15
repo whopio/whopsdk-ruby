@@ -78,9 +78,9 @@ module WhopSDK
       #
       # @param account_id [String] Query param: The account to list shipments for. Defaults to the acting account.
       #
-      # @param after [String] Query param: A cursor; returns shipments after this position.
+      # @param after [String] Query param: Return results after this cursor. Use `page_info.end_cursor` from t
       #
-      # @param before [String] Query param: A cursor; returns shipments before this position.
+      # @param before [String] Query param: Return results before this cursor. Use `page_info.start_cursor` fro
       #
       # @param created_after [String] Query param: Return shipments created after this ISO 8601 timestamp.
       #
@@ -88,9 +88,9 @@ module WhopSDK
       #
       # @param direction [Symbol, WhopSDK::Models::ShipmentListParams::Direction] Query param: The sort direction.
       #
-      # @param first [Integer] Query param: The number of shipments to return.
+      # @param first [Integer] Query param: Number of results to return from the start of the range.
       #
-      # @param last [Integer] Query param: The number of shipments to return from the end of the range.
+      # @param last [Integer] Query param: Number of results to return from the end of the range.
       #
       # @param order [Symbol, WhopSDK::Models::ShipmentListParams::Order] Query param: The field to sort by.
       #

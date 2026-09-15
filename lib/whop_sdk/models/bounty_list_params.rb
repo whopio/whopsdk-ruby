@@ -15,13 +15,15 @@ module WhopSDK
       optional :account_id, String
 
       # @!attribute after
-      #   Cursor to paginate forwards from.
+      #   Return results after this cursor. Use `page_info.end_cursor` from the previous
+      #   response to fetch the next page.
       #
       #   @return [String, nil]
       optional :after, String
 
       # @!attribute before
-      #   Cursor to paginate backwards from.
+      #   Return results before this cursor. Use `page_info.start_cursor` from the
+      #   previous response to fetch the previous page.
       #
       #   @return [String, nil]
       optional :before, String
@@ -66,13 +68,13 @@ module WhopSDK
       optional :experience_id, String
 
       # @!attribute first
-      #   Number of bounties to return from the start of the window.
+      #   Number of results to return from the start of the range.
       #
       #   @return [Integer, nil]
       optional :first, Integer
 
       # @!attribute last
-      #   Number of bounties to return from the end of the window.
+      #   Number of results to return from the end of the range.
       #
       #   @return [Integer, nil]
       optional :last, Integer
@@ -113,9 +115,9 @@ module WhopSDK
       #
       #   @param account_id [String] Scope the list to this account (`biz_` tag). Requires read access to the account
       #
-      #   @param after [String] Cursor to paginate forwards from.
+      #   @param after [String] Return results after this cursor. Use `page_info.end_cursor` from the previous r
       #
-      #   @param before [String] Cursor to paginate backwards from.
+      #   @param before [String] Return results before this cursor. Use `page_info.start_cursor` from the previou
       #
       #   @param business_goal_type [Symbol, WhopSDK::Models::BountyListParams::BusinessGoalType] Filter by the poster's declared goal. Bounties created before the goal taxonomy
       #
@@ -129,9 +131,9 @@ module WhopSDK
       #
       #   @param experience_id [String] Only bounties posted to this forum experience, prefixed `exp_`. An unknown exper
       #
-      #   @param first [Integer] Number of bounties to return from the start of the window.
+      #   @param first [Integer] Number of results to return from the start of the range.
       #
-      #   @param last [Integer] Number of bounties to return from the end of the window.
+      #   @param last [Integer] Number of results to return from the end of the range.
       #
       #   @param order [Symbol, WhopSDK::Models::BountyListParams::Order] Sort field.
       #

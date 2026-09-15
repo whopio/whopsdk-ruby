@@ -14,7 +14,8 @@ module WhopSDK
       required :account_id, String
 
       # @!attribute after
-      #   Cursor for the next page of results.
+      #   Return results after this cursor. Use `page_info.end_cursor` from the previous
+      #   response to fetch the next page.
       #
       #   @return [String, nil]
       optional :after, String
@@ -38,7 +39,7 @@ module WhopSDK
       optional :direction, enum: -> { WhopSDK::CheckoutConfigurationListParams::Direction }
 
       # @!attribute first
-      #   Number of checkout configurations to return.
+      #   Number of results to return from the start of the range.
       #
       #   @return [Integer, nil]
       optional :first, Integer
@@ -61,9 +62,12 @@ module WhopSDK
       optional :api_version_date, String
 
       # @!method initialize(account_id:, after: nil, created_after: nil, created_before: nil, direction: nil, first: nil, order: nil, plan_id: nil, api_version_date: nil, request_options: {})
+      #   Some parameter documentations has been truncated, see
+      #   {WhopSDK::Models::CheckoutConfigurationListParams} for more details.
+      #
       #   @param account_id [String] Account ID, prefixed `biz_`.
       #
-      #   @param after [String] Cursor for the next page of results.
+      #   @param after [String] Return results after this cursor. Use `page_info.end_cursor` from the previous r
       #
       #   @param created_after [String] Only return checkout configurations created after this ISO 8601 timestamp.
       #
@@ -71,7 +75,7 @@ module WhopSDK
       #
       #   @param direction [Symbol, WhopSDK::Models::CheckoutConfigurationListParams::Direction] Sort direction. Defaults to `desc`.
       #
-      #   @param first [Integer] Number of checkout configurations to return.
+      #   @param first [Integer] Number of results to return from the start of the range.
       #
       #   @param order [Symbol, WhopSDK::Models::CheckoutConfigurationListParams::Order] Field used to sort checkout configurations.
       #

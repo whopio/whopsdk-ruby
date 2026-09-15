@@ -14,13 +14,15 @@ module WhopSDK
       required :account_id, String
 
       # @!attribute after
-      #   Cursor to paginate forwards from.
+      #   Return results after this cursor. Use `page_info.end_cursor` from the previous
+      #   response to fetch the next page.
       #
       #   @return [String, nil]
       optional :after, String
 
       # @!attribute before
-      #   Cursor to paginate backwards from.
+      #   Return results before this cursor. Use `page_info.start_cursor` from the
+      #   previous response to fetch the previous page.
       #
       #   @return [String, nil]
       optional :before, String
@@ -44,13 +46,13 @@ module WhopSDK
       optional :direction, enum: -> { WhopSDK::PromoCodeListParams::Direction }
 
       # @!attribute first
-      #   Number of promo codes to return from the start of the window.
+      #   Number of results to return from the start of the range.
       #
       #   @return [Integer, nil]
       optional :first, Integer
 
       # @!attribute last
-      #   Number of promo codes to return from the end of the window.
+      #   Number of results to return from the end of the range.
       #
       #   @return [Integer, nil]
       optional :last, Integer
@@ -85,11 +87,14 @@ module WhopSDK
       optional :api_version_date, String
 
       # @!method initialize(account_id:, after: nil, before: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, order: nil, plan_ids: nil, product_ids: nil, status: nil, api_version_date: nil, request_options: {})
+      #   Some parameter documentations has been truncated, see
+      #   {WhopSDK::Models::PromoCodeListParams} for more details.
+      #
       #   @param account_id [String] Account whose promo codes are listed (`biz_` tag).
       #
-      #   @param after [String] Cursor to paginate forwards from.
+      #   @param after [String] Return results after this cursor. Use `page_info.end_cursor` from the previous r
       #
-      #   @param before [String] Cursor to paginate backwards from.
+      #   @param before [String] Return results before this cursor. Use `page_info.start_cursor` from the previou
       #
       #   @param created_after [Time] Only promo codes created after this ISO 8601 timestamp.
       #
@@ -97,9 +102,9 @@ module WhopSDK
       #
       #   @param direction [Symbol, WhopSDK::Models::PromoCodeListParams::Direction] Sort direction.
       #
-      #   @param first [Integer] Number of promo codes to return from the start of the window.
+      #   @param first [Integer] Number of results to return from the start of the range.
       #
-      #   @param last [Integer] Number of promo codes to return from the end of the window.
+      #   @param last [Integer] Number of results to return from the end of the range.
       #
       #   @param order [Symbol, WhopSDK::Models::PromoCodeListParams::Order] Sort field.
       #

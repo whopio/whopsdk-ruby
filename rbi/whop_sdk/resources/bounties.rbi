@@ -139,9 +139,11 @@ module WhopSDK
         # to the account; account API keys may pass their own account or a connected
         # account.
         account_id: nil,
-        # Query param: Cursor to paginate forwards from.
+        # Query param: Return results after this cursor. Use `page_info.end_cursor` from
+        # the previous response to fetch the next page.
         after: nil,
-        # Query param: Cursor to paginate backwards from.
+        # Query param: Return results before this cursor. Use `page_info.start_cursor`
+        # from the previous response to fetch the previous page.
         before: nil,
         # Query param: Filter by the poster's declared goal. Bounties created before the
         # goal taxonomy carry no goal and never match this filter.
@@ -159,9 +161,9 @@ module WhopSDK
         # Query param: Only bounties posted to this forum experience, prefixed `exp_`. An
         # unknown experience, or one outside the caller's scope, matches nothing.
         experience_id: nil,
-        # Query param: Number of bounties to return from the start of the window.
+        # Query param: Number of results to return from the start of the range.
         first: nil,
-        # Query param: Number of bounties to return from the end of the window.
+        # Query param: Number of results to return from the end of the range.
         last: nil,
         # Query param: Sort field.
         order: nil,

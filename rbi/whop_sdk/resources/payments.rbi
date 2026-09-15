@@ -145,9 +145,11 @@ module WhopSDK
       def list(
         # Query param: Only payments charged by this account, prefixed `biz_`.
         account_id: nil,
-        # Query param: A cursor; returns payments after this position.
+        # Query param: Return results after this cursor. Use `page_info.end_cursor` from
+        # the previous response to fetch the next page.
         after: nil,
-        # Query param: A cursor; returns payments before this position.
+        # Query param: Return results before this cursor. Use `page_info.start_cursor`
+        # from the previous response to fetch the previous page.
         before: nil,
         # Query param: Only payments charged for this reason.
         billing_reason: nil,
@@ -160,9 +162,9 @@ module WhopSDK
         currency: nil,
         # Query param: The sort direction.
         direction: nil,
-        # Query param: The number of payments to return.
+        # Query param: Number of results to return from the start of the range.
         first: nil,
-        # Query param: The number of payments to return from the end of the range.
+        # Query param: Number of results to return from the end of the range.
         last: nil,
         # Query param: Only payments made by this member, prefixed `mber_`.
         member_id: nil,

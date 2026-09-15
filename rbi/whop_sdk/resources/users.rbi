@@ -117,13 +117,15 @@ module WhopSDK
         ).returns(WhopSDK::Internal::CursorPage[WhopSDK::User])
       end
       def list(
-        # Query param: A cursor; returns users after this position.
+        # Query param: Return results after this cursor. Use `page_info.end_cursor` from
+        # the previous response to fetch the next page.
         after: nil,
-        # Query param: A cursor; returns users before this position.
+        # Query param: Return results before this cursor. Use `page_info.start_cursor`
+        # from the previous response to fetch the previous page.
         before: nil,
-        # Query param: The number of users to return (max 50).
+        # Query param: Number of results to return from the start of the range.
         first: nil,
-        # Query param: The number of users to return from the end of the range.
+        # Query param: Number of results to return from the end of the range.
         last: nil,
         # Query param: A search term to filter users by name or username.
         query: nil,

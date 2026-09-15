@@ -98,17 +98,19 @@ module WhopSDK
       def list(
         # Query param: The app to list builds for, prefixed `app_`.
         app_id:,
-        # Query param: A cursor; returns builds after this position.
+        # Query param: Return results after this cursor. Use `page_info.end_cursor` from
+        # the previous response to fetch the next page.
         after: nil,
-        # Query param: A cursor; returns builds before this position.
+        # Query param: Return results before this cursor. Use `page_info.start_cursor`
+        # from the previous response to fetch the previous page.
         before: nil,
         # Query param: Only return builds created after this ISO 8601 timestamp.
         created_after: nil,
         # Query param: Only return builds created before this ISO 8601 timestamp.
         created_before: nil,
-        # Query param: The number of builds to return (default 20, max 100).
+        # Query param: Number of results to return from the start of the range.
         first: nil,
-        # Query param: The number of builds to return from the end of the range.
+        # Query param: Number of results to return from the end of the range.
         last: nil,
         # Query param: Filter builds by target platform.
         platform: nil,

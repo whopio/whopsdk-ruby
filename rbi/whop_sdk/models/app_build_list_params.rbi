@@ -15,14 +15,16 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :app_id
 
-      # A cursor; returns builds after this position.
+      # Return results after this cursor. Use `page_info.end_cursor` from the previous
+      # response to fetch the next page.
       sig { returns(T.nilable(String)) }
       attr_reader :after
 
       sig { params(after: String).void }
       attr_writer :after
 
-      # A cursor; returns builds before this position.
+      # Return results before this cursor. Use `page_info.start_cursor` from the
+      # previous response to fetch the previous page.
       sig { returns(T.nilable(String)) }
       attr_reader :before
 
@@ -55,14 +57,14 @@ module WhopSDK
       end
       attr_writer :created_before
 
-      # The number of builds to return (default 20, max 100).
+      # Number of results to return from the start of the range.
       sig { returns(T.nilable(Integer)) }
       attr_reader :first
 
       sig { params(first: Integer).void }
       attr_writer :first
 
-      # The number of builds to return from the end of the range.
+      # Number of results to return from the end of the range.
       sig { returns(T.nilable(Integer)) }
       attr_reader :last
 
@@ -111,17 +113,19 @@ module WhopSDK
       def self.new(
         # The app to list builds for, prefixed `app_`.
         app_id:,
-        # A cursor; returns builds after this position.
+        # Return results after this cursor. Use `page_info.end_cursor` from the previous
+        # response to fetch the next page.
         after: nil,
-        # A cursor; returns builds before this position.
+        # Return results before this cursor. Use `page_info.start_cursor` from the
+        # previous response to fetch the previous page.
         before: nil,
         # Only return builds created after this ISO 8601 timestamp.
         created_after: nil,
         # Only return builds created before this ISO 8601 timestamp.
         created_before: nil,
-        # The number of builds to return (default 20, max 100).
+        # Number of results to return from the start of the range.
         first: nil,
-        # The number of builds to return from the end of the range.
+        # Number of results to return from the end of the range.
         last: nil,
         # Filter builds by target platform.
         platform: nil,

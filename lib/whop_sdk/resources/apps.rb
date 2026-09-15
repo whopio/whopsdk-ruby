@@ -176,17 +176,17 @@ module WhopSDK
       #
       # @param account_id [String] Query param: Only return apps created by this account (`biz_` tag). With develop
       #
-      # @param after [String] Query param: A cursor; returns apps after this position.
+      # @param after [String] Query param: Return results after this cursor. Use `page_info.end_cursor` from t
       #
       # @param app_type [Symbol, WhopSDK::Models::AppListParams::AppType] Query param: Filter apps by the type of end-user they are built for. Apps of typ
       #
-      # @param before [String] Query param: A cursor; returns apps before this position.
+      # @param before [String] Query param: Return results before this cursor. Use `page_info.start_cursor` fro
       #
       # @param direction [Symbol, WhopSDK::Models::AppListParams::Direction] Query param: Sort direction.
       #
-      # @param first [Integer] Query param: The number of apps to return (default 20, max 100).
+      # @param first [Integer] Query param: Number of results to return from the start of the range.
       #
-      # @param last [Integer] Query param: The number of apps to return from the end of the range.
+      # @param last [Integer] Query param: Number of results to return from the end of the range.
       #
       # @param order [Symbol, WhopSDK::Models::AppListParams::Order] Query param: The field to sort apps by. Defaults to discoverable_at, showing the
       #

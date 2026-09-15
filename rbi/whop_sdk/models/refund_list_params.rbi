@@ -18,14 +18,16 @@ module WhopSDK
       sig { params(account_id: String).void }
       attr_writer :account_id
 
-      # A cursor; returns refunds after this position.
+      # Return results after this cursor. Use `page_info.end_cursor` from the previous
+      # response to fetch the next page.
       sig { returns(T.nilable(String)) }
       attr_reader :after
 
       sig { params(after: String).void }
       attr_writer :after
 
-      # A cursor; returns refunds before this position.
+      # Return results before this cursor. Use `page_info.start_cursor` from the
+      # previous response to fetch the previous page.
       sig { returns(T.nilable(String)) }
       attr_reader :before
 
@@ -55,14 +57,14 @@ module WhopSDK
       end
       attr_writer :direction
 
-      # The number of refunds to return.
+      # Number of results to return from the start of the range.
       sig { returns(T.nilable(Integer)) }
       attr_reader :first
 
       sig { params(first: Integer).void }
       attr_writer :first
 
-      # The number of refunds to return from the end of the range.
+      # Number of results to return from the end of the range.
       sig { returns(T.nilable(Integer)) }
       attr_reader :last
 
@@ -116,9 +118,11 @@ module WhopSDK
       def self.new(
         # Only refunds issued by this account, prefixed `biz_`.
         account_id: nil,
-        # A cursor; returns refunds after this position.
+        # Return results after this cursor. Use `page_info.end_cursor` from the previous
+        # response to fetch the next page.
         after: nil,
-        # A cursor; returns refunds before this position.
+        # Return results before this cursor. Use `page_info.start_cursor` from the
+        # previous response to fetch the previous page.
         before: nil,
         # Only refunds requested after this ISO 8601 timestamp.
         created_after: nil,
@@ -126,9 +130,9 @@ module WhopSDK
         created_before: nil,
         # The sort direction.
         direction: nil,
-        # The number of refunds to return.
+        # Number of results to return from the start of the range.
         first: nil,
-        # The number of refunds to return from the end of the range.
+        # Number of results to return from the end of the range.
         last: nil,
         # The field to sort by.
         order: nil,

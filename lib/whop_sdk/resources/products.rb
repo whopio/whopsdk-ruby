@@ -162,9 +162,9 @@ module WhopSDK
       #
       # @param account_id [String] Query param: The unique identifier of the account to list products for. Omit to
       #
-      # @param after [String] Query param: A cursor; returns products after this position.
+      # @param after [String] Query param: Return results after this cursor. Use `page_info.end_cursor` from t
       #
-      # @param before [String] Query param: A cursor; returns products before this position.
+      # @param before [String] Query param: Return results before this cursor. Use `page_info.start_cursor` fro
       #
       # @param created_after [String] Query param: Only return products created after this ISO 8601 timestamp.
       #
@@ -172,11 +172,11 @@ module WhopSDK
       #
       # @param direction [Symbol, WhopSDK::Models::ProductListParams::Direction] Query param: The sort direction for results. Defaults to descending.
       #
-      # @param first [Integer] Query param: The number of products to return (default and max 100).
+      # @param first [Integer] Query param: Number of results to return from the start of the range.
       #
       # @param labels [Array<String>] Query param: Filter to only products carrying all of these labels. Labels are ma
       #
-      # @param last [Integer] Query param: The number of products to return from the end of the range.
+      # @param last [Integer] Query param: Number of results to return from the end of the range.
       #
       # @param marketplace_category_route [String] Query param: Only return marketplace products assigned to this category route, s
       #

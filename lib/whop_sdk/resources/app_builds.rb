@@ -80,6 +80,9 @@ module WhopSDK
         )
       end
 
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::AppBuildListParams} for more details.
+      #
       # Returns a paginated list of build artifacts for an app, newest first, with
       # optional platform, status, and creation-date filters.
       #
@@ -87,17 +90,17 @@ module WhopSDK
       #
       # @param app_id [String] Query param: The app to list builds for, prefixed `app_`.
       #
-      # @param after [String] Query param: A cursor; returns builds after this position.
+      # @param after [String] Query param: Return results after this cursor. Use `page_info.end_cursor` from t
       #
-      # @param before [String] Query param: A cursor; returns builds before this position.
+      # @param before [String] Query param: Return results before this cursor. Use `page_info.start_cursor` fro
       #
       # @param created_after [Integer, String] Query param: Only return builds created after this ISO 8601 timestamp.
       #
       # @param created_before [Integer, String] Query param: Only return builds created before this ISO 8601 timestamp.
       #
-      # @param first [Integer] Query param: The number of builds to return (default 20, max 100).
+      # @param first [Integer] Query param: Number of results to return from the start of the range.
       #
-      # @param last [Integer] Query param: The number of builds to return from the end of the range.
+      # @param last [Integer] Query param: Number of results to return from the end of the range.
       #
       # @param platform [Symbol, WhopSDK::Models::AppBuildListParams::Platform] Query param: Filter builds by target platform.
       #

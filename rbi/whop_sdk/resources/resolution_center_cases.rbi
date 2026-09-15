@@ -68,9 +68,11 @@ module WhopSDK
         # access to the account this lists its whole queue; without, only the cases you
         # opened against it.
         account_id: nil,
-        # Query param: A cursor; returns cases after this position.
+        # Query param: Return results after this cursor. Use `page_info.end_cursor` from
+        # the previous response to fetch the next page.
         after: nil,
-        # Query param: A cursor; returns cases before this position.
+        # Query param: Return results before this cursor. Use `page_info.start_cursor`
+        # from the previous response to fetch the previous page.
         before: nil,
         # Query param: Only cases created after this ISO 8601 timestamp.
         created_after: nil,
@@ -78,9 +80,9 @@ module WhopSDK
         created_before: nil,
         # Query param: Sort direction.
         direction: nil,
-        # Query param: The number of cases to return (default 20, max 100).
+        # Query param: Number of results to return from the start of the range.
         first: nil,
-        # Query param: The number of cases to return from the end of the range.
+        # Query param: Number of results to return from the end of the range.
         last: nil,
         # Query param: The field to sort cases by.
         order: nil,

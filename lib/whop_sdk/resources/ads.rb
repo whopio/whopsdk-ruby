@@ -65,11 +65,11 @@ module WhopSDK
       #
       # @param ad_group_ids [Array<String>] Query param: Only return ads in these ad groups (max 100). Repeat the parameter
       #
-      # @param after [String] Query param: Cursor to fetch the page after (from page_info.end_cursor).
+      # @param after [String] Query param: Return results after this cursor. Use `page_info.end_cursor` from t
       #
       # @param attribution_model [Symbol, WhopSDK::Models::AdListParams::AttributionModel] Query param: Attribution model the conversion stats count under (defaults to las
       #
-      # @param before [String] Query param: Cursor to fetch the page before (from page_info.start_cursor).
+      # @param before [String] Query param: Return results before this cursor. Use `page_info.start_cursor` fro
       #
       # @param created_after [String] Query param: Only return ads created after this timestamp.
       #
@@ -77,9 +77,9 @@ module WhopSDK
       #
       # @param direction [Symbol, WhopSDK::Models::AdListParams::Direction] Query param: The sort direction. Defaults to desc.
       #
-      # @param first [Integer] Query param: The number of ads to return.
+      # @param first [Integer] Query param: Number of results to return from the start of the range.
       #
-      # @param last [Integer] Query param: The number of ads to return from the end of the range.
+      # @param last [Integer] Query param: Number of results to return from the end of the range.
       #
       # @param order [Symbol, WhopSDK::Models::AdListParams::Order] Query param: The field to sort by. Defaults to created_at. Stat columns (spend,
       #

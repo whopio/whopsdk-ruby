@@ -110,7 +110,8 @@ module WhopSDK
       def list(
         # Query param: Account ID, prefixed `biz_`.
         account_id:,
-        # Query param: Cursor for the next page of results.
+        # Query param: Return results after this cursor. Use `page_info.end_cursor` from
+        # the previous response to fetch the next page.
         after: nil,
         # Query param: Only return checkout configurations created after this ISO 8601
         # timestamp.
@@ -120,7 +121,7 @@ module WhopSDK
         created_before: nil,
         # Query param: Sort direction. Defaults to `desc`.
         direction: nil,
-        # Query param: Number of checkout configurations to return.
+        # Query param: Number of results to return from the start of the range.
         first: nil,
         # Query param: Field used to sort checkout configurations.
         order: nil,

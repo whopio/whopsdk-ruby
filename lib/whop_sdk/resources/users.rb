@@ -106,19 +106,22 @@ module WhopSDK
         )
       end
 
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::UserListParams} for more details.
+      #
       # Search for users by name or username, ranked by social proximity to the
       # authenticated user. Returns the user's most recently followed users when no
       # query is given.
       #
       # @overload list(after: nil, before: nil, first: nil, last: nil, query: nil, api_version_date: nil, request_options: {})
       #
-      # @param after [String] Query param: A cursor; returns users after this position.
+      # @param after [String] Query param: Return results after this cursor. Use `page_info.end_cursor` from t
       #
-      # @param before [String] Query param: A cursor; returns users before this position.
+      # @param before [String] Query param: Return results before this cursor. Use `page_info.start_cursor` fro
       #
-      # @param first [Integer] Query param: The number of users to return (max 50).
+      # @param first [Integer] Query param: Number of results to return from the start of the range.
       #
-      # @param last [Integer] Query param: The number of users to return from the end of the range.
+      # @param last [Integer] Query param: Number of results to return from the end of the range.
       #
       # @param query [String] Query param: A search term to filter users by name or username.
       #

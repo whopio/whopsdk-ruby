@@ -14,13 +14,15 @@ module WhopSDK
       optional :account_id, String
 
       # @!attribute after
-      #   A cursor; returns refunds after this position.
+      #   Return results after this cursor. Use `page_info.end_cursor` from the previous
+      #   response to fetch the next page.
       #
       #   @return [String, nil]
       optional :after, String
 
       # @!attribute before
-      #   A cursor; returns refunds before this position.
+      #   Return results before this cursor. Use `page_info.start_cursor` from the
+      #   previous response to fetch the previous page.
       #
       #   @return [String, nil]
       optional :before, String
@@ -44,13 +46,13 @@ module WhopSDK
       optional :direction, enum: -> { WhopSDK::RefundListParams::Direction }
 
       # @!attribute first
-      #   The number of refunds to return.
+      #   Number of results to return from the start of the range.
       #
       #   @return [Integer, nil]
       optional :first, Integer
 
       # @!attribute last
-      #   The number of refunds to return from the end of the range.
+      #   Number of results to return from the end of the range.
       #
       #   @return [Integer, nil]
       optional :last, Integer
@@ -79,11 +81,14 @@ module WhopSDK
       optional :api_version_date, String
 
       # @!method initialize(account_id: nil, after: nil, before: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, order: nil, payment_id: nil, user_id: nil, api_version_date: nil, request_options: {})
+      #   Some parameter documentations has been truncated, see
+      #   {WhopSDK::Models::RefundListParams} for more details.
+      #
       #   @param account_id [String] Only refunds issued by this account, prefixed `biz_`.
       #
-      #   @param after [String] A cursor; returns refunds after this position.
+      #   @param after [String] Return results after this cursor. Use `page_info.end_cursor` from the previous r
       #
-      #   @param before [String] A cursor; returns refunds before this position.
+      #   @param before [String] Return results before this cursor. Use `page_info.start_cursor` from the previou
       #
       #   @param created_after [Time] Only refunds requested after this ISO 8601 timestamp.
       #
@@ -91,9 +96,9 @@ module WhopSDK
       #
       #   @param direction [Symbol, WhopSDK::Models::RefundListParams::Direction] The sort direction.
       #
-      #   @param first [Integer] The number of refunds to return.
+      #   @param first [Integer] Number of results to return from the start of the range.
       #
-      #   @param last [Integer] The number of refunds to return from the end of the range.
+      #   @param last [Integer] Number of results to return from the end of the range.
       #
       #   @param order [Symbol, WhopSDK::Models::RefundListParams::Order] The field to sort by.
       #

@@ -75,9 +75,11 @@ module WhopSDK
       def list(
         # Query param: The account to list shipments for. Defaults to the acting account.
         account_id: nil,
-        # Query param: A cursor; returns shipments after this position.
+        # Query param: Return results after this cursor. Use `page_info.end_cursor` from
+        # the previous response to fetch the next page.
         after: nil,
-        # Query param: A cursor; returns shipments before this position.
+        # Query param: Return results before this cursor. Use `page_info.start_cursor`
+        # from the previous response to fetch the previous page.
         before: nil,
         # Query param: Return shipments created after this ISO 8601 timestamp.
         created_after: nil,
@@ -85,9 +87,9 @@ module WhopSDK
         created_before: nil,
         # Query param: The sort direction.
         direction: nil,
-        # Query param: The number of shipments to return.
+        # Query param: Number of results to return from the start of the range.
         first: nil,
-        # Query param: The number of shipments to return from the end of the range.
+        # Query param: Number of results to return from the end of the range.
         last: nil,
         # Query param: The field to sort by.
         order: nil,

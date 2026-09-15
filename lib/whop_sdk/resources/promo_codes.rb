@@ -87,15 +87,18 @@ module WhopSDK
         )
       end
 
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::PromoCodeListParams} for more details.
+      #
       # Lists promo codes for an account with cursor pagination, filters, and sorting.
       #
       # @overload list(account_id:, after: nil, before: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, order: nil, plan_ids: nil, product_ids: nil, status: nil, api_version_date: nil, request_options: {})
       #
       # @param account_id [String] Query param: Account whose promo codes are listed (`biz_` tag).
       #
-      # @param after [String] Query param: Cursor to paginate forwards from.
+      # @param after [String] Query param: Return results after this cursor. Use `page_info.end_cursor` from t
       #
-      # @param before [String] Query param: Cursor to paginate backwards from.
+      # @param before [String] Query param: Return results before this cursor. Use `page_info.start_cursor` fro
       #
       # @param created_after [Time] Query param: Only promo codes created after this ISO 8601 timestamp.
       #
@@ -103,9 +106,9 @@ module WhopSDK
       #
       # @param direction [Symbol, WhopSDK::Models::PromoCodeListParams::Direction] Query param: Sort direction.
       #
-      # @param first [Integer] Query param: Number of promo codes to return from the start of the window.
+      # @param first [Integer] Query param: Number of results to return from the start of the range.
       #
-      # @param last [Integer] Query param: Number of promo codes to return from the end of the window.
+      # @param last [Integer] Query param: Number of results to return from the end of the range.
       #
       # @param order [Symbol, WhopSDK::Models::PromoCodeListParams::Order] Query param: Sort field.
       #

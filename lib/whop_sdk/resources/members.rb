@@ -50,9 +50,9 @@ module WhopSDK
       #
       # @param account_id [String] Query param: The account to list members for (`biz_` tag). Defaults to the accou
       #
-      # @param after [String] Query param: Cursor to paginate forwards from.
+      # @param after [String] Query param: Return results after this cursor. Use `page_info.end_cursor` from t
       #
-      # @param before [String] Query param: Cursor to paginate backwards from.
+      # @param before [String] Query param: Return results before this cursor. Use `page_info.start_cursor` fro
       #
       # @param created_after [String] Query param: Only members who joined after this ISO 8601 timestamp.
       #
@@ -60,9 +60,9 @@ module WhopSDK
       #
       # @param direction [Symbol, WhopSDK::Models::MemberListParams::Direction] Query param: Sort direction.
       #
-      # @param first [Integer] Query param: Number of members to return from the start of the window.
+      # @param first [Integer] Query param: Number of results to return from the start of the range.
       #
-      # @param last [Integer] Query param: Number of members to return from the end of the window.
+      # @param last [Integer] Query param: Number of results to return from the end of the range.
       #
       # @param order [Symbol, WhopSDK::Models::MemberListParams::Order] Query param: Sort field.
       #

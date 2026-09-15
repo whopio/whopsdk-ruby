@@ -26,14 +26,16 @@ module WhopSDK
       sig { params(account_id: String).void }
       attr_writer :account_id
 
-      # A cursor; returns products after this position.
+      # Return results after this cursor. Use `page_info.end_cursor` from the previous
+      # response to fetch the next page.
       sig { returns(T.nilable(String)) }
       attr_reader :after
 
       sig { params(after: String).void }
       attr_writer :after
 
-      # A cursor; returns products before this position.
+      # Return results before this cursor. Use `page_info.start_cursor` from the
+      # previous response to fetch the previous page.
       sig { returns(T.nilable(String)) }
       attr_reader :before
 
@@ -65,7 +67,7 @@ module WhopSDK
       end
       attr_writer :direction
 
-      # The number of products to return (default and max 100).
+      # Number of results to return from the start of the range.
       sig { returns(T.nilable(Integer)) }
       attr_reader :first
 
@@ -80,7 +82,7 @@ module WhopSDK
       sig { params(labels: T::Array[String]).void }
       attr_writer :labels
 
-      # The number of products to return from the end of the range.
+      # Number of results to return from the end of the range.
       sig { returns(T.nilable(Integer)) }
       attr_reader :last
 
@@ -186,9 +188,11 @@ module WhopSDK
         # The unique identifier of the account to list products for. Omit to search the
         # public marketplace.
         account_id: nil,
-        # A cursor; returns products after this position.
+        # Return results after this cursor. Use `page_info.end_cursor` from the previous
+        # response to fetch the next page.
         after: nil,
-        # A cursor; returns products before this position.
+        # Return results before this cursor. Use `page_info.start_cursor` from the
+        # previous response to fetch the previous page.
         before: nil,
         # Only return products created after this ISO 8601 timestamp.
         created_after: nil,
@@ -196,12 +200,12 @@ module WhopSDK
         created_before: nil,
         # The sort direction for results. Defaults to descending.
         direction: nil,
-        # The number of products to return (default and max 100).
+        # Number of results to return from the start of the range.
         first: nil,
         # Filter to only products carrying all of these labels. Labels are matched
         # lowercased.
         labels: nil,
-        # The number of products to return from the end of the range.
+        # Number of results to return from the end of the range.
         last: nil,
         # Only return marketplace products assigned to this category route, such as
         # `trading`.

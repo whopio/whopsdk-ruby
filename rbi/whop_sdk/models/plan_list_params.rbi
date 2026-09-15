@@ -19,14 +19,16 @@ module WhopSDK
       sig { params(account_id: String).void }
       attr_writer :account_id
 
-      # A cursor; returns plans after this position.
+      # Return results after this cursor. Use `page_info.end_cursor` from the previous
+      # response to fetch the next page.
       sig { returns(T.nilable(String)) }
       attr_reader :after
 
       sig { params(after: String).void }
       attr_writer :after
 
-      # A cursor; returns plans before this position.
+      # Return results before this cursor. Use `page_info.start_cursor` from the
+      # previous response to fetch the previous page.
       sig { returns(T.nilable(String)) }
       attr_reader :before
 
@@ -56,14 +58,14 @@ module WhopSDK
       end
       attr_writer :direction
 
-      # The number of plans to return (default and max 100).
+      # Number of results to return from the start of the range.
       sig { returns(T.nilable(Integer)) }
       attr_reader :first
 
       sig { params(first: Integer).void }
       attr_writer :first
 
-      # The number of plans to return from the end of the range.
+      # Number of results to return from the end of the range.
       sig { returns(T.nilable(Integer)) }
       attr_reader :last
 
@@ -136,9 +138,11 @@ module WhopSDK
         # The unique identifier of the account to list plans for. Required unless
         # `product_ids` is provided for a public product-plan read.
         account_id: nil,
-        # A cursor; returns plans after this position.
+        # Return results after this cursor. Use `page_info.end_cursor` from the previous
+        # response to fetch the next page.
         after: nil,
-        # A cursor; returns plans before this position.
+        # Return results before this cursor. Use `page_info.start_cursor` from the
+        # previous response to fetch the previous page.
         before: nil,
         # Only return plans created after this timestamp.
         created_after: nil,
@@ -146,9 +150,9 @@ module WhopSDK
         created_before: nil,
         # The sort direction for results. Defaults to descending.
         direction: nil,
-        # The number of plans to return (default and max 100).
+        # Number of results to return from the start of the range.
         first: nil,
-        # The number of plans to return from the end of the range.
+        # Number of results to return from the end of the range.
         last: nil,
         # The field to sort results by. Defaults to created_at.
         order: nil,

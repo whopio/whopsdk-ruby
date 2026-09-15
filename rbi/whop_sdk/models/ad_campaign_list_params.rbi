@@ -19,7 +19,8 @@ module WhopSDK
       sig { params(account_id: String).void }
       attr_writer :account_id
 
-      # Cursor to fetch the page after (from page_info.end_cursor).
+      # Return results after this cursor. Use `page_info.end_cursor` from the previous
+      # response to fetch the next page.
       sig { returns(T.nilable(String)) }
       attr_reader :after
 
@@ -45,7 +46,8 @@ module WhopSDK
       end
       attr_writer :attribution_model
 
-      # Cursor to fetch the page before (from page_info.start_cursor).
+      # Return results before this cursor. Use `page_info.start_cursor` from the
+      # previous response to fetch the previous page.
       sig { returns(T.nilable(String)) }
       attr_reader :before
 
@@ -79,14 +81,14 @@ module WhopSDK
       end
       attr_writer :direction
 
-      # The number of campaigns to return.
+      # Number of results to return from the start of the range.
       sig { returns(T.nilable(Integer)) }
       attr_reader :first
 
       sig { params(first: Integer).void }
       attr_writer :first
 
-      # The number of campaigns to return from the end of the range.
+      # Number of results to return from the end of the range.
       sig { returns(T.nilable(Integer)) }
       attr_reader :last
 
@@ -176,14 +178,16 @@ module WhopSDK
         # The account the campaigns belong to. Defaults to the account-scoped key's own
         # account.
         account_id: nil,
-        # Cursor to fetch the page after (from page_info.end_cursor).
+        # Return results after this cursor. Use `page_info.end_cursor` from the previous
+        # response to fetch the next page.
         after: nil,
         # Attribution model the conversion stats count under (defaults to last_touch).
         # Under both models a journey with any whop ad touch attributes to whop; the model
         # picks which whop touch credits the entity and which non-whop source wins
         # otherwise.
         attribution_model: nil,
-        # Cursor to fetch the page before (from page_info.start_cursor).
+        # Return results before this cursor. Use `page_info.start_cursor` from the
+        # previous response to fetch the previous page.
         before: nil,
         # Only return campaigns created after this timestamp.
         created_after: nil,
@@ -191,9 +195,9 @@ module WhopSDK
         created_before: nil,
         # The sort direction. Defaults to desc.
         direction: nil,
-        # The number of campaigns to return.
+        # Number of results to return from the start of the range.
         first: nil,
-        # The number of campaigns to return from the end of the range.
+        # Number of results to return from the end of the range.
         last: nil,
         # The field to sort by. Defaults to created_at. Stat columns (spend, impressions,
         # …) rank over the stats_from/stats_to window across the whole list, not just the

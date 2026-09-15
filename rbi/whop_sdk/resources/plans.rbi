@@ -296,9 +296,11 @@ module WhopSDK
         # Query param: The unique identifier of the account to list plans for. Required
         # unless `product_ids` is provided for a public product-plan read.
         account_id: nil,
-        # Query param: A cursor; returns plans after this position.
+        # Query param: Return results after this cursor. Use `page_info.end_cursor` from
+        # the previous response to fetch the next page.
         after: nil,
-        # Query param: A cursor; returns plans before this position.
+        # Query param: Return results before this cursor. Use `page_info.start_cursor`
+        # from the previous response to fetch the previous page.
         before: nil,
         # Query param: Only return plans created after this timestamp.
         created_after: nil,
@@ -306,9 +308,9 @@ module WhopSDK
         created_before: nil,
         # Query param: The sort direction for results. Defaults to descending.
         direction: nil,
-        # Query param: The number of plans to return (default and max 100).
+        # Query param: Number of results to return from the start of the range.
         first: nil,
-        # Query param: The number of plans to return from the end of the range.
+        # Query param: Number of results to return from the end of the range.
         last: nil,
         # Query param: The field to sort results by. Defaults to created_at.
         order: nil,

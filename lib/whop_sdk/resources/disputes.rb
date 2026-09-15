@@ -42,9 +42,9 @@ module WhopSDK
       #
       # @param account_id [String] Query param: Only disputes filed against this account (`biz_` tag). Omit it to c
       #
-      # @param after [String] Query param: A cursor; returns disputes after this position.
+      # @param after [String] Query param: Return results after this cursor. Use `page_info.end_cursor` from t
       #
-      # @param before [String] Query param: A cursor; returns disputes before this position.
+      # @param before [String] Query param: Return results before this cursor. Use `page_info.start_cursor` fro
       #
       # @param created_after [String] Query param: Only disputes opened after this ISO 8601 timestamp.
       #
@@ -54,9 +54,9 @@ module WhopSDK
       #
       # @param direction [Symbol, WhopSDK::Models::DisputeListParams::Direction] Query param: Sort direction.
       #
-      # @param first [Integer] Query param: The number of disputes to return (default 20, max 100).
+      # @param first [Integer] Query param: Number of results to return from the start of the range.
       #
-      # @param last [Integer] Query param: The number of disputes to return from the end of the range.
+      # @param last [Integer] Query param: Number of results to return from the end of the range.
       #
       # @param order [Symbol, WhopSDK::Models::DisputeListParams::Order] Query param: The field to sort disputes by.
       #

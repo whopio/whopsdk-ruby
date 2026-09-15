@@ -14,7 +14,8 @@ module WhopSDK
       required :account_id, String
 
       # @!attribute after
-      #   A cursor; returns webhooks after this position.
+      #   Return results after this cursor. Use `page_info.end_cursor` from the previous
+      #   response to fetch the next page.
       #
       #   @return [String, nil]
       optional :after, String
@@ -27,13 +28,14 @@ module WhopSDK
       optional :app_id, String
 
       # @!attribute before
-      #   A cursor; returns webhooks before this position.
+      #   Return results before this cursor. Use `page_info.start_cursor` from the
+      #   previous response to fetch the previous page.
       #
       #   @return [String, nil]
       optional :before, String
 
       # @!attribute first
-      #   The number of webhooks to return (default 20, max 100).
+      #   Number of results to return from the start of the range.
       #
       #   @return [Integer, nil]
       optional :first, Integer
@@ -54,7 +56,7 @@ module WhopSDK
       optional :include_app_webhooks, WhopSDK::Internal::Type::Boolean
 
       # @!attribute last
-      #   The number of webhooks to return from the end of the range.
+      #   Number of results to return from the end of the range.
       #
       #   @return [Integer, nil]
       optional :last, Integer
@@ -70,19 +72,19 @@ module WhopSDK
       #
       #   @param account_id [String] The unique identifier of the account to list webhooks for.
       #
-      #   @param after [String] A cursor; returns webhooks after this position.
+      #   @param after [String] Return results after this cursor. Use `page_info.end_cursor` from the previous r
       #
       #   @param app_id [String] Only return webhooks attached to this app. Omit to list the account's own webhoo
       #
-      #   @param before [String] A cursor; returns webhooks before this position.
+      #   @param before [String] Return results before this cursor. Use `page_info.start_cursor` from the previou
       #
-      #   @param first [Integer] The number of webhooks to return (default 20, max 100).
+      #   @param first [Integer] Number of results to return from the start of the range.
       #
       #   @param has_failures [Boolean] Only return webhooks whose endpoint is currently failing — every delivery since
       #
       #   @param include_app_webhooks [Boolean] Also return webhooks attached to the account's apps, not just the account's own.
       #
-      #   @param last [Integer] The number of webhooks to return from the end of the range.
+      #   @param last [Integer] Number of results to return from the end of the range.
       #
       #   @param api_version_date [String]
       #

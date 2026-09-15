@@ -205,9 +205,9 @@ module WhopSDK
       #
       # @param account_id [String] Query param: The unique identifier of the account to list plans for. Required un
       #
-      # @param after [String] Query param: A cursor; returns plans after this position.
+      # @param after [String] Query param: Return results after this cursor. Use `page_info.end_cursor` from t
       #
-      # @param before [String] Query param: A cursor; returns plans before this position.
+      # @param before [String] Query param: Return results before this cursor. Use `page_info.start_cursor` fro
       #
       # @param created_after [String] Query param: Only return plans created after this timestamp.
       #
@@ -215,9 +215,9 @@ module WhopSDK
       #
       # @param direction [Symbol, WhopSDK::Models::PlanListParams::Direction] Query param: The sort direction for results. Defaults to descending.
       #
-      # @param first [Integer] Query param: The number of plans to return (default and max 100).
+      # @param first [Integer] Query param: Number of results to return from the start of the range.
       #
-      # @param last [Integer] Query param: The number of plans to return from the end of the range.
+      # @param last [Integer] Query param: Number of results to return from the end of the range.
       #
       # @param order [Symbol, WhopSDK::Models::PlanListParams::Order] Query param: The field to sort results by. Defaults to created_at.
       #

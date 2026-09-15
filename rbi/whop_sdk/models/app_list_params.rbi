@@ -19,7 +19,8 @@ module WhopSDK
       sig { params(account_id: String).void }
       attr_writer :account_id
 
-      # A cursor; returns apps after this position.
+      # Return results after this cursor. Use `page_info.end_cursor` from the previous
+      # response to fetch the next page.
       sig { returns(T.nilable(String)) }
       attr_reader :after
 
@@ -34,7 +35,8 @@ module WhopSDK
       sig { params(app_type: WhopSDK::AppListParams::AppType::OrSymbol).void }
       attr_writer :app_type
 
-      # A cursor; returns apps before this position.
+      # Return results before this cursor. Use `page_info.start_cursor` from the
+      # previous response to fetch the previous page.
       sig { returns(T.nilable(String)) }
       attr_reader :before
 
@@ -50,14 +52,14 @@ module WhopSDK
       end
       attr_writer :direction
 
-      # The number of apps to return (default 20, max 100).
+      # Number of results to return from the start of the range.
       sig { returns(T.nilable(Integer)) }
       attr_reader :first
 
       sig { params(first: Integer).void }
       attr_writer :first
 
-      # The number of apps to return from the end of the range.
+      # Number of results to return from the end of the range.
       sig { returns(T.nilable(Integer)) }
       attr_reader :last
 
@@ -141,18 +143,20 @@ module WhopSDK
         # Only return apps created by this account (`biz_` tag). With developer access to
         # the account this includes its unlisted and hidden apps.
         account_id: nil,
-        # A cursor; returns apps after this position.
+        # Return results after this cursor. Use `page_info.end_cursor` from the previous
+        # response to fetch the next page.
         after: nil,
         # Filter apps by the type of end-user they are built for. Apps of type `website`
         # are left out unless you ask for them by name.
         app_type: nil,
-        # A cursor; returns apps before this position.
+        # Return results before this cursor. Use `page_info.start_cursor` from the
+        # previous response to fetch the previous page.
         before: nil,
         # Sort direction.
         direction: nil,
-        # The number of apps to return (default 20, max 100).
+        # Number of results to return from the start of the range.
         first: nil,
-        # The number of apps to return from the end of the range.
+        # Number of results to return from the end of the range.
         last: nil,
         # The field to sort apps by. Defaults to discoverable_at, showing the most
         # recently published apps first. `template_usage` ranks Whop-verified apps first,

@@ -83,14 +83,16 @@ module WhopSDK
         # Query param: Only return ads in these ad groups (max 100). Repeat the parameter
         # for each id (ad_group_ids=a&ad_group_ids=b).
         ad_group_ids: nil,
-        # Query param: Cursor to fetch the page after (from page_info.end_cursor).
+        # Query param: Return results after this cursor. Use `page_info.end_cursor` from
+        # the previous response to fetch the next page.
         after: nil,
         # Query param: Attribution model the conversion stats count under (defaults to
         # last_touch). Under both models a journey with any whop ad touch attributes to
         # whop; the model picks which whop touch credits the entity and which non-whop
         # source wins otherwise.
         attribution_model: nil,
-        # Query param: Cursor to fetch the page before (from page_info.start_cursor).
+        # Query param: Return results before this cursor. Use `page_info.start_cursor`
+        # from the previous response to fetch the previous page.
         before: nil,
         # Query param: Only return ads created after this timestamp.
         created_after: nil,
@@ -98,9 +100,9 @@ module WhopSDK
         created_before: nil,
         # Query param: The sort direction. Defaults to desc.
         direction: nil,
-        # Query param: The number of ads to return.
+        # Query param: Number of results to return from the start of the range.
         first: nil,
-        # Query param: The number of ads to return from the end of the range.
+        # Query param: Number of results to return from the end of the range.
         last: nil,
         # Query param: The field to sort by. Defaults to created_at. Stat columns (spend,
         # impressions, …) rank over the stats_from/stats_to window across the whole list,

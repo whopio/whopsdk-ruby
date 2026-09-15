@@ -118,19 +118,19 @@ module WhopSDK
       #
       # @param account_id [String] Query param: The unique identifier of the account to list webhooks for.
       #
-      # @param after [String] Query param: A cursor; returns webhooks after this position.
+      # @param after [String] Query param: Return results after this cursor. Use `page_info.end_cursor` from t
       #
       # @param app_id [String] Query param: Only return webhooks attached to this app. Omit to list the account
       #
-      # @param before [String] Query param: A cursor; returns webhooks before this position.
+      # @param before [String] Query param: Return results before this cursor. Use `page_info.start_cursor` fro
       #
-      # @param first [Integer] Query param: The number of webhooks to return (default 20, max 100).
+      # @param first [Integer] Query param: Number of results to return from the start of the range.
       #
       # @param has_failures [Boolean] Query param: Only return webhooks whose endpoint is currently failing — every de
       #
       # @param include_app_webhooks [Boolean] Query param: Also return webhooks attached to the account's apps, not just the a
       #
-      # @param last [Integer] Query param: The number of webhooks to return from the end of the range.
+      # @param last [Integer] Query param: Number of results to return from the end of the range.
       #
       # @param api_version_date [String] Header param: Pins the request to a dated API version.
       #

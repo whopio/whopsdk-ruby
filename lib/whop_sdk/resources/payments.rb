@@ -112,9 +112,9 @@ module WhopSDK
       #
       # @param account_id [String] Query param: Only payments charged by this account, prefixed `biz_`.
       #
-      # @param after [String] Query param: A cursor; returns payments after this position.
+      # @param after [String] Query param: Return results after this cursor. Use `page_info.end_cursor` from t
       #
-      # @param before [String] Query param: A cursor; returns payments before this position.
+      # @param before [String] Query param: Return results before this cursor. Use `page_info.start_cursor` fro
       #
       # @param billing_reason [Symbol, WhopSDK::Models::PaymentListParams::BillingReason] Query param: Only payments charged for this reason.
       #
@@ -126,9 +126,9 @@ module WhopSDK
       #
       # @param direction [Symbol, WhopSDK::Models::PaymentListParams::Direction] Query param: The sort direction.
       #
-      # @param first [Integer] Query param: The number of payments to return.
+      # @param first [Integer] Query param: Number of results to return from the start of the range.
       #
-      # @param last [Integer] Query param: The number of payments to return from the end of the range.
+      # @param last [Integer] Query param: Number of results to return from the end of the range.
       #
       # @param member_id [String] Query param: Only payments made by this member, prefixed `mber_`.
       #

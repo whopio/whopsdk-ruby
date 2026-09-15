@@ -11,14 +11,16 @@ module WhopSDK
           T.any(WhopSDK::TransferListParams, WhopSDK::Internal::AnyHash)
         end
 
-      # Cursor to fetch the page after (from page_info.end_cursor).
+      # Return results after this cursor. Use `page_info.end_cursor` from the previous
+      # response to fetch the next page.
       sig { returns(T.nilable(String)) }
       attr_reader :after
 
       sig { params(after: String).void }
       attr_writer :after
 
-      # Cursor to fetch the page before (from page_info.start_cursor).
+      # Return results before this cursor. Use `page_info.start_cursor` from the
+      # previous response to fetch the previous page.
       sig { returns(T.nilable(String)) }
       attr_reader :before
 
@@ -57,14 +59,14 @@ module WhopSDK
       end
       attr_writer :direction
 
-      # Number of transfers to return from the start of the window.
+      # Number of results to return from the start of the range.
       sig { returns(T.nilable(Integer)) }
       attr_reader :first
 
       sig { params(first: Integer).void }
       attr_writer :first
 
-      # Number of transfers to return from the end of the window.
+      # Number of results to return from the end of the range.
       sig { returns(T.nilable(Integer)) }
       attr_reader :last
 
@@ -108,9 +110,11 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # Cursor to fetch the page after (from page_info.end_cursor).
+        # Return results after this cursor. Use `page_info.end_cursor` from the previous
+        # response to fetch the next page.
         after: nil,
-        # Cursor to fetch the page before (from page_info.start_cursor).
+        # Return results before this cursor. Use `page_info.start_cursor` from the
+        # previous response to fetch the previous page.
         before: nil,
         # Only transfers created strictly after this ISO 8601 timestamp.
         created_after: nil,
@@ -120,9 +124,9 @@ module WhopSDK
         destination_id: nil,
         # Sort direction. Defaults to desc.
         direction: nil,
-        # Number of transfers to return from the start of the window.
+        # Number of results to return from the start of the range.
         first: nil,
-        # Number of transfers to return from the end of the window.
+        # Number of results to return from the end of the range.
         last: nil,
         # Sort column. Defaults to created_at.
         order: nil,

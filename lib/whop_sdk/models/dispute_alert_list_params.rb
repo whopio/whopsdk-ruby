@@ -15,13 +15,15 @@ module WhopSDK
       optional :account_id, String
 
       # @!attribute after
-      #   A cursor; returns alerts after this position.
+      #   Return results after this cursor. Use `page_info.end_cursor` from the previous
+      #   response to fetch the next page.
       #
       #   @return [String, nil]
       optional :after, String
 
       # @!attribute before
-      #   A cursor; returns alerts before this position.
+      #   Return results before this cursor. Use `page_info.start_cursor` from the
+      #   previous response to fetch the previous page.
       #
       #   @return [String, nil]
       optional :before, String
@@ -45,13 +47,13 @@ module WhopSDK
       optional :direction, enum: -> { WhopSDK::DisputeAlertListParams::Direction }
 
       # @!attribute first
-      #   The number of alerts to return (default 20, max 100).
+      #   Number of results to return from the start of the range.
       #
       #   @return [Integer, nil]
       optional :first, Integer
 
       # @!attribute last
-      #   The number of alerts to return from the end of the range.
+      #   Number of results to return from the end of the range.
       #
       #   @return [Integer, nil]
       optional :last, Integer
@@ -87,9 +89,9 @@ module WhopSDK
       #
       #   @param account_id [String] Only alerts on this account's payments (`biz_` tag). Omit it to cover every acco
       #
-      #   @param after [String] A cursor; returns alerts after this position.
+      #   @param after [String] Return results after this cursor. Use `page_info.end_cursor` from the previous r
       #
-      #   @param before [String] A cursor; returns alerts before this position.
+      #   @param before [String] Return results before this cursor. Use `page_info.start_cursor` from the previou
       #
       #   @param created_after [String] Only alerts Whop received after this ISO 8601 timestamp.
       #
@@ -97,9 +99,9 @@ module WhopSDK
       #
       #   @param direction [Symbol, WhopSDK::Models::DisputeAlertListParams::Direction] Sort direction.
       #
-      #   @param first [Integer] The number of alerts to return (default 20, max 100).
+      #   @param first [Integer] Number of results to return from the start of the range.
       #
-      #   @param last [Integer] The number of alerts to return from the end of the range.
+      #   @param last [Integer] Number of results to return from the end of the range.
       #
       #   @param order [Symbol, WhopSDK::Models::DisputeAlertListParams::Order] The field to sort alerts by.
       #

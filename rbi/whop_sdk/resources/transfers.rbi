@@ -118,9 +118,11 @@ module WhopSDK
         )
       end
       def list(
-        # Query param: Cursor to fetch the page after (from page_info.end_cursor).
+        # Query param: Return results after this cursor. Use `page_info.end_cursor` from
+        # the previous response to fetch the next page.
         after: nil,
-        # Query param: Cursor to fetch the page before (from page_info.start_cursor).
+        # Query param: Return results before this cursor. Use `page_info.start_cursor`
+        # from the previous response to fetch the previous page.
         before: nil,
         # Query param: Only transfers created strictly after this ISO 8601 timestamp.
         created_after: nil,
@@ -131,9 +133,9 @@ module WhopSDK
         destination_id: nil,
         # Query param: Sort direction. Defaults to desc.
         direction: nil,
-        # Query param: Number of transfers to return from the start of the window.
+        # Query param: Number of results to return from the start of the range.
         first: nil,
-        # Query param: Number of transfers to return from the end of the window.
+        # Query param: Number of results to return from the end of the range.
         last: nil,
         # Query param: Sort column. Defaults to created_at.
         order: nil,

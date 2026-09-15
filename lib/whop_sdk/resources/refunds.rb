@@ -36,6 +36,9 @@ module WhopSDK
         )
       end
 
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::RefundListParams} for more details.
+      #
       # Lists refunds, newest first. Without filters this is every refund the caller can
       # read; narrow it to one payment with `payment_id`, one account with `account_id`,
       # or one buyer with `user_id`.
@@ -44,9 +47,9 @@ module WhopSDK
       #
       # @param account_id [String] Query param: Only refunds issued by this account, prefixed `biz_`.
       #
-      # @param after [String] Query param: A cursor; returns refunds after this position.
+      # @param after [String] Query param: Return results after this cursor. Use `page_info.end_cursor` from t
       #
-      # @param before [String] Query param: A cursor; returns refunds before this position.
+      # @param before [String] Query param: Return results before this cursor. Use `page_info.start_cursor` fro
       #
       # @param created_after [Time] Query param: Only refunds requested after this ISO 8601 timestamp.
       #
@@ -54,9 +57,9 @@ module WhopSDK
       #
       # @param direction [Symbol, WhopSDK::Models::RefundListParams::Direction] Query param: The sort direction.
       #
-      # @param first [Integer] Query param: The number of refunds to return.
+      # @param first [Integer] Query param: Number of results to return from the start of the range.
       #
-      # @param last [Integer] Query param: The number of refunds to return from the end of the range.
+      # @param last [Integer] Query param: Number of results to return from the end of the range.
       #
       # @param order [Symbol, WhopSDK::Models::RefundListParams::Order] Query param: The field to sort by.
       #

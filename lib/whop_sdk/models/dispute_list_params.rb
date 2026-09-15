@@ -15,13 +15,15 @@ module WhopSDK
       optional :account_id, String
 
       # @!attribute after
-      #   A cursor; returns disputes after this position.
+      #   Return results after this cursor. Use `page_info.end_cursor` from the previous
+      #   response to fetch the next page.
       #
       #   @return [String, nil]
       optional :after, String
 
       # @!attribute before
-      #   A cursor; returns disputes before this position.
+      #   Return results before this cursor. Use `page_info.start_cursor` from the
+      #   previous response to fetch the previous page.
       #
       #   @return [String, nil]
       optional :before, String
@@ -51,13 +53,13 @@ module WhopSDK
       optional :direction, enum: -> { WhopSDK::DisputeListParams::Direction }
 
       # @!attribute first
-      #   The number of disputes to return (default 20, max 100).
+      #   Number of results to return from the start of the range.
       #
       #   @return [Integer, nil]
       optional :first, Integer
 
       # @!attribute last
-      #   The number of disputes to return from the end of the range.
+      #   Number of results to return from the end of the range.
       #
       #   @return [Integer, nil]
       optional :last, Integer
@@ -88,9 +90,9 @@ module WhopSDK
       #
       #   @param account_id [String] Only disputes filed against this account (`biz_` tag). Omit it to cover every ac
       #
-      #   @param after [String] A cursor; returns disputes after this position.
+      #   @param after [String] Return results after this cursor. Use `page_info.end_cursor` from the previous r
       #
-      #   @param before [String] A cursor; returns disputes before this position.
+      #   @param before [String] Return results before this cursor. Use `page_info.start_cursor` from the previou
       #
       #   @param created_after [String] Only disputes opened after this ISO 8601 timestamp.
       #
@@ -100,9 +102,9 @@ module WhopSDK
       #
       #   @param direction [Symbol, WhopSDK::Models::DisputeListParams::Direction] Sort direction.
       #
-      #   @param first [Integer] The number of disputes to return (default 20, max 100).
+      #   @param first [Integer] Number of results to return from the start of the range.
       #
-      #   @param last [Integer] The number of disputes to return from the end of the range.
+      #   @param last [Integer] Number of results to return from the end of the range.
       #
       #   @param order [Symbol, WhopSDK::Models::DisputeListParams::Order] The field to sort disputes by.
       #

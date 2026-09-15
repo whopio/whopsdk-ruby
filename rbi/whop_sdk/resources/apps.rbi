@@ -217,18 +217,20 @@ module WhopSDK
         # Query param: Only return apps created by this account (`biz_` tag). With
         # developer access to the account this includes its unlisted and hidden apps.
         account_id: nil,
-        # Query param: A cursor; returns apps after this position.
+        # Query param: Return results after this cursor. Use `page_info.end_cursor` from
+        # the previous response to fetch the next page.
         after: nil,
         # Query param: Filter apps by the type of end-user they are built for. Apps of
         # type `website` are left out unless you ask for them by name.
         app_type: nil,
-        # Query param: A cursor; returns apps before this position.
+        # Query param: Return results before this cursor. Use `page_info.start_cursor`
+        # from the previous response to fetch the previous page.
         before: nil,
         # Query param: Sort direction.
         direction: nil,
-        # Query param: The number of apps to return (default 20, max 100).
+        # Query param: Number of results to return from the start of the range.
         first: nil,
-        # Query param: The number of apps to return from the end of the range.
+        # Query param: Number of results to return from the end of the range.
         last: nil,
         # Query param: The field to sort apps by. Defaults to discoverable_at, showing the
         # most recently published apps first. `template_usage` ranks Whop-verified apps

@@ -45,9 +45,9 @@ module WhopSDK
       #
       # @param account_id [String] Query param: Only alerts on this account's payments (`biz_` tag). Omit it to cov
       #
-      # @param after [String] Query param: A cursor; returns alerts after this position.
+      # @param after [String] Query param: Return results after this cursor. Use `page_info.end_cursor` from t
       #
-      # @param before [String] Query param: A cursor; returns alerts before this position.
+      # @param before [String] Query param: Return results before this cursor. Use `page_info.start_cursor` fro
       #
       # @param created_after [String] Query param: Only alerts Whop received after this ISO 8601 timestamp.
       #
@@ -55,9 +55,9 @@ module WhopSDK
       #
       # @param direction [Symbol, WhopSDK::Models::DisputeAlertListParams::Direction] Query param: Sort direction.
       #
-      # @param first [Integer] Query param: The number of alerts to return (default 20, max 100).
+      # @param first [Integer] Query param: Number of results to return from the start of the range.
       #
-      # @param last [Integer] Query param: The number of alerts to return from the end of the range.
+      # @param last [Integer] Query param: Number of results to return from the end of the range.
       #
       # @param order [Symbol, WhopSDK::Models::DisputeAlertListParams::Order] Query param: The field to sort alerts by.
       #

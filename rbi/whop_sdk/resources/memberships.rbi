@@ -87,9 +87,11 @@ module WhopSDK
         # this lists all of its memberships; without, only the caller's own memberships in
         # it.
         account_id: nil,
-        # Query param: Cursor to paginate forwards from.
+        # Query param: Return results after this cursor. Use `page_info.end_cursor` from
+        # the previous response to fetch the next page.
         after: nil,
-        # Query param: Cursor to paginate backwards from.
+        # Query param: Return results before this cursor. Use `page_info.start_cursor`
+        # from the previous response to fetch the previous page.
         before: nil,
         # Query param: Only memberships created after this ISO 8601 timestamp.
         created_after: nil,
@@ -97,9 +99,9 @@ module WhopSDK
         created_before: nil,
         # Query param: Sort direction.
         direction: nil,
-        # Query param: Number of memberships to return from the start of the window.
+        # Query param: Number of results to return from the start of the range.
         first: nil,
-        # Query param: Number of memberships to return from the end of the window.
+        # Query param: Number of results to return from the end of the range.
         last: nil,
         # Query param: Sort field.
         order: nil,

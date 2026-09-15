@@ -205,9 +205,11 @@ module WhopSDK
         # Query param: The unique identifier of the account to list products for. Omit to
         # search the public marketplace.
         account_id: nil,
-        # Query param: A cursor; returns products after this position.
+        # Query param: Return results after this cursor. Use `page_info.end_cursor` from
+        # the previous response to fetch the next page.
         after: nil,
-        # Query param: A cursor; returns products before this position.
+        # Query param: Return results before this cursor. Use `page_info.start_cursor`
+        # from the previous response to fetch the previous page.
         before: nil,
         # Query param: Only return products created after this ISO 8601 timestamp.
         created_after: nil,
@@ -215,12 +217,12 @@ module WhopSDK
         created_before: nil,
         # Query param: The sort direction for results. Defaults to descending.
         direction: nil,
-        # Query param: The number of products to return (default and max 100).
+        # Query param: Number of results to return from the start of the range.
         first: nil,
         # Query param: Filter to only products carrying all of these labels. Labels are
         # matched lowercased.
         labels: nil,
-        # Query param: The number of products to return from the end of the range.
+        # Query param: Number of results to return from the end of the range.
         last: nil,
         # Query param: Only return marketplace products assigned to this category route,
         # such as `trading`.

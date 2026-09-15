@@ -11,28 +11,30 @@ module WhopSDK
           T.any(WhopSDK::UserListParams, WhopSDK::Internal::AnyHash)
         end
 
-      # A cursor; returns users after this position.
+      # Return results after this cursor. Use `page_info.end_cursor` from the previous
+      # response to fetch the next page.
       sig { returns(T.nilable(String)) }
       attr_reader :after
 
       sig { params(after: String).void }
       attr_writer :after
 
-      # A cursor; returns users before this position.
+      # Return results before this cursor. Use `page_info.start_cursor` from the
+      # previous response to fetch the previous page.
       sig { returns(T.nilable(String)) }
       attr_reader :before
 
       sig { params(before: String).void }
       attr_writer :before
 
-      # The number of users to return (max 50).
+      # Number of results to return from the start of the range.
       sig { returns(T.nilable(Integer)) }
       attr_reader :first
 
       sig { params(first: Integer).void }
       attr_writer :first
 
-      # The number of users to return from the end of the range.
+      # Number of results to return from the end of the range.
       sig { returns(T.nilable(Integer)) }
       attr_reader :last
 
@@ -64,13 +66,15 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # A cursor; returns users after this position.
+        # Return results after this cursor. Use `page_info.end_cursor` from the previous
+        # response to fetch the next page.
         after: nil,
-        # A cursor; returns users before this position.
+        # Return results before this cursor. Use `page_info.start_cursor` from the
+        # previous response to fetch the previous page.
         before: nil,
-        # The number of users to return (max 50).
+        # Number of results to return from the start of the range.
         first: nil,
-        # The number of users to return from the end of the range.
+        # Number of results to return from the end of the range.
         last: nil,
         # A search term to filter users by name or username.
         query: nil,

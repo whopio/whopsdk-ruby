@@ -119,14 +119,16 @@ module WhopSDK
       def list(
         # Query param: The unique identifier of the account to list webhooks for.
         account_id:,
-        # Query param: A cursor; returns webhooks after this position.
+        # Query param: Return results after this cursor. Use `page_info.end_cursor` from
+        # the previous response to fetch the next page.
         after: nil,
         # Query param: Only return webhooks attached to this app. Omit to list the
         # account's own webhooks.
         app_id: nil,
-        # Query param: A cursor; returns webhooks before this position.
+        # Query param: Return results before this cursor. Use `page_info.start_cursor`
+        # from the previous response to fetch the previous page.
         before: nil,
-        # Query param: The number of webhooks to return (default 20, max 100).
+        # Query param: Number of results to return from the start of the range.
         first: nil,
         # Query param: Only return webhooks whose endpoint is currently failing — every
         # delivery since the current failure streak began has been rejected. Clears as
@@ -135,7 +137,7 @@ module WhopSDK
         # Query param: Also return webhooks attached to the account's apps, not just the
         # account's own. Cannot be combined with `app_id`.
         include_app_webhooks: nil,
-        # Query param: The number of webhooks to return from the end of the range.
+        # Query param: Number of results to return from the end of the range.
         last: nil,
         # Header param: Pins the request to a dated API version.
         api_version_date: nil,

@@ -19,14 +19,16 @@ module WhopSDK
       sig { params(account_id: String).void }
       attr_writer :account_id
 
-      # A cursor; returns disputes after this position.
+      # Return results after this cursor. Use `page_info.end_cursor` from the previous
+      # response to fetch the next page.
       sig { returns(T.nilable(String)) }
       attr_reader :after
 
       sig { params(after: String).void }
       attr_writer :after
 
-      # A cursor; returns disputes before this position.
+      # Return results before this cursor. Use `page_info.start_cursor` from the
+      # previous response to fetch the previous page.
       sig { returns(T.nilable(String)) }
       attr_reader :before
 
@@ -65,14 +67,14 @@ module WhopSDK
       end
       attr_writer :direction
 
-      # The number of disputes to return (default 20, max 100).
+      # Number of results to return from the start of the range.
       sig { returns(T.nilable(Integer)) }
       attr_reader :first
 
       sig { params(first: Integer).void }
       attr_writer :first
 
-      # The number of disputes to return from the end of the range.
+      # Number of results to return from the end of the range.
       sig { returns(T.nilable(Integer)) }
       attr_reader :last
 
@@ -131,9 +133,11 @@ module WhopSDK
         # Only disputes filed against this account (`biz_` tag). Omit it to cover every
         # account you can read.
         account_id: nil,
-        # A cursor; returns disputes after this position.
+        # Return results after this cursor. Use `page_info.end_cursor` from the previous
+        # response to fetch the next page.
         after: nil,
-        # A cursor; returns disputes before this position.
+        # Return results before this cursor. Use `page_info.start_cursor` from the
+        # previous response to fetch the previous page.
         before: nil,
         # Only disputes opened after this ISO 8601 timestamp.
         created_after: nil,
@@ -143,9 +147,9 @@ module WhopSDK
         currency: nil,
         # Sort direction.
         direction: nil,
-        # The number of disputes to return (default 20, max 100).
+        # Number of results to return from the start of the range.
         first: nil,
-        # The number of disputes to return from the end of the range.
+        # Number of results to return from the end of the range.
         last: nil,
         # The field to sort disputes by.
         order: nil,

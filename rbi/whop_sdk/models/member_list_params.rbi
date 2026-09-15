@@ -32,14 +32,16 @@ module WhopSDK
       sig { params(account_id: String).void }
       attr_writer :account_id
 
-      # Cursor to paginate forwards from.
+      # Return results after this cursor. Use `page_info.end_cursor` from the previous
+      # response to fetch the next page.
       sig { returns(T.nilable(String)) }
       attr_reader :after
 
       sig { params(after: String).void }
       attr_writer :after
 
-      # Cursor to paginate backwards from.
+      # Return results before this cursor. Use `page_info.start_cursor` from the
+      # previous response to fetch the previous page.
       sig { returns(T.nilable(String)) }
       attr_reader :before
 
@@ -69,14 +71,14 @@ module WhopSDK
       end
       attr_writer :direction
 
-      # Number of members to return from the start of the window.
+      # Number of results to return from the start of the range.
       sig { returns(T.nilable(Integer)) }
       attr_reader :first
 
       sig { params(first: Integer).void }
       attr_writer :first
 
-      # Number of members to return from the end of the window.
+      # Number of results to return from the end of the range.
       sig { returns(T.nilable(Integer)) }
       attr_reader :last
 
@@ -143,9 +145,11 @@ module WhopSDK
         # The account to list members for (`biz_` tag). Defaults to the account the
         # credential acts as.
         account_id: nil,
-        # Cursor to paginate forwards from.
+        # Return results after this cursor. Use `page_info.end_cursor` from the previous
+        # response to fetch the next page.
         after: nil,
-        # Cursor to paginate backwards from.
+        # Return results before this cursor. Use `page_info.start_cursor` from the
+        # previous response to fetch the previous page.
         before: nil,
         # Only members who joined after this ISO 8601 timestamp.
         created_after: nil,
@@ -153,9 +157,9 @@ module WhopSDK
         created_before: nil,
         # Sort direction.
         direction: nil,
-        # Number of members to return from the start of the window.
+        # Number of results to return from the start of the range.
         first: nil,
-        # Number of members to return from the end of the window.
+        # Number of results to return from the end of the range.
         last: nil,
         # Sort field.
         order: nil,

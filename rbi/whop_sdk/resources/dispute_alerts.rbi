@@ -55,9 +55,11 @@ module WhopSDK
         # Query param: Only alerts on this account's payments (`biz_` tag). Omit it to
         # cover every account you can read.
         account_id: nil,
-        # Query param: A cursor; returns alerts after this position.
+        # Query param: Return results after this cursor. Use `page_info.end_cursor` from
+        # the previous response to fetch the next page.
         after: nil,
-        # Query param: A cursor; returns alerts before this position.
+        # Query param: Return results before this cursor. Use `page_info.start_cursor`
+        # from the previous response to fetch the previous page.
         before: nil,
         # Query param: Only alerts Whop received after this ISO 8601 timestamp.
         created_after: nil,
@@ -65,9 +67,9 @@ module WhopSDK
         created_before: nil,
         # Query param: Sort direction.
         direction: nil,
-        # Query param: The number of alerts to return (default 20, max 100).
+        # Query param: Number of results to return from the start of the range.
         first: nil,
-        # Query param: The number of alerts to return from the end of the range.
+        # Query param: Number of results to return from the end of the range.
         last: nil,
         # Query param: The field to sort alerts by.
         order: nil,

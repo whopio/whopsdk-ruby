@@ -15,13 +15,15 @@ module WhopSDK
       optional :account_id, String
 
       # @!attribute after
-      #   A cursor; returns plans after this position.
+      #   Return results after this cursor. Use `page_info.end_cursor` from the previous
+      #   response to fetch the next page.
       #
       #   @return [String, nil]
       optional :after, String
 
       # @!attribute before
-      #   A cursor; returns plans before this position.
+      #   Return results before this cursor. Use `page_info.start_cursor` from the
+      #   previous response to fetch the previous page.
       #
       #   @return [String, nil]
       optional :before, String
@@ -45,13 +47,13 @@ module WhopSDK
       optional :direction, enum: -> { WhopSDK::PlanListParams::Direction }
 
       # @!attribute first
-      #   The number of plans to return (default and max 100).
+      #   Number of results to return from the start of the range.
       #
       #   @return [Integer, nil]
       optional :first, Integer
 
       # @!attribute last
-      #   The number of plans to return from the end of the range.
+      #   Number of results to return from the end of the range.
       #
       #   @return [Integer, nil]
       optional :last, Integer
@@ -99,9 +101,9 @@ module WhopSDK
       #
       #   @param account_id [String] The unique identifier of the account to list plans for. Required unless `product
       #
-      #   @param after [String] A cursor; returns plans after this position.
+      #   @param after [String] Return results after this cursor. Use `page_info.end_cursor` from the previous r
       #
-      #   @param before [String] A cursor; returns plans before this position.
+      #   @param before [String] Return results before this cursor. Use `page_info.start_cursor` from the previou
       #
       #   @param created_after [String] Only return plans created after this timestamp.
       #
@@ -109,9 +111,9 @@ module WhopSDK
       #
       #   @param direction [Symbol, WhopSDK::Models::PlanListParams::Direction] The sort direction for results. Defaults to descending.
       #
-      #   @param first [Integer] The number of plans to return (default and max 100).
+      #   @param first [Integer] Number of results to return from the start of the range.
       #
-      #   @param last [Integer] The number of plans to return from the end of the range.
+      #   @param last [Integer] Number of results to return from the end of the range.
       #
       #   @param order [Symbol, WhopSDK::Models::PlanListParams::Order] The field to sort results by. Defaults to created_at.
       #

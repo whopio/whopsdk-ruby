@@ -18,7 +18,8 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :account_id
 
-      # Cursor for the next page of results.
+      # Return results after this cursor. Use `page_info.end_cursor` from the previous
+      # response to fetch the next page.
       sig { returns(T.nilable(String)) }
       attr_reader :after
 
@@ -57,7 +58,7 @@ module WhopSDK
       end
       attr_writer :direction
 
-      # Number of checkout configurations to return.
+      # Number of results to return from the start of the range.
       sig { returns(T.nilable(Integer)) }
       attr_reader :first
 
@@ -110,7 +111,8 @@ module WhopSDK
       def self.new(
         # Account ID, prefixed `biz_`.
         account_id:,
-        # Cursor for the next page of results.
+        # Return results after this cursor. Use `page_info.end_cursor` from the previous
+        # response to fetch the next page.
         after: nil,
         # Only return checkout configurations created after this ISO 8601 timestamp.
         created_after: nil,
@@ -118,7 +120,7 @@ module WhopSDK
         created_before: nil,
         # Sort direction. Defaults to `desc`.
         direction: nil,
-        # Number of checkout configurations to return.
+        # Number of results to return from the start of the range.
         first: nil,
         # Field used to sort checkout configurations.
         order: nil,

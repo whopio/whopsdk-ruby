@@ -8,13 +8,15 @@ module WhopSDK
       include WhopSDK::Internal::Type::RequestParameters
 
       # @!attribute after
-      #   Cursor to fetch the page after (from page_info.end_cursor).
+      #   Return results after this cursor. Use `page_info.end_cursor` from the previous
+      #   response to fetch the next page.
       #
       #   @return [String, nil]
       optional :after, String
 
       # @!attribute before
-      #   Cursor to fetch the page before (from page_info.start_cursor).
+      #   Return results before this cursor. Use `page_info.start_cursor` from the
+      #   previous response to fetch the previous page.
       #
       #   @return [String, nil]
       optional :before, String
@@ -44,13 +46,13 @@ module WhopSDK
       optional :direction, enum: -> { WhopSDK::TransferListParams::Direction }
 
       # @!attribute first
-      #   Number of transfers to return from the start of the window.
+      #   Number of results to return from the start of the range.
       #
       #   @return [Integer, nil]
       optional :first, Integer
 
       # @!attribute last
-      #   Number of transfers to return from the end of the window.
+      #   Number of results to return from the end of the range.
       #
       #   @return [Integer, nil]
       optional :last, Integer
@@ -73,9 +75,12 @@ module WhopSDK
       optional :api_version_date, String
 
       # @!method initialize(after: nil, before: nil, created_after: nil, created_before: nil, destination_id: nil, direction: nil, first: nil, last: nil, order: nil, origin_id: nil, api_version_date: nil, request_options: {})
-      #   @param after [String] Cursor to fetch the page after (from page_info.end_cursor).
+      #   Some parameter documentations has been truncated, see
+      #   {WhopSDK::Models::TransferListParams} for more details.
       #
-      #   @param before [String] Cursor to fetch the page before (from page_info.start_cursor).
+      #   @param after [String] Return results after this cursor. Use `page_info.end_cursor` from the previous r
+      #
+      #   @param before [String] Return results before this cursor. Use `page_info.start_cursor` from the previou
       #
       #   @param created_after [String] Only transfers created strictly after this ISO 8601 timestamp.
       #
@@ -85,9 +90,9 @@ module WhopSDK
       #
       #   @param direction [Symbol, WhopSDK::Models::TransferListParams::Direction] Sort direction. Defaults to desc.
       #
-      #   @param first [Integer] Number of transfers to return from the start of the window.
+      #   @param first [Integer] Number of results to return from the start of the range.
       #
-      #   @param last [Integer] Number of transfers to return from the end of the window.
+      #   @param last [Integer] Number of results to return from the end of the range.
       #
       #   @param order [Symbol, WhopSDK::Models::TransferListParams::Order] Sort column. Defaults to created_at.
       #

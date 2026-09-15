@@ -14,13 +14,15 @@ module WhopSDK
       optional :account_id, String
 
       # @!attribute after
-      #   A cursor; returns shipments after this position.
+      #   Return results after this cursor. Use `page_info.end_cursor` from the previous
+      #   response to fetch the next page.
       #
       #   @return [String, nil]
       optional :after, String
 
       # @!attribute before
-      #   A cursor; returns shipments before this position.
+      #   Return results before this cursor. Use `page_info.start_cursor` from the
+      #   previous response to fetch the previous page.
       #
       #   @return [String, nil]
       optional :before, String
@@ -44,13 +46,13 @@ module WhopSDK
       optional :direction, enum: -> { WhopSDK::ShipmentListParams::Direction }
 
       # @!attribute first
-      #   The number of shipments to return.
+      #   Number of results to return from the start of the range.
       #
       #   @return [Integer, nil]
       optional :first, Integer
 
       # @!attribute last
-      #   The number of shipments to return from the end of the range.
+      #   Number of results to return from the end of the range.
       #
       #   @return [Integer, nil]
       optional :last, Integer
@@ -86,9 +88,9 @@ module WhopSDK
       #
       #   @param account_id [String] The account to list shipments for. Defaults to the acting account.
       #
-      #   @param after [String] A cursor; returns shipments after this position.
+      #   @param after [String] Return results after this cursor. Use `page_info.end_cursor` from the previous r
       #
-      #   @param before [String] A cursor; returns shipments before this position.
+      #   @param before [String] Return results before this cursor. Use `page_info.start_cursor` from the previou
       #
       #   @param created_after [String] Return shipments created after this ISO 8601 timestamp.
       #
@@ -96,9 +98,9 @@ module WhopSDK
       #
       #   @param direction [Symbol, WhopSDK::Models::ShipmentListParams::Direction] The sort direction.
       #
-      #   @param first [Integer] The number of shipments to return.
+      #   @param first [Integer] Number of results to return from the start of the range.
       #
-      #   @param last [Integer] The number of shipments to return from the end of the range.
+      #   @param last [Integer] Number of results to return from the end of the range.
       #
       #   @param order [Symbol, WhopSDK::Models::ShipmentListParams::Order] The field to sort by.
       #

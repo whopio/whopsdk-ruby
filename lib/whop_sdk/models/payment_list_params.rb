@@ -14,13 +14,15 @@ module WhopSDK
       optional :account_id, String
 
       # @!attribute after
-      #   A cursor; returns payments after this position.
+      #   Return results after this cursor. Use `page_info.end_cursor` from the previous
+      #   response to fetch the next page.
       #
       #   @return [String, nil]
       optional :after, String
 
       # @!attribute before
-      #   A cursor; returns payments before this position.
+      #   Return results before this cursor. Use `page_info.start_cursor` from the
+      #   previous response to fetch the previous page.
       #
       #   @return [String, nil]
       optional :before, String
@@ -56,13 +58,13 @@ module WhopSDK
       optional :direction, enum: -> { WhopSDK::PaymentListParams::Direction }
 
       # @!attribute first
-      #   The number of payments to return.
+      #   Number of results to return from the start of the range.
       #
       #   @return [Integer, nil]
       optional :first, Integer
 
       # @!attribute last
-      #   The number of payments to return from the end of the range.
+      #   Number of results to return from the end of the range.
       #
       #   @return [Integer, nil]
       optional :last, Integer
@@ -127,9 +129,9 @@ module WhopSDK
       #
       #   @param account_id [String] Only payments charged by this account, prefixed `biz_`.
       #
-      #   @param after [String] A cursor; returns payments after this position.
+      #   @param after [String] Return results after this cursor. Use `page_info.end_cursor` from the previous r
       #
-      #   @param before [String] A cursor; returns payments before this position.
+      #   @param before [String] Return results before this cursor. Use `page_info.start_cursor` from the previou
       #
       #   @param billing_reason [Symbol, WhopSDK::Models::PaymentListParams::BillingReason] Only payments charged for this reason.
       #
@@ -141,9 +143,9 @@ module WhopSDK
       #
       #   @param direction [Symbol, WhopSDK::Models::PaymentListParams::Direction] The sort direction.
       #
-      #   @param first [Integer] The number of payments to return.
+      #   @param first [Integer] Number of results to return from the start of the range.
       #
-      #   @param last [Integer] The number of payments to return from the end of the range.
+      #   @param last [Integer] Number of results to return from the end of the range.
       #
       #   @param member_id [String] Only payments made by this member, prefixed `mber_`.
       #

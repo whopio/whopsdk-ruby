@@ -94,7 +94,7 @@ module WhopSDK
       #
       # @param account_id [String] Query param: Account ID, prefixed `biz_`.
       #
-      # @param after [String] Query param: Cursor for the next page of results.
+      # @param after [String] Query param: Return results after this cursor. Use `page_info.end_cursor` from t
       #
       # @param created_after [String] Query param: Only return checkout configurations created after this ISO 8601 tim
       #
@@ -102,7 +102,7 @@ module WhopSDK
       #
       # @param direction [Symbol, WhopSDK::Models::CheckoutConfigurationListParams::Direction] Query param: Sort direction. Defaults to `desc`.
       #
-      # @param first [Integer] Query param: Number of checkout configurations to return.
+      # @param first [Integer] Query param: Number of results to return from the start of the range.
       #
       # @param order [Symbol, WhopSDK::Models::CheckoutConfigurationListParams::Order] Query param: Field used to sort checkout configurations.
       #

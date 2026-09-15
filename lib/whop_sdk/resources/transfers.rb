@@ -96,9 +96,9 @@ module WhopSDK
       #
       # @overload list(after: nil, before: nil, created_after: nil, created_before: nil, destination_id: nil, direction: nil, first: nil, last: nil, order: nil, origin_id: nil, api_version_date: nil, request_options: {})
       #
-      # @param after [String] Query param: Cursor to fetch the page after (from page_info.end_cursor).
+      # @param after [String] Query param: Return results after this cursor. Use `page_info.end_cursor` from t
       #
-      # @param before [String] Query param: Cursor to fetch the page before (from page_info.start_cursor).
+      # @param before [String] Query param: Return results before this cursor. Use `page_info.start_cursor` fro
       #
       # @param created_after [String] Query param: Only transfers created strictly after this ISO 8601 timestamp.
       #
@@ -108,9 +108,9 @@ module WhopSDK
       #
       # @param direction [Symbol, WhopSDK::Models::TransferListParams::Direction] Query param: Sort direction. Defaults to desc.
       #
-      # @param first [Integer] Query param: Number of transfers to return from the start of the window.
+      # @param first [Integer] Query param: Number of results to return from the start of the range.
       #
-      # @param last [Integer] Query param: Number of transfers to return from the end of the window.
+      # @param last [Integer] Query param: Number of results to return from the end of the range.
       #
       # @param order [Symbol, WhopSDK::Models::TransferListParams::Order] Query param: Sort column. Defaults to created_at.
       #

@@ -15,7 +15,8 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :account_id
 
-      # A cursor; returns webhooks after this position.
+      # Return results after this cursor. Use `page_info.end_cursor` from the previous
+      # response to fetch the next page.
       sig { returns(T.nilable(String)) }
       attr_reader :after
 
@@ -30,14 +31,15 @@ module WhopSDK
       sig { params(app_id: String).void }
       attr_writer :app_id
 
-      # A cursor; returns webhooks before this position.
+      # Return results before this cursor. Use `page_info.start_cursor` from the
+      # previous response to fetch the previous page.
       sig { returns(T.nilable(String)) }
       attr_reader :before
 
       sig { params(before: String).void }
       attr_writer :before
 
-      # The number of webhooks to return (default 20, max 100).
+      # Number of results to return from the start of the range.
       sig { returns(T.nilable(Integer)) }
       attr_reader :first
 
@@ -61,7 +63,7 @@ module WhopSDK
       sig { params(include_app_webhooks: T::Boolean).void }
       attr_writer :include_app_webhooks
 
-      # The number of webhooks to return from the end of the range.
+      # Number of results to return from the end of the range.
       sig { returns(T.nilable(Integer)) }
       attr_reader :last
 
@@ -91,14 +93,16 @@ module WhopSDK
       def self.new(
         # The unique identifier of the account to list webhooks for.
         account_id:,
-        # A cursor; returns webhooks after this position.
+        # Return results after this cursor. Use `page_info.end_cursor` from the previous
+        # response to fetch the next page.
         after: nil,
         # Only return webhooks attached to this app. Omit to list the account's own
         # webhooks.
         app_id: nil,
-        # A cursor; returns webhooks before this position.
+        # Return results before this cursor. Use `page_info.start_cursor` from the
+        # previous response to fetch the previous page.
         before: nil,
-        # The number of webhooks to return (default 20, max 100).
+        # Number of results to return from the start of the range.
         first: nil,
         # Only return webhooks whose endpoint is currently failing — every delivery since
         # the current failure streak began has been rejected. Clears as soon as a delivery
@@ -107,7 +111,7 @@ module WhopSDK
         # Also return webhooks attached to the account's apps, not just the account's own.
         # Cannot be combined with `app_id`.
         include_app_webhooks: nil,
-        # The number of webhooks to return from the end of the range.
+        # Number of results to return from the end of the range.
         last: nil,
         api_version_date: nil,
         request_options: {}

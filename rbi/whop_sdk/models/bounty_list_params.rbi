@@ -19,14 +19,16 @@ module WhopSDK
       sig { params(account_id: String).void }
       attr_writer :account_id
 
-      # Cursor to paginate forwards from.
+      # Return results after this cursor. Use `page_info.end_cursor` from the previous
+      # response to fetch the next page.
       sig { returns(T.nilable(String)) }
       attr_reader :after
 
       sig { params(after: String).void }
       attr_writer :after
 
-      # Cursor to paginate backwards from.
+      # Return results before this cursor. Use `page_info.start_cursor` from the
+      # previous response to fetch the previous page.
       sig { returns(T.nilable(String)) }
       attr_reader :before
 
@@ -89,14 +91,14 @@ module WhopSDK
       sig { params(experience_id: String).void }
       attr_writer :experience_id
 
-      # Number of bounties to return from the start of the window.
+      # Number of results to return from the start of the range.
       sig { returns(T.nilable(Integer)) }
       attr_reader :first
 
       sig { params(first: Integer).void }
       attr_writer :first
 
-      # Number of bounties to return from the end of the window.
+      # Number of results to return from the end of the range.
       sig { returns(T.nilable(Integer)) }
       attr_reader :last
 
@@ -164,9 +166,11 @@ module WhopSDK
         # Scope the list to this account (`biz_` tag). Requires read access to the
         # account; account API keys may pass their own account or a connected account.
         account_id: nil,
-        # Cursor to paginate forwards from.
+        # Return results after this cursor. Use `page_info.end_cursor` from the previous
+        # response to fetch the next page.
         after: nil,
-        # Cursor to paginate backwards from.
+        # Return results before this cursor. Use `page_info.start_cursor` from the
+        # previous response to fetch the previous page.
         before: nil,
         # Filter by the poster's declared goal. Bounties created before the goal taxonomy
         # carry no goal and never match this filter.
@@ -183,9 +187,9 @@ module WhopSDK
         # Only bounties posted to this forum experience, prefixed `exp_`. An unknown
         # experience, or one outside the caller's scope, matches nothing.
         experience_id: nil,
-        # Number of bounties to return from the start of the window.
+        # Number of results to return from the start of the range.
         first: nil,
-        # Number of bounties to return from the end of the window.
+        # Number of results to return from the end of the range.
         last: nil,
         # Sort field.
         order: nil,

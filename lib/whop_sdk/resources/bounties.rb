@@ -105,9 +105,9 @@ module WhopSDK
       #
       # @param account_id [String] Query param: Scope the list to this account (`biz_` tag). Requires read access t
       #
-      # @param after [String] Query param: Cursor to paginate forwards from.
+      # @param after [String] Query param: Return results after this cursor. Use `page_info.end_cursor` from t
       #
-      # @param before [String] Query param: Cursor to paginate backwards from.
+      # @param before [String] Query param: Return results before this cursor. Use `page_info.start_cursor` fro
       #
       # @param business_goal_type [Symbol, WhopSDK::Models::BountyListParams::BusinessGoalType] Query param: Filter by the poster's declared goal. Bounties created before the g
       #
@@ -121,9 +121,9 @@ module WhopSDK
       #
       # @param experience_id [String] Query param: Only bounties posted to this forum experience, prefixed `exp_`. An
       #
-      # @param first [Integer] Query param: Number of bounties to return from the start of the window.
+      # @param first [Integer] Query param: Number of results to return from the start of the range.
       #
-      # @param last [Integer] Query param: Number of bounties to return from the end of the window.
+      # @param last [Integer] Query param: Number of results to return from the end of the range.
       #
       # @param order [Symbol, WhopSDK::Models::BountyListParams::Order] Query param: Sort field.
       #

@@ -10,10 +10,7 @@ module Whop_sdk
         @client = client
       end
 
-      # Lists recommended actions and in-progress requests for the account, newest first. Unsuccessful generation
-      # requests are omitted. Filter with `status=ready` for current actions. For callers with company:update
-      # permission, listing automatically queues generation when no actions are ready or in progress, with a ten-minute
-      # cooldown after an unsuccessful request from the current pipeline version.
+      # Lists an account's recommendations and generation requests, newest first.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -72,9 +69,8 @@ module Whop_sdk
         end
       end
 
-      # Harnesses Economic Intelligence to generate recommended actions that lead the business down the most optimal
-      # path to the next dollar. Returns a `queued` recommendation right away. Poll the list endpoint until it is
-      # `ready` or disappears.
+      # Generates a recommendation based on your input. Returns immediately; poll the list endpoint until its `status`
+      # is `ready`.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::EconomicIntelligence::Types::CreateEconomicIntelligenceRequest]
@@ -111,8 +107,7 @@ module Whop_sdk
         end
       end
 
-      # Records approval with `executed`, or retires an unwanted recommendation with `superseded`. Both replenish the
-      # ready inventory. Supplying a rejection reason also allows retiring an executed recommendation.
+      # Approves or rejects a recommendation and requests replacements.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::EconomicIntelligence::Types::UpdateEconomicIntelligenceRequest]

@@ -89,53 +89,6 @@ module Whop_sdk
         end
       end
 
-      # Resolves the public reward terms and whether redemption capacity remains. Immediate rewards claim capacity at
-      # business creation; qualified rewards claim it when the business reaches the threshold.
-      #
-      # @param request_options [Hash]
-      # @param params [Hash]
-      # @option request_options [String] :base_url
-      # @option request_options [Hash{String => Object}] :additional_headers
-      # @option request_options [Hash{String => Object}] :additional_query_parameters
-      # @option request_options [Hash{String => Object}] :additional_body_parameters
-      # @option request_options [Integer] :timeout_in_seconds
-      # @option params [String] :partner_username
-      # @option params [String] :reward_slug
-      #
-      # @example
-      #   client.partners.retrieve_link(
-      #     partner_username: "partner_username",
-      #     reward_slug: "reward_slug"
-      #   )
-      #
-      # @return [Whop_sdk::Types::OnboardingReward]
-      def retrieve_link(request_options: {}, **params)
-        params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
-        query_params = {}
-        query_params["partner_username"] = params[:partner_username] if params.key?(:partner_username)
-        query_params["reward_slug"] = params[:reward_slug] if params.key?(:reward_slug)
-
-        request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
-          method: "GET",
-          path: "partners/links",
-          query: query_params,
-          request_options: request_options
-        )
-        begin
-          response = @client.send(request)
-        rescue Net::HTTPRequestTimeout
-          raise Whop_sdk::Errors::TimeoutError
-        end
-        code = response.code.to_i
-        if code.between?(200, 299)
-          Whop_sdk::Types::OnboardingReward.load(response.body)
-        else
-          error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
-          raise error_class.new(response.body, code: code)
-        end
-      end
-
       # Lists the users the caller referred onto Whop (newest first), each with the second-tier earnings the caller has
       # made from that user's businesses.
       #
@@ -196,9 +149,53 @@ module Whop_sdk
         end
       end
 
+      # Retrieves the authenticated user's public profile, enrollment date, active direct business referral count, and
+      # default payout rates. Use me or the authenticated user's own user ID; other users are not accessible. Users who
+      # have not enrolled have a null joined_at. Retrieve referral URLs and promotion links from GET /partners/links.
+      #
+      # @param request_options [Hash]
+      # @param params [Hash]
+      # @option request_options [String] :base_url
+      # @option request_options [Hash{String => Object}] :additional_headers
+      # @option request_options [Hash{String => Object}] :additional_query_parameters
+      # @option request_options [Hash{String => Object}] :additional_body_parameters
+      # @option request_options [Integer] :timeout_in_seconds
+      # @option params [String] :id
+      #
+      # @example
+      #   client.partners.retrieve(id: "me")
+      #
+      # @return [Whop_sdk::Types::Partner]
+      def retrieve(request_options: {}, **params)
+        params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
+        request = Whop_sdk::Internal::JSON::Request.new(
+          base_url: request_options[:base_url],
+          method: "GET",
+          path: "partners/#{URI.encode_uri_component(params[:id].to_s)}",
+          request_options: request_options
+        )
+        begin
+          response = @client.send(request)
+        rescue Net::HTTPRequestTimeout
+          raise Whop_sdk::Errors::TimeoutError
+        end
+        code = response.code.to_i
+        if code.between?(200, 299)
+          Whop_sdk::Types::Partner.load(response.body)
+        else
+          error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
+          raise error_class.new(response.body, code: code)
+        end
+      end
+
       # @return [Whop_sdk::Businesses::Client]
       def businesses
         @businesses ||= Whop_sdk::Partners::Businesses::Client.new(client: @client)
+      end
+
+      # @return [Whop_sdk::Links::Client]
+      def links
+        @links ||= Whop_sdk::Partners::Links::Client.new(client: @client)
       end
     end
   end

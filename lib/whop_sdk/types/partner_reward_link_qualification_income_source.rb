@@ -2,11 +2,11 @@
 
 module Whop_sdk
   module Types
-    module OnboardingRewardRewardType
+    module PartnerRewardLinkQualificationIncomeSource
       extend Whop_sdk::Internal::Types::Enum
 
-      AD_CREDIT = "ad_credit"
-      BALANCE_CREDIT = "balance_credit"
+      SALES = "sales"
+      AD_SPEND = "ad_spend"
     end
   end
 end

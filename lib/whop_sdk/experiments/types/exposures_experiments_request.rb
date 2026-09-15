@@ -13,6 +13,8 @@ module Whop_sdk
         field :account_id, -> { String }, optional: true, nullable: false
 
         field :properties, -> { String }, optional: true, nullable: false
+
+        field :log_exposure, -> { Internal::Types::Boolean }, optional: true, nullable: false
       end
     end
   end

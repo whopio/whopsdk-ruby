@@ -132,6 +132,10 @@ module Whop_sdk
       # Pass `subject[account_id]` to enable account-level targeting rules. Pass `properties` as a JSON object to supply
       # the values that `property` targeting conditions match against.
       #
+      # Pass `log_exposure=false` to read an assignment without recording an exposure, for a client that caches
+      # assignments up front and records the exposure when the arm is actually rendered. Omitted records the exposure,
+      # so pinned callers are unchanged.
+      #
       # @param request_options [Hash]
       # @param params [Hash]
       # @option request_options [String] :base_url
@@ -144,6 +148,7 @@ module Whop_sdk
       # @option params [String, nil] :flag_key
       # @option params [String, nil] :account_id
       # @option params [String, nil] :properties
+      # @option params [Boolean, nil] :log_exposure
       #
       # @example
       #   client.experiments.exposures
@@ -157,6 +162,7 @@ module Whop_sdk
         query_params["flag_key"] = params[:flag_key] if params.key?(:flag_key)
         query_params["account_id"] = params[:account_id] if params.key?(:account_id)
         query_params["properties"] = params[:properties] if params.key?(:properties)
+        query_params["log_exposure"] = params[:log_exposure] if params.key?(:log_exposure)
 
         request = Whop_sdk::Internal::JSON::Request.new(
           base_url: request_options[:base_url],

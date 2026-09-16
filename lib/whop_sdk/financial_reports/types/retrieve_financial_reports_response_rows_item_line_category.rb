@@ -226,6 +226,8 @@ module Whop_sdk
         PSP_PAYOUT_SETTLEMENT_REVERSAL = "psp_payout_settlement_reversal"
         PSP_POOL_CLEARING = "psp_pool_clearing"
         PSP_POOL_DISPUTE_SETTLEMENT = "psp_pool_dispute_settlement"
+        PSP_POOL_REFUND_CLEARING = "psp_pool_refund_clearing"
+        PSP_POOL_REFUND_SETTLEMENT = "psp_pool_refund_settlement"
         PSP_POOL_SETTLEMENT = "psp_pool_settlement"
         PSP_PROCESSING_FEE = "psp_processing_fee"
         PSP_RECEIVABLE_POOLED = "psp_receivable_pooled"

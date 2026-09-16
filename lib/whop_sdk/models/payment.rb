@@ -239,14 +239,18 @@ module WhopSDK
       required :retryable, WhopSDK::Internal::Type::Boolean
 
       # @!attribute risk_score
-      #   Whop's fraud risk score from 0 (lowest) to 100 (highest), or null when the
-      #   payment was not scored.
+      #   Whop's published risk index from 0 (lowest) to 100 (highest), including enforced
+      #   decision floors. This is not a fraud probability. Null when no score is
+      #   available.
       #
       #   @return [Float, nil]
       required :risk_score, Float, nil?: true
 
       # @!attribute risk_signals
-      #   The factors behind `risk_score`, grouped by category, or null.
+      #   @deprecated
+      #
+      #   Deprecated. Risk score explanations are no longer provided; always null.
+      #   DEPRECATED: Risk score explanations are no longer provided. Always null.
       #
       #   @return [Object, nil]
       required :risk_signals, WhopSDK::Internal::Type::Unknown, nil?: true
@@ -438,9 +442,9 @@ module WhopSDK
       #
       #   @param retryable [Boolean] True when the payment is `open` and Whop can attempt the charge again — see `POS
       #
-      #   @param risk_score [Float, nil] Whop's fraud risk score from 0 (lowest) to 100 (highest), or null when the payme
+      #   @param risk_score [Float, nil] Whop's published risk index from 0 (lowest) to 100 (highest), including enforced
       #
-      #   @param risk_signals [Object, nil] The factors behind `risk_score`, grouped by category, or null.
+      #   @param risk_signals [Object, nil] Deprecated. Risk score explanations are no longer provided; always null.
       #
       #   @param settlement_time_at [String, nil] When the funds post to the account's available balance, at midnight UTC. The `fi
       #

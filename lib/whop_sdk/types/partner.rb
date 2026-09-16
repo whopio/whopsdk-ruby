@@ -11,6 +11,8 @@ module Whop_sdk
 
       field :user, -> { Whop_sdk::Types::UserSummary }, optional: false, nullable: false
 
+      field :verification_waitlist_joined, -> { Internal::Types::Boolean }, optional: false, nullable: false
+
       field :whop_partner_verified_at, -> { String }, optional: false, nullable: true
     end
   end

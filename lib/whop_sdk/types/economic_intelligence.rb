@@ -3,11 +3,13 @@
 module Whop_sdk
   module Types
     class EconomicIntelligence < Internal::Types::Model
-      field :account_id, -> { String }, optional: false, nullable: false
+      field :account_id, -> { String }, optional: false, nullable: true
 
       field :action_type, -> { String }, optional: false, nullable: true
 
-      field :created_at, -> { String }, optional: false, nullable: false
+      field :ai_chat_id, -> { String }, optional: false, nullable: true
+
+      field :created_at, -> { String }, optional: false, nullable: true
 
       field :executed_at, -> { String }, optional: false, nullable: true
 

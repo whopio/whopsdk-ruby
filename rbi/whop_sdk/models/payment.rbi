@@ -143,6 +143,9 @@ module WhopSDK
       sig { returns(T.nilable(WhopSDK::PaymentMethodTypes::TaggedSymbol)) }
       attr_accessor :payment_method_type
 
+      sig { returns(T::Array[WhopSDK::Payment::PaymentRuleMatch]) }
+      attr_accessor :payment_rule_matches
+
       # How many charge attempts have failed on this payment.
       sig { returns(Float) }
       attr_accessor :payments_failed
@@ -368,6 +371,8 @@ module WhopSDK
             T.nilable(WhopSDK::Payment::PaymentInstrument::OrHash),
           payment_method_id: T.nilable(String),
           payment_method_type: T.nilable(WhopSDK::PaymentMethodTypes::OrSymbol),
+          payment_rule_matches:
+            T::Array[WhopSDK::Payment::PaymentRuleMatch::OrHash],
           payments_failed: Float,
           plan_id: T.nilable(String),
           presentment_total:
@@ -465,6 +470,7 @@ module WhopSDK
         payment_method_id:,
         # The different types of payment methods that can be used.
         payment_method_type:,
+        payment_rule_matches:,
         # How many charge attempts have failed on this payment.
         payments_failed:,
         # The plan that was charged, prefixed `plan_`.
@@ -581,6 +587,7 @@ module WhopSDK
             payment_method_id: T.nilable(String),
             payment_method_type:
               T.nilable(WhopSDK::PaymentMethodTypes::TaggedSymbol),
+            payment_rule_matches: T::Array[WhopSDK::Payment::PaymentRuleMatch],
             payments_failed: Float,
             plan_id: T.nilable(String),
             presentment_total: T.nilable(WhopSDK::Payment::PresentmentTotal),
@@ -1683,6 +1690,99 @@ module WhopSDK
               def to_hash
               end
             end
+          end
+        end
+      end
+
+      class PaymentRuleMatch < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              WhopSDK::Payment::PaymentRuleMatch,
+              WhopSDK::Internal::AnyHash
+            )
+          end
+
+        # Payment rule ID, prefixed `prule_`.
+        sig { returns(String) }
+        attr_accessor :id
+
+        # What the rule asked for.
+        sig do
+          returns(WhopSDK::Payment::PaymentRuleMatch::Action::TaggedSymbol)
+        end
+        attr_accessor :action
+
+        # The rule's name when it matched. Renaming the rule afterwards does not rewrite
+        # this.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :name
+
+        # The account's own payment rules that matched this payment, recorded when they
+        # ran. Empty when none matched, when the account had no rules, or when Whop
+        # blocked the payment before they ran.
+        sig do
+          params(
+            id: String,
+            action: WhopSDK::Payment::PaymentRuleMatch::Action::OrSymbol,
+            name: T.nilable(String)
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # Payment rule ID, prefixed `prule_`.
+          id:,
+          # What the rule asked for.
+          action:,
+          # The rule's name when it matched. Renaming the rule afterwards does not rewrite
+          # this.
+          name:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              id: String,
+              action: WhopSDK::Payment::PaymentRuleMatch::Action::TaggedSymbol,
+              name: T.nilable(String)
+            }
+          )
+        end
+        def to_hash
+        end
+
+        # What the rule asked for.
+        module Action
+          extend WhopSDK::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(Symbol, WhopSDK::Payment::PaymentRuleMatch::Action)
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          ALLOW =
+            T.let(
+              :allow,
+              WhopSDK::Payment::PaymentRuleMatch::Action::TaggedSymbol
+            )
+          BLOCK =
+            T.let(
+              :block,
+              WhopSDK::Payment::PaymentRuleMatch::Action::TaggedSymbol
+            )
+          ENFORCE_3DS =
+            T.let(
+              :enforce_3ds,
+              WhopSDK::Payment::PaymentRuleMatch::Action::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[WhopSDK::Payment::PaymentRuleMatch::Action::TaggedSymbol]
+            )
+          end
+          def self.values
           end
         end
       end

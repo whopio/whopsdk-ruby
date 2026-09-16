@@ -28,6 +28,7 @@ module WhopSDK
         payment_instrument: WhopSDK::Payment::PaymentInstrument?,
         payment_method_id: String?,
         payment_method_type: WhopSDK::Models::payment_method_types?,
+        payment_rule_matches: ::Array[WhopSDK::Payment::PaymentRuleMatch],
         payments_failed: Float,
         plan_id: String?,
         presentment_total: WhopSDK::Payment::PresentmentTotal?,
@@ -110,6 +111,8 @@ module WhopSDK
       attr_accessor payment_method_id: String?
 
       attr_accessor payment_method_type: WhopSDK::Models::payment_method_types?
+
+      attr_accessor payment_rule_matches: ::Array[WhopSDK::Payment::PaymentRuleMatch]
 
       attr_accessor payments_failed: Float
 
@@ -194,6 +197,7 @@ module WhopSDK
         payment_instrument: WhopSDK::Payment::PaymentInstrument?,
         payment_method_id: String?,
         payment_method_type: WhopSDK::Models::payment_method_types?,
+        payment_rule_matches: ::Array[WhopSDK::Payment::PaymentRuleMatch],
         payments_failed: Float,
         plan_id: String?,
         presentment_total: WhopSDK::Payment::PresentmentTotal?,
@@ -251,6 +255,7 @@ module WhopSDK
         payment_instrument: WhopSDK::Payment::PaymentInstrument?,
         payment_method_id: String?,
         payment_method_type: WhopSDK::Models::payment_method_types?,
+        payment_rule_matches: ::Array[WhopSDK::Payment::PaymentRuleMatch],
         payments_failed: Float,
         plan_id: String?,
         presentment_total: WhopSDK::Payment::PresentmentTotal?,
@@ -796,6 +801,45 @@ module WhopSDK
               }
             end
           end
+        end
+      end
+
+      type payment_rule_match =
+        {
+          id: String,
+          action: WhopSDK::Models::Payment::PaymentRuleMatch::action,
+          name: String?
+        }
+
+      class PaymentRuleMatch < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor action: WhopSDK::Models::Payment::PaymentRuleMatch::action
+
+        attr_accessor name: String?
+
+        def initialize: (
+          id: String,
+          action: WhopSDK::Models::Payment::PaymentRuleMatch::action,
+          name: String?
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          action: WhopSDK::Models::Payment::PaymentRuleMatch::action,
+          name: String?
+        }
+
+        type action = :allow | :block | :enforce_3ds
+
+        module Action
+          extend WhopSDK::Internal::Type::Enum
+
+          ALLOW: :allow
+          BLOCK: :block
+          ENFORCE_3DS: :enforce_3ds
+
+          def self?.values: -> ::Array[WhopSDK::Models::Payment::PaymentRuleMatch::action]
         end
       end
 

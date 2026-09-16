@@ -170,6 +170,12 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::PaymentMethodTypes, nil]
       required :payment_method_type, enum: -> { WhopSDK::PaymentMethodTypes }, nil?: true
 
+      # @!attribute payment_rule_matches
+      #
+      #   @return [Array<WhopSDK::Models::Payment::PaymentRuleMatch>]
+      required :payment_rule_matches,
+               -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::Payment::PaymentRuleMatch] }
+
       # @!attribute payments_failed
       #   How many charge attempts have failed on this payment.
       #
@@ -366,7 +372,7 @@ module WhopSDK
       #   @return [Boolean]
       required :voidable, WhopSDK::Internal::Type::Boolean
 
-      # @!method initialize(id:, account_id:, amount_after_fees:, auto_refunded:, billing_address:, billing_reason:, checkout_configuration_id:, client_secret:, created_at:, currency:, customer_email:, customer_phone:, decline_code:, dispute_alerted_at:, failure_message:, financing_installments_count:, last_payment_attempt_at:, member_id:, membership_id:, metadata:, needs_tracking:, next_payment_attempt_at:, paid_at:, payment_instrument:, payment_method_id:, payment_method_type:, payments_failed:, plan_id:, presentment_total:, product_id:, promo_code_id:, recovery_url:, refundable:, refunded_amount:, refunded_at:, retryable:, risk_score:, risk_signals:, settlement_time_at:, shipment_id:, shipping_address:, status:, substatus:, subtotal:, tax_amount:, tax_behavior:, tax_refunded_amount:, three_ds_verified:, total:, updated_at:, usd_total:, user:, verification_checks:, voidable:)
+      # @!method initialize(id:, account_id:, amount_after_fees:, auto_refunded:, billing_address:, billing_reason:, checkout_configuration_id:, client_secret:, created_at:, currency:, customer_email:, customer_phone:, decline_code:, dispute_alerted_at:, failure_message:, financing_installments_count:, last_payment_attempt_at:, member_id:, membership_id:, metadata:, needs_tracking:, next_payment_attempt_at:, paid_at:, payment_instrument:, payment_method_id:, payment_method_type:, payment_rule_matches:, payments_failed:, plan_id:, presentment_total:, product_id:, promo_code_id:, recovery_url:, refundable:, refunded_amount:, refunded_at:, retryable:, risk_score:, risk_signals:, settlement_time_at:, shipment_id:, shipping_address:, status:, substatus:, subtotal:, tax_amount:, tax_behavior:, tax_refunded_amount:, three_ds_verified:, total:, updated_at:, usd_total:, user:, verification_checks:, voidable:)
       #   Some parameter documentations has been truncated, see {WhopSDK::Models::Payment}
       #   for more details.
       #
@@ -421,6 +427,8 @@ module WhopSDK
       #   @param payment_method_id [String, nil] The stored payment method that was charged, prefixed `payt_`. Null when the meth
       #
       #   @param payment_method_type [Symbol, WhopSDK::Models::PaymentMethodTypes, nil] The different types of payment methods that can be used.
+      #
+      #   @param payment_rule_matches [Array<WhopSDK::Models::Payment::PaymentRuleMatch>]
       #
       #   @param payments_failed [Float] How many charge attempts have failed on this payment.
       #
@@ -988,6 +996,55 @@ module WhopSDK
               #   @param svg [String] The vector file. Prefer this everywhere SVG renders.
             end
           end
+        end
+      end
+
+      class PaymentRuleMatch < WhopSDK::Internal::Type::BaseModel
+        # @!attribute id
+        #   Payment rule ID, prefixed `prule_`.
+        #
+        #   @return [String]
+        required :id, String
+
+        # @!attribute action
+        #   What the rule asked for.
+        #
+        #   @return [Symbol, WhopSDK::Models::Payment::PaymentRuleMatch::Action]
+        required :action, enum: -> { WhopSDK::Payment::PaymentRuleMatch::Action }
+
+        # @!attribute name
+        #   The rule's name when it matched. Renaming the rule afterwards does not rewrite
+        #   this.
+        #
+        #   @return [String, nil]
+        required :name, String, nil?: true
+
+        # @!method initialize(id:, action:, name:)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::Payment::PaymentRuleMatch} for more details.
+        #
+        #   The account's own payment rules that matched this payment, recorded when they
+        #   ran. Empty when none matched, when the account had no rules, or when Whop
+        #   blocked the payment before they ran.
+        #
+        #   @param id [String] Payment rule ID, prefixed `prule_`.
+        #
+        #   @param action [Symbol, WhopSDK::Models::Payment::PaymentRuleMatch::Action] What the rule asked for.
+        #
+        #   @param name [String, nil] The rule's name when it matched. Renaming the rule afterwards does not rewrite t
+
+        # What the rule asked for.
+        #
+        # @see WhopSDK::Models::Payment::PaymentRuleMatch#action
+        module Action
+          extend WhopSDK::Internal::Type::Enum
+
+          ALLOW = :allow
+          BLOCK = :block
+          ENFORCE_3DS = :enforce_3ds
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
         end
       end
 

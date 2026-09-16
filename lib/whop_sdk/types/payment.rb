@@ -55,6 +55,8 @@ module Whop_sdk
 
       field :payment_method_type, -> { Whop_sdk::Types::PaymentMethodTypes }, optional: false, nullable: true
 
+      field :payment_rule_matches, -> { Internal::Types::Array[Whop_sdk::Types::PaymentRuleMatch] }, optional: false, nullable: false
+
       field :payments_failed, -> { Integer }, optional: false, nullable: false
 
       field :plan_id, -> { String }, optional: false, nullable: true

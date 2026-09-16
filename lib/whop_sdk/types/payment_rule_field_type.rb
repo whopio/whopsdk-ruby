@@ -6,6 +6,7 @@ module Whop_sdk
       extend Whop_sdk::Internal::Types::Enum
 
       INTEGER = "integer"
+      NUMBER = "number"
       STRING = "string"
     end
   end

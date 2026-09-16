@@ -584,6 +584,8 @@ module WhopSDK
 
   PaymentRefundParams = WhopSDK::Models::PaymentRefundParams
 
+  PaymentRequiresActionWebhookEvent = WhopSDK::Models::PaymentRequiresActionWebhookEvent
+
   PaymentRetrieveParams = WhopSDK::Models::PaymentRetrieveParams
 
   PaymentRetryParams = WhopSDK::Models::PaymentRetryParams

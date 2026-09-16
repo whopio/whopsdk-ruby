@@ -416,6 +416,11 @@ module WhopSDK
           T.let(:"payment.authorized", WhopSDK::Webhook::Event::TaggedSymbol)
         PAYMENT_CANCELED =
           T.let(:"payment.canceled", WhopSDK::Webhook::Event::TaggedSymbol)
+        PAYMENT_REQUIRES_ACTION =
+          T.let(
+            :"payment.requires_action",
+            WhopSDK::Webhook::Event::TaggedSymbol
+          )
         RESOLUTION_CENTER_CASE_CREATED =
           T.let(
             :"resolution_center_case.created",
@@ -809,6 +814,11 @@ module WhopSDK
         PAYMENT_CANCELED =
           T.let(
             :"payment.canceled",
+            WhopSDK::Webhook::TestableEvent::TaggedSymbol
+          )
+        PAYMENT_REQUIRES_ACTION =
+          T.let(
+            :"payment.requires_action",
             WhopSDK::Webhook::TestableEvent::TaggedSymbol
           )
         RESOLUTION_CENTER_CASE_CREATED =

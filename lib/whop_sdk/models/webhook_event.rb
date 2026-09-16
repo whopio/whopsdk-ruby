@@ -62,6 +62,7 @@ module WhopSDK
       PAYOUT_ACCOUNT_STATUS_UPDATED = :"payout_account.status_updated"
       PAYMENT_AUTHORIZED = :"payment.authorized"
       PAYMENT_CANCELED = :"payment.canceled"
+      PAYMENT_REQUIRES_ACTION = :"payment.requires_action"
       RESOLUTION_CENTER_CASE_CREATED = :"resolution_center_case.created"
       RESOLUTION_CENTER_CASE_UPDATED = :"resolution_center_case.updated"
       RESOLUTION_CENTER_CASE_DECIDED = :"resolution_center_case.decided"

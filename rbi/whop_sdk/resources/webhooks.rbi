@@ -221,6 +221,7 @@ module WhopSDK
             WhopSDK::PaymentCreatedWebhookEvent,
             WhopSDK::PaymentFailedWebhookEvent,
             WhopSDK::PaymentPendingWebhookEvent,
+            WhopSDK::PaymentRequiresActionWebhookEvent,
             WhopSDK::PaymentSucceededWebhookEvent,
             WhopSDK::PayoutCreatedWebhookEvent,
             WhopSDK::PayoutReversedWebhookEvent,

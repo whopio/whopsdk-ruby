@@ -197,9 +197,17 @@ module WhopSDK
             label: String,
             requirement: String,
             type: String,
+            details_label: String,
+            details_required: bool,
+            details_visible_for: ::Array[String],
             errors: ::Array[WhopSDK::Models::VerificationListResponse::Data::RequestedInformation::Error],
             optional: bool,
-            options: ::Array[String]
+            options: ::Array[String],
+            response_type: WhopSDK::Models::VerificationListResponse::Data::RequestedInformation::response_type,
+            selection_mode: WhopSDK::Models::VerificationListResponse::Data::RequestedInformation::selection_mode,
+            supporting_files_explanation_allowed: bool,
+            supporting_files_required: bool,
+            supporting_files_visible_for: ::Array[String]
           }
 
         class RequestedInformation < WhopSDK::Internal::Type::BaseModel
@@ -210,6 +218,18 @@ module WhopSDK
           attr_accessor requirement: String
 
           attr_accessor type: String
+
+          attr_reader details_label: String?
+
+          def details_label=: (String) -> String
+
+          attr_reader details_required: bool?
+
+          def details_required=: (bool) -> bool
+
+          attr_reader details_visible_for: ::Array[String]?
+
+          def details_visible_for=: (::Array[String]) -> ::Array[String]
 
           attr_reader errors: ::Array[WhopSDK::Models::VerificationListResponse::Data::RequestedInformation::Error]?
 
@@ -225,14 +245,48 @@ module WhopSDK
 
           def options=: (::Array[String]) -> ::Array[String]
 
+          attr_reader response_type: WhopSDK::Models::VerificationListResponse::Data::RequestedInformation::response_type?
+
+          def response_type=: (
+            WhopSDK::Models::VerificationListResponse::Data::RequestedInformation::response_type
+          ) -> WhopSDK::Models::VerificationListResponse::Data::RequestedInformation::response_type
+
+          attr_reader selection_mode: WhopSDK::Models::VerificationListResponse::Data::RequestedInformation::selection_mode?
+
+          def selection_mode=: (
+            WhopSDK::Models::VerificationListResponse::Data::RequestedInformation::selection_mode
+          ) -> WhopSDK::Models::VerificationListResponse::Data::RequestedInformation::selection_mode
+
+          attr_reader supporting_files_explanation_allowed: bool?
+
+          def supporting_files_explanation_allowed=: (bool) -> bool
+
+          attr_reader supporting_files_required: bool?
+
+          def supporting_files_required=: (bool) -> bool
+
+          attr_reader supporting_files_visible_for: ::Array[String]?
+
+          def supporting_files_visible_for=: (
+            ::Array[String]
+          ) -> ::Array[String]
+
           def initialize: (
             id: String,
             label: String,
             requirement: String,
             type: String,
+            ?details_label: String,
+            ?details_required: bool,
+            ?details_visible_for: ::Array[String],
             ?errors: ::Array[WhopSDK::Models::VerificationListResponse::Data::RequestedInformation::Error],
             ?optional: bool,
-            ?options: ::Array[String]
+            ?options: ::Array[String],
+            ?response_type: WhopSDK::Models::VerificationListResponse::Data::RequestedInformation::response_type,
+            ?selection_mode: WhopSDK::Models::VerificationListResponse::Data::RequestedInformation::selection_mode,
+            ?supporting_files_explanation_allowed: bool,
+            ?supporting_files_required: bool,
+            ?supporting_files_visible_for: ::Array[String]
           ) -> void
 
           def to_hash: -> {
@@ -240,9 +294,17 @@ module WhopSDK
             label: String,
             requirement: String,
             type: String,
+            details_label: String,
+            details_required: bool,
+            details_visible_for: ::Array[String],
             errors: ::Array[WhopSDK::Models::VerificationListResponse::Data::RequestedInformation::Error],
             optional: bool,
-            options: ::Array[String]
+            options: ::Array[String],
+            response_type: WhopSDK::Models::VerificationListResponse::Data::RequestedInformation::response_type,
+            selection_mode: WhopSDK::Models::VerificationListResponse::Data::RequestedInformation::selection_mode,
+            supporting_files_explanation_allowed: bool,
+            supporting_files_required: bool,
+            supporting_files_visible_for: ::Array[String]
           }
 
           type error = { code: String, reason: String }
@@ -259,6 +321,33 @@ module WhopSDK
             def initialize: (?code: String, ?reason: String) -> void
 
             def to_hash: -> { code: String, reason: String }
+          end
+
+          type response_type =
+            :yes_no | :yes_no_na | :date | :url | :number | :tel
+
+          module ResponseType
+            extend WhopSDK::Internal::Type::Enum
+
+            YES_NO: :yes_no
+            YES_NO_NA: :yes_no_na
+            DATE: :date
+            URL: :url
+            NUMBER: :number
+            TEL: :tel
+
+            def self?.values: -> ::Array[WhopSDK::Models::VerificationListResponse::Data::RequestedInformation::response_type]
+          end
+
+          type selection_mode = :single | :multiple
+
+          module SelectionMode
+            extend WhopSDK::Internal::Type::Enum
+
+            SINGLE: :single
+            MULTIPLE: :multiple
+
+            def self?.values: -> ::Array[WhopSDK::Models::VerificationListResponse::Data::RequestedInformation::selection_mode]
           end
         end
 

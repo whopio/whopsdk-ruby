@@ -425,9 +425,31 @@ module WhopSDK
         # What to send as the answer, so you never have to infer it: `files` (a document,
         # as a list of its pages), `id_document` (send `documents` with the slot keys for
         # the ID you are uploading), `text`, `date`, `phone` or `select` (send `value`),
-        # or `address` (send `address`).
+        # `text_with_files` (send `value` and optional `files`), or `address` (send
+        # `address`).
         sig { returns(String) }
         attr_accessor :type
+
+        # Follow-up prompt shown with this requirement.
+        sig { returns(T.nilable(String)) }
+        attr_reader :details_label
+
+        sig { params(details_label: String).void }
+        attr_writer :details_label
+
+        # Whether the follow-up response is required when visible.
+        sig { returns(T.nilable(T::Boolean)) }
+        attr_reader :details_required
+
+        sig { params(details_required: T::Boolean).void }
+        attr_writer :details_required
+
+        # Selected option values that make the follow-up prompt visible.
+        sig { returns(T.nilable(T::Array[String])) }
+        attr_reader :details_visible_for
+
+        sig { params(details_visible_for: T::Array[String]).void }
+        attr_writer :details_visible_for
 
         # Present after a rejected submission.
         sig do
@@ -467,18 +489,85 @@ module WhopSDK
         sig { params(options: T::Array[String]).void }
         attr_writer :options
 
+        # Optional native input format for a text response.
+        sig do
+          returns(
+            T.nilable(
+              WhopSDK::Models::VerificationRetrieveResponse::RequestedInformation::ResponseType::TaggedSymbol
+            )
+          )
+        end
+        attr_reader :response_type
+
+        sig do
+          params(
+            response_type:
+              WhopSDK::Models::VerificationRetrieveResponse::RequestedInformation::ResponseType::OrSymbol
+          ).void
+        end
+        attr_writer :response_type
+
+        # Whether a question with `options` accepts one value or multiple values.
+        sig do
+          returns(
+            T.nilable(
+              WhopSDK::Models::VerificationRetrieveResponse::RequestedInformation::SelectionMode::TaggedSymbol
+            )
+          )
+        end
+        attr_reader :selection_mode
+
+        sig do
+          params(
+            selection_mode:
+              WhopSDK::Models::VerificationRetrieveResponse::RequestedInformation::SelectionMode::OrSymbol
+          ).void
+        end
+        attr_writer :selection_mode
+
+        # Whether a written explanation may replace required supporting files.
+        sig { returns(T.nilable(T::Boolean)) }
+        attr_reader :supporting_files_explanation_allowed
+
+        sig { params(supporting_files_explanation_allowed: T::Boolean).void }
+        attr_writer :supporting_files_explanation_allowed
+
+        # Whether this requirement also needs supporting files.
+        sig { returns(T.nilable(T::Boolean)) }
+        attr_reader :supporting_files_required
+
+        sig { params(supporting_files_required: T::Boolean).void }
+        attr_writer :supporting_files_required
+
+        # Selected option values that make the supporting-file input visible.
+        sig { returns(T.nilable(T::Array[String])) }
+        attr_reader :supporting_files_visible_for
+
+        sig { params(supporting_files_visible_for: T::Array[String]).void }
+        attr_writer :supporting_files_visible_for
+
         sig do
           params(
             id: String,
             label: String,
             requirement: String,
             type: String,
+            details_label: String,
+            details_required: T::Boolean,
+            details_visible_for: T::Array[String],
             errors:
               T::Array[
                 WhopSDK::Models::VerificationRetrieveResponse::RequestedInformation::Error::OrHash
               ],
             optional: T::Boolean,
-            options: T::Array[String]
+            options: T::Array[String],
+            response_type:
+              WhopSDK::Models::VerificationRetrieveResponse::RequestedInformation::ResponseType::OrSymbol,
+            selection_mode:
+              WhopSDK::Models::VerificationRetrieveResponse::RequestedInformation::SelectionMode::OrSymbol,
+            supporting_files_explanation_allowed: T::Boolean,
+            supporting_files_required: T::Boolean,
+            supporting_files_visible_for: T::Array[String]
           ).returns(T.attached_class)
         end
         def self.new(
@@ -493,8 +582,15 @@ module WhopSDK
           # What to send as the answer, so you never have to infer it: `files` (a document,
           # as a list of its pages), `id_document` (send `documents` with the slot keys for
           # the ID you are uploading), `text`, `date`, `phone` or `select` (send `value`),
-          # or `address` (send `address`).
+          # `text_with_files` (send `value` and optional `files`), or `address` (send
+          # `address`).
           type:,
+          # Follow-up prompt shown with this requirement.
+          details_label: nil,
+          # Whether the follow-up response is required when visible.
+          details_required: nil,
+          # Selected option values that make the follow-up prompt visible.
+          details_visible_for: nil,
           # Present after a rejected submission.
           errors: nil,
           # `true` when the item can be skipped.
@@ -502,7 +598,17 @@ module WhopSDK
           # The values `value` may take on a `select` item. On an `id_document` item these
           # are the ID types accepted, and the chosen one decides which `documents` slots to
           # send. Absent when the item has no choice to make.
-          options: nil
+          options: nil,
+          # Optional native input format for a text response.
+          response_type: nil,
+          # Whether a question with `options` accepts one value or multiple values.
+          selection_mode: nil,
+          # Whether a written explanation may replace required supporting files.
+          supporting_files_explanation_allowed: nil,
+          # Whether this requirement also needs supporting files.
+          supporting_files_required: nil,
+          # Selected option values that make the supporting-file input visible.
+          supporting_files_visible_for: nil
         )
         end
 
@@ -513,12 +619,22 @@ module WhopSDK
               label: String,
               requirement: String,
               type: String,
+              details_label: String,
+              details_required: T::Boolean,
+              details_visible_for: T::Array[String],
               errors:
                 T::Array[
                   WhopSDK::Models::VerificationRetrieveResponse::RequestedInformation::Error
                 ],
               optional: T::Boolean,
-              options: T::Array[String]
+              options: T::Array[String],
+              response_type:
+                WhopSDK::Models::VerificationRetrieveResponse::RequestedInformation::ResponseType::TaggedSymbol,
+              selection_mode:
+                WhopSDK::Models::VerificationRetrieveResponse::RequestedInformation::SelectionMode::TaggedSymbol,
+              supporting_files_explanation_allowed: T::Boolean,
+              supporting_files_required: T::Boolean,
+              supporting_files_visible_for: T::Array[String]
             }
           )
         end
@@ -559,6 +675,96 @@ module WhopSDK
 
           sig { override.returns({ code: String, reason: String }) }
           def to_hash
+          end
+        end
+
+        # Optional native input format for a text response.
+        module ResponseType
+          extend WhopSDK::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(
+                Symbol,
+                WhopSDK::Models::VerificationRetrieveResponse::RequestedInformation::ResponseType
+              )
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          YES_NO =
+            T.let(
+              :yes_no,
+              WhopSDK::Models::VerificationRetrieveResponse::RequestedInformation::ResponseType::TaggedSymbol
+            )
+          YES_NO_NA =
+            T.let(
+              :yes_no_na,
+              WhopSDK::Models::VerificationRetrieveResponse::RequestedInformation::ResponseType::TaggedSymbol
+            )
+          DATE =
+            T.let(
+              :date,
+              WhopSDK::Models::VerificationRetrieveResponse::RequestedInformation::ResponseType::TaggedSymbol
+            )
+          URL =
+            T.let(
+              :url,
+              WhopSDK::Models::VerificationRetrieveResponse::RequestedInformation::ResponseType::TaggedSymbol
+            )
+          NUMBER =
+            T.let(
+              :number,
+              WhopSDK::Models::VerificationRetrieveResponse::RequestedInformation::ResponseType::TaggedSymbol
+            )
+          TEL =
+            T.let(
+              :tel,
+              WhopSDK::Models::VerificationRetrieveResponse::RequestedInformation::ResponseType::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                WhopSDK::Models::VerificationRetrieveResponse::RequestedInformation::ResponseType::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
+        end
+
+        # Whether a question with `options` accepts one value or multiple values.
+        module SelectionMode
+          extend WhopSDK::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(
+                Symbol,
+                WhopSDK::Models::VerificationRetrieveResponse::RequestedInformation::SelectionMode
+              )
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          SINGLE =
+            T.let(
+              :single,
+              WhopSDK::Models::VerificationRetrieveResponse::RequestedInformation::SelectionMode::TaggedSymbol
+            )
+          MULTIPLE =
+            T.let(
+              :multiple,
+              WhopSDK::Models::VerificationRetrieveResponse::RequestedInformation::SelectionMode::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                WhopSDK::Models::VerificationRetrieveResponse::RequestedInformation::SelectionMode::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
           end
         end
       end

@@ -246,10 +246,29 @@ module WhopSDK
         #   What to send as the answer, so you never have to infer it: `files` (a document,
         #   as a list of its pages), `id_document` (send `documents` with the slot keys for
         #   the ID you are uploading), `text`, `date`, `phone` or `select` (send `value`),
-        #   or `address` (send `address`).
+        #   `text_with_files` (send `value` and optional `files`), or `address` (send
+        #   `address`).
         #
         #   @return [String]
         required :type, String
+
+        # @!attribute details_label
+        #   Follow-up prompt shown with this requirement.
+        #
+        #   @return [String, nil]
+        optional :details_label, String
+
+        # @!attribute details_required
+        #   Whether the follow-up response is required when visible.
+        #
+        #   @return [Boolean, nil]
+        optional :details_required, WhopSDK::Internal::Type::Boolean
+
+        # @!attribute details_visible_for
+        #   Selected option values that make the follow-up prompt visible.
+        #
+        #   @return [Array<String>, nil]
+        optional :details_visible_for, WhopSDK::Internal::Type::ArrayOf[String]
 
         # @!attribute errors
         #   Present after a rejected submission.
@@ -272,7 +291,39 @@ module WhopSDK
         #   @return [Array<String>, nil]
         optional :options, WhopSDK::Internal::Type::ArrayOf[String]
 
-        # @!method initialize(id:, label:, requirement:, type:, errors: nil, optional: nil, options: nil)
+        # @!attribute response_type
+        #   Optional native input format for a text response.
+        #
+        #   @return [Symbol, WhopSDK::Models::VerificationRetrieveResponse::RequestedInformation::ResponseType, nil]
+        optional :response_type,
+                 enum: -> { WhopSDK::Models::VerificationRetrieveResponse::RequestedInformation::ResponseType }
+
+        # @!attribute selection_mode
+        #   Whether a question with `options` accepts one value or multiple values.
+        #
+        #   @return [Symbol, WhopSDK::Models::VerificationRetrieveResponse::RequestedInformation::SelectionMode, nil]
+        optional :selection_mode,
+                 enum: -> { WhopSDK::Models::VerificationRetrieveResponse::RequestedInformation::SelectionMode }
+
+        # @!attribute supporting_files_explanation_allowed
+        #   Whether a written explanation may replace required supporting files.
+        #
+        #   @return [Boolean, nil]
+        optional :supporting_files_explanation_allowed, WhopSDK::Internal::Type::Boolean
+
+        # @!attribute supporting_files_required
+        #   Whether this requirement also needs supporting files.
+        #
+        #   @return [Boolean, nil]
+        optional :supporting_files_required, WhopSDK::Internal::Type::Boolean
+
+        # @!attribute supporting_files_visible_for
+        #   Selected option values that make the supporting-file input visible.
+        #
+        #   @return [Array<String>, nil]
+        optional :supporting_files_visible_for, WhopSDK::Internal::Type::ArrayOf[String]
+
+        # @!method initialize(id:, label:, requirement:, type:, details_label: nil, details_required: nil, details_visible_for: nil, errors: nil, optional: nil, options: nil, response_type: nil, selection_mode: nil, supporting_files_explanation_allowed: nil, supporting_files_required: nil, supporting_files_visible_for: nil)
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::VerificationRetrieveResponse::RequestedInformation} for more
         #   details.
@@ -285,11 +336,27 @@ module WhopSDK
         #
         #   @param type [String] What to send as the answer, so you never have to infer it: `files` (a document,
         #
+        #   @param details_label [String] Follow-up prompt shown with this requirement.
+        #
+        #   @param details_required [Boolean] Whether the follow-up response is required when visible.
+        #
+        #   @param details_visible_for [Array<String>] Selected option values that make the follow-up prompt visible.
+        #
         #   @param errors [Array<WhopSDK::Models::VerificationRetrieveResponse::RequestedInformation::Error>] Present after a rejected submission.
         #
         #   @param optional [Boolean] `true` when the item can be skipped.
         #
         #   @param options [Array<String>] The values `value` may take on a `select` item. On an `id_document` item these a
+        #
+        #   @param response_type [Symbol, WhopSDK::Models::VerificationRetrieveResponse::RequestedInformation::ResponseType] Optional native input format for a text response.
+        #
+        #   @param selection_mode [Symbol, WhopSDK::Models::VerificationRetrieveResponse::RequestedInformation::SelectionMode] Whether a question with `options` accepts one value or multiple values.
+        #
+        #   @param supporting_files_explanation_allowed [Boolean] Whether a written explanation may replace required supporting files.
+        #
+        #   @param supporting_files_required [Boolean] Whether this requirement also needs supporting files.
+        #
+        #   @param supporting_files_visible_for [Array<String>] Selected option values that make the supporting-file input visible.
 
         class Error < WhopSDK::Internal::Type::BaseModel
           # @!attribute code
@@ -308,6 +375,36 @@ module WhopSDK
           #   @param code [String] Stable error code.
           #
           #   @param reason [String] Why it was rejected.
+        end
+
+        # Optional native input format for a text response.
+        #
+        # @see WhopSDK::Models::VerificationRetrieveResponse::RequestedInformation#response_type
+        module ResponseType
+          extend WhopSDK::Internal::Type::Enum
+
+          YES_NO = :yes_no
+          YES_NO_NA = :yes_no_na
+          DATE = :date
+          URL = :url
+          NUMBER = :number
+          TEL = :tel
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
+
+        # Whether a question with `options` accepts one value or multiple values.
+        #
+        # @see WhopSDK::Models::VerificationRetrieveResponse::RequestedInformation#selection_mode
+        module SelectionMode
+          extend WhopSDK::Internal::Type::Enum
+
+          SINGLE = :single
+          MULTIPLE = :multiple
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
         end
       end
 

@@ -4657,6 +4657,11 @@ module WhopSDK
                 :add_vat_registration,
                 WhopSDK::AccountUpdatedWebhookEvent::Data::RequiredAction::Action::TaggedSymbol
               )
+            ENABLE_TWO_FACTOR_AUTHENTICATION =
+              T.let(
+                :enable_two_factor_authentication,
+                WhopSDK::AccountUpdatedWebhookEvent::Data::RequiredAction::Action::TaggedSymbol
+              )
 
             sig do
               override.returns(

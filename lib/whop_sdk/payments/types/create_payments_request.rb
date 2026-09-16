@@ -6,6 +6,8 @@ module Whop_sdk
       class CreatePaymentsRequest < Internal::Types::Model
         field :account_id, -> { String }, optional: false, nullable: false
 
+        field :auto_capture_after_minutes, -> { Integer }, optional: true, nullable: false
+
         field :capture, -> { Internal::Types::Boolean }, optional: true, nullable: false
 
         field :confirmation_token, -> { String }, optional: true, nullable: false

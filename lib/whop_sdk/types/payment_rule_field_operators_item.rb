@@ -16,6 +16,7 @@ module Whop_sdk
       CONTAINS = "contains"
       STARTS_WITH = "starts_with"
       ENDS_WITH = "ends_with"
+      IN_CIDR = "in_cidr"
     end
   end
 end

@@ -10,6 +10,8 @@ module Whop_sdk
 
         field :id, -> { String }, optional: true, nullable: false
 
+        field :line_items, -> { Internal::Types::Array[Whop_sdk::Types::ReceiptLineItem] }, optional: true, nullable: false
+
         field :provider, -> { String }, optional: true, nullable: false
       end
     end

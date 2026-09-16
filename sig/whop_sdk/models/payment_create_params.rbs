@@ -3,6 +3,7 @@ module WhopSDK
     type payment_create_params =
       {
         account_id: String,
+        auto_capture_after_minutes: Integer?,
         capture: bool?,
         confirmation_token: String?,
         email: String?,
@@ -24,6 +25,8 @@ module WhopSDK
       include WhopSDK::Internal::Type::RequestParameters
 
       attr_accessor account_id: String
+
+      attr_accessor auto_capture_after_minutes: Integer?
 
       attr_accessor capture: bool?
 
@@ -63,6 +66,7 @@ module WhopSDK
 
       def initialize: (
         account_id: String,
+        ?auto_capture_after_minutes: Integer?,
         ?capture: bool?,
         ?confirmation_token: String?,
         ?email: String?,
@@ -81,6 +85,7 @@ module WhopSDK
 
       def to_hash: -> {
         account_id: String,
+        auto_capture_after_minutes: Integer?,
         capture: bool?,
         confirmation_token: String?,
         email: String?,

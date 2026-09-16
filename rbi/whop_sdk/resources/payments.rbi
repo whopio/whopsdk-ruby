@@ -22,6 +22,7 @@ module WhopSDK
       sig do
         params(
           account_id: String,
+          auto_capture_after_minutes: T.nilable(Integer),
           capture: T.nilable(T::Boolean),
           confirmation_token: T.nilable(String),
           email: T.nilable(String),
@@ -41,9 +42,14 @@ module WhopSDK
       def create(
         # Body param: The account to charge for, prefixed `biz_`.
         account_id:,
+        # Body param: Minutes after authorization at which Whop captures the hold
+        # automatically unless it has been voided. Requires `capture: false`. Between 5
+        # and 5760 (4 days).
+        auto_capture_after_minutes: nil,
         # Body param: Whether to capture a card payment immediately. Defaults to true.
         # Pass false to place an authorization hold that must be captured in full within
-        # five days via the capture endpoint.
+        # five days via the capture endpoint, or automatically after
+        # `auto_capture_after_minutes`.
         capture: nil,
         # Body param: A confirmation token describing a payment method the buyer just
         # supplied. Provide this instead of `member_id` and `payment_method_id`; the buyer

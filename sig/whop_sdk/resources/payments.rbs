@@ -3,6 +3,7 @@ module WhopSDK
     class Payments
       def create: (
         account_id: String,
+        ?auto_capture_after_minutes: Integer?,
         ?capture: bool?,
         ?confirmation_token: String?,
         ?email: String?,

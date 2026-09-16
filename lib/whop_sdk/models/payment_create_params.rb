@@ -13,10 +13,17 @@ module WhopSDK
       #   @return [String]
       required :account_id, String
 
+      # @!attribute auto_capture_after_minutes
+      #   Minutes after authorization at which Whop captures the hold automatically unless
+      #   it has been voided. Requires `capture: false`. Between 5 and 5760 (4 days).
+      #
+      #   @return [Integer, nil]
+      optional :auto_capture_after_minutes, Integer, nil?: true
+
       # @!attribute capture
       #   Whether to capture a card payment immediately. Defaults to true. Pass false to
       #   place an authorization hold that must be captured in full within five days via
-      #   the capture endpoint.
+      #   the capture endpoint, or automatically after `auto_capture_after_minutes`.
       #
       #   @return [Boolean, nil]
       optional :capture, WhopSDK::Internal::Type::Boolean, nil?: true
@@ -108,11 +115,13 @@ module WhopSDK
       #   @return [String, nil]
       optional :idempotency_key, String
 
-      # @!method initialize(account_id:, capture: nil, confirmation_token: nil, email: nil, member_id: nil, metadata: nil, payment_method_id: nil, plan: nil, plan_id: nil, promo_code_id: nil, return_url: nil, statement_descriptor: nil, api_version_date: nil, idempotency_key: nil, request_options: {})
+      # @!method initialize(account_id:, auto_capture_after_minutes: nil, capture: nil, confirmation_token: nil, email: nil, member_id: nil, metadata: nil, payment_method_id: nil, plan: nil, plan_id: nil, promo_code_id: nil, return_url: nil, statement_descriptor: nil, api_version_date: nil, idempotency_key: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::PaymentCreateParams} for more details.
       #
       #   @param account_id [String] The account to charge for, prefixed `biz_`.
+      #
+      #   @param auto_capture_after_minutes [Integer, nil] Minutes after authorization at which Whop captures the hold automatically unless
       #
       #   @param capture [Boolean, nil] Whether to capture a card payment immediately. Defaults to true. Pass false to p
       #

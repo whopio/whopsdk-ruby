@@ -23,9 +23,11 @@ module WhopSDK
       # got and, for a confirmation-token payment, what the buyer must still do. Pass
       # `plan_id` for an existing plan or `plan` to find or create one inline.
       #
-      # @overload create(account_id:, capture: nil, confirmation_token: nil, email: nil, member_id: nil, metadata: nil, payment_method_id: nil, plan: nil, plan_id: nil, promo_code_id: nil, return_url: nil, statement_descriptor: nil, api_version_date: nil, idempotency_key: nil, request_options: {})
+      # @overload create(account_id:, auto_capture_after_minutes: nil, capture: nil, confirmation_token: nil, email: nil, member_id: nil, metadata: nil, payment_method_id: nil, plan: nil, plan_id: nil, promo_code_id: nil, return_url: nil, statement_descriptor: nil, api_version_date: nil, idempotency_key: nil, request_options: {})
       #
       # @param account_id [String] Body param: The account to charge for, prefixed `biz_`.
+      #
+      # @param auto_capture_after_minutes [Integer, nil] Body param: Minutes after authorization at which Whop captures the hold automati
       #
       # @param capture [Boolean, nil] Body param: Whether to capture a card payment immediately. Defaults to true. Pas
       #

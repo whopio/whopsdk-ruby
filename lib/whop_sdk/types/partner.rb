@@ -10,6 +10,8 @@ module Whop_sdk
       field :referred_businesses_count, -> { Integer }, optional: false, nullable: false
 
       field :user, -> { Whop_sdk::Types::UserSummary }, optional: false, nullable: false
+
+      field :whop_partner_verified_at, -> { String }, optional: false, nullable: true
     end
   end
 end

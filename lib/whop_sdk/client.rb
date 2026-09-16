@@ -314,6 +314,11 @@ module Whop_sdk
       @payment_methods ||= Whop_sdk::PaymentMethods::Client.new(client: @raw_client)
     end
 
+    # @return [Whop_sdk::PaymentRules::Client]
+    def payment_rules
+      @payment_rules ||= Whop_sdk::PaymentRules::Client.new(client: @raw_client)
+    end
+
     # @return [Whop_sdk::Payments::Client]
     def payments
       @payments ||= Whop_sdk::Payments::Client.new(client: @raw_client)

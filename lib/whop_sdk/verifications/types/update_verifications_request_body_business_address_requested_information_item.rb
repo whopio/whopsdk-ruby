@@ -6,11 +6,15 @@ module Whop_sdk
       class UpdateVerificationsRequestBodyBusinessAddressRequestedInformationItem < Internal::Types::Model
         field :address, -> { Whop_sdk::Verifications::Types::UpdateVerificationsRequestBodyBusinessAddressRequestedInformationItemAddress }, optional: true, nullable: false
 
+        field :document_number, -> { String }, optional: true, nullable: false
+
         field :documents, -> { Whop_sdk::Verifications::Types::UpdateVerificationsRequestBodyBusinessAddressRequestedInformationItemDocuments }, optional: true, nullable: false
 
         field :files, -> { Internal::Types::Array[String] }, optional: true, nullable: false
 
         field :id, -> { String }, optional: false, nullable: false
+
+        field :issuing_country, -> { String }, optional: true, nullable: false
 
         field :value, -> { String }, optional: true, nullable: false
 

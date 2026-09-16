@@ -19140,7 +19140,7 @@ client.financial_reports.retrieve(
 <dl>
 <dd>
 
-**group_by:** `Whop_sdk::FinancialReports::Types::RetrieveFinancialReportsRequestGroupBy` — Grouping granularity for report rows.
+**group_by:** `Whop_sdk::FinancialReports::Types::RetrieveFinancialReportsRequestGroupBy` — Grouping granularity for report rows. Hourly grouping is supported for account-level balance activity reports only; hourly periods are timestamps in the requested timezone.
     
 </dd>
 </dl>

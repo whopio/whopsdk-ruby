@@ -4,6 +4,8 @@ module Whop_sdk
   module Verifications
     module Types
       class RetrieveVerificationsResponseRequestedInformationItem < Internal::Types::Model
+        field :action_url, -> { String }, optional: true, nullable: false
+
         field :details_label, -> { String }, optional: true, nullable: false
 
         field :details_required, -> { Internal::Types::Boolean }, optional: true, nullable: false
@@ -25,6 +27,8 @@ module Whop_sdk
         field :response_type, -> { Whop_sdk::Verifications::Types::RetrieveVerificationsResponseRequestedInformationItemResponseType }, optional: true, nullable: false
 
         field :selection_mode, -> { Whop_sdk::Verifications::Types::RetrieveVerificationsResponseRequestedInformationItemSelectionMode }, optional: true, nullable: false
+
+        field :supporting_documents, -> { Internal::Types::Array[Whop_sdk::Types::File] }, optional: true, nullable: false
 
         field :supporting_files_explanation_allowed, -> { Internal::Types::Boolean }, optional: true, nullable: false
 

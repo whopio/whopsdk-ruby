@@ -24646,6 +24646,649 @@ client.payment_methods.delete_payment_method(
 </dl>
 </details>
 
+## Payment Rules
+<details><summary><code>client.payment_rules.<a href="/lib/whop_sdk/payment_rules/client.rb">list</a>() -> Whop_sdk::PaymentRules::Types::ListPaymentRulesResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.payment_rules.list
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**account_id:** `String` — Only return rules belonging to this account. Defaults to the account the request is acting for.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**status:** `Whop_sdk::PaymentRules::Types::ListPaymentRulesRequestStatus` — Only return rules with this status.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**action:** `Whop_sdk::PaymentRules::Types::ListPaymentRulesRequestAction` — Only return rules that take this action.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**order:** `Whop_sdk::PaymentRules::Types::ListPaymentRulesRequestOrder` — The field to sort by.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**direction:** `Whop_sdk::PaymentRules::Types::ListPaymentRulesRequestDirection` — The sort direction.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**first:** `Integer` — Number of results to return from the start of the range.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**after:** `String` — Return results after this cursor. Use `page_info.end_cursor` from the previous response to fetch the next page.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**last:** `Integer` — Number of results to return from the end of the range.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**before:** `String` — Return results before this cursor. Use `page_info.start_cursor` from the previous response to fetch the previous page.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Whop_sdk::PaymentRules::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.payment_rules.<a href="/lib/whop_sdk/payment_rules/client.rb">create</a>(request) -> Whop_sdk::Types::PaymentRule</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.payment_rules.create(
+  action: "allow",
+  conditions: {
+    all: [{
+      field: "risk_score",
+      operator: "eq",
+      value: 1
+    }]
+  },
+  name: "Block high risk"
+)
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**account_id:** `String` — The account to create the rule on. Defaults to the account the request is acting for.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**action:** `Whop_sdk::PaymentRules::Types::CreatePaymentRulesRequestAction` — What happens to a payment when every condition matches. An `allow` overrides this account's other rules only, never Whop's own fraud controls. An `enforce_3ds` is skipped where the payment cannot carry a challenge.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**conditions:** `Whop_sdk::PaymentRules::Types::CreatePaymentRulesRequestConditions` — The conditions a payment is matched against. Up to 10 conditions, and 8 KiB once serialized.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**metadata:** `Internal::Types::Hash[String, String]` — Custom string-to-string values for your integration. Maximum 50 keys, 40 characters per key, 500 characters per value.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**name:** `String` — A name for this rule. Up to 255 characters.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Whop_sdk::PaymentRules::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.payment_rules.<a href="/lib/whop_sdk/payment_rules/client.rb">list_fields</a>() -> Whop_sdk::PaymentRules::Types::ListFieldsPaymentRulesResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Small and returned in full on one page.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.payment_rules.list_fields
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request_options:** `Whop_sdk::PaymentRules::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.payment_rules.<a href="/lib/whop_sdk/payment_rules/client.rb">retrieve</a>(id:) -> Whop_sdk::Types::PaymentRule</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.payment_rules.retrieve(id: "id")
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — The payment rule ID.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Whop_sdk::PaymentRules::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.payment_rules.<a href="/lib/whop_sdk/payment_rules/client.rb">delete</a>(id:) -> </code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+The rule stops applying to new payments and is kept, so the payments it already decided still name it.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.payment_rules.delete(id: "id")
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — The payment rule ID.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Whop_sdk::PaymentRules::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.payment_rules.<a href="/lib/whop_sdk/payment_rules/client.rb">update</a>(id:, request) -> Whop_sdk::Types::PaymentRule</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Changes the rule's name or metadata, keeping its ID and everything recorded against it. What the rule *does* is fixed once created, so the payments it decided keep naming the rule that decided them; use replace to change that.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.payment_rules.update(id: "id")
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — The payment rule ID.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**metadata:** `Internal::Types::Hash[String, String]` — Custom string-to-string values for your integration. Maximum 50 keys, 40 characters per key, 500 characters per value.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**name:** `String` — A name for this rule. Up to 255 characters.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Whop_sdk::PaymentRules::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.payment_rules.<a href="/lib/whop_sdk/payment_rules/client.rb">activate</a>(id:) -> Whop_sdk::Types::PaymentRule</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.payment_rules.activate(id: "id")
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — The payment rule ID.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Whop_sdk::PaymentRules::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.payment_rules.<a href="/lib/whop_sdk/payment_rules/client.rb">deactivate</a>(id:) -> Whop_sdk::Types::PaymentRule</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+The rule stops applying to new payments. It keeps its ID and can be activated again.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.payment_rules.deactivate(id: "id")
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — The payment rule ID.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Whop_sdk::PaymentRules::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.payment_rules.<a href="/lib/whop_sdk/payment_rules/client.rb">replace</a>(id:, request) -> Whop_sdk::Types::PaymentRule</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deletes this rule and creates its successor in one step. The successor carries a new ID and the metadata of the rule it replaced,.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.payment_rules.replace(
+  id: "id",
+  action: "allow",
+  conditions: {
+    all: [{
+      field: "risk_score",
+      operator: "eq",
+      value: 1
+    }]
+  }
+)
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — The payment rule ID.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**action:** `Whop_sdk::PaymentRules::Types::ReplacePaymentRulesRequestAction` — What happens to a payment when every condition matches. An `allow` overrides this account's other rules only, never Whop's own fraud controls. An `enforce_3ds` is skipped where the payment cannot carry a challenge.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**conditions:** `Whop_sdk::PaymentRules::Types::ReplacePaymentRulesRequestConditions` — The conditions a payment is matched against. Up to 10 conditions, and 8 KiB once serialized.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Whop_sdk::PaymentRules::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Payments
 <details><summary><code>client.payments.<a href="/lib/whop_sdk/payments/client.rb">list</a>() -> Whop_sdk::Payments::Types::ListPaymentsResponse</code></summary>
 <dl>

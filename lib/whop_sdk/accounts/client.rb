@@ -417,6 +417,11 @@ module Whop_sdk
         end
       end
 
+      # @return [Whop_sdk::Fees::Client]
+      def fees
+        @fees ||= Whop_sdk::Accounts::Fees::Client.new(client: @client)
+      end
+
       # @return [Whop_sdk::Preferences::Client]
       def preferences
         @preferences ||= Whop_sdk::Accounts::Preferences::Client.new(client: @client)

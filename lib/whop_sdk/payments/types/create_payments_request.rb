@@ -14,6 +14,8 @@ module Whop_sdk
 
         field :email, -> { String }, optional: true, nullable: false
 
+        field :line_items, -> { Internal::Types::Array[Whop_sdk::Payments::Types::CreatePaymentsRequestLineItemsItem] }, optional: true, nullable: false
+
         field :member_id, -> { String }, optional: true, nullable: false
 
         field :metadata, -> { Internal::Types::Hash[String, String] }, optional: true, nullable: false

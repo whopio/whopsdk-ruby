@@ -39,6 +39,21 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :email
 
+      # What the buyer is purchasing. One entry charges that plan; several entries form
+      # a cart, which requires every plan to be a compatible plan from this account in
+      # the same currency.
+      sig do
+        returns(T.nilable(T::Array[WhopSDK::PaymentCreateParams::LineItem]))
+      end
+      attr_reader :line_items
+
+      sig do
+        params(
+          line_items: T::Array[WhopSDK::PaymentCreateParams::LineItem::OrHash]
+        ).void
+      end
+      attr_writer :line_items
+
       # The member to charge, prefixed `mber_`. Required with `payment_method_id` unless
       # `confirmation_token` is provided.
       sig { returns(T.nilable(String)) }
@@ -53,9 +68,9 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :payment_method_id
 
-      # Find or create a plan for this payment. Mutually exclusive with `plan_id`.
-      # Creating a plan requires plan:create; creating or updating a product requires
-      # the corresponding product permission.
+      # Find or create a plan for this payment. Mutually exclusive with `plan_id` and
+      # `line_items`. Creating a plan requires plan:create; creating or updating a
+      # product requires the corresponding product permission.
       sig { returns(T.nilable(WhopSDK::PaymentCreateParams::Plan)) }
       attr_reader :plan
 
@@ -63,7 +78,7 @@ module WhopSDK
       attr_writer :plan
 
       # The plan to charge for, prefixed `plan_`. It must belong to the account.
-      # Mutually exclusive with `plan`.
+      # Mutually exclusive with `plan` and `line_items`.
       sig { returns(T.nilable(String)) }
       attr_reader :plan_id
 
@@ -108,6 +123,7 @@ module WhopSDK
           capture: T.nilable(T::Boolean),
           confirmation_token: T.nilable(String),
           email: T.nilable(String),
+          line_items: T::Array[WhopSDK::PaymentCreateParams::LineItem::OrHash],
           member_id: T.nilable(String),
           metadata: T.nilable(T::Hash[Symbol, String]),
           payment_method_id: T.nilable(String),
@@ -140,6 +156,10 @@ module WhopSDK
         # creating the user the payment belongs to. Ignored unless `confirmation_token` is
         # provided, and when the token was created by a signed-in buyer.
         email: nil,
+        # What the buyer is purchasing. One entry charges that plan; several entries form
+        # a cart, which requires every plan to be a compatible plan from this account in
+        # the same currency.
+        line_items: nil,
         # The member to charge, prefixed `mber_`. Required with `payment_method_id` unless
         # `confirmation_token` is provided.
         member_id: nil,
@@ -148,12 +168,12 @@ module WhopSDK
         # The stored payment method to charge, prefixed `payt_`. It must belong to the
         # member. Required unless `confirmation_token` is provided.
         payment_method_id: nil,
-        # Find or create a plan for this payment. Mutually exclusive with `plan_id`.
-        # Creating a plan requires plan:create; creating or updating a product requires
-        # the corresponding product permission.
+        # Find or create a plan for this payment. Mutually exclusive with `plan_id` and
+        # `line_items`. Creating a plan requires plan:create; creating or updating a
+        # product requires the corresponding product permission.
         plan: nil,
         # The plan to charge for, prefixed `plan_`. It must belong to the account.
-        # Mutually exclusive with `plan`.
+        # Mutually exclusive with `plan` and `line_items`.
         plan_id: nil,
         # An active promo code to apply, prefixed `promo_`. It must belong to the account
         # and be valid for the plan.
@@ -182,6 +202,7 @@ module WhopSDK
             capture: T.nilable(T::Boolean),
             confirmation_token: T.nilable(String),
             email: T.nilable(String),
+            line_items: T::Array[WhopSDK::PaymentCreateParams::LineItem],
             member_id: T.nilable(String),
             metadata: T.nilable(T::Hash[Symbol, String]),
             payment_method_id: T.nilable(String),
@@ -197,6 +218,47 @@ module WhopSDK
         )
       end
       def to_hash
+      end
+
+      class LineItem < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              WhopSDK::PaymentCreateParams::LineItem,
+              WhopSDK::Internal::AnyHash
+            )
+          end
+
+        # An existing plan to charge for, prefixed `plan_`. Each plan may appear once —
+        # use `quantity` for multiple units.
+        sig { returns(String) }
+        attr_accessor :plan_id
+
+        # How many units of the plan to purchase. Defaults to 1; more than 1 requires the
+        # plan to allow multiple quantities.
+        sig { returns(T.nilable(Integer)) }
+        attr_accessor :quantity
+
+        sig do
+          params(plan_id: String, quantity: T.nilable(Integer)).returns(
+            T.attached_class
+          )
+        end
+        def self.new(
+          # An existing plan to charge for, prefixed `plan_`. Each plan may appear once —
+          # use `quantity` for multiple units.
+          plan_id:,
+          # How many units of the plan to purchase. Defaults to 1; more than 1 requires the
+          # plan to allow multiple quantities.
+          quantity: nil
+        )
+        end
+
+        sig do
+          override.returns({ plan_id: String, quantity: T.nilable(Integer) })
+        end
+        def to_hash
+        end
       end
 
       class Plan < WhopSDK::Internal::Type::BaseModel
@@ -293,9 +355,9 @@ module WhopSDK
         end
         attr_accessor :visibility
 
-        # Find or create a plan for this payment. Mutually exclusive with `plan_id`.
-        # Creating a plan requires plan:create; creating or updating a product requires
-        # the corresponding product permission.
+        # Find or create a plan for this payment. Mutually exclusive with `plan_id` and
+        # `line_items`. Creating a plan requires plan:create; creating or updating a
+        # product requires the corresponding product permission.
         sig do
           params(
             currency: WhopSDK::PaymentCreateParams::Plan::Currency::OrSymbol,

@@ -16,14 +16,16 @@ module WhopSDK
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::PaymentCreateParams} for more details.
       #
-      # Charges a buyer for a plan. Pass a payment method already on file (`member_id`
-      # and `payment_method_id`), or a `confirmation_token` describing a method the
-      # buyer just supplied. Collection runs in the background: the response is the
-      # payment as created, not its outcome — poll Retrieve status for how far it has
-      # got and, for a confirmation-token payment, what the buyer must still do. Pass
-      # `plan_id` for an existing plan or `plan` to find or create one inline.
+      # Charges a buyer for one or more plans. Pass a payment method already on file
+      # (`member_id` and `payment_method_id`), or a `confirmation_token` describing a
+      # method the buyer just supplied. Collection runs in the background: the response
+      # is the payment as created, not its outcome — poll Retrieve status for how far it
+      # has got and, for a confirmation-token payment, what the buyer must still do.
+      # Pass `line_items` for one or more plans with quantities, `plan_id` for an
+      # existing plan, or `plan` to find or create one inline. These inputs are mutually
+      # exclusive.
       #
-      # @overload create(account_id:, auto_capture_after_minutes: nil, capture: nil, confirmation_token: nil, email: nil, member_id: nil, metadata: nil, payment_method_id: nil, plan: nil, plan_id: nil, promo_code_id: nil, return_url: nil, statement_descriptor: nil, api_version_date: nil, idempotency_key: nil, request_options: {})
+      # @overload create(account_id:, auto_capture_after_minutes: nil, capture: nil, confirmation_token: nil, email: nil, line_items: nil, member_id: nil, metadata: nil, payment_method_id: nil, plan: nil, plan_id: nil, promo_code_id: nil, return_url: nil, statement_descriptor: nil, api_version_date: nil, idempotency_key: nil, request_options: {})
       #
       # @param account_id [String] Body param: The account to charge for, prefixed `biz_`.
       #
@@ -34,6 +36,8 @@ module WhopSDK
       # @param confirmation_token [String, nil] Body param: A confirmation token describing a payment method the buyer just supp
       #
       # @param email [String, nil] Body param: Overrides the buyer email carried on the confirmation token, resolvi
+      #
+      # @param line_items [Array<WhopSDK::Models::PaymentCreateParams::LineItem>] Body param: What the buyer is purchasing. One entry charges that plan; several e
       #
       # @param member_id [String, nil] Body param: The member to charge, prefixed `mber_`. Required with `payment_metho
       #

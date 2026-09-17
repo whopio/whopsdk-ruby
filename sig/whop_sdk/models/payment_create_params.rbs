@@ -7,6 +7,7 @@ module WhopSDK
         capture: bool?,
         confirmation_token: String?,
         email: String?,
+        line_items: ::Array[WhopSDK::PaymentCreateParams::LineItem],
         member_id: String?,
         metadata: ::Hash[Symbol, String]?,
         payment_method_id: String?,
@@ -33,6 +34,12 @@ module WhopSDK
       attr_accessor confirmation_token: String?
 
       attr_accessor email: String?
+
+      attr_reader line_items: ::Array[WhopSDK::PaymentCreateParams::LineItem]?
+
+      def line_items=: (
+        ::Array[WhopSDK::PaymentCreateParams::LineItem]
+      ) -> ::Array[WhopSDK::PaymentCreateParams::LineItem]
 
       attr_accessor member_id: String?
 
@@ -70,6 +77,7 @@ module WhopSDK
         ?capture: bool?,
         ?confirmation_token: String?,
         ?email: String?,
+        ?line_items: ::Array[WhopSDK::PaymentCreateParams::LineItem],
         ?member_id: String?,
         ?metadata: ::Hash[Symbol, String]?,
         ?payment_method_id: String?,
@@ -89,6 +97,7 @@ module WhopSDK
         capture: bool?,
         confirmation_token: String?,
         email: String?,
+        line_items: ::Array[WhopSDK::PaymentCreateParams::LineItem],
         member_id: String?,
         metadata: ::Hash[Symbol, String]?,
         payment_method_id: String?,
@@ -101,6 +110,18 @@ module WhopSDK
         idempotency_key: String,
         request_options: WhopSDK::RequestOptions
       }
+
+      type line_item = { plan_id: String, quantity: Integer? }
+
+      class LineItem < WhopSDK::Internal::Type::BaseModel
+        attr_accessor plan_id: String
+
+        attr_accessor quantity: Integer?
+
+        def initialize: (plan_id: String, ?quantity: Integer?) -> void
+
+        def to_hash: -> { plan_id: String, quantity: Integer? }
+      end
 
       type plan =
         {

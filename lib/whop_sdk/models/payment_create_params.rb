@@ -45,6 +45,14 @@ module WhopSDK
       #   @return [String, nil]
       optional :email, String, nil?: true
 
+      # @!attribute line_items
+      #   What the buyer is purchasing. One entry charges that plan; several entries form
+      #   a cart, which requires every plan to be a compatible plan from this account in
+      #   the same currency.
+      #
+      #   @return [Array<WhopSDK::Models::PaymentCreateParams::LineItem>, nil]
+      optional :line_items, -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::PaymentCreateParams::LineItem] }
+
       # @!attribute member_id
       #   The member to charge, prefixed `mber_`. Required with `payment_method_id` unless
       #   `confirmation_token` is provided.
@@ -66,16 +74,16 @@ module WhopSDK
       optional :payment_method_id, String, nil?: true
 
       # @!attribute plan
-      #   Find or create a plan for this payment. Mutually exclusive with `plan_id`.
-      #   Creating a plan requires plan:create; creating or updating a product requires
-      #   the corresponding product permission.
+      #   Find or create a plan for this payment. Mutually exclusive with `plan_id` and
+      #   `line_items`. Creating a plan requires plan:create; creating or updating a
+      #   product requires the corresponding product permission.
       #
       #   @return [WhopSDK::Models::PaymentCreateParams::Plan, nil]
       optional :plan, -> { WhopSDK::PaymentCreateParams::Plan }
 
       # @!attribute plan_id
       #   The plan to charge for, prefixed `plan_`. It must belong to the account.
-      #   Mutually exclusive with `plan`.
+      #   Mutually exclusive with `plan` and `line_items`.
       #
       #   @return [String, nil]
       optional :plan_id, String
@@ -115,7 +123,7 @@ module WhopSDK
       #   @return [String, nil]
       optional :idempotency_key, String
 
-      # @!method initialize(account_id:, auto_capture_after_minutes: nil, capture: nil, confirmation_token: nil, email: nil, member_id: nil, metadata: nil, payment_method_id: nil, plan: nil, plan_id: nil, promo_code_id: nil, return_url: nil, statement_descriptor: nil, api_version_date: nil, idempotency_key: nil, request_options: {})
+      # @!method initialize(account_id:, auto_capture_after_minutes: nil, capture: nil, confirmation_token: nil, email: nil, line_items: nil, member_id: nil, metadata: nil, payment_method_id: nil, plan: nil, plan_id: nil, promo_code_id: nil, return_url: nil, statement_descriptor: nil, api_version_date: nil, idempotency_key: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::PaymentCreateParams} for more details.
       #
@@ -129,13 +137,15 @@ module WhopSDK
       #
       #   @param email [String, nil] Overrides the buyer email carried on the confirmation token, resolving or creati
       #
+      #   @param line_items [Array<WhopSDK::Models::PaymentCreateParams::LineItem>] What the buyer is purchasing. One entry charges that plan; several entries form
+      #
       #   @param member_id [String, nil] The member to charge, prefixed `mber_`. Required with `payment_method_id` unless
       #
       #   @param metadata [Hash{Symbol=>String}, nil] Custom metadata to attach to the payment.
       #
       #   @param payment_method_id [String, nil] The stored payment method to charge, prefixed `payt_`. It must belong to the mem
       #
-      #   @param plan [WhopSDK::Models::PaymentCreateParams::Plan] Find or create a plan for this payment. Mutually exclusive with `plan_id`. Creat
+      #   @param plan [WhopSDK::Models::PaymentCreateParams::Plan] Find or create a plan for this payment. Mutually exclusive with `plan_id` and `l
       #
       #   @param plan_id [String] The plan to charge for, prefixed `plan_`. It must belong to the account. Mutuall
       #
@@ -150,6 +160,30 @@ module WhopSDK
       #   @param idempotency_key [String]
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
+
+      class LineItem < WhopSDK::Internal::Type::BaseModel
+        # @!attribute plan_id
+        #   An existing plan to charge for, prefixed `plan_`. Each plan may appear once —
+        #   use `quantity` for multiple units.
+        #
+        #   @return [String]
+        required :plan_id, String
+
+        # @!attribute quantity
+        #   How many units of the plan to purchase. Defaults to 1; more than 1 requires the
+        #   plan to allow multiple quantities.
+        #
+        #   @return [Integer, nil]
+        optional :quantity, Integer, nil?: true
+
+        # @!method initialize(plan_id:, quantity: nil)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::PaymentCreateParams::LineItem} for more details.
+        #
+        #   @param plan_id [String] An existing plan to charge for, prefixed `plan_`. Each plan may appear once — us
+        #
+        #   @param quantity [Integer, nil] How many units of the plan to purchase. Defaults to 1; more than 1 requires the
+      end
 
       class Plan < WhopSDK::Internal::Type::BaseModel
         # @!attribute currency
@@ -255,9 +289,9 @@ module WhopSDK
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::PaymentCreateParams::Plan} for more details.
         #
-        #   Find or create a plan for this payment. Mutually exclusive with `plan_id`.
-        #   Creating a plan requires plan:create; creating or updating a product requires
-        #   the corresponding product permission.
+        #   Find or create a plan for this payment. Mutually exclusive with `plan_id` and
+        #   `line_items`. Creating a plan requires plan:create; creating or updating a
+        #   product requires the corresponding product permission.
         #
         #   @param currency [Symbol, WhopSDK::Models::PaymentCreateParams::Plan::Currency] Currency code for the plan prices.
         #

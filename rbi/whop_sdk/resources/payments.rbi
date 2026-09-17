@@ -13,12 +13,14 @@ module WhopSDK
     # link a bank account. Use the return_url operation to change where they land
     # afterwards, up until they come back.
     class Payments
-      # Charges a buyer for a plan. Pass a payment method already on file (`member_id`
-      # and `payment_method_id`), or a `confirmation_token` describing a method the
-      # buyer just supplied. Collection runs in the background: the response is the
-      # payment as created, not its outcome — poll Retrieve status for how far it has
-      # got and, for a confirmation-token payment, what the buyer must still do. Pass
-      # `plan_id` for an existing plan or `plan` to find or create one inline.
+      # Charges a buyer for one or more plans. Pass a payment method already on file
+      # (`member_id` and `payment_method_id`), or a `confirmation_token` describing a
+      # method the buyer just supplied. Collection runs in the background: the response
+      # is the payment as created, not its outcome — poll Retrieve status for how far it
+      # has got and, for a confirmation-token payment, what the buyer must still do.
+      # Pass `line_items` for one or more plans with quantities, `plan_id` for an
+      # existing plan, or `plan` to find or create one inline. These inputs are mutually
+      # exclusive.
       sig do
         params(
           account_id: String,
@@ -26,6 +28,7 @@ module WhopSDK
           capture: T.nilable(T::Boolean),
           confirmation_token: T.nilable(String),
           email: T.nilable(String),
+          line_items: T::Array[WhopSDK::PaymentCreateParams::LineItem::OrHash],
           member_id: T.nilable(String),
           metadata: T.nilable(T::Hash[Symbol, String]),
           payment_method_id: T.nilable(String),
@@ -61,6 +64,10 @@ module WhopSDK
         # `confirmation_token` is provided, and when the token was created by a signed-in
         # buyer.
         email: nil,
+        # Body param: What the buyer is purchasing. One entry charges that plan; several
+        # entries form a cart, which requires every plan to be a compatible plan from this
+        # account in the same currency.
+        line_items: nil,
         # Body param: The member to charge, prefixed `mber_`. Required with
         # `payment_method_id` unless `confirmation_token` is provided.
         member_id: nil,
@@ -70,11 +77,11 @@ module WhopSDK
         # belong to the member. Required unless `confirmation_token` is provided.
         payment_method_id: nil,
         # Body param: Find or create a plan for this payment. Mutually exclusive with
-        # `plan_id`. Creating a plan requires plan:create; creating or updating a product
-        # requires the corresponding product permission.
+        # `plan_id` and `line_items`. Creating a plan requires plan:create; creating or
+        # updating a product requires the corresponding product permission.
         plan: nil,
         # Body param: The plan to charge for, prefixed `plan_`. It must belong to the
-        # account. Mutually exclusive with `plan`.
+        # account. Mutually exclusive with `plan` and `line_items`.
         plan_id: nil,
         # Body param: An active promo code to apply, prefixed `promo_`. It must belong to
         # the account and be valid for the plan.

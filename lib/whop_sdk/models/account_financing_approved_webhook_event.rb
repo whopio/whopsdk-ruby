@@ -2495,6 +2495,7 @@ module WhopSDK
             extend WhopSDK::Internal::Type::Enum
 
             DEPOSIT_FUNDS = :deposit_funds
+            REVIEW_HELD_PAYMENTS = :review_held_payments
             ACCEPT_AIRWALLEX_TERMS = :accept_airwallex_terms
             SUBMIT_INFORMATION_REQUEST = :submit_information_request
             UPDATE_AUTOMATIC_WITHDRAWAL_METHOD = :update_automatic_withdrawal_method

@@ -4597,6 +4597,11 @@ module WhopSDK
                 :deposit_funds,
                 WhopSDK::AccountUpdatedWebhookEvent::Data::RequiredAction::Action::TaggedSymbol
               )
+            REVIEW_HELD_PAYMENTS =
+              T.let(
+                :review_held_payments,
+                WhopSDK::AccountUpdatedWebhookEvent::Data::RequiredAction::Action::TaggedSymbol
+              )
             ACCEPT_AIRWALLEX_TERMS =
               T.let(
                 :accept_airwallex_terms,

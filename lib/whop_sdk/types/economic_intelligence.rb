@@ -25,6 +25,8 @@ module Whop_sdk
 
       field :superseded_at, -> { String }, optional: false, nullable: true
 
+      field :target_url, -> { String }, optional: true, nullable: false
+
       field :title, -> { String }, optional: false, nullable: true
     end
   end

@@ -22,6 +22,7 @@ module Whop_sdk
       STRIPE_PAYOUT_FEE = "stripe_payout_fee"
       DISPUTE_FEE = "dispute_fee"
       DISPUTE_ALERT_FEE = "dispute_alert_fee"
+      DISPUTE_REPRESENTMENT_FEE = "dispute_representment_fee"
       APPLE_PROCESSING_FEE = "apple_processing_fee"
       BUYER_FEE = "buyer_fee"
       SEZZLE_PROCESSING_FEE = "sezzle_processing_fee"

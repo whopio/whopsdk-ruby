@@ -108,7 +108,8 @@ module Whop_sdk
         end
       end
 
-      # Approves or rejects a recommendation and requests replacements.
+      # Updates a recommendation status, records feedback, or both. Send `sentiment` to rate it. Include `status:
+      # superseded` to retire it and request replacements; a rating alone leaves its status unchanged.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::EconomicIntelligence::Types::UpdateEconomicIntelligenceRequest]
@@ -121,10 +122,7 @@ module Whop_sdk
       # @option params [String, nil] :account_id
       #
       # @example
-      #   client.economic_intelligence.update(
-      #     id: "id",
-      #     status: "executed"
-      #   )
+      #   client.economic_intelligence.update(id: "id")
       #
       # @return [Whop_sdk::Types::EconomicIntelligence]
       def update(request_options: {}, **params)

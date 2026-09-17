@@ -15445,7 +15445,7 @@ client.economic_intelligence.create(input: "I sell $79 customized gym straps. Th
 <dl>
 <dd>
 
-Approves or rejects a recommendation and requests replacements.
+Updates a recommendation status, records feedback, or both. Send `sentiment` to rate it. Include `status: superseded` to retire it and request replacements; a rating alone leaves its status unchanged.
 </dd>
 </dl>
 </dd>
@@ -15460,10 +15460,7 @@ Approves or rejects a recommendation and requests replacements.
 <dd>
 
 ```ruby
-client.economic_intelligence.update(
-  id: "id",
-  status: "executed"
-)
+client.economic_intelligence.update(id: "id")
 ```
 </dd>
 </dl>
@@ -15494,7 +15491,7 @@ client.economic_intelligence.update(
 <dl>
 <dd>
 
-**reason:** `String` — Why the recommendation was rejected. Used as feedback when replenishing recommendations.
+**sentiment:** `Whop_sdk::EconomicIntelligence::Types::UpdateEconomicIntelligenceRequestSentiment` — A signed-in user can rate a recommendation as `positive` or `negative`. Can be sent alone or together with status.
     
 </dd>
 </dl>
@@ -15503,6 +15500,14 @@ client.economic_intelligence.update(
 <dd>
 
 **status:** `Whop_sdk::EconomicIntelligence::Types::UpdateEconomicIntelligenceRequestStatus` — Use `executed` to record approval, or `superseded` to reject the recommendation.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**user_feedback:** `String` — An optional explanation of the rating or rejection. Negative feedback informs replacement recommendations.
     
 </dd>
 </dl>

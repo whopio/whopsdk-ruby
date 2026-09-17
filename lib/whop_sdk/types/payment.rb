@@ -37,6 +37,8 @@ module Whop_sdk
 
       field :last_payment_attempt_at, -> { String }, optional: false, nullable: true
 
+      field :line_items, -> { Internal::Types::Array[Whop_sdk::Types::ReceiptLineItem] }, optional: false, nullable: false
+
       field :member_id, -> { String }, optional: false, nullable: true
 
       field :membership_id, -> { String }, optional: false, nullable: true

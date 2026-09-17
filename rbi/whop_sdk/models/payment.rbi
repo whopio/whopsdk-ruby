@@ -93,6 +93,9 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :last_payment_attempt_at
 
+      sig { returns(T::Array[WhopSDK::Payment::LineItem]) }
+      attr_accessor :line_items
+
       # The buyer's member record on the account, prefixed `mber_`. Null without the
       # member:basic:read permission.
       sig { returns(T.nilable(String)) }
@@ -361,6 +364,7 @@ module WhopSDK
           failure_message: T.nilable(String),
           financing_installments_count: T.nilable(Float),
           last_payment_attempt_at: T.nilable(String),
+          line_items: T::Array[WhopSDK::Payment::LineItem::OrHash],
           member_id: T.nilable(String),
           membership_id: T.nilable(String),
           metadata: T.nilable(T.anything),
@@ -446,6 +450,7 @@ module WhopSDK
         financing_installments_count:,
         # When the most recent charge attempt ran, or null.
         last_payment_attempt_at:,
+        line_items:,
         # The buyer's member record on the account, prefixed `mber_`. Null without the
         # member:basic:read permission.
         member_id:,
@@ -577,6 +582,7 @@ module WhopSDK
             failure_message: T.nilable(String),
             financing_installments_count: T.nilable(Float),
             last_payment_attempt_at: T.nilable(String),
+            line_items: T::Array[WhopSDK::Payment::LineItem],
             member_id: T.nilable(String),
             membership_id: T.nilable(String),
             metadata: T.nilable(T.anything),
@@ -1112,6 +1118,184 @@ module WhopSDK
           )
         end
         def self.values
+        end
+      end
+
+      class LineItem < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(WhopSDK::Payment::LineItem, WhopSDK::Internal::AnyHash)
+          end
+
+        # Line item ID, prefixed `li_`. Null when the payment predates item snapshots and
+        # the item is read from the payment's plan.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :id
+
+        # The item's name as shown at checkout — the product title, else the plan title.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :label
+
+        # The plan bought, prefixed `plan_`. Null when the plan has since been deleted.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :plan_id
+
+        # The plan's current title, or `null` when the plan has been deleted or has no
+        # title.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :plan_title
+
+        # The product the plan belongs to, prefixed `prod_`. On a payment that predates
+        # item snapshots this falls back to the plan's product, so it can be set where the
+        # parent's own `product_id` is null. Null for a plan with no product.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :product_id
+
+        # The product's current title, or `null` when the item has no product.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :product_title
+
+        # How many units were bought.
+        sig { returns(Float) }
+        attr_accessor :quantity
+
+        # The recorded amount for this item's full quantity, before discounts, tax, and
+        # fees, in its purchase currency. Returns `null` when no item amount was recorded.
+        sig { returns(T.nilable(WhopSDK::Payment::LineItem::Subtotal)) }
+        attr_reader :subtotal
+
+        sig do
+          params(
+            subtotal: T.nilable(WhopSDK::Payment::LineItem::Subtotal::OrHash)
+          ).void
+        end
+        attr_writer :subtotal
+
+        # Everything this payment charged for, in purchase order, with quantities and
+        # subtotals in the purchase currency. Payments made before item snapshots were
+        # recorded return the single item implied by their plan. Empty when no items or
+        # plan can be resolved.
+        sig do
+          params(
+            id: T.nilable(String),
+            label: T.nilable(String),
+            plan_id: T.nilable(String),
+            plan_title: T.nilable(String),
+            product_id: T.nilable(String),
+            product_title: T.nilable(String),
+            quantity: Float,
+            subtotal: T.nilable(WhopSDK::Payment::LineItem::Subtotal::OrHash)
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # Line item ID, prefixed `li_`. Null when the payment predates item snapshots and
+          # the item is read from the payment's plan.
+          id:,
+          # The item's name as shown at checkout — the product title, else the plan title.
+          label:,
+          # The plan bought, prefixed `plan_`. Null when the plan has since been deleted.
+          plan_id:,
+          # The plan's current title, or `null` when the plan has been deleted or has no
+          # title.
+          plan_title:,
+          # The product the plan belongs to, prefixed `prod_`. On a payment that predates
+          # item snapshots this falls back to the plan's product, so it can be set where the
+          # parent's own `product_id` is null. Null for a plan with no product.
+          product_id:,
+          # The product's current title, or `null` when the item has no product.
+          product_title:,
+          # How many units were bought.
+          quantity:,
+          # The recorded amount for this item's full quantity, before discounts, tax, and
+          # fees, in its purchase currency. Returns `null` when no item amount was recorded.
+          subtotal:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              id: T.nilable(String),
+              label: T.nilable(String),
+              plan_id: T.nilable(String),
+              plan_title: T.nilable(String),
+              product_id: T.nilable(String),
+              product_title: T.nilable(String),
+              quantity: Float,
+              subtotal: T.nilable(WhopSDK::Payment::LineItem::Subtotal)
+            }
+          )
+        end
+        def to_hash
+        end
+
+        class Subtotal < WhopSDK::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                WhopSDK::Payment::LineItem::Subtotal,
+                WhopSDK::Internal::AnyHash
+              )
+            end
+
+          # The amount in major units, as an exact decimal string — `"10.00"` is ten
+          # dollars. A string so no float rounds it in transit.
+          sig { returns(String) }
+          attr_accessor :amount
+
+          # Three-letter ISO 4217 currency code, lowercase.
+          sig { returns(String) }
+          attr_accessor :currency
+
+          # How many decimal places the amount CARRIES — the precision the charge itself
+          # runs at.
+          sig { returns(Integer) }
+          attr_accessor :decimals
+
+          # How many decimal places to SHOW. Usually equal to `decimals`, and deliberately
+          # not always: COP is charged in centavos but written in whole pesos, so it is `2`
+          # and `0`. Format the number in your own locale using this.
+          sig { returns(Integer) }
+          attr_accessor :display_decimals
+
+          # The recorded amount for this item's full quantity, before discounts, tax, and
+          # fees, in its purchase currency. Returns `null` when no item amount was recorded.
+          sig do
+            params(
+              amount: String,
+              currency: String,
+              decimals: Integer,
+              display_decimals: Integer
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # The amount in major units, as an exact decimal string — `"10.00"` is ten
+            # dollars. A string so no float rounds it in transit.
+            amount:,
+            # Three-letter ISO 4217 currency code, lowercase.
+            currency:,
+            # How many decimal places the amount CARRIES — the precision the charge itself
+            # runs at.
+            decimals:,
+            # How many decimal places to SHOW. Usually equal to `decimals`, and deliberately
+            # not always: COP is charged in centavos but written in whole pesos, so it is `2`
+            # and `0`. Format the number in your own locale using this.
+            display_decimals:
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                amount: String,
+                currency: String,
+                decimals: Integer,
+                display_decimals: Integer
+              }
+            )
+          end
+          def to_hash
+          end
         end
       end
 

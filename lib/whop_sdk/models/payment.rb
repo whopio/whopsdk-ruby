@@ -110,6 +110,11 @@ module WhopSDK
       #   @return [String, nil]
       required :last_payment_attempt_at, String, nil?: true
 
+      # @!attribute line_items
+      #
+      #   @return [Array<WhopSDK::Models::Payment::LineItem>]
+      required :line_items, -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::Payment::LineItem] }
+
       # @!attribute member_id
       #   The buyer's member record on the account, prefixed `mber_`. Null without the
       #   member:basic:read permission.
@@ -372,7 +377,7 @@ module WhopSDK
       #   @return [Boolean]
       required :voidable, WhopSDK::Internal::Type::Boolean
 
-      # @!method initialize(id:, account_id:, amount_after_fees:, auto_refunded:, billing_address:, billing_reason:, checkout_configuration_id:, client_secret:, created_at:, currency:, customer_email:, customer_phone:, decline_code:, dispute_alerted_at:, failure_message:, financing_installments_count:, last_payment_attempt_at:, member_id:, membership_id:, metadata:, needs_tracking:, next_payment_attempt_at:, paid_at:, payment_instrument:, payment_method_id:, payment_method_type:, payment_rule_matches:, payments_failed:, plan_id:, presentment_total:, product_id:, promo_code_id:, recovery_url:, refundable:, refunded_amount:, refunded_at:, retryable:, risk_score:, risk_signals:, settlement_time_at:, shipment_id:, shipping_address:, status:, substatus:, subtotal:, tax_amount:, tax_behavior:, tax_refunded_amount:, three_ds_verified:, total:, updated_at:, usd_total:, user:, verification_checks:, voidable:)
+      # @!method initialize(id:, account_id:, amount_after_fees:, auto_refunded:, billing_address:, billing_reason:, checkout_configuration_id:, client_secret:, created_at:, currency:, customer_email:, customer_phone:, decline_code:, dispute_alerted_at:, failure_message:, financing_installments_count:, last_payment_attempt_at:, line_items:, member_id:, membership_id:, metadata:, needs_tracking:, next_payment_attempt_at:, paid_at:, payment_instrument:, payment_method_id:, payment_method_type:, payment_rule_matches:, payments_failed:, plan_id:, presentment_total:, product_id:, promo_code_id:, recovery_url:, refundable:, refunded_amount:, refunded_at:, retryable:, risk_score:, risk_signals:, settlement_time_at:, shipment_id:, shipping_address:, status:, substatus:, subtotal:, tax_amount:, tax_behavior:, tax_refunded_amount:, three_ds_verified:, total:, updated_at:, usd_total:, user:, verification_checks:, voidable:)
       #   Some parameter documentations has been truncated, see {WhopSDK::Models::Payment}
       #   for more details.
       #
@@ -409,6 +414,8 @@ module WhopSDK
       #   @param financing_installments_count [Float, nil] For installment methods, how many payments the charge splits into.
       #
       #   @param last_payment_attempt_at [String, nil] When the most recent charge attempt ran, or null.
+      #
+      #   @param line_items [Array<WhopSDK::Models::Payment::LineItem>]
       #
       #   @param member_id [String, nil] The buyer's member record on the account, prefixed `mber_`. Null without the mem
       #
@@ -688,6 +695,132 @@ module WhopSDK
 
         # @!method self.values
         #   @return [Array<Symbol>]
+      end
+
+      class LineItem < WhopSDK::Internal::Type::BaseModel
+        # @!attribute id
+        #   Line item ID, prefixed `li_`. Null when the payment predates item snapshots and
+        #   the item is read from the payment's plan.
+        #
+        #   @return [String, nil]
+        required :id, String, nil?: true
+
+        # @!attribute label
+        #   The item's name as shown at checkout — the product title, else the plan title.
+        #
+        #   @return [String, nil]
+        required :label, String, nil?: true
+
+        # @!attribute plan_id
+        #   The plan bought, prefixed `plan_`. Null when the plan has since been deleted.
+        #
+        #   @return [String, nil]
+        required :plan_id, String, nil?: true
+
+        # @!attribute plan_title
+        #   The plan's current title, or `null` when the plan has been deleted or has no
+        #   title.
+        #
+        #   @return [String, nil]
+        required :plan_title, String, nil?: true
+
+        # @!attribute product_id
+        #   The product the plan belongs to, prefixed `prod_`. On a payment that predates
+        #   item snapshots this falls back to the plan's product, so it can be set where the
+        #   parent's own `product_id` is null. Null for a plan with no product.
+        #
+        #   @return [String, nil]
+        required :product_id, String, nil?: true
+
+        # @!attribute product_title
+        #   The product's current title, or `null` when the item has no product.
+        #
+        #   @return [String, nil]
+        required :product_title, String, nil?: true
+
+        # @!attribute quantity
+        #   How many units were bought.
+        #
+        #   @return [Float]
+        required :quantity, Float
+
+        # @!attribute subtotal
+        #   The recorded amount for this item's full quantity, before discounts, tax, and
+        #   fees, in its purchase currency. Returns `null` when no item amount was recorded.
+        #
+        #   @return [WhopSDK::Models::Payment::LineItem::Subtotal, nil]
+        required :subtotal, -> { WhopSDK::Payment::LineItem::Subtotal }, nil?: true
+
+        # @!method initialize(id:, label:, plan_id:, plan_title:, product_id:, product_title:, quantity:, subtotal:)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::Payment::LineItem} for more details.
+        #
+        #   Everything this payment charged for, in purchase order, with quantities and
+        #   subtotals in the purchase currency. Payments made before item snapshots were
+        #   recorded return the single item implied by their plan. Empty when no items or
+        #   plan can be resolved.
+        #
+        #   @param id [String, nil] Line item ID, prefixed `li_`. Null when the payment predates item snapshots and
+        #
+        #   @param label [String, nil] The item's name as shown at checkout — the product title, else the plan title.
+        #
+        #   @param plan_id [String, nil] The plan bought, prefixed `plan_`. Null when the plan has since been deleted.
+        #
+        #   @param plan_title [String, nil] The plan's current title, or `null` when the plan has been deleted or has no tit
+        #
+        #   @param product_id [String, nil] The product the plan belongs to, prefixed `prod_`. On a payment that predates it
+        #
+        #   @param product_title [String, nil] The product's current title, or `null` when the item has no product.
+        #
+        #   @param quantity [Float] How many units were bought.
+        #
+        #   @param subtotal [WhopSDK::Models::Payment::LineItem::Subtotal, nil] The recorded amount for this item's full quantity, before discounts, tax, and fe
+
+        # @see WhopSDK::Models::Payment::LineItem#subtotal
+        class Subtotal < WhopSDK::Internal::Type::BaseModel
+          # @!attribute amount
+          #   The amount in major units, as an exact decimal string — `"10.00"` is ten
+          #   dollars. A string so no float rounds it in transit.
+          #
+          #   @return [String]
+          required :amount, String
+
+          # @!attribute currency
+          #   Three-letter ISO 4217 currency code, lowercase.
+          #
+          #   @return [String]
+          required :currency, String
+
+          # @!attribute decimals
+          #   How many decimal places the amount CARRIES — the precision the charge itself
+          #   runs at.
+          #
+          #   @return [Integer]
+          required :decimals, Integer
+
+          # @!attribute display_decimals
+          #   How many decimal places to SHOW. Usually equal to `decimals`, and deliberately
+          #   not always: COP is charged in centavos but written in whole pesos, so it is `2`
+          #   and `0`. Format the number in your own locale using this.
+          #
+          #   @return [Integer]
+          required :display_decimals, Integer
+
+          # @!method initialize(amount:, currency:, decimals:, display_decimals:)
+          #   Some parameter documentations has been truncated, see
+          #   {WhopSDK::Models::Payment::LineItem::Subtotal} for more details.
+          #
+          #   The recorded amount for this item's full quantity, before discounts, tax, and
+          #   fees, in its purchase currency. Returns `null` when no item amount was recorded.
+          #
+          #   @param amount [String] The amount in major units, as an exact decimal string — `"10.00"` is ten dollars
+          #
+          #   @param currency [String] Three-letter ISO 4217 currency code, lowercase.
+          #
+          #   @param decimals [Integer] How many decimal places the amount CARRIES — the precision the charge itself run
+          #
+          #   @param display_decimals [Integer] How many decimal places to SHOW. Usually equal to `decimals`, and deliberately n
+        end
       end
 
       # @see WhopSDK::Models::Payment#payment_instrument

@@ -384,11 +384,6 @@ module WhopSDK
             :"payment.canceled",
             WhopSDK::WebhookUpdateParams::Event::TaggedSymbol
           )
-        PAYMENT_REQUIRES_ACTION =
-          T.let(
-            :"payment.requires_action",
-            WhopSDK::WebhookUpdateParams::Event::TaggedSymbol
-          )
         RESOLUTION_CENTER_CASE_CREATED =
           T.let(
             :"resolution_center_case.created",
@@ -527,6 +522,16 @@ module WhopSDK
         PAYMENT_PENDING_2 =
           T.let(
             :payment_pending,
+            WhopSDK::WebhookUpdateParams::Event::TaggedSymbol
+          )
+        PAYMENT_REQUIRES_ACTION =
+          T.let(
+            :"payment.requires_action",
+            WhopSDK::WebhookUpdateParams::Event::TaggedSymbol
+          )
+        PAYMENT_REQUIRES_ACTION_2 =
+          T.let(
+            :payment_requires_action,
             WhopSDK::WebhookUpdateParams::Event::TaggedSymbol
           )
         DISPUTE_CREATED =
@@ -727,6 +732,16 @@ module WhopSDK
         APP_PAYMENT_PENDING_2 =
           T.let(
             :"app_payment.pending",
+            WhopSDK::WebhookUpdateParams::Event::TaggedSymbol
+          )
+        APP_PAYMENT_REQUIRES_ACTION =
+          T.let(
+            :app_payment_requires_action,
+            WhopSDK::WebhookUpdateParams::Event::TaggedSymbol
+          )
+        APP_PAYMENT_REQUIRES_ACTION_2 =
+          T.let(
+            :"app_payment.requires_action",
             WhopSDK::WebhookUpdateParams::Event::TaggedSymbol
           )
         APP_MEMBERSHIP_CANCEL_AT_PERIOD_END_CHANGED =

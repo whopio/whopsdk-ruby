@@ -236,7 +236,6 @@ module WhopSDK
         PAYOUT_ACCOUNT_STATUS_UPDATED = :"payout_account.status_updated"
         PAYMENT_AUTHORIZED = :"payment.authorized"
         PAYMENT_CANCELED = :"payment.canceled"
-        PAYMENT_REQUIRES_ACTION = :"payment.requires_action"
         RESOLUTION_CENTER_CASE_CREATED = :"resolution_center_case.created"
         RESOLUTION_CENTER_CASE_UPDATED = :"resolution_center_case.updated"
         RESOLUTION_CENTER_CASE_DECIDED = :"resolution_center_case.decided"
@@ -261,6 +260,7 @@ module WhopSDK
         PAYMENT_SUCCEEDED = :"payment.succeeded"
         PAYMENT_FAILED = :"payment.failed"
         PAYMENT_PENDING = :"payment.pending"
+        PAYMENT_REQUIRES_ACTION = :"payment.requires_action"
         DISPUTE_CREATED = :"dispute.created"
         DISPUTE_UPDATED = :"dispute.updated"
         REFUND_CREATED = :"refund.created"
@@ -281,6 +281,7 @@ module WhopSDK
         APP_PAYMENT_SUCCEEDED = :"app_payment.succeeded"
         APP_PAYMENT_FAILED = :"app_payment.failed"
         APP_PAYMENT_PENDING = :"app_payment.pending"
+        APP_PAYMENT_REQUIRES_ACTION = :"app_payment.requires_action"
         APP_MEMBERSHIP_CANCEL_AT_PERIOD_END_CHANGED = :"app_membership.cancel_at_period_end_changed"
 
         # @!method self.values
@@ -348,7 +349,6 @@ module WhopSDK
         PAYOUT_ACCOUNT_STATUS_UPDATED = :"payout_account.status_updated"
         PAYMENT_AUTHORIZED = :"payment.authorized"
         PAYMENT_CANCELED = :"payment.canceled"
-        PAYMENT_REQUIRES_ACTION = :"payment.requires_action"
         RESOLUTION_CENTER_CASE_CREATED = :"resolution_center_case.created"
         RESOLUTION_CENTER_CASE_UPDATED = :"resolution_center_case.updated"
         RESOLUTION_CENTER_CASE_DECIDED = :"resolution_center_case.decided"
@@ -373,6 +373,7 @@ module WhopSDK
         PAYMENT_SUCCEEDED = :"payment.succeeded"
         PAYMENT_FAILED = :"payment.failed"
         PAYMENT_PENDING = :"payment.pending"
+        PAYMENT_REQUIRES_ACTION = :"payment.requires_action"
         DISPUTE_CREATED = :"dispute.created"
         DISPUTE_UPDATED = :"dispute.updated"
         REFUND_CREATED = :"refund.created"
@@ -393,6 +394,7 @@ module WhopSDK
         APP_PAYMENT_SUCCEEDED = :"app_payment.succeeded"
         APP_PAYMENT_FAILED = :"app_payment.failed"
         APP_PAYMENT_PENDING = :"app_payment.pending"
+        APP_PAYMENT_REQUIRES_ACTION = :"app_payment.requires_action"
         APP_MEMBERSHIP_CANCEL_AT_PERIOD_END_CHANGED = :"app_membership.cancel_at_period_end_changed"
 
         # @!method self.values

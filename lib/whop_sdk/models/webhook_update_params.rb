@@ -126,7 +126,6 @@ module WhopSDK
         PAYOUT_ACCOUNT_STATUS_UPDATED = :"payout_account.status_updated"
         PAYMENT_AUTHORIZED = :"payment.authorized"
         PAYMENT_CANCELED = :"payment.canceled"
-        PAYMENT_REQUIRES_ACTION = :"payment.requires_action"
         RESOLUTION_CENTER_CASE_CREATED = :"resolution_center_case.created"
         RESOLUTION_CENTER_CASE_UPDATED = :"resolution_center_case.updated"
         RESOLUTION_CENTER_CASE_DECIDED = :"resolution_center_case.decided"
@@ -155,6 +154,8 @@ module WhopSDK
         PAYMENT_FAILED_2 = :payment_failed
         PAYMENT_PENDING = :"payment.pending"
         PAYMENT_PENDING_2 = :payment_pending
+        PAYMENT_REQUIRES_ACTION = :"payment.requires_action"
+        PAYMENT_REQUIRES_ACTION_2 = :payment_requires_action
         DISPUTE_CREATED = :"dispute.created"
         DISPUTE_CREATED_2 = :dispute_created
         DISPUTE_UPDATED = :"dispute.updated"
@@ -195,6 +196,8 @@ module WhopSDK
         APP_PAYMENT_FAILED_2 = :"app_payment.failed"
         APP_PAYMENT_PENDING = :app_payment_pending
         APP_PAYMENT_PENDING_2 = :"app_payment.pending"
+        APP_PAYMENT_REQUIRES_ACTION = :app_payment_requires_action
+        APP_PAYMENT_REQUIRES_ACTION_2 = :"app_payment.requires_action"
         APP_MEMBERSHIP_CANCEL_AT_PERIOD_END_CHANGED = :app_membership_cancel_at_period_end_changed
         APP_MEMBERSHIP_CANCEL_AT_PERIOD_END_CHANGED_2 = :"app_membership.cancel_at_period_end_changed"
 

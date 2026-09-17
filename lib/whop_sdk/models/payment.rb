@@ -1041,6 +1041,7 @@ module WhopSDK
 
           ALLOW = :allow
           BLOCK = :block
+          REVIEW = :review
           ENFORCE_3DS = :enforce_3ds
 
           # @!method self.values

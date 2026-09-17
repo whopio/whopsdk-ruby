@@ -1771,6 +1771,11 @@ module WhopSDK
               :block,
               WhopSDK::Payment::PaymentRuleMatch::Action::TaggedSymbol
             )
+          REVIEW =
+            T.let(
+              :review,
+              WhopSDK::Payment::PaymentRuleMatch::Action::TaggedSymbol
+            )
           ENFORCE_3DS =
             T.let(
               :enforce_3ds,

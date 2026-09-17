@@ -830,13 +830,14 @@ module WhopSDK
           name: String?
         }
 
-        type action = :allow | :block | :enforce_3ds
+        type action = :allow | :block | :review | :enforce_3ds
 
         module Action
           extend WhopSDK::Internal::Type::Enum
 
           ALLOW: :allow
           BLOCK: :block
+          REVIEW: :review
           ENFORCE_3DS: :enforce_3ds
 
           def self?.values: -> ::Array[WhopSDK::Models::Payment::PaymentRuleMatch::action]

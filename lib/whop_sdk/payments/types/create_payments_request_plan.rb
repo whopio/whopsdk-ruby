@@ -3,8 +3,8 @@
 module Whop_sdk
   module Payments
     module Types
-      # Find or create a plan for this payment. Mutually exclusive with `plan_id`. Creating a plan requires plan:create;
-      # creating or updating a product requires the corresponding product permission.
+      # Find or create a plan for this payment. Mutually exclusive with `plan_id` and `line_items`. Creating a plan
+      # requires plan:create; creating or updating a product requires the corresponding product permission.
       class CreatePaymentsRequestPlan < Internal::Types::Model
         field :application_fee_amount, -> { Integer }, optional: true, nullable: false
 

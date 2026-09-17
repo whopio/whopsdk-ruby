@@ -87,11 +87,11 @@ module Whop_sdk
       #     conditions: {
       #       all: [{
       #         field: "risk_score",
-      #         operator: "eq",
-      #         value: 1
+      #         operator: "gte",
+      #         value: 70
       #       }]
       #     },
-      #     name: "Block high risk"
+      #     name: "Review risky cards"
       #   )
       #
       # @return [Whop_sdk::Types::PaymentRule]
@@ -358,8 +358,8 @@ module Whop_sdk
       #     conditions: {
       #       all: [{
       #         field: "risk_score",
-      #         operator: "eq",
-      #         value: 1
+      #         operator: "gte",
+      #         value: 70
       #       }]
       #     }
       #   )

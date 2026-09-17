@@ -7,6 +7,7 @@ module Whop_sdk
 
       ALLOW = "allow"
       BLOCK = "block"
+      REVIEW = "review"
       ENFORCE3DS = "enforce_3ds"
     end
   end

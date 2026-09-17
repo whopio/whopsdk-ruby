@@ -11,10 +11,8 @@ module Whop_sdk
           @client = client
         end
 
-        # Retrieves every fee the account is charged, as a document keyed by fee: Whop's fees, resolved the way they are
-        # charged, and any markups the platform the account is connected to adds on top. The account's own team, the
-        # Whop Verified Partner who referred it, and the platform it is connected to all read the same document;
-        # `adjustable` on each fee says what the caller may change through `PATCH`.
+        # Retrieves the account's fees: a singleton document keyed by fee, with any markups its platform adds.
+        # `adjustable` on each fee says what the caller may change.
         #
         # @param request_options [Hash]
         # @param params [Hash]
@@ -51,11 +49,8 @@ module Whop_sdk
           end
         end
 
-        # Changes fees on the account. The body mirrors the document: send only the keys to change, and each is replaced
-        # while the rest stay as they are. A platform sets `markups` on an account connected to it, or `child_markups`
-        # on itself for every connected account. A Whop Verified Partner edits the fee schedule of a business they
-        # referred, with `notes`, from a first-party Whop session. Every change is validated against the document before
-        # anything is written, and a rejected request names the key. Returns the full document.
+        # Updates the account's fees. Each key present in the body is replaced; omitted keys are left untouched. Only
+        # fees the document reports as `adjustable` can be changed.
         #
         # @param request_options [Hash]
         # @param params [Whop_sdk::Accounts::Fees::Types::UpdateFeesRequest]

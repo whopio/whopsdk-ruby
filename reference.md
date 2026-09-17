@@ -36556,6 +36556,371 @@ client.webhooks.test(
 </dl>
 </details>
 
+## Accounts Fees
+<details><summary><code>client.accounts.fees.<a href="/lib/whop_sdk/accounts/fees/client.rb">retrieve</a>(account_id:) -> Whop_sdk::Types::AccountFees</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves every fee the account is charged, as a document keyed by fee: Whop's fees, resolved the way they are charged, and any markups the platform the account is connected to adds on top. The account's own team, the Whop Verified Partner who referred it, and the platform it is connected to all read the same document; `adjustable` on each fee says what the caller may change through `PATCH`.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.accounts.fees.retrieve(account_id: "account_id")
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**account_id:** `String` — Account ID, prefixed `biz_`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Whop_sdk::Accounts::Fees::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounts.fees.<a href="/lib/whop_sdk/accounts/fees/client.rb">update</a>(account_id:, request) -> Whop_sdk::Types::AccountFees</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Changes fees on the account. The body mirrors the document: send only the keys to change, and each is replaced while the rest stay as they are. A platform sets `markups` on an account connected to it, or `child_markups` on itself for every connected account. A Whop Verified Partner edits the fee schedule of a business they referred, with `notes`, from a first-party Whop session. Every change is validated against the document before anything is written, and a rejected request names the key. Returns the full document.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.accounts.fees.update(account_id: "account_id")
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**account_id:** `String` — Account ID, prefixed `biz_`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**ads:** `Whop_sdk::Accounts::Fees::Types::UpdateFeesRequestAds` — The fields of a fee the caller may change. Only the keys sent are replaced.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**bank_deposit:** `Whop_sdk::Accounts::Fees::Types::UpdateFeesRequestBankDeposit` — The fields of a fee the caller may change. Only the keys sent are replaced.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**billing:** `Whop_sdk::Accounts::Fees::Types::UpdateFeesRequestBilling` — The fields of a fee the caller may change. Only the keys sent are replaced.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**buyer:** `Whop_sdk::Accounts::Fees::Types::UpdateFeesRequestBuyer` — The fields of a fee the caller may change. Only the keys sent are replaced.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**card_processing:** `Whop_sdk::Accounts::Fees::Types::UpdateFeesRequestCardProcessing` — The fields of a fee the caller may change. Only the keys sent are replaced.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**child_markups:** `Whop_sdk::Accounts::Fees::Types::UpdateFeesRequestChildMarkups` — This platform's default markups for every account connected to it.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**cross_border:** `Whop_sdk::Accounts::Fees::Types::UpdateFeesRequestCrossBorder` — The fields of a fee the caller may change. Only the keys sent are replaced.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**dispute:** `Whop_sdk::Accounts::Fees::Types::UpdateFeesRequestDispute` — The fields of a fee the caller may change. Only the keys sent are replaced.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**dispute_alert:** `Whop_sdk::Accounts::Fees::Types::UpdateFeesRequestDisputeAlert` — The fields of a fee the caller may change. Only the keys sent are replaced.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**dispute_alert_cdrn:** `Whop_sdk::Accounts::Fees::Types::UpdateFeesRequestDisputeAlertCdrn` — The fields of a fee the caller may change. Only the keys sent are replaced.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**dispute_alert_ethoca:** `Whop_sdk::Accounts::Fees::Types::UpdateFeesRequestDisputeAlertEthoca` — The fields of a fee the caller may change. Only the keys sent are replaced.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**dispute_alert_rdr:** `Whop_sdk::Accounts::Fees::Types::UpdateFeesRequestDisputeAlertRdr` — The fields of a fee the caller may change. Only the keys sent are replaced.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**dispute_representment:** `Whop_sdk::Accounts::Fees::Types::UpdateFeesRequestDisputeRepresentment` — The fields of a fee the caller may change. Only the keys sent are replaced.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**foreign_exchange:** `Whop_sdk::Accounts::Fees::Types::UpdateFeesRequestForeignExchange` — The fields of a fee the caller may change. Only the keys sent are replaced.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**fraud_screening:** `Whop_sdk::Accounts::Fees::Types::UpdateFeesRequestFraudScreening` — The fields of a fee the caller may change. Only the keys sent are replaced.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**high_risk:** `Whop_sdk::Accounts::Fees::Types::UpdateFeesRequestHighRisk` — The fields of a fee the caller may change. Only the keys sent are replaced.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**marketplace:** `Whop_sdk::Accounts::Fees::Types::UpdateFeesRequestMarketplace` — The fields of a fee the caller may change. Only the keys sent are replaced.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**markups:** `Whop_sdk::Accounts::Fees::Types::UpdateFeesRequestMarkups` — Markups on this connected account, set by the platform it is connected to.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**notes:** `String` — Why the fees are changing, recorded with the change. Required when a Whop Verified Partner edits the fee schedule; ignored for markups.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**orchestration:** `Whop_sdk::Accounts::Fees::Types::UpdateFeesRequestOrchestration` — The fields of a fee the caller may change. Only the keys sent are replaced.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**payment_methods:** `Internal::Types::Hash[String, Whop_sdk::Accounts::Fees::Types::UpdateFeesRequestPaymentMethodsValue]` — Changes to non-card payment method fees, keyed by payment method type.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**payouts:** `Internal::Types::Hash[String, Whop_sdk::Accounts::Fees::Types::UpdateFeesRequestPayoutsValue]` — Changes to withdrawal fees, keyed by payout method.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pending_auto_topup:** `Whop_sdk::Accounts::Fees::Types::UpdateFeesRequestPendingAutoTopup` — The fields of a fee the caller may change. Only the keys sent are replaced.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**platform_processing:** `Whop_sdk::Accounts::Fees::Types::UpdateFeesRequestPlatformProcessing` — The fields of a fee the caller may change. Only the keys sent are replaced.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pool_payout:** `Whop_sdk::Accounts::Fees::Types::UpdateFeesRequestPoolPayout` — The fields of a fee the caller may change. Only the keys sent are replaced.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**revshare:** `Whop_sdk::Accounts::Fees::Types::UpdateFeesRequestRevshare` — The fields of a fee the caller may change. Only the keys sent are replaced.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**tax_calculation:** `Whop_sdk::Accounts::Fees::Types::UpdateFeesRequestTaxCalculation` — The fields of a fee the caller may change. Only the keys sent are replaced.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**tax_service:** `Whop_sdk::Accounts::Fees::Types::UpdateFeesRequestTaxService` — The fields of a fee the caller may change. Only the keys sent are replaced.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**three_ds:** `Whop_sdk::Accounts::Fees::Types::UpdateFeesRequestThreeDs` — The fields of a fee the caller may change. Only the keys sent are replaced.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**transfers:** `Whop_sdk::Accounts::Fees::Types::UpdateFeesRequestTransfers` — The fields of a fee the caller may change. Only the keys sent are replaced.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Whop_sdk::Accounts::Fees::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Accounts Preferences
 <details><summary><code>client.accounts.preferences.<a href="/lib/whop_sdk/accounts/preferences/client.rb">retrieve</a>(account_id:) -> Whop_sdk::Accounts::Preferences::Types::RetrievePreferencesResponse</code></summary>
 <dl>

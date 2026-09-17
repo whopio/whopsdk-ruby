@@ -21,6 +21,8 @@ module Whop_sdk
 
       field :reasoning, -> { String }, optional: false, nullable: true
 
+      field :sentiment, -> { Whop_sdk::Types::EconomicIntelligenceSentiment }, optional: false, nullable: true
+
       field :status, -> { Whop_sdk::Types::EconomicIntelligenceStatus }, optional: false, nullable: false
 
       field :superseded_at, -> { String }, optional: false, nullable: true
@@ -28,6 +30,8 @@ module Whop_sdk
       field :target_url, -> { String }, optional: true, nullable: false
 
       field :title, -> { String }, optional: false, nullable: true
+
+      field :user_feedback, -> { String }, optional: false, nullable: true
     end
   end
 end

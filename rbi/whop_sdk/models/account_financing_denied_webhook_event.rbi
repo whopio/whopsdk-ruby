@@ -640,6 +640,28 @@ module WhopSDK
         sig { returns(T.nilable(String)) }
         attr_accessor :website
 
+        # The account's active first-tier partner. Present on retrieve responses; null
+        # when no active first-tier partner is attributed to the account. Omitted from
+        # other responses.
+        sig do
+          returns(
+            T.nilable(
+              WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Partner
+            )
+          )
+        end
+        attr_reader :partner
+
+        sig do
+          params(
+            partner:
+              T.nilable(
+                WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Partner::OrHash
+              )
+          ).void
+        end
+        attr_writer :partner
+
         sig do
           params(
             id: String,
@@ -770,7 +792,11 @@ module WhopSDK
               T.nilable(
                 WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Wallet::OrHash
               ),
-            website: T.nilable(String)
+            website: T.nilable(String),
+            partner:
+              T.nilable(
+                WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Partner::OrHash
+              )
           ).returns(T.attached_class)
         end
         def self.new(
@@ -938,7 +964,11 @@ module WhopSDK
           wallet:,
           # The account's business website URL, or `null` if none has been provided. Setting
           # it also adds a `website` entry to `social_links`.
-          website:
+          website:,
+          # The account's active first-tier partner. Present on retrieve responses; null
+          # when no active first-tier partner is attributed to the account. Omitted from
+          # other responses.
+          partner: nil
         )
         end
 
@@ -1072,7 +1102,11 @@ module WhopSDK
                 T.nilable(
                   WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Wallet
                 ),
-              website: T.nilable(String)
+              website: T.nilable(String),
+              partner:
+                T.nilable(
+                  WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Partner
+                )
             }
           )
         end
@@ -6697,6 +6731,123 @@ module WhopSDK
               )
             end
             def self.values
+            end
+          end
+        end
+
+        class Partner < WhopSDK::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Partner,
+                WhopSDK::Internal::AnyHash
+              )
+            end
+
+          # User ID, prefixed `user_`.
+          sig { returns(String) }
+          attr_accessor :id
+
+          # Email address for contacting the partner. Null when the partner has not added
+          # their own email address.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :email
+
+          # Display name.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :name
+
+          # Avatar wrapper; its `url` is always present, using a generated placeholder when
+          # the user set no picture.
+          sig do
+            returns(
+              WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Partner::ProfilePicture
+            )
+          end
+          attr_reader :profile_picture
+
+          sig do
+            params(
+              profile_picture:
+                WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Partner::ProfilePicture::OrHash
+            ).void
+          end
+          attr_writer :profile_picture
+
+          # Public username.
+          sig { returns(String) }
+          attr_accessor :username
+
+          # The account's active first-tier partner. Present on retrieve responses; null
+          # when no active first-tier partner is attributed to the account. Omitted from
+          # other responses.
+          sig do
+            params(
+              id: String,
+              email: T.nilable(String),
+              name: T.nilable(String),
+              profile_picture:
+                WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Partner::ProfilePicture::OrHash,
+              username: String
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # User ID, prefixed `user_`.
+            id:,
+            # Email address for contacting the partner. Null when the partner has not added
+            # their own email address.
+            email:,
+            # Display name.
+            name:,
+            # Avatar wrapper; its `url` is always present, using a generated placeholder when
+            # the user set no picture.
+            profile_picture:,
+            # Public username.
+            username:
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                id: String,
+                email: T.nilable(String),
+                name: T.nilable(String),
+                profile_picture:
+                  WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Partner::ProfilePicture,
+                username: String
+              }
+            )
+          end
+          def to_hash
+          end
+
+          class ProfilePicture < WhopSDK::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Partner::ProfilePicture,
+                  WhopSDK::Internal::AnyHash
+                )
+              end
+
+            # Avatar image URL. Always present — a generated placeholder when the user set no
+            # picture.
+            sig { returns(String) }
+            attr_accessor :url
+
+            # Avatar wrapper; its `url` is always present, using a generated placeholder when
+            # the user set no picture.
+            sig { params(url: String).returns(T.attached_class) }
+            def self.new(
+              # Avatar image URL. Always present — a generated placeholder when the user set no
+              # picture.
+              url:
+            )
+            end
+
+            sig { override.returns({ url: String }) }
+            def to_hash
             end
           end
         end

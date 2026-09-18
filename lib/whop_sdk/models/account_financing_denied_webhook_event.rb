@@ -526,7 +526,15 @@ module WhopSDK
         #   @return [String, nil]
         required :website, String, nil?: true
 
-        # @!method initialize(id:, balances:, banner_image_url:, business_address:, business_name:, business_type:, can_transfer_pending_balance_to_children:, capabilities:, cards:, collect_vat_id:, company_formation:, country:, created_at:, description:, economic_intelligence:, email:, eula:, home_preferences:, industry_group:, industry_type:, invoice_prefix:, logo_url:, metadata:, onboarding_type:, opengraph_image_url:, opengraph_image_variant:, other_business_description:, other_industry_description:, owner:, parent_account:, payment_controls:, privacy_policy:, product_tax_code:, recommended_actions:, require_2fa:, required_actions:, return_policy:, route:, send_customer_emails:, show_joined_whops:, show_reviews_dtc:, show_user_directory:, social_links:, stablecoin_rails:, status:, status_reason:, store_page_config:, target_audience:, tax_collection_enabled_states:, tax_identifiers:, tax_remitted_by:, tax_type:, terms_of_service:, three_ds_level:, title:, total_earned_usd:, total_usd:, use_logo_as_opengraph_image_fallback:, verification:, volume_usd:, wallet:, website:)
+        # @!attribute partner
+        #   The account's active first-tier partner. Present on retrieve responses; null
+        #   when no active first-tier partner is attributed to the account. Omitted from
+        #   other responses.
+        #
+        #   @return [WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Partner, nil]
+        optional :partner, -> { WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Partner }, nil?: true
+
+        # @!method initialize(id:, balances:, banner_image_url:, business_address:, business_name:, business_type:, can_transfer_pending_balance_to_children:, capabilities:, cards:, collect_vat_id:, company_formation:, country:, created_at:, description:, economic_intelligence:, email:, eula:, home_preferences:, industry_group:, industry_type:, invoice_prefix:, logo_url:, metadata:, onboarding_type:, opengraph_image_url:, opengraph_image_variant:, other_business_description:, other_industry_description:, owner:, parent_account:, payment_controls:, privacy_policy:, product_tax_code:, recommended_actions:, require_2fa:, required_actions:, return_policy:, route:, send_customer_emails:, show_joined_whops:, show_reviews_dtc:, show_user_directory:, social_links:, stablecoin_rails:, status:, status_reason:, store_page_config:, target_audience:, tax_collection_enabled_states:, tax_identifiers:, tax_remitted_by:, tax_type:, terms_of_service:, three_ds_level:, title:, total_earned_usd:, total_usd:, use_logo_as_opengraph_image_fallback:, verification:, volume_usd:, wallet:, website:, partner: nil)
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data} for more details.
         #
@@ -653,6 +661,8 @@ module WhopSDK
         #   @param wallet [WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Wallet, nil] Account primary crypto wallet, or `null` if none has been provisioned.
         #
         #   @param website [String, nil] The account's business website URL, or `null` if none has been provided. Setting
+        #
+        #   @param partner [WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Partner, nil] The account's active first-tier partner. Present on retrieve responses; null whe
 
         class Balance < WhopSDK::Internal::Type::BaseModel
           # @!attribute balance
@@ -3310,6 +3320,81 @@ module WhopSDK
 
             # @!method self.values
             #   @return [Array<Symbol>]
+          end
+        end
+
+        # @see WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data#partner
+        class Partner < WhopSDK::Internal::Type::BaseModel
+          # @!attribute id
+          #   User ID, prefixed `user_`.
+          #
+          #   @return [String]
+          required :id, String
+
+          # @!attribute email
+          #   Email address for contacting the partner. Null when the partner has not added
+          #   their own email address.
+          #
+          #   @return [String, nil]
+          required :email, String, nil?: true
+
+          # @!attribute name
+          #   Display name.
+          #
+          #   @return [String, nil]
+          required :name, String, nil?: true
+
+          # @!attribute profile_picture
+          #   Avatar wrapper; its `url` is always present, using a generated placeholder when
+          #   the user set no picture.
+          #
+          #   @return [WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Partner::ProfilePicture]
+          required :profile_picture,
+                   -> { WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Partner::ProfilePicture }
+
+          # @!attribute username
+          #   Public username.
+          #
+          #   @return [String]
+          required :username, String
+
+          # @!method initialize(id:, email:, name:, profile_picture:, username:)
+          #   Some parameter documentations has been truncated, see
+          #   {WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Partner} for more
+          #   details.
+          #
+          #   The account's active first-tier partner. Present on retrieve responses; null
+          #   when no active first-tier partner is attributed to the account. Omitted from
+          #   other responses.
+          #
+          #   @param id [String] User ID, prefixed `user_`.
+          #
+          #   @param email [String, nil] Email address for contacting the partner. Null when the partner has not added th
+          #
+          #   @param name [String, nil] Display name.
+          #
+          #   @param profile_picture [WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Partner::ProfilePicture] Avatar wrapper; its `url` is always present, using a generated placeholder when
+          #
+          #   @param username [String] Public username.
+
+          # @see WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Partner#profile_picture
+          class ProfilePicture < WhopSDK::Internal::Type::BaseModel
+            # @!attribute url
+            #   Avatar image URL. Always present — a generated placeholder when the user set no
+            #   picture.
+            #
+            #   @return [String]
+            required :url, String
+
+            # @!method initialize(url:)
+            #   Some parameter documentations has been truncated, see
+            #   {WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Partner::ProfilePicture}
+            #   for more details.
+            #
+            #   Avatar wrapper; its `url` is always present, using a generated placeholder when
+            #   the user set no picture.
+            #
+            #   @param url [String] Avatar image URL. Always present — a generated placeholder when the user set no
           end
         end
       end

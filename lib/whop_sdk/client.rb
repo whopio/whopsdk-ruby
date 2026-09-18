@@ -299,6 +299,11 @@ module Whop_sdk
       @notifications ||= Whop_sdk::Notifications::Client.new(client: @raw_client)
     end
 
+    # @return [Whop_sdk::PartnerReferralRequests::Client]
+    def partner_referral_requests
+      @partner_referral_requests ||= Whop_sdk::PartnerReferralRequests::Client.new(client: @raw_client)
+    end
+
     # @return [Whop_sdk::Partners::Client]
     def partners
       @partners ||= Whop_sdk::Partners::Client.new(client: @raw_client)

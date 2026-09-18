@@ -7,8 +7,6 @@ module Whop_sdk
         class UpdateFeesRequest < Internal::Types::Model
           field :account_id, -> { String }, optional: false, nullable: false
 
-          field :ads, -> { Whop_sdk::Accounts::Fees::Types::UpdateFeesRequestAds }, optional: true, nullable: false
-
           field :bank_deposit, -> { Whop_sdk::Accounts::Fees::Types::UpdateFeesRequestBankDeposit }, optional: true, nullable: false
 
           field :billing, -> { Whop_sdk::Accounts::Fees::Types::UpdateFeesRequestBilling }, optional: true, nullable: false

@@ -87,6 +87,7 @@ module Whop_sdk
         DISPUTE_SETTLEMENT_REVERSAL = "dispute_settlement_reversal"
         DISPUTE_UNRECONCILED_CLEARING = "dispute_unreconciled_clearing"
         DISPUTE_UNRECONCILED_REVERSAL = "dispute_unreconciled_reversal"
+        ECONOMIC_INTELLIGENCE_PERCENTAGE_FEE = "economic_intelligence_percentage_fee"
         EXTERNAL_ACCOUNT_CONNECTION_FEE = "external_account_connection_fee"
         EXTERNAL_CARD_LOAD_DEPOSIT = "external_card_load_deposit"
         EXTERNAL_CARD_LOAD_OFFSET = "external_card_load_offset"

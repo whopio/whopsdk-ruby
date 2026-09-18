@@ -43,6 +43,7 @@ module Whop_sdk
         DISPUTE_ALERT_FEE = "dispute_alert_fee"
         DISPUTE_HOLD_ADJUSTMENT = "dispute_hold_adjustment"
         DISPUTE_REPRESENTMENT_FEE = "dispute_representment_fee"
+        ECONOMIC_INTELLIGENCE_PERCENTAGE_FEE = "economic_intelligence_percentage_fee"
         EXTERNAL_CARD_LOAD_DEPOSIT = "external_card_load_deposit"
         FEES = "fees"
         FRAUD_PREVENTION_FEE = "fraud_prevention_fee"

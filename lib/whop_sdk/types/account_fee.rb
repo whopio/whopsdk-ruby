@@ -19,7 +19,9 @@ module Whop_sdk
 
       field :region, -> { Whop_sdk::Types::AccountFeeRegion }, optional: false, nullable: true
 
-      field :regions, -> { Internal::Types::Hash[String, Whop_sdk::Types::AccountFeeRate] }, optional: false, nullable: false
+      field :regions, -> { Internal::Types::Hash[String, Whop_sdk::Types::AccountFeeRegionalRate] }, optional: false, nullable: false
+
+      field :reset, -> { Whop_sdk::Types::AccountFeeRate }, optional: false, nullable: false
 
       field :source, -> { Whop_sdk::Types::AccountFeeSource }, optional: false, nullable: false
 

@@ -133,6 +133,7 @@ module WhopSDK
           | :revshare_percentage_fee
           | :application_fee
           | :high_risk_merchant_fee
+          | :economic_intelligence_percentage_fee
 
         module Origin
           extend WhopSDK::Internal::Type::Enum
@@ -170,6 +171,7 @@ module WhopSDK
           REVSHARE_PERCENTAGE_FEE: :revshare_percentage_fee
           APPLICATION_FEE: :application_fee
           HIGH_RISK_MERCHANT_FEE: :high_risk_merchant_fee
+          ECONOMIC_INTELLIGENCE_PERCENTAGE_FEE: :economic_intelligence_percentage_fee
 
           def self?.values: -> ::Array[WhopSDK::Models::PaymentListFeesResponse::Data::origin]
         end

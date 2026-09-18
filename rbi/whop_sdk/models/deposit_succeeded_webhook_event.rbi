@@ -653,6 +653,11 @@ module WhopSDK
               :dispute_representment_fee,
               WhopSDK::DepositSucceededWebhookEvent::Data::LineType::TaggedSymbol
             )
+          ECONOMIC_INTELLIGENCE_PERCENTAGE_FEE =
+            T.let(
+              :economic_intelligence_percentage_fee,
+              WhopSDK::DepositSucceededWebhookEvent::Data::LineType::TaggedSymbol
+            )
           EXTERNAL_CARD_LOAD_DEPOSIT =
             T.let(
               :external_card_load_deposit,

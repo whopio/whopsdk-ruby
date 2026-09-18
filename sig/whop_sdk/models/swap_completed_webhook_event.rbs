@@ -223,6 +223,7 @@ module WhopSDK
           | :dispute_alert_fee
           | :dispute_hold_adjustment
           | :dispute_representment_fee
+          | :economic_intelligence_percentage_fee
           | :external_card_load_deposit
           | :fraud_prevention_fee
           | :fx_percentage_fee
@@ -365,6 +366,7 @@ module WhopSDK
           DISPUTE_ALERT_FEE: :dispute_alert_fee
           DISPUTE_HOLD_ADJUSTMENT: :dispute_hold_adjustment
           DISPUTE_REPRESENTMENT_FEE: :dispute_representment_fee
+          ECONOMIC_INTELLIGENCE_PERCENTAGE_FEE: :economic_intelligence_percentage_fee
           EXTERNAL_CARD_LOAD_DEPOSIT: :external_card_load_deposit
           FRAUD_PREVENTION_FEE: :fraud_prevention_fee
           FX_PERCENTAGE_FEE: :fx_percentage_fee

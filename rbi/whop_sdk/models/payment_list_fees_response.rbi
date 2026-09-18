@@ -416,6 +416,11 @@ module WhopSDK
               :high_risk_merchant_fee,
               WhopSDK::Models::PaymentListFeesResponse::Data::Origin::TaggedSymbol
             )
+          ECONOMIC_INTELLIGENCE_PERCENTAGE_FEE =
+            T.let(
+              :economic_intelligence_percentage_fee,
+              WhopSDK::Models::PaymentListFeesResponse::Data::Origin::TaggedSymbol
+            )
 
           sig do
             override.returns(

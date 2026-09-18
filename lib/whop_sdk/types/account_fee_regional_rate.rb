@@ -7,6 +7,8 @@ module Whop_sdk
 
       field :fixed, -> { Whop_sdk::Types::Money }, optional: false, nullable: true
 
+      field :maximum, -> { Whop_sdk::Types::AccountFeeRate }, optional: false, nullable: true
+
       field :minimum, -> { Whop_sdk::Types::AccountFeeRate }, optional: false, nullable: true
 
       field :percentage, -> { Integer }, optional: false, nullable: true

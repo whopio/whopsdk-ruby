@@ -63,7 +63,7 @@ module Whop_sdk
         request = Whop_sdk::Internal::JSON::Request.new(
           base_url: request_options[:base_url],
           method: "GET",
-          path: "financial-activity",
+          path: "financial_activity",
           query: query_params,
           request_options: request_options
         )

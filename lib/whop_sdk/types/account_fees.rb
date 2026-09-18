@@ -5,8 +5,6 @@ module Whop_sdk
     class AccountFees < Internal::Types::Model
       field :account_id, -> { String }, optional: false, nullable: false
 
-      field :ads, -> { Whop_sdk::Types::AccountFee }, optional: false, nullable: false
-
       field :bank_deposit, -> { Whop_sdk::Types::AccountFee }, optional: false, nullable: false
 
       field :billing, -> { Whop_sdk::Types::AccountFee }, optional: false, nullable: false

@@ -36990,14 +36990,6 @@ client.accounts.fees.update(account_id: "account_id")
 <dl>
 <dd>
 
-**ads:** `Whop_sdk::Accounts::Fees::Types::UpdateFeesRequestAds` — The fields of a fee the caller may change. Only the keys sent are replaced.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
 **bank_deposit:** `Whop_sdk::Accounts::Fees::Types::UpdateFeesRequestBankDeposit` — The fields of a fee the caller may change. Only the keys sent are replaced.
     
 </dd>

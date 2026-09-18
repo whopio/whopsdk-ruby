@@ -63,6 +63,8 @@ module Whop_sdk
 
       field :parent_account, -> { Whop_sdk::Types::AccountParent }, optional: false, nullable: true
 
+      field :partner, -> { Whop_sdk::Types::AccountPartner }, optional: true, nullable: false
+
       field :payment_controls, -> { Whop_sdk::Types::AccountPaymentControls }, optional: false, nullable: true
 
       field :privacy_policy, -> { Whop_sdk::Types::File }, optional: false, nullable: true

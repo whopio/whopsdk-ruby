@@ -19,6 +19,7 @@ module Whop_sdk
       CR = "cr"
       GT = "gt"
       UY = "uy"
+      BR = "br"
       PH = "ph"
     end
   end

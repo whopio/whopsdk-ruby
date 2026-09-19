@@ -17,6 +17,8 @@ module Whop_sdk
 
       field :request_type, -> { Whop_sdk::Types::PartnerReferralRequestRequestType }, optional: false, nullable: false
 
+      field :rewards, -> { Internal::Types::Array[Whop_sdk::Types::PartnerReferralReward] }, optional: false, nullable: false
+
       field :status, -> { Whop_sdk::Types::PartnerReferralRequestStatus }, optional: false, nullable: true
 
       field :updated_at, -> { String }, optional: false, nullable: false

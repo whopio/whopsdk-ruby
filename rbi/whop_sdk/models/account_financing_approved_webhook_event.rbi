@@ -4725,6 +4725,11 @@ module WhopSDK
                 :verify_identity,
                 WhopSDK::AccountFinancingApprovedWebhookEvent::Data::RequiredAction::Action::TaggedSymbol
               )
+            VERIFY_AIRWALLEX_ACCOUNT =
+              T.let(
+                :verify_airwallex_account,
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::RequiredAction::Action::TaggedSymbol
+              )
             SIGN_FORMATION_DOCUMENTS =
               T.let(
                 :sign_formation_documents,

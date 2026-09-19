@@ -2487,6 +2487,7 @@ module WhopSDK
             UPDATE_PAYOUT_PROFILE = :update_payout_profile
             CARD_USAGE_REVIEW = :card_usage_review
             VERIFY_IDENTITY = :verify_identity
+            VERIFY_AIRWALLEX_ACCOUNT = :verify_airwallex_account
             SIGN_FORMATION_DOCUMENTS = :sign_formation_documents
             CONNECT_FULFILLMENT_TRACKER = :connect_fulfillment_tracker
             SETUP_APPLE_PAY_DOMAINS = :setup_apple_pay_domains

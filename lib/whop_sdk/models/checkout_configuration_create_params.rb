@@ -135,16 +135,20 @@ module WhopSDK
 
       class PaymentMethodConfiguration < WhopSDK::Internal::Type::BaseModel
         # @!attribute disabled
-        #   Payment methods explicitly disabled for checkout.
+        #   Payment method types explicitly disabled for checkout — the `type` values from
+        #   the payment method types catalogue. Types Whop no longer offers, and the
+        #   read-only `unknown` placeholder, are dropped.
         #
-        #   @return [Array<String>, nil]
-        optional :disabled, WhopSDK::Internal::Type::ArrayOf[String]
+        #   @return [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>, nil]
+        optional :disabled, -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::PaymentMethodTypes] }
 
         # @!attribute enabled
-        #   Payment methods explicitly enabled for checkout.
+        #   Payment method types explicitly enabled for checkout — the `type` values from
+        #   the payment method types catalogue. Types Whop no longer offers, and the
+        #   read-only `unknown` placeholder, are dropped.
         #
-        #   @return [Array<String>, nil]
-        optional :enabled, WhopSDK::Internal::Type::ArrayOf[String]
+        #   @return [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>, nil]
+        optional :enabled, -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::PaymentMethodTypes] }
 
         # @!attribute include_platform_defaults
         #   Whether platform default payment methods are included.
@@ -153,12 +157,16 @@ module WhopSDK
         optional :include_platform_defaults, WhopSDK::Internal::Type::Boolean
 
         # @!method initialize(disabled: nil, enabled: nil, include_platform_defaults: nil)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::CheckoutConfigurationCreateParams::PaymentMethodConfiguration}
+        #   for more details.
+        #
         #   Payment method overrides for this checkout. `null` uses the plan or platform
         #   defaults.
         #
-        #   @param disabled [Array<String>] Payment methods explicitly disabled for checkout.
+        #   @param disabled [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>] Payment method types explicitly disabled for checkout — the `type` values from t
         #
-        #   @param enabled [Array<String>] Payment methods explicitly enabled for checkout.
+        #   @param enabled [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>] Payment method types explicitly enabled for checkout — the `type` values from th
         #
         #   @param include_platform_defaults [Boolean] Whether platform default payment methods are included.
       end
@@ -353,16 +361,20 @@ module WhopSDK
         # @see WhopSDK::Models::CheckoutConfigurationCreateParams::Plan#payment_method_configuration
         class PaymentMethodConfiguration < WhopSDK::Internal::Type::BaseModel
           # @!attribute disabled
-          #   Payment methods explicitly disabled for this plan.
+          #   Payment method types explicitly disabled for this plan — the `type` values from
+          #   the payment method types catalogue. Types Whop no longer offers, and the
+          #   read-only `unknown` placeholder, are dropped.
           #
-          #   @return [Array<String>, nil]
-          optional :disabled, WhopSDK::Internal::Type::ArrayOf[String]
+          #   @return [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>, nil]
+          optional :disabled, -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::PaymentMethodTypes] }
 
           # @!attribute enabled
-          #   Payment methods explicitly enabled for this plan.
+          #   Payment method types explicitly enabled for this plan — the `type` values from
+          #   the payment method types catalogue. Types Whop no longer offers, and the
+          #   read-only `unknown` placeholder, are dropped.
           #
-          #   @return [Array<String>, nil]
-          optional :enabled, WhopSDK::Internal::Type::ArrayOf[String]
+          #   @return [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>, nil]
+          optional :enabled, -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::PaymentMethodTypes] }
 
           # @!attribute include_platform_defaults
           #   Whether platform default payment methods are included.
@@ -371,11 +383,15 @@ module WhopSDK
           optional :include_platform_defaults, WhopSDK::Internal::Type::Boolean
 
           # @!method initialize(disabled: nil, enabled: nil, include_platform_defaults: nil)
+          #   Some parameter documentations has been truncated, see
+          #   {WhopSDK::Models::CheckoutConfigurationCreateParams::Plan::PaymentMethodConfiguration}
+          #   for more details.
+          #
           #   Payment method overrides for the inline plan. `null` uses platform defaults.
           #
-          #   @param disabled [Array<String>] Payment methods explicitly disabled for this plan.
+          #   @param disabled [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>] Payment method types explicitly disabled for this plan — the `type` values from
           #
-          #   @param enabled [Array<String>] Payment methods explicitly enabled for this plan.
+          #   @param enabled [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>] Payment method types explicitly enabled for this plan — the `type` values from t
           #
           #   @param include_platform_defaults [Boolean] Whether platform default payment methods are included.
         end

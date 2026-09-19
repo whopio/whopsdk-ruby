@@ -253,18 +253,30 @@ module WhopSDK
             )
           end
 
-        # Payment methods explicitly disabled for checkout.
-        sig { returns(T.nilable(T::Array[String])) }
+        # Payment method types explicitly disabled for checkout — the `type` values from
+        # the payment method types catalogue. Types Whop no longer offers, and the
+        # read-only `unknown` placeholder, are dropped.
+        sig do
+          returns(T.nilable(T::Array[WhopSDK::PaymentMethodTypes::OrSymbol]))
+        end
         attr_reader :disabled
 
-        sig { params(disabled: T::Array[String]).void }
+        sig do
+          params(disabled: T::Array[WhopSDK::PaymentMethodTypes::OrSymbol]).void
+        end
         attr_writer :disabled
 
-        # Payment methods explicitly enabled for checkout.
-        sig { returns(T.nilable(T::Array[String])) }
+        # Payment method types explicitly enabled for checkout — the `type` values from
+        # the payment method types catalogue. Types Whop no longer offers, and the
+        # read-only `unknown` placeholder, are dropped.
+        sig do
+          returns(T.nilable(T::Array[WhopSDK::PaymentMethodTypes::OrSymbol]))
+        end
         attr_reader :enabled
 
-        sig { params(enabled: T::Array[String]).void }
+        sig do
+          params(enabled: T::Array[WhopSDK::PaymentMethodTypes::OrSymbol]).void
+        end
         attr_writer :enabled
 
         # Whether platform default payment methods are included.
@@ -278,15 +290,19 @@ module WhopSDK
         # defaults.
         sig do
           params(
-            disabled: T::Array[String],
-            enabled: T::Array[String],
+            disabled: T::Array[WhopSDK::PaymentMethodTypes::OrSymbol],
+            enabled: T::Array[WhopSDK::PaymentMethodTypes::OrSymbol],
             include_platform_defaults: T::Boolean
           ).returns(T.attached_class)
         end
         def self.new(
-          # Payment methods explicitly disabled for checkout.
+          # Payment method types explicitly disabled for checkout — the `type` values from
+          # the payment method types catalogue. Types Whop no longer offers, and the
+          # read-only `unknown` placeholder, are dropped.
           disabled: nil,
-          # Payment methods explicitly enabled for checkout.
+          # Payment method types explicitly enabled for checkout — the `type` values from
+          # the payment method types catalogue. Types Whop no longer offers, and the
+          # read-only `unknown` placeholder, are dropped.
           enabled: nil,
           # Whether platform default payment methods are included.
           include_platform_defaults: nil
@@ -296,8 +312,8 @@ module WhopSDK
         sig do
           override.returns(
             {
-              disabled: T::Array[String],
-              enabled: T::Array[String],
+              disabled: T::Array[WhopSDK::PaymentMethodTypes::OrSymbol],
+              enabled: T::Array[WhopSDK::PaymentMethodTypes::OrSymbol],
               include_platform_defaults: T::Boolean
             }
           )
@@ -587,18 +603,34 @@ module WhopSDK
               )
             end
 
-          # Payment methods explicitly disabled for this plan.
-          sig { returns(T.nilable(T::Array[String])) }
+          # Payment method types explicitly disabled for this plan — the `type` values from
+          # the payment method types catalogue. Types Whop no longer offers, and the
+          # read-only `unknown` placeholder, are dropped.
+          sig do
+            returns(T.nilable(T::Array[WhopSDK::PaymentMethodTypes::OrSymbol]))
+          end
           attr_reader :disabled
 
-          sig { params(disabled: T::Array[String]).void }
+          sig do
+            params(
+              disabled: T::Array[WhopSDK::PaymentMethodTypes::OrSymbol]
+            ).void
+          end
           attr_writer :disabled
 
-          # Payment methods explicitly enabled for this plan.
-          sig { returns(T.nilable(T::Array[String])) }
+          # Payment method types explicitly enabled for this plan — the `type` values from
+          # the payment method types catalogue. Types Whop no longer offers, and the
+          # read-only `unknown` placeholder, are dropped.
+          sig do
+            returns(T.nilable(T::Array[WhopSDK::PaymentMethodTypes::OrSymbol]))
+          end
           attr_reader :enabled
 
-          sig { params(enabled: T::Array[String]).void }
+          sig do
+            params(
+              enabled: T::Array[WhopSDK::PaymentMethodTypes::OrSymbol]
+            ).void
+          end
           attr_writer :enabled
 
           # Whether platform default payment methods are included.
@@ -611,15 +643,19 @@ module WhopSDK
           # Payment method overrides for the inline plan. `null` uses platform defaults.
           sig do
             params(
-              disabled: T::Array[String],
-              enabled: T::Array[String],
+              disabled: T::Array[WhopSDK::PaymentMethodTypes::OrSymbol],
+              enabled: T::Array[WhopSDK::PaymentMethodTypes::OrSymbol],
               include_platform_defaults: T::Boolean
             ).returns(T.attached_class)
           end
           def self.new(
-            # Payment methods explicitly disabled for this plan.
+            # Payment method types explicitly disabled for this plan — the `type` values from
+            # the payment method types catalogue. Types Whop no longer offers, and the
+            # read-only `unknown` placeholder, are dropped.
             disabled: nil,
-            # Payment methods explicitly enabled for this plan.
+            # Payment method types explicitly enabled for this plan — the `type` values from
+            # the payment method types catalogue. Types Whop no longer offers, and the
+            # read-only `unknown` placeholder, are dropped.
             enabled: nil,
             # Whether platform default payment methods are included.
             include_platform_defaults: nil
@@ -629,8 +665,8 @@ module WhopSDK
           sig do
             override.returns(
               {
-                disabled: T::Array[String],
-                enabled: T::Array[String],
+                disabled: T::Array[WhopSDK::PaymentMethodTypes::OrSymbol],
+                enabled: T::Array[WhopSDK::PaymentMethodTypes::OrSymbol],
                 include_platform_defaults: T::Boolean
               }
             )

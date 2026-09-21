@@ -5,6 +5,9 @@ module Whop_sdk
     module PermissionAction
       extend Whop_sdk::Internal::Types::Enum
 
+      WAITLIST_ENTRY_READ = "waitlist_entry:read"
+      WAITLIST_ENTRY_CREATE = "waitlist_entry:create"
+      WAITLIST_ENTRY_CANCEL = "waitlist_entry:cancel"
       EXPERIMENT_MANAGE = "experiment:manage"
       EXPERIMENT_READ = "experiment:read"
       AI_PROMPT_CREATE = "ai_prompt:create"

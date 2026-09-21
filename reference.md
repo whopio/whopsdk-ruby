@@ -7484,7 +7484,7 @@ client.audiences.create(
 <dl>
 <dd>
 
-**filters:** `Internal::Types::Hash[String, Object]` — Filter audiences only. The People filters that define membership, keyed exactly as `GET /people` accepts them — for example `{"os": "iOS", "country": "US"}`. Date filters must be rolling windows — `first_seen_within_days` or `last_seen_within_days` — so the audience re-anchors on every refresh; fixed dates such as `first_seen_after` are rejected. Source values are canonical source paths (`whop:<campaign>:<group>:<ad>`, `ext:<platform>:...`, `referrer:<domain>`, `direct`), exact or with a trailing `:*` wildcard.
+**filters:** `Internal::Types::Hash[String, Object]` — Filter audiences only. The People filters that define membership, keyed exactly as `GET /people` accepts them — for example `{"os": "iOS", "country": "US"}`. Activity dates `event_from` and `event_to` are inclusive and remain fixed on refresh. Use `event_within_days`, `first_seen_within_days` or `last_seen_within_days` for a rolling window. Source values are canonical source paths (`whop:<campaign>:<group>:<ad>`, `ext:<platform>:...`, `referrer:<domain>`, `direct`), exact or with a trailing `:*` wildcard.
     
 </dd>
 </dl>
@@ -15877,7 +15877,7 @@ client.events.list
 <dl>
 <dd>
 
-**source:** `String` — Canonical source path, exact or with a trailing :* prefix (whop:<campaign>:*, ext:meta:*, referrer:<domain>, direct). Restricts the list to conversion targets attributed to that source — the debuggability twin of a metric cell's source parameter. A whop:... source combined with non-conversion event names (event=pixel.page) instead lists the events whose ad click resolved to that entity — the page views an ad drove.
+**source:** `String` — Canonical source path, exact or with a trailing :* prefix (whop:<campaign>:*, ext:meta:*, referrer:<domain>, direct, unknown). Selects conversions credited to this source.
     
 </dd>
 </dl>
@@ -27465,7 +27465,7 @@ client.people.list(
 <dl>
 <dd>
 
-**event_from:** `String` — With event_to plus an event or source filter, switches to exact-population mode: person ids are resolved and paginated on the events side within this window (the same query the people metric counts), then hydrated per page.
+**event_within_days:** `Integer` — Match activity within a rolling number of days. Cannot be combined with event_from/event_to.
     
 </dd>
 </dl>
@@ -27473,7 +27473,31 @@ client.people.list(
 <dl>
 <dd>
 
-**event_to:** `String` — The inclusive end of the event window for exact-population mode.
+**from:** `String` — Inclusive activity-window start. Alias for event_from.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**to:** `String` — Inclusive activity-window end. Alias for event_to.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**event_from:** `String` — The inclusive start of the matching activity window.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**event_to:** `String` — The inclusive end of the matching activity window, for both stats drilldowns and saved audiences.
     
 </dd>
 </dl>
@@ -27513,7 +27537,7 @@ client.people.list(
 <dl>
 <dd>
 
-**country:** `String` — Only include people whose most recent visit came from this ISO 3166-1 alpha-2 country code.
+**country:** `String` — Only include people with activity from this ISO 3166-1 alpha-2 country code.
     
 </dd>
 </dl>
@@ -27578,6 +27602,134 @@ client.people.list(
 <dd>
 
 **last_seen_before:** `String` — Only include people last seen before this ISO 8601 timestamp.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**ltv_gt:** `Integer` — Select people whose lifetime ltv is greater than this value. LTV and AOV are in USD.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**ltv_gte:** `Integer` — Select people whose lifetime ltv is at least this value. LTV and AOV are in USD.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**ltv_lt:** `Integer` — Select people whose lifetime ltv is less than this value. LTV and AOV are in USD.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**ltv_lte:** `Integer` — Select people whose lifetime ltv is at most this value. LTV and AOV are in USD.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**aov_gt:** `Integer` — Select people whose lifetime aov is greater than this value. LTV and AOV are in USD.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**aov_gte:** `Integer` — Select people whose lifetime aov is at least this value. LTV and AOV are in USD.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**aov_lt:** `Integer` — Select people whose lifetime aov is less than this value. LTV and AOV are in USD.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**aov_lte:** `Integer` — Select people whose lifetime aov is at most this value. LTV and AOV are in USD.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**purchase_count_gt:** `Integer` — Select people whose lifetime purchase_count is greater than this value. LTV and AOV are in USD.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**purchase_count_gte:** `Integer` — Select people whose lifetime purchase_count is at least this value. LTV and AOV are in USD.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**purchase_count_lt:** `Integer` — Select people whose lifetime purchase_count is less than this value. LTV and AOV are in USD.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**purchase_count_lte:** `Integer` — Select people whose lifetime purchase_count is at most this value. LTV and AOV are in USD.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**event_count_gt:** `Integer` — Select people whose lifetime event_count is greater than this value. LTV and AOV are in USD.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**event_count_gte:** `Integer` — Select people whose lifetime event_count is at least this value. LTV and AOV are in USD.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**event_count_lt:** `Integer` — Select people whose lifetime event_count is less than this value. LTV and AOV are in USD.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**event_count_lte:** `Integer` — Select people whose lifetime event_count is at most this value. LTV and AOV are in USD.
     
 </dd>
 </dl>
@@ -33483,7 +33635,223 @@ client.stats.retrieve(
 <dl>
 <dd>
 
-**event:** `String` — Filter the events metric to one or more full event names, for example payment.completed or pixel.lead. Comma-separate several to break the metric down by each event. Available on metrics that list event.
+**event:** `String` — Filter the events metric to one or more full event names, for example payment.completed or pixel.lead. Comma-separated names match any listed event. Use group_by=event for separate groups. Available on metrics that list event.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**contactable:** `Internal::Types::Boolean` — People metric only: contactable equals this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**has_purchased:** `Internal::Types::Boolean` — People metric only: has_purchased equals this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**first_seen_after:** `String` — People metric only: first_seen_at greater than or equal this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**first_seen_before:** `String` — People metric only: first_seen_at less than this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**last_seen_after:** `String` — People metric only: last_seen_at greater than or equal this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**last_seen_before:** `String` — People metric only: last_seen_at less than this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**first_seen_within_days:** `Integer` — People metric only: first_seen_at within this many days of now. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**last_seen_within_days:** `Integer` — People metric only: last_seen_at within this many days of now. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**known:** `Internal::Types::Boolean` — People metric only: known equals this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**has_email:** `Internal::Types::Boolean` — People metric only: has_email equals this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**has_phone:** `Internal::Types::Boolean` — People metric only: has_phone equals this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**ltv_gt:** `Integer` — People metric only: ltv greater than this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**ltv_gte:** `Integer` — People metric only: ltv greater than or equal this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**ltv_lt:** `Integer` — People metric only: ltv less than this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**ltv_lte:** `Integer` — People metric only: ltv less than or equal this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**aov_gt:** `Integer` — People metric only: aov greater than this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**aov_gte:** `Integer` — People metric only: aov greater than or equal this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**aov_lt:** `Integer` — People metric only: aov less than this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**aov_lte:** `Integer` — People metric only: aov less than or equal this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**purchase_count_gt:** `Integer` — People metric only: purchase_count greater than this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**purchase_count_gte:** `Integer` — People metric only: purchase_count greater than or equal this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**purchase_count_lt:** `Integer` — People metric only: purchase_count less than this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**purchase_count_lte:** `Integer` — People metric only: purchase_count less than or equal this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**event_count_gt:** `Integer` — People metric only: event_count greater than this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**event_count_gte:** `Integer` — People metric only: event_count greater than or equal this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**event_count_lt:** `Integer` — People metric only: event_count less than this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**event_count_lte:** `Integer` — People metric only: event_count less than or equal this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
     
 </dd>
 </dl>

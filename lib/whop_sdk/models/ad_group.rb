@@ -1350,6 +1350,13 @@ module WhopSDK
             #   @return [Float]
             required :radius, Float
 
+            # @!attribute country_code
+            #   ISO 3166-1 alpha-2 country the point falls in. Send it under a special ad
+            #   category, where the campaign must declare the countries its ad sets reach.
+            #
+            #   @return [String, nil]
+            optional :country_code, String
+
             # @!attribute name
             #   Label for the location, such as a city or address. Absent when the location has
             #   no label.
@@ -1357,7 +1364,7 @@ module WhopSDK
             #   @return [String, nil]
             optional :name, String
 
-            # @!method initialize(distance_unit:, latitude:, longitude:, radius:, name: nil)
+            # @!method initialize(distance_unit:, latitude:, longitude:, radius:, country_code: nil, name: nil)
             #   Some parameter documentations has been truncated, see
             #   {WhopSDK::Models::AdGroup::Regions::Exclude::CustomLocation} for more details.
             #
@@ -1370,6 +1377,8 @@ module WhopSDK
             #   @param longitude [Float] Longitude of the center point.
             #
             #   @param radius [Float] Radius around the center point, in `distance_unit`.
+            #
+            #   @param country_code [String] ISO 3166-1 alpha-2 country the point falls in. Send it under a special ad catego
             #
             #   @param name [String] Label for the location, such as a city or address. Absent when the location has
 
@@ -1477,6 +1486,13 @@ module WhopSDK
             #   @return [Float]
             required :radius, Float
 
+            # @!attribute country_code
+            #   ISO 3166-1 alpha-2 country the point falls in. Send it under a special ad
+            #   category, where the campaign must declare the countries its ad sets reach.
+            #
+            #   @return [String, nil]
+            optional :country_code, String
+
             # @!attribute name
             #   Label for the location, such as a city or address. Absent when the location has
             #   no label.
@@ -1484,7 +1500,7 @@ module WhopSDK
             #   @return [String, nil]
             optional :name, String
 
-            # @!method initialize(distance_unit:, latitude:, longitude:, radius:, name: nil)
+            # @!method initialize(distance_unit:, latitude:, longitude:, radius:, country_code: nil, name: nil)
             #   Some parameter documentations has been truncated, see
             #   {WhopSDK::Models::AdGroup::Regions::Include::CustomLocation} for more details.
             #
@@ -1497,6 +1513,8 @@ module WhopSDK
             #   @param longitude [Float] Longitude of the center point.
             #
             #   @param radius [Float] Radius around the center point, in `distance_unit`.
+            #
+            #   @param country_code [String] ISO 3166-1 alpha-2 country the point falls in. Send it under a special ad catego
             #
             #   @param name [String] Label for the location, such as a city or address. Absent when the location has
 

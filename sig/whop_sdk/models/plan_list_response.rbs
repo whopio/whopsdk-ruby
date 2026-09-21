@@ -17,6 +17,7 @@ module WhopSDK
         formatted_price: String,
         image: top?,
         initial_price: Float,
+        initial_price_due: WhopSDK::Models::PlanListResponse::InitialPriceDue,
         internal_notes: String?,
         invoice: top?,
         member_count: Float?,
@@ -70,6 +71,8 @@ module WhopSDK
       attr_accessor image: top?
 
       attr_accessor initial_price: Float
+
+      attr_accessor initial_price_due: WhopSDK::Models::PlanListResponse::InitialPriceDue
 
       attr_accessor internal_notes: String?
 
@@ -129,6 +132,7 @@ module WhopSDK
         formatted_price: String,
         image: top?,
         initial_price: Float,
+        initial_price_due: WhopSDK::Models::PlanListResponse::InitialPriceDue,
         internal_notes: String?,
         invoice: top?,
         member_count: Float?,
@@ -168,6 +172,7 @@ module WhopSDK
         formatted_price: String,
         image: top?,
         initial_price: Float,
+        initial_price_due: WhopSDK::Models::PlanListResponse::InitialPriceDue,
         internal_notes: String?,
         invoice: top?,
         member_count: Float?,
@@ -253,6 +258,38 @@ module WhopSDK
 
           def self?.values: -> ::Array[WhopSDK::Models::PlanListResponse::CustomField::field_type]
         end
+      end
+
+      type initial_price_due =
+        {
+          amount: String,
+          currency: String,
+          decimals: Integer,
+          display_decimals: Integer
+        }
+
+      class InitialPriceDue < WhopSDK::Internal::Type::BaseModel
+        attr_accessor amount: String
+
+        attr_accessor currency: String
+
+        attr_accessor decimals: Integer
+
+        attr_accessor display_decimals: Integer
+
+        def initialize: (
+          amount: String,
+          currency: String,
+          decimals: Integer,
+          display_decimals: Integer
+        ) -> void
+
+        def to_hash: -> {
+          amount: String,
+          currency: String,
+          decimals: Integer,
+          display_decimals: Integer
+        }
       end
 
       type plan_type = :renewal | :one_time

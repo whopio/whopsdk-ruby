@@ -1010,6 +1010,7 @@ module WhopSDK
               latitude: Float,
               longitude: Float,
               radius: Float,
+              country_code: String,
               name: String
             }
 
@@ -1022,6 +1023,10 @@ module WhopSDK
 
             attr_accessor radius: Float
 
+            attr_reader country_code: String?
+
+            def country_code=: (String) -> String
+
             attr_reader name: String?
 
             def name=: (String) -> String
@@ -1031,6 +1036,7 @@ module WhopSDK
               latitude: Float,
               longitude: Float,
               radius: Float,
+              ?country_code: String,
               ?name: String
             ) -> void
 
@@ -1039,6 +1045,7 @@ module WhopSDK
               latitude: Float,
               longitude: Float,
               radius: Float,
+              country_code: String,
               name: String
             }
 
@@ -1116,6 +1123,7 @@ module WhopSDK
               latitude: Float,
               longitude: Float,
               radius: Float,
+              country_code: String,
               name: String
             }
 
@@ -1128,6 +1136,10 @@ module WhopSDK
 
             attr_accessor radius: Float
 
+            attr_reader country_code: String?
+
+            def country_code=: (String) -> String
+
             attr_reader name: String?
 
             def name=: (String) -> String
@@ -1137,6 +1149,7 @@ module WhopSDK
               latitude: Float,
               longitude: Float,
               radius: Float,
+              ?country_code: String,
               ?name: String
             ) -> void
 
@@ -1145,6 +1158,7 @@ module WhopSDK
               latitude: Float,
               longitude: Float,
               radius: Float,
+              country_code: String,
               name: String
             }
 

@@ -915,6 +915,14 @@ module WhopSDK
             #   @return [Float]
             required :radius, Float
 
+            # @!attribute country_code
+            #   ISO 3166-1 alpha-2 country the point falls in, as `DE`. Send it under a special
+            #   ad category: the campaign must declare the countries its ad sets reach, and a
+            #   coordinate names none.
+            #
+            #   @return [String, nil]
+            optional :country_code, String
+
             # @!attribute distance_unit
             #   Unit for `radius`. Defaults to `mile`.
             #
@@ -928,12 +936,18 @@ module WhopSDK
             #   @return [String, nil]
             optional :name, String
 
-            # @!method initialize(latitude:, longitude:, radius:, distance_unit: nil, name: nil)
+            # @!method initialize(latitude:, longitude:, radius:, country_code: nil, distance_unit: nil, name: nil)
+            #   Some parameter documentations has been truncated, see
+            #   {WhopSDK::Models::AdGroupUpdateParams::Regions::Exclude::CustomLocation} for
+            #   more details.
+            #
             #   @param latitude [Float] Latitude of the center point.
             #
             #   @param longitude [Float] Longitude of the center point.
             #
             #   @param radius [Float] Radius around the center point: 1-50 miles or 1-80 kilometers.
+            #
+            #   @param country_code [String] ISO 3166-1 alpha-2 country the point falls in, as `DE`. Send it under a special
             #
             #   @param distance_unit [Symbol, WhopSDK::Models::AdGroupUpdateParams::Regions::Exclude::CustomLocation::DistanceUnit] Unit for `radius`. Defaults to `mile`.
             #
@@ -1079,6 +1093,14 @@ module WhopSDK
             #   @return [Float]
             required :radius, Float
 
+            # @!attribute country_code
+            #   ISO 3166-1 alpha-2 country the point falls in, as `DE`. Send it under a special
+            #   ad category: the campaign must declare the countries its ad sets reach, and a
+            #   coordinate names none.
+            #
+            #   @return [String, nil]
+            optional :country_code, String
+
             # @!attribute distance_unit
             #   Unit for `radius`. Defaults to `mile`.
             #
@@ -1092,12 +1114,18 @@ module WhopSDK
             #   @return [String, nil]
             optional :name, String
 
-            # @!method initialize(latitude:, longitude:, radius:, distance_unit: nil, name: nil)
+            # @!method initialize(latitude:, longitude:, radius:, country_code: nil, distance_unit: nil, name: nil)
+            #   Some parameter documentations has been truncated, see
+            #   {WhopSDK::Models::AdGroupUpdateParams::Regions::Include::CustomLocation} for
+            #   more details.
+            #
             #   @param latitude [Float] Latitude of the center point.
             #
             #   @param longitude [Float] Longitude of the center point.
             #
             #   @param radius [Float] Radius around the center point: 1-50 miles or 1-80 kilometers.
+            #
+            #   @param country_code [String] ISO 3166-1 alpha-2 country the point falls in, as `DE`. Send it under a special
             #
             #   @param distance_unit [Symbol, WhopSDK::Models::AdGroupUpdateParams::Regions::Include::CustomLocation::DistanceUnit] Unit for `radius`. Defaults to `mile`.
             #

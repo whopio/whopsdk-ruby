@@ -106,6 +106,18 @@ module WhopSDK
       sig { returns(Float) }
       attr_accessor :initial_price
 
+      # Total charged at checkout for one unit, before promo codes and tax:
+      # `initial_price` plus the first `renewal_price` for recurring plans, or
+      # `initial_price` alone while a free trial applies. The trial does not apply when
+      # the viewing user has already used one for this plan.
+      sig { returns(WhopSDK::Plan::InitialPriceDue) }
+      attr_reader :initial_price_due
+
+      sig do
+        params(initial_price_due: WhopSDK::Plan::InitialPriceDue::OrHash).void
+      end
+      attr_writer :initial_price_due
+
       # Private notes not shown to customers. `null` unless the actor has the
       # `plan:basic:read` scope on the plan's account.
       sig { returns(T.nilable(String)) }
@@ -239,6 +251,7 @@ module WhopSDK
           formatted_price: String,
           image: T.nilable(T.anything),
           initial_price: Float,
+          initial_price_due: WhopSDK::Plan::InitialPriceDue::OrHash,
           internal_notes: T.nilable(String),
           invoice: T.nilable(T.anything),
           member_count: T.nilable(Float),
@@ -314,6 +327,11 @@ module WhopSDK
         image:,
         # Initial purchase price in plan currency.
         initial_price:,
+        # Total charged at checkout for one unit, before promo codes and tax:
+        # `initial_price` plus the first `renewal_price` for recurring plans, or
+        # `initial_price` alone while a free trial applies. The trial does not apply when
+        # the viewing user has already used one for this plan.
+        initial_price_due:,
         # Private notes not shown to customers. `null` unless the actor has the
         # `plan:basic:read` scope on the plan's account.
         internal_notes:,
@@ -405,6 +423,7 @@ module WhopSDK
             formatted_price: String,
             image: T.nilable(T.anything),
             initial_price: Float,
+            initial_price_due: WhopSDK::Plan::InitialPriceDue,
             internal_notes: T.nilable(String),
             invoice: T.nilable(T.anything),
             member_count: T.nilable(Float),
@@ -710,6 +729,74 @@ module WhopSDK
               disabled: T::Array[String],
               enabled: T::Array[String],
               include_platform_defaults: T::Boolean
+            }
+          )
+        end
+        def to_hash
+        end
+      end
+
+      class InitialPriceDue < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(WhopSDK::Plan::InitialPriceDue, WhopSDK::Internal::AnyHash)
+          end
+
+        # The amount in major units, as an exact decimal string — `"10.00"` is ten
+        # dollars. A string so no float rounds it in transit.
+        sig { returns(String) }
+        attr_accessor :amount
+
+        # Three-letter ISO 4217 currency code, lowercase.
+        sig { returns(String) }
+        attr_accessor :currency
+
+        # How many decimal places the amount CARRIES — the precision the charge itself
+        # runs at.
+        sig { returns(Integer) }
+        attr_accessor :decimals
+
+        # How many decimal places to SHOW. Usually equal to `decimals`, and deliberately
+        # not always: COP is charged in centavos but written in whole pesos, so it is `2`
+        # and `0`. Format the number in your own locale using this.
+        sig { returns(Integer) }
+        attr_accessor :display_decimals
+
+        # Total charged at checkout for one unit, before promo codes and tax:
+        # `initial_price` plus the first `renewal_price` for recurring plans, or
+        # `initial_price` alone while a free trial applies. The trial does not apply when
+        # the viewing user has already used one for this plan.
+        sig do
+          params(
+            amount: String,
+            currency: String,
+            decimals: Integer,
+            display_decimals: Integer
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The amount in major units, as an exact decimal string — `"10.00"` is ten
+          # dollars. A string so no float rounds it in transit.
+          amount:,
+          # Three-letter ISO 4217 currency code, lowercase.
+          currency:,
+          # How many decimal places the amount CARRIES — the precision the charge itself
+          # runs at.
+          decimals:,
+          # How many decimal places to SHOW. Usually equal to `decimals`, and deliberately
+          # not always: COP is charged in centavos but written in whole pesos, so it is `2`
+          # and `0`. Format the number in your own locale using this.
+          display_decimals:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              amount: String,
+              currency: String,
+              decimals: Integer,
+              display_decimals: Integer
             }
           )
         end

@@ -127,6 +127,15 @@ module WhopSDK
       #   @return [Float]
       required :initial_price, Float
 
+      # @!attribute initial_price_due
+      #   Total charged at checkout for one unit, before promo codes and tax:
+      #   `initial_price` plus the first `renewal_price` for recurring plans, or
+      #   `initial_price` alone while a free trial applies. The trial does not apply when
+      #   the viewing user has already used one for this plan.
+      #
+      #   @return [WhopSDK::Models::Plan::InitialPriceDue]
+      required :initial_price_due, -> { WhopSDK::Plan::InitialPriceDue }
+
       # @!attribute internal_notes
       #   Private notes not shown to customers. `null` unless the actor has the
       #   `plan:basic:read` scope on the plan's account.
@@ -281,7 +290,7 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::Plan::Visibility]
       required :visibility, enum: -> { WhopSDK::Plan::Visibility }
 
-      # @!method initialize(id:, account:, adaptive_pricing_enabled:, billing_period:, cancel_discount_intervals:, cancel_discount_percentage:, checkout_styling:, collect_tax:, created_at:, currency:, custom_fields:, deletable:, description:, effective_payment_method_configuration:, expiration_days:, formatted_price:, image:, initial_price:, internal_notes:, invoice:, member_count:, metadata:, offer_cancel_discount:, payment_method_configuration:, plan_type:, product:, purchase_url:, release_method:, renewal_price:, split_pay_required_payments:, stock:, strike_through_initial_price:, strike_through_renewal_price:, tax_type:, three_ds_level:, title:, trial_period_days:, unlimited_stock:, updated_at:, visibility:)
+      # @!method initialize(id:, account:, adaptive_pricing_enabled:, billing_period:, cancel_discount_intervals:, cancel_discount_percentage:, checkout_styling:, collect_tax:, created_at:, currency:, custom_fields:, deletable:, description:, effective_payment_method_configuration:, expiration_days:, formatted_price:, image:, initial_price:, initial_price_due:, internal_notes:, invoice:, member_count:, metadata:, offer_cancel_discount:, payment_method_configuration:, plan_type:, product:, purchase_url:, release_method:, renewal_price:, split_pay_required_payments:, stock:, strike_through_initial_price:, strike_through_renewal_price:, tax_type:, three_ds_level:, title:, trial_period_days:, unlimited_stock:, updated_at:, visibility:)
       #   Some parameter documentations has been truncated, see {WhopSDK::Models::Plan}
       #   for more details.
       #
@@ -320,6 +329,8 @@ module WhopSDK
       #   @param image [Object, nil] Pricing-tier image (`url`, `blurhash`) shown on the product page; `null` when no
       #
       #   @param initial_price [Float] Initial purchase price in plan currency.
+      #
+      #   @param initial_price_due [WhopSDK::Models::Plan::InitialPriceDue] Total charged at checkout for one unit, before promo codes and tax: `initial_pri
       #
       #   @param internal_notes [String, nil] Private notes not shown to customers. `null` unless the actor has the `plan:basi
       #
@@ -587,6 +598,54 @@ module WhopSDK
         #   @param enabled [Array<String>]
         #
         #   @param include_platform_defaults [Boolean] Whether Whop's default set is the starting point. When `false`, only `enabled` i
+      end
+
+      # @see WhopSDK::Models::Plan#initial_price_due
+      class InitialPriceDue < WhopSDK::Internal::Type::BaseModel
+        # @!attribute amount
+        #   The amount in major units, as an exact decimal string — `"10.00"` is ten
+        #   dollars. A string so no float rounds it in transit.
+        #
+        #   @return [String]
+        required :amount, String
+
+        # @!attribute currency
+        #   Three-letter ISO 4217 currency code, lowercase.
+        #
+        #   @return [String]
+        required :currency, String
+
+        # @!attribute decimals
+        #   How many decimal places the amount CARRIES — the precision the charge itself
+        #   runs at.
+        #
+        #   @return [Integer]
+        required :decimals, Integer
+
+        # @!attribute display_decimals
+        #   How many decimal places to SHOW. Usually equal to `decimals`, and deliberately
+        #   not always: COP is charged in centavos but written in whole pesos, so it is `2`
+        #   and `0`. Format the number in your own locale using this.
+        #
+        #   @return [Integer]
+        required :display_decimals, Integer
+
+        # @!method initialize(amount:, currency:, decimals:, display_decimals:)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::Plan::InitialPriceDue} for more details.
+        #
+        #   Total charged at checkout for one unit, before promo codes and tax:
+        #   `initial_price` plus the first `renewal_price` for recurring plans, or
+        #   `initial_price` alone while a free trial applies. The trial does not apply when
+        #   the viewing user has already used one for this plan.
+        #
+        #   @param amount [String] The amount in major units, as an exact decimal string — `"10.00"` is ten dollars
+        #
+        #   @param currency [String] Three-letter ISO 4217 currency code, lowercase.
+        #
+        #   @param decimals [Integer] How many decimal places the amount CARRIES — the precision the charge itself run
+        #
+        #   @param display_decimals [Integer] How many decimal places to SHOW. Usually equal to `decimals`, and deliberately n
       end
 
       # Billing model for this plan.

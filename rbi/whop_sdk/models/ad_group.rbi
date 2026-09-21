@@ -2044,6 +2044,14 @@ module WhopSDK
             sig { returns(Float) }
             attr_accessor :radius
 
+            # ISO 3166-1 alpha-2 country the point falls in. Send it under a special ad
+            # category, where the campaign must declare the countries its ad sets reach.
+            sig { returns(T.nilable(String)) }
+            attr_reader :country_code
+
+            sig { params(country_code: String).void }
+            attr_writer :country_code
+
             # Label for the location, such as a city or address. Absent when the location has
             # no label.
             sig { returns(T.nilable(String)) }
@@ -2060,6 +2068,7 @@ module WhopSDK
                 latitude: Float,
                 longitude: Float,
                 radius: Float,
+                country_code: String,
                 name: String
               ).returns(T.attached_class)
             end
@@ -2072,6 +2081,9 @@ module WhopSDK
               longitude:,
               # Radius around the center point, in `distance_unit`.
               radius:,
+              # ISO 3166-1 alpha-2 country the point falls in. Send it under a special ad
+              # category, where the campaign must declare the countries its ad sets reach.
+              country_code: nil,
               # Label for the location, such as a city or address. Absent when the location has
               # no label.
               name: nil
@@ -2086,6 +2098,7 @@ module WhopSDK
                   latitude: Float,
                   longitude: Float,
                   radius: Float,
+                  country_code: String,
                   name: String
                 }
               )
@@ -2266,6 +2279,14 @@ module WhopSDK
             sig { returns(Float) }
             attr_accessor :radius
 
+            # ISO 3166-1 alpha-2 country the point falls in. Send it under a special ad
+            # category, where the campaign must declare the countries its ad sets reach.
+            sig { returns(T.nilable(String)) }
+            attr_reader :country_code
+
+            sig { params(country_code: String).void }
+            attr_writer :country_code
+
             # Label for the location, such as a city or address. Absent when the location has
             # no label.
             sig { returns(T.nilable(String)) }
@@ -2282,6 +2303,7 @@ module WhopSDK
                 latitude: Float,
                 longitude: Float,
                 radius: Float,
+                country_code: String,
                 name: String
               ).returns(T.attached_class)
             end
@@ -2294,6 +2316,9 @@ module WhopSDK
               longitude:,
               # Radius around the center point, in `distance_unit`.
               radius:,
+              # ISO 3166-1 alpha-2 country the point falls in. Send it under a special ad
+              # category, where the campaign must declare the countries its ad sets reach.
+              country_code: nil,
               # Label for the location, such as a city or address. Absent when the location has
               # no label.
               name: nil
@@ -2308,6 +2333,7 @@ module WhopSDK
                   latitude: Float,
                   longitude: Float,
                   radius: Float,
+                  country_code: String,
                   name: String
                 }
               )

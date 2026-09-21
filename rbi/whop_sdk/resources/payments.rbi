@@ -7,11 +7,11 @@ module WhopSDK
     # payment with an existing member's stored payment method.
     #
     # Collection runs in the background, so the create response is not the outcome.
-    # Poll [Retrieve status](/api-reference/beta/payments/retrieve-status) for how far
-    # the payment has got and, while it is `requires_action`, what the buyer must do
-    # next — follow a redirect, complete 3D Secure, display transfer instructions, or
-    # link a bank account. Use the return_url operation to change where they land
-    # afterwards, up until they come back.
+    # Poll [Retrieve status](/api-reference/beta/payments/retrieve-payment-status) for
+    # how far the payment has gone and, while it is `requires_action`, what the buyer
+    # must do next — follow a redirect, complete 3D Secure, display transfer
+    # instructions, or link a bank account. Use the return_url operation to change
+    # where they land afterwards, up until they come back.
     class Payments
       # Charges a buyer for one or more plans. Pass a payment method already on file
       # (`member_id` and `payment_method_id`), or a `confirmation_token` describing a

@@ -3,6 +3,8 @@
 module Whop_sdk
   module Types
     class AdGroupCustomLocation < Internal::Types::Model
+      field :country_code, -> { String }, optional: true, nullable: false
+
       field :distance_unit, -> { Whop_sdk::Types::AdGroupCustomLocationDistanceUnit }, optional: false, nullable: false
 
       field :latitude, -> { Integer }, optional: false, nullable: false

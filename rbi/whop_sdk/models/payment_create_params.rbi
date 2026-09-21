@@ -96,6 +96,19 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :return_url
 
+      # Where physical goods ship, returned on the payment as `shipping_address`. Only
+      # the keys you supply are kept; omit it for digital goods.
+      sig { returns(T.nilable(WhopSDK::PaymentCreateParams::ShippingAddress)) }
+      attr_reader :shipping_address
+
+      sig do
+        params(
+          shipping_address:
+            T.nilable(WhopSDK::PaymentCreateParams::ShippingAddress::OrHash)
+        ).void
+      end
+      attr_writer :shipping_address
+
       # Overrides the text on the buyer's card statement for this payment only. Takes
       # precedence over the product's and account's custom descriptors, and changes
       # neither. Must start with `WHOP*`, be 5-22 characters, contain at least one
@@ -131,6 +144,8 @@ module WhopSDK
           plan_id: String,
           promo_code_id: T.nilable(String),
           return_url: T.nilable(String),
+          shipping_address:
+            T.nilable(WhopSDK::PaymentCreateParams::ShippingAddress::OrHash),
           statement_descriptor: T.nilable(String),
           api_version_date: String,
           idempotency_key: String,
@@ -182,6 +197,9 @@ module WhopSDK
         # URL without credentials, at most 2,048 characters. Ignored unless
         # `confirmation_token` is provided.
         return_url: nil,
+        # Where physical goods ship, returned on the payment as `shipping_address`. Only
+        # the keys you supply are kept; omit it for digital goods.
+        shipping_address: nil,
         # Overrides the text on the buyer's card statement for this payment only. Takes
         # precedence over the product's and account's custom descriptors, and changes
         # neither. Must start with `WHOP*`, be 5-22 characters, contain at least one
@@ -210,6 +228,8 @@ module WhopSDK
             plan_id: String,
             promo_code_id: T.nilable(String),
             return_url: T.nilable(String),
+            shipping_address:
+              T.nilable(WhopSDK::PaymentCreateParams::ShippingAddress),
             statement_descriptor: T.nilable(String),
             api_version_date: String,
             idempotency_key: String,
@@ -1232,6 +1252,91 @@ module WhopSDK
           end
           def self.values
           end
+        end
+      end
+
+      class ShippingAddress < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              WhopSDK::PaymentCreateParams::ShippingAddress,
+              WhopSDK::Internal::AnyHash
+            )
+          end
+
+        # City name.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :city
+
+        # ISO 3166-1 alpha-2 country code, such as `US`.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :country
+
+        # First line of the street address.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :line1
+
+        # Second line of the street address.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :line2
+
+        # The recipient's full name, as it should appear on the shipping label.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :name
+
+        # Postal or ZIP code.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :postal_code
+
+        # State, province, or region code, such as `CA`.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :state
+
+        # Where physical goods ship, returned on the payment as `shipping_address`. Only
+        # the keys you supply are kept; omit it for digital goods.
+        sig do
+          params(
+            city: T.nilable(String),
+            country: T.nilable(String),
+            line1: T.nilable(String),
+            line2: T.nilable(String),
+            name: T.nilable(String),
+            postal_code: T.nilable(String),
+            state: T.nilable(String)
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # City name.
+          city: nil,
+          # ISO 3166-1 alpha-2 country code, such as `US`.
+          country: nil,
+          # First line of the street address.
+          line1: nil,
+          # Second line of the street address.
+          line2: nil,
+          # The recipient's full name, as it should appear on the shipping label.
+          name: nil,
+          # Postal or ZIP code.
+          postal_code: nil,
+          # State, province, or region code, such as `CA`.
+          state: nil
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              city: T.nilable(String),
+              country: T.nilable(String),
+              line1: T.nilable(String),
+              line2: T.nilable(String),
+              name: T.nilable(String),
+              postal_code: T.nilable(String),
+              state: T.nilable(String)
+            }
+          )
+        end
+        def to_hash
         end
       end
     end

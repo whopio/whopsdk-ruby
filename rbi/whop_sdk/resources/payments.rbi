@@ -36,6 +36,8 @@ module WhopSDK
           plan_id: String,
           promo_code_id: T.nilable(String),
           return_url: T.nilable(String),
+          shipping_address:
+            T.nilable(WhopSDK::PaymentCreateParams::ShippingAddress::OrHash),
           statement_descriptor: T.nilable(String),
           api_version_date: String,
           idempotency_key: String,
@@ -90,6 +92,10 @@ module WhopSDK
         # absolute https URL without credentials, at most 2,048 characters. Ignored unless
         # `confirmation_token` is provided.
         return_url: nil,
+        # Body param: Where physical goods ship, returned on the payment as
+        # `shipping_address`. Only the keys you supply are kept; omit it for digital
+        # goods.
+        shipping_address: nil,
         # Body param: Overrides the text on the buyer's card statement for this payment
         # only. Takes precedence over the product's and account's custom descriptors, and
         # changes neither. Must start with `WHOP*`, be 5-22 characters, contain at least

@@ -103,6 +103,13 @@ module WhopSDK
       #   @return [String, nil]
       optional :return_url, String, nil?: true
 
+      # @!attribute shipping_address
+      #   Where physical goods ship, returned on the payment as `shipping_address`. Only
+      #   the keys you supply are kept; omit it for digital goods.
+      #
+      #   @return [WhopSDK::Models::PaymentCreateParams::ShippingAddress, nil]
+      optional :shipping_address, -> { WhopSDK::PaymentCreateParams::ShippingAddress }, nil?: true
+
       # @!attribute statement_descriptor
       #   Overrides the text on the buyer's card statement for this payment only. Takes
       #   precedence over the product's and account's custom descriptors, and changes
@@ -123,7 +130,7 @@ module WhopSDK
       #   @return [String, nil]
       optional :idempotency_key, String
 
-      # @!method initialize(account_id:, auto_capture_after_minutes: nil, capture: nil, confirmation_token: nil, email: nil, line_items: nil, member_id: nil, metadata: nil, payment_method_id: nil, plan: nil, plan_id: nil, promo_code_id: nil, return_url: nil, statement_descriptor: nil, api_version_date: nil, idempotency_key: nil, request_options: {})
+      # @!method initialize(account_id:, auto_capture_after_minutes: nil, capture: nil, confirmation_token: nil, email: nil, line_items: nil, member_id: nil, metadata: nil, payment_method_id: nil, plan: nil, plan_id: nil, promo_code_id: nil, return_url: nil, shipping_address: nil, statement_descriptor: nil, api_version_date: nil, idempotency_key: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::PaymentCreateParams} for more details.
       #
@@ -152,6 +159,8 @@ module WhopSDK
       #   @param promo_code_id [String, nil] An active promo code to apply, prefixed `promo_`. It must belong to the account
       #
       #   @param return_url [String, nil] Where the buyer continues after completing an off-site step. An absolute https U
+      #
+      #   @param shipping_address [WhopSDK::Models::PaymentCreateParams::ShippingAddress, nil] Where physical goods ship, returned on the payment as `shipping_address`. Only t
       #
       #   @param statement_descriptor [String, nil] Overrides the text on the buyer's card statement for this payment only. Takes pr
       #
@@ -584,6 +593,68 @@ module WhopSDK
           # @!method self.values
           #   @return [Array<Symbol>]
         end
+      end
+
+      class ShippingAddress < WhopSDK::Internal::Type::BaseModel
+        # @!attribute city
+        #   City name.
+        #
+        #   @return [String, nil]
+        optional :city, String, nil?: true
+
+        # @!attribute country
+        #   ISO 3166-1 alpha-2 country code, such as `US`.
+        #
+        #   @return [String, nil]
+        optional :country, String, nil?: true
+
+        # @!attribute line1
+        #   First line of the street address.
+        #
+        #   @return [String, nil]
+        optional :line1, String, nil?: true
+
+        # @!attribute line2
+        #   Second line of the street address.
+        #
+        #   @return [String, nil]
+        optional :line2, String, nil?: true
+
+        # @!attribute name
+        #   The recipient's full name, as it should appear on the shipping label.
+        #
+        #   @return [String, nil]
+        optional :name, String, nil?: true
+
+        # @!attribute postal_code
+        #   Postal or ZIP code.
+        #
+        #   @return [String, nil]
+        optional :postal_code, String, nil?: true
+
+        # @!attribute state
+        #   State, province, or region code, such as `CA`.
+        #
+        #   @return [String, nil]
+        optional :state, String, nil?: true
+
+        # @!method initialize(city: nil, country: nil, line1: nil, line2: nil, name: nil, postal_code: nil, state: nil)
+        #   Where physical goods ship, returned on the payment as `shipping_address`. Only
+        #   the keys you supply are kept; omit it for digital goods.
+        #
+        #   @param city [String, nil] City name.
+        #
+        #   @param country [String, nil] ISO 3166-1 alpha-2 country code, such as `US`.
+        #
+        #   @param line1 [String, nil] First line of the street address.
+        #
+        #   @param line2 [String, nil] Second line of the street address.
+        #
+        #   @param name [String, nil] The recipient's full name, as it should appear on the shipping label.
+        #
+        #   @param postal_code [String, nil] Postal or ZIP code.
+        #
+        #   @param state [String, nil] State, province, or region code, such as `CA`.
       end
     end
   end

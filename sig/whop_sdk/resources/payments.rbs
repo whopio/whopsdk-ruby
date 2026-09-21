@@ -15,6 +15,7 @@ module WhopSDK
         ?plan_id: String,
         ?promo_code_id: String?,
         ?return_url: String?,
+        ?shipping_address: WhopSDK::PaymentCreateParams::ShippingAddress?,
         ?statement_descriptor: String?,
         ?api_version_date: String,
         ?idempotency_key: String,

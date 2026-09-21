@@ -25,7 +25,7 @@ module WhopSDK
       # existing plan, or `plan` to find or create one inline. These inputs are mutually
       # exclusive.
       #
-      # @overload create(account_id:, auto_capture_after_minutes: nil, capture: nil, confirmation_token: nil, email: nil, line_items: nil, member_id: nil, metadata: nil, payment_method_id: nil, plan: nil, plan_id: nil, promo_code_id: nil, return_url: nil, statement_descriptor: nil, api_version_date: nil, idempotency_key: nil, request_options: {})
+      # @overload create(account_id:, auto_capture_after_minutes: nil, capture: nil, confirmation_token: nil, email: nil, line_items: nil, member_id: nil, metadata: nil, payment_method_id: nil, plan: nil, plan_id: nil, promo_code_id: nil, return_url: nil, shipping_address: nil, statement_descriptor: nil, api_version_date: nil, idempotency_key: nil, request_options: {})
       #
       # @param account_id [String] Body param: The account to charge for, prefixed `biz_`.
       #
@@ -52,6 +52,8 @@ module WhopSDK
       # @param promo_code_id [String, nil] Body param: An active promo code to apply, prefixed `promo_`. It must belong to
       #
       # @param return_url [String, nil] Body param: Where the buyer continues after completing an off-site step. An abso
+      #
+      # @param shipping_address [WhopSDK::Models::PaymentCreateParams::ShippingAddress, nil] Body param: Where physical goods ship, returned on the payment as `shipping_addr
       #
       # @param statement_descriptor [String, nil] Body param: Overrides the text on the buyer's card statement for this payment on
       #

@@ -15,6 +15,7 @@ module WhopSDK
         plan_id: String,
         promo_code_id: String?,
         return_url: String?,
+        shipping_address: WhopSDK::PaymentCreateParams::ShippingAddress?,
         statement_descriptor: String?,
         api_version_date: String,
         idempotency_key: String
@@ -61,6 +62,8 @@ module WhopSDK
 
       attr_accessor return_url: String?
 
+      attr_accessor shipping_address: WhopSDK::PaymentCreateParams::ShippingAddress?
+
       attr_accessor statement_descriptor: String?
 
       attr_reader api_version_date: String?
@@ -85,6 +88,7 @@ module WhopSDK
         ?plan_id: String,
         ?promo_code_id: String?,
         ?return_url: String?,
+        ?shipping_address: WhopSDK::PaymentCreateParams::ShippingAddress?,
         ?statement_descriptor: String?,
         ?api_version_date: String,
         ?idempotency_key: String,
@@ -105,6 +109,7 @@ module WhopSDK
         plan_id: String,
         promo_code_id: String?,
         return_url: String?,
+        shipping_address: WhopSDK::PaymentCreateParams::ShippingAddress?,
         statement_descriptor: String?,
         api_version_date: String,
         idempotency_key: String,
@@ -521,6 +526,53 @@ module WhopSDK
 
           def self?.values: -> ::Array[WhopSDK::Models::PaymentCreateParams::Plan::visibility]
         end
+      end
+
+      type shipping_address =
+        {
+          city: String?,
+          country: String?,
+          :line1 => String?,
+          :line2 => String?,
+          name: String?,
+          postal_code: String?,
+          state: String?
+        }
+
+      class ShippingAddress < WhopSDK::Internal::Type::BaseModel
+        attr_accessor city: String?
+
+        attr_accessor country: String?
+
+        attr_accessor line1: String?
+
+        attr_accessor line2: String?
+
+        attr_accessor name: String?
+
+        attr_accessor postal_code: String?
+
+        attr_accessor state: String?
+
+        def initialize: (
+          ?city: String?,
+          ?country: String?,
+          ?line1: String?,
+          ?line2: String?,
+          ?name: String?,
+          ?postal_code: String?,
+          ?state: String?
+        ) -> void
+
+        def to_hash: -> {
+          city: String?,
+          country: String?,
+          :line1 => String?,
+          :line2 => String?,
+          name: String?,
+          postal_code: String?,
+          state: String?
+        }
       end
     end
   end

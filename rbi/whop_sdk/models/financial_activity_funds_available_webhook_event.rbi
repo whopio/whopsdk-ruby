@@ -857,6 +857,11 @@ module WhopSDK
               :orchestration_percentage_fee,
               WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
             )
+          PARTNER_GRANT_REWARD =
+            T.let(
+              :partner_grant_reward,
+              WhopSDK::FinancialActivityFundsAvailableWebhookEvent::Data::LineType::TaggedSymbol
+            )
           PASSTHROUGH_GMV =
             T.let(
               :passthrough_gmv,

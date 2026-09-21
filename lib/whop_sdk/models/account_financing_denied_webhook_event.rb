@@ -2504,14 +2504,13 @@ module WhopSDK
 
             DEPOSIT_FUNDS = :deposit_funds
             REVIEW_HELD_PAYMENTS = :review_held_payments
-            ACCEPT_AIRWALLEX_TERMS = :accept_airwallex_terms
             SUBMIT_INFORMATION_REQUEST = :submit_information_request
             UPDATE_AUTOMATIC_WITHDRAWAL_METHOD = :update_automatic_withdrawal_method
             REAUTHORIZE_PAYOUT_METHODS = :reauthorize_payout_methods
             UPDATE_PAYOUT_PROFILE = :update_payout_profile
             CARD_USAGE_REVIEW = :card_usage_review
             VERIFY_IDENTITY = :verify_identity
-            VERIFY_AIRWALLEX_ACCOUNT = :verify_airwallex_account
+            SCALE_ACCOUNT_SETUP = :scale_account_setup
             SIGN_FORMATION_DOCUMENTS = :sign_formation_documents
             CONNECT_FULFILLMENT_TRACKER = :connect_fulfillment_tracker
             SETUP_APPLE_PAY_DOMAINS = :setup_apple_pay_domains

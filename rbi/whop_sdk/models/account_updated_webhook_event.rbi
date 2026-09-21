@@ -4630,11 +4630,6 @@ module WhopSDK
                 :review_held_payments,
                 WhopSDK::AccountUpdatedWebhookEvent::Data::RequiredAction::Action::TaggedSymbol
               )
-            ACCEPT_AIRWALLEX_TERMS =
-              T.let(
-                :accept_airwallex_terms,
-                WhopSDK::AccountUpdatedWebhookEvent::Data::RequiredAction::Action::TaggedSymbol
-              )
             SUBMIT_INFORMATION_REQUEST =
               T.let(
                 :submit_information_request,
@@ -4665,9 +4660,9 @@ module WhopSDK
                 :verify_identity,
                 WhopSDK::AccountUpdatedWebhookEvent::Data::RequiredAction::Action::TaggedSymbol
               )
-            VERIFY_AIRWALLEX_ACCOUNT =
+            SCALE_ACCOUNT_SETUP =
               T.let(
-                :verify_airwallex_account,
+                :scale_account_setup,
                 WhopSDK::AccountUpdatedWebhookEvent::Data::RequiredAction::Action::TaggedSymbol
               )
             SIGN_FORMATION_DOCUMENTS =

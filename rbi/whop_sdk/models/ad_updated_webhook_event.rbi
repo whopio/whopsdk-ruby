@@ -174,6 +174,12 @@ module WhopSDK
         sig { returns(T::Array[WhopSDK::AdUpdatedWebhookEvent::Data::Issue]) }
         attr_accessor :issues
 
+        # The ad platform this ad runs on.
+        sig do
+          returns(WhopSDK::AdUpdatedWebhookEvent::Data::Platform::TaggedSymbol)
+        end
+        attr_accessor :platform
+
         # The post the ad network serves for this ad, as `pageID_postID` on Meta — the
         # post Meta created for an uploaded creative, or the post being promoted. Use it
         # to open the live post, or to promote the same post from another ad. `null` until
@@ -317,6 +323,7 @@ module WhopSDK
             headlines: T::Array[String],
             issues:
               T::Array[WhopSDK::AdUpdatedWebhookEvent::Data::Issue::OrHash],
+            platform: WhopSDK::AdUpdatedWebhookEvent::Data::Platform::OrSymbol,
             post_id: T.nilable(String),
             post_source:
               T.nilable(
@@ -367,6 +374,8 @@ module WhopSDK
           existing_post_id:,
           headlines:,
           issues:,
+          # The ad platform this ad runs on.
+          platform:,
           # The post the ad network serves for this ad, as `pageID_postID` on Meta — the
           # post Meta created for an uploaded creative, or the post being promoted. Use it
           # to open the live post, or to promote the same post from another ad. `null` until
@@ -437,6 +446,8 @@ module WhopSDK
               existing_post_id: T.nilable(String),
               headlines: T::Array[String],
               issues: T::Array[WhopSDK::AdUpdatedWebhookEvent::Data::Issue],
+              platform:
+                WhopSDK::AdUpdatedWebhookEvent::Data::Platform::TaggedSymbol,
               post_id: T.nilable(String),
               post_source:
                 T.nilable(
@@ -1082,6 +1093,38 @@ module WhopSDK
             end
             def self.values
             end
+          end
+        end
+
+        # The ad platform this ad runs on.
+        module Platform
+          extend WhopSDK::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(Symbol, WhopSDK::AdUpdatedWebhookEvent::Data::Platform)
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          META =
+            T.let(
+              :meta,
+              WhopSDK::AdUpdatedWebhookEvent::Data::Platform::TaggedSymbol
+            )
+          TIKTOK =
+            T.let(
+              :tiktok,
+              WhopSDK::AdUpdatedWebhookEvent::Data::Platform::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                WhopSDK::AdUpdatedWebhookEvent::Data::Platform::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
           end
         end
 

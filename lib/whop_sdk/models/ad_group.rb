@@ -316,6 +316,12 @@ module WhopSDK
       #   @return [Array<WhopSDK::Models::AdGroup::Placement>]
       required :placements, -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::AdGroup::Placement] }
 
+      # @!attribute platform
+      #   The ad platform this ad group runs on.
+      #
+      #   @return [Symbol, WhopSDK::Models::AdGroup::Platform]
+      required :platform, enum: -> { WhopSDK::AdGroup::Platform }
+
       # @!attribute purchase_value
       #   USD value of pixel-attributed purchases.
       #
@@ -487,7 +493,7 @@ module WhopSDK
       #   @return [Float, nil]
       optional :minimum_daily_spend, Float, nil?: true
 
-      # @!method initialize(id:, ad_campaign:, added_to_cart_value:, added_to_carts:, audiences:, bid_type:, budget_amount:, budget_type:, click_through_rate:, clicks:, completed_registration_value:, completed_registrations:, contact_value:, contacts:, conversion_event:, cost_per_added_to_cart:, cost_per_click:, cost_per_completed_registration:, cost_per_contact:, cost_per_lead:, cost_per_mille:, cost_per_purchase:, cost_per_result:, cost_per_schedule:, cost_per_submitted_application:, cost_per_unique_click:, cost_per_viewed_content:, created_at:, custom_conversions:, custom_event_counts:, custom_event_values:, delivery_status:, demographics:, desired_cost_per_result:, detailed_targeting:, devices:, ends_at:, frequency:, frequency_cap:, impressions:, issues:, languages:, lead_value:, leads:, link_clicks:, optimization_goal:, placements:, purchase_value:, purchases:, reach:, regions:, result_event:, result_event_name:, results:, return_on_ad_spend:, schedule_value:, schedules:, spend:, spend_currency:, starts_at:, status:, submitted_application_value:, submitted_applications:, title:, unique_click_through_rate:, unique_clicks:, updated_at:, viewed_content_value:, viewed_contents:, conversion_location: nil, dynamic_creative: nil, message_apps: nil, minimum_daily_spend: nil)
+      # @!method initialize(id:, ad_campaign:, added_to_cart_value:, added_to_carts:, audiences:, bid_type:, budget_amount:, budget_type:, click_through_rate:, clicks:, completed_registration_value:, completed_registrations:, contact_value:, contacts:, conversion_event:, cost_per_added_to_cart:, cost_per_click:, cost_per_completed_registration:, cost_per_contact:, cost_per_lead:, cost_per_mille:, cost_per_purchase:, cost_per_result:, cost_per_schedule:, cost_per_submitted_application:, cost_per_unique_click:, cost_per_viewed_content:, created_at:, custom_conversions:, custom_event_counts:, custom_event_values:, delivery_status:, demographics:, desired_cost_per_result:, detailed_targeting:, devices:, ends_at:, frequency:, frequency_cap:, impressions:, issues:, languages:, lead_value:, leads:, link_clicks:, optimization_goal:, placements:, platform:, purchase_value:, purchases:, reach:, regions:, result_event:, result_event_name:, results:, return_on_ad_spend:, schedule_value:, schedules:, spend:, spend_currency:, starts_at:, status:, submitted_application_value:, submitted_applications:, title:, unique_click_through_rate:, unique_clicks:, updated_at:, viewed_content_value:, viewed_contents:, conversion_location: nil, dynamic_creative: nil, message_apps: nil, minimum_daily_spend: nil)
       #   Some parameter documentations has been truncated, see {WhopSDK::Models::AdGroup}
       #   for more details.
       #
@@ -584,6 +590,8 @@ module WhopSDK
       #   @param optimization_goal [Symbol, WhopSDK::Models::AdGroup::OptimizationGoal, nil] The result the ad group's delivery is optimized to get the most of.
       #
       #   @param placements [Array<WhopSDK::Models::AdGroup::Placement>]
+      #
+      #   @param platform [Symbol, WhopSDK::Models::AdGroup::Platform] The ad platform this ad group runs on.
       #
       #   @param purchase_value [Float] USD value of pixel-attributed purchases.
       #
@@ -1217,6 +1225,19 @@ module WhopSDK
           # @!method self.values
           #   @return [Array<Symbol>]
         end
+      end
+
+      # The ad platform this ad group runs on.
+      #
+      # @see WhopSDK::Models::AdGroup#platform
+      module Platform
+        extend WhopSDK::Internal::Type::Enum
+
+        META = :meta
+        TIKTOK = :tiktok
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
       # @see WhopSDK::Models::AdGroup#regions

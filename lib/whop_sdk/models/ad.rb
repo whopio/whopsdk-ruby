@@ -258,6 +258,12 @@ module WhopSDK
       #   @return [Float]
       required :link_clicks, Float
 
+      # @!attribute platform
+      #   The ad platform this ad runs on.
+      #
+      #   @return [Symbol, WhopSDK::Models::Ad::Platform]
+      required :platform, enum: -> { WhopSDK::Ad::Platform }
+
       # @!attribute post_id
       #   The post the ad network serves for this ad, as `pageID_postID` on Meta — the
       #   post Meta created for an uploaded creative, or the post being promoted. Use it
@@ -478,7 +484,7 @@ module WhopSDK
       #   @return [WhopSDK::Models::Ad::Music, nil]
       optional :music, -> { WhopSDK::Ad::Music }, nil?: true
 
-      # @!method initialize(id:, ad_campaign:, ad_group:, added_to_cart_value:, added_to_carts:, call_to_action:, click_through_rate:, clicks:, completed_registration_value:, completed_registrations:, contact_value:, contacts:, cost_per_added_to_cart:, cost_per_click:, cost_per_completed_registration:, cost_per_contact:, cost_per_lead:, cost_per_mille:, cost_per_purchase:, cost_per_result:, cost_per_schedule:, cost_per_submitted_application:, cost_per_unique_click:, cost_per_viewed_content:, created_at:, creatives:, custom_conversions:, custom_event_counts:, custom_event_values:, delivery_status:, descriptions:, existing_post_id:, frequency:, headlines:, impressions:, issues:, lead_value:, leads:, link_clicks:, post_id:, post_source:, post_thumbnail_url:, primary_texts:, purchase_value:, purchases:, reach:, result_event:, result_event_name:, results:, return_on_ad_spend:, schedule_value:, schedules:, social_accounts:, spend:, spend_currency:, status:, submitted_application_value:, submitted_applications:, title:, unique_click_through_rate:, unique_clicks:, updated_at:, url:, url_parameters:, viewed_content_value:, viewed_contents:, lead_form: nil, lead_form_id: nil, messaging_config: nil, multi_advertiser_ads: nil, music: nil)
+      # @!method initialize(id:, ad_campaign:, ad_group:, added_to_cart_value:, added_to_carts:, call_to_action:, click_through_rate:, clicks:, completed_registration_value:, completed_registrations:, contact_value:, contacts:, cost_per_added_to_cart:, cost_per_click:, cost_per_completed_registration:, cost_per_contact:, cost_per_lead:, cost_per_mille:, cost_per_purchase:, cost_per_result:, cost_per_schedule:, cost_per_submitted_application:, cost_per_unique_click:, cost_per_viewed_content:, created_at:, creatives:, custom_conversions:, custom_event_counts:, custom_event_values:, delivery_status:, descriptions:, existing_post_id:, frequency:, headlines:, impressions:, issues:, lead_value:, leads:, link_clicks:, platform:, post_id:, post_source:, post_thumbnail_url:, primary_texts:, purchase_value:, purchases:, reach:, result_event:, result_event_name:, results:, return_on_ad_spend:, schedule_value:, schedules:, social_accounts:, spend:, spend_currency:, status:, submitted_application_value:, submitted_applications:, title:, unique_click_through_rate:, unique_clicks:, updated_at:, url:, url_parameters:, viewed_content_value:, viewed_contents:, lead_form: nil, lead_form_id: nil, messaging_config: nil, multi_advertiser_ads: nil, music: nil)
       #   Some parameter documentations has been truncated, see {WhopSDK::Models::Ad} for
       #   more details.
       #
@@ -559,6 +565,8 @@ module WhopSDK
       #   @param leads [Float] Whop pixel-attributed leads, last-click.
       #
       #   @param link_clicks [Float] Clicks on links in the ad that lead to your destination, as reported by the ad p
+      #
+      #   @param platform [Symbol, WhopSDK::Models::Ad::Platform] The ad platform this ad runs on.
       #
       #   @param post_id [String, nil] The post the ad network serves for this ad, as `pageID_postID` on Meta — the pos
       #
@@ -871,6 +879,19 @@ module WhopSDK
           # @!method self.values
           #   @return [Array<Symbol>]
         end
+      end
+
+      # The ad platform this ad runs on.
+      #
+      # @see WhopSDK::Models::Ad#platform
+      module Platform
+        extend WhopSDK::Internal::Type::Enum
+
+        META = :meta
+        TIKTOK = :tiktok
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
       # Identifies the network that owns `existing_post_id`; `null` when the ad uses

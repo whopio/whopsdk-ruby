@@ -66,6 +66,7 @@ module WhopSDK
           existing_post_id: String?,
           headlines: ::Array[String],
           issues: ::Array[WhopSDK::AdUpdatedWebhookEvent::Data::Issue],
+          platform: WhopSDK::Models::AdUpdatedWebhookEvent::Data::platform,
           post_id: String?,
           post_source: WhopSDK::Models::AdUpdatedWebhookEvent::Data::post_source?,
           post_thumbnail_url: String?,
@@ -105,6 +106,8 @@ module WhopSDK
         attr_accessor headlines: ::Array[String]
 
         attr_accessor issues: ::Array[WhopSDK::AdUpdatedWebhookEvent::Data::Issue]
+
+        attr_accessor platform: WhopSDK::Models::AdUpdatedWebhookEvent::Data::platform
 
         attr_accessor post_id: String?
 
@@ -150,6 +153,7 @@ module WhopSDK
           existing_post_id: String?,
           headlines: ::Array[String],
           issues: ::Array[WhopSDK::AdUpdatedWebhookEvent::Data::Issue],
+          platform: WhopSDK::Models::AdUpdatedWebhookEvent::Data::platform,
           post_id: String?,
           post_source: WhopSDK::Models::AdUpdatedWebhookEvent::Data::post_source?,
           post_thumbnail_url: String?,
@@ -179,6 +183,7 @@ module WhopSDK
           existing_post_id: String?,
           headlines: ::Array[String],
           issues: ::Array[WhopSDK::AdUpdatedWebhookEvent::Data::Issue],
+          platform: WhopSDK::Models::AdUpdatedWebhookEvent::Data::platform,
           post_id: String?,
           post_source: WhopSDK::Models::AdUpdatedWebhookEvent::Data::post_source?,
           post_thumbnail_url: String?,
@@ -432,6 +437,17 @@ module WhopSDK
 
             def self?.values: -> ::Array[WhopSDK::Models::AdUpdatedWebhookEvent::Data::Issue::resource_type]
           end
+        end
+
+        type platform = :meta | :tiktok
+
+        module Platform
+          extend WhopSDK::Internal::Type::Enum
+
+          META: :meta
+          TIKTOK: :tiktok
+
+          def self?.values: -> ::Array[WhopSDK::Models::AdUpdatedWebhookEvent::Data::platform]
         end
 
         type post_source = :facebook | :instagram

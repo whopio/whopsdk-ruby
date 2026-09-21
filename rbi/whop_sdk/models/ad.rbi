@@ -187,6 +187,10 @@ module WhopSDK
       sig { returns(Float) }
       attr_accessor :link_clicks
 
+      # The ad platform this ad runs on.
+      sig { returns(WhopSDK::Ad::Platform::TaggedSymbol) }
+      attr_accessor :platform
+
       # The post the ad network serves for this ad, as `pageID_postID` on Meta — the
       # post Meta created for an uploaded creative, or the post being promoted. Use it
       # to open the live post, or to promote the same post from another ad. `null` until
@@ -400,6 +404,7 @@ module WhopSDK
           lead_value: Float,
           leads: Float,
           link_clicks: Float,
+          platform: WhopSDK::Ad::Platform::OrSymbol,
           post_id: T.nilable(String),
           post_source: T.nilable(WhopSDK::Ad::PostSource::OrSymbol),
           post_thumbnail_url: T.nilable(String),
@@ -533,6 +538,8 @@ module WhopSDK
         # platform. A subset of clicks, which also counts likes, comments, and other
         # interactions with the ad.
         link_clicks:,
+        # The ad platform this ad runs on.
+        platform:,
         # The post the ad network serves for this ad, as `pageID_postID` on Meta — the
         # post Meta created for an uploaded creative, or the post being promoted. Use it
         # to open the live post, or to promote the same post from another ad. `null` until
@@ -670,6 +677,7 @@ module WhopSDK
             lead_value: Float,
             leads: Float,
             link_clicks: Float,
+            platform: WhopSDK::Ad::Platform::TaggedSymbol,
             post_id: T.nilable(String),
             post_source: T.nilable(WhopSDK::Ad::PostSource::TaggedSymbol),
             post_thumbnail_url: T.nilable(String),
@@ -1069,6 +1077,21 @@ module WhopSDK
           end
           def self.values
           end
+        end
+      end
+
+      # The ad platform this ad runs on.
+      module Platform
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol = T.type_alias { T.all(Symbol, WhopSDK::Ad::Platform) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        META = T.let(:meta, WhopSDK::Ad::Platform::TaggedSymbol)
+        TIKTOK = T.let(:tiktok, WhopSDK::Ad::Platform::TaggedSymbol)
+
+        sig { override.returns(T::Array[WhopSDK::Ad::Platform::TaggedSymbol]) }
+        def self.values
         end
       end
 

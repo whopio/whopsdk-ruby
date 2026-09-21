@@ -49,6 +49,7 @@ module WhopSDK
         link_clicks: Float,
         optimization_goal: WhopSDK::Models::AdGroup::optimization_goal?,
         placements: ::Array[WhopSDK::AdGroup::Placement],
+        platform: WhopSDK::Models::AdGroup::platform,
         purchase_value: Float,
         purchases: Float,
         reach: Float,
@@ -172,6 +173,8 @@ module WhopSDK
 
       attr_accessor placements: ::Array[WhopSDK::AdGroup::Placement]
 
+      attr_accessor platform: WhopSDK::Models::AdGroup::platform
+
       attr_accessor purchase_value: Float
 
       attr_accessor purchases: Float
@@ -278,6 +281,7 @@ module WhopSDK
         link_clicks: Float,
         optimization_goal: WhopSDK::Models::AdGroup::optimization_goal?,
         placements: ::Array[WhopSDK::AdGroup::Placement],
+        platform: WhopSDK::Models::AdGroup::platform,
         purchase_value: Float,
         purchases: Float,
         reach: Float,
@@ -354,6 +358,7 @@ module WhopSDK
         link_clicks: Float,
         optimization_goal: WhopSDK::Models::AdGroup::optimization_goal?,
         placements: ::Array[WhopSDK::AdGroup::Placement],
+        platform: WhopSDK::Models::AdGroup::platform,
         purchase_value: Float,
         purchases: Float,
         reach: Float,
@@ -910,6 +915,17 @@ module WhopSDK
 
           def self?.values: -> ::Array[WhopSDK::Models::AdGroup::Placement::platform]
         end
+      end
+
+      type platform = :meta | :tiktok
+
+      module Platform
+        extend WhopSDK::Internal::Type::Enum
+
+        META: :meta
+        TIKTOK: :tiktok
+
+        def self?.values: -> ::Array[WhopSDK::Models::AdGroup::platform]
       end
 
       type regions =

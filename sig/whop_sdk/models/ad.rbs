@@ -41,6 +41,7 @@ module WhopSDK
         lead_value: Float,
         leads: Float,
         link_clicks: Float,
+        platform: WhopSDK::Models::Ad::platform,
         post_id: String?,
         post_source: WhopSDK::Models::Ad::post_source?,
         post_thumbnail_url: String?,
@@ -154,6 +155,8 @@ module WhopSDK
 
       attr_accessor link_clicks: Float
 
+      attr_accessor platform: WhopSDK::Models::Ad::platform
+
       attr_accessor post_id: String?
 
       attr_accessor post_source: WhopSDK::Models::Ad::post_source?
@@ -260,6 +263,7 @@ module WhopSDK
         lead_value: Float,
         leads: Float,
         link_clicks: Float,
+        platform: WhopSDK::Models::Ad::platform,
         post_id: String?,
         post_source: WhopSDK::Models::Ad::post_source?,
         post_thumbnail_url: String?,
@@ -334,6 +338,7 @@ module WhopSDK
         lead_value: Float,
         leads: Float,
         link_clicks: Float,
+        platform: WhopSDK::Models::Ad::platform,
         post_id: String?,
         post_source: WhopSDK::Models::Ad::post_source?,
         post_thumbnail_url: String?,
@@ -604,6 +609,17 @@ module WhopSDK
 
           def self?.values: -> ::Array[WhopSDK::Models::Ad::Issue::resource_type]
         end
+      end
+
+      type platform = :meta | :tiktok
+
+      module Platform
+        extend WhopSDK::Internal::Type::Enum
+
+        META: :meta
+        TIKTOK: :tiktok
+
+        def self?.values: -> ::Array[WhopSDK::Models::Ad::platform]
       end
 
       type post_source = :facebook | :instagram

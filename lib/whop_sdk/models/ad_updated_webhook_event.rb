@@ -139,6 +139,12 @@ module WhopSDK
         #   @return [Array<WhopSDK::Models::AdUpdatedWebhookEvent::Data::Issue>]
         required :issues, -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::AdUpdatedWebhookEvent::Data::Issue] }
 
+        # @!attribute platform
+        #   The ad platform this ad runs on.
+        #
+        #   @return [Symbol, WhopSDK::Models::AdUpdatedWebhookEvent::Data::Platform]
+        required :platform, enum: -> { WhopSDK::AdUpdatedWebhookEvent::Data::Platform }
+
         # @!attribute post_id
         #   The post the ad network serves for this ad, as `pageID_postID` on Meta — the
         #   post Meta created for an uploaded creative, or the post being promoted. Use it
@@ -248,7 +254,7 @@ module WhopSDK
         #   @return [WhopSDK::Models::AdUpdatedWebhookEvent::Data::Music, nil]
         optional :music, -> { WhopSDK::AdUpdatedWebhookEvent::Data::Music }, nil?: true
 
-        # @!method initialize(id:, ad_campaign:, ad_group:, call_to_action:, created_at:, creatives:, delivery_status:, descriptions:, existing_post_id:, headlines:, issues:, post_id:, post_source:, post_thumbnail_url:, primary_texts:, social_accounts:, status:, title:, updated_at:, url:, url_parameters:, lead_form: nil, lead_form_id: nil, messaging_config: nil, multi_advertiser_ads: nil, music: nil)
+        # @!method initialize(id:, ad_campaign:, ad_group:, call_to_action:, created_at:, creatives:, delivery_status:, descriptions:, existing_post_id:, headlines:, issues:, platform:, post_id:, post_source:, post_thumbnail_url:, primary_texts:, social_accounts:, status:, title:, updated_at:, url:, url_parameters:, lead_form: nil, lead_form_id: nil, messaging_config: nil, multi_advertiser_ads: nil, music: nil)
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::AdUpdatedWebhookEvent::Data} for more details.
         #
@@ -273,6 +279,8 @@ module WhopSDK
         #   @param headlines [Array<String>]
         #
         #   @param issues [Array<WhopSDK::Models::AdUpdatedWebhookEvent::Data::Issue>]
+        #
+        #   @param platform [Symbol, WhopSDK::Models::AdUpdatedWebhookEvent::Data::Platform] The ad platform this ad runs on.
         #
         #   @param post_id [String, nil] The post the ad network serves for this ad, as `pageID_postID` on Meta — the pos
         #
@@ -554,6 +562,19 @@ module WhopSDK
             # @!method self.values
             #   @return [Array<Symbol>]
           end
+        end
+
+        # The ad platform this ad runs on.
+        #
+        # @see WhopSDK::Models::AdUpdatedWebhookEvent::Data#platform
+        module Platform
+          extend WhopSDK::Internal::Type::Enum
+
+          META = :meta
+          TIKTOK = :tiktok
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
         end
 
         # Identifies the network that owns `existing_post_id`; `null` when the ad uses

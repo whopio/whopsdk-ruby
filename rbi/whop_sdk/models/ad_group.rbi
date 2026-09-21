@@ -252,6 +252,10 @@ module WhopSDK
       sig { returns(T::Array[WhopSDK::AdGroup::Placement]) }
       attr_accessor :placements
 
+      # The ad platform this ad group runs on.
+      sig { returns(WhopSDK::AdGroup::Platform::TaggedSymbol) }
+      attr_accessor :platform
+
       # USD value of pixel-attributed purchases.
       sig { returns(Float) }
       attr_accessor :purchase_value
@@ -441,6 +445,7 @@ module WhopSDK
           optimization_goal:
             T.nilable(WhopSDK::AdGroup::OptimizationGoal::OrSymbol),
           placements: T::Array[WhopSDK::AdGroup::Placement::OrHash],
+          platform: WhopSDK::AdGroup::Platform::OrSymbol,
           purchase_value: Float,
           purchases: Float,
           reach: Float,
@@ -595,6 +600,8 @@ module WhopSDK
         # The result the ad group's delivery is optimized to get the most of.
         optimization_goal:,
         placements:,
+        # The ad platform this ad group runs on.
+        platform:,
         # USD value of pixel-attributed purchases.
         purchase_value:,
         # Whop pixel-attributed purchases, last-click.
@@ -717,6 +724,7 @@ module WhopSDK
             optimization_goal:
               T.nilable(WhopSDK::AdGroup::OptimizationGoal::TaggedSymbol),
             placements: T::Array[WhopSDK::AdGroup::Placement],
+            platform: WhopSDK::AdGroup::Platform::TaggedSymbol,
             purchase_value: Float,
             purchases: Float,
             reach: Float,
@@ -1833,6 +1841,24 @@ module WhopSDK
           end
           def self.values
           end
+        end
+      end
+
+      # The ad platform this ad group runs on.
+      module Platform
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias { T.all(Symbol, WhopSDK::AdGroup::Platform) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        META = T.let(:meta, WhopSDK::AdGroup::Platform::TaggedSymbol)
+        TIKTOK = T.let(:tiktok, WhopSDK::AdGroup::Platform::TaggedSymbol)
+
+        sig do
+          override.returns(T::Array[WhopSDK::AdGroup::Platform::TaggedSymbol])
+        end
+        def self.values
         end
       end
 

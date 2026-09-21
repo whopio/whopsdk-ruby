@@ -2197,6 +2197,629 @@ client.ad_campaigns.unpause(id: "id")
 </dl>
 </details>
 
+## Ad Conversion Value Rules
+<details><summary><code>client.ad_conversion_value_rules.<a href="/lib/whop_sdk/ad_conversion_value_rules/client.rb">list</a>() -> Whop_sdk::AdConversionValueRules::Types::ListAdConversionValueRulesResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+List saved rules the caller can read. Filter by business with account_id.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.ad_conversion_value_rules.list
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**account_id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**status:** `Whop_sdk::AdConversionValueRules::Types::ListAdConversionValueRulesRequestStatus` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**platform:** `Whop_sdk::AdConversionValueRules::Types::ListAdConversionValueRulesRequestPlatform` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**resource_id:** `String` — Campaign, ad group, or ad ID. Return rules covering this item, its ancestors, or its descendants.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**first:** `Integer` — Number of results to return from the start of the range.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**after:** `String` — Return results after this cursor. Use `page_info.end_cursor` from the previous response to fetch the next page.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**last:** `Integer` — Number of results to return from the end of the range.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**before:** `String` — Return results before this cursor. Use `page_info.start_cursor` from the previous response to fetch the previous page.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**order:** `Whop_sdk::AdConversionValueRules::Types::ListAdConversionValueRulesRequestOrder` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**direction:** `Whop_sdk::AdConversionValueRules::Types::ListAdConversionValueRulesRequestDirection` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Whop_sdk::AdConversionValueRules::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.ad_conversion_value_rules.<a href="/lib/whop_sdk/ad_conversion_value_rules/client.rb">create</a>(request) -> Whop_sdk::Types::AdConversionValueRule</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Create one rule covering every selected target and event combination. Active rules cannot overlap for the same platform and event. Customer prices and Whop revenue stay unchanged.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.ad_conversion_value_rules.create(
+  account_id: "biz_xxxxxxxxxxxxxx",
+  adjustment_type: "fixed",
+  events: [{
+    event_name: "purchase"
+  }],
+  targets: [{
+    platform: "tiktok",
+    scope: "business"
+  }]
+)
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**account_id:** `String` — Business that owns the rule.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**adjustment_type:** `Whop_sdk::AdConversionValueRules::Types::CreateAdConversionValueRulesRequestAdjustmentType` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**events:** `Internal::Types::Array[Whop_sdk::AdConversionValueRules::Types::CreateAdConversionValueRulesRequestEventsItem]` — Events adjusted on every selected target. Every platform must support every selected event.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**fixed_value:** `Whop_sdk::AdConversionValueRules::Types::CreateAdConversionValueRulesRequestFixedValue` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**metadata:** `Internal::Types::Hash[String, String]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**percentage_change:** `Integer` — Signed percent change from negative 100 to 10000. The sent value cannot go below zero.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**replace_rule_ids:** `Internal::Types::Array[String]` — Exact IDs of active rules whose overlapping selections will be replaced. Other selections keep their values; remaining selections may split into separate rules. Broader rules remain as fallbacks for other items. Stale or incomplete conflict selections fail.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**status:** `Whop_sdk::AdConversionValueRules::Types::CreateAdConversionValueRulesRequestStatus` — Initial rule status. Defaults to active.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**targets:** `Internal::Types::Array[Whop_sdk::AdConversionValueRules::Types::CreateAdConversionValueRulesRequestTargetsItem]` — Targets sharing one scope. Every selected event applies to every target. At most 500 target and event combinations.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Whop_sdk::AdConversionValueRules::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.ad_conversion_value_rules.<a href="/lib/whop_sdk/ad_conversion_value_rules/client.rb">retrieve</a>(id:) -> Whop_sdk::Types::AdConversionValueRule</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.ad_conversion_value_rules.retrieve(id: "id")
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — Conversion value rule ID.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Whop_sdk::AdConversionValueRules::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.ad_conversion_value_rules.<a href="/lib/whop_sdk/ad_conversion_value_rules/client.rb">delete</a>(id:) -> Whop_sdk::AdConversionValueRules::Types::DeleteAdConversionValueRulesResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Soft-delete a rule and deactivate all its coverage. Preserve its stored settings.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.ad_conversion_value_rules.delete(id: "id")
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — Conversion value rule ID.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Whop_sdk::AdConversionValueRules::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.ad_conversion_value_rules.<a href="/lib/whop_sdk/ad_conversion_value_rules/client.rb">update</a>(id:, request) -> Whop_sdk::Types::AdConversionValueRule</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Edit a rule without changing its status. Supplied targets or events replace that selection in full. Omitted fields stay unchanged. All changes succeed or fail together.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.ad_conversion_value_rules.update(id: "id")
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — Conversion value rule ID.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**adjustment_type:** `Whop_sdk::AdConversionValueRules::Types::UpdateAdConversionValueRulesRequestAdjustmentType` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**events:** `Internal::Types::Array[Whop_sdk::AdConversionValueRules::Types::UpdateAdConversionValueRulesRequestEventsItem]` — Events adjusted on every selected target. Every platform must support every selected event.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**fixed_value:** `Whop_sdk::AdConversionValueRules::Types::UpdateAdConversionValueRulesRequestFixedValue` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**metadata:** `Internal::Types::Hash[String, String]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**percentage_change:** `Integer` — Signed percent change from negative 100 to 10000. The sent value cannot go below zero.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**replace_rule_ids:** `Internal::Types::Array[String]` — Exact IDs of active rules whose overlapping selections will be replaced. Other selections keep their values; remaining selections may split into separate rules. Broader rules remain as fallbacks for other items. Stale or incomplete conflict selections fail.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**targets:** `Internal::Types::Array[Whop_sdk::AdConversionValueRules::Types::UpdateAdConversionValueRulesRequestTargetsItem]` — Targets sharing one scope. Every selected event applies to every target. At most 500 target and event combinations.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Whop_sdk::AdConversionValueRules::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.ad_conversion_value_rules.<a href="/lib/whop_sdk/ad_conversion_value_rules/client.rb">pause</a>(id:) -> Whop_sdk::Types::AdConversionValueRule</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Pause the rule across all selected targets and events.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.ad_conversion_value_rules.pause(id: "id")
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — Conversion value rule ID.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Whop_sdk::AdConversionValueRules::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.ad_conversion_value_rules.<a href="/lib/whop_sdk/ad_conversion_value_rules/client.rb">unpause</a>(id:) -> Whop_sdk::Types::AdConversionValueRule</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Resume the rule and automatically replace overlapping selections in the same transaction. Other selections keep their values, and broader rules remain as defaults. Rules with no remaining selections are paused. Resuming an already-active rule makes no changes.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.ad_conversion_value_rules.unpause(id: "id")
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — Conversion value rule ID.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Whop_sdk::AdConversionValueRules::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Ad Groups
 <details><summary><code>client.ad_groups.<a href="/lib/whop_sdk/ad_groups/client.rb">list</a>() -> Whop_sdk::AdGroups::Types::ListAdGroupsResponse</code></summary>
 <dl>

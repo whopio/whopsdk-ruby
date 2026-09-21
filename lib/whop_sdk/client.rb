@@ -44,6 +44,11 @@ module Whop_sdk
       @ad_campaigns ||= Whop_sdk::AdCampaigns::Client.new(client: @raw_client)
     end
 
+    # @return [Whop_sdk::AdConversionValueRules::Client]
+    def ad_conversion_value_rules
+      @ad_conversion_value_rules ||= Whop_sdk::AdConversionValueRules::Client.new(client: @raw_client)
+    end
+
     # @return [Whop_sdk::AdGroups::Client]
     def ad_groups
       @ad_groups ||= Whop_sdk::AdGroups::Client.new(client: @raw_client)

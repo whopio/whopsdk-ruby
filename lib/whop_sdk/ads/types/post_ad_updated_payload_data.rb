@@ -36,6 +36,8 @@ module Whop_sdk
 
         field :music, -> { Whop_sdk::Types::AdMusic }, optional: true, nullable: false
 
+        field :platform, -> { Whop_sdk::Ads::Types::PostAdUpdatedPayloadDataPlatform }, optional: false, nullable: false
+
         field :post_id, -> { String }, optional: false, nullable: true
 
         field :post_source, -> { Whop_sdk::Ads::Types::PostAdUpdatedPayloadDataPostSource }, optional: false, nullable: true

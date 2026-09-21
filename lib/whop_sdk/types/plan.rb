@@ -39,6 +39,8 @@ module Whop_sdk
 
       field :initial_price, -> { Integer }, optional: false, nullable: false
 
+      field :initial_price_due, -> { Whop_sdk::Types::Money }, optional: false, nullable: false
+
       field :internal_notes, -> { String }, optional: false, nullable: true
 
       field :invoice, -> { Internal::Types::Hash[String, Object] }, optional: false, nullable: true

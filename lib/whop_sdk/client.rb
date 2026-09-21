@@ -204,11 +204,6 @@ module Whop_sdk
       @economic_intelligence ||= Whop_sdk::EconomicIntelligence::Client.new(client: @raw_client)
     end
 
-    # @return [Whop_sdk::Entries::Client]
-    def entries
-      @entries ||= Whop_sdk::Entries::Client.new(client: @raw_client)
-    end
-
     # @return [Whop_sdk::Events::Client]
     def events
       @events ||= Whop_sdk::Events::Client.new(client: @raw_client)
@@ -447,6 +442,11 @@ module Whop_sdk
     # @return [Whop_sdk::Verifications::Client]
     def verifications
       @verifications ||= Whop_sdk::Verifications::Client.new(client: @raw_client)
+    end
+
+    # @return [Whop_sdk::WaitlistEntries::Client]
+    def waitlist_entries
+      @waitlist_entries ||= Whop_sdk::WaitlistEntries::Client.new(client: @raw_client)
     end
 
     # @return [Whop_sdk::Webhooks::Client]

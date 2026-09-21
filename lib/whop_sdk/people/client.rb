@@ -27,6 +27,9 @@ module Whop_sdk
       # @option params [Whop_sdk::People::Types::ListPeopleRequestAttributionModel, nil] :attribution_model
       # @option params [String, nil] :event_name
       # @option params [String, nil] :custom_event
+      # @option params [Integer, nil] :event_within_days
+      # @option params [String, nil] :from
+      # @option params [String, nil] :to
       # @option params [String, nil] :event_from
       # @option params [String, nil] :event_to
       # @option params [String, nil] :audience_id
@@ -42,6 +45,22 @@ module Whop_sdk
       # @option params [String, nil] :first_seen_before
       # @option params [String, nil] :last_seen_after
       # @option params [String, nil] :last_seen_before
+      # @option params [Integer, nil] :ltv_gt
+      # @option params [Integer, nil] :ltv_gte
+      # @option params [Integer, nil] :ltv_lt
+      # @option params [Integer, nil] :ltv_lte
+      # @option params [Integer, nil] :aov_gt
+      # @option params [Integer, nil] :aov_gte
+      # @option params [Integer, nil] :aov_lt
+      # @option params [Integer, nil] :aov_lte
+      # @option params [Integer, nil] :purchase_count_gt
+      # @option params [Integer, nil] :purchase_count_gte
+      # @option params [Integer, nil] :purchase_count_lt
+      # @option params [Integer, nil] :purchase_count_lte
+      # @option params [Integer, nil] :event_count_gt
+      # @option params [Integer, nil] :event_count_gte
+      # @option params [Integer, nil] :event_count_lt
+      # @option params [Integer, nil] :event_count_lte
       # @option params [Integer, nil] :first
       # @option params [String, nil] :after
       # @option params [String, nil] :before
@@ -64,6 +83,9 @@ module Whop_sdk
         query_params["attribution_model"] = params[:attribution_model] if params.key?(:attribution_model)
         query_params["event_name"] = params[:event_name] if params.key?(:event_name)
         query_params["custom_event"] = params[:custom_event] if params.key?(:custom_event)
+        query_params["event_within_days"] = params[:event_within_days] if params.key?(:event_within_days)
+        query_params["from"] = params[:from] if params.key?(:from)
+        query_params["to"] = params[:to] if params.key?(:to)
         query_params["event_from"] = params[:event_from] if params.key?(:event_from)
         query_params["event_to"] = params[:event_to] if params.key?(:event_to)
         query_params["audience_id"] = params[:audience_id] if params.key?(:audience_id)
@@ -79,6 +101,22 @@ module Whop_sdk
         query_params["first_seen_before"] = params[:first_seen_before] if params.key?(:first_seen_before)
         query_params["last_seen_after"] = params[:last_seen_after] if params.key?(:last_seen_after)
         query_params["last_seen_before"] = params[:last_seen_before] if params.key?(:last_seen_before)
+        query_params["ltv_gt"] = params[:ltv_gt] if params.key?(:ltv_gt)
+        query_params["ltv_gte"] = params[:ltv_gte] if params.key?(:ltv_gte)
+        query_params["ltv_lt"] = params[:ltv_lt] if params.key?(:ltv_lt)
+        query_params["ltv_lte"] = params[:ltv_lte] if params.key?(:ltv_lte)
+        query_params["aov_gt"] = params[:aov_gt] if params.key?(:aov_gt)
+        query_params["aov_gte"] = params[:aov_gte] if params.key?(:aov_gte)
+        query_params["aov_lt"] = params[:aov_lt] if params.key?(:aov_lt)
+        query_params["aov_lte"] = params[:aov_lte] if params.key?(:aov_lte)
+        query_params["purchase_count_gt"] = params[:purchase_count_gt] if params.key?(:purchase_count_gt)
+        query_params["purchase_count_gte"] = params[:purchase_count_gte] if params.key?(:purchase_count_gte)
+        query_params["purchase_count_lt"] = params[:purchase_count_lt] if params.key?(:purchase_count_lt)
+        query_params["purchase_count_lte"] = params[:purchase_count_lte] if params.key?(:purchase_count_lte)
+        query_params["event_count_gt"] = params[:event_count_gt] if params.key?(:event_count_gt)
+        query_params["event_count_gte"] = params[:event_count_gte] if params.key?(:event_count_gte)
+        query_params["event_count_lt"] = params[:event_count_lt] if params.key?(:event_count_lt)
+        query_params["event_count_lte"] = params[:event_count_lte] if params.key?(:event_count_lte)
         query_params["first"] = params[:first] if params.key?(:first)
         query_params["after"] = params[:after] if params.key?(:after)
         query_params["before"] = params[:before] if params.key?(:before)

@@ -90,6 +90,33 @@ module Whop_sdk
       # @option params [String, nil] :ad_ids
       # @option params [Whop_sdk::Stats::Types::RetrieveStatsRequestSnapshotWindow, nil] :snapshot_window
       # @option params [String, nil] :event
+      # @option params [Boolean, nil] :contactable
+      # @option params [Boolean, nil] :has_purchased
+      # @option params [String, nil] :first_seen_after
+      # @option params [String, nil] :first_seen_before
+      # @option params [String, nil] :last_seen_after
+      # @option params [String, nil] :last_seen_before
+      # @option params [Integer, nil] :first_seen_within_days
+      # @option params [Integer, nil] :last_seen_within_days
+      # @option params [Boolean, nil] :known
+      # @option params [Boolean, nil] :has_email
+      # @option params [Boolean, nil] :has_phone
+      # @option params [Integer, nil] :ltv_gt
+      # @option params [Integer, nil] :ltv_gte
+      # @option params [Integer, nil] :ltv_lt
+      # @option params [Integer, nil] :ltv_lte
+      # @option params [Integer, nil] :aov_gt
+      # @option params [Integer, nil] :aov_gte
+      # @option params [Integer, nil] :aov_lt
+      # @option params [Integer, nil] :aov_lte
+      # @option params [Integer, nil] :purchase_count_gt
+      # @option params [Integer, nil] :purchase_count_gte
+      # @option params [Integer, nil] :purchase_count_lt
+      # @option params [Integer, nil] :purchase_count_lte
+      # @option params [Integer, nil] :event_count_gt
+      # @option params [Integer, nil] :event_count_gte
+      # @option params [Integer, nil] :event_count_lt
+      # @option params [Integer, nil] :event_count_lte
       #
       # @example
       #   client.stats.retrieve(
@@ -139,6 +166,33 @@ module Whop_sdk
         query_params["ad_ids"] = params[:ad_ids] if params.key?(:ad_ids)
         query_params["snapshot_window"] = params[:snapshot_window] if params.key?(:snapshot_window)
         query_params["event"] = params[:event] if params.key?(:event)
+        query_params["contactable"] = params[:contactable] if params.key?(:contactable)
+        query_params["has_purchased"] = params[:has_purchased] if params.key?(:has_purchased)
+        query_params["first_seen_after"] = params[:first_seen_after] if params.key?(:first_seen_after)
+        query_params["first_seen_before"] = params[:first_seen_before] if params.key?(:first_seen_before)
+        query_params["last_seen_after"] = params[:last_seen_after] if params.key?(:last_seen_after)
+        query_params["last_seen_before"] = params[:last_seen_before] if params.key?(:last_seen_before)
+        query_params["first_seen_within_days"] = params[:first_seen_within_days] if params.key?(:first_seen_within_days)
+        query_params["last_seen_within_days"] = params[:last_seen_within_days] if params.key?(:last_seen_within_days)
+        query_params["known"] = params[:known] if params.key?(:known)
+        query_params["has_email"] = params[:has_email] if params.key?(:has_email)
+        query_params["has_phone"] = params[:has_phone] if params.key?(:has_phone)
+        query_params["ltv_gt"] = params[:ltv_gt] if params.key?(:ltv_gt)
+        query_params["ltv_gte"] = params[:ltv_gte] if params.key?(:ltv_gte)
+        query_params["ltv_lt"] = params[:ltv_lt] if params.key?(:ltv_lt)
+        query_params["ltv_lte"] = params[:ltv_lte] if params.key?(:ltv_lte)
+        query_params["aov_gt"] = params[:aov_gt] if params.key?(:aov_gt)
+        query_params["aov_gte"] = params[:aov_gte] if params.key?(:aov_gte)
+        query_params["aov_lt"] = params[:aov_lt] if params.key?(:aov_lt)
+        query_params["aov_lte"] = params[:aov_lte] if params.key?(:aov_lte)
+        query_params["purchase_count_gt"] = params[:purchase_count_gt] if params.key?(:purchase_count_gt)
+        query_params["purchase_count_gte"] = params[:purchase_count_gte] if params.key?(:purchase_count_gte)
+        query_params["purchase_count_lt"] = params[:purchase_count_lt] if params.key?(:purchase_count_lt)
+        query_params["purchase_count_lte"] = params[:purchase_count_lte] if params.key?(:purchase_count_lte)
+        query_params["event_count_gt"] = params[:event_count_gt] if params.key?(:event_count_gt)
+        query_params["event_count_gte"] = params[:event_count_gte] if params.key?(:event_count_gte)
+        query_params["event_count_lt"] = params[:event_count_lt] if params.key?(:event_count_lt)
+        query_params["event_count_lte"] = params[:event_count_lte] if params.key?(:event_count_lte)
 
         request = Whop_sdk::Internal::JSON::Request.new(
           base_url: request_options[:base_url],

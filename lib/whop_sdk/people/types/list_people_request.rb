@@ -16,6 +16,12 @@ module Whop_sdk
 
         field :custom_event, -> { String }, optional: true, nullable: false
 
+        field :event_within_days, -> { Integer }, optional: true, nullable: false
+
+        field :from, -> { String }, optional: true, nullable: false
+
+        field :to, -> { String }, optional: true, nullable: false
+
         field :event_from, -> { String }, optional: true, nullable: false
 
         field :event_to, -> { String }, optional: true, nullable: false
@@ -45,6 +51,38 @@ module Whop_sdk
         field :last_seen_after, -> { String }, optional: true, nullable: false
 
         field :last_seen_before, -> { String }, optional: true, nullable: false
+
+        field :ltv_gt, -> { Integer }, optional: true, nullable: false
+
+        field :ltv_gte, -> { Integer }, optional: true, nullable: false
+
+        field :ltv_lt, -> { Integer }, optional: true, nullable: false
+
+        field :ltv_lte, -> { Integer }, optional: true, nullable: false
+
+        field :aov_gt, -> { Integer }, optional: true, nullable: false
+
+        field :aov_gte, -> { Integer }, optional: true, nullable: false
+
+        field :aov_lt, -> { Integer }, optional: true, nullable: false
+
+        field :aov_lte, -> { Integer }, optional: true, nullable: false
+
+        field :purchase_count_gt, -> { Integer }, optional: true, nullable: false
+
+        field :purchase_count_gte, -> { Integer }, optional: true, nullable: false
+
+        field :purchase_count_lt, -> { Integer }, optional: true, nullable: false
+
+        field :purchase_count_lte, -> { Integer }, optional: true, nullable: false
+
+        field :event_count_gt, -> { Integer }, optional: true, nullable: false
+
+        field :event_count_gte, -> { Integer }, optional: true, nullable: false
+
+        field :event_count_lt, -> { Integer }, optional: true, nullable: false
+
+        field :event_count_lte, -> { Integer }, optional: true, nullable: false
 
         field :first, -> { Integer }, optional: true, nullable: false
 

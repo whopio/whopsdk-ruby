@@ -73,6 +73,60 @@ module Whop_sdk
         field :snapshot_window, -> { Whop_sdk::Stats::Types::RetrieveStatsRequestSnapshotWindow }, optional: true, nullable: false
 
         field :event, -> { String }, optional: true, nullable: false
+
+        field :contactable, -> { Internal::Types::Boolean }, optional: true, nullable: false
+
+        field :has_purchased, -> { Internal::Types::Boolean }, optional: true, nullable: false
+
+        field :first_seen_after, -> { String }, optional: true, nullable: false
+
+        field :first_seen_before, -> { String }, optional: true, nullable: false
+
+        field :last_seen_after, -> { String }, optional: true, nullable: false
+
+        field :last_seen_before, -> { String }, optional: true, nullable: false
+
+        field :first_seen_within_days, -> { Integer }, optional: true, nullable: false
+
+        field :last_seen_within_days, -> { Integer }, optional: true, nullable: false
+
+        field :known, -> { Internal::Types::Boolean }, optional: true, nullable: false
+
+        field :has_email, -> { Internal::Types::Boolean }, optional: true, nullable: false
+
+        field :has_phone, -> { Internal::Types::Boolean }, optional: true, nullable: false
+
+        field :ltv_gt, -> { Integer }, optional: true, nullable: false
+
+        field :ltv_gte, -> { Integer }, optional: true, nullable: false
+
+        field :ltv_lt, -> { Integer }, optional: true, nullable: false
+
+        field :ltv_lte, -> { Integer }, optional: true, nullable: false
+
+        field :aov_gt, -> { Integer }, optional: true, nullable: false
+
+        field :aov_gte, -> { Integer }, optional: true, nullable: false
+
+        field :aov_lt, -> { Integer }, optional: true, nullable: false
+
+        field :aov_lte, -> { Integer }, optional: true, nullable: false
+
+        field :purchase_count_gt, -> { Integer }, optional: true, nullable: false
+
+        field :purchase_count_gte, -> { Integer }, optional: true, nullable: false
+
+        field :purchase_count_lt, -> { Integer }, optional: true, nullable: false
+
+        field :purchase_count_lte, -> { Integer }, optional: true, nullable: false
+
+        field :event_count_gt, -> { Integer }, optional: true, nullable: false
+
+        field :event_count_gte, -> { Integer }, optional: true, nullable: false
+
+        field :event_count_lt, -> { Integer }, optional: true, nullable: false
+
+        field :event_count_lte, -> { Integer }, optional: true, nullable: false
       end
     end
   end

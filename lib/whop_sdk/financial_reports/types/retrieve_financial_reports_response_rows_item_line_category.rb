@@ -135,6 +135,7 @@ module Whop_sdk
         ONCHAIN_WITHDRAWAL = "onchain_withdrawal"
         ONCHAIN_WITHDRAWAL_OFFSET = "onchain_withdrawal_offset"
         ORCHESTRATION_PERCENTAGE_FEE = "orchestration_percentage_fee"
+        PARTNER_GRANT_REWARD = "partner_grant_reward"
         PASSTHROUGH_GMV = "passthrough_gmv"
         PASSTHROUGH_GMV_OFFSET = "passthrough_gmv_offset"
         PAYMENT_DISPUTE = "payment_dispute"

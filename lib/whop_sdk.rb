@@ -1392,6 +1392,7 @@ require_relative "whop_sdk/payments/types/create_payments_request_plan_product_v
 require_relative "whop_sdk/payments/types/create_payments_request_plan_product"
 require_relative "whop_sdk/payments/types/create_payments_request_plan_visibility"
 require_relative "whop_sdk/payments/types/create_payments_request_plan"
+require_relative "whop_sdk/payments/types/create_payments_request_shipping_address"
 require_relative "whop_sdk/payments/types/list_fees_payments_response_page_info"
 require_relative "whop_sdk/types/payment_fee_origin"
 require_relative "whop_sdk/types/payment_fee_type"

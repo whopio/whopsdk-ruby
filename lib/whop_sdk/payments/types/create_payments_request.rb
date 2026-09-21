@@ -30,6 +30,8 @@ module Whop_sdk
 
         field :return_url, -> { String }, optional: true, nullable: false
 
+        field :shipping_address, -> { Whop_sdk::Payments::Types::CreatePaymentsRequestShippingAddress }, optional: true, nullable: false
+
         field :statement_descriptor, -> { String }, optional: true, nullable: false
       end
     end

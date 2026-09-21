@@ -366,19 +366,11 @@ module WhopSDK
 
   EntryApprovedWebhookEvent = WhopSDK::Models::EntryApprovedWebhookEvent
 
-  EntryApproveParams = WhopSDK::Models::EntryApproveParams
-
   EntryCreatedWebhookEvent = WhopSDK::Models::EntryCreatedWebhookEvent
 
   EntryDeletedWebhookEvent = WhopSDK::Models::EntryDeletedWebhookEvent
 
   EntryDeniedWebhookEvent = WhopSDK::Models::EntryDeniedWebhookEvent
-
-  EntryDenyParams = WhopSDK::Models::EntryDenyParams
-
-  EntryListParams = WhopSDK::Models::EntryListParams
-
-  EntryRetrieveParams = WhopSDK::Models::EntryRetrieveParams
 
   EntryStatus = WhopSDK::Models::EntryStatus
 

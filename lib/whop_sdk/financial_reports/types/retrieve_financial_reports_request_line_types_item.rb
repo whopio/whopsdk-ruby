@@ -81,6 +81,7 @@ module Whop_sdk
         ONCHAIN_WALLET_TRANSFER_OUTGOING = "onchain_wallet_transfer_outgoing"
         ONCHAIN_WITHDRAWAL = "onchain_withdrawal"
         ORCHESTRATION_PERCENTAGE_FEE = "orchestration_percentage_fee"
+        PARTNER_GRANT_REWARD = "partner_grant_reward"
         PASSTHROUGH_GMV = "passthrough_gmv"
         PAYMENT_DISPUTE = "payment_dispute"
         PAYMENT_DISPUTE_ADJUSTMENT = "payment_dispute_adjustment"

@@ -13,6 +13,7 @@ module Whop_sdk
             TRANSFER = "transfer"
             CARD_INTERCHANGE = "card_interchange"
             ONBOARDING_REWARD = "onboarding_reward"
+            PARTNER_REWARD = "partner_reward"
           end
         end
       end

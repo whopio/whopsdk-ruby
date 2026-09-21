@@ -5,14 +5,14 @@ module Whop_sdk
     module Businesses
       module Earnings
         module Types
-          class ListEarningsResponseDataItemResourceBusinessID < Internal::Types::Model
+          class ListEarningsResponseDataItemResourceSlug < Internal::Types::Model
             field :business_id, -> { String }, optional: false, nullable: false
 
             field :created_at, -> { String }, optional: false, nullable: false
 
             field :id, -> { String }, optional: false, nullable: true
 
-            field :object, -> { Whop_sdk::Partners::Businesses::Earnings::Types::ListEarningsResponseDataItemResourceBusinessIDObject }, optional: false, nullable: false
+            field :object, -> { Whop_sdk::Partners::Businesses::Earnings::Types::ListEarningsResponseDataItemResourceSlugObject }, optional: false, nullable: false
 
             field :slug, -> { String }, optional: false, nullable: true
           end

@@ -5,10 +5,10 @@ module Whop_sdk
     module Businesses
       module Earnings
         module Types
-          module ListEarningsResponseDataItemResourceBusinessIDObject
+          module ListEarningsResponseDataItemResourceCreatedAtObject
             extend Whop_sdk::Internal::Types::Enum
 
-            ONBOARDING_REWARD = "onboarding_reward"
+            PARTNER_REWARD = "partner_reward"
           end
         end
       end

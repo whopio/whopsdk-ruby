@@ -15,9 +15,9 @@ module Whop_sdk
 
       field :id, -> { String }, optional: false, nullable: false
 
-      field :merchant_category_code, -> { String }, optional: false, nullable: false
+      field :merchant_category_code, -> { String }, optional: false, nullable: true
 
-      field :merchant_name, -> { String }, optional: false, nullable: false
+      field :merchant_name, -> { String }, optional: false, nullable: true
 
       field :rate_bps, -> { Integer }, optional: false, nullable: false
 

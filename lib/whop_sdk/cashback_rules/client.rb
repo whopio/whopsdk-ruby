@@ -11,9 +11,10 @@ module Whop_sdk
       end
 
       # Creates a future-dated card cashback rule funded by the authenticated platform account. Requires
-      # payout:transfer_funds. Both the raw merchant name and four-digit MCC are required. Optionally limit the rule to
-      # one direct connected account. The funding account is derived from the credential and cannot be supplied.
-      # Creation does not transfer funds. Supports Idempotency-Key for safe retries.
+      # payout:transfer_funds. Merchant name and MCC are optional. Every supplied merchant filter must match. When both
+      # are omitted or null, scoped_account_id is required and all eligible transactions for that account match.
+      # Optionally limit the rule to one direct connected account. The funding account is derived from the credential
+      # and cannot be supplied. Creation does not transfer funds. Supports Idempotency-Key for safe retries.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::CashbackRules::Types::CreateCashbackRulesRequest]
@@ -25,8 +26,6 @@ module Whop_sdk
       #
       # @example
       #   client.cashback_rules.create(
-      #     merchant_category_code: "5734",
-      #     merchant_name: "ACME SOFTWARE",
       #     rate_bps: 500,
       #     starts_at: "2026-01-01T12:00:00Z"
       #   )

@@ -5,8 +5,8 @@ module Whop_sdk
     module Preferences
       module Types
         # How the account pays for Whop Ads spend. Requires `primary`; `backup` is optional and covers the charge when
-        # the primary fails. Configuring a `card` requires a user token; account API keys can configure only
-        # `platform_balance` sources.
+        # the primary fails. Requires the `ad_campaign:create` scope on your API key. Configuring a `card` requires a
+        # user token; account API keys can configure only `platform_balance` sources.
         class UpdatePreferencesRequestAdsPaymentMethods < Internal::Types::Model
           field :backup, -> { Whop_sdk::Accounts::Preferences::Types::UpdatePreferencesRequestAdsPaymentMethodsBackup }, optional: true, nullable: false
 

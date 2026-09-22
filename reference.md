@@ -38583,6 +38583,17 @@ client.accounts.preferences.retrieve(account_id: "account_id")
 <dd>
 
 Updates the account's preferences. Each top-level key present in the body is replaced as a whole; omitted keys are left untouched.
+
+Required scopes depend on the preferences being updated:
+
+| Preferences | Required scope |
+| --- | --- |
+| `ads_payment_methods`, `ads_reporting_currency`, `ads_scheduling_timezone`, `ads_triple_whale_integration`, `ads_certifications` | `ad_campaign:create` |
+| `cards_auto_top_up`, `cards_notifications` | `payout:account:update` |
+| `dispute_fighter_enabled` | `payment:dispute` |
+| `economic_intelligence` | `company:update` |
+
+When updating preferences from multiple rows, all corresponding scopes are required for the account.
 </dd>
 </dl>
 </dd>
@@ -38620,7 +38631,7 @@ client.accounts.preferences.update(account_id: "account_id")
 <dl>
 <dd>
 
-**ads_certifications:** `Internal::Types::Hash[String, Whop_sdk::Accounts::Preferences::Types::UpdatePreferencesRequestAdsCertificationsValue]` — Opens an advertising certification application. Keyed by certification type (`prescription_drug_ads`); set the entry's `status` to `pending_information` to start, then answer the requested fields via `PATCH /verifications/{id}`. Only one application per type can be open at a time; every other status is set by Whop's review.
+**ads_certifications:** `Internal::Types::Hash[String, Whop_sdk::Accounts::Preferences::Types::UpdatePreferencesRequestAdsCertificationsValue]` — Opens an advertising certification application. Keyed by certification type (`prescription_drug_ads`); set the entry's `status` to `pending_information` to start, then answer the requested fields via `PATCH /verifications/{id}`. Only one application per type can be open at a time; every other status is set by Whop's review. Requires the `ad_campaign:create` scope on your API key.
     
 </dd>
 </dl>
@@ -38628,7 +38639,7 @@ client.accounts.preferences.update(account_id: "account_id")
 <dl>
 <dd>
 
-**ads_payment_methods:** `Whop_sdk::Accounts::Preferences::Types::UpdatePreferencesRequestAdsPaymentMethods` — How the account pays for Whop Ads spend. Requires `primary`; `backup` is optional and covers the charge when the primary fails. Configuring a `card` requires a user token; account API keys can configure only `platform_balance` sources.
+**ads_payment_methods:** `Whop_sdk::Accounts::Preferences::Types::UpdatePreferencesRequestAdsPaymentMethods` — How the account pays for Whop Ads spend. Requires `primary`; `backup` is optional and covers the charge when the primary fails. Requires the `ad_campaign:create` scope on your API key. Configuring a `card` requires a user token; account API keys can configure only `platform_balance` sources.
     
 </dd>
 </dl>
@@ -38636,7 +38647,7 @@ client.accounts.preferences.update(account_id: "account_id")
 <dl>
 <dd>
 
-**ads_reporting_currency:** `String` — Lowercase ISO currency code, such as `usd` or `eur`, used to display ad spend and stats. Defaults to `usd`.
+**ads_reporting_currency:** `String` — Lowercase ISO currency code, such as `usd` or `eur`, used to display ad spend and stats. Defaults to `usd`. Requires the `ad_campaign:create` scope on your API key.
     
 </dd>
 </dl>
@@ -38644,7 +38655,7 @@ client.accounts.preferences.update(account_id: "account_id")
 <dl>
 <dd>
 
-**ads_scheduling_timezone:** `String` — IANA timezone (e.g. `America/New_York`) used to interpret campaign start/end times and to bucket reports. Cannot be cleared once set — pass a new value to change it.
+**ads_scheduling_timezone:** `String` — IANA timezone (e.g. `America/New_York`) used to interpret campaign start/end times and to bucket reports. Cannot be cleared once set — pass a new value to change it. Requires the `ad_campaign:create` scope on your API key.
     
 </dd>
 </dl>
@@ -38652,7 +38663,7 @@ client.accounts.preferences.update(account_id: "account_id")
 <dl>
 <dd>
 
-**ads_triple_whale_integration:** `Whop_sdk::Accounts::Preferences::Types::UpdatePreferencesRequestAdsTripleWhaleIntegration` — Connects or disconnects the Triple Whale integration. Requires the `ad_campaign:create` scope. Connecting requires a shop domain to report spend against — either an explicit `shop_domain` (required for any merchant without a connected Shopify store, e.g. WooCommerce, a custom checkout, or a white-label platform's merchant) or a Shopify store connected on the Fulfillment page.
+**ads_triple_whale_integration:** `Whop_sdk::Accounts::Preferences::Types::UpdatePreferencesRequestAdsTripleWhaleIntegration` — Connects or disconnects the Triple Whale integration. Requires the `ad_campaign:create` scope on your API key. Connecting requires a shop domain to report spend against — either an explicit `shop_domain` (required for any merchant without a connected Shopify store, e.g. WooCommerce, a custom checkout, or a white-label platform's merchant) or a Shopify store connected on the Fulfillment page.
     
 </dd>
 </dl>
@@ -38660,7 +38671,7 @@ client.accounts.preferences.update(account_id: "account_id")
 <dl>
 <dd>
 
-**cards_auto_top_up:** `Internal::Types::Boolean` — Whether incoming funds are automatically moved to the account's cards balance. Requires a cards balance on the account.
+**cards_auto_top_up:** `Internal::Types::Boolean` — Whether incoming funds are automatically moved to the account's cards balance. Requires a cards balance on the account and the `payout:account:update` scope on your API key.
     
 </dd>
 </dl>
@@ -38668,7 +38679,7 @@ client.accounts.preferences.update(account_id: "account_id")
 <dl>
 <dd>
 
-**cards_notifications:** `Internal::Types::Boolean` — Whether Whop Card notifications reach this account's team. Set it to `false` to stop every card email and push notification for the account — application status, verification and action-required alerts, card-ready alerts, declines, large charges, and cashback summaries. Cardholder onboarding invitations still send, because they carry the only link an invited cardholder can onboard with. Requesting a card is rejected while notifications are off, since the request reaches nobody. Cards on personal accounts are unaffected. Requires a cards balance on the account.
+**cards_notifications:** `Internal::Types::Boolean` — Whether Whop Card notifications reach this account's team. Set it to `false` to stop every card email and push notification for the account — application status, verification and action-required alerts, card-ready alerts, declines, large charges, and cashback summaries. Cardholder onboarding invitations still send, because they carry the only link an invited cardholder can onboard with. Requesting a card is rejected while notifications are off, since the request reaches nobody. Cards on personal accounts are unaffected. Requires a cards balance on the account and the `payout:account:update` scope on your API key.
     
 </dd>
 </dl>
@@ -38676,7 +38687,7 @@ client.accounts.preferences.update(account_id: "account_id")
 <dl>
 <dd>
 
-**dispute_fighter_enabled:** `Internal::Types::Boolean` — Whether Whop assembles and files the evidence response when this account's payments are disputed. Off by default; enabling it also opts the account into the success fee charged only on disputes it wins.
+**dispute_fighter_enabled:** `Internal::Types::Boolean` — Whether Whop assembles and files the evidence response when this account's payments are disputed. Off by default; enabling it also opts the account into the success fee charged only on disputes it wins. Requires the `payment:dispute` scope on your API key.
     
 </dd>
 </dl>
@@ -38684,7 +38695,7 @@ client.accounts.preferences.update(account_id: "account_id")
 <dl>
 <dd>
 
-**economic_intelligence:** `Internal::Types::Boolean` — Whether economic intelligence is enabled for the account. Requires company:update permission and an existing ledger account.
+**economic_intelligence:** `Internal::Types::Boolean` — Whether economic intelligence is enabled for the account. Requires an existing ledger account and the `company:update` scope on your API key.
     
 </dd>
 </dl>

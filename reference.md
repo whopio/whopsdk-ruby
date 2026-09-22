@@ -1163,6 +1163,68 @@ client.accounts.form_company(
 </dl>
 </details>
 
+<details><summary><code>client.accounts.<a href="/lib/whop_sdk/accounts/client.rb">retry_ads_payment</a>(id:) -> Whop_sdk::Accounts::Types::RetryAdsPaymentAccountsResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Queues a background retry of the account's failed ads payments using its configured ads payment methods. A queued response does not mean payment succeeded. Check the account's ad campaigns for the outcome.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.accounts.retry_ads_payment(id: "id")
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — The account ID.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Whop_sdk::Accounts::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.accounts.<a href="/lib/whop_sdk/accounts/client.rb">suspend</a>(id:) -> Whop_sdk::Types::Account</code></summary>
 <dl>
 <dd>

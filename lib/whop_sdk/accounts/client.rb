@@ -333,6 +333,44 @@ module Whop_sdk
         end
       end
 
+      # Queues a background retry of the account's failed ads payments using its configured ads payment methods. A
+      # queued response does not mean payment succeeded. Check the account's ad campaigns for the outcome.
+      #
+      # @param request_options [Hash]
+      # @param params [Hash]
+      # @option request_options [String] :base_url
+      # @option request_options [Hash{String => Object}] :additional_headers
+      # @option request_options [Hash{String => Object}] :additional_query_parameters
+      # @option request_options [Hash{String => Object}] :additional_body_parameters
+      # @option request_options [Integer] :timeout_in_seconds
+      # @option params [String] :id
+      #
+      # @example
+      #   client.accounts.retry_ads_payment(id: "id")
+      #
+      # @return [Whop_sdk::Accounts::Types::RetryAdsPaymentAccountsResponse]
+      def retry_ads_payment(request_options: {}, **params)
+        params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
+        request = Whop_sdk::Internal::JSON::Request.new(
+          base_url: request_options[:base_url],
+          method: "POST",
+          path: "accounts/#{URI.encode_uri_component(params[:id].to_s)}/retry_ads_payment",
+          request_options: request_options
+        )
+        begin
+          response = @client.send(request)
+        rescue Net::HTTPRequestTimeout
+          raise Whop_sdk::Errors::TimeoutError
+        end
+        code = response.code.to_i
+        if code.between?(200, 299)
+          Whop_sdk::Accounts::Types::RetryAdsPaymentAccountsResponse.load(response.body)
+        else
+          error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
+          raise error_class.new(response.body, code: code)
+        end
+      end
+
       # Suspends a connected account directly owned by the authenticated platform account. This cannot suspend the
       # platform account itself or an account owned by another platform.
       #

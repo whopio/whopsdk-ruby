@@ -46,7 +46,13 @@ module Whop_sdk
       end
 
       # Retrieves a metric as a time series of points for an account or user over a time range. The `market_prices`
-      # metric is public and requires no authentication.
+      # metric is public and requires no authentication. The `funnel` metric measures 2 to 10 ordered events per person.
+      # Its first matching event inside from/to anchors the cohort, breakdown and conversion window; later entries do
+      # not restart it. Intervening events are allowed, and conversions may occur after to. Funnel values are final
+      # conversion percentages; steps include counts and cumulative conversion percentages. Experiment funnels use
+      # experiment.exposure as step 1 and breakdown_by=variant. See funnel step properties for current availability.
+      # Pass steps using bracket parameters such as
+      # steps[1][event]=pixel.page&steps[1][page]=/pricing*&steps[2][event]=payment.completed.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -90,6 +96,11 @@ module Whop_sdk
       # @option params [String, nil] :ad_ids
       # @option params [Whop_sdk::Stats::Types::RetrieveStatsRequestSnapshotWindow, nil] :snapshot_window
       # @option params [String, nil] :event
+      # @option params [String, nil] :conversion_window
+      # @option params [Boolean, nil] :mature_only
+      # @option params [Whop_sdk::Types::RetrieveStatsRequestSteps, nil] :steps
+      # @option params [String, nil] :compare_to
+      # @option params [Integer, nil] :confidence_level
       # @option params [Boolean, nil] :contactable
       # @option params [Boolean, nil] :has_purchased
       # @option params [String, nil] :first_seen_after
@@ -166,6 +177,11 @@ module Whop_sdk
         query_params["ad_ids"] = params[:ad_ids] if params.key?(:ad_ids)
         query_params["snapshot_window"] = params[:snapshot_window] if params.key?(:snapshot_window)
         query_params["event"] = params[:event] if params.key?(:event)
+        query_params["conversion_window"] = params[:conversion_window] if params.key?(:conversion_window)
+        query_params["mature_only"] = params[:mature_only] if params.key?(:mature_only)
+        query_params["steps"] = params[:steps] if params.key?(:steps)
+        query_params["compare_to"] = params[:compare_to] if params.key?(:compare_to)
+        query_params["confidence_level"] = params[:confidence_level] if params.key?(:confidence_level)
         query_params["contactable"] = params[:contactable] if params.key?(:contactable)
         query_params["has_purchased"] = params[:has_purchased] if params.key?(:has_purchased)
         query_params["first_seen_after"] = params[:first_seen_after] if params.key?(:first_seen_after)

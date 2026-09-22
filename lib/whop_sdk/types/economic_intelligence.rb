@@ -13,6 +13,8 @@ module Whop_sdk
 
       field :executed_at, -> { String }, optional: false, nullable: true
 
+      field :expected_tool_calls, -> { Internal::Types::Array[String] }, optional: false, nullable: true
+
       field :id, -> { String }, optional: false, nullable: false
 
       field :input, -> { String }, optional: false, nullable: true

@@ -81,6 +81,8 @@ module Whop_sdk
 
       field :return_policy, -> { Whop_sdk::Types::File }, optional: false, nullable: true
 
+      field :rewards, -> { Internal::Types::Array[Whop_sdk::Types::AccountPartnerReward] }, optional: true, nullable: false
+
       field :route, -> { String }, optional: false, nullable: false
 
       field :send_customer_emails, -> { Internal::Types::Boolean }, optional: false, nullable: false

@@ -111,7 +111,9 @@ module WhopSDK
         required :created_at, String
 
         # @!attribute delivery_status
-        #   Whether the campaign's ads are delivering right now, and if not, why. When
+        #   Whether the campaign's ads are delivering right now, and if not, why. Account
+        #   billing failures set payment_failed without changing the configured status.
+        #   Successful payment retry clears that block and recalculates delivery. When
         #   several states apply at once, the highest-precedence one is returned.
         #
         #   @return [Symbol, WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::DeliveryStatus]
@@ -151,7 +153,8 @@ module WhopSDK
                  -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::SpecialAdCategory] }
 
         # @!attribute status
-        #   The lifecycle status of the ad campaign.
+        #   The configured lifecycle status of the ad campaign. Billing failures preserve
+        #   active or paused here and set delivery_status to payment_failed.
         #
         #   @return [Symbol, WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::Status]
         required :status, enum: -> { WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::Status }
@@ -194,7 +197,7 @@ module WhopSDK
         #
         #   @param created_at [String] When the campaign was created, as an ISO 8601 timestamp.
         #
-        #   @param delivery_status [Symbol, WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::DeliveryStatus] Whether the campaign's ads are delivering right now, and if not, why. When sever
+        #   @param delivery_status [Symbol, WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::DeliveryStatus] Whether the campaign's ads are delivering right now, and if not, why. Account bi
         #
         #   @param issues [Array<WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::Issue>]
         #
@@ -206,7 +209,7 @@ module WhopSDK
         #
         #   @param special_ad_categories [Array<Symbol, WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::SpecialAdCategory>]
         #
-        #   @param status [Symbol, WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::Status] The lifecycle status of the ad campaign.
+        #   @param status [Symbol, WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data::Status] The configured lifecycle status of the ad campaign. Billing failures preserve ac
         #
         #   @param title [String] Display name of the ad campaign.
         #
@@ -242,7 +245,9 @@ module WhopSDK
           #   @return [Array<Symbol>]
         end
 
-        # Whether the campaign's ads are delivering right now, and if not, why. When
+        # Whether the campaign's ads are delivering right now, and if not, why. Account
+        # billing failures set payment_failed without changing the configured status.
+        # Successful payment retry clears that block and recalculates delivery. When
         # several states apply at once, the highest-precedence one is returned.
         #
         # @see WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data#delivery_status
@@ -361,7 +366,8 @@ module WhopSDK
           #   @return [Array<Symbol>]
         end
 
-        # The lifecycle status of the ad campaign.
+        # The configured lifecycle status of the ad campaign. Billing failures preserve
+        # active or paused here and set delivery_status to payment_failed.
         #
         # @see WhopSDK::Models::AdCampaignPaymentFailedWebhookEvent::Data#status
         module Status

@@ -146,7 +146,9 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :created_at
 
-        # Whether the campaign's ads are delivering right now, and if not, why. When
+        # Whether the campaign's ads are delivering right now, and if not, why. Account
+        # billing failures set payment_failed without changing the configured status.
+        # Successful payment retry clears that block and recalculates delivery. When
         # several states apply at once, the highest-precedence one is returned.
         sig do
           returns(
@@ -194,7 +196,8 @@ module WhopSDK
         end
         attr_accessor :special_ad_categories
 
-        # The lifecycle status of the ad campaign.
+        # The configured lifecycle status of the ad campaign. Billing failures preserve
+        # active or paused here and set delivery_status to payment_failed.
         sig do
           returns(
             WhopSDK::AdCampaignPaymentFailedWebhookEvent::Data::Status::TaggedSymbol
@@ -276,7 +279,9 @@ module WhopSDK
           budget_type:,
           # When the campaign was created, as an ISO 8601 timestamp.
           created_at:,
-          # Whether the campaign's ads are delivering right now, and if not, why. When
+          # Whether the campaign's ads are delivering right now, and if not, why. Account
+          # billing failures set payment_failed without changing the configured status.
+          # Successful payment retry clears that block and recalculates delivery. When
           # several states apply at once, the highest-precedence one is returned.
           delivery_status:,
           issues:,
@@ -288,7 +293,8 @@ module WhopSDK
           # The ad network the campaign runs on.
           platform:,
           special_ad_categories:,
-          # The lifecycle status of the ad campaign.
+          # The configured lifecycle status of the ad campaign. Billing failures preserve
+          # active or paused here and set delivery_status to payment_failed.
           status:,
           # Display name of the ad campaign.
           title:,
@@ -418,7 +424,9 @@ module WhopSDK
           end
         end
 
-        # Whether the campaign's ads are delivering right now, and if not, why. When
+        # Whether the campaign's ads are delivering right now, and if not, why. Account
+        # billing failures set payment_failed without changing the configured status.
+        # Successful payment retry clears that block and recalculates delivery. When
         # several states apply at once, the highest-precedence one is returned.
         module DeliveryStatus
           extend WhopSDK::Internal::Type::Enum
@@ -741,7 +749,8 @@ module WhopSDK
           end
         end
 
-        # The lifecycle status of the ad campaign.
+        # The configured lifecycle status of the ad campaign. Billing failures preserve
+        # active or paused here and set delivery_status to payment_failed.
         module Status
           extend WhopSDK::Internal::Type::Enum
 

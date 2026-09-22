@@ -143,7 +143,9 @@ module WhopSDK
       sig { returns(T.anything) }
       attr_accessor :custom_event_values
 
-      # Whether the campaign's ads are delivering right now, and if not, why. When
+      # Whether the campaign's ads are delivering right now, and if not, why. Account
+      # billing failures set payment_failed without changing the configured status.
+      # Successful payment retry clears that block and recalculates delivery. When
       # several states apply at once, the highest-precedence one is returned.
       sig { returns(WhopSDK::AdCampaign::DeliveryStatus::TaggedSymbol) }
       attr_accessor :delivery_status
@@ -244,7 +246,8 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :spend_currency
 
-      # The lifecycle status of the ad campaign.
+      # The configured lifecycle status of the ad campaign. Billing failures preserve
+      # active or paused here and set delivery_status to payment_failed.
       sig { returns(WhopSDK::AdCampaign::Status::TaggedSymbol) }
       attr_accessor :status
 
@@ -432,7 +435,9 @@ module WhopSDK
         # custom_event_counts. Sums the value passed to whop.track, normalized to USD;
         # events fired without a value contribute 0.
         custom_event_values:,
-        # Whether the campaign's ads are delivering right now, and if not, why. When
+        # Whether the campaign's ads are delivering right now, and if not, why. Account
+        # billing failures set payment_failed without changing the configured status.
+        # Successful payment retry clears that block and recalculates delivery. When
         # several states apply at once, the highest-precedence one is returned.
         delivery_status:,
         # Platform-reported impressions divided by reach.
@@ -487,7 +492,8 @@ module WhopSDK
         spend:,
         # The ISO 4217 currency code of all monetary metrics.
         spend_currency:,
-        # The lifecycle status of the ad campaign.
+        # The configured lifecycle status of the ad campaign. Billing failures preserve
+        # active or paused here and set delivery_status to payment_failed.
         status:,
         # USD value attributed to submit-application events. Sums the value sent with each
         # event, normalized to USD; events without a value contribute 0.
@@ -640,7 +646,9 @@ module WhopSDK
         end
       end
 
-      # Whether the campaign's ads are delivering right now, and if not, why. When
+      # Whether the campaign's ads are delivering right now, and if not, why. Account
+      # billing failures set payment_failed without changing the configured status.
+      # Successful payment retry clears that block and recalculates delivery. When
       # several states apply at once, the highest-precedence one is returned.
       module DeliveryStatus
         extend WhopSDK::Internal::Type::Enum
@@ -909,7 +917,8 @@ module WhopSDK
         end
       end
 
-      # The lifecycle status of the ad campaign.
+      # The configured lifecycle status of the ad campaign. Billing failures preserve
+      # active or paused here and set delivery_status to payment_failed.
       module Status
         extend WhopSDK::Internal::Type::Enum
 

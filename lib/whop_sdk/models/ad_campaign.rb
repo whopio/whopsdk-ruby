@@ -194,7 +194,9 @@ module WhopSDK
       required :custom_event_values, WhopSDK::Internal::Type::Unknown
 
       # @!attribute delivery_status
-      #   Whether the campaign's ads are delivering right now, and if not, why. When
+      #   Whether the campaign's ads are delivering right now, and if not, why. Account
+      #   billing failures set payment_failed without changing the configured status.
+      #   Successful payment retry clears that block and recalculates delivery. When
       #   several states apply at once, the highest-precedence one is returned.
       #
       #   @return [Symbol, WhopSDK::Models::AdCampaign::DeliveryStatus]
@@ -338,7 +340,8 @@ module WhopSDK
       required :spend_currency, String, nil?: true
 
       # @!attribute status
-      #   The lifecycle status of the ad campaign.
+      #   The configured lifecycle status of the ad campaign. Billing failures preserve
+      #   active or paused here and set delivery_status to payment_failed.
       #
       #   @return [Symbol, WhopSDK::Models::AdCampaign::Status]
       required :status, enum: -> { WhopSDK::AdCampaign::Status }
@@ -461,7 +464,7 @@ module WhopSDK
       #
       #   @param custom_event_values [Object] Conversion value attributed to each custom event, keyed by event name like custo
       #
-      #   @param delivery_status [Symbol, WhopSDK::Models::AdCampaign::DeliveryStatus] Whether the campaign's ads are delivering right now, and if not, why. When sever
+      #   @param delivery_status [Symbol, WhopSDK::Models::AdCampaign::DeliveryStatus] Whether the campaign's ads are delivering right now, and if not, why. Account bi
       #
       #   @param frequency [Float, nil] Platform-reported impressions divided by reach.
       #
@@ -505,7 +508,7 @@ module WhopSDK
       #
       #   @param spend_currency [String, nil] The ISO 4217 currency code of all monetary metrics.
       #
-      #   @param status [Symbol, WhopSDK::Models::AdCampaign::Status] The lifecycle status of the ad campaign.
+      #   @param status [Symbol, WhopSDK::Models::AdCampaign::Status] The configured lifecycle status of the ad campaign. Billing failures preserve ac
       #
       #   @param submitted_application_value [Float] USD value attributed to submit-application events. Sums the value sent with each
       #
@@ -553,7 +556,9 @@ module WhopSDK
         #   @return [Array<Symbol>]
       end
 
-      # Whether the campaign's ads are delivering right now, and if not, why. When
+      # Whether the campaign's ads are delivering right now, and if not, why. Account
+      # billing failures set payment_failed without changing the configured status.
+      # Successful payment retry clears that block and recalculates delivery. When
       # several states apply at once, the highest-precedence one is returned.
       #
       # @see WhopSDK::Models::AdCampaign#delivery_status
@@ -694,7 +699,8 @@ module WhopSDK
         #   @return [Array<Symbol>]
       end
 
-      # The lifecycle status of the ad campaign.
+      # The configured lifecycle status of the ad campaign. Billing failures preserve
+      # active or paused here and set delivery_status to payment_failed.
       #
       # @see WhopSDK::Models::AdCampaign#status
       module Status

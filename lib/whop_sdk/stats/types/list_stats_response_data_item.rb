@@ -4,6 +4,8 @@ module Whop_sdk
   module Stats
     module Types
       class ListStatsResponseDataItem < Internal::Types::Model
+        field :breakdowns, -> { Internal::Types::Array[String] }, optional: true, nullable: false
+
         field :description, -> { String }, optional: false, nullable: false
 
         field :key, -> { String }, optional: false, nullable: false

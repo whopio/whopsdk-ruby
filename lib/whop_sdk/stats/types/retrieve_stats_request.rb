@@ -74,6 +74,16 @@ module Whop_sdk
 
         field :event, -> { String }, optional: true, nullable: false
 
+        field :conversion_window, -> { String }, optional: true, nullable: false
+
+        field :mature_only, -> { Internal::Types::Boolean }, optional: true, nullable: false
+
+        field :steps, -> { Whop_sdk::Types::RetrieveStatsRequestSteps }, optional: true, nullable: false
+
+        field :compare_to, -> { String }, optional: true, nullable: false
+
+        field :confidence_level, -> { Integer }, optional: true, nullable: false
+
         field :contactable, -> { Internal::Types::Boolean }, optional: true, nullable: false
 
         field :has_purchased, -> { Internal::Types::Boolean }, optional: true, nullable: false

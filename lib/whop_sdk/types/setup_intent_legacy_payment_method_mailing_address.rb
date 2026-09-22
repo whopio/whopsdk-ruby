@@ -3,7 +3,7 @@
 module Whop_sdk
   module Types
     # The mailing address associated with the payment method's user
-    class SetupIntentPaymentMethodMailingAddress < Internal::Types::Model
+    class SetupIntentLegacyPaymentMethodMailingAddress < Internal::Types::Model
       field :city, -> { String }, optional: false, nullable: true
 
       field :country, -> { String }, optional: false, nullable: true

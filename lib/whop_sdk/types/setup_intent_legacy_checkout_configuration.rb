@@ -3,7 +3,7 @@
 module Whop_sdk
   module Types
     # The checkout session configuration associated with this setup intent. Null if no checkout session was used.
-    class SetupIntentCheckoutConfiguration < Internal::Types::Model
+    class SetupIntentLegacyCheckoutConfiguration < Internal::Types::Model
       field :id, -> { String }, optional: false, nullable: false
     end
   end

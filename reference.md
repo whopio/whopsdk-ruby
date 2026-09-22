@@ -32279,12 +32279,7 @@ client.reviews.retrieve(id: "rev_xxxxxxxxxxxxxx")
 <dl>
 <dd>
 
-Returns a paginated list of setup intents for a company, with optional filtering by creation date. A setup intent securely collects and stores a member's payment method for future use without charging them immediately.
-
-Required permissions:
- - `payment:setup_intent:read`
- - `member:basic:read`
- - `member:email:read`
+Lists setup intents newest first. An account API key lists its own account; a user token lists every account it can read, or one account with `account_id`. `client_secret` is always null on list rows — retrieve the setup intent for it.
 </dd>
 </dl>
 </dd>
@@ -32299,13 +32294,7 @@ Required permissions:
 <dd>
 
 ```ruby
-client.setup_intents.list(
-  first: 42,
-  last: 42,
-  created_before: "2023-12-01T05:00:00Z",
-  created_after: "2023-12-01T05:00:00Z",
-  account_id: "biz_xxxxxxxxxxxxxx"
-)
+client.setup_intents.list
 ```
 </dd>
 </dl>
@@ -32320,7 +32309,7 @@ client.setup_intents.list(
 <dl>
 <dd>
 
-**after:** `String` — Returns the elements in the list that come after the specified cursor.
+**account_id:** `String` — Only setup intents for this account, prefixed `biz_`.
     
 </dd>
 </dl>
@@ -32328,7 +32317,7 @@ client.setup_intents.list(
 <dl>
 <dd>
 
-**before:** `String` — Returns the elements in the list that come before the specified cursor.
+**status:** `Whop_sdk::SetupIntents::Types::ListSetupIntentsRequestStatus` — Only setup intents in this state.
     
 </dd>
 </dl>
@@ -32336,7 +32325,7 @@ client.setup_intents.list(
 <dl>
 <dd>
 
-**first:** `Integer` — Returns the first _n_ elements from the list.
+**created_before:** `String` — Only setup intents created before this ISO 8601 timestamp.
     
 </dd>
 </dl>
@@ -32344,7 +32333,7 @@ client.setup_intents.list(
 <dl>
 <dd>
 
-**last:** `Integer` — Returns the last _n_ elements from the list.
+**created_after:** `String` — Only setup intents created after this ISO 8601 timestamp.
     
 </dd>
 </dl>
@@ -32352,7 +32341,7 @@ client.setup_intents.list(
 <dl>
 <dd>
 
-**direction:** `Whop_sdk::Types::Direction` 
+**order:** `Whop_sdk::SetupIntents::Types::ListSetupIntentsRequestOrder` — The field to sort by.
     
 </dd>
 </dl>
@@ -32360,7 +32349,7 @@ client.setup_intents.list(
 <dl>
 <dd>
 
-**created_before:** `String` — Only return setup intents created before this timestamp.
+**direction:** `Whop_sdk::SetupIntents::Types::ListSetupIntentsRequestDirection` — The sort direction.
     
 </dd>
 </dl>
@@ -32368,7 +32357,7 @@ client.setup_intents.list(
 <dl>
 <dd>
 
-**created_after:** `String` — Only return setup intents created after this timestamp.
+**first:** `Integer` — Number of results to return from the start of the range.
     
 </dd>
 </dl>
@@ -32376,7 +32365,23 @@ client.setup_intents.list(
 <dl>
 <dd>
 
-**account_id:** `String` — The unique identifier of the company to list setup intents for.
+**after:** `String` — Return results after this cursor. Use `page_info.end_cursor` from the previous response to fetch the next page.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**last:** `Integer` — Number of results to return from the end of the range.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**before:** `String` — Return results before this cursor. Use `page_info.start_cursor` from the previous response to fetch the previous page.
     
 </dd>
 </dl>
@@ -32396,7 +32401,7 @@ client.setup_intents.list(
 </dl>
 </details>
 
-<details><summary><code>client.setup_intents.<a href="/lib/whop_sdk/setup_intents/client.rb">create</a>(request) -> Whop_sdk::SetupIntents::Types::CreateSetupIntentsResponse</code></summary>
+<details><summary><code>client.setup_intents.<a href="/lib/whop_sdk/setup_intents/client.rb">create</a>(request) -> Whop_sdk::Types::SetupIntent</code></summary>
 <dl>
 <dd>
 
@@ -32408,12 +32413,7 @@ client.setup_intents.list(
 <dl>
 <dd>
 
-Save a buyer's payment method for later without charging it. Provide a confirmation token for a method the buyer just supplied, or an existing payment method to re-verify. The buyer may still have a step to complete — 3D Secure, a hosted enrollment, linking a bank account — so poll the setup intent's status endpoint for what to do next.
-
-Required permissions:
- - `payment:charge`
- - `member:basic:read`
- - `member:email:read`
+Saves a buyer's payment method for later without charging it. Pass a `confirmation_token` for a method the buyer just supplied through the payment elements in setup mode, or a `payment_method_id` already on file to re-verify it. The response is the setup intent as created, not its outcome: while it is `requires_action` the buyer still has a step, so hand `client_secret` to the elements' `handleNextAction` or poll Retrieve setup status. A buyer's own token holding `member:payment_methods:use` may create a setup intent for itself from a confirmation token.
 </dd>
 </dl>
 </dd>
@@ -32428,10 +32428,7 @@ Required permissions:
 <dd>
 
 ```ruby
-client.setup_intents.create(
-  account_id: "biz_xxxxxxxxxxxxxx",
-  confirmation_token: "ctok_xxxxxxxxxxxxxx"
-)
+client.setup_intents.create(account_id: "biz_xxxxxxxxxxxxxx")
 ```
 </dd>
 </dl>
@@ -32446,7 +32443,55 @@ client.setup_intents.create(
 <dl>
 <dd>
 
-**request:** `Whop_sdk::SetupIntents::Types::CreateSetupIntentsRequest` — Parameters for CreateSetupIntent
+**account_id:** `String` — The account to save the payment method for, prefixed `biz_`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**confirmation_token:** `String` — A confirmation token describing a payment method the buyer just supplied, collected by the payment elements in setup mode. Provide this or `payment_method_id`, not both. The buyer is resolved from the token's billing email, or from `email`, and may still have a step to complete — poll Retrieve setup status for what to do next.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**currency:** `String` — The currency the saved payment method will be used with, as a lowercase ISO 4217 code. Controls which currency-specific payment methods are available. Defaults to `usd`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**email:** `String` — Overrides the buyer email carried on the confirmation token, resolving or creating the user the method belongs to. Ignored unless `confirmation_token` is provided, and when the token was created by a signed-in buyer or the caller is the buyer.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**metadata:** `Internal::Types::Hash[String, String]` — Custom metadata to attach to the setup intent. Returned on the setup intent and its webhooks.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**payment_method_id:** `String` — An existing payment method to re-verify and save, prefixed `payt_`. Provide this or `confirmation_token`, not both. Not available to a buyer credential.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**return_url:** `String` — Where the buyer continues after completing an off-site step. An absolute https URL without credentials, at most 2,048 characters.
     
 </dd>
 </dl>
@@ -32478,12 +32523,7 @@ client.setup_intents.create(
 <dl>
 <dd>
 
-Retrieves the details of an existing setup intent.
-
-Required permissions:
- - `payment:setup_intent:read`
- - `member:basic:read`
- - `member:email:read`
+Returns one setup intent. Related records are ids — once `status` is `succeeded`, `payment_method_id` is the saved method to charge or retrieve. The buyer's own token may retrieve a setup intent that belongs to it.
 </dd>
 </dl>
 </dd>
@@ -32498,7 +32538,7 @@ Required permissions:
 <dd>
 
 ```ruby
-client.setup_intents.retrieve(id: "sint_xxxxxxxxxxxxx")
+client.setup_intents.retrieve(id: "id")
 ```
 </dd>
 </dl>
@@ -32513,7 +32553,7 @@ client.setup_intents.retrieve(id: "sint_xxxxxxxxxxxxx")
 <dl>
 <dd>
 
-**id:** `String` — The unique identifier of the setup intent.
+**id:** `String` — The setup intent to retrieve, prefixed `sint_`.
     
 </dd>
 </dl>

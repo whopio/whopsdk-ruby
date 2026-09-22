@@ -10,13 +10,9 @@ module Whop_sdk
         @client = client
       end
 
-      # Returns a paginated list of setup intents for a company, with optional filtering by creation date. A setup
-      # intent securely collects and stores a member's payment method for future use without charging them immediately.
-      #
-      # Required permissions:
-      #  - `payment:setup_intent:read`
-      #  - `member:basic:read`
-      #  - `member:email:read`
+      # Lists setup intents newest first. An account API key lists its own account; a user token lists every account it
+      # can read, or one account with `account_id`. `client_secret` is always null on list rows — retrieve the setup
+      # intent for it.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -25,36 +21,34 @@ module Whop_sdk
       # @option request_options [Hash{String => Object}] :additional_query_parameters
       # @option request_options [Hash{String => Object}] :additional_body_parameters
       # @option request_options [Integer] :timeout_in_seconds
-      # @option params [String, nil] :after
-      # @option params [String, nil] :before
-      # @option params [Integer, nil] :first
-      # @option params [Integer, nil] :last
-      # @option params [Whop_sdk::Types::Direction, nil] :direction
+      # @option params [String, nil] :account_id
+      # @option params [Whop_sdk::SetupIntents::Types::ListSetupIntentsRequestStatus, nil] :status
       # @option params [String, nil] :created_before
       # @option params [String, nil] :created_after
-      # @option params [String] :account_id
+      # @option params [Whop_sdk::SetupIntents::Types::ListSetupIntentsRequestOrder, nil] :order
+      # @option params [Whop_sdk::SetupIntents::Types::ListSetupIntentsRequestDirection, nil] :direction
+      # @option params [Integer, nil] :first
+      # @option params [String, nil] :after
+      # @option params [Integer, nil] :last
+      # @option params [String, nil] :before
       #
       # @example
-      #   client.setup_intents.list(
-      #     first: 42,
-      #     last: 42,
-      #     created_before: "2023-12-01T05:00:00Z",
-      #     created_after: "2023-12-01T05:00:00Z",
-      #     account_id: "biz_xxxxxxxxxxxxxx"
-      #   )
+      #   client.setup_intents.list
       #
       # @return [Whop_sdk::SetupIntents::Types::ListSetupIntentsResponse]
       def list(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
         query_params = {}
-        query_params["after"] = params[:after] if params.key?(:after)
-        query_params["before"] = params[:before] if params.key?(:before)
-        query_params["first"] = params[:first] if params.key?(:first)
-        query_params["last"] = params[:last] if params.key?(:last)
-        query_params["direction"] = params[:direction] if params.key?(:direction)
+        query_params["account_id"] = params[:account_id] if params.key?(:account_id)
+        query_params["status"] = params[:status] if params.key?(:status)
         query_params["created_before"] = params[:created_before] if params.key?(:created_before)
         query_params["created_after"] = params[:created_after] if params.key?(:created_after)
-        query_params["account_id"] = params[:account_id] if params.key?(:account_id)
+        query_params["order"] = params[:order] if params.key?(:order)
+        query_params["direction"] = params[:direction] if params.key?(:direction)
+        query_params["first"] = params[:first] if params.key?(:first)
+        query_params["after"] = params[:after] if params.key?(:after)
+        query_params["last"] = params[:last] if params.key?(:last)
+        query_params["before"] = params[:before] if params.key?(:before)
 
         Whop_sdk::Internal::CursorItemIterator.new(
           cursor_field: :end_cursor,
@@ -85,15 +79,11 @@ module Whop_sdk
         end
       end
 
-      # Save a buyer's payment method for later without charging it. Provide a confirmation token for a method the buyer
-      # just supplied, or an existing payment method to re-verify. The buyer may still have a step to complete — 3D
-      # Secure, a hosted enrollment, linking a bank account — so poll the setup intent's status endpoint for what to do
-      # next.
-      #
-      # Required permissions:
-      #  - `payment:charge`
-      #  - `member:basic:read`
-      #  - `member:email:read`
+      # Saves a buyer's payment method for later without charging it. Pass a `confirmation_token` for a method the buyer
+      # just supplied through the payment elements in setup mode, or a `payment_method_id` already on file to re-verify
+      # it. The response is the setup intent as created, not its outcome: while it is `requires_action` the buyer still
+      # has a step, so hand `client_secret` to the elements' `handleNextAction` or poll Retrieve setup status. A buyer's
+      # own token holding `member:payment_methods:use` may create a setup intent for itself from a confirmation token.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::SetupIntents::Types::CreateSetupIntentsRequest]
@@ -104,12 +94,9 @@ module Whop_sdk
       # @option request_options [Integer] :timeout_in_seconds
       #
       # @example
-      #   client.setup_intents.create(
-      #     account_id: "biz_xxxxxxxxxxxxxx",
-      #     confirmation_token: "ctok_xxxxxxxxxxxxxx"
-      #   )
+      #   client.setup_intents.create(account_id: "biz_xxxxxxxxxxxxxx")
       #
-      # @return [Whop_sdk::SetupIntents::Types::CreateSetupIntentsResponse]
+      # @return [Whop_sdk::Types::SetupIntent]
       def create(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
         request = Whop_sdk::Internal::JSON::Request.new(
@@ -126,19 +113,15 @@ module Whop_sdk
         end
         code = response.code.to_i
         if code.between?(200, 299)
-          Whop_sdk::SetupIntents::Types::CreateSetupIntentsResponse.load(response.body)
+          Whop_sdk::Types::SetupIntent.load(response.body)
         else
           error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)
         end
       end
 
-      # Retrieves the details of an existing setup intent.
-      #
-      # Required permissions:
-      #  - `payment:setup_intent:read`
-      #  - `member:basic:read`
-      #  - `member:email:read`
+      # Returns one setup intent. Related records are ids — once `status` is `succeeded`, `payment_method_id` is the
+      # saved method to charge or retrieve. The buyer's own token may retrieve a setup intent that belongs to it.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -150,7 +133,7 @@ module Whop_sdk
       # @option params [String] :id
       #
       # @example
-      #   client.setup_intents.retrieve(id: "sint_xxxxxxxxxxxxx")
+      #   client.setup_intents.retrieve(id: "id")
       #
       # @return [Whop_sdk::Types::SetupIntent]
       def retrieve(request_options: {}, **params)

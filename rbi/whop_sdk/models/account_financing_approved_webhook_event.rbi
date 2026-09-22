@@ -170,9 +170,9 @@ module WhopSDK
         end
         attr_writer :capabilities
 
-        # Whop Cards application details for the account. Computed only on `retrieve` and
-        # `me` for callers with `company:balance:read` scope; `null` otherwise, or when
-        # the account has no card application.
+        # Whop Cards application details for the account. Returned on `list`, `retrieve`,
+        # and `me` for callers with `company:balance:read` scope; `null` otherwise, or
+        # when the account has no card application or blocking application review.
         sig do
           returns(
             T.nilable(
@@ -827,9 +827,9 @@ module WhopSDK
           # (onboarding or review in progress). Computed only on `retrieve` and `me` for
           # callers with `company:balance:read` scope; `null` otherwise.
           capabilities:,
-          # Whop Cards application details for the account. Computed only on `retrieve` and
-          # `me` for callers with `company:balance:read` scope; `null` otherwise, or when
-          # the account has no card application.
+          # Whop Cards application details for the account. Returned on `list`, `retrieve`,
+          # and `me` for callers with `company:balance:read` scope; `null` otherwise, or
+          # when the account has no card application or blocking application review.
           cards:,
           # Whether checkout shows a VAT/tax ID field for buyers to optionally enter. Does
           # not require a VAT ID to purchase.
@@ -2062,9 +2062,9 @@ module WhopSDK
           end
           attr_accessor :status
 
-          # Whop Cards application details for the account. Computed only on `retrieve` and
-          # `me` for callers with `company:balance:read` scope; `null` otherwise, or when
-          # the account has no card application.
+          # Whop Cards application details for the account. Returned on `list`, `retrieve`,
+          # and `me` for callers with `company:balance:read` scope; `null` otherwise, or
+          # when the account has no card application or blocking application review.
           sig do
             params(
               kind:

@@ -130,9 +130,9 @@ module WhopSDK
                  nil?: true
 
         # @!attribute cards
-        #   Whop Cards application details for the account. Computed only on `retrieve` and
-        #   `me` for callers with `company:balance:read` scope; `null` otherwise, or when
-        #   the account has no card application.
+        #   Whop Cards application details for the account. Returned on `list`, `retrieve`,
+        #   and `me` for callers with `company:balance:read` scope; `null` otherwise, or
+        #   when the account has no card application or blocking application review.
         #
         #   @return [WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Cards, nil]
         required :cards, -> { WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Cards }, nil?: true
@@ -552,7 +552,7 @@ module WhopSDK
         #
         #   @param capabilities [WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Capabilities, nil] Payment rails enabled for this account, each `active`, `inactive`, or `pending`
         #
-        #   @param cards [WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Cards, nil] Whop Cards application details for the account. Computed only on `retrieve` and
+        #   @param cards [WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Cards, nil] Whop Cards application details for the account. Returned on `list`, `retrieve`,
         #
         #   @param collect_vat_id [Boolean] Whether checkout shows a VAT/tax ID field for buyers to optionally enter. Does n
         #
@@ -1128,9 +1128,9 @@ module WhopSDK
           #   {WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Cards} for more
           #   details.
           #
-          #   Whop Cards application details for the account. Computed only on `retrieve` and
-          #   `me` for callers with `company:balance:read` scope; `null` otherwise, or when
-          #   the account has no card application.
+          #   Whop Cards application details for the account. Returned on `list`, `retrieve`,
+          #   and `me` for callers with `company:balance:read` scope; `null` otherwise, or
+          #   when the account has no card application or blocking application review.
           #
           #   @param kind [Symbol, WhopSDK::Models::AccountFinancingApprovedWebhookEvent::Data::Cards::Kind, nil] Whether the card application verifies a business (`business`, KYB) or a person (
           #

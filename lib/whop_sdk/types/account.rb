@@ -15,6 +15,8 @@ module Whop_sdk
 
       field :can_transfer_pending_balance_to_children, -> { Internal::Types::Boolean }, optional: false, nullable: false
 
+      field :cancellation_policy, -> { Whop_sdk::Types::File }, optional: false, nullable: true
+
       field :capabilities, -> { Whop_sdk::Types::AccountCapabilities }, optional: false, nullable: true
 
       field :cards, -> { Whop_sdk::Types::AccountCards }, optional: false, nullable: true
@@ -82,6 +84,8 @@ module Whop_sdk
       field :route, -> { String }, optional: false, nullable: false
 
       field :send_customer_emails, -> { Internal::Types::Boolean }, optional: false, nullable: false
+
+      field :shipping_policy, -> { Whop_sdk::Types::File }, optional: false, nullable: true
 
       field :show_joined_whops, -> { Internal::Types::Boolean }, optional: false, nullable: false
 

@@ -38335,7 +38335,7 @@ client.accounts.fees.update(account_id: "account_id")
 <dl>
 <dd>
 
-**child_markups:** `Whop_sdk::Accounts::Fees::Types::UpdateFeesRequestChildMarkups` — This platform's default markups for every account connected to it.
+**child_markups:** `Whop_sdk::Accounts::Fees::Types::UpdateFeesRequestChildMarkups` — Default markups for connected accounts. Available on accounts without a parent, even before any accounts connect.
     
 </dd>
 </dl>

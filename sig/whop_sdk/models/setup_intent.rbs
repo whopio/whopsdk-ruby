@@ -3,242 +3,426 @@ module WhopSDK
     type setup_intent =
       {
         id: String,
-        checkout_configuration: WhopSDK::SetupIntent::CheckoutConfiguration?,
-        company: WhopSDK::SetupIntent::Company?,
-        created_at: Time,
-        error_message: String?,
-        member: WhopSDK::SetupIntent::Member?,
-        metadata: ::Hash[Symbol, top]?,
-        payment_method: WhopSDK::SetupIntent::PaymentMethod?,
-        status: WhopSDK::Models::setup_intent_status,
-        three_ds_verified: bool
+        account_id: String?,
+        checkout_configuration_id: String?,
+        client_secret: String?,
+        created_at: String,
+        last_setup_error: WhopSDK::SetupIntent::LastSetupError?,
+        member_id: String?,
+        metadata: top?,
+        payment_instrument: WhopSDK::SetupIntent::PaymentInstrument?,
+        payment_method_id: String?,
+        payment_method_type: WhopSDK::Models::payment_method_types?,
+        return_url: String?,
+        status: WhopSDK::Models::SetupIntent::status,
+        three_ds_verified: bool,
+        updated_at: String,
+        user: WhopSDK::SetupIntent::User?
       }
 
     class SetupIntent < WhopSDK::Internal::Type::BaseModel
       attr_accessor id: String
 
-      attr_accessor checkout_configuration: WhopSDK::SetupIntent::CheckoutConfiguration?
+      attr_accessor account_id: String?
 
-      attr_accessor company: WhopSDK::SetupIntent::Company?
+      attr_accessor checkout_configuration_id: String?
 
-      attr_accessor created_at: Time
+      attr_accessor client_secret: String?
 
-      attr_accessor error_message: String?
+      attr_accessor created_at: String
 
-      attr_accessor member: WhopSDK::SetupIntent::Member?
+      attr_accessor last_setup_error: WhopSDK::SetupIntent::LastSetupError?
 
-      attr_accessor metadata: ::Hash[Symbol, top]?
+      attr_accessor member_id: String?
 
-      attr_accessor payment_method: WhopSDK::SetupIntent::PaymentMethod?
+      attr_accessor metadata: top?
 
-      attr_accessor status: WhopSDK::Models::setup_intent_status
+      attr_accessor payment_instrument: WhopSDK::SetupIntent::PaymentInstrument?
+
+      attr_accessor payment_method_id: String?
+
+      attr_accessor payment_method_type: WhopSDK::Models::payment_method_types?
+
+      attr_accessor return_url: String?
+
+      attr_accessor status: WhopSDK::Models::SetupIntent::status
 
       attr_accessor three_ds_verified: bool
 
+      attr_accessor updated_at: String
+
+      attr_accessor user: WhopSDK::SetupIntent::User?
+
       def initialize: (
         id: String,
-        checkout_configuration: WhopSDK::SetupIntent::CheckoutConfiguration?,
-        company: WhopSDK::SetupIntent::Company?,
-        created_at: Time,
-        error_message: String?,
-        member: WhopSDK::SetupIntent::Member?,
-        metadata: ::Hash[Symbol, top]?,
-        payment_method: WhopSDK::SetupIntent::PaymentMethod?,
-        status: WhopSDK::Models::setup_intent_status,
-        three_ds_verified: bool
+        account_id: String?,
+        checkout_configuration_id: String?,
+        client_secret: String?,
+        created_at: String,
+        last_setup_error: WhopSDK::SetupIntent::LastSetupError?,
+        member_id: String?,
+        metadata: top?,
+        payment_instrument: WhopSDK::SetupIntent::PaymentInstrument?,
+        payment_method_id: String?,
+        payment_method_type: WhopSDK::Models::payment_method_types?,
+        return_url: String?,
+        status: WhopSDK::Models::SetupIntent::status,
+        three_ds_verified: bool,
+        updated_at: String,
+        user: WhopSDK::SetupIntent::User?
       ) -> void
 
       def to_hash: -> {
         id: String,
-        checkout_configuration: WhopSDK::SetupIntent::CheckoutConfiguration?,
-        company: WhopSDK::SetupIntent::Company?,
-        created_at: Time,
-        error_message: String?,
-        member: WhopSDK::SetupIntent::Member?,
-        metadata: ::Hash[Symbol, top]?,
-        payment_method: WhopSDK::SetupIntent::PaymentMethod?,
-        status: WhopSDK::Models::setup_intent_status,
-        three_ds_verified: bool
+        account_id: String?,
+        checkout_configuration_id: String?,
+        client_secret: String?,
+        created_at: String,
+        last_setup_error: WhopSDK::SetupIntent::LastSetupError?,
+        member_id: String?,
+        metadata: top?,
+        payment_instrument: WhopSDK::SetupIntent::PaymentInstrument?,
+        payment_method_id: String?,
+        payment_method_type: WhopSDK::Models::payment_method_types?,
+        return_url: String?,
+        status: WhopSDK::Models::SetupIntent::status,
+        three_ds_verified: bool,
+        updated_at: String,
+        user: WhopSDK::SetupIntent::User?
       }
 
-      type checkout_configuration = { id: String }
+      type last_setup_error = { code: String?, message: String? }
 
-      class CheckoutConfiguration < WhopSDK::Internal::Type::BaseModel
-        attr_accessor id: String
+      class LastSetupError < WhopSDK::Internal::Type::BaseModel
+        attr_accessor code: String?
 
-        def initialize: (id: String) -> void
+        attr_accessor message: String?
 
-        def to_hash: -> { id: String }
+        def initialize: (code: String?, message: String?) -> void
+
+        def to_hash: -> { code: String?, message: String? }
       end
 
-      type company = { id: String }
-
-      class Company < WhopSDK::Internal::Type::BaseModel
-        attr_accessor id: String
-
-        def initialize: (id: String) -> void
-
-        def to_hash: -> { id: String }
-      end
-
-      type member = { id: String, user: WhopSDK::SetupIntent::Member::User? }
-
-      class Member < WhopSDK::Internal::Type::BaseModel
-        attr_accessor id: String
-
-        attr_accessor user: WhopSDK::SetupIntent::Member::User?
-
-        def initialize: (
-          id: String,
-          user: WhopSDK::SetupIntent::Member::User?
-        ) -> void
-
-        def to_hash: -> {
-          id: String,
-          user: WhopSDK::SetupIntent::Member::User?
-        }
-
-        type user =
-          { id: String, email: String?, name: String?, username: String }
-
-        class User < WhopSDK::Internal::Type::BaseModel
-          attr_accessor id: String
-
-          attr_accessor email: String?
-
-          attr_accessor name: String?
-
-          attr_accessor username: String
-
-          def initialize: (
-            id: String,
-            email: String?,
-            name: String?,
-            username: String
-          ) -> void
-
-          def to_hash: -> {
-            id: String,
-            email: String?,
-            name: String?,
-            username: String
-          }
-        end
-      end
-
-      type payment_method =
+      type payment_instrument =
         {
-          id: String,
-          card: WhopSDK::SetupIntent::PaymentMethod::Card?,
-          created_at: Time,
-          mailing_address: WhopSDK::SetupIntent::PaymentMethod::MailingAddress?,
-          payment_method_type: WhopSDK::Models::payment_method_types
+          card: WhopSDK::SetupIntent::PaymentInstrument::Card?,
+          display_name: String,
+          icons: WhopSDK::SetupIntent::PaymentInstrument::Icons,
+          installment_count: Float?,
+          payment_method_type: String
         }
 
-      class PaymentMethod < WhopSDK::Internal::Type::BaseModel
-        attr_accessor id: String
+      class PaymentInstrument < WhopSDK::Internal::Type::BaseModel
+        attr_accessor card: WhopSDK::SetupIntent::PaymentInstrument::Card?
 
-        attr_accessor card: WhopSDK::SetupIntent::PaymentMethod::Card?
+        attr_accessor display_name: String
 
-        attr_accessor created_at: Time
+        attr_accessor icons: WhopSDK::SetupIntent::PaymentInstrument::Icons
 
-        attr_accessor mailing_address: WhopSDK::SetupIntent::PaymentMethod::MailingAddress?
+        attr_accessor installment_count: Float?
 
-        attr_accessor payment_method_type: WhopSDK::Models::payment_method_types
+        attr_accessor payment_method_type: String
 
         def initialize: (
-          id: String,
-          card: WhopSDK::SetupIntent::PaymentMethod::Card?,
-          created_at: Time,
-          mailing_address: WhopSDK::SetupIntent::PaymentMethod::MailingAddress?,
-          payment_method_type: WhopSDK::Models::payment_method_types
+          card: WhopSDK::SetupIntent::PaymentInstrument::Card?,
+          display_name: String,
+          icons: WhopSDK::SetupIntent::PaymentInstrument::Icons,
+          installment_count: Float?,
+          payment_method_type: String
         ) -> void
 
         def to_hash: -> {
-          id: String,
-          card: WhopSDK::SetupIntent::PaymentMethod::Card?,
-          created_at: Time,
-          mailing_address: WhopSDK::SetupIntent::PaymentMethod::MailingAddress?,
-          payment_method_type: WhopSDK::Models::payment_method_types
+          card: WhopSDK::SetupIntent::PaymentInstrument::Card?,
+          display_name: String,
+          icons: WhopSDK::SetupIntent::PaymentInstrument::Icons,
+          installment_count: Float?,
+          payment_method_type: String
         }
 
         type card =
           {
-            brand: WhopSDK::Models::card_brands?,
-            exp_month: Integer?,
-            exp_year: Integer?,
+            brand: String?,
+            exp_month: Float?,
+            exp_year: Float?,
+            issuer_identification_number: String?,
             :last4 => String?
           }
 
         class Card < WhopSDK::Internal::Type::BaseModel
-          attr_accessor brand: WhopSDK::Models::card_brands?
+          attr_accessor brand: String?
 
-          attr_accessor exp_month: Integer?
+          attr_accessor exp_month: Float?
 
-          attr_accessor exp_year: Integer?
+          attr_accessor exp_year: Float?
+
+          attr_accessor issuer_identification_number: String?
 
           attr_accessor last4: String?
 
           def initialize: (
-            brand: WhopSDK::Models::card_brands?,
-            exp_month: Integer?,
-            exp_year: Integer?,
+            brand: String?,
+            exp_month: Float?,
+            exp_year: Float?,
+            issuer_identification_number: String?,
             last4: String?
           ) -> void
 
           def to_hash: -> {
-            brand: WhopSDK::Models::card_brands?,
-            exp_month: Integer?,
-            exp_year: Integer?,
+            brand: String?,
+            exp_month: Float?,
+            exp_year: Float?,
+            issuer_identification_number: String?,
             :last4 => String?
           }
         end
 
-        type mailing_address =
+        type icons =
           {
-            city: String?,
-            country: String?,
-            :line1 => String?,
-            :line2 => String?,
-            name: String?,
-            postal_code: String?,
-            state: String?
+            card: WhopSDK::SetupIntent::PaymentInstrument::Icons::Card,
+            square: WhopSDK::SetupIntent::PaymentInstrument::Icons::Square
           }
 
-        class MailingAddress < WhopSDK::Internal::Type::BaseModel
-          attr_accessor city: String?
+        class Icons < WhopSDK::Internal::Type::BaseModel
+          attr_accessor card: WhopSDK::SetupIntent::PaymentInstrument::Icons::Card
 
-          attr_accessor country: String?
-
-          attr_accessor line1: String?
-
-          attr_accessor line2: String?
-
-          attr_accessor name: String?
-
-          attr_accessor postal_code: String?
-
-          attr_accessor state: String?
+          attr_accessor square: WhopSDK::SetupIntent::PaymentInstrument::Icons::Square
 
           def initialize: (
-            city: String?,
-            country: String?,
-            line1: String?,
-            line2: String?,
-            name: String?,
-            postal_code: String?,
-            state: String?
+            card: WhopSDK::SetupIntent::PaymentInstrument::Icons::Card,
+            square: WhopSDK::SetupIntent::PaymentInstrument::Icons::Square
           ) -> void
 
           def to_hash: -> {
-            city: String?,
-            country: String?,
-            :line1 => String?,
-            :line2 => String?,
-            name: String?,
-            postal_code: String?,
-            state: String?
+            card: WhopSDK::SetupIntent::PaymentInstrument::Icons::Card,
+            square: WhopSDK::SetupIntent::PaymentInstrument::Icons::Square
           }
+
+          type card =
+            {
+              dark: WhopSDK::SetupIntent::PaymentInstrument::Icons::Card::Dark,
+              light: WhopSDK::SetupIntent::PaymentInstrument::Icons::Card::Light
+            }
+
+          class Card < WhopSDK::Internal::Type::BaseModel
+            attr_accessor dark: WhopSDK::SetupIntent::PaymentInstrument::Icons::Card::Dark
+
+            attr_accessor light: WhopSDK::SetupIntent::PaymentInstrument::Icons::Card::Light
+
+            def initialize: (
+              dark: WhopSDK::SetupIntent::PaymentInstrument::Icons::Card::Dark,
+              light: WhopSDK::SetupIntent::PaymentInstrument::Icons::Card::Light
+            ) -> void
+
+            def to_hash: -> {
+              dark: WhopSDK::SetupIntent::PaymentInstrument::Icons::Card::Dark,
+              light: WhopSDK::SetupIntent::PaymentInstrument::Icons::Card::Light
+            }
+
+            type dark =
+              {
+                :png_1x => String,
+                :png_2x => String,
+                :png_4x => String,
+                svg: String
+              }
+
+            class Dark < WhopSDK::Internal::Type::BaseModel
+              attr_accessor png_1x: String
+
+              attr_accessor png_2x: String
+
+              attr_accessor png_4x: String
+
+              attr_accessor svg: String
+
+              def initialize: (
+                png_1x: String,
+                png_2x: String,
+                png_4x: String,
+                svg: String
+              ) -> void
+
+              def to_hash: -> {
+                :png_1x => String,
+                :png_2x => String,
+                :png_4x => String,
+                svg: String
+              }
+            end
+
+            type light =
+              {
+                :png_1x => String,
+                :png_2x => String,
+                :png_4x => String,
+                svg: String
+              }
+
+            class Light < WhopSDK::Internal::Type::BaseModel
+              attr_accessor png_1x: String
+
+              attr_accessor png_2x: String
+
+              attr_accessor png_4x: String
+
+              attr_accessor svg: String
+
+              def initialize: (
+                png_1x: String,
+                png_2x: String,
+                png_4x: String,
+                svg: String
+              ) -> void
+
+              def to_hash: -> {
+                :png_1x => String,
+                :png_2x => String,
+                :png_4x => String,
+                svg: String
+              }
+            end
+          end
+
+          type square =
+            {
+              dark: WhopSDK::SetupIntent::PaymentInstrument::Icons::Square::Dark,
+              light: WhopSDK::SetupIntent::PaymentInstrument::Icons::Square::Light
+            }
+
+          class Square < WhopSDK::Internal::Type::BaseModel
+            attr_accessor dark: WhopSDK::SetupIntent::PaymentInstrument::Icons::Square::Dark
+
+            attr_accessor light: WhopSDK::SetupIntent::PaymentInstrument::Icons::Square::Light
+
+            def initialize: (
+              dark: WhopSDK::SetupIntent::PaymentInstrument::Icons::Square::Dark,
+              light: WhopSDK::SetupIntent::PaymentInstrument::Icons::Square::Light
+            ) -> void
+
+            def to_hash: -> {
+              dark: WhopSDK::SetupIntent::PaymentInstrument::Icons::Square::Dark,
+              light: WhopSDK::SetupIntent::PaymentInstrument::Icons::Square::Light
+            }
+
+            type dark =
+              {
+                :png_1x => String,
+                :png_2x => String,
+                :png_4x => String,
+                svg: String
+              }
+
+            class Dark < WhopSDK::Internal::Type::BaseModel
+              attr_accessor png_1x: String
+
+              attr_accessor png_2x: String
+
+              attr_accessor png_4x: String
+
+              attr_accessor svg: String
+
+              def initialize: (
+                png_1x: String,
+                png_2x: String,
+                png_4x: String,
+                svg: String
+              ) -> void
+
+              def to_hash: -> {
+                :png_1x => String,
+                :png_2x => String,
+                :png_4x => String,
+                svg: String
+              }
+            end
+
+            type light =
+              {
+                :png_1x => String,
+                :png_2x => String,
+                :png_4x => String,
+                svg: String
+              }
+
+            class Light < WhopSDK::Internal::Type::BaseModel
+              attr_accessor png_1x: String
+
+              attr_accessor png_2x: String
+
+              attr_accessor png_4x: String
+
+              attr_accessor svg: String
+
+              def initialize: (
+                png_1x: String,
+                png_2x: String,
+                png_4x: String,
+                svg: String
+              ) -> void
+
+              def to_hash: -> {
+                :png_1x => String,
+                :png_2x => String,
+                :png_4x => String,
+                svg: String
+              }
+            end
+          end
+        end
+      end
+
+      type status = :processing | :succeeded | :canceled | :requires_action
+
+      module Status
+        extend WhopSDK::Internal::Type::Enum
+
+        PROCESSING: :processing
+        SUCCEEDED: :succeeded
+        CANCELED: :canceled
+        REQUIRES_ACTION: :requires_action
+
+        def self?.values: -> ::Array[WhopSDK::Models::SetupIntent::status]
+      end
+
+      type user =
+        {
+          id: String,
+          name: String?,
+          profile_picture: WhopSDK::SetupIntent::User::ProfilePicture,
+          username: String
+        }
+
+      class User < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor name: String?
+
+        attr_accessor profile_picture: WhopSDK::SetupIntent::User::ProfilePicture
+
+        attr_accessor username: String
+
+        def initialize: (
+          id: String,
+          name: String?,
+          profile_picture: WhopSDK::SetupIntent::User::ProfilePicture,
+          username: String
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          name: String?,
+          profile_picture: WhopSDK::SetupIntent::User::ProfilePicture,
+          username: String
+        }
+
+        type profile_picture = { url: String }
+
+        class ProfilePicture < WhopSDK::Internal::Type::BaseModel
+          attr_accessor url: String
+
+          def initialize: (url: String) -> void
+
+          def to_hash: -> { url: String }
         end
       end
     end

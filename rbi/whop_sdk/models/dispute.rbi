@@ -1826,9 +1826,17 @@ module WhopSDK
               end
 
             # The network identifier (`visa`, `amex`, …), matching `card.networks` entries and
-            # saved card payment methods.
-            sig { returns(String) }
+            # saved card payment methods. Null when the vault did not record the network.
+            sig { returns(T.nilable(String)) }
             attr_accessor :brand
+
+            # The card's expiry month, 1 to 12. Null when the vault did not record it.
+            sig { returns(T.nilable(Float)) }
+            attr_accessor :exp_month
+
+            # The card's four-digit expiry year. Null when the vault did not record it.
+            sig { returns(T.nilable(Float)) }
+            attr_accessor :exp_year
 
             # The issuer identification number, also called the BIN: the card's leading six or
             # eight digits, which identify the issuing bank. Null when the processor did not
@@ -1844,15 +1852,21 @@ module WhopSDK
             # number.
             sig do
               params(
-                brand: String,
+                brand: T.nilable(String),
+                exp_month: T.nilable(Float),
+                exp_year: T.nilable(Float),
                 issuer_identification_number: T.nilable(String),
                 last4: T.nilable(String)
               ).returns(T.attached_class)
             end
             def self.new(
               # The network identifier (`visa`, `amex`, …), matching `card.networks` entries and
-              # saved card payment methods.
+              # saved card payment methods. Null when the vault did not record the network.
               brand:,
+              # The card's expiry month, 1 to 12. Null when the vault did not record it.
+              exp_month:,
+              # The card's four-digit expiry year. Null when the vault did not record it.
+              exp_year:,
               # The issuer identification number, also called the BIN: the card's leading six or
               # eight digits, which identify the issuing bank. Null when the processor did not
               # report it.
@@ -1865,7 +1879,9 @@ module WhopSDK
             sig do
               override.returns(
                 {
-                  brand: String,
+                  brand: T.nilable(String),
+                  exp_month: T.nilable(Float),
+                  exp_year: T.nilable(Float),
                   issuer_identification_number: T.nilable(String),
                   last4: T.nilable(String)
                 }

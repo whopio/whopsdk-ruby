@@ -7,9 +7,12 @@ module WhopSDK
         before: String,
         created_after: Time,
         created_before: Time,
-        direction: WhopSDK::Models::direction,
+        direction: WhopSDK::Models::SetupIntentListParams::direction,
         first: Integer,
-        last: Integer
+        last: Integer,
+        order: WhopSDK::Models::SetupIntentListParams::order,
+        status: WhopSDK::Models::SetupIntentListParams::status,
+        api_version_date: String
       }
       & WhopSDK::Internal::Type::request_parameters
 
@@ -17,7 +20,9 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      attr_accessor account_id: String
+      attr_reader account_id: String?
+
+      def account_id=: (String) -> String
 
       attr_reader after: String?
 
@@ -35,9 +40,11 @@ module WhopSDK
 
       def created_before=: (Time) -> Time
 
-      attr_reader direction: WhopSDK::Models::direction?
+      attr_reader direction: WhopSDK::Models::SetupIntentListParams::direction?
 
-      def direction=: (WhopSDK::Models::direction) -> WhopSDK::Models::direction
+      def direction=: (
+        WhopSDK::Models::SetupIntentListParams::direction
+      ) -> WhopSDK::Models::SetupIntentListParams::direction
 
       attr_reader first: Integer?
 
@@ -47,15 +54,34 @@ module WhopSDK
 
       def last=: (Integer) -> Integer
 
+      attr_reader order: WhopSDK::Models::SetupIntentListParams::order?
+
+      def order=: (
+        WhopSDK::Models::SetupIntentListParams::order
+      ) -> WhopSDK::Models::SetupIntentListParams::order
+
+      attr_reader status: WhopSDK::Models::SetupIntentListParams::status?
+
+      def status=: (
+        WhopSDK::Models::SetupIntentListParams::status
+      ) -> WhopSDK::Models::SetupIntentListParams::status
+
+      attr_reader api_version_date: String?
+
+      def api_version_date=: (String) -> String
+
       def initialize: (
-        account_id: String,
+        ?account_id: String,
         ?after: String,
         ?before: String,
         ?created_after: Time,
         ?created_before: Time,
-        ?direction: WhopSDK::Models::direction,
+        ?direction: WhopSDK::Models::SetupIntentListParams::direction,
         ?first: Integer,
         ?last: Integer,
+        ?order: WhopSDK::Models::SetupIntentListParams::order,
+        ?status: WhopSDK::Models::SetupIntentListParams::status,
+        ?api_version_date: String,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
@@ -65,11 +91,48 @@ module WhopSDK
         before: String,
         created_after: Time,
         created_before: Time,
-        direction: WhopSDK::Models::direction,
+        direction: WhopSDK::Models::SetupIntentListParams::direction,
         first: Integer,
         last: Integer,
+        order: WhopSDK::Models::SetupIntentListParams::order,
+        status: WhopSDK::Models::SetupIntentListParams::status,
+        api_version_date: String,
         request_options: WhopSDK::RequestOptions
       }
+
+      type direction = :asc | :desc
+
+      module Direction
+        extend WhopSDK::Internal::Type::Enum
+
+        ASC: :asc
+        DESC: :desc
+
+        def self?.values: -> ::Array[WhopSDK::Models::SetupIntentListParams::direction]
+      end
+
+      type order = :created_at
+
+      module Order
+        extend WhopSDK::Internal::Type::Enum
+
+        CREATED_AT: :created_at
+
+        def self?.values: -> ::Array[WhopSDK::Models::SetupIntentListParams::order]
+      end
+
+      type status = :processing | :succeeded | :canceled | :requires_action
+
+      module Status
+        extend WhopSDK::Internal::Type::Enum
+
+        PROCESSING: :processing
+        SUCCEEDED: :succeeded
+        CANCELED: :canceled
+        REQUIRES_ACTION: :requires_action
+
+        def self?.values: -> ::Array[WhopSDK::Models::SetupIntentListParams::status]
+      end
     end
   end
 end

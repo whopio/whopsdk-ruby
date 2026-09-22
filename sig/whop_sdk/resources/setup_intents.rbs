@@ -3,20 +3,24 @@ module WhopSDK
     class SetupIntents
       def retrieve: (
         String id,
+        ?api_version_date: String,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::SetupIntent
 
       def list: (
-        account_id: String,
+        ?account_id: String,
         ?after: String,
         ?before: String,
         ?created_after: Time,
         ?created_before: Time,
-        ?direction: WhopSDK::Models::direction,
+        ?direction: WhopSDK::Models::SetupIntentListParams::direction,
         ?first: Integer,
         ?last: Integer,
+        ?order: WhopSDK::Models::SetupIntentListParams::order,
+        ?status: WhopSDK::Models::SetupIntentListParams::status,
+        ?api_version_date: String,
         ?request_options: WhopSDK::request_opts
-      ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::SetupIntentListResponse]
+      ) -> WhopSDK::Internal::CursorPage[WhopSDK::SetupIntent]
 
       def initialize: (client: WhopSDK::Client) -> void
     end

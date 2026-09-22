@@ -1189,10 +1189,22 @@ module WhopSDK
           class Card < WhopSDK::Internal::Type::BaseModel
             # @!attribute brand
             #   The network identifier (`visa`, `amex`, …), matching `card.networks` entries and
-            #   saved card payment methods.
+            #   saved card payment methods. Null when the vault did not record the network.
             #
-            #   @return [String]
-            required :brand, String
+            #   @return [String, nil]
+            required :brand, String, nil?: true
+
+            # @!attribute exp_month
+            #   The card's expiry month, 1 to 12. Null when the vault did not record it.
+            #
+            #   @return [Float, nil]
+            required :exp_month, Float, nil?: true
+
+            # @!attribute exp_year
+            #   The card's four-digit expiry year. Null when the vault did not record it.
+            #
+            #   @return [Float, nil]
+            required :exp_year, Float, nil?: true
 
             # @!attribute issuer_identification_number
             #   The issuer identification number, also called the BIN: the card's leading six or
@@ -1208,14 +1220,18 @@ module WhopSDK
             #   @return [String, nil]
             required :last4, String, nil?: true
 
-            # @!method initialize(brand:, issuer_identification_number:, last4:)
+            # @!method initialize(brand:, exp_month:, exp_year:, issuer_identification_number:, last4:)
             #   Some parameter documentations has been truncated, see
             #   {WhopSDK::Models::Dispute::Payment::PaymentInstrument::Card} for more details.
             #
             #   Card payments only: the card's network, last four, and issuer identification
             #   number.
             #
-            #   @param brand [String] The network identifier (`visa`, `amex`, …), matching `card.networks` entries and
+            #   @param brand [String, nil] The network identifier (`visa`, `amex`, …), matching `card.networks` entries and
+            #
+            #   @param exp_month [Float, nil] The card's expiry month, 1 to 12. Null when the vault did not record it.
+            #
+            #   @param exp_year [Float, nil] The card's four-digit expiry year. Null when the vault did not record it.
             #
             #   @param issuer_identification_number [String, nil] The issuer identification number, also called the BIN: the card's leading six or
             #

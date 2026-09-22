@@ -6,7 +6,7 @@ class WhopSDK::Test::Resources::SetupIntentsTest < WhopSDK::Test::ResourceTest
   def test_retrieve
     skip("Mock server tests are disabled")
 
-    response = @whop.setup_intents.retrieve("sint_xxxxxxxxxxxxx")
+    response = @whop.setup_intents.retrieve("id")
 
     assert_pattern do
       response => WhopSDK::SetupIntent
@@ -15,23 +15,29 @@ class WhopSDK::Test::Resources::SetupIntentsTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
-        checkout_configuration: WhopSDK::SetupIntent::CheckoutConfiguration | nil,
-        company: WhopSDK::SetupIntent::Company | nil,
-        created_at: Time,
-        error_message: String | nil,
-        member: WhopSDK::SetupIntent::Member | nil,
-        metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]) | nil,
-        payment_method: WhopSDK::SetupIntent::PaymentMethod | nil,
-        status: WhopSDK::SetupIntentStatus,
-        three_ds_verified: WhopSDK::Internal::Type::Boolean
+        account_id: String | nil,
+        checkout_configuration_id: String | nil,
+        client_secret: String | nil,
+        created_at: String,
+        last_setup_error: WhopSDK::SetupIntent::LastSetupError | nil,
+        member_id: String | nil,
+        metadata: WhopSDK::Internal::Type::Unknown | nil,
+        payment_instrument: WhopSDK::SetupIntent::PaymentInstrument | nil,
+        payment_method_id: String | nil,
+        payment_method_type: WhopSDK::PaymentMethodTypes | nil,
+        return_url: String | nil,
+        status: WhopSDK::SetupIntent::Status,
+        three_ds_verified: WhopSDK::Internal::Type::Boolean,
+        updated_at: String,
+        user: WhopSDK::SetupIntent::User | nil
       }
     end
   end
 
-  def test_list_required_params
+  def test_list
     skip("Mock server tests are disabled")
 
-    response = @whop.setup_intents.list(account_id: "biz_xxxxxxxxxxxxxx")
+    response = @whop.setup_intents.list
 
     assert_pattern do
       response => WhopSDK::Internal::CursorPage
@@ -41,20 +47,27 @@ class WhopSDK::Test::Resources::SetupIntentsTest < WhopSDK::Test::ResourceTest
     return if row.nil?
 
     assert_pattern do
-      row => WhopSDK::Models::SetupIntentListResponse
+      row => WhopSDK::SetupIntent
     end
 
     assert_pattern do
       row => {
         id: String,
-        checkout_configuration: WhopSDK::Models::SetupIntentListResponse::CheckoutConfiguration | nil,
-        company: WhopSDK::Models::SetupIntentListResponse::Company | nil,
-        created_at: Time,
-        error_message: String | nil,
-        member: WhopSDK::Models::SetupIntentListResponse::Member | nil,
-        metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]) | nil,
-        payment_method: WhopSDK::Models::SetupIntentListResponse::PaymentMethod | nil,
-        status: WhopSDK::SetupIntentStatus
+        account_id: String | nil,
+        checkout_configuration_id: String | nil,
+        client_secret: String | nil,
+        created_at: String,
+        last_setup_error: WhopSDK::SetupIntent::LastSetupError | nil,
+        member_id: String | nil,
+        metadata: WhopSDK::Internal::Type::Unknown | nil,
+        payment_instrument: WhopSDK::SetupIntent::PaymentInstrument | nil,
+        payment_method_id: String | nil,
+        payment_method_type: WhopSDK::PaymentMethodTypes | nil,
+        return_url: String | nil,
+        status: WhopSDK::SetupIntent::Status,
+        three_ds_verified: WhopSDK::Internal::Type::Boolean,
+        updated_at: String,
+        user: WhopSDK::SetupIntent::User | nil
       }
     end
   end

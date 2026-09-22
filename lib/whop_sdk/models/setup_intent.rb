@@ -5,341 +5,587 @@ module WhopSDK
     # @see WhopSDK::Resources::SetupIntents#retrieve
     class SetupIntent < WhopSDK::Internal::Type::BaseModel
       # @!attribute id
-      #   The unique identifier for the setup intent.
+      #   Setup intent ID, prefixed `sint_`.
       #
       #   @return [String]
       required :id, String
 
-      # @!attribute checkout_configuration
-      #   The checkout session configuration associated with this setup intent. Null if no
-      #   checkout session was used.
-      #
-      #   @return [WhopSDK::Models::SetupIntent::CheckoutConfiguration, nil]
-      required :checkout_configuration, -> { WhopSDK::SetupIntent::CheckoutConfiguration }, nil?: true
-
-      # @!attribute company
-      #   The company that initiated this setup intent. Null if the company has been
-      #   deleted.
-      #
-      #   @return [WhopSDK::Models::SetupIntent::Company, nil]
-      required :company, -> { WhopSDK::SetupIntent::Company }, nil?: true
-
-      # @!attribute created_at
-      #   The datetime the setup intent was created.
-      #
-      #   @return [Time]
-      required :created_at, Time
-
-      # @!attribute error_message
-      #   A human-readable error message explaining why the setup intent failed. Null if
-      #   no error occurred.
+      # @!attribute account_id
+      #   The account the payment method is saved for, prefixed `biz_`.
       #
       #   @return [String, nil]
-      required :error_message, String, nil?: true
+      required :account_id, String, nil?: true
 
-      # @!attribute member
-      #   The company member associated with this setup intent. Null if the user is not a
-      #   member.
+      # @!attribute checkout_configuration_id
+      #   The checkout configuration this setup was created through, prefixed `ch_`. Null
+      #   for a setup created through this API rather than a hosted checkout.
       #
-      #   @return [WhopSDK::Models::SetupIntent::Member, nil]
-      required :member, -> { WhopSDK::SetupIntent::Member }, nil?: true
+      #   @return [String, nil]
+      required :checkout_configuration_id, String, nil?: true
+
+      # @!attribute client_secret
+      #   The credential a buyer's surface presents to poll this setup and set its return
+      #   URL — hand it to the elements' `handleNextAction`. Only on setups created
+      #   through this API, and always null in list responses — retrieve the setup intent
+      #   for it.
+      #
+      #   @return [String, nil]
+      required :client_secret, String, nil?: true
+
+      # @!attribute created_at
+      #   When the setup intent was created, as an ISO 8601 timestamp.
+      #
+      #   @return [String]
+      required :created_at, String
+
+      # @!attribute last_setup_error
+      #   Why the setup ended where it did, or `null` when nothing has failed. Present on
+      #   `canceled` — a buyer who abandoned carries no code, one refused by the provider
+      #   does. Dropped once the setup succeeds.
+      #
+      #   @return [WhopSDK::Models::SetupIntent::LastSetupError, nil]
+      required :last_setup_error, -> { WhopSDK::SetupIntent::LastSetupError }, nil?: true
+
+      # @!attribute member_id
+      #   The buyer's member record on the account, prefixed `mber_`. Null without the
+      #   member:basic:read permission, unless the caller is the buyer.
+      #
+      #   @return [String, nil]
+      required :member_id, String, nil?: true
 
       # @!attribute metadata
-      #   Custom key-value pairs attached to this setup intent. Null if no metadata was
-      #   provided.
+      #   Your own key-value data attached when the setup intent was created.
       #
-      #   @return [Hash{Symbol=>Object}, nil]
-      required :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown], nil?: true
+      #   @return [Object, nil]
+      required :metadata, WhopSDK::Internal::Type::Unknown, nil?: true
 
-      # @!attribute payment_method
-      #   The saved payment method created by this setup intent. Null if the setup has not
-      #   completed successfully.
+      # @!attribute payment_instrument
+      #   The method behind this setup shaped for display: a buyer-facing name, the
+      #   standard icon set, and the card's brand, last four, issuer identification
+      #   number, and expiry when it was a card. Null until a method was collected.
       #
-      #   @return [WhopSDK::Models::SetupIntent::PaymentMethod, nil]
-      required :payment_method, -> { WhopSDK::SetupIntent::PaymentMethod }, nil?: true
+      #   @return [WhopSDK::Models::SetupIntent::PaymentInstrument, nil]
+      required :payment_instrument, -> { WhopSDK::SetupIntent::PaymentInstrument }, nil?: true
+
+      # @!attribute payment_method_id
+      #   The saved payment method, prefixed `payt_`, ready to charge with Create Payment.
+      #   Null until the setup has `succeeded`.
+      #
+      #   @return [String, nil]
+      required :payment_method_id, String, nil?: true
+
+      # @!attribute payment_method_type
+      #   The different types of payment methods that can be used.
+      #
+      #   @return [Symbol, WhopSDK::Models::PaymentMethodTypes, nil]
+      required :payment_method_type, enum: -> { WhopSDK::PaymentMethodTypes }, nil?: true
+
+      # @!attribute return_url
+      #   Where the buyer lands after completing an off-site step, or `null` to leave them
+      #   where they are.
+      #
+      #   @return [String, nil]
+      required :return_url, String, nil?: true
 
       # @!attribute status
-      #   The current status of the setup intent.
+      #   How far the setup has got. **A 201 or 200 means we answered, not that the method
+      #   was saved — always branch on this.** `requires_action` — the buyer has a step
+      #   outstanding; hand `client_secret` to the elements or poll Retrieve setup status.
+      #   `processing` — the processor is deciding. `succeeded` — the method is saved, and
+      #   only this one means saved. `canceled` — abandoned or refused; see
+      #   `last_setup_error`.
       #
-      #   @return [Symbol, WhopSDK::Models::SetupIntentStatus]
-      required :status, enum: -> { WhopSDK::SetupIntentStatus }
+      #   @return [Symbol, WhopSDK::Models::SetupIntent::Status]
+      required :status, enum: -> { WhopSDK::SetupIntent::Status }
 
       # @!attribute three_ds_verified
-      #   Whether 3D Secure authentication was completed when this payment method was set
-      #   up.
+      #   True when the buyer completed 3D Secure while saving this payment method.
       #
       #   @return [Boolean]
       required :three_ds_verified, WhopSDK::Internal::Type::Boolean
 
-      # @!method initialize(id:, checkout_configuration:, company:, created_at:, error_message:, member:, metadata:, payment_method:, status:, three_ds_verified:)
+      # @!attribute updated_at
+      #   When the setup intent was last updated, as an ISO 8601 timestamp.
+      #
+      #   @return [String]
+      required :updated_at, String
+
+      # @!attribute user
+      #   The user saving the payment method. Null when the buyer is a company rather than
+      #   a user.
+      #
+      #   @return [WhopSDK::Models::SetupIntent::User, nil]
+      required :user, -> { WhopSDK::SetupIntent::User }, nil?: true
+
+      # @!method initialize(id:, account_id:, checkout_configuration_id:, client_secret:, created_at:, last_setup_error:, member_id:, metadata:, payment_instrument:, payment_method_id:, payment_method_type:, return_url:, status:, three_ds_verified:, updated_at:, user:)
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::SetupIntent} for more details.
       #
-      #   A setup intent allows a user to save a payment method for future use without
-      #   making an immediate purchase.
+      #   @param id [String] Setup intent ID, prefixed `sint_`.
       #
-      #   @param id [String] The unique identifier for the setup intent.
+      #   @param account_id [String, nil] The account the payment method is saved for, prefixed `biz_`.
       #
-      #   @param checkout_configuration [WhopSDK::Models::SetupIntent::CheckoutConfiguration, nil] The checkout session configuration associated with this setup intent. Null if no
+      #   @param checkout_configuration_id [String, nil] The checkout configuration this setup was created through, prefixed `ch_`. Null
       #
-      #   @param company [WhopSDK::Models::SetupIntent::Company, nil] The company that initiated this setup intent. Null if the company has been delet
+      #   @param client_secret [String, nil] The credential a buyer's surface presents to poll this setup and set its return
       #
-      #   @param created_at [Time] The datetime the setup intent was created.
+      #   @param created_at [String] When the setup intent was created, as an ISO 8601 timestamp.
       #
-      #   @param error_message [String, nil] A human-readable error message explaining why the setup intent failed. Null if n
+      #   @param last_setup_error [WhopSDK::Models::SetupIntent::LastSetupError, nil] Why the setup ended where it did, or `null` when nothing has failed. Present on
       #
-      #   @param member [WhopSDK::Models::SetupIntent::Member, nil] The company member associated with this setup intent. Null if the user is not a
+      #   @param member_id [String, nil] The buyer's member record on the account, prefixed `mber_`. Null without the mem
       #
-      #   @param metadata [Hash{Symbol=>Object}, nil] Custom key-value pairs attached to this setup intent. Null if no metadata was pr
+      #   @param metadata [Object, nil] Your own key-value data attached when the setup intent was created.
       #
-      #   @param payment_method [WhopSDK::Models::SetupIntent::PaymentMethod, nil] The saved payment method created by this setup intent. Null if the setup has not
+      #   @param payment_instrument [WhopSDK::Models::SetupIntent::PaymentInstrument, nil] The method behind this setup shaped for display: a buyer-facing name, the standa
       #
-      #   @param status [Symbol, WhopSDK::Models::SetupIntentStatus] The current status of the setup intent.
+      #   @param payment_method_id [String, nil] The saved payment method, prefixed `payt_`, ready to charge with Create Payment.
       #
-      #   @param three_ds_verified [Boolean] Whether 3D Secure authentication was completed when this payment method was set
+      #   @param payment_method_type [Symbol, WhopSDK::Models::PaymentMethodTypes, nil] The different types of payment methods that can be used.
+      #
+      #   @param return_url [String, nil] Where the buyer lands after completing an off-site step, or `null` to leave them
+      #
+      #   @param status [Symbol, WhopSDK::Models::SetupIntent::Status] How far the setup has got. \*\*A 201 or 200 means we answered, not that the
+      #   method
+      #
+      #   @param three_ds_verified [Boolean] True when the buyer completed 3D Secure while saving this payment method.
+      #
+      #   @param updated_at [String] When the setup intent was last updated, as an ISO 8601 timestamp.
+      #
+      #   @param user [WhopSDK::Models::SetupIntent::User, nil] The user saving the payment method. Null when the buyer is a company rather than
 
-      # @see WhopSDK::Models::SetupIntent#checkout_configuration
-      class CheckoutConfiguration < WhopSDK::Internal::Type::BaseModel
-        # @!attribute id
-        #   The unique identifier for the checkout session.
+      # @see WhopSDK::Models::SetupIntent#last_setup_error
+      class LastSetupError < WhopSDK::Internal::Type::BaseModel
+        # @!attribute code
+        #   A machine-readable classification of the failure, e.g. `enrollment_declined`.
+        #   Absent when the buyer simply abandoned the setup.
         #
-        #   @return [String]
-        required :id, String
+        #   @return [String, nil]
+        required :code, String, nil?: true
 
-        # @!method initialize(id:)
-        #   The checkout session configuration associated with this setup intent. Null if no
-        #   checkout session was used.
+        # @!attribute message
+        #   A human-readable explanation of the failure.
         #
-        #   @param id [String] The unique identifier for the checkout session.
+        #   @return [String, nil]
+        required :message, String, nil?: true
+
+        # @!method initialize(code:, message:)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::SetupIntent::LastSetupError} for more details.
+        #
+        #   Why the setup ended where it did, or `null` when nothing has failed. Present on
+        #   `canceled` — a buyer who abandoned carries no code, one refused by the provider
+        #   does. Dropped once the setup succeeds.
+        #
+        #   @param code [String, nil] A machine-readable classification of the failure, e.g. `enrollment_declined`. Ab
+        #
+        #   @param message [String, nil] A human-readable explanation of the failure.
       end
 
-      # @see WhopSDK::Models::SetupIntent#company
-      class Company < WhopSDK::Internal::Type::BaseModel
-        # @!attribute id
-        #   The unique identifier for the company.
-        #
-        #   @return [String]
-        required :id, String
-
-        # @!method initialize(id:)
-        #   The company that initiated this setup intent. Null if the company has been
-        #   deleted.
-        #
-        #   @param id [String] The unique identifier for the company.
-      end
-
-      # @see WhopSDK::Models::SetupIntent#member
-      class Member < WhopSDK::Internal::Type::BaseModel
-        # @!attribute id
-        #   The unique identifier for the company member.
-        #
-        #   @return [String]
-        required :id, String
-
-        # @!attribute user
-        #   The user for this member, if any.
-        #
-        #   @return [WhopSDK::Models::SetupIntent::Member::User, nil]
-        required :user, -> { WhopSDK::SetupIntent::Member::User }, nil?: true
-
-        # @!method initialize(id:, user:)
-        #   The company member associated with this setup intent. Null if the user is not a
-        #   member.
-        #
-        #   @param id [String] The unique identifier for the company member.
-        #
-        #   @param user [WhopSDK::Models::SetupIntent::Member::User, nil] The user for this member, if any.
-
-        # @see WhopSDK::Models::SetupIntent::Member#user
-        class User < WhopSDK::Internal::Type::BaseModel
-          # @!attribute id
-          #   The unique identifier for the company member user.
-          #
-          #   @return [String]
-          required :id, String
-
-          # @!attribute email
-          #   The digital mailing address of the user.
-          #
-          #   @return [String, nil]
-          required :email, String, nil?: true
-
-          # @!attribute name
-          #   The user's full name.
-          #
-          #   @return [String, nil]
-          required :name, String, nil?: true
-
-          # @!attribute username
-          #   The whop username.
-          #
-          #   @return [String]
-          required :username, String
-
-          # @!method initialize(id:, email:, name:, username:)
-          #   The user for this member, if any.
-          #
-          #   @param id [String] The unique identifier for the company member user.
-          #
-          #   @param email [String, nil] The digital mailing address of the user.
-          #
-          #   @param name [String, nil] The user's full name.
-          #
-          #   @param username [String] The whop username.
-        end
-      end
-
-      # @see WhopSDK::Models::SetupIntent#payment_method
-      class PaymentMethod < WhopSDK::Internal::Type::BaseModel
-        # @!attribute id
-        #   The unique identifier for the payment token.
-        #
-        #   @return [String]
-        required :id, String
-
+      # @see WhopSDK::Models::SetupIntent#payment_instrument
+      class PaymentInstrument < WhopSDK::Internal::Type::BaseModel
         # @!attribute card
-        #   The card data associated with the payment method, if its a debit or credit card.
+        #   Card payments only: the card's network, last four, and issuer identification
+        #   number.
         #
-        #   @return [WhopSDK::Models::SetupIntent::PaymentMethod::Card, nil]
-        required :card, -> { WhopSDK::SetupIntent::PaymentMethod::Card }, nil?: true
+        #   @return [WhopSDK::Models::SetupIntent::PaymentInstrument::Card, nil]
+        required :card, -> { WhopSDK::SetupIntent::PaymentInstrument::Card }, nil?: true
 
-        # @!attribute created_at
-        #   The datetime the payment token was created.
+        # @!attribute display_name
+        #   Buyer-facing instrument name — "Visa •••• 4242" when the card surfaced, else the
+        #   method's own name ("Klarna").
         #
-        #   @return [Time]
-        required :created_at, Time
+        #   @return [String]
+        required :display_name, String
 
-        # @!attribute mailing_address
-        #   The mailing address associated with the payment method's user
+        # @!attribute icons
+        #   The standard icon set: square and card shapes, each in light and dark colorways.
         #
-        #   @return [WhopSDK::Models::SetupIntent::PaymentMethod::MailingAddress, nil]
-        required :mailing_address, -> { WhopSDK::SetupIntent::PaymentMethod::MailingAddress }, nil?: true
+        #   @return [WhopSDK::Models::SetupIntent::PaymentInstrument::Icons]
+        required :icons, -> { WhopSDK::SetupIntent::PaymentInstrument::Icons }
+
+        # @!attribute installment_count
+        #   Installment methods only: how many payments the charge splits into. Data, not
+        #   copy — compose and translate the label client-side.
+        #
+        #   @return [Float, nil]
+        required :installment_count, Float, nil?: true
 
         # @!attribute payment_method_type
-        #   The payment method type of the payment method
+        #   The payment method type identifier, e.g. `card`, `klarna`, `apple_pay`.
         #
-        #   @return [Symbol, WhopSDK::Models::PaymentMethodTypes]
-        required :payment_method_type, enum: -> { WhopSDK::PaymentMethodTypes }
+        #   @return [String]
+        required :payment_method_type, String
 
-        # @!method initialize(id:, card:, created_at:, mailing_address:, payment_method_type:)
+        # @!method initialize(card:, display_name:, icons:, installment_count:, payment_method_type:)
         #   Some parameter documentations has been truncated, see
-        #   {WhopSDK::Models::SetupIntent::PaymentMethod} for more details.
+        #   {WhopSDK::Models::SetupIntent::PaymentInstrument} for more details.
         #
-        #   The saved payment method created by this setup intent. Null if the setup has not
-        #   completed successfully.
+        #   The method behind this setup shaped for display: a buyer-facing name, the
+        #   standard icon set, and the card's brand, last four, issuer identification
+        #   number, and expiry when it was a card. Null until a method was collected.
         #
-        #   @param id [String] The unique identifier for the payment token.
+        #   @param card [WhopSDK::Models::SetupIntent::PaymentInstrument::Card, nil] Card payments only: the card's network, last four, and issuer identification num
         #
-        #   @param card [WhopSDK::Models::SetupIntent::PaymentMethod::Card, nil] The card data associated with the payment method, if its a debit or credit card.
+        #   @param display_name [String] Buyer-facing instrument name — "Visa •••• 4242" when the card surfaced, else the
         #
-        #   @param created_at [Time] The datetime the payment token was created.
+        #   @param icons [WhopSDK::Models::SetupIntent::PaymentInstrument::Icons] The standard icon set: square and card shapes, each in light and dark colorways.
         #
-        #   @param mailing_address [WhopSDK::Models::SetupIntent::PaymentMethod::MailingAddress, nil] The mailing address associated with the payment method's user
+        #   @param installment_count [Float, nil] Installment methods only: how many payments the charge splits into. Data, not co
         #
-        #   @param payment_method_type [Symbol, WhopSDK::Models::PaymentMethodTypes] The payment method type of the payment method
+        #   @param payment_method_type [String] The payment method type identifier, e.g. `card`, `klarna`, `apple_pay`.
 
-        # @see WhopSDK::Models::SetupIntent::PaymentMethod#card
+        # @see WhopSDK::Models::SetupIntent::PaymentInstrument#card
         class Card < WhopSDK::Internal::Type::BaseModel
           # @!attribute brand
-          #   Possible card brands that a payment token can have
+          #   The network identifier (`visa`, `amex`, …), matching `card.networks` entries and
+          #   saved card payment methods. Null when the vault did not record the network.
           #
-          #   @return [Symbol, WhopSDK::Models::CardBrands, nil]
-          required :brand, enum: -> { WhopSDK::CardBrands }, nil?: true
+          #   @return [String, nil]
+          required :brand, String, nil?: true
 
           # @!attribute exp_month
-          #   The two-digit expiration month of the card (1-12). Null if not available.
+          #   The card's expiry month, 1 to 12. Null when the vault did not record it.
           #
-          #   @return [Integer, nil]
-          required :exp_month, Integer, nil?: true
+          #   @return [Float, nil]
+          required :exp_month, Float, nil?: true
 
           # @!attribute exp_year
-          #   The two-digit expiration year of the card (e.g., 27 for 2027). Null if not
-          #   available.
+          #   The card's four-digit expiry year. Null when the vault did not record it.
           #
-          #   @return [Integer, nil]
-          required :exp_year, Integer, nil?: true
+          #   @return [Float, nil]
+          required :exp_year, Float, nil?: true
+
+          # @!attribute issuer_identification_number
+          #   The issuer identification number, also called the BIN: the card's leading six or
+          #   eight digits, which identify the issuing bank. Null when the processor did not
+          #   report it.
+          #
+          #   @return [String, nil]
+          required :issuer_identification_number, String, nil?: true
 
           # @!attribute last4
-          #   The last four digits of the card number. Null if not available.
+          #   The card's last four digits, when captured.
           #
           #   @return [String, nil]
           required :last4, String, nil?: true
 
-          # @!method initialize(brand:, exp_month:, exp_year:, last4:)
+          # @!method initialize(brand:, exp_month:, exp_year:, issuer_identification_number:, last4:)
           #   Some parameter documentations has been truncated, see
-          #   {WhopSDK::Models::SetupIntent::PaymentMethod::Card} for more details.
+          #   {WhopSDK::Models::SetupIntent::PaymentInstrument::Card} for more details.
           #
-          #   The card data associated with the payment method, if its a debit or credit card.
+          #   Card payments only: the card's network, last four, and issuer identification
+          #   number.
           #
-          #   @param brand [Symbol, WhopSDK::Models::CardBrands, nil] Possible card brands that a payment token can have
+          #   @param brand [String, nil] The network identifier (`visa`, `amex`, …), matching `card.networks` entries and
           #
-          #   @param exp_month [Integer, nil] The two-digit expiration month of the card (1-12). Null if not available.
+          #   @param exp_month [Float, nil] The card's expiry month, 1 to 12. Null when the vault did not record it.
           #
-          #   @param exp_year [Integer, nil] The two-digit expiration year of the card (e.g., 27 for 2027). Null if not avail
+          #   @param exp_year [Float, nil] The card's four-digit expiry year. Null when the vault did not record it.
           #
-          #   @param last4 [String, nil] The last four digits of the card number. Null if not available.
+          #   @param issuer_identification_number [String, nil] The issuer identification number, also called the BIN: the card's leading six or
+          #
+          #   @param last4 [String, nil] The card's last four digits, when captured.
         end
 
-        # @see WhopSDK::Models::SetupIntent::PaymentMethod#mailing_address
-        class MailingAddress < WhopSDK::Internal::Type::BaseModel
-          # @!attribute city
-          #   The city of the address.
+        # @see WhopSDK::Models::SetupIntent::PaymentInstrument#icons
+        class Icons < WhopSDK::Internal::Type::BaseModel
+          # @!attribute card
+          #   The credit-card-proportioned tile (48x30).
           #
-          #   @return [String, nil]
-          required :city, String, nil?: true
+          #   @return [WhopSDK::Models::SetupIntent::PaymentInstrument::Icons::Card]
+          required :card, -> { WhopSDK::SetupIntent::PaymentInstrument::Icons::Card }
 
-          # @!attribute country
-          #   The country of the address.
+          # @!attribute square
+          #   The square tile (32x32).
           #
-          #   @return [String, nil]
-          required :country, String, nil?: true
+          #   @return [WhopSDK::Models::SetupIntent::PaymentInstrument::Icons::Square]
+          required :square, -> { WhopSDK::SetupIntent::PaymentInstrument::Icons::Square }
 
-          # @!attribute line1
-          #   The line 1 of the address.
+          # @!method initialize(card:, square:)
+          #   The standard icon set: square and card shapes, each in light and dark colorways.
           #
-          #   @return [String, nil]
-          required :line1, String, nil?: true
+          #   @param card [WhopSDK::Models::SetupIntent::PaymentInstrument::Icons::Card] The credit-card-proportioned tile (48x30).
+          #
+          #   @param square [WhopSDK::Models::SetupIntent::PaymentInstrument::Icons::Square] The square tile (32x32).
 
-          # @!attribute line2
-          #   The line 2 of the address.
-          #
-          #   @return [String, nil]
-          required :line2, String, nil?: true
+          # @see WhopSDK::Models::SetupIntent::PaymentInstrument::Icons#card
+          class Card < WhopSDK::Internal::Type::BaseModel
+            # @!attribute dark
+            #   The colorway for dark surfaces.
+            #
+            #   @return [WhopSDK::Models::SetupIntent::PaymentInstrument::Icons::Card::Dark]
+            required :dark, -> { WhopSDK::SetupIntent::PaymentInstrument::Icons::Card::Dark }
 
-          # @!attribute name
-          #   The name of the customer.
-          #
-          #   @return [String, nil]
-          required :name, String, nil?: true
+            # @!attribute light
+            #   The colorway for light surfaces.
+            #
+            #   @return [WhopSDK::Models::SetupIntent::PaymentInstrument::Icons::Card::Light]
+            required :light, -> { WhopSDK::SetupIntent::PaymentInstrument::Icons::Card::Light }
 
-          # @!attribute postal_code
-          #   The postal code of the address.
-          #
-          #   @return [String, nil]
-          required :postal_code, String, nil?: true
+            # @!method initialize(dark:, light:)
+            #   The credit-card-proportioned tile (48x30).
+            #
+            #   @param dark [WhopSDK::Models::SetupIntent::PaymentInstrument::Icons::Card::Dark] The colorway for dark surfaces.
+            #
+            #   @param light [WhopSDK::Models::SetupIntent::PaymentInstrument::Icons::Card::Light] The colorway for light surfaces.
 
-          # @!attribute state
-          #   The state of the address.
-          #
-          #   @return [String, nil]
-          required :state, String, nil?: true
+            # @see WhopSDK::Models::SetupIntent::PaymentInstrument::Icons::Card#dark
+            class Dark < WhopSDK::Internal::Type::BaseModel
+              # @!attribute png_1x
+              #   Raster fallback at the shape's native size.
+              #
+              #   @return [String]
+              required :png_1x, String
 
-          # @!method initialize(city:, country:, line1:, line2:, name:, postal_code:, state:)
-          #   The mailing address associated with the payment method's user
+              # @!attribute png_2x
+              #   Raster fallback at double density.
+              #
+              #   @return [String]
+              required :png_2x, String
+
+              # @!attribute png_4x
+              #   Raster fallback at quadruple density.
+              #
+              #   @return [String]
+              required :png_4x, String
+
+              # @!attribute svg
+              #   The vector file. Prefer this everywhere SVG renders.
+              #
+              #   @return [String]
+              required :svg, String
+
+              # @!method initialize(png_1x:, png_2x:, png_4x:, svg:)
+              #   The colorway for dark surfaces.
+              #
+              #   @param png_1x [String] Raster fallback at the shape's native size.
+              #
+              #   @param png_2x [String] Raster fallback at double density.
+              #
+              #   @param png_4x [String] Raster fallback at quadruple density.
+              #
+              #   @param svg [String] The vector file. Prefer this everywhere SVG renders.
+            end
+
+            # @see WhopSDK::Models::SetupIntent::PaymentInstrument::Icons::Card#light
+            class Light < WhopSDK::Internal::Type::BaseModel
+              # @!attribute png_1x
+              #   Raster fallback at the shape's native size.
+              #
+              #   @return [String]
+              required :png_1x, String
+
+              # @!attribute png_2x
+              #   Raster fallback at double density.
+              #
+              #   @return [String]
+              required :png_2x, String
+
+              # @!attribute png_4x
+              #   Raster fallback at quadruple density.
+              #
+              #   @return [String]
+              required :png_4x, String
+
+              # @!attribute svg
+              #   The vector file. Prefer this everywhere SVG renders.
+              #
+              #   @return [String]
+              required :svg, String
+
+              # @!method initialize(png_1x:, png_2x:, png_4x:, svg:)
+              #   The colorway for light surfaces.
+              #
+              #   @param png_1x [String] Raster fallback at the shape's native size.
+              #
+              #   @param png_2x [String] Raster fallback at double density.
+              #
+              #   @param png_4x [String] Raster fallback at quadruple density.
+              #
+              #   @param svg [String] The vector file. Prefer this everywhere SVG renders.
+            end
+          end
+
+          # @see WhopSDK::Models::SetupIntent::PaymentInstrument::Icons#square
+          class Square < WhopSDK::Internal::Type::BaseModel
+            # @!attribute dark
+            #   The colorway for dark surfaces.
+            #
+            #   @return [WhopSDK::Models::SetupIntent::PaymentInstrument::Icons::Square::Dark]
+            required :dark, -> { WhopSDK::SetupIntent::PaymentInstrument::Icons::Square::Dark }
+
+            # @!attribute light
+            #   The colorway for light surfaces.
+            #
+            #   @return [WhopSDK::Models::SetupIntent::PaymentInstrument::Icons::Square::Light]
+            required :light, -> { WhopSDK::SetupIntent::PaymentInstrument::Icons::Square::Light }
+
+            # @!method initialize(dark:, light:)
+            #   The square tile (32x32).
+            #
+            #   @param dark [WhopSDK::Models::SetupIntent::PaymentInstrument::Icons::Square::Dark] The colorway for dark surfaces.
+            #
+            #   @param light [WhopSDK::Models::SetupIntent::PaymentInstrument::Icons::Square::Light] The colorway for light surfaces.
+
+            # @see WhopSDK::Models::SetupIntent::PaymentInstrument::Icons::Square#dark
+            class Dark < WhopSDK::Internal::Type::BaseModel
+              # @!attribute png_1x
+              #   Raster fallback at the shape's native size.
+              #
+              #   @return [String]
+              required :png_1x, String
+
+              # @!attribute png_2x
+              #   Raster fallback at double density.
+              #
+              #   @return [String]
+              required :png_2x, String
+
+              # @!attribute png_4x
+              #   Raster fallback at quadruple density.
+              #
+              #   @return [String]
+              required :png_4x, String
+
+              # @!attribute svg
+              #   The vector file. Prefer this everywhere SVG renders.
+              #
+              #   @return [String]
+              required :svg, String
+
+              # @!method initialize(png_1x:, png_2x:, png_4x:, svg:)
+              #   The colorway for dark surfaces.
+              #
+              #   @param png_1x [String] Raster fallback at the shape's native size.
+              #
+              #   @param png_2x [String] Raster fallback at double density.
+              #
+              #   @param png_4x [String] Raster fallback at quadruple density.
+              #
+              #   @param svg [String] The vector file. Prefer this everywhere SVG renders.
+            end
+
+            # @see WhopSDK::Models::SetupIntent::PaymentInstrument::Icons::Square#light
+            class Light < WhopSDK::Internal::Type::BaseModel
+              # @!attribute png_1x
+              #   Raster fallback at the shape's native size.
+              #
+              #   @return [String]
+              required :png_1x, String
+
+              # @!attribute png_2x
+              #   Raster fallback at double density.
+              #
+              #   @return [String]
+              required :png_2x, String
+
+              # @!attribute png_4x
+              #   Raster fallback at quadruple density.
+              #
+              #   @return [String]
+              required :png_4x, String
+
+              # @!attribute svg
+              #   The vector file. Prefer this everywhere SVG renders.
+              #
+              #   @return [String]
+              required :svg, String
+
+              # @!method initialize(png_1x:, png_2x:, png_4x:, svg:)
+              #   The colorway for light surfaces.
+              #
+              #   @param png_1x [String] Raster fallback at the shape's native size.
+              #
+              #   @param png_2x [String] Raster fallback at double density.
+              #
+              #   @param png_4x [String] Raster fallback at quadruple density.
+              #
+              #   @param svg [String] The vector file. Prefer this everywhere SVG renders.
+            end
+          end
+        end
+      end
+
+      # How far the setup has got. **A 201 or 200 means we answered, not that the method
+      # was saved — always branch on this.** `requires_action` — the buyer has a step
+      # outstanding; hand `client_secret` to the elements or poll Retrieve setup status.
+      # `processing` — the processor is deciding. `succeeded` — the method is saved, and
+      # only this one means saved. `canceled` — abandoned or refused; see
+      # `last_setup_error`.
+      #
+      # @see WhopSDK::Models::SetupIntent#status
+      module Status
+        extend WhopSDK::Internal::Type::Enum
+
+        PROCESSING = :processing
+        SUCCEEDED = :succeeded
+        CANCELED = :canceled
+        REQUIRES_ACTION = :requires_action
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
+
+      # @see WhopSDK::Models::SetupIntent#user
+      class User < WhopSDK::Internal::Type::BaseModel
+        # @!attribute id
+        #   User ID, prefixed `user_`.
+        #
+        #   @return [String]
+        required :id, String
+
+        # @!attribute name
+        #   Display name.
+        #
+        #   @return [String, nil]
+        required :name, String, nil?: true
+
+        # @!attribute profile_picture
+        #   Avatar wrapper; its `url` is always present, using a generated placeholder when
+        #   the user set no picture.
+        #
+        #   @return [WhopSDK::Models::SetupIntent::User::ProfilePicture]
+        required :profile_picture, -> { WhopSDK::SetupIntent::User::ProfilePicture }
+
+        # @!attribute username
+        #   Public username.
+        #
+        #   @return [String]
+        required :username, String
+
+        # @!method initialize(id:, name:, profile_picture:, username:)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::SetupIntent::User} for more details.
+        #
+        #   The user saving the payment method. Null when the buyer is a company rather than
+        #   a user.
+        #
+        #   @param id [String] User ID, prefixed `user_`.
+        #
+        #   @param name [String, nil] Display name.
+        #
+        #   @param profile_picture [WhopSDK::Models::SetupIntent::User::ProfilePicture] Avatar wrapper; its `url` is always present, using a generated placeholder when
+        #
+        #   @param username [String] Public username.
+
+        # @see WhopSDK::Models::SetupIntent::User#profile_picture
+        class ProfilePicture < WhopSDK::Internal::Type::BaseModel
+          # @!attribute url
+          #   Avatar image URL. Always present — a generated placeholder when the user set no
+          #   picture.
           #
-          #   @param city [String, nil] The city of the address.
+          #   @return [String]
+          required :url, String
+
+          # @!method initialize(url:)
+          #   Some parameter documentations has been truncated, see
+          #   {WhopSDK::Models::SetupIntent::User::ProfilePicture} for more details.
           #
-          #   @param country [String, nil] The country of the address.
+          #   Avatar wrapper; its `url` is always present, using a generated placeholder when
+          #   the user set no picture.
           #
-          #   @param line1 [String, nil] The line 1 of the address.
-          #
-          #   @param line2 [String, nil] The line 2 of the address.
-          #
-          #   @param name [String, nil] The name of the customer.
-          #
-          #   @param postal_code [String, nil] The postal code of the address.
-          #
-          #   @param state [String, nil] The state of the address.
+          #   @param url [String] Avatar image URL. Always present — a generated placeholder when the user set no
         end
       end
     end

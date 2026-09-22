@@ -813,26 +813,36 @@ module WhopSDK
 
           type card =
             {
-              brand: String,
+              brand: String?,
+              exp_month: Float?,
+              exp_year: Float?,
               issuer_identification_number: String?,
               :last4 => String?
             }
 
           class Card < WhopSDK::Internal::Type::BaseModel
-            attr_accessor brand: String
+            attr_accessor brand: String?
+
+            attr_accessor exp_month: Float?
+
+            attr_accessor exp_year: Float?
 
             attr_accessor issuer_identification_number: String?
 
             attr_accessor last4: String?
 
             def initialize: (
-              brand: String,
+              brand: String?,
+              exp_month: Float?,
+              exp_year: Float?,
               issuer_identification_number: String?,
               last4: String?
             ) -> void
 
             def to_hash: -> {
-              brand: String,
+              brand: String?,
+              exp_month: Float?,
+              exp_year: Float?,
               issuer_identification_number: String?,
               :last4 => String?
             }

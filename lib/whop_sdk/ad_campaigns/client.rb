@@ -338,45 +338,6 @@ module Whop_sdk
         end
       end
 
-      # Queues a background payment retry for the campaign's entire account, including other campaigns with failed
-      # payments. Prefer POST /accounts/{id}/retry_ads_payment for new integrations. The returned campaign does not
-      # confirm payment success; read delivery_status and issues for the outcome.
-      #
-      # @param request_options [Hash]
-      # @param params [Hash]
-      # @option request_options [String] :base_url
-      # @option request_options [Hash{String => Object}] :additional_headers
-      # @option request_options [Hash{String => Object}] :additional_query_parameters
-      # @option request_options [Hash{String => Object}] :additional_body_parameters
-      # @option request_options [Integer] :timeout_in_seconds
-      # @option params [String] :id
-      #
-      # @example
-      #   client.ad_campaigns.retry_payment(id: "id")
-      #
-      # @return [Whop_sdk::Types::AdCampaign]
-      def retry_payment(request_options: {}, **params)
-        params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
-        request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
-          method: "POST",
-          path: "ad_campaigns/#{URI.encode_uri_component(params[:id].to_s)}/retry_payment",
-          request_options: request_options
-        )
-        begin
-          response = @client.send(request)
-        rescue Net::HTTPRequestTimeout
-          raise Whop_sdk::Errors::TimeoutError
-        end
-        code = response.code.to_i
-        if code.between?(200, 299)
-          Whop_sdk::Types::AdCampaign.load(response.body)
-        else
-          error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
-          raise error_class.new(response.body, code: code)
-        end
-      end
-
       # Resumes a paused ad campaign. Requires an ads payment method on the account.
       #
       # @param request_options [Hash]

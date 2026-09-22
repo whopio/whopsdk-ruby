@@ -2183,68 +2183,6 @@ client.ad_campaigns.pause(id: "id")
 </dl>
 </details>
 
-<details><summary><code>client.ad_campaigns.<a href="/lib/whop_sdk/ad_campaigns/client.rb">retry_payment</a>(id:) -> Whop_sdk::Types::AdCampaign</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Queues a background payment retry for the campaign's entire account, including other campaigns with failed payments. Prefer POST /accounts/{id}/retry_ads_payment for new integrations. The returned campaign does not confirm payment success; read delivery_status and issues for the outcome.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```ruby
-client.ad_campaigns.retry_payment(id: "id")
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` — The ad campaign ID.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request_options:** `Whop_sdk::AdCampaigns::RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
 <details><summary><code>client.ad_campaigns.<a href="/lib/whop_sdk/ad_campaigns/client.rb">unpause</a>(id:) -> Whop_sdk::Types::AdCampaign</code></summary>
 <dl>
 <dd>

@@ -8,9 +8,9 @@ module Whop_sdk
 
         field :expires_at, -> { String }, optional: true, nullable: false
 
-        field :merchant_category_code, -> { String }, optional: false, nullable: false
+        field :merchant_category_code, -> { String }, optional: true, nullable: false
 
-        field :merchant_name, -> { String }, optional: false, nullable: false
+        field :merchant_name, -> { String }, optional: true, nullable: false
 
         field :rate_bps, -> { Integer }, optional: false, nullable: false
 

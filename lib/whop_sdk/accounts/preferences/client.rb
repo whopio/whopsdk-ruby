@@ -51,6 +51,18 @@ module Whop_sdk
         # Updates the account's preferences. Each top-level key present in the body is replaced as a whole; omitted keys
         # are left untouched.
         #
+        # Required scopes depend on the preferences being updated:
+        #
+        # | Preferences | Required scope |
+        # | --- | --- |
+        # | `ads_payment_methods`, `ads_reporting_currency`, `ads_scheduling_timezone`, `ads_triple_whale_integration`,
+        # `ads_certifications` | `ad_campaign:create` |
+        # | `cards_auto_top_up`, `cards_notifications` | `payout:account:update` |
+        # | `dispute_fighter_enabled` | `payment:dispute` |
+        # | `economic_intelligence` | `company:update` |
+        #
+        # When updating preferences from multiple rows, all corresponding scopes are required for the account.
+        #
         # @param request_options [Hash]
         # @param params [Whop_sdk::Accounts::Preferences::Types::UpdatePreferencesRequest]
         # @option request_options [String] :base_url

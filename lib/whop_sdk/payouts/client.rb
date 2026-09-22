@@ -4,10 +4,14 @@ module Whop_sdk
   module Payouts
     class Client
       # @param client [Whop_sdk::Internal::Http::RawClient]
+      # @param base_url [String, nil]
+      # @param environment [Hash[Symbol, String], nil]
       #
       # @return [void]
-      def initialize(client:)
+      def initialize(client:, base_url: nil, environment: nil)
         @client = client
+        @base_url = base_url
+        @environment = environment
       end
 
       # Lists an account's or user's payouts, newest first.
@@ -59,7 +63,7 @@ module Whop_sdk
         ) do |next_cursor|
           query_params["after"] = next_cursor
           request = Whop_sdk::Internal::JSON::Request.new(
-            base_url: request_options[:base_url],
+            base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
             method: "GET",
             path: "payouts",
             query: query_params,
@@ -101,7 +105,7 @@ module Whop_sdk
       def create(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "POST",
           path: "payouts",
           body: Whop_sdk::Payouts::Types::CreatePayoutsRequest.new(params).to_h,
@@ -142,7 +146,7 @@ module Whop_sdk
       def create_quote(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "POST",
           path: "payouts/quotes",
           body: Whop_sdk::Payouts::Types::CreateQuotePayoutsRequest.new(params).to_h,
@@ -187,7 +191,7 @@ module Whop_sdk
         query_params["user_id"] = params[:user_id] if params.key?(:user_id)
 
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "GET",
           path: "payouts/#{URI.encode_uri_component(params[:id].to_s)}",
           query: query_params,
@@ -235,7 +239,7 @@ module Whop_sdk
         query_params["user_id"] = params[:user_id] if params.key?(:user_id)
 
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "POST",
           path: "payouts/#{URI.encode_uri_component(params[:id].to_s)}/cancel",
           query: query_params,
@@ -257,12 +261,12 @@ module Whop_sdk
 
       # @return [Whop_sdk::Methods::Client]
       def methods
-        @methods ||= Whop_sdk::Payouts::Methods::Client.new(client: @client)
+        @methods ||= Whop_sdk::Payouts::Methods::Client.new(client: @client, base_url: @base_url, environment: @environment)
       end
 
       # @return [Whop_sdk::SupportedMethods::Client]
       def supported_methods
-        @supported_methods ||= Whop_sdk::Payouts::SupportedMethods::Client.new(client: @client)
+        @supported_methods ||= Whop_sdk::Payouts::SupportedMethods::Client.new(client: @client, base_url: @base_url, environment: @environment)
       end
     end
   end

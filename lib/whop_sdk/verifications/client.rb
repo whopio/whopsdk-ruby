@@ -4,10 +4,14 @@ module Whop_sdk
   module Verifications
     class Client
       # @param client [Whop_sdk::Internal::Http::RawClient]
+      # @param base_url [String, nil]
+      # @param environment [Hash[Symbol, String], nil]
       #
       # @return [void]
-      def initialize(client:)
+      def initialize(client:, base_url: nil, environment: nil)
         @client = client
+        @base_url = base_url
+        @environment = environment
       end
 
       # Returns verifications for an account, including their status and any required actions.
@@ -35,7 +39,7 @@ module Whop_sdk
         query_params["direction"] = params[:direction] if params.key?(:direction)
 
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "GET",
           path: "verifications",
           query: query_params,
@@ -85,7 +89,7 @@ module Whop_sdk
         params = params.except(*query_param_names)
 
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "POST",
           path: "verifications",
           query: query_params,
@@ -124,7 +128,7 @@ module Whop_sdk
       def retrieve(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "GET",
           path: "verifications/#{URI.encode_uri_component(params[:id].to_s)}",
           request_options: request_options
@@ -168,7 +172,7 @@ module Whop_sdk
         body_params = params.except(*path_param_names)
 
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "PATCH",
           path: "verifications/#{URI.encode_uri_component(params[:id].to_s)}",
           body: Whop_sdk::Verifications::Types::UpdateVerificationsRequestBody.new(body_params).to_h,

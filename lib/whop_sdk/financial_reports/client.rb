@@ -4,10 +4,14 @@ module Whop_sdk
   module FinancialReports
     class Client
       # @param client [Whop_sdk::Internal::Http::RawClient]
+      # @param base_url [String, nil]
+      # @param environment [Hash[Symbol, String], nil]
       #
       # @return [void]
-      def initialize(client:)
+      def initialize(client:, base_url: nil, environment: nil)
         @client = client
+        @base_url = base_url
+        @environment = environment
       end
 
       # Returns a financial report — balance activity, income statement, or balance summary — for an account over a date
@@ -59,7 +63,7 @@ module Whop_sdk
         query_params["include_payment_fee_breakdown"] = params[:include_payment_fee_breakdown] if params.key?(:include_payment_fee_breakdown)
 
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "GET",
           path: "financial_reports",
           query: query_params,
@@ -81,7 +85,7 @@ module Whop_sdk
 
       # @return [Whop_sdk::Breakdown::Client]
       def breakdown
-        @breakdown ||= Whop_sdk::FinancialReports::Breakdown::Client.new(client: @client)
+        @breakdown ||= Whop_sdk::FinancialReports::Breakdown::Client.new(client: @client, base_url: @base_url, environment: @environment)
       end
     end
   end

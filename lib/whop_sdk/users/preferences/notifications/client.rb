@@ -6,10 +6,14 @@ module Whop_sdk
       module Notifications
         class Client
           # @param client [Whop_sdk::Internal::Http::RawClient]
+          # @param base_url [String, nil]
+          # @param environment [Hash[Symbol, String], nil]
           #
           # @return [void]
-          def initialize(client:)
+          def initialize(client:, base_url: nil, environment: nil)
             @client = client
+            @base_url = base_url
+            @environment = environment
           end
 
           # Sets the authenticated user's notification preferences. Each preference is addressed by `scope`, not by id,
@@ -44,7 +48,7 @@ module Whop_sdk
           def set(request_options: {}, **params)
             params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
             request = Whop_sdk::Internal::JSON::Request.new(
-              base_url: request_options[:base_url],
+              base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
               method: "PATCH",
               path: "users/me/preferences/notifications",
               body: Whop_sdk::Users::Preferences::Notifications::Types::SetNotificationsRequest.new(params).to_h,
@@ -66,12 +70,12 @@ module Whop_sdk
 
           # @return [Whop_sdk::Experiences::Client]
           def experiences
-            @experiences ||= Whop_sdk::Users::Preferences::Notifications::Experiences::Client.new(client: @client)
+            @experiences ||= Whop_sdk::Users::Preferences::Notifications::Experiences::Client.new(client: @client, base_url: @base_url, environment: @environment)
           end
 
           # @return [Whop_sdk::Topics::Client]
           def topics
-            @topics ||= Whop_sdk::Users::Preferences::Notifications::Topics::Client.new(client: @client)
+            @topics ||= Whop_sdk::Users::Preferences::Notifications::Topics::Client.new(client: @client, base_url: @base_url, environment: @environment)
           end
         end
       end

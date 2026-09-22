@@ -4,10 +4,14 @@ module Whop_sdk
   module Users
     class Client
       # @param client [Whop_sdk::Internal::Http::RawClient]
+      # @param base_url [String, nil]
+      # @param environment [Hash[Symbol, String], nil]
       #
       # @return [void]
-      def initialize(client:)
+      def initialize(client:, base_url: nil, environment: nil)
         @client = client
+        @base_url = base_url
+        @environment = environment
       end
 
       # Search for users by name or username, ranked by social proximity to the authenticated user. Returns the user's
@@ -46,7 +50,7 @@ module Whop_sdk
         ) do |next_cursor|
           query_params["after"] = next_cursor
           request = Whop_sdk::Internal::JSON::Request.new(
-            base_url: request_options[:base_url],
+            base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
             method: "GET",
             path: "users",
             query: query_params,
@@ -103,7 +107,7 @@ module Whop_sdk
         query_params["time_zone"] = params[:time_zone] if params.key?(:time_zone)
 
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "GET",
           path: "users/me",
           query: query_params,
@@ -149,7 +153,7 @@ module Whop_sdk
         query_params["account_id"] = params[:account_id] if params.key?(:account_id)
 
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "PATCH",
           path: "users/me",
           query: query_params,
@@ -209,7 +213,7 @@ module Whop_sdk
         query_params["time_zone"] = params[:time_zone] if params.key?(:time_zone)
 
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "GET",
           path: "users/#{URI.encode_uri_component(params[:id].to_s)}",
           query: query_params,
@@ -257,7 +261,7 @@ module Whop_sdk
         query_params["account_id"] = params[:account_id] if params.key?(:account_id)
 
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "PATCH",
           path: "users/#{URI.encode_uri_component(params[:id].to_s)}",
           query: query_params,
@@ -300,7 +304,7 @@ module Whop_sdk
       def check_access(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "GET",
           path: "users/#{URI.encode_uri_component(params[:id].to_s)}/access/#{URI.encode_uri_component(params[:resource_id].to_s)}",
           request_options: request_options
@@ -340,7 +344,7 @@ module Whop_sdk
       def recommend_actions(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "GET",
           path: "users/#{URI.encode_uri_component(params[:id].to_s)}/recommend_actions",
           request_options: request_options
@@ -361,17 +365,17 @@ module Whop_sdk
 
       # @return [Whop_sdk::OauthGrants::Client]
       def oauth_grants
-        @oauth_grants ||= Whop_sdk::Users::OauthGrants::Client.new(client: @client)
+        @oauth_grants ||= Whop_sdk::Users::OauthGrants::Client.new(client: @client, base_url: @base_url, environment: @environment)
       end
 
       # @return [Whop_sdk::Passkeys::Client]
       def passkeys
-        @passkeys ||= Whop_sdk::Users::Passkeys::Client.new(client: @client)
+        @passkeys ||= Whop_sdk::Users::Passkeys::Client.new(client: @client, base_url: @base_url, environment: @environment)
       end
 
       # @return [Whop_sdk::Preferences::Client]
       def preferences
-        @preferences ||= Whop_sdk::Users::Preferences::Client.new(client: @client)
+        @preferences ||= Whop_sdk::Users::Preferences::Client.new(client: @client, base_url: @base_url, environment: @environment)
       end
     end
   end

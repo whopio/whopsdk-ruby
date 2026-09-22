@@ -4,10 +4,14 @@ module Whop_sdk
   module Members
     class Client
       # @param client [Whop_sdk::Internal::Http::RawClient]
+      # @param base_url [String, nil]
+      # @param environment [Hash[Symbol, String], nil]
       #
       # @return [void]
-      def initialize(client:)
+      def initialize(client:, base_url: nil, environment: nil)
         @client = client
+        @base_url = base_url
+        @environment = environment
       end
 
       # Lists the members of an account. A member is one buyer's relationship with the account, regardless of how many
@@ -62,7 +66,7 @@ module Whop_sdk
         ) do |next_cursor|
           query_params["after"] = next_cursor
           request = Whop_sdk::Internal::JSON::Request.new(
-            base_url: request_options[:base_url],
+            base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
             method: "GET",
             path: "members",
             query: query_params,
@@ -102,7 +106,7 @@ module Whop_sdk
       def retrieve(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "GET",
           path: "members/#{URI.encode_uri_component(params[:id].to_s)}",
           request_options: request_options
@@ -123,7 +127,7 @@ module Whop_sdk
 
       # @return [Whop_sdk::Logs::Client]
       def logs
-        @logs ||= Whop_sdk::Members::Logs::Client.new(client: @client)
+        @logs ||= Whop_sdk::Members::Logs::Client.new(client: @client, base_url: @base_url, environment: @environment)
       end
     end
   end

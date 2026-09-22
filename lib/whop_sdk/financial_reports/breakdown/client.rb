@@ -5,10 +5,14 @@ module Whop_sdk
     module Breakdown
       class Client
         # @param client [Whop_sdk::Internal::Http::RawClient]
+        # @param base_url [String, nil]
+        # @param environment [Hash[Symbol, String], nil]
         #
         # @return [void]
-        def initialize(client:)
+        def initialize(client:, base_url: nil, environment: nil)
           @client = client
+          @base_url = base_url
+          @environment = environment
         end
 
         # Returns the top entities behind one high-level financial report bucket and an aggregate remainder.
@@ -53,7 +57,7 @@ module Whop_sdk
           query_params["timezone"] = params[:timezone] if params.key?(:timezone)
 
           request = Whop_sdk::Internal::JSON::Request.new(
-            base_url: request_options[:base_url],
+            base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
             method: "GET",
             path: "financial_reports/breakdown",
             query: query_params,

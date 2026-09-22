@@ -4,10 +4,14 @@ module Whop_sdk
   module FinancialActivity
     class Client
       # @param client [Whop_sdk::Internal::Http::RawClient]
+      # @param base_url [String, nil]
+      # @param environment [Hash[Symbol, String], nil]
       #
       # @return [void]
-      def initialize(client:)
+      def initialize(client:, base_url: nil, environment: nil)
         @client = client
+        @base_url = base_url
+        @environment = environment
       end
 
       # Returns an account's or user's activity feed: every movement of money in or out.
@@ -61,7 +65,7 @@ module Whop_sdk
         query_params["cursor"] = params[:cursor] if params.key?(:cursor)
 
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "GET",
           path: "financial_activity",
           query: query_params,

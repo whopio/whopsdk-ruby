@@ -4,10 +4,14 @@ module Whop_sdk
   module ConfirmationTokens
     class Client
       # @param client [Whop_sdk::Internal::Http::RawClient]
+      # @param base_url [String, nil]
+      # @param environment [Hash[Symbol, String], nil]
       #
       # @return [void]
-      def initialize(client:)
+      def initialize(client:, base_url: nil, environment: nil)
         @client = client
+        @base_url = base_url
+        @environment = environment
       end
 
       # Retrieves a token's display-safe preview — never the underlying payment credential. Public and rate-limited: the
@@ -36,7 +40,7 @@ module Whop_sdk
         query_params["account_id"] = params[:account_id] if params.key?(:account_id)
 
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "GET",
           path: "confirmation_tokens/#{URI.encode_uri_component(params[:id].to_s)}",
           query: query_params,

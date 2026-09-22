@@ -5,10 +5,14 @@ module Whop_sdk
     module Preferences
       class Client
         # @param client [Whop_sdk::Internal::Http::RawClient]
+        # @param base_url [String, nil]
+        # @param environment [Hash[Symbol, String], nil]
         #
         # @return [void]
-        def initialize(client:)
+        def initialize(client:, base_url: nil, environment: nil)
           @client = client
+          @base_url = base_url
+          @environment = environment
         end
 
         # Retrieves the authenticated user's settings document. Addressed only as `me` — the document always belongs to
@@ -28,7 +32,7 @@ module Whop_sdk
         # @return [Whop_sdk::Types::UserPreferences]
         def retrieve(request_options: {}, **_params)
           request = Whop_sdk::Internal::JSON::Request.new(
-            base_url: request_options[:base_url],
+            base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
             method: "GET",
             path: "users/me/preferences",
             request_options: request_options
@@ -65,7 +69,7 @@ module Whop_sdk
         def update(request_options: {}, **params)
           params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
           request = Whop_sdk::Internal::JSON::Request.new(
-            base_url: request_options[:base_url],
+            base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
             method: "PATCH",
             path: "users/me/preferences",
             body: Whop_sdk::Users::Preferences::Types::UpdatePreferencesRequest.new(params).to_h,
@@ -87,7 +91,7 @@ module Whop_sdk
 
         # @return [Whop_sdk::Notifications::Client]
         def notifications
-          @notifications ||= Whop_sdk::Users::Preferences::Notifications::Client.new(client: @client)
+          @notifications ||= Whop_sdk::Users::Preferences::Notifications::Client.new(client: @client, base_url: @base_url, environment: @environment)
         end
       end
     end

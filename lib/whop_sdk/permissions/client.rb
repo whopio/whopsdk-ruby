@@ -4,10 +4,14 @@ module Whop_sdk
   module Permissions
     class Client
       # @param client [Whop_sdk::Internal::Http::RawClient]
+      # @param base_url [String, nil]
+      # @param environment [Hash[Symbol, String], nil]
       #
       # @return [void]
-      def initialize(client:)
+      def initialize(client:, base_url: nil, environment: nil)
         @client = client
+        @base_url = base_url
+        @environment = environment
       end
 
       # Lists permission actions and whether the calling credential is granted each one for a resource. Answers for
@@ -35,7 +39,7 @@ module Whop_sdk
         query_params["actions"] = params[:actions] if params.key?(:actions)
 
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "GET",
           path: "permissions",
           query: query_params,

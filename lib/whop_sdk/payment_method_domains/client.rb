@@ -4,10 +4,14 @@ module Whop_sdk
   module PaymentMethodDomains
     class Client
       # @param client [Whop_sdk::Internal::Http::RawClient]
+      # @param base_url [String, nil]
+      # @param environment [Hash[Symbol, String], nil]
       #
       # @return [void]
-      def initialize(client:)
+      def initialize(client:, base_url: nil, environment: nil)
         @client = client
+        @base_url = base_url
+        @environment = environment
       end
 
       # Lists payment method domains. Without `account_id`, returns the caller's own domains and those of every
@@ -60,7 +64,7 @@ module Whop_sdk
         ) do |next_cursor|
           query_params["after"] = next_cursor
           request = Whop_sdk::Internal::JSON::Request.new(
-            base_url: request_options[:base_url],
+            base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
             method: "GET",
             path: "payment_method_domains",
             query: query_params,
@@ -102,7 +106,7 @@ module Whop_sdk
       def create(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "POST",
           path: "payment_method_domains",
           body: Whop_sdk::PaymentMethodDomains::Types::CreatePaymentMethodDomainsRequest.new(params).to_h,
@@ -140,7 +144,7 @@ module Whop_sdk
       def retrieve(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "GET",
           path: "payment_method_domains/#{URI.encode_uri_component(params[:id].to_s)}",
           request_options: request_options
@@ -177,7 +181,7 @@ module Whop_sdk
       def delete(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "DELETE",
           path: "payment_method_domains/#{URI.encode_uri_component(params[:id].to_s)}",
           request_options: request_options
@@ -215,7 +219,7 @@ module Whop_sdk
       def verify(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "POST",
           path: "payment_method_domains/#{URI.encode_uri_component(params[:id].to_s)}/verify",
           request_options: request_options

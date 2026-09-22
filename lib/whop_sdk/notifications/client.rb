@@ -4,10 +4,14 @@ module Whop_sdk
   module Notifications
     class Client
       # @param client [Whop_sdk::Internal::Http::RawClient]
+      # @param base_url [String, nil]
+      # @param environment [Hash[Symbol, String], nil]
       #
       # @return [void]
-      def initialize(client:)
+      def initialize(client:, base_url: nil, environment: nil)
         @client = client
+        @base_url = base_url
+        @environment = environment
       end
 
       # Lists the authenticated user's notifications, newest first. Requires a user credential — an account API key has
@@ -50,7 +54,7 @@ module Whop_sdk
         ) do |next_cursor|
           query_params["after"] = next_cursor
           request = Whop_sdk::Internal::JSON::Request.new(
-            base_url: request_options[:base_url],
+            base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
             method: "GET",
             path: "notifications",
             query: query_params,
@@ -94,7 +98,7 @@ module Whop_sdk
       def create(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "POST",
           path: "notifications",
           body: Whop_sdk::Notifications::Types::CreateNotificationsRequest.new(params).to_h,
@@ -138,7 +142,7 @@ module Whop_sdk
         query_params["last_fetched_at"] = params[:last_fetched_at] if params.key?(:last_fetched_at)
 
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "GET",
           path: "notifications/badges",
           query: query_params,
@@ -177,7 +181,7 @@ module Whop_sdk
       def mark_read(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "POST",
           path: "notifications/mark_read",
           body: Whop_sdk::Notifications::Types::MarkReadNotificationsRequest.new(params).to_h,
@@ -216,7 +220,7 @@ module Whop_sdk
       def retrieve(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "GET",
           path: "notifications/#{URI.encode_uri_component(params[:id].to_s)}",
           request_options: request_options
@@ -237,7 +241,7 @@ module Whop_sdk
 
       # @return [Whop_sdk::Topics::Client]
       def topics
-        @topics ||= Whop_sdk::Notifications::Topics::Client.new(client: @client)
+        @topics ||= Whop_sdk::Notifications::Topics::Client.new(client: @client, base_url: @base_url, environment: @environment)
       end
     end
   end

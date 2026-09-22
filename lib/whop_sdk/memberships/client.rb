@@ -4,10 +4,14 @@ module Whop_sdk
   module Memberships
     class Client
       # @param client [Whop_sdk::Internal::Http::RawClient]
+      # @param base_url [String, nil]
+      # @param environment [Hash[Symbol, String], nil]
       #
       # @return [void]
-      def initialize(client:)
+      def initialize(client:, base_url: nil, environment: nil)
         @client = client
+        @base_url = base_url
+        @environment = environment
       end
 
       # Lists every membership the caller can read: an account API key its account's; a user credential their own plus
@@ -63,7 +67,7 @@ module Whop_sdk
         ) do |next_cursor|
           query_params["after"] = next_cursor
           request = Whop_sdk::Internal::JSON::Request.new(
-            base_url: request_options[:base_url],
+            base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
             method: "GET",
             path: "memberships",
             query: query_params,
@@ -108,7 +112,7 @@ module Whop_sdk
       def invite(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "POST",
           path: "memberships/invite",
           body: Whop_sdk::Memberships::Types::InviteMembershipsRequestBody.new(params).to_h,
@@ -146,7 +150,7 @@ module Whop_sdk
       def retrieve(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "GET",
           path: "memberships/#{URI.encode_uri_component(params[:id].to_s)}",
           request_options: request_options
@@ -188,7 +192,7 @@ module Whop_sdk
         body = request_data.except(*non_body_param_names)
 
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "PATCH",
           path: "memberships/#{URI.encode_uri_component(params[:id].to_s)}",
           body: body,
@@ -232,7 +236,7 @@ module Whop_sdk
         body = request_data.except(*non_body_param_names)
 
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "POST",
           path: "memberships/#{URI.encode_uri_component(params[:id].to_s)}/cancel",
           body: body,
@@ -278,7 +282,7 @@ module Whop_sdk
         body = request_data.except(*non_body_param_names)
 
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "POST",
           path: "memberships/#{URI.encode_uri_component(params[:id].to_s)}/extend",
           body: body,
@@ -321,7 +325,7 @@ module Whop_sdk
         body = request_data.except(*non_body_param_names)
 
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "POST",
           path: "memberships/#{URI.encode_uri_component(params[:id].to_s)}/pause",
           body: body,
@@ -359,7 +363,7 @@ module Whop_sdk
       def resume(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "POST",
           path: "memberships/#{URI.encode_uri_component(params[:id].to_s)}/resume",
           request_options: request_options
@@ -399,7 +403,7 @@ module Whop_sdk
       def resync_access(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "POST",
           path: "memberships/#{URI.encode_uri_component(params[:id].to_s)}/resync_access",
           request_options: request_options
@@ -439,7 +443,7 @@ module Whop_sdk
       def transfer(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "POST",
           path: "memberships/#{URI.encode_uri_component(params[:id].to_s)}/transfer",
           request_options: request_options

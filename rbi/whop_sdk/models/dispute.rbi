@@ -328,8 +328,8 @@ module WhopSDK
         sig { returns(T.nilable(String)) }
         attr_accessor :billing_address
 
-        # The cancellation policy document. Falls back to Whop's platform policy when the
-        # seller has not uploaded their own.
+        # The cancellation policy document. Defaults to the account's cancellation policy,
+        # then its terms of service, then its return policy, then Whop's platform policy.
         sig do
           returns(
             T.nilable(WhopSDK::Dispute::Evidence::CancellationPolicyAttachment)
@@ -390,8 +390,8 @@ module WhopSDK
         sig { returns(T.nilable(String)) }
         attr_accessor :product_description
 
-        # The refund policy document. Falls back to Whop's platform policy when the seller
-        # has not uploaded their own.
+        # The refund policy document. Defaults to the account's return policy, then its
+        # terms of service, then Whop's platform policy.
         sig do
           returns(T.nilable(WhopSDK::Dispute::Evidence::RefundPolicyAttachment))
         end
@@ -475,8 +475,8 @@ module WhopSDK
           access_activity_log:,
           # The billing address the customer provided at checkout.
           billing_address:,
-          # The cancellation policy document. Falls back to Whop's platform policy when the
-          # seller has not uploaded their own.
+          # The cancellation policy document. Defaults to the account's cancellation policy,
+          # then its terms of service, then its return policy, then Whop's platform policy.
           cancellation_policy_attachment:,
           # How the cancellation policy was shown to the customer before purchase.
           cancellation_policy_disclosure:,
@@ -491,8 +491,8 @@ module WhopSDK
           notes:,
           # What the customer purchased, in the seller's own words.
           product_description:,
-          # The refund policy document. Falls back to Whop's platform policy when the seller
-          # has not uploaded their own.
+          # The refund policy document. Defaults to the account's return policy, then its
+          # terms of service, then Whop's platform policy.
           refund_policy_attachment:,
           # How the refund policy was shown to the customer before purchase.
           refund_policy_disclosure:,
@@ -568,8 +568,8 @@ module WhopSDK
           sig { returns(T.nilable(String)) }
           attr_accessor :url
 
-          # The cancellation policy document. Falls back to Whop's platform policy when the
-          # seller has not uploaded their own.
+          # The cancellation policy document. Defaults to the account's cancellation policy,
+          # then its terms of service, then its return policy, then Whop's platform policy.
           sig do
             params(
               id: T.nilable(String),
@@ -963,6 +963,16 @@ module WhopSDK
                 :shipping_policy,
                 WhopSDK::Dispute::Evidence::Document::DocumentType::TaggedSymbol
               )
+            CANCELLATION_POLICY =
+              T.let(
+                :cancellation_policy,
+                WhopSDK::Dispute::Evidence::Document::DocumentType::TaggedSymbol
+              )
+            TERMS_OF_SERVICE =
+              T.let(
+                :terms_of_service,
+                WhopSDK::Dispute::Evidence::Document::DocumentType::TaggedSymbol
+              )
             PHYSICAL_FULFILLMENT =
               T.let(
                 :physical_fulfillment,
@@ -1157,8 +1167,8 @@ module WhopSDK
           sig { returns(T.nilable(String)) }
           attr_accessor :url
 
-          # The refund policy document. Falls back to Whop's platform policy when the seller
-          # has not uploaded their own.
+          # The refund policy document. Defaults to the account's return policy, then its
+          # terms of service, then Whop's platform policy.
           sig do
             params(
               id: T.nilable(String),

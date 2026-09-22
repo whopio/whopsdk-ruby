@@ -62,6 +62,7 @@ module WhopSDK
           business_name: String?,
           business_type: String?,
           can_transfer_pending_balance_to_children: bool,
+          cancellation_policy: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::CancellationPolicy?,
           capabilities: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Capabilities?,
           cards: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Cards?,
           collect_vat_id: bool,
@@ -94,6 +95,7 @@ module WhopSDK
           return_policy: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::ReturnPolicy?,
           route: String,
           send_customer_emails: bool,
+          shipping_policy: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::ShippingPolicy?,
           show_joined_whops: bool,
           show_reviews_dtc: bool,
           show_user_directory: bool,
@@ -134,6 +136,8 @@ module WhopSDK
         attr_accessor business_type: String?
 
         attr_accessor can_transfer_pending_balance_to_children: bool
+
+        attr_accessor cancellation_policy: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::CancellationPolicy?
 
         attr_accessor capabilities: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Capabilities?
 
@@ -199,6 +203,8 @@ module WhopSDK
 
         attr_accessor send_customer_emails: bool
 
+        attr_accessor shipping_policy: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::ShippingPolicy?
+
         attr_accessor show_joined_whops: bool
 
         attr_accessor show_reviews_dtc: bool
@@ -255,6 +261,7 @@ module WhopSDK
           business_name: String?,
           business_type: String?,
           can_transfer_pending_balance_to_children: bool,
+          cancellation_policy: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::CancellationPolicy?,
           capabilities: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Capabilities?,
           cards: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Cards?,
           collect_vat_id: bool,
@@ -287,6 +294,7 @@ module WhopSDK
           return_policy: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::ReturnPolicy?,
           route: String,
           send_customer_emails: bool,
+          shipping_policy: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::ShippingPolicy?,
           show_joined_whops: bool,
           show_reviews_dtc: bool,
           show_user_directory: bool,
@@ -321,6 +329,7 @@ module WhopSDK
           business_name: String?,
           business_type: String?,
           can_transfer_pending_balance_to_children: bool,
+          cancellation_policy: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::CancellationPolicy?,
           capabilities: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Capabilities?,
           cards: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Cards?,
           collect_vat_id: bool,
@@ -353,6 +362,7 @@ module WhopSDK
           return_policy: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::ReturnPolicy?,
           route: String,
           send_customer_emails: bool,
+          shipping_policy: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::ShippingPolicy?,
           show_joined_whops: bool,
           show_reviews_dtc: bool,
           show_user_directory: bool,
@@ -472,6 +482,126 @@ module WhopSDK
 
               def to_hash: -> { amount: String, date: String }
             end
+          end
+        end
+
+        type cancellation_policy =
+          {
+            id: String,
+            content_type: String?,
+            created_at: String,
+            filename: String?,
+            object: String,
+            size: Integer?,
+            upload_status: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::CancellationPolicy::upload_status,
+            url: String?,
+            visibility: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::CancellationPolicy::visibility,
+            multipart_chunk_size: Integer?,
+            multipart_upload_id: String?,
+            multipart_upload_urls: ::Array[WhopSDK::AccountFinancingDeniedWebhookEvent::Data::CancellationPolicy::MultipartUploadURL]?,
+            upload_headers: top,
+            upload_url: String?
+          }
+
+        class CancellationPolicy < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor content_type: String?
+
+          attr_accessor created_at: String
+
+          attr_accessor filename: String?
+
+          attr_accessor object: String
+
+          attr_accessor size: Integer?
+
+          attr_accessor upload_status: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::CancellationPolicy::upload_status
+
+          attr_accessor url: String?
+
+          attr_accessor visibility: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::CancellationPolicy::visibility
+
+          attr_accessor multipart_chunk_size: Integer?
+
+          attr_accessor multipart_upload_id: String?
+
+          attr_accessor multipart_upload_urls: ::Array[WhopSDK::AccountFinancingDeniedWebhookEvent::Data::CancellationPolicy::MultipartUploadURL]?
+
+          attr_reader upload_headers: top?
+
+          def upload_headers=: (top) -> top
+
+          attr_accessor upload_url: String?
+
+          def initialize: (
+            id: String,
+            content_type: String?,
+            created_at: String,
+            filename: String?,
+            object: String,
+            size: Integer?,
+            upload_status: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::CancellationPolicy::upload_status,
+            url: String?,
+            visibility: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::CancellationPolicy::visibility,
+            ?multipart_chunk_size: Integer?,
+            ?multipart_upload_id: String?,
+            ?multipart_upload_urls: ::Array[WhopSDK::AccountFinancingDeniedWebhookEvent::Data::CancellationPolicy::MultipartUploadURL]?,
+            ?upload_headers: top,
+            ?upload_url: String?
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            content_type: String?,
+            created_at: String,
+            filename: String?,
+            object: String,
+            size: Integer?,
+            upload_status: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::CancellationPolicy::upload_status,
+            url: String?,
+            visibility: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::CancellationPolicy::visibility,
+            multipart_chunk_size: Integer?,
+            multipart_upload_id: String?,
+            multipart_upload_urls: ::Array[WhopSDK::AccountFinancingDeniedWebhookEvent::Data::CancellationPolicy::MultipartUploadURL]?,
+            upload_headers: top,
+            upload_url: String?
+          }
+
+          type upload_status = :pending | :processing | :ready | :failed
+
+          module UploadStatus
+            extend WhopSDK::Internal::Type::Enum
+
+            PENDING: :pending
+            PROCESSING: :processing
+            READY: :ready
+            FAILED: :failed
+
+            def self?.values: -> ::Array[WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::CancellationPolicy::upload_status]
+          end
+
+          type visibility = :public | :private
+
+          module Visibility
+            extend WhopSDK::Internal::Type::Enum
+
+            PUBLIC: :public
+            PRIVATE: :private
+
+            def self?.values: -> ::Array[WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::CancellationPolicy::visibility]
+          end
+
+          type multipart_upload_url = { part_number: Integer, url: String }
+
+          class MultipartUploadURL < WhopSDK::Internal::Type::BaseModel
+            attr_accessor part_number: Integer
+
+            attr_accessor url: String
+
+            def initialize: (part_number: Integer, url: String) -> void
+
+            def to_hash: -> { part_number: Integer, url: String }
           end
         end
 
@@ -1866,6 +1996,126 @@ module WhopSDK
             PRIVATE: :private
 
             def self?.values: -> ::Array[WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::ReturnPolicy::visibility]
+          end
+
+          type multipart_upload_url = { part_number: Integer, url: String }
+
+          class MultipartUploadURL < WhopSDK::Internal::Type::BaseModel
+            attr_accessor part_number: Integer
+
+            attr_accessor url: String
+
+            def initialize: (part_number: Integer, url: String) -> void
+
+            def to_hash: -> { part_number: Integer, url: String }
+          end
+        end
+
+        type shipping_policy =
+          {
+            id: String,
+            content_type: String?,
+            created_at: String,
+            filename: String?,
+            object: String,
+            size: Integer?,
+            upload_status: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::ShippingPolicy::upload_status,
+            url: String?,
+            visibility: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::ShippingPolicy::visibility,
+            multipart_chunk_size: Integer?,
+            multipart_upload_id: String?,
+            multipart_upload_urls: ::Array[WhopSDK::AccountFinancingDeniedWebhookEvent::Data::ShippingPolicy::MultipartUploadURL]?,
+            upload_headers: top,
+            upload_url: String?
+          }
+
+        class ShippingPolicy < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor content_type: String?
+
+          attr_accessor created_at: String
+
+          attr_accessor filename: String?
+
+          attr_accessor object: String
+
+          attr_accessor size: Integer?
+
+          attr_accessor upload_status: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::ShippingPolicy::upload_status
+
+          attr_accessor url: String?
+
+          attr_accessor visibility: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::ShippingPolicy::visibility
+
+          attr_accessor multipart_chunk_size: Integer?
+
+          attr_accessor multipart_upload_id: String?
+
+          attr_accessor multipart_upload_urls: ::Array[WhopSDK::AccountFinancingDeniedWebhookEvent::Data::ShippingPolicy::MultipartUploadURL]?
+
+          attr_reader upload_headers: top?
+
+          def upload_headers=: (top) -> top
+
+          attr_accessor upload_url: String?
+
+          def initialize: (
+            id: String,
+            content_type: String?,
+            created_at: String,
+            filename: String?,
+            object: String,
+            size: Integer?,
+            upload_status: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::ShippingPolicy::upload_status,
+            url: String?,
+            visibility: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::ShippingPolicy::visibility,
+            ?multipart_chunk_size: Integer?,
+            ?multipart_upload_id: String?,
+            ?multipart_upload_urls: ::Array[WhopSDK::AccountFinancingDeniedWebhookEvent::Data::ShippingPolicy::MultipartUploadURL]?,
+            ?upload_headers: top,
+            ?upload_url: String?
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            content_type: String?,
+            created_at: String,
+            filename: String?,
+            object: String,
+            size: Integer?,
+            upload_status: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::ShippingPolicy::upload_status,
+            url: String?,
+            visibility: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::ShippingPolicy::visibility,
+            multipart_chunk_size: Integer?,
+            multipart_upload_id: String?,
+            multipart_upload_urls: ::Array[WhopSDK::AccountFinancingDeniedWebhookEvent::Data::ShippingPolicy::MultipartUploadURL]?,
+            upload_headers: top,
+            upload_url: String?
+          }
+
+          type upload_status = :pending | :processing | :ready | :failed
+
+          module UploadStatus
+            extend WhopSDK::Internal::Type::Enum
+
+            PENDING: :pending
+            PROCESSING: :processing
+            READY: :ready
+            FAILED: :failed
+
+            def self?.values: -> ::Array[WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::ShippingPolicy::upload_status]
+          end
+
+          type visibility = :public | :private
+
+          module Visibility
+            extend WhopSDK::Internal::Type::Enum
+
+            PUBLIC: :public
+            PRIVATE: :private
+
+            def self?.values: -> ::Array[WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::ShippingPolicy::visibility]
           end
 
           type multipart_upload_url = { part_number: Integer, url: String }

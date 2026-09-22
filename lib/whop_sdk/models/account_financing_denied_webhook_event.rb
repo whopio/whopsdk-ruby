@@ -119,6 +119,15 @@ module WhopSDK
         #   @return [Boolean]
         required :can_transfer_pending_balance_to_children, WhopSDK::Internal::Type::Boolean
 
+        # @!attribute cancellation_policy
+        #   The account's cancellation policy document, or `null` if they have not published
+        #   one.
+        #
+        #   @return [WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::CancellationPolicy, nil]
+        required :cancellation_policy,
+                 -> { WhopSDK::AccountFinancingDeniedWebhookEvent::Data::CancellationPolicy },
+                 nil?: true
+
         # @!attribute capabilities
         #   Payment rails enabled for this account, each `active`, `inactive`, or `pending`
         #   (onboarding or review in progress). Computed only on `retrieve` and `me` for
@@ -355,6 +364,15 @@ module WhopSDK
         #   @return [Boolean]
         required :send_customer_emails, WhopSDK::Internal::Type::Boolean
 
+        # @!attribute shipping_policy
+        #   The account's shipping policy document, or `null` if they have not published
+        #   one.
+        #
+        #   @return [WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::ShippingPolicy, nil]
+        required :shipping_policy,
+                 -> { WhopSDK::AccountFinancingDeniedWebhookEvent::Data::ShippingPolicy },
+                 nil?: true
+
         # @!attribute show_joined_whops
         #   Whether the account appears in joined whops on other accounts.
         #
@@ -534,7 +552,7 @@ module WhopSDK
         #   @return [WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Partner, nil]
         optional :partner, -> { WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Partner }, nil?: true
 
-        # @!method initialize(id:, balances:, banner_image_url:, business_address:, business_name:, business_type:, can_transfer_pending_balance_to_children:, capabilities:, cards:, collect_vat_id:, company_formation:, country:, created_at:, description:, economic_intelligence:, email:, eula:, home_preferences:, industry_group:, industry_type:, invoice_prefix:, logo_url:, metadata:, onboarding_type:, opengraph_image_url:, opengraph_image_variant:, other_business_description:, other_industry_description:, owner:, parent_account:, payment_controls:, privacy_policy:, product_tax_code:, recommended_actions:, require_2fa:, required_actions:, return_policy:, route:, send_customer_emails:, show_joined_whops:, show_reviews_dtc:, show_user_directory:, social_links:, stablecoin_rails:, status:, status_reason:, store_page_config:, target_audience:, tax_collection_enabled_states:, tax_identifiers:, tax_remitted_by:, tax_type:, terms_of_service:, three_ds_level:, title:, total_earned_usd:, total_usd:, use_logo_as_opengraph_image_fallback:, verification:, volume_usd:, wallet:, website:, partner: nil)
+        # @!method initialize(id:, balances:, banner_image_url:, business_address:, business_name:, business_type:, can_transfer_pending_balance_to_children:, cancellation_policy:, capabilities:, cards:, collect_vat_id:, company_formation:, country:, created_at:, description:, economic_intelligence:, email:, eula:, home_preferences:, industry_group:, industry_type:, invoice_prefix:, logo_url:, metadata:, onboarding_type:, opengraph_image_url:, opengraph_image_variant:, other_business_description:, other_industry_description:, owner:, parent_account:, payment_controls:, privacy_policy:, product_tax_code:, recommended_actions:, require_2fa:, required_actions:, return_policy:, route:, send_customer_emails:, shipping_policy:, show_joined_whops:, show_reviews_dtc:, show_user_directory:, social_links:, stablecoin_rails:, status:, status_reason:, store_page_config:, target_audience:, tax_collection_enabled_states:, tax_identifiers:, tax_remitted_by:, tax_type:, terms_of_service:, three_ds_level:, title:, total_earned_usd:, total_usd:, use_logo_as_opengraph_image_fallback:, verification:, volume_usd:, wallet:, website:, partner: nil)
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data} for more details.
         #
@@ -551,6 +569,8 @@ module WhopSDK
         #   @param business_type [String, nil] High-level business category for the account. See the [business types and indust
         #
         #   @param can_transfer_pending_balance_to_children [Boolean] Whether pending funds may be transferred from this platform account to its conne
+        #
+        #   @param cancellation_policy [WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::CancellationPolicy, nil] The account's cancellation policy document, or `null` if they have not published
         #
         #   @param capabilities [WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Capabilities, nil] Payment rails enabled for this account, each `active`, `inactive`, or `pending`
         #
@@ -615,6 +635,8 @@ module WhopSDK
         #   @param route [String] Account public route identifier.
         #
         #   @param send_customer_emails [Boolean] Whether Whop sends transactional emails to customers on behalf of this account.
+        #
+        #   @param shipping_policy [WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::ShippingPolicy, nil] The account's shipping policy document, or `null` if they have not published one
         #
         #   @param show_joined_whops [Boolean] Whether the account appears in joined whops on other accounts.
         #
@@ -809,6 +831,190 @@ module WhopSDK
               #
               #   @param date [String] The day this money is expected to finish settling, as an ISO 8601 date.
             end
+          end
+        end
+
+        # @see WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data#cancellation_policy
+        class CancellationPolicy < WhopSDK::Internal::Type::BaseModel
+          # @!attribute id
+          #   The file's ID, prefixed `file_`.
+          #
+          #   @return [String]
+          required :id, String
+
+          # @!attribute content_type
+          #   The file's MIME type, e.g. `application/pdf`.
+          #
+          #   @return [String, nil]
+          required :content_type, String, nil?: true
+
+          # @!attribute created_at
+          #   When the file was created, as an ISO 8601 timestamp.
+          #
+          #   @return [String]
+          required :created_at, String
+
+          # @!attribute filename
+          #   The original filename, including its extension.
+          #
+          #   @return [String, nil]
+          required :filename, String, nil?: true
+
+          # @!attribute object
+          #   The type of this object, always `file`.
+          #
+          #   @return [String]
+          required :object, String
+
+          # @!attribute size
+          #   The file size in bytes. `null` until the upload has finished.
+          #
+          #   @return [Integer, nil]
+          required :size, Integer, nil?: true
+
+          # @!attribute upload_status
+          #   Where the file is in its upload lifecycle.
+          #
+          #   @return [Symbol, WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::CancellationPolicy::UploadStatus]
+          required :upload_status,
+                   enum: -> { WhopSDK::AccountFinancingDeniedWebhookEvent::Data::CancellationPolicy::UploadStatus }
+
+          # @!attribute url
+          #   A URL to download the file: a permanent CDN URL for public files, a signed
+          #   expiring URL for private ones. `null` until the upload has finished.
+          #
+          #   @return [String, nil]
+          required :url, String, nil?: true
+
+          # @!attribute visibility
+          #   `public` files are served via an unsigned CDN URL; `private` files via a signed,
+          #   expiring URL.
+          #
+          #   @return [Symbol, WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::CancellationPolicy::Visibility]
+          required :visibility,
+                   enum: -> { WhopSDK::AccountFinancingDeniedWebhookEvent::Data::CancellationPolicy::Visibility }
+
+          # @!attribute multipart_chunk_size
+          #   The byte size each part (except the last) must be. Present only on create, and
+          #   only for multipart uploads.
+          #
+          #   @return [Integer, nil]
+          optional :multipart_chunk_size, Integer, nil?: true
+
+          # @!attribute multipart_upload_id
+          #   The ID of the multipart upload, passed back to `complete`. Present only on
+          #   create, and only for multipart uploads.
+          #
+          #   @return [String, nil]
+          optional :multipart_upload_id, String, nil?: true
+
+          # @!attribute multipart_upload_urls
+          #
+          #   @return [Array<WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::CancellationPolicy::MultipartUploadURL>, nil]
+          optional :multipart_upload_urls,
+                   -> {
+                     WhopSDK::Internal::Type::ArrayOf[WhopSDK::AccountFinancingDeniedWebhookEvent::Data::CancellationPolicy::MultipartUploadURL]
+                   },
+                   nil?: true
+
+          # @!attribute upload_headers
+          #   Headers to send with the upload PUT. Present only on create.
+          #
+          #   @return [Object, nil]
+          optional :upload_headers, WhopSDK::Internal::Type::Unknown
+
+          # @!attribute upload_url
+          #   Presigned URL to PUT the file's bytes to. Present only on create, and only for
+          #   single-part uploads.
+          #
+          #   @return [String, nil]
+          optional :upload_url, String, nil?: true
+
+          # @!method initialize(id:, content_type:, created_at:, filename:, object:, size:, upload_status:, url:, visibility:, multipart_chunk_size: nil, multipart_upload_id: nil, multipart_upload_urls: nil, upload_headers: nil, upload_url: nil)
+          #   Some parameter documentations has been truncated, see
+          #   {WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::CancellationPolicy}
+          #   for more details.
+          #
+          #   The account's cancellation policy document, or `null` if they have not published
+          #   one.
+          #
+          #   @param id [String] The file's ID, prefixed `file_`.
+          #
+          #   @param content_type [String, nil] The file's MIME type, e.g. `application/pdf`.
+          #
+          #   @param created_at [String] When the file was created, as an ISO 8601 timestamp.
+          #
+          #   @param filename [String, nil] The original filename, including its extension.
+          #
+          #   @param object [String] The type of this object, always `file`.
+          #
+          #   @param size [Integer, nil] The file size in bytes. `null` until the upload has finished.
+          #
+          #   @param upload_status [Symbol, WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::CancellationPolicy::UploadStatus] Where the file is in its upload lifecycle.
+          #
+          #   @param url [String, nil] A URL to download the file: a permanent CDN URL for public files, a signed expir
+          #
+          #   @param visibility [Symbol, WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::CancellationPolicy::Visibility] `public` files are served via an unsigned CDN URL; `private` files via a signed,
+          #
+          #   @param multipart_chunk_size [Integer, nil] The byte size each part (except the last) must be. Present only on create, and o
+          #
+          #   @param multipart_upload_id [String, nil] The ID of the multipart upload, passed back to `complete`. Present only on creat
+          #
+          #   @param multipart_upload_urls [Array<WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::CancellationPolicy::MultipartUploadURL>, nil]
+          #
+          #   @param upload_headers [Object] Headers to send with the upload PUT. Present only on create.
+          #
+          #   @param upload_url [String, nil] Presigned URL to PUT the file's bytes to. Present only on create, and only for s
+
+          # Where the file is in its upload lifecycle.
+          #
+          # @see WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::CancellationPolicy#upload_status
+          module UploadStatus
+            extend WhopSDK::Internal::Type::Enum
+
+            PENDING = :pending
+            PROCESSING = :processing
+            READY = :ready
+            FAILED = :failed
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
+          end
+
+          # `public` files are served via an unsigned CDN URL; `private` files via a signed,
+          # expiring URL.
+          #
+          # @see WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::CancellationPolicy#visibility
+          module Visibility
+            extend WhopSDK::Internal::Type::Enum
+
+            PUBLIC = :public
+            PRIVATE = :private
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
+          end
+
+          class MultipartUploadURL < WhopSDK::Internal::Type::BaseModel
+            # @!attribute part_number
+            #   The 1-based index of this part within the multipart upload.
+            #
+            #   @return [Integer]
+            required :part_number, Integer
+
+            # @!attribute url
+            #   The presigned URL to PUT this part's bytes to.
+            #
+            #   @return [String]
+            required :url, String
+
+            # @!method initialize(part_number:, url:)
+            #   The presigned URL for each part. Present only on create, and only for multipart
+            #   uploads.
+            #
+            #   @param part_number [Integer] The 1-based index of this part within the multipart upload.
+            #
+            #   @param url [String] The presigned URL to PUT this part's bytes to.
           end
         end
 
@@ -2686,6 +2892,190 @@ module WhopSDK
           # expiring URL.
           #
           # @see WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::ReturnPolicy#visibility
+          module Visibility
+            extend WhopSDK::Internal::Type::Enum
+
+            PUBLIC = :public
+            PRIVATE = :private
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
+          end
+
+          class MultipartUploadURL < WhopSDK::Internal::Type::BaseModel
+            # @!attribute part_number
+            #   The 1-based index of this part within the multipart upload.
+            #
+            #   @return [Integer]
+            required :part_number, Integer
+
+            # @!attribute url
+            #   The presigned URL to PUT this part's bytes to.
+            #
+            #   @return [String]
+            required :url, String
+
+            # @!method initialize(part_number:, url:)
+            #   The presigned URL for each part. Present only on create, and only for multipart
+            #   uploads.
+            #
+            #   @param part_number [Integer] The 1-based index of this part within the multipart upload.
+            #
+            #   @param url [String] The presigned URL to PUT this part's bytes to.
+          end
+        end
+
+        # @see WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data#shipping_policy
+        class ShippingPolicy < WhopSDK::Internal::Type::BaseModel
+          # @!attribute id
+          #   The file's ID, prefixed `file_`.
+          #
+          #   @return [String]
+          required :id, String
+
+          # @!attribute content_type
+          #   The file's MIME type, e.g. `application/pdf`.
+          #
+          #   @return [String, nil]
+          required :content_type, String, nil?: true
+
+          # @!attribute created_at
+          #   When the file was created, as an ISO 8601 timestamp.
+          #
+          #   @return [String]
+          required :created_at, String
+
+          # @!attribute filename
+          #   The original filename, including its extension.
+          #
+          #   @return [String, nil]
+          required :filename, String, nil?: true
+
+          # @!attribute object
+          #   The type of this object, always `file`.
+          #
+          #   @return [String]
+          required :object, String
+
+          # @!attribute size
+          #   The file size in bytes. `null` until the upload has finished.
+          #
+          #   @return [Integer, nil]
+          required :size, Integer, nil?: true
+
+          # @!attribute upload_status
+          #   Where the file is in its upload lifecycle.
+          #
+          #   @return [Symbol, WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::ShippingPolicy::UploadStatus]
+          required :upload_status,
+                   enum: -> { WhopSDK::AccountFinancingDeniedWebhookEvent::Data::ShippingPolicy::UploadStatus }
+
+          # @!attribute url
+          #   A URL to download the file: a permanent CDN URL for public files, a signed
+          #   expiring URL for private ones. `null` until the upload has finished.
+          #
+          #   @return [String, nil]
+          required :url, String, nil?: true
+
+          # @!attribute visibility
+          #   `public` files are served via an unsigned CDN URL; `private` files via a signed,
+          #   expiring URL.
+          #
+          #   @return [Symbol, WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::ShippingPolicy::Visibility]
+          required :visibility,
+                   enum: -> { WhopSDK::AccountFinancingDeniedWebhookEvent::Data::ShippingPolicy::Visibility }
+
+          # @!attribute multipart_chunk_size
+          #   The byte size each part (except the last) must be. Present only on create, and
+          #   only for multipart uploads.
+          #
+          #   @return [Integer, nil]
+          optional :multipart_chunk_size, Integer, nil?: true
+
+          # @!attribute multipart_upload_id
+          #   The ID of the multipart upload, passed back to `complete`. Present only on
+          #   create, and only for multipart uploads.
+          #
+          #   @return [String, nil]
+          optional :multipart_upload_id, String, nil?: true
+
+          # @!attribute multipart_upload_urls
+          #
+          #   @return [Array<WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::ShippingPolicy::MultipartUploadURL>, nil]
+          optional :multipart_upload_urls,
+                   -> {
+                     WhopSDK::Internal::Type::ArrayOf[WhopSDK::AccountFinancingDeniedWebhookEvent::Data::ShippingPolicy::MultipartUploadURL]
+                   },
+                   nil?: true
+
+          # @!attribute upload_headers
+          #   Headers to send with the upload PUT. Present only on create.
+          #
+          #   @return [Object, nil]
+          optional :upload_headers, WhopSDK::Internal::Type::Unknown
+
+          # @!attribute upload_url
+          #   Presigned URL to PUT the file's bytes to. Present only on create, and only for
+          #   single-part uploads.
+          #
+          #   @return [String, nil]
+          optional :upload_url, String, nil?: true
+
+          # @!method initialize(id:, content_type:, created_at:, filename:, object:, size:, upload_status:, url:, visibility:, multipart_chunk_size: nil, multipart_upload_id: nil, multipart_upload_urls: nil, upload_headers: nil, upload_url: nil)
+          #   Some parameter documentations has been truncated, see
+          #   {WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::ShippingPolicy} for
+          #   more details.
+          #
+          #   The account's shipping policy document, or `null` if they have not published
+          #   one.
+          #
+          #   @param id [String] The file's ID, prefixed `file_`.
+          #
+          #   @param content_type [String, nil] The file's MIME type, e.g. `application/pdf`.
+          #
+          #   @param created_at [String] When the file was created, as an ISO 8601 timestamp.
+          #
+          #   @param filename [String, nil] The original filename, including its extension.
+          #
+          #   @param object [String] The type of this object, always `file`.
+          #
+          #   @param size [Integer, nil] The file size in bytes. `null` until the upload has finished.
+          #
+          #   @param upload_status [Symbol, WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::ShippingPolicy::UploadStatus] Where the file is in its upload lifecycle.
+          #
+          #   @param url [String, nil] A URL to download the file: a permanent CDN URL for public files, a signed expir
+          #
+          #   @param visibility [Symbol, WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::ShippingPolicy::Visibility] `public` files are served via an unsigned CDN URL; `private` files via a signed,
+          #
+          #   @param multipart_chunk_size [Integer, nil] The byte size each part (except the last) must be. Present only on create, and o
+          #
+          #   @param multipart_upload_id [String, nil] The ID of the multipart upload, passed back to `complete`. Present only on creat
+          #
+          #   @param multipart_upload_urls [Array<WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::ShippingPolicy::MultipartUploadURL>, nil]
+          #
+          #   @param upload_headers [Object] Headers to send with the upload PUT. Present only on create.
+          #
+          #   @param upload_url [String, nil] Presigned URL to PUT the file's bytes to. Present only on create, and only for s
+
+          # Where the file is in its upload lifecycle.
+          #
+          # @see WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::ShippingPolicy#upload_status
+          module UploadStatus
+            extend WhopSDK::Internal::Type::Enum
+
+            PENDING = :pending
+            PROCESSING = :processing
+            READY = :ready
+            FAILED = :failed
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
+          end
+
+          # `public` files are served via an unsigned CDN URL; `private` files via a signed,
+          # expiring URL.
+          #
+          # @see WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::ShippingPolicy#visibility
           module Visibility
             extend WhopSDK::Internal::Type::Enum
 

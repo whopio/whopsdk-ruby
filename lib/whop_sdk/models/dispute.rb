@@ -270,8 +270,8 @@ module WhopSDK
         required :billing_address, String, nil?: true
 
         # @!attribute cancellation_policy_attachment
-        #   The cancellation policy document. Falls back to Whop's platform policy when the
-        #   seller has not uploaded their own.
+        #   The cancellation policy document. Defaults to the account's cancellation policy,
+        #   then its terms of service, then its return policy, then Whop's platform policy.
         #
         #   @return [WhopSDK::Models::Dispute::Evidence::CancellationPolicyAttachment, nil]
         required :cancellation_policy_attachment,
@@ -322,8 +322,8 @@ module WhopSDK
         required :product_description, String, nil?: true
 
         # @!attribute refund_policy_attachment
-        #   The refund policy document. Falls back to Whop's platform policy when the seller
-        #   has not uploaded their own.
+        #   The refund policy document. Defaults to the account's return policy, then its
+        #   terms of service, then Whop's platform policy.
         #
         #   @return [WhopSDK::Models::Dispute::Evidence::RefundPolicyAttachment, nil]
         required :refund_policy_attachment,
@@ -370,7 +370,7 @@ module WhopSDK
         #
         #   @param billing_address [String, nil] The billing address the customer provided at checkout.
         #
-        #   @param cancellation_policy_attachment [WhopSDK::Models::Dispute::Evidence::CancellationPolicyAttachment, nil] The cancellation policy document. Falls back to Whop's platform policy when the
+        #   @param cancellation_policy_attachment [WhopSDK::Models::Dispute::Evidence::CancellationPolicyAttachment, nil] The cancellation policy document. Defaults to the account's cancellation policy,
         #
         #   @param cancellation_policy_disclosure [String, nil] How the cancellation policy was shown to the customer before purchase.
         #
@@ -386,7 +386,7 @@ module WhopSDK
         #
         #   @param product_description [String, nil] What the customer purchased, in the seller's own words.
         #
-        #   @param refund_policy_attachment [WhopSDK::Models::Dispute::Evidence::RefundPolicyAttachment, nil] The refund policy document. Falls back to Whop's platform policy when the seller
+        #   @param refund_policy_attachment [WhopSDK::Models::Dispute::Evidence::RefundPolicyAttachment, nil] The refund policy document. Defaults to the account's return policy, then its te
         #
         #   @param refund_policy_disclosure [String, nil] How the refund policy was shown to the customer before purchase.
         #
@@ -435,8 +435,8 @@ module WhopSDK
           #   {WhopSDK::Models::Dispute::Evidence::CancellationPolicyAttachment} for more
           #   details.
           #
-          #   The cancellation policy document. Falls back to Whop's platform policy when the
-          #   seller has not uploaded their own.
+          #   The cancellation policy document. Defaults to the account's cancellation policy,
+          #   then its terms of service, then its return policy, then Whop's platform policy.
           #
           #   @param id [String, nil] The attachment's ID. `null` for a Whop-hosted policy, which is not an uploaded f
           #
@@ -664,6 +664,8 @@ module WhopSDK
 
             RETURN_POLICY = :return_policy
             SHIPPING_POLICY = :shipping_policy
+            CANCELLATION_POLICY = :cancellation_policy
+            TERMS_OF_SERVICE = :terms_of_service
             PHYSICAL_FULFILLMENT = :physical_fulfillment
             CUSTOMER_ORDER_HISTORY = :customer_order_history
             PRODUCT_IMAGE = :product_image
@@ -766,8 +768,8 @@ module WhopSDK
           #   Some parameter documentations has been truncated, see
           #   {WhopSDK::Models::Dispute::Evidence::RefundPolicyAttachment} for more details.
           #
-          #   The refund policy document. Falls back to Whop's platform policy when the seller
-          #   has not uploaded their own.
+          #   The refund policy document. Defaults to the account's return policy, then its
+          #   terms of service, then Whop's platform policy.
           #
           #   @param id [String, nil] The attachment's ID. `null` for a Whop-hosted policy, which is not an uploaded f
           #

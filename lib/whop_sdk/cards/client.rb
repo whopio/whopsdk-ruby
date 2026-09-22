@@ -4,10 +4,14 @@ module Whop_sdk
   module Cards
     class Client
       # @param client [Whop_sdk::Internal::Http::RawClient]
+      # @param base_url [String, nil]
+      # @param environment [Hash[Symbol, String], nil]
       #
       # @return [void]
-      def initialize(client:)
+      def initialize(client:, base_url: nil, environment: nil)
         @client = client
+        @base_url = base_url
+        @environment = environment
       end
 
       # Lists the Whop cards of an account or user, including ones still being set up. Team members only see the cards
@@ -34,7 +38,7 @@ module Whop_sdk
         query_params["user_id"] = params[:user_id] if params.key?(:user_id)
 
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "GET",
           path: "cards",
           query: query_params,
@@ -72,7 +76,7 @@ module Whop_sdk
       def create(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "POST",
           path: "cards",
           body: Whop_sdk::Cards::Types::CreateCardsRequest.new(params).to_h,
@@ -116,7 +120,7 @@ module Whop_sdk
         query_params["user_id"] = params[:user_id] if params.key?(:user_id)
 
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "GET",
           path: "cards/#{URI.encode_uri_component(params[:id].to_s)}",
           query: query_params,
@@ -160,7 +164,7 @@ module Whop_sdk
         body = request_data.except(*non_body_param_names)
 
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "PATCH",
           path: "cards/#{URI.encode_uri_component(params[:id].to_s)}",
           body: body,

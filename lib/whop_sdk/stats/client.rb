@@ -4,10 +4,14 @@ module Whop_sdk
   module Stats
     class Client
       # @param client [Whop_sdk::Internal::Http::RawClient]
+      # @param base_url [String, nil]
+      # @param environment [Hash[Symbol, String], nil]
       #
       # @return [void]
-      def initialize(client:)
+      def initialize(client:, base_url: nil, environment: nil)
         @client = client
+        @base_url = base_url
+        @environment = environment
       end
 
       # Lists every metric you can query, with its unit and the properties you can filter or break it down by.
@@ -26,7 +30,7 @@ module Whop_sdk
       # @return [Whop_sdk::Stats::Types::ListStatsResponse]
       def list(request_options: {}, **_params)
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "GET",
           path: "stats",
           request_options: request_options
@@ -211,7 +215,7 @@ module Whop_sdk
         query_params["event_count_lte"] = params[:event_count_lte] if params.key?(:event_count_lte)
 
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "GET",
           path: "stats/#{URI.encode_uri_component(params[:metric].to_s)}",
           query: query_params,

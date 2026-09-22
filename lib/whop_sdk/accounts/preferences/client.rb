@@ -5,10 +5,14 @@ module Whop_sdk
     module Preferences
       class Client
         # @param client [Whop_sdk::Internal::Http::RawClient]
+        # @param base_url [String, nil]
+        # @param environment [Hash[Symbol, String], nil]
         #
         # @return [void]
-        def initialize(client:)
+        def initialize(client:, base_url: nil, environment: nil)
           @client = client
+          @base_url = base_url
+          @environment = environment
         end
 
         # Retrieves the account's preferences: a singleton settings document keyed by preference name.
@@ -29,7 +33,7 @@ module Whop_sdk
         def retrieve(request_options: {}, **params)
           params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
           request = Whop_sdk::Internal::JSON::Request.new(
-            base_url: request_options[:base_url],
+            base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
             method: "GET",
             path: "accounts/#{URI.encode_uri_component(params[:account_id].to_s)}/preferences",
             request_options: request_options
@@ -83,7 +87,7 @@ module Whop_sdk
           body = request_data.except(*non_body_param_names)
 
           request = Whop_sdk::Internal::JSON::Request.new(
-            base_url: request_options[:base_url],
+            base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
             method: "PATCH",
             path: "accounts/#{URI.encode_uri_component(params[:account_id].to_s)}/preferences",
             body: body,

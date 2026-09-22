@@ -5,10 +5,14 @@ module Whop_sdk
     module Overrides
       class Client
         # @param client [Whop_sdk::Internal::Http::RawClient]
+        # @param base_url [String, nil]
+        # @param environment [Hash[Symbol, String], nil]
         #
         # @return [void]
-        def initialize(client:)
+        def initialize(client:, base_url: nil, environment: nil)
           @client = client
+          @base_url = base_url
+          @environment = environment
         end
 
         # Returns a paginated list of overrides for an affiliate.
@@ -54,7 +58,7 @@ module Whop_sdk
           ) do |next_cursor|
             query_params["after"] = next_cursor
             request = Whop_sdk::Internal::JSON::Request.new(
-              base_url: request_options[:base_url],
+              base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
               method: "GET",
               path: "affiliates/#{URI.encode_uri_component(params[:id].to_s)}/overrides",
               query: query_params,
@@ -100,7 +104,7 @@ module Whop_sdk
           body_params = params.except(*path_param_names)
 
           request = Whop_sdk::Internal::JSON::Request.new(
-            base_url: request_options[:base_url],
+            base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
             method: "POST",
             path: "affiliates/#{URI.encode_uri_component(params[:id].to_s)}/overrides",
             body: Whop_sdk::Affiliates::Overrides::Types::CreateOverridesRequestBody.new(body_params).to_h,
@@ -145,7 +149,7 @@ module Whop_sdk
         def retrieve(request_options: {}, **params)
           params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
           request = Whop_sdk::Internal::JSON::Request.new(
-            base_url: request_options[:base_url],
+            base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
             method: "GET",
             path: "affiliates/#{URI.encode_uri_component(params[:id].to_s)}/overrides/#{URI.encode_uri_component(params[:override_id].to_s)}",
             request_options: request_options
@@ -189,7 +193,7 @@ module Whop_sdk
         def delete(request_options: {}, **params)
           params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
           request = Whop_sdk::Internal::JSON::Request.new(
-            base_url: request_options[:base_url],
+            base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
             method: "DELETE",
             path: "affiliates/#{URI.encode_uri_component(params[:id].to_s)}/overrides/#{URI.encode_uri_component(params[:override_id].to_s)}",
             request_options: request_options
@@ -235,7 +239,7 @@ module Whop_sdk
           body = request_data.except(*non_body_param_names)
 
           request = Whop_sdk::Internal::JSON::Request.new(
-            base_url: request_options[:base_url],
+            base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
             method: "PATCH",
             path: "affiliates/#{URI.encode_uri_component(params[:id].to_s)}/overrides/#{URI.encode_uri_component(params[:override_id].to_s)}",
             body: body,

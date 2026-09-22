@@ -4,10 +4,14 @@ module Whop_sdk
   module APIKeys
     class Client
       # @param client [Whop_sdk::Internal::Http::RawClient]
+      # @param base_url [String, nil]
+      # @param environment [Hash[Symbol, String], nil]
       #
       # @return [void]
-      def initialize(client:)
+      def initialize(client:, base_url: nil, environment: nil)
         @client = client
+        @base_url = base_url
+        @environment = environment
       end
 
       # Lists the API keys of an account or app, newest first. Responses never include the full secret — only its
@@ -59,7 +63,7 @@ module Whop_sdk
         ) do |next_cursor|
           query_params["after"] = next_cursor
           request = Whop_sdk::Internal::JSON::Request.new(
-            base_url: request_options[:base_url],
+            base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
             method: "GET",
             path: "api_keys",
             query: query_params,
@@ -104,7 +108,7 @@ module Whop_sdk
       def create(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "POST",
           path: "api_keys",
           body: Whop_sdk::APIKeys::Types::CreateAPIKeysRequest.new(params).to_h,
@@ -141,7 +145,7 @@ module Whop_sdk
       # @return [Whop_sdk::APIKeys::Types::ListPermissionsAPIKeysResponse]
       def list_permissions(request_options: {}, **_params)
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "GET",
           path: "api_keys/permissions",
           request_options: request_options
@@ -179,7 +183,7 @@ module Whop_sdk
       def retrieve(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "GET",
           path: "api_keys/#{URI.encode_uri_component(params[:id].to_s)}",
           request_options: request_options
@@ -217,7 +221,7 @@ module Whop_sdk
       def delete(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "DELETE",
           path: "api_keys/#{URI.encode_uri_component(params[:id].to_s)}",
           request_options: request_options
@@ -259,7 +263,7 @@ module Whop_sdk
         body = request_data.except(*non_body_param_names)
 
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "PATCH",
           path: "api_keys/#{URI.encode_uri_component(params[:id].to_s)}",
           body: body,
@@ -298,7 +302,7 @@ module Whop_sdk
       def rotate(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "POST",
           path: "api_keys/#{URI.encode_uri_component(params[:id].to_s)}/rotate",
           request_options: request_options

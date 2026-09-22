@@ -4,10 +4,14 @@ module Whop_sdk
   module Accounts
     class Client
       # @param client [Whop_sdk::Internal::Http::RawClient]
+      # @param base_url [String, nil]
+      # @param environment [Hash[Symbol, String], nil]
       #
       # @return [void]
-      def initialize(client:)
+      def initialize(client:, base_url: nil, environment: nil)
         @client = client
+        @base_url = base_url
+        @environment = environment
       end
 
       # Lists accounts visible to the credential. User tokens return the user's business accounts; Account API keys
@@ -64,7 +68,7 @@ module Whop_sdk
         ) do |next_cursor|
           query_params["after"] = next_cursor
           request = Whop_sdk::Internal::JSON::Request.new(
-            base_url: request_options[:base_url],
+            base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
             method: "GET",
             path: "accounts",
             query: query_params,
@@ -105,7 +109,7 @@ module Whop_sdk
       def create(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "POST",
           path: "accounts",
           body: Whop_sdk::Accounts::Types::CreateAccountsRequest.new(params).to_h,
@@ -141,7 +145,7 @@ module Whop_sdk
       # @return [Whop_sdk::Types::Account]
       def me(request_options: {}, **_params)
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "GET",
           path: "accounts/me",
           request_options: request_options
@@ -180,7 +184,7 @@ module Whop_sdk
       def retrieve(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "GET",
           path: "accounts/#{URI.encode_uri_component(params[:id].to_s)}",
           request_options: request_options
@@ -223,7 +227,7 @@ module Whop_sdk
         body = request_data.except(*non_body_param_names)
 
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "PATCH",
           path: "accounts/#{URI.encode_uri_component(params[:id].to_s)}",
           body: body,
@@ -313,7 +317,7 @@ module Whop_sdk
         body = request_data.except(*non_body_param_names)
 
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "POST",
           path: "accounts/#{URI.encode_uri_component(params[:id].to_s)}/form_company",
           body: body,
@@ -355,7 +359,7 @@ module Whop_sdk
       def retry_ads_payment(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "POST",
           path: "accounts/#{URI.encode_uri_component(params[:id].to_s)}/retry_ads_payment",
           request_options: request_options
@@ -393,7 +397,7 @@ module Whop_sdk
       def suspend(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "POST",
           path: "accounts/#{URI.encode_uri_component(params[:id].to_s)}/suspend",
           request_options: request_options
@@ -439,7 +443,7 @@ module Whop_sdk
         body = request_data.except(*non_body_param_names)
 
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "POST",
           path: "accounts/#{URI.encode_uri_component(params[:id].to_s)}/transfer_ownership",
           body: body,
@@ -461,17 +465,17 @@ module Whop_sdk
 
       # @return [Whop_sdk::Fees::Client]
       def fees
-        @fees ||= Whop_sdk::Accounts::Fees::Client.new(client: @client)
+        @fees ||= Whop_sdk::Accounts::Fees::Client.new(client: @client, base_url: @base_url, environment: @environment)
       end
 
       # @return [Whop_sdk::Preferences::Client]
       def preferences
-        @preferences ||= Whop_sdk::Accounts::Preferences::Client.new(client: @client)
+        @preferences ||= Whop_sdk::Accounts::Preferences::Client.new(client: @client, base_url: @base_url, environment: @environment)
       end
 
       # @return [Whop_sdk::Reserves::Client]
       def reserves
-        @reserves ||= Whop_sdk::Accounts::Reserves::Client.new(client: @client)
+        @reserves ||= Whop_sdk::Accounts::Reserves::Client.new(client: @client, base_url: @base_url, environment: @environment)
       end
     end
   end

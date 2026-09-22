@@ -4,10 +4,14 @@ module Whop_sdk
   module Experiments
     class Client
       # @param client [Whop_sdk::Internal::Http::RawClient]
+      # @param base_url [String, nil]
+      # @param environment [Hash[Symbol, String], nil]
       #
       # @return [void]
-      def initialize(client:)
+      def initialize(client:, base_url: nil, environment: nil)
         @client = client
+        @base_url = base_url
+        @environment = environment
       end
 
       # Lists experiments for one account with experiment:read permission. Omit account_id or pass internal to list
@@ -54,7 +58,7 @@ module Whop_sdk
         ) do |next_cursor|
           query_params["after"] = next_cursor
           request = Whop_sdk::Internal::JSON::Request.new(
-            base_url: request_options[:base_url],
+            base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
             method: "GET",
             path: "experiments",
             query: query_params,
@@ -96,7 +100,7 @@ module Whop_sdk
       def create(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "POST",
           path: "experiments",
           body: Whop_sdk::Experiments::Types::CreateExperimentsRequest.new(params).to_h,
@@ -165,7 +169,7 @@ module Whop_sdk
         query_params["log_exposure"] = params[:log_exposure] if params.key?(:log_exposure)
 
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "GET",
           path: "experiments/exposures",
           query: query_params,
@@ -208,7 +212,7 @@ module Whop_sdk
         query_params["account_id"] = params[:account_id] if params.key?(:account_id)
 
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "GET",
           path: "experiments/#{URI.encode_uri_component(params[:id].to_s)}",
           query: query_params,
@@ -258,7 +262,7 @@ module Whop_sdk
         query_params["account_id"] = params[:account_id] if params.key?(:account_id)
 
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "PATCH",
           path: "experiments/#{URI.encode_uri_component(params[:id].to_s)}",
           query: query_params,
@@ -308,7 +312,7 @@ module Whop_sdk
         query_params["account_id"] = params[:account_id] if params.key?(:account_id)
 
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "POST",
           path: "experiments/#{URI.encode_uri_component(params[:id].to_s)}/activate",
           query: query_params,
@@ -360,7 +364,7 @@ module Whop_sdk
         query_params["account_id"] = params[:account_id] if params.key?(:account_id)
 
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "POST",
           path: "experiments/#{URI.encode_uri_component(params[:id].to_s)}/end",
           query: query_params,
@@ -405,7 +409,7 @@ module Whop_sdk
         query_params["account_id"] = params[:account_id] if params.key?(:account_id)
 
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "POST",
           path: "experiments/#{URI.encode_uri_component(params[:id].to_s)}/pause",
           query: query_params,

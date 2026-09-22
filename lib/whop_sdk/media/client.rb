@@ -4,10 +4,14 @@ module Whop_sdk
   module Media
     class Client
       # @param client [Whop_sdk::Internal::Http::RawClient]
+      # @param base_url [String, nil]
+      # @param environment [Hash[Symbol, String], nil]
       #
       # @return [void]
-      def initialize(client:)
+      def initialize(client:, base_url: nil, environment: nil)
         @client = client
+        @base_url = base_url
+        @environment = environment
       end
 
       # Starts an AI media generation job billed from the account's balance. Generation is asynchronous — poll `GET
@@ -31,7 +35,7 @@ module Whop_sdk
       def generate(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "POST",
           path: "media/generate",
           body: Whop_sdk::Media::Types::GenerateMediaRequest.new(params).to_h,
@@ -69,7 +73,7 @@ module Whop_sdk
       def retrieve(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "GET",
           path: "media/#{URI.encode_uri_component(params[:id].to_s)}",
           request_options: request_options

@@ -4,10 +4,14 @@ module Whop_sdk
   module AdCampaigns
     class Client
       # @param client [Whop_sdk::Internal::Http::RawClient]
+      # @param base_url [String, nil]
+      # @param environment [Hash[Symbol, String], nil]
       #
       # @return [void]
-      def initialize(client:)
+      def initialize(client:, base_url: nil, environment: nil)
         @client = client
+        @base_url = base_url
+        @environment = environment
       end
 
       # Lists the ad campaigns for an account, with stats over the requested window.
@@ -65,7 +69,7 @@ module Whop_sdk
         ) do |next_cursor|
           query_params["after"] = next_cursor
           request = Whop_sdk::Internal::JSON::Request.new(
-            base_url: request_options[:base_url],
+            base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
             method: "GET",
             path: "ad_campaigns",
             query: query_params,
@@ -108,7 +112,7 @@ module Whop_sdk
       def create(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "POST",
           path: "ad_campaigns",
           body: Whop_sdk::AdCampaigns::Types::CreateAdCampaignsRequest.new(params).to_h,
@@ -156,7 +160,7 @@ module Whop_sdk
         query_params["attribution_model"] = params[:attribution_model] if params.key?(:attribution_model)
 
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "GET",
           path: "ad_campaigns/#{URI.encode_uri_component(params[:id].to_s)}",
           query: query_params,
@@ -194,7 +198,7 @@ module Whop_sdk
       def delete(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "DELETE",
           path: "ad_campaigns/#{URI.encode_uri_component(params[:id].to_s)}",
           request_options: request_options
@@ -237,7 +241,7 @@ module Whop_sdk
         body = request_data.except(*non_body_param_names)
 
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "PATCH",
           path: "ad_campaigns/#{URI.encode_uri_component(params[:id].to_s)}",
           body: body,
@@ -281,7 +285,7 @@ module Whop_sdk
         body = request_data.except(*non_body_param_names)
 
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "POST",
           path: "ad_campaigns/#{URI.encode_uri_component(params[:id].to_s)}/duplicate",
           body: body,
@@ -319,7 +323,7 @@ module Whop_sdk
       def pause(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "POST",
           path: "ad_campaigns/#{URI.encode_uri_component(params[:id].to_s)}/pause",
           request_options: request_options
@@ -356,7 +360,7 @@ module Whop_sdk
       def unpause(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "POST",
           path: "ad_campaigns/#{URI.encode_uri_component(params[:id].to_s)}/unpause",
           request_options: request_options

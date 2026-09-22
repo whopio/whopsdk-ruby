@@ -4,10 +4,14 @@ module Whop_sdk
   module Exports
     class Client
       # @param client [Whop_sdk::Internal::Http::RawClient]
+      # @param base_url [String, nil]
+      # @param environment [Hash[Symbol, String], nil]
       #
       # @return [void]
-      def initialize(client:)
+      def initialize(client:, base_url: nil, environment: nil)
         @client = client
+        @base_url = base_url
+        @environment = environment
       end
 
       # Lists the exports requested for an account, newest first. Only exports of resources the credential is allowed to
@@ -44,7 +48,7 @@ module Whop_sdk
         query_params["direction"] = params[:direction] if params.key?(:direction)
 
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "GET",
           path: "exports",
           query: query_params,
@@ -82,7 +86,7 @@ module Whop_sdk
       def create(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "POST",
           path: "exports",
           body: Whop_sdk::Exports::Types::CreateExportsRequest.new(params).to_h,
@@ -120,7 +124,7 @@ module Whop_sdk
       def retrieve(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "GET",
           path: "exports/#{URI.encode_uri_component(params[:id].to_s)}",
           request_options: request_options

@@ -4,10 +4,14 @@ module Whop_sdk
   module APILogs
     class Client
       # @param client [Whop_sdk::Internal::Http::RawClient]
+      # @param base_url [String, nil]
+      # @param environment [Hash[Symbol, String], nil]
       #
       # @return [void]
-      def initialize(client:)
+      def initialize(client:, base_url: nil, environment: nil)
         @client = client
+        @base_url = base_url
+        @environment = environment
       end
 
       # Lists the requests served by Whop's API with the account's API keys, newest first — every surface (GraphQL,
@@ -58,7 +62,7 @@ module Whop_sdk
         ) do |next_cursor|
           query_params["after"] = next_cursor
           request = Whop_sdk::Internal::JSON::Request.new(
-            base_url: request_options[:base_url],
+            base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
             method: "GET",
             path: "api_logs",
             query: query_params,

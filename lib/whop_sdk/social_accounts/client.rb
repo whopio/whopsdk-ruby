@@ -4,10 +4,14 @@ module Whop_sdk
   module SocialAccounts
     class Client
       # @param client [Whop_sdk::Internal::Http::RawClient]
+      # @param base_url [String, nil]
+      # @param environment [Hash[Symbol, String], nil]
       #
       # @return [void]
-      def initialize(client:)
+      def initialize(client:, base_url: nil, environment: nil)
         @client = client
+        @base_url = base_url
+        @environment = environment
       end
 
       # Lists the social accounts linked to an account or user.
@@ -57,7 +61,7 @@ module Whop_sdk
         ) do |next_cursor|
           query_params["after"] = next_cursor
           request = Whop_sdk::Internal::JSON::Request.new(
-            base_url: request_options[:base_url],
+            base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
             method: "GET",
             path: "social_accounts",
             query: query_params,
@@ -96,7 +100,7 @@ module Whop_sdk
       def create(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "POST",
           path: "social_accounts",
           body: Whop_sdk::SocialAccounts::Types::CreateSocialAccountsRequest.new(params).to_h,
@@ -136,7 +140,7 @@ module Whop_sdk
       def connect(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "POST",
           path: "social_accounts/connect",
           body: Whop_sdk::SocialAccounts::Types::ConnectSocialAccountsRequest.new(params).to_h,
@@ -180,7 +184,7 @@ module Whop_sdk
         query_params["user_id"] = params[:user_id] if params.key?(:user_id)
 
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "DELETE",
           path: "social_accounts/#{URI.encode_uri_component(params[:id].to_s)}",
           query: query_params,
@@ -227,7 +231,7 @@ module Whop_sdk
         query_params["account_id"] = params[:account_id] if params.key?(:account_id)
 
         request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "GET",
           path: "social_accounts/#{URI.encode_uri_component(params[:id].to_s)}/lead_forms",
           query: query_params,
@@ -284,7 +288,7 @@ module Whop_sdk
         ) do |next_cursor|
           query_params["after"] = next_cursor
           request = Whop_sdk::Internal::JSON::Request.new(
-            base_url: request_options[:base_url],
+            base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
             method: "GET",
             path: "social_accounts/#{URI.encode_uri_component(params[:id].to_s)}/posts",
             query: query_params,

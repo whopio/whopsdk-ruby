@@ -293,8 +293,8 @@ module WhopSDK
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::PaymentVoidParams} for more details.
       #
-      # Voids a payment that has not yet been settled. Voiding cancels the payment
-      # before it is captured by the payment processor.
+      # Voids or cancels an eligible payment. The request is rejected if the payment is
+      # no longer eligible.
       #
       # @overload void(id, api_version_date: nil, idempotency_key: nil, request_options: {})
       #

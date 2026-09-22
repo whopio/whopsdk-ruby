@@ -371,8 +371,8 @@ module WhopSDK
       required :verification_checks, -> { WhopSDK::Payment::VerificationChecks }, nil?: true
 
       # @!attribute voidable
-      #   True when the payment is `open` on a past-due membership and its processor
-      #   supports voiding — see `POST /payments/{id}/void`.
+      #   True when the payment can be voided or canceled. The request is rejected if the
+      #   payment is no longer eligible — see `POST /payments/{id}/void`.
       #
       #   @return [Boolean]
       required :voidable, WhopSDK::Internal::Type::Boolean
@@ -491,7 +491,7 @@ module WhopSDK
       #
       #   @param verification_checks [WhopSDK::Models::Payment::VerificationChecks, nil] The Address Verification Service (AVS), cardholder name, and Card Verification V
       #
-      #   @param voidable [Boolean] True when the payment is `open` on a past-due membership and its processor suppo
+      #   @param voidable [Boolean] True when the payment can be voided or canceled. The request is rejected if the
 
       # @see WhopSDK::Models::Payment#amount_after_fees
       class AmountAfterFees < WhopSDK::Internal::Type::BaseModel

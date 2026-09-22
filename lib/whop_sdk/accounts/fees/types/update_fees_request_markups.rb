@@ -6,6 +6,8 @@ module Whop_sdk
       module Types
         # Markups on this connected account, set by the platform it is connected to.
         class UpdateFeesRequestMarkups < Internal::Types::Model
+          field :card_spend, -> { Whop_sdk::Accounts::Fees::Types::UpdateFeesRequestMarkupsCardSpend }, optional: true, nullable: false
+
           field :crypto_swaps, -> { Whop_sdk::Accounts::Fees::Types::UpdateFeesRequestMarkupsCryptoSwaps }, optional: true, nullable: false
 
           field :deposits, -> { Internal::Types::Hash[String, Whop_sdk::Accounts::Fees::Types::UpdateFeesRequestMarkupsDepositsValue] }, optional: true, nullable: false

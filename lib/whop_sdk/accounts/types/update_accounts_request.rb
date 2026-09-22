@@ -18,11 +18,15 @@ module Whop_sdk
 
         field :business_type, -> { String }, optional: true, nullable: false
 
+        field :cancellation_policy, -> { Whop_sdk::Accounts::Types::UpdateAccountsRequestCancellationPolicy }, optional: true, nullable: false
+
         field :collect_vat_id, -> { Internal::Types::Boolean }, optional: true, nullable: false
 
         field :country, -> { String }, optional: true, nullable: false
 
         field :description, -> { String }, optional: true, nullable: false
+
+        field :eula, -> { Whop_sdk::Accounts::Types::UpdateAccountsRequestEula }, optional: true, nullable: false
 
         field :featured_affiliate_product_id, -> { String }, optional: true, nullable: false
 
@@ -48,13 +52,19 @@ module Whop_sdk
 
         field :other_industry_description, -> { String }, optional: true, nullable: false
 
+        field :privacy_policy, -> { Whop_sdk::Accounts::Types::UpdateAccountsRequestPrivacyPolicy }, optional: true, nullable: false
+
         field :product_tax_code_id, -> { String }, optional: true, nullable: false
 
         field :require2fa, -> { Internal::Types::Boolean }, optional: true, nullable: false, api_name: "require_2fa"
 
+        field :return_policy, -> { Whop_sdk::Accounts::Types::UpdateAccountsRequestReturnPolicy }, optional: true, nullable: false
+
         field :route, -> { String }, optional: true, nullable: false
 
         field :send_customer_emails, -> { Internal::Types::Boolean }, optional: true, nullable: false
+
+        field :shipping_policy, -> { Whop_sdk::Accounts::Types::UpdateAccountsRequestShippingPolicy }, optional: true, nullable: false
 
         field :show_joined_whops, -> { Internal::Types::Boolean }, optional: true, nullable: false
 
@@ -75,6 +85,8 @@ module Whop_sdk
         field :tax_remitted_by, -> { Whop_sdk::Accounts::Types::UpdateAccountsRequestTaxRemittedBy }, optional: true, nullable: false
 
         field :tax_type, -> { Whop_sdk::Accounts::Types::UpdateAccountsRequestTaxType }, optional: true, nullable: false
+
+        field :terms_of_service, -> { Whop_sdk::Accounts::Types::UpdateAccountsRequestTermsOfService }, optional: true, nullable: false
 
         field :three_ds_level, -> { Whop_sdk::Accounts::Types::UpdateAccountsRequestThreeDsLevel }, optional: true, nullable: false
 

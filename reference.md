@@ -669,6 +669,14 @@ client.accounts.update(id: "id")
 <dl>
 <dd>
 
+**cancellation_policy:** `Whop_sdk::Accounts::Types::UpdateAccountsRequestCancellationPolicy` — The account's cancellation policy document. Attached to new disputes as the cancellation policy evidence, with the terms of service as the fallback. PDF only. Pass a JSON object containing an `id` from [Create File](/api-reference/files/create-file), or `null` to remove it.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **collect_vat_id:** `Internal::Types::Boolean` — Whether checkout shows a VAT/tax ID field for buyers to optionally enter. Does not require a VAT ID to purchase.
     
 </dd>
@@ -686,6 +694,14 @@ client.accounts.update(id: "id")
 <dd>
 
 **description:** `String` — Account promotional description. When creating a Whop-managed Facebook page, it is truncated to 155 characters and used as the About text.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**eula:** `Whop_sdk::Accounts::Types::UpdateAccountsRequestEula` — The account's end-user license agreement document. PDF only. Pass a JSON object containing an `id` from [Create File](/api-reference/files/create-file), or `null` to remove it.
     
 </dd>
 </dl>
@@ -789,6 +805,14 @@ client.accounts.update(id: "id")
 <dl>
 <dd>
 
+**privacy_policy:** `Whop_sdk::Accounts::Types::UpdateAccountsRequestPrivacyPolicy` — The account's privacy policy document. PDF only. Pass a JSON object containing an `id` from [Create File](/api-reference/files/create-file), or `null` to remove it.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **product_tax_code_id:** `String` — ID of the tax classification code applied by default to the account's products. See the available [product categories](https://docs.numeral.com/essentials/product-categories).
     
 </dd>
@@ -805,6 +829,14 @@ client.accounts.update(id: "id")
 <dl>
 <dd>
 
+**return_policy:** `Whop_sdk::Accounts::Types::UpdateAccountsRequestReturnPolicy` — The account's return and refund policy document. Attached to new disputes as the refund policy evidence, with the terms of service as the fallback. PDF only. Pass a JSON object containing an `id` from [Create File](/api-reference/files/create-file), or `null` to remove it.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **route:** `String` — The unique URL slug for the account.
     
 </dd>
@@ -814,6 +846,14 @@ client.accounts.update(id: "id")
 <dd>
 
 **send_customer_emails:** `Internal::Types::Boolean` — Whether Whop sends transactional emails to customers on behalf of this account.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**shipping_policy:** `Whop_sdk::Accounts::Types::UpdateAccountsRequestShippingPolicy` — The account's shipping policy document. Sent with physical-goods dispute evidence. PDF only. Pass a JSON object containing an `id` from [Create File](/api-reference/files/create-file), or `null` to remove it.
     
 </dd>
 </dl>
@@ -894,6 +934,14 @@ client.accounts.update(id: "id")
 <dd>
 
 **tax_type:** `Whop_sdk::Accounts::Types::UpdateAccountsRequestTaxType` — Determines whether tax is included in the listed price or added at checkout.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**terms_of_service:** `Whop_sdk::Accounts::Types::UpdateAccountsRequestTermsOfService` — The account's terms of service document. Attached to new disputes as the cancellation policy evidence when no cancellation policy is set. PDF only. Pass a JSON object containing an `id` from [Create File](/api-reference/files/create-file), or `null` to remove it.
     
 </dd>
 </dl>
@@ -14541,7 +14589,7 @@ client.disputes.submit(id: "id")
 <dl>
 <dd>
 
-Replaces the full set of uploaded evidence documents on a dispute, beyond the four fixed evidence slots. Upload files through `POST /files` and reference them by `id`, or send the files as multipart file parts to upload and attach in one call. Send every document the packet should carry — up to 10, 10MB each and 25MB in total; an empty list removes them all. Accepted content types: application/pdf, application/json, image/jpeg, image/png, image/webp — any other type is rejected.
+Replaces the full set of uploaded evidence documents on a dispute, beyond the four fixed evidence slots. Upload files through `POST /files` and reference them by `id`, or send the files as multipart file parts to upload and attach in one call. Send every document the packet should carry — up to 10, 10MB each and 25MB in total; an empty list removes them all. Accepted content types: application/pdf, application/json, image/jpeg, image/png, image/webp — any other type is rejected. Policy documents (`return_policy`, `shipping_policy`, `cancellation_policy`, `terms_of_service`) default from the account's own documents; uploading one here replaces the account copy for this dispute, and a `cancellation_policy` or `return_policy` upload also takes precedence over the matching fixed evidence slot.
 </dd>
 </dl>
 </dd>

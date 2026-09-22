@@ -7,6 +7,8 @@ module Whop_sdk
 
       RETURN_POLICY = "return_policy"
       SHIPPING_POLICY = "shipping_policy"
+      CANCELLATION_POLICY = "cancellation_policy"
+      TERMS_OF_SERVICE = "terms_of_service"
       PHYSICAL_FULFILLMENT = "physical_fulfillment"
       CUSTOMER_ORDER_HISTORY = "customer_order_history"
       PRODUCT_IMAGE = "product_image"

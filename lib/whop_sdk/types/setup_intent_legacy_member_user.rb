@@ -3,7 +3,7 @@
 module Whop_sdk
   module Types
     # The user for this member, if any.
-    class SetupIntentMemberUser < Internal::Types::Model
+    class SetupIntentLegacyMemberUser < Internal::Types::Model
       field :email, -> { String }, optional: false, nullable: true
 
       field :id, -> { String }, optional: false, nullable: false

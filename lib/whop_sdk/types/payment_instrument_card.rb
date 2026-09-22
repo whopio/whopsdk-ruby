@@ -3,7 +3,11 @@
 module Whop_sdk
   module Types
     class PaymentInstrumentCard < Internal::Types::Model
-      field :brand, -> { String }, optional: false, nullable: false
+      field :brand, -> { String }, optional: false, nullable: true
+
+      field :exp_month, -> { Integer }, optional: false, nullable: true
+
+      field :exp_year, -> { Integer }, optional: false, nullable: true
 
       field :issuer_identification_number, -> { String }, optional: false, nullable: true
 

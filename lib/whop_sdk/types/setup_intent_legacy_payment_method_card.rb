@@ -3,7 +3,7 @@
 module Whop_sdk
   module Types
     # The card data associated with the payment method, if its a debit or credit card.
-    class SetupIntentPaymentMethodCard < Internal::Types::Model
+    class SetupIntentLegacyPaymentMethodCard < Internal::Types::Model
       field :brand, -> { Whop_sdk::Types::CardBrands }, optional: false, nullable: true
 
       field :exp_month, -> { Integer }, optional: false, nullable: true

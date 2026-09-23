@@ -8,6 +8,7 @@ module Whop_sdk
 
         META_BUSINESS = "meta_business"
         TIKTOK = "tiktok"
+        LINKEDIN = "linkedin"
       end
     end
   end

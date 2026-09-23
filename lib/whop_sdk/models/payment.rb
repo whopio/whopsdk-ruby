@@ -104,6 +104,11 @@ module WhopSDK
       #   @return [Float, nil]
       required :financing_installments_count, Float, nil?: true
 
+      # @!attribute holds
+      #
+      #   @return [Array<WhopSDK::Models::Payment::Hold>]
+      required :holds, -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::Payment::Hold] }
+
       # @!attribute last_payment_attempt_at
       #   When the most recent charge attempt ran, or null.
       #
@@ -267,10 +272,11 @@ module WhopSDK
       required :risk_signals, WhopSDK::Internal::Type::Unknown, nil?: true
 
       # @!attribute settlement_time_at
-      #   When the funds post to the account's available balance, at midnight UTC. The
-      #   `financial_activity.funds_available` webhook's `posted_at` carries the same
-      #   value when the settlement that clears it posts. Null until the payment is paid,
-      #   and always null in list responses — retrieve the payment for it.
+      #   When the portion not listed in `holds` posts to the account's available balance,
+      #   at midnight UTC. The `financial_activity.funds_available` webhook's `posted_at`
+      #   carries the same value when the settlement that clears it posts. Null until the
+      #   payment is paid, and always null in list responses — retrieve the payment for
+      #   it.
       #
       #   @return [String, nil]
       required :settlement_time_at, String, nil?: true
@@ -377,7 +383,7 @@ module WhopSDK
       #   @return [Boolean]
       required :voidable, WhopSDK::Internal::Type::Boolean
 
-      # @!method initialize(id:, account_id:, amount_after_fees:, auto_refunded:, billing_address:, billing_reason:, checkout_configuration_id:, client_secret:, created_at:, currency:, customer_email:, customer_phone:, decline_code:, dispute_alerted_at:, failure_message:, financing_installments_count:, last_payment_attempt_at:, line_items:, member_id:, membership_id:, metadata:, needs_tracking:, next_payment_attempt_at:, paid_at:, payment_instrument:, payment_method_id:, payment_method_type:, payment_rule_matches:, payments_failed:, plan_id:, presentment_total:, product_id:, promo_code_id:, recovery_url:, refundable:, refunded_amount:, refunded_at:, retryable:, risk_score:, risk_signals:, settlement_time_at:, shipment_id:, shipping_address:, status:, substatus:, subtotal:, tax_amount:, tax_behavior:, tax_refunded_amount:, three_ds_verified:, total:, updated_at:, usd_total:, user:, verification_checks:, voidable:)
+      # @!method initialize(id:, account_id:, amount_after_fees:, auto_refunded:, billing_address:, billing_reason:, checkout_configuration_id:, client_secret:, created_at:, currency:, customer_email:, customer_phone:, decline_code:, dispute_alerted_at:, failure_message:, financing_installments_count:, holds:, last_payment_attempt_at:, line_items:, member_id:, membership_id:, metadata:, needs_tracking:, next_payment_attempt_at:, paid_at:, payment_instrument:, payment_method_id:, payment_method_type:, payment_rule_matches:, payments_failed:, plan_id:, presentment_total:, product_id:, promo_code_id:, recovery_url:, refundable:, refunded_amount:, refunded_at:, retryable:, risk_score:, risk_signals:, settlement_time_at:, shipment_id:, shipping_address:, status:, substatus:, subtotal:, tax_amount:, tax_behavior:, tax_refunded_amount:, three_ds_verified:, total:, updated_at:, usd_total:, user:, verification_checks:, voidable:)
       #   Some parameter documentations has been truncated, see {WhopSDK::Models::Payment}
       #   for more details.
       #
@@ -412,6 +418,8 @@ module WhopSDK
       #   @param failure_message [String, nil] Why the most recent attempt failed, in plain words, or null.
       #
       #   @param financing_installments_count [Float, nil] For installment methods, how many payments the charge splits into.
+      #
+      #   @param holds [Array<WhopSDK::Models::Payment::Hold>]
       #
       #   @param last_payment_attempt_at [String, nil] When the most recent charge attempt ran, or null.
       #
@@ -461,7 +469,7 @@ module WhopSDK
       #
       #   @param risk_signals [Object, nil] Deprecated. Risk score explanations are no longer provided; always null.
       #
-      #   @param settlement_time_at [String, nil] When the funds post to the account's available balance, at midnight UTC. The `fi
+      #   @param settlement_time_at [String, nil] When the portion not listed in `holds` posts to the account's available balance,
       #
       #   @param shipment_id [String, nil] The shipment fulfilling this payment, prefixed `ship_`. Null when nothing ships
       #
@@ -695,6 +703,114 @@ module WhopSDK
 
         # @!method self.values
         #   @return [Array<Symbol>]
+      end
+
+      class Hold < WhopSDK::Internal::Type::BaseModel
+        # @!attribute amount
+        #   The amount currently held, in the hold's currency.
+        #
+        #   @return [WhopSDK::Models::Payment::Hold::Amount]
+        required :amount, -> { WhopSDK::Payment::Hold::Amount }
+
+        # @!attribute percentage
+        #   The reserve percentage recorded when the hold was created, for example 3.5 for
+        #   3.5%. Null for other hold types or when no percentage was recorded.
+        #
+        #   @return [Float, nil]
+        required :percentage, Float, nil?: true
+
+        # @!attribute release_at
+        #   When the held funds are scheduled to become available, as an ISO 8601 timestamp.
+        #   Never earlier than the payment's settlement date. Null when release depends on
+        #   an event, such as shipment resolution, rather than a date.
+        #
+        #   @return [String, nil]
+        required :release_at, String, nil?: true
+
+        # @!attribute type
+        #   The reason funds are held: `reserve`, `bnpl`, `sequra`, `fraud_hold`, or
+        #   `preshipment_hold`.
+        #
+        #   @return [Symbol, WhopSDK::Models::Payment::Hold::Type]
+        required :type, enum: -> { WhopSDK::Payment::Hold::Type }
+
+        # @!method initialize(amount:, percentage:, release_at:, type:)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::Payment::Hold} for more details.
+        #
+        #   The active holds on this payment. Each hold has its own release date,
+        #   independent of `settlement_time_at`. Empty when nothing is held; released holds
+        #   are omitted.
+        #
+        #   @param amount [WhopSDK::Models::Payment::Hold::Amount] The amount currently held, in the hold's currency.
+        #
+        #   @param percentage [Float, nil] The reserve percentage recorded when the hold was created, for example 3.5 for 3
+        #
+        #   @param release_at [String, nil] When the held funds are scheduled to become available, as an ISO 8601 timestamp.
+        #
+        #   @param type [Symbol, WhopSDK::Models::Payment::Hold::Type] The reason funds are held: `reserve`, `bnpl`, `sequra`, `fraud_hold`, or `preshi
+
+        # @see WhopSDK::Models::Payment::Hold#amount
+        class Amount < WhopSDK::Internal::Type::BaseModel
+          # @!attribute amount
+          #   The amount in major units, as an exact decimal string — `"10.00"` is ten
+          #   dollars. A string so no float rounds it in transit.
+          #
+          #   @return [String]
+          required :amount, String
+
+          # @!attribute currency
+          #   Three-letter ISO 4217 currency code, lowercase.
+          #
+          #   @return [String]
+          required :currency, String
+
+          # @!attribute decimals
+          #   How many decimal places the amount CARRIES — the precision the charge itself
+          #   runs at.
+          #
+          #   @return [Integer]
+          required :decimals, Integer
+
+          # @!attribute display_decimals
+          #   How many decimal places to SHOW. Usually equal to `decimals`, and deliberately
+          #   not always: COP is charged in centavos but written in whole pesos, so it is `2`
+          #   and `0`. Format the number in your own locale using this.
+          #
+          #   @return [Integer]
+          required :display_decimals, Integer
+
+          # @!method initialize(amount:, currency:, decimals:, display_decimals:)
+          #   Some parameter documentations has been truncated, see
+          #   {WhopSDK::Models::Payment::Hold::Amount} for more details.
+          #
+          #   The amount currently held, in the hold's currency.
+          #
+          #   @param amount [String] The amount in major units, as an exact decimal string — `"10.00"` is ten dollars
+          #
+          #   @param currency [String] Three-letter ISO 4217 currency code, lowercase.
+          #
+          #   @param decimals [Integer] How many decimal places the amount CARRIES — the precision the charge itself run
+          #
+          #   @param display_decimals [Integer] How many decimal places to SHOW. Usually equal to `decimals`, and deliberately n
+        end
+
+        # The reason funds are held: `reserve`, `bnpl`, `sequra`, `fraud_hold`, or
+        # `preshipment_hold`.
+        #
+        # @see WhopSDK::Models::Payment::Hold#type
+        module Type
+          extend WhopSDK::Internal::Type::Enum
+
+          RESERVE = :reserve
+          BNPL = :bnpl
+          SEQURA = :sequra
+          FRAUD_HOLD = :fraud_hold
+          PRESHIPMENT_HOLD = :preshipment_hold
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
       end
 
       class LineItem < WhopSDK::Internal::Type::BaseModel

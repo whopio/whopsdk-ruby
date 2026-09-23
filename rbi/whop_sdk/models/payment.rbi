@@ -89,6 +89,9 @@ module WhopSDK
       sig { returns(T.nilable(Float)) }
       attr_accessor :financing_installments_count
 
+      sig { returns(T::Array[WhopSDK::Payment::Hold]) }
+      attr_accessor :holds
+
       # When the most recent charge attempt ran, or null.
       sig { returns(T.nilable(String)) }
       attr_accessor :last_payment_attempt_at
@@ -223,10 +226,11 @@ module WhopSDK
       sig { returns(T.nilable(T.anything)) }
       attr_accessor :risk_signals
 
-      # When the funds post to the account's available balance, at midnight UTC. The
-      # `financial_activity.funds_available` webhook's `posted_at` carries the same
-      # value when the settlement that clears it posts. Null until the payment is paid,
-      # and always null in list responses — retrieve the payment for it.
+      # When the portion not listed in `holds` posts to the account's available balance,
+      # at midnight UTC. The `financial_activity.funds_available` webhook's `posted_at`
+      # carries the same value when the settlement that clears it posts. Null until the
+      # payment is paid, and always null in list responses — retrieve the payment for
+      # it.
       sig { returns(T.nilable(String)) }
       attr_accessor :settlement_time_at
 
@@ -363,6 +367,7 @@ module WhopSDK
           dispute_alerted_at: T.nilable(String),
           failure_message: T.nilable(String),
           financing_installments_count: T.nilable(Float),
+          holds: T::Array[WhopSDK::Payment::Hold::OrHash],
           last_payment_attempt_at: T.nilable(String),
           line_items: T::Array[WhopSDK::Payment::LineItem::OrHash],
           member_id: T.nilable(String),
@@ -448,6 +453,7 @@ module WhopSDK
         failure_message:,
         # For installment methods, how many payments the charge splits into.
         financing_installments_count:,
+        holds:,
         # When the most recent charge attempt ran, or null.
         last_payment_attempt_at:,
         line_items:,
@@ -511,10 +517,11 @@ module WhopSDK
         # Deprecated. Risk score explanations are no longer provided; always null.
         # DEPRECATED: Risk score explanations are no longer provided. Always null.
         risk_signals:,
-        # When the funds post to the account's available balance, at midnight UTC. The
-        # `financial_activity.funds_available` webhook's `posted_at` carries the same
-        # value when the settlement that clears it posts. Null until the payment is paid,
-        # and always null in list responses — retrieve the payment for it.
+        # When the portion not listed in `holds` posts to the account's available balance,
+        # at midnight UTC. The `financial_activity.funds_available` webhook's `posted_at`
+        # carries the same value when the settlement that clears it posts. Null until the
+        # payment is paid, and always null in list responses — retrieve the payment for
+        # it.
         settlement_time_at:,
         # The shipment fulfilling this payment, prefixed `ship_`. Null when nothing ships
         # or without the shipment:basic:read permission.
@@ -581,6 +588,7 @@ module WhopSDK
             dispute_alerted_at: T.nilable(String),
             failure_message: T.nilable(String),
             financing_installments_count: T.nilable(Float),
+            holds: T::Array[WhopSDK::Payment::Hold],
             last_payment_attempt_at: T.nilable(String),
             line_items: T::Array[WhopSDK::Payment::LineItem],
             member_id: T.nilable(String),
@@ -1118,6 +1126,167 @@ module WhopSDK
           )
         end
         def self.values
+        end
+      end
+
+      class Hold < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(WhopSDK::Payment::Hold, WhopSDK::Internal::AnyHash)
+          end
+
+        # The amount currently held, in the hold's currency.
+        sig { returns(WhopSDK::Payment::Hold::Amount) }
+        attr_reader :amount
+
+        sig { params(amount: WhopSDK::Payment::Hold::Amount::OrHash).void }
+        attr_writer :amount
+
+        # The reserve percentage recorded when the hold was created, for example 3.5 for
+        # 3.5%. Null for other hold types or when no percentage was recorded.
+        sig { returns(T.nilable(Float)) }
+        attr_accessor :percentage
+
+        # When the held funds are scheduled to become available, as an ISO 8601 timestamp.
+        # Never earlier than the payment's settlement date. Null when release depends on
+        # an event, such as shipment resolution, rather than a date.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :release_at
+
+        # The reason funds are held: `reserve`, `bnpl`, `sequra`, `fraud_hold`, or
+        # `preshipment_hold`.
+        sig { returns(WhopSDK::Payment::Hold::Type::TaggedSymbol) }
+        attr_accessor :type
+
+        # The active holds on this payment. Each hold has its own release date,
+        # independent of `settlement_time_at`. Empty when nothing is held; released holds
+        # are omitted.
+        sig do
+          params(
+            amount: WhopSDK::Payment::Hold::Amount::OrHash,
+            percentage: T.nilable(Float),
+            release_at: T.nilable(String),
+            type: WhopSDK::Payment::Hold::Type::OrSymbol
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The amount currently held, in the hold's currency.
+          amount:,
+          # The reserve percentage recorded when the hold was created, for example 3.5 for
+          # 3.5%. Null for other hold types or when no percentage was recorded.
+          percentage:,
+          # When the held funds are scheduled to become available, as an ISO 8601 timestamp.
+          # Never earlier than the payment's settlement date. Null when release depends on
+          # an event, such as shipment resolution, rather than a date.
+          release_at:,
+          # The reason funds are held: `reserve`, `bnpl`, `sequra`, `fraud_hold`, or
+          # `preshipment_hold`.
+          type:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              amount: WhopSDK::Payment::Hold::Amount,
+              percentage: T.nilable(Float),
+              release_at: T.nilable(String),
+              type: WhopSDK::Payment::Hold::Type::TaggedSymbol
+            }
+          )
+        end
+        def to_hash
+        end
+
+        class Amount < WhopSDK::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(WhopSDK::Payment::Hold::Amount, WhopSDK::Internal::AnyHash)
+            end
+
+          # The amount in major units, as an exact decimal string — `"10.00"` is ten
+          # dollars. A string so no float rounds it in transit.
+          sig { returns(String) }
+          attr_accessor :amount
+
+          # Three-letter ISO 4217 currency code, lowercase.
+          sig { returns(String) }
+          attr_accessor :currency
+
+          # How many decimal places the amount CARRIES — the precision the charge itself
+          # runs at.
+          sig { returns(Integer) }
+          attr_accessor :decimals
+
+          # How many decimal places to SHOW. Usually equal to `decimals`, and deliberately
+          # not always: COP is charged in centavos but written in whole pesos, so it is `2`
+          # and `0`. Format the number in your own locale using this.
+          sig { returns(Integer) }
+          attr_accessor :display_decimals
+
+          # The amount currently held, in the hold's currency.
+          sig do
+            params(
+              amount: String,
+              currency: String,
+              decimals: Integer,
+              display_decimals: Integer
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # The amount in major units, as an exact decimal string — `"10.00"` is ten
+            # dollars. A string so no float rounds it in transit.
+            amount:,
+            # Three-letter ISO 4217 currency code, lowercase.
+            currency:,
+            # How many decimal places the amount CARRIES — the precision the charge itself
+            # runs at.
+            decimals:,
+            # How many decimal places to SHOW. Usually equal to `decimals`, and deliberately
+            # not always: COP is charged in centavos but written in whole pesos, so it is `2`
+            # and `0`. Format the number in your own locale using this.
+            display_decimals:
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                amount: String,
+                currency: String,
+                decimals: Integer,
+                display_decimals: Integer
+              }
+            )
+          end
+          def to_hash
+          end
+        end
+
+        # The reason funds are held: `reserve`, `bnpl`, `sequra`, `fraud_hold`, or
+        # `preshipment_hold`.
+        module Type
+          extend WhopSDK::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias { T.all(Symbol, WhopSDK::Payment::Hold::Type) }
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          RESERVE = T.let(:reserve, WhopSDK::Payment::Hold::Type::TaggedSymbol)
+          BNPL = T.let(:bnpl, WhopSDK::Payment::Hold::Type::TaggedSymbol)
+          SEQURA = T.let(:sequra, WhopSDK::Payment::Hold::Type::TaggedSymbol)
+          FRAUD_HOLD =
+            T.let(:fraud_hold, WhopSDK::Payment::Hold::Type::TaggedSymbol)
+          PRESHIPMENT_HOLD =
+            T.let(:preshipment_hold, WhopSDK::Payment::Hold::Type::TaggedSymbol)
+
+          sig do
+            override.returns(
+              T::Array[WhopSDK::Payment::Hold::Type::TaggedSymbol]
+            )
+          end
+          def self.values
+          end
         end
       end
 

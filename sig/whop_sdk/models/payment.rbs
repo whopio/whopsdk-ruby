@@ -18,6 +18,7 @@ module WhopSDK
         dispute_alerted_at: String?,
         failure_message: String?,
         financing_installments_count: Float?,
+        holds: ::Array[WhopSDK::Payment::Hold],
         last_payment_attempt_at: String?,
         line_items: ::Array[WhopSDK::Payment::LineItem],
         member_id: String?,
@@ -92,6 +93,8 @@ module WhopSDK
       attr_accessor failure_message: String?
 
       attr_accessor financing_installments_count: Float?
+
+      attr_accessor holds: ::Array[WhopSDK::Payment::Hold]
 
       attr_accessor last_payment_attempt_at: String?
 
@@ -190,6 +193,7 @@ module WhopSDK
         dispute_alerted_at: String?,
         failure_message: String?,
         financing_installments_count: Float?,
+        holds: ::Array[WhopSDK::Payment::Hold],
         last_payment_attempt_at: String?,
         line_items: ::Array[WhopSDK::Payment::LineItem],
         member_id: String?,
@@ -249,6 +253,7 @@ module WhopSDK
         dispute_alerted_at: String?,
         failure_message: String?,
         financing_installments_count: Float?,
+        holds: ::Array[WhopSDK::Payment::Hold],
         last_payment_attempt_at: String?,
         line_items: ::Array[WhopSDK::Payment::LineItem],
         member_id: String?,
@@ -549,6 +554,85 @@ module WhopSDK
         SEPA_GENERIC_DECLINE: :sepa_generic_decline
 
         def self?.values: -> ::Array[WhopSDK::Models::Payment::decline_code]
+      end
+
+      type hold =
+        {
+          amount: WhopSDK::Payment::Hold::Amount,
+          percentage: Float?,
+          release_at: String?,
+          type: WhopSDK::Models::Payment::Hold::type_
+        }
+
+      class Hold < WhopSDK::Internal::Type::BaseModel
+        attr_accessor amount: WhopSDK::Payment::Hold::Amount
+
+        attr_accessor percentage: Float?
+
+        attr_accessor release_at: String?
+
+        attr_accessor type: WhopSDK::Models::Payment::Hold::type_
+
+        def initialize: (
+          amount: WhopSDK::Payment::Hold::Amount,
+          percentage: Float?,
+          release_at: String?,
+          type: WhopSDK::Models::Payment::Hold::type_
+        ) -> void
+
+        def to_hash: -> {
+          amount: WhopSDK::Payment::Hold::Amount,
+          percentage: Float?,
+          release_at: String?,
+          type: WhopSDK::Models::Payment::Hold::type_
+        }
+
+        type amount =
+          {
+            amount: String,
+            currency: String,
+            decimals: Integer,
+            display_decimals: Integer
+          }
+
+        class Amount < WhopSDK::Internal::Type::BaseModel
+          attr_accessor amount: String
+
+          attr_accessor currency: String
+
+          attr_accessor decimals: Integer
+
+          attr_accessor display_decimals: Integer
+
+          def initialize: (
+            amount: String,
+            currency: String,
+            decimals: Integer,
+            display_decimals: Integer
+          ) -> void
+
+          def to_hash: -> {
+            amount: String,
+            currency: String,
+            decimals: Integer,
+            display_decimals: Integer
+          }
+        end
+
+        type type_ =
+          :reserve | :bnpl | :sequra | :fraud_hold | :preshipment_hold
+
+        module Type
+          extend WhopSDK::Internal::Type::Enum
+
+          RESERVE: :reserve
+          BNPL: :bnpl
+          SEQURA: :sequra
+          FRAUD_HOLD: :fraud_hold
+          PRESHIPMENT_HOLD: :preshipment_hold
+
+          def self?.values: -> ::Array[WhopSDK::Models::Payment::Hold::type_]
+        end
       end
 
       type line_item =

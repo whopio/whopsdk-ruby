@@ -119,7 +119,8 @@ module WhopSDK
           volume_usd: Float?,
           wallet: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Wallet?,
           website: String?,
-          partner: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Partner?
+          partner: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Partner?,
+          rewards: ::Array[WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Reward]
         }
 
       class Data < WhopSDK::Internal::Type::BaseModel
@@ -253,6 +254,12 @@ module WhopSDK
 
         attr_accessor partner: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Partner?
 
+        attr_reader rewards: ::Array[WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Reward]?
+
+        def rewards=: (
+          ::Array[WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Reward]
+        ) -> ::Array[WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Reward]
+
         def initialize: (
           id: String,
           balances: ::Array[WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Balance],
@@ -318,7 +325,8 @@ module WhopSDK
           volume_usd: Float?,
           wallet: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Wallet?,
           website: String?,
-          ?partner: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Partner?
+          ?partner: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Partner?,
+          ?rewards: ::Array[WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Reward]
         ) -> void
 
         def to_hash: -> {
@@ -386,7 +394,8 @@ module WhopSDK
           volume_usd: Float?,
           wallet: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Wallet?,
           website: String?,
-          partner: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Partner?
+          partner: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Partner?,
+          rewards: ::Array[WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Reward]
         }
 
         type balance =
@@ -2810,6 +2819,176 @@ module WhopSDK
             def initialize: (url: String) -> void
 
             def to_hash: -> { url: String }
+          end
+        end
+
+        type reward =
+          {
+            id: String,
+            qualification_amount: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Reward::QualificationAmount,
+            qualification_progress: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Reward::QualificationProgress,
+            qualification_type: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Reward::qualification_type,
+            reward_amount: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Reward::RewardAmount,
+            status: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Reward::status
+          }
+
+        class Reward < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor qualification_amount: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Reward::QualificationAmount
+
+          attr_accessor qualification_progress: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Reward::QualificationProgress
+
+          attr_accessor qualification_type: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Reward::qualification_type
+
+          attr_accessor reward_amount: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Reward::RewardAmount
+
+          attr_accessor status: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Reward::status
+
+          def initialize: (
+            id: String,
+            qualification_amount: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Reward::QualificationAmount,
+            qualification_progress: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Reward::QualificationProgress,
+            qualification_type: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Reward::qualification_type,
+            reward_amount: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Reward::RewardAmount,
+            status: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Reward::status
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            qualification_amount: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Reward::QualificationAmount,
+            qualification_progress: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Reward::QualificationProgress,
+            qualification_type: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Reward::qualification_type,
+            reward_amount: WhopSDK::AccountFinancingDeniedWebhookEvent::Data::Reward::RewardAmount,
+            status: WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Reward::status
+          }
+
+          type qualification_amount =
+            {
+              amount: String,
+              currency: String,
+              decimals: Integer,
+              display_decimals: Integer
+            }
+
+          class QualificationAmount < WhopSDK::Internal::Type::BaseModel
+            attr_accessor amount: String
+
+            attr_accessor currency: String
+
+            attr_accessor decimals: Integer
+
+            attr_accessor display_decimals: Integer
+
+            def initialize: (
+              amount: String,
+              currency: String,
+              decimals: Integer,
+              display_decimals: Integer
+            ) -> void
+
+            def to_hash: -> {
+              amount: String,
+              currency: String,
+              decimals: Integer,
+              display_decimals: Integer
+            }
+          end
+
+          type qualification_progress =
+            {
+              amount: String,
+              currency: String,
+              decimals: Integer,
+              display_decimals: Integer
+            }
+
+          class QualificationProgress < WhopSDK::Internal::Type::BaseModel
+            attr_accessor amount: String
+
+            attr_accessor currency: String
+
+            attr_accessor decimals: Integer
+
+            attr_accessor display_decimals: Integer
+
+            def initialize: (
+              amount: String,
+              currency: String,
+              decimals: Integer,
+              display_decimals: Integer
+            ) -> void
+
+            def to_hash: -> {
+              amount: String,
+              currency: String,
+              decimals: Integer,
+              display_decimals: Integer
+            }
+          end
+
+          type qualification_type = :sales | :ad_spend
+
+          module QualificationType
+            extend WhopSDK::Internal::Type::Enum
+
+            SALES: :sales
+            AD_SPEND: :ad_spend
+
+            def self?.values: -> ::Array[WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Reward::qualification_type]
+          end
+
+          type reward_amount =
+            {
+              amount: String,
+              currency: String,
+              decimals: Integer,
+              display_decimals: Integer
+            }
+
+          class RewardAmount < WhopSDK::Internal::Type::BaseModel
+            attr_accessor amount: String
+
+            attr_accessor currency: String
+
+            attr_accessor decimals: Integer
+
+            attr_accessor display_decimals: Integer
+
+            def initialize: (
+              amount: String,
+              currency: String,
+              decimals: Integer,
+              display_decimals: Integer
+            ) -> void
+
+            def to_hash: -> {
+              amount: String,
+              currency: String,
+              decimals: Integer,
+              display_decimals: Integer
+            }
+          end
+
+          type status =
+            :in_progress
+            | :processing
+            | :credited
+            | :reversing
+            | :reversed
+            | :unavailable
+
+          module Status
+            extend WhopSDK::Internal::Type::Enum
+
+            IN_PROGRESS: :in_progress
+            PROCESSING: :processing
+            CREDITED: :credited
+            REVERSING: :reversing
+            REVERSED: :reversed
+            UNAVAILABLE: :unavailable
+
+            def self?.values: -> ::Array[WhopSDK::Models::AccountFinancingDeniedWebhookEvent::Data::Reward::status]
           end
         end
       end

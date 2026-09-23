@@ -711,6 +711,27 @@ module WhopSDK
         attr_writer :partner
 
         sig do
+          returns(
+            T.nilable(
+              T::Array[
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Reward
+              ]
+            )
+          )
+        end
+        attr_reader :rewards
+
+        sig do
+          params(
+            rewards:
+              T::Array[
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Reward::OrHash
+              ]
+          ).void
+        end
+        attr_writer :rewards
+
+        sig do
           params(
             id: String,
             balances:
@@ -852,7 +873,11 @@ module WhopSDK
             partner:
               T.nilable(
                 WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Partner::OrHash
-              )
+              ),
+            rewards:
+              T::Array[
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Reward::OrHash
+              ]
           ).returns(T.attached_class)
         end
         def self.new(
@@ -1030,7 +1055,8 @@ module WhopSDK
           # The account's active first-tier partner. Present on retrieve responses; null
           # when no active first-tier partner is attributed to the account. Omitted from
           # other responses.
-          partner: nil
+          partner: nil,
+          rewards: nil
         )
         end
 
@@ -1176,7 +1202,11 @@ module WhopSDK
               partner:
                 T.nilable(
                   WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Partner
-                )
+                ),
+              rewards:
+                T::Array[
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Reward
+                ]
             }
           )
         end
@@ -7518,6 +7548,446 @@ module WhopSDK
 
             sig { override.returns({ url: String }) }
             def to_hash
+            end
+          end
+        end
+
+        class Reward < WhopSDK::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Reward,
+                WhopSDK::Internal::AnyHash
+              )
+            end
+
+          # Reward definition ID, prefixed `prwd_`. Progress and status apply to the
+          # containing account.
+          sig { returns(String) }
+          attr_accessor :id
+
+          # Qualifying USD volume required to earn this reward.
+          sig do
+            returns(
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Reward::QualificationAmount
+            )
+          end
+          attr_reader :qualification_amount
+
+          sig do
+            params(
+              qualification_amount:
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Reward::QualificationAmount::OrHash
+            ).void
+          end
+          attr_writer :qualification_amount
+
+          # Qualifying USD volume for the reward’s activity accumulated by this account
+          # since attribution, calculated using the fulfillment rules.
+          sig do
+            returns(
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Reward::QualificationProgress
+            )
+          end
+          attr_reader :qualification_progress
+
+          sig do
+            params(
+              qualification_progress:
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Reward::QualificationProgress::OrHash
+            ).void
+          end
+          attr_writer :qualification_progress
+
+          # Activity that qualifies this account for the reward.
+          sig do
+            returns(
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Reward::QualificationType::TaggedSymbol
+            )
+          end
+          attr_accessor :qualification_type
+
+          # USD balance credit for this reward. Uses the saved grant amount once fulfillment
+          # has started.
+          sig do
+            returns(
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Reward::RewardAmount
+            )
+          end
+          attr_reader :reward_amount
+
+          sig do
+            params(
+              reward_amount:
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Reward::RewardAmount::OrHash
+            ).void
+          end
+          attr_writer :reward_amount
+
+          # This account's reward state. Credited requires a posted ledger entry; processing
+          # includes a met requirement awaiting fulfillment. Reversing and reversed reflect
+          # a subsequent reward reversal.
+          sig do
+            returns(
+              WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Reward::Status::TaggedSymbol
+            )
+          end
+          attr_accessor :status
+
+          # Business rewards attached through this account's active referral link, with
+          # account-specific progress and ledger status. Present on retrieve responses;
+          # empty without both balance and stats read access.
+          sig do
+            params(
+              id: String,
+              qualification_amount:
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Reward::QualificationAmount::OrHash,
+              qualification_progress:
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Reward::QualificationProgress::OrHash,
+              qualification_type:
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Reward::QualificationType::OrSymbol,
+              reward_amount:
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Reward::RewardAmount::OrHash,
+              status:
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Reward::Status::OrSymbol
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # Reward definition ID, prefixed `prwd_`. Progress and status apply to the
+            # containing account.
+            id:,
+            # Qualifying USD volume required to earn this reward.
+            qualification_amount:,
+            # Qualifying USD volume for the reward’s activity accumulated by this account
+            # since attribution, calculated using the fulfillment rules.
+            qualification_progress:,
+            # Activity that qualifies this account for the reward.
+            qualification_type:,
+            # USD balance credit for this reward. Uses the saved grant amount once fulfillment
+            # has started.
+            reward_amount:,
+            # This account's reward state. Credited requires a posted ledger entry; processing
+            # includes a met requirement awaiting fulfillment. Reversing and reversed reflect
+            # a subsequent reward reversal.
+            status:
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                id: String,
+                qualification_amount:
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Reward::QualificationAmount,
+                qualification_progress:
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Reward::QualificationProgress,
+                qualification_type:
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Reward::QualificationType::TaggedSymbol,
+                reward_amount:
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Reward::RewardAmount,
+                status:
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Reward::Status::TaggedSymbol
+              }
+            )
+          end
+          def to_hash
+          end
+
+          class QualificationAmount < WhopSDK::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Reward::QualificationAmount,
+                  WhopSDK::Internal::AnyHash
+                )
+              end
+
+            # The amount in major units, as an exact decimal string — `"10.00"` is ten
+            # dollars. A string so no float rounds it in transit.
+            sig { returns(String) }
+            attr_accessor :amount
+
+            # Three-letter ISO 4217 currency code, lowercase.
+            sig { returns(String) }
+            attr_accessor :currency
+
+            # How many decimal places the amount CARRIES — the precision the charge itself
+            # runs at.
+            sig { returns(Integer) }
+            attr_accessor :decimals
+
+            # How many decimal places to SHOW. Usually equal to `decimals`, and deliberately
+            # not always: COP is charged in centavos but written in whole pesos, so it is `2`
+            # and `0`. Format the number in your own locale using this.
+            sig { returns(Integer) }
+            attr_accessor :display_decimals
+
+            # Qualifying USD volume required to earn this reward.
+            sig do
+              params(
+                amount: String,
+                currency: String,
+                decimals: Integer,
+                display_decimals: Integer
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # The amount in major units, as an exact decimal string — `"10.00"` is ten
+              # dollars. A string so no float rounds it in transit.
+              amount:,
+              # Three-letter ISO 4217 currency code, lowercase.
+              currency:,
+              # How many decimal places the amount CARRIES — the precision the charge itself
+              # runs at.
+              decimals:,
+              # How many decimal places to SHOW. Usually equal to `decimals`, and deliberately
+              # not always: COP is charged in centavos but written in whole pesos, so it is `2`
+              # and `0`. Format the number in your own locale using this.
+              display_decimals:
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  amount: String,
+                  currency: String,
+                  decimals: Integer,
+                  display_decimals: Integer
+                }
+              )
+            end
+            def to_hash
+            end
+          end
+
+          class QualificationProgress < WhopSDK::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Reward::QualificationProgress,
+                  WhopSDK::Internal::AnyHash
+                )
+              end
+
+            # The amount in major units, as an exact decimal string — `"10.00"` is ten
+            # dollars. A string so no float rounds it in transit.
+            sig { returns(String) }
+            attr_accessor :amount
+
+            # Three-letter ISO 4217 currency code, lowercase.
+            sig { returns(String) }
+            attr_accessor :currency
+
+            # How many decimal places the amount CARRIES — the precision the charge itself
+            # runs at.
+            sig { returns(Integer) }
+            attr_accessor :decimals
+
+            # How many decimal places to SHOW. Usually equal to `decimals`, and deliberately
+            # not always: COP is charged in centavos but written in whole pesos, so it is `2`
+            # and `0`. Format the number in your own locale using this.
+            sig { returns(Integer) }
+            attr_accessor :display_decimals
+
+            # Qualifying USD volume for the reward’s activity accumulated by this account
+            # since attribution, calculated using the fulfillment rules.
+            sig do
+              params(
+                amount: String,
+                currency: String,
+                decimals: Integer,
+                display_decimals: Integer
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # The amount in major units, as an exact decimal string — `"10.00"` is ten
+              # dollars. A string so no float rounds it in transit.
+              amount:,
+              # Three-letter ISO 4217 currency code, lowercase.
+              currency:,
+              # How many decimal places the amount CARRIES — the precision the charge itself
+              # runs at.
+              decimals:,
+              # How many decimal places to SHOW. Usually equal to `decimals`, and deliberately
+              # not always: COP is charged in centavos but written in whole pesos, so it is `2`
+              # and `0`. Format the number in your own locale using this.
+              display_decimals:
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  amount: String,
+                  currency: String,
+                  decimals: Integer,
+                  display_decimals: Integer
+                }
+              )
+            end
+            def to_hash
+            end
+          end
+
+          # Activity that qualifies this account for the reward.
+          module QualificationType
+            extend WhopSDK::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(
+                  Symbol,
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Reward::QualificationType
+                )
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            SALES =
+              T.let(
+                :sales,
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Reward::QualificationType::TaggedSymbol
+              )
+            AD_SPEND =
+              T.let(
+                :ad_spend,
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Reward::QualificationType::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Reward::QualificationType::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
+            end
+          end
+
+          class RewardAmount < WhopSDK::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Reward::RewardAmount,
+                  WhopSDK::Internal::AnyHash
+                )
+              end
+
+            # The amount in major units, as an exact decimal string — `"10.00"` is ten
+            # dollars. A string so no float rounds it in transit.
+            sig { returns(String) }
+            attr_accessor :amount
+
+            # Three-letter ISO 4217 currency code, lowercase.
+            sig { returns(String) }
+            attr_accessor :currency
+
+            # How many decimal places the amount CARRIES — the precision the charge itself
+            # runs at.
+            sig { returns(Integer) }
+            attr_accessor :decimals
+
+            # How many decimal places to SHOW. Usually equal to `decimals`, and deliberately
+            # not always: COP is charged in centavos but written in whole pesos, so it is `2`
+            # and `0`. Format the number in your own locale using this.
+            sig { returns(Integer) }
+            attr_accessor :display_decimals
+
+            # USD balance credit for this reward. Uses the saved grant amount once fulfillment
+            # has started.
+            sig do
+              params(
+                amount: String,
+                currency: String,
+                decimals: Integer,
+                display_decimals: Integer
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # The amount in major units, as an exact decimal string — `"10.00"` is ten
+              # dollars. A string so no float rounds it in transit.
+              amount:,
+              # Three-letter ISO 4217 currency code, lowercase.
+              currency:,
+              # How many decimal places the amount CARRIES — the precision the charge itself
+              # runs at.
+              decimals:,
+              # How many decimal places to SHOW. Usually equal to `decimals`, and deliberately
+              # not always: COP is charged in centavos but written in whole pesos, so it is `2`
+              # and `0`. Format the number in your own locale using this.
+              display_decimals:
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  amount: String,
+                  currency: String,
+                  decimals: Integer,
+                  display_decimals: Integer
+                }
+              )
+            end
+            def to_hash
+            end
+          end
+
+          # This account's reward state. Credited requires a posted ledger entry; processing
+          # includes a met requirement awaiting fulfillment. Reversing and reversed reflect
+          # a subsequent reward reversal.
+          module Status
+            extend WhopSDK::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(
+                  Symbol,
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Reward::Status
+                )
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            IN_PROGRESS =
+              T.let(
+                :in_progress,
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Reward::Status::TaggedSymbol
+              )
+            PROCESSING =
+              T.let(
+                :processing,
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Reward::Status::TaggedSymbol
+              )
+            CREDITED =
+              T.let(
+                :credited,
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Reward::Status::TaggedSymbol
+              )
+            REVERSING =
+              T.let(
+                :reversing,
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Reward::Status::TaggedSymbol
+              )
+            REVERSED =
+              T.let(
+                :reversed,
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Reward::Status::TaggedSymbol
+              )
+            UNAVAILABLE =
+              T.let(
+                :unavailable,
+                WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Reward::Status::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  WhopSDK::AccountFinancingApprovedWebhookEvent::Data::Reward::Status::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
             end
           end
         end

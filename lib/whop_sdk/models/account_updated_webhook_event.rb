@@ -546,7 +546,13 @@ module WhopSDK
         #   @return [WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Partner, nil]
         optional :partner, -> { WhopSDK::AccountUpdatedWebhookEvent::Data::Partner }, nil?: true
 
-        # @!method initialize(id:, balances:, banner_image_url:, business_address:, business_name:, business_type:, can_transfer_pending_balance_to_children:, cancellation_policy:, capabilities:, cards:, collect_vat_id:, company_formation:, country:, created_at:, description:, economic_intelligence:, email:, eula:, home_preferences:, industry_group:, industry_type:, invoice_prefix:, logo_url:, metadata:, onboarding_type:, opengraph_image_url:, opengraph_image_variant:, other_business_description:, other_industry_description:, owner:, parent_account:, payment_controls:, privacy_policy:, product_tax_code:, recommended_actions:, require_2fa:, required_actions:, return_policy:, route:, send_customer_emails:, shipping_policy:, show_joined_whops:, show_reviews_dtc:, show_user_directory:, social_links:, stablecoin_rails:, status:, status_reason:, store_page_config:, target_audience:, tax_collection_enabled_states:, tax_identifiers:, tax_remitted_by:, tax_type:, terms_of_service:, three_ds_level:, title:, total_earned_usd:, total_usd:, use_logo_as_opengraph_image_fallback:, verification:, volume_usd:, wallet:, website:, partner: nil)
+        # @!attribute rewards
+        #
+        #   @return [Array<WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Reward>, nil]
+        optional :rewards,
+                 -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::AccountUpdatedWebhookEvent::Data::Reward] }
+
+        # @!method initialize(id:, balances:, banner_image_url:, business_address:, business_name:, business_type:, can_transfer_pending_balance_to_children:, cancellation_policy:, capabilities:, cards:, collect_vat_id:, company_formation:, country:, created_at:, description:, economic_intelligence:, email:, eula:, home_preferences:, industry_group:, industry_type:, invoice_prefix:, logo_url:, metadata:, onboarding_type:, opengraph_image_url:, opengraph_image_variant:, other_business_description:, other_industry_description:, owner:, parent_account:, payment_controls:, privacy_policy:, product_tax_code:, recommended_actions:, require_2fa:, required_actions:, return_policy:, route:, send_customer_emails:, shipping_policy:, show_joined_whops:, show_reviews_dtc:, show_user_directory:, social_links:, stablecoin_rails:, status:, status_reason:, store_page_config:, target_audience:, tax_collection_enabled_states:, tax_identifiers:, tax_remitted_by:, tax_type:, terms_of_service:, three_ds_level:, title:, total_earned_usd:, total_usd:, use_logo_as_opengraph_image_fallback:, verification:, volume_usd:, wallet:, website:, partner: nil, rewards: nil)
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::AccountUpdatedWebhookEvent::Data} for more details.
         #
@@ -679,6 +685,8 @@ module WhopSDK
         #   @param website [String, nil] The account's business website URL, or `null` if none has been provided. Setting
         #
         #   @param partner [WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Partner, nil] The account's active first-tier partner. Present on retrieve responses; null whe
+        #
+        #   @param rewards [Array<WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Reward>]
 
         class Balance < WhopSDK::Internal::Type::BaseModel
           # @!attribute balance
@@ -3753,6 +3761,244 @@ module WhopSDK
             #   the user set no picture.
             #
             #   @param url [String] Avatar image URL. Always present — a generated placeholder when the user set no
+          end
+        end
+
+        class Reward < WhopSDK::Internal::Type::BaseModel
+          # @!attribute id
+          #   Reward definition ID, prefixed `prwd_`. Progress and status apply to the
+          #   containing account.
+          #
+          #   @return [String]
+          required :id, String
+
+          # @!attribute qualification_amount
+          #   Qualifying USD volume required to earn this reward.
+          #
+          #   @return [WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Reward::QualificationAmount]
+          required :qualification_amount,
+                   -> { WhopSDK::AccountUpdatedWebhookEvent::Data::Reward::QualificationAmount }
+
+          # @!attribute qualification_progress
+          #   Qualifying USD volume for the reward’s activity accumulated by this account
+          #   since attribution, calculated using the fulfillment rules.
+          #
+          #   @return [WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Reward::QualificationProgress]
+          required :qualification_progress,
+                   -> { WhopSDK::AccountUpdatedWebhookEvent::Data::Reward::QualificationProgress }
+
+          # @!attribute qualification_type
+          #   Activity that qualifies this account for the reward.
+          #
+          #   @return [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Reward::QualificationType]
+          required :qualification_type,
+                   enum: -> { WhopSDK::AccountUpdatedWebhookEvent::Data::Reward::QualificationType }
+
+          # @!attribute reward_amount
+          #   USD balance credit for this reward. Uses the saved grant amount once fulfillment
+          #   has started.
+          #
+          #   @return [WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Reward::RewardAmount]
+          required :reward_amount, -> { WhopSDK::AccountUpdatedWebhookEvent::Data::Reward::RewardAmount }
+
+          # @!attribute status
+          #   This account's reward state. Credited requires a posted ledger entry; processing
+          #   includes a met requirement awaiting fulfillment. Reversing and reversed reflect
+          #   a subsequent reward reversal.
+          #
+          #   @return [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Reward::Status]
+          required :status, enum: -> { WhopSDK::AccountUpdatedWebhookEvent::Data::Reward::Status }
+
+          # @!method initialize(id:, qualification_amount:, qualification_progress:, qualification_type:, reward_amount:, status:)
+          #   Some parameter documentations has been truncated, see
+          #   {WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Reward} for more details.
+          #
+          #   Business rewards attached through this account's active referral link, with
+          #   account-specific progress and ledger status. Present on retrieve responses;
+          #   empty without both balance and stats read access.
+          #
+          #   @param id [String] Reward definition ID, prefixed `prwd_`. Progress and status apply to the contain
+          #
+          #   @param qualification_amount [WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Reward::QualificationAmount] Qualifying USD volume required to earn this reward.
+          #
+          #   @param qualification_progress [WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Reward::QualificationProgress] Qualifying USD volume for the reward’s activity accumulated by this account sinc
+          #
+          #   @param qualification_type [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Reward::QualificationType] Activity that qualifies this account for the reward.
+          #
+          #   @param reward_amount [WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Reward::RewardAmount] USD balance credit for this reward. Uses the saved grant amount once fulfillment
+          #
+          #   @param status [Symbol, WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Reward::Status] This account's reward state. Credited requires a posted ledger entry; processing
+
+          # @see WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Reward#qualification_amount
+          class QualificationAmount < WhopSDK::Internal::Type::BaseModel
+            # @!attribute amount
+            #   The amount in major units, as an exact decimal string — `"10.00"` is ten
+            #   dollars. A string so no float rounds it in transit.
+            #
+            #   @return [String]
+            required :amount, String
+
+            # @!attribute currency
+            #   Three-letter ISO 4217 currency code, lowercase.
+            #
+            #   @return [String]
+            required :currency, String
+
+            # @!attribute decimals
+            #   How many decimal places the amount CARRIES — the precision the charge itself
+            #   runs at.
+            #
+            #   @return [Integer]
+            required :decimals, Integer
+
+            # @!attribute display_decimals
+            #   How many decimal places to SHOW. Usually equal to `decimals`, and deliberately
+            #   not always: COP is charged in centavos but written in whole pesos, so it is `2`
+            #   and `0`. Format the number in your own locale using this.
+            #
+            #   @return [Integer]
+            required :display_decimals, Integer
+
+            # @!method initialize(amount:, currency:, decimals:, display_decimals:)
+            #   Some parameter documentations has been truncated, see
+            #   {WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Reward::QualificationAmount}
+            #   for more details.
+            #
+            #   Qualifying USD volume required to earn this reward.
+            #
+            #   @param amount [String] The amount in major units, as an exact decimal string — `"10.00"` is ten dollars
+            #
+            #   @param currency [String] Three-letter ISO 4217 currency code, lowercase.
+            #
+            #   @param decimals [Integer] How many decimal places the amount CARRIES — the precision the charge itself run
+            #
+            #   @param display_decimals [Integer] How many decimal places to SHOW. Usually equal to `decimals`, and deliberately n
+          end
+
+          # @see WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Reward#qualification_progress
+          class QualificationProgress < WhopSDK::Internal::Type::BaseModel
+            # @!attribute amount
+            #   The amount in major units, as an exact decimal string — `"10.00"` is ten
+            #   dollars. A string so no float rounds it in transit.
+            #
+            #   @return [String]
+            required :amount, String
+
+            # @!attribute currency
+            #   Three-letter ISO 4217 currency code, lowercase.
+            #
+            #   @return [String]
+            required :currency, String
+
+            # @!attribute decimals
+            #   How many decimal places the amount CARRIES — the precision the charge itself
+            #   runs at.
+            #
+            #   @return [Integer]
+            required :decimals, Integer
+
+            # @!attribute display_decimals
+            #   How many decimal places to SHOW. Usually equal to `decimals`, and deliberately
+            #   not always: COP is charged in centavos but written in whole pesos, so it is `2`
+            #   and `0`. Format the number in your own locale using this.
+            #
+            #   @return [Integer]
+            required :display_decimals, Integer
+
+            # @!method initialize(amount:, currency:, decimals:, display_decimals:)
+            #   Some parameter documentations has been truncated, see
+            #   {WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Reward::QualificationProgress}
+            #   for more details.
+            #
+            #   Qualifying USD volume for the reward’s activity accumulated by this account
+            #   since attribution, calculated using the fulfillment rules.
+            #
+            #   @param amount [String] The amount in major units, as an exact decimal string — `"10.00"` is ten dollars
+            #
+            #   @param currency [String] Three-letter ISO 4217 currency code, lowercase.
+            #
+            #   @param decimals [Integer] How many decimal places the amount CARRIES — the precision the charge itself run
+            #
+            #   @param display_decimals [Integer] How many decimal places to SHOW. Usually equal to `decimals`, and deliberately n
+          end
+
+          # Activity that qualifies this account for the reward.
+          #
+          # @see WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Reward#qualification_type
+          module QualificationType
+            extend WhopSDK::Internal::Type::Enum
+
+            SALES = :sales
+            AD_SPEND = :ad_spend
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
+          end
+
+          # @see WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Reward#reward_amount
+          class RewardAmount < WhopSDK::Internal::Type::BaseModel
+            # @!attribute amount
+            #   The amount in major units, as an exact decimal string — `"10.00"` is ten
+            #   dollars. A string so no float rounds it in transit.
+            #
+            #   @return [String]
+            required :amount, String
+
+            # @!attribute currency
+            #   Three-letter ISO 4217 currency code, lowercase.
+            #
+            #   @return [String]
+            required :currency, String
+
+            # @!attribute decimals
+            #   How many decimal places the amount CARRIES — the precision the charge itself
+            #   runs at.
+            #
+            #   @return [Integer]
+            required :decimals, Integer
+
+            # @!attribute display_decimals
+            #   How many decimal places to SHOW. Usually equal to `decimals`, and deliberately
+            #   not always: COP is charged in centavos but written in whole pesos, so it is `2`
+            #   and `0`. Format the number in your own locale using this.
+            #
+            #   @return [Integer]
+            required :display_decimals, Integer
+
+            # @!method initialize(amount:, currency:, decimals:, display_decimals:)
+            #   Some parameter documentations has been truncated, see
+            #   {WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Reward::RewardAmount} for
+            #   more details.
+            #
+            #   USD balance credit for this reward. Uses the saved grant amount once fulfillment
+            #   has started.
+            #
+            #   @param amount [String] The amount in major units, as an exact decimal string — `"10.00"` is ten dollars
+            #
+            #   @param currency [String] Three-letter ISO 4217 currency code, lowercase.
+            #
+            #   @param decimals [Integer] How many decimal places the amount CARRIES — the precision the charge itself run
+            #
+            #   @param display_decimals [Integer] How many decimal places to SHOW. Usually equal to `decimals`, and deliberately n
+          end
+
+          # This account's reward state. Credited requires a posted ledger entry; processing
+          # includes a met requirement awaiting fulfillment. Reversing and reversed reflect
+          # a subsequent reward reversal.
+          #
+          # @see WhopSDK::Models::AccountUpdatedWebhookEvent::Data::Reward#status
+          module Status
+            extend WhopSDK::Internal::Type::Enum
+
+            IN_PROGRESS = :in_progress
+            PROCESSING = :processing
+            CREDITED = :credited
+            REVERSING = :reversing
+            REVERSED = :reversed
+            UNAVAILABLE = :unavailable
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
           end
         end
       end

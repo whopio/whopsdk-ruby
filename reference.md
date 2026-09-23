@@ -24440,7 +24440,7 @@ client.partners.referred_users
 <dl>
 <dd>
 
-Retrieves the authenticated user's public profile, enrollment date, partner verification timestamp, verification waitlist status, partner certification completion, active direct business referral count, and default payout rates. Use me or the authenticated user's own user ID; other users are not accessible. Users who have not enrolled have a null joined_at. Retrieve referral URLs and promotion links from GET /partners/links.
+Retrieves the authenticated user's public profile, enrollment date, partner verification timestamp, verification waitlist status, partner certification completion, active direct business referral count, and default payout rates. Use me or the authenticated user's own user ID; other users are not accessible. Users who have not enrolled have a null joined_at. Create and manage referral links through /partner_referral_requests.
 </dd>
 </dl>
 </dd>
@@ -39973,101 +39973,6 @@ client.partners.businesses.retrieve(id: "id")
 <dd>
 
 **request_options:** `Whop_sdk::Partners::Businesses::RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Partners Links
-<details><summary><code>client.partners.links.<a href="/lib/whop_sdk/partners/links/client.rb">list</a>() -> Whop_sdk::Partners::Links::Types::ListLinksResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns the authenticated user's standard referral URL and a page of their balance reward links, newest first. Expired and fully claimed rewards are included by default; deleted rewards are excluded. Filter status to narrow the promotion links. Users do not need to be enrolled to retrieve their links.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```ruby
-client.partners.links.list
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**status:** `Whop_sdk::Partners::Links::Types::ListLinksRequestStatusItem` — Filter promotion links by availability. Repeat the status parameter for multiple values.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**first:** `Integer` — Number of results to return from the start of the range.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**after:** `String` — Return results after this cursor. Use `page_info.end_cursor` from the previous response to fetch the next page.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**last:** `Integer` — Number of results to return from the end of the range.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**before:** `String` — Return results before this cursor. Use `page_info.start_cursor` from the previous response to fetch the previous page.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request_options:** `Whop_sdk::Partners::Links::RequestOptions` 
     
 </dd>
 </dl>

@@ -156,7 +156,7 @@ module Whop_sdk
       # Retrieves the authenticated user's public profile, enrollment date, partner verification timestamp, verification
       # waitlist status, partner certification completion, active direct business referral count, and default payout
       # rates. Use me or the authenticated user's own user ID; other users are not accessible. Users who have not
-      # enrolled have a null joined_at. Retrieve referral URLs and promotion links from GET /partners/links.
+      # enrolled have a null joined_at. Create and manage referral links through /partner_referral_requests.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -196,11 +196,6 @@ module Whop_sdk
       # @return [Whop_sdk::Businesses::Client]
       def businesses
         @businesses ||= Whop_sdk::Partners::Businesses::Client.new(client: @client, base_url: @base_url, environment: @environment)
-      end
-
-      # @return [Whop_sdk::Links::Client]
-      def links
-        @links ||= Whop_sdk::Partners::Links::Client.new(client: @client, base_url: @base_url, environment: @environment)
       end
     end
   end

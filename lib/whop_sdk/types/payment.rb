@@ -33,6 +33,8 @@ module Whop_sdk
 
       field :financing_installments_count, -> { Integer }, optional: false, nullable: true
 
+      field :holds, -> { Internal::Types::Array[Whop_sdk::Types::PaymentHold] }, optional: false, nullable: false
+
       field :id, -> { String }, optional: false, nullable: false
 
       field :last_payment_attempt_at, -> { String }, optional: false, nullable: true

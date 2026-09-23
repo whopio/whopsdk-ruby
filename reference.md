@@ -15864,6 +15864,14 @@ client.economic_intelligence.list
 <dl>
 <dd>
 
+**input:** `String` — What you want recommendations for, in your own words. Up to 1000 characters. Narrows the list to the recommendations that address it.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **first:** `Integer` — Number of results to return from the start of the range.
     
 </dd>
@@ -15889,76 +15897,6 @@ client.economic_intelligence.list
 <dd>
 
 **before:** `String` — Return results before this cursor. Use `page_info.start_cursor` from the previous response to fetch the previous page.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request_options:** `Whop_sdk::EconomicIntelligence::RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.economic_intelligence.<a href="/lib/whop_sdk/economic_intelligence/client.rb">create</a>(request) -> Whop_sdk::Types::EconomicIntelligence</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Generates a recommendation based on your input. Returns immediately; poll the list endpoint until its `status` is `ready`.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```ruby
-client.economic_intelligence.create(input: "I sell $79 customized gym straps. The number of purchases per day fell from 84 to 66 since June and my ads cost per signup doubled to $38. Half the leads never open the checkout. I want to win back churned visitors and lift conversion without cutting the price, and I can spend up to $500 this month on it.")
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**account_id:** `String` — Account ID, prefixed `biz_`. Defaults to the API key's own account.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**input:** `String` — What the owner wants, in their own words. Up to 1000 characters.
     
 </dd>
 </dl>
@@ -16029,6 +15967,14 @@ client.economic_intelligence.update(id: "id")
 <dd>
 
 **account_id:** `String` — Account ID, prefixed `biz_`. Defaults to the API key's own account.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**input:** `String` — What you want the replacement recommendation for, in your own words. Up to 1000 characters. Sent when superseding, it directs the generation that replaces the rejected recommendation.
     
 </dd>
 </dl>

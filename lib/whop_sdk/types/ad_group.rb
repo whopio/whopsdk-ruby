@@ -15,6 +15,10 @@ module Whop_sdk
 
       field :budget_amount, -> { Integer }, optional: false, nullable: true
 
+      field :budget_amount_local, -> { Integer }, optional: false, nullable: true
+
+      field :budget_currency, -> { String }, optional: false, nullable: false
+
       field :budget_type, -> { Whop_sdk::Types::AdGroupBudgetType }, optional: false, nullable: true
 
       field :click_through_rate, -> { Integer }, optional: false, nullable: false

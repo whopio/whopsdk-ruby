@@ -10,6 +10,8 @@ module Whop_sdk
 
         field :budget_amount, -> { Integer }, optional: true, nullable: false
 
+        field :budget_amount_local, -> { Integer }, optional: true, nullable: false
+
         field :budget_optimization, -> { Whop_sdk::AdCampaigns::Types::CreateAdCampaignsRequestBudgetOptimization }, optional: true, nullable: false
 
         field :budget_type, -> { Whop_sdk::AdCampaigns::Types::CreateAdCampaignsRequestBudgetType }, optional: true, nullable: false

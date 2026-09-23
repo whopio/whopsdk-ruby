@@ -117,6 +117,7 @@ module Whop_sdk
       SPLITIT = "splitit"
       SUNBIT = "sunbit"
       SWISH = "swish"
+      TABBY = "tabby"
       TAMARA = "tamara"
       TOUCH_N_GO = "touch_n_go"
       TWINT = "twint"

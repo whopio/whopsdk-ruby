@@ -25978,7 +25978,7 @@ client.payments.list
 <dl>
 <dd>
 
-**user_id:** `String` — Only payments made by this buyer, prefixed `user_`.
+**user_id:** `String` — Only payments made by this buyer, prefixed `user_`. Payments are listed for the accounts the caller manages, so `me` is not accepted; list the caller's own purchases with `GET /memberships?user_id=me`.
     
 </dd>
 </dl>
@@ -28536,7 +28536,7 @@ client.plans.create
 <dl>
 <dd>
 
-**payment_method_configuration:** `Whop_sdk::Plans::Types::CreatePlansRequestPaymentMethodConfiguration` — Explicit payment method configuration for the plan. When not provided, the account's defaults apply.
+**payment_method_configuration:** `Whop_sdk::Plans::Types::CreatePlansRequestPaymentMethodConfiguration` — Explicit payment method configuration for the plan. When not provided, the account's defaults apply. Send at least one of `enabled` or `disabled`; an omitted one is empty.
     
 </dd>
 </dl>
@@ -28600,7 +28600,7 @@ client.plans.create
 <dl>
 <dd>
 
-**title:** `String` — The display name of the plan shown to customers on the product page.
+**title:** `String` — The display name of the plan shown to customers on the product page. Maximum 30 characters.
     
 </dd>
 </dl>
@@ -28938,7 +28938,7 @@ client.plans.update(id: "id")
 <dl>
 <dd>
 
-**payment_method_configuration:** `Whop_sdk::Plans::Types::UpdatePlansRequestPaymentMethodConfiguration` — Explicit payment method configuration for the plan. When not provided, the account's defaults apply.
+**payment_method_configuration:** `Whop_sdk::Plans::Types::UpdatePlansRequestPaymentMethodConfiguration` — Explicit payment method configuration for the plan. When not provided, the account's defaults apply. Send at least one of `enabled` or `disabled`; an omitted one is empty.
     
 </dd>
 </dl>
@@ -28994,7 +28994,7 @@ client.plans.update(id: "id")
 <dl>
 <dd>
 
-**title:** `String` — The display name of the plan shown to customers on the product page.
+**title:** `String` — The display name of the plan shown to customers on the product page. Maximum 30 characters.
     
 </dd>
 </dl>
@@ -29406,7 +29406,7 @@ client.products.create(title: "Interior Deep Clean")
 <dl>
 <dd>
 
-**description:** `String` — A written description displayed on the product page.
+**description:** `String` — A written description displayed on the product page. Maximum 1,500 characters.
     
 </dd>
 </dl>
@@ -29438,7 +29438,7 @@ client.products.create(title: "Interior Deep Clean")
 <dl>
 <dd>
 
-**headline:** `String` — A short marketing headline for the product page.
+**headline:** `String` — A short marketing headline for the product page. Maximum 80 characters.
     
 </dd>
 </dl>
@@ -29720,7 +29720,7 @@ client.products.update(id: "id")
 <dl>
 <dd>
 
-**description:** `String` — A written description displayed on the product page.
+**description:** `String` — A written description displayed on the product page. Maximum 1,500 characters.
     
 </dd>
 </dl>
@@ -29736,7 +29736,7 @@ client.products.update(id: "id")
 <dl>
 <dd>
 
-**headline:** `String` — A short marketing headline for the product page.
+**headline:** `String` — A short marketing headline for the product page. Maximum 80 characters.
     
 </dd>
 </dl>
@@ -29776,7 +29776,7 @@ client.products.update(id: "id")
 <dl>
 <dd>
 
-**title:** `String` — The display name of the product.
+**title:** `String` — The display name of the product. Maximum 80 characters.
     
 </dd>
 </dl>

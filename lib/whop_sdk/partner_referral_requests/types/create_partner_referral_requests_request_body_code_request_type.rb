@@ -3,11 +3,9 @@
 module Whop_sdk
   module PartnerReferralRequests
     module Types
-      module ListPartnerReferralRequestsRequestRequestType
+      module CreatePartnerReferralRequestsRequestBodyCodeRequestType
         extend Whop_sdk::Internal::Types::Enum
 
-        MANUAL = "manual"
-        OWNERSHIP_TRANSFER = "ownership_transfer"
         LINK = "link"
       end
     end

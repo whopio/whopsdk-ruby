@@ -15,9 +15,10 @@ module Whop_sdk
       end
 
       # Lists requests sent by an eligible partner and requests for accounts where the authenticated user currently
-      # holds the owner role. Filters narrow that combined view. Use a Whop login session or an account API key with
-      # `partner:referral_request:read`. The key must have been created by the account's current owner. Account API keys
-      # return their owner's sent requests and incoming requests for the key's account.
+      # holds the owner role. Enrolled, non-suspended partners can read their links without verification; reading their
+      # sent manual requests requires verification. Filters narrow that combined view. Use a Whop login session or an
+      # account API key with `partner:referral_request:read`. The key must have been created by the account's current
+      # owner. Account API keys return their owner's sent requests and incoming requests for the key's account.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -87,9 +88,13 @@ module Whop_sdk
       # Creates a pending manual request for an existing business as the authenticated, enrolled, verified Whop partner.
       # Provide exactly one of account_id or account_url. Whop business and product links resolve to their business. A
       # business owner must accept before attribution changes. An existing pending manual request from the same partner
-      # returns 200; a new request returns 201. Use a Whop login session or an account API key with
-      # `partner:referral_request:create`. The key must have been created by the account's current owner. Account API
-      # keys submit requests as their account owner, who must be enrolled, verified, and not suspended.
+      # returns 200; a new request returns 201. Alternatively, send request_type=link without a code, business, or
+      # redemption limit to get your oldest saved referral link, or create one with a randomly generated code when none
+      # exists. Provide a custom code or redemption limit to create a new link; omitted codes are generated randomly.
+      # Only authorized staff may configure rewards or select another partner. Link creation requires partner enrollment
+      # and a non-suspended account, but not verification. Use a Whop login session or an account API key with
+      # `partner:referral_request:create`. The key must have been created by the account's current owner and acts as
+      # that owner.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::PartnerReferralRequests::Types::CreatePartnerReferralRequestsRequestBody]
@@ -126,10 +131,10 @@ module Whop_sdk
         end
       end
 
-      # Retrieves a request visible to its eligible sender or a current owner of the receiving account. Use a Whop login
-      # session or an account API key with `partner:referral_request:read`. The key must have been created by the
-      # account's current owner. Account API keys can retrieve their owner's sent requests and incoming requests for the
-      # key's account.
+      # Retrieves a request visible to its eligible sender or a current owner of the receiving account. Enrolled,
+      # non-suspended partners can read their links without verification. Use a Whop login session or an account API key
+      # with `partner:referral_request:read`. The key must have been created by the account's current owner. Account API
+      # keys can retrieve their owner's sent requests and incoming requests for the key's account.
       #
       # @param request_options [Hash]
       # @param params [Hash]

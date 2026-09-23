@@ -12,6 +12,8 @@ module Whop_sdk
 
         field :budget_amount, -> { Integer }, optional: true, nullable: false
 
+        field :budget_amount_local, -> { Integer }, optional: true, nullable: false
+
         field :budget_type, -> { Whop_sdk::AdGroups::Types::UpdateAdGroupsRequestBudgetType }, optional: true, nullable: false
 
         field :conversion_event, -> { Whop_sdk::Types::ConversionEvent }, optional: true, nullable: false

@@ -5,6 +5,7 @@ module Whop_sdk
     module AdGroupDeliveryStatus
       extend Whop_sdk::Internal::Types::Enum
 
+      IN_APPEAL = "in_appeal"
       ALL_ADS_REJECTED = "all_ads_rejected"
       REJECTED = "rejected"
       DRAFT = "draft"

@@ -5,7 +5,7 @@ module WhopSDK
         id: String,
         account_id: String?,
         amount: Float,
-        buyer: WhopSDK::Dispute::Buyer?,
+        buyer: WhopSDK::Dispute::Buyer,
         created_at: String,
         currency: String,
         evidence: WhopSDK::Dispute::Evidence,
@@ -13,14 +13,12 @@ module WhopSDK
         evidence_editable: bool,
         evidence_locked_reason: WhopSDK::Models::Dispute::evidence_locked_reason?,
         evidence_submitted_at: String?,
-        generated_response_attachment: WhopSDK::Dispute::GeneratedResponseAttachment?,
         inquiry: bool,
         issuer_comments: ::Array[WhopSDK::Dispute::IssuerComment],
         line_items: ::Array[WhopSDK::Dispute::LineItem],
-        payment: WhopSDK::Dispute::Payment?,
+        payment: WhopSDK::Dispute::Payment,
         plan_id: String?,
         product_id: String?,
-        rapid_dispute_resolution: bool,
         reason: WhopSDK::Models::Dispute::reason,
         reason_code: String?,
         status: WhopSDK::Models::Dispute::status,
@@ -34,7 +32,7 @@ module WhopSDK
 
       attr_accessor amount: Float
 
-      attr_accessor buyer: WhopSDK::Dispute::Buyer?
+      attr_accessor buyer: WhopSDK::Dispute::Buyer
 
       attr_accessor created_at: String
 
@@ -50,21 +48,17 @@ module WhopSDK
 
       attr_accessor evidence_submitted_at: String?
 
-      attr_accessor generated_response_attachment: WhopSDK::Dispute::GeneratedResponseAttachment?
-
       attr_accessor inquiry: bool
 
       attr_accessor issuer_comments: ::Array[WhopSDK::Dispute::IssuerComment]
 
       attr_accessor line_items: ::Array[WhopSDK::Dispute::LineItem]
 
-      attr_accessor payment: WhopSDK::Dispute::Payment?
+      attr_accessor payment: WhopSDK::Dispute::Payment
 
       attr_accessor plan_id: String?
 
       attr_accessor product_id: String?
-
-      attr_accessor rapid_dispute_resolution: bool
 
       attr_accessor reason: WhopSDK::Models::Dispute::reason
 
@@ -78,7 +72,7 @@ module WhopSDK
         id: String,
         account_id: String?,
         amount: Float,
-        buyer: WhopSDK::Dispute::Buyer?,
+        buyer: WhopSDK::Dispute::Buyer,
         created_at: String,
         currency: String,
         evidence: WhopSDK::Dispute::Evidence,
@@ -86,14 +80,12 @@ module WhopSDK
         evidence_editable: bool,
         evidence_locked_reason: WhopSDK::Models::Dispute::evidence_locked_reason?,
         evidence_submitted_at: String?,
-        generated_response_attachment: WhopSDK::Dispute::GeneratedResponseAttachment?,
         inquiry: bool,
         issuer_comments: ::Array[WhopSDK::Dispute::IssuerComment],
         line_items: ::Array[WhopSDK::Dispute::LineItem],
-        payment: WhopSDK::Dispute::Payment?,
+        payment: WhopSDK::Dispute::Payment,
         plan_id: String?,
         product_id: String?,
-        rapid_dispute_resolution: bool,
         reason: WhopSDK::Models::Dispute::reason,
         reason_code: String?,
         status: WhopSDK::Models::Dispute::status,
@@ -104,7 +96,7 @@ module WhopSDK
         id: String,
         account_id: String?,
         amount: Float,
-        buyer: WhopSDK::Dispute::Buyer?,
+        buyer: WhopSDK::Dispute::Buyer,
         created_at: String,
         currency: String,
         evidence: WhopSDK::Dispute::Evidence,
@@ -112,14 +104,12 @@ module WhopSDK
         evidence_editable: bool,
         evidence_locked_reason: WhopSDK::Models::Dispute::evidence_locked_reason?,
         evidence_submitted_at: String?,
-        generated_response_attachment: WhopSDK::Dispute::GeneratedResponseAttachment?,
         inquiry: bool,
         issuer_comments: ::Array[WhopSDK::Dispute::IssuerComment],
         line_items: ::Array[WhopSDK::Dispute::LineItem],
-        payment: WhopSDK::Dispute::Payment?,
+        payment: WhopSDK::Dispute::Payment,
         plan_id: String?,
         product_id: String?,
-        rapid_dispute_resolution: bool,
         reason: WhopSDK::Models::Dispute::reason,
         reason_code: String?,
         status: WhopSDK::Models::Dispute::status,
@@ -442,6 +432,7 @@ module WhopSDK
             | :customer_session
             | :digital_fulfillment
             | :subscription
+            | :customer_communication
 
           module DocumentType
             extend WhopSDK::Internal::Type::Enum
@@ -457,6 +448,7 @@ module WhopSDK
             CUSTOMER_SESSION: :customer_session
             DIGITAL_FULFILLMENT: :digital_fulfillment
             SUBSCRIPTION: :subscription
+            CUSTOMER_COMMUNICATION: :customer_communication
 
             def self?.values: -> ::Array[WhopSDK::Models::Dispute::Evidence::Document::document_type]
           end
@@ -584,43 +576,6 @@ module WhopSDK
         NOT_CONTESTABLE: :not_contestable
 
         def self?.values: -> ::Array[WhopSDK::Models::Dispute::evidence_locked_reason]
-      end
-
-      type generated_response_attachment =
-        {
-          id: String?,
-          content_type: String?,
-          filename: String?,
-          platform: bool,
-          url: String?
-        }
-
-      class GeneratedResponseAttachment < WhopSDK::Internal::Type::BaseModel
-        attr_accessor id: String?
-
-        attr_accessor content_type: String?
-
-        attr_accessor filename: String?
-
-        attr_accessor platform: bool
-
-        attr_accessor url: String?
-
-        def initialize: (
-          id: String?,
-          content_type: String?,
-          filename: String?,
-          platform: bool,
-          url: String?
-        ) -> void
-
-        def to_hash: -> {
-          id: String?,
-          content_type: String?,
-          filename: String?,
-          platform: bool,
-          url: String?
-        }
       end
 
       type issuer_comment = { received_at: String?, text: String }

@@ -57,14 +57,12 @@ module WhopSDK
         {
           id: String,
           account_id: String?,
-          actionable: bool,
           amount: Float,
           card_brand: String?,
           created_at: String,
           currency: String,
           fee_charged: bool,
           issuer: String?,
-          not_actionable_reason: WhopSDK::Models::DisputeAlertCreatedWebhookEvent::Data::not_actionable_reason?,
           payment_id: String?,
           product_id: String?,
           reported_at: String,
@@ -78,8 +76,6 @@ module WhopSDK
 
         attr_accessor account_id: String?
 
-        attr_accessor actionable: bool
-
         attr_accessor amount: Float
 
         attr_accessor card_brand: String?
@@ -91,8 +87,6 @@ module WhopSDK
         attr_accessor fee_charged: bool
 
         attr_accessor issuer: String?
-
-        attr_accessor not_actionable_reason: WhopSDK::Models::DisputeAlertCreatedWebhookEvent::Data::not_actionable_reason?
 
         attr_accessor payment_id: String?
 
@@ -109,14 +103,12 @@ module WhopSDK
         def initialize: (
           id: String,
           account_id: String?,
-          actionable: bool,
           amount: Float,
           card_brand: String?,
           created_at: String,
           currency: String,
           fee_charged: bool,
           issuer: String?,
-          not_actionable_reason: WhopSDK::Models::DisputeAlertCreatedWebhookEvent::Data::not_actionable_reason?,
           payment_id: String?,
           product_id: String?,
           reported_at: String,
@@ -128,14 +120,12 @@ module WhopSDK
         def to_hash: -> {
           id: String,
           account_id: String?,
-          actionable: bool,
           amount: Float,
           card_brand: String?,
           created_at: String,
           currency: String,
           fee_charged: bool,
           issuer: String?,
-          not_actionable_reason: WhopSDK::Models::DisputeAlertCreatedWebhookEvent::Data::not_actionable_reason?,
           payment_id: String?,
           product_id: String?,
           reported_at: String,
@@ -143,25 +133,6 @@ module WhopSDK
           type: WhopSDK::Models::DisputeAlertCreatedWebhookEvent::Data::type_,
           updated_at: String
         }
-
-        type not_actionable_reason =
-          :network_resolved
-          | :payment_unmatched
-          | :payment_not_captured
-          | :payment_disputed
-          | :payment_refunded
-
-        module NotActionableReason
-          extend WhopSDK::Internal::Type::Enum
-
-          NETWORK_RESOLVED: :network_resolved
-          PAYMENT_UNMATCHED: :payment_unmatched
-          PAYMENT_NOT_CAPTURED: :payment_not_captured
-          PAYMENT_DISPUTED: :payment_disputed
-          PAYMENT_REFUNDED: :payment_refunded
-
-          def self?.values: -> ::Array[WhopSDK::Models::DisputeAlertCreatedWebhookEvent::Data::not_actionable_reason]
-        end
 
         type type_ =
           :early_fraud_warning | :dispute_alert | :rapid_dispute_resolution

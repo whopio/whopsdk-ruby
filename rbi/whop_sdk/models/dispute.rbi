@@ -19,10 +19,10 @@ module WhopSDK
       attr_accessor :amount
 
       # The customer who filed the dispute.
-      sig { returns(T.nilable(WhopSDK::Dispute::Buyer)) }
+      sig { returns(WhopSDK::Dispute::Buyer) }
       attr_reader :buyer
 
-      sig { params(buyer: T.nilable(WhopSDK::Dispute::Buyer::OrHash)).void }
+      sig { params(buyer: WhopSDK::Dispute::Buyer::OrHash).void }
       attr_writer :buyer
 
       # When the dispute was opened, as an ISO 8601 timestamp.
@@ -40,8 +40,9 @@ module WhopSDK
       sig { params(evidence: WhopSDK::Dispute::Evidence::OrHash).void }
       attr_writer :evidence
 
-      # The deadline to submit evidence, as an ISO 8601 timestamp. Whop reserves the
-      # last 24 hours before the processor's own cutoff to forward the submission.
+      # The deadline to submit evidence, as an ISO 8601 timestamp. `null` when the
+      # network already auto-resolved the dispute (Visa RDR) with no evidence round, or
+      # when the processor hasn't reported a deadline for this dispute.
       sig { returns(T.nilable(String)) }
       attr_accessor :evidence_due_at
 
@@ -59,20 +60,6 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :evidence_submitted_at
 
-      # The AI-generated representment document filed with the processor on the seller's
-      # behalf, once ready. Null until generation completes, and for disputes not using
-      # Whop Dispute Fighter.
-      sig { returns(T.nilable(WhopSDK::Dispute::GeneratedResponseAttachment)) }
-      attr_reader :generated_response_attachment
-
-      sig do
-        params(
-          generated_response_attachment:
-            T.nilable(WhopSDK::Dispute::GeneratedResponseAttachment::OrHash)
-        ).void
-      end
-      attr_writer :generated_response_attachment
-
       # Whether this is a pre-dispute inquiry rather than a formal chargeback. Inquiries
       # follow the same lifecycle but move no funds unless one escalates.
       sig { returns(T::Boolean) }
@@ -85,10 +72,10 @@ module WhopSDK
       attr_accessor :line_items
 
       # The payment being disputed.
-      sig { returns(T.nilable(WhopSDK::Dispute::Payment)) }
+      sig { returns(WhopSDK::Dispute::Payment) }
       attr_reader :payment
 
-      sig { params(payment: T.nilable(WhopSDK::Dispute::Payment::OrHash)).void }
+      sig { params(payment: WhopSDK::Dispute::Payment::OrHash).void }
       attr_writer :payment
 
       # The plan the disputed payment was made on, prefixed `plan_`.
@@ -98,11 +85,6 @@ module WhopSDK
       # The product the disputed payment was for, prefixed `prod_`.
       sig { returns(T.nilable(String)) }
       attr_accessor :product_id
-
-      # Whether Visa Rapid Dispute Resolution settled this automatically. These refund
-      # the customer without an evidence round.
-      sig { returns(T::Boolean) }
-      attr_accessor :rapid_dispute_resolution
 
       # Why the customer says they are disputing, normalized across processors and card
       # networks. `other` covers a processor reason Whop has not categorized yet.
@@ -130,7 +112,7 @@ module WhopSDK
           id: String,
           account_id: T.nilable(String),
           amount: Float,
-          buyer: T.nilable(WhopSDK::Dispute::Buyer::OrHash),
+          buyer: WhopSDK::Dispute::Buyer::OrHash,
           created_at: String,
           currency: String,
           evidence: WhopSDK::Dispute::Evidence::OrHash,
@@ -139,15 +121,12 @@ module WhopSDK
           evidence_locked_reason:
             T.nilable(WhopSDK::Dispute::EvidenceLockedReason::OrSymbol),
           evidence_submitted_at: T.nilable(String),
-          generated_response_attachment:
-            T.nilable(WhopSDK::Dispute::GeneratedResponseAttachment::OrHash),
           inquiry: T::Boolean,
           issuer_comments: T::Array[WhopSDK::Dispute::IssuerComment::OrHash],
           line_items: T::Array[WhopSDK::Dispute::LineItem::OrHash],
-          payment: T.nilable(WhopSDK::Dispute::Payment::OrHash),
+          payment: WhopSDK::Dispute::Payment::OrHash,
           plan_id: T.nilable(String),
           product_id: T.nilable(String),
-          rapid_dispute_resolution: T::Boolean,
           reason: WhopSDK::Dispute::Reason::OrSymbol,
           reason_code: T.nilable(String),
           status: WhopSDK::Dispute::Status::OrSymbol,
@@ -169,8 +148,9 @@ module WhopSDK
         currency:,
         # The evidence packet sent to the processor to contest the dispute.
         evidence:,
-        # The deadline to submit evidence, as an ISO 8601 timestamp. Whop reserves the
-        # last 24 hours before the processor's own cutoff to forward the submission.
+        # The deadline to submit evidence, as an ISO 8601 timestamp. `null` when the
+        # network already auto-resolved the dispute (Visa RDR) with no evidence round, or
+        # when the processor hasn't reported a deadline for this dispute.
         evidence_due_at:,
         # Whether `evidence` can still be changed and submitted.
         evidence_editable:,
@@ -178,10 +158,6 @@ module WhopSDK
         evidence_locked_reason:,
         # When the evidence was submitted to the processor, as an ISO 8601 timestamp.
         evidence_submitted_at:,
-        # The AI-generated representment document filed with the processor on the seller's
-        # behalf, once ready. Null until generation completes, and for disputes not using
-        # Whop Dispute Fighter.
-        generated_response_attachment:,
         # Whether this is a pre-dispute inquiry rather than a formal chargeback. Inquiries
         # follow the same lifecycle but move no funds unless one escalates.
         inquiry:,
@@ -193,9 +169,6 @@ module WhopSDK
         plan_id:,
         # The product the disputed payment was for, prefixed `prod_`.
         product_id:,
-        # Whether Visa Rapid Dispute Resolution settled this automatically. These refund
-        # the customer without an evidence round.
-        rapid_dispute_resolution:,
         # Why the customer says they are disputing, normalized across processors and card
         # networks. `other` covers a processor reason Whop has not categorized yet.
         reason:,
@@ -218,7 +191,7 @@ module WhopSDK
             id: String,
             account_id: T.nilable(String),
             amount: Float,
-            buyer: T.nilable(WhopSDK::Dispute::Buyer),
+            buyer: WhopSDK::Dispute::Buyer,
             created_at: String,
             currency: String,
             evidence: WhopSDK::Dispute::Evidence,
@@ -227,15 +200,12 @@ module WhopSDK
             evidence_locked_reason:
               T.nilable(WhopSDK::Dispute::EvidenceLockedReason::TaggedSymbol),
             evidence_submitted_at: T.nilable(String),
-            generated_response_attachment:
-              T.nilable(WhopSDK::Dispute::GeneratedResponseAttachment),
             inquiry: T::Boolean,
             issuer_comments: T::Array[WhopSDK::Dispute::IssuerComment],
             line_items: T::Array[WhopSDK::Dispute::LineItem],
-            payment: T.nilable(WhopSDK::Dispute::Payment),
+            payment: WhopSDK::Dispute::Payment,
             plan_id: T.nilable(String),
             product_id: T.nilable(String),
-            rapid_dispute_resolution: T::Boolean,
             reason: WhopSDK::Dispute::Reason::TaggedSymbol,
             reason_code: T.nilable(String),
             status: WhopSDK::Dispute::Status::TaggedSymbol,
@@ -696,7 +666,7 @@ module WhopSDK
           attr_accessor :id
 
           # The uploaded file's MIME type. Uploads are restricted to the types the processor
-          # accepts.
+          # accepts, and rejected without one — never null.
           sig do
             returns(
               T.nilable(
@@ -710,7 +680,20 @@ module WhopSDK
           sig { returns(String) }
           attr_accessor :created_at
 
-          # What kind of evidence the document is.
+          # What this document proves, in the processor's own evidence vocabulary.
+          # `return_policy`, `cancellation_policy`, and `terms_of_service` are the seller's
+          # policy documents — uploading one overrides the account's copy for this dispute
+          # (`return_policy`, `cancellation_policy`, and `customer_communication` also
+          # override the matching fixed evidence slot). `shipping_policy` is the seller's
+          # shipping terms. `customer_communication` is correspondence with the buyer — a
+          # support thread or chat log. `product_image` is a photo of the product or service
+          # the buyer received. `physical_fulfillment` is proof a physical order shipped and
+          # arrived; `digital_fulfillment` is proof the buyer accessed a digital product.
+          # `customer_order_history` is the buyer's past orders with this seller;
+          # `prior_transactions` is their broader payment history across the platform, for a
+          # fraud defense. `customer_session` is checkout forensics — IP, device
+          # fingerprint, AVS/CVV, 3D Secure result. `subscription` is membership lifecycle
+          # evidence — renewals, cancellation, reminders sent.
           sig do
             returns(
               WhopSDK::Dispute::Evidence::Document::DocumentType::TaggedSymbol
@@ -785,9 +768,9 @@ module WhopSDK
           sig { returns(T.nilable(String)) }
           attr_accessor :upload_url
 
-          # Additional evidence documents uploaded through
-          # `POST /disputes/{id}/upload_evidence`, beyond the four fixed slots. Each rides
-          # into the submitted packet under its `document_type`.
+          # Additional evidence documents, beyond the four fixed slots — set via
+          # `evidence.documents` on `PATCH /disputes/{id}`. Each rides into the submitted
+          # packet under its `document_type`.
           sig do
             params(
               id: String,
@@ -822,11 +805,24 @@ module WhopSDK
             # The file's ID, prefixed `file_`.
             id:,
             # The uploaded file's MIME type. Uploads are restricted to the types the processor
-            # accepts.
+            # accepts, and rejected without one — never null.
             content_type:,
             # When the file was created, as an ISO 8601 timestamp.
             created_at:,
-            # What kind of evidence the document is.
+            # What this document proves, in the processor's own evidence vocabulary.
+            # `return_policy`, `cancellation_policy`, and `terms_of_service` are the seller's
+            # policy documents — uploading one overrides the account's copy for this dispute
+            # (`return_policy`, `cancellation_policy`, and `customer_communication` also
+            # override the matching fixed evidence slot). `shipping_policy` is the seller's
+            # shipping terms. `customer_communication` is correspondence with the buyer — a
+            # support thread or chat log. `product_image` is a photo of the product or service
+            # the buyer received. `physical_fulfillment` is proof a physical order shipped and
+            # arrived; `digital_fulfillment` is proof the buyer accessed a digital product.
+            # `customer_order_history` is the buyer's past orders with this seller;
+            # `prior_transactions` is their broader payment history across the platform, for a
+            # fraud defense. `customer_session` is checkout forensics — IP, device
+            # fingerprint, AVS/CVV, 3D Secure result. `subscription` is membership lifecycle
+            # evidence — renewals, cancellation, reminders sent.
             document_type:,
             # The original filename, including its extension.
             filename:,
@@ -893,7 +889,7 @@ module WhopSDK
           end
 
           # The uploaded file's MIME type. Uploads are restricted to the types the processor
-          # accepts.
+          # accepts, and rejected without one — never null.
           module ContentType
             extend WhopSDK::Internal::Type::Enum
 
@@ -940,7 +936,20 @@ module WhopSDK
             end
           end
 
-          # What kind of evidence the document is.
+          # What this document proves, in the processor's own evidence vocabulary.
+          # `return_policy`, `cancellation_policy`, and `terms_of_service` are the seller's
+          # policy documents — uploading one overrides the account's copy for this dispute
+          # (`return_policy`, `cancellation_policy`, and `customer_communication` also
+          # override the matching fixed evidence slot). `shipping_policy` is the seller's
+          # shipping terms. `customer_communication` is correspondence with the buyer — a
+          # support thread or chat log. `product_image` is a photo of the product or service
+          # the buyer received. `physical_fulfillment` is proof a physical order shipped and
+          # arrived; `digital_fulfillment` is proof the buyer accessed a digital product.
+          # `customer_order_history` is the buyer's past orders with this seller;
+          # `prior_transactions` is their broader payment history across the platform, for a
+          # fraud defense. `customer_session` is checkout forensics — IP, device
+          # fingerprint, AVS/CVV, 3D Secure result. `subscription` is membership lifecycle
+          # evidence — renewals, cancellation, reminders sent.
           module DocumentType
             extend WhopSDK::Internal::Type::Enum
 
@@ -1006,6 +1015,11 @@ module WhopSDK
             SUBSCRIPTION =
               T.let(
                 :subscription,
+                WhopSDK::Dispute::Evidence::Document::DocumentType::TaggedSymbol
+              )
+            CUSTOMER_COMMUNICATION =
+              T.let(
+                :customer_communication,
                 WhopSDK::Dispute::Evidence::Document::DocumentType::TaggedSymbol
               )
 
@@ -1315,80 +1329,6 @@ module WhopSDK
         end
       end
 
-      class GeneratedResponseAttachment < WhopSDK::Internal::Type::BaseModel
-        OrHash =
-          T.type_alias do
-            T.any(
-              WhopSDK::Dispute::GeneratedResponseAttachment,
-              WhopSDK::Internal::AnyHash
-            )
-          end
-
-        # The attachment's ID. `null` for a Whop-hosted policy, which is not an uploaded
-        # file.
-        sig { returns(T.nilable(String)) }
-        attr_accessor :id
-
-        # The uploaded file's MIME type.
-        sig { returns(T.nilable(String)) }
-        attr_accessor :content_type
-
-        # The uploaded file's name.
-        sig { returns(T.nilable(String)) }
-        attr_accessor :filename
-
-        # Whether this is Whop's own hosted policy, standing in because the seller
-        # uploaded none. Sending it back on a PATCH changes nothing.
-        sig { returns(T::Boolean) }
-        attr_accessor :platform
-
-        # A URL to download the attachment.
-        sig { returns(T.nilable(String)) }
-        attr_accessor :url
-
-        # The AI-generated representment document filed with the processor on the seller's
-        # behalf, once ready. Null until generation completes, and for disputes not using
-        # Whop Dispute Fighter.
-        sig do
-          params(
-            id: T.nilable(String),
-            content_type: T.nilable(String),
-            filename: T.nilable(String),
-            platform: T::Boolean,
-            url: T.nilable(String)
-          ).returns(T.attached_class)
-        end
-        def self.new(
-          # The attachment's ID. `null` for a Whop-hosted policy, which is not an uploaded
-          # file.
-          id:,
-          # The uploaded file's MIME type.
-          content_type:,
-          # The uploaded file's name.
-          filename:,
-          # Whether this is Whop's own hosted policy, standing in because the seller
-          # uploaded none. Sending it back on a PATCH changes nothing.
-          platform:,
-          # A URL to download the attachment.
-          url:
-        )
-        end
-
-        sig do
-          override.returns(
-            {
-              id: T.nilable(String),
-              content_type: T.nilable(String),
-              filename: T.nilable(String),
-              platform: T::Boolean,
-              url: T.nilable(String)
-            }
-          )
-        end
-        def to_hash
-        end
-      end
-
       class IssuerComment < WhopSDK::Internal::Type::BaseModel
         OrHash =
           T.type_alias do
@@ -1652,7 +1592,8 @@ module WhopSDK
         sig { returns(T.nilable(String)) }
         attr_accessor :payment_method_type
 
-        # The processor that handled the payment, such as `stripe`.
+        # Deprecated: no longer populated. Always `null`. DEPRECATED: No longer populated.
+        # Always null.
         sig { returns(T.nilable(String)) }
         attr_accessor :payment_processor
 
@@ -1691,7 +1632,8 @@ module WhopSDK
           payment_instrument:,
           # How the customer paid, such as `card` or `paypal`.
           payment_method_type:,
-          # The processor that handled the payment, such as `stripe`.
+          # Deprecated: no longer populated. Always `null`. DEPRECATED: No longer populated.
+          # Always null.
           payment_processor:
         )
         end

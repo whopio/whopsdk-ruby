@@ -20,12 +20,6 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :account_id
 
-      # Whether refunding the payment can still avoid a chargeback. `false` once the
-      # payment has been disputed or fully refunded, or when the alert could not be
-      # matched to a payment — `not_actionable_reason` says which.
-      sig { returns(T::Boolean) }
-      attr_accessor :actionable
-
       # The alerted amount, in whole units of `currency`. This is what the issuer
       # reported, which can differ from the payment's own amount.
       sig { returns(Float) }
@@ -50,23 +44,11 @@ module WhopSDK
       sig { returns(T::Boolean) }
       attr_accessor :fee_charged
 
-      # Name of the bank that issued the card and filed the report.
+      # Deprecated: always `null` outside Whop's own dashboard. Name of the bank that
+      # issued the card and filed the report. DEPRECATED: Always null outside Whop's own
+      # dashboard.
       sig { returns(T.nilable(String)) }
       attr_accessor :issuer
-
-      # Why refunding can no longer avoid a chargeback. `network_resolved` when a Visa
-      # RDR already closed the case, `payment_unmatched` when no payment matched,
-      # `payment_not_captured` when it never captured money, `payment_disputed` once the
-      # payment carries a dispute, `payment_refunded` once fully refunded. `null` while
-      # `actionable` is true.
-      sig do
-        returns(
-          T.nilable(
-            WhopSDK::Models::DisputeAlertListResponse::NotActionableReason::TaggedSymbol
-          )
-        )
-      end
-      attr_accessor :not_actionable_reason
 
       # The payment the issuer reported, prefixed `pay_`. `null` when Whop could not
       # match the report to a payment.
@@ -82,7 +64,10 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :reported_at
 
-      # When the reported transaction was made, as an ISO 8601 timestamp.
+      # When the reported transaction was made, as an ISO 8601 timestamp — falls back to
+      # when the matched payment was made if the issuer's own report didn't carry one.
+      # Should not be `null` in practice; treat one as a data issue rather than expected
+      # behavior.
       sig { returns(T.nilable(String)) }
       attr_accessor :transaction_at
 
@@ -105,17 +90,12 @@ module WhopSDK
         params(
           id: String,
           account_id: T.nilable(String),
-          actionable: T::Boolean,
           amount: Float,
           card_brand: T.nilable(String),
           created_at: String,
           currency: String,
           fee_charged: T::Boolean,
           issuer: T.nilable(String),
-          not_actionable_reason:
-            T.nilable(
-              WhopSDK::Models::DisputeAlertListResponse::NotActionableReason::OrSymbol
-            ),
           payment_id: T.nilable(String),
           product_id: T.nilable(String),
           reported_at: String,
@@ -130,10 +110,6 @@ module WhopSDK
         # The account the alerted payment belongs to, prefixed `biz_`. `null` while the
         # alert is unmatched.
         account_id:,
-        # Whether refunding the payment can still avoid a chargeback. `false` once the
-        # payment has been disputed or fully refunded, or when the alert could not be
-        # matched to a payment — `not_actionable_reason` says which.
-        actionable:,
         # The alerted amount, in whole units of `currency`. This is what the issuer
         # reported, which can differ from the payment's own amount.
         amount:,
@@ -148,14 +124,10 @@ module WhopSDK
         # Whether Whop charged the account an alert fee for this one. Always `false` for
         # `early_fraud_warning`, which Whop is not billed for and never passes on.
         fee_charged:,
-        # Name of the bank that issued the card and filed the report.
+        # Deprecated: always `null` outside Whop's own dashboard. Name of the bank that
+        # issued the card and filed the report. DEPRECATED: Always null outside Whop's own
+        # dashboard.
         issuer:,
-        # Why refunding can no longer avoid a chargeback. `network_resolved` when a Visa
-        # RDR already closed the case, `payment_unmatched` when no payment matched,
-        # `payment_not_captured` when it never captured money, `payment_disputed` once the
-        # payment carries a dispute, `payment_refunded` once fully refunded. `null` while
-        # `actionable` is true.
-        not_actionable_reason:,
         # The payment the issuer reported, prefixed `pay_`. `null` when Whop could not
         # match the report to a payment.
         payment_id:,
@@ -164,7 +136,10 @@ module WhopSDK
         # When the issuer filed the report, as an ISO 8601 timestamp. Earlier than
         # `created_at`, which is when Whop received it.
         reported_at:,
-        # When the reported transaction was made, as an ISO 8601 timestamp.
+        # When the reported transaction was made, as an ISO 8601 timestamp — falls back to
+        # when the matched payment was made if the issuer's own report didn't carry one.
+        # Should not be `null` in practice; treat one as a data issue rather than expected
+        # behavior.
         transaction_at:,
         # What the issuer sent. `early_fraud_warning` is a fraud report on a settled
         # payment (Visa TC40 / Mastercard SAFE) — refunding still avoids the chargeback,
@@ -183,17 +158,12 @@ module WhopSDK
           {
             id: String,
             account_id: T.nilable(String),
-            actionable: T::Boolean,
             amount: Float,
             card_brand: T.nilable(String),
             created_at: String,
             currency: String,
             fee_charged: T::Boolean,
             issuer: T.nilable(String),
-            not_actionable_reason:
-              T.nilable(
-                WhopSDK::Models::DisputeAlertListResponse::NotActionableReason::TaggedSymbol
-              ),
             payment_id: T.nilable(String),
             product_id: T.nilable(String),
             reported_at: String,
@@ -204,60 +174,6 @@ module WhopSDK
         )
       end
       def to_hash
-      end
-
-      # Why refunding can no longer avoid a chargeback. `network_resolved` when a Visa
-      # RDR already closed the case, `payment_unmatched` when no payment matched,
-      # `payment_not_captured` when it never captured money, `payment_disputed` once the
-      # payment carries a dispute, `payment_refunded` once fully refunded. `null` while
-      # `actionable` is true.
-      module NotActionableReason
-        extend WhopSDK::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias do
-            T.all(
-              Symbol,
-              WhopSDK::Models::DisputeAlertListResponse::NotActionableReason
-            )
-          end
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        NETWORK_RESOLVED =
-          T.let(
-            :network_resolved,
-            WhopSDK::Models::DisputeAlertListResponse::NotActionableReason::TaggedSymbol
-          )
-        PAYMENT_UNMATCHED =
-          T.let(
-            :payment_unmatched,
-            WhopSDK::Models::DisputeAlertListResponse::NotActionableReason::TaggedSymbol
-          )
-        PAYMENT_NOT_CAPTURED =
-          T.let(
-            :payment_not_captured,
-            WhopSDK::Models::DisputeAlertListResponse::NotActionableReason::TaggedSymbol
-          )
-        PAYMENT_DISPUTED =
-          T.let(
-            :payment_disputed,
-            WhopSDK::Models::DisputeAlertListResponse::NotActionableReason::TaggedSymbol
-          )
-        PAYMENT_REFUNDED =
-          T.let(
-            :payment_refunded,
-            WhopSDK::Models::DisputeAlertListResponse::NotActionableReason::TaggedSymbol
-          )
-
-        sig do
-          override.returns(
-            T::Array[
-              WhopSDK::Models::DisputeAlertListResponse::NotActionableReason::TaggedSymbol
-            ]
-          )
-        end
-        def self.values
-        end
       end
 
       # What the issuer sent. `early_fraud_warning` is a fraud report on a settled

@@ -86,14 +86,6 @@ module WhopSDK
         #   @return [String, nil]
         required :account_id, String, nil?: true
 
-        # @!attribute actionable
-        #   Whether refunding the payment can still avoid a chargeback. `false` once the
-        #   payment has been disputed or fully refunded, or when the alert could not be
-        #   matched to a payment — `not_actionable_reason` says which.
-        #
-        #   @return [Boolean]
-        required :actionable, WhopSDK::Internal::Type::Boolean
-
         # @!attribute amount
         #   The alerted amount, in whole units of `currency`. This is what the issuer
         #   reported, which can differ from the payment's own amount.
@@ -129,22 +121,14 @@ module WhopSDK
         required :fee_charged, WhopSDK::Internal::Type::Boolean
 
         # @!attribute issuer
-        #   Name of the bank that issued the card and filed the report.
+        #   @deprecated
+        #
+        #   Deprecated: always `null` outside Whop's own dashboard. Name of the bank that
+        #   issued the card and filed the report. DEPRECATED: Always null outside Whop's own
+        #   dashboard.
         #
         #   @return [String, nil]
         required :issuer, String, nil?: true
-
-        # @!attribute not_actionable_reason
-        #   Why refunding can no longer avoid a chargeback. `network_resolved` when a Visa
-        #   RDR already closed the case, `payment_unmatched` when no payment matched,
-        #   `payment_not_captured` when it never captured money, `payment_disputed` once the
-        #   payment carries a dispute, `payment_refunded` once fully refunded. `null` while
-        #   `actionable` is true.
-        #
-        #   @return [Symbol, WhopSDK::Models::DisputeAlertCreatedWebhookEvent::Data::NotActionableReason, nil]
-        required :not_actionable_reason,
-                 enum: -> { WhopSDK::DisputeAlertCreatedWebhookEvent::Data::NotActionableReason },
-                 nil?: true
 
         # @!attribute payment_id
         #   The payment the issuer reported, prefixed `pay_`. `null` when Whop could not
@@ -167,7 +151,10 @@ module WhopSDK
         required :reported_at, String
 
         # @!attribute transaction_at
-        #   When the reported transaction was made, as an ISO 8601 timestamp.
+        #   When the reported transaction was made, as an ISO 8601 timestamp — falls back to
+        #   when the matched payment was made if the issuer's own report didn't carry one.
+        #   Should not be `null` in practice; treat one as a data issue rather than expected
+        #   behavior.
         #
         #   @return [String, nil]
         required :transaction_at, String, nil?: true
@@ -189,15 +176,13 @@ module WhopSDK
         #   @return [String]
         required :updated_at, String
 
-        # @!method initialize(id:, account_id:, actionable:, amount:, card_brand:, created_at:, currency:, fee_charged:, issuer:, not_actionable_reason:, payment_id:, product_id:, reported_at:, transaction_at:, type:, updated_at:)
+        # @!method initialize(id:, account_id:, amount:, card_brand:, created_at:, currency:, fee_charged:, issuer:, payment_id:, product_id:, reported_at:, transaction_at:, type:, updated_at:)
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::DisputeAlertCreatedWebhookEvent::Data} for more details.
         #
         #   @param id [String] Dispute alert ID, prefixed `dspa_`.
         #
         #   @param account_id [String, nil] The account the alerted payment belongs to, prefixed `biz_`. `null` while the al
-        #
-        #   @param actionable [Boolean] Whether refunding the payment can still avoid a chargeback. `false` once the pay
         #
         #   @param amount [Float] The alerted amount, in whole units of `currency`. This is what the issuer report
         #
@@ -209,9 +194,7 @@ module WhopSDK
         #
         #   @param fee_charged [Boolean] Whether Whop charged the account an alert fee for this one. Always `false` for `
         #
-        #   @param issuer [String, nil] Name of the bank that issued the card and filed the report.
-        #
-        #   @param not_actionable_reason [Symbol, WhopSDK::Models::DisputeAlertCreatedWebhookEvent::Data::NotActionableReason, nil] Why refunding can no longer avoid a chargeback. `network_resolved` when a Visa R
+        #   @param issuer [String, nil] Deprecated: always `null` outside Whop's own dashboard. Name of the bank that is
         #
         #   @param payment_id [String, nil] The payment the issuer reported, prefixed `pay_`. `null` when Whop could not mat
         #
@@ -219,31 +202,11 @@ module WhopSDK
         #
         #   @param reported_at [String] When the issuer filed the report, as an ISO 8601 timestamp. Earlier than `create
         #
-        #   @param transaction_at [String, nil] When the reported transaction was made, as an ISO 8601 timestamp.
+        #   @param transaction_at [String, nil] When the reported transaction was made, as an ISO 8601 timestamp — falls back to
         #
         #   @param type [Symbol, WhopSDK::Models::DisputeAlertCreatedWebhookEvent::Data::Type] What the issuer sent. `early_fraud_warning` is a fraud report on a settled payme
         #
         #   @param updated_at [String] When the alert was last changed, as an ISO 8601 timestamp.
-
-        # Why refunding can no longer avoid a chargeback. `network_resolved` when a Visa
-        # RDR already closed the case, `payment_unmatched` when no payment matched,
-        # `payment_not_captured` when it never captured money, `payment_disputed` once the
-        # payment carries a dispute, `payment_refunded` once fully refunded. `null` while
-        # `actionable` is true.
-        #
-        # @see WhopSDK::Models::DisputeAlertCreatedWebhookEvent::Data#not_actionable_reason
-        module NotActionableReason
-          extend WhopSDK::Internal::Type::Enum
-
-          NETWORK_RESOLVED = :network_resolved
-          PAYMENT_UNMATCHED = :payment_unmatched
-          PAYMENT_NOT_CAPTURED = :payment_not_captured
-          PAYMENT_DISPUTED = :payment_disputed
-          PAYMENT_REFUNDED = :payment_refunded
-
-          # @!method self.values
-          #   @return [Array<Symbol>]
-        end
 
         # What the issuer sent. `early_fraud_warning` is a fraud report on a settled
         # payment (Visa TC40 / Mastercard SAFE) — refunding still avoids the chargeback,

@@ -921,6 +921,7 @@ require_relative "whop_sdk/economic_intelligence/types/list_economic_intelligenc
 require_relative "whop_sdk/economic_intelligence/types/list_economic_intelligence_response_page_info"
 require_relative "whop_sdk/types/economic_intelligence_sentiment"
 require_relative "whop_sdk/types/economic_intelligence_status"
+require_relative "whop_sdk/types/economic_intelligence_operation"
 require_relative "whop_sdk/types/economic_intelligence"
 require_relative "whop_sdk/economic_intelligence/types/list_economic_intelligence_response"
 require_relative "whop_sdk/economic_intelligence/types/update_economic_intelligence_request_sentiment"

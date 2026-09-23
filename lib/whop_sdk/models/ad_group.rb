@@ -784,6 +784,7 @@ module WhopSDK
       module DeliveryStatus
         extend WhopSDK::Internal::Type::Enum
 
+        IN_APPEAL = :in_appeal
         ALL_ADS_REJECTED = :all_ads_rejected
         REJECTED = :rejected
         DRAFT = :draft

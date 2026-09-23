@@ -978,6 +978,7 @@ module WhopSDK
           T.type_alias { T.all(Symbol, WhopSDK::Ad::DeliveryStatus) }
         OrSymbol = T.type_alias { T.any(Symbol, String) }
 
+        IN_APPEAL = T.let(:in_appeal, WhopSDK::Ad::DeliveryStatus::TaggedSymbol)
         REJECTED = T.let(:rejected, WhopSDK::Ad::DeliveryStatus::TaggedSymbol)
         IN_REVIEW = T.let(:in_review, WhopSDK::Ad::DeliveryStatus::TaggedSymbol)
         DRAFT = T.let(:draft, WhopSDK::Ad::DeliveryStatus::TaggedSymbol)

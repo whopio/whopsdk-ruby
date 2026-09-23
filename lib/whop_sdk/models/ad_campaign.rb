@@ -566,6 +566,7 @@ module WhopSDK
         extend WhopSDK::Internal::Type::Enum
 
         PAYMENT_FAILED = :payment_failed
+        IN_APPEAL = :in_appeal
         ALL_ADS_REJECTED = :all_ads_rejected
         DRAFT = :draft
         NO_AD_GROUPS = :no_ad_groups

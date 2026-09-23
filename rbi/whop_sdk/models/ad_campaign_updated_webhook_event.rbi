@@ -439,6 +439,11 @@ module WhopSDK
               :payment_failed,
               WhopSDK::AdCampaignUpdatedWebhookEvent::Data::DeliveryStatus::TaggedSymbol
             )
+          IN_APPEAL =
+            T.let(
+              :in_appeal,
+              WhopSDK::AdCampaignUpdatedWebhookEvent::Data::DeliveryStatus::TaggedSymbol
+            )
           ALL_ADS_REJECTED =
             T.let(
               :all_ads_rejected,

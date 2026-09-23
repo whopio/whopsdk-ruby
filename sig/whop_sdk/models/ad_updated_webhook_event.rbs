@@ -363,7 +363,8 @@ module WhopSDK
         end
 
         type delivery_status =
-          :rejected
+          :in_appeal
+          | :rejected
           | :in_review
           | :draft
           | :campaign_paused
@@ -379,6 +380,7 @@ module WhopSDK
         module DeliveryStatus
           extend WhopSDK::Internal::Type::Enum
 
+          IN_APPEAL: :in_appeal
           REJECTED: :rejected
           IN_REVIEW: :in_review
           DRAFT: :draft

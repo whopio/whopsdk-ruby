@@ -930,6 +930,8 @@ module WhopSDK
           T.type_alias { T.all(Symbol, WhopSDK::AdGroup::DeliveryStatus) }
         OrSymbol = T.type_alias { T.any(Symbol, String) }
 
+        IN_APPEAL =
+          T.let(:in_appeal, WhopSDK::AdGroup::DeliveryStatus::TaggedSymbol)
         ALL_ADS_REJECTED =
           T.let(
             :all_ads_rejected,

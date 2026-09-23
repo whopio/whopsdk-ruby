@@ -918,6 +918,11 @@ module WhopSDK
             end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
 
+          IN_APPEAL =
+            T.let(
+              :in_appeal,
+              WhopSDK::AdUpdatedWebhookEvent::Data::DeliveryStatus::TaggedSymbol
+            )
           REJECTED =
             T.let(
               :rejected,

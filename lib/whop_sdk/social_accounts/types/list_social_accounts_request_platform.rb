@@ -13,6 +13,7 @@ module Whop_sdk
         FACEBOOK = "facebook"
         DISCORD = "discord"
         TELEGRAM = "telegram"
+        LINKEDIN = "linkedin"
       end
     end
   end

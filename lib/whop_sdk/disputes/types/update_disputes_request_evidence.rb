@@ -19,6 +19,8 @@ module Whop_sdk
 
         field :customer_name, -> { String }, optional: true, nullable: false
 
+        field :documents, -> { Internal::Types::Array[Whop_sdk::Disputes::Types::UpdateDisputesRequestEvidenceDocumentsItem] }, optional: true, nullable: false
+
         field :notes, -> { String }, optional: true, nullable: false
 
         field :product_description, -> { String }, optional: true, nullable: false

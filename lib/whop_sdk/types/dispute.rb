@@ -7,7 +7,7 @@ module Whop_sdk
 
       field :amount, -> { Integer }, optional: false, nullable: false
 
-      field :buyer, -> { Whop_sdk::Types::DisputeBuyer }, optional: false, nullable: true
+      field :buyer, -> { Whop_sdk::Types::DisputeBuyer }, optional: false, nullable: false
 
       field :created_at, -> { String }, optional: false, nullable: false
 
@@ -23,8 +23,6 @@ module Whop_sdk
 
       field :evidence_submitted_at, -> { String }, optional: false, nullable: true
 
-      field :generated_response_attachment, -> { Whop_sdk::Types::DisputeAttachment }, optional: false, nullable: true
-
       field :id, -> { String }, optional: false, nullable: false
 
       field :inquiry, -> { Internal::Types::Boolean }, optional: false, nullable: false
@@ -33,13 +31,11 @@ module Whop_sdk
 
       field :line_items, -> { Internal::Types::Array[Whop_sdk::Types::ReceiptLineItem] }, optional: false, nullable: false
 
-      field :payment, -> { Whop_sdk::Types::DisputePayment }, optional: false, nullable: true
+      field :payment, -> { Whop_sdk::Types::DisputePayment }, optional: false, nullable: false
 
       field :plan_id, -> { String }, optional: false, nullable: true
 
       field :product_id, -> { String }, optional: false, nullable: true
-
-      field :rapid_dispute_resolution, -> { Internal::Types::Boolean }, optional: false, nullable: false
 
       field :reason, -> { Whop_sdk::Types::DisputeReason }, optional: false, nullable: false
 

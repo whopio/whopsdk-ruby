@@ -16,6 +16,7 @@ module Whop_sdk
       CUSTOMER_SESSION = "customer_session"
       DIGITAL_FULFILLMENT = "digital_fulfillment"
       SUBSCRIPTION = "subscription"
+      CUSTOMER_COMMUNICATION = "customer_communication"
     end
   end
 end

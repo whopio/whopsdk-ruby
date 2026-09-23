@@ -9,6 +9,8 @@ module Whop_sdk
         member -> { Whop_sdk::PartnerReferralRequests::Types::CreatePartnerReferralRequestsRequestBodyAccountID }
 
         member -> { Whop_sdk::PartnerReferralRequests::Types::CreatePartnerReferralRequestsRequestBodyAccountURL }
+
+        member -> { Whop_sdk::PartnerReferralRequests::Types::CreatePartnerReferralRequestsRequestBodyCode }
       end
     end
   end

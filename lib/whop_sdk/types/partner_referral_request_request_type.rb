@@ -7,7 +7,7 @@ module Whop_sdk
 
       MANUAL = "manual"
       OWNERSHIP_TRANSFER = "ownership_transfer"
-      REWARD_LINK = "reward_link"
+      LINK = "link"
     end
   end
 end

@@ -26,6 +26,7 @@ module Whop_sdk
       # @option request_options [Integer] :timeout_in_seconds
       # @option params [String, nil] :account_id
       # @option params [Whop_sdk::EconomicIntelligence::Types::ListEconomicIntelligenceRequestStatus, nil] :status
+      # @option params [String, nil] :input
       # @option params [Integer, nil] :first
       # @option params [String, nil] :after
       # @option params [Integer, nil] :last
@@ -40,6 +41,7 @@ module Whop_sdk
         query_params = {}
         query_params["account_id"] = params[:account_id] if params.key?(:account_id)
         query_params["status"] = params[:status] if params.key?(:status)
+        query_params["input"] = params[:input] if params.key?(:input)
         query_params["first"] = params[:first] if params.key?(:first)
         query_params["after"] = params[:after] if params.key?(:after)
         query_params["last"] = params[:last] if params.key?(:last)
@@ -71,44 +73,6 @@ module Whop_sdk
             error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
             raise error_class.new(response.body, code: code)
           end
-        end
-      end
-
-      # Generates a recommendation based on your input. Returns immediately; poll the list endpoint until its `status`
-      # is `ready`.
-      #
-      # @param request_options [Hash]
-      # @param params [Whop_sdk::EconomicIntelligence::Types::CreateEconomicIntelligenceRequest]
-      # @option request_options [String] :base_url
-      # @option request_options [Hash{String => Object}] :additional_headers
-      # @option request_options [Hash{String => Object}] :additional_query_parameters
-      # @option request_options [Hash{String => Object}] :additional_body_parameters
-      # @option request_options [Integer] :timeout_in_seconds
-      #
-      # @example
-      #   client.economic_intelligence.create(input: "I sell $79 customized gym straps. The number of purchases per day fell from 84 to 66 since June and my ads cost per signup doubled to $38. Half the leads never open the checkout. I want to win back churned visitors and lift conversion without cutting the price, and I can spend up to $500 this month on it.")
-      #
-      # @return [Whop_sdk::Types::EconomicIntelligence]
-      def create(request_options: {}, **params)
-        params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
-        request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
-          method: "POST",
-          path: "economic_intelligence",
-          body: Whop_sdk::EconomicIntelligence::Types::CreateEconomicIntelligenceRequest.new(params).to_h,
-          request_options: request_options
-        )
-        begin
-          response = @client.send(request)
-        rescue Net::HTTPRequestTimeout
-          raise Whop_sdk::Errors::TimeoutError
-        end
-        code = response.code.to_i
-        if code.between?(200, 299)
-          Whop_sdk::Types::EconomicIntelligence.load(response.body)
-        else
-          error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
-          raise error_class.new(response.body, code: code)
         end
       end
 

@@ -2650,6 +2650,11 @@ module WhopSDK
         sig { returns(T.nilable(String)) }
         attr_accessor :address_line1
 
+        # The card issuer's authorization code for this charge, or null when the processor
+        # did not return one.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :authorization_code
+
         # Whether the cardholder name matched the issuer's records.
         sig { returns(T.nilable(String)) }
         attr_accessor :card_holder_name
@@ -2667,6 +2672,7 @@ module WhopSDK
         sig do
           params(
             address_line1: T.nilable(String),
+            authorization_code: T.nilable(String),
             card_holder_name: T.nilable(String),
             card_security_code: T.nilable(String),
             zip_code: T.nilable(String)
@@ -2675,6 +2681,9 @@ module WhopSDK
         def self.new(
           # The Address Verification Service (AVS) result for the billing street address.
           address_line1:,
+          # The card issuer's authorization code for this charge, or null when the processor
+          # did not return one.
+          authorization_code:,
           # Whether the cardholder name matched the issuer's records.
           card_holder_name:,
           # The Card Verification Value (CVV/CVC) result.
@@ -2688,6 +2697,7 @@ module WhopSDK
           override.returns(
             {
               address_line1: T.nilable(String),
+              authorization_code: T.nilable(String),
               card_holder_name: T.nilable(String),
               card_security_code: T.nilable(String),
               zip_code: T.nilable(String)

@@ -1652,6 +1652,13 @@ module WhopSDK
         #   @return [String, nil]
         required :address_line1, String, nil?: true
 
+        # @!attribute authorization_code
+        #   The card issuer's authorization code for this charge, or null when the processor
+        #   did not return one.
+        #
+        #   @return [String, nil]
+        required :authorization_code, String, nil?: true
+
         # @!attribute card_holder_name
         #   Whether the cardholder name matched the issuer's records.
         #
@@ -1670,11 +1677,16 @@ module WhopSDK
         #   @return [String, nil]
         required :zip_code, String, nil?: true
 
-        # @!method initialize(address_line1:, card_holder_name:, card_security_code:, zip_code:)
+        # @!method initialize(address_line1:, authorization_code:, card_holder_name:, card_security_code:, zip_code:)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::Payment::VerificationChecks} for more details.
+        #
         #   The Address Verification Service (AVS), cardholder name, and Card Verification
         #   Value (CVV/CVC) results, or null when the processor returned none.
         #
         #   @param address_line1 [String, nil] The Address Verification Service (AVS) result for the billing street address.
+        #
+        #   @param authorization_code [String, nil] The card issuer's authorization code for this charge, or null when the processor
         #
         #   @param card_holder_name [String, nil] Whether the cardholder name matched the issuer's records.
         #

@@ -24,10 +24,6 @@ module Whop_sdk
 
         field :questions, -> { Internal::Types::Array[Whop_sdk::Events::Types::ListEventsResponseDataItemQuestionsItem] }, optional: true, nullable: false
 
-        field :recommended_action_chain_id, -> { String }, optional: true, nullable: false
-
-        field :recommended_action_shown_position, -> { Integer }, optional: true, nullable: false
-
         field :referrer_url, -> { String }, optional: true, nullable: false
 
         field :related, -> { Whop_sdk::Events::Types::ListEventsResponseDataItemRelated }, optional: true, nullable: false

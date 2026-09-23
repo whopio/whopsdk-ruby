@@ -54,8 +54,7 @@ module Whop_sdk
       # Its first matching event inside from/to anchors the cohort, breakdown and conversion window; later entries do
       # not restart it. Intervening events are allowed, and conversions may occur after to. Funnel values are final
       # conversion percentages; steps include counts and cumulative conversion percentages. Experiment funnels use
-      # experiment.exposure as step 1 and breakdown_by=variant. See funnel step properties for current availability.
-      # Pass steps using bracket parameters such as
+      # experiment.exposure as step 1 and breakdown_by=variant. Pass steps using bracket parameters such as
       # steps[1][event]=pixel.page&steps[1][page]=/pricing*&steps[2][event]=payment.completed.
       #
       # @param request_options [Hash]

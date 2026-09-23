@@ -15,6 +15,8 @@ module Whop_sdk
 
       field :child_markups, -> { Whop_sdk::Types::AccountFeeMarkups }, optional: false, nullable: true
 
+      field :covered_payout_fees, -> { Whop_sdk::Types::AccountCoveredPayoutFees }, optional: false, nullable: false
+
       field :cross_border, -> { Whop_sdk::Types::AccountFee }, optional: false, nullable: false
 
       field :dispute, -> { Whop_sdk::Types::AccountFee }, optional: false, nullable: false

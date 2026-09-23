@@ -3,7 +3,7 @@
 module Whop_sdk
   module Disputes
     module Types
-      module UploadEvidenceDisputesRequestDocumentsItemDocumentType
+      module UpdateDisputesRequestEvidenceDocumentsItemDocumentType
         extend Whop_sdk::Internal::Types::Enum
 
         RETURN_POLICY = "return_policy"

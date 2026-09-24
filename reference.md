@@ -22717,6 +22717,76 @@ client.memberships.pause(id: "id")
 </dl>
 </details>
 
+<details><summary><code>client.memberships.<a href="/lib/whop_sdk/memberships/client.rb">reactivate</a>(id:, request) -> Whop_sdk::Types::Membership</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Restores access to a `canceled` or `expired` membership that contains only one-time purchases and sets its `status` to `completed`. Lifetime memberships regain lifetime access. For memberships with an expiration, `days` sets `current_period_end` that many days from now; without it the original `current_period_end` is kept, so `days` is required once that has passed. Active and recurring memberships cannot be reactivated.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.memberships.reactivate(id: "id")
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — Membership ID (`mem_` tag).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**days:** `Integer` — Days of access from now (1-1095), which sets `current_period_end`. Omit to keep the original `current_period_end`; required once it has passed. Ignored for lifetime memberships.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Whop_sdk::Memberships::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.memberships.<a href="/lib/whop_sdk/memberships/client.rb">resume</a>(id:) -> Whop_sdk::Types::Membership</code></summary>
 <dl>
 <dd>

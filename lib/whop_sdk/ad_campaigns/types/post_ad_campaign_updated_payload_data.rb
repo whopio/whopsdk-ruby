@@ -20,6 +20,10 @@ module Whop_sdk
 
         field :delivery_status, -> { Whop_sdk::AdCampaigns::Types::PostAdCampaignUpdatedPayloadDataDeliveryStatus }, optional: false, nullable: false
 
+        field :desired_cost_per_result, -> { Integer }, optional: true, nullable: false
+
+        field :ends_at, -> { String }, optional: true, nullable: false
+
         field :id, -> { String }, optional: false, nullable: false
 
         field :issues, -> { Internal::Types::Array[Whop_sdk::Types::AdPlatformIssue] }, optional: false, nullable: false
@@ -31,6 +35,8 @@ module Whop_sdk
         field :platform, -> { Whop_sdk::AdCampaigns::Types::PostAdCampaignUpdatedPayloadDataPlatform }, optional: false, nullable: false
 
         field :special_ad_categories, -> { Internal::Types::Array[Whop_sdk::AdCampaigns::Types::PostAdCampaignUpdatedPayloadDataSpecialAdCategoriesItem] }, optional: false, nullable: false
+
+        field :starts_at, -> { String }, optional: true, nullable: false
 
         field :status, -> { Whop_sdk::AdCampaigns::Types::PostAdCampaignUpdatedPayloadDataStatus }, optional: false, nullable: false
 

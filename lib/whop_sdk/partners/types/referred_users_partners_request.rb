@@ -4,6 +4,8 @@ module Whop_sdk
   module Partners
     module Types
       class ReferredUsersPartnersRequest < Internal::Types::Model
+        field :query, -> { String }, optional: true, nullable: false
+
         field :has_businesses, -> { Internal::Types::Boolean }, optional: true, nullable: false
 
         field :has_earning_businesses, -> { Internal::Types::Boolean }, optional: true, nullable: false

@@ -24384,6 +24384,14 @@ client.partners.referred_users
 <dl>
 <dd>
 
+**query:** `String` — Search referred users by name or username.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **has_businesses:** `Internal::Types::Boolean` — When true, only referred users who brought at least one business onto Whop.
     
 </dd>

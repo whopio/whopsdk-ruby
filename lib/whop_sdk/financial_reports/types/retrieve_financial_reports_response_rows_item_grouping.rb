@@ -22,6 +22,7 @@ module Whop_sdk
         OPERATIONAL_COSTS = "operational_costs"
         OTHER = "other"
         PAYMENTS = "payments"
+        PLATFORM_CREDITS = "platform_credits"
         REFUNDS = "refunds"
         RESERVES = "reserves"
         TRANSFERS = "transfers"

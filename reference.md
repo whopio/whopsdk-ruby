@@ -403,6 +403,14 @@ client.accounts.create
 <dl>
 <dd>
 
+**dispute_fighter_enabled:** `Internal::Types::Boolean` — Whether Whop assembles and files dispute evidence for this account. Enabling it opts into the success fee charged on disputes it wins. Requires payment:dispute. Omit to preserve the existing setting or creation default.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **email:** `String` — The email address of the account owner. Required when creating a connected account.
     
 </dd>
@@ -412,6 +420,14 @@ client.accounts.create
 <dd>
 
 **metadata:** `Internal::Types::Hash[String, Object]` — Arbitrary key/value metadata to store on the account.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**orchestration_enabled:** `Internal::Types::Boolean` — Whether payment orchestration is enabled for this account. Requires payout:account:update. Omit to preserve the existing setting or creation default.
     
 </dd>
 </dl>
@@ -717,6 +733,14 @@ client.accounts.update(id: "id")
 <dl>
 <dd>
 
+**dispute_fighter_enabled:** `Internal::Types::Boolean` — Whether Whop assembles and files dispute evidence for this account. Enabling it opts into the success fee charged on disputes it wins. Requires payment:dispute. Omit to preserve the existing setting or creation default.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **eula:** `Whop_sdk::Accounts::Types::UpdateAccountsRequestEula` — The account's end-user license agreement document. PDF only. Pass a JSON object containing an `id` from [Create File](/api-reference/files/create-file), or `null` to remove it.
     
 </dd>
@@ -798,6 +822,14 @@ client.accounts.update(id: "id")
 <dd>
 
 **opengraph_image_variant:** `Whop_sdk::Accounts::Types::UpdateAccountsRequestOpengraphImageVariant` — The account Open Graph image variant.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**orchestration_enabled:** `Internal::Types::Boolean` — Whether payment orchestration is enabled for this account. Requires payout:account:update. Omit to preserve the existing setting or creation default.
     
 </dd>
 </dl>

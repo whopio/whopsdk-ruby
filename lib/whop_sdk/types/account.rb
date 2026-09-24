@@ -31,6 +31,8 @@ module Whop_sdk
 
       field :description, -> { String }, optional: false, nullable: true
 
+      field :dispute_fighter_enabled, -> { Internal::Types::Boolean }, optional: false, nullable: false
+
       field :economic_intelligence, -> { Internal::Types::Boolean }, optional: false, nullable: false
 
       field :email, -> { String }, optional: false, nullable: true
@@ -56,6 +58,8 @@ module Whop_sdk
       field :opengraph_image_url, -> { String }, optional: false, nullable: true
 
       field :opengraph_image_variant, -> { Whop_sdk::Types::AccountOpengraphImageVariant }, optional: false, nullable: true
+
+      field :orchestration_enabled, -> { Internal::Types::Boolean }, optional: false, nullable: false
 
       field :other_business_description, -> { String }, optional: false, nullable: true
 

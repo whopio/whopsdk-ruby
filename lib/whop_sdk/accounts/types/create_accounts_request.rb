@@ -10,9 +10,13 @@ module Whop_sdk
 
         field :country, -> { String }, optional: true, nullable: false
 
+        field :dispute_fighter_enabled, -> { Internal::Types::Boolean }, optional: true, nullable: false
+
         field :email, -> { String }, optional: true, nullable: false
 
         field :metadata, -> { Internal::Types::Hash[String, Object] }, optional: true, nullable: false
+
+        field :orchestration_enabled, -> { Internal::Types::Boolean }, optional: true, nullable: false
 
         field :send_customer_emails, -> { Internal::Types::Boolean }, optional: true, nullable: false
 

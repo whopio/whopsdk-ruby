@@ -26,6 +26,8 @@ module Whop_sdk
 
         field :description, -> { String }, optional: true, nullable: false
 
+        field :dispute_fighter_enabled, -> { Internal::Types::Boolean }, optional: true, nullable: false
+
         field :eula, -> { Whop_sdk::Accounts::Types::UpdateAccountsRequestEula }, optional: true, nullable: false
 
         field :featured_affiliate_product_id, -> { String }, optional: true, nullable: false
@@ -47,6 +49,8 @@ module Whop_sdk
         field :opengraph_image, -> { Whop_sdk::Accounts::Types::UpdateAccountsRequestOpengraphImage }, optional: true, nullable: false
 
         field :opengraph_image_variant, -> { Whop_sdk::Accounts::Types::UpdateAccountsRequestOpengraphImageVariant }, optional: true, nullable: false
+
+        field :orchestration_enabled, -> { Internal::Types::Boolean }, optional: true, nullable: false
 
         field :other_business_description, -> { String }, optional: true, nullable: false
 

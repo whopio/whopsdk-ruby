@@ -24,6 +24,10 @@ module Whop_sdk
           field :dispute_fighter_enabled, -> { Internal::Types::Boolean }, optional: false, nullable: false
 
           field :economic_intelligence, -> { Internal::Types::Boolean }, optional: false, nullable: false
+
+          field :economic_intelligence_ends_at, -> { String }, optional: false, nullable: true
+
+          field :economic_intelligence_offers, -> { Internal::Types::Array[Whop_sdk::Accounts::Preferences::Types::RetrievePreferencesResponseEconomicIntelligenceOffersItem] }, optional: false, nullable: true
         end
       end
     end

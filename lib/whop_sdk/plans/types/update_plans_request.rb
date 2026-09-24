@@ -8,6 +8,8 @@ module Whop_sdk
 
         field :adaptive_pricing_enabled, -> { Internal::Types::Boolean }, optional: true, nullable: false
 
+        field :attributes, -> { Internal::Types::Hash[String, Object] }, optional: true, nullable: false
+
         field :billing_period, -> { Integer }, optional: true, nullable: false
 
         field :cancel_discount_intervals, -> { Integer }, optional: true, nullable: false
@@ -41,6 +43,8 @@ module Whop_sdk
         field :release_method, -> { String }, optional: true, nullable: false
 
         field :renewal_price, -> { Integer }, optional: true, nullable: false
+
+        field :sku, -> { String }, optional: true, nullable: false
 
         field :stock, -> { Integer }, optional: true, nullable: false
 

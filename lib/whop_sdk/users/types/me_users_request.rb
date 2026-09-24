@@ -4,6 +4,8 @@ module Whop_sdk
   module Users
     module Types
       class MeUsersRequest < Internal::Types::Model
+        field :include_trading, -> { Internal::Types::Boolean }, optional: true, nullable: false
+
         field :account_id, -> { String }, optional: true, nullable: false
 
         field :include_balance, -> { Internal::Types::Boolean }, optional: true, nullable: false

@@ -6,6 +6,8 @@ module Whop_sdk
       class RetrieveUsersRequest < Internal::Types::Model
         field :id, -> { String }, optional: false, nullable: false
 
+        field :include_trading, -> { Internal::Types::Boolean }, optional: true, nullable: false
+
         field :account_id, -> { String }, optional: true, nullable: false
 
         field :include_balance, -> { Internal::Types::Boolean }, optional: true, nullable: false

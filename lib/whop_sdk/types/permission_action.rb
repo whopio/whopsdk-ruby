@@ -256,6 +256,8 @@ module Whop_sdk
       CHECKOUT_REQUEST_BASIC_READ = "checkout_request:basic:read"
       CRYPTO_WALLET_MANAGE = "crypto_wallet:manage"
       CRYPTO_WALLET_SWAP = "crypto_wallet:swap"
+      CRYPTO_WALLET_TRADE = "crypto_wallet:trade"
+      CRYPTO_WALLET_TRADE_READ = "crypto_wallet:trade:read"
       AIRDROP_LINK_BASIC_READ = "airdrop_link:basic:read"
       AIRDROP_LINK_MANAGE = "airdrop_link:manage"
       LEAD_MANAGE = "lead:manage"

@@ -83,6 +83,7 @@ module Whop_sdk
       # @option request_options [Hash{String => Object}] :additional_query_parameters
       # @option request_options [Hash{String => Object}] :additional_body_parameters
       # @option request_options [Integer] :timeout_in_seconds
+      # @option params [Boolean, nil] :include_trading
       # @option params [String, nil] :account_id
       # @option params [Boolean, nil] :include_balance
       # @option params [Boolean, nil] :include_balance_history
@@ -98,6 +99,7 @@ module Whop_sdk
       def me(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
         query_params = {}
+        query_params["include_trading"] = params[:include_trading] if params.key?(:include_trading)
         query_params["account_id"] = params[:account_id] if params.key?(:account_id)
         query_params["include_balance"] = params[:include_balance] if params.key?(:include_balance)
         query_params["include_balance_history"] = params[:include_balance_history] if params.key?(:include_balance_history)
@@ -189,6 +191,7 @@ module Whop_sdk
       # @option request_options [Hash{String => Object}] :additional_body_parameters
       # @option request_options [Integer] :timeout_in_seconds
       # @option params [String] :id
+      # @option params [Boolean, nil] :include_trading
       # @option params [String, nil] :account_id
       # @option params [Boolean, nil] :include_balance
       # @option params [Boolean, nil] :include_balance_history
@@ -204,6 +207,7 @@ module Whop_sdk
       def retrieve(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
         query_params = {}
+        query_params["include_trading"] = params[:include_trading] if params.key?(:include_trading)
         query_params["account_id"] = params[:account_id] if params.key?(:account_id)
         query_params["include_balance"] = params[:include_balance] if params.key?(:include_balance)
         query_params["include_balance_history"] = params[:include_balance_history] if params.key?(:include_balance_history)

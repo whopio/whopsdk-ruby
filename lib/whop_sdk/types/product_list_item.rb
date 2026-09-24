@@ -35,6 +35,8 @@ module Whop_sdk
 
       field :updated_at, -> { String }, optional: false, nullable: false
 
+      field :variant_attributes, -> { Internal::Types::Hash[String, Object] }, optional: false, nullable: true
+
       field :verified, -> { Internal::Types::Boolean }, optional: false, nullable: false
 
       field :visibility, -> { String }, optional: false, nullable: true

@@ -23,7 +23,7 @@ module Whop_sdk
 
           field :dispute_fighter_enabled, -> { Internal::Types::Boolean }, optional: true, nullable: false
 
-          field :economic_intelligence, -> { Internal::Types::Boolean }, optional: true, nullable: false
+          field :economic_intelligence_duration_days, -> { Integer }, optional: true, nullable: false
         end
       end
     end

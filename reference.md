@@ -10782,6 +10782,84 @@ client.cashback_rules.list
 </dl>
 </details>
 
+<details><summary><code>client.cashback_rules.<a href="/lib/whop_sdk/cashback_rules/client.rb">payout</a>(request) -> Whop_sdk::Types::CashbackPayout</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Distributes cashback on demand from the authenticated platform's available USD balance to its direct connected accounts. Requires payout:transfer_funds. Optional filters combine; an empty body includes all eligible transactions. Only completed, unpaid transactions created before this request are considered. The latest matching rule wins; its funding account must be the authenticated platform. Amounts are calculated when processed. Returns status `processing` and echoes supplied filters when background processing is queued. Status `failed` with HTTP 200 means the queue rejected the request. This is not a payment confirmation. Failed transaction jobs retry automatically; insufficient funds requires adding USD to the funding wallet. Supports Idempotency-Key, and overlapping requests cannot pay the same card transaction twice.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.cashback_rules.payout
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**account_id:** `String` — Pay only this direct connected account.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**cashback_rule_id:** `String` — Pay only transactions whose winning cashback rule has this ID and is funded by the authenticated platform.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**transaction_id:** `String` — Pay only this card transaction belonging to a direct connected account.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Whop_sdk::CashbackRules::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.cashback_rules.<a href="/lib/whop_sdk/cashback_rules/client.rb">update</a>(id:, request) -> Whop_sdk::Types::CashbackRule</code></summary>
 <dl>
 <dd>

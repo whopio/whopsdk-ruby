@@ -9,6 +9,7 @@ module Whop_sdk
       FRAUDULENT = "fraudulent"
       REQUESTED_BY_CUSTOMER = "requested_by_customer"
       EXPIRED_UNCAPTURED_CHARGE = "expired_uncaptured_charge"
+      DISPUTE_ALERT = "dispute_alert"
     end
   end
 end

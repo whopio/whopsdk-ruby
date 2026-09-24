@@ -7,6 +7,8 @@ module Whop_sdk
 
       field :amount, -> { Integer }, optional: false, nullable: false
 
+      field :auto_refunded, -> { Internal::Types::Boolean }, optional: false, nullable: false
+
       field :card_brand, -> { String }, optional: false, nullable: true
 
       field :created_at, -> { String }, optional: false, nullable: false

@@ -27,6 +27,8 @@ module Whop_sdk
         field :to_chain, -> { String }, optional: true, nullable: false
 
         field :to_token, -> { Whop_sdk::Swaps::Types::CreateSwapsResponseToToken }, optional: true, nullable: false
+
+        field :user_id, -> { String }, optional: false, nullable: true
       end
     end
   end

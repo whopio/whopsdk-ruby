@@ -4,7 +4,9 @@ module Whop_sdk
   module Verifications
     module Types
       class ListVerificationsRequest < Internal::Types::Model
-        field :account_id, -> { String }, optional: false, nullable: false
+        field :account_id, -> { String }, optional: true, nullable: false
+
+        field :user_id, -> { String }, optional: true, nullable: false
 
         field :order, -> { Whop_sdk::Verifications::Types::ListVerificationsRequestOrder }, optional: true, nullable: false
 

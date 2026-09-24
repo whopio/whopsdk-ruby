@@ -4,7 +4,7 @@ module Whop_sdk
   module Swaps
     module Types
       class CreateSwapsRequest < Internal::Types::Model
-        field :account_id, -> { String }, optional: false, nullable: false
+        field :account_id, -> { String }, optional: true, nullable: false
 
         field :amount, -> { String }, optional: true, nullable: false
 
@@ -19,6 +19,8 @@ module Whop_sdk
         field :to_chain, -> { Whop_sdk::Swaps::Types::CreateSwapsRequestToChain }, optional: true, nullable: false
 
         field :to_token, -> { String }, optional: false, nullable: false
+
+        field :user_id, -> { String }, optional: true, nullable: false
       end
     end
   end

@@ -119,6 +119,50 @@ module Whop_sdk
         end
       end
 
+      # Distributes cashback on demand from the authenticated platform's available USD balance to its direct connected
+      # accounts. Requires payout:transfer_funds. Optional filters combine; an empty body includes all eligible
+      # transactions. Only completed, unpaid transactions created before this request are considered. The latest
+      # matching rule wins; its funding account must be the authenticated platform. Amounts are calculated when
+      # processed. Returns status `processing` and echoes supplied filters when background processing is queued. Status
+      # `failed` with HTTP 200 means the queue rejected the request. This is not a payment confirmation. Failed
+      # transaction jobs retry automatically; insufficient funds requires adding USD to the funding wallet. Supports
+      # Idempotency-Key, and overlapping requests cannot pay the same card transaction twice.
+      #
+      # @param request_options [Hash]
+      # @param params [Whop_sdk::CashbackRules::Types::PayoutCashbackRulesRequest]
+      # @option request_options [String] :base_url
+      # @option request_options [Hash{String => Object}] :additional_headers
+      # @option request_options [Hash{String => Object}] :additional_query_parameters
+      # @option request_options [Hash{String => Object}] :additional_body_parameters
+      # @option request_options [Integer] :timeout_in_seconds
+      #
+      # @example
+      #   client.cashback_rules.payout
+      #
+      # @return [Whop_sdk::Types::CashbackPayout]
+      def payout(request_options: {}, **params)
+        params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
+        request = Whop_sdk::Internal::JSON::Request.new(
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
+          method: "POST",
+          path: "cashback_rules/payout",
+          body: Whop_sdk::CashbackRules::Types::PayoutCashbackRulesRequest.new(params).to_h,
+          request_options: request_options
+        )
+        begin
+          response = @client.send(request)
+        rescue Net::HTTPRequestTimeout
+          raise Whop_sdk::Errors::TimeoutError
+        end
+        code = response.code.to_i
+        if code.between?(200, 299)
+          Whop_sdk::Types::CashbackPayout.load(response.body)
+        else
+          error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
+          raise error_class.new(response.body, code: code)
+        end
+      end
+
       # Updates a cashback rule funded by the authenticated platform account. Requires payout:transfer_funds. Only
       # merchant_name, merchant_category_code, description, and expires_at can change; starts_at, rate_bps,
       # funding_account_id, and scoped_account_id are immutable. Omitted fields stay unchanged. Scheduled, active, and

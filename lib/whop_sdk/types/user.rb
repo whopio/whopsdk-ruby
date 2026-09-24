@@ -27,6 +27,8 @@ module Whop_sdk
 
       field :staff, -> { Whop_sdk::Types::UserStaffAccess }, optional: false, nullable: true
 
+      field :trading, -> { Whop_sdk::Types::TradingAccount }, optional: false, nullable: true
+
       field :username, -> { String }, optional: false, nullable: false
 
       field :verification, -> { Internal::Types::Hash[String, Object] }, optional: false, nullable: false

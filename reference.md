@@ -497,6 +497,14 @@ client.accounts.me
 <dl>
 <dd>
 
+**include_trading:** `Internal::Types::Boolean` — Also retrieve live trading state under `trading`. Requires crypto_wallet:trade:read, crypto_wallet:trade, or crypto_wallet:manage permission and an Ethereum wallet; null otherwise. Provider failures return 503.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **request_options:** `Whop_sdk::Accounts::RequestOptions` 
     
 </dd>
@@ -552,6 +560,14 @@ client.accounts.retrieve(id: "id")
 <dd>
 
 **id:** `String` — Account ID, prefixed `biz_`, its public route, or `me` for the account associated with the current API key.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**include_trading:** `Internal::Types::Boolean` — Also retrieve live trading state under `trading`. Requires crypto_wallet:trade:read, crypto_wallet:trade, or crypto_wallet:manage permission and an Ethereum wallet; null otherwise. Provider failures return 503.
     
 </dd>
 </dl>
@@ -36052,6 +36068,14 @@ client.users.me
 <dl>
 <dd>
 
+**include_trading:** `Internal::Types::Boolean` — Also retrieve live trading state under `trading`. Only honored on the self view (me) with crypto_wallet:trade:read, crypto_wallet:trade, or crypto_wallet:manage permission and an Ethereum wallet. Provider failures return 503.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **account_id:** `String` — When set, returns your account-specific profile overrides for this account.
     
 </dd>
@@ -36265,6 +36289,14 @@ client.users.retrieve(id: "id")
 <dd>
 
 **id:** `String` — User ID (prefixed `user_`), username, or `me` for the authenticated user.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**include_trading:** `Internal::Types::Boolean` — Also retrieve live trading state under `trading`. Only honored on the self view (me) with crypto_wallet:trade:read, crypto_wallet:trade, or crypto_wallet:manage permission and an Ethereum wallet. Provider failures return 503.
     
 </dd>
 </dl>

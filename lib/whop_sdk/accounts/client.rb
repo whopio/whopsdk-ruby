@@ -132,22 +132,28 @@ module Whop_sdk
       # Retrieves the account associated with the current Account API key.
       #
       # @param request_options [Hash]
-      # @param _params [Hash]
+      # @param params [Hash]
       # @option request_options [String] :base_url
       # @option request_options [Hash{String => Object}] :additional_headers
       # @option request_options [Hash{String => Object}] :additional_query_parameters
       # @option request_options [Hash{String => Object}] :additional_body_parameters
       # @option request_options [Integer] :timeout_in_seconds
+      # @option params [Boolean, nil] :include_trading
       #
       # @example
       #   client.accounts.me
       #
       # @return [Whop_sdk::Types::Account]
-      def me(request_options: {}, **_params)
+      def me(request_options: {}, **params)
+        params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
+        query_params = {}
+        query_params["include_trading"] = params[:include_trading] if params.key?(:include_trading)
+
         request = Whop_sdk::Internal::JSON::Request.new(
           base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "GET",
           path: "accounts/me",
+          query: query_params,
           request_options: request_options
         )
         begin
@@ -176,6 +182,7 @@ module Whop_sdk
       # @option request_options [Hash{String => Object}] :additional_body_parameters
       # @option request_options [Integer] :timeout_in_seconds
       # @option params [String] :id
+      # @option params [Boolean, nil] :include_trading
       #
       # @example
       #   client.accounts.retrieve(id: "id")
@@ -183,10 +190,14 @@ module Whop_sdk
       # @return [Whop_sdk::Types::Account]
       def retrieve(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
+        query_params = {}
+        query_params["include_trading"] = params[:include_trading] if params.key?(:include_trading)
+
         request = Whop_sdk::Internal::JSON::Request.new(
           base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "GET",
           path: "accounts/#{URI.encode_uri_component(params[:id].to_s)}",
+          query: query_params,
           request_options: request_options
         )
         begin

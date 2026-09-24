@@ -125,6 +125,8 @@ module Whop_sdk
 
       field :total_usd, -> { String }, optional: false, nullable: true
 
+      field :trading, -> { Whop_sdk::Types::TradingAccount }, optional: false, nullable: true
+
       field :use_logo_as_opengraph_image_fallback, -> { Internal::Types::Boolean }, optional: false, nullable: false
 
       field :verification, -> { Internal::Types::Hash[String, Object] }, optional: false, nullable: false

@@ -4,7 +4,9 @@ module Whop_sdk
   module Swaps
     module Types
       class ListSwapsRequest < Internal::Types::Model
-        field :account_id, -> { String }, optional: false, nullable: false
+        field :account_id, -> { String }, optional: true, nullable: false
+
+        field :user_id, -> { String }, optional: true, nullable: false
       end
     end
   end

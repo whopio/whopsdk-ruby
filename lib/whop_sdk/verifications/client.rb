@@ -23,18 +23,20 @@ module Whop_sdk
       # @option request_options [Hash{String => Object}] :additional_query_parameters
       # @option request_options [Hash{String => Object}] :additional_body_parameters
       # @option request_options [Integer] :timeout_in_seconds
-      # @option params [String] :account_id
+      # @option params [String, nil] :account_id
+      # @option params [String, nil] :user_id
       # @option params [Whop_sdk::Verifications::Types::ListVerificationsRequestOrder, nil] :order
       # @option params [Whop_sdk::Verifications::Types::ListVerificationsRequestDirection, nil] :direction
       #
       # @example
-      #   client.verifications.list(account_id: "account_id")
+      #   client.verifications.list
       #
       # @return [Whop_sdk::Verifications::Types::ListVerificationsResponse]
       def list(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
         query_params = {}
         query_params["account_id"] = params[:account_id] if params.key?(:account_id)
+        query_params["user_id"] = params[:user_id] if params.key?(:user_id)
         query_params["order"] = params[:order] if params.key?(:order)
         query_params["direction"] = params[:direction] if params.key?(:direction)
 
@@ -75,17 +77,19 @@ module Whop_sdk
       # @option request_options [Hash{String => Object}] :additional_query_parameters
       # @option request_options [Hash{String => Object}] :additional_body_parameters
       # @option request_options [Integer] :timeout_in_seconds
-      # @option params [String] :account_id
+      # @option params [String, nil] :account_id
+      # @option params [String, nil] :user_id
       #
       # @example
-      #   client.verifications.create(account_id: "account_id")
+      #   client.verifications.create
       #
       # @return [Whop_sdk::Verifications::Types::CreateVerificationsResponse]
       def create(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
-        query_param_names = %i[account_id]
+        query_param_names = %i[account_id user_id]
         query_params = {}
         query_params["account_id"] = params[:account_id] if params.key?(:account_id)
+        query_params["user_id"] = params[:user_id] if params.key?(:user_id)
         params = params.except(*query_param_names)
 
         request = Whop_sdk::Internal::JSON::Request.new(

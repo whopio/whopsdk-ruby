@@ -23,16 +23,18 @@ module Whop_sdk
       # @option request_options [Hash{String => Object}] :additional_query_parameters
       # @option request_options [Hash{String => Object}] :additional_body_parameters
       # @option request_options [Integer] :timeout_in_seconds
-      # @option params [String] :account_id
+      # @option params [String, nil] :account_id
+      # @option params [String, nil] :user_id
       #
       # @example
-      #   client.swaps.list(account_id: "account_id")
+      #   client.swaps.list
       #
       # @return [Whop_sdk::Swaps::Types::ListSwapsResponse]
       def list(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
         query_params = {}
         query_params["account_id"] = params[:account_id] if params.key?(:account_id)
+        query_params["user_id"] = params[:user_id] if params.key?(:user_id)
 
         request = Whop_sdk::Internal::JSON::Request.new(
           base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
@@ -68,7 +70,6 @@ module Whop_sdk
       #
       # @example
       #   client.swaps.create(
-      #     account_id: "biz_xxxxxxxxxxxxxx",
       #     from_token: "usd",
       #     to_token: "cad"
       #   )

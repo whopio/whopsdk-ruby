@@ -15,6 +15,8 @@ module Whop_sdk
         field :status, -> { Whop_sdk::Swaps::Types::ListSwapsResponseDataItemStatus }, optional: false, nullable: false
 
         field :tx_hashes, -> { Internal::Types::Array[String] }, optional: false, nullable: false
+
+        field :user_id, -> { String }, optional: false, nullable: true
       end
     end
   end

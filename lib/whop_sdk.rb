@@ -3351,6 +3351,7 @@ require_relative "whop_sdk/social_accounts/types/connect_social_accounts_request
 require_relative "whop_sdk/social_accounts/types/delete_social_accounts_request"
 require_relative "whop_sdk/social_accounts/types/lead_forms_social_accounts_request"
 require_relative "whop_sdk/social_accounts/types/posts_social_accounts_request"
+require_relative "whop_sdk/social_accounts/types/refresh_social_accounts_request"
 require_relative "whop_sdk/stats/client"
 require_relative "whop_sdk/stats/types/retrieve_stats_request"
 require_relative "whop_sdk/support_channels/client"

@@ -33643,6 +33643,76 @@ client.social_accounts.posts(
 </dl>
 </details>
 
+<details><summary><code>client.social_accounts.<a href="/lib/whop_sdk/social_accounts/client.rb">refresh</a>(id:, request) -> Whop_sdk::Types::SocialAccount</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Refreshes the state of a social account. Use it to clear an `error` that has been resolved.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.social_accounts.refresh(id: "id")
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — The social account (a sacc_ identifier) to refresh.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**account_id:** `String` — The Account (biz_ identifier) the social account is connected to. An account-scoped API key may omit this to default to its own account.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Whop_sdk::SocialAccounts::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Stats
 <details><summary><code>client.stats.<a href="/lib/whop_sdk/stats/client.rb">list</a>() -> Whop_sdk::Stats::Types::ListStatsResponse</code></summary>
 <dl>

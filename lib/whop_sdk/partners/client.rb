@@ -103,6 +103,7 @@ module Whop_sdk
       # @option request_options [Hash{String => Object}] :additional_query_parameters
       # @option request_options [Hash{String => Object}] :additional_body_parameters
       # @option request_options [Integer] :timeout_in_seconds
+      # @option params [String, nil] :query
       # @option params [Boolean, nil] :has_businesses
       # @option params [Boolean, nil] :has_earning_businesses
       # @option params [Integer, nil] :first
@@ -117,6 +118,7 @@ module Whop_sdk
       def referred_users(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
         query_params = {}
+        query_params["query"] = params[:query] if params.key?(:query)
         query_params["has_businesses"] = params[:has_businesses] if params.key?(:has_businesses)
         query_params["has_earning_businesses"] = params[:has_earning_businesses] if params.key?(:has_earning_businesses)
         query_params["first"] = params[:first] if params.key?(:first)

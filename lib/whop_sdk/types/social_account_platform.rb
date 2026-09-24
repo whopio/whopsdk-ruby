@@ -13,6 +13,7 @@ module Whop_sdk
       DISCORD = "discord"
       TELEGRAM = "telegram"
       LINKEDIN = "linkedin"
+      SNAPCHAT = "snapchat"
     end
   end
 end

@@ -9,6 +9,8 @@ module Whop_sdk
         field :cancel_at_period_end, -> { Internal::Types::Boolean }, optional: true, nullable: false
 
         field :metadata, -> { Internal::Types::Hash[String, Object] }, optional: true, nullable: false
+
+        field :payment_method_id, -> { String }, optional: true, nullable: false
       end
     end
   end

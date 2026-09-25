@@ -5,9 +5,13 @@ module Whop_sdk
     module Preferences
       module Types
         class UpdatePreferencesResponseEconomicIntelligenceOffersItem < Internal::Types::Model
-          field :duration_days, -> { Integer }, optional: false, nullable: false
+          field :duration, -> { Integer }, optional: false, nullable: false
+
+          field :duration_unit, -> { Whop_sdk::Accounts::Preferences::Types::UpdatePreferencesResponseEconomicIntelligenceOffersItemDurationUnit }, optional: false, nullable: false
 
           field :fee_percentage, -> { Integer }, optional: false, nullable: false
+
+          field :key, -> { Whop_sdk::Accounts::Preferences::Types::UpdatePreferencesResponseEconomicIntelligenceOffersItemKey }, optional: false, nullable: false
 
           field :recommended, -> { Internal::Types::Boolean }, optional: false, nullable: false
         end

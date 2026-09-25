@@ -63,7 +63,7 @@ module Whop_sdk
         # `ads_certifications` | `ad_campaign:create` |
         # | `cards_auto_top_up`, `cards_notifications` | `payout:account:update` |
         # | `dispute_fighter_enabled` | `payment:dispute` |
-        # | `economic_intelligence_duration_days` | `company:update` |
+        # | `economic_intelligence_duration_key` | `company:update` |
         #
         # When updating preferences from multiple rows, all corresponding scopes are required for the account.
         #

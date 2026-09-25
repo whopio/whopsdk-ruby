@@ -25,6 +25,8 @@ module Whop_sdk
 
       field :economic_intelligence_ends_at, -> { String }, optional: false, nullable: true
 
+      field :economic_intelligence_fee_percentage, -> { Integer }, optional: false, nullable: true
+
       field :economic_intelligence_offers, -> { Internal::Types::Array[Whop_sdk::Types::AccountEconomicIntelligenceOffer] }, optional: false, nullable: true
 
       field :subscription_failure_behavior, -> { Whop_sdk::Types::AccountPreferencesSubscriptionFailureBehavior }, optional: false, nullable: false

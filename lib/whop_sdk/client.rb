@@ -10,7 +10,7 @@ module Whop_sdk
     # @param max_retries [Integer]
     #
     # @return [void]
-    def initialize(token:, base_url: nil, environment: Whop_sdk::Environment::PRODUCTION, api_version_date: "2026-09-24", idempotency_key: nil, max_retries: 2)
+    def initialize(token:, base_url: nil, environment: Whop_sdk::Environment::PRODUCTION, api_version_date: "2026-09-24-1", idempotency_key: nil, max_retries: 2)
       @base_url = base_url
       @environment = environment
 

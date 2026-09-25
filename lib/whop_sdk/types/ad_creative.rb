@@ -9,6 +9,8 @@ module Whop_sdk
 
       field :id, -> { String }, optional: false, nullable: false
 
+      field :language, -> { String }, optional: false, nullable: true
+
       field :media_type, -> { String }, optional: false, nullable: true
 
       field :url, -> { String }, optional: false, nullable: true

@@ -3,6 +3,8 @@
 module Whop_sdk
   module Types
     class ConfirmationToken < Internal::Types::Model
+      field :billing_address, -> { Whop_sdk::Types::PaymentAddress }, optional: false, nullable: true
+
       field :billing_details, -> { Whop_sdk::Types::PaymentBillingDetailsPreview }, optional: false, nullable: true
 
       field :created_at, -> { String }, optional: false, nullable: false

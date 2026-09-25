@@ -10,6 +10,7 @@ module Whop_sdk
       AFFIRM = "affirm"
       AFTERPAY_CLEARPAY = "afterpay_clearpay"
       ALIPAY = "alipay"
+      ALIPAYHK = "alipayhk"
       ALMA = "alma"
       AMAZON_PAY = "amazon_pay"
       APPLE = "apple"

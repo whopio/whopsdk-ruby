@@ -12,6 +12,8 @@ module Whop_sdk
 
         field :email, -> { String }, optional: true, nullable: false
 
+        field :for_ads_billing, -> { Internal::Types::Boolean }, optional: true, nullable: false
+
         field :metadata, -> { Internal::Types::Hash[String, String] }, optional: true, nullable: false
 
         field :payment_method_id, -> { String }, optional: true, nullable: false

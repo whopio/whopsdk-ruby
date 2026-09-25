@@ -19,6 +19,7 @@ module Whop_sdk
       SETUP_APPLE_PAY_DOMAINS = "setup_apple_pay_domains"
       CONFIGURE_TAX_REMITTER = "configure_tax_remitter"
       ADD_VAT_REGISTRATION = "add_vat_registration"
+      ACCEPT_PAYOUT_TERMS = "accept_payout_terms"
       ENABLE_TWO_FACTOR_AUTHENTICATION = "enable_two_factor_authentication"
     end
   end

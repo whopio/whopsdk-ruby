@@ -214,6 +214,47 @@ module Whop_sdk
         end
       end
 
+      # Deletes a connected account directly owned by the authenticated platform account. The account must have no
+      # settled, pending, or reserved balance in any currency and no active, trialing, or past-due memberships. The
+      # account stops resolving immediately, and its products, plans, and team access are removed in the background;
+      # payment history is retained. Deletion cannot be undone through the API. This cannot delete the platform account
+      # itself or an account owned by another platform.
+      #
+      # @param request_options [Hash]
+      # @param params [Hash]
+      # @option request_options [String] :base_url
+      # @option request_options [Hash{String => Object}] :additional_headers
+      # @option request_options [Hash{String => Object}] :additional_query_parameters
+      # @option request_options [Hash{String => Object}] :additional_body_parameters
+      # @option request_options [Integer] :timeout_in_seconds
+      # @option params [String] :id
+      #
+      # @example
+      #   client.accounts.delete(id: "id")
+      #
+      # @return [Whop_sdk::Accounts::Types::DeleteAccountsResponse]
+      def delete(request_options: {}, **params)
+        params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
+        request = Whop_sdk::Internal::JSON::Request.new(
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
+          method: "DELETE",
+          path: "accounts/#{URI.encode_uri_component(params[:id].to_s)}",
+          request_options: request_options
+        )
+        begin
+          response = @client.send(request)
+        rescue Net::HTTPRequestTimeout
+          raise Whop_sdk::Errors::TimeoutError
+        end
+        code = response.code.to_i
+        if code.between?(200, 299)
+          Whop_sdk::Accounts::Types::DeleteAccountsResponse.load(response.body)
+        else
+          error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
+          raise error_class.new(response.body, code: code)
+        end
+      end
+
       # Updates an account. User tokens can update business accounts; Account API keys can update connected accounts.
       # The reserved id `me` — accepted on Retrieve Account — resolves to the requesting account, which an Account API
       # key cannot edit, so updates must name the connected account by its `biz_` id.

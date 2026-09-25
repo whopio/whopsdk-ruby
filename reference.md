@@ -35846,6 +35846,484 @@ client.topups.create(
 </dl>
 </details>
 
+## Trades
+<details><summary><code>client.trades.<a href="/lib/whop_sdk/trades/client.rb">list</a>() -> Whop_sdk::Trades::Types::ListTradesResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists trades you can access, newest first. User credentials see their own trades and those of accounts they belong to, including connected accounts; account credentials see their account and its connected accounts. These are submission records, not fill or position history.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.trades.list
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**account_id:** `String` — Only return trades for this account or user, prefixed `biz_` or `user_`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**status:** `Whop_sdk::Trades::Types::ListTradesRequestStatus` — Only return trades with this submission status.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**operation_type:** `Whop_sdk::Trades::Types::ListTradesRequestOperationType` — Only return trades of this kind, such as `create_orders` for order submissions.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**order:** `Whop_sdk::Trades::Types::ListTradesRequestOrder` — Field to sort by.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**direction:** `Whop_sdk::Trades::Types::ListTradesRequestDirection` — Sort direction.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**first:** `Integer` — Number of results to return from the start of the range.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**after:** `String` — Return results after this cursor. Use `page_info.end_cursor` from the previous response to fetch the next page.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**last:** `Integer` — Number of results to return from the end of the range.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**before:** `String` — Return results before this cursor. Use `page_info.start_cursor` from the previous response to fetch the previous page.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Whop_sdk::Trades::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.trades.<a href="/lib/whop_sdk/trades/client.rb">create</a>(request) -> Whop_sdk::Types::Trade</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Submits perpetual orders from a funded trading wallet. Send several limit orders for a ladder, or attach `take_profit` and `stop_loss` to a single entry order. Whop's builder fee is approved and attached automatically. The returned `trop_` ID identifies the submission, not a position, and `completed` doesn't mean filled: check each order acknowledgement, and read live orders and positions from the account's `trading` field. Requires an `Idempotency-Key`. Early beta: email support@whop.com for access.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.trades.create(
+  account_id: "biz_xxxxxxxxxxxxxx",
+  instrument_type: "perpetual",
+  orders: [{
+    market: "ETH",
+    side: "buy",
+    size: "0.02"
+  }],
+  provider: "hyperliquid"
+)
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**account_id:** `String` — The account or user that owns the trading wallet, prefixed `biz_` or `user_`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**instrument_type:** `Whop_sdk::Trades::Types::CreateTradesRequestInstrumentType` — The kind of instrument to trade.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**metadata:** `Internal::Types::Hash[String, String]` — Free-form string-to-string annotations stored on the trade.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**orders:** `Internal::Types::Array[Whop_sdk::Trades::Types::CreateTradesRequestOrdersItem]` — Orders to submit together. Attached take-profit and stop-loss are supported only with a single entry order.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**provider:** `Whop_sdk::Trades::Types::CreateTradesRequestProvider` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**slippage_bps:** `Integer` — Default slippage cap in basis points for market orders and market-triggered take-profit and stop-loss.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Whop_sdk::Trades::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.trades.<a href="/lib/whop_sdk/trades/client.rb">update_leverage</a>(request) -> Whop_sdk::Types::Trade</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Sets cross or isolated leverage for a perpetual market, up to that market's maximum. Returns a trade recording the submission. Requires an `Idempotency-Key`.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.trades.update_leverage(
+  account_id: "biz_xxxxxxxxxxxxxx",
+  leverage: 5,
+  margin_mode: "cross",
+  market: "ETH",
+  provider: "hyperliquid"
+)
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**account_id:** `String` — The account or user that owns the trading wallet, prefixed `biz_` or `user_`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**leverage:** `Integer` — Leverage multiplier, such as `10` for 10x. Capped at the market's maximum.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**margin_mode:** `Whop_sdk::Trades::Types::UpdateLeverageTradesRequestMarginMode` — `cross` shares margin across positions; `isolated` limits margin to this market's position.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**market:** `String` — Perpetual market on the provider, such as `ETH`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**metadata:** `Internal::Types::Hash[String, String]` — Free-form string-to-string annotations stored on the trade.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**provider:** `Whop_sdk::Trades::Types::UpdateLeverageTradesRequestProvider` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Whop_sdk::Trades::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.trades.<a href="/lib/whop_sdk/trades/client.rb">retrieve</a>(id:) -> Whop_sdk::Types::Trade</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves a trade. Order acknowledgements don't update as orders fill; read live orders and positions from the account's `trading` field. Never resubmit a `submission_unknown` trade with a new idempotency key.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.trades.retrieve(id: "id")
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — Trade ID, prefixed `trop_`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Whop_sdk::Trades::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.trades.<a href="/lib/whop_sdk/trades/client.rb">cancel</a>(id:, request) -> Whop_sdk::Types::Trade</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Cancels every order in an order trade, including attached take-profit and stop-loss. This doesn't close filled positions. Returns a new cancellation trade whose `trade_id` points to the original, which is left unchanged. Cancellation works even while opening new positions is disabled. Requires an `Idempotency-Key`.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.trades.cancel(id: "id")
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — ID of the order trade to cancel, prefixed `trop_`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**metadata:** `Internal::Types::Hash[String, String]` — Free-form string-to-string annotations stored on the trade.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Whop_sdk::Trades::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Transfers
 <details><summary><code>client.transfers.<a href="/lib/whop_sdk/transfers/client.rb">list</a>() -> Whop_sdk::Transfers::Types::ListTransfersResponse</code></summary>
 <dl>

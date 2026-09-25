@@ -7,13 +7,21 @@ module Whop_sdk
 
       field :cancel_at_period_end, -> { Internal::Types::Boolean }, optional: false, nullable: false
 
+      field :canceled_at, -> { String }, optional: false, nullable: true
+
+      field :cancellation_reason, -> { String }, optional: false, nullable: true
+
       field :created_at, -> { String }, optional: false, nullable: false
 
       field :current_period_end, -> { String }, optional: false, nullable: true
 
+      field :current_period_start, -> { String }, optional: false, nullable: true
+
       field :id, -> { String }, optional: false, nullable: false
 
       field :license_key, -> { String }, optional: false, nullable: true
+
+      field :manage_url, -> { String }, optional: false, nullable: true
 
       field :member, -> { Whop_sdk::Types::MembershipMember }, optional: false, nullable: true
 

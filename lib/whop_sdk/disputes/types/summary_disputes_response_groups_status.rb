@@ -14,6 +14,12 @@ module Whop_sdk
 
         field :under_review, -> { Integer }, optional: false, nullable: false
 
+        field :warning_closed, -> { Integer }, optional: false, nullable: false
+
+        field :warning_needs_response, -> { Integer }, optional: false, nullable: false
+
+        field :warning_under_review, -> { Integer }, optional: false, nullable: false
+
         field :won, -> { Integer }, optional: false, nullable: false
       end
     end

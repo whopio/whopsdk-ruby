@@ -32775,6 +32775,14 @@ client.setup_intents.create(account_id: "biz_xxxxxxxxxxxxxx")
 <dl>
 <dd>
 
+**for_ads_billing:** `Internal::Types::Boolean` — Set to `true` when saving a card to pay for Whop Ads on `account_id`. The card is verified by Whop Ads, the merchant that charges it, which helps minimize security declines on ad payments. Requires `ad_campaign:create` on `account_id`. Defaults to `false`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **metadata:** `Internal::Types::Hash[String, String]` — Custom metadata to attach to the setup intent. Returned on the setup intent and its webhooks.
     
 </dd>

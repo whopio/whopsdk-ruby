@@ -14,11 +14,8 @@ module Whop_sdk
         @environment = environment
       end
 
-      # Lists requests sent by an eligible partner and requests for accounts where the authenticated user currently
-      # holds the owner role. Enrolled, non-suspended partners can read their links without verification; reading their
-      # sent manual requests requires verification. Filters narrow that combined view. Use a Whop login session or an
-      # account API key with `partner:referral_request:read`. The key must have been created by the account's current
-      # owner. Account API keys return their owner's sent requests and incoming requests for the key's account.
+      # Lists your referral links and attribution requests, including incoming requests for you or businesses you own,
+      # with filters for recipient, partner, type, and status.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -28,6 +25,7 @@ module Whop_sdk
       # @option request_options [Hash{String => Object}] :additional_body_parameters
       # @option request_options [Integer] :timeout_in_seconds
       # @option params [String, nil] :account_id
+      # @option params [String, nil] :target_user_id
       # @option params [String, nil] :partner_id
       # @option params [Whop_sdk::PartnerReferralRequests::Types::ListPartnerReferralRequestsRequestStatus, nil] :status
       # @option params [Whop_sdk::PartnerReferralRequests::Types::ListPartnerReferralRequestsRequestRequestType, nil] :request_type
@@ -46,6 +44,7 @@ module Whop_sdk
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
         query_params = {}
         query_params["account_id"] = params[:account_id] if params.key?(:account_id)
+        query_params["target_user_id"] = params[:target_user_id] if params.key?(:target_user_id)
         query_params["partner_id"] = params[:partner_id] if params.key?(:partner_id)
         query_params["status"] = params[:status] if params.key?(:status)
         query_params["request_type"] = params[:request_type] if params.key?(:request_type)
@@ -85,16 +84,8 @@ module Whop_sdk
         end
       end
 
-      # Creates a pending manual request for an existing business as the authenticated, enrolled, verified Whop partner.
-      # Provide exactly one of account_id or account_url. Whop business and product links resolve to their business. A
-      # business owner must accept before attribution changes. An existing pending manual request from the same partner
-      # returns 200; a new request returns 201. Alternatively, send request_type=link without a code, business, or
-      # redemption limit to get your oldest saved referral link, or create one with a randomly generated code when none
-      # exists. Provide a custom code or redemption limit to create a new link; omitted codes are generated randomly.
-      # Only authorized staff may configure rewards or select another partner. Link creation requires partner enrollment
-      # and a non-suspended account, but not verification. Use a Whop login session or an account API key with
-      # `partner:referral_request:create`. The key must have been created by the account's current owner and acts as
-      # that owner.
+      # Creates a referral link or sends a verified partner's attribution request to an existing business or enrolled
+      # partner for approval.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::PartnerReferralRequests::Types::CreatePartnerReferralRequestsRequestBody]
@@ -131,10 +122,8 @@ module Whop_sdk
         end
       end
 
-      # Retrieves a request visible to its eligible sender or a current owner of the receiving account. Enrolled,
-      # non-suspended partners can read their links without verification. Use a Whop login session or an account API key
-      # with `partner:referral_request:read`. The key must have been created by the account's current owner. Account API
-      # keys can retrieve their owner's sent requests and incoming requests for the key's account.
+      # Retrieves a referral link or attribution request by ID, including its partner, recipient, approval status, and
+      # referral code when present.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -171,11 +160,8 @@ module Whop_sdk
         end
       end
 
-      # Accepts a pending manual request as a current business owner and attributes the business to the verified
-      # requesting partner. Existing active attribution blocks acceptance. Repeating acceptance returns the accepted
-      # request. Use a Whop login session or an account API key with `partner:referral_request:accept`. The key must
-      # have been created by the account's current owner. Account API keys can respond only to requests for the key's
-      # account.
+      # Accepts a pending attribution request as the receiving user or business owner, assigning the requesting partner
+      # as that user's or business's referrer.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -212,10 +198,8 @@ module Whop_sdk
         end
       end
 
-      # Cancels a pending manual request as its eligible requesting partner. Repeating cancellation returns the
-      # cancelled request. Use a Whop login session or an account API key with `partner:referral_request:cancel`. The
-      # key must have been created by the account's current owner. Account API keys cancel requests as their account
-      # owner.
+      # Cancels a pending attribution request you sent so the recipient can no longer accept it, and returns the
+      # cancelled request.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -252,9 +236,8 @@ module Whop_sdk
         end
       end
 
-      # Denies a pending manual request as a current business owner. Repeating denial returns the denied request. Use a
-      # Whop login session or an account API key with `partner:referral_request:decline`. The key must have been created
-      # by the account's current owner. Account API keys can respond only to requests for the key's account.
+      # Declines a pending attribution request for you or a business you own, marking it as denied without assigning the
+      # requesting partner as a referrer.
       #
       # @param request_options [Hash]
       # @param params [Hash]

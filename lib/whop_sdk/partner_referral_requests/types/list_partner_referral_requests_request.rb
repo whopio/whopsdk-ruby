@@ -6,6 +6,8 @@ module Whop_sdk
       class ListPartnerReferralRequestsRequest < Internal::Types::Model
         field :account_id, -> { String }, optional: true, nullable: false
 
+        field :target_user_id, -> { String }, optional: true, nullable: false
+
         field :partner_id, -> { String }, optional: true, nullable: false
 
         field :status, -> { Whop_sdk::PartnerReferralRequests::Types::ListPartnerReferralRequestsRequestStatus }, optional: true, nullable: false

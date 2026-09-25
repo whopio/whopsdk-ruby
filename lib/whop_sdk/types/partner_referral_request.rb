@@ -22,6 +22,8 @@ module Whop_sdk
       field :status, -> { Whop_sdk::Types::PartnerReferralRequestStatus }, optional: false, nullable: true
 
       field :updated_at, -> { String }, optional: false, nullable: false
+
+      field :user, -> { Whop_sdk::Types::UserSummary }, optional: false, nullable: true
     end
   end
 end

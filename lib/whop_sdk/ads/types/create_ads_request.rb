@@ -12,11 +12,11 @@ module Whop_sdk
 
         field :creatives, -> { Internal::Types::Array[Whop_sdk::Ads::Types::CreateAdsRequestCreativesItem] }, optional: true, nullable: false
 
-        field :descriptions, -> { Internal::Types::Array[String] }, optional: true, nullable: false
+        field :descriptions, -> { Internal::Types::Array[Whop_sdk::Ads::Types::CreateAdsRequestDescriptionsItem] }, optional: true, nullable: false
 
         field :existing_post_id, -> { String }, optional: true, nullable: false
 
-        field :headlines, -> { Internal::Types::Array[String] }, optional: true, nullable: false
+        field :headlines, -> { Internal::Types::Array[Whop_sdk::Ads::Types::CreateAdsRequestHeadlinesItem] }, optional: true, nullable: false
 
         field :lead_form, -> { Whop_sdk::Ads::Types::CreateAdsRequestLeadForm }, optional: true, nullable: false
 
@@ -30,11 +30,13 @@ module Whop_sdk
 
         field :post_source, -> { Whop_sdk::Ads::Types::CreateAdsRequestPostSource }, optional: true, nullable: false
 
-        field :primary_texts, -> { Internal::Types::Array[String] }, optional: true, nullable: false
+        field :primary_texts, -> { Internal::Types::Array[Whop_sdk::Ads::Types::CreateAdsRequestPrimaryTextsItem] }, optional: true, nullable: false
 
         field :social_accounts, -> { Internal::Types::Array[Whop_sdk::Ads::Types::CreateAdsRequestSocialAccountsItem] }, optional: true, nullable: false
 
         field :title, -> { String }, optional: true, nullable: false
+
+        field :translations, -> { Whop_sdk::Ads::Types::CreateAdsRequestTranslations }, optional: true, nullable: false
 
         field :url, -> { String }, optional: true, nullable: false
 

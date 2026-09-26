@@ -14,8 +14,8 @@ module Whop_sdk
         LTE = "lte"
         IN = "in"
         NOT_IN = "not_in"
-        CONTAINS = "contains"
         STARTS_WITH = "starts_with"
+        CONTAINS = "contains"
         ENDS_WITH = "ends_with"
         IN_CIDR = "in_cidr"
       end

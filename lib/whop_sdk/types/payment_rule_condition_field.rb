@@ -8,6 +8,7 @@ module Whop_sdk
       RISK_SCORE = "risk_score"
       AMOUNT_IN_USD = "amount_in_usd"
       CARD_COUNTRY = "card_country"
+      CARD_BIN = "card_bin"
       CUSTOMER_EMAIL = "customer_email"
       IP_ADDRESS = "ip_address"
     end

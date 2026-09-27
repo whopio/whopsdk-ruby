@@ -12,6 +12,8 @@ module Whop_sdk
       field :profile_picture, -> { Whop_sdk::Types::UserProfilePicture }, optional: false, nullable: false
 
       field :username, -> { String }, optional: false, nullable: false
+
+      field :whop_partner_verified_at, -> { String }, optional: false, nullable: true
     end
   end
 end

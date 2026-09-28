@@ -87,9 +87,9 @@ module Whop_sdk
         end
       end
 
-      # Joins a free waitlist plan as the authenticated user. Requires waitlist_entry:create. Repeated joins return the
-      # existing pending entry, or an approved entry with a valid membership. Paid plans are rejected; no payment method
-      # is collected and no membership is granted.
+      # Joins a free waitlist variant as the authenticated user. Requires waitlist_entry:create. Repeated joins return
+      # the existing pending entry, or an approved entry with a valid membership. Paid variants are rejected; no payment
+      # method is collected and no membership is granted.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::WaitlistEntries::Types::CreateWaitlistEntriesRequest]
@@ -126,7 +126,7 @@ module Whop_sdk
         end
       end
 
-      # Queues approval of every pending signup for an account, optionally narrowed to a plan. Requires
+      # Queues approval of every pending signup for an account, optionally narrowed to a variant. Requires
       # plan:waitlist:manage. Paid signups may charge saved payment methods. Approval runs asynchronously: list signups
       # with `status` set to `pending` to follow progress, and retrieve a signup to read its outcome. Signups created
       # after this request are excluded.

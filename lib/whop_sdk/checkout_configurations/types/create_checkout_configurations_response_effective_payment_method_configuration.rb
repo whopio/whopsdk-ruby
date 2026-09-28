@@ -4,8 +4,8 @@ module Whop_sdk
   module CheckoutConfigurations
     module Types
       # The configuration governing a checkout mounted from this configuration, resolved through every layer (its own
-      # overrides, the plan's, and the account's) — the shape a session's `payment_method_configuration` carries. Apply
-      # it over the payment method types catalogue for the offerable set. `null` means platform defaults;
+      # overrides, the variant's, and the account's) — the shape a session's `payment_method_configuration` carries.
+      # Apply it over the payment method types catalogue for the offerable set. `null` means platform defaults;
       # `payment_method_configuration` stays this configuration's own editable override.
       class CreateCheckoutConfigurationsResponseEffectivePaymentMethodConfiguration < Internal::Types::Model
         field :disabled, -> { Internal::Types::Array[String] }, optional: true, nullable: false

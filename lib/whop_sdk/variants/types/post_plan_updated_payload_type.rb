@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Whop_sdk
-  module Plans
+  module Variants
     module Types
       module PostPlanUpdatedPayloadType
         extend Whop_sdk::Internal::Types::Enum

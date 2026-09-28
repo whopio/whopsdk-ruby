@@ -14,8 +14,7 @@ module Whop_sdk
         @environment = environment
       end
 
-      # Returns a paginated list of plans. Omit `account_id` and pass `product_ids` to list a product's public buyable
-      # plans.
+      # Deprecated compatibility endpoint. List variants with `GET /variants` instead.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -39,12 +38,7 @@ module Whop_sdk
       # @option params [String, nil] :before
       #
       # @example
-      #   client.plans.list(
-      #     release_methods: ["buy_now"],
-      #     visibilities: ["visible"],
-      #     plan_types: ["renewal"],
-      #     product_ids: ["prod_xxxxxxxxxxxxxx"]
-      #   )
+      #   client.plans.list
       #
       # @return [Whop_sdk::Plans::Types::ListPlansResponse]
       def list(request_options: {}, **params)
@@ -93,8 +87,7 @@ module Whop_sdk
         end
       end
 
-      # Create a new pricing plan for a product. The plan defines the billing interval, price, and availability for
-      # customers.
+      # Deprecated compatibility endpoint. Create variants with `POST /variants` instead.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::Plans::Types::CreatePlansRequest]
@@ -131,7 +124,7 @@ module Whop_sdk
         end
       end
 
-      # Retrieves the details of an existing plan.
+      # Deprecated compatibility endpoint. Retrieve variants with `GET /variants/{id}` instead.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -168,8 +161,7 @@ module Whop_sdk
         end
       end
 
-      # Delete a plan from a product. It stops selling immediately; existing memberships on this plan will not be
-      # affected.
+      # Deprecated compatibility endpoint. Delete variants with `DELETE /variants/{id}` instead.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -206,7 +198,7 @@ module Whop_sdk
         end
       end
 
-      # Update a plan's pricing, billing interval, visibility, stock, and other settings.
+      # Deprecated compatibility endpoint. Update variants with `PATCH /variants/{id}` instead.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::Plans::Types::UpdatePlansRequest]
@@ -248,7 +240,7 @@ module Whop_sdk
         end
       end
 
-      # Previews tax for a plan before checkout, based on the buyer's location.
+      # Deprecated compatibility endpoint. Preview variant tax with `POST /variants/{id}/calculate_tax` instead.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::Plans::Types::CalculateTaxPlansRequest]
@@ -260,13 +252,7 @@ module Whop_sdk
       # @option params [String] :id
       #
       # @example
-      #   client.plans.calculate_tax(
-      #     id: "id",
-      #     address: {
-      #       country: "DE",
-      #       postal_code: "10115"
-      #     }
-      #   )
+      #   client.plans.calculate_tax(id: "id")
       #
       # @return [Whop_sdk::Plans::Types::CalculateTaxPlansResponse]
       def calculate_tax(request_options: {}, **params)

@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
 module Whop_sdk
-  module Plans
+  module Variants
     module Types
-      module PostPlanCreatedPayloadAPIVersion
+      module ListVariantsRequestDirection
         extend Whop_sdk::Internal::Types::Enum
 
-        V1 = "v1"
+        ASC = "asc"
+        DESC = "desc"
       end
     end
   end

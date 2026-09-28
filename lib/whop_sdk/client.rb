@@ -448,6 +448,11 @@ module Whop_sdk
       @users ||= Whop_sdk::Users::Client.new(client: @raw_client, base_url: @base_url, environment: @environment)
     end
 
+    # @return [Whop_sdk::Variants::Client]
+    def variants
+      @variants ||= Whop_sdk::Variants::Client.new(client: @raw_client, base_url: @base_url, environment: @environment)
+    end
+
     # @return [Whop_sdk::Verifications::Client]
     def verifications
       @verifications ||= Whop_sdk::Verifications::Client.new(client: @raw_client, base_url: @base_url, environment: @environment)

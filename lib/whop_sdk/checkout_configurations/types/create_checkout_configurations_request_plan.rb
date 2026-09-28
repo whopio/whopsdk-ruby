@@ -3,7 +3,7 @@
 module Whop_sdk
   module CheckoutConfigurations
     module Types
-      # Plan attributes used to create or find a plan for this checkout configuration. Mutually exclusive with
+      # Variant attributes used to create or find a variant for this checkout configuration. Mutually exclusive with
       # `plan_id`.
       class CreateCheckoutConfigurationsRequestPlan < Internal::Types::Model
         field :account_id, -> { String }, optional: true, nullable: false

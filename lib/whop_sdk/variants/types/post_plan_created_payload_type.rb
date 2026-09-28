@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 module Whop_sdk
-  module Plans
+  module Variants
     module Types
-      module PostPlanUpdatedPayloadAPIVersion
+      module PostPlanCreatedPayloadType
         extend Whop_sdk::Internal::Types::Enum
 
-        V1 = "v1"
+        PLAN_CREATED = "plan.created"
       end
     end
   end

@@ -1,16 +1,16 @@
 # frozen_string_literal: true
 
 module Whop_sdk
-  module Plans
+  module Variants
     module Types
-      class PostPlanCreatedPayload < Internal::Types::Model
+      class PostPlanDeletedPayload < Internal::Types::Model
         field :account_id, -> { String }, optional: true, nullable: false
 
-        field :api_version, -> { Whop_sdk::Plans::Types::PostPlanCreatedPayloadAPIVersion }, optional: false, nullable: false
+        field :api_version, -> { Whop_sdk::Variants::Types::PostPlanDeletedPayloadAPIVersion }, optional: false, nullable: false
 
         field :api_version_date, -> { String }, optional: false, nullable: true
 
-        field :data, -> { Whop_sdk::Types::Plan }, optional: false, nullable: false
+        field :data, -> { Whop_sdk::Types::Variant }, optional: false, nullable: false
 
         field :id, -> { String }, optional: false, nullable: false
 
@@ -18,7 +18,7 @@ module Whop_sdk
 
         field :timestamp, -> { String }, optional: false, nullable: false
 
-        field :type, -> { Whop_sdk::Plans::Types::PostPlanCreatedPayloadType }, optional: false, nullable: false
+        field :type, -> { Whop_sdk::Variants::Types::PostPlanDeletedPayloadType }, optional: false, nullable: false
       end
     end
   end

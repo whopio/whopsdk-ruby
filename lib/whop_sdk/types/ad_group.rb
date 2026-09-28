@@ -69,6 +69,8 @@ module Whop_sdk
 
       field :custom_event_values, -> { Internal::Types::Hash[String, Object] }, optional: false, nullable: false
 
+      field :delivery_schedule, -> { Whop_sdk::Types::AdGroupDeliverySchedule }, optional: false, nullable: true
+
       field :delivery_status, -> { Whop_sdk::Types::AdGroupDeliveryStatus }, optional: false, nullable: false
 
       field :demographics, -> { Whop_sdk::Types::AdGroupDemographics }, optional: false, nullable: false

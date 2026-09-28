@@ -20,6 +20,8 @@ module Whop_sdk
 
         field :conversion_location, -> { Whop_sdk::AdGroups::Types::UpdateAdGroupsRequestConversionLocation }, optional: true, nullable: false
 
+        field :delivery_schedule, -> { Whop_sdk::AdGroups::Types::UpdateAdGroupsRequestDeliverySchedule }, optional: true, nullable: false
+
         field :demographics, -> { Whop_sdk::Types::AdGroupDemographicsBody }, optional: true, nullable: false
 
         field :desired_cost_per_result, -> { Integer }, optional: true, nullable: false

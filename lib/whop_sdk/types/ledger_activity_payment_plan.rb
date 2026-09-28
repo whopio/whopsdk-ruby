@@ -2,7 +2,7 @@
 
 module Whop_sdk
   module Types
-    # Plan associated with the payment, when applicable.
+    # Variant associated with the payment, when applicable.
     class LedgerActivityPaymentPlan < Internal::Types::Model
       field :id, -> { String }, optional: false, nullable: false
 

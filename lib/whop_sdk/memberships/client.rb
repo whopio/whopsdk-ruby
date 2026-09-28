@@ -89,8 +89,8 @@ module Whop_sdk
         end
       end
 
-      # Sends an email inviting one recipient to join the account through a free plan. Identify the recipient by exactly
-      # one of `user_id` or `email`. The invitation is bound to that recipient; after signing in, accepting it
+      # Sends an email inviting one recipient to join the account through a free variant. Identify the recipient by
+      # exactly one of `user_id` or `email`. The invitation is bound to that recipient; after signing in, accepting it
       # immediately grants the membership without checkout. This Experimental endpoint is available only to accounts
       # enabled for membership invitations.
       #

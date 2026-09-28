@@ -4,8 +4,9 @@ module Whop_sdk
   module Payments
     module Direct
       module Types
-        # Find or create a plan for this payment. Mutually exclusive with `plan_id` and `line_items`. Creating a plan
-        # requires plan:create; creating or updating a product requires the corresponding product permission.
+        # Find or create a variant for this payment through the compatibility input `plan`. Mutually exclusive with
+        # `plan_id` and `line_items`. Creating a variant requires `plan:create`; creating or updating a product requires
+        # the corresponding product permission.
         class CreateDirectRequestPlan < Internal::Types::Model
           field :application_fee_amount, -> { Integer }, optional: true, nullable: false
 

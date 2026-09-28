@@ -3,8 +3,6 @@
 module Whop_sdk
   module Plans
     module Types
-      # Buyer billing address used for tax calculation. Provide either `address.country` or `ip_address`; include state
-      # and postal code when available for more accurate results.
       class CalculateTaxPlansRequestAddress < Internal::Types::Model
         field :city, -> { String }, optional: true, nullable: false
 

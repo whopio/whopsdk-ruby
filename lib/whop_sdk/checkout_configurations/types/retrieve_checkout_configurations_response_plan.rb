@@ -3,7 +3,7 @@
 module Whop_sdk
   module CheckoutConfigurations
     module Types
-      # Plan used for payment checkout. `null` in setup mode.
+      # Variant used for payment checkout. `null` in setup mode.
       class RetrieveCheckoutConfigurationsResponsePlan < Internal::Types::Model
         field :adaptive_pricing_enabled, -> { Internal::Types::Boolean }, optional: false, nullable: false
 

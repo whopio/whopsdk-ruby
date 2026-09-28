@@ -3,7 +3,7 @@
 module Whop_sdk
   module CheckoutConfigurations
     module Types
-      # Payment method overrides for this checkout. `null` when it uses the plan or platform defaults.
+      # Payment method overrides for this checkout. `null` when it uses the variant or platform defaults.
       class CreateCheckoutConfigurationsResponsePaymentMethodConfiguration < Internal::Types::Model
         field :disabled, -> { Internal::Types::Array[String] }, optional: true, nullable: false
 

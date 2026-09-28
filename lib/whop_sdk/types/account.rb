@@ -73,6 +73,8 @@ module Whop_sdk
 
       field :payment_controls, -> { Whop_sdk::Types::AccountPaymentControls }, optional: false, nullable: true
 
+      field :platform_credits, -> { Internal::Types::Array[Whop_sdk::Types::Money] }, optional: false, nullable: false
+
       field :privacy_policy, -> { Whop_sdk::Types::File }, optional: false, nullable: true
 
       field :product_tax_code, -> { Internal::Types::Hash[String, Object] }, optional: false, nullable: true

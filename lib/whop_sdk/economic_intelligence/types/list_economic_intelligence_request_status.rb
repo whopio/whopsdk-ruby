@@ -9,7 +9,9 @@ module Whop_sdk
         QUEUED = "queued"
         PENDING = "pending"
         READY = "ready"
+        RUNNING = "running"
         EXECUTED = "executed"
+        INCOMPLETE = "incomplete"
         SUPERSEDED = "superseded"
       end
     end

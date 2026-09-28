@@ -9,9 +9,9 @@ module Whop_sdk
 
           field :client_id, -> { String }, optional: false, nullable: false
 
-          field :code_challenge, -> { String }, optional: false, nullable: false
+          field :code_challenge, -> { String }, optional: true, nullable: false
 
-          field :code_challenge_method, -> { Whop_sdk::Users::OauthGrants::Types::CreateOauthGrantsRequestCodeChallengeMethod }, optional: false, nullable: false
+          field :code_challenge_method, -> { Whop_sdk::Users::OauthGrants::Types::CreateOauthGrantsRequestCodeChallengeMethod }, optional: true, nullable: false
 
           field :consent_shown, -> { Internal::Types::Boolean }, optional: true, nullable: false
 

@@ -33841,6 +33841,254 @@ client.social_accounts.lead_forms(
 </dl>
 </details>
 
+<details><summary><code>client.social_accounts.<a href="/lib/whop_sdk/social_accounts/client.rb">partners</a>(id:) -> Whop_sdk::SocialAccounts::Types::PartnersSocialAccountsResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists the creators an Instagram account runs partnership ads with, and where each creator's permission stands.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.social_accounts.partners(id: "id")
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — The Instagram account (a sacc_ identifier) the partners run partnership ads with.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**account_id:** `String` — The Account (biz_ identifier) that advertises as the Instagram account. An account-scoped API key may omit this to default to its own account.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**first:** `Integer` — Number of results to return from the start of the range.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**after:** `String` — Return results after this cursor. Use `page_info.end_cursor` from the previous response to fetch the next page.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Whop_sdk::SocialAccounts::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.social_accounts.<a href="/lib/whop_sdk/social_accounts/client.rb">add_partner</a>(id:, request) -> Whop_sdk::Types::SocialAccount</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Invites an Instagram creator to run partnership ads with an Instagram account. The creator approves the invitation in the Instagram app, and `partnership_status` stays `pending` until they do; [refresh](/api-reference/beta/social-accounts/refresh) the partner to pick up their answer.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.social_accounts.add_partner(
+  id: "id",
+  username: "@luverahealth"
+)
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — The Instagram account (a sacc_ identifier) the partners run partnership ads with.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**account_id:** `String` — The Account (biz_ identifier) that advertises as the Instagram account. An account-scoped API key may omit this to default to its own account.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**username:** `String` — The creator's Instagram username, with or without the leading `@`. The creator needs a professional (Business or Creator) Instagram account.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Whop_sdk::SocialAccounts::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.social_accounts.<a href="/lib/whop_sdk/social_accounts/client.rb">remove_partner</a>(id:, partner_id:) -> Whop_sdk::SocialAccounts::Types::RemovePartnerSocialAccountsResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Revokes a creator's permission to run partnership ads with an Instagram account. Every account that advertises as the Instagram account loses the partner, since the permission belongs to the Instagram account.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.social_accounts.remove_partner(
+  id: "id",
+  partner_id: "partner_id"
+)
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — The Instagram account (a sacc_ identifier) the partner runs partnership ads with.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**partner_id:** `String` — The partner creator's social account (a sacc_ identifier).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**account_id:** `String` — The Account (biz_ identifier) that advertises as the Instagram account. An account-scoped API key may omit this to default to its own account.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Whop_sdk::SocialAccounts::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.social_accounts.<a href="/lib/whop_sdk/social_accounts/client.rb">posts</a>(id:) -> Whop_sdk::SocialAccounts::Types::PostsSocialAccountsResponse</code></summary>
 <dl>
 <dd>

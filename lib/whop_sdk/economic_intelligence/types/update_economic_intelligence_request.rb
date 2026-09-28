@@ -10,6 +10,8 @@ module Whop_sdk
 
         field :input, -> { String }, optional: true, nullable: false
 
+        field :result_url, -> { String }, optional: true, nullable: false
+
         field :sentiment, -> { Whop_sdk::EconomicIntelligence::Types::UpdateEconomicIntelligenceRequestSentiment }, optional: true, nullable: false
 
         field :status, -> { Whop_sdk::EconomicIntelligence::Types::UpdateEconomicIntelligenceRequestStatus }, optional: true, nullable: false

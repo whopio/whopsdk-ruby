@@ -6,8 +6,11 @@ module Whop_sdk
       module UpdateEconomicIntelligenceRequestStatus
         extend Whop_sdk::Internal::Types::Enum
 
+        RUNNING = "running"
         EXECUTED = "executed"
+        INCOMPLETE = "incomplete"
         SUPERSEDED = "superseded"
+        ACKNOWLEDGED = "acknowledged"
       end
     end
   end

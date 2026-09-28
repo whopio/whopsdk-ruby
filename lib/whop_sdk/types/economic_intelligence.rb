@@ -5,6 +5,8 @@ module Whop_sdk
     class EconomicIntelligence < Internal::Types::Model
       field :account_id, -> { String }, optional: false, nullable: true
 
+      field :acknowledged_at, -> { String }, optional: false, nullable: true
+
       field :action_type, -> { String }, optional: false, nullable: true
 
       field :ai_chat_id, -> { String }, optional: false, nullable: true
@@ -22,6 +24,14 @@ module Whop_sdk
       field :prompt, -> { String }, optional: false, nullable: true
 
       field :reasoning, -> { String }, optional: false, nullable: true
+
+      field :result_url, -> { String }, optional: false, nullable: true
+
+      field :run_by_user_id, -> { String }, optional: false, nullable: true
+
+      field :run_ended_at, -> { String }, optional: false, nullable: true
+
+      field :run_started_at, -> { String }, optional: false, nullable: true
 
       field :sentiment, -> { Whop_sdk::Types::EconomicIntelligenceSentiment }, optional: false, nullable: true
 

@@ -94,7 +94,8 @@ module Whop_sdk
       end
 
       # Lists the users the caller referred onto Whop, newest first by default, each with the caller's total affiliate
-      # earnings from that user across all tiers. Earnings sorting uses cached totals.
+      # earnings from that user across all tiers. Earnings sorting uses cached totals. Authorized staff can set
+      # user_id=global to list referrals across partners, with earnings for each user's current primary referrer.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -103,6 +104,9 @@ module Whop_sdk
       # @option request_options [Hash{String => Object}] :additional_query_parameters
       # @option request_options [Hash{String => Object}] :additional_body_parameters
       # @option request_options [Integer] :timeout_in_seconds
+      # @option params [Whop_sdk::Partners::Types::ReferredUsersPartnersRequestUserID, nil] :user_id
+      # @option params [String, nil] :earning_partner_id
+      # @option params [String, nil] :earning_partner_username
       # @option params [String, nil] :query
       # @option params [Boolean, nil] :has_businesses
       # @option params [Boolean, nil] :has_earning_businesses
@@ -120,6 +124,9 @@ module Whop_sdk
       def referred_users(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
         query_params = {}
+        query_params["user_id"] = params[:user_id] if params.key?(:user_id)
+        query_params["earning_partner_id"] = params[:earning_partner_id] if params.key?(:earning_partner_id)
+        query_params["earning_partner_username"] = params[:earning_partner_username] if params.key?(:earning_partner_username)
         query_params["query"] = params[:query] if params.key?(:query)
         query_params["has_businesses"] = params[:has_businesses] if params.key?(:has_businesses)
         query_params["has_earning_businesses"] = params[:has_earning_businesses] if params.key?(:has_earning_businesses)

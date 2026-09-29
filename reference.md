@@ -24663,7 +24663,7 @@ client.partners.leaderboard
 <dl>
 <dd>
 
-Lists the users the caller referred onto Whop, newest first by default, each with the caller's total affiliate earnings from that user across all tiers. Earnings sorting uses cached totals.
+Lists the users the caller referred onto Whop, newest first by default, each with the caller's total affiliate earnings from that user across all tiers. Earnings sorting uses cached totals. Authorized staff can set user_id=global to list referrals across partners, with earnings for each user's current primary referrer.
 </dd>
 </dl>
 </dd>
@@ -24693,7 +24693,31 @@ client.partners.referred_users
 <dl>
 <dd>
 
-**query:** `String` — Search referred users by name or username.
+**user_id:** `Whop_sdk::Partners::Types::ReferredUsersPartnersRequestUserID` — Set to global to view referred users across partners with each primary referrer's cached total earnings. Requires an admin or partner manager session; OAuth tokens and company API keys cannot use global mode. Optionally narrow to one earning_partner_id or earning_partner_username.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**earning_partner_id:** `String` — The selected referring partner's user_ ID. Requires user_id=global; cannot be combined with earning_partner_username.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**earning_partner_username:** `String` — The selected referring partner's exact username. Requires user_id=global; cannot be combined with earning_partner_id.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**query:** `String` — Search referred users by name or username. In global mode, matches the beginning of usernames only.
     
 </dd>
 </dl>
@@ -24717,7 +24741,7 @@ client.partners.referred_users
 <dl>
 <dd>
 
-**order:** `Whop_sdk::Partners::Types::ReferredUsersPartnersRequestOrder` — The field to sort by. created_at uses the user's signup date; earnings_usd uses the caller's cached total affiliate earnings from that user.
+**order:** `Whop_sdk::Partners::Types::ReferredUsersPartnersRequestOrder` — The field to sort by. created_at uses the user's signup date; earnings_usd uses the current primary referrer's cached total affiliate earnings from that user.
     
 </dd>
 </dl>

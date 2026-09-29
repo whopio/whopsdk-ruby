@@ -17,6 +17,7 @@ module Whop_sdk
       FRAUD_SCREENING = "fraud_screening"
       AUTHORIZATION = "authorization"
       INSTALLMENT = "installment"
+      DEPOSIT = "deposit"
     end
   end
 end

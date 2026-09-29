@@ -93,8 +93,8 @@ module Whop_sdk
         end
       end
 
-      # Lists the users the caller referred onto Whop (newest first), each with the second-tier earnings the caller has
-      # made from that user's businesses.
+      # Lists the users the caller referred onto Whop, newest first by default, each with the caller's total affiliate
+      # earnings from that user across all tiers. Earnings sorting uses cached totals.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -106,6 +106,8 @@ module Whop_sdk
       # @option params [String, nil] :query
       # @option params [Boolean, nil] :has_businesses
       # @option params [Boolean, nil] :has_earning_businesses
+      # @option params [Whop_sdk::Partners::Types::ReferredUsersPartnersRequestOrder, nil] :order
+      # @option params [Whop_sdk::Partners::Types::ReferredUsersPartnersRequestDirection, nil] :direction
       # @option params [Integer, nil] :first
       # @option params [String, nil] :after
       # @option params [Integer, nil] :last
@@ -121,6 +123,8 @@ module Whop_sdk
         query_params["query"] = params[:query] if params.key?(:query)
         query_params["has_businesses"] = params[:has_businesses] if params.key?(:has_businesses)
         query_params["has_earning_businesses"] = params[:has_earning_businesses] if params.key?(:has_earning_businesses)
+        query_params["order"] = params[:order] if params.key?(:order)
+        query_params["direction"] = params[:direction] if params.key?(:direction)
         query_params["first"] = params[:first] if params.key?(:first)
         query_params["after"] = params[:after] if params.key?(:after)
         query_params["last"] = params[:last] if params.key?(:last)

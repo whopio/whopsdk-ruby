@@ -10,6 +10,10 @@ module Whop_sdk
 
         field :has_earning_businesses, -> { Internal::Types::Boolean }, optional: true, nullable: false
 
+        field :order, -> { Whop_sdk::Partners::Types::ReferredUsersPartnersRequestOrder }, optional: true, nullable: false
+
+        field :direction, -> { Whop_sdk::Partners::Types::ReferredUsersPartnersRequestDirection }, optional: true, nullable: false
+
         field :first, -> { Integer }, optional: true, nullable: false
 
         field :after, -> { String }, optional: true, nullable: false

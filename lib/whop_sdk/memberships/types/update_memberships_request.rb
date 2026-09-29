@@ -6,6 +6,8 @@ module Whop_sdk
       class UpdateMembershipsRequest < Internal::Types::Model
         field :id, -> { String }, optional: false, nullable: false
 
+        field :billing_period_days, -> { Integer }, optional: true, nullable: false
+
         field :cancel_at_period_end, -> { Internal::Types::Boolean }, optional: true, nullable: false
 
         field :metadata, -> { Internal::Types::Hash[String, Object] }, optional: true, nullable: false

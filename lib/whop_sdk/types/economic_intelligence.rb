@@ -21,6 +21,8 @@ module Whop_sdk
 
       field :input, -> { String }, optional: false, nullable: true
 
+      field :inputs, -> { Internal::Types::Array[Whop_sdk::Types::EconomicIntelligenceInput] }, optional: false, nullable: false
+
       field :prompt, -> { String }, optional: false, nullable: true
 
       field :reasoning, -> { String }, optional: false, nullable: true

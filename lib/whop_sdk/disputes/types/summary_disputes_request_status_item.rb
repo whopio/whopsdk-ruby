@@ -12,7 +12,7 @@ module Whop_sdk
         WARNING_UNDER_REVIEW = "warning_under_review"
         WON = "won"
         LOST = "lost"
-        CLOSED = "closed"
+        PREVENTED = "prevented"
         WARNING_CLOSED = "warning_closed"
       end
     end

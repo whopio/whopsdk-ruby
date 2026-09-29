@@ -29,6 +29,8 @@ module Whop_sdk
 
       field :status, -> { Whop_sdk::Types::SetupIntentStatus }, optional: false, nullable: false
 
+      field :three_ds_level, -> { Whop_sdk::Types::SetupIntentThreeDsLevel }, optional: false, nullable: true
+
       field :three_ds_verified, -> { Internal::Types::Boolean }, optional: false, nullable: false
 
       field :updated_at, -> { String }, optional: false, nullable: false

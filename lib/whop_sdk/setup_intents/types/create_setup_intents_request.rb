@@ -19,6 +19,8 @@ module Whop_sdk
         field :purpose, -> { Whop_sdk::SetupIntents::Types::CreateSetupIntentsRequestPurpose }, optional: true, nullable: false
 
         field :return_url, -> { String }, optional: true, nullable: false
+
+        field :three_ds_level, -> { Whop_sdk::SetupIntents::Types::CreateSetupIntentsRequestThreeDsLevel }, optional: true, nullable: false
       end
     end
   end

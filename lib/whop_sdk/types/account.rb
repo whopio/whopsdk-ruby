@@ -3,6 +3,8 @@
 module Whop_sdk
   module Types
     class Account < Internal::Types::Model
+      field :ads_spend_usd, -> { Integer }, optional: false, nullable: true
+
       field :balances, -> { Internal::Types::Array[Whop_sdk::Types::AccountBalanceToken] }, optional: false, nullable: false
 
       field :banner_image_url, -> { String }, optional: false, nullable: true

@@ -25,6 +25,7 @@ module Whop_sdk
       RESTRICTED_CARD = "restricted_card"
       CARD_VELOCITY_EXCEEDED = "card_velocity_exceeded"
       CONTACT_ISSUER = "contact_issuer"
+      CARD_DECLINED_BY_ISSUER = "card_declined_by_issuer"
       BANK_DECLINED = "bank_declined"
       REGULATORY_BLOCKED = "regulatory_blocked"
       TRANSACTION_NOT_PERMITTED = "transaction_not_permitted"

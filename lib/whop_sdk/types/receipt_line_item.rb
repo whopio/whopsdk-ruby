@@ -17,6 +17,8 @@ module Whop_sdk
 
       field :quantity, -> { Integer }, optional: false, nullable: false
 
+      field :sku, -> { String }, optional: false, nullable: true
+
       field :subtotal, -> { Whop_sdk::Types::Money }, optional: false, nullable: true
     end
   end

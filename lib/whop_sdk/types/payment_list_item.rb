@@ -79,6 +79,8 @@ module Whop_sdk
 
       field :shipping_address, -> { Whop_sdk::Types::PaymentListItemShippingAddress }, optional: false, nullable: true
 
+      field :sku, -> { String }, optional: false, nullable: true
+
       field :status, -> { Whop_sdk::Types::ReceiptStatus }, optional: false, nullable: true
 
       field :substatus, -> { Whop_sdk::Types::FriendlyReceiptStatus }, optional: false, nullable: false

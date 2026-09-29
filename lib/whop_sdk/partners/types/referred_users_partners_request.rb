@@ -4,6 +4,12 @@ module Whop_sdk
   module Partners
     module Types
       class ReferredUsersPartnersRequest < Internal::Types::Model
+        field :user_id, -> { Whop_sdk::Partners::Types::ReferredUsersPartnersRequestUserID }, optional: true, nullable: false
+
+        field :earning_partner_id, -> { String }, optional: true, nullable: false
+
+        field :earning_partner_username, -> { String }, optional: true, nullable: false
+
         field :query, -> { String }, optional: true, nullable: false
 
         field :has_businesses, -> { Internal::Types::Boolean }, optional: true, nullable: false

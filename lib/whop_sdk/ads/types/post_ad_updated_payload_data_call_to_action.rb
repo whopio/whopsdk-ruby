@@ -37,6 +37,9 @@ module Whop_sdk
         EVENT_RSVP = "event_rsvp"
         SEE_DETAILS = "see_details"
         VIEW_INSTAGRAM_PROFILE = "view_instagram_profile"
+        DONATE_NOW = "donate_now"
+        SEE_MORE = "see_more"
+        VISIT_SITE = "visit_site"
       end
     end
   end

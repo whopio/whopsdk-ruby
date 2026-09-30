@@ -14,9 +14,15 @@ module Whop_sdk
 
       field :created_at, -> { String }, optional: true, nullable: false
 
+      field :created_by_user, -> { Whop_sdk::Types::UserSummary }, optional: true, nullable: false
+
       field :estimated_arrival, -> { String }, optional: true, nullable: false
 
+      field :fee_amount, -> { Whop_sdk::Types::Money }, optional: true, nullable: false
+
       field :fee_kind, -> { Whop_sdk::Types::LedgerActivitySourceFeeKind }, optional: true, nullable: false
+
+      field :fee_type, -> { Whop_sdk::Types::LedgerActivitySourceFeeType }, optional: true, nullable: false
 
       field :from_amount, -> { String }, optional: true, nullable: false
 
@@ -36,6 +42,8 @@ module Whop_sdk
 
       field :payment_processor, -> { String }, optional: true, nullable: false
 
+      field :payout_amount, -> { Whop_sdk::Types::Money }, optional: true, nullable: false
+
       field :payout_destination, -> { Whop_sdk::Types::LedgerActivitySourcePayoutDestination }, optional: true, nullable: false
 
       field :payout_token_nickname, -> { String }, optional: true, nullable: false
@@ -51,6 +59,8 @@ module Whop_sdk
       field :to_amount, -> { String }, optional: true, nullable: false
 
       field :to_currency, -> { String }, optional: true, nullable: false
+
+      field :trace_code, -> { String }, optional: true, nullable: false
 
       field :tx_hash, -> { String }, optional: true, nullable: false
     end

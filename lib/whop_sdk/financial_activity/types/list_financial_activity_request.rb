@@ -22,6 +22,10 @@ module Whop_sdk
 
         field :exclude_internal_movements, -> { Internal::Types::Boolean }, optional: true, nullable: false
 
+        field :balance_type, -> { Whop_sdk::FinancialActivity::Types::ListFinancialActivityRequestBalanceType }, optional: true, nullable: false
+
+        field :withdrawal_id, -> { String }, optional: true, nullable: false
+
         field :currency, -> { String }, optional: true, nullable: false
 
         field :posted_after, -> { String }, optional: true, nullable: false

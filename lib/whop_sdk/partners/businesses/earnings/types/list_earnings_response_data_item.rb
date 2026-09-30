@@ -28,6 +28,8 @@ module Whop_sdk
 
             field :product, -> { Whop_sdk::Partners::Businesses::Earnings::Types::ListEarningsResponseDataItemProduct }, optional: false, nullable: true
 
+            field :projected_commission_amount_usd, -> { Whop_sdk::Types::Money }, optional: false, nullable: true
+
             field :resource, -> { Whop_sdk::Partners::Businesses::Earnings::Types::ListEarningsResponseDataItemResource }, optional: false, nullable: true
 
             field :second_tier, -> { Internal::Types::Boolean }, optional: false, nullable: false

@@ -4,6 +4,8 @@ module Whop_sdk
   module Payments
     module Types
       class ListPaymentsRequest < Internal::Types::Model
+        field :mode, -> { Whop_sdk::Payments::Types::ListPaymentsRequestMode }, optional: true, nullable: false
+
         field :account_id, -> { String }, optional: true, nullable: false
 
         field :status, -> { Whop_sdk::Payments::Types::ListPaymentsRequestStatus }, optional: true, nullable: false

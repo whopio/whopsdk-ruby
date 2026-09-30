@@ -14,8 +14,10 @@ module Whop_sdk
         @environment = environment
       end
 
-      # Lists an account's recommendations and generation requests, newest first. Without an account, signed-out
-      # visitors receive a business-setup template and eligible users receive their saved setup recommendation.
+      # Lists an account's recommendations and generation requests, newest first by default. Without an account,
+      # signed-out visitors receive a business-setup template and eligible users receive their saved setup
+      # recommendation. With `has_run` and no account, users receive the recommendations run on every account they can
+      # read.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -27,6 +29,9 @@ module Whop_sdk
       # @option params [String, nil] :account_id
       # @option params [Whop_sdk::EconomicIntelligence::Types::ListEconomicIntelligenceRequestStatus, nil] :status
       # @option params [String, nil] :input
+      # @option params [Boolean, nil] :has_run
+      # @option params [Whop_sdk::EconomicIntelligence::Types::ListEconomicIntelligenceRequestOrder, nil] :order
+      # @option params [Whop_sdk::EconomicIntelligence::Types::ListEconomicIntelligenceRequestDirection, nil] :direction
       # @option params [Integer, nil] :first
       # @option params [String, nil] :after
       # @option params [Integer, nil] :last
@@ -42,6 +47,9 @@ module Whop_sdk
         query_params["account_id"] = params[:account_id] if params.key?(:account_id)
         query_params["status"] = params[:status] if params.key?(:status)
         query_params["input"] = params[:input] if params.key?(:input)
+        query_params["has_run"] = params[:has_run] if params.key?(:has_run)
+        query_params["order"] = params[:order] if params.key?(:order)
+        query_params["direction"] = params[:direction] if params.key?(:direction)
         query_params["first"] = params[:first] if params.key?(:first)
         query_params["after"] = params[:after] if params.key?(:after)
         query_params["last"] = params[:last] if params.key?(:last)

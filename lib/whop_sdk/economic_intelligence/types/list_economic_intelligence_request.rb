@@ -10,6 +10,12 @@ module Whop_sdk
 
         field :input, -> { String }, optional: true, nullable: false
 
+        field :has_run, -> { Internal::Types::Boolean }, optional: true, nullable: false
+
+        field :order, -> { Whop_sdk::EconomicIntelligence::Types::ListEconomicIntelligenceRequestOrder }, optional: true, nullable: false
+
+        field :direction, -> { Whop_sdk::EconomicIntelligence::Types::ListEconomicIntelligenceRequestDirection }, optional: true, nullable: false
+
         field :first, -> { Integer }, optional: true, nullable: false
 
         field :after, -> { String }, optional: true, nullable: false

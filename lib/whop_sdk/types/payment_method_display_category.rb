@@ -14,6 +14,7 @@ module Whop_sdk
       CRYPTO = "crypto"
       BALANCE = "balance"
       IN_APP_PURCHASE = "in_app_purchase"
+      CARD_PRESENT = "card_present"
       SAVED = "saved"
     end
   end

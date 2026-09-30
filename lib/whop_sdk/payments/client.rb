@@ -14,11 +14,13 @@ module Whop_sdk
         @environment = environment
       end
 
-      # Lists payments, newest first. Without filters this is every payment the caller can read: a company credential's
-      # own account, or for a user every account they can read payments for. Filters narrow by account, buyer, product,
-      # plan, membership, status, billing reason, currency, and creation window. Filtering by
-      # `billing_reason=subscription_cycle` also matches renewals recorded as `subscription_update`.
-      # `settlement_time_at` is null on list rows — retrieve the payment for it.
+      # Lists payments, newest first. By default, returns account sales: a company credential's own account, or for a
+      # user every account they can read payments for. Set `mode=user_sales` to list only the sales received by the
+      # signed-in user's primary ledger account, without a company. This mode requires the user's own Whop login session
+      # and cannot be combined with `account_id`. Filters narrow by account, buyer, product, plan, membership, status,
+      # billing reason, currency, and creation window. Filtering by `billing_reason=subscription_cycle` also matches
+      # renewals recorded as `subscription_update`. `settlement_time_at` is null on list rows — retrieve the payment for
+      # it.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -27,6 +29,7 @@ module Whop_sdk
       # @option request_options [Hash{String => Object}] :additional_query_parameters
       # @option request_options [Hash{String => Object}] :additional_body_parameters
       # @option request_options [Integer] :timeout_in_seconds
+      # @option params [Whop_sdk::Payments::Types::ListPaymentsRequestMode, nil] :mode
       # @option params [String, nil] :account_id
       # @option params [Whop_sdk::Payments::Types::ListPaymentsRequestStatus, nil] :status
       # @option params [Whop_sdk::Payments::Types::ListPaymentsRequestBillingReason, nil] :billing_reason
@@ -53,6 +56,7 @@ module Whop_sdk
       def list(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
         query_params = {}
+        query_params["mode"] = params[:mode] if params.key?(:mode)
         query_params["account_id"] = params[:account_id] if params.key?(:account_id)
         query_params["status"] = params[:status] if params.key?(:status)
         query_params["billing_reason"] = params[:billing_reason] if params.key?(:billing_reason)

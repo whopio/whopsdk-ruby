@@ -11,6 +11,8 @@ module Whop_sdk
 
       field :referred_businesses_count, -> { Integer }, optional: false, nullable: false
 
+      field :referring_partner, -> { Whop_sdk::Types::UserSummary }, optional: false, nullable: true
+
       field :user, -> { Whop_sdk::Types::UserSummary }, optional: false, nullable: false
 
       field :verification_waitlist_joined, -> { Internal::Types::Boolean }, optional: false, nullable: false

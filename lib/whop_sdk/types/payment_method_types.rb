@@ -28,6 +28,7 @@ module Whop_sdk
       CA_BANK_TRANSFER = "ca_bank_transfer"
       CAPCHASE_PAY = "capchase_pay"
       CARD = "card"
+      CARD_PRESENT = "card_present"
       CARD_INSTALLMENTS_THREE = "card_installments_three"
       CARD_INSTALLMENTS_SIX = "card_installments_six"
       CARD_INSTALLMENTS_TWELVE = "card_installments_twelve"

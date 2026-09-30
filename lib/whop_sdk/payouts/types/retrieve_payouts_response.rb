@@ -10,11 +10,15 @@ module Whop_sdk
 
         field :currency, -> { String }, optional: false, nullable: false
 
+        field :delayed, -> { Internal::Types::Boolean }, optional: true, nullable: false
+
         field :destination_amount, -> { String }, optional: false, nullable: true
 
         field :destination_currency, -> { String }, optional: false, nullable: true
 
         field :estimated_arrival, -> { String }, optional: false, nullable: true
+
+        field :estimated_arrival_end, -> { String }, optional: true, nullable: false
 
         field :exchange_rate, -> { Integer }, optional: false, nullable: true
 
@@ -51,6 +55,8 @@ module Whop_sdk
         field :status, -> { Whop_sdk::Payouts::Types::RetrievePayoutsResponseStatus }, optional: false, nullable: false
 
         field :status_detail, -> { String }, optional: false, nullable: false
+
+        field :timeline, -> { Internal::Types::Array[Whop_sdk::Payouts::Types::RetrievePayoutsResponseTimelineItem] }, optional: true, nullable: false
 
         field :trace_code, -> { String }, optional: false, nullable: true
       end

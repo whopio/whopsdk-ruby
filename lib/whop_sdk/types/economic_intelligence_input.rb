@@ -10,6 +10,8 @@ module Whop_sdk
       field :label, -> { String }, optional: false, nullable: false
 
       field :options, -> { Internal::Types::Array[String] }, optional: false, nullable: false
+
+      field :template, -> { String }, optional: false, nullable: false
     end
   end
 end

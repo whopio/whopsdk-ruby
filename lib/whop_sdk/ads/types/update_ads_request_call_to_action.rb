@@ -10,6 +10,7 @@ module Whop_sdk
         BOOK_NOW = "book_now"
         CALL_NOW = "call_now"
         CONTACT_US = "contact_us"
+        DONATE_NOW = "donate_now"
         DOWNLOAD = "download"
         GET_DIRECTIONS = "get_directions"
         GET_OFFER = "get_offer"
@@ -23,10 +24,12 @@ module Whop_sdk
         REQUEST_TIME = "request_time"
         SEE_DETAILS = "see_details"
         SEE_MENU = "see_menu"
+        SEE_MORE = "see_more"
         SEND_UPDATES = "send_updates"
         SHOP_NOW = "shop_now"
         SIGN_UP = "sign_up"
         SUBSCRIBE = "subscribe"
+        VISIT_SITE = "visit_site"
         WATCH_MORE = "watch_more"
       end
     end

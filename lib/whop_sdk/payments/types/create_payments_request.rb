@@ -20,6 +20,8 @@ module Whop_sdk
 
         field :metadata, -> { Internal::Types::Hash[String, String] }, optional: true, nullable: false
 
+        field :payment_method, -> { Whop_sdk::Payments::Types::CreatePaymentsRequestPaymentMethod }, optional: true, nullable: false
+
         field :payment_method_id, -> { String }, optional: true, nullable: false
 
         field :plan, -> { Whop_sdk::Payments::Types::CreatePaymentsRequestPlan }, optional: true, nullable: false

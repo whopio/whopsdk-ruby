@@ -11,6 +11,8 @@ module Whop_sdk
 
       member -> { Whop_sdk::Types::PaymentNextActionAwaitConfirmation }, key: "AWAIT_CONFIRMATION"
 
+      member -> { Whop_sdk::Types::PaymentNextActionCollectCardPresent }, key: "COLLECT_CARD_PRESENT"
+
       member -> { Whop_sdk::Types::PaymentNextActionDisplayInstructions }, key: "DISPLAY_INSTRUCTIONS"
 
       member -> { Whop_sdk::Types::PaymentNextActionRedirect }, key: "REDIRECT"

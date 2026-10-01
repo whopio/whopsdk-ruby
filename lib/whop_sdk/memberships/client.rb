@@ -219,6 +219,55 @@ module Whop_sdk
         end
       end
 
+      # Applies a promo code to an `active` or `trialing` membership that does not already have one and has exactly one
+      # recurring item. The discount lands on the next invoice and follows the code's duration (`once`, `repeating`, or
+      # `forever`). Works for Stripe-billed memberships and memberships billed by Whop's billing engine, including
+      # payment-element and multi-PSP renewals. Stock, plan eligibility, and expiry are still checked. Memberships with
+      # multiple recurring items are rejected.
+      #
+      # @param request_options [Hash]
+      # @param params [Whop_sdk::Memberships::Types::ApplyPromoCodeMembershipsRequest]
+      # @option request_options [String] :base_url
+      # @option request_options [Hash{String => Object}] :additional_headers
+      # @option request_options [Hash{String => Object}] :additional_query_parameters
+      # @option request_options [Hash{String => Object}] :additional_body_parameters
+      # @option request_options [Integer] :timeout_in_seconds
+      # @option params [String] :id
+      #
+      # @example
+      #   client.memberships.apply_promo_code(
+      #     id: "id",
+      #     promo_code: "SAVE20"
+      #   )
+      #
+      # @return [Whop_sdk::Types::Membership]
+      def apply_promo_code(request_options: {}, **params)
+        params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
+        request_data = Whop_sdk::Memberships::Types::ApplyPromoCodeMembershipsRequest.new(params).to_h
+        non_body_param_names = %w[id]
+        body = request_data.except(*non_body_param_names)
+
+        request = Whop_sdk::Internal::JSON::Request.new(
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
+          method: "POST",
+          path: "memberships/#{URI.encode_uri_component(params[:id].to_s)}/apply_promo_code",
+          body: body,
+          request_options: request_options
+        )
+        begin
+          response = @client.send(request)
+        rescue Net::HTTPRequestTimeout
+          raise Whop_sdk::Errors::TimeoutError
+        end
+        code = response.code.to_i
+        if code.between?(200, 299)
+          Whop_sdk::Types::Membership.load(response.body)
+        else
+          error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
+          raise error_class.new(response.body, code: code)
+        end
+      end
+
       # Cancels a membership. Pass `cancel_at_period_end: true` to stop auto-renewal and keep access until the current
       # billing period ends. Omit it (or pass `false`) to revoke access immediately. Buyers cannot cancel
       # buy-now-pay-later (`splitit`, `sezzle`) or non-trial split-pay memberships.

@@ -22783,6 +22783,79 @@ client.memberships.update(
 </dl>
 </details>
 
+<details><summary><code>client.memberships.<a href="/lib/whop_sdk/memberships/client.rb">apply_promo_code</a>(id:, request) -> Whop_sdk::Types::Membership</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Applies a promo code to an `active` or `trialing` membership that does not already have one and has exactly one recurring item. The discount lands on the next invoice and follows the code's duration (`once`, `repeating`, or `forever`). Works for Stripe-billed memberships and memberships billed by Whop's billing engine, including payment-element and multi-PSP renewals. Stock, plan eligibility, and expiry are still checked. Memberships with multiple recurring items are rejected.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.memberships.apply_promo_code(
+  id: "id",
+  promo_code: "SAVE20"
+)
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — Membership ID (`mem_` tag).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**promo_code:** `String` — The promo code to apply, as customers enter it at checkout (for example `SAVE20`).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Whop_sdk::Memberships::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.memberships.<a href="/lib/whop_sdk/memberships/client.rb">cancel</a>(id:, request) -> Whop_sdk::Types::Membership</code></summary>
 <dl>
 <dd>

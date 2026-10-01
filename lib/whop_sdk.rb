@@ -2370,6 +2370,8 @@ require_relative "whop_sdk/accounts/preferences/types/update_preferences_respons
 require_relative "whop_sdk/accounts/preferences/types/update_preferences_response"
 require_relative "whop_sdk/types/account_reserve_type_type"
 require_relative "whop_sdk/types/account_reserve_type"
+require_relative "whop_sdk/types/account_reserve_unlock_type_type"
+require_relative "whop_sdk/types/account_reserve_unlock_type"
 require_relative "whop_sdk/types/account_reserve_unlock"
 require_relative "whop_sdk/types/account_reserve"
 require_relative "whop_sdk/accounts/reserves/types/list_reserves_response"

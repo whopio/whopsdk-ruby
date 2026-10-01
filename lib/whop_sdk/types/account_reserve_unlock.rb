@@ -5,6 +5,8 @@ module Whop_sdk
     class AccountReserveUnlock < Internal::Types::Model
       field :amount, -> { String }, optional: false, nullable: false
 
+      field :by_type, -> { Internal::Types::Array[Whop_sdk::Types::AccountReserveUnlockType] }, optional: false, nullable: false
+
       field :date, -> { String }, optional: false, nullable: false
     end
   end

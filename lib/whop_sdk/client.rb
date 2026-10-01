@@ -363,6 +363,11 @@ module Whop_sdk
       @plans ||= Whop_sdk::Plans::Client.new(client: @raw_client, base_url: @base_url, environment: @environment)
     end
 
+    # @return [Whop_sdk::ProductAffiliates::Client]
+    def product_affiliates
+      @product_affiliates ||= Whop_sdk::ProductAffiliates::Client.new(client: @raw_client, base_url: @base_url, environment: @environment)
+    end
+
     # @return [Whop_sdk::Products::Client]
     def products
       @products ||= Whop_sdk::Products::Client.new(client: @raw_client, base_url: @base_url, environment: @environment)

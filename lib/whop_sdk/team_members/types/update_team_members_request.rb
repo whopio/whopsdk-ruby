@@ -6,7 +6,7 @@ module Whop_sdk
       class UpdateTeamMembersRequest < Internal::Types::Model
         field :id, -> { String }, optional: false, nullable: false
 
-        field :role, -> { Whop_sdk::TeamMembers::Types::UpdateTeamMembersRequestRole }, optional: false, nullable: false
+        field :role, -> { Whop_sdk::TeamMembers::Types::UpdateTeamMembersRequestRole }, optional: true, nullable: false
       end
     end
   end

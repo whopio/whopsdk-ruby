@@ -222,10 +222,7 @@ module Whop_sdk
       # @option params [String] :id
       #
       # @example
-      #   client.team_members.update(
-      #     id: "id",
-      #     role: "owner"
-      #   )
+      #   client.team_members.update(id: "id")
       #
       # @return [Whop_sdk::Types::TeamMember]
       def update(request_options: {}, **params)

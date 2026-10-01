@@ -94,6 +94,7 @@ module Whop_sdk
       PAYCO = "payco"
       PAYNOW = "paynow"
       PAYPAL = "paypal"
+      PAYPAL_EXPRESS = "paypal_express"
       PAYPAY = "paypay"
       PAYTO = "payto"
       PIX = "pix"

@@ -35,6 +35,8 @@ module Whop_sdk
 
       field :product_id, -> { String }, optional: false, nullable: false
 
+      field :promo_code_id, -> { String }, optional: false, nullable: true
+
       field :status, -> { Whop_sdk::Types::MembershipStatus }, optional: false, nullable: false
 
       field :updated_at, -> { String }, optional: false, nullable: false

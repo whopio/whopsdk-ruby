@@ -26654,14 +26654,6 @@ client.payments.create(account_id: "biz_xxxxxxxxxxxxxx")
 <dl>
 <dd>
 
-**account_id:** `String` — The account to charge for, prefixed `biz_`.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
 **auto_capture_after_minutes:** `Integer` — Minutes after authorization at which Whop captures the hold automatically unless it has been voided. Requires `capture: false`. Between 5 and 5760 (4 days).
     
 </dd>
@@ -26687,14 +26679,6 @@ client.payments.create(account_id: "biz_xxxxxxxxxxxxxx")
 <dd>
 
 **email:** `String` — The buyer's email, resolving or creating the user the payment belongs to. With `confirmation_token` it overrides the email the token carries, and is ignored when the token was created by a signed-in buyer; with `payment_method` it names a buyer the point of sale already knows, otherwise the sale belongs to a guest until a buyer is attached. Ignored with `member_id`.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**line_items:** `Internal::Types::Array[Whop_sdk::Payments::Types::CreatePaymentsRequestLineItemsItem]` — What the buyer is purchasing. One entry charges that variant; several entries form a cart, which requires every variant to be compatible, belong to this account, and use the same currency.
     
 </dd>
 </dl>
@@ -26735,22 +26719,6 @@ client.payments.create(account_id: "biz_xxxxxxxxxxxxxx")
 <dd>
 
 **plan:** `Whop_sdk::Payments::Types::CreatePaymentsRequestPlan` — Find or create a variant for this payment through the compatibility input `plan`. Mutually exclusive with `plan_id` and `line_items`. Creating a variant requires `plan:create`; creating or updating a product requires the corresponding product permission.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**plan_id:** `String` — The variant to charge for, prefixed `plan_`. It must belong to the account. Mutually exclusive with `plan` and `line_items`.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**promo_code_id:** `String` — An active promo code to apply, prefixed `promo_`. It must belong to the account and be valid for the variant.
     
 </dd>
 </dl>

@@ -36272,10 +36272,7 @@ Changes a team member's system role. Requires a user session — account API key
 <dd>
 
 ```ruby
-client.team_members.update(
-  id: "id",
-  role: "owner"
-)
+client.team_members.update(id: "id")
 ```
 </dd>
 </dl>

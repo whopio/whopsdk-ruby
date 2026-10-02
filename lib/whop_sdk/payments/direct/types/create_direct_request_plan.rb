@@ -24,6 +24,8 @@ module Whop_sdk
 
           field :internal_notes, -> { String }, optional: true, nullable: false
 
+          field :override_tax_type, -> { Whop_sdk::Payments::Direct::Types::CreateDirectRequestPlanOverrideTaxType }, optional: true, nullable: false
+
           field :plan_type, -> { Whop_sdk::Payments::Direct::Types::CreateDirectRequestPlanPlanType }, optional: true, nullable: false
 
           field :product, -> { Whop_sdk::Payments::Direct::Types::CreateDirectRequestPlanProduct }, optional: true, nullable: false

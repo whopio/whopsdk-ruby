@@ -29,7 +29,7 @@ module Whop_sdk
 
       field :public_record, -> { Whop_sdk::Types::DomainPublicRecord }, optional: false, nullable: true
 
-      field :registrar_quote, -> { Whop_sdk::Types::DomainRegistrarQuote }, optional: false, nullable: true
+      field :registration_quote, -> { Whop_sdk::Types::DomainRegistrationQuote }, optional: false, nullable: true
 
       field :status, -> { Whop_sdk::Types::DomainStatus }, optional: false, nullable: true
 

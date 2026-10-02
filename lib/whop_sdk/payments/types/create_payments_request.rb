@@ -20,8 +20,6 @@ module Whop_sdk
 
         field :payment_method_id, -> { String }, optional: true, nullable: false
 
-        field :plan, -> { Whop_sdk::Payments::Types::CreatePaymentsRequestPlan }, optional: true, nullable: false
-
         field :return_url, -> { String }, optional: true, nullable: false
 
         field :shipping_address, -> { Whop_sdk::Payments::Types::CreatePaymentsRequestShippingAddress }, optional: true, nullable: false
@@ -31,6 +29,8 @@ module Whop_sdk
         field :account_id, -> { String }, optional: false, nullable: false
 
         field :line_items, -> { Internal::Types::Array[Whop_sdk::Types::PaymentInputLineItemsItem] }, optional: true, nullable: false
+
+        field :plan, -> { Whop_sdk::Types::PaymentInputPlan }, optional: true, nullable: false
 
         field :plan_id, -> { String }, optional: true, nullable: false
 

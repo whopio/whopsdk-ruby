@@ -3,7 +3,7 @@
 module Whop_sdk
   module Memberships
     module Types
-      module PostMembershipDeactivatedPayloadAPIVersion
+      module PostMembershipUpdatedPayloadAPIVersion
         extend Whop_sdk::Internal::Types::Enum
 
         V1 = "v1"

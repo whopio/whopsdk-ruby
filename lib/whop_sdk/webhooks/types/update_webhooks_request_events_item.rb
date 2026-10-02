@@ -17,6 +17,7 @@ module Whop_sdk
         MEMBERSHIP_ACTIVATED = "membership.activated"
         MEMBERSHIP_DEACTIVATED = "membership.deactivated"
         MEMBERSHIP_TRIAL_ENDING_SOON = "membership.trial_ending_soon"
+        MEMBERSHIP_UPDATED = "membership.updated"
         ENTRY_CREATED = "entry.created"
         ENTRY_APPROVED = "entry.approved"
         ENTRY_DENIED = "entry.denied"

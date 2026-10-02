@@ -15,8 +15,9 @@ module Whop_sdk
           @environment = environment
         end
 
-        # Retrieves the account's fees: a singleton document keyed by fee, with any markups its platform adds.
-        # `adjustable` on each fee says what the caller may change.
+        # Retrieves the account's fees: a singleton document keyed by fee, with any markups its platform adds. Connected
+        # accounts see their effective rates, with covered payouts shown as zero; pricing provenance and comparisons are
+        # null without parent-account access. `adjustable` on each fee says what the caller may change.
         #
         # @param request_options [Hash]
         # @param params [Hash]
@@ -53,7 +54,8 @@ module Whop_sdk
           end
         end
 
-        # Updates the account's fees. Each key present in the body is replaced; omitted keys are left untouched. Only
+        # Updates the account's fees. The response shows effective rates and hides pricing provenance and comparisons
+        # without parent-account access. Each key present in the body is replaced; omitted keys are left untouched. Only
         # fees the document reports as `adjustable` can be changed.
         #
         # @param request_options [Hash]

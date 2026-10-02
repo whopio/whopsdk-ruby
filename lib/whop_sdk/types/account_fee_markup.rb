@@ -13,7 +13,7 @@ module Whop_sdk
 
       field :percentage, -> { Integer }, optional: false, nullable: false
 
-      field :source, -> { Whop_sdk::Types::AccountFeeMarkupSource }, optional: false, nullable: false
+      field :source, -> { Whop_sdk::Types::AccountFeeMarkupSource }, optional: false, nullable: true
 
       field :unadjustable_reason, -> { Whop_sdk::Types::AccountFeeMarkupUnadjustableReason }, optional: false, nullable: true
     end

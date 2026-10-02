@@ -1871,6 +1871,7 @@ require_relative "whop_sdk/shipments/types/post_shipment_updated_payload_api_ver
 require_relative "whop_sdk/shipments/types/post_shipment_updated_payload_type"
 require_relative "whop_sdk/shipments/types/post_shipment_updated_payload"
 require_relative "whop_sdk/social_accounts/types/list_social_accounts_request_platform"
+require_relative "whop_sdk/social_accounts/types/list_social_accounts_request_trust_level"
 require_relative "whop_sdk/social_accounts/types/list_social_accounts_request_scopes_item"
 require_relative "whop_sdk/social_accounts/types/list_social_accounts_request_order"
 require_relative "whop_sdk/social_accounts/types/list_social_accounts_request_direction"

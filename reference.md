@@ -33859,6 +33859,14 @@ client.social_accounts.list
 <dl>
 <dd>
 
+**trust_level:** `Whop_sdk::SocialAccounts::Types::ListSocialAccountsRequestTrustLevel` — Only return social accounts linked with this trust level, such as `oauth` for accounts connected through OAuth.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **verified:** `Internal::Types::Boolean` — Only return social accounts that are verified on the platform.
     
 </dd>

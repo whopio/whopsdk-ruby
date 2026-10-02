@@ -37,6 +37,7 @@ module Whop_sdk
       # @option params [Boolean, nil] :cumulative
       # @option params [String, nil] :scope_account_id
       # @option params [Boolean, nil] :include_payment_fee_breakdown
+      # @option params [Boolean, nil] :period_only_currencies
       #
       # @example
       #   client.financial_reports.retrieve(
@@ -61,6 +62,7 @@ module Whop_sdk
         query_params["cumulative"] = params[:cumulative] if params.key?(:cumulative)
         query_params["scope_account_id"] = params[:scope_account_id] if params.key?(:scope_account_id)
         query_params["include_payment_fee_breakdown"] = params[:include_payment_fee_breakdown] if params.key?(:include_payment_fee_breakdown)
+        query_params["period_only_currencies"] = params[:period_only_currencies] if params.key?(:period_only_currencies)
 
         request = Whop_sdk::Internal::JSON::Request.new(
           base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),

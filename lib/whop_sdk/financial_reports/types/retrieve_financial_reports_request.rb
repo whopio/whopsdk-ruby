@@ -29,6 +29,8 @@ module Whop_sdk
         field :scope_account_id, -> { String }, optional: true, nullable: false
 
         field :include_payment_fee_breakdown, -> { Internal::Types::Boolean }, optional: true, nullable: false
+
+        field :period_only_currencies, -> { Internal::Types::Boolean }, optional: true, nullable: false
       end
     end
   end

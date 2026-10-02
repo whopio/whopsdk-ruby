@@ -18,6 +18,8 @@ module Whop_sdk
 
         field :resource_id, -> { String }, optional: true, nullable: false
 
+        field :payment_id, -> { String }, optional: true, nullable: false
+
         field :activity_id, -> { String }, optional: true, nullable: false
 
         field :exclude_internal_movements, -> { Internal::Types::Boolean }, optional: true, nullable: false

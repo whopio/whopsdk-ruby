@@ -30,6 +30,7 @@ module Whop_sdk
       # @option params [Whop_sdk::FinancialActivity::Types::ListFinancialActivityRequestLineTypesItem, nil] :line_types
       # @option params [Whop_sdk::FinancialActivity::Types::ListFinancialActivityRequestDirection, nil] :direction
       # @option params [String, nil] :resource_id
+      # @option params [String, nil] :payment_id
       # @option params [String, nil] :activity_id
       # @option params [Boolean, nil] :exclude_internal_movements
       # @option params [Whop_sdk::FinancialActivity::Types::ListFinancialActivityRequestBalanceType, nil] :balance_type
@@ -56,6 +57,7 @@ module Whop_sdk
         query_params["line_types"] = params[:line_types] if params.key?(:line_types)
         query_params["direction"] = params[:direction] if params.key?(:direction)
         query_params["resource_id"] = params[:resource_id] if params.key?(:resource_id)
+        query_params["payment_id"] = params[:payment_id] if params.key?(:payment_id)
         query_params["activity_id"] = params[:activity_id] if params.key?(:activity_id)
         query_params["exclude_internal_movements"] = params[:exclude_internal_movements] if params.key?(:exclude_internal_movements)
         query_params["balance_type"] = params[:balance_type] if params.key?(:balance_type)

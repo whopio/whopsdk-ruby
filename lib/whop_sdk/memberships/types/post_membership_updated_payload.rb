@@ -3,10 +3,10 @@
 module Whop_sdk
   module Memberships
     module Types
-      class PostMembershipCancelAtPeriodEndChangedPayload < Internal::Types::Model
+      class PostMembershipUpdatedPayload < Internal::Types::Model
         field :account_id, -> { String }, optional: true, nullable: false
 
-        field :api_version, -> { Whop_sdk::Memberships::Types::PostMembershipCancelAtPeriodEndChangedPayloadAPIVersion }, optional: false, nullable: false
+        field :api_version, -> { Whop_sdk::Memberships::Types::PostMembershipUpdatedPayloadAPIVersion }, optional: false, nullable: false
 
         field :api_version_date, -> { String }, optional: false, nullable: true
 
@@ -18,7 +18,7 @@ module Whop_sdk
 
         field :timestamp, -> { String }, optional: false, nullable: false
 
-        field :type, -> { Whop_sdk::Memberships::Types::PostMembershipCancelAtPeriodEndChangedPayloadType }, optional: false, nullable: false
+        field :type, -> { Whop_sdk::Memberships::Types::PostMembershipUpdatedPayloadType }, optional: false, nullable: false
       end
     end
   end

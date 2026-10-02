@@ -3,10 +3,10 @@
 module Whop_sdk
   module Memberships
     module Types
-      module PostMembershipDeactivatedPayloadType
+      module PostMembershipUpdatedPayloadType
         extend Whop_sdk::Internal::Types::Enum
 
-        MEMBERSHIP_DEACTIVATED = "membership.deactivated"
+        MEMBERSHIP_UPDATED = "membership.updated"
       end
     end
   end

@@ -26,6 +26,7 @@ module Whop_sdk
       # @option params [String, nil] :account_id
       # @option params [String, nil] :user_id
       # @option params [Whop_sdk::SocialAccounts::Types::ListSocialAccountsRequestPlatform, nil] :platform
+      # @option params [Whop_sdk::SocialAccounts::Types::ListSocialAccountsRequestTrustLevel, nil] :trust_level
       # @option params [Boolean, nil] :verified
       # @option params [Whop_sdk::SocialAccounts::Types::ListSocialAccountsRequestScopesItem, nil] :scopes
       # @option params [Integer, nil] :first
@@ -45,6 +46,7 @@ module Whop_sdk
         query_params["account_id"] = params[:account_id] if params.key?(:account_id)
         query_params["user_id"] = params[:user_id] if params.key?(:user_id)
         query_params["platform"] = params[:platform] if params.key?(:platform)
+        query_params["trust_level"] = params[:trust_level] if params.key?(:trust_level)
         query_params["verified"] = params[:verified] if params.key?(:verified)
         query_params["scopes"] = params[:scopes] if params.key?(:scopes)
         query_params["first"] = params[:first] if params.key?(:first)

@@ -10,6 +10,8 @@ module Whop_sdk
 
         field :platform, -> { Whop_sdk::SocialAccounts::Types::ListSocialAccountsRequestPlatform }, optional: true, nullable: false
 
+        field :trust_level, -> { Whop_sdk::SocialAccounts::Types::ListSocialAccountsRequestTrustLevel }, optional: true, nullable: false
+
         field :verified, -> { Internal::Types::Boolean }, optional: true, nullable: false
 
         field :scopes, -> { Whop_sdk::SocialAccounts::Types::ListSocialAccountsRequestScopesItem }, optional: true, nullable: false

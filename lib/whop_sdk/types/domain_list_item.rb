@@ -27,7 +27,7 @@ module Whop_sdk
 
       field :metadata, -> { Internal::Types::Hash[String, Object] }, optional: false, nullable: false
 
-      field :registrar_quote, -> { Whop_sdk::Types::DomainRegistrarQuote }, optional: false, nullable: true
+      field :registration_quote, -> { Whop_sdk::Types::DomainRegistrationQuote }, optional: false, nullable: true
 
       field :status, -> { Whop_sdk::Types::DomainListItemStatus }, optional: false, nullable: true
 

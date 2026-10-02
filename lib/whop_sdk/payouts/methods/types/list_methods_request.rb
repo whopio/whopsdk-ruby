@@ -15,6 +15,8 @@ module Whop_sdk
 
           field :currency, -> { String }, optional: true, nullable: false
 
+          field :include_recipients, -> { Internal::Types::Boolean }, optional: true, nullable: false
+
           field :include_limits, -> { Internal::Types::Boolean }, optional: true, nullable: false
 
           field :first, -> { Integer }, optional: true, nullable: false

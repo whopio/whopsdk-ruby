@@ -25,7 +25,7 @@ module Whop_sdk
 
       field :reset, -> { Whop_sdk::Types::AccountFeeRate }, optional: false, nullable: false
 
-      field :source, -> { Whop_sdk::Types::AccountFeeSource }, optional: false, nullable: false
+      field :source, -> { Whop_sdk::Types::AccountFeeSource }, optional: false, nullable: true
 
       field :unadjustable_reason, -> { Whop_sdk::Types::AccountFeeUnadjustableReason }, optional: false, nullable: true
     end

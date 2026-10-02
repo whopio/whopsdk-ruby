@@ -4,6 +4,8 @@ module Whop_sdk
   module Payments
     module Types
       class CreatePaymentsRequest < Internal::Types::Model
+        field :affiliate_code, -> { String }, optional: true, nullable: false
+
         field :auto_capture_after_minutes, -> { Integer }, optional: true, nullable: false
 
         field :capture, -> { Internal::Types::Boolean }, optional: true, nullable: false

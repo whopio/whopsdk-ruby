@@ -7,6 +7,8 @@ module Whop_sdk
         class CreateDirectRequest < Internal::Types::Model
           field :account_id, -> { String }, optional: false, nullable: false
 
+          field :affiliate_code, -> { String }, optional: true, nullable: false
+
           field :auto_capture_after_minutes, -> { Integer }, optional: true, nullable: false
 
           field :billing_details, -> { Whop_sdk::Payments::Direct::Types::CreateDirectRequestBillingDetails }, optional: false, nullable: false

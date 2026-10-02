@@ -14,6 +14,7 @@ module Whop_sdk
             CARD_INTERCHANGE = "card_interchange"
             ONBOARDING_REWARD = "onboarding_reward"
             PARTNER_REWARD = "partner_reward"
+            VERIFIED_PARTNER_REFERRAL_PAYBACK = "verified_partner_referral_payback"
           end
         end
       end

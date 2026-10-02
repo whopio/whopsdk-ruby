@@ -9,6 +9,7 @@ module Whop_sdk
         META_BUSINESS = "meta_business"
         TIKTOK = "tiktok"
         LINKEDIN = "linkedin"
+        YOUTUBE = "youtube"
         SNAPCHAT = "snapchat"
       end
     end

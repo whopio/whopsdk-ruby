@@ -9,6 +9,8 @@ module Whop_sdk
 
       field :line_items, -> { Internal::Types::Array[Whop_sdk::Types::PaymentInputLineItemsItem] }, optional: true, nullable: false
 
+      field :plan, -> { Whop_sdk::Types::PaymentInputPlan }, optional: true, nullable: false
+
       field :plan_id, -> { String }, optional: true, nullable: false
 
       field :promo_code_id, -> { String }, optional: true, nullable: false

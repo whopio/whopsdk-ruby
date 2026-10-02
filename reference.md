@@ -26760,14 +26760,6 @@ client.payments.create(account_id: "biz_xxxxxxxxxxxxxx")
 <dl>
 <dd>
 
-**plan:** `Whop_sdk::Payments::Types::CreatePaymentsRequestPlan` — Find or create a variant for this payment through the compatibility input `plan`. Mutually exclusive with `plan_id` and `line_items`. Creating a variant requires `plan:create`; creating or updating a product requires the corresponding product permission.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
 **return_url:** `String` — Where the buyer continues after completing an off-site step. An absolute https URL without credentials, at most 2,048 characters. Ignored unless `confirmation_token` is provided.
     
 </dd>

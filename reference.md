@@ -43394,6 +43394,14 @@ client.payouts.methods.list
 <dl>
 <dd>
 
+**include_recipients:** `Internal::Types::Boolean` — When true, also includes bill-pay recipient methods tied to this funding account. Defaults to false, returning only the account's own payout methods.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **include_limits:** `Internal::Types::Boolean` — When true, the response also carries limits — the live per-speed payout caps the account's payout requests are validated against, in the requested currency. Requires the payout:withdrawal:read scope.
     
 </dd>
@@ -43521,6 +43529,14 @@ client.payouts.methods.create(supported_payout_method_id: "podst_xxxxxxxxxxxxxx"
 <dd>
 
 **nickname:** `String` — A label for the payout method, unique per destination.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**recipient:** `Whop_sdk::Payouts::Methods::Types::CreateMethodsRequestRecipient` — Creates an external recipient and saves the bank method on their payout account, bound to the funding account. The MassPay email is generated when omitted; the recipient does not need a Whop login or Sumsub verification. Recipient methods cannot be default or recurring methods and cannot use Plaid.
     
 </dd>
 </dl>

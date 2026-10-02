@@ -39,6 +39,8 @@ module Whop_sdk
 
           field :quote, -> { Internal::Types::Hash[String, Object] }, optional: false, nullable: true
 
+          field :recipient, -> { Whop_sdk::Payouts::Methods::Types::UpdateMethodsResponseRecipient }, optional: true, nullable: false
+
           field :status, -> { Whop_sdk::Payouts::Methods::Types::UpdateMethodsResponseStatus }, optional: false, nullable: false
 
           field :status_reason, -> { String }, optional: false, nullable: true

@@ -29,6 +29,7 @@ module Whop_sdk
         # @option params [Whop_sdk::Payouts::Methods::Types::ListMethodsRequestStatus, nil] :status
         # @option params [Integer, nil] :amount
         # @option params [String, nil] :currency
+        # @option params [Boolean, nil] :include_recipients
         # @option params [Boolean, nil] :include_limits
         # @option params [Integer, nil] :first
         # @option params [String, nil] :after
@@ -47,6 +48,7 @@ module Whop_sdk
           query_params["status"] = params[:status] if params.key?(:status)
           query_params["amount"] = params[:amount] if params.key?(:amount)
           query_params["currency"] = params[:currency] if params.key?(:currency)
+          query_params["include_recipients"] = params[:include_recipients] if params.key?(:include_recipients)
           query_params["include_limits"] = params[:include_limits] if params.key?(:include_limits)
           query_params["first"] = params[:first] if params.key?(:first)
           query_params["after"] = params[:after] if params.key?(:after)

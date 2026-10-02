@@ -38,6 +38,8 @@ module Whop_sdk
 
         field :quote, -> { Whop_sdk::Payouts::Types::PostPayoutMethodCreatedPayloadDataQuote }, optional: false, nullable: true
 
+        field :recipient, -> { Whop_sdk::Payouts::Types::PostPayoutMethodCreatedPayloadDataRecipient }, optional: true, nullable: false
+
         field :status, -> { Whop_sdk::Payouts::Types::PostPayoutMethodCreatedPayloadDataStatus }, optional: false, nullable: false
 
         field :status_reason, -> { String }, optional: false, nullable: true

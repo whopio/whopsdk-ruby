@@ -39,6 +39,8 @@ module Whop_sdk
 
           field :quote, -> { Whop_sdk::Payouts::Methods::Types::ListMethodsResponseDataItemQuote }, optional: false, nullable: true
 
+          field :recipient, -> { Whop_sdk::Payouts::Methods::Types::ListMethodsResponseDataItemRecipient }, optional: true, nullable: false
+
           field :status, -> { Whop_sdk::Payouts::Methods::Types::ListMethodsResponseDataItemStatus }, optional: false, nullable: false
 
           field :status_reason, -> { String }, optional: false, nullable: true

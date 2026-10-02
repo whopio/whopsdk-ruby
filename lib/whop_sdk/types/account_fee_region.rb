@@ -21,6 +21,7 @@ module Whop_sdk
       UY = "uy"
       BR = "br"
       PH = "ph"
+      NG = "ng"
     end
   end
 end

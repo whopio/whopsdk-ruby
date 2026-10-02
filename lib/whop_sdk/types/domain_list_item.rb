@@ -2,7 +2,7 @@
 
 module Whop_sdk
   module Types
-    class Domain < Internal::Types::Model
+    class DomainListItem < Internal::Types::Model
       field :account_id, -> { String }, optional: false, nullable: true
 
       field :app_id, -> { String }, optional: false, nullable: true
@@ -13,7 +13,7 @@ module Whop_sdk
 
       field :dns_records, -> { Internal::Types::Array[Whop_sdk::Types::DomainDNSRecord] }, optional: false, nullable: false
 
-      field :dns_status, -> { Whop_sdk::Types::DomainDNSStatus }, optional: false, nullable: true
+      field :dns_status, -> { Whop_sdk::Types::DomainListItemDNSStatus }, optional: false, nullable: true
 
       field :domain, -> { String }, optional: false, nullable: false
 
@@ -25,13 +25,11 @@ module Whop_sdk
 
       field :last_checked_at, -> { String }, optional: false, nullable: true
 
-      field :metadata, -> { Internal::Types::Hash[String, String] }, optional: false, nullable: false
-
-      field :public_record, -> { Whop_sdk::Types::DomainPublicRecord }, optional: false, nullable: true
+      field :metadata, -> { Internal::Types::Hash[String, Object] }, optional: false, nullable: false
 
       field :registrar_quote, -> { Whop_sdk::Types::DomainRegistrarQuote }, optional: false, nullable: true
 
-      field :status, -> { Whop_sdk::Types::DomainStatus }, optional: false, nullable: true
+      field :status, -> { Whop_sdk::Types::DomainListItemStatus }, optional: false, nullable: true
 
       field :updated_at, -> { String }, optional: false, nullable: true
 

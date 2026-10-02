@@ -15645,6 +15645,14 @@ client.dm_members.update(id: "id")
 <dd>
 
 Lists the caller's domain claims and assignments. Filter by account, app, or lifecycle status.
+
+To find a domain to buy instead, pass `search` with a name like `example` or a full domain like `example.com`. The results are then search results, each with a `registrar_quote` saying whether it's available, what it costs, and how desirable it is:
+
+- The first result is the exact domain: the one you searched, or your name on `.com`. It's included even when it's taken.
+- Next is your name on other popular extensions, whether or not they're available.
+- The rest are more available suggestions, such as your name with a prefix or suffix.
+
+To check your name on extensions you choose, also pass `tlds`: the results are then exactly those domains, in that order. Search results come back on one page and aren't reserved. To see who holds a registered domain and its key dates, retrieve it by hostname.
 </dd>
 </dl>
 </dd>
@@ -15659,7 +15667,7 @@ Lists the caller's domain claims and assignments. Filter by account, app, or lif
 <dd>
 
 ```ruby
-client.domains.list
+client.domains.list(tlds: ["com"])
 ```
 </dd>
 </dl>
@@ -15739,6 +15747,22 @@ client.domains.list
 <dd>
 
 **before:** `String` — Return results before this cursor. Use `page_info.start_cursor` from the previous response to fetch the previous page.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**search:** `String` — A name or a full domain to find domains to buy, such as `example` or `example.com`. A URL or subdomain searches its registrable domain. When set, the results are search results rather than your domains, and the other filters, sorting, and pagination don't apply.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**tlds:** `String` — With `search`, the extensions to check your name on, such as `com` or `co.uk`, returned in the order you pass them. Repeat the parameter to pass several, up to 100. The results are then exactly your name on these extensions, without suggestions.
     
 </dd>
 </dl>
@@ -15868,6 +15892,8 @@ client.domains.create(
 <dd>
 
 Retrieves the claim, app assignment, DNS instructions, and the latest hostname and certificate state. For domains still connecting, needing attention, or being deleted, requests an immediate background check.
+
+Pass a hostname instead of an ID to look up any domain, yours or not. The result is a search result: its `registrar_quote` says whether it's available, what it costs, and how desirable it is. For a registered domain, `public_record` has its registrar, registrant, and key dates from public registration records, read when you call this.
 </dd>
 </dl>
 </dd>
@@ -15897,7 +15923,7 @@ client.domains.retrieve(id: "id")
 <dl>
 <dd>
 
-**id:** `String` — Domain ID, prefixed dom_.
+**id:** `String` — Domain ID, prefixed dom_. To retrieve, you can instead pass a hostname such as `example.com` to look up any domain; a name without an extension looks up the name on `.com`.
     
 </dd>
 </dl>
@@ -15959,7 +15985,7 @@ client.domains.delete(id: "id")
 <dl>
 <dd>
 
-**id:** `String` — Domain ID, prefixed dom_.
+**id:** `String` — Domain ID, prefixed dom_. To retrieve, you can instead pass a hostname such as `example.com` to look up any domain; a name without an extension looks up the name on `.com`.
     
 </dd>
 </dl>
@@ -16021,7 +16047,7 @@ client.domains.update(id: "id")
 <dl>
 <dd>
 
-**id:** `String` — Domain ID, prefixed dom_.
+**id:** `String` — Domain ID, prefixed dom_. To retrieve, you can instead pass a hostname such as `example.com` to look up any domain; a name without an extension looks up the name on `.com`.
     
 </dd>
 </dl>

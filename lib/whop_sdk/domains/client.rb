@@ -16,6 +16,19 @@ module Whop_sdk
 
       # Lists the caller's domain claims and assignments. Filter by account, app, or lifecycle status.
       #
+      # To find a domain to buy instead, pass `search` with a name like `example` or a full domain like `example.com`.
+      # The results are then search results, each with a `registrar_quote` saying whether it's available, what it costs,
+      # and how desirable it is:
+      #
+      # - The first result is the exact domain: the one you searched, or your name on `.com`. It's included even when
+      # it's taken.
+      # - Next is your name on other popular extensions, whether or not they're available.
+      # - The rest are more available suggestions, such as your name with a prefix or suffix.
+      #
+      # To check your name on extensions you choose, also pass `tlds`: the results are then exactly those domains, in
+      # that order. Search results come back on one page and aren't reserved. To see who holds a registered domain and
+      # its key dates, retrieve it by hostname.
+      #
       # @param request_options [Hash]
       # @param params [Hash]
       # @option request_options [String] :base_url
@@ -32,9 +45,11 @@ module Whop_sdk
       # @option params [String, nil] :after
       # @option params [Integer, nil] :last
       # @option params [String, nil] :before
+      # @option params [String, nil] :search
+      # @option params [String, nil] :tlds
       #
       # @example
-      #   client.domains.list
+      #   client.domains.list(tlds: ["com"])
       #
       # @return [Whop_sdk::Domains::Types::ListDomainsResponse]
       def list(request_options: {}, **params)
@@ -49,6 +64,8 @@ module Whop_sdk
         query_params["after"] = params[:after] if params.key?(:after)
         query_params["last"] = params[:last] if params.key?(:last)
         query_params["before"] = params[:before] if params.key?(:before)
+        query_params["search"] = params[:search] if params.key?(:search)
+        query_params["tlds"] = params[:tlds] if params.key?(:tlds)
 
         Whop_sdk::Internal::CursorItemIterator.new(
           cursor_field: :end_cursor,
@@ -123,6 +140,11 @@ module Whop_sdk
 
       # Retrieves the claim, app assignment, DNS instructions, and the latest hostname and certificate state. For
       # domains still connecting, needing attention, or being deleted, requests an immediate background check.
+      #
+      # Pass a hostname instead of an ID to look up any domain, yours or not. The result is a search result: its
+      # `registrar_quote` says whether it's available, what it costs, and how desirable it is. For a registered domain,
+      # `public_record` has its registrar, registrant, and key dates from public registration records, read when you
+      # call this.
       #
       # @param request_options [Hash]
       # @param params [Hash]

@@ -21,6 +21,10 @@ module Whop_sdk
         field :last, -> { Integer }, optional: true, nullable: false
 
         field :before, -> { String }, optional: true, nullable: false
+
+        field :search, -> { String }, optional: true, nullable: false
+
+        field :tlds, -> { String }, optional: true, nullable: false
       end
     end
   end

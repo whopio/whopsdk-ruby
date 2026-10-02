@@ -22,6 +22,8 @@ module Whop_sdk
 
       field :internal_notes, -> { String }, optional: true, nullable: false
 
+      field :override_tax_type, -> { Whop_sdk::Types::PaymentInputPlanOverrideTaxType }, optional: true, nullable: false
+
       field :plan_type, -> { Whop_sdk::Types::PaymentInputPlanPlanType }, optional: true, nullable: false
 
       field :product, -> { Whop_sdk::Types::PaymentInputPlanProduct }, optional: true, nullable: false

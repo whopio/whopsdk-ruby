@@ -14,6 +14,8 @@ module Whop_sdk
 
         member -> { Whop_sdk::PartnerReferralRequests::Types::CreatePartnerReferralRequestsRequestBodyTargetUsername }
 
+        member -> { Whop_sdk::PartnerReferralRequests::Types::CreatePartnerReferralRequestsRequestBodyTargetEmail }
+
         member -> { Whop_sdk::PartnerReferralRequests::Types::CreatePartnerReferralRequestsRequestBodyCode }
       end
     end

@@ -25798,6 +25798,155 @@ client.payment_methods.delete_payment_method(
 </dl>
 </details>
 
+## Payment Quotes
+<details><summary><code>client.payment_quotes.<a href="/lib/whop_sdk/payment_quotes/client.rb">create</a>(request) -> Whop_sdk::Types::PaymentQuote</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Prices a purchase the way a payment for it will be charged, for a buyer located by the shipping address, then the billing address, then the IP address you pass. The body is the `PaymentInput` a payment takes plus where the buyer is (`address`, `shipping_address`, `tax_ids`, `ip_address`); a seller that collects no tax on the purchase can be quoted without them. The purchase is priced from exactly what you send: no buyer is looked up, so no stored registration or purchase history applies. A quote is priced once, in the plans' own currency, and expires at `expires_at`.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.payment_quotes.create(account_id: "biz_xxxxxxxxxxxxxx")
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**address:** `Whop_sdk::PaymentQuotes::Types::CreatePaymentQuotesRequestAddress` — The buyer's billing address. Where tax is calculated when no shipping address is given, and the address a tax registration belongs to. A seller that collects tax on this purchase needs the buyer located: provide a `country` here, on `shipping_address`, or an `ip_address`. Only the keys you supply are kept.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**ip_address:** `String` — The buyer's IP address, when your server makes the call on their behalf. Locates the buyer when neither address carries a country. A quote located this way is an estimate (`located_by` is `ip_address`): quote again with the buyer's address.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**shipping_address:** `Whop_sdk::PaymentQuotes::Types::CreatePaymentQuotesRequestShippingAddress` — Where physical goods ship. When present it is where tax is calculated; omit it for digital goods. Only the keys you supply are kept.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**tax_ids:** `Internal::Types::Array[Whop_sdk::PaymentQuotes::Types::CreatePaymentQuotesRequestTaxIDsItem]` — The buyer's tax registration, for a business purchase. One entry. Prices the purchase as business-to-business where that applies (EU reverse charge, for one) and requires an `address` to belong to.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Whop_sdk::PaymentQuotes::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.payment_quotes.<a href="/lib/whop_sdk/payment_quotes/client.rb">retrieve</a>(id:) -> Whop_sdk::Types::PaymentQuote</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves a payment quote, including when it expires.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.payment_quotes.retrieve(id: "id")
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — The payment quote ID, prefixed `pq_`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Whop_sdk::PaymentQuotes::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Payment Rules
 <details><summary><code>client.payment_rules.<a href="/lib/whop_sdk/payment_rules/client.rb">list</a>() -> Whop_sdk::PaymentRules::Types::ListPaymentRulesResponse</code></summary>
 <dl>

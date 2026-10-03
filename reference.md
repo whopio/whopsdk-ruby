@@ -43189,14 +43189,6 @@ client.payments.direct.create(
 <dl>
 <dd>
 
-**account_id:** `String` — The account to charge for, prefixed `biz_`.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
 **affiliate_code:** `String` — The code an affiliate link carries, which is the affiliate's username. The affiliate is credited for this payment as on a checkout session. A code naming no one eligible to earn on the product is ignored, and the payment goes ahead. A promo code with its own affiliate takes precedence. No affiliate is credited on a variant without a product or on a purchase of several variants. At most 255 characters.
     
 </dd>
@@ -43254,30 +43246,6 @@ client.payments.direct.create(
 <dd>
 
 **payment_method:** `Whop_sdk::Payments::Direct::Types::CreateDirectRequestPaymentMethod` — The payment method to charge, as the raw details the caller holds. Raw details are accepted only on the vault host, where Whop's vault tokenizes them in transit; the official SDKs route this operation there. Whop's own clients, which tokenize with the Basis Theory SDK, send the resulting token intent id to the regular host.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**plan:** `Whop_sdk::Payments::Direct::Types::CreateDirectRequestPlan` — Find or create a variant for this payment through the compatibility input `plan`. Mutually exclusive with `plan_id` and `line_items`. Creating a variant requires `plan:create`; creating or updating a product requires the corresponding product permission.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**plan_id:** `String` — The variant to charge for, prefixed `plan_`. It must belong to the account. Mutually exclusive with `plan`.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**promo_code_id:** `String` — An active promo code to apply, prefixed `promo_`. It must belong to the account and be valid for the variant.
     
 </dd>
 </dl>

@@ -21,6 +21,8 @@ module Whop_sdk
 
           field :payment_method, -> { Whop_sdk::Payments::Direct::Types::CreateDirectRequestPaymentMethod }, optional: false, nullable: false
 
+          field :quote_id, -> { String }, optional: true, nullable: false
+
           field :return_url, -> { String }, optional: true, nullable: false
 
           field :setup_future_usage, -> { Whop_sdk::Payments::Direct::Types::CreateDirectRequestSetupFutureUsage }, optional: true, nullable: false

@@ -18,8 +18,9 @@ module Whop_sdk
       # the billing address, then the IP address you pass. The body is the `PaymentInput` a payment takes plus where the
       # buyer is (`address`, `shipping_address`, `tax_ids`, `ip_address`); a seller that collects no tax on the purchase
       # can be quoted without them. The purchase is priced from exactly what you send: no buyer is looked up, so no
-      # stored registration or purchase history applies. A quote is priced once, in the plans' own currency, and expires
-      # at `expires_at`.
+      # stored registration or purchase history applies. Quote what you are about to charge and pass the quote's `id` as
+      # `quote_id` when you create the payment: it then charges exactly the purchase, promo code and tax shown here. A
+      # quote is priced once, in the plans' own currency, and may be consumed by one payment before `expires_at`.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::PaymentQuotes::Types::CreatePaymentQuotesRequest]
@@ -56,7 +57,8 @@ module Whop_sdk
         end
       end
 
-      # Retrieves a payment quote, including when it expires.
+      # Retrieves a payment quote, including the payment holding it (`payment_id`, whose `status` says whether it
+      # collected) and when it expires.
       #
       # @param request_options [Hash]
       # @param params [Hash]

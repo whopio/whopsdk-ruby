@@ -43,7 +43,7 @@ module Whop_sdk
         end
         code = response.code.to_i
         if code.between?(200, 299)
-          Whop_sdk::Partners::Types::CreatePartnersResponse.load(response.body)
+          (response.body.to_s.empty? ? nil : Whop_sdk::Partners::Types::CreatePartnersResponse.load(response.body))
         else
           error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)
@@ -86,7 +86,7 @@ module Whop_sdk
         end
         code = response.code.to_i
         if code.between?(200, 299)
-          Whop_sdk::Partners::Types::LeaderboardPartnersResponse.load(response.body)
+          (response.body.to_s.empty? ? nil : Whop_sdk::Partners::Types::LeaderboardPartnersResponse.load(response.body))
         else
           error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)
@@ -157,7 +157,7 @@ module Whop_sdk
           end
           code = response.code.to_i
           if code.between?(200, 299)
-            parsed_response = Whop_sdk::Partners::Types::ReferredUsersPartnersResponse.load(response.body)
+            parsed_response = (response.body.to_s.empty? ? nil : Whop_sdk::Partners::Types::ReferredUsersPartnersResponse.load(response.body))
             [parsed_response, response]
           else
             error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
@@ -199,7 +199,7 @@ module Whop_sdk
         end
         code = response.code.to_i
         if code.between?(200, 299)
-          Whop_sdk::Types::Partner.load(response.body)
+          (response.body.to_s.empty? ? nil : Whop_sdk::Types::Partner.load(response.body))
         else
           error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)

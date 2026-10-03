@@ -78,7 +78,7 @@ module Whop_sdk
           end
           code = response.code.to_i
           if code.between?(200, 299)
-            parsed_response = Whop_sdk::Experiences::Types::ListExperiencesResponse.load(response.body)
+            parsed_response = (response.body.to_s.empty? ? nil : Whop_sdk::Experiences::Types::ListExperiencesResponse.load(response.body))
             [parsed_response, response]
           else
             error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
@@ -121,7 +121,7 @@ module Whop_sdk
         end
         code = response.code.to_i
         if code.between?(200, 299)
-          Whop_sdk::Types::Experience.load(response.body)
+          (response.body.to_s.empty? ? nil : Whop_sdk::Types::Experience.load(response.body))
         else
           error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)
@@ -158,7 +158,7 @@ module Whop_sdk
         end
         code = response.code.to_i
         if code.between?(200, 299)
-          Whop_sdk::Types::Experience.load(response.body)
+          (response.body.to_s.empty? ? nil : Whop_sdk::Types::Experience.load(response.body))
         else
           error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)
@@ -195,10 +195,12 @@ module Whop_sdk
           raise Whop_sdk::Errors::TimeoutError
         end
         code = response.code.to_i
-        return if code.between?(200, 299)
-
-        error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
-        raise error_class.new(response.body, code: code)
+        if code.between?(200, 299)
+          (response.body.to_s.empty? ? nil : JSON.parse(response.body, symbolize_names: true))
+        else
+          error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
+          raise error_class.new(response.body, code: code)
+        end
       end
 
       # Required permissions:
@@ -237,7 +239,7 @@ module Whop_sdk
         end
         code = response.code.to_i
         if code.between?(200, 299)
-          Whop_sdk::Types::Experience.load(response.body)
+          (response.body.to_s.empty? ? nil : Whop_sdk::Types::Experience.load(response.body))
         else
           error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)
@@ -285,7 +287,7 @@ module Whop_sdk
         end
         code = response.code.to_i
         if code.between?(200, 299)
-          Whop_sdk::Types::Experience.load(response.body)
+          (response.body.to_s.empty? ? nil : Whop_sdk::Types::Experience.load(response.body))
         else
           error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)
@@ -333,7 +335,7 @@ module Whop_sdk
         end
         code = response.code.to_i
         if code.between?(200, 299)
-          Whop_sdk::Types::Experience.load(response.body)
+          (response.body.to_s.empty? ? nil : Whop_sdk::Types::Experience.load(response.body))
         else
           error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)
@@ -383,7 +385,7 @@ module Whop_sdk
         end
         code = response.code.to_i
         if code.between?(200, 299)
-          Whop_sdk::Types::Experience.load(response.body)
+          (response.body.to_s.empty? ? nil : Whop_sdk::Types::Experience.load(response.body))
         else
           error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)

@@ -50,7 +50,7 @@ module Whop_sdk
         end
         code = response.code.to_i
         if code.between?(200, 299)
-          Whop_sdk::Swaps::Types::ListSwapsResponse.load(response.body)
+          (response.body.to_s.empty? ? nil : Whop_sdk::Swaps::Types::ListSwapsResponse.load(response.body))
         else
           error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)
@@ -91,7 +91,7 @@ module Whop_sdk
         end
         code = response.code.to_i
         if code.between?(200, 299)
-          Whop_sdk::Swaps::Types::CreateSwapsResponse.load(response.body)
+          (response.body.to_s.empty? ? nil : Whop_sdk::Swaps::Types::CreateSwapsResponse.load(response.body))
         else
           error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)
@@ -133,7 +133,7 @@ module Whop_sdk
         end
         code = response.code.to_i
         if code.between?(200, 299)
-          Whop_sdk::Swaps::Types::CreateQuoteSwapsResponse.load(response.body)
+          (response.body.to_s.empty? ? nil : Whop_sdk::Swaps::Types::CreateQuoteSwapsResponse.load(response.body))
         else
           error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)
@@ -170,7 +170,7 @@ module Whop_sdk
         end
         code = response.code.to_i
         if code.between?(200, 299)
-          Whop_sdk::Swaps::Types::RetrieveSwapsResponse.load(response.body)
+          (response.body.to_s.empty? ? nil : Whop_sdk::Swaps::Types::RetrieveSwapsResponse.load(response.body))
         else
           error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)

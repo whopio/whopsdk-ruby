@@ -35,6 +35,8 @@ module Whop_sdk
 
           field :plan_id, -> { String }, optional: true, nullable: false
 
+          field :promo_code, -> { String }, optional: true, nullable: false
+
           field :promo_code_id, -> { String }, optional: true, nullable: false
         end
       end

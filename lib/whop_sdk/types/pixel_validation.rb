@@ -3,6 +3,8 @@
 module Whop_sdk
   module Types
     class PixelValidation < Internal::Types::Model
+      field :affiliate_tracking_detected, -> { Internal::Types::Boolean }, optional: false, nullable: false
+
       field :firing_data_ok, -> { Internal::Types::Boolean }, optional: false, nullable: false
 
       field :host_events, -> { Internal::Types::Array[String] }, optional: false, nullable: false

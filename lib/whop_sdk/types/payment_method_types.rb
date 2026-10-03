@@ -132,6 +132,7 @@ module Whop_sdk
       VIPPS = "vipps"
       WEBPAY = "webpay"
       WECHAT_PAY = "wechat_pay"
+      WHOP_PAY = "whop_pay"
       YAPE = "yape"
       ZIP = "zip"
       COINFLOW = "coinflow"

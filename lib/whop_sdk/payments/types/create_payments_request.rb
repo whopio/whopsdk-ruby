@@ -22,6 +22,8 @@ module Whop_sdk
 
         field :payment_method_id, -> { String }, optional: true, nullable: false
 
+        field :quote_id, -> { String }, optional: true, nullable: false
+
         field :return_url, -> { String }, optional: true, nullable: false
 
         field :shipping_address, -> { Whop_sdk::Payments::Types::CreatePaymentsRequestShippingAddress }, optional: true, nullable: false

@@ -21,6 +21,8 @@ module Whop_sdk
 
       field :located_by, -> { Whop_sdk::Types::PaymentQuoteLocatedBy }, optional: false, nullable: true
 
+      field :payment_id, -> { String }, optional: false, nullable: true
+
       field :promo_code_id, -> { String }, optional: false, nullable: true
 
       field :shipping_address, -> { Whop_sdk::Types::PaymentAddress }, optional: false, nullable: true

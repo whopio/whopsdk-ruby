@@ -205,7 +205,8 @@ module Whop_sdk
       # page settle it; conversion events are also read across the hostname because they commonly fire on a later
       # confirmation page. If the requested page hasn't sent any events lately, it is fetched and read for the pixel and
       # conversion events wired on it. `installed` is only true when the pixel was actually seen — in the account's
-      # events or in the page.
+      # events or in the page. `affiliate_tracking_detected` reports an affiliate tracking SDK found on the page.
+      # Supported platforms: Everflow.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::Events::Types::ValidatePixelEventsRequest]

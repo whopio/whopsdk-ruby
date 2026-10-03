@@ -193,7 +193,7 @@ This SDK allows you to configure different environments or custom URLs for API r
 require "whop_sdk"
 
 whop_sdk = Whop_sdk::Client.new(
-    base_url: Whop_sdk::Environment::PRODUCTION
+    environment: Whop_sdk::Environment::PRODUCTION
 )
 ```
 

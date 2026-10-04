@@ -35069,7 +35069,7 @@ client.stats.retrieve(
 <dl>
 <dd>
 
-**hostname:** `String` — Filter traffic metrics to one website hostname, for example shop.example.com. Pair with breakdown_by=hostname to split by website.
+**hostname:** `String` — Filter traffic metrics to one website hostname, for example shop.example.com. On the events and people metrics, comma-separated hostnames match any listed hostname. Pair with breakdown_by=hostname to split by website.
     
 </dd>
 </dl>

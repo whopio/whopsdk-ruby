@@ -13,10 +13,10 @@
       "standardwebhooks": ">= 1.0"
     }
   },
-  "originGitCommit": "a7b9d69542938e39e9ebb93b2790bd03dfb05c77",
+  "originGitCommit": "2deffc785420e34391d4024ab646944d6a330406",
   "originGitCommitIsDirty": false,
   "invokedBy": "ci",
-  "requestedVersion": "2.1.0",
+  "requestedVersion": "2.2.0",
   "ciProvider": "unknown",
-  "sdkVersion": "2.1.0"
+  "sdkVersion": "2.2.0"
 }

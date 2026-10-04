@@ -8,6 +8,8 @@ module Whop_sdk
 
         field :ip_address, -> { String }, optional: true, nullable: false
 
+        field :presentment_currency, -> { String }, optional: true, nullable: false
+
         field :shipping_address, -> { Whop_sdk::PaymentQuotes::Types::CreatePaymentQuotesRequestShippingAddress }, optional: true, nullable: false
 
         field :tax_ids, -> { Internal::Types::Array[Whop_sdk::PaymentQuotes::Types::CreatePaymentQuotesRequestTaxIDsItem] }, optional: true, nullable: false

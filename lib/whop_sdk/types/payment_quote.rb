@@ -7,11 +7,17 @@ module Whop_sdk
 
       field :address, -> { Whop_sdk::Types::PaymentAddress }, optional: false, nullable: true
 
+      field :base_currency, -> { String }, optional: false, nullable: false
+
+      field :base_total, -> { Whop_sdk::Types::Money }, optional: false, nullable: false
+
       field :created_at, -> { String }, optional: false, nullable: false
 
       field :currency, -> { String }, optional: false, nullable: false
 
       field :discount, -> { Whop_sdk::Types::Money }, optional: false, nullable: false
+
+      field :exchange_rate, -> { String }, optional: false, nullable: true
 
       field :expires_at, -> { String }, optional: false, nullable: false
 
@@ -24,6 +30,8 @@ module Whop_sdk
       field :payment_id, -> { String }, optional: false, nullable: true
 
       field :promo_code_id, -> { String }, optional: false, nullable: true
+
+      field :recommended_currencies, -> { Internal::Types::Array[String] }, optional: false, nullable: false
 
       field :shipping_address, -> { Whop_sdk::Types::PaymentAddress }, optional: false, nullable: true
 

@@ -12,6 +12,8 @@ module Whop_sdk
 
         field :icon, -> { Whop_sdk::Apps::Types::CreateAppsRequestIcon }, optional: true, nullable: false
 
+        field :imported_from_url, -> { String }, optional: true, nullable: false
+
         field :name, -> { String }, optional: false, nullable: false
 
         field :redirect_uris, -> { Internal::Types::Array[String] }, optional: true, nullable: false

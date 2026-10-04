@@ -22,6 +22,8 @@ module Whop_sdk
 
         field :icon, -> { Whop_sdk::Apps::Types::UpdateAppsRequestIcon }, optional: true, nullable: false
 
+        field :imported_from_url, -> { String }, optional: true, nullable: false
+
         field :name, -> { String }, optional: true, nullable: false
 
         field :oauth_client_type, -> { Whop_sdk::Apps::Types::UpdateAppsRequestOauthClientType }, optional: true, nullable: false

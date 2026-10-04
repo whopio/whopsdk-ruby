@@ -7465,6 +7465,14 @@ client.apps.create(name: "Shine Time Booking")
 <dl>
 <dd>
 
+**imported_from_url:** `String` — The address of the existing website this app is imported from, such as `https://shop.example.com`. Must be an `http` or `https` URL.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **name:** `String` — The display name for the app, shown to users on the app store and product pages.
     
 </dd>
@@ -7732,6 +7740,14 @@ client.apps.update(id: "id")
 <dd>
 
 **icon:** `Whop_sdk::Apps::Types::UpdateAppsRequestIcon` — The icon image for the app in PNG, JPEG, or GIF format, referencing an uploaded file: `{ id }` for an existing attachment or `{ direct_upload_id }` for a new direct upload.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**imported_from_url:** `String` — The address of the existing website this app is imported from, such as `https://shop.example.com`. Must be an `http` or `https` URL. Set to `null` to clear it.
     
 </dd>
 </dl>

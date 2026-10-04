@@ -45,6 +45,8 @@ module Whop_sdk
 
       field :id, -> { String }, optional: false, nullable: false
 
+      field :imported_from_url, -> { String }, optional: false, nullable: true
+
       field :marketplace_status, -> { Whop_sdk::Types::AppMarketplaceStatus }, optional: false, nullable: true
 
       field :name, -> { String }, optional: false, nullable: false

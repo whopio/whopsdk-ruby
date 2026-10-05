@@ -34,6 +34,10 @@ module Whop_sdk
       field :verification, -> { Internal::Types::Hash[String, Object] }, optional: false, nullable: false
 
       field :whop_partner_enabled_at, -> { String }, optional: false, nullable: true
+
+      field :whop_partner_onboarded_accounts_count, -> { Integer }, optional: false, nullable: true
+
+      field :whop_partner_verified_at, -> { String }, optional: false, nullable: true
     end
   end
 end

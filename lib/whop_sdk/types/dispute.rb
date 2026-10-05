@@ -23,6 +23,8 @@ module Whop_sdk
 
       field :evidence_submitted_at, -> { String }, optional: false, nullable: true
 
+      field :fee, -> { Whop_sdk::Types::Money }, optional: false, nullable: true
+
       field :id, -> { String }, optional: false, nullable: false
 
       field :inquiry, -> { Internal::Types::Boolean }, optional: false, nullable: false

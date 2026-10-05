@@ -9,6 +9,7 @@ module Whop_sdk
       TRANSFER = "transfer"
       CARD_INTERCHANGE = "card_interchange"
       AD_SPEND = "ad_spend"
+      WITHDRAWAL = "withdrawal"
     end
   end
 end

@@ -2553,6 +2553,7 @@ require_relative "whop_sdk/users/oauth_grants/types/list_oauth_grants_response_p
 require_relative "whop_sdk/types/oauth_grant"
 require_relative "whop_sdk/users/oauth_grants/types/list_oauth_grants_response"
 require_relative "whop_sdk/users/oauth_grants/types/create_oauth_grants_request_code_challenge_method"
+require_relative "whop_sdk/users/oauth_grants/types/create_oauth_grants_request_mcp_client"
 require_relative "whop_sdk/users/oauth_grants/types/create_oauth_grants_request_response_type"
 require_relative "whop_sdk/users/passkeys/types/list_passkeys_request_order"
 require_relative "whop_sdk/users/passkeys/types/list_passkeys_request_direction"

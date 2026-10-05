@@ -15,6 +15,8 @@ module Whop_sdk
 
           field :consent_shown, -> { Internal::Types::Boolean }, optional: true, nullable: false
 
+          field :mcp_client, -> { Whop_sdk::Users::OauthGrants::Types::CreateOauthGrantsRequestMcpClient }, optional: true, nullable: false
+
           field :nonce, -> { String }, optional: true, nullable: false
 
           field :redirect_uri, -> { String }, optional: false, nullable: false

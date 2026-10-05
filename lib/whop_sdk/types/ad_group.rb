@@ -101,6 +101,8 @@ module Whop_sdk
 
       field :leads, -> { Integer }, optional: false, nullable: false
 
+      field :learning_progress, -> { Whop_sdk::Types::AdGroupLearningProgress }, optional: false, nullable: true
+
       field :link_clicks, -> { Integer }, optional: false, nullable: false
 
       field :message_apps, -> { Internal::Types::Array[Whop_sdk::Types::AdGroupMessageAppsItem] }, optional: true, nullable: false

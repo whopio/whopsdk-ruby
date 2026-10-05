@@ -5,10 +5,10 @@ module Whop_sdk
     module Businesses
       module Earnings
         module Types
-          module ListEarningsResponseDataItemResourceCreatedAtObject
+          module ListEarningsResponseDataItemResourceMerchantNameObject
             extend Whop_sdk::Internal::Types::Enum
 
-            PARTNER_REWARD = "partner_reward"
+            CARD_TRANSACTION = "card_transaction"
           end
         end
       end

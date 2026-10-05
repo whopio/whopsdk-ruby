@@ -13,6 +13,8 @@ module Whop_sdk
           field :sales, -> { Integer }, optional: false, nullable: false
 
           field :transfer, -> { Integer }, optional: false, nullable: true
+
+          field :withdrawal, -> { Integer }, optional: false, nullable: true
         end
       end
     end

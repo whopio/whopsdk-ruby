@@ -15,6 +15,8 @@ module Whop_sdk
 
       field :currency, -> { String }, optional: false, nullable: false
 
+      field :fee, -> { Whop_sdk::Types::Money }, optional: false, nullable: true
+
       field :fee_charged, -> { Internal::Types::Boolean }, optional: false, nullable: false
 
       field :id, -> { String }, optional: false, nullable: false

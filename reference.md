@@ -15660,7 +15660,7 @@ client.dm_members.update(id: "id")
 <dl>
 <dd>
 
-Lists your domains. Filter by account, app, or status.
+Lists your domains. Filter by account, app, status, or hostname.
 
 Pass `search` to find domains to buy instead: the exact domain first, even when taken, then your name on popular extensions, then suggestions. Pass `tlds` to check only the extensions you choose. Results aren't reserved.
 </dd>
@@ -15708,7 +15708,7 @@ client.domains.list(tlds: ["com"])
 <dl>
 <dd>
 
-**status:** `Whop_sdk::Domains::Types::ListDomainsRequestStatus` — Only domains with this lifecycle status.
+**status:** `Whop_sdk::Domains::Types::ListDomainsRequestStatus` — Only domains with this lifecycle status. Removed and failed domains aren't listed; retrieve them by ID.
     
 </dd>
 </dl>
@@ -15780,6 +15780,14 @@ client.domains.list(tlds: ["com"])
 <dl>
 <dd>
 
+**domain:** `String` — Only your domain with this hostname, such as `example.com`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **request_options:** `Whop_sdk::Domains::RequestOptions` 
     
 </dd>
@@ -15804,7 +15812,11 @@ client.domains.list(tlds: ["com"])
 <dl>
 <dd>
 
-Claims a hostname for an app and returns the DNS records to publish. Verification and certificate setup run automatically, and unverified claims are deleted after 48 hours. A claim doesn't reserve the hostname.
+Buys a domain through Whop, or connects one you registered elsewhere.
+
+A bought domain starts `awaiting_payment`. Pay its `amount_due` at `purchase_url`, or pass `payment_method_id` to charge a saved card. Whop then registers it, hosts its DNS, issues its certificate and serves the app, and renews it every year while `auto_renew` is on. An unpaid purchase is removed after 7 days.
+
+With `mode: external`, Whop returns the DNS records to publish instead. Verification and certificate setup run automatically, and unverified claims are deleted after 48 hours. A claim doesn't reserve the hostname.
 </dd>
 </dl>
 </dd>
@@ -15819,10 +15831,7 @@ Claims a hostname for an app and returns the DNS records to publish. Verificatio
 <dd>
 
 ```ruby
-client.domains.create(
-  app_id: "app_xxxxxxxxxxxxxx",
-  domain: "store.example.com"
-)
+client.domains.create(domain: "store.example.com")
 ```
 </dd>
 </dl>
@@ -15845,7 +15854,7 @@ client.domains.create(
 <dl>
 <dd>
 
-**app_id:** `String` — App ID, prefixed app_. The app must belong to the account.
+**app_id:** `String` — App ID, prefixed app_, for the domain to serve. The app must belong to the account. Required with `mode: external`.
     
 </dd>
 </dl>
@@ -15853,7 +15862,7 @@ client.domains.create(
 <dl>
 <dd>
 
-**domain:** `String` — Bare hostname, such as example.com or checkout.example.com. Wildcards, paths, schemes, and ports are not accepted.
+**domain:** `String` — Bare hostname, such as example.com or checkout.example.com. A bought domain must be a root domain. Wildcards, paths, schemes, and ports are not accepted.
     
 </dd>
 </dl>
@@ -15869,7 +15878,23 @@ client.domains.create(
 <dl>
 <dd>
 
-**replace_existing:** `Internal::Types::Boolean` — Explicitly transfer a domain from its current owner after publishing this new claim's TXT proof. Create the claim after the current owner verified.
+**mode:** `Whop_sdk::Domains::Types::CreateDomainsRequestMode` — `managed` buys the domain through Whop; `external` connects a domain you registered elsewhere.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**payment_method_id:** `String` — Saved card to charge for a bought domain and its renewals, prefixed `payt_`. It must belong to the signed-in user.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**replace_existing:** `Internal::Types::Boolean` — With `mode: external`, explicitly transfer a domain from its current owner after publishing this new claim's TXT proof. Create the claim after the current owner verified.
     
 </dd>
 </dl>
@@ -15901,7 +15926,7 @@ client.domains.create(
 <dl>
 <dd>
 
-Retrieves a domain's claim, app assignment, DNS records, and hostname and certificate status, and starts a background check if it isn't active yet.
+Retrieves a domain's status, issues, billing, and DNS records, and checks it again in the background if it isn't active yet.
 
 Pass a hostname instead of an ID to look up any domain, with its `registration_quote` and, if registered, its `public_record`.
 </dd>
@@ -15965,7 +15990,7 @@ client.domains.retrieve(id: "id")
 <dl>
 <dd>
 
-Stops routing the domain to its app and starts cleanup. It returns as `deleting`; retrieve it until it's `removed`.
+Stops routing a connected domain to its app and starts cleanup: it returns as `deleting`; retrieve it until it's `removed`. Deleting an unpaid purchase cancels it. A registered domain can't be deleted; turn off `auto_renew` and it's released after it expires.
 </dd>
 </dl>
 </dd>
@@ -16027,7 +16052,7 @@ client.domains.delete(id: "id")
 <dl>
 <dd>
 
-Reassigns a domain to another app in the same account or replaces its metadata. The hostname and owning account cannot be edited.
+Reassigns a domain to another app in the same account, replaces its metadata, or changes how a bought domain renews. The hostname and owning account cannot be edited.
 </dd>
 </dl>
 </dd>
@@ -16065,7 +16090,15 @@ client.domains.update(id: "id")
 <dl>
 <dd>
 
-**app_id:** `String` — App ID, prefixed app_. Must belong to the same account.
+**app_id:** `String` — App ID, prefixed app_. Must belong to the same account. Pass `null` to detach a bought domain from its app; it keeps renewing.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**auto_renew:** `Internal::Types::Boolean` — For a bought domain, whether Whop charges its saved card to renew it before it expires.
     
 </dd>
 </dl>
@@ -16074,6 +16107,14 @@ client.domains.update(id: "id")
 <dd>
 
 **metadata:** `Internal::Types::Hash[String, String]` — Replacement custom string keys and values.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**payment_method_id:** `String` — For a bought domain, the saved card to charge, prefixed `payt_`. It must belong to the signed-in user. Pass `null` to remove it.
     
 </dd>
 </dl>

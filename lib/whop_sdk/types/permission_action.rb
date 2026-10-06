@@ -10,6 +10,8 @@ module Whop_sdk
       WAITLIST_ENTRY_CANCEL = "waitlist_entry:cancel"
       EXPERIMENT_MANAGE = "experiment:manage"
       EXPERIMENT_READ = "experiment:read"
+      DOMAIN_MANAGE = "domain:manage"
+      DOMAIN_READ = "domain:read"
       AI_PROMPT_CREATE = "ai_prompt:create"
       ACCESS_PASS_BASIC_EXPORT = "access_pass:basic:export"
       ACCESS_PASS_BASIC_READ = "access_pass:basic:read"

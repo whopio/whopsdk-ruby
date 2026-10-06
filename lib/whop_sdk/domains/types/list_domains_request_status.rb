@@ -7,11 +7,13 @@ module Whop_sdk
         extend Whop_sdk::Internal::Types::Enum
 
         PENDING_VERIFICATION = "pending_verification"
+        AWAITING_PAYMENT = "awaiting_payment"
+        REGISTERING = "registering"
         PROVISIONING = "provisioning"
         ACTIVE = "active"
         ACTION_REQUIRED = "action_required"
         DELETING = "deleting"
-        REMOVED = "removed"
+        EXPIRED = "expired"
       end
     end
   end

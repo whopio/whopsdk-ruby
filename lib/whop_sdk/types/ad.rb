@@ -65,6 +65,8 @@ module Whop_sdk
 
       field :existing_post_id, -> { String }, optional: false, nullable: true
 
+      field :external_accounts, -> { Internal::Types::Array[Whop_sdk::Types::AdEntityReference] }, optional: false, nullable: false
+
       field :frequency, -> { Integer }, optional: false, nullable: true
 
       field :headlines, -> { Internal::Types::Array[Whop_sdk::Types::AdText] }, optional: false, nullable: false
@@ -118,8 +120,6 @@ module Whop_sdk
       field :schedule_value, -> { Integer }, optional: false, nullable: false
 
       field :schedules, -> { Integer }, optional: false, nullable: false
-
-      field :social_accounts, -> { Internal::Types::Array[Whop_sdk::Types::AdEntityReference] }, optional: false, nullable: false
 
       field :spend, -> { Integer }, optional: false, nullable: false
 

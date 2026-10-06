@@ -20,6 +20,8 @@ module Whop_sdk
 
         field :existing_post_id, -> { String }, optional: false, nullable: true
 
+        field :external_accounts, -> { Internal::Types::Array[Whop_sdk::Types::AdEntityReference] }, optional: false, nullable: false
+
         field :headlines, -> { Internal::Types::Array[Whop_sdk::Types::AdText] }, optional: false, nullable: false
 
         field :id, -> { String }, optional: false, nullable: false
@@ -45,8 +47,6 @@ module Whop_sdk
         field :post_thumbnail_url, -> { String }, optional: false, nullable: true
 
         field :primary_texts, -> { Internal::Types::Array[Whop_sdk::Types::AdText] }, optional: false, nullable: false
-
-        field :social_accounts, -> { Internal::Types::Array[Whop_sdk::Types::AdEntityReference] }, optional: false, nullable: false
 
         field :status, -> { Whop_sdk::Ads::Types::PostAdUpdatedPayloadDataStatus }, optional: false, nullable: false
 

@@ -10,7 +10,7 @@ module Whop_sdk
     # @param max_retries [Integer]
     #
     # @return [void]
-    def initialize(token:, base_url: nil, environment: Whop_sdk::Environment::PRODUCTION, api_version_date: "2026-10-05-1", idempotency_key: nil, max_retries: 2)
+    def initialize(token:, base_url: nil, environment: Whop_sdk::Environment::PRODUCTION, api_version_date: "2026-10-06", idempotency_key: nil, max_retries: 2)
       @base_url = base_url
       @environment = environment
 
@@ -226,6 +226,11 @@ module Whop_sdk
     # @return [Whop_sdk::Exports::Client]
     def exports
       @exports ||= Whop_sdk::Exports::Client.new(client: @raw_client, base_url: @base_url, environment: @environment)
+    end
+
+    # @return [Whop_sdk::ExternalAccounts::Client]
+    def external_accounts
+      @external_accounts ||= Whop_sdk::ExternalAccounts::Client.new(client: @raw_client, base_url: @base_url, environment: @environment)
     end
 
     # @return [Whop_sdk::FeeMarkups::Client]

@@ -14,7 +14,7 @@ module Whop_sdk
         @environment = environment
       end
 
-      # Lists the social accounts linked to an account or user.
+      # Deprecated compatibility endpoint. List external accounts with `GET /external_accounts` instead.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -85,7 +85,7 @@ module Whop_sdk
         end
       end
 
-      # Creates or returns a Whop-managed Facebook page or TikTok account for an account.
+      # Deprecated compatibility endpoint. Create external accounts with `POST /external_accounts` instead.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::SocialAccounts::Types::CreateSocialAccountsRequest]
@@ -122,11 +122,7 @@ module Whop_sdk
         end
       end
 
-      # Starts an OAuth connection flow and returns an authorize_url where the user can connect a social account.
-      # LinkedIn supports personal profiles only, with scopes omitted. TikTok connects the authenticated user’s profile
-      # when scopes are omitted or company advertising assets with advertise. Meta Business and Snapchat support
-      # advertising connections only and require advertise. Personal profile connections must be completed in a browser
-      # signed in as the initiating Whop user.
+      # Deprecated compatibility endpoint. Connect external accounts with `POST /external_accounts/connect` instead.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::SocialAccounts::Types::ConnectSocialAccountsRequest]
@@ -166,7 +162,7 @@ module Whop_sdk
         end
       end
 
-      # Disconnects a social account from an account or user without deleting the underlying platform account.
+      # Deprecated compatibility endpoint. Disconnect external accounts with `DELETE /external_accounts/{id}` instead.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -210,9 +206,7 @@ module Whop_sdk
         end
       end
 
-      # Lists the active lead (instant) forms that already exist on a connected Facebook page, so an ad can reuse one as
-      # its `lead_gen_form_id` instead of authoring a new form. Every active form comes back in a single response — the
-      # list is not paginated.
+      # Deprecated compatibility endpoint. List lead forms with `GET /external_accounts/{id}/lead_forms` instead.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -257,7 +251,8 @@ module Whop_sdk
         end
       end
 
-      # Lists the creators an Instagram account runs partnership ads with, and where each creator's permission stands.
+      # Deprecated compatibility endpoint. List partners with `GET /external_accounts/{external_account_id}/partners`
+      # instead.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -311,9 +306,8 @@ module Whop_sdk
         end
       end
 
-      # Invites an Instagram creator to run partnership ads with an Instagram account. The creator approves the
-      # invitation in the Instagram app, and `partnership_status` stays `pending` until they do;
-      # [refresh](/api-reference/beta/social-accounts/refresh) the partner to pick up their answer.
+      # Deprecated compatibility endpoint. Add partners with `POST /external_accounts/{external_account_id}/partners`
+      # instead.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::SocialAccounts::Types::AddPartnerSocialAccountsRequest]
@@ -358,8 +352,8 @@ module Whop_sdk
         end
       end
 
-      # Revokes a creator's permission to run partnership ads with an Instagram account. Every account that advertises
-      # as the Instagram account loses the partner, since the permission belongs to the Instagram account.
+      # Deprecated compatibility endpoint. Remove partners with `DELETE
+      # /external_accounts/{external_account_id}/partners/{id}` instead.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -405,7 +399,7 @@ module Whop_sdk
         end
       end
 
-      # Lists the existing posts of a connected Facebook page, Instagram account, or TikTok account.
+      # Deprecated compatibility endpoint. List posts with `GET /external_accounts/{id}/posts` instead.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -464,7 +458,8 @@ module Whop_sdk
         end
       end
 
-      # Refreshes the state of a social account. Use it to clear an `error` that has been resolved.
+      # Deprecated compatibility endpoint. Refresh external accounts with `POST /external_accounts/{id}/refresh`
+      # instead.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::SocialAccounts::Types::RefreshSocialAccountsRequest]

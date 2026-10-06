@@ -6,11 +6,15 @@ module Whop_sdk
       class CreateDomainsRequest < Internal::Types::Model
         field :account_id, -> { String }, optional: true, nullable: false
 
-        field :app_id, -> { String }, optional: false, nullable: false
+        field :app_id, -> { String }, optional: true, nullable: false
 
         field :domain, -> { String }, optional: false, nullable: false
 
         field :metadata, -> { Internal::Types::Hash[String, String] }, optional: true, nullable: false
+
+        field :mode, -> { Whop_sdk::Domains::Types::CreateDomainsRequestMode }, optional: true, nullable: false
+
+        field :payment_method_id, -> { String }, optional: true, nullable: false
 
         field :replace_existing, -> { Internal::Types::Boolean }, optional: true, nullable: false
       end

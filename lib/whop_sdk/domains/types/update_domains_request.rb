@@ -8,7 +8,11 @@ module Whop_sdk
 
         field :app_id, -> { String }, optional: true, nullable: false
 
+        field :auto_renew, -> { Internal::Types::Boolean }, optional: true, nullable: false
+
         field :metadata, -> { Internal::Types::Hash[String, String] }, optional: true, nullable: false
+
+        field :payment_method_id, -> { String }, optional: true, nullable: false
       end
     end
   end

@@ -25,6 +25,8 @@ module Whop_sdk
         field :search, -> { String }, optional: true, nullable: false
 
         field :tlds, -> { String }, optional: true, nullable: false
+
+        field :domain, -> { String }, optional: true, nullable: false
       end
     end
   end

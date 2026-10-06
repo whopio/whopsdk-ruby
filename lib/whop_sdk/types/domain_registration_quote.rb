@@ -9,8 +9,6 @@ module Whop_sdk
 
       field :price, -> { Whop_sdk::Types::Money }, optional: false, nullable: true
 
-      field :purchase_url, -> { String }, optional: false, nullable: true
-
       field :renewal_price, -> { Whop_sdk::Types::Money }, optional: false, nullable: true
 
       field :score, -> { Integer }, optional: false, nullable: false

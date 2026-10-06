@@ -14,7 +14,7 @@ module Whop_sdk
         @environment = environment
       end
 
-      # Lists your domains. Filter by account, app, or status.
+      # Lists your domains. Filter by account, app, status, or hostname.
       #
       # Pass `search` to find domains to buy instead: the exact domain first, even when taken, then your name on popular
       # extensions, then suggestions. Pass `tlds` to check only the extensions you choose. Results aren't reserved.
@@ -37,6 +37,7 @@ module Whop_sdk
       # @option params [String, nil] :before
       # @option params [String, nil] :search
       # @option params [String, nil] :tlds
+      # @option params [String, nil] :domain
       #
       # @example
       #   client.domains.list(tlds: ["com"])
@@ -56,6 +57,7 @@ module Whop_sdk
         query_params["before"] = params[:before] if params.key?(:before)
         query_params["search"] = params[:search] if params.key?(:search)
         query_params["tlds"] = params[:tlds] if params.key?(:tlds)
+        query_params["domain"] = params[:domain] if params.key?(:domain)
 
         Whop_sdk::Internal::CursorItemIterator.new(
           cursor_field: :end_cursor,
@@ -86,7 +88,13 @@ module Whop_sdk
         end
       end
 
-      # Claims a hostname for an app and returns the DNS records to publish. Verification and certificate setup run
+      # Buys a domain through Whop, or connects one you registered elsewhere.
+      #
+      # A bought domain starts `awaiting_payment`. Pay its `amount_due` at `purchase_url`, or pass `payment_method_id`
+      # to charge a saved card. Whop then registers it, hosts its DNS, issues its certificate and serves the app, and
+      # renews it every year while `auto_renew` is on. An unpaid purchase is removed after 7 days.
+      #
+      # With `mode: external`, Whop returns the DNS records to publish instead. Verification and certificate setup run
       # automatically, and unverified claims are deleted after 48 hours. A claim doesn't reserve the hostname.
       #
       # @param request_options [Hash]
@@ -98,10 +106,7 @@ module Whop_sdk
       # @option request_options [Integer] :timeout_in_seconds
       #
       # @example
-      #   client.domains.create(
-      #     app_id: "app_xxxxxxxxxxxxxx",
-      #     domain: "store.example.com"
-      #   )
+      #   client.domains.create(domain: "store.example.com")
       #
       # @return [Whop_sdk::Types::Domain]
       def create(request_options: {}, **params)
@@ -127,8 +132,8 @@ module Whop_sdk
         end
       end
 
-      # Retrieves a domain's claim, app assignment, DNS records, and hostname and certificate status, and starts a
-      # background check if it isn't active yet.
+      # Retrieves a domain's status, issues, billing, and DNS records, and checks it again in the background if it isn't
+      # active yet.
       #
       # Pass a hostname instead of an ID to look up any domain, with its `registration_quote` and, if registered, its
       # `public_record`.
@@ -168,8 +173,9 @@ module Whop_sdk
         end
       end
 
-      # Stops routing the domain to its app and starts cleanup. It returns as `deleting`; retrieve it until it's
-      # `removed`.
+      # Stops routing a connected domain to its app and starts cleanup: it returns as `deleting`; retrieve it until it's
+      # `removed`. Deleting an unpaid purchase cancels it. A registered domain can't be deleted; turn off `auto_renew`
+      # and it's released after it expires.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -206,8 +212,8 @@ module Whop_sdk
         end
       end
 
-      # Reassigns a domain to another app in the same account or replaces its metadata. The hostname and owning account
-      # cannot be edited.
+      # Reassigns a domain to another app in the same account, replaces its metadata, or changes how a bought domain
+      # renews. The hostname and owning account cannot be edited.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::Domains::Types::UpdateDomainsRequest]

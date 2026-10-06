@@ -5,27 +5,31 @@ module Whop_sdk
     class DomainListItem < Internal::Types::Model
       field :account_id, -> { String }, optional: false, nullable: true
 
+      field :amount_due, -> { Whop_sdk::Types::Money }, optional: false, nullable: true
+
       field :app_id, -> { String }, optional: false, nullable: true
 
-      field :certificate_status, -> { String }, optional: false, nullable: true
+      field :auto_renew, -> { Internal::Types::Boolean }, optional: false, nullable: true
 
       field :created_at, -> { String }, optional: false, nullable: true
 
       field :dns_records, -> { Internal::Types::Array[Whop_sdk::Types::DomainDNSRecord] }, optional: false, nullable: false
 
-      field :dns_status, -> { Whop_sdk::Types::DomainListItemDNSStatus }, optional: false, nullable: true
-
       field :domain, -> { String }, optional: false, nullable: false
 
-      field :hostname_status, -> { String }, optional: false, nullable: true
+      field :expires_at, -> { String }, optional: false, nullable: true
 
       field :id, -> { String }, optional: false, nullable: true
 
       field :issues, -> { Internal::Types::Array[Whop_sdk::Types::DomainIssue] }, optional: false, nullable: false
 
-      field :last_checked_at, -> { String }, optional: false, nullable: true
-
       field :metadata, -> { Internal::Types::Hash[String, Object] }, optional: false, nullable: false
+
+      field :mode, -> { Whop_sdk::Types::DomainListItemMode }, optional: false, nullable: true
+
+      field :payment_method_id, -> { String }, optional: false, nullable: true
+
+      field :purchase_url, -> { String }, optional: false, nullable: true
 
       field :registration_quote, -> { Whop_sdk::Types::DomainRegistrationQuote }, optional: false, nullable: true
 
@@ -34,8 +38,6 @@ module Whop_sdk
       field :updated_at, -> { String }, optional: false, nullable: true
 
       field :verification_expires_at, -> { String }, optional: false, nullable: true
-
-      field :verified_at, -> { String }, optional: false, nullable: true
     end
   end
 end

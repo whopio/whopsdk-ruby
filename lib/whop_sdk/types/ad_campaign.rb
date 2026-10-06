@@ -19,6 +19,8 @@ module Whop_sdk
 
       field :budget_type, -> { Whop_sdk::Types::AdCampaignBudgetType }, optional: false, nullable: true
 
+      field :campaign_type, -> { Whop_sdk::Types::AdCampaignCampaignType }, optional: false, nullable: false
+
       field :click_through_rate, -> { Integer }, optional: false, nullable: false
 
       field :clicks, -> { Integer }, optional: false, nullable: false

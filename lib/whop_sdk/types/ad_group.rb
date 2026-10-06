@@ -95,6 +95,8 @@ module Whop_sdk
 
       field :issues, -> { Internal::Types::Array[Whop_sdk::Types::AdPlatformIssue] }, optional: false, nullable: false
 
+      field :keywords, -> { Internal::Types::Array[Whop_sdk::Types::AdGroupKeyword] }, optional: true, nullable: false
+
       field :languages, -> { Internal::Types::Array[String] }, optional: false, nullable: false
 
       field :lead_value, -> { Integer }, optional: false, nullable: false

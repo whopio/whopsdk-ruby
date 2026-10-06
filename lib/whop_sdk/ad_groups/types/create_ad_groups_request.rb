@@ -36,6 +36,8 @@ module Whop_sdk
 
         field :frequency_cap, -> { Whop_sdk::AdGroups::Types::CreateAdGroupsRequestFrequencyCap }, optional: true, nullable: false
 
+        field :keywords, -> { Internal::Types::Array[Whop_sdk::AdGroups::Types::CreateAdGroupsRequestKeywordsItem] }, optional: true, nullable: false
+
         field :languages, -> { Internal::Types::Array[String] }, optional: true, nullable: false
 
         field :message_apps, -> { Internal::Types::Array[Whop_sdk::AdGroups::Types::CreateAdGroupsRequestMessageAppsItem] }, optional: true, nullable: false

@@ -16,6 +16,8 @@ module Whop_sdk
 
         field :budget_type, -> { Whop_sdk::AdCampaigns::Types::UpdateAdCampaignsRequestBudgetType }, optional: true, nullable: false
 
+        field :campaign_type, -> { Whop_sdk::AdCampaigns::Types::UpdateAdCampaignsRequestCampaignType }, optional: true, nullable: false
+
         field :ends_at, -> { String }, optional: true, nullable: false
 
         field :special_ad_categories, -> { Internal::Types::Array[Whop_sdk::AdCampaigns::Types::UpdateAdCampaignsRequestSpecialAdCategoriesItem] }, optional: true, nullable: false

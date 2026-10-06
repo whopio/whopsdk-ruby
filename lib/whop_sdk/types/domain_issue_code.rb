@@ -16,6 +16,8 @@ module Whop_sdk
       DOMAIN_UNAVAILABLE = "domain_unavailable"
       PREMIUM_NOT_SUPPORTED = "premium_not_supported"
       UNSUPPORTED_TLD = "unsupported_tld"
+      REGISTRATION_UNAVAILABLE = "registration_unavailable"
+      REGISTRATION_PREMIUM = "registration_premium"
       REGISTRATION_FAILED = "registration_failed"
       RENEWAL_FAILED = "renewal_failed"
       PAYMENT_ACTION_REQUIRED = "payment_action_required"

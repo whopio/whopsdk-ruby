@@ -268,6 +268,60 @@ module Whop_sdk
         end
       end
 
+      # Assigns an affiliate to a membership and pays them the commission you set on its future payments. Name the user
+      # with exactly one of `user_id`, `email`, or `username`. A user who is not yet an affiliate of your account
+      # becomes one, which also requires `affiliate:create`. Send a new `commission_type` or `commission_value` for the
+      # membership's current affiliate to change their commission; a membership that already has a different affiliate
+      # returns a conflict. Works for active or trialing memberships with one recurring plan that bill through Stripe or
+      # Whop's billing engine, and not for marketplace memberships, paused payments, or a scheduled cancellation. The
+      # payout cannot exceed 90% of the next renewal amount, and no past payments are recalculated. You cannot assign
+      # yourself.
+      #
+      # @param request_options [Hash]
+      # @param params [Whop_sdk::Memberships::Types::AssignAffiliateMembershipsRequest]
+      # @option request_options [String] :base_url
+      # @option request_options [Hash{String => Object}] :additional_headers
+      # @option request_options [Hash{String => Object}] :additional_query_parameters
+      # @option request_options [Hash{String => Object}] :additional_body_parameters
+      # @option request_options [Integer] :timeout_in_seconds
+      # @option params [String] :id
+      #
+      # @example
+      #   client.memberships.assign_affiliate(
+      #     id: "id",
+      #     commission_type: "flat_fee",
+      #     commission_value: 5,
+      #     email: "affiliate@example.com"
+      #   )
+      #
+      # @return [Whop_sdk::Types::Membership]
+      def assign_affiliate(request_options: {}, **params)
+        params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
+        request_data = Whop_sdk::Memberships::Types::AssignAffiliateMembershipsRequest.new(params).to_h
+        non_body_param_names = %w[id]
+        body = request_data.except(*non_body_param_names)
+
+        request = Whop_sdk::Internal::JSON::Request.new(
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
+          method: "POST",
+          path: "memberships/#{URI.encode_uri_component(params[:id].to_s)}/assign_affiliate",
+          body: body,
+          request_options: request_options
+        )
+        begin
+          response = @client.send(request)
+        rescue Net::HTTPRequestTimeout
+          raise Whop_sdk::Errors::TimeoutError
+        end
+        code = response.code.to_i
+        if code.between?(200, 299)
+          (response.body.to_s.empty? ? nil : Whop_sdk::Types::Membership.load(response.body))
+        else
+          error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
+          raise error_class.new(response.body, code: code)
+        end
+      end
+
       # Cancels a membership. Pass `cancel_at_period_end: true` to stop auto-renewal and keep access until the current
       # billing period ends. Omit it (or pass `false`) to revoke access immediately. Buyers cannot cancel
       # buy-now-pay-later (`splitit`, `sezzle`) or non-trial split-pay memberships.

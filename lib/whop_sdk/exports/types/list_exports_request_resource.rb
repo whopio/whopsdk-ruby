@@ -17,6 +17,7 @@ module Whop_sdk
         CHECKOUT_CONFIGURATIONS = "checkout_configurations"
         DISPUTES = "disputes"
         EVENTS = "events"
+        EXTERNAL_ACCOUNTS = "external_accounts"
         FINANCIAL_ACTIVITY = "financial-activity"
         PAYOUT_METHODS = "payout_methods"
         PAYOUTS = "payouts"

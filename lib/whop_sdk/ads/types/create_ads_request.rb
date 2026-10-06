@@ -16,6 +16,8 @@ module Whop_sdk
 
         field :existing_post_id, -> { String }, optional: true, nullable: false
 
+        field :external_accounts, -> { Internal::Types::Array[Whop_sdk::Ads::Types::CreateAdsRequestExternalAccountsItem] }, optional: true, nullable: false
+
         field :headlines, -> { Internal::Types::Array[Whop_sdk::Ads::Types::CreateAdsRequestHeadlinesItem] }, optional: true, nullable: false
 
         field :lead_form, -> { Whop_sdk::Ads::Types::CreateAdsRequestLeadForm }, optional: true, nullable: false
@@ -31,8 +33,6 @@ module Whop_sdk
         field :post_source, -> { Whop_sdk::Ads::Types::CreateAdsRequestPostSource }, optional: true, nullable: false
 
         field :primary_texts, -> { Internal::Types::Array[Whop_sdk::Ads::Types::CreateAdsRequestPrimaryTextsItem] }, optional: true, nullable: false
-
-        field :social_accounts, -> { Internal::Types::Array[Whop_sdk::Ads::Types::CreateAdsRequestSocialAccountsItem] }, optional: true, nullable: false
 
         field :title, -> { String }, optional: true, nullable: false
 

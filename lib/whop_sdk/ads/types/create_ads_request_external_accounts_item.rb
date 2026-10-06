@@ -3,7 +3,7 @@
 module Whop_sdk
   module Ads
     module Types
-      class UpdateAdsRequestSocialAccountsItem < Internal::Types::Model
+      class CreateAdsRequestExternalAccountsItem < Internal::Types::Model
         field :id, -> { String }, optional: true, nullable: false
       end
     end

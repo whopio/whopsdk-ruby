@@ -167,7 +167,10 @@ module Whop_sdk
       end
 
       # Fetches one payout by its `wdrl_` ID, or by the `cofr_` conversion request ID a stablecoin payout carries as
-      # `payout_request_id` — both ids answer with the same payout object.
+      # `payout_request_id` — both ids answer with the same payout object. Authentication is optional. Anyone with the
+      # ID can view payout tracking details, including notes, trace code, exchange rate, and payout request ID.
+      # Accounting fields require payout:withdrawal:read on the owning ledger. A supplied invalid credential returns
+      # 401.
       #
       # @param request_options [Hash]
       # @param params [Hash]

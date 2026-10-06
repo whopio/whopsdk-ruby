@@ -19491,6 +19491,88 @@ client.fee_markups.delete(id: "id")
 </dl>
 </details>
 
+## FeedbackSubmissions
+<details><summary><code>client.feedback_submissions.<a href="/lib/whop_sdk/feedback_submissions/client.rb">create</a>(request) -> Whop_sdk::FeedbackSubmissions::Types::CreateFeedbackSubmissionsResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Submits an issue or an unanswered question to Whop for internal review, recorded under the authenticated user, account, or app. Returns a receipt once the submission is accepted; processing is asynchronous and no reply is sent. Accepts user, account, and app credentials.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.feedback_submissions.create(
+  content: "The docs omit the required permission",
+  source: "mcp_report_feedback"
+)
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**account_id:** `String` — The ID of the account the feedback is about (biz_...), if any. Recorded as context only; it does not require or grant access to that account.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**content:** `String` — The problem or question in plain text, with enough context to act on. Leave out credentials, personal data, and payment details.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**source:** `Whop_sdk::FeedbackSubmissions::Types::CreateFeedbackSubmissionsRequestSource` — What kind of submission this is. Use api_report_feedback for an issue or api_ask_question for an unanswered question. The other values are reserved for Whop's own clients: the hosted MCP server, the Whop CLI, and Whop AI chat.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Whop_sdk::FeedbackSubmissions::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Files
 <details><summary><code>client.files.<a href="/lib/whop_sdk/files/client.rb">list</a>() -> Whop_sdk::Files::Types::ListFilesResponse</code></summary>
 <dl>

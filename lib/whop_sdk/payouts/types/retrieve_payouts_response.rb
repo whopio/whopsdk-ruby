@@ -4,7 +4,7 @@ module Whop_sdk
   module Payouts
     module Types
       class RetrievePayoutsResponse < Internal::Types::Model
-        field :amount, -> { String }, optional: false, nullable: false
+        field :amount, -> { String }, optional: true, nullable: false
 
         field :created_at, -> { String }, optional: false, nullable: false
 
@@ -24,15 +24,15 @@ module Whop_sdk
 
         field :failure, -> { Whop_sdk::Payouts::Types::RetrievePayoutsResponseFailure }, optional: false, nullable: true
 
-        field :fee_amount, -> { String }, optional: false, nullable: false
+        field :fee_amount, -> { String }, optional: true, nullable: false
 
-        field :fee_paid_by, -> { Whop_sdk::Payouts::Types::RetrievePayoutsResponseFeePaidBy }, optional: false, nullable: false
+        field :fee_paid_by, -> { Whop_sdk::Payouts::Types::RetrievePayoutsResponseFeePaidBy }, optional: true, nullable: false
 
         field :id, -> { String }, optional: false, nullable: false
 
-        field :markup_fee, -> { String }, optional: false, nullable: false
+        field :markup_fee, -> { String }, optional: true, nullable: false
 
-        field :metadata, -> { Internal::Types::Hash[String, String] }, optional: false, nullable: false
+        field :metadata, -> { Internal::Types::Hash[String, String] }, optional: true, nullable: false
 
         field :net_amount, -> { String }, optional: false, nullable: false
 
@@ -46,11 +46,15 @@ module Whop_sdk
 
         field :payout_request_id, -> { String }, optional: false, nullable: true
 
-        field :source, -> { Whop_sdk::Payouts::Types::RetrievePayoutsResponseSource }, optional: false, nullable: true
+        field :recipient_name, -> { String }, optional: true, nullable: false
+
+        field :sender_name, -> { String }, optional: true, nullable: false
+
+        field :source, -> { Whop_sdk::Payouts::Types::RetrievePayoutsResponseSource }, optional: true, nullable: false
 
         field :speed, -> { Whop_sdk::Payouts::Types::RetrievePayoutsResponseSpeed }, optional: false, nullable: false
 
-        field :statement_descriptor, -> { String }, optional: false, nullable: true
+        field :statement_descriptor, -> { String }, optional: true, nullable: false
 
         field :status, -> { Whop_sdk::Payouts::Types::RetrievePayoutsResponseStatus }, optional: false, nullable: false
 

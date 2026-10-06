@@ -16,6 +16,8 @@ module Whop_sdk
 
         field :budget_type, -> { Whop_sdk::AdCampaigns::Types::PostAdCampaignUpdatedPayloadDataBudgetType }, optional: false, nullable: true
 
+        field :campaign_type, -> { Whop_sdk::AdCampaigns::Types::PostAdCampaignUpdatedPayloadDataCampaignType }, optional: false, nullable: false
+
         field :created_at, -> { String }, optional: false, nullable: false
 
         field :delivery_status, -> { Whop_sdk::AdCampaigns::Types::PostAdCampaignUpdatedPayloadDataDeliveryStatus }, optional: false, nullable: false

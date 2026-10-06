@@ -14,6 +14,8 @@ module Whop_sdk
 
         field :direction, -> { Whop_sdk::AdCampaigns::Types::ListAdCampaignsRequestDirection }, optional: true, nullable: false
 
+        field :campaign_type, -> { Whop_sdk::AdCampaigns::Types::ListAdCampaignsRequestCampaignType }, optional: true, nullable: false
+
         field :created_before, -> { String }, optional: true, nullable: false
 
         field :created_after, -> { String }, optional: true, nullable: false

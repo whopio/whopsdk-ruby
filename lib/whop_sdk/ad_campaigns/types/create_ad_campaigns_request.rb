@@ -16,6 +16,8 @@ module Whop_sdk
 
         field :budget_type, -> { Whop_sdk::AdCampaigns::Types::CreateAdCampaignsRequestBudgetType }, optional: true, nullable: false
 
+        field :campaign_type, -> { Whop_sdk::AdCampaigns::Types::CreateAdCampaignsRequestCampaignType }, optional: true, nullable: false
+
         field :desired_cost_per_result, -> { Integer }, optional: true, nullable: false
 
         field :ends_at, -> { String }, optional: true, nullable: false

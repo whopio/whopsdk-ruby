@@ -238,6 +238,11 @@ module Whop_sdk
       @fee_markups ||= Whop_sdk::FeeMarkups::Client.new(client: @raw_client, base_url: @base_url, environment: @environment)
     end
 
+    # @return [Whop_sdk::FeedbackSubmissions::Client]
+    def feedback_submissions
+      @feedback_submissions ||= Whop_sdk::FeedbackSubmissions::Client.new(client: @raw_client, base_url: @base_url, environment: @environment)
+    end
+
     # @return [Whop_sdk::Files::Client]
     def files
       @files ||= Whop_sdk::Files::Client.new(client: @raw_client, base_url: @base_url, environment: @environment)

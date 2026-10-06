@@ -5,6 +5,8 @@ module Whop_sdk
     class Membership < Internal::Types::Model
       field :account, -> { Whop_sdk::Types::StorefrontAccount }, optional: false, nullable: false
 
+      field :affiliate, -> { Whop_sdk::Types::MembershipAffiliate }, optional: false, nullable: true
+
       field :billing_period_days, -> { Integer }, optional: false, nullable: true
 
       field :cancel_at_period_end, -> { Internal::Types::Boolean }, optional: false, nullable: false

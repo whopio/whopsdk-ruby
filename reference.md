@@ -7080,14 +7080,6 @@ client.app_builds.create(
 <dl>
 <dd>
 
-**ai_prompt_id:** `String` — The AI prompt that generated this build, if applicable.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
 **app_id:** `String` — The app to create the build for, prefixed `app_`. Defaults to the app behind the presented credential.
     
 </dd>

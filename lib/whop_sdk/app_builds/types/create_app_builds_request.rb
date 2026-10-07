@@ -4,8 +4,6 @@ module Whop_sdk
   module AppBuilds
     module Types
       class CreateAppBuildsRequest < Internal::Types::Model
-        field :ai_prompt_id, -> { String }, optional: true, nullable: false
-
         field :app_id, -> { String }, optional: true, nullable: false
 
         field :attachment, -> { Whop_sdk::AppBuilds::Types::CreateAppBuildsRequestAttachment }, optional: false, nullable: false

@@ -81,14 +81,11 @@ module Whop_sdk
         end
       end
 
-      # Submits perpetual orders from a funded trading wallet. Send several limit orders for a ladder, or attach
-      # `take_profit` and `stop_loss` to a single entry order. Whop's builder fee is approved and attached
-      # automatically. The returned `trop_` ID identifies the submission, not a position, and `completed` doesn't mean
-      # filled: check each order acknowledgement, and read live orders and positions from the account's `trading` field.
-      # Requires an `Idempotency-Key`. Early beta: email support@whop.com for access.
+      # Retired. Order batches can no longer be placed. Every caller gets `410 Gone`, whatever the body, and nothing is
+      # sent to the trading provider. List and retrieve earlier trades with `GET /trades`.
       #
       # @param request_options [Hash]
-      # @param params [Whop_sdk::Trades::Types::CreateTradesRequest]
+      # @param _params [Hash]
       # @option request_options [String] :base_url
       # @option request_options [Hash{String => Object}] :additional_headers
       # @option request_options [Hash{String => Object}] :additional_query_parameters
@@ -96,25 +93,14 @@ module Whop_sdk
       # @option request_options [Integer] :timeout_in_seconds
       #
       # @example
-      #   client.trades.create(
-      #     account_id: "biz_xxxxxxxxxxxxxx",
-      #     instrument_type: "perpetual",
-      #     orders: [{
-      #       market: "ETH",
-      #       side: "buy",
-      #       size: "0.02"
-      #     }],
-      #     provider: "hyperliquid"
-      #   )
+      #   client.trades.create
       #
-      # @return [Whop_sdk::Types::Trade]
-      def create(request_options: {}, **params)
-        params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
+      # @return [untyped]
+      def create(request_options: {}, **_params)
         request = Whop_sdk::Internal::JSON::Request.new(
           base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "POST",
           path: "trades",
-          body: Whop_sdk::Trades::Types::CreateTradesRequest.new(params).to_h,
           request_options: request_options
         )
         begin
@@ -123,19 +109,16 @@ module Whop_sdk
           raise Whop_sdk::Errors::TimeoutError
         end
         code = response.code.to_i
-        if code.between?(200, 299)
-          (response.body.to_s.empty? ? nil : Whop_sdk::Types::Trade.load(response.body))
-        else
-          error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
-          raise error_class.new(response.body, code: code)
-        end
+        return if code.between?(200, 299)
+
+        error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
+        raise error_class.new(response.body, code: code)
       end
 
-      # Sets cross or isolated leverage for a perpetual market, up to that market's maximum. Returns a trade recording
-      # the submission. Requires an `Idempotency-Key`.
+      # Retired. Every caller gets `410 Gone`, and no leverage change is sent to the trading provider.
       #
       # @param request_options [Hash]
-      # @param params [Whop_sdk::Trades::Types::UpdateLeverageTradesRequest]
+      # @param _params [Hash]
       # @option request_options [String] :base_url
       # @option request_options [Hash{String => Object}] :additional_headers
       # @option request_options [Hash{String => Object}] :additional_query_parameters
@@ -143,22 +126,14 @@ module Whop_sdk
       # @option request_options [Integer] :timeout_in_seconds
       #
       # @example
-      #   client.trades.update_leverage(
-      #     account_id: "biz_xxxxxxxxxxxxxx",
-      #     leverage: 5,
-      #     margin_mode: "cross",
-      #     market: "ETH",
-      #     provider: "hyperliquid"
-      #   )
+      #   client.trades.update_leverage
       #
-      # @return [Whop_sdk::Types::Trade]
-      def update_leverage(request_options: {}, **params)
-        params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
+      # @return [untyped]
+      def update_leverage(request_options: {}, **_params)
         request = Whop_sdk::Internal::JSON::Request.new(
           base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "POST",
           path: "trades/leverage",
-          body: Whop_sdk::Trades::Types::UpdateLeverageTradesRequest.new(params).to_h,
           request_options: request_options
         )
         begin
@@ -167,16 +142,14 @@ module Whop_sdk
           raise Whop_sdk::Errors::TimeoutError
         end
         code = response.code.to_i
-        if code.between?(200, 299)
-          (response.body.to_s.empty? ? nil : Whop_sdk::Types::Trade.load(response.body))
-        else
-          error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
-          raise error_class.new(response.body, code: code)
-        end
+        return if code.between?(200, 299)
+
+        error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
+        raise error_class.new(response.body, code: code)
       end
 
-      # Retrieves a trade. Order acknowledgements don't update as orders fill; read live orders and positions from the
-      # account's `trading` field. Never resubmit a `submission_unknown` trade with a new idempotency key.
+      # Retrieves a trade. Order acknowledgements don't update as orders fill. Never resubmit a `submission_unknown`
+      # trade with a new idempotency key.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -213,12 +186,10 @@ module Whop_sdk
         end
       end
 
-      # Cancels every order in an order trade, including attached take-profit and stop-loss. This doesn't close filled
-      # positions. Returns a new cancellation trade whose `trade_id` points to the original, which is left unchanged.
-      # Cancellation works even while opening new positions is disabled. Requires an `Idempotency-Key`.
+      # Retired. Every caller gets `410 Gone`, and no cancellation is sent to the trading provider.
       #
       # @param request_options [Hash]
-      # @param params [Whop_sdk::Trades::Types::CancelTradesRequest]
+      # @param params [Hash]
       # @option request_options [String] :base_url
       # @option request_options [Hash{String => Object}] :additional_headers
       # @option request_options [Hash{String => Object}] :additional_query_parameters
@@ -229,18 +200,13 @@ module Whop_sdk
       # @example
       #   client.trades.cancel(id: "id")
       #
-      # @return [Whop_sdk::Types::Trade]
+      # @return [untyped]
       def cancel(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
-        request_data = Whop_sdk::Trades::Types::CancelTradesRequest.new(params).to_h
-        non_body_param_names = %w[id]
-        body = request_data.except(*non_body_param_names)
-
         request = Whop_sdk::Internal::JSON::Request.new(
           base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "POST",
           path: "trades/#{URI.encode_uri_component(params[:id].to_s)}/cancel",
-          body: body,
           request_options: request_options
         )
         begin
@@ -249,12 +215,10 @@ module Whop_sdk
           raise Whop_sdk::Errors::TimeoutError
         end
         code = response.code.to_i
-        if code.between?(200, 299)
-          (response.body.to_s.empty? ? nil : Whop_sdk::Types::Trade.load(response.body))
-        else
-          error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
-          raise error_class.new(response.body, code: code)
-        end
+        return if code.between?(200, 299)
+
+        error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
+        raise error_class.new(response.body, code: code)
       end
     end
   end

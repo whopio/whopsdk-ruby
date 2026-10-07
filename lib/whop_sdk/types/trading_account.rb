@@ -11,10 +11,6 @@ module Whop_sdk
 
       field :object, -> { Whop_sdk::Types::TradingAccountObject }, optional: false, nullable: false
 
-      field :open_orders, -> { Internal::Types::Array[Whop_sdk::Types::TradingOrder] }, optional: false, nullable: false
-
-      field :positions, -> { Internal::Types::Array[Whop_sdk::Types::TradingPosition] }, optional: false, nullable: false
-
       field :provider, -> { Whop_sdk::Types::TradingAccountProvider }, optional: false, nullable: false
 
       field :user_id, -> { String }, optional: false, nullable: true

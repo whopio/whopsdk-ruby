@@ -25,6 +25,8 @@ module Whop_sdk
 
           field :economic_intelligence_duration_key, -> { Whop_sdk::Accounts::Preferences::Types::UpdatePreferencesRequestEconomicIntelligenceDurationKey }, optional: true, nullable: false
 
+          field :preferred_settlement_currency, -> { Whop_sdk::Accounts::Preferences::Types::UpdatePreferencesRequestPreferredSettlementCurrency }, optional: true, nullable: false
+
           field :subscription_failure_behavior, -> { Whop_sdk::Accounts::Preferences::Types::UpdatePreferencesRequestSubscriptionFailureBehavior }, optional: true, nullable: false
         end
       end

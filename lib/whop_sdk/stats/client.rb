@@ -15,7 +15,8 @@ module Whop_sdk
       end
 
       # Deprecated. Lists every metric, which no longer says which of them a projection accepts. List the ones you can
-      # chart with `GET /stats/time_series`, or the ones you can rank with `GET /stats/reports`.
+      # chart with `GET /stats/time_series`. Aggregates that are not bucketed over time are reports, listed at `GET
+      # /stats/reports`.
       #
       # @param request_options [Hash]
       # @param _params [Hash]
@@ -51,7 +52,7 @@ module Whop_sdk
       end
 
       # Deprecated compatibility endpoint. Retrieve a metric's time series with `GET /stats/time_series/{metric}`
-      # instead, or rank one across a breakdown with `GET /stats/reports/{metric}`.
+      # instead.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -228,6 +229,11 @@ module Whop_sdk
           error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)
         end
+      end
+
+      # @return [Whop_sdk::Reports::Client]
+      def reports
+        @reports ||= Whop_sdk::Stats::Reports::Client.new(client: @client, base_url: @base_url, environment: @environment)
       end
 
       # @return [Whop_sdk::TimeSeries::Client]

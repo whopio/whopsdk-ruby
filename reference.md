@@ -35618,7 +35618,7 @@ client.social_accounts.refresh(id: "id")
 <dl>
 <dd>
 
-Lists every metric you can query, with its unit and the properties you can filter or break it down by.
+Deprecated. Lists every metric, which no longer says which of them a projection accepts. List the ones you can chart with `GET /stats/time_series`, or the ones you can rank with `GET /stats/reports`.
 </dd>
 </dl>
 </dd>
@@ -35672,7 +35672,7 @@ client.stats.list
 <dl>
 <dd>
 
-Retrieves a metric as a time series of points for an account or user over a time range. The `market_prices` metric is public and requires no authentication. The `funnel` metric measures 2 to 10 ordered events per person. Its first matching event inside from/to anchors the cohort, breakdown and conversion window; later entries do not restart it. Intervening events are allowed, and conversions may occur after to. Funnel values are final conversion percentages; steps include counts and cumulative conversion percentages. Experiment funnels use experiment.exposure as step 1 and breakdown_by=variant. Pass steps using bracket parameters such as steps[1][event]=pixel.page&steps[1][page]=/pricing*&steps[2][event]=payment.completed.
+Deprecated compatibility endpoint. Retrieve a metric's time series with `GET /stats/time_series/{metric}` instead, or rank one across a breakdown with `GET /stats/reports/{metric}`.
 </dd>
 </dl>
 </dd>
@@ -35709,7 +35709,7 @@ client.stats.retrieve(
 <dl>
 <dd>
 
-**metric:** `String` — The metric to retrieve, for example net_revenue. Use GET /stats to see every metric key. The metric sets the unit and the properties you can filter or break down by.
+**metric:** `String` — The metric to retrieve, for example net_revenue.
     
 </dd>
 </dl>
@@ -45284,6 +45284,658 @@ client.setup_intents.direct.create(
 <dd>
 
 **request_options:** `Whop_sdk::SetupIntents::Direct::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Stats TimeSeries
+<details><summary><code>client.stats.time_series.<a href="/lib/whop_sdk/stats/time_series/client.rb">list</a>() -> Whop_sdk::Stats::TimeSeries::Types::ListTimeSeriesResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists the metrics you can chart over time, with the unit each reports and the properties you can filter or break it down by. Every metric can be charted, so this is the whole catalog; the metrics you can rank are the narrower list at `GET /stats/reports`.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.stats.time_series.list
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request_options:** `Whop_sdk::Stats::TimeSeries::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.stats.time_series.<a href="/lib/whop_sdk/stats/time_series/client.rb">retrieve</a>(metric:) -> Whop_sdk::Stats::TimeSeries::Types::RetrieveTimeSeriesResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves a metric as a time series of points for an account or user over a time range. To rank a metric across one of its breakdowns instead of charting it, use `GET /stats/reports/{metric}`. The `market_prices` metric is public and requires no authentication. The `funnel` metric measures 2 to 10 ordered events per person. Its first matching event inside from/to anchors the cohort, breakdown and conversion window; later entries do not restart it. Intervening events are allowed, and conversions may occur after to. Funnel values are final conversion percentages; steps include counts and cumulative conversion percentages. Experiment funnels use experiment.exposure as step 1 and breakdown_by=variant. Pass steps using bracket parameters such as steps[1][event]=pixel.page&steps[1][page]=/pricing*&steps[2][event]=payment.completed.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.stats.time_series.retrieve(
+  metric: "metric",
+  from: "from",
+  to: "to",
+  ad_campaign_ids: ["adcamp_xxxxxxxxxxxxxx"],
+  ad_group_ids: ["adgrp_xxxxxxxxxxxxxx"],
+  ad_ids: ["ad_xxxxxxxxxxxxxx"]
+)
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**metric:** `String` — The metric to retrieve, for example net_revenue. Use GET /stats/time_series to see every metric key. The metric sets the unit and the properties you can filter or break down by.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**account_id:** `String` — The account this query concerns, for example biz_AbC123.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**user_id:** `String` — The user this query concerns, for example user_AbC123. Available on metrics that support user subjects, such as account_balance.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**from:** `String` — Start of the range — a date (YYYY-MM-DD), expanded to the start of that day, or an ISO 8601 timestamp (for example 2026-07-16T16:37:00Z), used exactly.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**to:** `String` — End of the range — a date (YYYY-MM-DD), expanded to the end of that day, or an ISO 8601 timestamp (for example 2026-07-17T16:37:00Z), used exactly. Funnel entry ranges cannot exceed 90 days.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**interval:** `Whop_sdk::Stats::TimeSeries::Types::RetrieveTimeSeriesRequestInterval` — How wide each point is. Defaults to day. Snapshot metrics are day-only. Funnels support at most 2,000 first-entry cohort buckets.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**breakdown_by:** `String` — Split the metric out by one of its properties — each point gets a breakdown array. For example breakdown_by=currency returns an entry for usd, an entry for eur, and so on. Funnels use a property of the first matched event, with at most 300 groups. experiment_id and variant require an exposure as step 1. For funnel source breakdowns, steps[1][source]=whop:* groups by campaign, whop:<campaign>:* by ad group, and whop:<campaign>:<group>:* by ad. See the metric catalog for supported breakdowns.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**convert_to:** `String` — Display currency for money metrics — every amount is converted into this ISO currency using the exchange rate on each period's date. Defaults to usd. For the ads metrics (ad_spend, ad_delivery), pass the account's ads reporting currency to match the ad entity endpoints. On transaction metrics, it is ignored when you filter or break down by currency (those report the original transaction currency, unconverted).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**currency:** `String` — Select the source currency or asset on metrics that list currency. For transaction metrics, for example currency=eur, values are reported without conversion. For market_prices, use btc or xaut and convert_to=usd. Pair with breakdown_by=currency to split a metric by currency.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**time_zone:** `String` — IANA time zone to bucket the series in, for example America/New_York. Defaults to UTC. Not accepted by snapshot metrics, which are UTC only.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**payment_method:** `String` — Filter to a single payment method, for example card or crypto. Available on metrics that list payment_method.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**card_network:** `String` — Filter to a single card brand, for example visa. A refinement of payment_method=card. Available on metrics that list card_network.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**dispute_reason:** `String` — Filter disputes to a normalized reason, for example product_not_received. Pair with breakdown_by=dispute_reason to split dispute counts by reason.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**source:** `String` — Filter to a single GMV source, for example payments — or, on the traffic metrics, a visit source (whop_ads, direct, or a utm_source value). Pair with breakdown_by=source to split by source. Available on metrics that list source.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**hostname:** `String` — Filter traffic metrics to one website hostname, for example shop.example.com. On the events and people metrics, comma-separated hostnames match any listed hostname. Pair with breakdown_by=hostname to split by website.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page:** `String` — Filter traffic metrics to one page — a hostname plus normalized path, for example shop.example.com/pricing. Pair with breakdown_by=page to split by page.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**device_type:** `String` — Filter traffic metrics to one device type: desktop, mobile, tablet, or unknown. Pair with breakdown_by=device_type to split by device.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**country_code:** `String` — Filter traffic metrics to one visitor country (uppercase ISO 3166-1 alpha-2, for example US). Pair with breakdown_by=country_code to split by country.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**event_name:** `String` — Filter the events metric to one tracked event name, for example pixel.page or pixel.custom. Pair with breakdown_by=event_name to split by event.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**event_type:** `Whop_sdk::Stats::TimeSeries::Types::RetrieveTimeSeriesRequestEventType` — Filter the events metric to a canonical group of events: page_view (pixel page views plus whop.com store views), checkout_start (hosted and embedded checkout views), or other. Pair with breakdown_by=event_type to split by group.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**custom_name:** `String` — Filter the events metric to one merchant-defined custom event name. Only valid alongside event_name=pixel.custom. Pair with breakdown_by=custom_name to split custom events by name.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**segment:** `String` — Filter to a single wallet-balance segment, for example available. Pair with breakdown_by=segment to split the balance. Available on metrics that list segment.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**category:** `String` — Filter to a single balance-activity category, for example payments. Pair with breakdown_by=category to split the activity. Available on metrics that list category.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**merchant:** `String` — Filter to a single cashback merchant bucket, for example whop-ads. Pair with breakdown_by=merchant to split cashback by merchant. Available on metrics that list merchant.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**fee_type:** `String` — Filter to a single fee type. Pair with breakdown_by=fee_type to split fees by type. Available on metrics that list fee_type.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**product:** `String` — Filter to a single product (access pass id), for example prod_AbC123. Pair with breakdown_by=product. Available on metrics that list product.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**status:** `String` — Filter to a single membership status. Pair with breakdown_by=status. Available on metrics that list status.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**access_level:** `String` — Filter to a single access level. Pair with breakdown_by=access_level. Available on metrics that list access_level.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**most_recent_action:** `String` — Filter to a single most-recent member action. Pair with breakdown_by=most_recent_action. Available on metrics that list most_recent_action.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**referred_user_id:** `String` — Filter a referral metric to the businesses attributed to one person you referred, for example user_AbC123. Available on metrics that list referred_user_id.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**ad_campaign_ids:** `String` — Ad campaign ids (adcamp_...) to scope the report to; stats are summed across them. Available on metrics that list ad_campaign_ids.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**ad_group_ids:** `String` — Ad group ids (adgrp_...) to scope the report to; stats are summed across them. Available on metrics that list ad_group_ids.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**ad_ids:** `String` — Ad ids (ad_...) to scope the report to; stats are summed across them. Available on metrics that list ad_ids.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**snapshot_window:** `Whop_sdk::Stats::TimeSeries::Types::RetrieveTimeSeriesRequestSnapshotWindow` — Window used by a snapshot metric. Ordinary snapshots accept 30d as their trailing activity window. Cohorted dispute metrics accept 7d or 28d as the sales-transaction pool; their attribution window is fixed in the metric name. Each metric lists its accepted values in the catalog.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**event:** `String` — Filter the events metric to one or more full event names, for example payment.completed or pixel.lead. Comma-separated names match any listed event. Use group_by=event for separate groups. Available on metrics that list event.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**conversion_window:** `String` — Funnel only. Time allowed from the first event to the final event: integer minutes, hours, or days, up to 30d.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**mature_only:** `Internal::Types::Boolean` — Funnel only. Include only entrants whose full conversion window has elapsed. Required for confidence intervals and comparisons.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**steps:** `Whop_sdk::Types::RetrieveTimeSeriesRequestSteps` — Funnel only. Required when metric=funnel. Consecutive one-based steps encoded as steps[1][event], steps[1][page], steps[2][event], and so on. Values are scalar strings, never JSON.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**compare_to:** `String` — Funnel only. The breakdown value to use as baseline for whole-window final conversion. Requires breakdown_by and mature_only=true; defaults confidence_level to 0.95.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**confidence_level:** `Integer` — Funnel only. Confidence level for whole-window final conversion intervals, for example 0.95. Requires mature_only=true. Exposure steps must each filter one user-randomized experiment.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**contactable:** `Internal::Types::Boolean` — People metric only: contactable equals this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**has_purchased:** `Internal::Types::Boolean` — People metric only: has_purchased equals this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**first_seen_after:** `String` — People metric only: first_seen_at greater than or equal this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**first_seen_before:** `String` — People metric only: first_seen_at less than this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**last_seen_after:** `String` — People metric only: last_seen_at greater than or equal this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**last_seen_before:** `String` — People metric only: last_seen_at less than this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**first_seen_within_days:** `Integer` — People metric only: first_seen_at within this many days of now. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**last_seen_within_days:** `Integer` — People metric only: last_seen_at within this many days of now. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**known:** `Internal::Types::Boolean` — People metric only: known equals this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**has_email:** `Internal::Types::Boolean` — People metric only: has_email equals this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**has_phone:** `Internal::Types::Boolean` — People metric only: has_phone equals this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**ltv_gt:** `Integer` — People metric only: ltv greater than this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**ltv_gte:** `Integer` — People metric only: ltv greater than or equal this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**ltv_lt:** `Integer` — People metric only: ltv less than this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**ltv_lte:** `Integer` — People metric only: ltv less than or equal this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**aov_gt:** `Integer` — People metric only: aov greater than this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**aov_gte:** `Integer` — People metric only: aov greater than or equal this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**aov_lt:** `Integer` — People metric only: aov less than this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**aov_lte:** `Integer` — People metric only: aov less than or equal this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**purchase_count_gt:** `Integer` — People metric only: purchase_count greater than this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**purchase_count_gte:** `Integer` — People metric only: purchase_count greater than or equal this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**purchase_count_lt:** `Integer` — People metric only: purchase_count less than this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**purchase_count_lte:** `Integer` — People metric only: purchase_count less than or equal this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**event_count_gt:** `Integer` — People metric only: event_count greater than this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**event_count_gte:** `Integer` — People metric only: event_count greater than or equal this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**event_count_lt:** `Integer` — People metric only: event_count less than this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**event_count_lte:** `Integer` — People metric only: event_count less than or equal this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Whop_sdk::Stats::TimeSeries::RequestOptions` 
     
 </dd>
 </dl>

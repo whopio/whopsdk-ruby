@@ -14,9 +14,13 @@ module Whop_sdk
 
         field :email, -> { String }, optional: true, nullable: false
 
+        field :ip_address, -> { String }, optional: true, nullable: false
+
         field :member_id, -> { String }, optional: true, nullable: false
 
         field :metadata, -> { Internal::Types::Hash[String, String] }, optional: true, nullable: false
+
+        field :off_session, -> { Internal::Types::Boolean }, optional: true, nullable: false
 
         field :payment_method, -> { Whop_sdk::Payments::Types::CreatePaymentsRequestPaymentMethod }, optional: true, nullable: false
 

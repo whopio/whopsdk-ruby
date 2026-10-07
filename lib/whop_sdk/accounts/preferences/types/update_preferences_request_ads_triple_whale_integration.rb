@@ -5,9 +5,7 @@ module Whop_sdk
     module Preferences
       module Types
         # Connects or disconnects the Triple Whale integration, or changes the shop it reports to. Requires the
-        # `ad_campaign:create` scope on your API key. Connecting requires a shop domain to report spend against — either
-        # an explicit `shop_domain` (required for any merchant without a connected Shopify store, e.g. WooCommerce, a
-        # custom checkout, or a white-label platform's merchant) or a Shopify store connected on the Fulfillment page.
+        # `ad_campaign:create` scope on your API key. Connecting requires a `shop_domain` to report spend against.
         class UpdatePreferencesRequestAdsTripleWhaleIntegration < Internal::Types::Model
           field :api_key, -> { String }, optional: true, nullable: false
 

@@ -3,6 +3,8 @@
 module Whop_sdk
   module Types
     class AccountEconomicIntelligenceOffer < Internal::Types::Model
+      field :auto_renew, -> { Internal::Types::Boolean }, optional: false, nullable: false
+
       field :duration, -> { Integer }, optional: false, nullable: false
 
       field :duration_unit, -> { Whop_sdk::Types::AccountEconomicIntelligenceOfferDurationUnit }, optional: false, nullable: false

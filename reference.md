@@ -42413,7 +42413,7 @@ Required scopes depend on the preferences being updated:
 | `ads_payment_methods`, `ads_reporting_currency`, `ads_scheduling_timezone`, `ads_triple_whale_integration`, `ads_certifications` | `ad_campaign:create` |
 | `cards_auto_top_up`, `cards_notifications` | `payout:account:update` |
 | `dispute_fighter_enabled` | `payment:dispute` |
-| `economic_intelligence_duration_key` | `company:update` |
+| `economic_intelligence_duration_key`, `economic_intelligence_auto_renew` | `company:update` |
 
 When updating preferences from multiple rows, all corresponding scopes are required for the account.
 </dd>
@@ -42517,7 +42517,15 @@ client.accounts.preferences.update(account_id: "account_id")
 <dl>
 <dd>
 
-**economic_intelligence_duration_key:** `Whop_sdk::Accounts::Preferences::Types::UpdatePreferencesRequestEconomicIntelligenceDurationKey` — Turns on Economic Intelligence for the duration with this `key` in `economic_intelligence_offers`, at that duration's fee. It can't be changed or turned off until `economic_intelligence_ends_at`. Requires the `company:update` scope on your API key.
+**economic_intelligence_auto_renew:** `Internal::Types::Boolean` — `false` stops renewing: Economic Intelligence stays on until the end of the current week. `true` keeps it renewing again before then, or turns it on like the `weekly` offer. Can't be combined with `economic_intelligence_duration_key`. Requires the `company:update` scope on your API key.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**economic_intelligence_duration_key:** `Whop_sdk::Accounts::Preferences::Types::UpdatePreferencesRequestEconomicIntelligenceDurationKey` — Turns on Economic Intelligence with the offer that has this `key` in `economic_intelligence_offers`, at that offer's fee. A committed duration can't be changed or turned off until `economic_intelligence_ends_at`, except to upgrade to `weekly`, which switches to auto-renew right away. Requires the `company:update` scope on your API key.
     
 </dd>
 </dl>

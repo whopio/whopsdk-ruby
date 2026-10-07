@@ -23,6 +23,8 @@ module Whop_sdk
 
           field :dispute_fighter_enabled, -> { Internal::Types::Boolean }, optional: true, nullable: false
 
+          field :economic_intelligence_auto_renew, -> { Internal::Types::Boolean }, optional: true, nullable: false
+
           field :economic_intelligence_duration_key, -> { Whop_sdk::Accounts::Preferences::Types::UpdatePreferencesRequestEconomicIntelligenceDurationKey }, optional: true, nullable: false
 
           field :preferred_settlement_currency, -> { Whop_sdk::Accounts::Preferences::Types::UpdatePreferencesRequestPreferredSettlementCurrency }, optional: true, nullable: false

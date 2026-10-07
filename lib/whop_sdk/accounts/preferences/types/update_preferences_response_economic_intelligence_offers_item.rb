@@ -5,6 +5,8 @@ module Whop_sdk
     module Preferences
       module Types
         class UpdatePreferencesResponseEconomicIntelligenceOffersItem < Internal::Types::Model
+          field :auto_renew, -> { Internal::Types::Boolean }, optional: false, nullable: false
+
           field :duration, -> { Integer }, optional: false, nullable: false
 
           field :duration_unit, -> { Whop_sdk::Accounts::Preferences::Types::UpdatePreferencesResponseEconomicIntelligenceOffersItemDurationUnit }, optional: false, nullable: false

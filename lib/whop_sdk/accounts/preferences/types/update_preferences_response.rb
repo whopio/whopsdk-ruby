@@ -31,6 +31,10 @@ module Whop_sdk
 
           field :economic_intelligence_offers, -> { Internal::Types::Array[Whop_sdk::Accounts::Preferences::Types::UpdatePreferencesResponseEconomicIntelligenceOffersItem] }, optional: false, nullable: true
 
+          field :preferred_settlement_currency, -> { Whop_sdk::Accounts::Preferences::Types::UpdatePreferencesResponsePreferredSettlementCurrency }, optional: false, nullable: true
+
+          field :preferred_settlement_currency_changeable_at, -> { String }, optional: false, nullable: true
+
           field :subscription_failure_behavior, -> { Whop_sdk::Accounts::Preferences::Types::UpdatePreferencesResponseSubscriptionFailureBehavior }, optional: false, nullable: false
         end
       end

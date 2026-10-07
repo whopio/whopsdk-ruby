@@ -11,8 +11,6 @@ module Whop_sdk
           field :first_name, -> { String }, optional: false, nullable: false
 
           field :last_name, -> { String }, optional: false, nullable: false
-
-          field :user_id, -> { String }, optional: false, nullable: false
         end
       end
     end

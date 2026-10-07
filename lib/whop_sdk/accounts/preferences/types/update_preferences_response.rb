@@ -25,11 +25,15 @@ module Whop_sdk
 
           field :economic_intelligence, -> { Internal::Types::Boolean }, optional: false, nullable: false
 
+          field :economic_intelligence_auto_renew, -> { Internal::Types::Boolean }, optional: false, nullable: false
+
           field :economic_intelligence_ends_at, -> { String }, optional: false, nullable: true
 
           field :economic_intelligence_fee_percentage, -> { Integer }, optional: false, nullable: true
 
-          field :economic_intelligence_offers, -> { Internal::Types::Array[Whop_sdk::Accounts::Preferences::Types::UpdatePreferencesResponseEconomicIntelligenceOffersItem] }, optional: false, nullable: true
+          field :economic_intelligence_offers, -> { Internal::Types::Array[Whop_sdk::Accounts::Preferences::Types::UpdatePreferencesResponseEconomicIntelligenceOffersItem] }, optional: false, nullable: false
+
+          field :economic_intelligence_previous_period, -> { Whop_sdk::Accounts::Preferences::Types::UpdatePreferencesResponseEconomicIntelligencePreviousPeriod }, optional: false, nullable: true
 
           field :preferred_settlement_currency, -> { Whop_sdk::Accounts::Preferences::Types::UpdatePreferencesResponsePreferredSettlementCurrency }, optional: false, nullable: true
 

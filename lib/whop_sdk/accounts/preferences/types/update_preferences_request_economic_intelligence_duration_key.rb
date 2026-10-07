@@ -7,6 +7,7 @@ module Whop_sdk
         module UpdatePreferencesRequestEconomicIntelligenceDurationKey
           extend Whop_sdk::Internal::Types::Enum
 
+          WEEKLY = "weekly"
           SEVEN_DAYS = "7_days"
           ONE_DAY = "1_day"
           ONE_HOUR = "1_hour"

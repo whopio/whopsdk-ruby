@@ -5,6 +5,8 @@ module Whop_sdk
     module Types
       class CreatePartnerReferralRequestsRequestBodyAccountURL < Internal::Types::Model
         field :account_url, -> { String }, optional: false, nullable: false
+
+        field :authorized_user_id, -> { String }, optional: true, nullable: false
       end
     end
   end

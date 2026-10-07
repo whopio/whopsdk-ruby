@@ -22,6 +22,7 @@ module Whop_sdk
       BR = "br"
       PH = "ph"
       NG = "ng"
+      MY = "my"
     end
   end
 end

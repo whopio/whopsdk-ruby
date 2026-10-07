@@ -39,6 +39,7 @@ module Whop_sdk
       CUSTOM = "custom"
       CUSTOMER_BALANCE = "customer_balance"
       DEMO_PAY = "demo_pay"
+      DUITNOW_QR = "duitnow_qr"
       EFECTY = "efecty"
       EPS = "eps"
       EU_BANK_TRANSFER = "eu_bank_transfer"

@@ -4,6 +4,8 @@ module Whop_sdk
   module PartnerReferralRequests
     module Types
       class CreatePartnerReferralRequestsRequestBodyTargetUserID < Internal::Types::Model
+        field :authorized_user_id, -> { String }, optional: true, nullable: false
+
         field :target_user_id, -> { String }, optional: false, nullable: false
       end
     end

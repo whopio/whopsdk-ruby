@@ -7,6 +7,8 @@ module Whop_sdk
       # your oldest saved link or creates one with a random code. Only authorized staff can configure rewards or select
       # another partner.
       class CreatePartnerReferralRequestsRequestBodyCode < Internal::Types::Model
+        field :authorized_user_id, -> { String }, optional: true, nullable: false
+
         field :code, -> { String }, optional: true, nullable: false
 
         field :max_redemptions, -> { Integer }, optional: true, nullable: false

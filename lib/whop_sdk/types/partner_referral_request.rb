@@ -5,6 +5,8 @@ module Whop_sdk
     class PartnerReferralRequest < Internal::Types::Model
       field :account, -> { Whop_sdk::Types::AccountSummary }, optional: false, nullable: true
 
+      field :authorized_user_id, -> { String }, optional: false, nullable: true
+
       field :code, -> { String }, optional: false, nullable: true
 
       field :created_at, -> { String }, optional: false, nullable: false

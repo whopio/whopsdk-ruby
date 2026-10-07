@@ -1,0 +1,145 @@
+# frozen_string_literal: true
+
+module Whop_sdk
+  module Stats
+    module TimeSeries
+      module Types
+        class RetrieveTimeSeriesRequest < Internal::Types::Model
+          field :metric, -> { String }, optional: false, nullable: false
+
+          field :account_id, -> { String }, optional: true, nullable: false
+
+          field :user_id, -> { String }, optional: true, nullable: false
+
+          field :from, -> { String }, optional: false, nullable: false
+
+          field :to, -> { String }, optional: false, nullable: false
+
+          field :interval, -> { Whop_sdk::Stats::TimeSeries::Types::RetrieveTimeSeriesRequestInterval }, optional: true, nullable: false
+
+          field :breakdown_by, -> { String }, optional: true, nullable: false
+
+          field :convert_to, -> { String }, optional: true, nullable: false
+
+          field :currency, -> { String }, optional: true, nullable: false
+
+          field :time_zone, -> { String }, optional: true, nullable: false
+
+          field :payment_method, -> { String }, optional: true, nullable: false
+
+          field :card_network, -> { String }, optional: true, nullable: false
+
+          field :dispute_reason, -> { String }, optional: true, nullable: false
+
+          field :source, -> { String }, optional: true, nullable: false
+
+          field :hostname, -> { String }, optional: true, nullable: false
+
+          field :page, -> { String }, optional: true, nullable: false
+
+          field :device_type, -> { String }, optional: true, nullable: false
+
+          field :country_code, -> { String }, optional: true, nullable: false
+
+          field :event_name, -> { String }, optional: true, nullable: false
+
+          field :event_type, -> { Whop_sdk::Stats::TimeSeries::Types::RetrieveTimeSeriesRequestEventType }, optional: true, nullable: false
+
+          field :custom_name, -> { String }, optional: true, nullable: false
+
+          field :segment, -> { String }, optional: true, nullable: false
+
+          field :category, -> { String }, optional: true, nullable: false
+
+          field :merchant, -> { String }, optional: true, nullable: false
+
+          field :fee_type, -> { String }, optional: true, nullable: false
+
+          field :product, -> { String }, optional: true, nullable: false
+
+          field :status, -> { String }, optional: true, nullable: false
+
+          field :access_level, -> { String }, optional: true, nullable: false
+
+          field :most_recent_action, -> { String }, optional: true, nullable: false
+
+          field :referred_user_id, -> { String }, optional: true, nullable: false
+
+          field :ad_campaign_ids, -> { String }, optional: true, nullable: false
+
+          field :ad_group_ids, -> { String }, optional: true, nullable: false
+
+          field :ad_ids, -> { String }, optional: true, nullable: false
+
+          field :snapshot_window, -> { Whop_sdk::Stats::TimeSeries::Types::RetrieveTimeSeriesRequestSnapshotWindow }, optional: true, nullable: false
+
+          field :event, -> { String }, optional: true, nullable: false
+
+          field :conversion_window, -> { String }, optional: true, nullable: false
+
+          field :mature_only, -> { Internal::Types::Boolean }, optional: true, nullable: false
+
+          field :steps, -> { Whop_sdk::Types::RetrieveTimeSeriesRequestSteps }, optional: true, nullable: false
+
+          field :compare_to, -> { String }, optional: true, nullable: false
+
+          field :confidence_level, -> { Integer }, optional: true, nullable: false
+
+          field :contactable, -> { Internal::Types::Boolean }, optional: true, nullable: false
+
+          field :has_purchased, -> { Internal::Types::Boolean }, optional: true, nullable: false
+
+          field :first_seen_after, -> { String }, optional: true, nullable: false
+
+          field :first_seen_before, -> { String }, optional: true, nullable: false
+
+          field :last_seen_after, -> { String }, optional: true, nullable: false
+
+          field :last_seen_before, -> { String }, optional: true, nullable: false
+
+          field :first_seen_within_days, -> { Integer }, optional: true, nullable: false
+
+          field :last_seen_within_days, -> { Integer }, optional: true, nullable: false
+
+          field :known, -> { Internal::Types::Boolean }, optional: true, nullable: false
+
+          field :has_email, -> { Internal::Types::Boolean }, optional: true, nullable: false
+
+          field :has_phone, -> { Internal::Types::Boolean }, optional: true, nullable: false
+
+          field :ltv_gt, -> { Integer }, optional: true, nullable: false
+
+          field :ltv_gte, -> { Integer }, optional: true, nullable: false
+
+          field :ltv_lt, -> { Integer }, optional: true, nullable: false
+
+          field :ltv_lte, -> { Integer }, optional: true, nullable: false
+
+          field :aov_gt, -> { Integer }, optional: true, nullable: false
+
+          field :aov_gte, -> { Integer }, optional: true, nullable: false
+
+          field :aov_lt, -> { Integer }, optional: true, nullable: false
+
+          field :aov_lte, -> { Integer }, optional: true, nullable: false
+
+          field :purchase_count_gt, -> { Integer }, optional: true, nullable: false
+
+          field :purchase_count_gte, -> { Integer }, optional: true, nullable: false
+
+          field :purchase_count_lt, -> { Integer }, optional: true, nullable: false
+
+          field :purchase_count_lte, -> { Integer }, optional: true, nullable: false
+
+          field :event_count_gt, -> { Integer }, optional: true, nullable: false
+
+          field :event_count_gte, -> { Integer }, optional: true, nullable: false
+
+          field :event_count_lt, -> { Integer }, optional: true, nullable: false
+
+          field :event_count_lte, -> { Integer }, optional: true, nullable: false
+        end
+      end
+    end
+  end
+end

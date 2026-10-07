@@ -45350,6 +45350,164 @@ client.stats.reports.list
 </dl>
 </details>
 
+<details><summary><code>client.stats.reports.<a href="/lib/whop_sdk/stats/reports/client.rb">platform_trends</a>() -> Whop_sdk::Stats::Reports::Types::PlatformTrendsReportsResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Payments across all of Whop, for up to four windows at once. Break rows down by business type, industry type, account country or customer country, and let the business type ride along on industry type rows. The report covers the whole platform, so it takes no `account_id` and any authenticated caller can read it. A breakdown value with fewer than three businesses behind it is left out, and a filtered total that small comes back with every metric `null`.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.stats.reports.platform_trends
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**breakdown_by:** `Whop_sdk::Stats::Reports::Types::PlatformTrendsReportsRequestBreakdownBy` — What each row is. Omit it for one row per window, holding the window's total.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**columns:** `String` — Comma-separated properties and metrics to return on each row. Defaults to `gross_revenue,businesses`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**windows:** `String` — Comma-separated windows, at most four: `1d`, `7d`, `30d`, `90d`, `365d`, `mtd`, `qtd`, `ytd`, `all_time`, an explicit `2026-09-01..2026-10-01`, any of these prefixed `prev:` for the equal-length period before, or suffixed `@2026-09-01` to end earlier. Defaults to `30d`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**time_zone:** `String` — IANA zone that day, month, quarter and year boundaries fall in. Defaults to `Etc/UTC`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**order:** `Whop_sdk::Stats::Reports::Types::PlatformTrendsReportsRequestOrder` — The requested metric that ranks rows, by its value in the first window. Defaults to the first requested metric.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**direction:** `Whop_sdk::Stats::Reports::Types::PlatformTrendsReportsRequestDirection` — Ranking direction. Defaults to `desc`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**convert_to:** `String` — Currency every money metric is converted into. Defaults to `usd`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**business_type:** `String` — Only counts payments to businesses of these comma-separated business types, such as `education`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**industry_type:** `String` — Only counts payments to businesses in these comma-separated industry types, such as `options_trading`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**account_country:** `String` — Only counts payments to accounts located in these comma-separated countries, as ISO 3166-1 alpha-2 codes such as `US`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**customer_country:** `String` — Only counts payments from customers in these comma-separated countries, as ISO 3166-1 alpha-2 codes such as `US`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**first:** `Integer` — Number of results to return from the start of the range.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**after:** `String` — Return results after this cursor. Use `page_info.end_cursor` from the previous response to fetch the next page.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Whop_sdk::Stats::Reports::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Stats TimeSeries
 <details><summary><code>client.stats.time_series.<a href="/lib/whop_sdk/stats/time_series/client.rb">list</a>() -> Whop_sdk::Stats::TimeSeries::Types::ListTimeSeriesResponse</code></summary>
 <dl>

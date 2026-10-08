@@ -11765,6 +11765,69 @@ client.checkout_configurations.delete(id: "id")
 </dl>
 </details>
 
+## ClaimLinks
+<details><summary><code>client.claim_links.<a href="/lib/whop_sdk/claim_links/client.rb">retrieve</a>(id:) -> Whop_sdk::ClaimLinks::Types::RetrieveClaimLinksResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves a funded claim link. IDs require `airdrop_link:basic:read` on the funding account, or the personal account's owner. Claim codes allow unauthenticated previews of the sender, amount, expiry, and claim availability. Treat codes as secrets: anyone holding one can claim after signing in. By ID, the code and URL require `airdrop_link:manage` on the funding company or `payout:withdraw_funds` on the personal account; read-only credentials receive null values.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.claim_links.retrieve(id: "id")
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — A claim-link ID (`airdrp_…`), or the public claim code from the `c` parameter in the claim URL.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Whop_sdk::ClaimLinks::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## CompanyTokenTransactions
 <details><summary><code>client.company_token_transactions.<a href="/lib/whop_sdk/company_token_transactions/client.rb">list</a>() -> Whop_sdk::CompanyTokenTransactions::Types::ListCompanyTokenTransactionsResponse</code></summary>
 <dl>

@@ -138,6 +138,11 @@ module Whop_sdk
       @checkout_configurations ||= Whop_sdk::CheckoutConfigurations::Client.new(client: @raw_client, base_url: @base_url, environment: @environment)
     end
 
+    # @return [Whop_sdk::ClaimLinks::Client]
+    def claim_links
+      @claim_links ||= Whop_sdk::ClaimLinks::Client.new(client: @raw_client, base_url: @base_url, environment: @environment)
+    end
+
     # @return [Whop_sdk::CompanyTokenTransactions::Client]
     def company_token_transactions
       @company_token_transactions ||= Whop_sdk::CompanyTokenTransactions::Client.new(client: @raw_client, base_url: @base_url, environment: @environment)

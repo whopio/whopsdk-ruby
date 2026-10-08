@@ -40848,7 +40848,7 @@ Returns a paginated list of webhook endpoints configured for an account, ordered
 <dd>
 
 ```ruby
-client.webhooks.list(account_id: "account_id")
+client.webhooks.list
 ```
 </dd>
 </dl>

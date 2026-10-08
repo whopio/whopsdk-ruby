@@ -4,7 +4,7 @@ module Whop_sdk
   module Webhooks
     module Types
       class ListWebhooksRequest < Internal::Types::Model
-        field :account_id, -> { String }, optional: false, nullable: false
+        field :account_id, -> { String }, optional: true, nullable: false
 
         field :app_id, -> { String }, optional: true, nullable: false
 

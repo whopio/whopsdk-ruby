@@ -23,7 +23,7 @@ module Whop_sdk
       # @option request_options [Hash{String => Object}] :additional_query_parameters
       # @option request_options [Hash{String => Object}] :additional_body_parameters
       # @option request_options [Integer] :timeout_in_seconds
-      # @option params [String] :account_id
+      # @option params [String, nil] :account_id
       # @option params [String, nil] :app_id
       # @option params [Boolean, nil] :include_app_webhooks
       # @option params [Boolean, nil] :has_failures
@@ -33,7 +33,7 @@ module Whop_sdk
       # @option params [String, nil] :before
       #
       # @example
-      #   client.webhooks.list(account_id: "account_id")
+      #   client.webhooks.list
       #
       # @return [Whop_sdk::Webhooks::Types::ListWebhooksResponse]
       def list(request_options: {}, **params)

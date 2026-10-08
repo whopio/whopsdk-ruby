@@ -11828,6 +11828,68 @@ client.claim_links.retrieve(id: "id")
 </dl>
 </details>
 
+<details><summary><code>client.claim_links.<a href="/lib/whop_sdk/claim_links/client.rb">claim</a>(id:) -> Whop_sdk::ClaimLinks::Types::ClaimClaimLinksResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Claims a funded link into the authenticated user's personal balance and returns the updated link. Requires a signed-in user and the public claim code; company API keys cannot claim on a recipient's behalf. Each user can claim a link once. Reuse the same Idempotency-Key when retrying the same request. On-chain claims wait for the existing transfer workflow and may take several minutes.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.claim_links.claim(id: "id")
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — The public claim code from the `c` parameter in the claim URL. A claim-link ID does not authorize redemption.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Whop_sdk::ClaimLinks::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## CompanyTokenTransactions
 <details><summary><code>client.company_token_transactions.<a href="/lib/whop_sdk/company_token_transactions/client.rb">list</a>() -> Whop_sdk::CompanyTokenTransactions::Types::ListCompanyTokenTransactionsResponse</code></summary>
 <dl>

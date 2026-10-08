@@ -2,11 +2,12 @@
 
 module Whop_sdk
   module Types
-    module TradeOrderResultSide
+    module TradeFundsLocation
       extend Whop_sdk::Internal::Types::Enum
 
-      BUY = "buy"
-      SELL = "sell"
+      WALLET = "wallet"
+      TRADING_ACCOUNT = "trading_account"
+      UNKNOWN = "unknown"
     end
   end
 end

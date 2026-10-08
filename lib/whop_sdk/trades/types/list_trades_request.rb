@@ -8,7 +8,7 @@ module Whop_sdk
 
         field :status, -> { Whop_sdk::Trades::Types::ListTradesRequestStatus }, optional: true, nullable: false
 
-        field :operation_type, -> { Whop_sdk::Trades::Types::ListTradesRequestOperationType }, optional: true, nullable: false
+        field :type, -> { Whop_sdk::Trades::Types::ListTradesRequestType }, optional: true, nullable: false
 
         field :order, -> { Whop_sdk::Trades::Types::ListTradesRequestOrder }, optional: true, nullable: false
 

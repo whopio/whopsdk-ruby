@@ -2,12 +2,11 @@
 
 module Whop_sdk
   module Types
-    module TradeOrderResultStatus
+    module TradeType
       extend Whop_sdk::Internal::Types::Enum
 
-      OPEN = "open"
-      FILLED = "filled"
-      REJECTED = "rejected"
+      BUY = "buy"
+      CLOSE = "close"
     end
   end
 end

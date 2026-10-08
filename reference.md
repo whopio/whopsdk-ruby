@@ -37641,7 +37641,7 @@ client.topups.create(
 <dl>
 <dd>
 
-Lists trades you can access, newest first. User credentials see their own trades and those of accounts they belong to, including connected accounts; account credentials see their account and its connected accounts. These are submission records, not fill or position history.
+Lists trades you can access, newest first. User credentials see their own trades and those of accounts they belong to, including connected accounts; account credentials see their account and its connected accounts.
 </dd>
 </dl>
 </dd>
@@ -37679,7 +37679,7 @@ client.trades.list
 <dl>
 <dd>
 
-**status:** `Whop_sdk::Trades::Types::ListTradesRequestStatus` — Only return trades with this submission status.
+**status:** `Whop_sdk::Trades::Types::ListTradesRequestStatus` — Only return trades with this status.
     
 </dd>
 </dl>
@@ -37687,7 +37687,7 @@ client.trades.list
 <dl>
 <dd>
 
-**operation_type:** `Whop_sdk::Trades::Types::ListTradesRequestOperationType` — Only return trades of this kind, such as `create_orders` for order submissions.
+**type:** `Whop_sdk::Trades::Types::ListTradesRequestType` — Only return trades of this type.
     
 </dd>
 </dl>
@@ -37755,7 +37755,7 @@ client.trades.list
 </dl>
 </details>
 
-<details><summary><code>client.trades.<a href="/lib/whop_sdk/trades/client.rb">create</a>() -> </code></summary>
+<details><summary><code>client.trades.<a href="/lib/whop_sdk/trades/client.rb">create</a>(request) -> Whop_sdk::Types::Trade</code></summary>
 <dl>
 <dd>
 
@@ -37767,7 +37767,7 @@ client.trades.list
 <dl>
 <dd>
 
-Retired. Order batches can no longer be placed. Every caller gets `410 Gone`, whatever the body, and nothing is sent to the trading provider. List and retrieve earlier trades with `GET /trades`.
+Creates a trade on the Whop-managed wallet of an account or user and answers `201` with the trade in `pending`. The trade runs in the background; read it with `GET /trades/{id}` until it is `completed`, `failed` or `in_review`. A `buy` bridges `amount` USDT0 to the trading account, sets `leverage` (cross) on `market`, and places one market buy. If the buy does not fill, its money goes back to the wallet. A `close` closes the position in `market`, if one is open, and sends all withdrawable USDC back to the wallet. One trade runs at a time for each wallet. A retry with the same `Idempotency-Key` returns the same trade.
 </dd>
 </dl>
 </dd>
@@ -37782,7 +37782,11 @@ Retired. Order batches can no longer be placed. Every caller gets `410 Gone`, wh
 <dd>
 
 ```ruby
-client.trades.create
+client.trades.create(
+  account_id: "biz_xxxxxxxxxxxxxx",
+  market: "BTC",
+  type: "buy"
+)
 ```
 </dd>
 </dl>
@@ -37797,56 +37801,42 @@ client.trades.create
 <dl>
 <dd>
 
-**request_options:** `Whop_sdk::Trades::RequestOptions` 
+**account_id:** `String` — The account or user whose wallet trades, prefixed `biz_` or `user_`.
     
 </dd>
 </dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.trades.<a href="/lib/whop_sdk/trades/client.rb">update_leverage</a>() -> </code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
 
 <dl>
 <dd>
 
-<dl>
-<dd>
-
-Retired. Every caller gets `410 Gone`, and no leverage change is sent to the trading provider.
+**amount:** `String` — The USDT0 to send from the wallet for a buy, with at most 6 decimals. Required for a buy.
+    
 </dd>
 </dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
 
 <dl>
 <dd>
 
-<dl>
-<dd>
-
-```ruby
-client.trades.update_leverage
-```
-</dd>
-</dl>
+**leverage:** `Integer` — The cross leverage for a buy, from 1 to the market's maximum. Required for a buy.
+    
 </dd>
 </dl>
 
-#### ⚙️ Parameters
+<dl>
+<dd>
+
+**market:** `String` — The perpetual market, for example `BTC`.
+    
+</dd>
+</dl>
 
 <dl>
 <dd>
+
+**type:** `Whop_sdk::Trades::Types::CreateTradesRequestType` — `buy` or `close`.
+    
+</dd>
+</dl>
 
 <dl>
 <dd>
@@ -37875,7 +37865,7 @@ client.trades.update_leverage
 <dl>
 <dd>
 
-Retrieves a trade. Order acknowledgements don't update as orders fill. Never resubmit a `submission_unknown` trade with a new idempotency key.
+Retrieves a trade. Read it until its `status` is `completed`, `failed` or `in_review`.
 </dd>
 </dl>
 </dd>
@@ -37905,69 +37895,7 @@ client.trades.retrieve(id: "id")
 <dl>
 <dd>
 
-**id:** `String` — Trade ID, prefixed `trop_`.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request_options:** `Whop_sdk::Trades::RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.trades.<a href="/lib/whop_sdk/trades/client.rb">cancel</a>(id:) -> </code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Retired. Every caller gets `410 Gone`, and no cancellation is sent to the trading provider.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```ruby
-client.trades.cancel(id: "id")
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` — ID of the order trade to cancel, prefixed `trop_`.
+**id:** `String` — Trade ID, prefixed `tint_`.
     
 </dd>
 </dl>

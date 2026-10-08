@@ -6,10 +6,10 @@ module Whop_sdk
       extend Whop_sdk::Internal::Types::Enum
 
       PENDING = "pending"
-      SUBMITTED = "submitted"
+      PROCESSING = "processing"
+      IN_REVIEW = "in_review"
       COMPLETED = "completed"
       FAILED = "failed"
-      SUBMISSION_UNKNOWN = "submission_unknown"
     end
   end
 end

@@ -5,7 +5,9 @@ module Whop_sdk
     class Trade < Internal::Types::Model
       field :account_id, -> { String }, optional: false, nullable: true
 
-      field :cancellations, -> { Internal::Types::Array[Whop_sdk::Types::TradeCancellationResult] }, optional: false, nullable: true
+      field :amount, -> { String }, optional: false, nullable: true
+
+      field :average_price, -> { String }, optional: false, nullable: true
 
       field :completed_at, -> { String }, optional: false, nullable: true
 
@@ -13,29 +15,23 @@ module Whop_sdk
 
       field :failure_code, -> { Whop_sdk::Types::TradeFailureCode }, optional: false, nullable: true
 
-      field :hyperliquid, -> { Whop_sdk::Types::TradeHyperliquid }, optional: false, nullable: true
+      field :filled_size, -> { String }, optional: false, nullable: true
+
+      field :funds_location, -> { Whop_sdk::Types::TradeFundsLocation }, optional: false, nullable: true
 
       field :id, -> { String }, optional: false, nullable: false
 
-      field :instrument_type, -> { Whop_sdk::Types::TradeInstrumentType }, optional: false, nullable: false
+      field :leverage, -> { Integer }, optional: false, nullable: true
 
-      field :leverage, -> { Whop_sdk::Types::TradeLeverage }, optional: false, nullable: true
-
-      field :metadata, -> { Internal::Types::Hash[String, Object] }, optional: false, nullable: false
+      field :market, -> { String }, optional: false, nullable: false
 
       field :object, -> { Whop_sdk::Types::TradeObject }, optional: false, nullable: false
 
-      field :operation_type, -> { Whop_sdk::Types::TradeOperationType }, optional: false, nullable: false
-
-      field :orders, -> { Internal::Types::Array[Whop_sdk::Types::TradeOrderResult] }, optional: false, nullable: true
-
-      field :provider, -> { Whop_sdk::Types::TradeProvider }, optional: false, nullable: false
-
-      field :requested_orders, -> { Internal::Types::Array[Whop_sdk::Types::TradeRequestedOrder] }, optional: false, nullable: true
-
       field :status, -> { Whop_sdk::Types::TradeStatus }, optional: false, nullable: false
 
-      field :trade_id, -> { String }, optional: false, nullable: true
+      field :status_detail, -> { Whop_sdk::Types::TradeStatusDetail }, optional: false, nullable: true
+
+      field :type, -> { Whop_sdk::Types::TradeType }, optional: false, nullable: false
 
       field :updated_at, -> { String }, optional: false, nullable: false
 

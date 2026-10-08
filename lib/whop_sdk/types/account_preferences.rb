@@ -29,6 +29,8 @@ module Whop_sdk
 
       field :economic_intelligence_fee_percentage, -> { Integer }, optional: false, nullable: true
 
+      field :economic_intelligence_first_renewal_at, -> { String }, optional: false, nullable: true
+
       field :economic_intelligence_offers, -> { Internal::Types::Array[Whop_sdk::Types::AccountEconomicIntelligenceOffer] }, optional: false, nullable: false
 
       field :economic_intelligence_previous_period, -> { Whop_sdk::Types::AccountEconomicIntelligencePreviousPeriod }, optional: false, nullable: true

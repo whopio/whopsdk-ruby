@@ -21,6 +21,8 @@ module Whop_sdk
         field :object, -> { Whop_sdk::Payouts::Types::CreateQuotePayoutsResponseObject }, optional: false, nullable: false
 
         field :quote_token, -> { String }, optional: false, nullable: false
+
+        field :recommended_method, -> { Whop_sdk::Payouts::Types::CreateQuotePayoutsResponseRecommendedMethod }, optional: false, nullable: true
       end
     end
   end

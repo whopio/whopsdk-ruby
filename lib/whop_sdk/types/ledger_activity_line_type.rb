@@ -181,6 +181,8 @@ module Whop_sdk
       AD_INCOME_RECEIPT = "ad_income_receipt"
       AD_BUDGET_RELEASE = "ad_budget_release"
       AD_NETWORK_SETTLEMENT = "ad_network_settlement"
+      AD_AFFILIATE_PAYOUT = "ad_affiliate_payout"
+      AD_AFFILIATE_PAYOUT_RECEIVED = "ad_affiliate_payout_received"
       AD_BALANCE_FUNDING_RECEIPT = "ad_balance_funding_receipt"
       MISC_REVERSAL = "misc_reversal"
       FX_GAIN_LOSS = "fx_gain_loss"

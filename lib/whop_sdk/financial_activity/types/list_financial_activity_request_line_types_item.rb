@@ -7,6 +7,7 @@ module Whop_sdk
         extend Whop_sdk::Internal::Types::Enum
 
         ACCOUNT_SETTLEMENT = "account_settlement"
+        AD_AFFILIATE_PAYOUT_RECEIVED = "ad_affiliate_payout_received"
         AD_BUDGET_RELEASE = "ad_budget_release"
         AD_CAMPAIGN_BUDGET = "ad_campaign_budget"
         AD_PUBLISHER_PAYOUT = "ad_publisher_payout"

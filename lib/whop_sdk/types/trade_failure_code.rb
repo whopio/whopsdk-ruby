@@ -12,6 +12,7 @@ module Whop_sdk
       TRADING_PAUSED = "trading_paused"
       FUNDING_FAILED = "funding_failed"
       MARGIN_UNAVAILABLE = "margin_unavailable"
+      BUILDER_FEE_UNAPPROVED = "builder_fee_unapproved"
       LEVERAGE_REJECTED = "leverage_rejected"
       LEVERAGE_UNCONFIRMED = "leverage_unconfirmed"
       ORDER_REJECTED = "order_rejected"

@@ -95,7 +95,10 @@ module Whop_sdk
       # renews it every year while `auto_renew` is on. An unpaid purchase is removed after 7 days.
       #
       # With `mode: external`, Whop returns the DNS records to publish instead. Verification and certificate setup run
-      # automatically, and unverified claims are deleted after 48 hours. A claim doesn't reserve the hostname.
+      # automatically, and unverified claims are removed after 48 hours. A claim doesn't reserve the hostname.
+      #
+      # Adding a domain this account removed or failed before revives it under its original ID, starting over as a new
+      # claim or purchase.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::Domains::Types::CreateDomainsRequest]
@@ -175,7 +178,7 @@ module Whop_sdk
 
       # Stops routing a connected domain to its app and starts cleanup: it returns as `deleting`; retrieve it until it's
       # `removed`. Deleting an unpaid purchase cancels it. A registered domain can't be deleted; turn off `auto_renew`
-      # and it's released after it expires.
+      # and it's released after it expires. Creating the domain on this account again revives it under the same ID.
       #
       # @param request_options [Hash]
       # @param params [Hash]

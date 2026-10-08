@@ -8,6 +8,8 @@ module Whop_sdk
         class CreateMethodsResponseRecipient < Internal::Types::Model
           field :country, -> { String }, optional: false, nullable: false
 
+          field :email, -> { String }, optional: false, nullable: false
+
           field :first_name, -> { String }, optional: false, nullable: false
 
           field :last_name, -> { String }, optional: false, nullable: false

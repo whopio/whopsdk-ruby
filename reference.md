@@ -36140,6 +36140,14 @@ client.stats.retrieve(
 <dl>
 <dd>
 
+**issuer:** `String` — Filter to one card-issuing bank, named as the processor reports it, for example JPMORGAN CHASE BANK N A, or unknown for payments with no reported bank. Available on metrics that list issuer.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **conversion_window:** `String` — Funnel only. Time allowed from the first event to the final event: integer minutes, hours, or days, up to 30d.
     
 </dd>
@@ -45949,6 +45957,14 @@ client.stats.time_series.retrieve(
 <dd>
 
 **industry_type:** `String` — Filter to one industry type, for example `options_trading`. Pair with `breakdown_by=industry_type` to split by industry type. Available on metrics that list `industry_type`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**issuer:** `String` — Filter to one card-issuing bank, named as the processor reports it, for example JPMORGAN CHASE BANK N A, or unknown for payments with no reported bank. Available on metrics that list issuer.
     
 </dd>
 </dl>

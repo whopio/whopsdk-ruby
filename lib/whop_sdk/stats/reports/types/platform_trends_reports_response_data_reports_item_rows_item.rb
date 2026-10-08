@@ -27,9 +27,9 @@ module Whop_sdk
 
           field :industry_type, -> { Whop_sdk::Stats::Reports::Types::PlatformTrendsReportsResponseDataReportsItemRowsItemIndustryType }, optional: true, nullable: false
 
-          field :new_businesses, -> { Integer }, optional: true, nullable: false
+          field :median_gross_revenue, -> { Whop_sdk::Types::Money }, optional: true, nullable: false
 
-          field :p99gross_revenue, -> { Whop_sdk::Types::Money }, optional: true, nullable: false, api_name: "p99_gross_revenue"
+          field :new_businesses, -> { Integer }, optional: true, nullable: false
 
           field :payments, -> { Integer }, optional: true, nullable: false
 

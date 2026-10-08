@@ -13,7 +13,7 @@ module Whop_sdk
           CUSTOMERS = "customers"
           AOV = "aov"
           REPEAT_RATE = "repeat_rate"
-          P99GROSS_REVENUE = "p99_gross_revenue"
+          MEDIAN_GROSS_REVENUE = "median_gross_revenue"
           NEW_BUSINESSES = "new_businesses"
           AVG_BUSINESS_AGE = "avg_business_age"
           AVG_OWNER_AGE = "avg_owner_age"

@@ -63,6 +63,8 @@ module Whop_sdk
 
       field :payments_failed, -> { Integer }, optional: false, nullable: false
 
+      field :pdf_url, -> { String }, optional: false, nullable: true
+
       field :plan_id, -> { String }, optional: false, nullable: true
 
       field :presentment_total, -> { Whop_sdk::Types::Money }, optional: false, nullable: true

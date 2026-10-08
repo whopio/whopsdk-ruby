@@ -96,6 +96,8 @@ module Whop_sdk
       # @option params [String, nil] :ad_ids
       # @option params [Whop_sdk::Stats::Types::RetrieveStatsRequestSnapshotWindow, nil] :snapshot_window
       # @option params [String, nil] :event
+      # @option params [String, nil] :business_type
+      # @option params [String, nil] :industry_type
       # @option params [String, nil] :conversion_window
       # @option params [Boolean, nil] :mature_only
       # @option params [Whop_sdk::Types::RetrieveStatsRequestSteps, nil] :steps
@@ -177,6 +179,8 @@ module Whop_sdk
         query_params["ad_ids"] = params[:ad_ids] if params.key?(:ad_ids)
         query_params["snapshot_window"] = params[:snapshot_window] if params.key?(:snapshot_window)
         query_params["event"] = params[:event] if params.key?(:event)
+        query_params["business_type"] = params[:business_type] if params.key?(:business_type)
+        query_params["industry_type"] = params[:industry_type] if params.key?(:industry_type)
         query_params["conversion_window"] = params[:conversion_window] if params.key?(:conversion_window)
         query_params["mature_only"] = params[:mature_only] if params.key?(:mature_only)
         query_params["steps"] = params[:steps] if params.key?(:steps)

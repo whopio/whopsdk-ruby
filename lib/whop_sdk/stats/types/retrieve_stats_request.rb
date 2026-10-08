@@ -74,6 +74,10 @@ module Whop_sdk
 
         field :event, -> { String }, optional: true, nullable: false
 
+        field :business_type, -> { String }, optional: true, nullable: false
+
+        field :industry_type, -> { String }, optional: true, nullable: false
+
         field :conversion_window, -> { String }, optional: true, nullable: false
 
         field :mature_only, -> { Internal::Types::Boolean }, optional: true, nullable: false

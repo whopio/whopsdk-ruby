@@ -8,6 +8,8 @@ module Whop_sdk
 
         ACCELERATED_SETTLEMENT_FEE = "accelerated_settlement_fee"
         ACCOUNT_SETTLEMENT = "account_settlement"
+        AD_AFFILIATE_PAYOUT = "ad_affiliate_payout"
+        AD_AFFILIATE_PAYOUT_RECEIVED = "ad_affiliate_payout_received"
         AD_BALANCE_FUNDING_RECEIPT = "ad_balance_funding_receipt"
         AD_BUDGET_RELEASE = "ad_budget_release"
         AD_CAMPAIGN_BUDGET = "ad_campaign_budget"

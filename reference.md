@@ -30987,7 +30987,7 @@ client.products.list(
 <dl>
 <dd>
 
-**query:** `String` — Ranked search against product title and headline. Omit to browse by recency.
+**query:** `String` — Filters products by text. The public marketplace list searches product title, account name, headline and description, ranking products that match every word first and the closest partial matches after them; an account's own list is a plain substring match over title, headline and description. Omit to browse by recency.
     
 </dd>
 </dl>

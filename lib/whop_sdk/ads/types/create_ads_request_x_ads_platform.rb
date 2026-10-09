@@ -1,0 +1,15 @@
+# frozen_string_literal: true
+
+module Whop_sdk
+  module Ads
+    module Types
+      module CreateAdsRequestXAdsPlatform
+        extend Whop_sdk::Internal::Types::Enum
+
+        META = "meta"
+        GOOGLE = "google"
+        TIKTOK = "tiktok"
+      end
+    end
+  end
+end

@@ -28,11 +28,13 @@ module Whop_sdk
 
         field :domain, -> { String }, optional: true, nullable: false
 
-        field :verification, -> { String }, optional: true, nullable: false
+        field :verification, -> { Whop_sdk::Domains::Types::ListDomainsRequestVerification }, optional: true, nullable: false
 
-        field :registration, -> { String }, optional: true, nullable: false
+        field :registration, -> { Whop_sdk::Domains::Types::ListDomainsRequestRegistration }, optional: true, nullable: false
 
-        field :website, -> { String }, optional: true, nullable: false
+        field :platform, -> { Whop_sdk::Domains::Types::ListDomainsRequestPlatform }, optional: true, nullable: false
+
+        field :website, -> { Whop_sdk::Domains::Types::ListDomainsRequestWebsite }, optional: true, nullable: false
       end
     end
   end

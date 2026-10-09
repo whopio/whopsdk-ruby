@@ -15985,7 +15985,7 @@ client.domains.list(tlds: ["com"])
 <dl>
 <dd>
 
-**verification:** `String` — Only domains with verification in this state, such as `ready`, or `any` for every domain that has verification.
+**verification:** `Whop_sdk::Domains::Types::ListDomainsRequestVerification` — Only domains with verification in this state, such as `ready`, or `any` for every domain that has verification.
     
 </dd>
 </dl>
@@ -15993,7 +15993,7 @@ client.domains.list(tlds: ["com"])
 <dl>
 <dd>
 
-**registration:** `String` — Only domains with registration in this state, such as `ready`, or `any` for every domain that has registration.
+**registration:** `Whop_sdk::Domains::Types::ListDomainsRequestRegistration` — Only domains with registration in this state, such as `ready`, or `any` for every domain that has registration.
     
 </dd>
 </dl>
@@ -16001,7 +16001,15 @@ client.domains.list(tlds: ["com"])
 <dl>
 <dd>
 
-**website:** `String` — Only domains with website in this state, such as `ready`, or `any` for every domain that has website.
+**platform:** `Whop_sdk::Domains::Types::ListDomainsRequestPlatform` — Only domains with platform in this state, such as `ready`, or `any` for every domain that has platform.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**website:** `Whop_sdk::Domains::Types::ListDomainsRequestWebsite` — Only domains with website in this state, such as `ready`, or `any` for every domain that has website.
     
 </dd>
 </dl>

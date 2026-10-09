@@ -307,6 +307,44 @@ module Whop_sdk
         end
       end
 
+      # Generates the payment's receipt (invoice) as a PDF and returns a short-lived link to download it. Each call
+      # generates a new file and link, so this endpoint does not replay `Idempotency-Key` responses.
+      #
+      # @param request_options [Hash]
+      # @param params [Hash]
+      # @option request_options [String] :base_url
+      # @option request_options [Hash{String => Object}] :additional_headers
+      # @option request_options [Hash{String => Object}] :additional_query_parameters
+      # @option request_options [Hash{String => Object}] :additional_body_parameters
+      # @option request_options [Integer] :timeout_in_seconds
+      # @option params [String] :id
+      #
+      # @example
+      #   client.payments.generate_pdf(id: "id")
+      #
+      # @return [Whop_sdk::Types::PaymentPdf]
+      def generate_pdf(request_options: {}, **params)
+        params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
+        request = Whop_sdk::Internal::JSON::Request.new(
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
+          method: "POST",
+          path: "payments/#{URI.encode_uri_component(params[:id].to_s)}/generate_pdf",
+          request_options: request_options
+        )
+        begin
+          response = @client.send(request)
+        rescue Net::HTTPRequestTimeout
+          raise Whop_sdk::Errors::TimeoutError
+        end
+        code = response.code.to_i
+        if code.between?(200, 299)
+          (response.body.to_s.empty? ? nil : Whop_sdk::Types::PaymentPdf.load(response.body))
+        else
+          error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
+          raise error_class.new(response.body, code: code)
+        end
+      end
+
       # Issues a full or partial refund for a payment. The refund is processed through the original payment processor
       # and the membership status is updated accordingly.
       #

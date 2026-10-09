@@ -5,6 +5,10 @@ module Whop_sdk
     module Types
       class RetrieveVariantsRequest < Internal::Types::Model
         field :id, -> { String }, optional: false, nullable: false
+
+        field :presentment_currency, -> { String }, optional: true, nullable: false
+
+        field :ip_address, -> { String }, optional: true, nullable: false
       end
     end
   end

@@ -24,6 +24,7 @@ module Whop_sdk
         # @option request_options [Hash{String => Object}] :additional_query_parameters
         # @option request_options [Hash{String => Object}] :additional_body_parameters
         # @option request_options [Integer] :timeout_in_seconds
+        # @option params [String, nil] :referring_account_id
         # @option params [Whop_sdk::Partners::Businesses::Types::ListBusinessesRequestStatus, nil] :status
         # @option params [Boolean, nil] :has_earnings
         # @option params [Integer, nil] :first
@@ -46,6 +47,7 @@ module Whop_sdk
         def list(request_options: {}, **params)
           params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
           query_params = {}
+          query_params["referring_account_id"] = params[:referring_account_id] if params.key?(:referring_account_id)
           query_params["status"] = params[:status] if params.key?(:status)
           query_params["has_earnings"] = params[:has_earnings] if params.key?(:has_earnings)
           query_params["first"] = params[:first] if params.key?(:first)

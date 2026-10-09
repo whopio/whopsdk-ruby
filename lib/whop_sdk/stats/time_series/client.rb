@@ -137,6 +137,7 @@ module Whop_sdk
         # @option params [Integer, nil] :event_count_gte
         # @option params [Integer, nil] :event_count_lt
         # @option params [Integer, nil] :event_count_lte
+        # @option params [String, nil] :referring_account_id
         #
         # @example
         #   client.stats.time_series.retrieve(
@@ -221,6 +222,7 @@ module Whop_sdk
           query_params["event_count_gte"] = params[:event_count_gte] if params.key?(:event_count_gte)
           query_params["event_count_lt"] = params[:event_count_lt] if params.key?(:event_count_lt)
           query_params["event_count_lte"] = params[:event_count_lte] if params.key?(:event_count_lte)
+          query_params["referring_account_id"] = params[:referring_account_id] if params.key?(:referring_account_id)
 
           request = Whop_sdk::Internal::JSON::Request.new(
             base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),

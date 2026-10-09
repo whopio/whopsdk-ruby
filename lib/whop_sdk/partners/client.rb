@@ -107,6 +107,7 @@ module Whop_sdk
       # @option params [Whop_sdk::Partners::Types::ReferredUsersPartnersRequestUserID, nil] :user_id
       # @option params [String, nil] :earning_partner_id
       # @option params [String, nil] :earning_partner_username
+      # @option params [String, nil] :referring_account_id
       # @option params [String, nil] :query
       # @option params [Boolean, nil] :has_businesses
       # @option params [Boolean, nil] :has_earning_businesses
@@ -127,6 +128,7 @@ module Whop_sdk
         query_params["user_id"] = params[:user_id] if params.key?(:user_id)
         query_params["earning_partner_id"] = params[:earning_partner_id] if params.key?(:earning_partner_id)
         query_params["earning_partner_username"] = params[:earning_partner_username] if params.key?(:earning_partner_username)
+        query_params["referring_account_id"] = params[:referring_account_id] if params.key?(:referring_account_id)
         query_params["query"] = params[:query] if params.key?(:query)
         query_params["has_businesses"] = params[:has_businesses] if params.key?(:has_businesses)
         query_params["has_earning_businesses"] = params[:has_earning_businesses] if params.key?(:has_earning_businesses)

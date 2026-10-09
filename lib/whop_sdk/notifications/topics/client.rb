@@ -16,7 +16,7 @@ module Whop_sdk
         end
 
         # Lists the platform's visible notification topics — the categories users can set notification preferences on.
-        # App-created topics are internal and not returned.
+        # App-created topics are not returned.
         #
         # @param request_options [Hash]
         # @param params [Hash]

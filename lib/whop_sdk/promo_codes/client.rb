@@ -89,7 +89,7 @@ module Whop_sdk
         end
       end
 
-      # Creates a promo code for an account. First-party sessions may attach an affiliate.
+      # Creates a promo code for an account.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::PromoCodes::Types::CreatePromoCodesRequest]

@@ -14,8 +14,7 @@ module Whop_sdk
         @environment = environment
       end
 
-      # Lists experiments for one account with experiment:read permission. Omit account_id or pass internal to list
-      # internal experiments, which requires Whop internal access.
+      # Lists experiments for one account with experiment:read permission.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -80,7 +79,7 @@ module Whop_sdk
         end
       end
 
-      # Creates a draft experiment for the specified account. Use internal for a Whop platform experiment.
+      # Creates a draft experiment for the specified account.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::Experiments::Types::CreateExperimentsRequest]
@@ -92,7 +91,7 @@ module Whop_sdk
       #
       # @example
       #   client.experiments.create(
-      #     account_id: "internal",
+      #     account_id: "biz_xxxxxxxxxxxxxx",
       #     flag_key: "checkout_redesign_v2"
       #   )
       #
@@ -125,13 +124,11 @@ module Whop_sdk
       # bucketing identity and account_id for experiment ownership.
       #
       # Pass `flag_key` to check a single flag, or omit it to fetch active flags in the account and related resource
-      # scope. Internal anonymous callers may use the `x-whop-anonymous-id` header or `ajs_anonymous_id` cookie;
-      # explicit `subject[anonymous_id]` takes precedence.
+      # scope.
       #
       # Assignments use exactly the configured `bucket_by`: `subject[user_id]`, `subject[account_id]`, or
-      # `subject[anonymous_id]`. Internal user experiments derive identity from the signed-in session. Missing the
-      # required identity fails single evaluation and omits the experiment from batch evaluation. Subjects outside all
-      # treatment ranges receive control.
+      # `subject[anonymous_id]`. Missing the required identity fails single evaluation and omits the experiment from
+      # batch evaluation. Subjects outside all treatment ranges receive control.
       #
       # Pass `subject[account_id]` to enable account-level targeting rules. Pass `properties` as a JSON object to supply
       # the values that `property` targeting conditions match against.
@@ -190,7 +187,7 @@ module Whop_sdk
       end
 
       # Retrieves a single experiment or feature flag by its `expt_` id or flag_key handle. Requires the corresponding
-      # experiment permission on the owning account, or Whop internal access for internal experiments.
+      # experiment permission on the owning account.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -235,8 +232,7 @@ module Whop_sdk
       # Updates the targeting rules, treatment allocation, metrics, or hypothesis of an existing experiment or feature
       # flag. Weights and metrics can only grow, so enrolled users never change arms and an existing metric is never
       # dropped. Lifecycle moves through the transition endpoints (`activate`, `pause`, `end`), never through this
-      # update. Requires the corresponding experiment permission on the owning account, or Whop internal access for
-      # internal experiments.
+      # update. Requires the corresponding experiment permission on the owning account.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::Experiments::Types::UpdateExperimentsRequest]
@@ -285,8 +281,7 @@ module Whop_sdk
 
       # Starts (or resumes) an experiment or feature flag so evaluation begins serving it. Activating a draft stamps
       # `started_at`; resuming a paused experiment keeps the original start. Only drafts and paused experiments can be
-      # activated. Requires the corresponding experiment permission on the owning account, or Whop internal access for
-      # internal experiments.
+      # activated. Requires the corresponding experiment permission on the owning account.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::Experiments::Types::ActivateExperimentsRequest]
@@ -335,7 +330,7 @@ module Whop_sdk
 
       # Concludes the experiment and records required `findings`. Pass `winning_arm` to serve the winning treatment to
       # everyone; omit it when control won. Ended experiments cannot restart, but may be ended again to correct the
-      # winner. Requires experiment:manage on the account, or internal access for platform experiments.
+      # winner. Requires experiment:manage on the account.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::Experiments::Types::EndExperimentsRequest]
@@ -387,7 +382,7 @@ module Whop_sdk
 
       # Pauses an active experiment or feature flag: evaluation stops serving it and exposures stop flowing. Assignments
       # are keyed on stable identity, so users return to their original arm when the experiment resumes. Requires the
-      # corresponding experiment permission on the owning account, or Whop internal access for internal experiments.
+      # corresponding experiment permission on the owning account.
       #
       # @param request_options [Hash]
       # @param params [Hash]

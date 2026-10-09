@@ -58,6 +58,11 @@ module Whop_sdk
       @ad_groups ||= Whop_sdk::AdGroups::Client.new(client: @raw_client, base_url: @base_url, environment: @environment)
     end
 
+    # @return [Whop_sdk::AdPixels::Client]
+    def ad_pixels
+      @ad_pixels ||= Whop_sdk::AdPixels::Client.new(client: @raw_client, base_url: @base_url, environment: @environment)
+    end
+
     # @return [Whop_sdk::Ads::Client]
     def ads
       @ads ||= Whop_sdk::Ads::Client.new(client: @raw_client, base_url: @base_url, environment: @environment)

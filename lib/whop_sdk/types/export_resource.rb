@@ -38,7 +38,6 @@ module Whop_sdk
       RESOLUTIONS = "resolutions"
       ENTRIES = "entries"
       LEADS = "leads"
-      CONTENT_REWARDS_SUBMISSIONS = "content_rewards_submissions"
       INVOICES = "invoices"
       CANCELATION_REASONS = "cancelation_reasons"
       CHILD_COMPANIES = "child_companies"

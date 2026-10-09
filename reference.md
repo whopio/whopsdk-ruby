@@ -28240,6 +28240,68 @@ client.payments.list_fees(id: "id")
 </dl>
 </details>
 
+<details><summary><code>client.payments.<a href="/lib/whop_sdk/payments/client.rb">generate_pdf</a>(id:) -> Whop_sdk::Types::PaymentPdf</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Generates the payment's receipt (invoice) as a PDF and returns a short-lived link to download it. Each call generates a new file and link, so this endpoint does not replay `Idempotency-Key` responses.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.payments.generate_pdf(id: "id")
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — The payment whose receipt to generate, prefixed `pay_`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Whop_sdk::Payments::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.payments.<a href="/lib/whop_sdk/payments/client.rb">refund</a>(id:, request) -> Whop_sdk::Types::Payment</code></summary>
 <dl>
 <dd>

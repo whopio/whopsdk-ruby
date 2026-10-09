@@ -14,7 +14,9 @@ module Whop_sdk
         @environment = environment
       end
 
-      # Lists an account's recommendations and generation requests, newest first by default. Without an account,
+      # Lists an account's recommendations and generation requests, newest first by default. For callers with
+      # company:update permission, listing queues generation when no recommendations are ready or in progress, with a
+      # ten-minute cooldown after an unsuccessful request; unsuccessful requests are not listed. Without an account,
       # signed-out visitors receive a business-setup template and eligible users receive their saved setup
       # recommendation. With `has_run` and no account, users receive the recommendations run on every account they can
       # read that has Economic Intelligence. An account's executed recommendations and runs stay listed after Economic

@@ -39203,7 +39203,9 @@ client.variants.list(
   release_methods: ["buy_now"],
   visibilities: ["visible"],
   plan_types: ["renewal"],
-  product_ids: ["prod_xxxxxxxxxxxxxx"]
+  product_ids: ["prod_xxxxxxxxxxxxxx"],
+  presentment_currency: "auto",
+  ip_address: "203.0.113.7"
 )
 ```
 </dd>
@@ -39284,6 +39286,22 @@ client.variants.list(
 <dd>
 
 **created_after:** `String` — Only return variants created after this timestamp.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**presentment_currency:** `String` — The currency to state each variant's prices in. Omit it, or send null, for each variant's own currency. `auto` states them in the currency of the country Whop places the buyer in: by `ip_address` when your server sends one, and by the request's own IP address otherwise. A three-letter ISO 4217 code, such as `eur`, states them in that currency. A variant converts only where a payment quote for it would be priced in that currency, and stays in its own currency otherwise: a renewing variant, one with adaptive pricing off, a currency no payment method can collect, or `auto` for a buyer Whop cannot place in a country. Converted prices are an estimate at the current exchange rate. Nothing is held: the payment quote the buyer pays from fixes the rate.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**ip_address:** `String` — The buyer's IP address, when your server reads on their behalf. Needs an API key; any other caller is placed by its own request. Where `presentment_currency` `auto` finds the buyer's local currency.
     
 </dd>
 </dl>
@@ -39632,7 +39650,11 @@ Retrieves the details of an existing variant.
 <dd>
 
 ```ruby
-client.variants.retrieve(id: "id")
+client.variants.retrieve(
+  id: "id",
+  presentment_currency: "auto",
+  ip_address: "203.0.113.7"
+)
 ```
 </dd>
 </dl>
@@ -39648,6 +39670,22 @@ client.variants.retrieve(id: "id")
 <dd>
 
 **id:** `String` — Variant ID, prefixed `plan_`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**presentment_currency:** `String` — The currency to state each variant's prices in. Omit it, or send null, for each variant's own currency. `auto` states them in the currency of the country Whop places the buyer in: by `ip_address` when your server sends one, and by the request's own IP address otherwise. A three-letter ISO 4217 code, such as `eur`, states them in that currency. A variant converts only where a payment quote for it would be priced in that currency, and stays in its own currency otherwise: a renewing variant, one with adaptive pricing off, a currency no payment method can collect, or `auto` for a buyer Whop cannot place in a country. Converted prices are an estimate at the current exchange rate. Nothing is held: the payment quote the buyer pays from fixes the rate.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**ip_address:** `String` — The buyer's IP address, when your server reads on their behalf. Needs an API key; any other caller is placed by its own request. Where `presentment_currency` `auto` finds the buyer's local currency.
     
 </dd>
 </dl>

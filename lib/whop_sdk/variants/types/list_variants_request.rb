@@ -22,6 +22,10 @@ module Whop_sdk
 
         field :created_after, -> { String }, optional: true, nullable: false
 
+        field :presentment_currency, -> { String }, optional: true, nullable: false
+
+        field :ip_address, -> { String }, optional: true, nullable: false
+
         field :first, -> { Integer }, optional: true, nullable: false
 
         field :after, -> { String }, optional: true, nullable: false

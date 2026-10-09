@@ -33,6 +33,8 @@ module Whop_sdk
       # @option params [String, nil] :product_ids
       # @option params [String, nil] :created_before
       # @option params [String, nil] :created_after
+      # @option params [String, nil] :presentment_currency
+      # @option params [String, nil] :ip_address
       # @option params [Integer, nil] :first
       # @option params [String, nil] :after
       # @option params [Integer, nil] :last
@@ -43,7 +45,9 @@ module Whop_sdk
       #     release_methods: ["buy_now"],
       #     visibilities: ["visible"],
       #     plan_types: ["renewal"],
-      #     product_ids: ["prod_xxxxxxxxxxxxxx"]
+      #     product_ids: ["prod_xxxxxxxxxxxxxx"],
+      #     presentment_currency: "auto",
+      #     ip_address: "203.0.113.7"
       #   )
       #
       # @return [Whop_sdk::Variants::Types::ListVariantsResponse]
@@ -59,6 +63,8 @@ module Whop_sdk
         query_params["product_ids"] = params[:product_ids] if params.key?(:product_ids)
         query_params["created_before"] = params[:created_before] if params.key?(:created_before)
         query_params["created_after"] = params[:created_after] if params.key?(:created_after)
+        query_params["presentment_currency"] = params[:presentment_currency] if params.key?(:presentment_currency)
+        query_params["ip_address"] = params[:ip_address] if params.key?(:ip_address)
         query_params["first"] = params[:first] if params.key?(:first)
         query_params["after"] = params[:after] if params.key?(:after)
         query_params["last"] = params[:last] if params.key?(:last)
@@ -141,17 +147,28 @@ module Whop_sdk
       # @option request_options [Hash{String => Object}] :additional_body_parameters
       # @option request_options [Integer] :timeout_in_seconds
       # @option params [String] :id
+      # @option params [String, nil] :presentment_currency
+      # @option params [String, nil] :ip_address
       #
       # @example
-      #   client.variants.retrieve(id: "id")
+      #   client.variants.retrieve(
+      #     id: "id",
+      #     presentment_currency: "auto",
+      #     ip_address: "203.0.113.7"
+      #   )
       #
       # @return [Whop_sdk::Types::Variant]
       def retrieve(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
+        query_params = {}
+        query_params["presentment_currency"] = params[:presentment_currency] if params.key?(:presentment_currency)
+        query_params["ip_address"] = params[:ip_address] if params.key?(:ip_address)
+
         request = Whop_sdk::Internal::JSON::Request.new(
           base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "GET",
           path: "variants/#{URI.encode_uri_component(params[:id].to_s)}",
+          query: query_params,
           request_options: request_options
         )
         begin

@@ -6,6 +6,8 @@ module Whop_sdk
       class UpdateAdGroupsRequest < Internal::Types::Model
         field :id, -> { String }, optional: false, nullable: false
 
+        field :ads_platform, -> { Whop_sdk::AdGroups::Types::UpdateAdGroupsRequestXAdsPlatform }, optional: true, nullable: false, api_name: "X-Ads-Platform"
+
         field :audiences, -> { Whop_sdk::Types::AdGroupAudiencesBody }, optional: true, nullable: false
 
         field :bid_type, -> { Whop_sdk::AdGroups::Types::UpdateAdGroupsRequestBidType }, optional: true, nullable: false

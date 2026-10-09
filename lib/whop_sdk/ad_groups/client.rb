@@ -104,6 +104,7 @@ module Whop_sdk
       # @option request_options [Hash{String => Object}] :additional_query_parameters
       # @option request_options [Hash{String => Object}] :additional_body_parameters
       # @option request_options [Integer] :timeout_in_seconds
+      # @option params [Whop_sdk::AdGroups::Types::CreateAdGroupsRequestXAdsPlatform, nil] :ads_platform
       #
       # @example
       #   client.ad_groups.create(ad_campaign_id: "adcamp_xxxxxxxxxxxxxx")
@@ -111,11 +112,19 @@ module Whop_sdk
       # @return [Whop_sdk::Types::AdGroup]
       def create(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
+        request_data = Whop_sdk::AdGroups::Types::CreateAdGroupsRequest.new(params).to_h
+        non_body_param_names = %w[X-Ads-Platform]
+        body = request_data.except(*non_body_param_names)
+
+        headers = {}
+        headers["X-Ads-Platform"] = params[:ads_platform] if params[:ads_platform]
+
         request = Whop_sdk::Internal::JSON::Request.new(
           base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "POST",
           path: "ad_groups",
-          body: Whop_sdk::AdGroups::Types::CreateAdGroupsRequest.new(params).to_h,
+          headers: headers,
+          body: body,
           request_options: request_options
         )
         begin
@@ -324,6 +333,7 @@ module Whop_sdk
       # @option request_options [Hash{String => Object}] :additional_body_parameters
       # @option request_options [Integer] :timeout_in_seconds
       # @option params [String] :id
+      # @option params [Whop_sdk::AdGroups::Types::UpdateAdGroupsRequestXAdsPlatform, nil] :ads_platform
       #
       # @example
       #   client.ad_groups.update(id: "id")
@@ -332,13 +342,17 @@ module Whop_sdk
       def update(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
         request_data = Whop_sdk::AdGroups::Types::UpdateAdGroupsRequest.new(params).to_h
-        non_body_param_names = %w[id]
+        non_body_param_names = %w[id X-Ads-Platform]
         body = request_data.except(*non_body_param_names)
+
+        headers = {}
+        headers["X-Ads-Platform"] = params[:ads_platform] if params[:ads_platform]
 
         request = Whop_sdk::Internal::JSON::Request.new(
           base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "PATCH",
           path: "ad_groups/#{URI.encode_uri_component(params[:id].to_s)}",
+          headers: headers,
           body: body,
           request_options: request_options
         )

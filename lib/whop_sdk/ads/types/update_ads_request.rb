@@ -6,6 +6,8 @@ module Whop_sdk
       class UpdateAdsRequest < Internal::Types::Model
         field :id, -> { String }, optional: false, nullable: false
 
+        field :ads_platform, -> { Whop_sdk::Ads::Types::UpdateAdsRequestXAdsPlatform }, optional: true, nullable: false, api_name: "X-Ads-Platform"
+
         field :call_to_action, -> { Whop_sdk::Ads::Types::UpdateAdsRequestCallToAction }, optional: true, nullable: false
 
         field :creatives, -> { Internal::Types::Array[Whop_sdk::Ads::Types::UpdateAdsRequestCreativesItem] }, optional: true, nullable: false

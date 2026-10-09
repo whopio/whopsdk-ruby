@@ -4,6 +4,8 @@ module Whop_sdk
   module Ads
     module Types
       class CreateAdsRequest < Internal::Types::Model
+        field :ads_platform, -> { Whop_sdk::Ads::Types::CreateAdsRequestXAdsPlatform }, optional: true, nullable: false, api_name: "X-Ads-Platform"
+
         field :ad_group, -> { Internal::Types::Hash[String, Object] }, optional: true, nullable: false
 
         field :ad_group_id, -> { String }, optional: true, nullable: false

@@ -6,6 +6,8 @@ module Whop_sdk
       class UpdateAdCampaignsRequest < Internal::Types::Model
         field :id, -> { String }, optional: false, nullable: false
 
+        field :ads_platform, -> { Whop_sdk::AdCampaigns::Types::UpdateAdCampaignsRequestXAdsPlatform }, optional: true, nullable: false, api_name: "X-Ads-Platform"
+
         field :bid_type, -> { Whop_sdk::AdCampaigns::Types::UpdateAdCampaignsRequestBidType }, optional: true, nullable: false
 
         field :budget_amount, -> { Integer }, optional: true, nullable: false

@@ -10,6 +10,8 @@ module Whop_sdk
 
         field :earning_partner_username, -> { String }, optional: true, nullable: false
 
+        field :referring_account_id, -> { String }, optional: true, nullable: false
+
         field :query, -> { String }, optional: true, nullable: false
 
         field :has_businesses, -> { Internal::Types::Boolean }, optional: true, nullable: false

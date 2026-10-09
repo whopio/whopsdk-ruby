@@ -16,8 +16,9 @@ module Whop_sdk
 
       # Lists an account's team members, including pending invites (`status: "pending"`, `ausri_` ids; `user` is `null`
       # for invites sent to an email with no Whop account yet). For accepted members, `email` requires the
-      # `company:authorized_user:email:read` scope and is `null` otherwise. Listing `role=workforce` is also allowed
-      # with the `bounty:create` scope.
+      # `company:authorized_user:email:read` scope and is `null` otherwise. A user credential with `company:basic:read`
+      # may list only its own joined membership by passing its own `user_id` and `status=joined`. Listing
+      # `role=workforce` is also allowed with the `bounty:create` scope.
       #
       # @param request_options [Hash]
       # @param params [Hash]

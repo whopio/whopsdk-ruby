@@ -5,14 +5,17 @@ module Whop_sdk
     module DomainIssueCode
       extend Whop_sdk::Internal::Types::Enum
 
-      OWNERSHIP_REQUIRED = "ownership_required"
+      VERIFICATION_REQUIRED = "verification_required"
+      VERIFICATION_EXPIRED = "verification_expired"
+      OWNERSHIP_CONFLICT = "ownership_conflict"
+      OWNERSHIP_LOST = "ownership_lost"
       DNS_REQUIRED = "dns_required"
       PROVIDER_VALIDATION = "provider_validation"
       CERTIFICATE_PENDING = "certificate_pending"
       EXPIRING_SOON = "expiring_soon"
-      OWNERSHIP_CONFLICT = "ownership_conflict"
       ACCOUNT_UNAVAILABLE = "account_unavailable"
       CHECK_FAILED = "check_failed"
+      PURCHASE_EXPIRED = "purchase_expired"
       DOMAIN_UNAVAILABLE = "domain_unavailable"
       PREMIUM_NOT_SUPPORTED = "premium_not_supported"
       UNSUPPORTED_TLD = "unsupported_tld"

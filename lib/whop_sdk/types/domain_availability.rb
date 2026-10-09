@@ -2,7 +2,7 @@
 
 module Whop_sdk
   module Types
-    class DomainRegistrationQuote < Internal::Types::Model
+    class DomainAvailability < Internal::Types::Model
       field :available, -> { Internal::Types::Boolean }, optional: false, nullable: false
 
       field :premium, -> { Internal::Types::Boolean }, optional: false, nullable: false

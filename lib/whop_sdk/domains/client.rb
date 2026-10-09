@@ -14,7 +14,7 @@ module Whop_sdk
         @environment = environment
       end
 
-      # Lists your domains. Filter by account, app, status, or hostname.
+      # Lists your domains. Filter by account, app, status, hostname, or the state of a capability.
       #
       # Pass `search` to find domains to buy instead: the exact domain first, even when taken, then your name on popular
       # extensions, then suggestions. Pass `tlds` to check only the extensions you choose. Results aren't reserved.
@@ -38,6 +38,9 @@ module Whop_sdk
       # @option params [String, nil] :search
       # @option params [String, nil] :tlds
       # @option params [String, nil] :domain
+      # @option params [String, nil] :verification
+      # @option params [String, nil] :registration
+      # @option params [String, nil] :website
       #
       # @example
       #   client.domains.list(tlds: ["com"])
@@ -58,6 +61,9 @@ module Whop_sdk
         query_params["search"] = params[:search] if params.key?(:search)
         query_params["tlds"] = params[:tlds] if params.key?(:tlds)
         query_params["domain"] = params[:domain] if params.key?(:domain)
+        query_params["verification"] = params[:verification] if params.key?(:verification)
+        query_params["registration"] = params[:registration] if params.key?(:registration)
+        query_params["website"] = params[:website] if params.key?(:website)
 
         Whop_sdk::Internal::CursorItemIterator.new(
           cursor_field: :end_cursor,
@@ -88,17 +94,17 @@ module Whop_sdk
         end
       end
 
-      # Buys a domain through Whop, or connects one you registered elsewhere.
+      # Adds a domain to your account with the capabilities you want.
       #
-      # A bought domain starts `awaiting_payment`. Pay its `amount_due` at `purchase_url`, or pass `payment_method_id`
-      # to charge a saved card. Whop then registers it, hosts its DNS, issues its certificate and serves the app, and
-      # renews it every year while `auto_renew` is on. An unpaid purchase is removed after 7 days.
+      # Pass `registration` to buy the domain through Whop; it's the default when you pass no capability. Pay its
+      # `amount_due` at `purchase_url`, or pass `registration.payment_method_id` to charge a saved card. Whop then
+      # registers it, runs its DNS, and renews it every year while `auto_renew` is on.
       #
-      # With `mode: external`, Whop returns the DNS records to publish instead. Verification and certificate setup run
-      # automatically, and unverified claims are removed after 48 hours. A claim doesn't reserve the hostname.
+      # Pass `verification` to connect a domain you registered elsewhere: its `issues` list the TXT and routing records
+      # to publish. Pass `website` with an `app_id` to serve that app on the domain.
       #
-      # Adding a domain this account removed or failed before revives it under its original ID, starting over as a new
-      # claim or purchase.
+      # To change a domain you already have, update it instead. Adding a domain this account deleted revives it under
+      # its original ID.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::Domains::Types::CreateDomainsRequest]
@@ -135,11 +141,10 @@ module Whop_sdk
         end
       end
 
-      # Retrieves a domain's status, issues, billing, and DNS records, and checks it again in the background if it isn't
-      # active yet.
+      # Retrieves a domain by ID or hostname. Both return the same domain, shown as fully as you can see it: everything
+      # for your own accounts, and only who has it and what it serves for anyone else.
       #
-      # Pass a hostname instead of an ID to look up any domain, with its `registration_quote` and, if registered, its
-      # `public_record`.
+      # A hostname no domain on Whop has comes back with its `availability` instead.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -176,9 +181,9 @@ module Whop_sdk
         end
       end
 
-      # Stops routing a connected domain to its app and starts cleanup: it returns as `deleting`; retrieve it until it's
-      # `removed`. Deleting an unpaid purchase cancels it. A registered domain can't be deleted; turn off `auto_renew`
-      # and it's released after it expires. Creating the domain on this account again revives it under the same ID.
+      # Removes the domain from your account and releases its capabilities in the background. Deleting an unpaid
+      # purchase cancels it. A registered domain can't be deleted; turn off `auto_renew` and it's released after it
+      # expires. Adding the domain to this account again revives it under the same ID.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -215,8 +220,9 @@ module Whop_sdk
         end
       end
 
-      # Reassigns a domain to another app in the same account, replaces its metadata, or changes how a bought domain
-      # renews. The hostname and owning account cannot be edited.
+      # Changes a domain's capabilities or metadata. Pass a capability to add it or change its settings, or `null` to
+      # release it; capabilities you leave out don't change. Passing a capability that needs action again retries it.
+      # Releasing every capability keeps the domain, `idle`; delete it to remove it.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::Domains::Types::UpdateDomainsRequest]
@@ -242,6 +248,44 @@ module Whop_sdk
           method: "PATCH",
           path: "domains/#{URI.encode_uri_component(params[:id].to_s)}",
           body: body,
+          request_options: request_options
+        )
+        begin
+          response = @client.send(request)
+        rescue Net::HTTPRequestTimeout
+          raise Whop_sdk::Errors::TimeoutError
+        end
+        code = response.code.to_i
+        if code.between?(200, 299)
+          (response.body.to_s.empty? ? nil : Whop_sdk::Types::Domain.load(response.body))
+        else
+          error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
+          raise error_class.new(response.body, code: code)
+        end
+      end
+
+      # Checks the domain's DNS, payment, and provider state again now instead of at its next scheduled check. Returns
+      # the domain as saved; retrieve it again to see the result.
+      #
+      # @param request_options [Hash]
+      # @param params [Hash]
+      # @option request_options [String] :base_url
+      # @option request_options [Hash{String => Object}] :additional_headers
+      # @option request_options [Hash{String => Object}] :additional_query_parameters
+      # @option request_options [Hash{String => Object}] :additional_body_parameters
+      # @option request_options [Integer] :timeout_in_seconds
+      # @option params [String] :id
+      #
+      # @example
+      #   client.domains.check(id: "id")
+      #
+      # @return [Whop_sdk::Types::Domain]
+      def check(request_options: {}, **params)
+        params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
+        request = Whop_sdk::Internal::JSON::Request.new(
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
+          method: "POST",
+          path: "domains/#{URI.encode_uri_component(params[:id].to_s)}/check",
           request_options: request_options
         )
         begin

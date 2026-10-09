@@ -38,9 +38,10 @@ module Whop_sdk
       # @option params [String, nil] :search
       # @option params [String, nil] :tlds
       # @option params [String, nil] :domain
-      # @option params [String, nil] :verification
-      # @option params [String, nil] :registration
-      # @option params [String, nil] :website
+      # @option params [Whop_sdk::Domains::Types::ListDomainsRequestVerification, nil] :verification
+      # @option params [Whop_sdk::Domains::Types::ListDomainsRequestRegistration, nil] :registration
+      # @option params [Whop_sdk::Domains::Types::ListDomainsRequestPlatform, nil] :platform
+      # @option params [Whop_sdk::Domains::Types::ListDomainsRequestWebsite, nil] :website
       #
       # @example
       #   client.domains.list(tlds: ["com"])
@@ -63,6 +64,7 @@ module Whop_sdk
         query_params["domain"] = params[:domain] if params.key?(:domain)
         query_params["verification"] = params[:verification] if params.key?(:verification)
         query_params["registration"] = params[:registration] if params.key?(:registration)
+        query_params["platform"] = params[:platform] if params.key?(:platform)
         query_params["website"] = params[:website] if params.key?(:website)
 
         Whop_sdk::Internal::CursorItemIterator.new(

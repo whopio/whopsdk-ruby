@@ -7,6 +7,7 @@ module Whop_sdk
 
       VERIFICATION = "verification"
       REGISTRATION = "registration"
+      PLATFORM = "platform"
       WEBSITE = "website"
     end
   end

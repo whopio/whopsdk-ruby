@@ -30,6 +30,7 @@ module Whop_sdk
       AD_CAMPAIGN_READ = "ad_campaign:read"
       AD_CAMPAIGN_STATS_READ = "ad_campaign:stats:read"
       AD_CAMPAIGN_UPDATE = "ad_campaign:update"
+      AD_PIXEL_MANAGE = "ad_pixel:manage"
       AUDIENCE_BASIC_READ = "audience:basic:read"
       AUDIENCE_UPDATE = "audience:update"
       AD_PUBLISHER_READ = "ad_publisher:read"

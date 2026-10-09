@@ -27,6 +27,12 @@ module Whop_sdk
         field :tlds, -> { String }, optional: true, nullable: false
 
         field :domain, -> { String }, optional: true, nullable: false
+
+        field :verification, -> { String }, optional: true, nullable: false
+
+        field :registration, -> { String }, optional: true, nullable: false
+
+        field :website, -> { String }, optional: true, nullable: false
       end
     end
   end

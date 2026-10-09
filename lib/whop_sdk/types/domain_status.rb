@@ -5,16 +5,11 @@ module Whop_sdk
     module DomainStatus
       extend Whop_sdk::Internal::Types::Enum
 
-      PENDING_VERIFICATION = "pending_verification"
-      AWAITING_PAYMENT = "awaiting_payment"
-      REGISTERING = "registering"
-      PROVISIONING = "provisioning"
-      ACTIVE = "active"
+      IDLE = "idle"
+      PENDING = "pending"
+      READY = "ready"
       ACTION_REQUIRED = "action_required"
-      DELETING = "deleting"
-      EXPIRED = "expired"
-      FAILED = "failed"
-      REMOVED = "removed"
+      RELEASING = "releasing"
     end
   end
 end

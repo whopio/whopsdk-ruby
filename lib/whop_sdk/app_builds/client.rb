@@ -80,8 +80,8 @@ module Whop_sdk
         end
       end
 
-      # Uploads a new build artifact for an app. Upload the file first (POST /files or a direct upload), then reference
-      # it here; iOS and Android take a .zip bundle, web takes a JavaScript file or a .zip archive of the hosted site.
+      # Uploads a new build artifact for an app. Upload the file first with `POST /files` or a direct upload, then
+      # reference it in `attachment`.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::AppBuilds::Types::CreateAppBuildsRequest]

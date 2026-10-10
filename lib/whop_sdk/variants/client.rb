@@ -14,8 +14,8 @@ module Whop_sdk
         @environment = environment
       end
 
-      # Returns a paginated list of variants. Omit `account_id` and pass `product_ids` to list a product's public
-      # buyable variants.
+      # Lists an account's variants. To list a product's public, buyable variants without authentication, omit
+      # `account_id` and pass `product_ids`.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -102,8 +102,8 @@ module Whop_sdk
         end
       end
 
-      # Create a new pricing variant for a product. The variant defines the billing interval, price, and availability
-      # for customers.
+      # Creates a pricing variant for a product, defining the billing interval, price, and availability customers buy it
+      # with.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::Variants::Types::CreateVariantsRequest]
@@ -140,7 +140,8 @@ module Whop_sdk
         end
       end
 
-      # Retrieves the details of an existing variant.
+      # Retrieves a variant. Requires no authentication; fields that need a permission are `null` for callers without
+      # it.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -191,8 +192,7 @@ module Whop_sdk
         end
       end
 
-      # Delete a variant from a product. It stops selling immediately; existing memberships on this variant will not be
-      # affected.
+      # Deletes a variant from a product. It stops selling immediately; existing memberships on it are unaffected.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -229,7 +229,7 @@ module Whop_sdk
         end
       end
 
-      # Update a variant's pricing, billing interval, visibility, stock, and other settings.
+      # Updates a variant's pricing, billing interval, visibility, stock, and other settings.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::Variants::Types::UpdateVariantsRequest]

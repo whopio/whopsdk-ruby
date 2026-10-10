@@ -14,7 +14,7 @@ module Whop_sdk
         @environment = environment
       end
 
-      # Returns a paginated list of invoices for a company, with optional filtering by product, status, collection
+      # Returns a paginated list of invoices for an account, with optional filtering by product, status, collection
       # method, and creation date.
       #
       # Required permissions:

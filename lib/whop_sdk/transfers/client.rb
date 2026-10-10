@@ -14,7 +14,8 @@ module Whop_sdk
         @environment = environment
       end
 
-      # Lists transfers visible to the caller. Optional account filters narrow the results.
+      # Lists the transfers you can see, sent or received, newest first by default. Optional account filters narrow the
+      # results.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -81,7 +82,8 @@ module Whop_sdk
         end
       end
 
-      # Moves money between accounts, or into a claim link anyone with the URL can redeem.
+      # Moves money between Whop balances, sends USDT from an account's wallet, or funds a claim link anyone with the
+      # URL can redeem. The `type` you send decides which object comes back.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::Transfers::Types::CreateTransfersRequestBody]
@@ -118,7 +120,8 @@ module Whop_sdk
         end
       end
 
-      # Lists the people and accounts you can send money to.
+      # Lists the people and accounts you can send money to from a balance. Pass a result's ID as `destination_id` when
+      # creating a transfer.
       #
       # @param request_options [Hash]
       # @param params [Hash]

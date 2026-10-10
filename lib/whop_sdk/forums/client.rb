@@ -14,7 +14,7 @@ module Whop_sdk
         @environment = environment
       end
 
-      # Returns a paginated list of forums within a specific company, with optional filtering by product.
+      # Returns a paginated list of forums for an account, with optional filtering by product.
       #
       # Required permissions:
       #  - `forum:read`

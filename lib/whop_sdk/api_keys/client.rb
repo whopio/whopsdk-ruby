@@ -128,8 +128,8 @@ module Whop_sdk
         end
       end
 
-      # Lists the catalog of permission actions that can be granted to users, apps, and API keys — the source for the
-      # dashboard's permission pickers. Small and returned in full on one page.
+      # Lists the catalog of permission actions that can be granted to users, apps, and API keys. Use it to choose the
+      # `permissions` for an API key or to build a permission picker. Small and returned in full on one page.
       #
       # @param request_options [Hash]
       # @param _params [Hash]

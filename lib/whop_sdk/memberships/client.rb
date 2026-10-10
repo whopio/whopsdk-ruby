@@ -89,10 +89,9 @@ module Whop_sdk
         end
       end
 
-      # Sends an email inviting one recipient to join the account through a free variant. Identify the recipient by
-      # exactly one of `user_id` or `email`. The invitation is bound to that recipient; after signing in, accepting it
-      # immediately grants the membership without checkout. This Experimental endpoint is available only to accounts
-      # enabled for membership invitations.
+      # Emails one recipient an invitation to a free variant's membership. The invitation is bound to that recipient;
+      # after signing in, accepting it immediately grants the membership without checkout. This Experimental endpoint is
+      # available only to accounts enabled for membership invitations.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::Memberships::Types::InviteMembershipsRequestBody]
@@ -169,12 +168,7 @@ module Whop_sdk
         end
       end
 
-      # Updates a membership: merge metadata key-value pairs, toggle `cancel_at_period_end` — `true` schedules the
-      # cancellation for the end of the current billing period, `false` reverses a pending one — or move future renewals
-      # to another of the customer's saved payment methods with `payment_method_id`, or set `billing_period_days` to
-      # change renewal cadence for an active, trialing, or past-due membership billed automatically by Whop. The current
-      # period end moves to the current period start plus the requested number of days, and future renewals use the same
-      # cadence. Invoice, externally billed, and canceling memberships are not supported.
+      # Updates a membership's metadata, scheduled cancellation, renewal payment method, or renewal cadence.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::Memberships::Types::UpdateMembershipsRequest]
@@ -220,10 +214,8 @@ module Whop_sdk
       end
 
       # Applies a promo code to an `active` or `trialing` membership that does not already have one and has exactly one
-      # recurring item. The discount lands on the next invoice and follows the code's duration (`once`, `repeating`, or
-      # `forever`). Works for Stripe-billed memberships and memberships billed by Whop's billing engine, including
-      # payment-element and multi-PSP renewals. Stock, plan eligibility, and expiry are still checked. Memberships with
-      # multiple recurring items are rejected.
+      # recurring item, for Stripe-billed memberships and memberships billed by Whop's billing engine. The discount
+      # lands on the next invoice and follows the code's duration (`once`, `repeating`, or `forever`).
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::Memberships::Types::ApplyPromoCodeMembershipsRequest]
@@ -268,14 +260,12 @@ module Whop_sdk
         end
       end
 
-      # Assigns an affiliate to a membership and pays them the commission you set on its future payments. Name the user
-      # with exactly one of `user_id`, `email`, or `username`. A user who is not yet an affiliate of your account
-      # becomes one, which also requires `affiliate:create`. Send a new `commission_type` or `commission_value` for the
-      # membership's current affiliate to change their commission; a membership that already has a different affiliate
-      # returns a conflict. Works for active or trialing memberships with one recurring plan that bill through Stripe or
-      # Whop's billing engine, and not for marketplace memberships, paused payments, or a scheduled cancellation. The
-      # payout cannot exceed 90% of the next renewal amount, and no past payments are recalculated. You cannot assign
-      # yourself.
+      # Assigns an affiliate to a membership and pays them the commission you set on its future payments; past payments
+      # are not recalculated. A user who is not yet an affiliate of your account becomes one, which also requires
+      # `affiliate:create`. Send a new `commission_type` or `commission_value` for the membership's current affiliate to
+      # change their commission; a membership that already has a different affiliate returns a conflict. Works for
+      # active or trialing memberships with one recurring variant that bill through Stripe or Whop's billing engine, and
+      # not for marketplace memberships, paused payments, or a scheduled cancellation. You cannot assign yourself.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::Memberships::Types::AssignAffiliateMembershipsRequest]
@@ -322,8 +312,7 @@ module Whop_sdk
         end
       end
 
-      # Cancels a membership. Pass `cancel_at_period_end: true` to stop auto-renewal and keep access until the current
-      # billing period ends. Omit it (or pass `false`) to revoke access immediately. Buyers cannot cancel
+      # Cancels a membership, either immediately or at the end of the current billing period. Buyers cannot cancel
       # buy-now-pay-later (`splitit`, `sezzle`) or non-trial split-pay memberships.
       #
       # @param request_options [Hash]
@@ -456,9 +445,8 @@ module Whop_sdk
       end
 
       # Restores access to a `canceled` or `expired` membership that contains only one-time purchases and sets its
-      # `status` to `completed`. Lifetime memberships regain lifetime access. For memberships with an expiration, `days`
-      # sets `current_period_end` that many days from now; without it the original `current_period_end` is kept, so
-      # `days` is required once that has passed. Active and recurring memberships cannot be reactivated.
+      # `status` to `completed`. Lifetime memberships regain lifetime access; for memberships with an expiration, `days`
+      # sets the new `current_period_end`. Active and recurring memberships cannot be reactivated.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::Memberships::Types::ReactivateMembershipsRequest]

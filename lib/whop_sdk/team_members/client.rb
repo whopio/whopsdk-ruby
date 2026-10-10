@@ -14,11 +14,9 @@ module Whop_sdk
         @environment = environment
       end
 
-      # Lists an account's team members, including pending invites (`status: "pending"`, `ausri_` ids; `user` is `null`
-      # for invites sent to an email with no Whop account yet). For accepted members, `email` requires the
-      # `company:authorized_user:email:read` scope and is `null` otherwise. A user credential with `company:basic:read`
-      # may list only its own joined membership by passing its own `user_id` and `status=joined`. Listing
-      # `role=workforce` is also allowed with the `bounty:create` scope.
+      # Lists an account's team members, including pending invites. A user credential with `company:basic:read` may list
+      # only its own joined membership by passing its own `user_id` and `status=joined`. Listing `role=workforce` is
+      # also allowed with the `bounty:create` scope.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -91,9 +89,9 @@ module Whop_sdk
 
       # Adds a member to an account's team with a system role. Identify them by exactly one of `user_id` or `email`. If
       # the person has not yet accepted — or the email does not belong to a Whop account yet — an invitation is sent
-      # instead and the response is `202` with `{ "object": "team_member_invite", "invitation_sent": true }`. If they
-      # already have a pending invite, the request fails with a `400`. Custom roles cannot be granted via the API.
-      # Granting the `workforce` role is also allowed with the `bounty:create` scope.
+      # instead and the response is `202` with an `object` of `team_member_invite`. If they already have a pending
+      # invite, the request fails with a `400`. Granting the `workforce` role is also allowed with the `bounty:create`
+      # scope.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::TeamMembers::Types::CreateTeamMembersRequest]
@@ -133,8 +131,7 @@ module Whop_sdk
         end
       end
 
-      # Retrieves a team member by ID. `email` requires the `company:authorized_user:email:read` scope and is `null`
-      # otherwise.
+      # Retrieves a team member or pending invite by ID.
       #
       # @param request_options [Hash]
       # @param params [Hash]

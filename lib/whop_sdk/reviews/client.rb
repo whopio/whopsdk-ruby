@@ -14,8 +14,7 @@ module Whop_sdk
         @environment = environment
       end
 
-      # Returns a paginated list of customer reviews for a specific product, with optional filtering by star rating and
-      # creation date.
+      # Lists the customer reviews for a product.
       #
       # @param request_options [Hash]
       # @param params [Hash]

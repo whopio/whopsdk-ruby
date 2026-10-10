@@ -14,7 +14,7 @@ module Whop_sdk
         @environment = environment
       end
 
-      # Returns a paginated list of experiences belonging to a company, with optional filtering by product and app.
+      # Lists the experiences in an account, optionally filtered to those attached to one product or powered by one app.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -87,6 +87,9 @@ module Whop_sdk
         end
       end
 
+      # Creates an experience for an account, powered by an app such as courses, forums, or chat. Attach it to a product
+      # with `POST /experiences/:id/attach` to give that product's customers access.
+      #
       # Required permissions:
       #  - `experience:create`
       #
@@ -165,6 +168,9 @@ module Whop_sdk
         end
       end
 
+      # Deletes an experience and detaches it from every product, removing customer access to it. Returns `true` on
+      # success.
+      #
       # Required permissions:
       #  - `experience:delete`
       #
@@ -203,6 +209,9 @@ module Whop_sdk
         end
       end
 
+      # Updates an experience's name, logo, visibility, or notification setting, or moves it to another section or
+      # position.
+      #
       # Required permissions:
       #  - `experience:update`
       #
@@ -246,7 +255,7 @@ module Whop_sdk
         end
       end
 
-      # Attach an experience to a product, making it accessible to the product's customers.
+      # Attaches an experience to a product, giving the product's customers access to it.
       #
       # Required permissions:
       #  - `experience:attach`
@@ -294,7 +303,7 @@ module Whop_sdk
         end
       end
 
-      # Detach an experience from a product, removing customer access to it through that product.
+      # Detaches an experience from a product, removing customer access to it through that product.
       #
       # Required permissions:
       #  - `experience:detach`
@@ -342,12 +351,9 @@ module Whop_sdk
         end
       end
 
-      # Duplicates an existing experience. The name will be copied, unless provided. The new experience will be attached
-      # to the same products as the original experience.
-      # If duplicating a Forum or Chat experience, the new experience will have the same settings as the original
-      # experience, e.g. who can post, who can comment, etc.
-      # No content, e.g. posts, messages, lessons from within the original experience will be copied.
-      #
+      # Duplicates an experience and attaches the copy to the same products as the original. Forum and chat copies keep
+      # the original's settings, such as who can post or comment. No content, such as posts, messages, or lessons, is
+      # copied.
       #
       # Required permissions:
       #  - `experience:create`

@@ -14,6 +14,8 @@ module Whop_sdk
         @environment = environment
       end
 
+      # Lists the payment rules on an account.
+      #
       # @param request_options [Hash]
       # @param params [Hash]
       # @option request_options [String] :base_url
@@ -77,6 +79,9 @@ module Whop_sdk
         end
       end
 
+      # Creates a payment rule. It is created `active` and applies its `action` to new payments that match all of its
+      # `conditions`.
+      #
       # @param request_options [Hash]
       # @param params [Whop_sdk::PaymentRules::Types::CreatePaymentRulesRequest]
       # @option request_options [String] :base_url
@@ -122,7 +127,8 @@ module Whop_sdk
         end
       end
 
-      # Small and returned in full on one page.
+      # Lists the payment attributes a rule condition can read, with the operators and values each one accepts. Small
+      # and returned in full on one page.
       #
       # @param request_options [Hash]
       # @param _params [Hash]
@@ -157,6 +163,8 @@ module Whop_sdk
         end
       end
 
+      # Retrieves a payment rule.
+      #
       # @param request_options [Hash]
       # @param params [Hash]
       # @option request_options [String] :base_url
@@ -192,7 +200,8 @@ module Whop_sdk
         end
       end
 
-      # The rule stops applying to new payments and is kept, so the payments it already decided still name it.
+      # Deletes a payment rule. It stops applying to new payments but is kept, so the payments it already decided still
+      # name it.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -227,9 +236,9 @@ module Whop_sdk
         raise error_class.new(response.body, code: code)
       end
 
-      # Changes the rule's name or metadata, keeping its ID and everything recorded against it. What the rule *does* is
-      # fixed once created, so the payments it decided keep naming the rule that decided them; use replace to change
-      # that.
+      # Updates a payment rule's name or metadata, keeping its ID and everything recorded against it. A rule's `action`
+      # and `conditions` are fixed once created, so the payments it decided keep naming the rule that decided them; use
+      # `POST /payment_rules/:id/replace` to change them.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::PaymentRules::Types::UpdatePaymentRulesRequest]
@@ -271,6 +280,8 @@ module Whop_sdk
         end
       end
 
+      # Activates an inactive payment rule so it applies to new payments again. A deleted rule cannot be activated.
+      #
       # @param request_options [Hash]
       # @param params [Hash]
       # @option request_options [String] :base_url
@@ -306,7 +317,7 @@ module Whop_sdk
         end
       end
 
-      # The rule stops applying to new payments. It keeps its ID and can be activated again.
+      # Deactivates a payment rule so it stops applying to new payments. It keeps its ID and can be activated again.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -343,8 +354,8 @@ module Whop_sdk
         end
       end
 
-      # Deletes this rule and creates its successor in one step. The successor carries a new ID and the metadata of the
-      # rule it replaced,.
+      # Changes a payment rule's `action` and `conditions` by deleting it and creating its successor in one step. The
+      # successor has a new ID and keeps the replaced rule's name, metadata, and `active` or `inactive` status.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::PaymentRules::Types::ReplacePaymentRulesRequest]

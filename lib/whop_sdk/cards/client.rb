@@ -58,8 +58,8 @@ module Whop_sdk
         end
       end
 
-      # Issue a virtual card, or apply for card issuing. An account with no application files one here and gets back a
-      # `202`; call again to issue the card once it is approved.
+      # Issues a virtual card, or applies for card issuing. An account with no application files one here and gets back
+      # a `202`; call again to issue the card once it is approved.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::Cards::Types::CreateCardsRequest]
@@ -96,7 +96,7 @@ module Whop_sdk
         end
       end
 
-      # Retrieve a single card.
+      # Retrieves a single card, including its `secrets` (card number, CVC, and PIN), which List Cards does not return.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -140,7 +140,7 @@ module Whop_sdk
         end
       end
 
-      # Update, freeze, or cancel a card. Updating the card's name, billing address, or limits requires both
+      # Updates, freezes, or cancels a card. Updating the card's name, billing address, or limits requires both
       # `payout:account:update` and `company:balance:read`; a card's assigned holder may update their own card's pin and
       # frozen state with any user token.
       #

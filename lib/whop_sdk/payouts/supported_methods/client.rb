@@ -15,7 +15,8 @@ module Whop_sdk
           @environment = environment
         end
 
-        # Lists the payout methods an account or user is eligible to add.
+        # Lists the payout methods an account or user is eligible to add. Pass a result's ID as
+        # `supported_payout_method_id` to `POST /payouts/methods` to save one.
         #
         # @param request_options [Hash]
         # @param params [Hash]

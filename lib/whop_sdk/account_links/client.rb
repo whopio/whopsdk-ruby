@@ -14,8 +14,8 @@ module Whop_sdk
         @environment = environment
       end
 
-      # Generate a URL that directs a sub-merchant to their account portal, such as the hosted payouts dashboard or the
-      # KYC onboarding flow.
+      # Generates a URL that sends a sub-merchant to a hosted Whop page, such as the payouts dashboard or the KYC
+      # onboarding flow. Requires an API key.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::AccountLinks::Types::CreateAccountLinksRequest]

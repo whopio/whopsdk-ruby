@@ -14,7 +14,7 @@ module Whop_sdk
         @environment = environment
       end
 
-      # List saved rules the caller can read. Filter by business with account_id.
+      # Lists the conversion value rules you can read.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -81,7 +81,7 @@ module Whop_sdk
         end
       end
 
-      # Create one rule covering every selected target and event combination. Active rules cannot overlap for the same
+      # Creates one rule covering every selected target and event combination. Active rules cannot overlap for the same
       # platform and event. Customer prices and Whop revenue stay unchanged.
       #
       # @param request_options [Hash]
@@ -129,6 +129,8 @@ module Whop_sdk
         end
       end
 
+      # Retrieves a conversion value rule with its targets, events, and value adjustment.
+      #
       # @param request_options [Hash]
       # @param params [Hash]
       # @option request_options [String] :base_url
@@ -164,7 +166,7 @@ module Whop_sdk
         end
       end
 
-      # Soft-delete a rule and deactivate all its coverage. Preserve its stored settings.
+      # Deletes a rule and deactivates all its coverage. The rule's stored settings are preserved.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -201,8 +203,8 @@ module Whop_sdk
         end
       end
 
-      # Edit a rule without changing its status. Supplied targets or events replace that selection in full. Omitted
-      # fields stay unchanged. All changes succeed or fail together.
+      # Edits a rule without changing its status. Supplied `targets` or `events` replace that selection in full, and
+      # omitted fields stay unchanged. All changes succeed or fail together.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::AdConversionValueRules::Types::UpdateAdConversionValueRulesRequest]
@@ -244,7 +246,7 @@ module Whop_sdk
         end
       end
 
-      # Pause the rule across all selected targets and events.
+      # Pauses the rule across all selected targets and events.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -281,9 +283,9 @@ module Whop_sdk
         end
       end
 
-      # Resume the rule and automatically replace overlapping selections in the same transaction. Other selections keep
-      # their values, and broader rules remain as defaults. Rules with no remaining selections are paused. Resuming an
-      # already-active rule makes no changes.
+      # Resumes the rule and automatically replaces overlapping selections in the same transaction. Other selections
+      # keep their values, and broader rules remain as defaults. Rules with no remaining selections are paused. Resuming
+      # an already-active rule makes no changes.
       #
       # @param request_options [Hash]
       # @param params [Hash]

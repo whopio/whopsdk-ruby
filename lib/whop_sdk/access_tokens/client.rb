@@ -14,9 +14,8 @@ module Whop_sdk
         @environment = environment
       end
 
-      # Create a short-lived access token for authenticating API requests. When using API key authentication, provide
-      # account_id or user_id. When using OAuth, the user is derived from the token. Use this token with Whop's web and
-      # mobile embedded components.
+      # Creates a short-lived access token for Whop's web and mobile embedded components. With API key authentication,
+      # pass `account_id` or `user_id`; with OAuth, the token is issued for the OAuth user.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::AccessTokens::Types::CreateAccessTokensRequest]

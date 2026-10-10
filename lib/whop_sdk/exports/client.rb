@@ -69,7 +69,7 @@ module Whop_sdk
       end
 
       # Starts an asynchronous export of a resource for an account. Returns the export in `pending`; poll `GET
-      # /exports/{id}` until `download_url` is set.
+      # /exports/:id` until `download_url` is set.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::Exports::Types::CreateExportsRequest]

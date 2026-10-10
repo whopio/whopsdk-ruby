@@ -14,7 +14,7 @@ module Whop_sdk
         @environment = environment
       end
 
-      # Returns a paginated list of products. Omit `account_id` to search the public marketplace.
+      # Lists an account's products, or searches the public marketplace when you omit `account_id`.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -135,7 +135,7 @@ module Whop_sdk
         end
       end
 
-      # Retrieves a product. Public — no credentials.
+      # Retrieves a product. Requires no authentication.
       #
       # @param request_options [Hash]
       # @param params [Hash]

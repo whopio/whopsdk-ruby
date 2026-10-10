@@ -14,7 +14,7 @@ module Whop_sdk
         @environment = environment
       end
 
-      # Returns a list of active payout methods configured for a company, ordered by most recently created.
+      # Lists the active payout methods configured for an account, newest first.
       #
       # Required permissions:
       #  - `payout:destination:read`

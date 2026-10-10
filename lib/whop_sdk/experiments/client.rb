@@ -14,7 +14,7 @@ module Whop_sdk
         @environment = environment
       end
 
-      # Lists experiments for one account with experiment:read permission.
+      # Lists the experiments and feature flags owned by an account. Requires `experiment:read` on the account.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -79,7 +79,8 @@ module Whop_sdk
         end
       end
 
-      # Creates a draft experiment for the specified account.
+      # Creates an experiment or feature flag in `draft` status for an account. Nothing is served until you activate it
+      # with `POST /experiments/:id/activate`. Requires `experiment:manage` on the account.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::Experiments::Types::CreateExperimentsRequest]
@@ -119,23 +120,10 @@ module Whop_sdk
         end
       end
 
-      # Evaluates and records an exposure without requiring authentication. When credentials resolve, their
-      # authentication method, API key ID, and signed-in user ID are recorded on the exposure event. Pass subject for
-      # bucketing identity and account_id for experiment ownership.
-      #
-      # Pass `flag_key` to check a single flag, or omit it to fetch active flags in the account and related resource
-      # scope.
-      #
-      # Assignments use exactly the configured `bucket_by`: `subject[user_id]`, `subject[account_id]`, or
-      # `subject[anonymous_id]`. Missing the required identity fails single evaluation and omits the experiment from
-      # batch evaluation. Subjects outside all treatment ranges receive control.
-      #
-      # Pass `subject[account_id]` to enable account-level targeting rules. Pass `properties` as a JSON object to supply
-      # the values that `property` targeting conditions match against.
-      #
-      # Pass `log_exposure=false` to read an assignment without recording an exposure, for a client that caches
-      # assignments up front and records the exposure when the arm is actually rendered. Omitted records the exposure,
-      # so pinned callers are unchanged.
+      # Evaluates experiments and feature flags for a subject and records an exposure. Pass `flag_key` to evaluate one
+      # flag, or omit it to evaluate every active flag in the account and related resource scope. Requires no
+      # authentication; when a credential resolves, its authentication method, API key ID, and signed-in user ID are
+      # recorded on the exposure event.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -186,8 +174,8 @@ module Whop_sdk
         end
       end
 
-      # Retrieves a single experiment or feature flag by its `expt_` id or flag_key handle. Requires the corresponding
-      # experiment permission on the owning account.
+      # Retrieves an experiment or feature flag by its `expt_` ID or `flag_key` handle. Requires `experiment:read` on
+      # the owning account.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -229,10 +217,9 @@ module Whop_sdk
         end
       end
 
-      # Updates the targeting rules, treatment allocation, metrics, or hypothesis of an existing experiment or feature
-      # flag. Weights and metrics can only grow, so enrolled users never change arms and an existing metric is never
-      # dropped. Lifecycle moves through the transition endpoints (`activate`, `pause`, `end`), never through this
-      # update. Requires the corresponding experiment permission on the owning account.
+      # Updates the targeting rules, treatment allocation, or hypothesis of an existing experiment or feature flag. To
+      # change its lifecycle, use the `activate`, `pause`, and `end` endpoints instead. Requires `experiment:manage` on
+      # the owning account.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::Experiments::Types::UpdateExperimentsRequest]
@@ -281,7 +268,7 @@ module Whop_sdk
 
       # Starts (or resumes) an experiment or feature flag so evaluation begins serving it. Activating a draft stamps
       # `started_at`; resuming a paused experiment keeps the original start. Only drafts and paused experiments can be
-      # activated. Requires the corresponding experiment permission on the owning account.
+      # activated. Requires `experiment:manage` on the owning account.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::Experiments::Types::ActivateExperimentsRequest]
@@ -330,7 +317,7 @@ module Whop_sdk
 
       # Concludes the experiment and records required `findings`. Pass `winning_arm` to serve the winning treatment to
       # everyone; omit it when control won. Ended experiments cannot restart, but may be ended again to correct the
-      # winner. Requires experiment:manage on the account.
+      # winner. Requires `experiment:manage` on the owning account.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::Experiments::Types::EndExperimentsRequest]
@@ -381,8 +368,8 @@ module Whop_sdk
       end
 
       # Pauses an active experiment or feature flag: evaluation stops serving it and exposures stop flowing. Assignments
-      # are keyed on stable identity, so users return to their original arm when the experiment resumes. Requires the
-      # corresponding experiment permission on the owning account.
+      # are keyed on stable identity, so users return to their original arm when the experiment resumes. Requires
+      # `experiment:manage` on the owning account.
       #
       # @param request_options [Hash]
       # @param params [Hash]

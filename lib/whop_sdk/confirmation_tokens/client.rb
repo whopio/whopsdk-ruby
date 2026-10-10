@@ -14,9 +14,9 @@ module Whop_sdk
         @environment = environment
       end
 
-      # Retrieves a token's payment method and billing details — never the underlying payment credential. Public and
-      # rate-limited: the account_id query param must match the account the token was minted for. A bearer credential
-      # with payment:basic:read on that account also receives the collected billing address.
+      # Retrieves a confirmation token's payment method and billing details, never the underlying payment credential, to
+      # display what the buyer chose or check that the token is still usable. Requires no authentication and is
+      # rate-limited.
       #
       # @param request_options [Hash]
       # @param params [Hash]

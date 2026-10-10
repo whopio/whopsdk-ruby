@@ -10,8 +10,6 @@ module Whop_sdk
 
         member -> { Whop_sdk::Transfers::Types::CreateTransfersResponseTransfer }, key: "TRANSFER"
 
-        member -> { Whop_sdk::Transfers::Types::CreateTransfersResponseSend }, key: "SEND"
-
         member -> { Whop_sdk::Transfers::Types::CreateTransfersResponseClaimLink }, key: "CLAIM_LINK"
       end
     end

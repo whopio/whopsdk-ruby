@@ -4,14 +4,14 @@ module Whop_sdk
   module Transfers
     module Types
       # Business account or user receiving the transfer.
-      class PostTransferFailedPayloadDataDestination < Internal::Types::Model
+      class ListTransfersResponseDataItemDestination < Internal::Types::Model
         field :id, -> { String }, optional: false, nullable: false
 
         field :logo_url, -> { String }, optional: false, nullable: true
 
         field :name, -> { String }, optional: false, nullable: true
 
-        field :object, -> { Whop_sdk::Transfers::Types::PostTransferFailedPayloadDataDestinationObject }, optional: false, nullable: false
+        field :object, -> { Whop_sdk::Transfers::Types::ListTransfersResponseDataItemDestinationObject }, optional: false, nullable: false
       end
     end
   end

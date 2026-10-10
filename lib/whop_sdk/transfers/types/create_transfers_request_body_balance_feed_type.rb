@@ -3,7 +3,7 @@
 module Whop_sdk
   module Transfers
     module Types
-      module CreateTransfersRequestFeedType
+      module CreateTransfersRequestBodyBalanceFeedType
         extend Whop_sdk::Internal::Types::Enum
 
         DMS_FEED = "dms_feed"

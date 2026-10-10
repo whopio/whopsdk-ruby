@@ -35,7 +35,7 @@ module Whop_sdk
 
       field :domain_id, -> { String }, optional: false, nullable: false
 
-      field :domains, -> { Internal::Types::Array[Whop_sdk::Types::AppDomain] }, optional: false, nullable: true
+      field :domains, -> { Internal::Types::Array[Whop_sdk::Types::AppDomain] }, optional: false, nullable: false
 
       field :elements_used, -> { Internal::Types::Array[Whop_sdk::Types::AppElementsUsedItem] }, optional: false, nullable: false
 
@@ -60,8 +60,6 @@ module Whop_sdk
       field :origin, -> { String }, optional: false, nullable: true
 
       field :preview_token, -> { String }, optional: false, nullable: true
-
-      field :previous_hosted_urls, -> { Internal::Types::Array[String] }, optional: false, nullable: false
 
       field :product_id, -> { String }, optional: false, nullable: true
 

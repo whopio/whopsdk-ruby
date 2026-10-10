@@ -7914,6 +7914,14 @@ client.apps.create(name: "Shine Time Booking")
 <dl>
 <dd>
 
+**domain_id:** `String` — A domain on the account (`dom_` tag) to serve the app at, such as a whop.site address claimed with `POST /domains`. Required with `template_id`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **icon:** `Whop_sdk::Apps::Types::CreateAppsRequestIcon` — The icon image for the app in PNG, JPEG, or GIF format, referencing an uploaded file: `{ id }` for an existing attachment or `{ direct_upload_id }` for a new direct upload.
     
 </dd>
@@ -7946,7 +7954,7 @@ client.apps.create(name: "Shine Time Booking")
 <dl>
 <dd>
 
-**route:** `String` — The subdomain route where the app's hosted web builds are served, such as `myapp` for myapp.whop.site.
+**route:** `String` — Deprecated: claim an address with `POST /domains` and pass `domain_id`. The subdomain route where the app's hosted web builds are served, such as `myapp` for myapp.whop.site.
     
 </dd>
 </dl>

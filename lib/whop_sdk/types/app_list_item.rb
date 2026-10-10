@@ -27,7 +27,7 @@ module Whop_sdk
 
       field :domain_id, -> { String }, optional: false, nullable: false
 
-      field :domains, -> { Internal::Types::Array[Whop_sdk::Types::AppDomain] }, optional: false, nullable: true
+      field :domains, -> { Internal::Types::Array[Whop_sdk::Types::AppDomain] }, optional: false, nullable: false
 
       field :experience_path, -> { String }, optional: false, nullable: true
 
@@ -42,8 +42,6 @@ module Whop_sdk
       field :openapi_path, -> { String }, optional: false, nullable: true
 
       field :origin, -> { String }, optional: false, nullable: true
-
-      field :previous_hosted_urls, -> { Internal::Types::Array[String] }, optional: false, nullable: false
 
       field :route, -> { String }, optional: false, nullable: true
 

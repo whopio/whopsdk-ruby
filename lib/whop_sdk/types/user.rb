@@ -11,6 +11,8 @@ module Whop_sdk
 
       field :bio, -> { String }, optional: false, nullable: true
 
+      field :cards, -> { Whop_sdk::Types::AccountCards }, optional: false, nullable: true
+
       field :created_at, -> { String }, optional: false, nullable: false
 
       field :earnings_usd, -> { Whop_sdk::Types::UserEarnings }, optional: false, nullable: true

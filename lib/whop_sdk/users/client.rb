@@ -73,8 +73,8 @@ module Whop_sdk
       end
 
       # Retrieves the authenticated user — the self view of the user object. Same shape as `GET /users/{id}`, with the
-      # self-only fields populated: `email` (email-read scope), `staff` (Whop staff only, staff-read scope), `balance`
-      # and `earnings_usd` (balance-read scope), the opt-in `balance_history`, and every linked social account.
+      # self-only fields populated: `email` (email-read scope), `staff` (Whop staff only, staff-read scope), `balance`,
+      # `cards` and `earnings_usd` (balance-read scope), the opt-in `balance_history`, and every linked social account.
       #
       # @param request_options [Hash]
       # @param params [Hash]

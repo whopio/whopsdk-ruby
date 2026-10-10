@@ -8,6 +8,7 @@ module Whop_sdk
 
         CREATED_AT = "created_at"
         DISCOVERABLE_AT = "discoverable_at"
+        TEMPLATE_RECENT_SALES = "template_recent_sales"
         TEMPLATE_USAGE = "template_usage"
         TOTAL_INSTALLS_LAST30DAYS = "total_installs_last_30_days"
         TOTAL_INSTALLS_LAST7DAYS = "total_installs_last_7_days"

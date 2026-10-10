@@ -19,6 +19,8 @@ module Whop_sdk
 
       field :businesses_created_logo_urls, -> { Internal::Types::Array[String] }, optional: false, nullable: false
 
+      field :businesses_with_recent_sales_count, -> { Integer }, optional: false, nullable: false
+
       field :creator, -> { Whop_sdk::Types::AppCreator }, optional: false, nullable: false
 
       field :dashboard_path, -> { String }, optional: false, nullable: true

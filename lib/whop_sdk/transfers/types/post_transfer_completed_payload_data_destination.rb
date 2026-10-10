@@ -3,15 +3,15 @@
 module Whop_sdk
   module Transfers
     module Types
-      # Account or user receiving funds.
+      # Business account or user receiving the transfer.
       class PostTransferCompletedPayloadDataDestination < Internal::Types::Model
-        extend Whop_sdk::Internal::Types::Union
+        field :id, -> { String }, optional: false, nullable: false
 
-        discriminant :typename
+        field :logo_url, -> { String }, optional: false, nullable: true
 
-        member -> { Whop_sdk::Transfers::Types::PostTransferCompletedPayloadDataDestinationCompany }, key: "COMPANY"
+        field :name, -> { String }, optional: false, nullable: true
 
-        member -> { Whop_sdk::Transfers::Types::PostTransferCompletedPayloadDataDestinationUser }, key: "USER"
+        field :object, -> { Whop_sdk::Transfers::Types::PostTransferCompletedPayloadDataDestinationObject }, optional: false, nullable: false
       end
     end
   end

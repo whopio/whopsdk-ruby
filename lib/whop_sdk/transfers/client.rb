@@ -14,7 +14,7 @@ module Whop_sdk
         @environment = environment
       end
 
-      # Lists an account's transfers.
+      # Lists transfers visible to the caller. Optional account filters narrow the results.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -84,7 +84,7 @@ module Whop_sdk
       # Moves money between accounts, or into a claim link anyone with the URL can redeem.
       #
       # @param request_options [Hash]
-      # @param params [Whop_sdk::Transfers::Types::CreateTransfersRequest]
+      # @param params [Whop_sdk::Transfers::Types::CreateTransfersRequestBody]
       # @option request_options [String] :base_url
       # @option request_options [Hash{String => Object}] :additional_headers
       # @option request_options [Hash{String => Object}] :additional_query_parameters
@@ -92,10 +92,7 @@ module Whop_sdk
       # @option request_options [Integer] :timeout_in_seconds
       #
       # @example
-      #   client.transfers.create(
-      #     amount: 25,
-      #     origin_id: "biz_xxxxxxxxxxxxxx"
-      #   )
+      #   client.transfers.create
       #
       # @return [Whop_sdk::Transfers::Types::CreateTransfersResponse]
       def create(request_options: {}, **params)
@@ -104,7 +101,7 @@ module Whop_sdk
           base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "POST",
           path: "transfers",
-          body: Whop_sdk::Transfers::Types::CreateTransfersRequest.new(params).to_h,
+          body: Whop_sdk::Transfers::Types::CreateTransfersRequestBody.new(params).to_h,
           request_options: request_options
         )
         begin

@@ -15,7 +15,9 @@ module Whop_sdk
           @environment = environment
         end
 
-        # Returns the top entities behind one high-level financial report bucket and an aggregate remainder.
+        # Breaks one bucket of a financial report, such as payments received or card spend, into the customers,
+        # accounts, merchants, or campaigns that contributed most, with the rest summed as a remainder. Use it to
+        # explain a total from `GET /financial_reports`.
         #
         # @param request_options [Hash]
         # @param params [Hash]

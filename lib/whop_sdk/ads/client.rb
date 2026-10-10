@@ -281,8 +281,7 @@ module Whop_sdk
         end
       end
 
-      # Copies the ad into its own ad group, or into target_ad_group_id (which must belong to the same account and be
-      # compatible with the ad). Copies keep the source ad's active/paused state.
+      # Copies an ad into its own ad group or into another one. Copies keep the source ad's active or paused state.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::Ads::Types::DuplicateAdsRequest]

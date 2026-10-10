@@ -1403,7 +1403,6 @@ require_relative "whop_sdk/partners/types/leaderboard_partners_response_nearby_i
 require_relative "whop_sdk/partners/types/leaderboard_partners_response_nearby_item_user"
 require_relative "whop_sdk/partners/types/leaderboard_partners_response_nearby_item"
 require_relative "whop_sdk/partners/types/leaderboard_partners_response"
-require_relative "whop_sdk/partners/types/referred_users_partners_request_user_id"
 require_relative "whop_sdk/partners/types/referred_users_partners_request_order"
 require_relative "whop_sdk/partners/types/referred_users_partners_request_direction"
 require_relative "whop_sdk/partners/types/referred_users_partners_response_data_item_user_profile_picture"

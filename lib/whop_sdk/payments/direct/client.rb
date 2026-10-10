@@ -15,12 +15,11 @@ module Whop_sdk
           @environment = environment
         end
 
-        # Charges a buyer for a variant from card details the caller holds itself, for integrators whose own systems are
-        # PCI compliant. Card details are accepted only on the vault host, where the card is tokenized before it reaches
-        # Whop; the official SDKs route this operation there, and raw card details sent to the regular host are refused.
-        # (Whop's own clients, which tokenize with the Basis Theory SDK, send the resulting token intent id to the
-        # regular host.) Collection runs in the background: the response is the payment as created, not its outcome —
-        # poll Retrieve status for how far it has got and what the buyer must still do, such as 3D Secure.
+        # Charges a buyer for a variant from card details you hold yourself, for integrators whose own systems are PCI
+        # compliant. Card details are accepted only on the vault host, which tokenizes the card before it reaches Whop;
+        # the official SDKs route this operation there, and raw card details sent to the regular host are refused.
+        # Collection runs in the background, so the response is the payment as created, not its outcome: poll Retrieve
+        # payment status for how far it has got and what the buyer must still do, such as 3D Secure.
         #
         # @param request_options [Hash]
         # @param params [Whop_sdk::Payments::Direct::Types::CreateDirectRequest]

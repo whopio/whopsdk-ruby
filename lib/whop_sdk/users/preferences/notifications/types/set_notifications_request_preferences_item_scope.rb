@@ -5,7 +5,9 @@ module Whop_sdk
     module Preferences
       module Notifications
         module Types
-          # What the preference applies to. `null` on a dimension means the preference is not narrowed there.
+          # What the preference applies to. `null` on a dimension means the preference is not narrowed there. A scope
+          # read back from either list endpoint can be sent as-is. A scope naming an experience with no topic sets that
+          # experience's level; any other scope sets a topic override.
           class SetNotificationsRequestPreferencesItemScope < Internal::Types::Model
             field :account_id, -> { String }, optional: true, nullable: false
 

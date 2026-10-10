@@ -14,8 +14,8 @@ module Whop_sdk
         @environment = environment
       end
 
-      # Add funds to a company's platform balance by charging a stored payment method. Top-ups have no fees or taxes and
-      # do not count as revenue.
+      # Add funds to an account's platform balance by charging a stored payment method. Top-ups have no fees or taxes
+      # and do not count as revenue.
       #
       # Required permissions:
       #  - `payment:charge`

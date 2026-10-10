@@ -15,8 +15,7 @@ module Whop_sdk
           @environment = environment
         end
 
-        # Retrieves the authenticated user's settings document. Addressed only as `me` — the document always belongs to
-        # the session user.
+        # Retrieves the authenticated user's settings document.
         #
         # @param request_options [Hash]
         # @param _params [Hash]

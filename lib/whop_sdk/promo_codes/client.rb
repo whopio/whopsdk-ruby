@@ -14,7 +14,7 @@ module Whop_sdk
         @environment = environment
       end
 
-      # Lists promo codes for an account with cursor pagination, filters, and sorting.
+      # Lists an account's promo codes.
       #
       # @param request_options [Hash]
       # @param params [Hash]

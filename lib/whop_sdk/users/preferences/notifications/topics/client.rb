@@ -18,8 +18,8 @@ module Whop_sdk
             end
 
             # Lists the authenticated user's topic-scoped notification preferences, plus user-agnostic platform
-            # defaults. Each filter matches preferences scoped to its value or not narrowed on that dimension.
-            # Per-experience levels are listed separately, by `GET /users/me/preferences/notifications/experiences`.
+            # defaults. Per-experience levels are listed separately, by `GET
+            # /users/me/preferences/notifications/experiences`.
             #
             # @param request_options [Hash]
             # @param params [Hash]

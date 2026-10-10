@@ -14,7 +14,7 @@ module Whop_sdk
         @environment = environment
       end
 
-      # Returns a paginated list of shipments for an account.
+      # Lists an account's shipments.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -123,7 +123,7 @@ module Whop_sdk
         end
       end
 
-      # Retrieves a shipment by its id, or by the payment id it fulfills.
+      # Retrieves a shipment by its ID, or by the ID of the payment it fulfills.
       #
       # @param request_options [Hash]
       # @param params [Hash]

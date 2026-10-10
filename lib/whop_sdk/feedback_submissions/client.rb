@@ -16,7 +16,6 @@ module Whop_sdk
 
       # Submits an issue or an unanswered question to Whop for review, recorded under the authenticated user, account,
       # or app. Returns a receipt once the submission is accepted; processing is asynchronous and no reply is sent.
-      # Accepts user, account, and app credentials.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::FeedbackSubmissions::Types::CreateFeedbackSubmissionsRequest]

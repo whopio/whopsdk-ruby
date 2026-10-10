@@ -14,8 +14,7 @@ module Whop_sdk
         @environment = environment
       end
 
-      # Returns a paginated list of authorized team members for a company, with optional filtering by user, role, and
-      # creation date.
+      # Lists the authorized users on an account's team.
       #
       # Required permissions:
       #  - `company:authorized_user:read`
@@ -91,7 +90,7 @@ module Whop_sdk
         end
       end
 
-      # Add a new authorized user to a company.
+      # Adds a user to an account's team as an authorized user with the given role.
       #
       # Required permissions:
       #  - `authorized_user:create`
@@ -177,7 +176,7 @@ module Whop_sdk
         end
       end
 
-      # Remove an authorized user from a company.
+      # Removes an authorized user from an account's team.
       #
       # Required permissions:
       #  - `authorized_user:delete`

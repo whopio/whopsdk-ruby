@@ -80,12 +80,10 @@ module Whop_sdk
         end
       end
 
-      # Creates a trade on the Whop-managed wallet of an account or user and answers `201` with the trade in `pending`.
-      # The trade runs in the background; read it with `GET /trades/{id}` until it is `completed`, `failed` or
-      # `in_review`. A `buy` bridges `amount` USDT0 to the trading account, sets `leverage` (cross) on `market`, and
-      # places one market buy. If the buy does not fill, its money goes back to the wallet. A `close` closes the
-      # position in `market`, if one is open, and sends all withdrawable USDC back to the wallet. One trade runs at a
-      # time for each wallet. A retry with the same `Idempotency-Key` returns the same trade.
+      # Opens or closes a perpetual position from the Whop-managed wallet of an account or user. Answers `201` with the
+      # trade in `pending`; it runs in the background, so read it with `GET /trades/:id` until its `status` is
+      # `completed`, `failed` or `in_review`. One trade runs at a time for each wallet, and a retry with the same
+      # `Idempotency-Key` returns the same trade.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::Trades::Types::CreateTradesRequest]

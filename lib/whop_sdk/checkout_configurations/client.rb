@@ -77,7 +77,8 @@ module Whop_sdk
         end
       end
 
-      # Creates a reusable checkout configuration for an existing or inline variant.
+      # Creates a reusable checkout configuration for an existing or inline variant. Send customers to its
+      # `purchase_url` to check out.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::CheckoutConfigurations::Types::CreateCheckoutConfigurationsRequest]

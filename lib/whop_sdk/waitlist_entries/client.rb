@@ -14,9 +14,9 @@ module Whop_sdk
         @environment = environment
       end
 
-      # Lists visible waitlist signups. waitlist_entry:read grants the user's own signups; plan:waitlist:read grants
-      # signups for authorized seller accounts. With both permissions, returns their union. Account credentials are
-      # limited to their account. Filters narrow this set.
+      # Lists the waitlist signups you can see. `waitlist_entry:read` returns the user's own signups and
+      # `plan:waitlist:read` returns signups to the seller accounts they are authorized on; with both, you get both
+      # sets. Account credentials see only their own account's signups.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -87,9 +87,9 @@ module Whop_sdk
         end
       end
 
-      # Joins a free waitlist variant as the authenticated user. Requires waitlist_entry:create. Repeated joins return
-      # the existing pending entry, or an approved entry with a valid membership. Paid variants are rejected; no payment
-      # method is collected and no membership is granted.
+      # Joins a free waitlist variant as the authenticated user. Requires `waitlist_entry:create`. Joining again returns
+      # the existing pending signup, or the approved one while its membership is valid. Paid variants are rejected;
+      # joining collects no payment method and grants no membership.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::WaitlistEntries::Types::CreateWaitlistEntriesRequest]
@@ -127,9 +127,9 @@ module Whop_sdk
       end
 
       # Queues approval of every pending signup for an account, optionally narrowed to a variant. Requires
-      # plan:waitlist:manage. Paid signups may charge saved payment methods. Approval runs asynchronously: list signups
-      # with `status` set to `pending` to follow progress, and retrieve a signup to read its outcome. Signups created
-      # after this request are excluded.
+      # `plan:waitlist:manage`. Paid signups may charge saved payment methods. Approval runs asynchronously: list
+      # signups with `status` set to `pending` to follow progress, and retrieve a signup to read its outcome. Signups
+      # created after this request are excluded.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::WaitlistEntries::Types::ApproveAllWaitlistEntriesRequest]
@@ -166,8 +166,8 @@ module Whop_sdk
         end
       end
 
-      # Retrieves a signup owned by the caller with waitlist_entry:read, or submitted to an account they can read with
-      # plan:waitlist:read.
+      # Retrieves a signup the caller owns, with `waitlist_entry:read`, or one submitted to an account they can read,
+      # with `plan:waitlist:read`.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -204,7 +204,7 @@ module Whop_sdk
         end
       end
 
-      # Queues approval of a pending signup. Requires plan:waitlist:manage on its seller account. Paid signups may
+      # Queues approval of a pending signup. Requires `plan:waitlist:manage` on its seller account. Paid signups may
       # charge their saved payment method. Returns the signup's current state; retrieve it to read `status` and
       # `approval_failure_reason` after processing.
       #
@@ -243,7 +243,7 @@ module Whop_sdk
         end
       end
 
-      # Withdraws the caller's pending personal signup. Requires waitlist_entry:cancel. Does not cancel an approved
+      # Withdraws the caller's own pending signup. Requires `waitlist_entry:cancel`. Does not cancel an approved
       # membership.
       #
       # @param request_options [Hash]
@@ -281,7 +281,7 @@ module Whop_sdk
         end
       end
 
-      # Denies a pending signup. Requires plan:waitlist:manage on its seller account.
+      # Denies a pending signup. Requires `plan:waitlist:manage` on its seller account.
       #
       # @param request_options [Hash]
       # @param params [Hash]

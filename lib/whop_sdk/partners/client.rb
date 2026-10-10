@@ -50,9 +50,8 @@ module Whop_sdk
         end
       end
 
-      # Ranks referrers by partner business earnings — all-time by default, or over the current day, month, year, or
-      # trailing 30 days. Authentication is optional: authenticated callers also get their own standing, anonymous
-      # callers get the rankings alone.
+      # Ranks referrers by partner business earnings over the chosen `period`, all-time by default. Authentication is
+      # optional: authenticated callers also get their own standing, anonymous callers get the rankings alone.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -94,8 +93,7 @@ module Whop_sdk
       end
 
       # Lists the users the caller referred onto Whop, newest first by default, each with the caller's total affiliate
-      # earnings from that user across all tiers. Earnings sorting uses cached totals. Authorized staff can set
-      # user_id=global to list referrals across partners, with earnings for each user's current primary referrer.
+      # earnings from that user across all tiers.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -104,7 +102,6 @@ module Whop_sdk
       # @option request_options [Hash{String => Object}] :additional_query_parameters
       # @option request_options [Hash{String => Object}] :additional_body_parameters
       # @option request_options [Integer] :timeout_in_seconds
-      # @option params [Whop_sdk::Partners::Types::ReferredUsersPartnersRequestUserID, nil] :user_id
       # @option params [String, nil] :earning_partner_id
       # @option params [String, nil] :earning_partner_username
       # @option params [String, nil] :referring_account_id
@@ -125,7 +122,6 @@ module Whop_sdk
       def referred_users(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
         query_params = {}
-        query_params["user_id"] = params[:user_id] if params.key?(:user_id)
         query_params["earning_partner_id"] = params[:earning_partner_id] if params.key?(:earning_partner_id)
         query_params["earning_partner_username"] = params[:earning_partner_username] if params.key?(:earning_partner_username)
         query_params["referring_account_id"] = params[:referring_account_id] if params.key?(:referring_account_id)
@@ -168,10 +164,9 @@ module Whop_sdk
         end
       end
 
-      # Retrieves the authenticated user's public profile, enrollment date, partner verification timestamp, verification
-      # waitlist status, partner certification completion, active direct business referral count, and default payout
-      # rates. Use me or the authenticated user's own user ID; other users are not accessible. Users who have not
-      # enrolled have a null joined_at. Create and manage referral links through /partner_referral_requests.
+      # Retrieves the authenticated user's partner profile: enrollment and verification status, certification
+      # completion, active direct business referral count, and default payout rates. Other users' profiles are not
+      # accessible. To create and manage referral links, use `/partner_referral_requests`.
       #
       # @param request_options [Hash]
       # @param params [Hash]

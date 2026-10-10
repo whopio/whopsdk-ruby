@@ -15,7 +15,7 @@ module Whop_sdk
           @environment = environment
         end
 
-        # Lists activity for a member and all of their non-drafted memberships, most recent first.
+        # Lists activity for a member and all of their memberships that are not `drafted`, most recent first.
         #
         # @param request_options [Hash]
         # @param params [Hash]

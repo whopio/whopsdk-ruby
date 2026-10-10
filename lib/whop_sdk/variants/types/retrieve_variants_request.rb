@@ -9,6 +9,8 @@ module Whop_sdk
         field :presentment_currency, -> { String }, optional: true, nullable: false
 
         field :ip_address, -> { String }, optional: true, nullable: false
+
+        field :presentment_country, -> { String }, optional: true, nullable: false
       end
     end
   end

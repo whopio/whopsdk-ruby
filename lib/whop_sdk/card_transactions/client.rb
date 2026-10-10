@@ -14,10 +14,10 @@ module Whop_sdk
         @environment = environment
       end
 
-      # Lists an account's card transactions, newest first. Defaults to the account the credential belongs to. Covers
-      # every card the owner has ever had, including canceled cards and spend that predates a re-application, and team
-      # members only see transactions on the cards assigned to them. Pass `transaction_ids` to fetch specific
-      # transactions instead of paging for them.
+      # Lists the card transactions of an account or a user, newest first. Defaults to the account the credential
+      # belongs to. Covers every card the owner has ever had, including canceled cards and spend that predates a
+      # re-application, and team members only see transactions on the cards assigned to them. Pass `transaction_ids` to
+      # fetch specific transactions instead of paging for them.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -27,6 +27,7 @@ module Whop_sdk
       # @option request_options [Hash{String => Object}] :additional_body_parameters
       # @option request_options [Integer] :timeout_in_seconds
       # @option params [String, nil] :account_id
+      # @option params [String, nil] :user_id
       # @option params [String, nil] :transaction_ids
       # @option params [String, nil] :card_id
       # @option params [String, nil] :cardholder_id
@@ -52,6 +53,7 @@ module Whop_sdk
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
         query_params = {}
         query_params["account_id"] = params[:account_id] if params.key?(:account_id)
+        query_params["user_id"] = params[:user_id] if params.key?(:user_id)
         query_params["transaction_ids"] = params[:transaction_ids] if params.key?(:transaction_ids)
         query_params["card_id"] = params[:card_id] if params.key?(:card_id)
         query_params["cardholder_id"] = params[:cardholder_id] if params.key?(:cardholder_id)
@@ -106,6 +108,7 @@ module Whop_sdk
       # @option request_options [Integer] :timeout_in_seconds
       # @option params [String] :id
       # @option params [String, nil] :account_id
+      # @option params [String, nil] :user_id
       #
       # @example
       #   client.card_transactions.retrieve(id: "id")
@@ -115,6 +118,7 @@ module Whop_sdk
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
         query_params = {}
         query_params["account_id"] = params[:account_id] if params.key?(:account_id)
+        query_params["user_id"] = params[:user_id] if params.key?(:user_id)
 
         request = Whop_sdk::Internal::JSON::Request.new(
           base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),

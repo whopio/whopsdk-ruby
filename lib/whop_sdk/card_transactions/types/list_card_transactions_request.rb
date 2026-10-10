@@ -6,6 +6,8 @@ module Whop_sdk
       class ListCardTransactionsRequest < Internal::Types::Model
         field :account_id, -> { String }, optional: true, nullable: false
 
+        field :user_id, -> { String }, optional: true, nullable: false
+
         field :transaction_ids, -> { String }, optional: true, nullable: false
 
         field :card_id, -> { String }, optional: true, nullable: false

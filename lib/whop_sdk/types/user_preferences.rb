@@ -5,6 +5,8 @@ module Whop_sdk
     class UserPreferences < Internal::Types::Model
       field :bounty_worker_onboarding_dismissed, -> { Internal::Types::Boolean }, optional: false, nullable: false
 
+      field :cards_auto_top_up, -> { Internal::Types::Boolean }, optional: false, nullable: false
+
       field :investigation_enabled, -> { Internal::Types::Boolean }, optional: false, nullable: false
 
       field :terms_accepted, -> { Internal::Types::Boolean }, optional: false, nullable: false

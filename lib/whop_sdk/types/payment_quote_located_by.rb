@@ -7,6 +7,7 @@ module Whop_sdk
 
       SHIPPING_ADDRESS = "shipping_address"
       ADDRESS = "address"
+      PRESENTMENT_COUNTRY = "presentment_country"
       IP_ADDRESS = "ip_address"
     end
   end

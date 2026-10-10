@@ -26,6 +26,8 @@ module Whop_sdk
 
         field :ip_address, -> { String }, optional: true, nullable: false
 
+        field :presentment_country, -> { String }, optional: true, nullable: false
+
         field :first, -> { Integer }, optional: true, nullable: false
 
         field :after, -> { String }, optional: true, nullable: false

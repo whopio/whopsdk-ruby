@@ -10,6 +10,8 @@ module Whop_sdk
 
         field :base_url, -> { String }, optional: true, nullable: false
 
+        field :domain_id, -> { String }, optional: true, nullable: false
+
         field :icon, -> { Whop_sdk::Apps::Types::CreateAppsRequestIcon }, optional: true, nullable: false
 
         field :imported_from_url, -> { String }, optional: true, nullable: false

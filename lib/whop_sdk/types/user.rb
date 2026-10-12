@@ -25,8 +25,6 @@ module Whop_sdk
 
       field :profile_picture, -> { Whop_sdk::Types::UserProfilePicture }, optional: false, nullable: false
 
-      field :staff, -> { Whop_sdk::Types::UserStaffAccess }, optional: false, nullable: true
-
       field :trading, -> { Whop_sdk::Types::TradingAccount }, optional: false, nullable: true
 
       field :username, -> { String }, optional: false, nullable: false

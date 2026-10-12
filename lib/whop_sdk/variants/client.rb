@@ -271,7 +271,8 @@ module Whop_sdk
         end
       end
 
-      # Previews tax for a variant before checkout, based on the buyer's location.
+      # Deprecated. Quote tax with `POST /payment_quotes` instead. Previews tax for a variant before checkout, based on
+      # the buyer's location.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::Variants::Types::CalculateTaxVariantsRequest]

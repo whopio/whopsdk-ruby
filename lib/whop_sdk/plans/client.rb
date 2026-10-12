@@ -240,7 +240,7 @@ module Whop_sdk
         end
       end
 
-      # Deprecated compatibility endpoint. Preview variant tax with `POST /variants/{id}/calculate_tax` instead.
+      # Deprecated compatibility endpoint. Quote tax with `POST /payment_quotes` instead.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::Plans::Types::CalculateTaxPlansRequest]

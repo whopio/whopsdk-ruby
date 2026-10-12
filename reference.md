@@ -26613,7 +26613,7 @@ Registers a hostname with the wallet provider and attempts verification inline. 
 <dd>
 
 ```ruby
-client.payment_method_domains.create(hostname: "pending.shinetime.example")
+client.payment_method_domains.create(hostname: "pending.shinetime.com")
 ```
 </dd>
 </dl>
@@ -26636,7 +26636,7 @@ client.payment_method_domains.create(hostname: "pending.shinetime.example")
 <dl>
 <dd>
 
-**hostname:** `String` — Hostname to register (e.g. `checkout.shinetime.example`).
+**hostname:** `String` — Hostname to register (e.g. `checkout.shinetime.com`).
     
 </dd>
 </dl>

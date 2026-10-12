@@ -9,8 +9,8 @@ module Whop_sdk
 
           ACCOUNT_SUSPENDED = "account_suspended"
           BLOCK_MOVE_MONEY_OUT_BECAUSE_CLAWBACK = "block_move_money_out_because_clawback"
-          SUPPORTABILITY_CHECK_PAYOUT_STATUS_HOLD = "supportability_check_payout_status_hold"
           CARD_USAGE_REVIEW_PAYOUT_STATUS_HOLD = "card_usage_review_payout_status_hold"
+          UNDER_REVIEW = "under_review"
           KYC_COMPLETED = "kyc_completed"
           RMI_CLEAR = "rmi_clear"
           IDENTITY_RFI_CLEAR = "identity_rfi_clear"

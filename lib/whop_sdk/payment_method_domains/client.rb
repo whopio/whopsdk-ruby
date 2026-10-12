@@ -99,7 +99,7 @@ module Whop_sdk
       # @option request_options [Integer] :timeout_in_seconds
       #
       # @example
-      #   client.payment_method_domains.create(hostname: "pending.shinetime.example")
+      #   client.payment_method_domains.create(hostname: "pending.shinetime.com")
       #
       # @return [Whop_sdk::Types::PaymentMethodDomain]
       def create(request_options: {}, **params)

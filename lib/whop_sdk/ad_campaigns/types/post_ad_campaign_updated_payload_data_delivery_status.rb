@@ -13,6 +13,7 @@ module Whop_sdk
         NO_AD_GROUPS = "no_ad_groups"
         NO_ADS = "no_ads"
         PAUSED = "paused"
+        LEARNING = "learning"
         PROCESSING = "processing"
         ISSUES = "issues"
         SCHEDULED = "scheduled"

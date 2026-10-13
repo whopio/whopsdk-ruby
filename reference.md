@@ -38212,7 +38212,7 @@ client.team_members.create(
 <dl>
 <dd>
 
-**role:** `Whop_sdk::TeamMembers::Types::CreateTeamMembersRequestRole` — The system role to grant. Custom roles cannot be granted through the API. The Partner role can only be granted to the account's attached, verified partner.
+**role:** `Whop_sdk::TeamMembers::Types::CreateTeamMembersRequestRole` — The system role to grant. Custom roles cannot be granted through the API. The Partner role provides view-only access.
     
 </dd>
 </dl>
@@ -38414,7 +38414,7 @@ client.team_members.update(id: "id")
 <dl>
 <dd>
 
-**role:** `Whop_sdk::TeamMembers::Types::UpdateTeamMembersRequestRole` — The system role to grant. Custom roles cannot be granted through the API. The Partner role can only be granted to the account's attached, verified partner.
+**role:** `Whop_sdk::TeamMembers::Types::UpdateTeamMembersRequestRole` — The system role to grant. Custom roles cannot be granted through the API. The Partner role provides view-only access.
     
 </dd>
 </dl>

@@ -2,7 +2,6 @@
 
 module Whop_sdk
   module Types
-    # The product that this review was written for.
     class ReviewProduct < Internal::Types::Model
       field :id, -> { String }, optional: false, nullable: false
 

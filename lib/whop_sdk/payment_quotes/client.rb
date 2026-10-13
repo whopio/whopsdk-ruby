@@ -18,7 +18,8 @@ module Whop_sdk
       # where the buyer is, which a seller that collects no tax on the purchase can leave out. The purchase is priced
       # from exactly what you send: no buyer is looked up, so no stored registration or purchase history applies. Pass
       # the quote's `id` as `quote_id` when you create the payment to charge exactly the purchase, promo code, and tax
-      # shown here. A quote is priced once and may be consumed by one payment before `expires_at`.
+      # shown here. A quote is priced once and may be consumed by one payment before `expires_at`. Cart entries must
+      # name existing variants with `plan_id`.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::PaymentQuotes::Types::CreatePaymentQuotesRequest]

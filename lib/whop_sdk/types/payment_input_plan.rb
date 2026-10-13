@@ -6,6 +6,8 @@ module Whop_sdk
     # used, and one is created when none exists. Mutually exclusive with `plan_id` and `line_items`. Creating a variant
     # requires `plan:create`; creating or updating a product requires the corresponding product permission.
     class PaymentInputPlan < Internal::Types::Model
+      field :allow_multiple_quantity, -> { Internal::Types::Boolean }, optional: true, nullable: false
+
       field :application_fee_amount, -> { Integer }, optional: true, nullable: false
 
       field :billing_period, -> { Integer }, optional: true, nullable: false

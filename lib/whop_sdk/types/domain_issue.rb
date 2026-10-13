@@ -7,6 +7,8 @@ module Whop_sdk
 
       field :code, -> { Whop_sdk::Types::DomainIssueCode }, optional: false, nullable: false
 
+      field :code_block, -> { String }, optional: false, nullable: true
+
       field :dns_records, -> { Internal::Types::Array[Whop_sdk::Types::DomainDNSRecord] }, optional: false, nullable: false
 
       field :message, -> { String }, optional: false, nullable: false

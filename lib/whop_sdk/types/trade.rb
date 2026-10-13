@@ -25,7 +25,7 @@ module Whop_sdk
 
       field :leverage, -> { Integer }, optional: false, nullable: true
 
-      field :market, -> { String }, optional: false, nullable: false
+      field :market, -> { String }, optional: false, nullable: true
 
       field :metadata, -> { Internal::Types::Hash[String, Object] }, optional: false, nullable: false
 

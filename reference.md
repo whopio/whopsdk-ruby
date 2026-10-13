@@ -38445,7 +38445,7 @@ client.trades.list
 <dl>
 <dd>
 
-Places an order, or buys or closes a perpetual position, from the Whop-managed wallet of an account or user. Answers `201` with the trade in `pending`; it runs in the background, so read it with `GET /trades/:id` until its `status` is `completed`, `failed` or `in_review`. A buy or close waits for the wallet's other trades; orders run alongside each other, except a second order on one market at a different leverage, which answers `409`. A retry with the same `Idempotency-Key` returns the same trade.
+Places an order, deposits to or withdraws from the trading balance, or buys or closes a perpetual position, from the Whop-managed wallet of an account or user. Answers `201` with the trade in `pending`; it runs in the background, so read it with `GET /trades/:id` until its `status` is `completed`, `failed` or `in_review`. A buy or close waits for the wallet's other trades; orders run alongside each other, except a second order on one market at a different leverage, which answers `409`. A retry with the same `Idempotency-Key` returns the same trade.
 </dd>
 </dl>
 </dd>
@@ -38486,7 +38486,7 @@ client.trades.create(
 <dl>
 <dd>
 
-**amount:** `String` — The USDT0 to send from the wallet for a buy, with at most 6 decimals. Required for a buy.
+**amount:** `String` — For a buy or deposit, the USDT0 to send from the wallet, with at most 6 decimals. For a withdraw, the USDC to send back, at least 1 with at most 6 decimals, or `all`. Required for buy, deposit and withdraw.
     
 </dd>
 </dl>
@@ -38518,7 +38518,7 @@ client.trades.create(
 <dl>
 <dd>
 
-**market:** `String` — The perpetual market, for example `BTC`. Required for a buy, close or order.
+**market:** `String` — The perpetual market, for example `BTC`. Required for a buy, close or order; not accepted for a deposit or withdraw.
     
 </dd>
 </dl>
@@ -38590,7 +38590,7 @@ client.trades.create(
 <dl>
 <dd>
 
-**type:** `Whop_sdk::Trades::Types::CreateTradesRequestType` — `order` places one order from the trading balance and sets cross `leverage` first. `buy` bridges `amount` USDT0 to the trading account, sets cross `leverage` on `market`, and places one market buy; if it does not fill, its money goes back to the wallet. `close` closes the position in `market`, if one is open, and sends all withdrawable USDC back to the wallet.
+**type:** `Whop_sdk::Trades::Types::CreateTradesRequestType` — `order` places one order from the trading balance and sets cross `leverage` first. `deposit` bridges `amount` USDT0 from the wallet to the trading balance. `withdraw` sends `amount` USDC (or `all`) from the trading balance back to the wallet. `buy` bridges `amount` USDT0 to the trading account, sets cross `leverage` on `market`, and places one market buy; if it does not fill, its money goes back to the wallet. `close` closes the position in `market`, if one is open, and sends all withdrawable USDC back to the wallet.
     
 </dd>
 </dl>

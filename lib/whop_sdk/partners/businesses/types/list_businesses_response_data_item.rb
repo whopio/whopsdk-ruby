@@ -9,6 +9,8 @@ module Whop_sdk
 
           field :blueprint_partner, -> { Whop_sdk::Partners::Businesses::Types::ListBusinessesResponseDataItemBlueprintPartner }, optional: false, nullable: true
 
+          field :commission_advance, -> { Whop_sdk::Types::PartnerAdvance }, optional: true, nullable: false
+
           field :created_at, -> { String }, optional: false, nullable: false
 
           field :earnings_usd, -> { Whop_sdk::Partners::Businesses::Types::ListBusinessesResponseDataItemEarningsUsd }, optional: false, nullable: false

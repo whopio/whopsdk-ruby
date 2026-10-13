@@ -23,6 +23,11 @@ module Whop_sdk
       RENEWAL_FAILED = "renewal_failed"
       PAYMENT_ACTION_REQUIRED = "payment_action_required"
       APPLE_PAY_UNVERIFIED = "apple_pay_unverified"
+      PIXEL_NOT_SEEN = "pixel_not_seen"
+      PIXEL_NOT_INSTALLED = "pixel_not_installed"
+      PIXEL_WAITING = "pixel_waiting"
+      PIXEL_UNREACHABLE = "pixel_unreachable"
+      PIXEL_QUIET = "pixel_quiet"
     end
   end
 end

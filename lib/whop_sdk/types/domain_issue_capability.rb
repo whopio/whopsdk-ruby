@@ -10,6 +10,7 @@ module Whop_sdk
       PLATFORM = "platform"
       WEBSITE = "website"
       APPLE_PAY = "apple_pay"
+      PIXEL = "pixel"
     end
   end
 end

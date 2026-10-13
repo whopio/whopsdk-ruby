@@ -10,6 +10,8 @@ module Whop_sdk
 
         field :metadata, -> { Internal::Types::Hash[String, String] }, optional: true, nullable: false
 
+        field :pixel, -> { Whop_sdk::Domains::Types::CreateDomainsRequestPixel }, optional: true, nullable: false
+
         field :registration, -> { Whop_sdk::Domains::Types::CreateDomainsRequestRegistration }, optional: true, nullable: false
 
         field :verification, -> { Whop_sdk::Domains::Types::CreateDomainsRequestVerification }, optional: true, nullable: false

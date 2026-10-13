@@ -8,6 +8,7 @@ module Whop_sdk
       WAITLIST_ENTRY_READ = "waitlist_entry:read"
       WAITLIST_ENTRY_CREATE = "waitlist_entry:create"
       WAITLIST_ENTRY_CANCEL = "waitlist_entry:cancel"
+      REVIEW_DELETE = "review:delete"
       EXPERIMENT_MANAGE = "experiment:manage"
       EXPERIMENT_READ = "experiment:read"
       DOMAIN_MANAGE = "domain:manage"

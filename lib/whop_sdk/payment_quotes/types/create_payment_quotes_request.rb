@@ -8,6 +8,8 @@ module Whop_sdk
 
         field :ip_address, -> { String }, optional: true, nullable: false
 
+        field :line_items, -> { Internal::Types::Array[Whop_sdk::PaymentQuotes::Types::CreatePaymentQuotesRequestLineItemsItem] }, optional: true, nullable: false
+
         field :presentment_country, -> { String }, optional: true, nullable: false
 
         field :presentment_currency, -> { String }, optional: true, nullable: false
@@ -17,8 +19,6 @@ module Whop_sdk
         field :tax_ids, -> { Internal::Types::Array[Whop_sdk::PaymentQuotes::Types::CreatePaymentQuotesRequestTaxIDsItem] }, optional: true, nullable: false
 
         field :account_id, -> { String }, optional: false, nullable: false
-
-        field :line_items, -> { Internal::Types::Array[Whop_sdk::Types::PaymentInputLineItemsItem] }, optional: true, nullable: false
 
         field :plan, -> { Whop_sdk::Types::PaymentInputPlan }, optional: true, nullable: false
 

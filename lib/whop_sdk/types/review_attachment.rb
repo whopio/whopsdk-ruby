@@ -2,8 +2,7 @@
 
 module Whop_sdk
   module Types
-    # Represents an image attachment
-    class ReviewListItemAttachmentsItem < Internal::Types::Model
+    class ReviewAttachment < Internal::Types::Model
       field :content_type, -> { String }, optional: false, nullable: true
 
       field :filename, -> { String }, optional: false, nullable: true

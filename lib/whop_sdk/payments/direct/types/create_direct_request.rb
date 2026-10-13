@@ -13,6 +13,8 @@ module Whop_sdk
 
           field :capture, -> { Internal::Types::Boolean }, optional: true, nullable: false
 
+          field :line_items, -> { Internal::Types::Array[Whop_sdk::Payments::Direct::Types::CreateDirectRequestLineItemsItem] }, optional: true, nullable: false
+
           field :member_id, -> { String }, optional: true, nullable: false
 
           field :metadata, -> { Internal::Types::Hash[String, String] }, optional: true, nullable: false
@@ -30,8 +32,6 @@ module Whop_sdk
           field :statement_descriptor, -> { String }, optional: true, nullable: false
 
           field :account_id, -> { String }, optional: false, nullable: false
-
-          field :line_items, -> { Internal::Types::Array[Whop_sdk::Types::PaymentInputLineItemsItem] }, optional: true, nullable: false
 
           field :plan, -> { Whop_sdk::Types::PaymentInputPlan }, optional: true, nullable: false
 

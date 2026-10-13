@@ -27304,7 +27304,7 @@ client.payment_methods.delete_payment_method(
 <dl>
 <dd>
 
-Prices a purchase the way a payment for it will be charged. The body is the `PaymentInput` a payment takes plus where the buyer is, which a seller that collects no tax on the purchase can leave out. The purchase is priced from exactly what you send: no buyer is looked up, so no stored registration or purchase history applies. Pass the quote's `id` as `quote_id` when you create the payment to charge exactly the purchase, promo code, and tax shown here. A quote is priced once and may be consumed by one payment before `expires_at`.
+Prices a purchase the way a payment for it will be charged. The body is the `PaymentInput` a payment takes plus where the buyer is, which a seller that collects no tax on the purchase can leave out. The purchase is priced from exactly what you send: no buyer is looked up, so no stored registration or purchase history applies. Pass the quote's `id` as `quote_id` when you create the payment to charge exactly the purchase, promo code, and tax shown here. A quote is priced once and may be consumed by one payment before `expires_at`. Cart entries must name existing variants with `plan_id`.
 </dd>
 </dl>
 </dd>
@@ -27343,6 +27343,14 @@ client.payment_quotes.create(account_id: "biz_xxxxxxxxxxxxxx")
 <dd>
 
 **ip_address:** `String` — The buyer's IP address, when your server makes the call on their behalf. Locates the buyer when neither address carries a country and no `presentment_country` is sent. A quote located this way (`located_by` is `ip_address`) is a preview: a payment refuses it with `quote_preview_only`, so quote again with the buyer's address before paying. Also where `presentment_currency` `auto` and `recommended_currencies` find the buyer's local currency, and where a payment method must be able to collect it.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**line_items:** `Internal::Types::Array[Whop_sdk::PaymentQuotes::Types::CreatePaymentQuotesRequestLineItemsItem]` — What the buyer is purchasing. Each entry names an existing variant by plan_id. Several entries form a cart, which requires every variant to be compatible, belong to this account, and use the same currency.
     
 </dd>
 </dl>
@@ -28445,6 +28453,14 @@ client.payments.create(account_id: "biz_xxxxxxxxxxxxxx")
 <dd>
 
 **ip_address:** `String` — The buyer's IPv4 or IPv6 address, used to assess the charge's risk and passed to the processor. Ignored unless a saved payment method is charged with `off_session` set to false.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**line_items:** `Internal::Types::Array[Whop_sdk::Payments::Types::CreatePaymentsRequestLineItemsItem]` — What the buyer is purchasing. Each entry takes exactly one of `plan_id` or an inline `plan`. One entry charges that variant; several entries form a cart, which requires every variant to be compatible, belong to this account, and use the same currency. Mutually exclusive with `plan_id` and `plan`.
     
 </dd>
 </dl>
@@ -34619,7 +34635,7 @@ client.resolution_center_cases.withdraw(id: "id")
 <dl>
 <dd>
 
-Lists the customer reviews for a product.
+Lists the published reviews for a product or account. Without `account_id` or `product_id`, a user lists the reviews they wrote, an account or app API key lists its account's reviews, and a request without credentials returns 400.
 </dd>
 </dl>
 </dd>
@@ -34635,13 +34651,8 @@ Lists the customer reviews for a product.
 
 ```ruby
 client.reviews.list(
-  first: 42,
-  last: 42,
-  product_id: "prod_xxxxxxxxxxxxx",
-  min_stars: 42,
-  max_stars: 42,
-  created_before: "2023-12-01T05:00:00Z",
-  created_after: "2023-12-01T05:00:00Z"
+  account_id: "biz_xxxxxxxxxxxxxx",
+  product_id: "prod_xxxxxxxxxxxxx"
 )
 ```
 </dd>
@@ -34657,31 +34668,7 @@ client.reviews.list(
 <dl>
 <dd>
 
-**after:** `String` — Returns the elements in the list that come after the specified cursor.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**before:** `String` — Returns the elements in the list that come before the specified cursor.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**first:** `Integer` — Returns the first _n_ elements from the list.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**last:** `Integer` — Returns the last _n_ elements from the list.
+**account_id:** `String` — The unique identifier of the account to list reviews for.
     
 </dd>
 </dl>
@@ -34729,6 +34716,54 @@ client.reviews.list(
 <dl>
 <dd>
 
+**order:** `Whop_sdk::Reviews::Types::ListReviewsRequestOrder` — The field to sort reviews by.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**direction:** `Whop_sdk::Reviews::Types::ListReviewsRequestDirection` — The sort direction.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**first:** `Integer` — Number of results to return from the start of the range.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**after:** `String` — Return results after this cursor. Use `page_info.end_cursor` from the previous response to fetch the next page.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**last:** `Integer` — Number of results to return from the end of the range.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**before:** `String` — Return results before this cursor. Use `page_info.start_cursor` from the previous response to fetch the previous page.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **request_options:** `Whop_sdk::Reviews::RequestOptions` 
     
 </dd>
@@ -34753,7 +34788,7 @@ client.reviews.list(
 <dl>
 <dd>
 
-Retrieves the details of an existing review.
+Retrieves a published review. Reviews that are not published return 404.
 </dd>
 </dl>
 </dd>
@@ -34783,7 +34818,69 @@ client.reviews.retrieve(id: "rev_xxxxxxxxxxxxxx")
 <dl>
 <dd>
 
-**id:** `String` — The unique identifier of the review to retrieve.
+**id:** `String` — The unique identifier of the review.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Whop_sdk::Reviews::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.reviews.<a href="/lib/whop_sdk/reviews/client.rb">delete</a>(id:) -> Whop_sdk::Reviews::Types::DeleteReviewsResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deletes a review the signed-in user wrote. Requires the `review:delete` scope, and returns 404 for a review another user wrote.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.reviews.delete(id: "rev_xxxxxxxxxxxxxx")
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — The unique identifier of the review.
     
 </dd>
 </dl>
@@ -45544,6 +45641,14 @@ client.payments.direct.create(
 <dd>
 
 **capture:** `Internal::Types::Boolean` — Whether to capture the payment immediately. Defaults to true. Pass false to place an authorization hold that must be captured in full within five days via the capture endpoint, or automatically after `auto_capture_after_minutes`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**line_items:** `Internal::Types::Array[Whop_sdk::Payments::Direct::Types::CreateDirectRequestLineItemsItem]` — What the buyer is purchasing. Each entry names an existing variant by plan_id. Several entries form a cart, which requires every variant to be compatible, belong to this account, and use the same currency.
     
 </dd>
 </dl>

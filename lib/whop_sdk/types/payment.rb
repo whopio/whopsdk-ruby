@@ -37,6 +37,8 @@ module Whop_sdk
 
       field :id, -> { String }, optional: false, nullable: false
 
+      field :ip_address, -> { String }, optional: false, nullable: true
+
       field :last_payment_attempt_at, -> { String }, optional: false, nullable: true
 
       field :line_items, -> { Internal::Types::Array[Whop_sdk::Types::ReceiptLineItem] }, optional: false, nullable: false

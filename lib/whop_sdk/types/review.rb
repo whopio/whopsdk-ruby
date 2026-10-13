@@ -2,11 +2,10 @@
 
 module Whop_sdk
   module Types
-    # A user-submitted review of a company, including a star rating and optional text feedback.
     class Review < Internal::Types::Model
-      field :attachments, -> { Internal::Types::Array[Whop_sdk::Types::ReviewAttachmentsItem] }, optional: false, nullable: false
+      field :account, -> { Whop_sdk::Types::ReviewAccount }, optional: false, nullable: false
 
-      field :company, -> { Whop_sdk::Types::ReviewCompany }, optional: false, nullable: false
+      field :attachments, -> { Internal::Types::Array[Whop_sdk::Types::ReviewAttachment] }, optional: false, nullable: false
 
       field :created_at, -> { String }, optional: false, nullable: false
 

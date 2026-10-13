@@ -35,6 +35,8 @@ module Whop_sdk
         field :platform, -> { Whop_sdk::Domains::Types::ListDomainsRequestPlatform }, optional: true, nullable: false
 
         field :website, -> { Whop_sdk::Domains::Types::ListDomainsRequestWebsite }, optional: true, nullable: false
+
+        field :apple_pay, -> { Whop_sdk::Domains::Types::ListDomainsRequestApplePay }, optional: true, nullable: false
       end
     end
   end

@@ -16440,6 +16440,14 @@ client.domains.list(tlds: ["com"])
 <dl>
 <dd>
 
+**apple_pay:** `Whop_sdk::Domains::Types::ListDomainsRequestApplePay` — Only domains with apple_pay in this state, such as `ready`, or `any` for every domain that has apple_pay.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **request_options:** `Whop_sdk::Domains::RequestOptions` 
     
 </dd>

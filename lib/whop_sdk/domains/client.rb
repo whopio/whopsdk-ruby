@@ -42,6 +42,7 @@ module Whop_sdk
       # @option params [Whop_sdk::Domains::Types::ListDomainsRequestRegistration, nil] :registration
       # @option params [Whop_sdk::Domains::Types::ListDomainsRequestPlatform, nil] :platform
       # @option params [Whop_sdk::Domains::Types::ListDomainsRequestWebsite, nil] :website
+      # @option params [Whop_sdk::Domains::Types::ListDomainsRequestApplePay, nil] :apple_pay
       #
       # @example
       #   client.domains.list(tlds: ["com"])
@@ -66,6 +67,7 @@ module Whop_sdk
         query_params["registration"] = params[:registration] if params.key?(:registration)
         query_params["platform"] = params[:platform] if params.key?(:platform)
         query_params["website"] = params[:website] if params.key?(:website)
+        query_params["apple_pay"] = params[:apple_pay] if params.key?(:apple_pay)
 
         Whop_sdk::Internal::CursorItemIterator.new(
           cursor_field: :end_cursor,

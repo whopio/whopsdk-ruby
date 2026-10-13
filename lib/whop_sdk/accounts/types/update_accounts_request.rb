@@ -16,8 +16,6 @@ module Whop_sdk
 
         field :business_name, -> { String }, optional: true, nullable: false
 
-        field :business_type, -> { String }, optional: true, nullable: false
-
         field :cancellation_policy, -> { Whop_sdk::Accounts::Types::UpdateAccountsRequestCancellationPolicy }, optional: true, nullable: false
 
         field :collect_vat_id, -> { Internal::Types::Boolean }, optional: true, nullable: false
@@ -33,10 +31,6 @@ module Whop_sdk
         field :featured_affiliate_product_id, -> { String }, optional: true, nullable: false
 
         field :home_preferences, -> { Internal::Types::Array[Whop_sdk::Accounts::Types::UpdateAccountsRequestHomePreferencesItem] }, optional: true, nullable: false
-
-        field :industry_group, -> { String }, optional: true, nullable: false
-
-        field :industry_type, -> { String }, optional: true, nullable: false
 
         field :invoice_prefix, -> { String }, optional: true, nullable: false
 
@@ -99,6 +93,8 @@ module Whop_sdk
         field :use_logo_as_opengraph_image_fallback, -> { Internal::Types::Boolean }, optional: true, nullable: false
 
         field :website, -> { String }, optional: true, nullable: false
+
+        field :industry_type, -> { Object }, optional: true, nullable: false
       end
     end
   end

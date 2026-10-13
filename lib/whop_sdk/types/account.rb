@@ -47,8 +47,6 @@ module Whop_sdk
 
       field :id, -> { String }, optional: false, nullable: false
 
-      field :industry_group, -> { String }, optional: false, nullable: true
-
       field :industry_type, -> { String }, optional: false, nullable: true
 
       field :invoice_prefix, -> { String }, optional: false, nullable: true

@@ -319,7 +319,6 @@ module Whop_sdk
       #     },
       #     business_name: "Shine Time Auto Detailing",
       #     business_phone: "+15125550142",
-      #     business_type: "brick_and_mortar",
       #     business_website: "https://shinetime.example",
       #     entity_suffix: "LLC",
       #     entity_type: "llc",
@@ -344,8 +343,6 @@ module Whop_sdk
       #       roles: ["president"],
       #       ssn: "123-45-6789"
       #     }],
-      #     industry_group: "automotive",
-      #     industry_type: "car_wash_and_detailing_shop",
       #     share_structure: {
       #       number_of_shares: 123,
       #       value: 123

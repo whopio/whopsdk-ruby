@@ -12,8 +12,6 @@ module Whop_sdk
 
         field :business_phone, -> { String }, optional: true, nullable: false
 
-        field :business_type, -> { String }, optional: false, nullable: false
-
         field :business_website, -> { String }, optional: true, nullable: false
 
         field :entity_suffix, -> { Whop_sdk::Accounts::Types::FormCompanyAccountsRequestEntitySuffix }, optional: true, nullable: false
@@ -25,10 +23,6 @@ module Whop_sdk
         field :formation_state, -> { Whop_sdk::Accounts::Types::FormCompanyAccountsRequestFormationState }, optional: false, nullable: false
 
         field :founders, -> { Internal::Types::Array[Whop_sdk::Accounts::Types::FormCompanyAccountsRequestFoundersItem] }, optional: false, nullable: false
-
-        field :industry_group, -> { String }, optional: false, nullable: false
-
-        field :industry_type, -> { String }, optional: false, nullable: false
 
         field :share_structure, -> { Whop_sdk::Accounts::Types::FormCompanyAccountsRequestShareStructure }, optional: true, nullable: false
 

@@ -755,14 +755,6 @@ client.accounts.update(id: "id")
 <dl>
 <dd>
 
-**business_type:** `String` — High-level business category for the account. See the [business types and industries glossary](/api-reference/beta/accounts/account#business-types-and-industries-glossary) for valid values.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
 **cancellation_policy:** `Whop_sdk::Accounts::Types::UpdateAccountsRequestCancellationPolicy` — The account's cancellation policy document. Attached to new disputes as the cancellation policy evidence, with the terms of service as the fallback. PDF only. Pass a JSON object containing an `id` from [Create File](/api-reference/files/create-file), or `null` to remove it.
     
 </dd>
@@ -820,22 +812,6 @@ client.accounts.update(id: "id")
 <dd>
 
 **home_preferences:** `Internal::Types::Array[Whop_sdk::Accounts::Types::UpdateAccountsRequestHomePreferencesItem]` — Public account home page preferences.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**industry_group:** `String` — Account industry group. See the [business types and industries glossary](/api-reference/beta/accounts/account#business-types-and-industries-glossary) for valid values.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**industry_type:** `String` — Specific industry vertical for the account. See the [business types and industries glossary](/api-reference/beta/accounts/account#business-types-and-industries-glossary) for valid values.
     
 </dd>
 </dl>
@@ -1091,6 +1067,14 @@ client.accounts.update(id: "id")
 <dl>
 <dd>
 
+**industry_type:** `Object` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **request_options:** `Whop_sdk::Accounts::RequestOptions` 
     
 </dd>
@@ -1142,7 +1126,6 @@ client.accounts.form_company(
   },
   business_name: "Shine Time Auto Detailing",
   business_phone: "+15125550142",
-  business_type: "brick_and_mortar",
   business_website: "https://shinetime.example",
   entity_suffix: "LLC",
   entity_type: "llc",
@@ -1167,8 +1150,6 @@ client.accounts.form_company(
     roles: ["president"],
     ssn: "123-45-6789"
   }],
-  industry_group: "automotive",
-  industry_type: "car_wash_and_detailing_shop",
   share_structure: {
     number_of_shares: 123,
     value: 123
@@ -1221,14 +1202,6 @@ client.accounts.form_company(
 <dl>
 <dd>
 
-**business_type:** `String` — High-level business category, from the Whop business taxonomy. Valid values are listed on [business types and industries glossary](/api-reference/beta/accounts/account#business-types-and-industries-glossary).
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
 **business_website:** `String` — Company website URL.
     
 </dd>
@@ -1270,22 +1243,6 @@ client.accounts.form_company(
 <dd>
 
 **founders:** `Internal::Types::Array[Whop_sdk::Accounts::Types::FormCompanyAccountsRequestFoundersItem]` — The company's founders. Exactly one must be marked `is_primary` — the responsible party for the filing.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**industry_group:** `String` — Industry group, from the Whop business taxonomy. Valid values are listed on [business types and industries glossary](/api-reference/beta/accounts/account#business-types-and-industries-glossary).
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**industry_type:** `String` — Specific industry vertical, from the Whop business taxonomy. Valid values are listed on [business types and industries glossary](/api-reference/beta/accounts/account#business-types-and-industries-glossary).
     
 </dd>
 </dl>

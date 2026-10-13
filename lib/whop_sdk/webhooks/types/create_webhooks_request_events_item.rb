@@ -9,6 +9,7 @@ module Whop_sdk
         ACCOUNT_UPDATED = "account.updated"
         ACCOUNT_FINANCING_APPROVED = "account.financing_approved"
         ACCOUNT_FINANCING_DENIED = "account.financing_denied"
+        ACCOUNT_FINANCING_DISABLED = "account.financing_disabled"
         INVOICE_CREATED = "invoice.created"
         INVOICE_MARKED_UNCOLLECTIBLE = "invoice.marked_uncollectible"
         INVOICE_PAID = "invoice.paid"

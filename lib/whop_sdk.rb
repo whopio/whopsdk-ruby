@@ -1330,6 +1330,7 @@ require_relative "whop_sdk/memberships/types/list_memberships_request_statuses_i
 require_relative "whop_sdk/memberships/types/list_memberships_request_order"
 require_relative "whop_sdk/memberships/types/list_memberships_request_direction"
 require_relative "whop_sdk/memberships/types/list_memberships_response_page_info"
+require_relative "whop_sdk/types/membership_cancel_option"
 require_relative "whop_sdk/types/membership_collection_method"
 require_relative "whop_sdk/types/membership_most_recent_action"
 require_relative "whop_sdk/types/membership_status"

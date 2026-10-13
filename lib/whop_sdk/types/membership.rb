@@ -11,6 +11,8 @@ module Whop_sdk
 
       field :cancel_at_period_end, -> { Internal::Types::Boolean }, optional: false, nullable: false
 
+      field :cancel_option, -> { Whop_sdk::Types::MembershipCancelOption }, optional: false, nullable: true
+
       field :canceled_at, -> { String }, optional: false, nullable: true
 
       field :cancellation_reason, -> { String }, optional: false, nullable: true

@@ -23,6 +23,8 @@ module Whop_sdk
 
       field :id, -> { String }, optional: false, nullable: false
 
+      field :instrument_type, -> { Whop_sdk::Types::TradeInstrumentType }, optional: false, nullable: true
+
       field :leverage, -> { Integer }, optional: false, nullable: true
 
       field :market, -> { String }, optional: false, nullable: true

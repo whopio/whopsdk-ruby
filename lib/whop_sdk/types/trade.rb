@@ -9,6 +9,8 @@ module Whop_sdk
 
       field :average_price, -> { String }, optional: false, nullable: true
 
+      field :client_order_id, -> { String }, optional: false, nullable: true
+
       field :completed_at, -> { String }, optional: false, nullable: true
 
       field :created_at, -> { String }, optional: false, nullable: false
@@ -25,7 +27,19 @@ module Whop_sdk
 
       field :market, -> { String }, optional: false, nullable: false
 
+      field :metadata, -> { Internal::Types::Hash[String, Object] }, optional: false, nullable: false
+
       field :object, -> { Whop_sdk::Types::TradeObject }, optional: false, nullable: false
+
+      field :order_type, -> { Whop_sdk::Types::TradeOrderType }, optional: false, nullable: true
+
+      field :price, -> { Whop_sdk::Types::Money }, optional: false, nullable: true
+
+      field :reduce_only, -> { Internal::Types::Boolean }, optional: false, nullable: true
+
+      field :side, -> { Whop_sdk::Types::TradeSide }, optional: false, nullable: true
+
+      field :size, -> { String }, optional: false, nullable: true
 
       field :status, -> { Whop_sdk::Types::TradeStatus }, optional: false, nullable: false
 

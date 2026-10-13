@@ -7,6 +7,7 @@ module Whop_sdk
 
       BUY = "buy"
       CLOSE = "close"
+      ORDER = "order"
     end
   end
 end

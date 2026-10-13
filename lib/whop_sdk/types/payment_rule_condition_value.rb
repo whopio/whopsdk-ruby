@@ -2,8 +2,8 @@
 
 module Whop_sdk
   module Types
-    # The value to compare against. A number for `risk_score`, a string for the other fields, and an array of strings
-    # for the `in` and `not_in` operators.
+    # The value to compare against. A whole number from 0 to 100 for `risk_score`, a number of at least 0 for
+    # `amount_in_usd`, a string for the other fields, and an array of strings for the `in` and `not_in` operators.
     class PaymentRuleConditionValue < Internal::Types::Model
       extend Whop_sdk::Internal::Types::Union
 

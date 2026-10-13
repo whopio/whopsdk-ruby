@@ -18,6 +18,7 @@ module Whop_sdk
       ORDER_REJECTED = "order_rejected"
       CLOSE_REJECTED = "close_rejected"
       RETURN_FAILED = "return_failed"
+      WITHDRAW_FAILED = "withdraw_failed"
     end
   end
 end

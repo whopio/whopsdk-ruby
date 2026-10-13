@@ -8,6 +8,8 @@ module Whop_sdk
       BUY = "buy"
       CLOSE = "close"
       ORDER = "order"
+      DEPOSIT = "deposit"
+      WITHDRAW = "withdraw"
     end
   end
 end

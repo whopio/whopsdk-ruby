@@ -16,6 +16,14 @@ module Whop_sdk
 
         field :open, -> { Internal::Types::Boolean }, optional: true, nullable: false
 
+        field :customer_user_id, -> { String }, optional: true, nullable: false
+
+        field :participated, -> { Internal::Types::Boolean }, optional: true, nullable: false
+
+        field :include_last_message, -> { Internal::Types::Boolean }, optional: true, nullable: false
+
+        field :include_participated, -> { Internal::Types::Boolean }, optional: true, nullable: false
+
         field :direction, -> { Whop_sdk::Types::Direction }, optional: true, nullable: false
 
         field :order, -> { Whop_sdk::Types::MessageChannelOrder }, optional: true, nullable: false

@@ -8,6 +8,8 @@ module Whop_sdk
 
         field :as_partner, -> { Internal::Types::Boolean }, optional: true, nullable: false
 
+        field :authorized_user_id, -> { String }, optional: true, nullable: false
+
         field :identifier, -> { String }, optional: false, nullable: false
 
         field :message, -> { String }, optional: true, nullable: false

@@ -37,6 +37,8 @@ module Whop_sdk
         field :website, -> { Whop_sdk::Domains::Types::ListDomainsRequestWebsite }, optional: true, nullable: false
 
         field :apple_pay, -> { Whop_sdk::Domains::Types::ListDomainsRequestApplePay }, optional: true, nullable: false
+
+        field :pixel, -> { Whop_sdk::Domains::Types::ListDomainsRequestPixel }, optional: true, nullable: false
       end
     end
   end

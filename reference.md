@@ -16448,6 +16448,14 @@ client.domains.list(tlds: ["com"])
 <dl>
 <dd>
 
+**pixel:** `Whop_sdk::Domains::Types::ListDomainsRequestPixel` — Only domains with pixel in this state, such as `ready`, or `any` for every domain that has pixel.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **request_options:** `Whop_sdk::Domains::RequestOptions` 
     
 </dd>
@@ -16525,6 +16533,14 @@ client.domains.create(domain: "store.example.com")
 <dd>
 
 **metadata:** `Internal::Types::Hash[String, String]` — Custom string keys and values.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pixel:** `Whop_sdk::Domains::Types::CreateDomainsRequestPixel` — Track page views on the domain with the Whop pixel. It needs no other capability: it stays `pending` until the pixel records a page view, and turns `action_required` if it goes 7 days without one. Pass `null` to stop tracking.
     
 </dd>
 </dl>
@@ -16745,6 +16761,14 @@ client.domains.update(id: "id")
 <dd>
 
 **metadata:** `Internal::Types::Hash[String, String]` — Replacement custom string keys and values.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pixel:** `Whop_sdk::Domains::Types::UpdateDomainsRequestPixel` — Track page views on the domain with the Whop pixel. It needs no other capability: it stays `pending` until the pixel records a page view, and turns `action_required` if it goes 7 days without one. Pass `null` to stop tracking.
     
 </dd>
 </dl>

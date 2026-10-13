@@ -21,6 +21,8 @@ module Whop_sdk
 
       field :owned_by, -> { Whop_sdk::Types::DomainOwner }, optional: false, nullable: true
 
+      field :pixel, -> { Whop_sdk::Types::DomainPixel }, optional: false, nullable: true
+
       field :platform, -> { Whop_sdk::Types::DomainPlatform }, optional: false, nullable: true
 
       field :registration, -> { Whop_sdk::Types::DomainRegistration }, optional: false, nullable: true

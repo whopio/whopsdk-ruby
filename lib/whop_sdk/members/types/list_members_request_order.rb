@@ -9,6 +9,7 @@ module Whop_sdk
         CREATED_AT = "created_at"
         JOINED_AT = "joined_at"
         LAST_ACCESSED_AT = "last_accessed_at"
+        MOST_RECENT_ACTION_AT = "most_recent_action_at"
         USD_TOTAL_SPENT = "usd_total_spent"
       end
     end

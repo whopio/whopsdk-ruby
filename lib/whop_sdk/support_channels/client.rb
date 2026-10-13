@@ -33,6 +33,10 @@ module Whop_sdk
       # @option params [Integer, nil] :last
       # @option params [Whop_sdk::Types::SupportChannelView, nil] :view
       # @option params [Boolean, nil] :open
+      # @option params [String, nil] :customer_user_id
+      # @option params [Boolean, nil] :participated
+      # @option params [Boolean, nil] :include_last_message
+      # @option params [Boolean, nil] :include_participated
       # @option params [Whop_sdk::Types::Direction, nil] :direction
       # @option params [Whop_sdk::Types::MessageChannelOrder, nil] :order
       # @option params [String, nil] :account_id
@@ -54,6 +58,10 @@ module Whop_sdk
         query_params["last"] = params[:last] if params.key?(:last)
         query_params["view"] = params[:view] if params.key?(:view)
         query_params["open"] = params[:open] if params.key?(:open)
+        query_params["customer_user_id"] = params[:customer_user_id] if params.key?(:customer_user_id)
+        query_params["participated"] = params[:participated] if params.key?(:participated)
+        query_params["include_last_message"] = params[:include_last_message] if params.key?(:include_last_message)
+        query_params["include_participated"] = params[:include_participated] if params.key?(:include_participated)
         query_params["direction"] = params[:direction] if params.key?(:direction)
         query_params["order"] = params[:order] if params.key?(:order)
         query_params["account_id"] = params[:account_id] if params.key?(:account_id)

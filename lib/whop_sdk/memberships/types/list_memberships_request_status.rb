@@ -14,6 +14,10 @@ module Whop_sdk
         EXPIRED = "expired"
         CANCELING = "canceling"
         PAUSED = "paused"
+        EXPIRING = "expiring"
+        ONE_TIME = "one_time"
+        UNCLAIMED = "unclaimed"
+        BANNED = "banned"
       end
     end
   end

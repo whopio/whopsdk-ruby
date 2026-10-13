@@ -12,6 +12,16 @@ module Whop_sdk
 
         field :user_ids, -> { String }, optional: true, nullable: false
 
+        field :most_recent_actions, -> { Whop_sdk::Members::Types::ListMembersRequestMostRecentActionsItem }, optional: true, nullable: false
+
+        field :membership_status, -> { Whop_sdk::Members::Types::ListMembersRequestMembershipStatus }, optional: true, nullable: false
+
+        field :product_ids, -> { String }, optional: true, nullable: false
+
+        field :plan_ids, -> { String }, optional: true, nullable: false
+
+        field :promo_code_ids, -> { String }, optional: true, nullable: false
+
         field :query, -> { String }, optional: true, nullable: false
 
         field :created_after, -> { String }, optional: true, nullable: false

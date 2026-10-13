@@ -8,11 +8,21 @@ module Whop_sdk
 
         field :user_id, -> { String }, optional: true, nullable: false
 
+        field :member_id, -> { String }, optional: true, nullable: false
+
         field :status, -> { Whop_sdk::Memberships::Types::ListMembershipsRequestStatus }, optional: true, nullable: false
+
+        field :statuses, -> { Whop_sdk::Memberships::Types::ListMembershipsRequestStatusesItem }, optional: true, nullable: false
 
         field :product_id, -> { String }, optional: true, nullable: false
 
+        field :product_ids, -> { String }, optional: true, nullable: false
+
         field :plan_id, -> { String }, optional: true, nullable: false
+
+        field :plan_ids, -> { String }, optional: true, nullable: false
+
+        field :promo_code_ids, -> { String }, optional: true, nullable: false
 
         field :created_after, -> { String }, optional: true, nullable: false
 

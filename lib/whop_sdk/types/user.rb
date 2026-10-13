@@ -25,6 +25,8 @@ module Whop_sdk
 
       field :profile_picture, -> { Whop_sdk::Types::UserProfilePicture }, optional: false, nullable: false
 
+      field :social_links, -> { Internal::Types::Array[Whop_sdk::Types::UserSocialLink] }, optional: false, nullable: false
+
       field :trading, -> { Whop_sdk::Types::TradingAccount }, optional: false, nullable: true
 
       field :username, -> { String }, optional: false, nullable: false

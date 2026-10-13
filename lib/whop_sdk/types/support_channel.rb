@@ -15,9 +15,17 @@ module Whop_sdk
 
       field :id, -> { String }, optional: false, nullable: false
 
+      field :last_message, -> { Whop_sdk::Types::SupportChannelLastMessage }, optional: false, nullable: true
+
       field :last_message_at, -> { String }, optional: false, nullable: true
 
+      field :needs_reply, -> { Internal::Types::Boolean }, optional: false, nullable: true
+
+      field :participated, -> { Internal::Types::Boolean }, optional: false, nullable: true
+
       field :resolved_at, -> { String }, optional: false, nullable: true
+
+      field :unread, -> { Internal::Types::Boolean }, optional: false, nullable: true
     end
   end
 end

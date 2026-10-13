@@ -192,6 +192,8 @@ module Whop_sdk
       PARTNER_EMAIL_READ = "partner:email:read"
       PARTNER_INVITE_CREATE = "partner:invite:create"
       PARTNER_FEES_UPDATE = "partner:fees:update"
+      PARTNER_COMMISSION_ADVANCE_UPDATE = "partner:commission_advance:update"
+      PARTNER_COMMISSION_ADVANCE_ACCEPT = "partner:commission_advance:accept"
       PARTNER_REFERRAL_REQUEST_READ = "partner:referral_request:read"
       PARTNER_REFERRAL_REQUEST_CREATE = "partner:referral_request:create"
       PARTNER_REFERRAL_REQUEST_ACCEPT = "partner:referral_request:accept"

@@ -45231,6 +45231,14 @@ client.partners.businesses.list
 <dl>
 <dd>
 
+**advance_status:** `Whop_sdk::Partners::Businesses::Types::ListBusinessesRequestAdvanceStatus` — Filter the authenticated partner's CPA offers by status. Use offered for every state after qualification.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **status:** `Whop_sdk::Partners::Businesses::Types::ListBusinessesRequestStatus` — Filter by referral status.
     
 </dd>
@@ -45398,6 +45406,188 @@ client.partners.businesses.retrieve(id: "id")
 <dd>
 
 **id:** `String` — The partner business ID (a coma_ identifier).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Whop_sdk::Partners::Businesses::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.partners.businesses.<a href="/lib/whop_sdk/partners/businesses/client.rb">update</a>(id:, request) -> Whop_sdk::Partners::Businesses::Types::UpdateBusinessesResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Save annual projections for a business referred by the authenticated partner. Projections cannot be changed after saving; repeating the same values is allowed. Public API access requires a partner OAuth token; business API keys are not supported.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.partners.businesses.update(
+  id: "id",
+  annual_ads_usd: "120000",
+  annual_processing_usd: "1200000"
+)
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — The partner business ID (a coma_ identifier).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**annual_ads_usd:** `String` — Annual projected Whop Ads spend in USD.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**annual_processing_usd:** `String` — Annual projected processing on Whop in USD.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Whop_sdk::Partners::Businesses::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.partners.businesses.<a href="/lib/whop_sdk/partners/businesses/client.rb">accept_commission_advance</a>(id:, request) -> Whop_sdk::Partners::Businesses::Types::AcceptCommissionAdvanceBusinessesResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Accept the authenticated partner's CPA offer with the reviewed terms and signed offer token. Public API access requires a partner OAuth token; business API keys are not supported.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.partners.businesses.accept_commission_advance(
+  id: "id",
+  acknowledgments: %w[commission_replacement clawback term],
+  expected_amount_usd: "1439.99",
+  offer_token: "eyJfcmFpbHMiOnsiZGF0YSI6MSwicHVyIjoiYmxvYl9pZCJ9fQ==--xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+  terms_version: "2026-01-01"
+)
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — The referred business relationship ID.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**acknowledgments:** `Internal::Types::Array[Whop_sdk::Partners::Businesses::Types::AcceptCommissionAdvanceBusinessesRequestAcknowledgmentsItem]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**expected_amount_usd:** `String` — Reviewed payment amount in USD.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**offer_token:** `String` — Signed offer token returned by the partner business response. Requires partner:commission_advance:accept permission to retrieve.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**terms_version:** `String` — Reviewed CPA terms version.
     
 </dd>
 </dl>

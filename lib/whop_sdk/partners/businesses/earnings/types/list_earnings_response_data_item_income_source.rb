@@ -16,6 +16,7 @@ module Whop_sdk
             ONBOARDING_REWARD = "onboarding_reward"
             PARTNER_REWARD = "partner_reward"
             VERIFIED_PARTNER_REFERRAL_PAYBACK = "verified_partner_referral_payback"
+            COMMISSION_ADVANCE = "commission_advance"
           end
         end
       end

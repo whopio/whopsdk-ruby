@@ -7,6 +7,8 @@ module Whop_sdk
         class ListBusinessesRequest < Internal::Types::Model
           field :referring_account_id, -> { String }, optional: true, nullable: false
 
+          field :advance_status, -> { Whop_sdk::Partners::Businesses::Types::ListBusinessesRequestAdvanceStatus }, optional: true, nullable: false
+
           field :status, -> { Whop_sdk::Partners::Businesses::Types::ListBusinessesRequestStatus }, optional: true, nullable: false
 
           field :has_earnings, -> { Internal::Types::Boolean }, optional: true, nullable: false

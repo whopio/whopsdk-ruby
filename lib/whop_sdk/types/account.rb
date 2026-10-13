@@ -51,6 +51,8 @@ module Whop_sdk
 
       field :invoice_prefix, -> { String }, optional: false, nullable: true
 
+      field :level, -> { Whop_sdk::Types::AccountLevel }, optional: false, nullable: true
+
       field :logo_url, -> { String }, optional: false, nullable: true
 
       field :metadata, -> { Internal::Types::Hash[String, Object] }, optional: false, nullable: false

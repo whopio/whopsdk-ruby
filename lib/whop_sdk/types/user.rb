@@ -21,6 +21,8 @@ module Whop_sdk
 
       field :id, -> { String }, optional: false, nullable: false
 
+      field :level, -> { Whop_sdk::Types::OwnerLevel }, optional: false, nullable: true
+
       field :name, -> { String }, optional: false, nullable: true
 
       field :profile_picture, -> { Whop_sdk::Types::UserProfilePicture }, optional: false, nullable: false

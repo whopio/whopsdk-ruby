@@ -5,6 +5,8 @@ module Whop_sdk
     class DomainListItem < Internal::Types::Model
       field :account_id, -> { String }, optional: false, nullable: true
 
+      field :apple_pay, -> { Whop_sdk::Types::DomainApplePay }, optional: false, nullable: true
+
       field :availability, -> { Whop_sdk::Types::DomainAvailability }, optional: false, nullable: true
 
       field :created_at, -> { String }, optional: false, nullable: true

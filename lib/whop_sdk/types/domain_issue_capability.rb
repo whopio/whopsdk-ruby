@@ -9,6 +9,7 @@ module Whop_sdk
       REGISTRATION = "registration"
       PLATFORM = "platform"
       WEBSITE = "website"
+      APPLE_PAY = "apple_pay"
     end
   end
 end

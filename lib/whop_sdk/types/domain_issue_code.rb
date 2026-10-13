@@ -22,6 +22,7 @@ module Whop_sdk
       REGISTRATION_FAILED = "registration_failed"
       RENEWAL_FAILED = "renewal_failed"
       PAYMENT_ACTION_REQUIRED = "payment_action_required"
+      APPLE_PAY_UNVERIFIED = "apple_pay_unverified"
     end
   end
 end

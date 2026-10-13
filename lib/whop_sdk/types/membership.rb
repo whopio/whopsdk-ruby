@@ -27,6 +27,8 @@ module Whop_sdk
 
       field :expires_at, -> { String }, optional: false, nullable: true
 
+      field :feedback_option, -> { Whop_sdk::Types::MembershipFeedbackOption }, optional: false, nullable: true
+
       field :id, -> { String }, optional: false, nullable: false
 
       field :initial_price, -> { Whop_sdk::Types::Money }, optional: false, nullable: false

@@ -25,6 +25,8 @@ module Whop_sdk
 
       field :custom_field_responses, -> { Internal::Types::Array[Whop_sdk::Types::MembershipLegacyCustomFieldResponsesItem] }, optional: false, nullable: false
 
+      field :feedback_option, -> { Whop_sdk::Types::MembershipLegacyFeedbackOption }, optional: false, nullable: true
+
       field :formatted_renewal_price, -> { String }, optional: false, nullable: true
 
       field :id, -> { String }, optional: false, nullable: false

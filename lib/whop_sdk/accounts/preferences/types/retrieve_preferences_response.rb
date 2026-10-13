@@ -37,6 +37,8 @@ module Whop_sdk
 
           field :economic_intelligence_previous_period, -> { Whop_sdk::Accounts::Preferences::Types::RetrievePreferencesResponseEconomicIntelligencePreviousPeriod }, optional: false, nullable: true
 
+          field :feedback_options, -> { Internal::Types::Array[Whop_sdk::Accounts::Preferences::Types::RetrievePreferencesResponseFeedbackOptionsItem] }, optional: false, nullable: false
+
           field :preferred_settlement_currency, -> { Whop_sdk::Accounts::Preferences::Types::RetrievePreferencesResponsePreferredSettlementCurrency }, optional: false, nullable: true
 
           field :preferred_settlement_currency_changeable_at, -> { String }, optional: false, nullable: true

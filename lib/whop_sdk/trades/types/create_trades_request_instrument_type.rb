@@ -7,6 +7,7 @@ module Whop_sdk
         extend Whop_sdk::Internal::Types::Enum
 
         PERPETUAL = "perpetual"
+        SPOT = "spot"
       end
     end
   end

@@ -8,6 +8,8 @@ module Whop_sdk
 
         field :cancel_at_period_end, -> { Internal::Types::Boolean }, optional: true, nullable: false
 
+        field :feedback_option_id, -> { String }, optional: true, nullable: false
+
         field :reason, -> { String }, optional: true, nullable: false
       end
     end

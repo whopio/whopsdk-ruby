@@ -23,6 +23,8 @@ module Whop_sdk
 
       field :currency, -> { Whop_sdk::Types::Currencies }, optional: false, nullable: true
 
+      field :feedback_option, -> { Whop_sdk::Types::MembershipListItemFeedbackOption }, optional: false, nullable: true
+
       field :formatted_renewal_price, -> { String }, optional: false, nullable: true
 
       field :id, -> { String }, optional: false, nullable: false

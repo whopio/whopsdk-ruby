@@ -460,13 +460,15 @@ module Whop_sdk
         end
       end
 
-      # Starts a fresh on-session attempt with the saved card for a subscription renewal that is waiting on the customer
-      # to authenticate; the bank's step then arrives in `next_action` on the following status reads. Only the payment's
-      # own customer may call it — with the payment's `client_secret` or their own session — and it is a no-op for any
-      # payment that is not a parked renewal.
+      # Charges the saved card again, with the buyer present, for a payment their bank declined until they authenticate
+      # (such as with 3DS). Retrieve the payment afterward to get the bank's challenge from `next_action`; once the
+      # buyer completes it, they land on `return_url`, or on Whop's hosted verification page if none was given. Only the
+      # buyer can call this, with the payment's `client_secret`, an OAuth token for their own account with the
+      # `member:payment_methods:use` scope, or the token from a verified `payment` session intent. An API key gets a
+      # `403`. Has no effect on a payment that is not waiting on authentication.
       #
       # @param request_options [Hash]
-      # @param params [Hash]
+      # @param params [Whop_sdk::Payments::Types::ResumePaymentsRequest]
       # @option request_options [String] :base_url
       # @option request_options [Hash{String => Object}] :additional_headers
       # @option request_options [Hash{String => Object}] :additional_query_parameters
@@ -480,10 +482,15 @@ module Whop_sdk
       # @return [Whop_sdk::Types::PaymentStatus]
       def resume(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
+        request_data = Whop_sdk::Payments::Types::ResumePaymentsRequest.new(params).to_h
+        non_body_param_names = %w[payment_id]
+        body = request_data.except(*non_body_param_names)
+
         request = Whop_sdk::Internal::JSON::Request.new(
           base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "POST",
           path: "payments/#{URI.encode_uri_component(params[:payment_id].to_s)}/resume",
+          body: body,
           request_options: request_options
         )
         begin

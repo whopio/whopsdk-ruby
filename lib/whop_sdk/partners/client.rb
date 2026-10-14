@@ -50,6 +50,44 @@ module Whop_sdk
         end
       end
 
+      # Lists, per income stream, the fee a business the caller refers would be charged, how low the caller may price
+      # it, and the commission the caller earns on that stream. Answers for a referral that does not exist yet, so a
+      # referral flow can price the deal before the business is created. Requires `partner:fees:update`, since the
+      # floors a partner may price down to are only for a credential that can set them.
+      #
+      # @param request_options [Hash]
+      # @param _params [Hash]
+      # @option request_options [String] :base_url
+      # @option request_options [Hash{String => Object}] :additional_headers
+      # @option request_options [Hash{String => Object}] :additional_query_parameters
+      # @option request_options [Hash{String => Object}] :additional_body_parameters
+      # @option request_options [Integer] :timeout_in_seconds
+      #
+      # @example
+      #   client.partners.fee_options
+      #
+      # @return [Whop_sdk::Partners::Types::FeeOptionsPartnersResponse]
+      def fee_options(request_options: {}, **_params)
+        request = Whop_sdk::Internal::JSON::Request.new(
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
+          method: "GET",
+          path: "partners/fee_options",
+          request_options: request_options
+        )
+        begin
+          response = @client.send(request)
+        rescue Net::HTTPRequestTimeout
+          raise Whop_sdk::Errors::TimeoutError
+        end
+        code = response.code.to_i
+        if code.between?(200, 299)
+          (response.body.to_s.empty? ? nil : Whop_sdk::Partners::Types::FeeOptionsPartnersResponse.load(response.body))
+        else
+          error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
+          raise error_class.new(response.body, code: code)
+        end
+      end
+
       # Ranks referrers by partner business earnings over the chosen `period`, all-time by default. Authentication is
       # optional: authenticated callers also get their own standing, anonymous callers get the rankings alone.
       #

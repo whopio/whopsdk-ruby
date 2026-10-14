@@ -19748,7 +19748,7 @@ client.external_accounts.connect(
 <dl>
 <dd>
 
-**platform:** `Whop_sdk::ExternalAccounts::Types::ConnectExternalAccountsRequestPlatform` — The platform to connect the external account on. Use `meta_business` to connect Meta Business assets, which is how Facebook Pages and Instagram accounts are connected — there is no separate `instagram` value. Use `tiktok` for TikTok accounts, `snapchat` for Snapchat Public Profiles, `linkedin` to connect the authenticated user’s LinkedIn profile, or `youtube` to connect their YouTube channel.
+**platform:** `Whop_sdk::ExternalAccounts::Types::ConnectExternalAccountsRequestPlatform` — The platform to connect the external account on. Use `meta_business` to connect Meta Business assets, which is how Facebook Pages and Instagram accounts are connected — there is no separate `instagram` value. Use `tiktok` for TikTok accounts, `snapchat` for Snapchat Public Profiles, `linkedin` to connect the authenticated user’s LinkedIn profile, `youtube` to connect their YouTube channel, or `x` to connect their X profile.
     
 </dd>
 </dl>
@@ -19764,7 +19764,7 @@ client.external_accounts.connect(
 <dl>
 <dd>
 
-**scopes:** `Internal::Types::Array[Whop_sdk::ExternalAccounts::Types::ConnectExternalAccountsRequestScopesItem]` — The connection purpose. For `meta_business` and `snapchat`, `advertise` is required and connects company advertising assets. For `linkedin` and `youtube`, omit scopes to connect the authenticated user’s profile; advertising is not supported. For `tiktok`, omit scopes to connect the authenticated user’s profile, or pass `advertise` to connect company advertising assets. Profile connections still request the platform permissions needed to read the profile.
+**scopes:** `Internal::Types::Array[Whop_sdk::ExternalAccounts::Types::ConnectExternalAccountsRequestScopesItem]` — The connection purpose. For `meta_business` and `snapchat`, `advertise` is required and connects company advertising assets. For `linkedin`, `youtube`, and `x`, omit scopes to connect the authenticated user’s profile; advertising is not supported. For `tiktok`, omit scopes to connect the authenticated user’s profile, or pass `advertise` to connect company advertising assets. Profile connections still request the platform permissions needed to read the profile.
     
 </dd>
 </dl>
@@ -36080,7 +36080,7 @@ client.social_accounts.connect(
 <dl>
 <dd>
 
-**platform:** `Whop_sdk::SocialAccounts::Types::ConnectSocialAccountsRequestPlatform` — The platform to connect the external account on. Use `meta_business` to connect Meta Business assets, which is how Facebook Pages and Instagram accounts are connected — there is no separate `instagram` value. Use `tiktok` for TikTok accounts, `snapchat` for Snapchat Public Profiles, `linkedin` to connect the authenticated user’s LinkedIn profile, or `youtube` to connect their YouTube channel.
+**platform:** `Whop_sdk::SocialAccounts::Types::ConnectSocialAccountsRequestPlatform` — The platform to connect the external account on. Use `meta_business` to connect Meta Business assets, which is how Facebook Pages and Instagram accounts are connected — there is no separate `instagram` value. Use `tiktok` for TikTok accounts, `snapchat` for Snapchat Public Profiles, `linkedin` to connect the authenticated user’s LinkedIn profile, `youtube` to connect their YouTube channel, or `x` to connect their X profile.
     
 </dd>
 </dl>
@@ -36096,7 +36096,7 @@ client.social_accounts.connect(
 <dl>
 <dd>
 
-**scopes:** `Internal::Types::Array[Whop_sdk::SocialAccounts::Types::ConnectSocialAccountsRequestScopesItem]` — The connection purpose. For `meta_business` and `snapchat`, `advertise` is required and connects company advertising assets. For `linkedin` and `youtube`, omit scopes to connect the authenticated user’s profile; advertising is not supported. For `tiktok`, omit scopes to connect the authenticated user’s profile, or pass `advertise` to connect company advertising assets. Profile connections still request the platform permissions needed to read the profile.
+**scopes:** `Internal::Types::Array[Whop_sdk::SocialAccounts::Types::ConnectSocialAccountsRequestScopesItem]` — The connection purpose. For `meta_business` and `snapchat`, `advertise` is required and connects company advertising assets. For `linkedin`, `youtube`, and `x`, omit scopes to connect the authenticated user’s profile; advertising is not supported. For `tiktok`, omit scopes to connect the authenticated user’s profile, or pass `advertise` to connect company advertising assets. Profile connections still request the platform permissions needed to read the profile.
     
 </dd>
 </dl>

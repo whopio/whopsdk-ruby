@@ -265,6 +265,11 @@ module Whop_sdk
         @methods ||= Whop_sdk::Payouts::Methods::Client.new(client: @client, base_url: @base_url, environment: @environment)
       end
 
+      # @return [Whop_sdk::PaypalLinkSessions::Client]
+      def paypal_link_sessions
+        @paypal_link_sessions ||= Whop_sdk::Payouts::PaypalLinkSessions::Client.new(client: @client, base_url: @base_url, environment: @environment)
+      end
+
       # @return [Whop_sdk::SupportedMethods::Client]
       def supported_methods
         @supported_methods ||= Whop_sdk::Payouts::SupportedMethods::Client.new(client: @client, base_url: @base_url, environment: @environment)

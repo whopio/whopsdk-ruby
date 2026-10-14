@@ -1566,7 +1566,7 @@ client.ad_campaigns.list
 <dl>
 <dd>
 
-**order:** `Whop_sdk::AdCampaigns::Types::ListAdCampaignsRequestOrder` — The field to sort by. Defaults to created_at. Stat columns (spend, impressions, …) rank over the stats_from/stats_to window across the whole list, not just the current page. results, cost_per_result and return_on_ad_spend rank by the same Whop pixel-attributed values the response reports.
+**order:** `Whop_sdk::AdCampaigns::Types::ListAdCampaignsRequestOrder` — The field to sort by. Defaults to created_at. Stat columns (spend, impressions, …) rank over the stats_from/stats_to window across the whole list, not just the current page. results, cost_per_result and return_on_ad_spend rank by the same Whop pixel-attributed values the response reports, and link_clicks by the same Whop pixel page views.
     
 </dd>
 </dl>
@@ -3088,7 +3088,7 @@ client.ad_groups.list(ad_campaign_ids: ["adcamp_xxxxxxxxxxxxxx"])
 <dl>
 <dd>
 
-**order:** `Whop_sdk::AdGroups::Types::ListAdGroupsRequestOrder` — The field to sort by. Defaults to created_at. Stat columns (spend, impressions, …) rank over the stats_from/stats_to window across the whole list, not just the current page. results, cost_per_result and return_on_ad_spend rank by the same Whop pixel-attributed values the response reports.
+**order:** `Whop_sdk::AdGroups::Types::ListAdGroupsRequestOrder` — The field to sort by. Defaults to created_at. Stat columns (spend, impressions, …) rank over the stats_from/stats_to window across the whole list, not just the current page. results, cost_per_result and return_on_ad_spend rank by the same Whop pixel-attributed values the response reports, and link_clicks by the same Whop pixel page views.
     
 </dd>
 </dl>
@@ -4839,7 +4839,7 @@ client.ads.list(
 <dl>
 <dd>
 
-**order:** `Whop_sdk::Ads::Types::ListAdsRequestOrder` — The field to sort by. Defaults to created_at. Stat columns (spend, impressions, …) rank over the stats_from/stats_to window across the whole list, not just the current page. results, cost_per_result and return_on_ad_spend rank by the same Whop pixel-attributed values the response reports.
+**order:** `Whop_sdk::Ads::Types::ListAdsRequestOrder` — The field to sort by. Defaults to created_at. Stat columns (spend, impressions, …) rank over the stats_from/stats_to window across the whole list, not just the current page. results, cost_per_result and return_on_ad_spend rank by the same Whop pixel-attributed values the response reports, and link_clicks by the same Whop pixel page views.
     
 </dd>
 </dl>

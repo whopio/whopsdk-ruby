@@ -16301,7 +16301,7 @@ client.domains.list(tlds: ["com"])
 <dl>
 <dd>
 
-**order:** `Whop_sdk::Domains::Types::ListDomainsRequestOrder` — Field to sort by.
+**order:** `Whop_sdk::Domains::Types::ListDomainsRequestOrder` — Field to sort by. Domains with the same value keep their creation order in the same direction.
     
 </dd>
 </dl>

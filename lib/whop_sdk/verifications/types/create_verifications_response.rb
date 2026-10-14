@@ -28,6 +28,8 @@ module Whop_sdk
 
         field :phone, -> { String }, optional: true, nullable: false
 
+        field :registration_number, -> { String }, optional: true, nullable: false
+
         field :requested_information, -> { Internal::Types::Array[Whop_sdk::Verifications::Types::CreateVerificationsResponseRequestedInformationItem] }, optional: true, nullable: false
 
         field :required_documents, -> { Internal::Types::Array[Whop_sdk::Verifications::Types::CreateVerificationsResponseRequiredDocumentsItem] }, optional: true, nullable: false

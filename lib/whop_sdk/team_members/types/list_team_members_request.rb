@@ -12,6 +12,14 @@ module Whop_sdk
 
         field :role, -> { Whop_sdk::TeamMembers::Types::ListTeamMembersRequestRole }, optional: true, nullable: false
 
+        field :query, -> { String }, optional: true, nullable: false
+
+        field :reports_to_id, -> { String }, optional: true, nullable: false
+
+        field :direct_reports_min, -> { Integer }, optional: true, nullable: false
+
+        field :direct_reports_max, -> { Integer }, optional: true, nullable: false
+
         field :created_before, -> { String }, optional: true, nullable: false
 
         field :created_after, -> { String }, optional: true, nullable: false

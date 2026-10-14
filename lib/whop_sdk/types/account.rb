@@ -33,6 +33,8 @@ module Whop_sdk
 
       field :description, -> { String }, optional: false, nullable: true
 
+      field :direct_reports_count, -> { Integer }, optional: true, nullable: false
+
       field :dispute_fighter_enabled, -> { Internal::Types::Boolean }, optional: false, nullable: false
 
       field :economic_intelligence, -> { Internal::Types::Boolean }, optional: false, nullable: false

@@ -27,6 +27,8 @@ module Whop_sdk
 
       field :registration, -> { Whop_sdk::Types::DomainRegistration }, optional: false, nullable: true
 
+      field :stats, -> { Whop_sdk::Types::DomainStats }, optional: false, nullable: true
+
       field :status, -> { Whop_sdk::Types::DomainListItemStatus }, optional: false, nullable: true
 
       field :updated_at, -> { String }, optional: false, nullable: true

@@ -6,6 +6,8 @@ module Whop_sdk
       class UpdateDomainsRequest < Internal::Types::Model
         field :id, -> { String }, optional: false, nullable: false
 
+        field :apple_pay, -> { Whop_sdk::Domains::Types::UpdateDomainsRequestApplePay }, optional: true, nullable: false
+
         field :metadata, -> { Internal::Types::Hash[String, String] }, optional: true, nullable: false
 
         field :pixel, -> { Whop_sdk::Domains::Types::UpdateDomainsRequestPixel }, optional: true, nullable: false

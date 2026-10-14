@@ -86,6 +86,8 @@ module Whop_sdk
       TRADING_ACCOUNT_DEPOSIT_OFFSET = "trading_account_deposit_offset"
       ONCHAIN_WALLET_TRANSFER_OUTGOING = "onchain_wallet_transfer_outgoing"
       ONCHAIN_WALLET_TRANSFER_INCOMING = "onchain_wallet_transfer_incoming"
+      ONCHAIN_INTERNAL_TRANSFER_OUTGOING = "onchain_internal_transfer_outgoing"
+      ONCHAIN_INTERNAL_TRANSFER_INCOMING = "onchain_internal_transfer_incoming"
       ONCHAIN_SWAP_SOURCE = "onchain_swap_source"
       ONCHAIN_SWAP_TARGET = "onchain_swap_target"
       ONCHAIN_SWAP_OFFSET = "onchain_swap_offset"

@@ -458,11 +458,6 @@ module Whop_sdk
       @team_members ||= Whop_sdk::TeamMembers::Client.new(client: @raw_client, base_url: @base_url, environment: @environment)
     end
 
-    # @return [Whop_sdk::Topups::Client]
-    def topups
-      @topups ||= Whop_sdk::Topups::Client.new(client: @raw_client, base_url: @base_url, environment: @environment)
-    end
-
     # @return [Whop_sdk::Trades::Client]
     def trades
       @trades ||= Whop_sdk::Trades::Client.new(client: @raw_client, base_url: @base_url, environment: @environment)

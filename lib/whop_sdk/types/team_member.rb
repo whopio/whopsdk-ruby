@@ -9,11 +9,15 @@ module Whop_sdk
 
       field :created_at, -> { String }, optional: false, nullable: false
 
+      field :direct_reports_count, -> { Integer }, optional: false, nullable: true
+
       field :email, -> { String }, optional: false, nullable: true
 
       field :id, -> { String }, optional: false, nullable: false
 
       field :is_agent, -> { Internal::Types::Boolean }, optional: false, nullable: false
+
+      field :reports_to_id, -> { String }, optional: false, nullable: true
 
       field :role, -> { Whop_sdk::Types::TeamMemberRole }, optional: false, nullable: false
 

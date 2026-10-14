@@ -284,6 +284,7 @@ module Whop_sdk
       AI_CHAT_DELETE = "ai_chat:delete"
       AI_CHAT_UPDATE = "ai_chat:update"
       USER_NOTIFICATIONS_READ = "user:notifications:read"
+      USER_ABUSE_REPORT_CREATE = "user:abuse_report:create"
       USER_NOTIFICATIONS_UPDATE = "user:notifications:update"
       USER_PROFILE_UPDATE = "user:profile:update"
     end

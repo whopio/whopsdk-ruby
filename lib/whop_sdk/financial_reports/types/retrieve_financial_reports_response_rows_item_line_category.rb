@@ -129,6 +129,8 @@ module Whop_sdk
         ONBOARDING_REWARD = "onboarding_reward"
         ONCHAIN_DEPOSIT = "onchain_deposit"
         ONCHAIN_DEPOSIT_OFFSET = "onchain_deposit_offset"
+        ONCHAIN_INTERNAL_TRANSFER_INCOMING = "onchain_internal_transfer_incoming"
+        ONCHAIN_INTERNAL_TRANSFER_OUTGOING = "onchain_internal_transfer_outgoing"
         ONCHAIN_SWAP_OFFSET = "onchain_swap_offset"
         ONCHAIN_SWAP_SOURCE = "onchain_swap_source"
         ONCHAIN_SWAP_TARGET = "onchain_swap_target"

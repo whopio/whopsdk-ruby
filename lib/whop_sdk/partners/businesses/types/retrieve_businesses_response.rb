@@ -27,6 +27,8 @@ module Whop_sdk
 
           field :payout_percentages, -> { Whop_sdk::Partners::Businesses::Types::RetrieveBusinessesResponsePayoutPercentages }, optional: false, nullable: false
 
+          field :pending_owner_invites, -> { Internal::Types::Array[Whop_sdk::Partners::Businesses::Types::RetrieveBusinessesResponsePendingOwnerInvitesItem] }, optional: true, nullable: false
+
           field :referral_expires_at, -> { String }, optional: false, nullable: true
 
           field :referral_started_at, -> { String }, optional: false, nullable: true

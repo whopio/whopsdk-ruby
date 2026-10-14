@@ -199,6 +199,7 @@ module Whop_sdk
       PARTNER_REFERRAL_REQUEST_ACCEPT = "partner:referral_request:accept"
       PARTNER_REFERRAL_REQUEST_DECLINE = "partner:referral_request:decline"
       PARTNER_REFERRAL_REQUEST_CANCEL = "partner:referral_request:cancel"
+      PARTNER_HANDOFF = "partner:handoff"
       PARTNER_CREATE = "partner:create"
       STATS_READ = "stats:read"
       SUPPORT_CHAT_READ = "support_chat:read"

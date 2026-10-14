@@ -21,6 +21,8 @@ module Whop_sdk
 
           field :supports_instant_delivery, -> { Internal::Types::Boolean }, optional: false, nullable: false
 
+          field :supports_paypal_login, -> { Internal::Types::Boolean }, optional: true, nullable: false
+
           field :supports_standard_delivery, -> { Internal::Types::Boolean }, optional: false, nullable: false
         end
       end

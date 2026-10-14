@@ -148,6 +148,8 @@ module Whop_sdk
       field :wallet, -> { Whop_sdk::Types::AccountWallet }, optional: false, nullable: true
 
       field :website, -> { String }, optional: false, nullable: true
+
+      field :whop_partner_enabled_at, -> { String }, optional: true, nullable: false
     end
   end
 end

@@ -94,6 +94,8 @@ module Whop_sdk
 
         field :website, -> { String }, optional: true, nullable: false
 
+        field :whop_partner_enabled, -> { Internal::Types::Boolean }, optional: true, nullable: false
+
         field :industry_type, -> { Object }, optional: true, nullable: false
       end
     end

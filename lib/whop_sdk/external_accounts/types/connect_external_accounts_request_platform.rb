@@ -10,6 +10,7 @@ module Whop_sdk
         TIKTOK = "tiktok"
         LINKEDIN = "linkedin"
         YOUTUBE = "youtube"
+        X = "x"
         SNAPCHAT = "snapchat"
       end
     end

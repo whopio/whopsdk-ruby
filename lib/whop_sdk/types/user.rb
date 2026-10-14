@@ -7,6 +7,8 @@ module Whop_sdk
 
       field :balance_history, -> { Whop_sdk::Types::UserBalanceHistory }, optional: false, nullable: true
 
+      field :balances, -> { Internal::Types::Array[Whop_sdk::Types::AccountBalanceToken] }, optional: false, nullable: false
+
       field :banner, -> { Whop_sdk::Types::UserBanner }, optional: false, nullable: true
 
       field :bio, -> { String }, optional: false, nullable: true
@@ -28,6 +30,8 @@ module Whop_sdk
       field :profile_picture, -> { Whop_sdk::Types::UserProfilePicture }, optional: false, nullable: false
 
       field :social_links, -> { Internal::Types::Array[Whop_sdk::Types::UserSocialLink] }, optional: false, nullable: false
+
+      field :total_usd, -> { String }, optional: false, nullable: true
 
       field :trading, -> { Whop_sdk::Types::TradingAccount }, optional: false, nullable: true
 

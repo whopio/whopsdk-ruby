@@ -126,6 +126,9 @@ module Whop_sdk
       # Unlinks an identity profile from the account or user that owns `ledger_account_id`. Requires `identity:write` on
       # that account or user.
       #
+      # Required permissions:
+      #  - `identity:write`
+      #
       # @param request_options [Hash]
       # @param params [Hash]
       # @option request_options [String] :base_url

@@ -21941,6 +21941,9 @@ client.identity_profiles.retrieve_identity_profile(id: "idpf_xxxxxxxxxxxxx")
 <dd>
 
 Unlinks an identity profile from the account or user that owns `ledger_account_id`. Requires `identity:write` on that account or user.
+
+Required permissions:
+ - `identity:write`
 </dd>
 </dl>
 </dd>

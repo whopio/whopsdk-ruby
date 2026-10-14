@@ -6,6 +6,8 @@ module Whop_sdk
       class CreateDomainsRequest < Internal::Types::Model
         field :account_id, -> { String }, optional: true, nullable: false
 
+        field :apple_pay, -> { Whop_sdk::Domains::Types::CreateDomainsRequestApplePay }, optional: true, nullable: false
+
         field :domain, -> { String }, optional: false, nullable: false
 
         field :metadata, -> { Internal::Types::Hash[String, String] }, optional: true, nullable: false

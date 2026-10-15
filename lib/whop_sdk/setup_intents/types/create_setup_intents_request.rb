@@ -14,6 +14,8 @@ module Whop_sdk
 
         field :metadata, -> { Internal::Types::Hash[String, String] }, optional: true, nullable: false
 
+        field :owner_id, -> { String }, optional: true, nullable: false
+
         field :payment_method_id, -> { String }, optional: true, nullable: false
 
         field :purpose, -> { Whop_sdk::SetupIntents::Types::CreateSetupIntentsRequestPurpose }, optional: true, nullable: false

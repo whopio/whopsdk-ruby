@@ -23,6 +23,8 @@ module Whop_sdk
 
           field :industry_type, -> { String }, optional: true, nullable: false
 
+          field :product_category, -> { String }, optional: true, nullable: false
+
           field :account_country, -> { String }, optional: true, nullable: false
 
           field :customer_country, -> { String }, optional: true, nullable: false

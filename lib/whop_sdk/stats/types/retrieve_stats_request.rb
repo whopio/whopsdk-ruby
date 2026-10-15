@@ -78,6 +78,8 @@ module Whop_sdk
 
         field :industry_type, -> { String }, optional: true, nullable: false
 
+        field :product_category, -> { String }, optional: true, nullable: false
+
         field :issuer, -> { String }, optional: true, nullable: false
 
         field :conversion_window, -> { String }, optional: true, nullable: false

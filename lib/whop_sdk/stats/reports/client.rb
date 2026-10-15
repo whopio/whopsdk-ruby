@@ -53,8 +53,8 @@ module Whop_sdk
         end
 
         # Retrieves payments across all of Whop for up to four windows at once, optionally broken down by business type,
-        # industry type, account country or customer country. The report covers the whole platform, so it takes no
-        # `account_id` and any authenticated caller can read it.
+        # industry type, product category, account country or customer country. The report covers the whole platform, so
+        # it takes no `account_id` and any authenticated caller can read it.
         #
         # @param request_options [Hash]
         # @param params [Hash]
@@ -72,6 +72,7 @@ module Whop_sdk
         # @option params [String, nil] :convert_to
         # @option params [String, nil] :business_type
         # @option params [String, nil] :industry_type
+        # @option params [String, nil] :product_category
         # @option params [String, nil] :account_country
         # @option params [String, nil] :customer_country
         # @option params [Integer, nil] :first
@@ -93,6 +94,7 @@ module Whop_sdk
           query_params["convert_to"] = params[:convert_to] if params.key?(:convert_to)
           query_params["business_type"] = params[:business_type] if params.key?(:business_type)
           query_params["industry_type"] = params[:industry_type] if params.key?(:industry_type)
+          query_params["product_category"] = params[:product_category] if params.key?(:product_category)
           query_params["account_country"] = params[:account_country] if params.key?(:account_country)
           query_params["customer_country"] = params[:customer_country] if params.key?(:customer_country)
           query_params["first"] = params[:first] if params.key?(:first)

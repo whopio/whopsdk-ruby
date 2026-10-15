@@ -143,6 +143,8 @@ module Whop_sdk
 
       field :verification, -> { Internal::Types::Hash[String, Object] }, optional: false, nullable: false
 
+      field :volume_l30d_usd, -> { Integer }, optional: false, nullable: true
+
       field :volume_usd, -> { Integer }, optional: false, nullable: true
 
       field :wallet, -> { Whop_sdk::Types::AccountWallet }, optional: false, nullable: true

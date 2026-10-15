@@ -37,6 +37,7 @@ module Whop_sdk
       # @option params [Integer, nil] :volume_min
       # @option params [Integer, nil] :volume_max
       # @option params [String, nil] :parent_account_id
+      # @option params [String, nil] :owner_id
       #
       # @example
       #   client.accounts.list
@@ -58,6 +59,7 @@ module Whop_sdk
         query_params["volume_min"] = params[:volume_min] if params.key?(:volume_min)
         query_params["volume_max"] = params[:volume_max] if params.key?(:volume_max)
         query_params["parent_account_id"] = params[:parent_account_id] if params.key?(:parent_account_id)
+        query_params["owner_id"] = params[:owner_id] if params.key?(:owner_id)
 
         Whop_sdk::Internal::CursorItemIterator.new(
           cursor_field: :end_cursor,

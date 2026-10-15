@@ -28,6 +28,8 @@ module Whop_sdk
 
         field :last_name, -> { String }, optional: true, nullable: false
 
+        field :owners, -> { Internal::Types::Array[Whop_sdk::Verifications::Types::CreateVerificationsRequestBodyBusinessOwnersItem] }, optional: true, nullable: false
+
         field :place_of_incorporation, -> { String }, optional: true, nullable: false
 
         field :registration_number, -> { String }, optional: true, nullable: false

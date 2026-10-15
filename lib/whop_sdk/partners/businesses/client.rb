@@ -148,7 +148,6 @@ module Whop_sdk
         # @example
         #   client.partners.businesses.update(
         #     id: "id",
-        #     annual_ads_usd: "120000",
         #     annual_processing_usd: "1200000"
         #   )
         #
@@ -196,7 +195,7 @@ module Whop_sdk
         #   client.partners.businesses.accept_commission_advance(
         #     id: "id",
         #     acknowledgments: %w[commission_replacement clawback term],
-        #     expected_amount_usd: "1439.99",
+        #     expected_amount_usd: "1079.99",
         #     offer_token: "eyJfcmFpbHMiOnsiZGF0YSI6MSwicHVyIjoiYmxvYl9pZCJ9fQ==--xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
         #     terms_version: "2026-01-01"
         #   )

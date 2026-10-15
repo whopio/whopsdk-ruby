@@ -45591,7 +45591,6 @@ Save annual projections for a business referred by the authenticated partner. Pr
 ```ruby
 client.partners.businesses.update(
   id: "id",
-  annual_ads_usd: "120000",
   annual_processing_usd: "1200000"
 )
 ```
@@ -45616,15 +45615,7 @@ client.partners.businesses.update(
 <dl>
 <dd>
 
-**annual_ads_usd:** `String` — Annual projected Whop Ads spend in USD.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**annual_processing_usd:** `String` — Annual projected processing on Whop in USD.
+**annual_processing_usd:** `String` — Annual projected card and BNPL payment volume on Whop in USD.
     
 </dd>
 </dl>
@@ -45674,7 +45665,7 @@ Accept the authenticated partner's CPA offer with the reviewed terms and signed 
 client.partners.businesses.accept_commission_advance(
   id: "id",
   acknowledgments: %w[commission_replacement clawback term],
-  expected_amount_usd: "1439.99",
+  expected_amount_usd: "1079.99",
   offer_token: "eyJfcmFpbHMiOnsiZGF0YSI6MSwicHVyIjoiYmxvYl9pZCJ9fQ==--xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
   terms_version: "2026-01-01"
 )

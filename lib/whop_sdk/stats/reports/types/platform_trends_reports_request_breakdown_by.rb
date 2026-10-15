@@ -9,6 +9,7 @@ module Whop_sdk
 
           BUSINESS_TYPE = "business_type"
           INDUSTRY_TYPE = "industry_type"
+          PRODUCT_CATEGORY = "product_category"
           ACCOUNT_COUNTRY = "account_country"
           CUSTOMER_COUNTRY = "customer_country"
         end

@@ -17,9 +17,17 @@ module Whop_sdk
 
         field :date_of_birth, -> { String }, optional: true, nullable: false
 
+        field :documents, -> { Whop_sdk::Verifications::Types::UpdateVerificationsRequestBodyBusinessAddressDocuments }, optional: true, nullable: false
+
         field :first_name, -> { String }, optional: true, nullable: false
 
+        field :incorporation_date, -> { String }, optional: true, nullable: false
+
         field :last_name, -> { String }, optional: true, nullable: false
+
+        field :place_of_incorporation, -> { String }, optional: true, nullable: false
+
+        field :registration_number, -> { String }, optional: true, nullable: false
 
         field :requested_information, -> { Internal::Types::Array[Whop_sdk::Verifications::Types::UpdateVerificationsRequestBodyBusinessAddressRequestedInformationItem] }, optional: true, nullable: false
 

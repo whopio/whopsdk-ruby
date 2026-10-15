@@ -82,8 +82,8 @@ module Whop_sdk
         end
       end
 
-      # Moves money between Whop balances, sends USDT from an account's wallet, or funds a claim link anyone with the
-      # URL can redeem. The `type` you send decides which object comes back.
+      # Moves money between Whop balances or funds a claim link anyone with the URL can redeem. The `type` you send
+      # decides which object comes back.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::Transfers::Types::CreateTransfersRequestBody]

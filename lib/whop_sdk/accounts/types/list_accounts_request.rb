@@ -29,6 +29,8 @@ module Whop_sdk
         field :volume_max, -> { Integer }, optional: true, nullable: false
 
         field :parent_account_id, -> { String }, optional: true, nullable: false
+
+        field :owner_id, -> { String }, optional: true, nullable: false
       end
     end
   end

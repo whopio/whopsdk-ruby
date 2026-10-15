@@ -14,7 +14,8 @@ module Whop_sdk
         @environment = environment
       end
 
-      # Lists the payment method domains registered for your account and its connected accounts.
+      # Lists the payment method domains registered for your account and its connected accounts. Deprecated: list
+      # domains with `GET /domains` and the `apple_pay` filter instead.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -88,7 +89,8 @@ module Whop_sdk
       # Registers a hostname with the wallet provider and attempts verification inline. Returns `verified` when the
       # provider fetched the domain-association file (for Apple Pay,
       # `/.well-known/apple-developer-merchantid-domain-association`), or `pending` when it could not: host the file,
-      # then retry with `POST /payment_method_domains/:id/verify`.
+      # then retry with `POST /payment_method_domains/:id/verify`. Deprecated: add Apple Pay with `POST /domains` and
+      # `apple_pay: {}` instead.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::PaymentMethodDomains::Types::CreatePaymentMethodDomainsRequest]
@@ -125,7 +127,8 @@ module Whop_sdk
         end
       end
 
-      # Retrieves a payment method domain to check its verification status.
+      # Retrieves a payment method domain to check its verification status. Deprecated: retrieve the domain with `GET
+      # /domains/{id}` instead, using the same ID.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -162,7 +165,9 @@ module Whop_sdk
         end
       end
 
-      # Unregisters a payment method domain so its wallet payment methods stop rendering there.
+      # Unregisters a payment method domain so its wallet payment methods stop rendering there. Deprecated: remove Apple
+      # Pay with `PATCH /domains/{id}` and `apple_pay: null` instead. `DELETE /domains/{id}` removes the whole domain,
+      # including any website on it.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -200,7 +205,8 @@ module Whop_sdk
       end
 
       # Re-attempts provider verification of a pending domain once the association file is hosted. Fails with a
-      # `bad_request` explaining what to fix; verifying an already `verified` domain is a no-op.
+      # `bad_request` explaining what to fix; verifying an already `verified` domain is a no-op. Deprecated: check the
+      # domain with `POST /domains/{id}/check` instead.
       #
       # @param request_options [Hash]
       # @param params [Hash]

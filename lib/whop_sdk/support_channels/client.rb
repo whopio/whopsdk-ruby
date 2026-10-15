@@ -34,6 +34,7 @@ module Whop_sdk
       # @option params [Whop_sdk::Types::SupportChannelView, nil] :view
       # @option params [Boolean, nil] :open
       # @option params [String, nil] :customer_user_id
+      # @option params [String, nil] :customer_user_ids
       # @option params [Boolean, nil] :participated
       # @option params [Boolean, nil] :include_last_message
       # @option params [Boolean, nil] :include_participated
@@ -59,6 +60,7 @@ module Whop_sdk
         query_params["view"] = params[:view] if params.key?(:view)
         query_params["open"] = params[:open] if params.key?(:open)
         query_params["customer_user_id"] = params[:customer_user_id] if params.key?(:customer_user_id)
+        query_params["customer_user_ids"] = params[:customer_user_ids] if params.key?(:customer_user_ids)
         query_params["participated"] = params[:participated] if params.key?(:participated)
         query_params["include_last_message"] = params[:include_last_message] if params.key?(:include_last_message)
         query_params["include_participated"] = params[:include_participated] if params.key?(:include_participated)

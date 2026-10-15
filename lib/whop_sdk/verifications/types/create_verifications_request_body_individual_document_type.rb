@@ -6,10 +6,10 @@ module Whop_sdk
       module CreateVerificationsRequestBodyIndividualDocumentType
         extend Whop_sdk::Internal::Types::Enum
 
-        ID_CARD = "ID_CARD"
-        DRIVERS = "DRIVERS"
-        RESIDENCE_PERMIT = "RESIDENCE_PERMIT"
-        PASSPORT = "PASSPORT"
+        ID_CARD = "id_card"
+        DRIVERS = "drivers"
+        RESIDENCE_PERMIT = "residence_permit"
+        PASSPORT = "passport"
       end
     end
   end

@@ -26,6 +26,8 @@ module Whop_sdk
 
         field :last_name, -> { String }, optional: true, nullable: false
 
+        field :owners, -> { Internal::Types::Array[Whop_sdk::Verifications::Types::UpdateVerificationsResponseOwnersItem] }, optional: false, nullable: false
+
         field :phone, -> { String }, optional: true, nullable: false
 
         field :registration_number, -> { String }, optional: true, nullable: false

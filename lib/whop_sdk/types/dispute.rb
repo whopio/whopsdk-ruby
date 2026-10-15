@@ -3,6 +3,8 @@
 module Whop_sdk
   module Types
     class Dispute < Internal::Types::Model
+      field :acceptable, -> { Internal::Types::Boolean }, optional: false, nullable: false
+
       field :account_id, -> { String }, optional: false, nullable: true
 
       field :amount, -> { Integer }, optional: false, nullable: false

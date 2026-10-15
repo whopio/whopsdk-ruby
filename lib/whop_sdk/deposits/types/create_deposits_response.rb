@@ -8,8 +8,6 @@ module Whop_sdk
 
         field :amount, -> { String }, optional: true, nullable: false
 
-        field :card, -> { Whop_sdk::Deposits::Types::CreateDepositsResponseCard }, optional: false, nullable: true
-
         field :hosted_url, -> { String }, optional: false, nullable: true
 
         field :methods, -> { Whop_sdk::Deposits::Types::CreateDepositsResponseMethods }, optional: false, nullable: false

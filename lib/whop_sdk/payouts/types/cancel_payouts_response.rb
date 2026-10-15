@@ -6,6 +6,8 @@ module Whop_sdk
       class CancelPayoutsResponse < Internal::Types::Model
         field :amount, -> { String }, optional: false, nullable: false
 
+        field :cancelable, -> { Internal::Types::Boolean }, optional: false, nullable: false
+
         field :created_at, -> { String }, optional: false, nullable: false
 
         field :currency, -> { String }, optional: false, nullable: false

@@ -6,6 +6,8 @@ module Whop_sdk
       class RetrievePayoutsResponse < Internal::Types::Model
         field :amount, -> { String }, optional: true, nullable: false
 
+        field :cancelable, -> { Internal::Types::Boolean }, optional: true, nullable: false
+
         field :created_at, -> { String }, optional: false, nullable: false
 
         field :currency, -> { String }, optional: false, nullable: false

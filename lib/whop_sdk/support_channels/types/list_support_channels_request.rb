@@ -18,6 +18,8 @@ module Whop_sdk
 
         field :customer_user_id, -> { String }, optional: true, nullable: false
 
+        field :customer_user_ids, -> { String }, optional: true, nullable: false
+
         field :participated, -> { Internal::Types::Boolean }, optional: true, nullable: false
 
         field :include_last_message, -> { Internal::Types::Boolean }, optional: true, nullable: false

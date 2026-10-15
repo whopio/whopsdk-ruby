@@ -48470,6 +48470,69 @@ client.users.preferences.update
 </dl>
 </details>
 
+## Users Fees
+<details><summary><code>client.users.fees.<a href="/lib/whop_sdk/users/fees/client.rb">retrieve</a>(user_id:) -> Whop_sdk::Types::UserFees</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves the fees charged when the user moves money with their personal balance: withdrawals, transfers, bank deposits, and funding cards from pending balance. Each fee has the same shape as in Retrieve Account Fees. You can only retrieve your own fees, and they are read-only.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.users.fees.retrieve(user_id: "user_id")
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**user_id:** `String` — `me`, or the authenticated user's own `user_` tag or username.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Whop_sdk::Users::Fees::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Users Preferences Notifications
 <details><summary><code>client.users.preferences.notifications.<a href="/lib/whop_sdk/users/preferences/notifications/client.rb">set</a>(request) -> Whop_sdk::Users::Preferences::Notifications::Types::SetNotificationsResponse</code></summary>
 <dl>

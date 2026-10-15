@@ -45442,7 +45442,7 @@ client.partners.businesses.list
 <dl>
 <dd>
 
-Retrieves a single referred business and its referral terms.
+Retrieves a single referred business and its referral terms. The original referrer or a caller with company:basic:read on the business credited for the referral can read it.
 </dd>
 </dl>
 </dd>
@@ -45760,7 +45760,7 @@ client.partners.businesses.resend_invite(
 <dl>
 <dd>
 
-Lists the earnings Whop pays out for one referred business's activity, most recent first.
+Lists the earnings Whop pays out for one referred business's activity, most recent first. The original referrer or a caller with company:basic:read on the business credited for the referral can read them.
 </dd>
 </dl>
 </dd>

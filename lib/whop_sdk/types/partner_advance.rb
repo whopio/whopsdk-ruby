@@ -7,8 +7,6 @@ module Whop_sdk
 
       field :amount, -> { Whop_sdk::Types::Money }, optional: false, nullable: true
 
-      field :annual_ads, -> { Whop_sdk::Types::Money }, optional: false, nullable: false
-
       field :annual_processing, -> { Whop_sdk::Types::Money }, optional: false, nullable: false
 
       field :clawed_back_at, -> { String }, optional: false, nullable: true
@@ -22,8 +20,6 @@ module Whop_sdk
       field :processing_target, -> { Whop_sdk::Types::Money }, optional: false, nullable: false
 
       field :projected60day_activity, -> { Whop_sdk::Types::Money }, optional: false, nullable: true, api_name: "projected_60_day_activity"
-
-      field :projected_ads_commissions, -> { Whop_sdk::Types::Money }, optional: false, nullable: true
 
       field :projected_commissions, -> { Whop_sdk::Types::Money }, optional: false, nullable: true
 

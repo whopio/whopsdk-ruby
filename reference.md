@@ -15320,6 +15320,68 @@ client.disputes.update(id: "id")
 </dl>
 </details>
 
+<details><summary><code>client.disputes.<a href="/lib/whop_sdk/disputes/client.rb">accept</a>(id:) -> Whop_sdk::Types::Dispute</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Accepts a chargeback, conceding it to the customer instead of contesting it. The payment processor closes the dispute as `lost`. This is final — the dispute cannot be contested afterwards. Only a dispute whose `acceptable` is true can be accepted.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.disputes.accept(id: "id")
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — The dispute ID (`dspt_` tag).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Whop_sdk::Disputes::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.disputes.<a href="/lib/whop_sdk/disputes/client.rb">submit</a>(id:) -> Whop_sdk::Types::Dispute</code></summary>
 <dl>
 <dd>

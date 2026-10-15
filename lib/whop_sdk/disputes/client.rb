@@ -215,6 +215,45 @@ module Whop_sdk
         end
       end
 
+      # Accepts a chargeback, conceding it to the customer instead of contesting it. The payment processor closes the
+      # dispute as `lost`. This is final — the dispute cannot be contested afterwards. Only a dispute whose `acceptable`
+      # is true can be accepted.
+      #
+      # @param request_options [Hash]
+      # @param params [Hash]
+      # @option request_options [String] :base_url
+      # @option request_options [Hash{String => Object}] :additional_headers
+      # @option request_options [Hash{String => Object}] :additional_query_parameters
+      # @option request_options [Hash{String => Object}] :additional_body_parameters
+      # @option request_options [Integer] :timeout_in_seconds
+      # @option params [String] :id
+      #
+      # @example
+      #   client.disputes.accept(id: "id")
+      #
+      # @return [Whop_sdk::Types::Dispute]
+      def accept(request_options: {}, **params)
+        params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
+        request = Whop_sdk::Internal::JSON::Request.new(
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
+          method: "POST",
+          path: "disputes/#{URI.encode_uri_component(params[:id].to_s)}/accept",
+          request_options: request_options
+        )
+        begin
+          response = @client.send(request)
+        rescue Net::HTTPRequestTimeout
+          raise Whop_sdk::Errors::TimeoutError
+        end
+        code = response.code.to_i
+        if code.between?(200, 299)
+          (response.body.to_s.empty? ? nil : Whop_sdk::Types::Dispute.load(response.body))
+        else
+          error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
+          raise error_class.new(response.body, code: code)
+        end
+      end
+
       # Sends a dispute's evidence to the payment processor. This is final — it cannot be edited or sent again.
       #
       # @param request_options [Hash]

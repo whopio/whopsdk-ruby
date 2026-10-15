@@ -376,6 +376,11 @@ module Whop_sdk
       def preferences
         @preferences ||= Whop_sdk::Users::Preferences::Client.new(client: @client, base_url: @base_url, environment: @environment)
       end
+
+      # @return [Whop_sdk::Fees::Client]
+      def fees
+        @fees ||= Whop_sdk::Users::Fees::Client.new(client: @client, base_url: @base_url, environment: @environment)
+      end
     end
   end
 end

@@ -109,8 +109,6 @@ module Whop_sdk
 
       field :social_links, -> { Internal::Types::Array[Whop_sdk::Types::AccountSocialLink] }, optional: false, nullable: false
 
-      field :stablecoin_rails, -> { Internal::Types::Boolean }, optional: false, nullable: false
-
       field :status, -> { String }, optional: false, nullable: true
 
       field :status_reason, -> { String }, optional: false, nullable: true

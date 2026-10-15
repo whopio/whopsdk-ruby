@@ -3,8 +3,8 @@
 module Whop_sdk
   module Transfers
     module Types
-      # Moves credit between two Whop balances and returns a `transfer`. A transfer from a stablecoin-rails account
-      # settles on-chain when covered, and still returns a `transfer`.
+      # Moves credit between two Whop balances and returns a `transfer`. The transfer can come back `processing` and
+      # reach `succeeded` or `failed` asynchronously, usually within seconds.
       class CreateTransfersRequestBodyBalance < Internal::Types::Model
         field :amount, -> { Integer }, optional: false, nullable: false
 

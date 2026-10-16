@@ -15,7 +15,6 @@ module Whop_sdk
       VERIFY_IDENTITY = "verify_identity"
       SCALE_ACCOUNT_SETUP = "scale_account_setup"
       SIGN_FORMATION_DOCUMENTS = "sign_formation_documents"
-      SETUP_APPLE_PAY_DOMAINS = "setup_apple_pay_domains"
       CONFIGURE_TAX_REMITTER = "configure_tax_remitter"
       ADD_VAT_REGISTRATION = "add_vat_registration"
       ACCEPT_PAYOUT_TERMS = "accept_payout_terms"

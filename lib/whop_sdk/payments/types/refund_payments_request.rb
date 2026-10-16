@@ -6,6 +6,8 @@ module Whop_sdk
       class RefundPaymentsRequest < Internal::Types::Model
         field :id, -> { String }, optional: false, nullable: false
 
+        field :metadata, -> { Internal::Types::Hash[String, String] }, optional: true, nullable: false
+
         field :partial_amount, -> { Integer }, optional: true, nullable: false
       end
     end

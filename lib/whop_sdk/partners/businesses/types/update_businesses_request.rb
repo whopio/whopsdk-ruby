@@ -7,7 +7,9 @@ module Whop_sdk
         class UpdateBusinessesRequest < Internal::Types::Model
           field :id, -> { String }, optional: false, nullable: false
 
-          field :annual_processing_usd, -> { String }, optional: false, nullable: false
+          field :annual_processing_usd, -> { String }, optional: true, nullable: false
+
+          field :withdraw_projections, -> { Internal::Types::Boolean }, optional: true, nullable: false
         end
       end
     end

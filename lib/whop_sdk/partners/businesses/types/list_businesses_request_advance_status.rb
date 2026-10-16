@@ -14,6 +14,7 @@ module Whop_sdk
           CLAWED_BACK = "clawed_back"
           COMPLETED = "completed"
           EXPIRED = "expired"
+          WITHDRAWN = "withdrawn"
           OFFERED = "offered"
         end
       end

@@ -3,6 +3,8 @@
 module Whop_sdk
   module Types
     class PartnerAdvance < Internal::Types::Model
+      field :activity30day, -> { Whop_sdk::Types::Money }, optional: false, nullable: true, api_name: "activity_30_day"
+
       field :activity60day, -> { Whop_sdk::Types::Money }, optional: false, nullable: true, api_name: "activity_60_day"
 
       field :amount, -> { Whop_sdk::Types::Money }, optional: false, nullable: true
@@ -12,6 +14,8 @@ module Whop_sdk
       field :clawed_back_at, -> { String }, optional: false, nullable: true
 
       field :deadline_at, -> { String }, optional: false, nullable: true
+
+      field :estimated_amount, -> { Whop_sdk::Types::Money }, optional: false, nullable: true
 
       field :funded_at, -> { String }, optional: false, nullable: true
 

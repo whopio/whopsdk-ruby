@@ -8,6 +8,8 @@ module Whop_sdk
         # method on it. No Whop user, company, or recipient ledger is created. A valid recipient email is required.
         # Recipient methods cannot be default or recurring methods and cannot use Plaid.
         class CreateMethodsRequestRecipient < Internal::Types::Model
+          field :address, -> { Whop_sdk::Payouts::Methods::Types::CreateMethodsRequestRecipientAddress }, optional: true, nullable: false
+
           field :country, -> { String }, optional: false, nullable: false
 
           field :email, -> { String }, optional: false, nullable: false

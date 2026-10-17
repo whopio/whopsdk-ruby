@@ -10974,6 +10974,22 @@ client.cards.create
 <dl>
 <dd>
 
+**billing:** `Whop_sdk::Cards::Types::CreateCardsRequestBilling` — The card's initial billing address. On a company card it also registers the assigned member as a cardholder if they are not one yet. For an individual card, region is also required.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**cardholder:** `Whop_sdk::Cards::Types::CreateCardsRequestCardholder` — Details for a company card's assigned member when they are not registered as a cardholder yet. Send with billing to register them and start provisioning in one call instead of sending them an onboarding invitation. The legal name comes from the member's approved identity verification when they have one, and from these fields when they do not.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **name:** `String` — A display name for the card.
     
 </dd>

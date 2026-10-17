@@ -2719,6 +2719,7 @@ require_relative "whop_sdk/payouts/methods/types/list_methods_response_limits_st
 require_relative "whop_sdk/payouts/methods/types/list_methods_response_limits"
 require_relative "whop_sdk/payouts/methods/types/list_methods_response_page_info"
 require_relative "whop_sdk/payouts/methods/types/list_methods_response"
+require_relative "whop_sdk/payouts/methods/types/create_methods_request_recipient_address"
 require_relative "whop_sdk/payouts/methods/types/create_methods_request_recipient"
 require_relative "whop_sdk/payouts/methods/types/create_methods_response_bank_verification_state"
 require_relative "whop_sdk/payouts/methods/types/create_methods_response_object"

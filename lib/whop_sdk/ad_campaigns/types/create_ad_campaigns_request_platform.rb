@@ -6,7 +6,7 @@ module Whop_sdk
       module CreateAdCampaignsRequestPlatform
         extend Whop_sdk::Internal::Types::Enum
 
-        META = "meta"
+        WHOP = "whop"
       end
     end
   end

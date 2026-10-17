@@ -2732,6 +2732,7 @@ require_relative "whop_sdk/payouts/methods/types/create_methods_response_support
 require_relative "whop_sdk/payouts/methods/types/create_methods_response_unavailable_reason"
 require_relative "whop_sdk/payouts/methods/types/create_methods_response"
 require_relative "whop_sdk/payouts/methods/types/delete_methods_response"
+require_relative "whop_sdk/payouts/methods/types/update_methods_request_address"
 require_relative "whop_sdk/payouts/methods/types/update_methods_response_bank_verification_state"
 require_relative "whop_sdk/payouts/methods/types/update_methods_response_object"
 require_relative "whop_sdk/payouts/methods/types/update_methods_response_recipient"

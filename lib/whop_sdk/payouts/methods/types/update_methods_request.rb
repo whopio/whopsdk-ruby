@@ -7,6 +7,8 @@ module Whop_sdk
         class UpdateMethodsRequest < Internal::Types::Model
           field :id, -> { String }, optional: false, nullable: false
 
+          field :address, -> { Whop_sdk::Payouts::Methods::Types::UpdateMethodsRequestAddress }, optional: true, nullable: false
+
           field :is_default, -> { Internal::Types::Boolean }, optional: true, nullable: false
 
           field :nickname, -> { String }, optional: true, nullable: false

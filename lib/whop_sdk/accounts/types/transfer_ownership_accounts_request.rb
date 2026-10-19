@@ -12,6 +12,8 @@ module Whop_sdk
 
         field :identifier, -> { String }, optional: false, nullable: false
 
+        field :member_id, -> { String }, optional: true, nullable: false
+
         field :message, -> { String }, optional: true, nullable: false
       end
     end

@@ -15,6 +15,8 @@ module Whop_sdk
 
       field :max_redemptions, -> { Integer }, optional: false, nullable: true
 
+      field :member_id, -> { String }, optional: false, nullable: true
+
       field :partner, -> { Whop_sdk::Types::UserSummary }, optional: false, nullable: false
 
       field :request_type, -> { Whop_sdk::Types::PartnerReferralRequestRequestType }, optional: false, nullable: false

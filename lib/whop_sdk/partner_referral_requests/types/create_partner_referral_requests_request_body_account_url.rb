@@ -7,6 +7,8 @@ module Whop_sdk
         field :account_url, -> { String }, optional: false, nullable: false
 
         field :authorized_user_id, -> { String }, optional: true, nullable: false
+
+        field :member_id, -> { String }, optional: true, nullable: false
       end
     end
   end

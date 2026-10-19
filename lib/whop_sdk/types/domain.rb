@@ -13,6 +13,8 @@ module Whop_sdk
 
       field :domain, -> { String }, optional: false, nullable: false
 
+      field :email, -> { Whop_sdk::Types::DomainEmail }, optional: false, nullable: true
+
       field :id, -> { String }, optional: false, nullable: true
 
       field :issues, -> { Internal::Types::Array[Whop_sdk::Types::DomainIssue] }, optional: false, nullable: false

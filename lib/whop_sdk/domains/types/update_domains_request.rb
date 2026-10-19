@@ -8,6 +8,8 @@ module Whop_sdk
 
         field :apple_pay, -> { Whop_sdk::Domains::Types::UpdateDomainsRequestApplePay }, optional: true, nullable: false
 
+        field :email, -> { Whop_sdk::Domains::Types::UpdateDomainsRequestEmail }, optional: true, nullable: false
+
         field :metadata, -> { Internal::Types::Hash[String, String] }, optional: true, nullable: false
 
         field :pixel, -> { Whop_sdk::Domains::Types::UpdateDomainsRequestPixel }, optional: true, nullable: false

@@ -11,6 +11,7 @@ module Whop_sdk
       WEBSITE = "website"
       APPLE_PAY = "apple_pay"
       PIXEL = "pixel"
+      EMAIL = "email"
     end
   end
 end

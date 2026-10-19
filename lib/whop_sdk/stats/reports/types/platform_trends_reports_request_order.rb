@@ -9,6 +9,7 @@ module Whop_sdk
 
           GROSS_REVENUE = "gross_revenue"
           BUSINESSES = "businesses"
+          PRODUCTS = "products"
           PAYMENTS = "payments"
           CUSTOMERS = "customers"
           AOV = "aov"

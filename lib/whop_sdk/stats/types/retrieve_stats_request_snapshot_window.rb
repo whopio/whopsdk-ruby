@@ -7,8 +7,10 @@ module Whop_sdk
         extend Whop_sdk::Internal::Types::Enum
 
         SEVEN_D = "7d"
+        FOURTEEN_D = "14d"
         TWENTY_EIGHT_D = "28d"
         THIRTY_D = "30d"
+        FIFTY_SIX_D = "56d"
       end
     end
   end

@@ -28,6 +28,10 @@ module Whop_sdk
       PIXEL_WAITING = "pixel_waiting"
       PIXEL_UNREACHABLE = "pixel_unreachable"
       PIXEL_QUIET = "pixel_quiet"
+      EMAIL_NEEDS_WHOP_DNS = "email_needs_whop_dns"
+      EMAIL_UNREACHABLE = "email_unreachable"
+      EMAIL_IDENTITY_IN_USE = "email_identity_in_use"
+      EMAIL_VERIFICATION_FAILED = "email_verification_failed"
     end
   end
 end

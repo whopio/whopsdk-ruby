@@ -35,6 +35,8 @@ module Whop_sdk
 
           field :product_category, -> { Whop_sdk::Stats::Reports::Types::PlatformTrendsReportsResponseDataReportsItemRowsItemProductCategory }, optional: true, nullable: false
 
+          field :products, -> { Integer }, optional: true, nullable: false
+
           field :repeat_rate, -> { Integer }, optional: true, nullable: false
         end
       end

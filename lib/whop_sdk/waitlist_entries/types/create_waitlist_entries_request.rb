@@ -4,6 +4,8 @@ module Whop_sdk
   module WaitlistEntries
     module Types
       class CreateWaitlistEntriesRequest < Internal::Types::Model
+        field :buyer_account_id, -> { String }, optional: true, nullable: false
+
         field :custom_field_responses, -> { Internal::Types::Array[Whop_sdk::WaitlistEntries::Types::CreateWaitlistEntriesRequestCustomFieldResponsesItem] }, optional: true, nullable: false
 
         field :metadata, -> { Internal::Types::Hash[String, Object] }, optional: true, nullable: false

@@ -100,6 +100,7 @@ module Whop_sdk
         # @option params [String, nil] :business_type
         # @option params [String, nil] :industry_type
         # @option params [String, nil] :product_category
+        # @option params [String, nil] :account_country
         # @option params [String, nil] :issuer
         # @option params [String, nil] :conversion_window
         # @option params [Boolean, nil] :mature_only
@@ -186,6 +187,7 @@ module Whop_sdk
           query_params["business_type"] = params[:business_type] if params.key?(:business_type)
           query_params["industry_type"] = params[:industry_type] if params.key?(:industry_type)
           query_params["product_category"] = params[:product_category] if params.key?(:product_category)
+          query_params["account_country"] = params[:account_country] if params.key?(:account_country)
           query_params["issuer"] = params[:issuer] if params.key?(:issuer)
           query_params["conversion_window"] = params[:conversion_window] if params.key?(:conversion_window)
           query_params["mature_only"] = params[:mature_only] if params.key?(:mature_only)

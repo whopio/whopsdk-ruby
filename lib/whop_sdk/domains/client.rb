@@ -108,6 +108,11 @@ module Whop_sdk
       # `amount_due` at `purchase_url`, or pass `registration.payment_method_id` to charge a saved card. Whop then
       # registers it, runs its DNS, and renews it every year while `auto_renew` is on.
       #
+      # Pass `registration.auth_code` to transfer in a domain you own at another registrar or another name.com account.
+      # A transfer from another registrar costs its `amount_due` and starts once it's paid; one from another name.com
+      # account is free and starts at once. While `registration.phase` is `transferring`, its `issues` say what the
+      # transfer needs from you.
+      #
       # Pass `verification` to connect a domain you registered elsewhere: its `issues` list the TXT and routing records
       # to publish. Pass `website` with an `app_id` to serve that app on the domain.
       #
@@ -190,8 +195,9 @@ module Whop_sdk
       end
 
       # Removes the domain from your account and releases its capabilities in the background. Deleting an unpaid
-      # purchase cancels it. A registered domain can't be deleted; turn off `auto_renew` and it's released after it
-      # expires. Adding the domain to this account again revives it under the same ID.
+      # purchase cancels it, and deleting a transfer cancels it and refunds it while the current registrar can still
+      # stop it. A registered domain can't be deleted; turn off `auto_renew` and it's released after it expires. Adding
+      # the domain to this account again revives it under the same ID.
       #
       # @param request_options [Hash]
       # @param params [Hash]

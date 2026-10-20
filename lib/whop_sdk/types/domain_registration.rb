@@ -9,6 +9,8 @@ module Whop_sdk
 
       field :expires_at, -> { String }, optional: false, nullable: true
 
+      field :method_, -> { Whop_sdk::Types::DomainRegistrationMethod }, optional: false, nullable: false, api_name: "method"
+
       field :payment_method_id, -> { String }, optional: false, nullable: true
 
       field :phase, -> { Whop_sdk::Types::DomainRegistrationPhase }, optional: false, nullable: false

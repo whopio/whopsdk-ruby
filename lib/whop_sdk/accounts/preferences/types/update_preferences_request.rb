@@ -21,6 +21,8 @@ module Whop_sdk
 
           field :cards_notifications, -> { Internal::Types::Boolean }, optional: true, nullable: false
 
+          field :covers_connected_account_negative_balances, -> { Internal::Types::Boolean }, optional: true, nullable: false
+
           field :dispute_fighter_enabled, -> { Internal::Types::Boolean }, optional: true, nullable: false
 
           field :economic_intelligence_auto_renew, -> { Internal::Types::Boolean }, optional: true, nullable: false

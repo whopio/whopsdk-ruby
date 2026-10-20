@@ -218,6 +218,11 @@ module Whop_sdk
       @economic_intelligence ||= Whop_sdk::EconomicIntelligence::Client.new(client: @raw_client, base_url: @base_url, environment: @environment)
     end
 
+    # @return [Whop_sdk::EmailAddresses::Client]
+    def email_addresses
+      @email_addresses ||= Whop_sdk::EmailAddresses::Client.new(client: @raw_client, base_url: @base_url, environment: @environment)
+    end
+
     # @return [Whop_sdk::Events::Client]
     def events
       @events ||= Whop_sdk::Events::Client.new(client: @raw_client, base_url: @base_url, environment: @environment)

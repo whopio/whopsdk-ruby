@@ -10,6 +10,8 @@ module Whop_sdk
 
         field :currency, -> { String }, optional: true, nullable: false
 
+        field :payment_method_id, -> { String }, optional: true, nullable: false
+
         field :payout_method_id, -> { String }, optional: false, nullable: false
 
         field :platform_covers_fees, -> { Internal::Types::Boolean }, optional: true, nullable: false

@@ -43641,6 +43641,109 @@ client.accounts.financing_applications.submit(
 </dl>
 </details>
 
+## Accounts FinancingProviders
+<details><summary><code>client.accounts.financing_providers.<a href="/lib/whop_sdk/accounts/financing_providers/client.rb">list</a>(account_id:) -> Whop_sdk::Accounts::FinancingProviders::Types::ListFinancingProvidersResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists every financing provider and where it stands for an account: whether checkout offers it, what the merchant can do to turn it on, and why it is off.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.accounts.financing_providers.list(account_id: "account_id")
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**account_id:** `String` — The ID of the account, prefixed `biz_`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**status:** `Whop_sdk::Accounts::FinancingProviders::Types::ListFinancingProvidersRequestStatus` — Only providers with this status.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**first:** `Integer` — Number of results to return from the start of the range.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**after:** `String` — Return results after this cursor. Use `page_info.end_cursor` from the previous response to fetch the next page.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**last:** `Integer` — Number of results to return from the end of the range.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**before:** `String` — Return results before this cursor. Use `page_info.start_cursor` from the previous response to fetch the previous page.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Whop_sdk::Accounts::FinancingProviders::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Accounts Preferences
 <details><summary><code>client.accounts.preferences.<a href="/lib/whop_sdk/accounts/preferences/client.rb">retrieve</a>(account_id:) -> Whop_sdk::Accounts::Preferences::Types::RetrievePreferencesResponse</code></summary>
 <dl>

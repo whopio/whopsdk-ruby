@@ -173,6 +173,76 @@ module Whop_sdk
         end
       end
 
+      # Totals up the same payments the list returns, so you can build status tabs and filter options without paging
+      # through them. Takes the same filters as List Payments.
+      #
+      # @param request_options [Hash]
+      # @param params [Hash]
+      # @option request_options [String] :base_url
+      # @option request_options [Hash{String => Object}] :additional_headers
+      # @option request_options [Hash{String => Object}] :additional_query_parameters
+      # @option request_options [Hash{String => Object}] :additional_body_parameters
+      # @option request_options [Integer] :timeout_in_seconds
+      # @option params [Whop_sdk::Payments::Types::SummaryPaymentsRequestGroupsItem, nil] :groups
+      # @option params [String, nil] :account_id
+      # @option params [Whop_sdk::Payments::Types::SummaryPaymentsRequestStatusesItem, nil] :statuses
+      # @option params [Whop_sdk::Payments::Types::SummaryPaymentsRequestSubstatusesItem, nil] :substatuses
+      # @option params [Whop_sdk::Payments::Types::SummaryPaymentsRequestBillingReasonsItem, nil] :billing_reasons
+      # @option params [String, nil] :currencies
+      # @option params [String, nil] :plan_ids
+      # @option params [String, nil] :product_ids
+      # @option params [Whop_sdk::Payments::Types::SummaryPaymentsRequestPaymentMethodsItem, nil] :payment_methods
+      # @option params [Whop_sdk::Payments::Types::SummaryPaymentsRequestTrackingStatesItem, nil] :tracking_states
+      # @option params [String, nil] :created_after
+      # @option params [String, nil] :created_before
+      # @option params [String, nil] :query
+      #
+      # @example
+      #   client.payments.summary(
+      #     currencies: ["usd"],
+      #     plan_ids: ["plan_xxxxxxxxxxxxx"],
+      #     product_ids: ["prod_xxxxxxxxxxxxx"]
+      #   )
+      #
+      # @return [Whop_sdk::Payments::Types::SummaryPaymentsResponse]
+      def summary(request_options: {}, **params)
+        params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
+        query_params = {}
+        query_params["groups"] = params[:groups] if params.key?(:groups)
+        query_params["account_id"] = params[:account_id] if params.key?(:account_id)
+        query_params["statuses"] = params[:statuses] if params.key?(:statuses)
+        query_params["substatuses"] = params[:substatuses] if params.key?(:substatuses)
+        query_params["billing_reasons"] = params[:billing_reasons] if params.key?(:billing_reasons)
+        query_params["currencies"] = params[:currencies] if params.key?(:currencies)
+        query_params["plan_ids"] = params[:plan_ids] if params.key?(:plan_ids)
+        query_params["product_ids"] = params[:product_ids] if params.key?(:product_ids)
+        query_params["payment_methods"] = params[:payment_methods] if params.key?(:payment_methods)
+        query_params["tracking_states"] = params[:tracking_states] if params.key?(:tracking_states)
+        query_params["created_after"] = params[:created_after] if params.key?(:created_after)
+        query_params["created_before"] = params[:created_before] if params.key?(:created_before)
+        query_params["query"] = params[:query] if params.key?(:query)
+
+        request = Whop_sdk::Internal::JSON::Request.new(
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
+          method: "GET",
+          path: "payments/summary",
+          query: query_params,
+          request_options: request_options
+        )
+        begin
+          response = @client.send(request)
+        rescue Net::HTTPRequestTimeout
+          raise Whop_sdk::Errors::TimeoutError
+        end
+        code = response.code.to_i
+        if code.between?(200, 299)
+          (response.body.to_s.empty? ? nil : Whop_sdk::Payments::Types::SummaryPaymentsResponse.load(response.body))
+        else
+          error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
+          raise error_class.new(response.body, code: code)
+        end
+      end
+
       # Returns one payment, including every purchased line item with its quantity and subtotal. Related records are ids
       # — resolve a variant, membership, member or shipment on its own endpoint, and list this payment's refunds,
       # disputes or Resolution Center cases with `?payment_id=`.

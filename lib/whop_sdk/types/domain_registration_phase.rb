@@ -7,6 +7,7 @@ module Whop_sdk
 
       AWAITING_PAYMENT = "awaiting_payment"
       ORDERING = "ordering"
+      TRANSFERRING = "transferring"
       DELEGATING = "delegating"
       HELD = "held"
       EXPIRED = "expired"

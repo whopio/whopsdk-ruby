@@ -20469,7 +20469,7 @@ Starts an OAuth connection flow and returns an `authorize_url` to send the user 
 ```ruby
 client.external_accounts.connect(
   platform: "meta_business",
-  redirect_url: "https://example.com/settings/social-accounts"
+  redirect_url: "https://whop.com/dashboard/biz_xxxxxxxxxxxxxx/ads/settings"
 )
 ```
 </dd>
@@ -20501,7 +20501,7 @@ client.external_accounts.connect(
 <dl>
 <dd>
 
-**redirect_url:** `String` — Where to send the user once they finish connecting their accounts. Any `http` or `https` URL. On success, the user is redirected with an `external_account_connected` query param naming the platform; if the connection fails, with an `external_account_error` query param instead. The same values also arrive as `social_account_connected` / `social_account_error`.
+**redirect_url:** `String` — Where to send the user once they finish connecting their accounts. Must be an `https` URL on whop.com; any other host is rejected. On success, the user is redirected with an `external_account_connected` query param naming the platform; if the connection fails, with an `external_account_error` query param instead. The same values also arrive as `social_account_connected` / `social_account_error`.
     
 </dd>
 </dl>
@@ -37243,7 +37243,7 @@ Deprecated compatibility endpoint. Connect external accounts with `POST /externa
 ```ruby
 client.social_accounts.connect(
   platform: "meta_business",
-  redirect_url: "https://example.com/settings/social-accounts"
+  redirect_url: "https://whop.com/dashboard/biz_xxxxxxxxxxxxxx/ads/settings"
 )
 ```
 </dd>
@@ -37275,7 +37275,7 @@ client.social_accounts.connect(
 <dl>
 <dd>
 
-**redirect_url:** `String` — Where to send the user once they finish connecting their accounts. Any `http` or `https` URL. On success, the user is redirected with an `external_account_connected` query param naming the platform; if the connection fails, with an `external_account_error` query param instead. The same values also arrive as `social_account_connected` / `social_account_error`.
+**redirect_url:** `String` — Where to send the user once they finish connecting their accounts. Must be an `https` URL on whop.com; any other host is rejected. On success, the user is redirected with an `external_account_connected` query param naming the platform; if the connection fails, with an `external_account_error` query param instead. The same values also arrive as `social_account_connected` / `social_account_error`.
     
 </dd>
 </dl>

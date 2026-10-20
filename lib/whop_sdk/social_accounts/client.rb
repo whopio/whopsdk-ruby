@@ -135,7 +135,7 @@ module Whop_sdk
       # @example
       #   client.social_accounts.connect(
       #     platform: "meta_business",
-      #     redirect_url: "https://example.com/settings/social-accounts"
+      #     redirect_url: "https://whop.com/dashboard/biz_xxxxxxxxxxxxxx/ads/settings"
       #   )
       #
       # @return [Whop_sdk::SocialAccounts::Types::ConnectSocialAccountsResponse]

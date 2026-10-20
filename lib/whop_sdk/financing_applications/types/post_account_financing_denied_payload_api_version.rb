@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Whop_sdk
-  module Accounts
+  module FinancingApplications
     module Types
       module PostAccountFinancingDeniedPayloadAPIVersion
         extend Whop_sdk::Internal::Types::Enum

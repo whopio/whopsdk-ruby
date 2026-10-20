@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 module Whop_sdk
-  module Accounts
+  module FinancingApplications
     module Types
       class PostAccountFinancingDisabledPayload < Internal::Types::Model
         field :account_id, -> { String }, optional: true, nullable: false
 
-        field :api_version, -> { Whop_sdk::Accounts::Types::PostAccountFinancingDisabledPayloadAPIVersion }, optional: false, nullable: false
+        field :api_version, -> { Whop_sdk::FinancingApplications::Types::PostAccountFinancingDisabledPayloadAPIVersion }, optional: false, nullable: false
 
         field :api_version_date, -> { String }, optional: false, nullable: true
 
@@ -18,7 +18,7 @@ module Whop_sdk
 
         field :timestamp, -> { String }, optional: false, nullable: false
 
-        field :type, -> { Whop_sdk::Accounts::Types::PostAccountFinancingDisabledPayloadType }, optional: false, nullable: false
+        field :type, -> { Whop_sdk::FinancingApplications::Types::PostAccountFinancingDisabledPayloadType }, optional: false, nullable: false
       end
     end
   end

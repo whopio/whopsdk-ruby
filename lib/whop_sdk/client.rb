@@ -273,6 +273,11 @@ module Whop_sdk
       @financial_reports ||= Whop_sdk::FinancialReports::Client.new(client: @raw_client, base_url: @base_url, environment: @environment)
     end
 
+    # @return [Whop_sdk::FinancingApplications::Client]
+    def financing_applications
+      @financing_applications ||= Whop_sdk::FinancingApplications::Client.new(client: @raw_client, base_url: @base_url, environment: @environment)
+    end
+
     # @return [Whop_sdk::ForumPosts::Client]
     def forum_posts
       @forum_posts ||= Whop_sdk::ForumPosts::Client.new(client: @raw_client, base_url: @base_url, environment: @environment)

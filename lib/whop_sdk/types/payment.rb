@@ -7,11 +7,15 @@ module Whop_sdk
 
       field :amount_after_fees, -> { Whop_sdk::Types::Money }, optional: false, nullable: false
 
+      field :auto_capture_at, -> { String }, optional: false, nullable: true
+
       field :auto_refunded, -> { Internal::Types::Boolean }, optional: false, nullable: false
 
       field :billing_address, -> { Whop_sdk::Types::PaymentAddress }, optional: false, nullable: true
 
       field :billing_reason, -> { Whop_sdk::Types::BillingReasons }, optional: false, nullable: true
+
+      field :capture_expires_at, -> { String }, optional: false, nullable: true
 
       field :checkout_configuration_id, -> { String }, optional: false, nullable: true
 
@@ -28,6 +32,8 @@ module Whop_sdk
       field :decline_code, -> { Whop_sdk::Types::PaymentDeclineCodes }, optional: false, nullable: true
 
       field :dispute_alerted_at, -> { String }, optional: false, nullable: true
+
+      field :dispute_created_at, -> { String }, optional: false, nullable: true
 
       field :failure_message, -> { String }, optional: false, nullable: true
 
@@ -67,6 +73,10 @@ module Whop_sdk
 
       field :plan_id, -> { String }, optional: false, nullable: true
 
+      field :presentment_refunded_amount, -> { Whop_sdk::Types::Money }, optional: false, nullable: true
+
+      field :presentment_tax_amount, -> { Whop_sdk::Types::Money }, optional: false, nullable: true
+
       field :presentment_total, -> { Whop_sdk::Types::Money }, optional: false, nullable: true
 
       field :product_id, -> { String }, optional: false, nullable: true
@@ -82,6 +92,8 @@ module Whop_sdk
       field :refunded_amount, -> { Whop_sdk::Types::Money }, optional: false, nullable: true
 
       field :refunded_at, -> { String }, optional: false, nullable: true
+
+      field :response_due_at, -> { String }, optional: false, nullable: true
 
       field :retryable, -> { Internal::Types::Boolean }, optional: false, nullable: false
 

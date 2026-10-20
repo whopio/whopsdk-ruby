@@ -29427,7 +29427,11 @@ Lists payments, newest first. By default, returns sales for the accounts your cr
 <dd>
 
 ```ruby
-client.payments.list
+client.payments.list(
+  currencies: ["eur"],
+  plan_ids: ["plan_xxxxxxxxxxxxx"],
+  product_ids: ["prod_xxxxxxxxxxxxx"]
+)
 ```
 </dd>
 </dl>
@@ -29546,7 +29550,119 @@ client.payments.list
 <dl>
 <dd>
 
-**order:** `Whop_sdk::Payments::Types::ListPaymentsRequestOrder` — The field to sort by.
+**statuses:** `Whop_sdk::Payments::Types::ListPaymentsRequestStatusesItem` — Only payments in any of these lifecycle states, with the same meanings as `status`. Repeat the parameter to pass several. Combined with `status` when both are sent.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**substatuses:** `Whop_sdk::Payments::Types::ListPaymentsRequestSubstatusesItem` — Only payments whose `substatus` is any of these. Repeat the parameter to pass several. `incomplete` also matches payments that report `incomplete` because no finer status was recorded.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**billing_reasons:** `Whop_sdk::Payments::Types::ListPaymentsRequestBillingReasonsItem` — Only payments charged for any of these reasons, with the same meanings as `billing_reason`. Repeat the parameter to pass several. Combined with `billing_reason` when both are sent.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**currencies:** `String` — Only payments presented in any of these three-letter currencies. Repeat the parameter to pass several. Combined with `currency` when both are sent.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**plan_ids:** `String` — Only payments priced by any of these variants, each prefixed `plan_`. Repeat the parameter to pass several. Combined with `plan_id` when both are sent.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**product_ids:** `String` — Only payments for any of these products, each prefixed `prod_`. Repeat the parameter to pass several. Combined with `product_id` when both are sent.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**payment_methods:** `Whop_sdk::Payments::Types::ListPaymentsRequestPaymentMethodsItem` — Only payments paid with any of these methods: a card brand such as `amex`, a wallet such as `apple_pay`, or a payment method type such as `paypal`. Repeat the parameter to pass several.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**tracking_states:** `Whop_sdk::Payments::Types::ListPaymentsRequestTrackingStatesItem` — Only payments whose shipment is in any of these tracking states, or that still need a tracking number (`needs_tracking`). Repeat the parameter to pass several. Requires `account_id` and the shipment:basic:read permission.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**refunded_after:** `String` — Only payments refunded after this ISO 8601 timestamp.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**refunded_before:** `String` — Only payments refunded before this ISO 8601 timestamp.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**dispute_alerted_after:** `String` — Only payments with a dispute alert after this ISO 8601 timestamp.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**dispute_alerted_before:** `String` — Only payments with a dispute alert before this ISO 8601 timestamp.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**dispute_created_after:** `String` — Only payments with a dispute opened after this ISO 8601 timestamp.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**dispute_created_before:** `String` — Only payments with a dispute opened before this ISO 8601 timestamp.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**order:** `Whop_sdk::Payments::Types::ListPaymentsRequestOrder` — The field to sort by. `amount` sorts by the amount charged, in the currency it was charged in.
     
 </dd>
 </dl>

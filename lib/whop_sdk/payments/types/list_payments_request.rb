@@ -30,6 +30,34 @@ module Whop_sdk
 
         field :created_after, -> { String }, optional: true, nullable: false
 
+        field :statuses, -> { Whop_sdk::Payments::Types::ListPaymentsRequestStatusesItem }, optional: true, nullable: false
+
+        field :substatuses, -> { Whop_sdk::Payments::Types::ListPaymentsRequestSubstatusesItem }, optional: true, nullable: false
+
+        field :billing_reasons, -> { Whop_sdk::Payments::Types::ListPaymentsRequestBillingReasonsItem }, optional: true, nullable: false
+
+        field :currencies, -> { String }, optional: true, nullable: false
+
+        field :plan_ids, -> { String }, optional: true, nullable: false
+
+        field :product_ids, -> { String }, optional: true, nullable: false
+
+        field :payment_methods, -> { Whop_sdk::Payments::Types::ListPaymentsRequestPaymentMethodsItem }, optional: true, nullable: false
+
+        field :tracking_states, -> { Whop_sdk::Payments::Types::ListPaymentsRequestTrackingStatesItem }, optional: true, nullable: false
+
+        field :refunded_after, -> { String }, optional: true, nullable: false
+
+        field :refunded_before, -> { String }, optional: true, nullable: false
+
+        field :dispute_alerted_after, -> { String }, optional: true, nullable: false
+
+        field :dispute_alerted_before, -> { String }, optional: true, nullable: false
+
+        field :dispute_created_after, -> { String }, optional: true, nullable: false
+
+        field :dispute_created_before, -> { String }, optional: true, nullable: false
+
         field :order, -> { Whop_sdk::Payments::Types::ListPaymentsRequestOrder }, optional: true, nullable: false
 
         field :direction, -> { Whop_sdk::Payments::Types::ListPaymentsRequestDirection }, optional: true, nullable: false

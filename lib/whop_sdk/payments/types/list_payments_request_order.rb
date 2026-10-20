@@ -8,6 +8,7 @@ module Whop_sdk
 
         CREATED_AT = "created_at"
         PAID_AT = "paid_at"
+        AMOUNT = "amount"
       end
     end
   end

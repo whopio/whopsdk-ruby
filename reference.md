@@ -29904,6 +29904,168 @@ client.payments.create(account_id: "biz_xxxxxxxxxxxxxx")
 </dl>
 </details>
 
+<details><summary><code>client.payments.<a href="/lib/whop_sdk/payments/client.rb">summary</a>() -> Whop_sdk::Payments::Types::SummaryPaymentsResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Totals up the same payments the list returns, so you can build status tabs and filter options without paging through them. Takes the same filters as List Payments.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.payments.summary(
+  currencies: ["usd"],
+  plan_ids: ["plan_xxxxxxxxxxxxx"],
+  product_ids: ["prod_xxxxxxxxxxxxx"]
+)
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**groups:** `Whop_sdk::Payments::Types::SummaryPaymentsRequestGroupsItem` — Which breakdowns to return, keyed by these names under `groups`. Repeat the parameter to ask for several; omit it for all of them.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**account_id:** `String` — Only payments charged by this account, prefixed `biz_`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**statuses:** `Whop_sdk::Payments::Types::SummaryPaymentsRequestStatusesItem` — Only payments in any of these lifecycle states. Repeat the parameter to pass several.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**substatuses:** `Whop_sdk::Payments::Types::SummaryPaymentsRequestSubstatusesItem` — Only payments whose `substatus` is any of these. Repeat the parameter to pass several.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**billing_reasons:** `Whop_sdk::Payments::Types::SummaryPaymentsRequestBillingReasonsItem` — Only payments charged for any of these reasons. Repeat the parameter to pass several.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**currencies:** `String` — Only payments presented in any of these three-letter currencies. Repeat the parameter to pass several.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**plan_ids:** `String` — Only payments priced by any of these variants, each prefixed `plan_`. Repeat the parameter to pass several.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**product_ids:** `String` — Only payments for any of these products, each prefixed `prod_`. Repeat the parameter to pass several.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**payment_methods:** `Whop_sdk::Payments::Types::SummaryPaymentsRequestPaymentMethodsItem` — Only payments paid with any of these methods. Repeat the parameter to pass several.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**tracking_states:** `Whop_sdk::Payments::Types::SummaryPaymentsRequestTrackingStatesItem` — Only payments in any of these tracking states. Requires `account_id` and the shipment:basic:read permission.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**created_after:** `String` — Only payments created after this ISO 8601 timestamp.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**created_before:** `String` — Only payments created before this ISO 8601 timestamp.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**query:** `String` — Search payments by user ID, membership ID, user email, name, or username.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Whop_sdk::Payments::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.payments.<a href="/lib/whop_sdk/payments/client.rb">retrieve</a>(id:) -> Whop_sdk::Types::Payment</code></summary>
 <dl>
 <dd>

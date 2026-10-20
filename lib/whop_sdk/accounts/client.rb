@@ -574,11 +574,6 @@ module Whop_sdk
         @fees ||= Whop_sdk::Accounts::Fees::Client.new(client: @client, base_url: @base_url, environment: @environment)
       end
 
-      # @return [Whop_sdk::FinancingApplications::Client]
-      def financing_applications
-        @financing_applications ||= Whop_sdk::Accounts::FinancingApplications::Client.new(client: @client, base_url: @base_url, environment: @environment)
-      end
-
       # @return [Whop_sdk::FinancingProviders::Client]
       def financing_providers
         @financing_providers ||= Whop_sdk::Accounts::FinancingProviders::Client.new(client: @client, base_url: @base_url, environment: @environment)

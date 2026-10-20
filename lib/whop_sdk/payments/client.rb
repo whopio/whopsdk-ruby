@@ -38,6 +38,20 @@ module Whop_sdk
       # @option params [String, nil] :plan_id
       # @option params [String, nil] :created_before
       # @option params [String, nil] :created_after
+      # @option params [Whop_sdk::Payments::Types::ListPaymentsRequestStatusesItem, nil] :statuses
+      # @option params [Whop_sdk::Payments::Types::ListPaymentsRequestSubstatusesItem, nil] :substatuses
+      # @option params [Whop_sdk::Payments::Types::ListPaymentsRequestBillingReasonsItem, nil] :billing_reasons
+      # @option params [String, nil] :currencies
+      # @option params [String, nil] :plan_ids
+      # @option params [String, nil] :product_ids
+      # @option params [Whop_sdk::Payments::Types::ListPaymentsRequestPaymentMethodsItem, nil] :payment_methods
+      # @option params [Whop_sdk::Payments::Types::ListPaymentsRequestTrackingStatesItem, nil] :tracking_states
+      # @option params [String, nil] :refunded_after
+      # @option params [String, nil] :refunded_before
+      # @option params [String, nil] :dispute_alerted_after
+      # @option params [String, nil] :dispute_alerted_before
+      # @option params [String, nil] :dispute_created_after
+      # @option params [String, nil] :dispute_created_before
       # @option params [Whop_sdk::Payments::Types::ListPaymentsRequestOrder, nil] :order
       # @option params [Whop_sdk::Payments::Types::ListPaymentsRequestDirection, nil] :direction
       # @option params [Integer, nil] :first
@@ -46,7 +60,11 @@ module Whop_sdk
       # @option params [String, nil] :before
       #
       # @example
-      #   client.payments.list
+      #   client.payments.list(
+      #     currencies: ["eur"],
+      #     plan_ids: ["plan_xxxxxxxxxxxxx"],
+      #     product_ids: ["prod_xxxxxxxxxxxxx"]
+      #   )
       #
       # @return [Whop_sdk::Payments::Types::ListPaymentsResponse]
       def list(request_options: {}, **params)
@@ -65,6 +83,20 @@ module Whop_sdk
         query_params["plan_id"] = params[:plan_id] if params.key?(:plan_id)
         query_params["created_before"] = params[:created_before] if params.key?(:created_before)
         query_params["created_after"] = params[:created_after] if params.key?(:created_after)
+        query_params["statuses"] = params[:statuses] if params.key?(:statuses)
+        query_params["substatuses"] = params[:substatuses] if params.key?(:substatuses)
+        query_params["billing_reasons"] = params[:billing_reasons] if params.key?(:billing_reasons)
+        query_params["currencies"] = params[:currencies] if params.key?(:currencies)
+        query_params["plan_ids"] = params[:plan_ids] if params.key?(:plan_ids)
+        query_params["product_ids"] = params[:product_ids] if params.key?(:product_ids)
+        query_params["payment_methods"] = params[:payment_methods] if params.key?(:payment_methods)
+        query_params["tracking_states"] = params[:tracking_states] if params.key?(:tracking_states)
+        query_params["refunded_after"] = params[:refunded_after] if params.key?(:refunded_after)
+        query_params["refunded_before"] = params[:refunded_before] if params.key?(:refunded_before)
+        query_params["dispute_alerted_after"] = params[:dispute_alerted_after] if params.key?(:dispute_alerted_after)
+        query_params["dispute_alerted_before"] = params[:dispute_alerted_before] if params.key?(:dispute_alerted_before)
+        query_params["dispute_created_after"] = params[:dispute_created_after] if params.key?(:dispute_created_after)
+        query_params["dispute_created_before"] = params[:dispute_created_before] if params.key?(:dispute_created_before)
         query_params["order"] = params[:order] if params.key?(:order)
         query_params["direction"] = params[:direction] if params.key?(:direction)
         query_params["first"] = params[:first] if params.key?(:first)

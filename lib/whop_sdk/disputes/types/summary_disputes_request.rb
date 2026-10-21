@@ -15,6 +15,8 @@ module Whop_sdk
         field :created_before, -> { String }, optional: true, nullable: false
 
         field :created_after, -> { String }, optional: true, nullable: false
+
+        field :query, -> { String }, optional: true, nullable: false
       end
     end
   end

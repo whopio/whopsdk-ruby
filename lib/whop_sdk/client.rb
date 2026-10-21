@@ -308,6 +308,11 @@ module Whop_sdk
       @ledger_accounts ||= Whop_sdk::LedgerAccounts::Client.new(client: @raw_client, base_url: @base_url, environment: @environment)
     end
 
+    # @return [Whop_sdk::Livestreams::Client]
+    def livestreams
+      @livestreams ||= Whop_sdk::Livestreams::Client.new(client: @raw_client, base_url: @base_url, environment: @environment)
+    end
+
     # @return [Whop_sdk::Media::Client]
     def media
       @media ||= Whop_sdk::Media::Client.new(client: @raw_client, base_url: @base_url, environment: @environment)

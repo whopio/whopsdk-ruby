@@ -18,6 +18,8 @@ module Whop_sdk
 
         field :query, -> { String }, optional: true, nullable: false
 
+        field :include_connected_accounts, -> { Internal::Types::Boolean }, optional: true, nullable: false
+
         field :member_id, -> { String }, optional: true, nullable: false
 
         field :membership_id, -> { String }, optional: true, nullable: false

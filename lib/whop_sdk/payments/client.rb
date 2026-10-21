@@ -32,6 +32,7 @@ module Whop_sdk
       # @option params [String, nil] :currency
       # @option params [String, nil] :user_id
       # @option params [String, nil] :query
+      # @option params [Boolean, nil] :include_connected_accounts
       # @option params [String, nil] :member_id
       # @option params [String, nil] :membership_id
       # @option params [String, nil] :product_id
@@ -77,6 +78,7 @@ module Whop_sdk
         query_params["currency"] = params[:currency] if params.key?(:currency)
         query_params["user_id"] = params[:user_id] if params.key?(:user_id)
         query_params["query"] = params[:query] if params.key?(:query)
+        query_params["include_connected_accounts"] = params[:include_connected_accounts] if params.key?(:include_connected_accounts)
         query_params["member_id"] = params[:member_id] if params.key?(:member_id)
         query_params["membership_id"] = params[:membership_id] if params.key?(:membership_id)
         query_params["product_id"] = params[:product_id] if params.key?(:product_id)
@@ -196,6 +198,7 @@ module Whop_sdk
       # @option params [String, nil] :created_after
       # @option params [String, nil] :created_before
       # @option params [String, nil] :query
+      # @option params [Boolean, nil] :include_connected_accounts
       #
       # @example
       #   client.payments.summary(
@@ -221,6 +224,7 @@ module Whop_sdk
         query_params["created_after"] = params[:created_after] if params.key?(:created_after)
         query_params["created_before"] = params[:created_before] if params.key?(:created_before)
         query_params["query"] = params[:query] if params.key?(:query)
+        query_params["include_connected_accounts"] = params[:include_connected_accounts] if params.key?(:include_connected_accounts)
 
         request = Whop_sdk::Internal::JSON::Request.new(
           base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),

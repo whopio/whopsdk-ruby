@@ -29510,6 +29510,14 @@ client.payments.list(
 <dl>
 <dd>
 
+**include_connected_accounts:** `Internal::Types::Boolean` — Only for searches: with `query`, also search the account's connected accounts. Requires `account_id` and `query`, and is a 400 without either; it never lists connected accounts' payments on its own. Matches on payment, user or membership ID, buyer email, or a card's first 6 or 8 digits and last 4 separated by a space or dash (`424242 4242`). Free-text queries such as a name search only the named account. Connected accounts' payments are returned only for connected accounts you can read payments on.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **member_id:** `String` — Only payments made by this member, prefixed `mber_`.
     
 </dd>
@@ -30055,6 +30063,14 @@ client.payments.summary(
 <dd>
 
 **query:** `String` — Search payments by user ID, membership ID, user email, name, or username.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**include_connected_accounts:** `Internal::Types::Boolean` — Only for searches: with `query`, also search the account's connected accounts. Requires `account_id` and `query`, and is a 400 without either; it never lists connected accounts' payments on its own. Matches on payment, user or membership ID, buyer email, or a card's first 6 or 8 digits and last 4 separated by a space or dash (`424242 4242`). Free-text queries such as a name search only the named account. Connected accounts' payments are returned only for connected accounts you can read payments on.
     
 </dd>
 </dl>

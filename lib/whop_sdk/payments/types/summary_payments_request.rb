@@ -28,6 +28,18 @@ module Whop_sdk
 
         field :created_before, -> { String }, optional: true, nullable: false
 
+        field :refunded_after, -> { String }, optional: true, nullable: false
+
+        field :refunded_before, -> { String }, optional: true, nullable: false
+
+        field :dispute_alerted_after, -> { String }, optional: true, nullable: false
+
+        field :dispute_alerted_before, -> { String }, optional: true, nullable: false
+
+        field :dispute_created_after, -> { String }, optional: true, nullable: false
+
+        field :dispute_created_before, -> { String }, optional: true, nullable: false
+
         field :query, -> { String }, optional: true, nullable: false
 
         field :include_connected_accounts, -> { Internal::Types::Boolean }, optional: true, nullable: false

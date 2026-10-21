@@ -197,6 +197,12 @@ module Whop_sdk
       # @option params [Whop_sdk::Payments::Types::SummaryPaymentsRequestTrackingStatesItem, nil] :tracking_states
       # @option params [String, nil] :created_after
       # @option params [String, nil] :created_before
+      # @option params [String, nil] :refunded_after
+      # @option params [String, nil] :refunded_before
+      # @option params [String, nil] :dispute_alerted_after
+      # @option params [String, nil] :dispute_alerted_before
+      # @option params [String, nil] :dispute_created_after
+      # @option params [String, nil] :dispute_created_before
       # @option params [String, nil] :query
       # @option params [Boolean, nil] :include_connected_accounts
       #
@@ -223,6 +229,12 @@ module Whop_sdk
         query_params["tracking_states"] = params[:tracking_states] if params.key?(:tracking_states)
         query_params["created_after"] = params[:created_after] if params.key?(:created_after)
         query_params["created_before"] = params[:created_before] if params.key?(:created_before)
+        query_params["refunded_after"] = params[:refunded_after] if params.key?(:refunded_after)
+        query_params["refunded_before"] = params[:refunded_before] if params.key?(:refunded_before)
+        query_params["dispute_alerted_after"] = params[:dispute_alerted_after] if params.key?(:dispute_alerted_after)
+        query_params["dispute_alerted_before"] = params[:dispute_alerted_before] if params.key?(:dispute_alerted_before)
+        query_params["dispute_created_after"] = params[:dispute_created_after] if params.key?(:dispute_created_after)
+        query_params["dispute_created_before"] = params[:dispute_created_before] if params.key?(:dispute_created_before)
         query_params["query"] = params[:query] if params.key?(:query)
         query_params["include_connected_accounts"] = params[:include_connected_accounts] if params.key?(:include_connected_accounts)
 

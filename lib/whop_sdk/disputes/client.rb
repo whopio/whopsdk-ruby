@@ -35,6 +35,7 @@ module Whop_sdk
       # @option params [String, nil] :created_before
       # @option params [String, nil] :created_after
       # @option params [String, nil] :query
+      # @option params [Boolean, nil] :include_connected_accounts
       #
       # @example
       #   client.disputes.list
@@ -55,6 +56,7 @@ module Whop_sdk
         query_params["created_before"] = params[:created_before] if params.key?(:created_before)
         query_params["created_after"] = params[:created_after] if params.key?(:created_after)
         query_params["query"] = params[:query] if params.key?(:query)
+        query_params["include_connected_accounts"] = params[:include_connected_accounts] if params.key?(:include_connected_accounts)
 
         Whop_sdk::Internal::CursorItemIterator.new(
           cursor_field: :end_cursor,
@@ -102,6 +104,7 @@ module Whop_sdk
       # @option params [String, nil] :created_before
       # @option params [String, nil] :created_after
       # @option params [String, nil] :query
+      # @option params [Boolean, nil] :include_connected_accounts
       #
       # @example
       #   client.disputes.summary
@@ -117,6 +120,7 @@ module Whop_sdk
         query_params["created_before"] = params[:created_before] if params.key?(:created_before)
         query_params["created_after"] = params[:created_after] if params.key?(:created_after)
         query_params["query"] = params[:query] if params.key?(:query)
+        query_params["include_connected_accounts"] = params[:include_connected_accounts] if params.key?(:include_connected_accounts)
 
         request = Whop_sdk::Internal::JSON::Request.new(
           base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),

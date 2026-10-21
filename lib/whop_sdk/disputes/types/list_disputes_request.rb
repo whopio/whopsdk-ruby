@@ -27,6 +27,8 @@ module Whop_sdk
         field :created_after, -> { String }, optional: true, nullable: false
 
         field :query, -> { String }, optional: true, nullable: false
+
+        field :include_connected_accounts, -> { Internal::Types::Boolean }, optional: true, nullable: false
       end
     end
   end

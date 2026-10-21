@@ -6,6 +6,8 @@ module Whop_sdk
       class UpdateVerificationsResponseRequestedInformationItem < Internal::Types::Model
         field :action_url, -> { String }, optional: true, nullable: false
 
+        field :alternative_document_label, -> { String }, optional: true, nullable: false
+
         field :details_label, -> { String }, optional: true, nullable: false
 
         field :details_required, -> { Internal::Types::Boolean }, optional: true, nullable: false

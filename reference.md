@@ -15216,6 +15216,14 @@ client.disputes.list
 <dl>
 <dd>
 
+**query:** `String` — Search disputes by dispute ID, payment ID, user ID, membership ID, user email, name, or username. Email filtering requires the member:email:read permission.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **request_options:** `Whop_sdk::Disputes::RequestOptions` 
     
 </dd>
@@ -15311,6 +15319,14 @@ client.disputes.summary
 <dd>
 
 **created_after:** `String` — Only disputes opened after this ISO 8601 timestamp.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**query:** `String` — Search disputes by dispute ID, payment ID, user ID, membership ID, user email, name, or username. Email filtering requires the member:email:read permission.
     
 </dd>
 </dl>

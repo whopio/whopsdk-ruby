@@ -46735,6 +46735,14 @@ client.partners.businesses.update(id: "id")
 <dl>
 <dd>
 
+**deal_closed_reason:** `String` — How the partner closed this business. Send it on its own to save it; the response is then the business ID and the saved reason.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **withdraw_projections:** `Internal::Types::Boolean` — Remove unaccepted projections and invalidate the offer. The original CPA term is retained if projections are later added again.
     
 </dd>

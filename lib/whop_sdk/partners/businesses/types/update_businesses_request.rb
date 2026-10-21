@@ -9,6 +9,8 @@ module Whop_sdk
 
           field :annual_processing_usd, -> { String }, optional: true, nullable: false
 
+          field :deal_closed_reason, -> { String }, optional: true, nullable: false
+
           field :withdraw_projections, -> { Internal::Types::Boolean }, optional: true, nullable: false
         end
       end

@@ -17,6 +17,8 @@ module Whop_sdk
 
           field :created_at, -> { String }, optional: false, nullable: false
 
+          field :deal_closed_reason, -> { String }, optional: false, nullable: true
+
           field :earnings_usd, -> { Whop_sdk::Partners::Businesses::Types::RetrieveBusinessesResponseEarningsUsd }, optional: false, nullable: false
 
           field :first_tier_partner, -> { Whop_sdk::Partners::Businesses::Types::RetrieveBusinessesResponseFirstTierPartner }, optional: false, nullable: true

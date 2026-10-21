@@ -30391,6 +30391,54 @@ client.payments.summary(
 <dl>
 <dd>
 
+**refunded_after:** `String` — Only payments refunded after this ISO 8601 timestamp.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**refunded_before:** `String` — Only payments refunded before this ISO 8601 timestamp.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**dispute_alerted_after:** `String` — Only payments with a dispute alert after this ISO 8601 timestamp.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**dispute_alerted_before:** `String` — Only payments with a dispute alert before this ISO 8601 timestamp.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**dispute_created_after:** `String` — Only payments with a dispute opened after this ISO 8601 timestamp.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**dispute_created_before:** `String` — Only payments with a dispute opened before this ISO 8601 timestamp.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **query:** `String` — Search payments by user ID, membership ID, user email, name, or username.
     
 </dd>

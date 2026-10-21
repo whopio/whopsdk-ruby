@@ -6,6 +6,7 @@ module Whop_sdk
       extend Whop_sdk::Internal::Types::Enum
 
       META = "meta"
+      TIKTOK = "tiktok"
     end
   end
 end

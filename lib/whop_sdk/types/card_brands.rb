@@ -50,6 +50,10 @@ module Whop_sdk
       NYCE = "nyce"
       PULSE = "pulse"
       STAR = "star"
+      EFTPOS = "eftpos"
+      ALELO = "alelo"
+      EDENRED = "edenred"
+      SODEXO = "sodexo"
       UNKNOWN = "unknown"
     end
   end

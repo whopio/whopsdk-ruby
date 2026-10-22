@@ -93,6 +93,11 @@ module Whop_sdk
       @app_builds ||= Whop_sdk::AppBuilds::Client.new(client: @raw_client, base_url: @base_url, environment: @environment)
     end
 
+    # @return [Whop_sdk::AppInstallations::Client]
+    def app_installations
+      @app_installations ||= Whop_sdk::AppInstallations::Client.new(client: @raw_client, base_url: @base_url, environment: @environment)
+    end
+
     # @return [Whop_sdk::Apps::Client]
     def apps
       @apps ||= Whop_sdk::Apps::Client.new(client: @raw_client, base_url: @base_url, environment: @environment)

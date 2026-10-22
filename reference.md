@@ -32063,10 +32063,7 @@ Creates a short-lived, provider-backed quote of a payout's fee, exchange rate, a
 <dd>
 
 ```ruby
-client.payouts.create_quote(
-  amount: 6762.41,
-  payout_method_id: "potk_xxxxxxxxxxxxxx"
-)
+client.payouts.create_quote(payout_method_id: "potk_xxxxxxxxxxxxxx")
 ```
 </dd>
 </dl>
@@ -32089,7 +32086,7 @@ client.payouts.create_quote(
 <dl>
 <dd>
 
-**amount:** `Integer` — The amount to pay out in the specified currency.
+**amount:** `Integer` — The amount to pay out in the specified currency, fees included. Provide exactly one of `amount` or `recipient_amount`.
     
 </dd>
 </dl>
@@ -32122,6 +32119,14 @@ client.payouts.create_quote(
 <dd>
 
 **platform_covers_fees:** `Internal::Types::Boolean` — Whether the parent platform covers the payout fee instead of the account being paid out.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**recipient_amount:** `Integer` — The amount the recipient should receive, with fees added on top. When the payout method pays out in `currency`, the quote's `destination_amount` covers it; otherwise its `net_amount` does. Provide exactly one of `amount` or `recipient_amount`.
     
 </dd>
 </dl>

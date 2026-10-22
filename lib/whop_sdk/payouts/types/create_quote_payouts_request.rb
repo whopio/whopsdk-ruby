@@ -6,7 +6,7 @@ module Whop_sdk
       class CreateQuotePayoutsRequest < Internal::Types::Model
         field :account_id, -> { String }, optional: true, nullable: false
 
-        field :amount, -> { Integer }, optional: false, nullable: false
+        field :amount, -> { Integer }, optional: true, nullable: false
 
         field :currency, -> { String }, optional: true, nullable: false
 
@@ -15,6 +15,8 @@ module Whop_sdk
         field :payout_method_id, -> { String }, optional: false, nullable: false
 
         field :platform_covers_fees, -> { Internal::Types::Boolean }, optional: true, nullable: false
+
+        field :recipient_amount, -> { Integer }, optional: true, nullable: false
 
         field :speed, -> { Whop_sdk::Payouts::Types::CreateQuotePayoutsRequestSpeed }, optional: true, nullable: false
 

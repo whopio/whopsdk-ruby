@@ -137,10 +137,7 @@ module Whop_sdk
       # @option request_options [Integer] :timeout_in_seconds
       #
       # @example
-      #   client.payouts.create_quote(
-      #     amount: 6762.41,
-      #     payout_method_id: "potk_xxxxxxxxxxxxxx"
-      #   )
+      #   client.payouts.create_quote(payout_method_id: "potk_xxxxxxxxxxxxxx")
       #
       # @return [Whop_sdk::Payouts::Types::CreateQuotePayoutsResponse]
       def create_quote(request_options: {}, **params)

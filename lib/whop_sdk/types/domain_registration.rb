@@ -17,6 +17,8 @@ module Whop_sdk
 
       field :purchase_url, -> { String }, optional: false, nullable: true
 
+      field :renewal_price, -> { Whop_sdk::Types::Money }, optional: false, nullable: true
+
       field :state, -> { Whop_sdk::Types::DomainRegistrationState }, optional: false, nullable: false
     end
   end

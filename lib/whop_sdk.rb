@@ -1600,6 +1600,7 @@ require_relative "whop_sdk/payment_rules/types/replace_payment_rules_request_con
 require_relative "whop_sdk/payment_rules/types/replace_payment_rules_request_conditions"
 require_relative "whop_sdk/payments/types/list_payments_request_mode"
 require_relative "whop_sdk/payments/types/list_payments_request_status"
+require_relative "whop_sdk/payments/types/list_payments_request_tracking_status"
 require_relative "whop_sdk/payments/types/list_payments_request_billing_reason"
 require_relative "whop_sdk/payments/types/list_payments_request_statuses_item"
 require_relative "whop_sdk/payments/types/list_payments_request_substatuses_item"

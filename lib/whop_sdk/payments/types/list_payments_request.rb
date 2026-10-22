@@ -10,6 +10,8 @@ module Whop_sdk
 
         field :status, -> { Whop_sdk::Payments::Types::ListPaymentsRequestStatus }, optional: true, nullable: false
 
+        field :tracking_status, -> { Whop_sdk::Payments::Types::ListPaymentsRequestTrackingStatus }, optional: true, nullable: false
+
         field :billing_reason, -> { Whop_sdk::Payments::Types::ListPaymentsRequestBillingReason }, optional: true, nullable: false
 
         field :currency, -> { String }, optional: true, nullable: false

@@ -12,6 +12,8 @@ module Whop_sdk
 
         field :cardholder, -> { Whop_sdk::Cards::Types::CreateCardsRequestCardholder }, optional: true, nullable: false
 
+        field :kind, -> { Whop_sdk::Cards::Types::CreateCardsRequestKind }, optional: true, nullable: false
+
         field :name, -> { String }, optional: true, nullable: false
 
         field :spend_limit, -> { Integer }, optional: true, nullable: false

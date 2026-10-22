@@ -123,6 +123,51 @@ module Whop_sdk
         end
       end
 
+      # Finds the delivery for a purchase from an account with customer tracking turned on, using exactly one order or
+      # tracking number plus the buyer's current receipt email. No authentication is required and no sign-in or session
+      # is created. Email matching ignores case and surrounding whitespace, but dots and +tags must match. Every miss
+      # returns the same 404: an unknown account, tracking turned off, a wrong number or email, an unpaid order or a
+      # purchase with nothing to ship. `shipment` is `null` while a paid physical purchase has no tracking yet. Limited
+      # to 30 attempts per five minutes per client IP. Responses are never cached or replayed with Idempotency-Key.
+      #
+      # @param request_options [Hash]
+      # @param params [Whop_sdk::Shipments::Types::LookupShipmentsRequest]
+      # @option request_options [String] :base_url
+      # @option request_options [Hash{String => Object}] :additional_headers
+      # @option request_options [Hash{String => Object}] :additional_query_parameters
+      # @option request_options [Hash{String => Object}] :additional_body_parameters
+      # @option request_options [Integer] :timeout_in_seconds
+      #
+      # @example
+      #   client.shipments.lookup(
+      #     account_id: "biz_xxxxxxxxxxxxxx",
+      #     email: "marcus@shinetime.example"
+      #   )
+      #
+      # @return [Whop_sdk::Types::ShipmentLookup]
+      def lookup(request_options: {}, **params)
+        params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
+        request = Whop_sdk::Internal::JSON::Request.new(
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
+          method: "POST",
+          path: "shipments/lookup",
+          body: Whop_sdk::Shipments::Types::LookupShipmentsRequest.new(params).to_h,
+          request_options: request_options
+        )
+        begin
+          response = @client.send(request)
+        rescue Net::HTTPRequestTimeout
+          raise Whop_sdk::Errors::TimeoutError
+        end
+        code = response.code.to_i
+        if code.between?(200, 299)
+          (response.body.to_s.empty? ? nil : Whop_sdk::Types::ShipmentLookup.load(response.body))
+        else
+          error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
+          raise error_class.new(response.body, code: code)
+        end
+      end
+
       # Retrieves a shipment by its ID, or by the ID of the payment it fulfills.
       #
       # @param request_options [Hash]

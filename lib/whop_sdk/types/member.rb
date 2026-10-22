@@ -11,6 +11,8 @@ module Whop_sdk
 
       field :display_name, -> { String }, optional: false, nullable: false
 
+      field :earnings_usd, -> { Whop_sdk::Types::UserEarningsAmount }, optional: false, nullable: true
+
       field :email, -> { String }, optional: false, nullable: true
 
       field :id, -> { String }, optional: false, nullable: false

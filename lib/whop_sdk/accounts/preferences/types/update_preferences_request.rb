@@ -23,6 +23,8 @@ module Whop_sdk
 
           field :covers_connected_account_negative_balances, -> { Internal::Types::Boolean }, optional: true, nullable: false
 
+          field :customer_tracking, -> { Whop_sdk::Accounts::Preferences::Types::UpdatePreferencesRequestCustomerTracking }, optional: true, nullable: false
+
           field :dispute_fighter_enabled, -> { Internal::Types::Boolean }, optional: true, nullable: false
 
           field :economic_intelligence_auto_renew, -> { Internal::Types::Boolean }, optional: true, nullable: false

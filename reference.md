@@ -11265,7 +11265,7 @@ client.cards.create
 <dl>
 <dd>
 
-**assigned_user_id:** `String` — The account member (a user_ identifier) to assign the card to. Required for business card issuing accounts, and whenever a company API key files an account's first card application.
+**assigned_user_id:** `String` — The account member (a user_ identifier) to assign the card to. Required for business card issuing accounts. When this call files the card application, the member applies with their identity; a company API key that sends neither this nor kind is refused.
     
 </dd>
 </dl>
@@ -11282,6 +11282,14 @@ client.cards.create
 <dd>
 
 **cardholder:** `Whop_sdk::Cards::Types::CreateCardsRequestCardholder` — Details for a company card's assigned member when they are not registered as a cardholder yet. Send with billing to register them and start provisioning in one call instead of sending them an onboarding invitation. The legal name comes from the member's approved identity verification when they have one, and from these fields when they do not.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**kind:** `Whop_sdk::Cards::Types::CreateCardsRequestKind` — Who the card application verifies, set only on the call that files it; sending it once the account has an application is a 400. `business` applies as the account with its approved KYB. `individual` applies as a person: assigned_user_id when given, otherwise the account owner, using the identity verified on the account. Omit it to apply as the business when its KYB is approved, and as an individual otherwise.
     
 </dd>
 </dl>

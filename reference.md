@@ -30098,6 +30098,14 @@ client.payments.list(
 <dl>
 <dd>
 
+**tracking_status:** `Whop_sdk::Payments::Types::ListPaymentsRequestTrackingStatus` — Only payments whose most recently attached kept shipment is in this tracking state. `missing_tracking` selects paid payments with a captured shipping address and no kept shipment, excluding fully refunded payments. `needs_tracking` selects payments with an open pre-shipment funds hold and no kept shipment. Shipment states do not imply a payment or refund state. Requires `shipment:basic:read` as well as `payment:basic:read`; user-wide lists include only accounts readable under both scopes. Only supported with `mode=account_sales`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **billing_reason:** `Whop_sdk::Payments::Types::ListPaymentsRequestBillingReason` — Only payments charged for this reason. `subscription_cycle` also matches renewals recorded as `subscription_update`.
     
 </dd>

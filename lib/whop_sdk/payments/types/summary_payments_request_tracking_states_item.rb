@@ -17,6 +17,7 @@ module Whop_sdk
         CANCELLED = "cancelled"
         ERROR = "error"
         NEEDS_TRACKING = "needs_tracking"
+        MISSING_TRACKING = "missing_tracking"
       end
     end
   end

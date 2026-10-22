@@ -28,6 +28,7 @@ module Whop_sdk
       # @option params [Whop_sdk::Payments::Types::ListPaymentsRequestMode, nil] :mode
       # @option params [String, nil] :account_id
       # @option params [Whop_sdk::Payments::Types::ListPaymentsRequestStatus, nil] :status
+      # @option params [Whop_sdk::Payments::Types::ListPaymentsRequestTrackingStatus, nil] :tracking_status
       # @option params [Whop_sdk::Payments::Types::ListPaymentsRequestBillingReason, nil] :billing_reason
       # @option params [String, nil] :currency
       # @option params [String, nil] :user_id
@@ -74,6 +75,7 @@ module Whop_sdk
         query_params["mode"] = params[:mode] if params.key?(:mode)
         query_params["account_id"] = params[:account_id] if params.key?(:account_id)
         query_params["status"] = params[:status] if params.key?(:status)
+        query_params["tracking_status"] = params[:tracking_status] if params.key?(:tracking_status)
         query_params["billing_reason"] = params[:billing_reason] if params.key?(:billing_reason)
         query_params["currency"] = params[:currency] if params.key?(:currency)
         query_params["user_id"] = params[:user_id] if params.key?(:user_id)

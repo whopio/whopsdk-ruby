@@ -109,6 +109,8 @@ module Whop_sdk
       DEVELOPER_MANAGE_WEBHOOK = "developer:manage_webhook"
       DEVELOPER_LOGS_READ = "developer:logs:read"
       DEVELOPER_MANAGE_BUILDS = "developer:manage_builds"
+      DEVELOPER_APP_INSTALLATION_READ = "developer:app_installation:read"
+      DEVELOPER_APP_INSTALLATION_UPDATE = "developer:app_installation:update"
       DEVELOPER_UPDATE_APP = "developer:update_app"
       DEVELOPER_UPDATE_APP_AUTHORIZATION = "developer:update_app_authorization"
       EVENT_CREATE = "event:create"

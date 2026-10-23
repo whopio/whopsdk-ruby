@@ -5,6 +5,8 @@ module Whop_sdk
     module Types
       # The charge to a saved payment method. Null unless `payment_method_id` was passed.
       class CreateDepositsResponseMethodsCard < Internal::Types::Model
+        field :metadata, -> { Internal::Types::Hash[String, String] }, optional: false, nullable: true
+
         field :payment_id, -> { String }, optional: false, nullable: false
 
         field :payment_method_id, -> { String }, optional: false, nullable: false

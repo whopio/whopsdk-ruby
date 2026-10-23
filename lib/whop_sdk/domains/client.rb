@@ -45,6 +45,7 @@ module Whop_sdk
       # @option params [Whop_sdk::Domains::Types::ListDomainsRequestApplePay, nil] :apple_pay
       # @option params [Whop_sdk::Domains::Types::ListDomainsRequestPixel, nil] :pixel
       # @option params [Whop_sdk::Domains::Types::ListDomainsRequestEmail, nil] :email
+      # @option params [Whop_sdk::Domains::Types::ListDomainsRequestTransfer, nil] :transfer
       #
       # @example
       #   client.domains.list(tlds: ["com"])
@@ -72,6 +73,7 @@ module Whop_sdk
         query_params["apple_pay"] = params[:apple_pay] if params.key?(:apple_pay)
         query_params["pixel"] = params[:pixel] if params.key?(:pixel)
         query_params["email"] = params[:email] if params.key?(:email)
+        query_params["transfer"] = params[:transfer] if params.key?(:transfer)
 
         Whop_sdk::Internal::CursorItemIterator.new(
           cursor_field: :end_cursor,

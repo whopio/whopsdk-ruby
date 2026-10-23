@@ -41,6 +41,8 @@ module Whop_sdk
         field :pixel, -> { Whop_sdk::Domains::Types::ListDomainsRequestPixel }, optional: true, nullable: false
 
         field :email, -> { Whop_sdk::Domains::Types::ListDomainsRequestEmail }, optional: true, nullable: false
+
+        field :transfer, -> { Whop_sdk::Domains::Types::ListDomainsRequestTransfer }, optional: true, nullable: false
       end
     end
   end

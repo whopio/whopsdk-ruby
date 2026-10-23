@@ -23652,10 +23652,7 @@ client.identity_profiles.list_verifications_identity_profile(
 <dl>
 <dd>
 
-Returns a paginated list of invoices for an account, with optional filtering by product, status, collection method, and creation date.
-
-Required permissions:
- - `invoice:basic:read`
+Lists receipt-backed invoices for accounts the caller can read. Legacy invoices are excluded.
 </dd>
 </dl>
 </dd>
@@ -23670,13 +23667,7 @@ Required permissions:
 <dd>
 
 ```ruby
-client.invoices.list(
-  first: 42,
-  last: 42,
-  created_before: "2023-12-01T05:00:00Z",
-  created_after: "2023-12-01T05:00:00Z",
-  account_id: "biz_xxxxxxxxxxxxxx"
-)
+client.invoices.list
 ```
 </dd>
 </dl>
@@ -23691,7 +23682,7 @@ client.invoices.list(
 <dl>
 <dd>
 
-**after:** `String` — Returns the elements in the list that come after the specified cursor.
+**account_id:** `String` 
     
 </dd>
 </dl>
@@ -23699,7 +23690,7 @@ client.invoices.list(
 <dl>
 <dd>
 
-**before:** `String` — Returns the elements in the list that come before the specified cursor.
+**status:** `Whop_sdk::Invoices::Types::ListInvoicesRequestStatus` 
     
 </dd>
 </dl>
@@ -23707,7 +23698,7 @@ client.invoices.list(
 <dl>
 <dd>
 
-**first:** `Integer` — Returns the first _n_ elements from the list.
+**overdue:** `Internal::Types::Boolean` 
     
 </dd>
 </dl>
@@ -23715,7 +23706,7 @@ client.invoices.list(
 <dl>
 <dd>
 
-**last:** `Integer` — Returns the last _n_ elements from the list.
+**member_id:** `String` 
     
 </dd>
 </dl>
@@ -23723,7 +23714,7 @@ client.invoices.list(
 <dl>
 <dd>
 
-**direction:** `Whop_sdk::Types::Direction` 
+**product_id:** `String` 
     
 </dd>
 </dl>
@@ -23731,7 +23722,7 @@ client.invoices.list(
 <dl>
 <dd>
 
-**product_ids:** `String` — Filter invoices to only those associated with these specific product identifiers.
+**created_after:** `String` 
     
 </dd>
 </dl>
@@ -23739,7 +23730,7 @@ client.invoices.list(
 <dl>
 <dd>
 
-**collection_methods:** `Whop_sdk::Types::InvoiceCollectionMethods` — Filter invoices by their collection method.
+**created_before:** `String` 
     
 </dd>
 </dl>
@@ -23747,7 +23738,7 @@ client.invoices.list(
 <dl>
 <dd>
 
-**statuses:** `Whop_sdk::Types::InvoiceStatuses` — Filter invoices by their current status.
+**order:** `Whop_sdk::Invoices::Types::ListInvoicesRequestOrder` 
     
 </dd>
 </dl>
@@ -23755,7 +23746,7 @@ client.invoices.list(
 <dl>
 <dd>
 
-**order:** `Whop_sdk::Types::InvoicesSortableColumns` 
+**direction:** `Whop_sdk::Invoices::Types::ListInvoicesRequestDirection` 
     
 </dd>
 </dl>
@@ -23763,7 +23754,7 @@ client.invoices.list(
 <dl>
 <dd>
 
-**created_before:** `String` — Only return invoices created before this timestamp.
+**first:** `Integer` — Number of results to return from the start of the range.
     
 </dd>
 </dl>
@@ -23771,7 +23762,7 @@ client.invoices.list(
 <dl>
 <dd>
 
-**created_after:** `String` — Only return invoices created after this timestamp.
+**after:** `String` — Return results after this cursor. Use `page_info.end_cursor` from the previous response to fetch the next page.
     
 </dd>
 </dl>
@@ -23779,7 +23770,15 @@ client.invoices.list(
 <dl>
 <dd>
 
-**account_id:** `String` — The unique identifier of the company to list invoices for.
+**last:** `Integer` — Number of results to return from the end of the range.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**before:** `String` — Return results before this cursor. Use `page_info.start_cursor` from the previous response to fetch the previous page.
     
 </dd>
 </dl>
@@ -23811,13 +23810,7 @@ client.invoices.list(
 <dl>
 <dd>
 
-Create an invoice for a customer. The invoice can be charged automatically using a stored payment method, or sent to the customer for manual payment.
-
-Required permissions:
- - `invoice:create`
- - `member:email:read`
- - `member:basic:read`
- - `payment:basic:read`
+Creates a draft invoice backed by a receipt, with saved items, quantities, prices, and recipients. Issue the draft to resolve final tax and open the invoice. The pay_ ID stays the same when paid.
 </dd>
 </dl>
 </dd>
@@ -23834,11 +23827,7 @@ Required permissions:
 ```ruby
 client.invoices.create(
   account_id: "biz_xxxxxxxxxxxxxx",
-  collection_method: "send_invoice",
-  plan: {},
-  product: {
-    title: "title"
-  }
+  items: []
 )
 ```
 </dd>
@@ -23854,7 +23843,95 @@ client.invoices.create(
 <dl>
 <dd>
 
-**request:** `Whop_sdk::Invoices::Types::CreateInvoicesRequest` — Parameters for CreateInvoice
+**account_id:** `String` — The issuing account.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**billing_address:** `Whop_sdk::Invoices::Types::CreateInvoicesRequestBillingAddress` — Create a billing address linked to this member.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**buyer_fee_percentage:** `Integer` — The buyer's adjustable fee in percentage points, with at most two decimal places.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**customer_name:** `String` — The contact name when creating an email-only member.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**due_at:** `String` — When payment is due, as an ISO 8601 timestamp.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**email_address:** `String` — Resolve or create the member for this email, creating a Whop user when none exists. Mutually exclusive with member_id.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**items:** `Internal::Types::Array[Whop_sdk::Invoices::Types::CreateInvoicesRequestItemsItem]` — The one-time variants being invoiced, all in the same currency. Each variant may appear once; use quantity for multiple units. Product and price come from each variant. Multiple items require unlimited stock and compatible payment, tax, and access settings.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**mailing_address_id:** `String` — An address associated with the member. Mutually exclusive with billing_address.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**member_id:** `String` — The billed customer, a member of the account. Changing email recipients does not change this buyer.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**metadata:** `Internal::Types::Hash[String, String]` — Up to 50 caller-owned string key/value pairs.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**payment_method_id:** `String` — A saved payment method belonging to the member.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**recipient_emails:** `Internal::Types::Array[String]` — Email addresses saved for invoice delivery, independent of the billed customer. Saving them sends no email. Defaults to the customer email when omitted on create. Can be updated on draft, open, or uncollectible invoices.
     
 </dd>
 </dl>
@@ -23886,13 +23963,7 @@ client.invoices.create(
 <dl>
 <dd>
 
-Retrieves the details of an existing invoice.
-
-Required permissions:
- - `invoice:basic:read`
- - `member:email:read`
- - `member:basic:read`
- - `payment:basic:read`
+Retrieves a receipt-backed invoice by its pay_ ID.
 </dd>
 </dl>
 </dd>
@@ -23907,7 +23978,7 @@ Required permissions:
 <dd>
 
 ```ruby
-client.invoices.retrieve(id: "inv_xxxxxxxxxxxxxx")
+client.invoices.retrieve(id: "id")
 ```
 </dd>
 </dl>
@@ -23922,72 +23993,7 @@ client.invoices.retrieve(id: "inv_xxxxxxxxxxxxxx")
 <dl>
 <dd>
 
-**id:** `String` — The unique identifier of the invoice, or a secure token.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request_options:** `Whop_sdk::Invoices::RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.invoices.<a href="/lib/whop_sdk/invoices/client.rb">delete</a>(id:) -> Internal::Types::Boolean</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Delete a draft invoice.
-
-Required permissions:
- - `invoice:update`
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```ruby
-client.invoices.delete(id: "inv_xxxxxxxxxxxxxx")
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` — The unique identifier of the draft invoice to delete.
+**id:** `String` — The invoice's pay_ ID.
     
 </dd>
 </dl>
@@ -24019,13 +24025,7 @@ client.invoices.delete(id: "inv_xxxxxxxxxxxxxx")
 <dl>
 <dd>
 
-Update a draft invoice's details.
-
-Required permissions:
- - `invoice:update`
- - `member:email:read`
- - `member:basic:read`
- - `payment:basic:read`
+Updates draft invoice items and billing fields. Recipient-only updates are also allowed on unpaid invoices. Edit customer contact details through the member API.
 </dd>
 </dl>
 </dd>
@@ -24040,7 +24040,7 @@ Required permissions:
 <dd>
 
 ```ruby
-client.invoices.update(id: "inv_xxxxxxxxxxxxxx")
+client.invoices.update(id: "id")
 ```
 </dd>
 </dl>
@@ -24055,7 +24055,7 @@ client.invoices.update(id: "inv_xxxxxxxxxxxxxx")
 <dl>
 <dd>
 
-**id:** `String` — The unique identifier of the invoice to update.
+**id:** `String` — The invoice's pay_ ID.
     
 </dd>
 </dl>
@@ -24063,7 +24063,7 @@ client.invoices.update(id: "inv_xxxxxxxxxxxxxx")
 <dl>
 <dd>
 
-**automatically_finalizes_at:** `String` — The date and time when the invoice will be automatically finalized. For charge_automatically, triggers an automatic charge. For send_invoice, sends the invoice email at the specified time.
+**billing_address:** `Whop_sdk::Invoices::Types::UpdateInvoicesRequestBillingAddress` — Create a billing address linked to this member.
     
 </dd>
 </dl>
@@ -24071,7 +24071,7 @@ client.invoices.update(id: "inv_xxxxxxxxxxxxxx")
 <dl>
 <dd>
 
-**billing_address:** `Whop_sdk::Invoices::Types::UpdateInvoicesRequestBillingAddress` — Inline billing address to create or update a mailing address for this invoice.
+**buyer_fee_percentage:** `Integer` — The buyer's adjustable fee in percentage points, with at most two decimal places.
     
 </dd>
 </dl>
@@ -24079,7 +24079,7 @@ client.invoices.update(id: "inv_xxxxxxxxxxxxxx")
 <dl>
 <dd>
 
-**charge_buyer_fee:** `Internal::Types::Boolean` — Whether to charge the customer a buyer fee on this invoice.
+**due_at:** `String` — When payment is due, as an ISO 8601 timestamp.
     
 </dd>
 </dl>
@@ -24087,7 +24087,7 @@ client.invoices.update(id: "inv_xxxxxxxxxxxxxx")
 <dl>
 <dd>
 
-**collection_method:** `Whop_sdk::Types::InvoiceCollectionMethods` — How the invoice should be collected.
+**items:** `Internal::Types::Array[Whop_sdk::Invoices::Types::UpdateInvoicesRequestItemsItem]` — The one-time variants being invoiced, all in the same currency. Each variant may appear once; use quantity for multiple units. Product and price come from each variant. Multiple items require unlimited stock and compatible payment, tax, and access settings.
     
 </dd>
 </dl>
@@ -24095,7 +24095,7 @@ client.invoices.update(id: "inv_xxxxxxxxxxxxxx")
 <dl>
 <dd>
 
-**customer_name:** `String` — The name of the customer.
+**mailing_address_id:** `String` — An address associated with the member. Mutually exclusive with billing_address.
     
 </dd>
 </dl>
@@ -24103,7 +24103,7 @@ client.invoices.update(id: "inv_xxxxxxxxxxxxxx")
 <dl>
 <dd>
 
-**due_date:** `String` — The date by which the invoice must be paid.
+**member_id:** `String` — The billed customer, a member of the account. Changing email recipients does not change this buyer.
     
 </dd>
 </dl>
@@ -24111,7 +24111,7 @@ client.invoices.update(id: "inv_xxxxxxxxxxxxxx")
 <dl>
 <dd>
 
-**email_address:** `String` — The email address of the customer.
+**metadata:** `Internal::Types::Hash[String, String]` — Up to 50 caller-owned string key/value pairs.
     
 </dd>
 </dl>
@@ -24119,7 +24119,7 @@ client.invoices.update(id: "inv_xxxxxxxxxxxxxx")
 <dl>
 <dd>
 
-**line_items:** `Internal::Types::Array[Whop_sdk::Invoices::Types::UpdateInvoicesRequestLineItemsItem]` — Line items that break down the invoice total. When provided, the sum of (quantity * unit_price) for all items must equal the plan price. Individual items may be negative to represent a credit, as long as the sum is not negative and clears the currency's minimum charge. Pass an empty list to remove the breakdown.
+**payment_method_id:** `String` — A saved payment method belonging to the member.
     
 </dd>
 </dl>
@@ -24127,47 +24127,7 @@ client.invoices.update(id: "inv_xxxxxxxxxxxxxx")
 <dl>
 <dd>
 
-**mailing_address_id:** `String` — The unique identifier of an existing mailing address to attach.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**member_id:** `String` — The unique identifier of a member to assign as the customer.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**payment_method_id:** `String` — The unique identifier of the payment method to charge.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**plan:** `Whop_sdk::Invoices::Types::UpdateInvoicesRequestPlan` — Updated plan attributes.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**product_id:** `String` — The unique identifier of an existing product to attach to this invoice. Only allowed while the invoice is still a draft.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**subscription_billing_anchor_at:** `String` — The date that defines when the subscription billing cycle should start.
+**recipient_emails:** `Internal::Types::Array[String]` — Email addresses saved for invoice delivery, independent of the billed customer. Saving them sends no email. Defaults to the customer email when omitted on create. Can be updated on draft, open, or uncollectible invoices.
     
 </dd>
 </dl>
@@ -24187,7 +24147,7 @@ client.invoices.update(id: "inv_xxxxxxxxxxxxxx")
 </dl>
 </details>
 
-<details><summary><code>client.invoices.<a href="/lib/whop_sdk/invoices/client.rb">mark_paid</a>(id:) -> Internal::Types::Boolean</code></summary>
+<details><summary><code>client.invoices.<a href="/lib/whop_sdk/invoices/client.rb">issue</a>(id:) -> Whop_sdk::Types::Invoice</code></summary>
 <dl>
 <dd>
 
@@ -24199,10 +24159,7 @@ client.invoices.update(id: "inv_xxxxxxxxxxxxxx")
 <dl>
 <dd>
 
-Mark an open invoice as paid when payment was collected outside of Whop.
-
-Required permissions:
- - `invoice:update`
+Resolves final tax and opens a draft invoice. Issuing an open invoice again retains its totals.
 </dd>
 </dl>
 </dd>
@@ -24217,7 +24174,7 @@ Required permissions:
 <dd>
 
 ```ruby
-client.invoices.mark_paid(id: "inv_xxxxxxxxxxxxxx")
+client.invoices.issue(id: "id")
 ```
 </dd>
 </dl>
@@ -24232,7 +24189,7 @@ client.invoices.mark_paid(id: "inv_xxxxxxxxxxxxxx")
 <dl>
 <dd>
 
-**id:** `String` — The unique identifier of the invoice to mark as paid.
+**id:** `String` — The invoice's pay_ ID.
     
 </dd>
 </dl>
@@ -24252,7 +24209,7 @@ client.invoices.mark_paid(id: "inv_xxxxxxxxxxxxxx")
 </dl>
 </details>
 
-<details><summary><code>client.invoices.<a href="/lib/whop_sdk/invoices/client.rb">mark_uncollectible</a>(id:) -> Internal::Types::Boolean</code></summary>
+<details><summary><code>client.invoices.<a href="/lib/whop_sdk/invoices/client.rb">mark_uncollectible</a>(id:) -> Whop_sdk::Types::Invoice</code></summary>
 <dl>
 <dd>
 
@@ -24264,10 +24221,7 @@ client.invoices.mark_paid(id: "inv_xxxxxxxxxxxxxx")
 <dl>
 <dd>
 
-Mark an open invoice as uncollectible when payment is not expected.
-
-Required permissions:
- - `invoice:update`
+Marks an open invoice as uncollectible. Reminders stop, but the customer can still pay it.
 </dd>
 </dl>
 </dd>
@@ -24282,7 +24236,7 @@ Required permissions:
 <dd>
 
 ```ruby
-client.invoices.mark_uncollectible(id: "inv_xxxxxxxxxxxxxx")
+client.invoices.mark_uncollectible(id: "id")
 ```
 </dd>
 </dl>
@@ -24297,7 +24251,7 @@ client.invoices.mark_uncollectible(id: "inv_xxxxxxxxxxxxxx")
 <dl>
 <dd>
 
-**id:** `String` — The unique identifier of the invoice to mark as uncollectible.
+**id:** `String` — The invoice's pay_ ID.
     
 </dd>
 </dl>
@@ -24317,7 +24271,7 @@ client.invoices.mark_uncollectible(id: "inv_xxxxxxxxxxxxxx")
 </dl>
 </details>
 
-<details><summary><code>client.invoices.<a href="/lib/whop_sdk/invoices/client.rb">resend</a>(id:) -> Internal::Types::Boolean</code></summary>
+<details><summary><code>client.invoices.<a href="/lib/whop_sdk/invoices/client.rb">void</a>(id:) -> Whop_sdk::Types::Invoice</code></summary>
 <dl>
 <dd>
 
@@ -24329,10 +24283,7 @@ client.invoices.mark_uncollectible(id: "inv_xxxxxxxxxxxxxx")
 <dl>
 <dd>
 
-Resend the notification email for an existing invoice to the customer.
-
-Required permissions:
- - `invoice:update`
+Voids a draft or unpaid invoice.
 </dd>
 </dl>
 </dd>
@@ -24347,7 +24298,7 @@ Required permissions:
 <dd>
 
 ```ruby
-client.invoices.resend(id: "inv_xxxxxxxxxxxxxx")
+client.invoices.void(id: "id")
 ```
 </dd>
 </dl>
@@ -24362,72 +24313,7 @@ client.invoices.resend(id: "inv_xxxxxxxxxxxxxx")
 <dl>
 <dd>
 
-**id:** `String` — The unique identifier of the invoice to resend.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request_options:** `Whop_sdk::Invoices::RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.invoices.<a href="/lib/whop_sdk/invoices/client.rb">void</a>(id:) -> Internal::Types::Boolean</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Void an open invoice so it can no longer be paid. Voiding is permanent and cannot be undone.
-
-Required permissions:
- - `invoice:update`
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```ruby
-client.invoices.void(id: "inv_xxxxxxxxxxxxxx")
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` — The unique identifier of the invoice to void.
+**id:** `String` — The invoice's pay_ ID.
     
 </dd>
 </dl>

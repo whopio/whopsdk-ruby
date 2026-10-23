@@ -18,6 +18,8 @@ module Whop_sdk
 
         field :registration, -> { Whop_sdk::Domains::Types::CreateDomainsRequestRegistration }, optional: true, nullable: false
 
+        field :transfer, -> { Whop_sdk::Domains::Types::CreateDomainsRequestTransfer }, optional: true, nullable: false
+
         field :verification, -> { Whop_sdk::Domains::Types::CreateDomainsRequestVerification }, optional: true, nullable: false
 
         field :website, -> { Whop_sdk::Domains::Types::CreateDomainsRequestWebsite }, optional: true, nullable: false

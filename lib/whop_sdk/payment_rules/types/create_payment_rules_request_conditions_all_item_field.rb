@@ -10,6 +10,7 @@ module Whop_sdk
         AMOUNT_IN_USD = "amount_in_usd"
         CARD_COUNTRY = "card_country"
         CARD_BRAND = "card_brand"
+        CARD_FUNDING = "card_funding"
         CARD_BIN = "card_bin"
         CUSTOMER_EMAIL = "customer_email"
         IP_ADDRESS = "ip_address"

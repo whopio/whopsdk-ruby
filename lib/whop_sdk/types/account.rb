@@ -31,6 +31,8 @@ module Whop_sdk
 
       field :created_at, -> { String }, optional: false, nullable: false
 
+      field :customers_l30d, -> { Integer }, optional: false, nullable: true
+
       field :description, -> { String }, optional: false, nullable: true
 
       field :direct_reports_count, -> { Integer }, optional: true, nullable: false

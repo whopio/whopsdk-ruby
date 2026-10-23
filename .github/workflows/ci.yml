@@ -64,10 +64,11 @@ jobs:
 
       - name: Check the hand-written helpers survived generation
         env:
-          # name | entrypoint method | requirePaths entry | gem the helper requires at load
+          # name | entrypoint method | requirePaths entry | gem the helper requires at load, or empty for the standard library
           HELPERS: |
             WhopSDK::Helpers::VerifyUserToken|verify_user_token!|helpers/verify_user_token|jwt
             WhopSDK::Helpers::VerifyWebhook|unwrap|helpers/verify_webhook|standardwebhooks
+            WhopSDK::Helpers::Oidc|access_token|helpers/oidc|
           GENERATOR_CONFIG: the ruby config in whop-monorepo sdks/fern/generators.yml
         run: |
           set -euo pipefail
@@ -94,6 +95,8 @@ jobs:
               printf '%s\n' "$out"
               fail "require \"whop_sdk\" no longer reaches ${constant}. lib/whop_sdk.rb is generated, so .fernignore does not preserve its require_relative: add ${require_path} to requirePaths in ${GENERATOR_CONFIG}."
             fi
+
+            [ -n "$gem" ] || continue
 
             if out=$(bundle exec ruby -e "dep = Gem::Specification.load(\"whop_sdk.gemspec\").dependencies.find { _1.name == \"${gem}\" }; abort(\"whop_sdk.gemspec declares no ${gem} dependency\") if dep.nil?; puts dep" 2>&1); then
               printf '%s\n' "$out"

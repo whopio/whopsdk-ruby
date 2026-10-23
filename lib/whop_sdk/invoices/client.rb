@@ -208,7 +208,9 @@ module Whop_sdk
         end
       end
 
-      # Resolves final tax and opens a draft invoice. Issuing an open invoice again retains its totals.
+      # Resolves final tax and opens a draft invoice. An invoice with a `payment_method_id` is then charged to it
+      # off-session, as `POST /payments` charges a saved payment method, and issuing it requires `payment:charge`.
+      # Issuing an open invoice again retains its totals and charges nothing.
       #
       # @param request_options [Hash]
       # @param params [Hash]

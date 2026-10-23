@@ -10,6 +10,8 @@ module Whop_sdk
 
         field :metadata, -> { Internal::Types::Hash[String, Whop_sdk::Deposits::Types::CreateDepositsRequestMetadataValue] }, optional: true, nullable: false
 
+        field :origin_bic, -> { String }, optional: true, nullable: false
+
         field :payment_method_id, -> { String }, optional: true, nullable: false
       end
     end

@@ -15167,6 +15167,14 @@ client.deposits.create(destination: "biz_xxxxxxxxxxxxxx")
 <dl>
 <dd>
 
+**origin_bic:** `String` — SWIFT/BIC of the bank the funds are sent from, 8 or 11 characters. Fills each bank currency's `swift_bic` with the intermediary bank to route the wire through.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **payment_method_id:** `String` — A saved payment method of the business to charge for `amount`, prefixed `payt_`. Save one with Create setup intent and `owner_id` set to the account. Only for a `biz_` destination, and requires authentication with the `payment:charge` scope. A declined charge fails the request with 400.
     
 </dd>

@@ -12,7 +12,9 @@ module Whop_sdk
       CARD_FUNDING = "card_funding"
       CARD_BIN = "card_bin"
       CUSTOMER_EMAIL = "customer_email"
+      EMAIL_DOMAIN = "email_domain"
       IP_ADDRESS = "ip_address"
+      IP_COUNTRY = "ip_country"
     end
   end
 end

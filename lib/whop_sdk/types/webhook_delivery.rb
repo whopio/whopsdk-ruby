@@ -19,6 +19,8 @@ module Whop_sdk
 
       field :sent_at, -> { String }, optional: false, nullable: false
 
+      field :status, -> { Whop_sdk::Types::WebhookDeliveryStatus }, optional: false, nullable: false
+
       field :success, -> { Internal::Types::Boolean }, optional: false, nullable: false
 
       field :total_time, -> { Integer }, optional: false, nullable: false

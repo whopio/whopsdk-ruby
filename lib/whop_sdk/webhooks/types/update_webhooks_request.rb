@@ -14,6 +14,8 @@ module Whop_sdk
 
         field :events, -> { Internal::Types::Array[Whop_sdk::Webhooks::Types::UpdateWebhooksRequestEventsItem] }, optional: true, nullable: false
 
+        field :title, -> { String }, optional: true, nullable: false
+
         field :url, -> { String }, optional: true, nullable: false
       end
     end

@@ -14,6 +14,8 @@ module Whop_sdk
 
         field :resource_id, -> { String }, optional: true, nullable: false
 
+        field :title, -> { String }, optional: true, nullable: false
+
         field :url, -> { String }, optional: false, nullable: false
       end
     end

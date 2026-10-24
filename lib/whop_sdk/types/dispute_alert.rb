@@ -29,6 +29,8 @@ module Whop_sdk
 
       field :reported_at, -> { String }, optional: false, nullable: false
 
+      field :source, -> { Whop_sdk::Types::DisputeAlertSource }, optional: false, nullable: true
+
       field :transaction_at, -> { String }, optional: false, nullable: true
 
       field :type, -> { Whop_sdk::Types::DisputeAlertType }, optional: false, nullable: false

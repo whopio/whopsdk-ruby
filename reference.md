@@ -44217,6 +44217,14 @@ client.webhooks.create(url: "https://example.com/hooks")
 <dl>
 <dd>
 
+**title:** `String` — A label for the webhook, shown in the dashboard. Up to 255 characters.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **url:** `String` — The URL to send the webhook to.
     
 </dd>
@@ -44436,6 +44444,14 @@ client.webhooks.update(id: "id")
 <dd>
 
 **events:** `Internal::Types::Array[Whop_sdk::Webhooks::Types::UpdateWebhooksRequestEventsItem]` — The events to send the webhook for, in dot form (for example `payment.succeeded`).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**title:** `String` — A label for the webhook, shown in the dashboard. Up to 255 characters. Pass `null` or an empty string to remove it.
     
 </dd>
 </dl>

@@ -250,6 +250,7 @@ module Whop_sdk
       WEBHOOK_RECEIVE_ADS = "webhook_receive:ads"
       WEBHOOK_RECEIVE_PRODUCTS = "webhook_receive:products"
       WEBHOOK_RECEIVE_PLANS = "webhook_receive:plans"
+      WEBHOOK_RECEIVE_DOMAINS = "webhook_receive:domains"
       WEBHOOK_RECEIVE_SHIPMENTS = "webhook_receive:shipments"
       WEBHOOK_RECEIVE_MEMBERS = "webhook_receive:members"
       WEBHOOK_RECEIVE_EXPORTS = "webhook_receive:exports"

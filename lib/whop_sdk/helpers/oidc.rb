@@ -54,7 +54,7 @@ module WhopSDK
           subject_token_type: ID_TOKEN_TYPE,
           subject_token: subject_token,
           role_id: role_id,
-          expires_at: expires_at&.utc&.iso8601
+          expires_at: expires_at&.getutc&.iso8601
         }.compact
 
         uri = URI("#{base_url.to_s.chomp("/")}/access_tokens/exchange")

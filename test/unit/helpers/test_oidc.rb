@@ -1,16 +1,25 @@
 # frozen_string_literal: true
 
 require_relative "../../test_helper"
-require "webmock/minitest"
+require "webmock"
+
+WebMock::AssertionFailure.error_class = Minitest::Assertion
 
 module WhopSDK
   module Helpers
     class TestOidc < Minitest::Test
+      include WebMock::API
+
       ROLE_ID = "aurl_xxxxxxxxxxxxx"
       EXCHANGE_URL = "https://api.whop.com/api/v1/access_tokens/exchange"
 
+      def setup
+        WebMock.enable!
+      end
+
       def teardown
         WebMock.reset!
+        WebMock.disable!
         ENV.delete("ACTIONS_ID_TOKEN_REQUEST_URL")
         ENV.delete("ACTIONS_ID_TOKEN_REQUEST_TOKEN")
       end
@@ -47,6 +56,20 @@ module WhopSDK
 
         assert_equal "whop-token-1", token
         assert_requested stub
+      end
+
+      def test_sends_the_expiry_in_utc_without_changing_the_callers_time
+        local = Time.new(2026, 10, 23, 9, 0, 0, "-05:00")
+        frozen_local = local.dup.freeze
+        stub = stub_request(:post, EXCHANGE_URL)
+               .with(body: hash_including("expires_at" => "2026-10-23T14:00:00Z"))
+               .to_return(status: 200, body: { access_token: "whop-token-1", expires_in: 7200 }.to_json)
+
+        Oidc.access_token(role_id: ROLE_ID, identity_token: "id-token", expires_at: local)
+        Oidc.access_token(role_id: ROLE_ID, identity_token: "id-token", expires_at: frozen_local)
+
+        assert_equal(-18_000, local.utc_offset)
+        assert_requested stub, times: 2
       end
 
       def test_surfaces_the_api_error_and_code

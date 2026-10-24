@@ -13,6 +13,8 @@ module Whop_sdk
 
       field :buyer_fee_percentage, -> { Integer }, optional: false, nullable: false
 
+      field :checkout_link, -> { String }, optional: false, nullable: true
+
       field :created_at, -> { String }, optional: false, nullable: false
 
       field :customer_name, -> { String }, optional: false, nullable: true

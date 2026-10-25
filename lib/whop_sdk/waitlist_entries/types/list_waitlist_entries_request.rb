@@ -22,6 +22,8 @@ module Whop_sdk
 
         field :status, -> { Whop_sdk::WaitlistEntries::Types::ListWaitlistEntriesRequestStatus }, optional: true, nullable: false
 
+        field :query, -> { String }, optional: true, nullable: false
+
         field :created_before, -> { String }, optional: true, nullable: false
 
         field :created_after, -> { String }, optional: true, nullable: false

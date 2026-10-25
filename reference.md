@@ -43568,6 +43568,14 @@ client.waitlist_entries.list
 <dl>
 <dd>
 
+**query:** `String` — Search signups by the user's name or username, or the name of the account they were submitted on behalf of. An account ID, prefixed `biz_`, matches signups submitted on behalf of that account, and an exact email address matches that user's signups.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **created_before:** `String` — Only return signups submitted at or before this ISO 8601 timestamp.
     
 </dd>

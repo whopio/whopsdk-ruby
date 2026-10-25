@@ -36,6 +36,7 @@ module Whop_sdk
       # @option params [String, nil] :product_id
       # @option params [String, nil] :buyer_account_id
       # @option params [Whop_sdk::WaitlistEntries::Types::ListWaitlistEntriesRequestStatus, nil] :status
+      # @option params [String, nil] :query
       # @option params [String, nil] :created_before
       # @option params [String, nil] :created_after
       # @option params [Whop_sdk::WaitlistEntries::Types::ListWaitlistEntriesRequestOrder, nil] :order
@@ -57,6 +58,7 @@ module Whop_sdk
         query_params["product_id"] = params[:product_id] if params.key?(:product_id)
         query_params["buyer_account_id"] = params[:buyer_account_id] if params.key?(:buyer_account_id)
         query_params["status"] = params[:status] if params.key?(:status)
+        query_params["query"] = params[:query] if params.key?(:query)
         query_params["created_before"] = params[:created_before] if params.key?(:created_before)
         query_params["created_after"] = params[:created_after] if params.key?(:created_after)
         query_params["order"] = params[:order] if params.key?(:order)

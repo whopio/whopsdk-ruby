@@ -28,6 +28,7 @@ module Whop_sdk
       # @option params [String, nil] :account_id
       # @option params [String, nil] :user_id
       # @option params [String, nil] :member_id
+      # @option params [String, nil] :external_account
       # @option params [Whop_sdk::Memberships::Types::ListMembershipsRequestStatus, nil] :status
       # @option params [Whop_sdk::Memberships::Types::ListMembershipsRequestStatusesItem, nil] :statuses
       # @option params [String, nil] :product_id
@@ -46,6 +47,7 @@ module Whop_sdk
       #
       # @example
       #   client.memberships.list(
+      #     external_account: "discord_123456789012345678",
       #     product_ids: ["prod_xxxxxxxxxxxxx"],
       #     plan_ids: ["plan_xxxxxxxxxxxxx"],
       #     promo_code_ids: ["promo_xxxxxxxxxxxxxx"]
@@ -58,6 +60,7 @@ module Whop_sdk
         query_params["account_id"] = params[:account_id] if params.key?(:account_id)
         query_params["user_id"] = params[:user_id] if params.key?(:user_id)
         query_params["member_id"] = params[:member_id] if params.key?(:member_id)
+        query_params["external_account"] = params[:external_account] if params.key?(:external_account)
         query_params["status"] = params[:status] if params.key?(:status)
         query_params["statuses"] = params[:statuses] if params.key?(:statuses)
         query_params["product_id"] = params[:product_id] if params.key?(:product_id)

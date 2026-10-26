@@ -47459,6 +47459,22 @@ client.partners.businesses.list
 <dl>
 <dd>
 
+**first_sale_before:** `String` — Only return partner businesses whose first paid sale above zero happened before this timestamp.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**first_sale_after:** `String` — Only return partner businesses whose first paid sale above zero happened after this timestamp. Combined with first_sale_before, this is the net new set: businesses that processed their first $1 inside the window.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **referred_user_id:** `String` — Filter to referrals attributed to this user. For first-tier referrals, this is the referred account owner; for second-tier referrals, this is the partner you recruited.
     
 </dd>

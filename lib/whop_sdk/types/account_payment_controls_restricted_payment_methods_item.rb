@@ -48,6 +48,7 @@ module Whop_sdk
       VENMO = "venmo"
       AMAZON_PAY = "amazon_pay"
       LINK = "link"
+      WECHAT_PAY = "wechat_pay"
     end
   end
 end

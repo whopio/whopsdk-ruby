@@ -36,6 +36,8 @@ module Whop_sdk
         # @option params [Whop_sdk::Partners::Businesses::Types::ListBusinessesRequestDirection, nil] :direction
         # @option params [String, nil] :created_before
         # @option params [String, nil] :created_after
+        # @option params [String, nil] :first_sale_before
+        # @option params [String, nil] :first_sale_after
         # @option params [String, nil] :referred_user_id
         # @option params [String, nil] :referred_username
         # @option params [Whop_sdk::Partners::Businesses::Types::ListBusinessesRequestTier, nil] :tier
@@ -60,6 +62,8 @@ module Whop_sdk
           query_params["direction"] = params[:direction] if params.key?(:direction)
           query_params["created_before"] = params[:created_before] if params.key?(:created_before)
           query_params["created_after"] = params[:created_after] if params.key?(:created_after)
+          query_params["first_sale_before"] = params[:first_sale_before] if params.key?(:first_sale_before)
+          query_params["first_sale_after"] = params[:first_sale_after] if params.key?(:first_sale_after)
           query_params["referred_user_id"] = params[:referred_user_id] if params.key?(:referred_user_id)
           query_params["referred_username"] = params[:referred_username] if params.key?(:referred_username)
           query_params["tier"] = params[:tier] if params.key?(:tier)

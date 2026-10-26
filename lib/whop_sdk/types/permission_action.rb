@@ -261,6 +261,7 @@ module Whop_sdk
       WEBHOOK_RECEIVE_DISPUTES = "webhook_receive:disputes"
       WEBHOOK_RECEIVE_RESOLUTIONS = "webhook_receive:resolutions"
       WEBHOOK_RECEIVE_APP_PAYMENTS = "webhook_receive:app_payments"
+      WEBHOOK_RECEIVE_APP_INSTALLATIONS = "webhook_receive:app_installations"
       WEBHOOK_RECEIVE_APP_MEMBERSHIPS = "webhook_receive:app_memberships"
       SHIPMENT_CREATE = "shipment:create"
       SHIPMENT_BASIC_READ = "shipment:basic:read"

@@ -33122,6 +33122,22 @@ client.plans.create
 <dl>
 <dd>
 
+**cancel_discount_intervals:** `Integer` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**cancel_discount_percentage:** `Integer` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **checkout_styling:** `Internal::Types::Hash[String, Object]` 
     
 </dd>
@@ -33187,6 +33203,14 @@ client.plans.create
 <dd>
 
 **metadata:** `Internal::Types::Hash[String, Object]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**offer_cancel_discount:** `Internal::Types::Boolean` 
     
 </dd>
 </dl>
@@ -33645,6 +33669,14 @@ client.plans.update(id: "id")
 <dd>
 
 **sku:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**split_pay_required_payments:** `Integer` 
     
 </dd>
 </dl>
@@ -42488,6 +42520,22 @@ client.variants.create
 <dl>
 <dd>
 
+**cancel_discount_intervals:** `Integer` — How long the retention discount lasts: `0` forever, `1` the next payment only, or a number of calendar months from when the customer accepts it. Required when `offer_cancel_discount` is true.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**cancel_discount_percentage:** `Integer` — Percentage taken off each discounted renewal, as a whole number from 1 to 100. Required when `offer_cancel_discount` is true.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **checkout_styling:** `Internal::Types::Hash[String, Object]` — Checkout styling overrides for this variant.
     
 </dd>
@@ -42560,6 +42608,14 @@ client.variants.create
 <dl>
 <dd>
 
+**offer_cancel_discount:** `Internal::Types::Boolean` — Whether to offer a retention discount when a customer attempts to cancel.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **override_tax_type:** `String` — Override the default tax classification for this specific variant.
     
 </dd>
@@ -42616,7 +42672,7 @@ client.variants.create
 <dl>
 <dd>
 
-**split_pay_required_payments:** `Integer` — Installment payments required before the subscription pauses.
+**split_pay_required_payments:** `Integer` — Installment payments required before the subscription pauses, from 2 to 115. Only valid on `renewal` variants.
     
 </dd>
 </dl>
@@ -42911,7 +42967,7 @@ client.variants.update(id: "id")
 <dl>
 <dd>
 
-**cancel_discount_intervals:** `Integer` — How many renewals the retention discount applies to. Required when `offer_cancel_discount` is true.
+**cancel_discount_intervals:** `Integer` — How long the retention discount lasts: `0` forever, `1` the next payment only, or a number of calendar months from when the customer accepts it. Required when `offer_cancel_discount` is true.
     
 </dd>
 </dl>
@@ -42919,7 +42975,7 @@ client.variants.update(id: "id")
 <dl>
 <dd>
 
-**cancel_discount_percentage:** `Integer` — Percentage taken off each discounted renewal. Required when `offer_cancel_discount` is true.
+**cancel_discount_percentage:** `Integer` — Percentage taken off each discounted renewal, as a whole number from 1 to 100. Required when `offer_cancel_discount` is true.
     
 </dd>
 </dl>
@@ -43040,6 +43096,14 @@ client.variants.update(id: "id")
 <dd>
 
 **sku:** `String` — Stock keeping unit for this variant. Maximum 100 characters. Free text, not enforced unique.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**split_pay_required_payments:** `Integer` — Installment payments required before the subscription pauses, from 2 to 115. Only valid on `renewal` variants.
     
 </dd>
 </dl>

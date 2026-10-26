@@ -87,6 +87,8 @@ module Whop_sdk
         AD_GROUP_UPDATED = "ad_group.updated"
         AD_CREATED = "ad.created"
         AD_UPDATED = "ad.updated"
+        APP_INSTALLATION_CREATED = "app_installation.created"
+        APP_INSTALLATION_DELETED = "app_installation.deleted"
         CHAT_MESSAGE_CREATED = "chat.message.created"
         CHAT_REACTION_CREATED = "chat.reaction.created"
         PAYMENT_CREATED = "payment.created"

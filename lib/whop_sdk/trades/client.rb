@@ -160,6 +160,11 @@ module Whop_sdk
           raise error_class.new(response.body, code: code)
         end
       end
+
+      # @return [Whop_sdk::Markets::Client]
+      def markets
+        @markets ||= Whop_sdk::Trades::Markets::Client.new(client: @client, base_url: @base_url, environment: @environment)
+      end
     end
   end
 end

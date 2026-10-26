@@ -208,6 +208,46 @@ module Whop_sdk
         end
       end
 
+      # Generates the invoice as a PDF and returns a short-lived link to download it. A draft renders with its current
+      # estimated totals. The buyer's name, email address and billing details appear only when you have
+      # `member:basic:read`, `member:email:read` and `payment:basic:read` respectively. Each call generates a new file
+      # and link, so this endpoint does not replay `Idempotency-Key` responses.
+      #
+      # @param request_options [Hash]
+      # @param params [Hash]
+      # @option request_options [String] :base_url
+      # @option request_options [Hash{String => Object}] :additional_headers
+      # @option request_options [Hash{String => Object}] :additional_query_parameters
+      # @option request_options [Hash{String => Object}] :additional_body_parameters
+      # @option request_options [Integer] :timeout_in_seconds
+      # @option params [String] :id
+      #
+      # @example
+      #   client.invoices.generate_pdf(id: "id")
+      #
+      # @return [Whop_sdk::Types::InvoicePdf]
+      def generate_pdf(request_options: {}, **params)
+        params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
+        request = Whop_sdk::Internal::JSON::Request.new(
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
+          method: "POST",
+          path: "invoices/#{URI.encode_uri_component(params[:id].to_s)}/generate_pdf",
+          request_options: request_options
+        )
+        begin
+          response = @client.send(request)
+        rescue Net::HTTPRequestTimeout
+          raise Whop_sdk::Errors::TimeoutError
+        end
+        code = response.code.to_i
+        if code.between?(200, 299)
+          (response.body.to_s.empty? ? nil : Whop_sdk::Types::InvoicePdf.load(response.body))
+        else
+          error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
+          raise error_class.new(response.body, code: code)
+        end
+      end
+
       # Resolves final tax and opens a draft invoice. An invoice with a `payment_method_id` is then charged to it
       # off-session, as `POST /payments` charges a saved payment method, and issuing it requires `payment:charge`.
       # Issuing an open invoice again retains its totals and charges nothing.

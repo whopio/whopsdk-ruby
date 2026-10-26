@@ -12,6 +12,10 @@ module Whop_sdk
 
         field :billing_period, -> { Integer }, optional: true, nullable: false
 
+        field :cancel_discount_intervals, -> { Integer }, optional: true, nullable: false
+
+        field :cancel_discount_percentage, -> { Integer }, optional: true, nullable: false
+
         field :checkout_styling, -> { Internal::Types::Hash[String, Object] }, optional: true, nullable: false
 
         field :currency, -> { String }, optional: true, nullable: false
@@ -29,6 +33,8 @@ module Whop_sdk
         field :internal_notes, -> { String }, optional: true, nullable: false
 
         field :metadata, -> { Internal::Types::Hash[String, Object] }, optional: true, nullable: false
+
+        field :offer_cancel_discount, -> { Internal::Types::Boolean }, optional: true, nullable: false
 
         field :override_tax_type, -> { String }, optional: true, nullable: false
 

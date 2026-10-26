@@ -46,6 +46,8 @@ module Whop_sdk
 
         field :sku, -> { String }, optional: true, nullable: false
 
+        field :split_pay_required_payments, -> { Integer }, optional: true, nullable: false
+
         field :stock, -> { Integer }, optional: true, nullable: false
 
         field :strike_through_initial_price, -> { Integer }, optional: true, nullable: false

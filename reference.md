@@ -25737,6 +25737,7 @@ Lists every membership the caller can read: an account API key its account's; a 
 
 ```ruby
 client.memberships.list(
+  external_account: "discord_123456789012345678",
   product_ids: ["prod_xxxxxxxxxxxxx"],
   plan_ids: ["plan_xxxxxxxxxxxxx"],
   promo_code_ids: ["promo_xxxxxxxxxxxxxx"]
@@ -25772,6 +25773,14 @@ client.memberships.list(
 <dd>
 
 **member_id:** `String` — Narrow to one member's memberships (`mber_` tag), including memberships bought by another business. A member outside the caller's visible set returns an empty list.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**external_account:** `String` — Narrow to memberships linked to one Discord or Telegram account, given as the platform's user ID prefixed with `discord_` or `telegram_`. Discord matches include memberships imported with that Discord ID. Any other format is a 400.
     
 </dd>
 </dl>

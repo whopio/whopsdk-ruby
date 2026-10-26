@@ -10,6 +10,8 @@ module Whop_sdk
 
         field :member_id, -> { String }, optional: true, nullable: false
 
+        field :discord_id, -> { String }, optional: true, nullable: false
+
         field :status, -> { Whop_sdk::Memberships::Types::ListMembershipsRequestStatus }, optional: true, nullable: false
 
         field :statuses, -> { Whop_sdk::Memberships::Types::ListMembershipsRequestStatusesItem }, optional: true, nullable: false

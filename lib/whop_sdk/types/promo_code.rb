@@ -5,6 +5,8 @@ module Whop_sdk
     class PromoCode < Internal::Types::Model
       field :account, -> { Whop_sdk::Types::AccountSummary }, optional: false, nullable: false
 
+      field :affiliate, -> { Whop_sdk::Types::PromoCodeAffiliate }, optional: false, nullable: true
+
       field :amount_off, -> { Integer }, optional: false, nullable: false
 
       field :churned_users_only, -> { Internal::Types::Boolean }, optional: false, nullable: false

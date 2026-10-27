@@ -37,8 +37,6 @@ module Whop_sdk
 
       field :payment, -> { Whop_sdk::Types::DisputePayment }, optional: false, nullable: false
 
-      field :plan_id, -> { String }, optional: false, nullable: true
-
       field :product_id, -> { String }, optional: false, nullable: true
 
       field :reason, -> { Whop_sdk::Types::DisputeReason }, optional: false, nullable: false
@@ -48,6 +46,8 @@ module Whop_sdk
       field :status, -> { Whop_sdk::Types::DisputeStatus }, optional: false, nullable: false
 
       field :updated_at, -> { String }, optional: false, nullable: false
+
+      field :variant_id, -> { String }, optional: false, nullable: true
     end
   end
 end

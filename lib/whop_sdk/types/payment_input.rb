@@ -6,13 +6,13 @@ module Whop_sdk
     class PaymentInput < Internal::Types::Model
       field :account_id, -> { String }, optional: false, nullable: false
 
-      field :plan, -> { Whop_sdk::Types::PaymentInputPlan }, optional: true, nullable: false
-
-      field :plan_id, -> { String }, optional: true, nullable: false
-
       field :promo_code, -> { String }, optional: true, nullable: false
 
       field :promo_code_id, -> { String }, optional: true, nullable: false
+
+      field :variant, -> { Whop_sdk::Types::PaymentInputVariant }, optional: true, nullable: false
+
+      field :variant_id, -> { String }, optional: true, nullable: false
     end
   end
 end

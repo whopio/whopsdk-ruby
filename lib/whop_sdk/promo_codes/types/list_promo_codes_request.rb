@@ -10,7 +10,7 @@ module Whop_sdk
 
         field :product_ids, -> { String }, optional: true, nullable: false
 
-        field :plan_ids, -> { String }, optional: true, nullable: false
+        field :variant_ids, -> { String }, optional: true, nullable: false
 
         field :created_before, -> { String }, optional: true, nullable: false
 

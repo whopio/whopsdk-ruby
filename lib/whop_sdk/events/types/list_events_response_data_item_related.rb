@@ -19,11 +19,11 @@ module Whop_sdk
 
         field :payment, -> { Whop_sdk::Events::Types::ListEventsResponseDataItemRelatedPayment }, optional: true, nullable: false
 
-        field :plan, -> { Whop_sdk::Events::Types::ListEventsResponseDataItemRelatedPlan }, optional: true, nullable: false
-
         field :product, -> { Whop_sdk::Events::Types::ListEventsResponseDataItemRelatedProduct }, optional: true, nullable: false
 
         field :user, -> { Whop_sdk::Events::Types::ListEventsResponseDataItemRelatedUser }, optional: true, nullable: false
+
+        field :variant, -> { Whop_sdk::Events::Types::ListEventsResponseDataItemRelatedVariant }, optional: true, nullable: false
       end
     end
   end

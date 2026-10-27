@@ -37,14 +37,14 @@ module Whop_sdk
       # @option params [String, nil] :member_id
       # @option params [String, nil] :membership_id
       # @option params [String, nil] :product_id
-      # @option params [String, nil] :plan_id
+      # @option params [String, nil] :variant_id
       # @option params [String, nil] :created_before
       # @option params [String, nil] :created_after
       # @option params [Whop_sdk::Payments::Types::ListPaymentsRequestStatusesItem, nil] :statuses
       # @option params [Whop_sdk::Payments::Types::ListPaymentsRequestSubstatusesItem, nil] :substatuses
       # @option params [Whop_sdk::Payments::Types::ListPaymentsRequestBillingReasonsItem, nil] :billing_reasons
       # @option params [String, nil] :currencies
-      # @option params [String, nil] :plan_ids
+      # @option params [String, nil] :variant_ids
       # @option params [String, nil] :product_ids
       # @option params [Whop_sdk::Payments::Types::ListPaymentsRequestPaymentMethodsItem, nil] :payment_methods
       # @option params [Whop_sdk::Payments::Types::ListPaymentsRequestTrackingStatesItem, nil] :tracking_states
@@ -64,7 +64,7 @@ module Whop_sdk
       # @example
       #   client.payments.list(
       #     currencies: ["eur"],
-      #     plan_ids: ["plan_xxxxxxxxxxxxx"],
+      #     variant_ids: ["plan_xxxxxxxxxxxxx"],
       #     product_ids: ["prod_xxxxxxxxxxxxx"]
       #   )
       #
@@ -84,14 +84,14 @@ module Whop_sdk
         query_params["member_id"] = params[:member_id] if params.key?(:member_id)
         query_params["membership_id"] = params[:membership_id] if params.key?(:membership_id)
         query_params["product_id"] = params[:product_id] if params.key?(:product_id)
-        query_params["plan_id"] = params[:plan_id] if params.key?(:plan_id)
+        query_params["variant_id"] = params[:variant_id] if params.key?(:variant_id)
         query_params["created_before"] = params[:created_before] if params.key?(:created_before)
         query_params["created_after"] = params[:created_after] if params.key?(:created_after)
         query_params["statuses"] = params[:statuses] if params.key?(:statuses)
         query_params["substatuses"] = params[:substatuses] if params.key?(:substatuses)
         query_params["billing_reasons"] = params[:billing_reasons] if params.key?(:billing_reasons)
         query_params["currencies"] = params[:currencies] if params.key?(:currencies)
-        query_params["plan_ids"] = params[:plan_ids] if params.key?(:plan_ids)
+        query_params["variant_ids"] = params[:variant_ids] if params.key?(:variant_ids)
         query_params["product_ids"] = params[:product_ids] if params.key?(:product_ids)
         query_params["payment_methods"] = params[:payment_methods] if params.key?(:payment_methods)
         query_params["tracking_states"] = params[:tracking_states] if params.key?(:tracking_states)
@@ -193,7 +193,7 @@ module Whop_sdk
       # @option params [Whop_sdk::Payments::Types::SummaryPaymentsRequestSubstatusesItem, nil] :substatuses
       # @option params [Whop_sdk::Payments::Types::SummaryPaymentsRequestBillingReasonsItem, nil] :billing_reasons
       # @option params [String, nil] :currencies
-      # @option params [String, nil] :plan_ids
+      # @option params [String, nil] :variant_ids
       # @option params [String, nil] :product_ids
       # @option params [Whop_sdk::Payments::Types::SummaryPaymentsRequestPaymentMethodsItem, nil] :payment_methods
       # @option params [Whop_sdk::Payments::Types::SummaryPaymentsRequestTrackingStatesItem, nil] :tracking_states
@@ -211,7 +211,7 @@ module Whop_sdk
       # @example
       #   client.payments.summary(
       #     currencies: ["usd"],
-      #     plan_ids: ["plan_xxxxxxxxxxxxx"],
+      #     variant_ids: ["plan_xxxxxxxxxxxxx"],
       #     product_ids: ["prod_xxxxxxxxxxxxx"]
       #   )
       #
@@ -225,7 +225,7 @@ module Whop_sdk
         query_params["substatuses"] = params[:substatuses] if params.key?(:substatuses)
         query_params["billing_reasons"] = params[:billing_reasons] if params.key?(:billing_reasons)
         query_params["currencies"] = params[:currencies] if params.key?(:currencies)
-        query_params["plan_ids"] = params[:plan_ids] if params.key?(:plan_ids)
+        query_params["variant_ids"] = params[:variant_ids] if params.key?(:variant_ids)
         query_params["product_ids"] = params[:product_ids] if params.key?(:product_ids)
         query_params["payment_methods"] = params[:payment_methods] if params.key?(:payment_methods)
         query_params["tracking_states"] = params[:tracking_states] if params.key?(:tracking_states)

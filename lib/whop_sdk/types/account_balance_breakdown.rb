@@ -5,6 +5,8 @@ module Whop_sdk
     class AccountBalanceBreakdown < Internal::Types::Model
       field :available, -> { String }, optional: false, nullable: false
 
+      field :finishing_settlement, -> { String }, optional: false, nullable: false
+
       field :in_transit, -> { String }, optional: false, nullable: false
 
       field :pending, -> { String }, optional: false, nullable: false

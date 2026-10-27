@@ -10,7 +10,7 @@ module Whop_sdk
 
         field :marketplace_category_route, -> { String }, optional: true, nullable: false
 
-        field :plan_types, -> { Whop_sdk::Products::Types::ListProductsRequestPlanTypesItem }, optional: true, nullable: false
+        field :billing_types, -> { Whop_sdk::Products::Types::ListProductsRequestBillingTypesItem }, optional: true, nullable: false
 
         field :price_minimum, -> { Integer }, optional: true, nullable: false
 

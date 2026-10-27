@@ -14,7 +14,7 @@ module Whop_sdk
 
         field :visibilities, -> { String }, optional: true, nullable: false
 
-        field :plan_types, -> { String }, optional: true, nullable: false
+        field :billing_types, -> { String }, optional: true, nullable: false
 
         field :product_ids, -> { String }, optional: true, nullable: false
 

@@ -28,7 +28,7 @@ module Whop_sdk
       # @option params [Whop_sdk::Plans::Types::ListPlansRequestOrder, nil] :order
       # @option params [String, nil] :release_methods
       # @option params [String, nil] :visibilities
-      # @option params [String, nil] :plan_types
+      # @option params [String, nil] :billing_types
       # @option params [String, nil] :product_ids
       # @option params [String, nil] :created_before
       # @option params [String, nil] :created_after
@@ -49,7 +49,7 @@ module Whop_sdk
         query_params["order"] = params[:order] if params.key?(:order)
         query_params["release_methods"] = params[:release_methods] if params.key?(:release_methods)
         query_params["visibilities"] = params[:visibilities] if params.key?(:visibilities)
-        query_params["plan_types"] = params[:plan_types] if params.key?(:plan_types)
+        query_params["billing_types"] = params[:billing_types] if params.key?(:billing_types)
         query_params["product_ids"] = params[:product_ids] if params.key?(:product_ids)
         query_params["created_before"] = params[:created_before] if params.key?(:created_before)
         query_params["created_after"] = params[:created_after] if params.key?(:created_after)

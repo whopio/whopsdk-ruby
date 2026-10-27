@@ -9,7 +9,7 @@ module Whop_sdk
 
       field :created_at, -> { String }, optional: false, nullable: false
 
-      field :default_plan, -> { Whop_sdk::Types::ProductPublicPlan }, optional: false, nullable: true
+      field :default_variant, -> { Whop_sdk::Types::ProductPublicVariant }, optional: false, nullable: true
 
       field :description, -> { String }, optional: false, nullable: true
 

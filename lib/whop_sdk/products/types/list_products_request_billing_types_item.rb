@@ -3,7 +3,7 @@
 module Whop_sdk
   module Products
     module Types
-      module ListProductsRequestPlanTypesItem
+      module ListProductsRequestBillingTypesItem
         extend Whop_sdk::Internal::Types::Enum
 
         RENEWAL = "renewal"

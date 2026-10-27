@@ -26,7 +26,7 @@ module Whop_sdk
       # @option params [String, nil] :account_id
       # @option params [String, nil] :query
       # @option params [String, nil] :marketplace_category_route
-      # @option params [Whop_sdk::Products::Types::ListProductsRequestPlanTypesItem, nil] :plan_types
+      # @option params [Whop_sdk::Products::Types::ListProductsRequestBillingTypesItem, nil] :billing_types
       # @option params [Integer, nil] :price_minimum
       # @option params [Integer, nil] :price_maximum
       # @option params [String, nil] :visibilities
@@ -54,7 +54,7 @@ module Whop_sdk
         query_params["account_id"] = params[:account_id] if params.key?(:account_id)
         query_params["query"] = params[:query] if params.key?(:query)
         query_params["marketplace_category_route"] = params[:marketplace_category_route] if params.key?(:marketplace_category_route)
-        query_params["plan_types"] = params[:plan_types] if params.key?(:plan_types)
+        query_params["billing_types"] = params[:billing_types] if params.key?(:billing_types)
         query_params["price_minimum"] = params[:price_minimum] if params.key?(:price_minimum)
         query_params["price_maximum"] = params[:price_maximum] if params.key?(:price_maximum)
         query_params["visibilities"] = params[:visibilities] if params.key?(:visibilities)

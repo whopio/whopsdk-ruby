@@ -97,10 +97,10 @@ module Whop_sdk
       end
 
       # Adds a member to an account's team with a system role. Identify them by exactly one of `user_id` or `email`. If
-      # the person has not yet accepted — or the email does not belong to a Whop account yet — an invitation is sent
-      # instead and the response is `202` with an `object` of `team_member_invite`. If they already have a pending
-      # invite, the request fails with a `400`. Granting the `workforce` role is also allowed with the `bounty:create`
-      # scope.
+      # the person has not yet accepted, or the email does not belong to a Whop account yet, an invitation is sent
+      # instead and the response is `202` with the pending team member, whose `status` is `pending` and whose id is
+      # prefixed `ausri_`. If they already have a pending invite, the request fails with a `400`. Granting the
+      # `workforce` role is also allowed with the `bounty:create` scope.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::TeamMembers::Types::CreateTeamMembersRequest]
@@ -113,7 +113,8 @@ module Whop_sdk
       # @example
       #   client.team_members.create(
       #     account_id: "biz_xxxxxxxxxxxxxx",
-      #     role: "owner"
+      #     role: "sales_manager",
+      #     user_id: "user_xxxxxxxxxxxxxx"
       #   )
       #
       # @return [Whop_sdk::Types::TeamMember]

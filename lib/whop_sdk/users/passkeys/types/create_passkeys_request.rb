@@ -12,6 +12,10 @@ module Whop_sdk
           field :credential_id, -> { String }, optional: false, nullable: false
 
           field :nickname, -> { String }, optional: false, nullable: false
+
+          field :transports, -> { Internal::Types::Array[String] }, optional: true, nullable: false
+
+          field :user_handle, -> { String }, optional: true, nullable: false
         end
       end
     end

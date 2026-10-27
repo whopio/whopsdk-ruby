@@ -30545,7 +30545,7 @@ client.payments.create(account_id: "biz_xxxxxxxxxxxxxx")
 <dl>
 <dd>
 
-**affiliate_code:** `String` — The code an affiliate link carries, which is the affiliate's username. The affiliate is credited for this payment as on a checkout session. A code naming no one eligible to earn on the product is ignored, and the payment goes ahead. A promo code with its own affiliate takes precedence. No affiliate is credited on a variant without a product or on a purchase of several variants. At most 255 characters. Not supported with `payment_method`.
+**affiliate_code:** `String` — The code an affiliate link carries, which is the affiliate's username. The affiliate is credited for this payment as on a checkout session. A code naming no one eligible to earn on the product is ignored, and the payment goes ahead. A promo code with its own affiliate takes precedence. No affiliate is credited on a variant without a product or on a purchase of several variants. At most 255 characters. Not supported with a `card_present` `payment_method`.
     
 </dd>
 </dl>
@@ -30554,6 +30554,14 @@ client.payments.create(account_id: "biz_xxxxxxxxxxxxxx")
 <dd>
 
 **auto_capture_after_minutes:** `Integer` — Minutes after authorization at which Whop captures the hold automatically unless it has been voided. Requires `capture: false`. Between 5 and 5760 (4 days).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**billing_address:** `Whop_sdk::Payments::Types::CreatePaymentsRequestBillingAddress` — The buyer's billing address, returned on the payment as `billing_address` and used to calculate tax when Whop calculates it for the account. Only with a `paypal` `payment_method`. Only the keys you supply are kept.
     
 </dd>
 </dl>
@@ -30577,7 +30585,7 @@ client.payments.create(account_id: "biz_xxxxxxxxxxxxxx")
 <dl>
 <dd>
 
-**email:** `String` — The buyer's email, resolving or creating the user the payment belongs to. With `confirmation_token` it overrides the email the token carries, and is ignored when the token was created by a signed-in buyer; with `payment_method` it names a buyer the point of sale already knows, otherwise the sale belongs to a guest until a buyer is attached. Ignored with `member_id`.
+**email:** `String` — The buyer's email, resolving or creating the user the payment belongs to. With `confirmation_token` it overrides the email the token carries, and is ignored when the token was created by a signed-in buyer; with a `card_present` `payment_method` it names a buyer the point of sale already knows, otherwise the sale belongs to a guest until a buyer is attached; with a `paypal` `payment_method` it names the buyer and is required unless `member_id` is provided. Ignored with `member_id`.
     
 </dd>
 </dl>
@@ -30601,7 +30609,7 @@ client.payments.create(account_id: "biz_xxxxxxxxxxxxxx")
 <dl>
 <dd>
 
-**member_id:** `String` — The member to charge, prefixed `mber_`. Required with `payment_method_id` unless `confirmation_token` is provided.
+**member_id:** `String` — The member to charge, prefixed `mber_`. Required with `payment_method_id` unless `confirmation_token` is provided. With a `paypal` `payment_method` it names the buyer instead of `email`, and must belong to a user.
     
 </dd>
 </dl>
@@ -30625,7 +30633,7 @@ client.payments.create(account_id: "biz_xxxxxxxxxxxxxx")
 <dl>
 <dd>
 
-**payment_method:** `Whop_sdk::Payments::Types::CreatePaymentsRequestPaymentMethod` — A payment method collected on the seller's device rather than described by a confirmation token. `type` names it and the member named after it carries what the device needs. Today only `card_present` (Tap to Pay): nothing is collected on this call, the payment is created first and the reader then collects against it with the client secret the status endpoint serves in `next_action`. Mutually exclusive with `confirmation_token`, `member_id` and `payment_method_id`.
+**payment_method:** `Whop_sdk::Payments::Types::CreatePaymentsRequestPaymentMethod` — A payment method named on this call rather than described by a confirmation token. `type` names it and the member named after it carries its details. Nothing is collected on this call: the payment is created first and the buyer or device then acts on the `next_action` the status endpoint serves. `card_present` (Tap to Pay): the reader collects against the payment with the client secret in `next_action`. `paypal`: the buyer approves on PayPal's page, reached through a `redirect` `next_action`, then returns to `return_url`; `member_id` or `email` names the buyer. Mutually exclusive with `confirmation_token` and `payment_method_id`, and with `member_id` except for `paypal`.
     
 </dd>
 </dl>
@@ -30649,7 +30657,15 @@ client.payments.create(account_id: "biz_xxxxxxxxxxxxxx")
 <dl>
 <dd>
 
-**return_url:** `String` — Where the buyer continues after completing an off-site step such as 3D Secure. An absolute https URL without credentials, at most 2,048 characters. Required when a saved payment method is charged with `off_session` false; otherwise ignored unless `confirmation_token` is provided.
+**return_url:** `String` — Where the buyer continues after completing an off-site step such as 3D Secure. An absolute https URL without credentials, at most 2,048 characters. Required when a saved payment method is charged with `off_session` false; otherwise ignored unless `confirmation_token` or a `paypal` `payment_method` is provided.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**setup_future_usage:** `Whop_sdk::Payments::Types::CreatePaymentsRequestSetupFutureUsage` — Attests that the buyer was told the payment method will be saved for later charges, and saves it once they approve, so it can be charged with `member_id` and `payment_method_id`. PayPal shows the buyer the agreement to future charges on its approval page. Omit it for a one-time payment that saves nothing. Ignored unless a `paypal` `payment_method` is provided.
     
 </dd>
 </dl>

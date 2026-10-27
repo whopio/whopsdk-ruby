@@ -8,6 +8,8 @@ module Whop_sdk
 
         field :auto_capture_after_minutes, -> { Integer }, optional: true, nullable: false
 
+        field :billing_address, -> { Whop_sdk::Payments::Types::CreatePaymentsRequestBillingAddress }, optional: true, nullable: false
+
         field :capture, -> { Internal::Types::Boolean }, optional: true, nullable: false
 
         field :confirmation_token, -> { String }, optional: true, nullable: false
@@ -31,6 +33,8 @@ module Whop_sdk
         field :quote_id, -> { String }, optional: true, nullable: false
 
         field :return_url, -> { String }, optional: true, nullable: false
+
+        field :setup_future_usage, -> { Whop_sdk::Payments::Types::CreatePaymentsRequestSetupFutureUsage }, optional: true, nullable: false
 
         field :shipping_address, -> { Whop_sdk::Payments::Types::CreatePaymentsRequestShippingAddress }, optional: true, nullable: false
 

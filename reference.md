@@ -15195,6 +15195,92 @@ client.deposits.create(destination: "biz_xxxxxxxxxxxxxx")
 </dl>
 </details>
 
+<details><summary><code>client.deposits.<a href="/lib/whop_sdk/deposits/client.rb">reverse</a>(id:, request) -> Whop_sdk::Types::LedgerActivity</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Sends a bank deposit back to the bank account that wired it and takes it back out of the balance. Identify the deposit by its `vbt_` ID, the `source.id` of its row in the account's financial activity. The available balance has to cover the deposit minus the deposit fee, which is refunded. Returns the reversal's own row in the financial activity: a `topup_reversal` debit for the full deposit amount, whose `source` is the bank deposit. The source's `status` is `reversal_in_progress` until the money is back with the sender, then `reversed`.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.deposits.reverse(id: "vbt_xxxxxxxxxxxxxx")
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — The ID of the bank deposit to reverse, prefixed `vbt_`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**account_id:** `String` — The business that received the deposit, prefixed `biz_`. Pass this or `user_id`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**metadata:** `Internal::Types::Hash[String, Whop_sdk::Deposits::Types::ReverseDepositsRequestMetadataValue]` — Custom metadata to store with the reversal.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**user_id:** `String` — The user that received the deposit, prefixed `user_`. Pass this or `account_id`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Whop_sdk::Deposits::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Dispute alerts
 <details><summary><code>client.dispute_alerts.<a href="/lib/whop_sdk/dispute_alerts/client.rb">list</a>() -> Whop_sdk::DisputeAlerts::Types::ListDisputeAlertsResponse</code></summary>
 <dl>

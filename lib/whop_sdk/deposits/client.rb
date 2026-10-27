@@ -54,6 +54,52 @@ module Whop_sdk
           raise error_class.new(response.body, code: code)
         end
       end
+
+      # Sends a bank deposit back to the bank account that wired it and takes it back out of the balance. Identify the
+      # deposit by its `vbt_` ID, the `source.id` of its row in the account's financial activity. The available balance
+      # has to cover the deposit minus the deposit fee, which is refunded. Returns the reversal's own row in the
+      # financial activity: a `topup_reversal` debit for the full deposit amount, whose `source` is the bank deposit.
+      # The source's `status` is `reversal_in_progress` until the money is back with the sender, then `reversed`.
+      #
+      # @param request_options [Hash]
+      # @param params [Whop_sdk::Deposits::Types::ReverseDepositsRequest]
+      # @option request_options [String] :base_url
+      # @option request_options [Hash{String => Object}] :additional_headers
+      # @option request_options [Hash{String => Object}] :additional_query_parameters
+      # @option request_options [Hash{String => Object}] :additional_body_parameters
+      # @option request_options [Integer] :timeout_in_seconds
+      # @option params [String] :id
+      #
+      # @example
+      #   client.deposits.reverse(id: "vbt_xxxxxxxxxxxxxx")
+      #
+      # @return [Whop_sdk::Types::LedgerActivity]
+      def reverse(request_options: {}, **params)
+        params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
+        request_data = Whop_sdk::Deposits::Types::ReverseDepositsRequest.new(params).to_h
+        non_body_param_names = %w[id]
+        body = request_data.except(*non_body_param_names)
+
+        request = Whop_sdk::Internal::JSON::Request.new(
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
+          method: "POST",
+          path: "deposits/#{URI.encode_uri_component(params[:id].to_s)}/reverse",
+          body: body,
+          request_options: request_options
+        )
+        begin
+          response = @client.send(request)
+        rescue Net::HTTPRequestTimeout
+          raise Whop_sdk::Errors::TimeoutError
+        end
+        code = response.code.to_i
+        if code.between?(200, 299)
+          (response.body.to_s.empty? ? nil : Whop_sdk::Types::LedgerActivity.load(response.body))
+        else
+          error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
+          raise error_class.new(response.body, code: code)
+        end
+      end
     end
   end
 end

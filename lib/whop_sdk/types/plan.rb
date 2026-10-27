@@ -11,6 +11,8 @@ module Whop_sdk
 
       field :billing_period, -> { Integer }, optional: false, nullable: true
 
+      field :billing_type, -> { Whop_sdk::Types::PlanBillingType }, optional: false, nullable: false
+
       field :cancel_discount_intervals, -> { Integer }, optional: false, nullable: true
 
       field :cancel_discount_percentage, -> { Integer }, optional: false, nullable: true
@@ -54,8 +56,6 @@ module Whop_sdk
       field :offer_cancel_discount, -> { Internal::Types::Boolean }, optional: false, nullable: true
 
       field :payment_method_configuration, -> { Internal::Types::Hash[String, Object] }, optional: false, nullable: true
-
-      field :plan_type, -> { Whop_sdk::Types::PlanPlanType }, optional: false, nullable: false
 
       field :product, -> { Internal::Types::Hash[String, Object] }, optional: false, nullable: true
 

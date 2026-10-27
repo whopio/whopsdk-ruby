@@ -2,7 +2,7 @@
 
 module Whop_sdk
   module Types
-    module ProductPublicPlanVisibility
+    module ProductPublicVariantVisibility
       extend Whop_sdk::Internal::Types::Enum
 
       VISIBLE = "visible"

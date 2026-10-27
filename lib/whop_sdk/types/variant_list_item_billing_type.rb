@@ -2,7 +2,7 @@
 
 module Whop_sdk
   module Types
-    module ProductPublicPlanPlanType
+    module VariantListItemBillingType
       extend Whop_sdk::Internal::Types::Enum
 
       RENEWAL = "renewal"

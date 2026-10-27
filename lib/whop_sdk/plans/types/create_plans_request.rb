@@ -12,6 +12,8 @@ module Whop_sdk
 
         field :billing_period, -> { Integer }, optional: true, nullable: false
 
+        field :billing_type, -> { String }, optional: true, nullable: false
+
         field :cancel_discount_intervals, -> { Integer }, optional: true, nullable: false
 
         field :cancel_discount_percentage, -> { Integer }, optional: true, nullable: false
@@ -39,8 +41,6 @@ module Whop_sdk
         field :override_tax_type, -> { String }, optional: true, nullable: false
 
         field :payment_method_configuration, -> { Whop_sdk::Plans::Types::CreatePlansRequestPaymentMethodConfiguration }, optional: true, nullable: false
-
-        field :plan_type, -> { String }, optional: true, nullable: false
 
         field :product_id, -> { String }, optional: true, nullable: false
 

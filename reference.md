@@ -33161,7 +33161,7 @@ client.plans.list
 <dl>
 <dd>
 
-**plan_types:** `String` 
+**billing_types:** `String` 
     
 </dd>
 </dl>
@@ -33311,6 +33311,14 @@ client.plans.create
 <dl>
 <dd>
 
+**billing_type:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **cancel_discount_intervals:** `Integer` 
     
 </dd>
@@ -33416,14 +33424,6 @@ client.plans.create
 <dd>
 
 **payment_method_configuration:** `Whop_sdk::Plans::Types::CreatePlansRequestPaymentMethodConfiguration` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**plan_type:** `String` 
     
 </dd>
 </dl>
@@ -34243,7 +34243,7 @@ client.products.list(
 <dl>
 <dd>
 
-**plan_types:** `Whop_sdk::Products::Types::ListProductsRequestPlanTypesItem` — Filter to products with a buyable variant of these billing models, such as `one_time` or `renewal`.
+**billing_types:** `Whop_sdk::Products::Types::ListProductsRequestBillingTypesItem` — Filter to products with a buyable variant of these billing models, such as `one_time` or `renewal`.
     
 </dd>
 </dl>
@@ -42500,7 +42500,7 @@ Lists an account's variants. To list a product's public, buyable variants withou
 client.variants.list(
   release_methods: ["buy_now"],
   visibilities: ["visible"],
-  plan_types: ["renewal"],
+  billing_types: ["renewal"],
   product_ids: ["prod_xxxxxxxxxxxxxx"],
   presentment_currency: "auto",
   ip_address: "203.0.113.7",
@@ -42560,7 +42560,7 @@ client.variants.list(
 <dl>
 <dd>
 
-**plan_types:** `String` — Filter to only variants matching these billing types.
+**billing_types:** `String` — Filter to only variants matching these billing types.
     
 </dd>
 </dl>
@@ -42734,6 +42734,14 @@ client.variants.create
 <dl>
 <dd>
 
+**billing_type:** `String` — Variant billing type, such as `one_time` or `renewal`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **cancel_discount_intervals:** `Integer` — How long the retention discount lasts: `0` forever, `1` the next payment only, or a number of calendar months from when the customer accepts it. Required when `offer_cancel_discount` is true.
     
 </dd>
@@ -42839,14 +42847,6 @@ client.variants.create
 <dd>
 
 **payment_method_configuration:** `Whop_sdk::Variants::Types::CreateVariantsRequestPaymentMethodConfiguration` — Explicit payment method configuration for the variant. When not provided, the account's defaults apply. Send at least one of `enabled` or `disabled`; an omitted one is empty.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**plan_type:** `String` — Variant billing type, such as `one_time` or `renewal`.
     
 </dd>
 </dl>

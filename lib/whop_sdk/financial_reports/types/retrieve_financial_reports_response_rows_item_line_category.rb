@@ -162,6 +162,7 @@ module Whop_sdk
         PAYMENT_REFUND = "payment_refund"
         PAYMENT_REFUND_FEE = "payment_refund_fee"
         PAYMENT_REFUND_REVERSAL = "payment_refund_reversal"
+        PAYMENT_RETURN_FEE = "payment_return_fee"
         PAYMENT_REVSHARE = "payment_revshare"
         PAYMENT_REVSHARE_PAYOUT = "payment_revshare_payout"
         PAYMENT_REVSHARE_REFUND = "payment_revshare_refund"

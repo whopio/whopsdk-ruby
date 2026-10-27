@@ -47,6 +47,8 @@ module Whop_sdk
 
       field :recipient_emails, -> { Internal::Types::Array[String] }, optional: false, nullable: false
 
+      field :scheduled_charge_at, -> { String }, optional: false, nullable: true
+
       field :scheduled_send_at, -> { String }, optional: false, nullable: true
 
       field :status, -> { Whop_sdk::Types::InvoiceStatus }, optional: false, nullable: false

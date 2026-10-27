@@ -9,6 +9,8 @@ module Whop_sdk
 
       field :commission_percentage, -> { Integer }, optional: false, nullable: true
 
+      field :commission_source, -> { Whop_sdk::Types::MembershipAffiliateCommissionSource }, optional: false, nullable: false
+
       field :commission_type, -> { Whop_sdk::Types::MembershipAffiliateCommissionType }, optional: false, nullable: false
 
       field :enabled, -> { Internal::Types::Boolean }, optional: false, nullable: false

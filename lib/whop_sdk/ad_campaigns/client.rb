@@ -221,7 +221,7 @@ module Whop_sdk
       end
 
       # Updates an ad campaign's settings, or launches a draft campaign by setting `status` to `active`. The objective
-      # and desired cost per result are fixed at creation and cannot be changed.
+      # is fixed at creation and cannot be changed.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::AdCampaigns::Types::UpdateAdCampaignsRequest]

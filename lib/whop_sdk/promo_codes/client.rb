@@ -26,7 +26,7 @@ module Whop_sdk
       # @option params [String] :account_id
       # @option params [Whop_sdk::PromoCodes::Types::ListPromoCodesRequestStatus, nil] :status
       # @option params [String, nil] :product_ids
-      # @option params [String, nil] :plan_ids
+      # @option params [String, nil] :variant_ids
       # @option params [String, nil] :created_before
       # @option params [String, nil] :created_after
       # @option params [Whop_sdk::PromoCodes::Types::ListPromoCodesRequestOrder, nil] :order
@@ -40,7 +40,7 @@ module Whop_sdk
       #   client.promo_codes.list(
       #     account_id: "account_id",
       #     product_ids: ["prod_xxxxxxxxxxxxxx"],
-      #     plan_ids: ["plan_xxxxxxxxxxxxxx"]
+      #     variant_ids: ["plan_xxxxxxxxxxxxxx"]
       #   )
       #
       # @return [Whop_sdk::PromoCodes::Types::ListPromoCodesResponse]
@@ -50,7 +50,7 @@ module Whop_sdk
         query_params["account_id"] = params[:account_id] if params.key?(:account_id)
         query_params["status"] = params[:status] if params.key?(:status)
         query_params["product_ids"] = params[:product_ids] if params.key?(:product_ids)
-        query_params["plan_ids"] = params[:plan_ids] if params.key?(:plan_ids)
+        query_params["variant_ids"] = params[:variant_ids] if params.key?(:variant_ids)
         query_params["created_before"] = params[:created_before] if params.key?(:created_before)
         query_params["created_after"] = params[:created_after] if params.key?(:created_after)
         query_params["order"] = params[:order] if params.key?(:order)

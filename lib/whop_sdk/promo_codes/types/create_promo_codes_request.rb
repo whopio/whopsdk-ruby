@@ -22,8 +22,6 @@ module Whop_sdk
 
         field :one_per_customer, -> { Internal::Types::Boolean }, optional: true, nullable: false
 
-        field :plan_ids, -> { Internal::Types::Array[String] }, optional: true, nullable: false
-
         field :product_id, -> { String }, optional: true, nullable: false
 
         field :promo_duration_months, -> { Integer }, optional: false, nullable: false
@@ -33,6 +31,8 @@ module Whop_sdk
         field :stock, -> { Integer }, optional: true, nullable: false
 
         field :unlimited_stock, -> { Internal::Types::Boolean }, optional: true, nullable: false
+
+        field :variant_ids, -> { Internal::Types::Array[String] }, optional: true, nullable: false
       end
     end
   end

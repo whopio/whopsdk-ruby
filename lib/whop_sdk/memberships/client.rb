@@ -33,8 +33,8 @@ module Whop_sdk
       # @option params [Whop_sdk::Memberships::Types::ListMembershipsRequestStatusesItem, nil] :statuses
       # @option params [String, nil] :product_id
       # @option params [String, nil] :product_ids
-      # @option params [String, nil] :plan_id
-      # @option params [String, nil] :plan_ids
+      # @option params [String, nil] :variant_id
+      # @option params [String, nil] :variant_ids
       # @option params [String, nil] :promo_code_ids
       # @option params [String, nil] :created_after
       # @option params [String, nil] :created_before
@@ -49,7 +49,7 @@ module Whop_sdk
       #   client.memberships.list(
       #     external_account: "discord_123456789012345678",
       #     product_ids: ["prod_xxxxxxxxxxxxx"],
-      #     plan_ids: ["plan_xxxxxxxxxxxxx"],
+      #     variant_ids: ["plan_xxxxxxxxxxxxx"],
       #     promo_code_ids: ["promo_xxxxxxxxxxxxxx"]
       #   )
       #
@@ -65,8 +65,8 @@ module Whop_sdk
         query_params["statuses"] = params[:statuses] if params.key?(:statuses)
         query_params["product_id"] = params[:product_id] if params.key?(:product_id)
         query_params["product_ids"] = params[:product_ids] if params.key?(:product_ids)
-        query_params["plan_id"] = params[:plan_id] if params.key?(:plan_id)
-        query_params["plan_ids"] = params[:plan_ids] if params.key?(:plan_ids)
+        query_params["variant_id"] = params[:variant_id] if params.key?(:variant_id)
+        query_params["variant_ids"] = params[:variant_ids] if params.key?(:variant_ids)
         query_params["promo_code_ids"] = params[:promo_code_ids] if params.key?(:promo_code_ids)
         query_params["created_after"] = params[:created_after] if params.key?(:created_after)
         query_params["created_before"] = params[:created_before] if params.key?(:created_before)
@@ -120,8 +120,8 @@ module Whop_sdk
       #
       # @example
       #   client.memberships.invite(
-      #     plan_id: "plan_xxxxxxxxxxxxxx",
-      #     user_id: "user_xxxxxxxxxxxxxx"
+      #     user_id: "user_xxxxxxxxxxxxxx",
+      #     variant_id: "plan_xxxxxxxxxxxxxx"
       #   )
       #
       # @return [Whop_sdk::Memberships::Types::InviteMembershipsResponse]

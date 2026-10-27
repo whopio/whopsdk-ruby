@@ -6,9 +6,9 @@ module Whop_sdk
       class ApproveAllWaitlistEntriesResponse < Internal::Types::Model
         field :account_id, -> { String }, optional: false, nullable: false
 
-        field :plan_id, -> { String }, optional: false, nullable: true
-
         field :queued, -> { Internal::Types::Boolean }, optional: false, nullable: false
+
+        field :variant_id, -> { String }, optional: false, nullable: true
       end
     end
   end

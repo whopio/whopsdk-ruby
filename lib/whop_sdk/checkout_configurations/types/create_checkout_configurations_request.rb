@@ -16,13 +16,13 @@ module Whop_sdk
 
         field :payment_method_configuration, -> { Whop_sdk::CheckoutConfigurations::Types::CreateCheckoutConfigurationsRequestPaymentMethodConfiguration }, optional: true, nullable: false
 
-        field :plan, -> { Whop_sdk::CheckoutConfigurations::Types::CreateCheckoutConfigurationsRequestPlan }, optional: true, nullable: false
-
-        field :plan_id, -> { String }, optional: true, nullable: false
-
         field :redirect_url, -> { String }, optional: true, nullable: false
 
         field :three_ds_level, -> { Whop_sdk::CheckoutConfigurations::Types::CreateCheckoutConfigurationsRequestThreeDsLevel }, optional: true, nullable: false
+
+        field :variant, -> { Whop_sdk::CheckoutConfigurations::Types::CreateCheckoutConfigurationsRequestVariant }, optional: true, nullable: false
+
+        field :variant_id, -> { String }, optional: true, nullable: false
       end
     end
   end

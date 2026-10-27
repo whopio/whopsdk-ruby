@@ -5,8 +5,6 @@ module Whop_sdk
     class PaymentQuoteLineItem < Internal::Types::Model
       field :discount, -> { Whop_sdk::Types::Money }, optional: false, nullable: false
 
-      field :plan_id, -> { String }, optional: false, nullable: true
-
       field :quantity, -> { Integer }, optional: false, nullable: false
 
       field :subtotal, -> { Whop_sdk::Types::Money }, optional: false, nullable: false
@@ -14,6 +12,8 @@ module Whop_sdk
       field :tax_amount, -> { Whop_sdk::Types::Money }, optional: false, nullable: false
 
       field :total, -> { Whop_sdk::Types::Money }, optional: false, nullable: false
+
+      field :variant_id, -> { String }, optional: false, nullable: true
     end
   end
 end

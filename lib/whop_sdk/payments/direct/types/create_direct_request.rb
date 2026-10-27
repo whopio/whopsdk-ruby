@@ -23,6 +23,10 @@ module Whop_sdk
 
           field :payment_method, -> { Whop_sdk::Payments::Direct::Types::CreateDirectRequestPaymentMethod }, optional: false, nullable: false
 
+          field :plan, -> { Whop_sdk::Payments::Direct::Types::CreateDirectRequestPlan }, optional: true, nullable: false
+
+          field :plan_id, -> { String }, optional: true, nullable: false
+
           field :quote_id, -> { String }, optional: true, nullable: false
 
           field :return_url, -> { String }, optional: true, nullable: false
@@ -33,13 +37,13 @@ module Whop_sdk
 
           field :account_id, -> { String }, optional: false, nullable: false
 
-          field :plan, -> { Whop_sdk::Types::PaymentInputPlan }, optional: true, nullable: false
-
-          field :plan_id, -> { String }, optional: true, nullable: false
-
           field :promo_code, -> { String }, optional: true, nullable: false
 
           field :promo_code_id, -> { String }, optional: true, nullable: false
+
+          field :variant, -> { Whop_sdk::Types::PaymentInputVariant }, optional: true, nullable: false
+
+          field :variant_id, -> { String }, optional: true, nullable: false
         end
       end
     end

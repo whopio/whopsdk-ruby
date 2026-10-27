@@ -71,8 +71,6 @@ module Whop_sdk
 
       field :payments_failed, -> { Integer }, optional: false, nullable: false
 
-      field :plan_id, -> { String }, optional: false, nullable: true
-
       field :presentment_refunded_amount, -> { Whop_sdk::Types::Money }, optional: false, nullable: true
 
       field :presentment_tax_amount, -> { Whop_sdk::Types::Money }, optional: false, nullable: true
@@ -128,6 +126,8 @@ module Whop_sdk
       field :usd_total, -> { Whop_sdk::Types::Money }, optional: false, nullable: true
 
       field :user, -> { Whop_sdk::Types::UserSummary }, optional: false, nullable: true
+
+      field :variant_id, -> { String }, optional: false, nullable: true
 
       field :verification_checks, -> { Whop_sdk::Types::PaymentVerificationChecks }, optional: false, nullable: true
 

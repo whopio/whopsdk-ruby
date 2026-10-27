@@ -7,10 +7,6 @@ module Whop_sdk
 
       field :label, -> { String }, optional: false, nullable: true
 
-      field :plan_id, -> { String }, optional: false, nullable: true
-
-      field :plan_title, -> { String }, optional: false, nullable: true
-
       field :product_id, -> { String }, optional: false, nullable: true
 
       field :product_title, -> { String }, optional: false, nullable: true
@@ -20,6 +16,10 @@ module Whop_sdk
       field :sku, -> { String }, optional: false, nullable: true
 
       field :subtotal, -> { Whop_sdk::Types::Money }, optional: false, nullable: true
+
+      field :variant_id, -> { String }, optional: false, nullable: true
+
+      field :variant_title, -> { String }, optional: false, nullable: true
     end
   end
 end

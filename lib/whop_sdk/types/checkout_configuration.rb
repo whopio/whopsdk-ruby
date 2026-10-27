@@ -21,8 +21,6 @@ module Whop_sdk
 
       field :payment_method_configuration, -> { Internal::Types::Hash[String, Object] }, optional: false, nullable: true
 
-      field :plan, -> { Whop_sdk::Types::CheckoutConfigurationPlan }, optional: false, nullable: true
-
       field :purchase_url, -> { String }, optional: false, nullable: true
 
       field :redirect_url, -> { String }, optional: false, nullable: true
@@ -30,6 +28,8 @@ module Whop_sdk
       field :three_ds_level, -> { Whop_sdk::Types::CheckoutConfigurationThreeDsLevel }, optional: false, nullable: true
 
       field :updated_at, -> { String }, optional: false, nullable: false
+
+      field :variant, -> { Whop_sdk::Types::CheckoutConfigurationVariant }, optional: false, nullable: true
     end
   end
 end

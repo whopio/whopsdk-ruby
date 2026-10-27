@@ -12,7 +12,7 @@ module Whop_sdk
 
         field :before, -> { String }, optional: true, nullable: false
 
-        field :plan_id, -> { String }, optional: true, nullable: false
+        field :variant_id, -> { String }, optional: true, nullable: false
 
         field :account_id, -> { String }, optional: true, nullable: false
 

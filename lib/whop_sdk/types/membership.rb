@@ -49,8 +49,6 @@ module Whop_sdk
 
       field :phone_number, -> { String }, optional: false, nullable: true
 
-      field :plan_id, -> { String }, optional: false, nullable: false
-
       field :product, -> { Whop_sdk::Types::MembershipProduct }, optional: false, nullable: false
 
       field :product_id, -> { String }, optional: false, nullable: false
@@ -68,6 +66,8 @@ module Whop_sdk
       field :updated_at, -> { String }, optional: false, nullable: false
 
       field :user_id, -> { String }, optional: false, nullable: true
+
+      field :variant_id, -> { String }, optional: false, nullable: false
     end
   end
 end

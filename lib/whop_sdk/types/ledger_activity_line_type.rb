@@ -55,6 +55,7 @@ module Whop_sdk
       PLATFORM_COVERED_DISPUTE = "platform_covered_dispute"
       DISPUTE_ALERT_FEE = "dispute_alert_fee"
       DISPUTE_REPRESENTMENT_FEE = "dispute_representment_fee"
+      PAYMENT_RETURN_FEE = "payment_return_fee"
       DISPUTE_HOLD_ADJUSTMENT = "dispute_hold_adjustment"
       DISPUTE_HOLD_BLOCKED = "dispute_hold_blocked"
       PSP_DISPUTE_PAYABLE = "psp_dispute_payable"

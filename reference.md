@@ -45326,6 +45326,22 @@ client.accounts.fees.update(account_id: "account_id")
 <dl>
 <dd>
 
+**ach_dispute:** `Whop_sdk::Accounts::Fees::Types::UpdateFeesRequestAchDispute` — The fields of a fee the caller may change. Only the keys sent are replaced.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**ach_return:** `Whop_sdk::Accounts::Fees::Types::UpdateFeesRequestAchReturn` — The fields of a fee the caller may change. Only the keys sent are replaced.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **bank_deposit:** `Whop_sdk::Accounts::Fees::Types::UpdateFeesRequestBankDeposit` — The fields of a fee the caller may change. Only the keys sent are replaced.
     
 </dd>
@@ -45527,6 +45543,22 @@ client.accounts.fees.update(account_id: "account_id")
 <dd>
 
 **revshare:** `Whop_sdk::Accounts::Fees::Types::UpdateFeesRequestRevshare` — The fields of a fee the caller may change. Only the keys sent are replaced.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sepa_dispute:** `Whop_sdk::Accounts::Fees::Types::UpdateFeesRequestSepaDispute` — The fields of a fee the caller may change. Only the keys sent are replaced.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sepa_return:** `Whop_sdk::Accounts::Fees::Types::UpdateFeesRequestSepaReturn` — The fields of a fee the caller may change. Only the keys sent are replaced.
     
 </dd>
 </dl>

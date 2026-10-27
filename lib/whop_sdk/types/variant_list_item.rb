@@ -7,6 +7,8 @@ module Whop_sdk
 
       field :adaptive_pricing_enabled, -> { Internal::Types::Boolean }, optional: false, nullable: false
 
+      field :allow_multiple_quantity, -> { Internal::Types::Boolean }, optional: false, nullable: false
+
       field :attributes, -> { Internal::Types::Hash[String, String] }, optional: false, nullable: true
 
       field :billing_period, -> { Integer }, optional: false, nullable: true

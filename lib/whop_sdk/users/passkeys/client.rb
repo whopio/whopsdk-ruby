@@ -80,7 +80,7 @@ module Whop_sdk
         # challenge. Mint that challenge first with `POST /users/me/passkeys/challenge` and run the ceremony with its
         # `creation_options`; it is single-use and expires 5 minutes after it is issued. Send back the `user_handle` the
         # options carried: registering with it replaces the account's passkeys made before Whop issued options, which
-        # can only be deleted. Requires a user session.
+        # can only be deleted. Requires a user session that has completed step-up verification.
         #
         # @param request_options [Hash]
         # @param params [Whop_sdk::Users::Passkeys::Types::CreatePasskeysRequest]
@@ -127,7 +127,8 @@ module Whop_sdk
         # passkey named by `passkey_id` and proves the user still holds it. The options are in wire snake_case: convert
         # the keys to camelCase before passing them to the browser. Challenges are single-use and expire 5 minutes after
         # they are issued, so send a fresh `Idempotency-Key` per ceremony — a replayed key returns the original
-        # challenge, which may already have expired. Requires a user session.
+        # challenge, which may already have expired. Requires a user session. A `registration` challenge also requires
+        # step-up verification, so the user completes it before the browser ceremony.
         #
         # @param request_options [Hash]
         # @param params [Whop_sdk::Users::Passkeys::Types::ChallengePasskeysRequest]

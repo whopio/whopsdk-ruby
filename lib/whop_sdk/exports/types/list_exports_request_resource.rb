@@ -24,6 +24,7 @@ module Whop_sdk
         PEOPLE = "people"
         PLANS = "plans"
         PRODUCTS = "products"
+        RECEIPT_INVOICES = "receipt_invoices"
         RESOLUTION_CENTER_CASES = "resolution_center_cases"
         SHIPMENTS = "shipments"
         SOCIAL_ACCOUNTS = "social_accounts"

@@ -22,6 +22,8 @@ module Whop_sdk
 
         field :id, -> { String }, optional: true, nullable: false
 
+        field :incorporation_date, -> { String }, optional: true, nullable: false
+
         field :kind, -> { Whop_sdk::Verifications::Types::RetrieveVerificationsResponseKind }, optional: true, nullable: false
 
         field :last_name, -> { String }, optional: true, nullable: false
@@ -29,6 +31,8 @@ module Whop_sdk
         field :owners, -> { Internal::Types::Array[Whop_sdk::Verifications::Types::RetrieveVerificationsResponseOwnersItem] }, optional: false, nullable: false
 
         field :phone, -> { String }, optional: true, nullable: false
+
+        field :place_of_incorporation, -> { String }, optional: true, nullable: false
 
         field :registration_number, -> { String }, optional: true, nullable: false
 

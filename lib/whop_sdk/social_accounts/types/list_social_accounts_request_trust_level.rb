@@ -7,6 +7,7 @@ module Whop_sdk
         extend Whop_sdk::Internal::Types::Enum
 
         OAUTH = "oauth"
+        API_KEY = "api_key"
         VERIFIED = "verified"
         AUTHORIZED = "authorized"
         CLAIMED = "claimed"

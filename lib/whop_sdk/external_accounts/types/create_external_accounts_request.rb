@@ -6,6 +6,8 @@ module Whop_sdk
       class CreateExternalAccountsRequest < Internal::Types::Model
         field :account_id, -> { String }, optional: true, nullable: false
 
+        field :api_key, -> { String }, optional: true, nullable: false
+
         field :platform, -> { Whop_sdk::ExternalAccounts::Types::CreateExternalAccountsRequestPlatform }, optional: false, nullable: false
       end
     end

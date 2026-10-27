@@ -12,6 +12,7 @@ module Whop_sdk
       FACEBOOK = "facebook"
       LINKEDIN = "linkedin"
       SNAPCHAT = "snapchat"
+      KLAVIYO = "klaviyo"
     end
   end
 end

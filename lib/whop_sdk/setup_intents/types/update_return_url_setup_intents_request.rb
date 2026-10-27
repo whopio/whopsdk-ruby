@@ -6,6 +6,8 @@ module Whop_sdk
       class UpdateReturnURLSetupIntentsRequest < Internal::Types::Model
         field :setup_intent_id, -> { String }, optional: false, nullable: false
 
+        field :client_secret, -> { String }, optional: true, nullable: false
+
         field :return_url, -> { String }, optional: false, nullable: false
       end
     end

@@ -15,6 +15,8 @@ module Whop_sdk
 
       field :created_at, -> { String }, optional: false, nullable: false
 
+      field :external_order_id, -> { String }, optional: false, nullable: true
+
       field :failure_code, -> { Whop_sdk::Types::TradeFailureCode }, optional: false, nullable: true
 
       field :filled_size, -> { String }, optional: false, nullable: true

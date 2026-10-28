@@ -14,6 +14,7 @@ module Whop_sdk
       SNAPCHAT = "snapchat"
       KLAVIYO = "klaviyo"
       QUICKBOOKS = "quickbooks"
+      AIMERCE = "aimerce"
     end
   end
 end

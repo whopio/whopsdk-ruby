@@ -9,6 +9,7 @@ module Whop_sdk
         FACEBOOK = "facebook"
         TIKTOK = "tiktok"
         KLAVIYO = "klaviyo"
+        AIMERCE = "aimerce"
       end
     end
   end

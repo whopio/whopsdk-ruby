@@ -6,6 +6,8 @@ module Whop_sdk
       class SendInvoicesRequest < Internal::Types::Model
         field :id, -> { String }, optional: false, nullable: false
 
+        field :charge_at, -> { String }, optional: true, nullable: false
+
         field :send_at, -> { String }, optional: true, nullable: false
       end
     end

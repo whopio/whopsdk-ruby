@@ -4,6 +4,8 @@ module Whop_sdk
   module Verifications
     module Types
       class ListVerificationsResponseDataItem < Internal::Types::Model
+        field :account_ids, -> { Internal::Types::Array[String] }, optional: false, nullable: false
+
         field :address, -> { Whop_sdk::Verifications::Types::ListVerificationsResponseDataItemAddress }, optional: true, nullable: false
 
         field :business_name, -> { String }, optional: true, nullable: false

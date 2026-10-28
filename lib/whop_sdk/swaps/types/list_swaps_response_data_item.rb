@@ -6,6 +6,8 @@ module Whop_sdk
       class ListSwapsResponseDataItem < Internal::Types::Model
         field :account_id, -> { String }, optional: false, nullable: false
 
+        field :amount, -> { String }, optional: false, nullable: true
+
         field :error, -> { String }, optional: true, nullable: false
 
         field :id, -> { String }, optional: false, nullable: false

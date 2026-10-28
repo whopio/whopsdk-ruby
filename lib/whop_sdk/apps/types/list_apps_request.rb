@@ -18,6 +18,8 @@ module Whop_sdk
 
         field :query, -> { String }, optional: true, nullable: false
 
+        field :product_category, -> { String }, optional: true, nullable: false
+
         field :order, -> { Whop_sdk::Apps::Types::ListAppsRequestOrder }, optional: true, nullable: false
 
         field :direction, -> { Whop_sdk::Apps::Types::ListAppsRequestDirection }, optional: true, nullable: false

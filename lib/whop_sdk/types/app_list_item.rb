@@ -43,6 +43,8 @@ module Whop_sdk
 
       field :origin, -> { String }, optional: false, nullable: true
 
+      field :product_category, -> { String }, optional: false, nullable: true
+
       field :route, -> { String }, optional: false, nullable: true
 
       field :skills_path, -> { String }, optional: false, nullable: true

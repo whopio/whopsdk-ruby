@@ -33,6 +33,8 @@ module Whop_sdk
 
       field :instructions, -> { String }, optional: true, nullable: false
 
+      field :intermediary_bic, -> { String }, optional: true, nullable: false
+
       field :reference, -> { String }, optional: true, nullable: false
 
       field :routing_number, -> { String }, optional: true, nullable: false

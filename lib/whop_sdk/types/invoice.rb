@@ -2,54 +2,66 @@
 
 module Whop_sdk
   module Types
-    # An invoice represents an itemized bill sent by a company to a customer for a specific product and plan, tracking
-    # the amount owed, due date, and payment status.
     class Invoice < Internal::Types::Model
-      field :automatically_finalizes_at, -> { String }, optional: false, nullable: true
+      field :account_id, -> { String }, optional: false, nullable: false
 
-      field :charge_buyer_fee, -> { Internal::Types::Boolean }, optional: false, nullable: false
+      field :amount_due, -> { Whop_sdk::Types::Money }, optional: false, nullable: false
 
-      field :collection_method, -> { Whop_sdk::Types::InvoiceCollectionMethods }, optional: false, nullable: false
+      field :billing_address, -> { Whop_sdk::Types::PaymentAddress }, optional: false, nullable: true
 
-      field :company, -> { Whop_sdk::Types::InvoiceCompany }, optional: false, nullable: false
+      field :buyer_fee_amount, -> { Whop_sdk::Types::Money }, optional: false, nullable: false
+
+      field :buyer_fee_percentage, -> { Integer }, optional: false, nullable: false
+
+      field :checkout_link, -> { String }, optional: false, nullable: true
 
       field :created_at, -> { String }, optional: false, nullable: false
 
-      field :current_plan, -> { Whop_sdk::Types::InvoiceCurrentPlan }, optional: false, nullable: false
-
       field :customer_name, -> { String }, optional: false, nullable: true
 
-      field :due_date, -> { String }, optional: false, nullable: true
+      field :due_at, -> { String }, optional: false, nullable: true
 
       field :email_address, -> { String }, optional: false, nullable: true
 
-      field :fetch_invoice_token, -> { String }, optional: false, nullable: false
-
       field :id, -> { String }, optional: false, nullable: false
 
-      field :line_items, -> { Internal::Types::Array[Whop_sdk::Types::InvoiceLineItemsItem] }, optional: false, nullable: false
+      field :invoice_prefix, -> { String }, optional: false, nullable: true
 
-      field :mailing_address, -> { Whop_sdk::Types::InvoiceMailingAddress }, optional: false, nullable: true
+      field :line_items, -> { Internal::Types::Array[Whop_sdk::Types::InvoiceLineItem] }, optional: false, nullable: false
 
-      field :member, -> { Whop_sdk::Types::InvoiceMember }, optional: false, nullable: true
+      field :mailing_address_id, -> { String }, optional: false, nullable: true
+
+      field :member_id, -> { String }, optional: false, nullable: true
+
+      field :metadata, -> { Internal::Types::Hash[String, String] }, optional: false, nullable: false
 
       field :number, -> { String }, optional: false, nullable: false
 
-      field :pay_online_url, -> { String }, optional: false, nullable: true
+      field :object, -> { Whop_sdk::Types::InvoiceObject }, optional: false, nullable: false
 
-      field :payment, -> { Whop_sdk::Types::InvoicePayment }, optional: false, nullable: true
+      field :overdue, -> { Internal::Types::Boolean }, optional: false, nullable: false
 
-      field :payment_processing, -> { Internal::Types::Boolean }, optional: false, nullable: false
+      field :paid_at, -> { String }, optional: false, nullable: true
 
-      field :product, -> { Whop_sdk::Types::InvoiceProduct }, optional: false, nullable: false
+      field :payment_method_id, -> { String }, optional: false, nullable: true
 
-      field :status, -> { Whop_sdk::Types::InvoiceStatuses }, optional: false, nullable: false
+      field :recipient_emails, -> { Internal::Types::Array[String] }, optional: false, nullable: false
 
-      field :subscription_billing_anchor_at, -> { String }, optional: false, nullable: true
+      field :scheduled_charge_at, -> { String }, optional: false, nullable: true
+
+      field :scheduled_send_at, -> { String }, optional: false, nullable: true
+
+      field :status, -> { Whop_sdk::Types::InvoiceStatus }, optional: false, nullable: false
+
+      field :subtotal, -> { Whop_sdk::Types::Money }, optional: false, nullable: false
+
+      field :tax_amount, -> { Whop_sdk::Types::Money }, optional: false, nullable: true
+
+      field :total, -> { Whop_sdk::Types::Money }, optional: false, nullable: false
+
+      field :totals_status, -> { Whop_sdk::Types::InvoiceTotalsStatus }, optional: false, nullable: false
 
       field :updated_at, -> { String }, optional: false, nullable: false
-
-      field :user, -> { Whop_sdk::Types::InvoiceUser }, optional: false, nullable: true
     end
   end
 end

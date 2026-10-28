@@ -3354,5 +3354,401 @@ generations:
     cli_version: unknown
     generator_versions:
       fernapi/fern-ruby-sdk: 1.28.3
-current_generation: fce06ad6442d0bf18373e33fd6edeceb11930170
+  - commit_sha: 1e8f2988cda4dbee6d6df769eb2189eb545079bf
+    tree_hash: 26fb64cfd494532ad27f0003c78aa497762ebebe
+    timestamp: 2026-10-23T18:28:49.794Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-ruby-sdk: 1.28.3
+  - commit_sha: 85588891fd21f34ebcc361dfd0188e04d59a4de8
+    tree_hash: c064da8742d09308374ce2f930913295e395f19e
+    timestamp: 2026-10-23T19:37:27.719Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-ruby-sdk: 1.28.3
+  - commit_sha: b80604b9ab88728be8c5313b0aa3ddcb005c63de
+    tree_hash: 24c4a5368bf02ee6f7118888383b16ca93dcb7b5
+    timestamp: 2026-10-23T20:47:48.649Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-ruby-sdk: 1.28.3
+  - commit_sha: d1defa498901d9ee904d151cace97032261ffdcd
+    tree_hash: 12cea556866ab38a055bbe6da524ade2f3d3476a
+    timestamp: 2026-10-23T21:03:03.890Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-ruby-sdk: 1.28.3
+  - commit_sha: 62d20f2cb80e408b7ec0e8cb5822dbb34b85aa2e
+    tree_hash: 58804aa203703637b5e8ccb4c4315cb109f25bbb
+    timestamp: 2026-10-23T21:35:55.540Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-ruby-sdk: 1.28.3
+  - commit_sha: d47ea412674fb03aab37f76b3047b7a22ee733f8
+    tree_hash: cbb7ba8ac086d7d8e61205c04ca569a3450ac06d
+    timestamp: 2026-10-23T23:08:10.566Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-ruby-sdk: 1.28.3
+  - commit_sha: 785de995a9c441bd9982c90655f12a3c73ab25e5
+    tree_hash: e6228a0fbfec732dd945ff45011f48e2ac6cff37
+    timestamp: 2026-10-23T23:43:18.153Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-ruby-sdk: 1.28.3
+  - commit_sha: bf79db7a5143f4f98498de458b8758bfd7f8dece
+    tree_hash: 0ba3e1b9cd0afc6f81b506b0ab5e73159c52b0f2
+    timestamp: 2026-10-24T00:48:08.034Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-ruby-sdk: 1.28.3
+  - commit_sha: d9e98cde56d68b97ca9e5968fc1a19dcfb05418c
+    tree_hash: 5b423840b92275fe5789c3180bd24fe9c982f133
+    timestamp: 2026-10-24T04:22:38.017Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-ruby-sdk: 1.28.3
+  - commit_sha: c383834ba2615af407426a82c1cd59ee1cb2c02b
+    tree_hash: 6bf7534e952d472edbefa53a14422fe07f22d150
+    timestamp: 2026-10-24T18:48:36.839Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-ruby-sdk: 1.28.3
+  - commit_sha: 96b93807594de5c8f88e8308e49d9559a0fe150e
+    tree_hash: 88bd6143503498f6cb5db986f3416ac78a7bba7c
+    timestamp: 2026-10-24T22:53:00.776Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-ruby-sdk: 1.28.3
+  - commit_sha: e8b09b34a71159a6d5acc5cf0b048a1bb31a86b2
+    tree_hash: c04d47f5a15dd33b8ce4b09db00ff748914af53f
+    timestamp: 2026-10-24T23:04:50.501Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-ruby-sdk: 1.28.3
+  - commit_sha: deec71d76e48d5251cf543ea89a1b42376a0a3a1
+    tree_hash: 070bcf5f7728657c7279fe7583dce3da79187f3a
+    timestamp: 2026-10-24T23:16:37.064Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-ruby-sdk: 1.28.3
+  - commit_sha: f653d3c204f5944cdb4214a9541e8d6d80dd8284
+    tree_hash: 73d5bd052602adacf0514c5a93f9b4dd2708808e
+    timestamp: 2026-10-24T23:40:48.403Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-ruby-sdk: 1.28.3
+  - commit_sha: 6cbb506a1ee44551807189bdd17315708a7831ab
+    tree_hash: 4bc5f79e7ccfe2ed438e5df91bbff2e91c9134b5
+    timestamp: 2026-10-25T02:06:52.689Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-ruby-sdk: 1.28.3
+  - commit_sha: a3216ce8a4280085d3e98bcfffb70bdc3f547b76
+    tree_hash: 8cdecea1354db6adc3687325254834ed78cc113f
+    timestamp: 2026-10-25T16:25:19.095Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-ruby-sdk: 1.28.3
+  - commit_sha: a93332468c7559816a9d6bbb67b5ec2917147d89
+    tree_hash: fd88c05f3ae02500861fcee4329d33b8ab5864ca
+    timestamp: 2026-10-25T21:23:46.001Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-ruby-sdk: 1.28.3
+  - commit_sha: c047ada9b8927df5eb111e9764d21312c6272f9c
+    tree_hash: 1b8275e274bae95abee75fdf08d707d6ab0ef6a2
+    timestamp: 2026-10-26T06:02:31.441Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-ruby-sdk: 1.28.3
+  - commit_sha: b4c6075b0256ded3305c2cf3ed03e5b77dfb4b9f
+    tree_hash: 12a971f976df299413655698b15c42910320589e
+    timestamp: 2026-10-26T06:39:47.630Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-ruby-sdk: 1.28.3
+  - commit_sha: 5bb7791fbbafa1e0125a3566aa3e3f0004879f6e
+    tree_hash: cf7d80aae2f869e7c189148f47306b26a144eb64
+    timestamp: 2026-10-26T07:18:37.162Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-ruby-sdk: 1.28.3
+  - commit_sha: b45632922749bb1e8179916de7b15cda230db392
+    tree_hash: b42015f42ff1a21acfed7d3c94b01147fa588ad5
+    timestamp: 2026-10-26T17:22:41.284Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-ruby-sdk: 1.28.3
+  - commit_sha: 929b291f0d6d0b79896756fbd97d0c1e1ce36af7
+    tree_hash: 9006b6dd288a1aff94d56e16f6330c73b06191e0
+    timestamp: 2026-10-26T17:34:31.342Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-ruby-sdk: 1.28.3
+  - commit_sha: fa7567fc2ebca614ea4f3c0bf8d615f5769ee2f1
+    tree_hash: e8e016abefcfd2c7841b01c566ec9c07456b832e
+    timestamp: 2026-10-26T18:38:02.774Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-ruby-sdk: 1.28.3
+  - commit_sha: 9f8bda879556c1ec98519f4a24c389f0947afc09
+    tree_hash: 641bff012c9f8d4ab0942197fad0e138c248500e
+    timestamp: 2026-10-26T18:50:14.830Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-ruby-sdk: 1.28.3
+  - commit_sha: beb464e3042e88feac0093ea57a6fcf7cfe01357
+    tree_hash: b85eb97880ce709f92eb0771520a108931c2c8e2
+    timestamp: 2026-10-26T19:11:27.921Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-ruby-sdk: 1.28.3
+  - commit_sha: bab78b69044d0d2fc9f91c6bbc103393371e3b28
+    tree_hash: f67ee7ff6a52c9f4260970f04355b18e17785772
+    timestamp: 2026-10-26T20:03:10.973Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-ruby-sdk: 1.28.3
+  - commit_sha: aa66c74276de341957039b0b10a37d92adf73a7d
+    tree_hash: d3d2dab4f911292c14e4ce92b9625e289405b087
+    timestamp: 2026-10-26T20:16:29.348Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-ruby-sdk: 1.28.3
+  - commit_sha: 44b2cef2fec381cbf4a63f7ffd19ecbb887abcba
+    tree_hash: eef626348340cb8cbd53fc869ddae93a73f9fae9
+    timestamp: 2026-10-26T20:28:52.500Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-ruby-sdk: 1.28.3
+  - commit_sha: f997ffff994866119586150a268c1193189a013e
+    tree_hash: cb48bdd9294180880bb83342fdef1fb272c64250
+    timestamp: 2026-10-26T21:32:04.985Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-ruby-sdk: 1.28.3
+  - commit_sha: 3963e0c595961389f9bbf3468aa6cf33594d8b9e
+    tree_hash: 0ba32fd213ce703a3c41f29cb74a280583150b91
+    timestamp: 2026-10-26T21:43:59.315Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-ruby-sdk: 1.28.3
+  - commit_sha: 0cec789dd76bc7a4750b18c8aaddeab41ed1b197
+    tree_hash: 5a600972907e2533498c6f297a0820962ff9fe3e
+    timestamp: 2026-10-26T21:56:59.556Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-ruby-sdk: 1.28.3
+  - commit_sha: 50d90e4874c3f87417378d1177a40ebe6a7a1462
+    tree_hash: b2bbbc2b9101f091ac60ca27ae32a8c5c4e80def
+    timestamp: 2026-10-26T22:29:21.695Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-ruby-sdk: 1.28.3
+  - commit_sha: 186049300e50df3db4f5a9da382e20e4557399cd
+    tree_hash: 1044191ab3c69dd5224575a000fdbc5ef0b57282
+    timestamp: 2026-10-26T23:10:29.258Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-ruby-sdk: 1.28.3
+  - commit_sha: 3642440903c6a30df449ae511b620f6ce7fd223e
+    tree_hash: 5f0f6e37539a24965edaf80fb04d03c1695ad081
+    timestamp: 2026-10-26T23:27:44.981Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-ruby-sdk: 1.28.3
+  - commit_sha: a06c22f3b62c36d6bf0489db6775745de999efe9
+    tree_hash: 714748c58215393ae53b8ad3dad1c9f316f26162
+    timestamp: 2026-10-26T23:39:47.073Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-ruby-sdk: 1.28.3
+  - commit_sha: fdef20b3d2e45424b27d063311e4d041c597cb81
+    tree_hash: 7e91327dd76925462f220d8879e1be79b1f614cb
+    timestamp: 2026-10-27T02:10:14.221Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-ruby-sdk: 1.28.3
+  - commit_sha: 3b24046892b183d3bca4ac4380ecf686ffd7cd63
+    tree_hash: 1fc44a51402b555206ca32501786e203ab2d0de1
+    timestamp: 2026-10-27T02:22:32.443Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-ruby-sdk: 1.28.3
+  - commit_sha: 23c25aea1a137d8e21089eac807ea663c999c326
+    tree_hash: 26e127fc651429d10d53da060c507e05713ce49a
+    timestamp: 2026-10-27T02:36:05.822Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-ruby-sdk: 1.28.3
+  - commit_sha: 277200fe4b8815e08f037c0c2b6bbdb67694d11a
+    tree_hash: 22a3aafcdb1baf098c97b98cc0cc701e6fe2ec52
+    timestamp: 2026-10-27T05:04:31.508Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-ruby-sdk: 1.28.3
+  - commit_sha: 01b7546b68992f631d7419e4649637bbf35b2505
+    tree_hash: 6dcec41450056694734d453716909c4035aae579
+    timestamp: 2026-10-27T05:23:50.435Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-ruby-sdk: 1.28.3
+  - commit_sha: b780a08c1ce868910d5cd3342bb37a3c100c4eff
+    tree_hash: 65693563ac03e887642174e88bbc1135c6961e93
+    timestamp: 2026-10-27T05:34:54.848Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-ruby-sdk: 1.28.3
+  - commit_sha: 5446c5a53bf2657f2bdd0c86adf4b7987c71c040
+    tree_hash: d5fc5bfcc2fb95b8db3680e13a0dd0d115ef1b3f
+    timestamp: 2026-10-27T06:15:40.518Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-ruby-sdk: 1.28.3
+  - commit_sha: 495e28142c743cfcd325ad13238d1d2146febaa7
+    tree_hash: 7923fb1eade8149bcc7e9bbe101cb0aeefaa0f0d
+    timestamp: 2026-10-27T06:30:12.767Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-ruby-sdk: 1.28.3
+  - commit_sha: bd50f57b9d945e9ea139ea6a347113da3f3c4f06
+    tree_hash: 3742075b9666f778349e0e21b07e749bf22a9dcb
+    timestamp: 2026-10-27T06:41:25.412Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-ruby-sdk: 1.28.3
+  - commit_sha: 71894b18a5adf973cce181975421736c82cebbe1
+    tree_hash: f42fe1f27e2035c862e1c7ccf0bfdce4c8fe4593
+    timestamp: 2026-10-27T10:39:39.452Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-ruby-sdk: 1.28.3
+  - commit_sha: 4fc7b519e34fa087c86009dff06da09bb6dcb509
+    tree_hash: 6ed2e5566e2fcd45d93ec5265f956bd63ca5ffa5
+    timestamp: 2026-10-27T11:12:55.056Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-ruby-sdk: 1.28.3
+  - commit_sha: b07aa724134df494c6c6c41950b94f5177408fd9
+    tree_hash: d814b8198efc5f1af05628396682763d29613810
+    timestamp: 2026-10-27T17:37:43.984Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-ruby-sdk: 1.28.3
+  - commit_sha: 9f28282a8bf3cbae7592fd04d5bf3b0798330099
+    tree_hash: 7c0fb5740bcd7006bf2e8c8679da130fef30af95
+    timestamp: 2026-10-27T17:50:53.635Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-ruby-sdk: 1.28.3
+  - commit_sha: f128dd257d4d70290e77849651a7a5d1c89e3802
+    tree_hash: 64d15768962bb03c6838c1fe00f1411212c39880
+    timestamp: 2026-10-27T18:25:27.186Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-ruby-sdk: 1.28.3
+  - commit_sha: 093081484de8b7528ff8c1bf71a8c1420ff59179
+    tree_hash: f5412e04fae2f6bda451ccc8dbe3c3d020d14f38
+    timestamp: 2026-10-27T18:38:55.651Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-ruby-sdk: 1.28.3
+  - commit_sha: 9b48c82f299fa17013d6c88cb541e2f5ca6d1e85
+    tree_hash: 7f46484bbcfb5ead8b375ed085654c4a2f9a8315
+    timestamp: 2026-10-27T20:15:48.594Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-ruby-sdk: 1.28.3
+  - commit_sha: 51f748eacd8aa87b6af5668d34ff24b8d1835622
+    tree_hash: 2ed3d6f91b3cea166c7cfb1294281a17907198d1
+    timestamp: 2026-10-27T20:36:42.464Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-ruby-sdk: 1.28.3
+  - commit_sha: 6788d16ccbcb1c468a49d3160612f4c460956649
+    tree_hash: 4373053f9e89b5811813a1a88d74068a7f6a3b4d
+    timestamp: 2026-10-27T21:00:49.199Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-ruby-sdk: 1.28.3
+  - commit_sha: 9bf98690758f22703da4364f44165d603e4d11b1
+    tree_hash: b28459dfab997e710f852cd5189ffbd967620772
+    timestamp: 2026-10-27T21:13:18.038Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-ruby-sdk: 1.28.3
+  - commit_sha: 3702235d85da59350909bc68fc14c806ac32da6f
+    tree_hash: 21479f31e35d1841e4fae8b8bc27b0b4a96eab89
+    timestamp: 2026-10-27T21:30:42.448Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-ruby-sdk: 1.28.3
+  - commit_sha: d4ee0cefc90dbdda5ffd1a99f33017f023a79fab
+    tree_hash: 16e4f46f7a8505d4da57e0f691f0e84c5ff20a20
+    timestamp: 2026-10-27T21:55:40.365Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-ruby-sdk: 1.28.3
+  - commit_sha: 63113faddaefbb73ff0d98206fea3db804df0cf8
+    tree_hash: 3118da7e88ec97d2a6cc7726e92f74a38a0f2f3e
+    timestamp: 2026-10-27T22:07:50.813Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-ruby-sdk: 1.28.3
+  - commit_sha: c1144983bde4fc0d466bc46842e190baee0bf50d
+    tree_hash: 2ac15fb7c970a5008b11d75dc29db97cc7a67c86
+    timestamp: 2026-10-27T22:31:14.185Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-ruby-sdk: 1.28.3
+  - commit_sha: c4d22f78e7c5b530eee1ec2b1fa0aa7fc229eb18
+    tree_hash: 54ced81a955ad35c5bf1cc18980f4a21f27074e7
+    timestamp: 2026-10-27T23:00:39.015Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-ruby-sdk: 1.28.3
+  - commit_sha: 733f30c08526f765d526356a4f7a928e9a7ba253
+    tree_hash: dd4f0b3a026a9d3c170597592b98de5baa2af67e
+    timestamp: 2026-10-27T23:39:04.569Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-ruby-sdk: 1.28.3
+  - commit_sha: c7efbeea2d9d3b30fd0e41817b0a9c76f5c73908
+    tree_hash: 415e677a4ed5058c57f537e9ac6876efddfbc1f0
+    timestamp: 2026-10-28T00:03:37.479Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-ruby-sdk: 1.28.3
+  - commit_sha: 733e1aba81c3c8212506fa6f3d5f96c5bab5528d
+    tree_hash: 6fa3503935685ebffb7c57bf562511be547483c4
+    timestamp: 2026-10-28T02:09:31.168Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-ruby-sdk: 1.28.3
+  - commit_sha: b117b5b5618f3cadcd9f7744da7e04030fae5bd5
+    tree_hash: 141aab8e0a2f767d9d3bdf1a509f6076b587da72
+    timestamp: 2026-10-28T02:22:24.505Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-ruby-sdk: 1.28.3
+  - commit_sha: b1f24d7a226aaad576ff8b69c6d7f08922ea4cb2
+    tree_hash: fd9a838cae427325491523ac2e1dc648d653f847
+    timestamp: 2026-10-28T04:05:32.392Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-ruby-sdk: 1.28.3
+  - commit_sha: 0f058df806d5fbdd2d0544805dde3d7d6235f45e
+    tree_hash: d1ba545658d2ed533cc4ee0412fc8cf740d8a867
+    timestamp: 2026-10-28T05:05:20.094Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-ruby-sdk: 1.28.3
+  - commit_sha: f886268612a3e66be8fdd1683b4da97b141cf9e0
+    tree_hash: 9e5cc7f959ffda5fcd0c185bc1458804fad2d9d4
+    timestamp: 2026-10-28T05:38:14.419Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-ruby-sdk: 1.28.3
+current_generation: f886268612a3e66be8fdd1683b4da97b141cf9e0
 patches: []

@@ -22,8 +22,6 @@ module Whop_sdk
 
         field :payment_method_configuration, -> { Whop_sdk::CheckoutConfigurations::Types::ListCheckoutConfigurationsResponseDataItemPaymentMethodConfiguration }, optional: true, nullable: false
 
-        field :plan, -> { Whop_sdk::CheckoutConfigurations::Types::ListCheckoutConfigurationsResponseDataItemPlan }, optional: true, nullable: false
-
         field :purchase_url, -> { String }, optional: true, nullable: false
 
         field :redirect_url, -> { String }, optional: true, nullable: false
@@ -31,6 +29,8 @@ module Whop_sdk
         field :three_ds_level, -> { Whop_sdk::CheckoutConfigurations::Types::ListCheckoutConfigurationsResponseDataItemThreeDsLevel }, optional: true, nullable: false
 
         field :updated_at, -> { String }, optional: false, nullable: false
+
+        field :variant, -> { Whop_sdk::CheckoutConfigurations::Types::ListCheckoutConfigurationsResponseDataItemVariant }, optional: true, nullable: false
       end
     end
   end

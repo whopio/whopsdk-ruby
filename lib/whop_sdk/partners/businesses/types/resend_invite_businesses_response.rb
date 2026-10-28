@@ -37,6 +37,8 @@ module Whop_sdk
 
           field :referral_started_at, -> { String }, optional: false, nullable: true
 
+          field :referring_business, -> { Whop_sdk::Partners::Businesses::Types::ResendInviteBusinessesResponseReferringBusiness }, optional: true, nullable: false
+
           field :second_tier_partner, -> { Whop_sdk::Partners::Businesses::Types::ResendInviteBusinessesResponseSecondTierPartner }, optional: false, nullable: true
 
           field :status, -> { Whop_sdk::Partners::Businesses::Types::ResendInviteBusinessesResponseStatus }, optional: false, nullable: false

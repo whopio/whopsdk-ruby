@@ -232,7 +232,9 @@ module Whop_sdk
       end
 
       # Returns a paginated list of delivery attempts for a webhook, ordered by most recent first. Includes the request
-      # payload, response body, response code, and timing for each attempt.
+      # payload, response body, response code, and timing for each attempt. Filtered queries use a bounded read budget,
+      # so a page may be partial or empty. Continue with `page_info.end_cursor` while `page_info.has_next_page` is
+      # `true`.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -244,9 +246,17 @@ module Whop_sdk
       # @option params [String] :id
       # @option params [Integer, nil] :first
       # @option params [String, nil] :after
+      # @option params [String, nil] :sent_after
+      # @option params [String, nil] :sent_before
+      # @option params [Whop_sdk::Webhooks::Types::ListDeliveriesWebhooksRequestEventsItem, nil] :events
+      # @option params [Whop_sdk::Webhooks::Types::ListDeliveriesWebhooksRequestStatus, nil] :status
+      # @option params [String, nil] :resource_id
       #
       # @example
-      #   client.webhooks.list_deliveries(id: "id")
+      #   client.webhooks.list_deliveries(
+      #     id: "id",
+      #     resource_id: "pay_xxxxxxxxxxxxx"
+      #   )
       #
       # @return [Whop_sdk::Webhooks::Types::ListDeliveriesWebhooksResponse]
       def list_deliveries(request_options: {}, **params)
@@ -254,6 +264,11 @@ module Whop_sdk
         query_params = {}
         query_params["first"] = params[:first] if params.key?(:first)
         query_params["after"] = params[:after] if params.key?(:after)
+        query_params["sent_after"] = params[:sent_after] if params.key?(:sent_after)
+        query_params["sent_before"] = params[:sent_before] if params.key?(:sent_before)
+        query_params["events"] = params[:events] if params.key?(:events)
+        query_params["status"] = params[:status] if params.key?(:status)
+        query_params["resource_id"] = params[:resource_id] if params.key?(:resource_id)
 
         Whop_sdk::Internal::CursorItemIterator.new(
           cursor_field: :end_cursor,

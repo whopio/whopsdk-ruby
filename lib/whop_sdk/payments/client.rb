@@ -37,14 +37,14 @@ module Whop_sdk
       # @option params [String, nil] :member_id
       # @option params [String, nil] :membership_id
       # @option params [String, nil] :product_id
-      # @option params [String, nil] :plan_id
+      # @option params [String, nil] :variant_id
       # @option params [String, nil] :created_before
       # @option params [String, nil] :created_after
       # @option params [Whop_sdk::Payments::Types::ListPaymentsRequestStatusesItem, nil] :statuses
       # @option params [Whop_sdk::Payments::Types::ListPaymentsRequestSubstatusesItem, nil] :substatuses
       # @option params [Whop_sdk::Payments::Types::ListPaymentsRequestBillingReasonsItem, nil] :billing_reasons
       # @option params [String, nil] :currencies
-      # @option params [String, nil] :plan_ids
+      # @option params [String, nil] :variant_ids
       # @option params [String, nil] :product_ids
       # @option params [Whop_sdk::Payments::Types::ListPaymentsRequestPaymentMethodsItem, nil] :payment_methods
       # @option params [Whop_sdk::Payments::Types::ListPaymentsRequestTrackingStatesItem, nil] :tracking_states
@@ -64,7 +64,7 @@ module Whop_sdk
       # @example
       #   client.payments.list(
       #     currencies: ["eur"],
-      #     plan_ids: ["plan_xxxxxxxxxxxxx"],
+      #     variant_ids: ["plan_xxxxxxxxxxxxx"],
       #     product_ids: ["prod_xxxxxxxxxxxxx"]
       #   )
       #
@@ -84,14 +84,14 @@ module Whop_sdk
         query_params["member_id"] = params[:member_id] if params.key?(:member_id)
         query_params["membership_id"] = params[:membership_id] if params.key?(:membership_id)
         query_params["product_id"] = params[:product_id] if params.key?(:product_id)
-        query_params["plan_id"] = params[:plan_id] if params.key?(:plan_id)
+        query_params["variant_id"] = params[:variant_id] if params.key?(:variant_id)
         query_params["created_before"] = params[:created_before] if params.key?(:created_before)
         query_params["created_after"] = params[:created_after] if params.key?(:created_after)
         query_params["statuses"] = params[:statuses] if params.key?(:statuses)
         query_params["substatuses"] = params[:substatuses] if params.key?(:substatuses)
         query_params["billing_reasons"] = params[:billing_reasons] if params.key?(:billing_reasons)
         query_params["currencies"] = params[:currencies] if params.key?(:currencies)
-        query_params["plan_ids"] = params[:plan_ids] if params.key?(:plan_ids)
+        query_params["variant_ids"] = params[:variant_ids] if params.key?(:variant_ids)
         query_params["product_ids"] = params[:product_ids] if params.key?(:product_ids)
         query_params["payment_methods"] = params[:payment_methods] if params.key?(:payment_methods)
         query_params["tracking_states"] = params[:tracking_states] if params.key?(:tracking_states)
@@ -193,7 +193,7 @@ module Whop_sdk
       # @option params [Whop_sdk::Payments::Types::SummaryPaymentsRequestSubstatusesItem, nil] :substatuses
       # @option params [Whop_sdk::Payments::Types::SummaryPaymentsRequestBillingReasonsItem, nil] :billing_reasons
       # @option params [String, nil] :currencies
-      # @option params [String, nil] :plan_ids
+      # @option params [String, nil] :variant_ids
       # @option params [String, nil] :product_ids
       # @option params [Whop_sdk::Payments::Types::SummaryPaymentsRequestPaymentMethodsItem, nil] :payment_methods
       # @option params [Whop_sdk::Payments::Types::SummaryPaymentsRequestTrackingStatesItem, nil] :tracking_states
@@ -211,7 +211,7 @@ module Whop_sdk
       # @example
       #   client.payments.summary(
       #     currencies: ["usd"],
-      #     plan_ids: ["plan_xxxxxxxxxxxxx"],
+      #     variant_ids: ["plan_xxxxxxxxxxxxx"],
       #     product_ids: ["prod_xxxxxxxxxxxxx"]
       #   )
       #
@@ -225,7 +225,7 @@ module Whop_sdk
         query_params["substatuses"] = params[:substatuses] if params.key?(:substatuses)
         query_params["billing_reasons"] = params[:billing_reasons] if params.key?(:billing_reasons)
         query_params["currencies"] = params[:currencies] if params.key?(:currencies)
-        query_params["plan_ids"] = params[:plan_ids] if params.key?(:plan_ids)
+        query_params["variant_ids"] = params[:variant_ids] if params.key?(:variant_ids)
         query_params["product_ids"] = params[:product_ids] if params.key?(:product_ids)
         query_params["payment_methods"] = params[:payment_methods] if params.key?(:payment_methods)
         query_params["tracking_states"] = params[:tracking_states] if params.key?(:tracking_states)
@@ -583,8 +583,8 @@ module Whop_sdk
       # Charges the saved card again, with the buyer present, for a payment their bank declined until they authenticate
       # (such as with 3DS). Retrieve the payment afterward to get the bank's challenge from `next_action`; once the
       # buyer completes it, they land on `return_url`, or on Whop's hosted verification page if none was given. Only the
-      # buyer can call this, with the payment's `client_secret`, an OAuth token for their own account with the
-      # `member:payment_methods:use` scope, or the token from a verified `payment` session intent. An API key gets a
+      # buyer can call this, with the payment's `client_secret` in the body, an OAuth token for their own account with
+      # the `member:payment_methods:use` scope, or the token from a verified `payment` session intent. An API key gets a
       # `403`. Has no effect on a payment that is not waiting on authentication.
       #
       # @param request_options [Hash]
@@ -628,7 +628,8 @@ module Whop_sdk
       end
 
       # Changes where the buyer lands after completing an off-site step, up until they return. Accepts either a secret
-      # key or the payment's own `client_secret`, so the surface that knows the final destination can set it.
+      # key or the payment's own `client_secret` in the body, so the surface that knows the final destination can set
+      # it.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::Payments::Types::UpdateReturnURLPaymentsRequest]
@@ -675,7 +676,7 @@ module Whop_sdk
 
       # Retrieves how far a payment has got and what the buyer must do next, if anything. A payment is collected in the
       # background, so poll this rather than reading the create response. Accepts either a secret key or the payment's
-      # own `client_secret`, so the surface collecting the payment can poll it directly.
+      # own `client_secret` as a query parameter, so the surface collecting the payment can poll it directly.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -685,6 +686,7 @@ module Whop_sdk
       # @option request_options [Hash{String => Object}] :additional_body_parameters
       # @option request_options [Integer] :timeout_in_seconds
       # @option params [String] :payment_id
+      # @option params [String, nil] :client_secret
       #
       # @example
       #   client.payments.retrieve_status(payment_id: "payment_id")
@@ -692,10 +694,14 @@ module Whop_sdk
       # @return [Whop_sdk::Types::PaymentStatus]
       def retrieve_status(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
+        query_params = {}
+        query_params["client_secret"] = params[:client_secret] if params.key?(:client_secret)
+
         request = Whop_sdk::Internal::JSON::Request.new(
           base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "GET",
           path: "payments/#{URI.encode_uri_component(params[:payment_id].to_s)}/status",
+          query: query_params,
           request_options: request_options
         )
         begin

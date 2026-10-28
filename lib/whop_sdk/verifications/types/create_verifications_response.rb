@@ -4,6 +4,8 @@ module Whop_sdk
   module Verifications
     module Types
       class CreateVerificationsResponse < Internal::Types::Model
+        field :account_ids, -> { Internal::Types::Array[String] }, optional: false, nullable: false
+
         field :address, -> { Whop_sdk::Verifications::Types::CreateVerificationsResponseAddress }, optional: true, nullable: false
 
         field :business_name, -> { String }, optional: true, nullable: false
@@ -22,6 +24,8 @@ module Whop_sdk
 
         field :id, -> { String }, optional: true, nullable: false
 
+        field :incorporation_date, -> { String }, optional: true, nullable: false
+
         field :kind, -> { Whop_sdk::Verifications::Types::CreateVerificationsResponseKind }, optional: true, nullable: false
 
         field :last_name, -> { String }, optional: true, nullable: false
@@ -29,6 +33,8 @@ module Whop_sdk
         field :owners, -> { Internal::Types::Array[Whop_sdk::Verifications::Types::CreateVerificationsResponseOwnersItem] }, optional: false, nullable: false
 
         field :phone, -> { String }, optional: true, nullable: false
+
+        field :place_of_incorporation, -> { String }, optional: true, nullable: false
 
         field :registration_number, -> { String }, optional: true, nullable: false
 

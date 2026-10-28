@@ -6,6 +6,8 @@ module Whop_sdk
       class CreateSwapsResponse < Internal::Types::Model
         field :account_id, -> { String }, optional: false, nullable: false
 
+        field :amount, -> { String }, optional: true, nullable: false
+
         field :amount_in, -> { Integer }, optional: true, nullable: false
 
         field :amount_out, -> { Integer }, optional: true, nullable: false

@@ -31,11 +31,12 @@ module Whop_sdk
       # @option params [String, nil] :after
       # @option params [Integer, nil] :last
       # @option params [String, nil] :before
-      # @option params [String, nil] :plan_id
+      # @option params [String, nil] :variant_id
       # @option params [String, nil] :account_id
       # @option params [String, nil] :product_id
       # @option params [String, nil] :buyer_account_id
       # @option params [Whop_sdk::WaitlistEntries::Types::ListWaitlistEntriesRequestStatus, nil] :status
+      # @option params [String, nil] :query
       # @option params [String, nil] :created_before
       # @option params [String, nil] :created_after
       # @option params [Whop_sdk::WaitlistEntries::Types::ListWaitlistEntriesRequestOrder, nil] :order
@@ -52,11 +53,12 @@ module Whop_sdk
         query_params["after"] = params[:after] if params.key?(:after)
         query_params["last"] = params[:last] if params.key?(:last)
         query_params["before"] = params[:before] if params.key?(:before)
-        query_params["plan_id"] = params[:plan_id] if params.key?(:plan_id)
+        query_params["variant_id"] = params[:variant_id] if params.key?(:variant_id)
         query_params["account_id"] = params[:account_id] if params.key?(:account_id)
         query_params["product_id"] = params[:product_id] if params.key?(:product_id)
         query_params["buyer_account_id"] = params[:buyer_account_id] if params.key?(:buyer_account_id)
         query_params["status"] = params[:status] if params.key?(:status)
+        query_params["query"] = params[:query] if params.key?(:query)
         query_params["created_before"] = params[:created_before] if params.key?(:created_before)
         query_params["created_after"] = params[:created_after] if params.key?(:created_after)
         query_params["order"] = params[:order] if params.key?(:order)
@@ -105,7 +107,7 @@ module Whop_sdk
       # @option request_options [Integer] :timeout_in_seconds
       #
       # @example
-      #   client.waitlist_entries.create(plan_id: "plan_xxxxxxxxxxxxxx")
+      #   client.waitlist_entries.create(variant_id: "plan_xxxxxxxxxxxxxx")
       #
       # @return [Whop_sdk::Types::WaitlistEntry]
       def create(request_options: {}, **params)

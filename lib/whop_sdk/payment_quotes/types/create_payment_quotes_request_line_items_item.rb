@@ -4,9 +4,9 @@ module Whop_sdk
   module PaymentQuotes
     module Types
       class CreatePaymentQuotesRequestLineItemsItem < Internal::Types::Model
-        field :plan_id, -> { String }, optional: false, nullable: false
-
         field :quantity, -> { Integer }, optional: true, nullable: false
+
+        field :variant_id, -> { String }, optional: false, nullable: false
       end
     end
   end

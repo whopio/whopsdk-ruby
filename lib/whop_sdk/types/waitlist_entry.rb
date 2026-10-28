@@ -21,8 +21,6 @@ module Whop_sdk
 
       field :metadata, -> { Internal::Types::Hash[String, Object] }, optional: false, nullable: false
 
-      field :plan_id, -> { String }, optional: false, nullable: false
-
       field :product, -> { Whop_sdk::Types::WaitlistEntryProduct }, optional: false, nullable: true
 
       field :product_id, -> { String }, optional: false, nullable: true
@@ -36,6 +34,8 @@ module Whop_sdk
       field :user_id, -> { String }, optional: false, nullable: false
 
       field :variant, -> { Whop_sdk::Types::WaitlistEntryVariant }, optional: false, nullable: false
+
+      field :variant_id, -> { String }, optional: false, nullable: false
     end
   end
 end

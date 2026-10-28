@@ -14,6 +14,7 @@ module Whop_sdk
       TELEGRAM = "telegram"
       LINKEDIN = "linkedin"
       SNAPCHAT = "snapchat"
+      KLAVIYO = "klaviyo"
     end
   end
 end

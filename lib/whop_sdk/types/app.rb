@@ -59,6 +59,8 @@ module Whop_sdk
 
       field :origin, -> { String }, optional: false, nullable: true
 
+      field :per_install_schedule, -> { String }, optional: false, nullable: true
+
       field :preview_token, -> { String }, optional: false, nullable: true
 
       field :product_id, -> { String }, optional: false, nullable: true
@@ -76,6 +78,8 @@ module Whop_sdk
       field :required_scopes, -> { Internal::Types::Array[Whop_sdk::Types::AppRequiredScopesItem] }, optional: false, nullable: false
 
       field :route, -> { String }, optional: false, nullable: true
+
+      field :schedule, -> { String }, optional: false, nullable: true
 
       field :secrets, -> { Internal::Types::Hash[String, Object] }, optional: false, nullable: true
 

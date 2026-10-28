@@ -29,6 +29,8 @@ module Whop_sdk
 
       field :resource_id, -> { String }, optional: false, nullable: false
 
+      field :title, -> { String }, optional: false, nullable: true
+
       field :url, -> { String }, optional: false, nullable: false
 
       field :webhook_secret, -> { String }, optional: false, nullable: true

@@ -4,6 +4,8 @@ module Whop_sdk
   module Verifications
     module Types
       class ListVerificationsResponseDataItemOwnersItem < Internal::Types::Model
+        field :date_of_birth, -> { String }, optional: false, nullable: true
+
         field :first_name, -> { String }, optional: false, nullable: true
 
         field :id, -> { String }, optional: false, nullable: false
@@ -11,6 +13,8 @@ module Whop_sdk
         field :last_name, -> { String }, optional: false, nullable: true
 
         field :ownership_percentage, -> { Integer }, optional: false, nullable: true
+
+        field :rejected_checks, -> { Internal::Types::Array[Whop_sdk::Verifications::Types::ListVerificationsResponseDataItemOwnersItemRejectedChecksItem] }, optional: false, nullable: false
 
         field :required_documents, -> { Internal::Types::Array[Whop_sdk::Verifications::Types::ListVerificationsResponseDataItemOwnersItemRequiredDocumentsItem] }, optional: false, nullable: false
 

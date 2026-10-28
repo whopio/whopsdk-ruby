@@ -10,6 +10,8 @@ module Whop_sdk
 
         field :member_id, -> { String }, optional: true, nullable: false
 
+        field :external_account, -> { String }, optional: true, nullable: false
+
         field :status, -> { Whop_sdk::Memberships::Types::ListMembershipsRequestStatus }, optional: true, nullable: false
 
         field :statuses, -> { Whop_sdk::Memberships::Types::ListMembershipsRequestStatusesItem }, optional: true, nullable: false
@@ -18,9 +20,9 @@ module Whop_sdk
 
         field :product_ids, -> { String }, optional: true, nullable: false
 
-        field :plan_id, -> { String }, optional: true, nullable: false
+        field :variant_id, -> { String }, optional: true, nullable: false
 
-        field :plan_ids, -> { String }, optional: true, nullable: false
+        field :variant_ids, -> { String }, optional: true, nullable: false
 
         field :promo_code_ids, -> { String }, optional: true, nullable: false
 

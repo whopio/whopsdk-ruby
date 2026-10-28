@@ -39,6 +39,7 @@ module Whop_sdk
       APPLICATION_FEE = "application_fee"
       HIGH_RISK_MERCHANT_FEE = "high_risk_merchant_fee"
       ECONOMIC_INTELLIGENCE_PERCENTAGE_FEE = "economic_intelligence_percentage_fee"
+      PAYMENT_RETURN_FEE = "payment_return_fee"
     end
   end
 end

@@ -28,7 +28,7 @@ module Whop_sdk
 
         field :product_id, -> { String }, optional: true, nullable: false
 
-        field :plan_id, -> { String }, optional: true, nullable: false
+        field :variant_id, -> { String }, optional: true, nullable: false
 
         field :created_before, -> { String }, optional: true, nullable: false
 
@@ -42,7 +42,7 @@ module Whop_sdk
 
         field :currencies, -> { String }, optional: true, nullable: false
 
-        field :plan_ids, -> { String }, optional: true, nullable: false
+        field :variant_ids, -> { String }, optional: true, nullable: false
 
         field :product_ids, -> { String }, optional: true, nullable: false
 

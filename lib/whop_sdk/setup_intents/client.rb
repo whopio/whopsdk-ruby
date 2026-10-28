@@ -162,7 +162,7 @@ module Whop_sdk
       end
 
       # Changes where the buyer lands after completing an off-site step, up until they return. Accepts either a secret
-      # key or the setup's own `client_secret`, so the surface that knows the final destination can set it.
+      # key or the setup's own `client_secret` in the body, so the surface that knows the final destination can set it.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::SetupIntents::Types::UpdateReturnURLSetupIntentsRequest]
@@ -209,7 +209,7 @@ module Whop_sdk
 
       # Retrieves how far a setup has got and what the buyer must do next, if anything. Collection runs in the
       # background, so poll this rather than reading the create response. Accepts either a secret key or the setup's own
-      # `client_secret`, so the surface collecting the payment method can poll it directly.
+      # `client_secret` as a query parameter, so the surface collecting the payment method can poll it directly.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -219,6 +219,7 @@ module Whop_sdk
       # @option request_options [Hash{String => Object}] :additional_body_parameters
       # @option request_options [Integer] :timeout_in_seconds
       # @option params [String] :setup_intent_id
+      # @option params [String, nil] :client_secret
       #
       # @example
       #   client.setup_intents.retrieve_status(setup_intent_id: "setup_intent_id")
@@ -226,10 +227,14 @@ module Whop_sdk
       # @return [Whop_sdk::Types::SetupStatus]
       def retrieve_status(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
+        query_params = {}
+        query_params["client_secret"] = params[:client_secret] if params.key?(:client_secret)
+
         request = Whop_sdk::Internal::JSON::Request.new(
           base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "GET",
           path: "setup_intents/#{URI.encode_uri_component(params[:setup_intent_id].to_s)}/status",
+          query: query_params,
           request_options: request_options
         )
         begin

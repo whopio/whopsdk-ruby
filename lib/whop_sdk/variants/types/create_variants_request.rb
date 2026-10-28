@@ -8,9 +8,17 @@ module Whop_sdk
 
         field :adaptive_pricing_enabled, -> { Internal::Types::Boolean }, optional: true, nullable: false
 
+        field :allow_multiple_quantity, -> { Internal::Types::Boolean }, optional: true, nullable: false
+
         field :attributes, -> { Internal::Types::Hash[String, Object] }, optional: true, nullable: false
 
         field :billing_period, -> { Integer }, optional: true, nullable: false
+
+        field :billing_type, -> { String }, optional: true, nullable: false
+
+        field :cancel_discount_intervals, -> { Integer }, optional: true, nullable: false
+
+        field :cancel_discount_percentage, -> { Integer }, optional: true, nullable: false
 
         field :checkout_styling, -> { Internal::Types::Hash[String, Object] }, optional: true, nullable: false
 
@@ -30,11 +38,11 @@ module Whop_sdk
 
         field :metadata, -> { Internal::Types::Hash[String, Object] }, optional: true, nullable: false
 
+        field :offer_cancel_discount, -> { Internal::Types::Boolean }, optional: true, nullable: false
+
         field :override_tax_type, -> { String }, optional: true, nullable: false
 
         field :payment_method_configuration, -> { Whop_sdk::Variants::Types::CreateVariantsRequestPaymentMethodConfiguration }, optional: true, nullable: false
-
-        field :plan_type, -> { String }, optional: true, nullable: false
 
         field :product_id, -> { String }, optional: true, nullable: false
 

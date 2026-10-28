@@ -5,6 +5,10 @@ module Whop_sdk
     class AccountFees < Internal::Types::Model
       field :account_id, -> { String }, optional: false, nullable: false
 
+      field :ach_dispute, -> { Whop_sdk::Types::AccountFee }, optional: false, nullable: false
+
+      field :ach_return, -> { Whop_sdk::Types::AccountFee }, optional: false, nullable: false
+
       field :bank_deposit, -> { Whop_sdk::Types::AccountFee }, optional: false, nullable: false
 
       field :billing, -> { Whop_sdk::Types::AccountFee }, optional: false, nullable: false
@@ -56,6 +60,10 @@ module Whop_sdk
       field :pool_payout, -> { Whop_sdk::Types::AccountFee }, optional: false, nullable: false
 
       field :revshare, -> { Whop_sdk::Types::AccountFee }, optional: false, nullable: false
+
+      field :sepa_dispute, -> { Whop_sdk::Types::AccountFee }, optional: false, nullable: false
+
+      field :sepa_return, -> { Whop_sdk::Types::AccountFee }, optional: false, nullable: false
 
       field :tax_calculation, -> { Whop_sdk::Types::AccountFee }, optional: false, nullable: false
 

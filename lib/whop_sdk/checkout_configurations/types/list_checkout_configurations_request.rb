@@ -6,7 +6,7 @@ module Whop_sdk
       class ListCheckoutConfigurationsRequest < Internal::Types::Model
         field :account_id, -> { String }, optional: false, nullable: false
 
-        field :plan_id, -> { String }, optional: true, nullable: false
+        field :variant_id, -> { String }, optional: true, nullable: false
 
         field :created_before, -> { String }, optional: true, nullable: false
 

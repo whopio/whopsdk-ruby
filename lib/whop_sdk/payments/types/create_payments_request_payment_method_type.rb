@@ -7,6 +7,7 @@ module Whop_sdk
         extend Whop_sdk::Internal::Types::Enum
 
         CARD_PRESENT = "card_present"
+        PAYPAL = "paypal"
       end
     end
   end

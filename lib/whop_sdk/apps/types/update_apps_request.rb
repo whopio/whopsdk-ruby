@@ -30,6 +30,8 @@ module Whop_sdk
 
         field :openapi_path, -> { String }, optional: true, nullable: false
 
+        field :per_install_schedule, -> { String }, optional: true, nullable: false
+
         field :production_android_build_id, -> { String }, optional: true, nullable: false
 
         field :production_ios_build_id, -> { String }, optional: true, nullable: false
@@ -41,6 +43,8 @@ module Whop_sdk
         field :required_scopes, -> { Internal::Types::Array[String] }, optional: true, nullable: false
 
         field :route, -> { String }, optional: true, nullable: false
+
+        field :schedule, -> { String }, optional: true, nullable: false
 
         field :secrets, -> { Internal::Types::Hash[String, Object] }, optional: true, nullable: false
 

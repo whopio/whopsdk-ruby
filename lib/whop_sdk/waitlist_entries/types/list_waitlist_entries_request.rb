@@ -12,7 +12,7 @@ module Whop_sdk
 
         field :before, -> { String }, optional: true, nullable: false
 
-        field :plan_id, -> { String }, optional: true, nullable: false
+        field :variant_id, -> { String }, optional: true, nullable: false
 
         field :account_id, -> { String }, optional: true, nullable: false
 
@@ -21,6 +21,8 @@ module Whop_sdk
         field :buyer_account_id, -> { String }, optional: true, nullable: false
 
         field :status, -> { Whop_sdk::WaitlistEntries::Types::ListWaitlistEntriesRequestStatus }, optional: true, nullable: false
+
+        field :query, -> { String }, optional: true, nullable: false
 
         field :created_before, -> { String }, optional: true, nullable: false
 

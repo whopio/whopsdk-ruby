@@ -29,6 +29,10 @@ module Whop_sdk
 
           field :created_after, -> { String }, optional: true, nullable: false
 
+          field :first_sale_before, -> { String }, optional: true, nullable: false
+
+          field :first_sale_after, -> { String }, optional: true, nullable: false
+
           field :referred_user_id, -> { String }, optional: true, nullable: false
 
           field :referred_username, -> { String }, optional: true, nullable: false

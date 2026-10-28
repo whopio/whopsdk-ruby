@@ -31,6 +31,8 @@ module Whop_sdk
 
       field :testable_events, -> { Internal::Types::Array[Whop_sdk::Types::WebhookTestableEventsItem] }, optional: false, nullable: false
 
+      field :title, -> { String }, optional: false, nullable: true
+
       field :url, -> { String }, optional: false, nullable: false
 
       field :webhook_secret, -> { String }, optional: false, nullable: true

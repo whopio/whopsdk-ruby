@@ -14,7 +14,9 @@ module Whop_sdk
         @environment = environment
       end
 
-      # Lists the verifications for an account or user, including their status and any required actions.
+      # Lists the verifications for an account or user, including their status and any required actions. Platforms list
+      # their own and every subaccount's verifications at once with `include_subaccounts`; each one's `account_ids`
+      # names its account, and a verification shared by several accounts appears once for each.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -25,6 +27,11 @@ module Whop_sdk
       # @option request_options [Integer] :timeout_in_seconds
       # @option params [String, nil] :account_id
       # @option params [String, nil] :user_id
+      # @option params [Boolean, nil] :include_subaccounts
+      # @option params [Integer, nil] :first
+      # @option params [String, nil] :after
+      # @option params [Integer, nil] :last
+      # @option params [String, nil] :before
       # @option params [Whop_sdk::Verifications::Types::ListVerificationsRequestOrder, nil] :order
       # @option params [Whop_sdk::Verifications::Types::ListVerificationsRequestDirection, nil] :direction
       #
@@ -37,27 +44,40 @@ module Whop_sdk
         query_params = {}
         query_params["account_id"] = params[:account_id] if params.key?(:account_id)
         query_params["user_id"] = params[:user_id] if params.key?(:user_id)
+        query_params["include_subaccounts"] = params[:include_subaccounts] if params.key?(:include_subaccounts)
+        query_params["first"] = params[:first] if params.key?(:first)
+        query_params["after"] = params[:after] if params.key?(:after)
+        query_params["last"] = params[:last] if params.key?(:last)
+        query_params["before"] = params[:before] if params.key?(:before)
         query_params["order"] = params[:order] if params.key?(:order)
         query_params["direction"] = params[:direction] if params.key?(:direction)
 
-        request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
-          method: "GET",
-          path: "verifications",
-          query: query_params,
-          request_options: request_options
-        )
-        begin
-          response = @client.send(request)
-        rescue Net::HTTPRequestTimeout
-          raise Whop_sdk::Errors::TimeoutError
-        end
-        code = response.code.to_i
-        if code.between?(200, 299)
-          (response.body.to_s.empty? ? nil : Whop_sdk::Verifications::Types::ListVerificationsResponse.load(response.body))
-        else
-          error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
-          raise error_class.new(response.body, code: code)
+        Whop_sdk::Internal::CursorItemIterator.new(
+          cursor_field: :end_cursor,
+          item_field: :data,
+          initial_cursor: query_params["after"]
+        ) do |next_cursor|
+          query_params["after"] = next_cursor
+          request = Whop_sdk::Internal::JSON::Request.new(
+            base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
+            method: "GET",
+            path: "verifications",
+            query: query_params,
+            request_options: request_options
+          )
+          begin
+            response = @client.send(request)
+          rescue Net::HTTPRequestTimeout
+            raise Whop_sdk::Errors::TimeoutError
+          end
+          code = response.code.to_i
+          if code.between?(200, 299)
+            parsed_response = (response.body.to_s.empty? ? nil : Whop_sdk::Verifications::Types::ListVerificationsResponse.load(response.body))
+            [parsed_response, response]
+          else
+            error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
+            raise error_class.new(response.body, code: code)
+          end
         end
       end
 

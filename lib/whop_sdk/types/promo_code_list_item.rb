@@ -3,6 +3,8 @@
 module Whop_sdk
   module Types
     class PromoCodeListItem < Internal::Types::Model
+      field :affiliate, -> { Whop_sdk::Types::PromoCodeAffiliate }, optional: false, nullable: true
+
       field :amount_off, -> { Integer }, optional: false, nullable: false
 
       field :churned_users_only, -> { Internal::Types::Boolean }, optional: false, nullable: false

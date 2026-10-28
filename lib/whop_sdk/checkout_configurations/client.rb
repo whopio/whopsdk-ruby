@@ -24,7 +24,7 @@ module Whop_sdk
       # @option request_options [Hash{String => Object}] :additional_body_parameters
       # @option request_options [Integer] :timeout_in_seconds
       # @option params [String] :account_id
-      # @option params [String, nil] :plan_id
+      # @option params [String, nil] :variant_id
       # @option params [String, nil] :created_before
       # @option params [String, nil] :created_after
       # @option params [Whop_sdk::CheckoutConfigurations::Types::ListCheckoutConfigurationsRequestOrder, nil] :order
@@ -40,7 +40,7 @@ module Whop_sdk
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
         query_params = {}
         query_params["account_id"] = params[:account_id] if params.key?(:account_id)
-        query_params["plan_id"] = params[:plan_id] if params.key?(:plan_id)
+        query_params["variant_id"] = params[:variant_id] if params.key?(:variant_id)
         query_params["created_before"] = params[:created_before] if params.key?(:created_before)
         query_params["created_after"] = params[:created_after] if params.key?(:created_after)
         query_params["order"] = params[:order] if params.key?(:order)
@@ -91,7 +91,7 @@ module Whop_sdk
       # @example
       #   client.checkout_configurations.create(
       #     account_id: "biz_xxxxxxxxxxxxxx",
-      #     plan_id: "plan_xxxxxxxxxxxxx"
+      #     variant_id: "plan_xxxxxxxxxxxxx"
       #   )
       #
       # @return [Whop_sdk::CheckoutConfigurations::Types::CreateCheckoutConfigurationsResponse]

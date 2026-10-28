@@ -7,6 +7,10 @@ module Whop_sdk
         class UpdateFeesRequest < Internal::Types::Model
           field :account_id, -> { String }, optional: false, nullable: false
 
+          field :ach_dispute, -> { Whop_sdk::Accounts::Fees::Types::UpdateFeesRequestAchDispute }, optional: true, nullable: false
+
+          field :ach_return, -> { Whop_sdk::Accounts::Fees::Types::UpdateFeesRequestAchReturn }, optional: true, nullable: false
+
           field :bank_deposit, -> { Whop_sdk::Accounts::Fees::Types::UpdateFeesRequestBankDeposit }, optional: true, nullable: false
 
           field :billing, -> { Whop_sdk::Accounts::Fees::Types::UpdateFeesRequestBilling }, optional: true, nullable: false
@@ -58,6 +62,10 @@ module Whop_sdk
           field :pool_payout, -> { Whop_sdk::Accounts::Fees::Types::UpdateFeesRequestPoolPayout }, optional: true, nullable: false
 
           field :revshare, -> { Whop_sdk::Accounts::Fees::Types::UpdateFeesRequestRevshare }, optional: true, nullable: false
+
+          field :sepa_dispute, -> { Whop_sdk::Accounts::Fees::Types::UpdateFeesRequestSepaDispute }, optional: true, nullable: false
+
+          field :sepa_return, -> { Whop_sdk::Accounts::Fees::Types::UpdateFeesRequestSepaReturn }, optional: true, nullable: false
 
           field :tax_calculation, -> { Whop_sdk::Accounts::Fees::Types::UpdateFeesRequestTaxCalculation }, optional: true, nullable: false
 

@@ -6,7 +6,7 @@ module Whop_sdk
       class InviteMembershipsRequestBodyEmail < Internal::Types::Model
         field :email, -> { String }, optional: false, nullable: false
 
-        field :plan_id, -> { String }, optional: false, nullable: false
+        field :variant_id, -> { String }, optional: false, nullable: false
       end
     end
   end

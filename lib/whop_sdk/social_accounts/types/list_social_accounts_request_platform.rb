@@ -16,6 +16,7 @@ module Whop_sdk
         LINKEDIN = "linkedin"
         SNAPCHAT = "snapchat"
         KLAVIYO = "klaviyo"
+        QUICKBOOKS = "quickbooks"
       end
     end
   end

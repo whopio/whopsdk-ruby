@@ -287,7 +287,7 @@ module Whop_sdk
         end
       end
 
-      # Marks an open invoice as uncollectible. Reminders stop, but the customer can still pay it.
+      # Marks an open invoice as uncollectible. Its checkout link stops working.
       #
       # @param request_options [Hash]
       # @param params [Hash]

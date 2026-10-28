@@ -23,6 +23,7 @@ module Whop_sdk
       PH = "ph"
       NG = "ng"
       MY = "my"
+      DO = "do"
     end
   end
 end

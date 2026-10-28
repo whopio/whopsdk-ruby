@@ -3,6 +3,8 @@
 module Whop_sdk
   module Types
     class Partner < Internal::Types::Model
+      field :account_id, -> { String }, optional: false, nullable: true
+
       field :certification_complete, -> { Internal::Types::Boolean }, optional: false, nullable: false
 
       field :joined_at, -> { String }, optional: false, nullable: true

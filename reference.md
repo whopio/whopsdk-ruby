@@ -28742,6 +28742,14 @@ client.partners.retrieve(id: "me")
 <dl>
 <dd>
 
+**account_id:** `String` — Return `payout_rates` for this business, prefixed `biz_`, instead of the caller's own: the business's rate rows, else the platform defaults. Requires company:basic:read on that business, which every team member holds. The rest of the profile stays the caller's.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **request_options:** `Whop_sdk::Partners::RequestOptions` 
     
 </dd>

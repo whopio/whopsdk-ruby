@@ -214,6 +214,7 @@ module Whop_sdk
       # @option request_options [Hash{String => Object}] :additional_body_parameters
       # @option request_options [Integer] :timeout_in_seconds
       # @option params [String] :id
+      # @option params [String, nil] :account_id
       #
       # @example
       #   client.partners.retrieve(id: "me")
@@ -221,10 +222,14 @@ module Whop_sdk
       # @return [Whop_sdk::Types::Partner]
       def retrieve(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
+        query_params = {}
+        query_params["account_id"] = params[:account_id] if params.key?(:account_id)
+
         request = Whop_sdk::Internal::JSON::Request.new(
           base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "GET",
           path: "partners/#{URI.encode_uri_component(params[:id].to_s)}",
+          query: query_params,
           request_options: request_options
         )
         begin

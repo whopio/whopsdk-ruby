@@ -75,6 +75,7 @@ module Whop_sdk
         # @option params [String, nil] :product_category
         # @option params [String, nil] :account_country
         # @option params [String, nil] :customer_country
+        # @option params [String, nil] :blueprint
         # @option params [Integer, nil] :first
         # @option params [String, nil] :after
         #
@@ -97,6 +98,7 @@ module Whop_sdk
           query_params["product_category"] = params[:product_category] if params.key?(:product_category)
           query_params["account_country"] = params[:account_country] if params.key?(:account_country)
           query_params["customer_country"] = params[:customer_country] if params.key?(:customer_country)
+          query_params["blueprint"] = params[:blueprint] if params.key?(:blueprint)
           query_params["first"] = params[:first] if params.key?(:first)
           query_params["after"] = params[:after] if params.key?(:after)
 

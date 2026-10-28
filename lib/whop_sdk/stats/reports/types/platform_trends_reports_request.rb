@@ -29,6 +29,8 @@ module Whop_sdk
 
           field :customer_country, -> { String }, optional: true, nullable: false
 
+          field :blueprint, -> { String }, optional: true, nullable: false
+
           field :first, -> { Integer }, optional: true, nullable: false
 
           field :after, -> { String }, optional: true, nullable: false

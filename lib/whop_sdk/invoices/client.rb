@@ -248,12 +248,14 @@ module Whop_sdk
         end
       end
 
-      # Resolves final tax and opens a draft invoice. An invoice with a `payment_method_id` is then charged to it
-      # off-session, as `POST /payments` charges a saved payment method. Issuing an open invoice again retains its
-      # totals and charges nothing.
+      # Resolves final tax and opens a draft invoice without emailing it. An invoice with a `payment_method_id` is
+      # charged to it off-session, as `POST /payments` charges a saved payment method: at `charge_at` if given,
+      # otherwise on `due_at` while it is still ahead, otherwise right away (see `scheduled_charge_at`). With a future
+      # `due_at` and no `charge_at`, the customer is charged on the due date without being emailed first. Issuing an
+      # open invoice again retains its totals and charges nothing.
       #
       # @param request_options [Hash]
-      # @param params [Hash]
+      # @param params [Whop_sdk::Invoices::Types::IssueInvoicesRequest]
       # @option request_options [String] :base_url
       # @option request_options [Hash{String => Object}] :additional_headers
       # @option request_options [Hash{String => Object}] :additional_query_parameters
@@ -267,10 +269,15 @@ module Whop_sdk
       # @return [Whop_sdk::Types::Invoice]
       def issue(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
+        request_data = Whop_sdk::Invoices::Types::IssueInvoicesRequest.new(params).to_h
+        non_body_param_names = %w[id]
+        body = request_data.except(*non_body_param_names)
+
         request = Whop_sdk::Internal::JSON::Request.new(
           base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "POST",
           path: "invoices/#{URI.encode_uri_component(params[:id].to_s)}/issue",
+          body: body,
           request_options: request_options
         )
         begin
@@ -325,14 +332,14 @@ module Whop_sdk
       end
 
       # Issues a draft and emails it to its recipients, with reminders after the due date. A draft with a
-      # `payment_method_id` needs `payment:charge`: when its `due_at` is still ahead, it is emailed now and charged to
-      # that method on `due_at` (see `scheduled_charge_at`); otherwise it is charged right away instead of emailed.
-      # Voiding the invoice, marking it uncollectible, or paying it first cancels the scheduled charge, and its
-      # recipients get the payment link if a charge fails. Sending an open invoice emails it again, up to three emails a
-      # day including the first send. With `send_at`, the draft is sent at that time instead, and cannot be edited,
-      # except its recipients, until it is sent or unscheduled. Each email, reminders included, is sent separately to
-      # the customer email shown on the invoice and to each address in `recipient_emails`, so recipients never see each
-      # other's addresses.
+      # `payment_method_id` needs `payment:charge`: with a `charge_at`, or when its `due_at` is still ahead, it is
+      # emailed now and charged to that method at that time (see `scheduled_charge_at`); otherwise it is charged right
+      # away instead of emailed. Voiding the invoice, marking it uncollectible, or paying it first cancels the scheduled
+      # charge, and its recipients get the payment link if a charge fails. Sending an open invoice emails it again, up
+      # to three emails a day including the first send. With `send_at`, the draft is sent at that time instead, and
+      # cannot be edited, except its recipients, until it is sent or unscheduled. Each email, reminders included, is
+      # sent separately to the customer email shown on the invoice and to each address in `recipient_emails`, so
+      # recipients never see each other's addresses.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::Invoices::Types::SendInvoicesRequest]

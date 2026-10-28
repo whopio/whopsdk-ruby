@@ -4880,6 +4880,104 @@ client.ad_pixels.update(
 </details>
 
 ## Ads
+<details><summary><code>client.ads.<a href="/lib/whop_sdk/ads/client.rb">report_stats</a>(request) -> Whop_sdk::Types::AdStat</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Records a runner's stats for one of their ads in one hour, and pays them for the spend. Send the ad's totals so far for an hour that started in the last 24 hours; they replace what the ad held for that hour, and its ad group's and campaign's hours are rebuilt from their ads. The spend can go up but never down. Reporting on a campaign starts with the hour of its first recorded report; earlier hours are refused. Spend over what is left of a budget (the runner's share of the day, the campaign's daily budget or the ad group's budget) is refused with the most the ad can record. Takes the runner's Whop session or a user OAuth token with `ad_campaign:update`. A token without that scope gets a 403, and anyone not holding the ad's campaign gets a 404.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.ads.report_stats(
+  ad_id: "ad_xxxxxxxxxxxxxx",
+  hour_started_at: "2026-01-01T12:00:00Z",
+  spend: 1.1
+)
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**ad_id:** `String` — The ad's ID, prefixed `ad_`: the campaign's ad or the runner's copy of it.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**clicks:** `Whop_sdk::Ads::Types::ReportStatsAdsRequestClicks` — The ad's clicks in the hour so far, at most `impressions`. Zero when left out.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**hour_started_at:** `String` — Start of the hour, on the hour, within the last 24 hours.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**impressions:** `Whop_sdk::Ads::Types::ReportStatsAdsRequestImpressions` — The ad's impressions in the hour so far. Zero when left out.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**spend:** `Whop_sdk::Ads::Types::ReportStatsAdsRequestSpend` — USD spent on the ad in the hour so far, to the cent.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Whop_sdk::Ads::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.ads.<a href="/lib/whop_sdk/ads/client.rb">list</a>() -> Whop_sdk::Ads::Types::ListAdsResponse</code></summary>
 <dl>
 <dd>

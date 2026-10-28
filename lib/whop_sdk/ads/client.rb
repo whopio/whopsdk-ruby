@@ -14,6 +14,54 @@ module Whop_sdk
         @environment = environment
       end
 
+      # Records a runner's stats for one of their ads in one hour, and pays them for the spend. Send the ad's totals so
+      # far for an hour that started in the last 24 hours; they replace what the ad held for that hour, and its ad
+      # group's and campaign's hours are rebuilt from their ads. The spend can go up but never down. Reporting on a
+      # campaign starts with the hour of its first recorded report; earlier hours are refused. Spend over what is left
+      # of a budget (the runner's share of the day, the campaign's daily budget or the ad group's budget) is refused
+      # with the most the ad can record. Takes the runner's Whop session or a user OAuth token with
+      # `ad_campaign:update`. A token without that scope gets a 403, and anyone not holding the ad's campaign gets a
+      # 404.
+      #
+      # @param request_options [Hash]
+      # @param params [Whop_sdk::Ads::Types::ReportStatsAdsRequest]
+      # @option request_options [String] :base_url
+      # @option request_options [Hash{String => Object}] :additional_headers
+      # @option request_options [Hash{String => Object}] :additional_query_parameters
+      # @option request_options [Hash{String => Object}] :additional_body_parameters
+      # @option request_options [Integer] :timeout_in_seconds
+      #
+      # @example
+      #   client.ads.report_stats(
+      #     ad_id: "ad_xxxxxxxxxxxxxx",
+      #     hour_started_at: "2026-01-01T12:00:00Z",
+      #     spend: 1.1
+      #   )
+      #
+      # @return [Whop_sdk::Types::AdStat]
+      def report_stats(request_options: {}, **params)
+        params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
+        request = Whop_sdk::Internal::JSON::Request.new(
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
+          method: "POST",
+          path: "ad_stats",
+          body: Whop_sdk::Ads::Types::ReportStatsAdsRequest.new(params).to_h,
+          request_options: request_options
+        )
+        begin
+          response = @client.send(request)
+        rescue Net::HTTPRequestTimeout
+          raise Whop_sdk::Errors::TimeoutError
+        end
+        code = response.code.to_i
+        if code.between?(200, 299)
+          (response.body.to_s.empty? ? nil : Whop_sdk::Types::AdStat.load(response.body))
+        else
+          error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
+          raise error_class.new(response.body, code: code)
+        end
+      end
+
       # Lists the ads for an account, with stats over the requested window.
       #
       # @param request_options [Hash]

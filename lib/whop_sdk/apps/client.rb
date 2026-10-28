@@ -33,6 +33,7 @@ module Whop_sdk
       # @option params [Boolean, nil] :verified_apps_only
       # @option params [Boolean, nil] :recommended
       # @option params [String, nil] :query
+      # @option params [String, nil] :product_category
       # @option params [Whop_sdk::Apps::Types::ListAppsRequestOrder, nil] :order
       # @option params [Whop_sdk::Apps::Types::ListAppsRequestDirection, nil] :direction
       # @option params [Integer, nil] :first
@@ -54,6 +55,7 @@ module Whop_sdk
         query_params["verified_apps_only"] = params[:verified_apps_only] if params.key?(:verified_apps_only)
         query_params["recommended"] = params[:recommended] if params.key?(:recommended)
         query_params["query"] = params[:query] if params.key?(:query)
+        query_params["product_category"] = params[:product_category] if params.key?(:product_category)
         query_params["order"] = params[:order] if params.key?(:order)
         query_params["direction"] = params[:direction] if params.key?(:direction)
         query_params["first"] = params[:first] if params.key?(:first)

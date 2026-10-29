@@ -2349,14 +2349,6 @@ client.ad_campaigns.duplicate(id: "id")
 <dl>
 <dd>
 
-**preserve_engagement:** `Internal::Types::Boolean` — Whether the copied ads keep the original posts' engagement (likes, comments, shares). Defaults to false.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
 **request_options:** `Whop_sdk::AdCampaigns::RequestOptions` 
     
 </dd>
@@ -3930,14 +3922,6 @@ client.ad_groups.duplicate(id: "id")
 <dl>
 <dd>
 
-**preserve_engagement:** `Internal::Types::Boolean` — Whether the copied ads keep the original posts' engagement (likes, comments, shares). Defaults to false.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
 **target_ad_campaign_id:** `String` — Campaign to duplicate into. Must belong to the same account and be compatible with the ad group's targeting and goals. Defaults to the ad group's own campaign.
     
 </dd>
@@ -5242,14 +5226,6 @@ client.ads.duplicate(id: "id")
 <dd>
 
 **count:** `Integer` — Number of copies to create (1-10). Defaults to 1.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**preserve_engagement:** `Internal::Types::Boolean` — Whether the copies keep the original post's engagement (likes, comments, shares). Defaults to false.
     
 </dd>
 </dl>
@@ -38378,79 +38354,6 @@ client.social_accounts.delete(id: "id")
 </dl>
 </details>
 
-<details><summary><code>client.social_accounts.<a href="/lib/whop_sdk/social_accounts/client.rb">lead_forms</a>(id:) -> Whop_sdk::SocialAccounts::Types::LeadFormsSocialAccountsResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Deprecated compatibility endpoint. List lead forms with `GET /external_accounts/{id}/lead_forms` instead.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```ruby
-client.social_accounts.lead_forms(
-  id: "id",
-  account_id: "account_id"
-)
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` — The social account (a sacc_ identifier) whose lead forms to list.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**account_id:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request_options:** `Whop_sdk::SocialAccounts::RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
 <details><summary><code>client.social_accounts.<a href="/lib/whop_sdk/social_accounts/client.rb">partners</a>(id:) -> Whop_sdk::SocialAccounts::Types::PartnersSocialAccountsResponse</code></summary>
 <dl>
 <dd>
@@ -38680,103 +38583,6 @@ client.social_accounts.remove_partner(
 <dd>
 
 **account_id:** `String` — The Account (biz_ identifier) that advertises as the Instagram account. An account-scoped API key may omit this to default to its own account.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request_options:** `Whop_sdk::SocialAccounts::RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.social_accounts.<a href="/lib/whop_sdk/social_accounts/client.rb">posts</a>(id:) -> Whop_sdk::SocialAccounts::Types::PostsSocialAccountsResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Deprecated compatibility endpoint. List posts with `GET /external_accounts/{id}/posts` instead.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```ruby
-client.social_accounts.posts(
-  id: "id",
-  account_id: "account_id"
-)
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` — The social account (a sacc_ identifier) whose posts to list.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**account_id:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**post_id:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**first:** `Integer` — Number of results to return from the start of the range.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**after:** `String` — Return results after this cursor. Use `page_info.end_cursor` from the previous response to fetch the next page.
     
 </dd>
 </dl>
@@ -46719,178 +46525,6 @@ client.external_accounts.partners.delete(
 <dd>
 
 **request_options:** `Whop_sdk::ExternalAccounts::Partners::RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## ExternalAccounts LeadForms
-<details><summary><code>client.external_accounts.lead_forms.<a href="/lib/whop_sdk/external_accounts/lead_forms/client.rb">list</a>(id:) -> Whop_sdk::ExternalAccounts::LeadForms::Types::ListLeadFormsResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Lists the active lead (instant) forms that already exist on a connected Facebook page, so an ad can reuse one as its `lead_gen_form_id` instead of authoring a new form. Every active form comes back in a single response — the list is not paginated.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```ruby
-client.external_accounts.lead_forms.list(
-  id: "id",
-  account_id: "account_id"
-)
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` — The external account (a sacc_ identifier) whose lead forms to list.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**account_id:** `String` — The Account (a biz_ identifier) the external account is connected to.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request_options:** `Whop_sdk::ExternalAccounts::LeadForms::RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## ExternalAccounts Posts
-<details><summary><code>client.external_accounts.posts.<a href="/lib/whop_sdk/external_accounts/posts/client.rb">list</a>(id:) -> Whop_sdk::ExternalAccounts::Posts::Types::ListPostsResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Lists the existing posts of a connected Facebook page, Instagram account, or TikTok account.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```ruby
-client.external_accounts.posts.list(
-  id: "id",
-  account_id: "account_id"
-)
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` — The external account (a sacc_ identifier) whose posts to list.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**account_id:** `String` — The Account (a biz_ identifier) the external account is connected to.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**post_id:** `String` — Return only the single post with this platform id, instead of the full list.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**first:** `Integer` — Number of results to return from the start of the range.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**after:** `String` — Return results after this cursor. Use `page_info.end_cursor` from the previous response to fetch the next page.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request_options:** `Whop_sdk::ExternalAccounts::Posts::RequestOptions` 
     
 </dd>
 </dl>

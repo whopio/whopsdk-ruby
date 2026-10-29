@@ -206,51 +206,6 @@ module Whop_sdk
         end
       end
 
-      # Deprecated compatibility endpoint. List lead forms with `GET /external_accounts/{id}/lead_forms` instead.
-      #
-      # @param request_options [Hash]
-      # @param params [Hash]
-      # @option request_options [String] :base_url
-      # @option request_options [Hash{String => Object}] :additional_headers
-      # @option request_options [Hash{String => Object}] :additional_query_parameters
-      # @option request_options [Hash{String => Object}] :additional_body_parameters
-      # @option request_options [Integer] :timeout_in_seconds
-      # @option params [String] :id
-      # @option params [String] :account_id
-      #
-      # @example
-      #   client.social_accounts.lead_forms(
-      #     id: "id",
-      #     account_id: "account_id"
-      #   )
-      #
-      # @return [Whop_sdk::SocialAccounts::Types::LeadFormsSocialAccountsResponse]
-      def lead_forms(request_options: {}, **params)
-        params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
-        query_params = {}
-        query_params["account_id"] = params[:account_id] if params.key?(:account_id)
-
-        request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
-          method: "GET",
-          path: "social_accounts/#{URI.encode_uri_component(params[:id].to_s)}/lead_forms",
-          query: query_params,
-          request_options: request_options
-        )
-        begin
-          response = @client.send(request)
-        rescue Net::HTTPRequestTimeout
-          raise Whop_sdk::Errors::TimeoutError
-        end
-        code = response.code.to_i
-        if code.between?(200, 299)
-          (response.body.to_s.empty? ? nil : Whop_sdk::SocialAccounts::Types::LeadFormsSocialAccountsResponse.load(response.body))
-        else
-          error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
-          raise error_class.new(response.body, code: code)
-        end
-      end
-
       # Deprecated compatibility endpoint. List partners with `GET /external_accounts/{external_account_id}/partners`
       # instead.
       #
@@ -396,65 +351,6 @@ module Whop_sdk
         else
           error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)
-        end
-      end
-
-      # Deprecated compatibility endpoint. List posts with `GET /external_accounts/{id}/posts` instead.
-      #
-      # @param request_options [Hash]
-      # @param params [Hash]
-      # @option request_options [String] :base_url
-      # @option request_options [Hash{String => Object}] :additional_headers
-      # @option request_options [Hash{String => Object}] :additional_query_parameters
-      # @option request_options [Hash{String => Object}] :additional_body_parameters
-      # @option request_options [Integer] :timeout_in_seconds
-      # @option params [String] :id
-      # @option params [String] :account_id
-      # @option params [String, nil] :post_id
-      # @option params [Integer, nil] :first
-      # @option params [String, nil] :after
-      #
-      # @example
-      #   client.social_accounts.posts(
-      #     id: "id",
-      #     account_id: "account_id"
-      #   )
-      #
-      # @return [Whop_sdk::SocialAccounts::Types::PostsSocialAccountsResponse]
-      def posts(request_options: {}, **params)
-        params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
-        query_params = {}
-        query_params["account_id"] = params[:account_id] if params.key?(:account_id)
-        query_params["post_id"] = params[:post_id] if params.key?(:post_id)
-        query_params["first"] = params[:first] if params.key?(:first)
-        query_params["after"] = params[:after] if params.key?(:after)
-
-        Whop_sdk::Internal::CursorItemIterator.new(
-          cursor_field: :end_cursor,
-          item_field: :data,
-          initial_cursor: query_params["after"]
-        ) do |next_cursor|
-          query_params["after"] = next_cursor
-          request = Whop_sdk::Internal::JSON::Request.new(
-            base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
-            method: "GET",
-            path: "social_accounts/#{URI.encode_uri_component(params[:id].to_s)}/posts",
-            query: query_params,
-            request_options: request_options
-          )
-          begin
-            response = @client.send(request)
-          rescue Net::HTTPRequestTimeout
-            raise Whop_sdk::Errors::TimeoutError
-          end
-          code = response.code.to_i
-          if code.between?(200, 299)
-            parsed_response = (response.body.to_s.empty? ? nil : Whop_sdk::SocialAccounts::Types::PostsSocialAccountsResponse.load(response.body))
-            [parsed_response, response]
-          else
-            error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
-            raise error_class.new(response.body, code: code)
-          end
         end
       end
 

@@ -41596,7 +41596,7 @@ client.trades.create(
 <dl>
 <dd>
 
-**size:** `String` — Only for an order. The size in units of the market, as a decimal string, with at most the market's size decimals. Send exactly one of `size` or `notional`. The order must be worth at least 10 USD, unless reduce-only, and at most 5000 USD.
+**size:** `String` — Only for an order. The size in units of the market, as a decimal string, with at most the market's size decimals. Send exactly one of `size` or `notional`. The order must be worth at least 10 USD, unless reduce-only.
     
 </dd>
 </dl>

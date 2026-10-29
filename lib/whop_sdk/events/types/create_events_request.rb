@@ -26,8 +26,6 @@ module Whop_sdk
 
         field :event_time, -> { String }, optional: true, nullable: false
 
-        field :plan_id, -> { String }, optional: true, nullable: false
-
         field :product_id, -> { String }, optional: true, nullable: false
 
         field :referrer_url, -> { String }, optional: true, nullable: false
@@ -43,6 +41,8 @@ module Whop_sdk
         field :user, -> { Whop_sdk::Events::Types::CreateEventsRequestUser }, optional: true, nullable: false
 
         field :value, -> { Integer }, optional: true, nullable: false
+
+        field :variant_id, -> { String }, optional: true, nullable: false
       end
     end
   end

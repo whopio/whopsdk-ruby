@@ -255,16 +255,6 @@ module Whop_sdk
       def partners
         @partners ||= Whop_sdk::ExternalAccounts::Partners::Client.new(client: @client, base_url: @base_url, environment: @environment)
       end
-
-      # @return [Whop_sdk::LeadForms::Client]
-      def lead_forms
-        @lead_forms ||= Whop_sdk::ExternalAccounts::LeadForms::Client.new(client: @client, base_url: @base_url, environment: @environment)
-      end
-
-      # @return [Whop_sdk::Posts::Client]
-      def posts
-        @posts ||= Whop_sdk::ExternalAccounts::Posts::Client.new(client: @client, base_url: @base_url, environment: @environment)
-      end
     end
   end
 end

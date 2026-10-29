@@ -8,8 +8,6 @@ module Whop_sdk
 
         field :count, -> { Integer }, optional: true, nullable: false
 
-        field :preserve_engagement, -> { Internal::Types::Boolean }, optional: true, nullable: false
-
         field :target_ad_group_id, -> { String }, optional: true, nullable: false
       end
     end

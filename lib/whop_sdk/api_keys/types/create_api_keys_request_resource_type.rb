@@ -8,6 +8,7 @@ module Whop_sdk
 
         ACCOUNT = "account"
         APP = "app"
+        USER = "user"
       end
     end
   end

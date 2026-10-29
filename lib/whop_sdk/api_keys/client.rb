@@ -14,8 +14,8 @@ module Whop_sdk
         @environment = environment
       end
 
-      # Lists the API keys of an account or app, newest first. Responses never include the full secret — only its
-      # obfuscated form.
+      # Lists the API keys of an account, app, or your own user, newest first. Responses never include the full secret —
+      # only its obfuscated form.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -85,8 +85,9 @@ module Whop_sdk
         end
       end
 
-      # Creates an API key for an account or app. The response is the only place the full `secret_key` is returned —
-      # store it immediately. Requires a user session; API keys cannot manage API keys.
+      # Creates an API key for an account, an app, or your own user. A user API key acts as you and can only grant
+      # `ad_campaign:update`, `ad_pixel:manage`, `member:journey:read`. The response is the only place the full
+      # `secret_key` is returned — store it immediately. Requires a user session; API keys cannot manage API keys.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::APIKeys::Types::CreateAPIKeysRequest]

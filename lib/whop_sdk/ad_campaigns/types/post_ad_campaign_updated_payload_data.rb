@@ -32,8 +32,6 @@ module Whop_sdk
 
         field :objective, -> { Whop_sdk::AdCampaigns::Types::PostAdCampaignUpdatedPayloadDataObjective }, optional: false, nullable: true
 
-        field :platform, -> { Whop_sdk::AdCampaigns::Types::PostAdCampaignUpdatedPayloadDataPlatform }, optional: false, nullable: false
-
         field :special_ad_categories, -> { Internal::Types::Array[Whop_sdk::AdCampaigns::Types::PostAdCampaignUpdatedPayloadDataSpecialAdCategoriesItem] }, optional: false, nullable: false
 
         field :starts_at, -> { String }, optional: true, nullable: false

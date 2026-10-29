@@ -29,6 +29,9 @@ module Whop_sdk
       # @option params [String, nil] :partner_id
       # @option params [Whop_sdk::PartnerReferralRequests::Types::ListPartnerReferralRequestsRequestStatus, nil] :status
       # @option params [Whop_sdk::PartnerReferralRequests::Types::ListPartnerReferralRequestsRequestRequestType, nil] :request_type
+      # @option params [String, nil] :authorized_user_id
+      # @option params [String, nil] :member_id
+      # @option params [Boolean, nil] :personal
       # @option params [Whop_sdk::PartnerReferralRequests::Types::ListPartnerReferralRequestsRequestOrder, nil] :order
       # @option params [Whop_sdk::PartnerReferralRequests::Types::ListPartnerReferralRequestsRequestDirection, nil] :direction
       # @option params [Integer, nil] :first
@@ -48,6 +51,9 @@ module Whop_sdk
         query_params["partner_id"] = params[:partner_id] if params.key?(:partner_id)
         query_params["status"] = params[:status] if params.key?(:status)
         query_params["request_type"] = params[:request_type] if params.key?(:request_type)
+        query_params["authorized_user_id"] = params[:authorized_user_id] if params.key?(:authorized_user_id)
+        query_params["member_id"] = params[:member_id] if params.key?(:member_id)
+        query_params["personal"] = params[:personal] if params.key?(:personal)
         query_params["order"] = params[:order] if params.key?(:order)
         query_params["direction"] = params[:direction] if params.key?(:direction)
         query_params["first"] = params[:first] if params.key?(:first)

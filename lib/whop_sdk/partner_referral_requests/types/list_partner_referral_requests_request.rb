@@ -14,6 +14,12 @@ module Whop_sdk
 
         field :request_type, -> { Whop_sdk::PartnerReferralRequests::Types::ListPartnerReferralRequestsRequestRequestType }, optional: true, nullable: false
 
+        field :authorized_user_id, -> { String }, optional: true, nullable: false
+
+        field :member_id, -> { String }, optional: true, nullable: false
+
+        field :personal, -> { Internal::Types::Boolean }, optional: true, nullable: false
+
         field :order, -> { Whop_sdk::PartnerReferralRequests::Types::ListPartnerReferralRequestsRequestOrder }, optional: true, nullable: false
 
         field :direction, -> { Whop_sdk::PartnerReferralRequests::Types::ListPartnerReferralRequestsRequestDirection }, optional: true, nullable: false

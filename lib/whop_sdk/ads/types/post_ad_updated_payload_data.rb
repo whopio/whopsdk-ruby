@@ -18,31 +18,19 @@ module Whop_sdk
 
         field :descriptions, -> { Internal::Types::Array[Whop_sdk::Types::AdText] }, optional: false, nullable: false
 
-        field :existing_post_id, -> { String }, optional: false, nullable: true
-
-        field :external_accounts, -> { Internal::Types::Array[Whop_sdk::Types::AdEntityReference] }, optional: false, nullable: false
-
         field :headlines, -> { Internal::Types::Array[Whop_sdk::Types::AdText] }, optional: false, nullable: false
 
         field :id, -> { String }, optional: false, nullable: false
 
         field :issues, -> { Internal::Types::Array[Whop_sdk::Types::AdPlatformIssue] }, optional: false, nullable: false
 
-        field :platform, -> { Whop_sdk::Ads::Types::PostAdUpdatedPayloadDataPlatform }, optional: false, nullable: false
-
         field :post_id, -> { String }, optional: false, nullable: true
-
-        field :post_source, -> { Whop_sdk::Ads::Types::PostAdUpdatedPayloadDataPostSource }, optional: false, nullable: true
-
-        field :post_thumbnail_url, -> { String }, optional: false, nullable: true
 
         field :primary_texts, -> { Internal::Types::Array[Whop_sdk::Types::AdText] }, optional: false, nullable: false
 
         field :status, -> { Whop_sdk::Ads::Types::PostAdUpdatedPayloadDataStatus }, optional: false, nullable: false
 
         field :title, -> { String }, optional: false, nullable: true
-
-        field :translations, -> { Whop_sdk::Types::AdTranslations }, optional: true, nullable: false
 
         field :updated_at, -> { String }, optional: false, nullable: false
 

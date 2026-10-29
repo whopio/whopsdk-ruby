@@ -11,6 +11,8 @@ module Whop_sdk
 
           field :commission_advance, -> { Whop_sdk::Types::PartnerAdvance }, optional: true, nullable: false
 
+          field :commission_advance_cap, -> { Whop_sdk::Types::Money }, optional: true, nullable: false
+
           field :commission_advance_projections_allowed, -> { Internal::Types::Boolean }, optional: true, nullable: false
 
           field :commission_advance_rate, -> { String }, optional: true, nullable: false

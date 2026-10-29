@@ -18,6 +18,7 @@ module Whop_sdk
       SIGN_FORMATION_DOCUMENTS = "sign_formation_documents"
       CONFIGURE_TAX_REMITTER = "configure_tax_remitter"
       ADD_VAT_REGISTRATION = "add_vat_registration"
+      CONFIRM_TAX_DETAILS = "confirm_tax_details"
       ACCEPT_PAYOUT_TERMS = "accept_payout_terms"
       ENABLE_TWO_FACTOR_AUTHENTICATION = "enable_two_factor_authentication"
       RESPOND_TO_ABUSE_REPORT = "respond_to_abuse_report"

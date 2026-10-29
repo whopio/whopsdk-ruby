@@ -79,8 +79,6 @@ module Whop_sdk
 
       field :link_clicks, -> { Integer }, optional: false, nullable: false
 
-      field :post_id, -> { String }, optional: false, nullable: true
-
       field :primary_texts, -> { Internal::Types::Array[Whop_sdk::Types::AdText] }, optional: false, nullable: false
 
       field :purchase_value, -> { Integer }, optional: false, nullable: false

@@ -182,7 +182,7 @@ module Whop_sdk
         end
       end
 
-      # Deletes an ad campaign and archives it on the ad platform (cascades to ad groups and ads).
+      # Deletes an ad campaign with its ad groups and ads, and stops their delivery.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -230,7 +230,6 @@ module Whop_sdk
       # @option request_options [Hash{String => Object}] :additional_body_parameters
       # @option request_options [Integer] :timeout_in_seconds
       # @option params [String] :id
-      # @option params [Whop_sdk::AdCampaigns::Types::UpdateAdCampaignsRequestXAdsPlatform, nil] :ads_platform
       #
       # @example
       #   client.ad_campaigns.update(id: "id")
@@ -239,17 +238,13 @@ module Whop_sdk
       def update(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
         request_data = Whop_sdk::AdCampaigns::Types::UpdateAdCampaignsRequest.new(params).to_h
-        non_body_param_names = %w[id X-Ads-Platform]
+        non_body_param_names = %w[id]
         body = request_data.except(*non_body_param_names)
-
-        headers = {}
-        headers["X-Ads-Platform"] = params[:ads_platform] if params[:ads_platform]
 
         request = Whop_sdk::Internal::JSON::Request.new(
           base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "PATCH",
           path: "ad_campaigns/#{URI.encode_uri_component(params[:id].to_s)}",
-          headers: headers,
           body: body,
           request_options: request_options
         )

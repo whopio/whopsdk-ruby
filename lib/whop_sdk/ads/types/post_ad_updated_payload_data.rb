@@ -24,8 +24,6 @@ module Whop_sdk
 
         field :issues, -> { Internal::Types::Array[Whop_sdk::Types::AdPlatformIssue] }, optional: false, nullable: false
 
-        field :post_id, -> { String }, optional: false, nullable: true
-
         field :primary_texts, -> { Internal::Types::Array[Whop_sdk::Types::AdText] }, optional: false, nullable: false
 
         field :status, -> { Whop_sdk::Ads::Types::PostAdUpdatedPayloadDataStatus }, optional: false, nullable: false

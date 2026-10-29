@@ -69,7 +69,7 @@ module Whop_sdk
 
       field :desired_cost_per_result, -> { Integer }, optional: true, nullable: false
 
-      field :ends_at, -> { String }, optional: true, nullable: false
+      field :ends_at, -> { String }, optional: false, nullable: true
 
       field :frequency, -> { Integer }, optional: false, nullable: true
 
@@ -111,7 +111,7 @@ module Whop_sdk
 
       field :spend_currency, -> { String }, optional: false, nullable: true
 
-      field :starts_at, -> { String }, optional: true, nullable: false
+      field :starts_at, -> { String }, optional: false, nullable: true
 
       field :status, -> { Whop_sdk::Types::AdCampaignStatus }, optional: false, nullable: false
 

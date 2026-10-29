@@ -100,7 +100,6 @@ module Whop_sdk
       #       event_name: "purchase"
       #     }],
       #     targets: [{
-      #       platform: "tiktok",
       #       scope: "business"
       #     }]
       #   )

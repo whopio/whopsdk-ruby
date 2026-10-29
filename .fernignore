@@ -21,9 +21,11 @@
 # generated PR.
 #
 # lib/whop_sdk/helpers holds the hand-written helpers in this SDK. Each depends only on the
-# standard library and one third-party gem, never on generated client code, so each survives
-# the client being replaced:
+# standard library and at most one third-party gem, never on generated client code, so each
+# survives the client being replaced:
 #
+#   - oidc — trades a cloud provider's OIDC identity token for a short-lived Whop access token,
+#     on the standard library alone.
 #   - verify_user_token — the x-whop-user-token verifier, on the jwt gem.
 #   - verify_webhook — the Standard Webhooks signature verifier, on the standardwebhooks gem.
 #     It restores the verification half of `client.webhooks.unwrap`, which the Stainless gem
@@ -35,7 +37,7 @@
 # from here.
 #
 #   - lib/whop_sdk.rb is regenerated, so the require_relative that loads a helper is lost.
-#     `requirePaths: [helpers/verify_user_token, helpers/verify_webhook]` re-emits them as
+#     `requirePaths: [helpers/verify_user_token, helpers/verify_webhook, helpers/oidc]` re-emits them as
 #     File.exist?-guarded require_relatives at the bottom of the generated lib/whop_sdk.rb.
 #   - whop_sdk.gemspec is regenerated, so `add_dependency "jwt"` and
 #     `add_dependency "standardwebhooks"` are lost, the same way whopsdk-python's

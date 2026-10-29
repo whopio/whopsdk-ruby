@@ -10,6 +10,7 @@ module Whop_sdk
       SUBMIT_INFORMATION_REQUEST = "submit_information_request"
       UPDATE_AUTOMATIC_WITHDRAWAL_METHOD = "update_automatic_withdrawal_method"
       REAUTHORIZE_PAYOUT_METHODS = "reauthorize_payout_methods"
+      UPDATE_PAYOUT_METHOD = "update_payout_method"
       UPDATE_PAYOUT_PROFILE = "update_payout_profile"
       CARD_USAGE_REVIEW = "card_usage_review"
       VERIFY_IDENTITY = "verify_identity"

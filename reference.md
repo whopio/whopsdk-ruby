@@ -20697,7 +20697,7 @@ Creates or returns a Whop-managed Facebook page or TikTok account for an account
 <dd>
 
 ```ruby
-client.external_accounts.create(platform: "facebook")
+client.external_accounts.create
 ```
 </dd>
 </dl>
@@ -20712,23 +20712,7 @@ client.external_accounts.create(platform: "facebook")
 <dl>
 <dd>
 
-**account_id:** `String` — The Account (biz_ identifier) to create the external account for. An account-scoped API key may omit this to default to its own account. Account API keys cannot update their own account's branding through Update Account; use a user-authenticated path.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**api_key:** `String` — A private API key for the account on the platform. Required for `klaviyo`, which needs read access to Accounts, and for `aimerce`; not accepted for other platforms. Whop checks the key with the platform before connecting and never returns it. Connecting again replaces the saved key.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**platform:** `Whop_sdk::ExternalAccounts::Types::CreateExternalAccountsRequestPlatform` — The platform to create the external account on. `facebook` requires the account's `banner_image`, `logo`, and `description`, and `tiktok` requires its `logo`; configure them with [Update Account](/api-reference/beta/accounts/update-account). The account is returned before the platform has created it — its `id` is usable right away, and the rest of the profile fills in once provisioning finishes. `klaviyo` connects the account's existing Klaviyo account with the `api_key` you pass. `aimerce` connects the account's Aimerce shop with the `api_key` you pass and turns on the Aimerce tracking pixel; it requires the `company:manage_checkout` scope instead of `social_account:create`.
+**request:** `Whop_sdk::ExternalAccounts::Types::CreateExternalAccountsRequestBody` 
     
 </dd>
 </dl>
@@ -38461,7 +38445,7 @@ Deprecated compatibility endpoint. Create external accounts with `POST /external
 <dd>
 
 ```ruby
-client.social_accounts.create(platform: "facebook")
+client.social_accounts.create
 ```
 </dd>
 </dl>
@@ -38476,23 +38460,7 @@ client.social_accounts.create(platform: "facebook")
 <dl>
 <dd>
 
-**account_id:** `String` — The Account (biz_ identifier) to create the external account for. An account-scoped API key may omit this to default to its own account. Account API keys cannot update their own account's branding through Update Account; use a user-authenticated path.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**api_key:** `String` — A private API key for the account on the platform. Required for `klaviyo`, which needs read access to Accounts, and for `aimerce`; not accepted for other platforms. Whop checks the key with the platform before connecting and never returns it. Connecting again replaces the saved key.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**platform:** `Whop_sdk::SocialAccounts::Types::CreateSocialAccountsRequestPlatform` — The platform to create the external account on. `facebook` requires the account's `banner_image`, `logo`, and `description`, and `tiktok` requires its `logo`; configure them with [Update Account](/api-reference/beta/accounts/update-account). The account is returned before the platform has created it — its `id` is usable right away, and the rest of the profile fills in once provisioning finishes. `klaviyo` connects the account's existing Klaviyo account with the `api_key` you pass. `aimerce` connects the account's Aimerce shop with the `api_key` you pass and turns on the Aimerce tracking pixel; it requires the `company:manage_checkout` scope instead of `social_account:create`.
+**request:** `Whop_sdk::SocialAccounts::Types::CreateSocialAccountsRequestBody` 
     
 </dd>
 </dl>

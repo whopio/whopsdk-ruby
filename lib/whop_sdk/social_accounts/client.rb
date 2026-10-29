@@ -88,7 +88,7 @@ module Whop_sdk
       # Deprecated compatibility endpoint. Create external accounts with `POST /external_accounts` instead.
       #
       # @param request_options [Hash]
-      # @param params [Whop_sdk::SocialAccounts::Types::CreateSocialAccountsRequest]
+      # @param params [Whop_sdk::SocialAccounts::Types::CreateSocialAccountsRequestBody]
       # @option request_options [String] :base_url
       # @option request_options [Hash{String => Object}] :additional_headers
       # @option request_options [Hash{String => Object}] :additional_query_parameters
@@ -96,7 +96,7 @@ module Whop_sdk
       # @option request_options [Integer] :timeout_in_seconds
       #
       # @example
-      #   client.social_accounts.create(platform: "facebook")
+      #   client.social_accounts.create
       #
       # @return [Whop_sdk::Types::SocialAccount]
       def create(request_options: {}, **params)
@@ -105,7 +105,7 @@ module Whop_sdk
           base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "POST",
           path: "social_accounts",
-          body: Whop_sdk::SocialAccounts::Types::CreateSocialAccountsRequest.new(params).to_h,
+          body: Whop_sdk::SocialAccounts::Types::CreateSocialAccountsRequestBody.new(params).to_h,
           request_options: request_options
         )
         begin

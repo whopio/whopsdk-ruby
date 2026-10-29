@@ -63,10 +63,6 @@ module Whop_sdk
 
       field :descriptions, -> { Internal::Types::Array[Whop_sdk::Types::AdText] }, optional: false, nullable: false
 
-      field :existing_post_id, -> { String }, optional: false, nullable: true
-
-      field :external_accounts, -> { Internal::Types::Array[Whop_sdk::Types::AdEntityReference] }, optional: false, nullable: false
-
       field :frequency, -> { Integer }, optional: false, nullable: true
 
       field :headlines, -> { Internal::Types::Array[Whop_sdk::Types::AdText] }, optional: false, nullable: false
@@ -83,13 +79,7 @@ module Whop_sdk
 
       field :link_clicks, -> { Integer }, optional: false, nullable: false
 
-      field :platform, -> { Whop_sdk::Types::AdPlatform }, optional: false, nullable: false
-
       field :post_id, -> { String }, optional: false, nullable: true
-
-      field :post_source, -> { Whop_sdk::Types::AdPostSource }, optional: false, nullable: true
-
-      field :post_thumbnail_url, -> { String }, optional: false, nullable: true
 
       field :primary_texts, -> { Internal::Types::Array[Whop_sdk::Types::AdText] }, optional: false, nullable: false
 
@@ -122,8 +112,6 @@ module Whop_sdk
       field :submitted_applications, -> { Integer }, optional: false, nullable: false
 
       field :title, -> { String }, optional: false, nullable: true
-
-      field :translations, -> { Whop_sdk::Types::AdTranslations }, optional: true, nullable: false
 
       field :unique_click_through_rate, -> { Integer }, optional: false, nullable: true
 

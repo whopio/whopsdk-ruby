@@ -1844,8 +1844,7 @@ Creates an ad campaign in `draft` status for an account. Nothing runs until you 
 
 ```ruby
 client.ad_campaigns.create(
-  objective: "awareness",
-  platform: "whop",
+  objective: "traffic",
   title: "Now hiring mobile detailers — Austin"
 )
 ```
@@ -1935,14 +1934,6 @@ client.ad_campaigns.create(
 <dd>
 
 **objective:** `Whop_sdk::AdCampaigns::Types::CreateAdCampaignsRequestObjective` — The goal the campaign optimizes toward.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**platform:** `Whop_sdk::AdCampaigns::Types::CreateAdCampaignsRequestPlatform` — The ad network the campaign runs on.
     
 </dd>
 </dl>
@@ -5127,7 +5118,7 @@ client.ads.create
 <dl>
 <dd>
 
-**descriptions:** `Internal::Types::Array[Whop_sdk::Ads::Types::CreateAdsRequestDescriptionsItem]` — The description shown on the ad. Entries without a language are the ad's own copy; add one entry per other language on a Meta ad with `translations`.
+**descriptions:** `Internal::Types::Array[Whop_sdk::Ads::Types::CreateAdsRequestDescriptionsItem]` — The description shown on the ad.
     
 </dd>
 </dl>
@@ -5135,7 +5126,7 @@ client.ads.create
 <dl>
 <dd>
 
-**existing_post_id:** `String` — Promote a post you already published instead of uploading creatives — a Facebook post or Instagram media id. Mutually exclusive with creatives. Pair with post_source.
+**headlines:** `Internal::Types::Array[Whop_sdk::Ads::Types::CreateAdsRequestHeadlinesItem]` — The headline shown on the ad.
     
 </dd>
 </dl>
@@ -5143,31 +5134,7 @@ client.ads.create
 <dl>
 <dd>
 
-**external_accounts:** `Internal::Types::Array[Whop_sdk::Ads::Types::CreateAdsRequestExternalAccountsItem]` — The external accounts the ad runs under — a connected Facebook page and, optionally, an Instagram profile.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**headlines:** `Internal::Types::Array[Whop_sdk::Ads::Types::CreateAdsRequestHeadlinesItem]` — The headline shown on the ad. Entries without a language are the ad's own copy; add one entry per other language on a Meta ad with `translations`.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**post_source:** `Whop_sdk::Ads::Types::CreateAdsRequestPostSource` — Identifies the network that owns `existing_post_id`. The source is inferred from the ID shape when omitted.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**primary_texts:** `Internal::Types::Array[Whop_sdk::Ads::Types::CreateAdsRequestPrimaryTextsItem]` — The primary text shown in the ad body. Entries without a language are the ad's own copy (several make text variations); add one entry per other language on a Meta ad with `translations`.
+**primary_texts:** `Internal::Types::Array[Whop_sdk::Ads::Types::CreateAdsRequestPrimaryTextsItem]` — The primary text shown in the ad body. Several entries make text variations.
     
 </dd>
 </dl>
@@ -5176,14 +5143,6 @@ client.ads.create
 <dd>
 
 **title:** `String` — The display name of the ad.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**translations:** `Whop_sdk::Ads::Types::CreateAdsRequestTranslations` — Shows a Meta ad in other languages. Each viewer sees the version for their language; everyone else sees the ad's own copy. Tag every copy and creatives entry with its language: the ad's own with `source_language`, and give every other language a `primary_texts` and `headlines` entry (a `descriptions` entry and a `creatives` entry are optional), or list it in `automatic_languages`. Needs a website destination, one image or video, and exactly one primary text and headline of the ad's own (and at most one description), with no Dynamic Creative or crops. Replaced as a whole when sent, so send `automatic_languages` with `source_language`. null turns translations off and deletes their media. Meta-only.
     
 </dd>
 </dl>
@@ -5449,7 +5408,7 @@ client.ads.update(id: "id")
 <dl>
 <dd>
 
-**descriptions:** `Internal::Types::Array[Whop_sdk::Ads::Types::UpdateAdsRequestDescriptionsItem]` — The description shown on the ad. Entries without a language are the ad's own copy; add one entry per other language on a Meta ad with `translations`.
+**descriptions:** `Internal::Types::Array[Whop_sdk::Ads::Types::UpdateAdsRequestDescriptionsItem]` — The description shown on the ad.
     
 </dd>
 </dl>
@@ -5457,7 +5416,7 @@ client.ads.update(id: "id")
 <dl>
 <dd>
 
-**existing_post_id:** `String` — Promote a post you already published instead of uploading creatives — a Facebook post or Instagram media id. Mutually exclusive with creatives. Pair with post_source.
+**headlines:** `Internal::Types::Array[Whop_sdk::Ads::Types::UpdateAdsRequestHeadlinesItem]` — The headline shown on the ad.
     
 </dd>
 </dl>
@@ -5465,31 +5424,7 @@ client.ads.update(id: "id")
 <dl>
 <dd>
 
-**external_accounts:** `Internal::Types::Array[Whop_sdk::Ads::Types::UpdateAdsRequestExternalAccountsItem]` — The external accounts the ad runs under — a connected Facebook page and, optionally, an Instagram profile.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**headlines:** `Internal::Types::Array[Whop_sdk::Ads::Types::UpdateAdsRequestHeadlinesItem]` — The headline shown on the ad. Entries without a language are the ad's own copy; add one entry per other language on a Meta ad with `translations`.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**post_source:** `Whop_sdk::Ads::Types::UpdateAdsRequestPostSource` — Identifies the network that owns `existing_post_id`. The source is inferred from the ID shape when omitted.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**primary_texts:** `Internal::Types::Array[Whop_sdk::Ads::Types::UpdateAdsRequestPrimaryTextsItem]` — The primary text shown in the ad body. Entries without a language are the ad's own copy (several make text variations); add one entry per other language on a Meta ad with `translations`.
+**primary_texts:** `Internal::Types::Array[Whop_sdk::Ads::Types::UpdateAdsRequestPrimaryTextsItem]` — The primary text shown in the ad body. Several entries make text variations.
     
 </dd>
 </dl>
@@ -5498,14 +5433,6 @@ client.ads.update(id: "id")
 <dd>
 
 **title:** `String` — The display name of the ad.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**translations:** `Whop_sdk::Ads::Types::UpdateAdsRequestTranslations` — Shows a Meta ad in other languages. Each viewer sees the version for their language; everyone else sees the ad's own copy. Tag every copy and creatives entry with its language: the ad's own with `source_language`, and give every other language a `primary_texts` and `headlines` entry (a `descriptions` entry and a `creatives` entry are optional), or list it in `automatic_languages`. Needs a website destination, one image or video, and exactly one primary text and headline of the ad's own (and at most one description), with no Dynamic Creative or crops. Replaced as a whole when sent, so send `automatic_languages` with `source_language`. null turns translations off and deletes their media. Meta-only.
     
 </dd>
 </dl>
@@ -27780,6 +27707,30 @@ client.partner_referral_requests.list
 <dd>
 
 **request_type:** `Whop_sdk::PartnerReferralRequests::Types::ListPartnerReferralRequestsRequestRequestType` — Only requests initiated in this way.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**authorized_user_id:** `String` — Only requests created for this team membership, prefixed `ausr_`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**member_id:** `String` — Only requests that credit this member record, prefixed `mber_`. A request created for a team membership also credits its holder's member record.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**personal:** `Internal::Types::Boolean` — When true, only personal requests, created for neither a team membership nor a member record. When false, only requests created for one.
     
 </dd>
 </dl>

@@ -24,8 +24,6 @@ module Whop_sdk
 
         field :objective, -> { Whop_sdk::AdCampaigns::Types::CreateAdCampaignsRequestObjective }, optional: false, nullable: false
 
-        field :platform, -> { Whop_sdk::AdCampaigns::Types::CreateAdCampaignsRequestPlatform }, optional: false, nullable: false
-
         field :special_ad_categories, -> { Internal::Types::Array[Whop_sdk::AdCampaigns::Types::CreateAdCampaignsRequestSpecialAdCategoriesItem] }, optional: true, nullable: false
 
         field :starts_at, -> { String }, optional: true, nullable: false

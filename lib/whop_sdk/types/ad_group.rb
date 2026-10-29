@@ -99,8 +99,6 @@ module Whop_sdk
 
       field :link_clicks, -> { Integer }, optional: false, nullable: false
 
-      field :platform, -> { Whop_sdk::Types::AdGroupPlatform }, optional: false, nullable: false
-
       field :purchase_value, -> { Integer }, optional: false, nullable: false
 
       field :purchases, -> { Integer }, optional: false, nullable: false

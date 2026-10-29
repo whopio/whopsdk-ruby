@@ -9,8 +9,6 @@ module Whop_sdk
         field :format, -> { Whop_sdk::Ads::Types::CreateAdsRequestCreativesItemFormat }, optional: true, nullable: false
 
         field :id, -> { String }, optional: true, nullable: false
-
-        field :language, -> { String }, optional: true, nullable: false
       end
     end
   end

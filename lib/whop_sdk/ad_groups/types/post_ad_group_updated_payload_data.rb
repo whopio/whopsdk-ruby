@@ -44,8 +44,6 @@ module Whop_sdk
 
         field :learning_progress, -> { Whop_sdk::Types::AdGroupLearningProgress }, optional: false, nullable: true
 
-        field :platform, -> { Whop_sdk::AdGroups::Types::PostAdGroupUpdatedPayloadDataPlatform }, optional: false, nullable: false
-
         field :regions, -> { Whop_sdk::Types::AdGroupRegions }, optional: false, nullable: false
 
         field :starts_at, -> { String }, optional: false, nullable: true

@@ -4,8 +4,6 @@ module Whop_sdk
   module Ads
     module Types
       class CreateAdsRequestHeadlinesItem < Internal::Types::Model
-        field :language, -> { String }, optional: true, nullable: false
-
         field :text, -> { String }, optional: false, nullable: false
       end
     end

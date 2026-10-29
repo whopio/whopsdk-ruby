@@ -106,8 +106,7 @@ module Whop_sdk
       #
       # @example
       #   client.ad_campaigns.create(
-      #     objective: "awareness",
-      #     platform: "whop",
+      #     objective: "traffic",
       #     title: "Now hiring mobile detailers — Austin"
       #   )
       #

@@ -250,11 +250,6 @@ module Whop_sdk
           raise error_class.new(response.body, code: code)
         end
       end
-
-      # @return [Whop_sdk::Partners::Client]
-      def partners
-        @partners ||= Whop_sdk::ExternalAccounts::Partners::Client.new(client: @client, base_url: @base_url, environment: @environment)
-      end
     end
   end
 end

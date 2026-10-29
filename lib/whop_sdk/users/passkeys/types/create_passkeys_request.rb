@@ -15,7 +15,7 @@ module Whop_sdk
 
           field :transports, -> { Internal::Types::Array[String] }, optional: true, nullable: false
 
-          field :user_handle, -> { String }, optional: true, nullable: false
+          field :user_handle, -> { String }, optional: false, nullable: false
         end
       end
     end

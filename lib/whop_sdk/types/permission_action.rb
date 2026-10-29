@@ -108,6 +108,7 @@ module Whop_sdk
       DEVELOPER_MANAGE_API_KEY = "developer:manage_api_key"
       DEVELOPER_MANAGE_BUILDS = "developer:manage_builds"
       DEVELOPER_MANAGE_OAUTH = "developer:manage_oauth"
+      DEVELOPER_MANAGE_OIDC_TRUST = "developer:manage_oidc_trust"
       DEVELOPER_MANAGE_WEBHOOK = "developer:manage_webhook"
       DEVELOPER_UPDATE_APP = "developer:update_app"
       DEVELOPER_UPDATE_APP_AUTHORIZATION = "developer:update_app_authorization"

@@ -127,11 +127,15 @@ module Whop_sdk
 
       field :user, -> { Whop_sdk::Types::UserSummary }, optional: false, nullable: true
 
+      field :user_agent, -> { String }, optional: false, nullable: true
+
       field :variant_id, -> { String }, optional: false, nullable: true
 
       field :verification_checks, -> { Whop_sdk::Types::PaymentVerificationChecks }, optional: false, nullable: true
 
       field :voidable, -> { Internal::Types::Boolean }, optional: false, nullable: false
+
+      field :wuid, -> { String }, optional: false, nullable: true
     end
   end
 end

@@ -59,7 +59,11 @@ module Whop_sdk
       # deposit by its `vbt_` ID, the `source.id` of its row in the account's financial activity. The available balance
       # has to cover the deposit minus the deposit fee, which is refunded. Returns the reversal's own row in the
       # financial activity: a `topup_reversal` debit for the full deposit amount, whose `source` is the bank deposit.
-      # The source's `status` is `reversal_in_progress` until the money is back with the sender, then `reversed`.
+      # The source's `status` is `reversal_in_progress` until the money is back with the sender, then `reversed`. A card
+      # deposit is identified by the `pay_` ID that [Create Deposit](/api-reference/beta/deposits/create-deposit)
+      # returned as `methods.card.payment_id`, and is refunded to the card that paid it. The available balance has to
+      # cover the rest of the deposit that has not been refunded yet, or the reversal fails and nothing is refunded.
+      # Returns the refund's row in the financial activity: a `payment_refund` debit.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::Deposits::Types::ReverseDepositsRequest]

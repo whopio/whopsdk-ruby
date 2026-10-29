@@ -49407,6 +49407,14 @@ client.payouts.supported_methods.list
 <dl>
 <dd>
 
+**party_type:** `Whop_sdk::Payouts::SupportedMethods::Types::ListSupportedMethodsRequestPartyType` — Who will own the payout method. `first_party` is the account itself. `third_party` is a recipient the account pays, saved with `recipient` on `POST /payouts/methods`, which needs no identity fields. Only meaningful with supported_payout_method_id.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **first:** `Integer` — Number of results to return from the start of the range.
     
 </dd>

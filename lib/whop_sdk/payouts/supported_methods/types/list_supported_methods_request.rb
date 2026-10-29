@@ -19,6 +19,8 @@ module Whop_sdk
 
           field :destination_currency, -> { String }, optional: true, nullable: false
 
+          field :party_type, -> { Whop_sdk::Payouts::SupportedMethods::Types::ListSupportedMethodsRequestPartyType }, optional: true, nullable: false
+
           field :first, -> { Integer }, optional: true, nullable: false
 
           field :after, -> { String }, optional: true, nullable: false

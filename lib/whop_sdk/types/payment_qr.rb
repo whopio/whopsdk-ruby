@@ -5,6 +5,8 @@ module Whop_sdk
     class PaymentQr < Internal::Types::Model
       field :amount, -> { Whop_sdk::Types::Money }, optional: true, nullable: false
 
+      field :copy_code, -> { String }, optional: true, nullable: false
+
       field :document_url, -> { String }, optional: true, nullable: false
 
       field :expires_at, -> { String }, optional: true, nullable: false

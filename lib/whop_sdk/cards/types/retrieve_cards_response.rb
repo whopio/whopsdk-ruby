@@ -16,6 +16,8 @@ module Whop_sdk
 
         field :id, -> { String }, optional: false, nullable: false
 
+        field :issued, -> { Internal::Types::Boolean }, optional: false, nullable: false
+
         field :last4, -> { String }, optional: false, nullable: true
 
         field :limit, -> { Whop_sdk::Cards::Types::RetrieveCardsResponseLimit }, optional: false, nullable: true

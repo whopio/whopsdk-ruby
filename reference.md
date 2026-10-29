@@ -9600,7 +9600,7 @@ client.authorized_users.retrieve(id: "ausr_xxxxxxxxxxxxx")
 <dl>
 <dd>
 
-**id:** `String` — The unique identifier of the authorized user to retrieve.
+**id:** `String` — The unique identifier of the authorized user to retrieve. Team member IDs may start with `ausr_` or `mber_`; treat them as opaque.
     
 </dd>
 </dl>
@@ -9668,7 +9668,7 @@ client.authorized_users.delete(
 <dl>
 <dd>
 
-**id:** `String` — The ID of the authorized user or user to remove.
+**id:** `String` — The ID of the authorized user or user to remove. Team member IDs may start with `ausr_` or `mber_`; treat them as opaque.
     
 </dd>
 </dl>

@@ -968,6 +968,7 @@ require_relative "whop_sdk/dispute_alerts/types/list_dispute_alerts_request_type
 require_relative "whop_sdk/dispute_alerts/types/list_dispute_alerts_request_order"
 require_relative "whop_sdk/dispute_alerts/types/list_dispute_alerts_request_direction"
 require_relative "whop_sdk/dispute_alerts/types/list_dispute_alerts_response_page_info"
+require_relative "whop_sdk/types/dispute_alert_category"
 require_relative "whop_sdk/types/dispute_alert_source"
 require_relative "whop_sdk/types/dispute_alert_type"
 require_relative "whop_sdk/types/dispute_alert"

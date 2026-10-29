@@ -7,6 +7,8 @@ module Whop_sdk
         class ListSupportedMethodsResponseDataItem < Internal::Types::Model
           field :delivery_type, -> { Whop_sdk::Payouts::SupportedMethods::Types::ListSupportedMethodsResponseDataItemDeliveryType }, optional: false, nullable: false
 
+          field :fee_structure, -> { Whop_sdk::Payouts::SupportedMethods::Types::ListSupportedMethodsResponseDataItemFeeStructure }, optional: false, nullable: false
+
           field :icon_url, -> { String }, optional: false, nullable: true
 
           field :id, -> { String }, optional: false, nullable: false

@@ -54,6 +54,7 @@ module Whop_sdk
       ID_BANK_TRANSFER = "id_bank_transfer"
       IDEAL = "ideal"
       INTERAC = "interac"
+      INTERNATIONAL_BANK_WIRE = "international_bank_wire"
       KAKAO_PAY = "kakao_pay"
       KLARNA = "klarna"
       KLARNA_PAY_NOW = "klarna_pay_now"

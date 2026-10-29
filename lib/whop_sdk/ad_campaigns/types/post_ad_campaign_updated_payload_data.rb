@@ -24,7 +24,7 @@ module Whop_sdk
 
         field :desired_cost_per_result, -> { Integer }, optional: true, nullable: false
 
-        field :ends_at, -> { String }, optional: true, nullable: false
+        field :ends_at, -> { String }, optional: false, nullable: true
 
         field :id, -> { String }, optional: false, nullable: false
 
@@ -34,7 +34,7 @@ module Whop_sdk
 
         field :special_ad_categories, -> { Internal::Types::Array[Whop_sdk::AdCampaigns::Types::PostAdCampaignUpdatedPayloadDataSpecialAdCategoriesItem] }, optional: false, nullable: false
 
-        field :starts_at, -> { String }, optional: true, nullable: false
+        field :starts_at, -> { String }, optional: false, nullable: true
 
         field :status, -> { Whop_sdk::AdCampaigns::Types::PostAdCampaignUpdatedPayloadDataStatus }, optional: false, nullable: false
 

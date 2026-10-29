@@ -104,7 +104,6 @@ module Whop_sdk
       # @option request_options [Hash{String => Object}] :additional_query_parameters
       # @option request_options [Hash{String => Object}] :additional_body_parameters
       # @option request_options [Integer] :timeout_in_seconds
-      # @option params [Whop_sdk::AdGroups::Types::CreateAdGroupsRequestXAdsPlatform, nil] :ads_platform
       #
       # @example
       #   client.ad_groups.create(ad_campaign_id: "adcamp_xxxxxxxxxxxxxx")
@@ -112,19 +111,11 @@ module Whop_sdk
       # @return [Whop_sdk::Types::AdGroup]
       def create(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
-        request_data = Whop_sdk::AdGroups::Types::CreateAdGroupsRequest.new(params).to_h
-        non_body_param_names = %w[X-Ads-Platform]
-        body = request_data.except(*non_body_param_names)
-
-        headers = {}
-        headers["X-Ads-Platform"] = params[:ads_platform] if params[:ads_platform]
-
         request = Whop_sdk::Internal::JSON::Request.new(
           base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "POST",
           path: "ad_groups",
-          headers: headers,
-          body: body,
+          body: Whop_sdk::AdGroups::Types::CreateAdGroupsRequest.new(params).to_h,
           request_options: request_options
         )
         begin
@@ -135,101 +126,6 @@ module Whop_sdk
         code = response.code.to_i
         if code.between?(200, 299)
           (response.body.to_s.empty? ? nil : Whop_sdk::Types::AdGroup.load(response.body))
-        else
-          error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
-          raise error_class.new(response.body, code: code)
-        end
-      end
-
-      # Estimates how many people a draft targeting spec can reach, before an ad group is created. The body takes the
-      # same targeting fields as creating an ad group, and nothing is persisted.
-      #
-      # @param request_options [Hash]
-      # @param params [Whop_sdk::AdGroups::Types::EstimateReachAdGroupsRequest]
-      # @option request_options [String] :base_url
-      # @option request_options [Hash{String => Object}] :additional_headers
-      # @option request_options [Hash{String => Object}] :additional_query_parameters
-      # @option request_options [Hash{String => Object}] :additional_body_parameters
-      # @option request_options [Integer] :timeout_in_seconds
-      #
-      # @example
-      #   client.ad_groups.estimate_reach(platform: "meta")
-      #
-      # @return [Whop_sdk::Types::ReachEstimate]
-      def estimate_reach(request_options: {}, **params)
-        params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
-        request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
-          method: "POST",
-          path: "ad_groups/estimate_reach",
-          body: Whop_sdk::AdGroups::Types::EstimateReachAdGroupsRequest.new(params).to_h,
-          request_options: request_options
-        )
-        begin
-          response = @client.send(request)
-        rescue Net::HTTPRequestTimeout
-          raise Whop_sdk::Errors::TimeoutError
-        end
-        code = response.code.to_i
-        if code.between?(200, 299)
-          (response.body.to_s.empty? ? nil : Whop_sdk::Types::ReachEstimate.load(response.body))
-        else
-          error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
-          raise error_class.new(response.body, code: code)
-        end
-      end
-
-      # Searches the ad platform's targeting taxonomy for options to target an ad group with. Each result comes back in
-      # the exact shape the ad-group body accepts for its `type`, so it can be used in `detailed_targeting`, `regions`,
-      # or `languages` as-is.
-      #
-      # @param request_options [Hash]
-      # @param params [Hash]
-      # @option request_options [String] :base_url
-      # @option request_options [Hash{String => Object}] :additional_headers
-      # @option request_options [Hash{String => Object}] :additional_query_parameters
-      # @option request_options [Hash{String => Object}] :additional_body_parameters
-      # @option request_options [Integer] :timeout_in_seconds
-      # @option params [String, nil] :account_id
-      # @option params [Whop_sdk::AdGroups::Types::SearchTargetingOptionsAdGroupsRequestPlatform] :platform
-      # @option params [String, nil] :query
-      # @option params [Whop_sdk::AdGroups::Types::SearchTargetingOptionsAdGroupsRequestTypesItem, nil] :types
-      # @option params [Whop_sdk::AdGroups::Types::SearchTargetingOptionsAdGroupsRequestLocationTypesItem, nil] :location_types
-      # @option params [String, nil] :country
-      # @option params [Integer, nil] :limit
-      # @option params [Whop_sdk::AdGroups::Types::SearchTargetingOptionsAdGroupsRequestSpecialAdCategoriesItem, nil] :special_ad_categories
-      #
-      # @example
-      #   client.ad_groups.search_targeting_options(platform: "meta")
-      #
-      # @return [Whop_sdk::AdGroups::Types::SearchTargetingOptionsAdGroupsResponse]
-      def search_targeting_options(request_options: {}, **params)
-        params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
-        query_params = {}
-        query_params["account_id"] = params[:account_id] if params.key?(:account_id)
-        query_params["platform"] = params[:platform] if params.key?(:platform)
-        query_params["query"] = params[:query] if params.key?(:query)
-        query_params["types"] = params[:types] if params.key?(:types)
-        query_params["location_types"] = params[:location_types] if params.key?(:location_types)
-        query_params["country"] = params[:country] if params.key?(:country)
-        query_params["limit"] = params[:limit] if params.key?(:limit)
-        query_params["special_ad_categories"] = params[:special_ad_categories] if params.key?(:special_ad_categories)
-
-        request = Whop_sdk::Internal::JSON::Request.new(
-          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
-          method: "GET",
-          path: "ad_groups/targeting_options",
-          query: query_params,
-          request_options: request_options
-        )
-        begin
-          response = @client.send(request)
-        rescue Net::HTTPRequestTimeout
-          raise Whop_sdk::Errors::TimeoutError
-        end
-        code = response.code.to_i
-        if code.between?(200, 299)
-          (response.body.to_s.empty? ? nil : Whop_sdk::AdGroups::Types::SearchTargetingOptionsAdGroupsResponse.load(response.body))
         else
           error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)
@@ -284,7 +180,7 @@ module Whop_sdk
         end
       end
 
-      # Deletes an ad group, removing it from the ad platform so it stops delivering.
+      # Deletes an ad group and stops its delivery.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -331,7 +227,6 @@ module Whop_sdk
       # @option request_options [Hash{String => Object}] :additional_body_parameters
       # @option request_options [Integer] :timeout_in_seconds
       # @option params [String] :id
-      # @option params [Whop_sdk::AdGroups::Types::UpdateAdGroupsRequestXAdsPlatform, nil] :ads_platform
       #
       # @example
       #   client.ad_groups.update(id: "id")
@@ -340,17 +235,13 @@ module Whop_sdk
       def update(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
         request_data = Whop_sdk::AdGroups::Types::UpdateAdGroupsRequest.new(params).to_h
-        non_body_param_names = %w[id X-Ads-Platform]
+        non_body_param_names = %w[id]
         body = request_data.except(*non_body_param_names)
-
-        headers = {}
-        headers["X-Ads-Platform"] = params[:ads_platform] if params[:ads_platform]
 
         request = Whop_sdk::Internal::JSON::Request.new(
           base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "PATCH",
           path: "ad_groups/#{URI.encode_uri_component(params[:id].to_s)}",
-          headers: headers,
           body: body,
           request_options: request_options
         )

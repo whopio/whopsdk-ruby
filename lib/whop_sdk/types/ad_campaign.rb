@@ -87,8 +87,6 @@ module Whop_sdk
 
       field :objective, -> { Whop_sdk::Types::AdCampaignObjective }, optional: false, nullable: true
 
-      field :optimization_goal, -> { String }, optional: false, nullable: true
-
       field :platform, -> { Whop_sdk::Types::AdCampaignPlatform }, optional: false, nullable: false
 
       field :purchase_value, -> { Integer }, optional: false, nullable: false

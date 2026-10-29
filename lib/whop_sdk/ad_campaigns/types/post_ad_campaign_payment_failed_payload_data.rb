@@ -32,8 +32,6 @@ module Whop_sdk
 
         field :objective, -> { Whop_sdk::AdCampaigns::Types::PostAdCampaignPaymentFailedPayloadDataObjective }, optional: false, nullable: true
 
-        field :optimization_goal, -> { String }, optional: false, nullable: true
-
         field :platform, -> { Whop_sdk::AdCampaigns::Types::PostAdCampaignPaymentFailedPayloadDataPlatform }, optional: false, nullable: false
 
         field :special_ad_categories, -> { Internal::Types::Array[Whop_sdk::AdCampaigns::Types::PostAdCampaignPaymentFailedPayloadDataSpecialAdCategoriesItem] }, optional: false, nullable: false

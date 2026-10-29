@@ -20,16 +20,6 @@ module Whop_sdk
 
         field :headlines, -> { Internal::Types::Array[Whop_sdk::Ads::Types::UpdateAdsRequestHeadlinesItem] }, optional: true, nullable: false
 
-        field :lead_form, -> { Whop_sdk::Ads::Types::UpdateAdsRequestLeadForm }, optional: true, nullable: false
-
-        field :lead_form_id, -> { String }, optional: true, nullable: false
-
-        field :messaging_config, -> { Whop_sdk::Ads::Types::UpdateAdsRequestMessagingConfig }, optional: true, nullable: false
-
-        field :multi_advertiser_ads, -> { Internal::Types::Boolean }, optional: true, nullable: false
-
-        field :music, -> { Whop_sdk::Ads::Types::UpdateAdsRequestMusic }, optional: true, nullable: false
-
         field :post_source, -> { Whop_sdk::Ads::Types::UpdateAdsRequestPostSource }, optional: true, nullable: false
 
         field :primary_texts, -> { Internal::Types::Array[Whop_sdk::Ads::Types::UpdateAdsRequestPrimaryTextsItem] }, optional: true, nullable: false

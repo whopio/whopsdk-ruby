@@ -20,8 +20,6 @@ module Whop_sdk
 
         field :conversion_event, -> { Whop_sdk::Types::ConversionEvent }, optional: false, nullable: true
 
-        field :conversion_location, -> { Whop_sdk::AdGroups::Types::PostAdGroupUpdatedPayloadDataConversionLocation }, optional: true, nullable: false
-
         field :created_at, -> { String }, optional: false, nullable: false
 
         field :delivery_schedule, -> { Whop_sdk::Types::AdGroupDeliverySchedule }, optional: false, nullable: true
@@ -32,15 +30,9 @@ module Whop_sdk
 
         field :desired_cost_per_result, -> { Integer }, optional: false, nullable: true
 
-        field :detailed_targeting, -> { Whop_sdk::Types::AdGroupDetailedTargeting }, optional: false, nullable: false
-
         field :devices, -> { Whop_sdk::Types::AdGroupDevices }, optional: false, nullable: false
 
-        field :dynamic_creative, -> { Internal::Types::Boolean }, optional: true, nullable: false
-
         field :ends_at, -> { String }, optional: false, nullable: true
-
-        field :frequency_cap, -> { Whop_sdk::Types::AdGroupFrequencyCap }, optional: false, nullable: true
 
         field :id, -> { String }, optional: false, nullable: false
 
@@ -51,14 +43,6 @@ module Whop_sdk
         field :languages, -> { Internal::Types::Array[String] }, optional: false, nullable: false
 
         field :learning_progress, -> { Whop_sdk::Types::AdGroupLearningProgress }, optional: false, nullable: true
-
-        field :message_apps, -> { Internal::Types::Array[Whop_sdk::AdGroups::Types::PostAdGroupUpdatedPayloadDataMessageAppsItem] }, optional: true, nullable: false
-
-        field :minimum_daily_spend, -> { Integer }, optional: true, nullable: false
-
-        field :optimization_goal, -> { Whop_sdk::AdGroups::Types::PostAdGroupUpdatedPayloadDataOptimizationGoal }, optional: false, nullable: true
-
-        field :placements, -> { Internal::Types::Array[Whop_sdk::Types::AdGroupPlacement] }, optional: false, nullable: false
 
         field :platform, -> { Whop_sdk::AdGroups::Types::PostAdGroupUpdatedPayloadDataPlatform }, optional: false, nullable: false
 

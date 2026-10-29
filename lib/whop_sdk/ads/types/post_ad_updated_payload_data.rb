@@ -28,16 +28,6 @@ module Whop_sdk
 
         field :issues, -> { Internal::Types::Array[Whop_sdk::Types::AdPlatformIssue] }, optional: false, nullable: false
 
-        field :lead_form, -> { Whop_sdk::Types::AdLeadForm }, optional: true, nullable: false
-
-        field :lead_form_id, -> { String }, optional: true, nullable: false
-
-        field :messaging_config, -> { Whop_sdk::Types::AdMessagingConfig }, optional: true, nullable: false
-
-        field :multi_advertiser_ads, -> { Internal::Types::Boolean }, optional: true, nullable: false
-
-        field :music, -> { Whop_sdk::Types::AdMusic }, optional: true, nullable: false
-
         field :platform, -> { Whop_sdk::Ads::Types::PostAdUpdatedPayloadDataPlatform }, optional: false, nullable: false
 
         field :post_id, -> { String }, optional: false, nullable: true

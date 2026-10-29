@@ -35,8 +35,6 @@ module Whop_sdk
 
       field :conversion_event, -> { Whop_sdk::Types::ConversionEvent }, optional: false, nullable: true
 
-      field :conversion_location, -> { Whop_sdk::Types::AdGroupConversionLocation }, optional: true, nullable: false
-
       field :cost_per_added_to_cart, -> { Integer }, optional: false, nullable: true
 
       field :cost_per_click, -> { Integer }, optional: false, nullable: false
@@ -77,17 +75,11 @@ module Whop_sdk
 
       field :desired_cost_per_result, -> { Integer }, optional: false, nullable: true
 
-      field :detailed_targeting, -> { Whop_sdk::Types::AdGroupDetailedTargeting }, optional: false, nullable: false
-
       field :devices, -> { Whop_sdk::Types::AdGroupDevices }, optional: false, nullable: false
-
-      field :dynamic_creative, -> { Internal::Types::Boolean }, optional: true, nullable: false
 
       field :ends_at, -> { String }, optional: false, nullable: true
 
       field :frequency, -> { Integer }, optional: false, nullable: true
-
-      field :frequency_cap, -> { Whop_sdk::Types::AdGroupFrequencyCap }, optional: false, nullable: true
 
       field :id, -> { String }, optional: false, nullable: false
 
@@ -106,14 +98,6 @@ module Whop_sdk
       field :learning_progress, -> { Whop_sdk::Types::AdGroupLearningProgress }, optional: false, nullable: true
 
       field :link_clicks, -> { Integer }, optional: false, nullable: false
-
-      field :message_apps, -> { Internal::Types::Array[Whop_sdk::Types::AdGroupMessageAppsItem] }, optional: true, nullable: false
-
-      field :minimum_daily_spend, -> { Integer }, optional: true, nullable: false
-
-      field :optimization_goal, -> { Whop_sdk::Types::AdGroupOptimizationGoal }, optional: false, nullable: true
-
-      field :placements, -> { Internal::Types::Array[Whop_sdk::Types::AdGroupPlacement] }, optional: false, nullable: false
 
       field :platform, -> { Whop_sdk::Types::AdGroupPlatform }, optional: false, nullable: false
 

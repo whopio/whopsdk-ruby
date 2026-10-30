@@ -1551,6 +1551,7 @@ require_relative "whop_sdk/payments/types/create_payments_request_line_items_ite
 require_relative "whop_sdk/payments/types/create_payments_request_line_items_item"
 require_relative "whop_sdk/payments/types/create_payments_request_payment_method_card_present_platform"
 require_relative "whop_sdk/payments/types/create_payments_request_payment_method_card_present"
+require_relative "whop_sdk/payments/types/create_payments_request_payment_method_paypal"
 require_relative "whop_sdk/payments/types/create_payments_request_payment_method_type"
 require_relative "whop_sdk/payments/types/create_payments_request_payment_method"
 require_relative "whop_sdk/payments/types/create_payments_request_setup_future_usage"

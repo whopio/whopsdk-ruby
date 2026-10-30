@@ -13,6 +13,8 @@ module Whop_sdk
       class CreatePaymentsRequestPaymentMethod < Internal::Types::Model
         field :card_present, -> { Whop_sdk::Payments::Types::CreatePaymentsRequestPaymentMethodCardPresent }, optional: true, nullable: false
 
+        field :paypal, -> { Whop_sdk::Payments::Types::CreatePaymentsRequestPaymentMethodPaypal }, optional: true, nullable: false
+
         field :type, -> { Whop_sdk::Payments::Types::CreatePaymentsRequestPaymentMethodType }, optional: false, nullable: false
       end
     end

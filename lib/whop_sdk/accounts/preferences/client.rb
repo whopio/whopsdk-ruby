@@ -65,7 +65,7 @@ module Whop_sdk
         # `payout:account:update` |
         # | `dispute_fighter_enabled` | `payment:dispute` |
         # | `economic_intelligence_duration_key`, `economic_intelligence_auto_renew` | `company:update` |
-        # | `feedback_options`, `customer_tracking`, `buyer_fee_percentage` | `company:manage_checkout` |
+        # | `feedback_options`, `customer_tracking` | `company:manage_checkout` |
         #
         # When updating preferences from multiple rows, all corresponding scopes are required for the account.
         #

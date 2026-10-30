@@ -10,7 +10,7 @@ module Whop_sdk
     # @param max_retries [Integer]
     #
     # @return [void]
-    def initialize(token:, base_url: nil, environment: Whop_sdk::Environment::PRODUCTION, api_version_date: "2026-10-29-4", idempotency_key: nil, max_retries: 2)
+    def initialize(token:, base_url: nil, environment: Whop_sdk::Environment::PRODUCTION, api_version_date: "2026-10-29-5", idempotency_key: nil, max_retries: 2)
       @base_url = base_url
       @environment = environment
 
@@ -46,11 +46,6 @@ module Whop_sdk
     # @return [Whop_sdk::AdCampaigns::Client]
     def ad_campaigns
       @ad_campaigns ||= Whop_sdk::AdCampaigns::Client.new(client: @raw_client, base_url: @base_url, environment: @environment)
-    end
-
-    # @return [Whop_sdk::AdConversionValueRules::Client]
-    def ad_conversion_value_rules
-      @ad_conversion_value_rules ||= Whop_sdk::AdConversionValueRules::Client.new(client: @raw_client, base_url: @base_url, environment: @environment)
     end
 
     # @return [Whop_sdk::AdGroups::Client]

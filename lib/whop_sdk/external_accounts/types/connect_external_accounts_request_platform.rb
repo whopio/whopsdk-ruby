@@ -6,7 +6,6 @@ module Whop_sdk
       module ConnectExternalAccountsRequestPlatform
         extend Whop_sdk::Internal::Types::Enum
 
-        META_BUSINESS = "meta_business"
         TIKTOK = "tiktok"
         LINKEDIN = "linkedin"
         YOUTUBE = "youtube"

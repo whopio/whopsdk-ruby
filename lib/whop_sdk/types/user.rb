@@ -17,6 +17,8 @@ module Whop_sdk
 
       field :created_at, -> { String }, optional: false, nullable: false
 
+      field :date_of_birth, -> { String }, optional: false, nullable: true
+
       field :earnings_usd, -> { Whop_sdk::Types::UserEarnings }, optional: false, nullable: true
 
       field :email, -> { String }, optional: false, nullable: true

@@ -2632,7 +2632,7 @@ client.ad_conversion_value_rules.list
 <dl>
 <dd>
 
-Creates one rule covering every selected target and event combination. Active rules cannot overlap for the same platform and event. Customer prices and Whop revenue stay unchanged.
+Creates one rule covering every selected target and event combination. Active rules cannot overlap for the same target and event. Customer prices and Whop revenue stay unchanged.
 </dd>
 </dl>
 </dd>
@@ -2687,7 +2687,7 @@ client.ad_conversion_value_rules.create(
 <dl>
 <dd>
 
-**events:** `Internal::Types::Array[Whop_sdk::AdConversionValueRules::Types::CreateAdConversionValueRulesRequestEventsItem]` — Events adjusted on every selected target. Every platform must support every selected event.
+**events:** `Internal::Types::Array[Whop_sdk::AdConversionValueRules::Types::CreateAdConversionValueRulesRequestEventsItem]` — Events adjusted on every selected target. A network that doesn't support a named custom event leaves it out.
     
 </dd>
 </dl>
@@ -2735,7 +2735,7 @@ client.ad_conversion_value_rules.create(
 <dl>
 <dd>
 
-**targets:** `Internal::Types::Array[Whop_sdk::AdConversionValueRules::Types::CreateAdConversionValueRulesRequestTargetsItem]` — Targets sharing one scope. Every selected event applies to every target. At most 500 target and event combinations.
+**targets:** `Internal::Types::Array[Whop_sdk::AdConversionValueRules::Types::CreateAdConversionValueRulesRequestTargetsItem]` — Targets sharing one scope. Each target covers every network Whop runs it on, and every selected event applies to every target. At most 500 target, network, and event combinations.
     
 </dd>
 </dl>
@@ -2937,7 +2937,7 @@ client.ad_conversion_value_rules.update(id: "id")
 <dl>
 <dd>
 
-**events:** `Internal::Types::Array[Whop_sdk::AdConversionValueRules::Types::UpdateAdConversionValueRulesRequestEventsItem]` — Events adjusted on every selected target. Every platform must support every selected event.
+**events:** `Internal::Types::Array[Whop_sdk::AdConversionValueRules::Types::UpdateAdConversionValueRulesRequestEventsItem]` — Events adjusted on every selected target. A network that doesn't support a named custom event leaves it out.
     
 </dd>
 </dl>
@@ -2977,7 +2977,7 @@ client.ad_conversion_value_rules.update(id: "id")
 <dl>
 <dd>
 
-**targets:** `Internal::Types::Array[Whop_sdk::AdConversionValueRules::Types::UpdateAdConversionValueRulesRequestTargetsItem]` — Targets sharing one scope. Every selected event applies to every target. At most 500 target and event combinations.
+**targets:** `Internal::Types::Array[Whop_sdk::AdConversionValueRules::Types::UpdateAdConversionValueRulesRequestTargetsItem]` — Targets sharing one scope. Each target covers every network Whop runs it on, and every selected event applies to every target. At most 500 target, network, and event combinations.
     
 </dd>
 </dl>
@@ -8654,7 +8654,7 @@ client.audiences.list(account_id: "account_id")
 <dl>
 <dd>
 
-Creates a custom audience from a customer list, your account's Whop People data, or engagement with videos, lead forms, Instagram profiles, or Facebook pages, or a lookalike audience that reaches people similar to an existing one. Processing runs asynchronously. A custom audience returns one audience; a lookalike returns the requested similarity bands in `data`.
+Creates a custom audience from a customer list or your account's Whop People data, or a lookalike audience that reaches people similar to an existing one. Processing runs asynchronously. A custom audience returns one audience; a lookalike returns the requested similarity bands in `data`.
 </dd>
 </dl>
 </dd>
@@ -8669,15 +8669,7 @@ Creates a custom audience from a customer list, your account's Whop People data,
 <dd>
 
 ```ruby
-client.audiences.create(
-  account_id: "biz_xxxxxxxxxxxxxx",
-  engagement: {
-    include: [],
-    platform: "meta"
-  },
-  name: "Page engagers",
-  source_type: "engagement"
-)
+client.audiences.create(account_id: "biz_xxxxxxxxxxxxxx")
 ```
 </dd>
 </dl>
@@ -8732,14 +8724,6 @@ client.audiences.create(
 <dl>
 <dd>
 
-**engagement:** `Whop_sdk::Audiences::Types::CreateAudiencesRequestEngagement` — Rules for membership based on social engagement. Requires a connected social account with advertising access.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
 **file_id:** `String` — CSV audiences only. The uploaded customer CSV — a file id (`file_...`) returned by `POST /files`.
     
 </dd>
@@ -8772,7 +8756,7 @@ client.audiences.create(
 <dl>
 <dd>
 
-**source_audience_id:** `String` — Lookalikes only. The ready custom audience (`adaud_`) to build from; uploaded and People audiences need at least 100 matched people. Meta validates engagement audience eligibility when creating the lookalike.
+**source_audience_id:** `String` — Lookalikes only. The ready custom audience (`adaud_`) to build from; uploaded and People audiences need at least 100 matched people.
     
 </dd>
 </dl>
@@ -8780,7 +8764,7 @@ client.audiences.create(
 <dl>
 <dd>
 
-**source_type:** `Whop_sdk::Audiences::Types::CreateAudiencesRequestSourceType` — Custom audience source. Inferred from `engagement`, then `filters`, otherwise defaults to `csv_upload`. Supply only the fields for the selected source.
+**source_type:** `Whop_sdk::Audiences::Types::CreateAudiencesRequestSourceType` — Custom audience source. Inferred from `filters`, otherwise defaults to `csv_upload`. Supply only the fields for the selected source.
     
 </dd>
 </dl>

@@ -82,7 +82,7 @@ module Whop_sdk
       end
 
       # Creates one rule covering every selected target and event combination. Active rules cannot overlap for the same
-      # platform and event. Customer prices and Whop revenue stay unchanged.
+      # target and event. Customer prices and Whop revenue stay unchanged.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::AdConversionValueRules::Types::CreateAdConversionValueRulesRequest]

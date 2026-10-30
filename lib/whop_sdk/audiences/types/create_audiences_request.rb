@@ -14,8 +14,6 @@ module Whop_sdk
 
         field :count, -> { Integer }, optional: true, nullable: false
 
-        field :engagement, -> { Whop_sdk::Audiences::Types::CreateAudiencesRequestEngagement }, optional: true, nullable: false
-
         field :file_id, -> { String }, optional: true, nullable: false
 
         field :filters, -> { Internal::Types::Hash[String, Object] }, optional: true, nullable: false

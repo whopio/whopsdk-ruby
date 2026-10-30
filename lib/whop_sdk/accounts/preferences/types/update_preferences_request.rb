@@ -17,8 +17,6 @@ module Whop_sdk
 
           field :ads_triple_whale_integration, -> { Whop_sdk::Accounts::Preferences::Types::UpdatePreferencesRequestAdsTripleWhaleIntegration }, optional: true, nullable: false
 
-          field :buyer_fee_percentage, -> { Integer }, optional: true, nullable: false
-
           field :cards_auto_top_up, -> { Internal::Types::Boolean }, optional: true, nullable: false
 
           field :cards_notifications, -> { Internal::Types::Boolean }, optional: true, nullable: false

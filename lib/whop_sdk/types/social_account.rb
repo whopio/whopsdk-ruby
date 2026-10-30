@@ -13,7 +13,7 @@ module Whop_sdk
 
       field :parent_social_account, -> { Whop_sdk::Types::SocialAccountParent }, optional: false, nullable: true
 
-      field :partnership_status, -> { Whop_sdk::Types::SocialAccountPartnershipStatus }, optional: false, nullable: true
+      field :partnership_status, -> { String }, optional: false, nullable: true
 
       field :platform, -> { Whop_sdk::Types::SocialAccountPlatform }, optional: false, nullable: false
 

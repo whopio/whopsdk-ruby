@@ -13,7 +13,7 @@ module Whop_sdk
 
       field :parent_external_account, -> { Whop_sdk::Types::ExternalAccountParent }, optional: false, nullable: true
 
-      field :partnership_status, -> { Whop_sdk::Types::ExternalAccountPartnershipStatus }, optional: false, nullable: true
+      field :partnership_status, -> { String }, optional: false, nullable: true
 
       field :platform, -> { Whop_sdk::Types::ExternalAccountPlatform }, optional: false, nullable: false
 

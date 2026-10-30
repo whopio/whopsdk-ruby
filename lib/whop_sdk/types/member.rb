@@ -25,6 +25,8 @@ module Whop_sdk
 
       field :most_recent_action_at, -> { String }, optional: false, nullable: true
 
+      field :name, -> { String }, optional: false, nullable: true
+
       field :phone_number, -> { String }, optional: false, nullable: true
 
       field :status, -> { Whop_sdk::Types::MemberStatus }, optional: false, nullable: false

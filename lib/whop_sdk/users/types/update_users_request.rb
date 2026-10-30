@@ -12,6 +12,8 @@ module Whop_sdk
 
         field :bio, -> { String }, optional: true, nullable: false
 
+        field :date_of_birth, -> { String }, optional: true, nullable: false
+
         field :name, -> { String }, optional: true, nullable: false
 
         field :profile_picture, -> { Whop_sdk::Users::Types::UpdateUsersRequestProfilePicture }, optional: true, nullable: false

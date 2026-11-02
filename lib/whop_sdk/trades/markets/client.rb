@@ -17,7 +17,7 @@ module Whop_sdk
 
         # Returns every market you can trade on Whop.
         #
-        # - **Spot:** listed by symbol: `BTC`, `ETH`, `SOL` and `XAUT` (gold).
+        # - **Spot:** listed by symbol: `BTC`, `SOL` and `XAUT` (gold).
         # - **Perpetuals:** such as `BTC`. Send the `id` as `market` when you create a trade.
         #
         # The same symbol can appear twice, once as a perpetual and once as spot, so use `id` together with

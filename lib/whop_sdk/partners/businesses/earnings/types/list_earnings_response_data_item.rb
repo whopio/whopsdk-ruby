@@ -12,6 +12,8 @@ module Whop_sdk
 
             field :commission_amount_usd, -> { String }, optional: false, nullable: true
 
+            field :covered_by_commission_advance, -> { Internal::Types::Boolean }, optional: false, nullable: false
+
             field :created_at, -> { String }, optional: false, nullable: false
 
             field :financial_activity, -> { Internal::Types::Array[Whop_sdk::Partners::Businesses::Earnings::Types::ListEarningsResponseDataItemFinancialActivityItem] }, optional: false, nullable: true

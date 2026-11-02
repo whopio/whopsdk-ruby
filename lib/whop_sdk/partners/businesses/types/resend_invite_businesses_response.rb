@@ -25,6 +25,8 @@ module Whop_sdk
 
           field :my_partner_tier, -> { Whop_sdk::Partners::Businesses::Types::ResendInviteBusinessesResponseMyPartnerTier }, optional: false, nullable: false
 
+          field :my_payout_percentages, -> { Whop_sdk::Partners::Businesses::Types::ResendInviteBusinessesResponseMyPayoutPercentages }, optional: false, nullable: true
+
           field :object, -> { Whop_sdk::Partners::Businesses::Types::ResendInviteBusinessesResponseObject }, optional: false, nullable: false
 
           field :owner, -> { Whop_sdk::Partners::Businesses::Types::ResendInviteBusinessesResponseOwner }, optional: false, nullable: true

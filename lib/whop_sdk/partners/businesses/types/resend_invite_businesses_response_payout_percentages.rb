@@ -4,7 +4,8 @@ module Whop_sdk
   module Partners
     module Businesses
       module Types
-        # The referrer's commission rate for each income source, expressed as a fraction (0.3 = 30%).
+        # The commission rate this referral pays for each income source, as a fraction (0.3 = 30%). A solo partner earns
+        # it directly; the team of a referring partner business splits it by their shares.
         class ResendInviteBusinessesResponsePayoutPercentages < Internal::Types::Model
           field :ad_spend, -> { Integer }, optional: false, nullable: true
 

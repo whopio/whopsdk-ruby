@@ -1869,14 +1869,6 @@ client.ad_campaigns.create(
 <dl>
 <dd>
 
-**bid_type:** `Whop_sdk::AdCampaigns::Types::CreateAdCampaignsRequestBidType` — How delivery bids in the ad auction: `minimum_cost` gets the most results for the budget, `average_target` holds an average cost per result, `maximum_target` never bids above a cap. Only for campaigns that own the budget.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
 **budget_amount:** `Integer` — The campaign's budget in USD, which is what it is stored and billed in. Required when budget_optimization is `ad_campaign` (or send budget_amount_local instead); omit when each ad group sets its own budget.
     
 </dd>
@@ -2176,14 +2168,6 @@ client.ad_campaigns.update(id: "id")
 <dd>
 
 **id:** `String` — The ad campaign ID.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**bid_type:** `Whop_sdk::AdCampaigns::Types::UpdateAdCampaignsRequestBidType` — How delivery bids in the ad auction: `minimum_cost` gets the most results for the budget, `average_target` holds an average cost per result, `maximum_target` never bids above a cap. Switching to `minimum_cost` clears the cap amounts stored on the campaign's ad groups. Only for campaigns that own the budget.
     
 </dd>
 </dl>

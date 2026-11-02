@@ -4,8 +4,6 @@ module Whop_sdk
   module AdCampaigns
     module Types
       class PostAdCampaignUpdatedPayloadData < Internal::Types::Model
-        field :bid_type, -> { Whop_sdk::AdCampaigns::Types::PostAdCampaignUpdatedPayloadDataBidType }, optional: true, nullable: false
-
         field :budget_amount, -> { Integer }, optional: false, nullable: true
 
         field :budget_amount_local, -> { Integer }, optional: false, nullable: true

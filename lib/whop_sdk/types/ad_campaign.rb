@@ -7,8 +7,6 @@ module Whop_sdk
 
       field :added_to_carts, -> { Integer }, optional: false, nullable: false
 
-      field :bid_type, -> { Whop_sdk::Types::AdCampaignBidType }, optional: true, nullable: false
-
       field :budget_amount, -> { Integer }, optional: false, nullable: true
 
       field :budget_amount_local, -> { Integer }, optional: false, nullable: true

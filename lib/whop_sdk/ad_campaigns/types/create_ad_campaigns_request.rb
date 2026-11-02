@@ -6,8 +6,6 @@ module Whop_sdk
       class CreateAdCampaignsRequest < Internal::Types::Model
         field :account_id, -> { String }, optional: true, nullable: false
 
-        field :bid_type, -> { Whop_sdk::AdCampaigns::Types::CreateAdCampaignsRequestBidType }, optional: true, nullable: false
-
         field :budget_amount, -> { Integer }, optional: true, nullable: false
 
         field :budget_amount_local, -> { Integer }, optional: true, nullable: false

@@ -135,7 +135,7 @@ module Whop_sdk
       # @example
       #   client.social_accounts.connect(
       #     platform: "tiktok",
-      #     redirect_url: "https://whop.com/dashboard/biz_xxxxxxxxxxxxxx/ads/settings"
+      #     redirect_url: "https://whop.com/dashboard/biz_xxxxxxxxxxxxxx/settings"
       #   )
       #
       # @return [Whop_sdk::SocialAccounts::Types::ConnectSocialAccountsResponse]

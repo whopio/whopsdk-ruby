@@ -138,7 +138,7 @@ module Whop_sdk
       # @example
       #   client.external_accounts.connect(
       #     platform: "tiktok",
-      #     redirect_url: "https://whop.com/dashboard/biz_xxxxxxxxxxxxxx/ads/settings"
+      #     redirect_url: "https://whop.com/dashboard/biz_xxxxxxxxxxxxxx/settings"
       #   )
       #
       # @return [Whop_sdk::ExternalAccounts::Types::ConnectExternalAccountsResponse]

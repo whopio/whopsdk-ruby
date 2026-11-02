@@ -33,6 +33,8 @@ module Whop_sdk
 
       field :member_id, -> { String }, optional: false, nullable: true
 
+      field :memo, -> { String }, optional: false, nullable: true
+
       field :metadata, -> { Internal::Types::Hash[String, String] }, optional: false, nullable: false
 
       field :number, -> { String }, optional: false, nullable: false

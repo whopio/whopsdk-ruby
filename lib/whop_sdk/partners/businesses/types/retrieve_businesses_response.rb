@@ -29,6 +29,8 @@ module Whop_sdk
 
           field :my_partner_tier, -> { Whop_sdk::Partners::Businesses::Types::RetrieveBusinessesResponseMyPartnerTier }, optional: false, nullable: false
 
+          field :my_payout_percentages, -> { Whop_sdk::Partners::Businesses::Types::RetrieveBusinessesResponseMyPayoutPercentages }, optional: false, nullable: true
+
           field :object, -> { Whop_sdk::Partners::Businesses::Types::RetrieveBusinessesResponseObject }, optional: false, nullable: false
 
           field :owner, -> { Whop_sdk::Partners::Businesses::Types::RetrieveBusinessesResponseOwner }, optional: false, nullable: true

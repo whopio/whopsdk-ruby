@@ -33,6 +33,8 @@ module Whop_sdk
 
       field :member_id, -> { String }, optional: false, nullable: true
 
+      field :membership_id, -> { String }, optional: false, nullable: true
+
       field :memo, -> { String }, optional: false, nullable: true
 
       field :metadata, -> { Internal::Types::Hash[String, String] }, optional: false, nullable: false
@@ -50,6 +52,8 @@ module Whop_sdk
       field :recipient_emails, -> { Internal::Types::Array[String] }, optional: false, nullable: false
 
       field :scheduled_charge_at, -> { String }, optional: false, nullable: true
+
+      field :scheduled_collection_method, -> { Whop_sdk::Types::InvoiceScheduledCollectionMethod }, optional: false, nullable: true
 
       field :scheduled_send_at, -> { String }, optional: false, nullable: true
 

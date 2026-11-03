@@ -34,6 +34,8 @@ module Whop_sdk
 
         field :time_in_force, -> { Whop_sdk::Trades::Types::CreateTradesRequestTimeInForce }, optional: true, nullable: false
 
+        field :trigger_price, -> { String }, optional: true, nullable: false
+
         field :type, -> { Whop_sdk::Trades::Types::CreateTradesRequestType }, optional: false, nullable: false
       end
     end

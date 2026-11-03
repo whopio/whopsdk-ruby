@@ -8,6 +8,8 @@ module Whop_sdk
 
         MARKET = "market"
         LIMIT = "limit"
+        TAKE_PROFIT = "take_profit"
+        STOP_LOSS = "stop_loss"
       end
     end
   end

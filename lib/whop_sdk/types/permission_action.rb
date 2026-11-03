@@ -276,6 +276,7 @@ module Whop_sdk
       WEBHOOK_RECEIVE_DISPUTES = "webhook_receive:disputes"
       WEBHOOK_RECEIVE_DOMAINS = "webhook_receive:domains"
       WEBHOOK_RECEIVE_ENTRIES = "webhook_receive:entries"
+      WEBHOOK_RECEIVE_EVENTS = "webhook_receive:events"
       WEBHOOK_RECEIVE_EXPORTS = "webhook_receive:exports"
       WEBHOOK_RECEIVE_FINANCIAL_ACTIVITY = "webhook_receive:financial_activity"
       WEBHOOK_RECEIVE_IDENTITY_PROFILES = "webhook_receive:identity_profiles"

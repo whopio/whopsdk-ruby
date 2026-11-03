@@ -8,6 +8,7 @@ module Whop_sdk
       VERIFICATION = "verification"
       REGISTRATION = "registration"
       PLATFORM = "platform"
+      SUBDOMAIN = "subdomain"
       WEBSITE = "website"
       APPLE_PAY = "apple_pay"
       PIXEL = "pixel"

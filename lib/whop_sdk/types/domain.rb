@@ -35,6 +35,8 @@ module Whop_sdk
 
       field :status, -> { Whop_sdk::Types::DomainStatus }, optional: false, nullable: true
 
+      field :subdomain, -> { Whop_sdk::Types::DomainSubdomain }, optional: false, nullable: true
+
       field :transfer, -> { Whop_sdk::Types::DomainTransfer }, optional: false, nullable: true
 
       field :updated_at, -> { String }, optional: false, nullable: true

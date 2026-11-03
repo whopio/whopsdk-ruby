@@ -39,6 +39,9 @@ module Whop_sdk
       EMAIL_UNREACHABLE = "email_unreachable"
       EMAIL_IDENTITY_IN_USE = "email_identity_in_use"
       EMAIL_VERIFICATION_FAILED = "email_verification_failed"
+      SUBDOMAIN_NEEDS_WHOP_DOMAIN = "subdomain_needs_whop_domain"
+      ROOT_DOMAIN_PENDING = "root_domain_pending"
+      ROOT_DOMAIN_NEEDS_ACTION = "root_domain_needs_action"
     end
   end
 end

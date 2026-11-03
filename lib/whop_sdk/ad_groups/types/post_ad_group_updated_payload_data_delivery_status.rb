@@ -13,6 +13,7 @@ module Whop_sdk
         NO_ADS = "no_ads"
         CAMPAIGN_PAUSED = "campaign_paused"
         PAUSED = "paused"
+        IN_REVIEW = "in_review"
         PROCESSING = "processing"
         ISSUES = "issues"
         SCHEDULED = "scheduled"

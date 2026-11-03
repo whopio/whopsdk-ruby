@@ -22805,6 +22805,14 @@ client.invoices.list
 <dl>
 <dd>
 
+**include_total_count:** `Internal::Types::Boolean` — Set to `true` to return the number of matching results in `page_info.total_count`. Send `first=0` as well to return the count without any results.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **request_options:** `Whop_sdk::Invoices::RequestOptions` 
     
 </dd>
@@ -24779,6 +24787,14 @@ client.members.list(
 <dl>
 <dd>
 
+**include_total_count:** `Internal::Types::Boolean` — Set to `true` to return the number of matching results in `page_info.total_count`. Send `first=0` as well to return the count without any results.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **request_options:** `Whop_sdk::Members::RequestOptions` 
     
 </dd>
@@ -25116,6 +25132,14 @@ client.memberships.list(
 <dd>
 
 **before:** `String` — Return results before this cursor. Use `page_info.start_cursor` from the previous response to fetch the previous page.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**include_total_count:** `Internal::Types::Boolean` — Set to `true` to return the number of matching results in `page_info.total_count`. Send `first=0` as well to return the count without any results.
     
 </dd>
 </dl>
@@ -29746,6 +29770,14 @@ client.payments.list(
 <dl>
 <dd>
 
+**include_total_count:** `Internal::Types::Boolean` — Set to `true` to return the number of matching results in `page_info.total_count`. Send `first=0` as well to return the count without any results.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **request_options:** `Whop_sdk::Payments::RequestOptions` 
     
 </dd>
@@ -33603,6 +33635,14 @@ client.products.list(
 <dl>
 <dd>
 
+**include_total_count:** `Internal::Types::Boolean` — Set to `true` to return the number of matching results in `page_info.total_count`. Send `first=0` as well to return the count without any results.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **created_after:** `String` — Only return products created after this ISO 8601 timestamp.
     
 </dd>
@@ -34371,6 +34411,14 @@ client.promo_codes.list(
 <dd>
 
 **before:** `String` — Return results before this cursor. Use `page_info.start_cursor` from the previous response to fetch the previous page.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**include_total_count:** `Internal::Types::Boolean` — Set to `true` to return the number of matching results in `page_info.total_count`. Send `first=0` as well to return the count without any results.
     
 </dd>
 </dl>
@@ -36489,6 +36537,14 @@ client.reviews.list(
 <dd>
 
 **before:** `String` — Return results before this cursor. Use `page_info.start_cursor` from the previous response to fetch the previous page.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**include_total_count:** `Internal::Types::Boolean` — Set to `true` to return the number of matching results in `page_info.total_count`. Send `first=0` as well to return the count without any results.
     
 </dd>
 </dl>
@@ -46035,6 +46091,14 @@ client.members.notes.list(member_id: "member_id")
 <dd>
 
 **before:** `String` — Return results before this cursor. Use `page_info.start_cursor` from the previous response to fetch the previous page.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**include_total_count:** `Internal::Types::Boolean` — Set to `true` to return the number of matching results in `page_info.total_count`. Send `first=0` as well to return the count without any results.
     
 </dd>
 </dl>

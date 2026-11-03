@@ -38,6 +38,7 @@ module Whop_sdk
       # @option params [String, nil] :after
       # @option params [Integer, nil] :last
       # @option params [String, nil] :before
+      # @option params [Boolean, nil] :include_total_count
       # @option params [String, nil] :created_after
       # @option params [String, nil] :created_before
       #
@@ -66,6 +67,7 @@ module Whop_sdk
         query_params["after"] = params[:after] if params.key?(:after)
         query_params["last"] = params[:last] if params.key?(:last)
         query_params["before"] = params[:before] if params.key?(:before)
+        query_params["include_total_count"] = params[:include_total_count] if params.key?(:include_total_count)
         query_params["created_after"] = params[:created_after] if params.key?(:created_after)
         query_params["created_before"] = params[:created_before] if params.key?(:created_before)
 

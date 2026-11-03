@@ -167,9 +167,10 @@ module Whop_sdk
       end
 
       # Updates draft invoice items and billing fields. Updates of only `recipient_emails` and `memo` are also allowed
-      # on unpaid invoices. Edit customer contact details through the member API. A draft with no saved payment method
-      # and no scheduled send needs `invoice:update`, `invoice:create`, or `payment:charge`; every other update, and
-      # setting `payment_method_id`, needs `payment:charge`.
+      # on unpaid invoices. The customer is set when the draft is created and can't change. To bill someone else, first
+      # void the draft. Then create a new invoice. Edit customer contact details through the member API. A draft with no
+      # saved payment method and no scheduled send needs `invoice:update`, `invoice:create`, or `payment:charge`; every
+      # other update, and setting `payment_method_id`, needs `payment:charge`.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::Invoices::Types::UpdateInvoicesRequest]

@@ -86,8 +86,9 @@ module Whop_sdk
       end
 
       # Creates an API key for an account, an app, or your own user. A user API key acts as you and can only grant
-      # `ad_campaign:update`, `ad_pixel:manage`, `member:journey:read`. The response is the only place the full
-      # `secret_key` is returned — store it immediately. Requires a user session; API keys cannot manage API keys.
+      # `ad_campaign:basic:read`, `ad_campaign:update`, `ad_pixel:manage`, `member:journey:read`. The response is the
+      # only place the full `secret_key` is returned — store it immediately. Requires a user session; API keys cannot
+      # manage API keys.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::APIKeys::Types::CreateAPIKeysRequest]

@@ -4,8 +4,7 @@ module Whop_sdk
   module Accounts
     module Fees
       module Types
-        # Default markups for connected accounts. Available on accounts without a parent, even before any accounts
-        # connect.
+        # Default markups for subaccounts. Available on accounts without a parent, even before any accounts connect.
         class UpdateFeesRequestChildMarkups < Internal::Types::Model
           field :card_spend, -> { Whop_sdk::Accounts::Fees::Types::UpdateFeesRequestChildMarkupsCardSpend }, optional: true, nullable: false
 

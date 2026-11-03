@@ -33,7 +33,7 @@ module Whop_sdk
       # @option params [String, nil] :currency
       # @option params [String, nil] :user_id
       # @option params [String, nil] :query
-      # @option params [Boolean, nil] :include_connected_accounts
+      # @option params [Boolean, nil] :include_subaccounts
       # @option params [String, nil] :member_id
       # @option params [String, nil] :membership_id
       # @option params [String, nil] :product_id
@@ -80,7 +80,7 @@ module Whop_sdk
         query_params["currency"] = params[:currency] if params.key?(:currency)
         query_params["user_id"] = params[:user_id] if params.key?(:user_id)
         query_params["query"] = params[:query] if params.key?(:query)
-        query_params["include_connected_accounts"] = params[:include_connected_accounts] if params.key?(:include_connected_accounts)
+        query_params["include_subaccounts"] = params[:include_subaccounts] if params.key?(:include_subaccounts)
         query_params["member_id"] = params[:member_id] if params.key?(:member_id)
         query_params["membership_id"] = params[:membership_id] if params.key?(:membership_id)
         query_params["product_id"] = params[:product_id] if params.key?(:product_id)
@@ -206,7 +206,7 @@ module Whop_sdk
       # @option params [String, nil] :dispute_created_after
       # @option params [String, nil] :dispute_created_before
       # @option params [String, nil] :query
-      # @option params [Boolean, nil] :include_connected_accounts
+      # @option params [Boolean, nil] :include_subaccounts
       #
       # @example
       #   client.payments.summary(
@@ -238,7 +238,7 @@ module Whop_sdk
         query_params["dispute_created_after"] = params[:dispute_created_after] if params.key?(:dispute_created_after)
         query_params["dispute_created_before"] = params[:dispute_created_before] if params.key?(:dispute_created_before)
         query_params["query"] = params[:query] if params.key?(:query)
-        query_params["include_connected_accounts"] = params[:include_connected_accounts] if params.key?(:include_connected_accounts)
+        query_params["include_subaccounts"] = params[:include_subaccounts] if params.key?(:include_subaccounts)
 
         request = Whop_sdk::Internal::JSON::Request.new(
           base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),

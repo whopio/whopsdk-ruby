@@ -21,7 +21,7 @@ module Whop_sdk
 
           field :cards_notifications, -> { Internal::Types::Boolean }, optional: true, nullable: false
 
-          field :covers_connected_account_negative_balances, -> { Internal::Types::Boolean }, optional: true, nullable: false
+          field :covers_subaccount_negative_balances, -> { Internal::Types::Boolean }, optional: true, nullable: false
 
           field :customer_tracking, -> { Whop_sdk::Accounts::Preferences::Types::UpdatePreferencesRequestCustomerTracking }, optional: true, nullable: false
 

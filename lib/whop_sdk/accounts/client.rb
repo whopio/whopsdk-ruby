@@ -15,7 +15,7 @@ module Whop_sdk
       end
 
       # Lists accounts visible to the credential. User tokens return the user's business accounts; Account API keys
-      # return the requesting account and its connected accounts.
+      # return the requesting account and its subaccounts.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -90,7 +90,7 @@ module Whop_sdk
         end
       end
 
-      # Creates an account. User tokens create business accounts; Account API keys create connected accounts. Tax fields
+      # Creates an account. User tokens create business accounts; Account API keys create subaccounts. Tax fields
       # (`tax_remitted_by`, `tax_type`, `product_tax_code_id`, `business_address`, `tax_identifiers`) are configured
       # with Update Account, not at creation.
       #
@@ -274,11 +274,11 @@ module Whop_sdk
         end
       end
 
-      # Deletes a connected account directly owned by the authenticated platform account. The account must have no
-      # settled, pending, or reserved balance in any currency and no active, trialing, or past-due memberships. The
-      # account stops resolving immediately, and its products, plans, and team access are removed in the background;
-      # payment history is retained. Deletion cannot be undone through the API. This cannot delete the platform account
-      # itself or an account owned by another platform.
+      # Deletes a subaccount directly owned by the authenticated platform account. The account must have no settled,
+      # pending, or reserved balance in any currency and no active, trialing, or past-due memberships. The account stops
+      # resolving immediately, and its products, plans, and team access are removed in the background; payment history
+      # is retained. Deletion cannot be undone through the API. This cannot delete the platform account itself or an
+      # account owned by another platform.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -315,7 +315,7 @@ module Whop_sdk
         end
       end
 
-      # Updates an account. User tokens can update business accounts; Account API keys can update connected accounts.
+      # Updates an account. User tokens can update business accounts; Account API keys can update subaccounts.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::Accounts::Types::UpdateAccountsRequest]
@@ -483,8 +483,8 @@ module Whop_sdk
         end
       end
 
-      # Suspends a connected account directly owned by the authenticated platform account. This cannot suspend the
-      # platform account itself or an account owned by another platform.
+      # Suspends a subaccount directly owned by the authenticated platform account. This cannot suspend the platform
+      # account itself or an account owned by another platform.
       #
       # @param request_options [Hash]
       # @param params [Hash]

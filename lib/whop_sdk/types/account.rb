@@ -81,6 +81,8 @@ module Whop_sdk
 
       field :payment_controls, -> { Whop_sdk::Types::AccountPaymentControls }, optional: false, nullable: true
 
+      field :payment_method_configuration, -> { Whop_sdk::Types::CheckoutSessionPaymentMethodConfiguration }, optional: false, nullable: true
+
       field :platform_credits, -> { Internal::Types::Array[Whop_sdk::Types::Money] }, optional: false, nullable: false
 
       field :privacy_policy, -> { Whop_sdk::Types::File }, optional: false, nullable: true

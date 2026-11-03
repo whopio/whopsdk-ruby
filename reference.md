@@ -42976,7 +42976,7 @@ client.waitlist_entries.list
 <dl>
 <dd>
 
-**query:** `String` — Search signups by the user's name or username, or the name of the account they were submitted on behalf of. An account ID, prefixed `biz_`, matches signups submitted on behalf of that account, and an exact email address matches that user's signups.
+**query:** `String` — Search signups by the user's name or username, or the name of the account they were submitted on behalf of. An account ID, prefixed `biz_`, matches signups submitted on behalf of that account, and a user ID, prefixed `user_`, or an exact email address matches that user's signups.
     
 </dd>
 </dl>

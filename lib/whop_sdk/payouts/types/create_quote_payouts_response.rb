@@ -23,6 +23,8 @@ module Whop_sdk
         field :quote_token, -> { String }, optional: false, nullable: false
 
         field :recommended_method, -> { Whop_sdk::Payouts::Types::CreateQuotePayoutsResponseRecommendedMethod }, optional: false, nullable: true
+
+        field :server_time, -> { String }, optional: false, nullable: false
       end
     end
   end

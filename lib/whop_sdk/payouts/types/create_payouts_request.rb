@@ -22,7 +22,7 @@ module Whop_sdk
 
         field :platform_covers_fees, -> { Internal::Types::Boolean }, optional: true, nullable: false
 
-        field :quote_token, -> { String }, optional: true, nullable: false
+        field :quote_token, -> { String }, optional: false, nullable: false
 
         field :speed, -> { Whop_sdk::Payouts::Types::CreatePayoutsRequestSpeed }, optional: true, nullable: false
 

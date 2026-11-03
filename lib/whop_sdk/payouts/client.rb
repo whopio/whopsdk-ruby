@@ -85,7 +85,8 @@ module Whop_sdk
         end
       end
 
-      # Sends money from an account or user balance to a saved payout method for that owner.
+      # Sends money from an account or user balance to a saved payout method for that owner. First create a quote with
+      # POST /payouts/quotes, then submit its quote_token with the same payout details before it expires.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::Payouts::Types::CreatePayoutsRequest]
@@ -98,7 +99,8 @@ module Whop_sdk
       # @example
       #   client.payouts.create(
       #     amount: 50,
-      #     payout_method_id: "potk_xxxxxxxxxxxxxx"
+      #     payout_method_id: "potk_xxxxxxxxxxxxxx",
+      #     quote_token: "signed-payout-quote"
       #   )
       #
       # @return [Whop_sdk::Payouts::Types::CreatePayoutsResponse]

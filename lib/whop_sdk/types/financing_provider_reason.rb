@@ -11,6 +11,7 @@ module Whop_sdk
       PROCESSOR_CONNECTION_REQUIRED = "processor_connection_required"
       MINIMUM_VOLUME_NOT_MET = "minimum_volume_not_met"
       TURNED_OFF_IN_CHECKOUT_SETTINGS = "turned_off_in_checkout_settings"
+      BILLING_ADDRESS_HIDDEN = "billing_address_hidden"
       PROVIDER_REVIEW = "provider_review"
       DISPUTE_RATE_NEAR_LIMIT = "dispute_rate_near_limit"
       DISPUTE_RATE_EXCEEDED = "dispute_rate_exceeded"

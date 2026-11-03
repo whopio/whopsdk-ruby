@@ -32,6 +32,10 @@ module Whop_sdk
 
         field :slippage_bps, -> { Integer }, optional: true, nullable: false
 
+        field :stop_loss, -> { Whop_sdk::Trades::Types::CreateTradesRequestStopLoss }, optional: true, nullable: false
+
+        field :take_profit, -> { Whop_sdk::Trades::Types::CreateTradesRequestTakeProfit }, optional: true, nullable: false
+
         field :time_in_force, -> { Whop_sdk::Trades::Types::CreateTradesRequestTimeInForce }, optional: true, nullable: false
 
         field :trigger_price, -> { String }, optional: true, nullable: false

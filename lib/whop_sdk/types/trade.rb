@@ -37,6 +37,8 @@ module Whop_sdk
 
       field :order_type, -> { Whop_sdk::Types::TradeOrderType }, optional: false, nullable: true
 
+      field :parent_id, -> { String }, optional: false, nullable: true
+
       field :price, -> { Whop_sdk::Types::Money }, optional: false, nullable: true
 
       field :reduce_only, -> { Internal::Types::Boolean }, optional: false, nullable: true

@@ -47,6 +47,8 @@ module Whop_sdk
 
           field :preferred_settlement_currency_changeable_at, -> { String }, optional: false, nullable: true
 
+          field :review_request_emails, -> { Internal::Types::Boolean }, optional: false, nullable: false
+
           field :subscription_failure_behavior, -> { Whop_sdk::Accounts::Preferences::Types::RetrievePreferencesResponseSubscriptionFailureBehavior }, optional: false, nullable: false
         end
       end

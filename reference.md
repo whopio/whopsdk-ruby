@@ -31327,7 +31327,7 @@ client.payouts.list
 <dl>
 <dd>
 
-Sends money from an account or user balance to a saved payout method for that owner.
+Sends money from an account or user balance to a saved payout method for that owner. First create a quote with POST /payouts/quotes, then submit its quote_token with the same payout details before it expires.
 </dd>
 </dl>
 </dd>
@@ -31344,7 +31344,8 @@ Sends money from an account or user balance to a saved payout method for that ow
 ```ruby
 client.payouts.create(
   amount: 50,
-  payout_method_id: "potk_xxxxxxxxxxxxxx"
+  payout_method_id: "potk_xxxxxxxxxxxxxx",
+  quote_token: "signed-payout-quote"
 )
 ```
 </dd>
@@ -31432,7 +31433,7 @@ client.payouts.create(
 <dl>
 <dd>
 
-**quote_token:** `String` — The server-signed quote_token returned by POST /payouts/quotes. Send it when the ledger account's payout_quote_required is true. A business with quote enforcement on refuses a payout without it with the invalid_payout_quote error type. When provided, Whop will not commit a provider payout below the destination amount the quote showed.
+**quote_token:** `String` — Required server-signed token from POST /payouts/quotes, matching this payout's owner, method, amount, currency and speed. Submit before expiry. For an uncertain payout, retry with the original token and Idempotency-Key to recover the existing payout.
     
 </dd>
 </dl>
@@ -31448,7 +31449,7 @@ client.payouts.create(
 <dl>
 <dd>
 
-**statement_descriptor:** `String` — Payment description sent with the payout, such as an invoice number or what it pays for. Must be 5-80 printable ASCII characters (letters, digits, spaces and punctuation); Whop sends it in upper case. Not all countries and banks show it on the recipient's statement, and it is not the sender name. Without a `quote_token`, omit or pass `null` to use the default descriptor. With a `quote_token`, set this value when creating the quote; the payout request may omit it but cannot add or change it.
+**statement_descriptor:** `String` — Payment description sent with the payout, such as an invoice number or what it pays for. Must be 5-80 printable ASCII characters (letters, digits, spaces and punctuation); Whop sends it in upper case. Not all countries and banks show it on the recipient's statement, and it is not the sender name. Set this value when creating the quote; the payout request may omit it but cannot add or change it.
     
 </dd>
 </dl>

@@ -47,6 +47,8 @@ module Whop_sdk
 
       field :financing, -> { Whop_sdk::Types::AccountFinancing }, optional: false, nullable: true
 
+      field :funds_release_at, -> { String }, optional: false, nullable: true
+
       field :home_preferences, -> { Internal::Types::Array[Whop_sdk::Types::AccountHomePreferencesItem] }, optional: false, nullable: false
 
       field :id, -> { String }, optional: false, nullable: false

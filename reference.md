@@ -23252,7 +23252,7 @@ client.invoices.charge(id: "id")
 </dl>
 </details>
 
-<details><summary><code>client.invoices.<a href="/lib/whop_sdk/invoices/client.rb">generate_pdf</a>(id:) -> Whop_sdk::Types::InvoicePdf</code></summary>
+<details><summary><code>client.invoices.<a href="/lib/whop_sdk/invoices/client.rb">generate_pdf</a>(id:, request) -> Whop_sdk::Types::InvoicePdf</code></summary>
 <dl>
 <dd>
 
@@ -23295,6 +23295,14 @@ client.invoices.generate_pdf(id: "id")
 <dd>
 
 **id:** `String` — The invoice's pay_ ID.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**include_descriptions:** `Internal::Types::Boolean` — Whether to print each line item's `description` under it. Defaults to `true`.
     
 </dd>
 </dl>

@@ -261,7 +261,7 @@ module Whop_sdk
       # Each call generates a new file and link, so this endpoint does not replay `Idempotency-Key` responses.
       #
       # @param request_options [Hash]
-      # @param params [Hash]
+      # @param params [Whop_sdk::Invoices::Types::GeneratePdfInvoicesRequest]
       # @option request_options [String] :base_url
       # @option request_options [Hash{String => Object}] :additional_headers
       # @option request_options [Hash{String => Object}] :additional_query_parameters
@@ -275,10 +275,15 @@ module Whop_sdk
       # @return [Whop_sdk::Types::InvoicePdf]
       def generate_pdf(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
+        request_data = Whop_sdk::Invoices::Types::GeneratePdfInvoicesRequest.new(params).to_h
+        non_body_param_names = %w[id]
+        body = request_data.except(*non_body_param_names)
+
         request = Whop_sdk::Internal::JSON::Request.new(
           base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "POST",
           path: "invoices/#{URI.encode_uri_component(params[:id].to_s)}/generate_pdf",
+          body: body,
           request_options: request_options
         )
         begin

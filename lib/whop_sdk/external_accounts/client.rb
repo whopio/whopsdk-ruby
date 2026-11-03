@@ -85,8 +85,8 @@ module Whop_sdk
         end
       end
 
-      # Creates or returns a Whop-managed Facebook page or TikTok account for an account, or connects the account's
-      # existing Klaviyo account with a private API key.
+      # Creates or returns a Whop-managed TikTok account for an account, or connects the account's existing Klaviyo
+      # account with a private API key. Whop no longer creates Facebook pages.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::ExternalAccounts::Types::CreateExternalAccountsRequestBody]

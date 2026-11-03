@@ -3,6 +3,8 @@
 module Whop_sdk
   module Types
     class AdCampaign < Internal::Types::Model
+      field :account, -> { Whop_sdk::Types::StorefrontAccount }, optional: false, nullable: true
+
       field :added_to_cart_value, -> { Integer }, optional: false, nullable: false
 
       field :added_to_carts, -> { Integer }, optional: false, nullable: false

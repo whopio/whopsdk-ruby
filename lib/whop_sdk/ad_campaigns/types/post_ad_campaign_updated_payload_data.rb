@@ -4,6 +4,8 @@ module Whop_sdk
   module AdCampaigns
     module Types
       class PostAdCampaignUpdatedPayloadData < Internal::Types::Model
+        field :account, -> { Whop_sdk::Types::StorefrontAccount }, optional: false, nullable: true
+
         field :budget_amount, -> { Integer }, optional: false, nullable: true
 
         field :budget_amount_local, -> { Integer }, optional: false, nullable: true

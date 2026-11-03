@@ -14,6 +14,49 @@ module Whop_sdk
         @environment = environment
       end
 
+      # Reports why one of a runner's ads or ad groups can't deliver yet, and replaces what the runner reported for it
+      # before. The account running the campaign sees each issue, with what to change when it can fix it. An empty
+      # `issues` list clears the object's issues, and they also clear when the runner stops holding the campaign. Takes
+      # the runner's Whop session, a user API key, or a user OAuth token with `ad_campaign:update`. A token without that
+      # scope gets a 403, and anyone not holding the whole campaign gets a 404.
+      #
+      # @param request_options [Hash]
+      # @param params [Whop_sdk::Ads::Types::ReportIssuesAdsRequest]
+      # @option request_options [String] :base_url
+      # @option request_options [Hash{String => Object}] :additional_headers
+      # @option request_options [Hash{String => Object}] :additional_query_parameters
+      # @option request_options [Hash{String => Object}] :additional_body_parameters
+      # @option request_options [Integer] :timeout_in_seconds
+      #
+      # @example
+      #   client.ads.report_issues(issues: [{
+      #     reason: "content_rejected"
+      #   }])
+      #
+      # @return [Whop_sdk::Ads::Types::ReportIssuesAdsResponse]
+      def report_issues(request_options: {}, **params)
+        params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
+        request = Whop_sdk::Internal::JSON::Request.new(
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
+          method: "POST",
+          path: "ad_issues",
+          body: Whop_sdk::Ads::Types::ReportIssuesAdsRequest.new(params).to_h,
+          request_options: request_options
+        )
+        begin
+          response = @client.send(request)
+        rescue Net::HTTPRequestTimeout
+          raise Whop_sdk::Errors::TimeoutError
+        end
+        code = response.code.to_i
+        if code.between?(200, 299)
+          (response.body.to_s.empty? ? nil : Whop_sdk::Ads::Types::ReportIssuesAdsResponse.load(response.body))
+        else
+          error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
+          raise error_class.new(response.body, code: code)
+        end
+      end
+
       # Records a runner's stats for one of their ads in one hour, and pays them for the spend. Send the ad's totals so
       # far for an hour that started in the last 24 hours; they replace what the ad held for that hour, and its ad
       # group's and campaign's hours are rebuilt from their ads. The spend can go up but never down. Reporting on a

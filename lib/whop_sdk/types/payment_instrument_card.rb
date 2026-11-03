@@ -12,6 +12,8 @@ module Whop_sdk
       field :issuer_identification_number, -> { String }, optional: false, nullable: true
 
       field :last4, -> { String }, optional: false, nullable: true
+
+      field :network_transaction_id, -> { String }, optional: false, nullable: true
     end
   end
 end

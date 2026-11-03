@@ -161,6 +161,47 @@ module Whop_sdk
         end
       end
 
+      # Cancels the order of a trade while it rests on the book, such as a `good_til_canceled` limit order. Answers with
+      # the trade still `processing`; read it with `GET /trades/:id` until its `status` is `completed` or `failed`. A
+      # part that filled before the cancel landed stays filled, and money bridged in for an order that did not fill goes
+      # back to the wallet. Calling it again sends no second cancel. Answers `409` when the trade has no order on the
+      # book.
+      #
+      # @param request_options [Hash]
+      # @param params [Hash]
+      # @option request_options [String] :base_url
+      # @option request_options [Hash{String => Object}] :additional_headers
+      # @option request_options [Hash{String => Object}] :additional_query_parameters
+      # @option request_options [Hash{String => Object}] :additional_body_parameters
+      # @option request_options [Integer] :timeout_in_seconds
+      # @option params [String] :id
+      #
+      # @example
+      #   client.trades.cancel(id: "id")
+      #
+      # @return [Whop_sdk::Types::Trade]
+      def cancel(request_options: {}, **params)
+        params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
+        request = Whop_sdk::Internal::JSON::Request.new(
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
+          method: "POST",
+          path: "trades/#{URI.encode_uri_component(params[:id].to_s)}/cancel",
+          request_options: request_options
+        )
+        begin
+          response = @client.send(request)
+        rescue Net::HTTPRequestTimeout
+          raise Whop_sdk::Errors::TimeoutError
+        end
+        code = response.code.to_i
+        if code.between?(200, 299)
+          (response.body.to_s.empty? ? nil : Whop_sdk::Types::Trade.load(response.body))
+        else
+          error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
+          raise error_class.new(response.body, code: code)
+        end
+      end
+
       # @return [Whop_sdk::Markets::Client]
       def markets
         @markets ||= Whop_sdk::Trades::Markets::Client.new(client: @client, base_url: @base_url, environment: @environment)

@@ -51,6 +51,8 @@ module Whop_sdk
 
       field :step, -> { Whop_sdk::Types::TradeStep }, optional: false, nullable: true
 
+      field :trigger_price, -> { Whop_sdk::Types::Money }, optional: false, nullable: true
+
       field :type, -> { Whop_sdk::Types::TradeType }, optional: false, nullable: false
 
       field :updated_at, -> { String }, optional: false, nullable: false

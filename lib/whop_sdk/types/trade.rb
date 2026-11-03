@@ -49,6 +49,8 @@ module Whop_sdk
 
       field :status_detail, -> { Whop_sdk::Types::TradeStatusDetail }, optional: false, nullable: true
 
+      field :step, -> { Whop_sdk::Types::TradeStep }, optional: false, nullable: true
+
       field :type, -> { Whop_sdk::Types::TradeType }, optional: false, nullable: false
 
       field :updated_at, -> { String }, optional: false, nullable: false

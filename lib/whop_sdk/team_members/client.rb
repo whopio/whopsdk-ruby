@@ -99,8 +99,8 @@ module Whop_sdk
       # Adds a member to an account's team with a system role. Identify them by exactly one of `user_id` or `email`. If
       # the person has not yet accepted, or the email does not belong to a Whop account yet, an invitation is sent
       # instead and the response is `202` with the pending team member, whose `status` is `pending` and whose id is
-      # prefixed `ausri_` or `minv_`. If they already have a pending invite, the request fails with a `400`. Granting
-      # the `workforce` role is also allowed with the `bounty:create` scope.
+      # prefixed `ausri_`. If they already have a pending invite, the request fails with a `400`. Granting the
+      # `workforce` role is also allowed with the `bounty:create` scope.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::TeamMembers::Types::CreateTeamMembersRequest]
@@ -178,9 +178,9 @@ module Whop_sdk
         end
       end
 
-      # Removes a team member from the account, or revokes a pending invite when given an `ausri_` or `minv_` ID. A user
-      # session may delete its own membership to leave the team without the delete scope. Removing a member on the
-      # `workforce` role is also allowed with the `bounty:create` scope. The account owner cannot be removed.
+      # Removes a team member from the account, or revokes a pending invite when given an `ausri_` ID. A user session
+      # may delete its own membership to leave the team without the delete scope. Removing a member on the `workforce`
+      # role is also allowed with the `bounty:create` scope. The account owner cannot be removed.
       #
       # @param request_options [Hash]
       # @param params [Hash]

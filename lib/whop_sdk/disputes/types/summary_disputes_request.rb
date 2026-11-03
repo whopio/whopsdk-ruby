@@ -18,7 +18,7 @@ module Whop_sdk
 
         field :query, -> { String }, optional: true, nullable: false
 
-        field :include_connected_accounts, -> { Internal::Types::Boolean }, optional: true, nullable: false
+        field :include_subaccounts, -> { Internal::Types::Boolean }, optional: true, nullable: false
       end
     end
   end

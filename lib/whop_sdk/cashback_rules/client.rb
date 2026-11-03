@@ -14,9 +14,9 @@ module Whop_sdk
         @environment = environment
       end
 
-      # Creates a future-dated card cashback rule for your direct connected accounts, funded by the authenticated
-      # platform account. Creating a rule does not transfer funds; pay cashback out with `POST /cashback_rules/payout`.
-      # Requires `payout:transfer_funds`. Supports `Idempotency-Key` for safe retries.
+      # Creates a future-dated card cashback rule for your direct subaccounts, funded by the authenticated platform
+      # account. Creating a rule does not transfer funds; pay cashback out with `POST /cashback_rules/payout`. Requires
+      # `payout:transfer_funds`. Supports `Idempotency-Key` for safe retries.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::CashbackRules::Types::CreateCashbackRulesRequest]
@@ -116,12 +116,12 @@ module Whop_sdk
         end
       end
 
-      # Pays out cashback on demand from the authenticated platform's available USD balance to its direct connected
-      # accounts. Covers completed, unpaid card transactions created before the request, each under its latest matching
-      # rule, which must be funded by the authenticated platform. Filters combine, and an empty body includes every
-      # eligible transaction. Payouts process in the background and amounts are calculated then, so the response
-      # confirms queuing, not payment. If a payout fails for insufficient funds, add USD to the platform's balance.
-      # Requires `payout:transfer_funds`. Supports `Idempotency-Key`, and overlapping requests cannot pay the same card
+      # Pays out cashback on demand from the authenticated platform's available USD balance to its direct subaccounts.
+      # Covers completed, unpaid card transactions created before the request, each under its latest matching rule,
+      # which must be funded by the authenticated platform. Filters combine, and an empty body includes every eligible
+      # transaction. Payouts process in the background and amounts are calculated then, so the response confirms
+      # queuing, not payment. If a payout fails for insufficient funds, add USD to the platform's balance. Requires
+      # `payout:transfer_funds`. Supports `Idempotency-Key`, and overlapping requests cannot pay the same card
       # transaction twice.
       #
       # @param request_options [Hash]

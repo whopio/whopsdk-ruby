@@ -4,7 +4,7 @@ module Whop_sdk
   module Accounts
     module Fees
       module Types
-        # Markups on this connected account, set by the platform it is connected to.
+        # Markups on this subaccount, set by the platform it is connected to.
         class UpdateFeesRequestMarkups < Internal::Types::Model
           field :card_spend, -> { Whop_sdk::Accounts::Fees::Types::UpdateFeesRequestMarkupsCardSpend }, optional: true, nullable: false
 

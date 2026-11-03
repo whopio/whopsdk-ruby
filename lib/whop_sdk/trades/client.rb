@@ -15,7 +15,7 @@ module Whop_sdk
       end
 
       # Lists trades you can access, newest first. User credentials see their own trades and those of accounts they
-      # belong to, including connected accounts; account credentials see their account and its connected accounts.
+      # belong to, including subaccounts; account credentials see their account and its subaccounts.
       #
       # @param request_options [Hash]
       # @param params [Hash]

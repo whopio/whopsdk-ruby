@@ -4,8 +4,8 @@ module Whop_sdk
   module Accounts
     module Fees
       module Types
-        # Changes to the payout fees this account covers for connected accounts. Send either all or individual category
-        # keys. Omitted categories stay unchanged; category changes have no effect while all is true.
+        # Changes to the payout fees this account covers for subaccounts. Send either all or individual category keys.
+        # Omitted categories stay unchanged; category changes have no effect while all is true.
         class UpdateFeesRequestCoveredPayoutFees < Internal::Types::Model
           field :all, -> { Internal::Types::Boolean }, optional: true, nullable: false
 

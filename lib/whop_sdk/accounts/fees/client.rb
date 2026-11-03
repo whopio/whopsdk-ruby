@@ -15,8 +15,8 @@ module Whop_sdk
           @environment = environment
         end
 
-        # Retrieves the account's fees as a single document keyed by fee, with any markups its platform adds. Connected
-        # accounts see the rates in effect for them. `adjustable` on each fee says what you may change with Update
+        # Retrieves the account's fees as a single document keyed by fee, with any markups its platform adds.
+        # Subaccounts see the rates in effect for them. `adjustable` on each fee says what you may change with Update
         # Account Fees.
         #
         # @param request_options [Hash]

@@ -14,8 +14,8 @@ module Whop_sdk
         @environment = environment
       end
 
-      # Lists the payment method domains registered for your account and its connected accounts. Deprecated: list
-      # domains with `GET /domains` and the `apple_pay` filter instead.
+      # Lists the payment method domains registered for your account and its subaccounts. Deprecated: list domains with
+      # `GET /domains` and the `apple_pay` filter instead.
       #
       # @param request_options [Hash]
       # @param params [Hash]

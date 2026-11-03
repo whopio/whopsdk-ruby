@@ -41,6 +41,7 @@ module Whop_sdk
       # @option params [Whop_sdk::Domains::Types::ListDomainsRequestVerification, nil] :verification
       # @option params [Whop_sdk::Domains::Types::ListDomainsRequestRegistration, nil] :registration
       # @option params [Whop_sdk::Domains::Types::ListDomainsRequestPlatform, nil] :platform
+      # @option params [Whop_sdk::Domains::Types::ListDomainsRequestSubdomain, nil] :subdomain
       # @option params [Whop_sdk::Domains::Types::ListDomainsRequestWebsite, nil] :website
       # @option params [Whop_sdk::Domains::Types::ListDomainsRequestApplePay, nil] :apple_pay
       # @option params [Whop_sdk::Domains::Types::ListDomainsRequestPixel, nil] :pixel
@@ -69,6 +70,7 @@ module Whop_sdk
         query_params["verification"] = params[:verification] if params.key?(:verification)
         query_params["registration"] = params[:registration] if params.key?(:registration)
         query_params["platform"] = params[:platform] if params.key?(:platform)
+        query_params["subdomain"] = params[:subdomain] if params.key?(:subdomain)
         query_params["website"] = params[:website] if params.key?(:website)
         query_params["apple_pay"] = params[:apple_pay] if params.key?(:apple_pay)
         query_params["pixel"] = params[:pixel] if params.key?(:pixel)
@@ -115,7 +117,8 @@ module Whop_sdk
       # `issues` say what the transfer needs from you.
       #
       # Pass `verification` to connect a domain you registered elsewhere: its `issues` list the TXT and routing records
-      # to publish. Pass `website` with an `app_id` to serve that app on the domain.
+      # to publish. A subdomain of a domain this account bought through Whop takes `subdomain` by default, and Whop
+      # publishes its DNS records itself. Pass `website` with an `app_id` to serve that app on the domain.
       #
       # To change a domain you already have, update it instead. Adding a domain this account deleted revives it under
       # its original ID.
@@ -129,7 +132,7 @@ module Whop_sdk
       # @option request_options [Integer] :timeout_in_seconds
       #
       # @example
-      #   client.domains.create(domain: "store.example.com")
+      #   client.domains.create(domain: "www.bought.com")
       #
       # @return [Whop_sdk::Types::Domain]
       def create(request_options: {}, **params)

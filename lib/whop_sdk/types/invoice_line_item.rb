@@ -3,6 +3,8 @@
 module Whop_sdk
   module Types
     class InvoiceLineItem < Internal::Types::Model
+      field :description, -> { String }, optional: false, nullable: true
+
       field :discount_amount, -> { Whop_sdk::Types::Money }, optional: false, nullable: true
 
       field :id, -> { String }, optional: false, nullable: true

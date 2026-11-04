@@ -67,6 +67,7 @@ module Whop_sdk
         LEGACY_CRYPTO_PAYMENT = "legacy_crypto_payment"
         LEGACY_PAYMENT = "legacy_payment"
         LEGACY_PAYMENT_REFUND = "legacy_payment_refund"
+        LEVELS_REBATE = "levels_rebate"
         LICENSE_SALE = "license_sale"
         LICENSE_SALE_COMMISSION = "license_sale_commission"
         LICENSE_SALE_REVENUE = "license_sale_revenue"

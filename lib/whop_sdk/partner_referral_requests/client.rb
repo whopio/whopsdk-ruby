@@ -27,6 +27,7 @@ module Whop_sdk
       # @option params [String, nil] :account_id
       # @option params [String, nil] :target_user_id
       # @option params [String, nil] :partner_id
+      # @option params [String, nil] :referring_account_id
       # @option params [Whop_sdk::PartnerReferralRequests::Types::ListPartnerReferralRequestsRequestStatus, nil] :status
       # @option params [Whop_sdk::PartnerReferralRequests::Types::ListPartnerReferralRequestsRequestRequestType, nil] :request_type
       # @option params [String, nil] :authorized_user_id
@@ -49,6 +50,7 @@ module Whop_sdk
         query_params["account_id"] = params[:account_id] if params.key?(:account_id)
         query_params["target_user_id"] = params[:target_user_id] if params.key?(:target_user_id)
         query_params["partner_id"] = params[:partner_id] if params.key?(:partner_id)
+        query_params["referring_account_id"] = params[:referring_account_id] if params.key?(:referring_account_id)
         query_params["status"] = params[:status] if params.key?(:status)
         query_params["request_type"] = params[:request_type] if params.key?(:request_type)
         query_params["authorized_user_id"] = params[:authorized_user_id] if params.key?(:authorized_user_id)

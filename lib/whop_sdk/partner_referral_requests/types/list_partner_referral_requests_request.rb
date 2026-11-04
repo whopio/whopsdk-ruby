@@ -10,6 +10,8 @@ module Whop_sdk
 
         field :partner_id, -> { String }, optional: true, nullable: false
 
+        field :referring_account_id, -> { String }, optional: true, nullable: false
+
         field :status, -> { Whop_sdk::PartnerReferralRequests::Types::ListPartnerReferralRequestsRequestStatus }, optional: true, nullable: false
 
         field :request_type, -> { Whop_sdk::PartnerReferralRequests::Types::ListPartnerReferralRequestsRequestRequestType }, optional: true, nullable: false

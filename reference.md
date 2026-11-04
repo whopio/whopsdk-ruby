@@ -27032,6 +27032,14 @@ client.partner_referral_requests.list
 <dl>
 <dd>
 
+**referring_account_id:** `String` — Only the referral links created for memberships on this business's team, prefixed `biz_`. Needs read access to the business: its owner sees every member's links, a manager the links of the people reporting to them, and other members only their own.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **status:** `Whop_sdk::PartnerReferralRequests::Types::ListPartnerReferralRequestsRequestStatus` — Only requests with this approval status.
     
 </dd>

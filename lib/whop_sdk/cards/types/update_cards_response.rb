@@ -10,6 +10,8 @@ module Whop_sdk
 
         field :created_at, -> { String }, optional: false, nullable: true
 
+        field :digital_wallets, -> { Internal::Types::Array[Whop_sdk::Cards::Types::UpdateCardsResponseDigitalWalletsItem] }, optional: false, nullable: true
+
         field :expiration_month, -> { String }, optional: false, nullable: true
 
         field :expiration_year, -> { String }, optional: false, nullable: true

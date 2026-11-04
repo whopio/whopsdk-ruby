@@ -7,6 +7,8 @@ module Whop_sdk
 
       field :cards, -> { Integer }, optional: false, nullable: false
 
+      field :partners, -> { Integer }, optional: false, nullable: false
+
       field :trading, -> { Integer }, optional: false, nullable: false
     end
   end

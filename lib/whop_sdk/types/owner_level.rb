@@ -3,7 +3,7 @@
 module Whop_sdk
   module Types
     class OwnerLevel < Internal::Types::Model
-      field :current, -> { Integer }, optional: false, nullable: false
+      field :applied_level, -> { Integer }, optional: false, nullable: false
 
       field :levels, -> { Internal::Types::Array[Whop_sdk::Types::AccountProcessingOfferLevel] }, optional: false, nullable: false
 
@@ -20,8 +20,6 @@ module Whop_sdk
       field :points_by_source, -> { Whop_sdk::Types::OwnerLevelPoints }, optional: false, nullable: false
 
       field :points_to_next, -> { Integer }, optional: false, nullable: true
-
-      field :processing_rate_percentage, -> { Integer }, optional: false, nullable: false
 
       field :resets_at, -> { String }, optional: false, nullable: false
     end

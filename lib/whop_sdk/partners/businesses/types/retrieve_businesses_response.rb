@@ -23,6 +23,8 @@ module Whop_sdk
 
           field :earnings_usd, -> { Whop_sdk::Partners::Businesses::Types::RetrieveBusinessesResponseEarningsUsd }, optional: false, nullable: false
 
+          field :estimated_commission_rate, -> { String }, optional: false, nullable: true
+
           field :first_tier_partner, -> { Whop_sdk::Partners::Businesses::Types::RetrieveBusinessesResponseFirstTierPartner }, optional: false, nullable: true
 
           field :id, -> { String }, optional: false, nullable: false

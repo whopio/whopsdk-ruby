@@ -5296,6 +5296,14 @@ client.ai_chats.list(
 <dl>
 <dd>
 
+**account_id:** `String` — Only return chats associated with this business account.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **only_active_crons:** `Internal::Types::Boolean` — When true, returns only chats with an active cron schedule
     
 </dd>

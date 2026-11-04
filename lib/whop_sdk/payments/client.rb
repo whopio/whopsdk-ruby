@@ -44,6 +44,8 @@ module Whop_sdk
       # @option params [Whop_sdk::Payments::Types::ListPaymentsRequestSubstatusesItem, nil] :substatuses
       # @option params [Whop_sdk::Payments::Types::ListPaymentsRequestBillingReasonsItem, nil] :billing_reasons
       # @option params [String, nil] :currencies
+      # @option params [Integer, nil] :min_amount
+      # @option params [Integer, nil] :max_amount
       # @option params [String, nil] :variant_ids
       # @option params [String, nil] :product_ids
       # @option params [Whop_sdk::Payments::Types::ListPaymentsRequestPaymentMethodsItem, nil] :payment_methods
@@ -65,6 +67,8 @@ module Whop_sdk
       # @example
       #   client.payments.list(
       #     currencies: ["eur"],
+      #     min_amount: 995,
+      #     max_amount: 995,
       #     variant_ids: ["plan_xxxxxxxxxxxxx"],
       #     product_ids: ["prod_xxxxxxxxxxxxx"]
       #   )
@@ -92,6 +96,8 @@ module Whop_sdk
         query_params["substatuses"] = params[:substatuses] if params.key?(:substatuses)
         query_params["billing_reasons"] = params[:billing_reasons] if params.key?(:billing_reasons)
         query_params["currencies"] = params[:currencies] if params.key?(:currencies)
+        query_params["min_amount"] = params[:min_amount] if params.key?(:min_amount)
+        query_params["max_amount"] = params[:max_amount] if params.key?(:max_amount)
         query_params["variant_ids"] = params[:variant_ids] if params.key?(:variant_ids)
         query_params["product_ids"] = params[:product_ids] if params.key?(:product_ids)
         query_params["payment_methods"] = params[:payment_methods] if params.key?(:payment_methods)
@@ -195,6 +201,8 @@ module Whop_sdk
       # @option params [Whop_sdk::Payments::Types::SummaryPaymentsRequestSubstatusesItem, nil] :substatuses
       # @option params [Whop_sdk::Payments::Types::SummaryPaymentsRequestBillingReasonsItem, nil] :billing_reasons
       # @option params [String, nil] :currencies
+      # @option params [Integer, nil] :min_amount
+      # @option params [Integer, nil] :max_amount
       # @option params [String, nil] :variant_ids
       # @option params [String, nil] :product_ids
       # @option params [Whop_sdk::Payments::Types::SummaryPaymentsRequestPaymentMethodsItem, nil] :payment_methods
@@ -213,6 +221,8 @@ module Whop_sdk
       # @example
       #   client.payments.summary(
       #     currencies: ["usd"],
+      #     min_amount: 995,
+      #     max_amount: 995,
       #     variant_ids: ["plan_xxxxxxxxxxxxx"],
       #     product_ids: ["prod_xxxxxxxxxxxxx"]
       #   )
@@ -227,6 +237,8 @@ module Whop_sdk
         query_params["substatuses"] = params[:substatuses] if params.key?(:substatuses)
         query_params["billing_reasons"] = params[:billing_reasons] if params.key?(:billing_reasons)
         query_params["currencies"] = params[:currencies] if params.key?(:currencies)
+        query_params["min_amount"] = params[:min_amount] if params.key?(:min_amount)
+        query_params["max_amount"] = params[:max_amount] if params.key?(:max_amount)
         query_params["variant_ids"] = params[:variant_ids] if params.key?(:variant_ids)
         query_params["product_ids"] = params[:product_ids] if params.key?(:product_ids)
         query_params["payment_methods"] = params[:payment_methods] if params.key?(:payment_methods)

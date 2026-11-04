@@ -135,6 +135,9 @@ module Whop_sdk
         # @option params [Integer, nil] :event_count_lt
         # @option params [Integer, nil] :event_count_lte
         # @option params [String, nil] :referring_account_id
+        # @option params [String, nil] :team_lead_id
+        # @option params [Whop_sdk::Stats::TimeSeries::Types::RetrieveTimeSeriesRequestActivity, nil] :activity
+        # @option params [Integer, nil] :breakdown_limit
         #
         # @example
         #   client.stats.time_series.retrieve(
@@ -222,6 +225,9 @@ module Whop_sdk
           query_params["event_count_lt"] = params[:event_count_lt] if params.key?(:event_count_lt)
           query_params["event_count_lte"] = params[:event_count_lte] if params.key?(:event_count_lte)
           query_params["referring_account_id"] = params[:referring_account_id] if params.key?(:referring_account_id)
+          query_params["team_lead_id"] = params[:team_lead_id] if params.key?(:team_lead_id)
+          query_params["activity"] = params[:activity] if params.key?(:activity)
+          query_params["breakdown_limit"] = params[:breakdown_limit] if params.key?(:breakdown_limit)
 
           request = Whop_sdk::Internal::JSON::Request.new(
             base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),

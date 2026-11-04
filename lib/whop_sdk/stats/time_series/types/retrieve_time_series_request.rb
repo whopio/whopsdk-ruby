@@ -150,6 +150,12 @@ module Whop_sdk
           field :event_count_lte, -> { Integer }, optional: true, nullable: false
 
           field :referring_account_id, -> { String }, optional: true, nullable: false
+
+          field :team_lead_id, -> { String }, optional: true, nullable: false
+
+          field :activity, -> { Whop_sdk::Stats::TimeSeries::Types::RetrieveTimeSeriesRequestActivity }, optional: true, nullable: false
+
+          field :breakdown_limit, -> { Integer }, optional: true, nullable: false
         end
       end
     end

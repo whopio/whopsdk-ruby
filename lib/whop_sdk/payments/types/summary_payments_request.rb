@@ -16,6 +16,10 @@ module Whop_sdk
 
         field :currencies, -> { String }, optional: true, nullable: false
 
+        field :min_amount, -> { Integer }, optional: true, nullable: false
+
+        field :max_amount, -> { Integer }, optional: true, nullable: false
+
         field :variant_ids, -> { String }, optional: true, nullable: false
 
         field :product_ids, -> { String }, optional: true, nullable: false

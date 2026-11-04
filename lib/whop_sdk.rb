@@ -1806,6 +1806,8 @@ require_relative "whop_sdk/product_affiliates/types/list_product_affiliates_resp
 require_relative "whop_sdk/products/types/list_products_request_billing_types_item"
 require_relative "whop_sdk/products/types/list_products_request_direction"
 require_relative "whop_sdk/products/types/list_products_response_page_info"
+require_relative "whop_sdk/types/product_experience_app"
+require_relative "whop_sdk/types/product_experience"
 require_relative "whop_sdk/types/product_gallery_image"
 require_relative "whop_sdk/types/product_public_variant_billing_type"
 require_relative "whop_sdk/types/product_public_variant_visibility"

@@ -13,6 +13,8 @@ module Whop_sdk
 
       field :description, -> { String }, optional: false, nullable: true
 
+      field :experiences, -> { Internal::Types::Array[Whop_sdk::Types::ProductExperience] }, optional: false, nullable: false
+
       field :external_identifier, -> { String }, optional: false, nullable: true
 
       field :gallery_images, -> { Internal::Types::Array[Whop_sdk::Types::ProductGalleryImage] }, optional: false, nullable: false
@@ -22,6 +24,8 @@ module Whop_sdk
       field :id, -> { String }, optional: false, nullable: false
 
       field :labels, -> { Internal::Types::Array[String] }, optional: false, nullable: false
+
+      field :logo_url, -> { String }, optional: false, nullable: true
 
       field :member_count, -> { Integer }, optional: false, nullable: false
 

@@ -17,6 +17,7 @@ module Whop_sdk
         FEES = "fees"
         FX = "fx"
         LEGACY = "legacy"
+        LEVELS_POINTS = "levels_points"
         MISC = "misc"
         OPERATIONAL_COSTS = "operational_costs"
         OTHER = "other"

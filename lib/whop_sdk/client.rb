@@ -438,6 +438,11 @@ module Whop_sdk
       @reviews ||= Whop_sdk::Reviews::Client.new(client: @raw_client, base_url: @base_url, environment: @environment)
     end
 
+    # @return [Whop_sdk::Search::Client]
+    def search
+      @search ||= Whop_sdk::Search::Client.new(client: @raw_client, base_url: @base_url, environment: @environment)
+    end
+
     # @return [Whop_sdk::SetupIntents::Client]
     def setup_intents
       @setup_intents ||= Whop_sdk::SetupIntents::Client.new(client: @raw_client, base_url: @base_url, environment: @environment)

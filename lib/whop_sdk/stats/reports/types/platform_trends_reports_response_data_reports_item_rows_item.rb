@@ -31,6 +31,8 @@ module Whop_sdk
 
           field :new_businesses, -> { Integer }, optional: true, nullable: false
 
+          field :new_customers, -> { Integer }, optional: true, nullable: false
+
           field :payments, -> { Integer }, optional: true, nullable: false
 
           field :product_category, -> { Whop_sdk::Stats::Reports::Types::PlatformTrendsReportsResponseDataReportsItemRowsItemProductCategory }, optional: true, nullable: false

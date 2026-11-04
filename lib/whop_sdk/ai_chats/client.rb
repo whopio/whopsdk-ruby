@@ -28,6 +28,7 @@ module Whop_sdk
       # @option params [Integer, nil] :first
       # @option params [Integer, nil] :last
       # @option params [Whop_sdk::Types::AiChatAgentIdentifiers, nil] :agent_identifier
+      # @option params [String, nil] :account_id
       # @option params [Boolean, nil] :only_active_crons
       #
       # @example
@@ -45,6 +46,7 @@ module Whop_sdk
         query_params["first"] = params[:first] if params.key?(:first)
         query_params["last"] = params[:last] if params.key?(:last)
         query_params["agent_identifier"] = params[:agent_identifier] if params.key?(:agent_identifier)
+        query_params["account_id"] = params[:account_id] if params.key?(:account_id)
         query_params["only_active_crons"] = params[:only_active_crons] if params.key?(:only_active_crons)
 
         Whop_sdk::Internal::CursorItemIterator.new(

@@ -359,7 +359,7 @@ module Whop_sdk
 
       # Starts an LLC or C-Corp formation for a business account. The application is validated and the response returns
       # a hosted checkout URL; once paid, the filing is submitted. Track progress through the account's
-      # [`company_formation`](/api-reference/beta/accounts/retrieve-account) field on Retrieve Account.
+      # [`company_formation`](/api-reference/accounts/retrieve-account) field on Retrieve Account.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::Accounts::Types::FormCompanyAccountsRequest]

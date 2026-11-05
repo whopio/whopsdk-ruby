@@ -34,6 +34,8 @@ module Whop_sdk
 
       field :renewal_price, -> { Integer }, optional: true, nullable: false
 
+      field :split_pay_required_payments, -> { Integer }, optional: true, nullable: false
+
       field :title, -> { String }, optional: true, nullable: false
 
       field :trial_period_days, -> { Integer }, optional: true, nullable: false

@@ -36478,6 +36478,152 @@ client.resolution_center_cases.withdraw(id: "id")
 </dl>
 </details>
 
+## Review reports
+<details><summary><code>client.review_reports.<a href="/lib/whop_sdk/review_reports/client.rb">list</a>() -> Whop_sdk::ReviewReports::Types::ListReviewReportsResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists the reports filed against customer reviews on the accounts you can moderate, newest first. Use it to check whether a review was reported and where the report stands. Omit `account_id` to cover every account you can moderate.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.review_reports.list(
+  account_id: "biz_xxxxxxxxxxxxxx",
+  review_id: "rev_xxxxxxxxxxxxxx"
+)
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**account_id:** `String` — Only reports on this account's reviews.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**review_id:** `String` — Only reports filed against this review.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**status:** `Whop_sdk::ReviewReports::Types::ListReviewReportsRequestStatus` — Only reports in this status.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**created_before:** `String` — Only reports filed before this timestamp.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**created_after:** `String` — Only reports filed after this timestamp.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**order:** `Whop_sdk::ReviewReports::Types::ListReviewReportsRequestOrder` — The field to sort reports by.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**direction:** `Whop_sdk::ReviewReports::Types::ListReviewReportsRequestDirection` — The sort direction.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**first:** `Integer` — Number of results to return from the start of the range.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**after:** `String` — Return results after this cursor. Use `page_info.end_cursor` from the previous response to fetch the next page.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**last:** `Integer` — Number of results to return from the end of the range.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**before:** `String` — Return results before this cursor. Use `page_info.start_cursor` from the previous response to fetch the previous page.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Whop_sdk::ReviewReports::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Reviews
 <details><summary><code>client.reviews.<a href="/lib/whop_sdk/reviews/client.rb">list</a>() -> Whop_sdk::Reviews::Types::ListReviewsResponse</code></summary>
 <dl>

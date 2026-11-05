@@ -20,6 +20,10 @@ module Whop_sdk
 
         field :direct_reports_max, -> { Integer }, optional: true, nullable: false
 
+        field :team_lead_id, -> { String }, optional: true, nullable: false
+
+        field :has_referred_businesses, -> { Internal::Types::Boolean }, optional: true, nullable: false
+
         field :created_before, -> { String }, optional: true, nullable: false
 
         field :created_after, -> { String }, optional: true, nullable: false

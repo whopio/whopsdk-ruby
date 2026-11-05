@@ -16,8 +16,9 @@ module Whop_sdk
 
       # Lists an account's team members, including pending invites. A user credential with `company:basic:read` may list
       # only its own joined membership by passing its own `user_id` and `status=joined`. Listing `role=workforce` is
-      # also allowed with the `bounty:create` scope. Members with the view-only Partner role are listed after all other
-      # members.
+      # also allowed with the `bounty:create` scope. A signed-in Partner, or a member others report to, without
+      # `company:authorized_user:read` lists only their own joined membership and the members who report up to them,
+      # never pending invites. Members with the view-only Partner role are listed after all other members.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -34,6 +35,8 @@ module Whop_sdk
       # @option params [String, nil] :reports_to_id
       # @option params [Integer, nil] :direct_reports_min
       # @option params [Integer, nil] :direct_reports_max
+      # @option params [String, nil] :team_lead_id
+      # @option params [Boolean, nil] :has_referred_businesses
       # @option params [String, nil] :created_before
       # @option params [String, nil] :created_after
       # @option params [Whop_sdk::TeamMembers::Types::ListTeamMembersRequestOrder, nil] :order
@@ -58,6 +61,8 @@ module Whop_sdk
         query_params["reports_to_id"] = params[:reports_to_id] if params.key?(:reports_to_id)
         query_params["direct_reports_min"] = params[:direct_reports_min] if params.key?(:direct_reports_min)
         query_params["direct_reports_max"] = params[:direct_reports_max] if params.key?(:direct_reports_max)
+        query_params["team_lead_id"] = params[:team_lead_id] if params.key?(:team_lead_id)
+        query_params["has_referred_businesses"] = params[:has_referred_businesses] if params.key?(:has_referred_businesses)
         query_params["created_before"] = params[:created_before] if params.key?(:created_before)
         query_params["created_after"] = params[:created_after] if params.key?(:created_after)
         query_params["order"] = params[:order] if params.key?(:order)

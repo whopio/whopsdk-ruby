@@ -25,6 +25,8 @@ module Whop_sdk
 
       field :contacts, -> { Integer }, optional: false, nullable: false
 
+      field :content_review, -> { Whop_sdk::Types::AdContentReview }, optional: false, nullable: false
+
       field :cost_per_added_to_cart, -> { Integer }, optional: false, nullable: true
 
       field :cost_per_click, -> { Integer }, optional: false, nullable: false

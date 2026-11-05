@@ -10,6 +10,8 @@ module Whop_sdk
 
         field :call_to_action, -> { Whop_sdk::Ads::Types::PostAdUpdatedPayloadDataCallToAction }, optional: false, nullable: true
 
+        field :content_review, -> { Whop_sdk::Types::AdContentReview }, optional: false, nullable: false
+
         field :created_at, -> { String }, optional: false, nullable: false
 
         field :creatives, -> { Internal::Types::Array[Whop_sdk::Types::AdCreative] }, optional: false, nullable: false

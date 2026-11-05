@@ -10,6 +10,9 @@ module Whop_sdk
       PLACING = "placing"
       WITHDRAWING = "withdrawing"
       RETURNING = "returning"
+      QUOTING = "quoting"
+      SWAPPING = "swapping"
+      CREDITING = "crediting"
     end
   end
 end

@@ -24,7 +24,7 @@ module Whop_sdk
 
         field :direction, -> { Whop_sdk::Products::Types::ListProductsRequestDirection }, optional: true, nullable: false
 
-        field :order, -> { String }, optional: true, nullable: false
+        field :order, -> { Whop_sdk::Products::Types::ListProductsRequestOrder }, optional: true, nullable: false
 
         field :first, -> { Integer }, optional: true, nullable: false
 

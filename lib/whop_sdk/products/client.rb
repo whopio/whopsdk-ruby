@@ -35,7 +35,7 @@ module Whop_sdk
       # @option params [String, nil] :access_pass_types
       # @option params [String, nil] :labels
       # @option params [Whop_sdk::Products::Types::ListProductsRequestDirection, nil] :direction
-      # @option params [String, nil] :order
+      # @option params [Whop_sdk::Products::Types::ListProductsRequestOrder, nil] :order
       # @option params [Integer, nil] :first
       # @option params [String, nil] :after
       # @option params [Integer, nil] :last

@@ -47,6 +47,8 @@ module Whop_sdk
 
       field :status, -> { Whop_sdk::Types::DisputeStatus }, optional: false, nullable: false
 
+      field :submission_failure_reason, -> { String }, optional: false, nullable: true
+
       field :updated_at, -> { String }, optional: false, nullable: false
 
       field :variant_id, -> { String }, optional: false, nullable: true

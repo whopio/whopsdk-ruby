@@ -119,6 +119,10 @@ module Whop_sdk
 
       field :submitted_applications, -> { Integer }, optional: false, nullable: false
 
+      field :target_cost_per_result, -> { Integer }, optional: false, nullable: true
+
+      field :target_result_event, -> { String }, optional: false, nullable: true
+
       field :title, -> { String }, optional: false, nullable: false
 
       field :unique_click_through_rate, -> { Integer }, optional: false, nullable: true

@@ -38,6 +38,10 @@ module Whop_sdk
 
         field :status, -> { Whop_sdk::AdCampaigns::Types::PostAdCampaignPaymentFailedPayloadDataStatus }, optional: false, nullable: false
 
+        field :target_cost_per_result, -> { Integer }, optional: false, nullable: true
+
+        field :target_result_event, -> { String }, optional: false, nullable: true
+
         field :title, -> { String }, optional: false, nullable: false
 
         field :updated_at, -> { String }, optional: false, nullable: false

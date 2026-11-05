@@ -433,6 +433,11 @@ module Whop_sdk
       @resolution_center_cases ||= Whop_sdk::ResolutionCenterCases::Client.new(client: @raw_client, base_url: @base_url, environment: @environment)
     end
 
+    # @return [Whop_sdk::ReviewReports::Client]
+    def review_reports
+      @review_reports ||= Whop_sdk::ReviewReports::Client.new(client: @raw_client, base_url: @base_url, environment: @environment)
+    end
+
     # @return [Whop_sdk::Reviews::Client]
     def reviews
       @reviews ||= Whop_sdk::Reviews::Client.new(client: @raw_client, base_url: @base_url, environment: @environment)

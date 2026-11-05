@@ -28,8 +28,8 @@ module Whop_sdk
       # `query` is trimmed and has to be 2 to 250 characters; a full card number returns a `400`. `data` comes
       # identifier matches first, such as a pasted ID, email address, card digits or invoice number, newest first within
       # each kind of match. Every query of 3 or more characters is also ranked, and ranked rows follow, best match
-      # first. Each record appears once, and `match_reason` says why it matched.
-      # [Search](/api-reference/beta/search/search) lists the query shapes and match reasons.
+      # first. Each record appears once, and `match_reason` says why it matched. [Search](/api-reference/search/search)
+      # lists the query shapes and match reasons.
       #
       # `first` caps the rows, 20 by default and up to 100. There is no cursor yet, so the response is a single page.
       # Search ranks; to filter one resource or page through every match, use its list endpoint, such as `GET

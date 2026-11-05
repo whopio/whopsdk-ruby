@@ -17,6 +17,8 @@ module Whop_sdk
 
       field :title, -> { String }, optional: false, nullable: true
 
+      field :trial_period_days, -> { Integer }, optional: false, nullable: true
+
       field :unlimited_stock, -> { Internal::Types::Boolean }, optional: false, nullable: false
 
       field :visibility, -> { Whop_sdk::Types::ProductPublicVariantVisibility }, optional: false, nullable: false

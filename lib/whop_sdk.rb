@@ -2081,6 +2081,7 @@ require_relative "whop_sdk/team_members/types/list_team_members_response_page_in
 require_relative "whop_sdk/types/team_member_role"
 require_relative "whop_sdk/types/team_member_status"
 require_relative "whop_sdk/types/team_member_authorized_role"
+require_relative "whop_sdk/types/team_member_manager"
 require_relative "whop_sdk/types/team_member"
 require_relative "whop_sdk/team_members/types/list_team_members_response"
 require_relative "whop_sdk/team_members/types/create_team_members_request_role"

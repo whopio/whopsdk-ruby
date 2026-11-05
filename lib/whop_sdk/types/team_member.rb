@@ -17,6 +17,8 @@ module Whop_sdk
 
       field :is_agent, -> { Internal::Types::Boolean }, optional: false, nullable: false
 
+      field :reports_to_chain, -> { Internal::Types::Array[Whop_sdk::Types::TeamMemberManager] }, optional: false, nullable: true
+
       field :reports_to_id, -> { String }, optional: false, nullable: true
 
       field :role, -> { Whop_sdk::Types::TeamMemberRole }, optional: false, nullable: false

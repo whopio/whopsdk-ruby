@@ -6,6 +6,8 @@ module Whop_sdk
       # How many of the matching disputes are in each status. Every status is present, including those with a count of
       # zero.
       class SummaryDisputesResponseGroupsStatus < Internal::Types::Model
+        field :generating_response, -> { Integer }, optional: false, nullable: false
+
         field :lost, -> { Integer }, optional: false, nullable: false
 
         field :needs_response, -> { Integer }, optional: false, nullable: false

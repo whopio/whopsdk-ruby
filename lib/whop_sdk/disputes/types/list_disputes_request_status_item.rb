@@ -10,6 +10,7 @@ module Whop_sdk
         WARNING_NEEDS_RESPONSE = "warning_needs_response"
         UNDER_REVIEW = "under_review"
         WARNING_UNDER_REVIEW = "warning_under_review"
+        GENERATING_RESPONSE = "generating_response"
         WON = "won"
         LOST = "lost"
         PREVENTED = "prevented"

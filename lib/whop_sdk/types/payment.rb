@@ -19,6 +19,10 @@ module Whop_sdk
 
       field :checkout_configuration_id, -> { String }, optional: false, nullable: true
 
+      field :checkout_origin, -> { String }, optional: false, nullable: true
+
+      field :checkout_surface, -> { Whop_sdk::Types::PaymentCheckoutSurface }, optional: false, nullable: true
+
       field :client_secret, -> { String }, optional: false, nullable: true
 
       field :created_at, -> { String }, optional: false, nullable: false

@@ -108,6 +108,21 @@ module Whop_sdk
       @authorized_users ||= Whop_sdk::AuthorizedUsers::Client.new(client: @raw_client, base_url: @base_url, environment: @environment)
     end
 
+    # @return [Whop_sdk::AutomationEnrollments::Client]
+    def automation_enrollments
+      @automation_enrollments ||= Whop_sdk::AutomationEnrollments::Client.new(client: @raw_client, base_url: @base_url, environment: @environment)
+    end
+
+    # @return [Whop_sdk::AutomationSteps::Client]
+    def automation_steps
+      @automation_steps ||= Whop_sdk::AutomationSteps::Client.new(client: @raw_client, base_url: @base_url, environment: @environment)
+    end
+
+    # @return [Whop_sdk::Automations::Client]
+    def automations
+      @automations ||= Whop_sdk::Automations::Client.new(client: @raw_client, base_url: @base_url, environment: @environment)
+    end
+
     # @return [Whop_sdk::Bounties::Client]
     def bounties
       @bounties ||= Whop_sdk::Bounties::Client.new(client: @raw_client, base_url: @base_url, environment: @environment)

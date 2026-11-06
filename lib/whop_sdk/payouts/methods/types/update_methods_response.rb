@@ -47,6 +47,8 @@ module Whop_sdk
 
           field :supported_payout_method, -> { Whop_sdk::Payouts::Methods::Types::UpdateMethodsResponseSupportedPayoutMethod }, optional: false, nullable: true
 
+          field :type, -> { Whop_sdk::Payouts::Methods::Types::UpdateMethodsResponseType }, optional: false, nullable: false
+
           field :unavailable_reason, -> { Whop_sdk::Payouts::Methods::Types::UpdateMethodsResponseUnavailableReason }, optional: false, nullable: true
         end
       end

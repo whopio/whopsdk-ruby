@@ -8,6 +8,7 @@ module Whop_sdk
 
         MINUTE = "minute"
         FIVE_MINUTES = "five_minutes"
+        FIFTEEN_MINUTES = "fifteen_minutes"
         THIRTY_MINUTES = "thirty_minutes"
         HOUR = "hour"
         DAY = "day"

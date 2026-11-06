@@ -8,6 +8,8 @@ module Whop_sdk
       class CreateCheckoutConfigurationsRequestVariant < Internal::Types::Model
         field :account_id, -> { String }, optional: true, nullable: false
 
+        field :application_fee_amount, -> { Integer }, optional: true, nullable: false
+
         field :billing_period, -> { Integer }, optional: true, nullable: false
 
         field :billing_type, -> { Whop_sdk::CheckoutConfigurations::Types::CreateCheckoutConfigurationsRequestVariantBillingType }, optional: true, nullable: false

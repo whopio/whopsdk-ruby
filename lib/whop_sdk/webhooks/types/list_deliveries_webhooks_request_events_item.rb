@@ -122,6 +122,7 @@ module Whop_sdk
         APP_PAYMENT_PENDING = "app_payment.pending"
         APP_PAYMENT_REQUIRES_ACTION = "app_payment.requires_action"
         APP_MEMBERSHIP_CANCEL_AT_PERIOD_END_CHANGED = "app_membership.cancel_at_period_end_changed"
+        SHIPPING_ADDRESS_CHANGED = "shipping_address.changed"
       end
     end
   end

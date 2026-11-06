@@ -105,6 +105,7 @@ module Whop_sdk
       REFUND_UPDATED = "refund.updated"
       DISPUTE_ALERT_CREATED = "dispute_alert.created"
       MEMBERSHIP_CANCEL_AT_PERIOD_END_CHANGED = "membership.cancel_at_period_end_changed"
+      SHIPPING_ADDRESS_CHANGED = "shipping_address.changed"
     end
   end
 end

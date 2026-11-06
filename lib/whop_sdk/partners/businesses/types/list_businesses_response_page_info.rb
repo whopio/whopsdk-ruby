@@ -12,6 +12,10 @@ module Whop_sdk
           field :has_previous_page, -> { Internal::Types::Boolean }, optional: false, nullable: false
 
           field :start_cursor, -> { String }, optional: false, nullable: true
+
+          field :total_count, -> { Integer }, optional: false, nullable: true
+
+          field :total_count_capped, -> { Internal::Types::Boolean }, optional: false, nullable: false
         end
       end
     end

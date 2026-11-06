@@ -46735,6 +46735,14 @@ client.partners.businesses.list
 <dl>
 <dd>
 
+**include_total_count:** `Internal::Types::Boolean` — Set to `true` to return the number of matching results in `page_info.total_count`. Send `first=0` as well to return the count without any results.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **order:** `Whop_sdk::Partners::Businesses::Types::ListBusinessesRequestOrder` — The field to sort partner businesses by.
     
 </dd>

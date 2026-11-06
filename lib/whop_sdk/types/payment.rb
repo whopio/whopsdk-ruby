@@ -59,6 +59,8 @@ module Whop_sdk
 
       field :metadata, -> { Internal::Types::Hash[String, Object] }, optional: false, nullable: true
 
+      field :missing_tracking, -> { Internal::Types::Boolean }, optional: false, nullable: true
+
       field :needs_tracking, -> { Internal::Types::Boolean }, optional: false, nullable: true
 
       field :next_payment_attempt_at, -> { String }, optional: false, nullable: true

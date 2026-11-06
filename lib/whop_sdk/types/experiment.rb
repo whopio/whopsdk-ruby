@@ -29,6 +29,8 @@ module Whop_sdk
 
       field :id, -> { String }, optional: false, nullable: false
 
+      field :metadata, -> { Internal::Types::Hash[String, String] }, optional: true, nullable: false
+
       field :name, -> { String }, optional: false, nullable: false
 
       field :related_resource, -> { Whop_sdk::Types::ExperimentResourceReference }, optional: false, nullable: false

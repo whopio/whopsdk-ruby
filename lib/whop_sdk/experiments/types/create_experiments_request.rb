@@ -16,6 +16,8 @@ module Whop_sdk
 
         field :hypothesis, -> { String }, optional: true, nullable: false
 
+        field :metadata, -> { Internal::Types::Hash[String, String] }, optional: true, nullable: false
+
         field :name, -> { String }, optional: true, nullable: false
 
         field :related_resource, -> { Whop_sdk::Types::ExperimentResourceReference }, optional: true, nullable: false

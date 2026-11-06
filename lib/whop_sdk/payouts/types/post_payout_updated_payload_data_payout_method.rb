@@ -8,6 +8,8 @@ module Whop_sdk
         field :nickname, -> { String }, optional: false, nullable: true
 
         field :supported_payout_method, -> { Whop_sdk::Payouts::Types::PostPayoutUpdatedPayloadDataPayoutMethodSupportedPayoutMethod }, optional: false, nullable: true
+
+        field :type, -> { Whop_sdk::Payouts::Types::PostPayoutUpdatedPayloadDataPayoutMethodType }, optional: false, nullable: false
       end
     end
   end

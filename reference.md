@@ -46710,7 +46710,7 @@ client.accounts.preferences.update(account_id: "account_id")
 <dl>
 <dd>
 
-**customer_tracking:** `Whop_sdk::Accounts::Preferences::Types::UpdatePreferencesRequestCustomerTracking` — Customer tracking settings for the hosted tracking page and Element, replaced as a whole: fields left out are saved as unset. Pass null to clear them, which turns tracking off. Tracking is off unless `enabled` is `true`. Requires the `company:manage_checkout` scope on your API key.
+**customer_tracking:** `Whop_sdk::Accounts::Preferences::Types::UpdatePreferencesRequestCustomerTracking` — Customer tracking settings for the hosted tracking page and Element, replaced as a whole: fields left out are reset to their defaults. Pass null to clear them, which turns tracking off. Requires the `company:manage_checkout` scope on your API key.
     
 </dd>
 </dl>

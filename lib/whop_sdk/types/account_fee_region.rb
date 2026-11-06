@@ -24,6 +24,7 @@ module Whop_sdk
       NG = "ng"
       MY = "my"
       DO = "do"
+      SV = "sv"
     end
   end
 end

@@ -7,6 +7,8 @@ module Whop_sdk
       field :icon_url, -> { String }, optional: true, nullable: false
 
       field :payer_name, -> { String }, optional: true, nullable: false
+
+      field :security_answer, -> { String }, optional: true, nullable: false
     end
   end
 end

@@ -21,6 +21,8 @@ module Whop_sdk
 
           field :before, -> { String }, optional: true, nullable: false
 
+          field :include_total_count, -> { Internal::Types::Boolean }, optional: true, nullable: false
+
           field :order, -> { Whop_sdk::Partners::Businesses::Types::ListBusinessesRequestOrder }, optional: true, nullable: false
 
           field :direction, -> { Whop_sdk::Partners::Businesses::Types::ListBusinessesRequestDirection }, optional: true, nullable: false

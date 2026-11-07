@@ -4,6 +4,8 @@ module Whop_sdk
   module Users
     module Types
       class ListUsersRequest < Internal::Types::Model
+        field :context_channel_id, -> { String }, optional: true, nullable: false
+
         field :query, -> { String }, optional: true, nullable: false
 
         field :first, -> { Integer }, optional: true, nullable: false

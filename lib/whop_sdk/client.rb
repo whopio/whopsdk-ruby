@@ -10,7 +10,7 @@ module Whop_sdk
     # @param max_retries [Integer]
     #
     # @return [void]
-    def initialize(token:, base_url: nil, environment: Whop_sdk::Environment::PRODUCTION, api_version_date: "2026-11-06", idempotency_key: nil, max_retries: 2)
+    def initialize(token:, base_url: nil, environment: Whop_sdk::Environment::PRODUCTION, api_version_date: "2026-11-07", idempotency_key: nil, max_retries: 2)
       @base_url = base_url
       @environment = environment
 
@@ -146,6 +146,16 @@ module Whop_sdk
     # @return [Whop_sdk::CashbackRules::Client]
     def cashback_rules
       @cashback_rules ||= Whop_sdk::CashbackRules::Client.new(client: @raw_client, base_url: @base_url, environment: @environment)
+    end
+
+    # @return [Whop_sdk::ChannelMembers::Client]
+    def channel_members
+      @channel_members ||= Whop_sdk::ChannelMembers::Client.new(client: @raw_client, base_url: @base_url, environment: @environment)
+    end
+
+    # @return [Whop_sdk::Channels::Client]
+    def channels
+      @channels ||= Whop_sdk::Channels::Client.new(client: @raw_client, base_url: @base_url, environment: @environment)
     end
 
     # @return [Whop_sdk::ChatChannels::Client]

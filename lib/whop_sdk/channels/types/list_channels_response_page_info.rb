@@ -1,0 +1,21 @@
+# frozen_string_literal: true
+
+module Whop_sdk
+  module Channels
+    module Types
+      class ListChannelsResponsePageInfo < Internal::Types::Model
+        field :end_cursor, -> { String }, optional: false, nullable: true
+
+        field :has_next_page, -> { Internal::Types::Boolean }, optional: false, nullable: false
+
+        field :has_previous_page, -> { Internal::Types::Boolean }, optional: false, nullable: false
+
+        field :start_cursor, -> { String }, optional: false, nullable: true
+
+        field :total_count, -> { Integer }, optional: false, nullable: true
+
+        field :total_count_capped, -> { Internal::Types::Boolean }, optional: false, nullable: false
+      end
+    end
+  end
+end

@@ -24,6 +24,7 @@ module Whop_sdk
       # @option request_options [Hash{String => Object}] :additional_query_parameters
       # @option request_options [Hash{String => Object}] :additional_body_parameters
       # @option request_options [Integer] :timeout_in_seconds
+      # @option params [String, nil] :context_channel_id
       # @option params [String, nil] :query
       # @option params [Integer, nil] :first
       # @option params [String, nil] :after
@@ -37,6 +38,7 @@ module Whop_sdk
       def list(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
         query_params = {}
+        query_params["context_channel_id"] = params[:context_channel_id] if params.key?(:context_channel_id)
         query_params["query"] = params[:query] if params.key?(:query)
         query_params["first"] = params[:first] if params.key?(:first)
         query_params["after"] = params[:after] if params.key?(:after)

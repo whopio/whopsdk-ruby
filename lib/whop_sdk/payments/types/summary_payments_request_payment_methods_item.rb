@@ -87,6 +87,7 @@ module Whop_sdk
         CLARITYPAY = "claritypay"
         COINBASE = "coinbase"
         CRYPTO = "crypto"
+        CRYPTO_SUBSCRIPTION = "crypto_subscription"
         CUSTOM = "custom"
         CUSTOMER_BALANCE = "customer_balance"
         DEMO_PAY = "demo_pay"

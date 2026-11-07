@@ -315,7 +315,6 @@ module Whop_sdk
       CLAWBACK_RECEIVABLE_SETTLEMENT_REVERSAL = "clawback_receivable_settlement_reversal"
       CLAWBACK_FEE = "clawback_fee"
       PSP_CLAWBACK_FEE = "psp_clawback_fee"
-      BANK_TRANSFER = "bank_transfer"
       DEPOSIT = "deposit"
       WALLET_TRANSFER_INCOMING = "wallet_transfer_incoming"
       WALLET_TRANSFER_OUTGOING = "wallet_transfer_outgoing"

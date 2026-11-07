@@ -10,7 +10,7 @@ module Whop_sdk
 
         field :content, -> { String }, optional: true, nullable: false
 
-        field :is_pinned, -> { Internal::Types::Boolean }, optional: true, nullable: false
+        field :link_previews, -> { Internal::Types::Array[Whop_sdk::Messages::Types::UpdateMessagesRequestLinkPreviewsItem] }, optional: true, nullable: false
       end
     end
   end

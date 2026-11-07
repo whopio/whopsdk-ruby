@@ -3,7 +3,6 @@
 module Whop_sdk
   module Messages
     module Types
-      # Input type for a single poll option
       class CreateMessagesRequestPollOptionsItem < Internal::Types::Model
         field :id, -> { String }, optional: false, nullable: false
 

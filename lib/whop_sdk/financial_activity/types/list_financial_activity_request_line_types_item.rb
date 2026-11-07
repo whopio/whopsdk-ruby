@@ -23,7 +23,6 @@ module Whop_sdk
         APPLICATION_FEE_PAYOUT = "application_fee_payout"
         BALANCE_RESERVATION = "balance_reservation"
         BALANCE_RESERVATION_REVERSAL = "balance_reservation_reversal"
-        BANK_TRANSFER = "bank_transfer"
         BILLING_PERCENTAGE_FEE = "billing_percentage_fee"
         BUYER_FEE = "buyer_fee"
         CARD_INTERCHANGE = "card_interchange"

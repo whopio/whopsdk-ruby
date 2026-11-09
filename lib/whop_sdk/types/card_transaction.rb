@@ -19,6 +19,8 @@ module Whop_sdk
 
       field :international, -> { Internal::Types::Boolean }, optional: false, nullable: false
 
+      field :levels_points, -> { Integer }, optional: false, nullable: true
+
       field :local_amount, -> { Integer }, optional: false, nullable: true
 
       field :merchant_category, -> { String }, optional: false, nullable: true

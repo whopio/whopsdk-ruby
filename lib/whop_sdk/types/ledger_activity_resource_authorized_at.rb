@@ -13,6 +13,8 @@ module Whop_sdk
 
       field :id, -> { String }, optional: false, nullable: false
 
+      field :levels_points, -> { String }, optional: false, nullable: true
+
       field :local_amount, -> { String }, optional: false, nullable: true
 
       field :local_currency, -> { String }, optional: false, nullable: true

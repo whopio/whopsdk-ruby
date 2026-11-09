@@ -13,6 +13,8 @@ module Whop_sdk
 
       field :high_risk_processing_fee_percentage, -> { Integer }, optional: false, nullable: false
 
+      field :payment_method_warnings, -> { Internal::Types::Array[Internal::Types::Hash[String, Object]] }, optional: false, nullable: false
+
       field :pending_auto_topup_fee_percentage, -> { Integer }, optional: false, nullable: false
 
       field :pending_balance_delay_days, -> { Integer }, optional: false, nullable: false

@@ -7,7 +7,6 @@ module Whop_sdk
 
       PENDING = "pending"
       PROCESSING = "processing"
-      SYNCING = "syncing"
       READY = "ready"
       PARTIAL = "partial"
       FAILED = "failed"

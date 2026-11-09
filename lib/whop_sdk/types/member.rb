@@ -21,6 +21,8 @@ module Whop_sdk
 
       field :last_accessed_at, -> { String }, optional: false, nullable: true
 
+      field :last_activity, -> { Whop_sdk::Types::MemberLastActivityMessage }, optional: false, nullable: true
+
       field :last_activity_at, -> { String }, optional: false, nullable: true
 
       field :most_recent_action, -> { Whop_sdk::Types::MemberMostRecentAction }, optional: false, nullable: true

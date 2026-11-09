@@ -16,6 +16,9 @@ module Whop_sdk
 
       # Returns a paginated list of AI chat threads for the current authenticated user.
       #
+      # Required permissions:
+      #  - `ai_chat:read`
+      #
       # @param request_options [Hash]
       # @param params [Hash]
       # @option request_options [String] :base_url
@@ -119,6 +122,9 @@ module Whop_sdk
       end
 
       # Retrieves the details of an existing AI chat.
+      #
+      # Required permissions:
+      #  - `ai_chat:read`
       #
       # @param request_options [Hash]
       # @param params [Hash]

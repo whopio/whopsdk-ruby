@@ -34,6 +34,7 @@ module Whop_sdk
       # @option params [Boolean, nil] :recommended
       # @option params [String, nil] :query
       # @option params [String, nil] :product_category
+      # @option params [String, nil] :marketplace_category_route
       # @option params [Whop_sdk::Apps::Types::ListAppsRequestOrder, nil] :order
       # @option params [Whop_sdk::Apps::Types::ListAppsRequestDirection, nil] :direction
       # @option params [Integer, nil] :first
@@ -56,6 +57,7 @@ module Whop_sdk
         query_params["recommended"] = params[:recommended] if params.key?(:recommended)
         query_params["query"] = params[:query] if params.key?(:query)
         query_params["product_category"] = params[:product_category] if params.key?(:product_category)
+        query_params["marketplace_category_route"] = params[:marketplace_category_route] if params.key?(:marketplace_category_route)
         query_params["order"] = params[:order] if params.key?(:order)
         query_params["direction"] = params[:direction] if params.key?(:direction)
         query_params["first"] = params[:first] if params.key?(:first)
@@ -407,6 +409,11 @@ module Whop_sdk
           error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)
         end
+      end
+
+      # @return [Whop_sdk::Categories::Client]
+      def categories
+        @categories ||= Whop_sdk::Apps::Categories::Client.new(client: @client, base_url: @base_url, environment: @environment)
       end
     end
   end

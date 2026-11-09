@@ -17,6 +17,8 @@ module Whop_sdk
 
       field :businesses_with_recent_sales_count, -> { Integer }, optional: false, nullable: false
 
+      field :category, -> { Whop_sdk::Types::AppCategory }, optional: false, nullable: true
+
       field :creator, -> { Whop_sdk::Types::AppCreator }, optional: false, nullable: false
 
       field :dashboard_path, -> { String }, optional: false, nullable: true

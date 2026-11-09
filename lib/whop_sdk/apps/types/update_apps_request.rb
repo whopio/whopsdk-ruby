@@ -12,6 +12,8 @@ module Whop_sdk
 
         field :base_url, -> { String }, optional: true, nullable: false
 
+        field :category_id, -> { String }, optional: true, nullable: false
+
         field :dashboard_path, -> { String }, optional: true, nullable: false
 
         field :description, -> { String }, optional: true, nullable: false

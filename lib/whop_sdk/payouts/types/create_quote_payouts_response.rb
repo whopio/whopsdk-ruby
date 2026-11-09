@@ -16,6 +16,10 @@ module Whop_sdk
 
         field :id, -> { String }, optional: false, nullable: false
 
+        field :market_exchange_rate, -> { Integer }, optional: false, nullable: true
+
+        field :market_exchange_rate_at, -> { String }, optional: false, nullable: true
+
         field :net_amount, -> { Whop_sdk::Types::Money }, optional: false, nullable: false
 
         field :object, -> { Whop_sdk::Payouts::Types::CreateQuotePayoutsResponseObject }, optional: false, nullable: false

@@ -27571,7 +27571,7 @@ client.members.list(
 <dl>
 <dd>
 
-**order:** `Whop_sdk::Members::Types::ListMembersRequestOrder` — Sort field. `most_recent_action_at` places members without one first when ascending and last when descending.
+**order:** `Whop_sdk::Members::Types::ListMembersRequestOrder` — Sort field. `most_recent_action_at` and `last_activity_at` place members without one first when ascending and last when descending.
     
 </dd>
 </dl>

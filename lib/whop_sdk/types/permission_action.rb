@@ -166,6 +166,7 @@ module Whop_sdk
       MEMBER_PAYMENT_METHODS_READ = "member:payment_methods:read"
       MEMBER_PAYMENT_METHODS_USE = "member:payment_methods:use"
       MEMBER_PHONE_READ = "member:phone:read"
+      MEMBER_REPORTING_LINE_UPDATE = "member:reporting_line:update"
       MEMBER_STATS_EXPORT = "member:stats:export"
       MEMBER_STATS_READ = "member:stats:read"
       MEMBERSHIP_CANCEL = "membership:cancel"

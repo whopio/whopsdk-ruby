@@ -19,6 +19,8 @@ module Whop_sdk
 
       field :partner, -> { Whop_sdk::Types::UserSummary }, optional: false, nullable: false
 
+      field :referring_account, -> { Whop_sdk::Types::AccountSummary }, optional: false, nullable: true
+
       field :request_type, -> { Whop_sdk::Types::PartnerReferralRequestRequestType }, optional: false, nullable: false
 
       field :rewards, -> { Internal::Types::Array[Whop_sdk::Types::PartnerReferralReward] }, optional: false, nullable: false

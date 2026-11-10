@@ -15,6 +15,8 @@ module Whop_sdk
         field :metadata, -> { Internal::Types::Hash[String, Object] }, optional: true, nullable: false
 
         field :payment_method_id, -> { String }, optional: true, nullable: false
+
+        field :renewal_price, -> { Integer }, optional: true, nullable: false
       end
     end
   end

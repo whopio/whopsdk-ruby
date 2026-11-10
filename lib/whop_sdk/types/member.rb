@@ -39,7 +39,7 @@ module Whop_sdk
 
       field :usd_total_spent, -> { Whop_sdk::Types::Money }, optional: false, nullable: false
 
-      field :user, -> { Whop_sdk::Types::UserSummary }, optional: false, nullable: true
+      field :user, -> { Whop_sdk::Types::MemberUser }, optional: false, nullable: true
     end
   end
 end

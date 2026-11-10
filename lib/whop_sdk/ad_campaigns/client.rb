@@ -262,6 +262,47 @@ module Whop_sdk
         end
       end
 
+      # Attributes the whole campaign and its daily budget to the calling user as its runner. One runner holds a
+      # campaign at a time. Takes the runner's Whop session, or a user API key with `ad_campaign:update`, plus active
+      # advertiser-supplier program access; everyone else gets a 404. Returns 403 until the caller has verified their
+      # identity and added a phone number and a social account, 409 when another user holds the campaign, and changes
+      # nothing when the caller already holds it.
+      #
+      # @param request_options [Hash]
+      # @param params [Hash]
+      # @option request_options [String] :base_url
+      # @option request_options [Hash{String => Object}] :additional_headers
+      # @option request_options [Hash{String => Object}] :additional_query_parameters
+      # @option request_options [Hash{String => Object}] :additional_body_parameters
+      # @option request_options [Integer] :timeout_in_seconds
+      # @option params [String] :id
+      #
+      # @example
+      #   client.ad_campaigns.claim(id: "id")
+      #
+      # @return [Whop_sdk::Types::AdCampaign]
+      def claim(request_options: {}, **params)
+        params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
+        request = Whop_sdk::Internal::JSON::Request.new(
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
+          method: "POST",
+          path: "ad_campaigns/#{URI.encode_uri_component(params[:id].to_s)}/claim",
+          request_options: request_options
+        )
+        begin
+          response = @client.send(request)
+        rescue Net::HTTPRequestTimeout
+          raise Whop_sdk::Errors::TimeoutError
+        end
+        code = response.code.to_i
+        if code.between?(200, 299)
+          (response.body.to_s.empty? ? nil : Whop_sdk::Types::AdCampaign.load(response.body))
+        else
+          error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
+          raise error_class.new(response.body, code: code)
+        end
+      end
+
       # Creates copies of the campaign in `duplicating` status and returns them; each copy transitions to `draft` once
       # duplication completes. Poll each returned campaign until it leaves `duplicating` — a copy that could not be
       # completed is deleted and returns 404.

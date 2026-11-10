@@ -736,6 +736,11 @@ module Whop_sdk
       def direct
         @direct ||= Whop_sdk::Payments::Direct::Client.new(client: @client, base_url: @base_url, environment: @environment)
       end
+
+      # @return [Whop_sdk::LevelsRebate::Client]
+      def levels_rebate
+        @levels_rebate ||= Whop_sdk::Payments::LevelsRebate::Client.new(client: @client, base_url: @base_url, environment: @environment)
+      end
     end
   end
 end

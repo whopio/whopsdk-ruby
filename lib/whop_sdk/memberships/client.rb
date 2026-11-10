@@ -187,8 +187,8 @@ module Whop_sdk
         end
       end
 
-      # Updates a membership's metadata, scheduled cancellation, renewal payment method, renewal cadence, or next
-      # renewal date.
+      # Updates a membership's metadata, scheduled cancellation, renewal payment method, renewal cadence, next renewal
+      # date, or renewal price.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::Memberships::Types::UpdateMembershipsRequest]

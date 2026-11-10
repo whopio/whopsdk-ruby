@@ -4,6 +4,10 @@ module Whop_sdk
   module Types
     # A discussion forum where members can create posts, comment, and react, belonging to an experience.
     class Forum < Internal::Types::Model
+      field :banned_words, -> { Internal::Types::Array[String] }, optional: false, nullable: false
+
+      field :banner_image, -> { Whop_sdk::Types::ForumBannerImage }, optional: false, nullable: true
+
       field :email_notification_preference, -> { Whop_sdk::Types::ForumEmailNotificationPreferences }, optional: false, nullable: false
 
       field :experience, -> { Whop_sdk::Types::ForumExperience }, optional: false, nullable: false

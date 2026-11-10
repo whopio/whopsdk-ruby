@@ -15,6 +15,10 @@ module Whop_sdk
 
       field :cards, -> { Whop_sdk::Types::AccountCards }, optional: false, nullable: true
 
+      field :city, -> { String }, optional: false, nullable: true
+
+      field :country, -> { String }, optional: false, nullable: true
+
       field :created_at, -> { String }, optional: false, nullable: false
 
       field :date_of_birth, -> { String }, optional: false, nullable: true
@@ -32,6 +36,8 @@ module Whop_sdk
       field :profile_picture, -> { Whop_sdk::Types::UserProfilePicture }, optional: false, nullable: false
 
       field :social_links, -> { Internal::Types::Array[Whop_sdk::Types::UserSocialLink] }, optional: false, nullable: false
+
+      field :state, -> { String }, optional: false, nullable: true
 
       field :total_usd, -> { String }, optional: false, nullable: true
 

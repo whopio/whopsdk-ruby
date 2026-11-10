@@ -12,6 +12,10 @@ module Whop_sdk
 
         field :content, -> { String }, optional: false, nullable: false
 
+        field :gifs, -> { Internal::Types::Array[Whop_sdk::Messages::Types::CreateMessagesRequestGifsItem] }, optional: true, nullable: false
+
+        field :id, -> { String }, optional: true, nullable: false
+
         field :link_previews, -> { Internal::Types::Array[Whop_sdk::Messages::Types::CreateMessagesRequestLinkPreviewsItem] }, optional: true, nullable: false
 
         field :poll, -> { Whop_sdk::Messages::Types::CreateMessagesRequestPoll }, optional: true, nullable: false

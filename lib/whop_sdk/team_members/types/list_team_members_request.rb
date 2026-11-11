@@ -10,6 +10,8 @@ module Whop_sdk
 
         field :user_id, -> { String }, optional: true, nullable: false
 
+        field :user_ids, -> { String }, optional: true, nullable: false
+
         field :role, -> { Whop_sdk::TeamMembers::Types::ListTeamMembersRequestRole }, optional: true, nullable: false
 
         field :query, -> { String }, optional: true, nullable: false

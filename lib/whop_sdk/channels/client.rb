@@ -42,6 +42,8 @@ module Whop_sdk
       # @option params [Boolean, nil] :include_members
       # @option params [Boolean, nil] :include_last_message
       # @option params [Whop_sdk::Channels::Types::ListChannelsRequestDirection, nil] :direction
+      # @option params [Boolean, nil] :include_deleted
+      # @option params [String, nil] :updated_after
       # @option params [String, nil] :created_before
       # @option params [String, nil] :created_after
       #
@@ -71,6 +73,8 @@ module Whop_sdk
         query_params["include_members"] = params[:include_members] if params.key?(:include_members)
         query_params["include_last_message"] = params[:include_last_message] if params.key?(:include_last_message)
         query_params["direction"] = params[:direction] if params.key?(:direction)
+        query_params["include_deleted"] = params[:include_deleted] if params.key?(:include_deleted)
+        query_params["updated_after"] = params[:updated_after] if params.key?(:updated_after)
         query_params["created_before"] = params[:created_before] if params.key?(:created_before)
         query_params["created_after"] = params[:created_after] if params.key?(:created_after)
 

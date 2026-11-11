@@ -7,6 +7,8 @@ module Whop_sdk
 
       field :created_at, -> { String }, optional: false, nullable: false
 
+      field :deleted_at, -> { String }, optional: false, nullable: true
+
       field :experience_id, -> { String }, optional: false, nullable: true
 
       field :icon, -> { Whop_sdk::Types::File }, optional: false, nullable: true
@@ -32,6 +34,8 @@ module Whop_sdk
       field :notifications_enabled, -> { Internal::Types::Boolean }, optional: false, nullable: false
 
       field :support, -> { Whop_sdk::Types::ChannelSupportState }, optional: false, nullable: true
+
+      field :synchronized_at, -> { String }, optional: true, nullable: false
 
       field :updated_at, -> { String }, optional: false, nullable: false
     end

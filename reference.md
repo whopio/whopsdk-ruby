@@ -42307,6 +42307,14 @@ client.stats.retrieve(
 <dl>
 <dd>
 
+**webhook_id:** `String` — The webhook to count deliveries for, for example hook_AbC123. Required by webhook_deliveries, and must belong to account_id or one of its apps.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **conversion_window:** `String` — Funnel only. Time allowed from the first event to the final event: integer minutes, hours, or days, up to 30d.
     
 </dd>
@@ -52420,6 +52428,14 @@ client.stats.time_series.retrieve(
 <dd>
 
 **issuer:** `String` — Filter to one card-issuing bank, named as the processor reports it, for example JPMORGAN CHASE BANK N A, or unknown for payments with no reported bank. Available on metrics that list issuer.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**webhook_id:** `String` — The webhook to count deliveries for, for example hook_AbC123. Required by webhook_deliveries, and must belong to account_id or one of its apps.
     
 </dd>
 </dl>

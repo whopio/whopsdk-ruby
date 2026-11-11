@@ -4,6 +4,8 @@ module Whop_sdk
   module Stats
     module Types
       class RetrieveStatsResponseData < Internal::Types::Model
+        field :complete, -> { Internal::Types::Boolean }, optional: true, nullable: false
+
         field :currency, -> { String }, optional: true, nullable: false
 
         field :points, -> { Internal::Types::Array[Whop_sdk::Stats::Types::RetrieveStatsResponseDataPointsItem] }, optional: false, nullable: false

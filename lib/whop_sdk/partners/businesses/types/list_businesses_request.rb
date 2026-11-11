@@ -42,6 +42,8 @@ module Whop_sdk
           field :tier, -> { Whop_sdk::Partners::Businesses::Types::ListBusinessesRequestTier }, optional: true, nullable: false
 
           field :business_prefix_query, -> { String }, optional: true, nullable: false
+
+          field :earning_partner_id, -> { String }, optional: true, nullable: false
         end
       end
     end

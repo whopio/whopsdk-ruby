@@ -57,8 +57,8 @@ module Whop_sdk
         end
       end
 
-      # Swaps one token for another in an account or user's wallet, or converts between their fiat balances at the
-      # mid-market rate. Crypto swaps finish in the background — retrieve the swap to follow its status.
+      # Swaps one token for another in an account or user's wallet, or converts between their fiat balances. Crypto
+      # swaps finish in the background — retrieve the swap to follow its status.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::Swaps::Types::CreateSwapsRequest]
@@ -98,8 +98,9 @@ module Whop_sdk
         end
       end
 
-      # Previews the price of a swap before you create it. Fiat pairs quote the mid-market rate — the same rate creating
-      # the swap fills at. No funds move, nothing is saved, and no authentication is required.
+      # Previews the price of a swap before you create it. A fiat pair quotes the same rate creating the swap fills at;
+      # name the account with `account_id` or `user_id` to quote the rate for that account. No funds move, nothing is
+      # saved, and no authentication is required unless you name an account.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::Swaps::Types::CreateQuoteSwapsRequest]

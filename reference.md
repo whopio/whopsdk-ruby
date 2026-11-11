@@ -3611,14 +3611,6 @@ client.ads.report_stats(
 <dl>
 <dd>
 
-**clicks:** `Whop_sdk::Ads::Types::ReportStatsAdsRequestClicks` — Ignored. An ad's clicks are its Whop pixel page views, which Whop counts when it shows the ad's stats.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
 **hour_started_at:** `String` — Start of the hour, on the hour, for an hour that has already started.
     
 </dd>

@@ -42,6 +42,10 @@ module Whop_sdk
 
         field :direction, -> { Whop_sdk::Channels::Types::ListChannelsRequestDirection }, optional: true, nullable: false
 
+        field :include_deleted, -> { Internal::Types::Boolean }, optional: true, nullable: false
+
+        field :updated_after, -> { String }, optional: true, nullable: false
+
         field :created_before, -> { String }, optional: true, nullable: false
 
         field :created_after, -> { String }, optional: true, nullable: false

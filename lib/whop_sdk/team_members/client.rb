@@ -30,6 +30,7 @@ module Whop_sdk
       # @option params [String] :account_id
       # @option params [Whop_sdk::TeamMembers::Types::ListTeamMembersRequestStatus, nil] :status
       # @option params [String, nil] :user_id
+      # @option params [String, nil] :user_ids
       # @option params [Whop_sdk::TeamMembers::Types::ListTeamMembersRequestRole, nil] :role
       # @option params [String, nil] :query
       # @option params [String, nil] :reports_to_id
@@ -56,6 +57,7 @@ module Whop_sdk
         query_params["account_id"] = params[:account_id] if params.key?(:account_id)
         query_params["status"] = params[:status] if params.key?(:status)
         query_params["user_id"] = params[:user_id] if params.key?(:user_id)
+        query_params["user_ids"] = params[:user_ids] if params.key?(:user_ids)
         query_params["role"] = params[:role] if params.key?(:role)
         query_params["query"] = params[:query] if params.key?(:query)
         query_params["reports_to_id"] = params[:reports_to_id] if params.key?(:reports_to_id)

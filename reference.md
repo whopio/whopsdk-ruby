@@ -7206,6 +7206,22 @@ client.apps.list
 <dl>
 <dd>
 
+**business_type:** `String` — Only return apps whose `product_category` sits under this business type in Whop's business taxonomy, such as `services`. An unknown business type is rejected.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**industry_type:** `String` — Only return apps whose `product_category` sits under this industry type of `business_type`, such as `exterior_cleaning`. Requires `business_type`. An industry type outside it is rejected.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **marketplace_category_route:** `String` — Only return apps in this app store category. Use a `route` from `GET /apps/categories`, such as `business-productivity`. An unknown route is rejected.
     
 </dd>
@@ -12997,6 +13013,14 @@ client.channels.create(kind: "private")
 <dl>
 <dd>
 
+**icon:** `Whop_sdk::Channels::Types::CreateChannelsRequestIcon` — Channel icon as a file reference, for community channels and private channels with two or more participant IDs. Image files only. Group icons can be up to 5 MB. For community channels it sets the experience logo. Used only when a channel is created.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **kind:** `Whop_sdk::Channels::Types::CreateChannelsRequestKind` — Channel kind. `private` is a one-to-one or group conversation, `community` creates a Chat experience on the account, and `support` opens a conversation between the account and a customer.
     
 </dd>
@@ -13193,7 +13217,7 @@ client.channels.delete(id: "id")
 <dl>
 <dd>
 
-Update a channel. Community icon changes update the experience logo and require `experience:update`. Support rename and notification changes require `support_chat:create`. Private and support writes require a user identity with channel management permission; account API keys can update community channels only.
+Update a channel. Community icon changes update the experience logo and require `experience:update`. Group private channel icon changes set the channel's own icon and require a group member. One-to-one private and support channels reject icon changes. Support rename and notification changes require `support_chat:create`. Private and support writes require a user identity with channel management permission. Account API keys can update community channels only.
 </dd>
 </dl>
 </dd>
@@ -13231,7 +13255,7 @@ client.channels.update(id: "id")
 <dl>
 <dd>
 
-**icon:** `Whop_sdk::Channels::Types::UpdateChannelsRequestIcon` — Community channels only. File reference for the experience logo; `null` clears it and restores the app icon fallback. Omit to preserve the current logo.
+**icon:** `Whop_sdk::Channels::Types::UpdateChannelsRequestIcon` — Channel icon as a file reference, for community channels and group private channels. Image files only. Group icons can be up to 5 MB. For community channels it sets the experience logo, and `null` restores the app icon. For group private channels it sets the channel's own icon, and `null` clears it. Omit to keep the current icon.
     
 </dd>
 </dl>

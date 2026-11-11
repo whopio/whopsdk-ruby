@@ -20,6 +20,10 @@ module Whop_sdk
 
         field :product_category, -> { String }, optional: true, nullable: false
 
+        field :business_type, -> { String }, optional: true, nullable: false
+
+        field :industry_type, -> { String }, optional: true, nullable: false
+
         field :marketplace_category_route, -> { String }, optional: true, nullable: false
 
         field :order, -> { Whop_sdk::Apps::Types::ListAppsRequestOrder }, optional: true, nullable: false

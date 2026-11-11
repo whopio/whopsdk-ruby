@@ -8,6 +8,8 @@ module Whop_sdk
 
         field :customer_user_id, -> { String }, optional: true, nullable: false
 
+        field :icon, -> { Whop_sdk::Channels::Types::CreateChannelsRequestIcon }, optional: true, nullable: false
+
         field :kind, -> { Whop_sdk::Channels::Types::CreateChannelsRequestKind }, optional: false, nullable: false
 
         field :name, -> { String }, optional: true, nullable: false

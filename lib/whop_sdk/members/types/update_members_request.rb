@@ -7,6 +7,8 @@ module Whop_sdk
         field :id, -> { String }, optional: false, nullable: false
 
         field :name, -> { String }, optional: true, nullable: false
+
+        field :unsubscribe_status, -> { Whop_sdk::Members::Types::UpdateMembersRequestUnsubscribeStatus }, optional: true, nullable: false
       end
     end
   end

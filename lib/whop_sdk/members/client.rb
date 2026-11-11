@@ -142,8 +142,10 @@ module Whop_sdk
         end
       end
 
-      # Sets the name the account uses for a member. Every invoice for this member shows it as the customer name, paid
-      # invoices included, in place of the user's own name. It does not change the user's Whop profile.
+      # Updates a member. The account can update `name`, the customer name its invoices show for this member; it doesn't
+      # change the user's Whop profile. The member can update `unsubscribe_status`, with a credential for their own user
+      # that holds `user:notifications:update`, to unsubscribe from the account's marketing communications or
+      # resubscribe. Each sends only its own field.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::Members::Types::UpdateMembersRequest]
@@ -183,6 +185,50 @@ module Whop_sdk
           error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)
         end
+      end
+
+      # Unsubscribes a member from the account's marketing communications with the token from their unsubscribe link.
+      # Inboxes post here directly for one-click unsubscribe (RFC 8058).
+      #
+      # @param request_options [Hash]
+      # @param params [Hash]
+      # @option request_options [String] :base_url
+      # @option request_options [Hash{String => Object}] :additional_headers
+      # @option request_options [Hash{String => Object}] :additional_query_parameters
+      # @option request_options [Hash{String => Object}] :additional_body_parameters
+      # @option request_options [Integer] :timeout_in_seconds
+      # @option params [String] :id
+      # @option params [String] :token
+      #
+      # @example
+      #   client.members.unsubscribe(
+      #     id: "id",
+      #     token: "token"
+      #   )
+      #
+      # @return [untyped]
+      def unsubscribe(request_options: {}, **params)
+        params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
+        query_params = {}
+        query_params["token"] = params[:token] if params.key?(:token)
+
+        request = Whop_sdk::Internal::JSON::Request.new(
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
+          method: "POST",
+          path: "members/#{URI.encode_uri_component(params[:id].to_s)}/unsubscribe",
+          query: query_params,
+          request_options: request_options
+        )
+        begin
+          response = @client.send(request)
+        rescue Net::HTTPRequestTimeout
+          raise Whop_sdk::Errors::TimeoutError
+        end
+        code = response.code.to_i
+        return if code.between?(200, 299)
+
+        error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
+        raise error_class.new(response.body, code: code)
       end
 
       # @return [Whop_sdk::Logs::Client]

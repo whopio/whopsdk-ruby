@@ -34,6 +34,8 @@ module Whop_sdk
       # @option params [Boolean, nil] :recommended
       # @option params [String, nil] :query
       # @option params [String, nil] :product_category
+      # @option params [String, nil] :business_type
+      # @option params [String, nil] :industry_type
       # @option params [String, nil] :marketplace_category_route
       # @option params [Whop_sdk::Apps::Types::ListAppsRequestOrder, nil] :order
       # @option params [Whop_sdk::Apps::Types::ListAppsRequestDirection, nil] :direction
@@ -57,6 +59,8 @@ module Whop_sdk
         query_params["recommended"] = params[:recommended] if params.key?(:recommended)
         query_params["query"] = params[:query] if params.key?(:query)
         query_params["product_category"] = params[:product_category] if params.key?(:product_category)
+        query_params["business_type"] = params[:business_type] if params.key?(:business_type)
+        query_params["industry_type"] = params[:industry_type] if params.key?(:industry_type)
         query_params["marketplace_category_route"] = params[:marketplace_category_route] if params.key?(:marketplace_category_route)
         query_params["order"] = params[:order] if params.key?(:order)
         query_params["direction"] = params[:direction] if params.key?(:direction)

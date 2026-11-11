@@ -6,6 +6,8 @@ module Whop_sdk
       class CreateQuotePayoutsResponse < Internal::Types::Model
         field :amount, -> { Whop_sdk::Types::Money }, optional: false, nullable: false
 
+        field :conversion, -> { Whop_sdk::Payouts::Types::CreateQuotePayoutsResponseConversion }, optional: false, nullable: true
+
         field :destination_amount, -> { Whop_sdk::Types::Money }, optional: false, nullable: false
 
         field :exchange_rate, -> { Integer }, optional: false, nullable: false

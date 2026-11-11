@@ -37,6 +37,8 @@ module Whop_sdk
 
       field :token_balance, -> { Integer }, optional: false, nullable: false
 
+      field :unsubscribe_status, -> { Whop_sdk::Types::MemberUnsubscribeStatus }, optional: false, nullable: true
+
       field :usd_total_spent, -> { Whop_sdk::Types::Money }, optional: false, nullable: false
 
       field :user, -> { Whop_sdk::Types::MemberUser }, optional: false, nullable: true

@@ -5,6 +5,7 @@ module Whop_sdk
     module AccountEconomicIntelligenceOfferKey
       extend Whop_sdk::Internal::Types::Enum
 
+      THREE_DAYS = "3_days"
       WEEKLY = "weekly"
       SEVEN_DAYS = "7_days"
       ONE_DAY = "1_day"

@@ -11,6 +11,7 @@ module Whop_sdk
         AIRDROPS = "airdrops"
         BAD_DEBT = "bad_debt"
         BALANCE = "balance"
+        CAPITAL = "capital"
         CLAWBACKS = "clawbacks"
         CRYPTO = "crypto"
         DISPUTES = "disputes"

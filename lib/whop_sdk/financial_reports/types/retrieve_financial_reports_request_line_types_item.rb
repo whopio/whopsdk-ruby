@@ -25,6 +25,8 @@ module Whop_sdk
         BALANCE_RESERVATION_REVERSAL = "balance_reservation_reversal"
         BILLING_PERCENTAGE_FEE = "billing_percentage_fee"
         BUYER_FEE = "buyer_fee"
+        CAPITAL_WITHHOLDING = "capital_withholding"
+        CAPITAL_WITHHOLDING_REVERSAL = "capital_withholding_reversal"
         CARD_INTERCHANGE = "card_interchange"
         CARD_LOAD_DEPOSIT = "card_load_deposit"
         CARD_LOAD_TRANSFER = "card_load_transfer"

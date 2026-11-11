@@ -9,8 +9,6 @@ module Whop_sdk
 
           field :cards_auto_top_up, -> { Internal::Types::Boolean }, optional: true, nullable: false
 
-          field :investigation_enabled, -> { Internal::Types::Boolean }, optional: true, nullable: false
-
           field :terms_accepted, -> { Internal::Types::Boolean }, optional: true, nullable: false
         end
       end

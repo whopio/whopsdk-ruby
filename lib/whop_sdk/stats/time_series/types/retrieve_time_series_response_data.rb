@@ -5,6 +5,8 @@ module Whop_sdk
     module TimeSeries
       module Types
         class RetrieveTimeSeriesResponseData < Internal::Types::Model
+          field :complete, -> { Internal::Types::Boolean }, optional: true, nullable: false
+
           field :currency, -> { String }, optional: true, nullable: false
 
           field :points, -> { Internal::Types::Array[Whop_sdk::Stats::TimeSeries::Types::RetrieveTimeSeriesResponseDataPointsItem] }, optional: false, nullable: false

@@ -85,6 +85,8 @@ module Whop_sdk
 
           field :issuer, -> { String }, optional: true, nullable: false
 
+          field :webhook_id, -> { String }, optional: true, nullable: false
+
           field :conversion_window, -> { String }, optional: true, nullable: false
 
           field :mature_only, -> { Internal::Types::Boolean }, optional: true, nullable: false

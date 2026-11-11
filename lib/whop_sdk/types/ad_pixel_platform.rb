@@ -8,6 +8,7 @@ module Whop_sdk
       META = "meta"
       TIKTOK = "tiktok"
       GOOGLE = "google"
+      THRAD = "thrad"
     end
   end
 end

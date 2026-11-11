@@ -23937,7 +23937,7 @@ client.financial_reports.retrieve(
 <dl>
 <dd>
 
-**account_id:** `String` — The owning account ID (a biz_ identifier), or `global` for a platform-wide report across all ledger accounts (requires internal admin access).
+**account_id:** `String` — The account that owns the report, prefixed `biz_`.
     
 </dd>
 </dl>
@@ -23969,7 +23969,7 @@ client.financial_reports.retrieve(
 <dl>
 <dd>
 
-**from:** `String` — Start of the report window as an ISO 8601 timestamp. Required for platform-wide (global) reports.
+**from:** `String` — Start of the report window as an ISO 8601 timestamp.
     
 </dd>
 </dl>
@@ -23977,7 +23977,7 @@ client.financial_reports.retrieve(
 <dl>
 <dd>
 
-**to:** `String` — Exclusive end of the report window as an ISO 8601 timestamp. Required for platform-wide (global) reports.
+**to:** `String` — Exclusive end of the report window as an ISO 8601 timestamp.
     
 </dd>
 </dl>
@@ -24010,22 +24010,6 @@ client.financial_reports.retrieve(
 <dd>
 
 **direction:** `Whop_sdk::FinancialReports::Types::RetrieveFinancialReportsRequestDirection` — Account-level balance activity only: include money moving in or money moving out.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**cumulative:** `Internal::Types::Boolean` — Platform-wide (global) reports only: when true, return cumulative balances as of to (all history, no lower bound) instead of activity within the period.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**scope_account_id:** `String` — Platform-wide (global) reports only: narrow the report to ledger lines on the ledger account owned by this account ID (a biz_ identifier). Ignored unless account_id is `global`.
     
 </dd>
 </dl>
@@ -34844,7 +34828,7 @@ client.payouts.list
 <dl>
 <dd>
 
-**source:** `Whop_sdk::Payouts::Types::ListPayoutsRequestSource` — Filter by how the payout was created. Payouts created before source tracking or through internal tooling carry no source and never match.
+**source:** `Whop_sdk::Payouts::Types::ListPayoutsRequestSource` — Filter by how the payout was created. A payout with no recorded source never matches.
     
 </dd>
 </dl>
@@ -43397,7 +43381,7 @@ client.team_members.list(account_id: "account_id")
 <dl>
 <dd>
 
-**account_id:** `String` — Account ID, prefixed `biz_`. A global admin query passes `global` to list the joined members of every partner account, in `created_at` order; of the reporting line filters, only `team_lead_id` and `has_referred_businesses` apply.
+**account_id:** `String` — Account ID, prefixed `biz_`.
     
 </dd>
 </dl>
@@ -53596,14 +53580,6 @@ client.users.preferences.update
 <dd>
 
 **cards_auto_top_up:** `Internal::Types::Boolean` — Whether incoming funds, including pending balance, are automatically moved to the user's personal cards balance. Requires a cards balance and the `payout:account:update` permission.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**investigation_enabled:** `Internal::Types::Boolean` — Whether investigation mode is enabled for the user. Only meaningful for staff users with investigation access.
     
 </dd>
 </dl>

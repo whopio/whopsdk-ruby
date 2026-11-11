@@ -34,8 +34,6 @@ module Whop_sdk
       # @option params [String, nil] :timezone
       # @option params [Whop_sdk::FinancialReports::Types::RetrieveFinancialReportsRequestLineTypesItem, nil] :line_types
       # @option params [Whop_sdk::FinancialReports::Types::RetrieveFinancialReportsRequestDirection, nil] :direction
-      # @option params [Boolean, nil] :cumulative
-      # @option params [String, nil] :scope_account_id
       # @option params [Boolean, nil] :include_payment_fee_breakdown
       # @option params [Boolean, nil] :period_only_currencies
       #
@@ -59,8 +57,6 @@ module Whop_sdk
         query_params["timezone"] = params[:timezone] if params.key?(:timezone)
         query_params["line_types"] = params[:line_types] if params.key?(:line_types)
         query_params["direction"] = params[:direction] if params.key?(:direction)
-        query_params["cumulative"] = params[:cumulative] if params.key?(:cumulative)
-        query_params["scope_account_id"] = params[:scope_account_id] if params.key?(:scope_account_id)
         query_params["include_payment_fee_breakdown"] = params[:include_payment_fee_breakdown] if params.key?(:include_payment_fee_breakdown)
         query_params["period_only_currencies"] = params[:period_only_currencies] if params.key?(:period_only_currencies)
 

@@ -6,6 +6,8 @@ module Whop_sdk
       class CreateExperimentsRequestTargetingRulesItem < Internal::Types::Model
         field :conditions, -> { Internal::Types::Array[Whop_sdk::Experiments::Types::CreateExperimentsRequestTargetingRulesItemConditionsItem] }, optional: false, nullable: false
 
+        field :pass_percentage, -> { Integer }, optional: true, nullable: false
+
         field :type, -> { Whop_sdk::Experiments::Types::CreateExperimentsRequestTargetingRulesItemType }, optional: true, nullable: false
       end
     end

@@ -45,6 +45,8 @@ module Whop_sdk
 
       field :eula, -> { Whop_sdk::Types::File }, optional: false, nullable: true
 
+      field :external_id, -> { String }, optional: false, nullable: true
+
       field :financing, -> { Whop_sdk::Types::AccountFinancing }, optional: false, nullable: true
 
       field :funds_release_at, -> { String }, optional: false, nullable: true

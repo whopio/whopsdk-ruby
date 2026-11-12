@@ -521,7 +521,7 @@ client.accounts.me
 <dl>
 <dd>
 
-**include_trading:** `Internal::Types::Boolean` — Also return the trading account under `trading`: its address and its Hyperliquid WebSocket subscriptions. Requires crypto_wallet:trade:read, crypto_wallet:trade, or crypto_wallet:manage permission and an Ethereum wallet; null otherwise.
+**include_trading:** `Internal::Types::Boolean` — Also return the trading account under `trading`: its address, a snapshot of its margin and open positions, and its Hyperliquid WebSocket subscriptions. Requires crypto_wallet:trade:read, crypto_wallet:trade, or crypto_wallet:manage permission and an Ethereum wallet. Otherwise `trading` is `null`.
     
 </dd>
 </dl>
@@ -701,7 +701,7 @@ client.accounts.retrieve(id: "id")
 <dl>
 <dd>
 
-**include_trading:** `Internal::Types::Boolean` — Also return the trading account under `trading`: its address and its Hyperliquid WebSocket subscriptions. Requires crypto_wallet:trade:read, crypto_wallet:trade, or crypto_wallet:manage permission and an Ethereum wallet; null otherwise.
+**include_trading:** `Internal::Types::Boolean` — Also return the trading account under `trading`: its address, a snapshot of its margin and open positions, and its Hyperliquid WebSocket subscriptions. Requires crypto_wallet:trade:read, crypto_wallet:trade, or crypto_wallet:manage permission and an Ethereum wallet. Otherwise `trading` is `null`.
     
 </dd>
 </dl>
@@ -44819,7 +44819,7 @@ client.users.me
 <dl>
 <dd>
 
-**include_trading:** `Internal::Types::Boolean` — Also return the trading account under `trading`: its address and its Hyperliquid WebSocket subscriptions. Only honored on the self view (me) with crypto_wallet:trade:read, crypto_wallet:trade, or crypto_wallet:manage permission and an Ethereum wallet.
+**include_trading:** `Internal::Types::Boolean` — Also return the trading account under `trading`: its address, a snapshot of its margin and open positions, and its Hyperliquid WebSocket subscriptions. Only honored on the self view (me) with crypto_wallet:trade:read, crypto_wallet:trade, or crypto_wallet:manage permission and an Ethereum wallet.
     
 </dd>
 </dl>
@@ -45055,7 +45055,7 @@ client.users.retrieve(id: "id")
 <dl>
 <dd>
 
-**include_trading:** `Internal::Types::Boolean` — Also return the trading account under `trading`: its address and its Hyperliquid WebSocket subscriptions. Only honored on the self view (me) with crypto_wallet:trade:read, crypto_wallet:trade, or crypto_wallet:manage permission and an Ethereum wallet.
+**include_trading:** `Internal::Types::Boolean` — Also return the trading account under `trading`: its address, a snapshot of its margin and open positions, and its Hyperliquid WebSocket subscriptions. Only honored on the self view (me) with crypto_wallet:trade:read, crypto_wallet:trade, or crypto_wallet:manage permission and an Ethereum wallet.
     
 </dd>
 </dl>

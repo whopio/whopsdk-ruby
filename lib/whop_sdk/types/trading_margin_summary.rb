@@ -9,8 +9,6 @@ module Whop_sdk
 
       field :total_position_notional, -> { Whop_sdk::Types::Money }, optional: false, nullable: false
 
-      field :total_raw_usd, -> { Whop_sdk::Types::Money }, optional: false, nullable: false
-
       field :withdrawable, -> { Whop_sdk::Types::Money }, optional: false, nullable: false
     end
   end

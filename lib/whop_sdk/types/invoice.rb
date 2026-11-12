@@ -19,6 +19,8 @@ module Whop_sdk
 
       field :customer_name, -> { String }, optional: false, nullable: true
 
+      field :deletable, -> { Internal::Types::Boolean }, optional: false, nullable: false
+
       field :due_at, -> { String }, optional: false, nullable: true
 
       field :email_address, -> { String }, optional: false, nullable: true

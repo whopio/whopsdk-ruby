@@ -168,6 +168,47 @@ module Whop_sdk
         end
       end
 
+      # Deletes a draft or void invoice. A deleted invoice no longer appears in invoice or payment lists, and its ID
+      # returns a `404`. Deleting can't be undone. Void an open invoice before you delete it. A draft with a scheduled
+      # send or charge must be unscheduled first. A draft renewal invoice can't be deleted, and neither can a void
+      # invoice that collected money or still awaits a bank wire. The invoice's `deletable` field is `true` when this
+      # call can delete it.
+      #
+      # @param request_options [Hash]
+      # @param params [Hash]
+      # @option request_options [String] :base_url
+      # @option request_options [Hash{String => Object}] :additional_headers
+      # @option request_options [Hash{String => Object}] :additional_query_parameters
+      # @option request_options [Hash{String => Object}] :additional_body_parameters
+      # @option request_options [Integer] :timeout_in_seconds
+      # @option params [String] :id
+      #
+      # @example
+      #   client.invoices.delete(id: "id")
+      #
+      # @return [Whop_sdk::Invoices::Types::DeleteInvoicesResponse]
+      def delete(request_options: {}, **params)
+        params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
+        request = Whop_sdk::Internal::JSON::Request.new(
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
+          method: "DELETE",
+          path: "invoices/#{URI.encode_uri_component(params[:id].to_s)}",
+          request_options: request_options
+        )
+        begin
+          response = @client.send(request)
+        rescue Net::HTTPRequestTimeout
+          raise Whop_sdk::Errors::TimeoutError
+        end
+        code = response.code.to_i
+        if code.between?(200, 299)
+          (response.body.to_s.empty? ? nil : Whop_sdk::Invoices::Types::DeleteInvoicesResponse.load(response.body))
+        else
+          error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
+          raise error_class.new(response.body, code: code)
+        end
+      end
+
       # Updates draft invoice items and billing fields. Updates of only `recipient_emails` and `memo` are also allowed
       # on unpaid invoices. The customer is set when the draft is created and can't change. To bill someone else, first
       # void the draft. Then create a new invoice. Edit customer contact details through the member API. A draft with no

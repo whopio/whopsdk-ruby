@@ -21,6 +21,8 @@ module Whop_sdk
 
           field :party_type, -> { Whop_sdk::Payouts::SupportedMethods::Types::ListSupportedMethodsRequestPartyType }, optional: true, nullable: false
 
+          field :include_individual_banks, -> { Internal::Types::Boolean }, optional: true, nullable: false
+
           field :first, -> { Integer }, optional: true, nullable: false
 
           field :after, -> { String }, optional: true, nullable: false

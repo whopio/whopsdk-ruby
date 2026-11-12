@@ -37,6 +37,8 @@ module Whop_sdk
 
           field :subaccount_notifications, -> { Internal::Types::Boolean }, optional: true, nullable: false
 
+          field :subaccount_team_view_only, -> { Internal::Types::Boolean }, optional: true, nullable: false
+
           field :subscription_failure_behavior, -> { Whop_sdk::Accounts::Preferences::Types::UpdatePreferencesRequestSubscriptionFailureBehavior }, optional: true, nullable: false
         end
       end

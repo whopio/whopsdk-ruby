@@ -13,6 +13,8 @@ module Whop_sdk
 
       field :provider, -> { Whop_sdk::Types::TradingAccountProvider }, optional: false, nullable: false
 
+      field :spot, -> { Whop_sdk::Types::TradingSpotAccount }, optional: false, nullable: true
+
       field :user_id, -> { String }, optional: false, nullable: true
     end
   end

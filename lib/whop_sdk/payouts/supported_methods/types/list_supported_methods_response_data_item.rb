@@ -17,6 +17,8 @@ module Whop_sdk
 
           field :object, -> { Whop_sdk::Payouts::SupportedMethods::Types::ListSupportedMethodsResponseDataItemObject }, optional: false, nullable: false
 
+          field :parent_id, -> { String }, optional: false, nullable: true
+
           field :quotes, -> { Internal::Types::Array[Whop_sdk::Payouts::SupportedMethods::Types::ListSupportedMethodsResponseDataItemQuotesItem] }, optional: false, nullable: true
 
           field :required_fields, -> { Internal::Types::Array[Whop_sdk::Payouts::SupportedMethods::Types::ListSupportedMethodsResponseDataItemRequiredFieldsItem] }, optional: false, nullable: true

@@ -51944,6 +51944,14 @@ client.payouts.supported_methods.list
 <dl>
 <dd>
 
+**include_individual_banks:** `Internal::Types::Boolean` — Whether to list each bank as its own payout method in countries where people choose a bank by name. Each bank has `parent_id` set to the bank deposit method that lists it. When `false`, these countries list one bank deposit method instead.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **first:** `Integer` — Number of results to return from the start of the range.
     
 </dd>

@@ -512,6 +512,11 @@ module Whop_sdk
           raise error_class.new(response.body, code: code)
         end
       end
+
+      # @return [Whop_sdk::Sends::Client]
+      def sends
+        @sends ||= Whop_sdk::Invoices::Sends::Client.new(client: @client, base_url: @base_url, environment: @environment)
+      end
     end
   end
 end

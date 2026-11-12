@@ -13,6 +13,8 @@ module Whop_sdk
 
       field :ads_triple_whale_integration, -> { Internal::Types::Hash[String, Object] }, optional: false, nullable: false
 
+      field :cancellation_emails, -> { Internal::Types::Boolean }, optional: false, nullable: false
+
       field :cards_auto_top_up, -> { Internal::Types::Boolean }, optional: false, nullable: false
 
       field :cards_notifications, -> { Internal::Types::Boolean }, optional: false, nullable: false
@@ -37,11 +39,15 @@ module Whop_sdk
 
       field :economic_intelligence_previous_period, -> { Whop_sdk::Types::AccountEconomicIntelligencePreviousPeriod }, optional: false, nullable: true
 
+      field :failed_payment_emails, -> { Internal::Types::Boolean }, optional: false, nullable: false
+
       field :feedback_options, -> { Internal::Types::Array[Whop_sdk::Types::FeedbackOption] }, optional: false, nullable: false
 
       field :preferred_settlement_currency, -> { Whop_sdk::Types::AccountPreferencesPreferredSettlementCurrency }, optional: false, nullable: true
 
       field :preferred_settlement_currency_changeable_at, -> { String }, optional: false, nullable: true
+
+      field :renewal_reminder_emails, -> { Internal::Types::Boolean }, optional: false, nullable: false
 
       field :review_request_emails, -> { Internal::Types::Boolean }, optional: false, nullable: false
 

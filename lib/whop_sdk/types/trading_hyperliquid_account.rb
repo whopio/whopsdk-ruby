@@ -7,6 +7,10 @@ module Whop_sdk
 
       field :depositable, -> { String }, optional: false, nullable: true
 
+      field :margin_summary, -> { Whop_sdk::Types::TradingMarginSummary }, optional: false, nullable: true
+
+      field :positions, -> { Internal::Types::Array[Whop_sdk::Types::TradingPosition] }, optional: false, nullable: true
+
       field :websocket_subscriptions, -> { Internal::Types::Array[Whop_sdk::Types::TradingWebsocketSubscription] }, optional: false, nullable: false
 
       field :websocket_url, -> { String }, optional: false, nullable: false

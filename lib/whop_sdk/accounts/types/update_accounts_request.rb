@@ -28,6 +28,8 @@ module Whop_sdk
 
         field :eula, -> { Whop_sdk::Accounts::Types::UpdateAccountsRequestEula }, optional: true, nullable: false
 
+        field :external_id, -> { String }, optional: true, nullable: false
+
         field :featured_affiliate_product_id, -> { String }, optional: true, nullable: false
 
         field :home_preferences, -> { Internal::Types::Array[Whop_sdk::Accounts::Types::UpdateAccountsRequestHomePreferencesItem] }, optional: true, nullable: false

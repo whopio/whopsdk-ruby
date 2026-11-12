@@ -34,6 +34,7 @@ module Whop_sdk
       # @option params [String, nil] :query
       # @option params [String, nil] :created_after
       # @option params [String, nil] :created_before
+      # @option params [String, nil] :external_id
       # @option params [Integer, nil] :volume_min
       # @option params [Integer, nil] :volume_max
       # @option params [String, nil] :parent_account_id
@@ -56,6 +57,7 @@ module Whop_sdk
         query_params["query"] = params[:query] if params.key?(:query)
         query_params["created_after"] = params[:created_after] if params.key?(:created_after)
         query_params["created_before"] = params[:created_before] if params.key?(:created_before)
+        query_params["external_id"] = params[:external_id] if params.key?(:external_id)
         query_params["volume_min"] = params[:volume_min] if params.key?(:volume_min)
         query_params["volume_max"] = params[:volume_max] if params.key?(:volume_max)
         query_params["parent_account_id"] = params[:parent_account_id] if params.key?(:parent_account_id)

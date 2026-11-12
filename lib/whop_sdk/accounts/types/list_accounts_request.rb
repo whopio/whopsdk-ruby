@@ -24,6 +24,8 @@ module Whop_sdk
 
         field :created_before, -> { String }, optional: true, nullable: false
 
+        field :external_id, -> { String }, optional: true, nullable: false
+
         field :volume_min, -> { Integer }, optional: true, nullable: false
 
         field :volume_max, -> { Integer }, optional: true, nullable: false

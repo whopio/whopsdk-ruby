@@ -61,6 +61,8 @@ module Whop_sdk
 
       field :scheduled_send_at, -> { String }, optional: false, nullable: true
 
+      field :sends_on_due_date, -> { Internal::Types::Boolean }, optional: false, nullable: false
+
       field :status, -> { Whop_sdk::Types::InvoiceStatus }, optional: false, nullable: false
 
       field :subtotal, -> { Whop_sdk::Types::Money }, optional: false, nullable: false

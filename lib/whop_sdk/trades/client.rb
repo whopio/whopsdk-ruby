@@ -202,6 +202,11 @@ module Whop_sdk
         end
       end
 
+      # @return [Whop_sdk::Candles::Client]
+      def candles
+        @candles ||= Whop_sdk::Trades::Candles::Client.new(client: @client, base_url: @base_url, environment: @environment)
+      end
+
       # @return [Whop_sdk::Markets::Client]
       def markets
         @markets ||= Whop_sdk::Trades::Markets::Client.new(client: @client, base_url: @base_url, environment: @environment)

@@ -11,6 +11,8 @@ module Whop_sdk
 
       field :app_type, -> { Whop_sdk::Types::AppAppType }, optional: false, nullable: false
 
+      field :average_review_rating, -> { Integer }, optional: false, nullable: false
+
       field :banner_image, -> { Whop_sdk::Types::AppBannerImage }, optional: false, nullable: true
 
       field :base_url, -> { String }, optional: false, nullable: true
@@ -51,6 +53,10 @@ module Whop_sdk
 
       field :imported_from_url, -> { String }, optional: false, nullable: true
 
+      field :is_app_store_listed, -> { Internal::Types::Boolean }, optional: false, nullable: false
+
+      field :is_whop_app, -> { Internal::Types::Boolean }, optional: false, nullable: false
+
       field :marketplace_status, -> { Whop_sdk::Types::AppMarketplaceStatus }, optional: false, nullable: true
 
       field :name, -> { String }, optional: false, nullable: false
@@ -74,6 +80,8 @@ module Whop_sdk
       field :production_ios_build, -> { Whop_sdk::Types::AppProductionBuild }, optional: false, nullable: true
 
       field :production_web_build, -> { Whop_sdk::Types::AppProductionBuild }, optional: false, nullable: true
+
+      field :published_reviews_count, -> { Integer }, optional: false, nullable: false
 
       field :redirect_uris, -> { Internal::Types::Array[String] }, optional: false, nullable: false
 

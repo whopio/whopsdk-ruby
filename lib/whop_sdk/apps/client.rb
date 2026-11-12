@@ -14,10 +14,9 @@ module Whop_sdk
         @environment = environment
       end
 
-      # Lists apps on the Whop platform: the app store's live apps, or — with `account_id` and developer access to that
-      # account — every app the account owns. Requires authentication except for Whop's public app and website discovery
-      # lists. Public website discovery includes built official blueprints (verified apps with a product) and built,
-      # live community blueprints that Whop recommends.
+      # Lists published apps approved for the app store without authentication. With `account_id` and developer access,
+      # also includes unpublished apps that the account owns. Public website discovery includes built official
+      # blueprints and built, live community blueprints that Whop recommends.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -43,6 +42,7 @@ module Whop_sdk
       # @option params [String, nil] :after
       # @option params [Integer, nil] :last
       # @option params [String, nil] :before
+      # @option params [Boolean, nil] :include_total_count
       #
       # @example
       #   client.apps.list
@@ -68,6 +68,7 @@ module Whop_sdk
         query_params["after"] = params[:after] if params.key?(:after)
         query_params["last"] = params[:last] if params.key?(:last)
         query_params["before"] = params[:before] if params.key?(:before)
+        query_params["include_total_count"] = params[:include_total_count] if params.key?(:include_total_count)
 
         Whop_sdk::Internal::CursorItemIterator.new(
           cursor_field: :end_cursor,

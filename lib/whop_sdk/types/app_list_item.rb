@@ -7,6 +7,8 @@ module Whop_sdk
 
       field :app_type, -> { Whop_sdk::Types::AppListItemAppType }, optional: false, nullable: false
 
+      field :average_review_rating, -> { Integer }, optional: false, nullable: false
+
       field :banner_image, -> { Whop_sdk::Types::AppBannerImage }, optional: false, nullable: true
 
       field :base_url, -> { String }, optional: false, nullable: true
@@ -39,6 +41,8 @@ module Whop_sdk
 
       field :id, -> { String }, optional: false, nullable: false
 
+      field :is_whop_app, -> { Internal::Types::Boolean }, optional: false, nullable: false
+
       field :name, -> { String }, optional: false, nullable: false
 
       field :openapi_path, -> { String }, optional: false, nullable: true
@@ -46,6 +50,8 @@ module Whop_sdk
       field :origin, -> { String }, optional: false, nullable: true
 
       field :product_category, -> { String }, optional: false, nullable: true
+
+      field :published_reviews_count, -> { Integer }, optional: false, nullable: false
 
       field :route, -> { String }, optional: false, nullable: true
 

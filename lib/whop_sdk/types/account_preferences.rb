@@ -45,6 +45,8 @@ module Whop_sdk
 
       field :review_request_emails, -> { Internal::Types::Boolean }, optional: false, nullable: false
 
+      field :subaccount_notifications, -> { Internal::Types::Boolean }, optional: false, nullable: true
+
       field :subscription_failure_behavior, -> { Whop_sdk::Types::AccountPreferencesSubscriptionFailureBehavior }, optional: false, nullable: false
     end
   end

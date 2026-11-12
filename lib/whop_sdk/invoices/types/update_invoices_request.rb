@@ -22,6 +22,8 @@ module Whop_sdk
 
         field :metadata, -> { Internal::Types::Hash[String, String] }, optional: true, nullable: false
 
+        field :payment_method_configuration, -> { Whop_sdk::Invoices::Types::UpdateInvoicesRequestPaymentMethodConfiguration }, optional: true, nullable: false
+
         field :payment_method_id, -> { String }, optional: true, nullable: false
 
         field :recipient_emails, -> { Internal::Types::Array[String] }, optional: true, nullable: false

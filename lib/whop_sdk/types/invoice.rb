@@ -47,6 +47,8 @@ module Whop_sdk
 
       field :paid_at, -> { String }, optional: false, nullable: true
 
+      field :payment_method_configuration, -> { Whop_sdk::Types::CheckoutSessionPaymentMethodConfiguration }, optional: false, nullable: true
+
       field :payment_method_id, -> { String }, optional: false, nullable: true
 
       field :recipient_emails, -> { Internal::Types::Array[String] }, optional: false, nullable: false

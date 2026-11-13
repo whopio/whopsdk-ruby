@@ -3,7 +3,7 @@
 module Whop_sdk
   module Types
     class TeamMember < Internal::Types::Model
-      field :account_id, -> { String }, optional: false, nullable: false
+      field :account, -> { Whop_sdk::Types::AccountParent }, optional: false, nullable: false
 
       field :authorized_role, -> { Whop_sdk::Types::TeamMemberAuthorizedRole }, optional: false, nullable: true
 
@@ -16,6 +16,8 @@ module Whop_sdk
       field :id, -> { String }, optional: false, nullable: false
 
       field :is_agent, -> { Internal::Types::Boolean }, optional: false, nullable: false
+
+      field :is_partner, -> { Internal::Types::Boolean }, optional: false, nullable: false
 
       field :reports_to_chain, -> { Internal::Types::Array[Whop_sdk::Types::TeamMemberManager] }, optional: false, nullable: true
 

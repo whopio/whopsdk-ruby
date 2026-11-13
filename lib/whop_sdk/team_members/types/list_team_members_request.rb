@@ -4,7 +4,7 @@ module Whop_sdk
   module TeamMembers
     module Types
       class ListTeamMembersRequest < Internal::Types::Model
-        field :account_id, -> { String }, optional: false, nullable: false
+        field :account_id, -> { String }, optional: true, nullable: false
 
         field :status, -> { Whop_sdk::TeamMembers::Types::ListTeamMembersRequestStatus }, optional: true, nullable: false
 
@@ -25,6 +25,8 @@ module Whop_sdk
         field :team_lead_id, -> { String }, optional: true, nullable: false
 
         field :has_referred_businesses, -> { Internal::Types::Boolean }, optional: true, nullable: false
+
+        field :is_partner, -> { Internal::Types::Boolean }, optional: true, nullable: false
 
         field :created_before, -> { String }, optional: true, nullable: false
 

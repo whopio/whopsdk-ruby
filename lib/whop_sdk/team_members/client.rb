@@ -14,11 +14,14 @@ module Whop_sdk
         @environment = environment
       end
 
-      # Lists an account's team members, including pending invites. A user credential with `company:basic:read` may list
-      # only its own joined membership by passing its own `user_id` and `status=joined`. Listing `role=workforce` is
-      # also allowed with the `bounty:create` scope. A signed-in Partner, or a member others report to, without
-      # `company:authorized_user:read` lists only their own joined membership and the members who report up to them,
-      # never pending invites. Members with the view-only Partner role are listed after all other members.
+      # Lists team members, including pending invites. Pass `account_id` to list one account's team. Without it, a
+      # signed-in user can pass `user_id=me` to list their own joined memberships across accounts. The list has one for
+      # each account they can read. An API key without `account_id` lists the team of its own account. With
+      # `company:basic:read`, a user can list their own joined membership on one account. To do this, pass
+      # `status=joined` and their own `user_id` with the account ID. The `bounty:create` scope also allows listing
+      # `role=workforce` members. A signed-in Partner without `company:authorized_user:read` lists only their own joined
+      # membership and the members who report up to them. A member others report to gets the same list. Neither of them
+      # sees pending invites. Members with the view-only Partner role are listed after all other members.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -27,7 +30,7 @@ module Whop_sdk
       # @option request_options [Hash{String => Object}] :additional_query_parameters
       # @option request_options [Hash{String => Object}] :additional_body_parameters
       # @option request_options [Integer] :timeout_in_seconds
-      # @option params [String] :account_id
+      # @option params [String, nil] :account_id
       # @option params [Whop_sdk::TeamMembers::Types::ListTeamMembersRequestStatus, nil] :status
       # @option params [String, nil] :user_id
       # @option params [String, nil] :user_ids
@@ -38,6 +41,7 @@ module Whop_sdk
       # @option params [Integer, nil] :direct_reports_max
       # @option params [String, nil] :team_lead_id
       # @option params [Boolean, nil] :has_referred_businesses
+      # @option params [Boolean, nil] :is_partner
       # @option params [String, nil] :created_before
       # @option params [String, nil] :created_after
       # @option params [Whop_sdk::TeamMembers::Types::ListTeamMembersRequestOrder, nil] :order
@@ -48,7 +52,7 @@ module Whop_sdk
       # @option params [String, nil] :before
       #
       # @example
-      #   client.team_members.list(account_id: "account_id")
+      #   client.team_members.list
       #
       # @return [Whop_sdk::TeamMembers::Types::ListTeamMembersResponse]
       def list(request_options: {}, **params)
@@ -65,6 +69,7 @@ module Whop_sdk
         query_params["direct_reports_max"] = params[:direct_reports_max] if params.key?(:direct_reports_max)
         query_params["team_lead_id"] = params[:team_lead_id] if params.key?(:team_lead_id)
         query_params["has_referred_businesses"] = params[:has_referred_businesses] if params.key?(:has_referred_businesses)
+        query_params["is_partner"] = params[:is_partner] if params.key?(:is_partner)
         query_params["created_before"] = params[:created_before] if params.key?(:created_before)
         query_params["created_after"] = params[:created_after] if params.key?(:created_after)
         query_params["order"] = params[:order] if params.key?(:order)

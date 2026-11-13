@@ -6,6 +6,8 @@ module Whop_sdk
       class UpdateMembersRequest < Internal::Types::Model
         field :id, -> { String }, optional: false, nullable: false
 
+        field :metadata, -> { Internal::Types::Hash[String, Whop_sdk::Members::Types::UpdateMembersRequestMetadataValue] }, optional: true, nullable: false
+
         field :name, -> { String }, optional: true, nullable: false
 
         field :unsubscribe_status, -> { Whop_sdk::Members::Types::UpdateMembersRequestUnsubscribeStatus }, optional: true, nullable: false

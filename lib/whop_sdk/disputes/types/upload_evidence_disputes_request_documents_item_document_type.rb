@@ -18,6 +18,7 @@ module Whop_sdk
         DIGITAL_FULFILLMENT = "digital_fulfillment"
         SUBSCRIPTION = "subscription"
         CUSTOMER_COMMUNICATION = "customer_communication"
+        COMPLETE_EVIDENCE = "complete_evidence"
       end
     end
   end

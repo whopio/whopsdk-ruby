@@ -19500,7 +19500,7 @@ client.domains.check(id: "id")
 <dl>
 <dd>
 
-Lists an account's recommendations and generation requests, newest first by default. When no recommendations are ready or in progress and you have `company:update` permission, listing queues generation, with a ten-minute cooldown after an unsuccessful request; unsuccessful requests are not listed. An account's executed recommendations and runs stay listed after Economic Intelligence turns off, but new recommendations are offered only while it is on. For visitor countries, page views, ad impressions and clicks, or payment volume over a time range, use `GET /stats/time_series/:metric`.
+Lists an account's recommendations, newest first by default. `status: ready` is what the account can act on now. Any other listing is its history of runs. Executed recommendations and runs stay listed after Economic Intelligence turns off, but new recommendations are offered only to businesses it is written for. For visitor countries, page views, ad impressions and clicks, or payment volume over a time range, use `GET /stats/time_series/:metric`.
 </dd>
 </dl>
 </dd>
@@ -19530,7 +19530,7 @@ client.economic_intelligence.list
 <dl>
 <dd>
 
-**account_id:** `String` — Account ID, prefixed `biz_`. Defaults to the API key's own account; omit for personal onboarding, where signed-out visitors receive a business-setup template and eligible users receive their saved setup recommendation.
+**account_id:** `String` — Account ID, prefixed `biz_`. Defaults to the API key's own account. Omit with `has_run` for the runs on every account you can read.
     
 </dd>
 </dl>
@@ -19538,7 +19538,7 @@ client.economic_intelligence.list
 <dl>
 <dd>
 
-**status:** `Whop_sdk::EconomicIntelligence::Types::ListEconomicIntelligenceRequestStatus` — Filter recommendations by their current status.
+**status:** `Whop_sdk::EconomicIntelligence::Types::ListEconomicIntelligenceRequestStatus` — `ready` lists the recommendations the account can run now. A run status lists only the runs in that state. `queued`, `pending` and `superseded` are no longer listed and answer nothing.
     
 </dd>
 </dl>
@@ -19546,7 +19546,7 @@ client.economic_intelligence.list
 <dl>
 <dd>
 
-**input:** `String` — What you want recommendations for, in your own words. Up to 1000 characters. Narrows the list to the recommendations that address it. Without a `status` filter, when none do and you can update the account, new recommendations start generating for your input, and the list shows that request until they're ready. Repeating the same input while it generates doesn't start another.
+**input:** `String` — No longer read: recommendations are written for the business as it changes. Up to 1000 characters.
     
 </dd>
 </dl>
@@ -19554,7 +19554,7 @@ client.economic_intelligence.list
 <dl>
 <dd>
 
-**has_run:** `Internal::Types::Boolean` — When true, only recommendations someone has started running, by any user. Without `account_id`, covers every account you can read that has Economic Intelligence. Can't be combined with `input`.
+**has_run:** `Internal::Types::Boolean` — When true, only recommendations someone has started running, by any user. Without `account_id`, covers every account you can read.
     
 </dd>
 </dl>
@@ -19634,7 +19634,7 @@ client.economic_intelligence.list
 <dl>
 <dd>
 
-Updates a recommendation status, records feedback, or both. Send `sentiment` to rate it. Include `status: superseded` to retire a ready recommendation and request replacements; a rating alone leaves its status unchanged. To run a recommendation yourself, send `status: running` to start, then `status: executed` when it is carried out (with `result_id` naming what it changed, or `result_page` naming where it worked, so the result links there) or `status: incomplete` if the run ended without carrying it out. Whop AI reports its own runs the same way. Send `status: acknowledged` once an executed run's result has been seen.
+Updates a recommendation status, records feedback, or both. Send `sentiment` to rate it. Include `status: superseded` to retire a ready recommendation. A rating alone leaves its status unchanged. To run a recommendation yourself, send `status: running` to start. Send `status: executed` when it is carried out, or `status: incomplete` if the run ended without carrying it out. With `executed`, name what changed in `result_id` or where the run worked in `result_page`, and the result links there. Whop AI reports its own runs the same way. Send `status: acknowledged` once an executed run's result has been seen.
 </dd>
 </dl>
 </dd>
@@ -19680,7 +19680,7 @@ client.economic_intelligence.update(id: "id")
 <dl>
 <dd>
 
-**input:** `String` — What you want the replacement recommendation for, in your own words. Up to 1000 characters. Sent when superseding, it directs the generation that replaces the rejected recommendation.
+**input:** `String` — No longer read: recommendations are written for the business as it changes. Up to 1000 characters.
     
 </dd>
 </dl>
@@ -19696,7 +19696,7 @@ client.economic_intelligence.update(id: "id")
 <dl>
 <dd>
 
-**result_page:** `Whop_sdk::EconomicIntelligence::Types::UpdateEconomicIntelligenceRequestResultPage` — With `status: executed`, the page where the run's result can be seen when it is not one resource, such as the checkout links list or the store page. The recommendation's `result_url` becomes that page on the account's dashboard, or its store page for `store_page`.
+**result_page:** `Whop_sdk::EconomicIntelligence::Types::UpdateEconomicIntelligenceRequestResultPage` — With `status: executed`, the page where the run's result can be seen when it is not one resource, such as the checkout links list. The recommendation's `result_url` becomes that page on the account's dashboard.
     
 </dd>
 </dl>
@@ -19728,7 +19728,7 @@ client.economic_intelligence.update(id: "id")
 <dl>
 <dd>
 
-**user_feedback:** `String` — An optional explanation of the rating or rejection. Negative feedback informs replacement recommendations.
+**user_feedback:** `String` — An optional explanation of the rating or rejection.
     
 </dd>
 </dl>

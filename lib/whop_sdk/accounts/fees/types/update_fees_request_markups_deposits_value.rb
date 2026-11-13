@@ -4,7 +4,7 @@ module Whop_sdk
   module Accounts
     module Fees
       module Types
-        # The new markup. Fields left out keep their current value; `null` clears the row so the markup returns to its
+        # The new markup. Fields left out keep their current value. `null` clears the row so the markup returns to its
         # default.
         class UpdateFeesRequestMarkupsDepositsValue < Internal::Types::Model
           field :fixed, -> { Integer }, optional: true, nullable: false

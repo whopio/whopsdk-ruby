@@ -9,6 +9,8 @@ module Whop_sdk
 
           field :blueprint_partner, -> { Whop_sdk::Partners::Businesses::Types::RetrieveBusinessesResponseBlueprintPartner }, optional: false, nullable: true
 
+          field :can_edit_fees, -> { Internal::Types::Boolean }, optional: false, nullable: false
+
           field :commission_advance, -> { Whop_sdk::Types::PartnerAdvance }, optional: true, nullable: false
 
           field :commission_advance_cap, -> { Whop_sdk::Types::Money }, optional: true, nullable: false

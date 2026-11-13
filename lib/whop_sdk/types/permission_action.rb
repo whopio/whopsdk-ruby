@@ -256,6 +256,7 @@ module Whop_sdk
       USER_ABUSE_REPORT_READ = "user:abuse_report:read"
       USER_BALANCE_READ = "user:balance:read"
       USER_EMAIL_READ = "user:email:read"
+      USER_MAILING_ADDRESSES_READ = "user:mailing_addresses:read"
       USER_NOTIFICATIONS_READ = "user:notifications:read"
       USER_NOTIFICATIONS_UPDATE = "user:notifications:update"
       USER_PAYMENT_CHARGE = "user:payment:charge"

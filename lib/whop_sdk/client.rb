@@ -10,7 +10,7 @@ module Whop_sdk
     # @param max_retries [Integer]
     #
     # @return [void]
-    def initialize(token:, base_url: nil, environment: Whop_sdk::Environment::PRODUCTION, api_version_date: "2026-11-12", idempotency_key: nil, max_retries: 2)
+    def initialize(token:, base_url: nil, environment: Whop_sdk::Environment::PRODUCTION, api_version_date: "2026-11-13", idempotency_key: nil, max_retries: 2)
       @base_url = base_url
       @environment = environment
 
@@ -321,11 +321,6 @@ module Whop_sdk
     # @return [Whop_sdk::Invoices::Client]
     def invoices
       @invoices ||= Whop_sdk::Invoices::Client.new(client: @raw_client, base_url: @base_url, environment: @environment)
-    end
-
-    # @return [Whop_sdk::Leads::Client]
-    def leads
-      @leads ||= Whop_sdk::Leads::Client.new(client: @raw_client, base_url: @base_url, environment: @environment)
     end
 
     # @return [Whop_sdk::LedgerAccounts::Client]

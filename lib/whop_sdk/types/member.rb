@@ -25,6 +25,8 @@ module Whop_sdk
 
       field :last_activity_at, -> { String }, optional: false, nullable: true
 
+      field :metadata, -> { Internal::Types::Hash[String, Object] }, optional: false, nullable: true
+
       field :most_recent_action, -> { Whop_sdk::Types::MemberMostRecentAction }, optional: false, nullable: true
 
       field :most_recent_action_at, -> { String }, optional: false, nullable: true

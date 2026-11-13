@@ -3,6 +3,8 @@
 module Whop_sdk
   module Types
     class PaymentBankTransfer < Internal::Types::Model
+      field :accepts_split_transfers, -> { Internal::Types::Boolean }, optional: true, nullable: false
+
       field :account_number, -> { String }, optional: true, nullable: false
 
       field :account_number_label, -> { String }, optional: true, nullable: false

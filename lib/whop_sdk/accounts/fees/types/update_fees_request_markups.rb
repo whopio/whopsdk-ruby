@@ -12,6 +12,8 @@ module Whop_sdk
 
           field :deposits, -> { Internal::Types::Hash[String, Whop_sdk::Accounts::Fees::Types::UpdateFeesRequestMarkupsDepositsValue] }, optional: true, nullable: false
 
+          field :payment_methods, -> { Internal::Types::Hash[String, Whop_sdk::Accounts::Fees::Types::UpdateFeesRequestMarkupsPaymentMethodsValue] }, optional: true, nullable: false
+
           field :payments, -> { Whop_sdk::Accounts::Fees::Types::UpdateFeesRequestMarkupsPayments }, optional: true, nullable: false
 
           field :payouts, -> { Internal::Types::Hash[String, Whop_sdk::Accounts::Fees::Types::UpdateFeesRequestMarkupsPayoutsValue] }, optional: true, nullable: false

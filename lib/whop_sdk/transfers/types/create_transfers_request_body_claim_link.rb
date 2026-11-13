@@ -7,6 +7,8 @@ module Whop_sdk
       class CreateTransfersRequestBodyClaimLink < Internal::Types::Model
         field :amount, -> { Integer }, optional: false, nullable: false
 
+        field :currency, -> { Whop_sdk::Transfers::Types::CreateTransfersRequestBodyClaimLinkCurrency }, optional: true, nullable: false
+
         field :expires_at, -> { String }, optional: true, nullable: false
 
         field :origin_id, -> { String }, optional: false, nullable: false

@@ -16,6 +16,8 @@ module Whop_sdk
       field :price, -> { Whop_sdk::Types::Money }, optional: false, nullable: true
 
       field :size_decimals, -> { Integer }, optional: false, nullable: false
+
+      field :volume24h, -> { Whop_sdk::Types::Money }, optional: false, nullable: true, api_name: "volume_24h"
     end
   end
 end

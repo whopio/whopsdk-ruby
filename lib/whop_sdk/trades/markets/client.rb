@@ -18,7 +18,8 @@ module Whop_sdk
         # Returns every market you can trade on Whop.
         #
         # - **Spot:** listed by symbol: `BTC`, `SOL` and `XAUT` (gold), and tokenized stocks by ticker, such as `AAPL`,
-        # with their 24-hour change and logo.
+        # with their 24-hour change and logo. Spot markets also carry `volume_24h`, the value traded across exchanges
+        # over the last 24 hours.
         # - **Perpetuals:** such as `BTC`, and stock and commodity perpetuals from Hyperliquid's `xyz` exchange, such as
         # `xyz:TSLA`. Send the `id` as `market` when you create a trade.
         #

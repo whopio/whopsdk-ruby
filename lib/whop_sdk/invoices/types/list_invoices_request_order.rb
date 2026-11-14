@@ -8,6 +8,7 @@ module Whop_sdk
 
         CREATED_AT = "created_at"
         DUE_AT = "due_at"
+        STATUS = "status"
       end
     end
   end

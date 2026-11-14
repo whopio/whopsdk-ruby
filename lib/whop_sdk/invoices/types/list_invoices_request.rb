@@ -10,6 +10,8 @@ module Whop_sdk
 
         field :overdue, -> { Internal::Types::Boolean }, optional: true, nullable: false
 
+        field :scheduled, -> { Internal::Types::Boolean }, optional: true, nullable: false
+
         field :member_id, -> { String }, optional: true, nullable: false
 
         field :product_id, -> { String }, optional: true, nullable: false

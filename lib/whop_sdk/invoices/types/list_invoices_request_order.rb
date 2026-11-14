@@ -9,6 +9,7 @@ module Whop_sdk
         CREATED_AT = "created_at"
         DUE_AT = "due_at"
         STATUS = "status"
+        SCHEDULED_SEND_AT = "scheduled_send_at"
       end
     end
   end

@@ -12,6 +12,8 @@ module Whop_sdk
 
         field :content, -> { String }, optional: false, nullable: false
 
+        field :email_address, -> { String }, optional: true, nullable: false
+
         field :gifs, -> { Internal::Types::Array[Whop_sdk::Messages::Types::CreateMessagesRequestGifsItem] }, optional: true, nullable: false
 
         field :id, -> { String }, optional: true, nullable: false

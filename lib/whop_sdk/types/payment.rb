@@ -5,7 +5,9 @@ module Whop_sdk
     class Payment < Internal::Types::Model
       field :account_id, -> { String }, optional: false, nullable: true
 
-      field :amount_after_fees, -> { Whop_sdk::Types::Money }, optional: false, nullable: false
+      field :amount_after_fees, -> { Whop_sdk::Types::Money }, optional: false, nullable: true
+
+      field :amount_charged, -> { Whop_sdk::Types::Money }, optional: false, nullable: false
 
       field :auto_capture_at, -> { String }, optional: false, nullable: true
 

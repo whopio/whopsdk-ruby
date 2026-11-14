@@ -26,6 +26,7 @@ module Whop_sdk
       # @option params [String, nil] :account_id
       # @option params [Whop_sdk::Invoices::Types::ListInvoicesRequestStatus, nil] :status
       # @option params [Boolean, nil] :overdue
+      # @option params [Boolean, nil] :scheduled
       # @option params [String, nil] :member_id
       # @option params [String, nil] :product_id
       # @option params [String, nil] :created_after
@@ -48,6 +49,7 @@ module Whop_sdk
         query_params["account_id"] = params[:account_id] if params.key?(:account_id)
         query_params["status"] = params[:status] if params.key?(:status)
         query_params["overdue"] = params[:overdue] if params.key?(:overdue)
+        query_params["scheduled"] = params[:scheduled] if params.key?(:scheduled)
         query_params["member_id"] = params[:member_id] if params.key?(:member_id)
         query_params["product_id"] = params[:product_id] if params.key?(:product_id)
         query_params["created_after"] = params[:created_after] if params.key?(:created_after)

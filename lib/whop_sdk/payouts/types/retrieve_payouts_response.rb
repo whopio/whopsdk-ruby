@@ -8,6 +8,8 @@ module Whop_sdk
 
         field :cancelable, -> { Internal::Types::Boolean }, optional: true, nullable: false
 
+        field :conversion, -> { Whop_sdk::Payouts::Types::RetrievePayoutsResponseConversion }, optional: true, nullable: false
+
         field :created_at, -> { String }, optional: false, nullable: false
 
         field :currency, -> { String }, optional: false, nullable: false

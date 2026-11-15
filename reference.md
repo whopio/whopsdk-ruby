@@ -25657,6 +25657,14 @@ client.invoices.list
 <dl>
 <dd>
 
+**statuses:** `Whop_sdk::Invoices::Types::ListInvoicesRequestStatusesItem` — Only invoices in any of these statuses. Repeat the parameter to pass several. Combined with `status` when both are sent.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **overdue:** `Internal::Types::Boolean` 
     
 </dd>
@@ -25682,6 +25690,14 @@ client.invoices.list
 <dd>
 
 **product_id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**variant_id:** `String` — Only invoices that bill this variant, prefixed `plan_`. An invoice matches when the variant is any of its items.
     
 </dd>
 </dl>
@@ -45872,7 +45888,7 @@ client.variants.delete(id: "id")
 <dl>
 <dd>
 
-Updates a variant's pricing, billing interval, visibility, stock, and other settings.
+Updates a variant's pricing, billing interval, visibility, stock, and other settings. While `unpaid_invoice_count` is above `0`, a change to the prices, billing period, trial, number of payments, currency or billing type returns a `400`.
 </dd>
 </dl>
 </dd>

@@ -8,6 +8,8 @@ module Whop_sdk
 
         field :status, -> { Whop_sdk::Invoices::Types::ListInvoicesRequestStatus }, optional: true, nullable: false
 
+        field :statuses, -> { Whop_sdk::Invoices::Types::ListInvoicesRequestStatusesItem }, optional: true, nullable: false
+
         field :overdue, -> { Internal::Types::Boolean }, optional: true, nullable: false
 
         field :scheduled, -> { Internal::Types::Boolean }, optional: true, nullable: false
@@ -15,6 +17,8 @@ module Whop_sdk
         field :member_id, -> { String }, optional: true, nullable: false
 
         field :product_id, -> { String }, optional: true, nullable: false
+
+        field :variant_id, -> { String }, optional: true, nullable: false
 
         field :created_after, -> { String }, optional: true, nullable: false
 

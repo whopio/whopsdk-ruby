@@ -1267,6 +1267,7 @@ require_relative "whop_sdk/identity_profiles/types/list_identity_profile_respons
 require_relative "whop_sdk/identity_profiles/types/list_verifications_identity_profile_response_data_item"
 require_relative "whop_sdk/identity_profiles/types/list_verifications_identity_profile_response"
 require_relative "whop_sdk/invoices/types/list_invoices_request_status"
+require_relative "whop_sdk/invoices/types/list_invoices_request_statuses_item"
 require_relative "whop_sdk/invoices/types/list_invoices_request_order"
 require_relative "whop_sdk/invoices/types/list_invoices_request_direction"
 require_relative "whop_sdk/invoices/types/list_invoices_response_page_info"

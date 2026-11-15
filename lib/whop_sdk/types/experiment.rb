@@ -19,8 +19,6 @@ module Whop_sdk
 
       field :ended_at, -> { String }, optional: true, nullable: false
 
-      field :feature_flag_only, -> { Internal::Types::Boolean }, optional: true, nullable: false
-
       field :findings, -> { String }, optional: true, nullable: false
 
       field :flag_key, -> { String }, optional: false, nullable: false
@@ -38,8 +36,6 @@ module Whop_sdk
       field :started_at, -> { String }, optional: true, nullable: false
 
       field :status, -> { Whop_sdk::Types::ExperimentStatus }, optional: false, nullable: false
-
-      field :targeting_rules, -> { Internal::Types::Array[Whop_sdk::Types::ExperimentTargetingRulesItem] }, optional: false, nullable: false
 
       field :updated_at, -> { String }, optional: false, nullable: true
 

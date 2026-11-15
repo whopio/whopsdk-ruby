@@ -14,8 +14,6 @@ module Whop_sdk
 
         field :related_resource, -> { Whop_sdk::Types::ExperimentResourceReference }, optional: true, nullable: false
 
-        field :targeting_rules, -> { Internal::Types::Array[Whop_sdk::Experiments::Types::UpdateExperimentsRequestTargetingRulesItem] }, optional: true, nullable: false
-
         field :variants, -> { Internal::Types::Array[Whop_sdk::Experiments::Types::UpdateExperimentsRequestVariantsItem] }, optional: true, nullable: false
       end
     end

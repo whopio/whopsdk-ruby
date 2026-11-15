@@ -32,6 +32,8 @@ module Whop_sdk
 
         field :product_id, -> { String }, optional: true, nullable: false
 
+        field :redirect_url, -> { String }, optional: true, nullable: false
+
         field :renewal_price, -> { Integer }, optional: true, nullable: false
 
         field :split_pay_required_payments, -> { Integer }, optional: true, nullable: false

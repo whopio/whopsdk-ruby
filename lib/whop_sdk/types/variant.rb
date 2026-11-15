@@ -89,6 +89,8 @@ module Whop_sdk
 
       field :unlimited_stock, -> { Internal::Types::Boolean }, optional: false, nullable: false
 
+      field :unpaid_invoice_count, -> { Integer }, optional: false, nullable: true
+
       field :updated_at, -> { String }, optional: false, nullable: false
 
       field :visibility, -> { Whop_sdk::Types::VariantVisibility }, optional: false, nullable: false

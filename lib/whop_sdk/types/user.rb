@@ -29,7 +29,7 @@ module Whop_sdk
 
       field :id, -> { String }, optional: false, nullable: false
 
-      field :level, -> { Whop_sdk::Types::OwnerLevel }, optional: false, nullable: true
+      field :level, -> { Whop_sdk::Types::UserLevel }, optional: false, nullable: true
 
       field :name, -> { String }, optional: false, nullable: true
 

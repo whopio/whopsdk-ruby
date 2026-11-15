@@ -9,6 +9,8 @@ module Whop_sdk
 
       field :id, -> { String }, optional: false, nullable: true
 
+      field :initial_price, -> { Whop_sdk::Types::Money }, optional: false, nullable: true
+
       field :label, -> { String }, optional: false, nullable: true
 
       field :product_id, -> { String }, optional: false, nullable: true

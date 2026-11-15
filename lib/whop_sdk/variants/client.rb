@@ -31,6 +31,7 @@ module Whop_sdk
       # @option params [String, nil] :visibilities
       # @option params [String, nil] :billing_types
       # @option params [String, nil] :product_ids
+      # @option params [String, nil] :sku
       # @option params [String, nil] :created_before
       # @option params [String, nil] :created_after
       # @option params [String, nil] :presentment_currency
@@ -47,6 +48,7 @@ module Whop_sdk
       #     visibilities: ["visible"],
       #     billing_types: ["renewal"],
       #     product_ids: ["prod_xxxxxxxxxxxxxx"],
+      #     sku: "TEE-LARGE-BLUE",
       #     presentment_currency: "auto",
       #     ip_address: "203.0.113.7",
       #     presentment_country: "JP"
@@ -63,6 +65,7 @@ module Whop_sdk
         query_params["visibilities"] = params[:visibilities] if params.key?(:visibilities)
         query_params["billing_types"] = params[:billing_types] if params.key?(:billing_types)
         query_params["product_ids"] = params[:product_ids] if params.key?(:product_ids)
+        query_params["sku"] = params[:sku] if params.key?(:sku)
         query_params["created_before"] = params[:created_before] if params.key?(:created_before)
         query_params["created_after"] = params[:created_after] if params.key?(:created_after)
         query_params["presentment_currency"] = params[:presentment_currency] if params.key?(:presentment_currency)

@@ -27,6 +27,8 @@ module Whop_sdk
 
       field :email, -> { String }, optional: false, nullable: true
 
+      field :followers_count, -> { Integer }, optional: false, nullable: false
+
       field :id, -> { String }, optional: false, nullable: false
 
       field :level, -> { Whop_sdk::Types::UserLevel }, optional: false, nullable: true
@@ -46,6 +48,8 @@ module Whop_sdk
       field :username, -> { String }, optional: false, nullable: false
 
       field :verification, -> { Internal::Types::Hash[String, Object] }, optional: false, nullable: false
+
+      field :verified_at, -> { String }, optional: false, nullable: true
 
       field :whop_partner_enabled_at, -> { String }, optional: false, nullable: true
 

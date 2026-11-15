@@ -21759,14 +21759,6 @@ client.experiments.create(
 <dl>
 <dd>
 
-**feature_flag_only:** `Internal::Types::Boolean` — When `true`, creates a binary feature flag rather than a full experiment. Feature flags expose the same evaluation API but do not collect metric results. Defaults to `false`.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
 **flag_key:** `String` — Developer-chosen handle referenced from code, used in evaluation and results calls. Interchangeable with the returned `expt_` id anywhere the API takes an experiment identifier.
     
 </dd>
@@ -21800,14 +21792,6 @@ client.experiments.create(
 <dd>
 
 **related_resource:** `Whop_sdk::Types::ExperimentResourceReference` — Resource owned by the account that this experiment is bound to, such as an app or product. `null` when unbound. Fixed once the experiment first activates.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**targeting_rules:** `Internal::Types::Array[Whop_sdk::Experiments::Types::CreateExperimentsRequestTargetingRulesItem]` — Rules that determine which subjects qualify for the experiment.
     
 </dd>
 </dl>
@@ -22089,14 +22073,6 @@ client.experiments.update(id: "id")
 <dl>
 <dd>
 
-**targeting_rules:** `Internal::Types::Array[Whop_sdk::Experiments::Types::UpdateExperimentsRequestTargetingRulesItem]` — Replace the targeting rules with this set. Omit to leave unchanged.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
 **variants:** `Internal::Types::Array[Whop_sdk::Experiments::Types::UpdateExperimentsRequestVariantsItem]` — Grow treatment allocation. Pass every existing treatment with an equal-or-higher weight; append new names to add arms. Weights never decrease and arms are never removed. Omit to leave unchanged.
     
 </dd>
@@ -22168,14 +22144,6 @@ client.experiments.activate(id: "id")
 <dd>
 
 **account_id:** `String` — Owning account ID. Required when id is a flag key; optional for an expt_ ID.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**duration_days:** `Integer` — Reporting window length in days. Omit to use the default. This does not automatically end the experiment.
     
 </dd>
 </dl>

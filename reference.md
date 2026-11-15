@@ -42192,7 +42192,7 @@ client.stats.retrieve(
 <dl>
 <dd>
 
-**compare_to:** `String` — Funnel only. The breakdown value to use as baseline for whole-window final conversion. Requires breakdown_by and mature_only=true; defaults confidence_level to 0.95.
+**compare_to:** `String` — Funnel only. The breakdown value to use as baseline for whole-window final conversion. Requires breakdown_by and mature_only=true. Defaults confidence_level to 0.95. Also returns all_entrant_totals, which include entrants whose conversion window has not elapsed yet. Comparisons are left out until the baseline has mature entrants.
     
 </dd>
 </dl>
@@ -52675,7 +52675,7 @@ client.stats.time_series.retrieve(
 <dl>
 <dd>
 
-**compare_to:** `String` — Funnel only. The breakdown value to use as baseline for whole-window final conversion. Requires breakdown_by and mature_only=true; defaults confidence_level to 0.95.
+**compare_to:** `String` — Funnel only. The breakdown value to use as baseline for whole-window final conversion. Requires breakdown_by and mature_only=true. Defaults confidence_level to 0.95. Also returns all_entrant_totals, which include entrants whose conversion window has not elapsed yet. Comparisons are left out until the baseline has mature entrants.
     
 </dd>
 </dl>

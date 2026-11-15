@@ -18,6 +18,8 @@ module Whop_sdk
 
         field :product_ids, -> { String }, optional: true, nullable: false
 
+        field :sku, -> { String }, optional: true, nullable: false
+
         field :created_before, -> { String }, optional: true, nullable: false
 
         field :created_after, -> { String }, optional: true, nullable: false

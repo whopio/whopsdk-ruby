@@ -30,6 +30,7 @@ module Whop_sdk
       # @option params [String, nil] :visibilities
       # @option params [String, nil] :billing_types
       # @option params [String, nil] :product_ids
+      # @option params [String, nil] :sku
       # @option params [String, nil] :created_before
       # @option params [String, nil] :created_after
       # @option params [Integer, nil] :first
@@ -51,6 +52,7 @@ module Whop_sdk
         query_params["visibilities"] = params[:visibilities] if params.key?(:visibilities)
         query_params["billing_types"] = params[:billing_types] if params.key?(:billing_types)
         query_params["product_ids"] = params[:product_ids] if params.key?(:product_ids)
+        query_params["sku"] = params[:sku] if params.key?(:sku)
         query_params["created_before"] = params[:created_before] if params.key?(:created_before)
         query_params["created_after"] = params[:created_after] if params.key?(:created_after)
         query_params["first"] = params[:first] if params.key?(:first)

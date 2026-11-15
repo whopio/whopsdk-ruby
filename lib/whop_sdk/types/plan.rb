@@ -63,6 +63,8 @@ module Whop_sdk
 
       field :purchase_url, -> { String }, optional: false, nullable: false
 
+      field :redirect_url, -> { String }, optional: false, nullable: true
+
       field :release_method, -> { Whop_sdk::Types::PlanReleaseMethod }, optional: false, nullable: false
 
       field :renewal_price, -> { Integer }, optional: false, nullable: false

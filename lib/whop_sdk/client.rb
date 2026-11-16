@@ -158,11 +158,6 @@ module Whop_sdk
       @channels ||= Whop_sdk::Channels::Client.new(client: @raw_client, base_url: @base_url, environment: @environment)
     end
 
-    # @return [Whop_sdk::ChatChannels::Client]
-    def chat_channels
-      @chat_channels ||= Whop_sdk::ChatChannels::Client.new(client: @raw_client, base_url: @base_url, environment: @environment)
-    end
-
     # @return [Whop_sdk::CheckoutConfigurations::Client]
     def checkout_configurations
       @checkout_configurations ||= Whop_sdk::CheckoutConfigurations::Client.new(client: @raw_client, base_url: @base_url, environment: @environment)
@@ -221,16 +216,6 @@ module Whop_sdk
     # @return [Whop_sdk::Disputes::Client]
     def disputes
       @disputes ||= Whop_sdk::Disputes::Client.new(client: @raw_client, base_url: @base_url, environment: @environment)
-    end
-
-    # @return [Whop_sdk::DmChannels::Client]
-    def dm_channels
-      @dm_channels ||= Whop_sdk::DmChannels::Client.new(client: @raw_client, base_url: @base_url, environment: @environment)
-    end
-
-    # @return [Whop_sdk::DmMembers::Client]
-    def dm_members
-      @dm_members ||= Whop_sdk::DmMembers::Client.new(client: @raw_client, base_url: @base_url, environment: @environment)
     end
 
     # @return [Whop_sdk::Domains::Client]
@@ -486,11 +471,6 @@ module Whop_sdk
     # @return [Whop_sdk::Stats::Client]
     def stats
       @stats ||= Whop_sdk::Stats::Client.new(client: @raw_client, base_url: @base_url, environment: @environment)
-    end
-
-    # @return [Whop_sdk::SupportChannels::Client]
-    def support_channels
-      @support_channels ||= Whop_sdk::SupportChannels::Client.new(client: @raw_client, base_url: @base_url, environment: @environment)
     end
 
     # @return [Whop_sdk::Swaps::Client]

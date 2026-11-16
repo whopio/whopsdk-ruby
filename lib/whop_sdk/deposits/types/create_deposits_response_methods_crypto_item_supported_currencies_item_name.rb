@@ -14,6 +14,7 @@ module Whop_sdk
         HYPE = "HYPE"
         PYUSD = "PYUSD"
         SOL = "SOL"
+        TRX = "TRX"
         USD1 = "USD1"
         USDC = "USDC"
         USDC_E = "USDC.e"

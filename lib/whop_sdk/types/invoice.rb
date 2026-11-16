@@ -69,6 +69,8 @@ module Whop_sdk
 
       field :tax_amount, -> { Whop_sdk::Types::Money }, optional: false, nullable: true
 
+      field :time_zone, -> { String }, optional: false, nullable: false
+
       field :total, -> { Whop_sdk::Types::Money }, optional: false, nullable: false
 
       field :totals_status, -> { Whop_sdk::Types::InvoiceTotalsStatus }, optional: false, nullable: false

@@ -27,6 +27,8 @@ module Whop_sdk
         field :payment_method_id, -> { String }, optional: true, nullable: false
 
         field :recipient_emails, -> { Internal::Types::Array[String] }, optional: true, nullable: false
+
+        field :time_zone, -> { String }, optional: true, nullable: false
       end
     end
   end

@@ -42214,7 +42214,7 @@ client.stats.retrieve(
 <dl>
 <dd>
 
-**product_category:** `String` — Filter to one product category, for example `algo_trading_course`. Pair with `breakdown_by=product_category` to split by product category. Available on metrics that list `product_category`.
+**product_category:** `String` — Filter to one product category, for example `algo_trading_program`. Pair with `breakdown_by=product_category` to split by product category. Available on metrics that list `product_category`.
     
 </dd>
 </dl>
@@ -52237,7 +52237,7 @@ client.stats.reports.platform_trends
 <dl>
 <dd>
 
-**product_category:** `String` — Only counts payments for products in these comma-separated product categories, such as `algo_trading_course`.
+**product_category:** `String` — Only counts payments for products in these comma-separated product categories, such as `algo_trading_program`.
     
 </dd>
 </dl>
@@ -52697,7 +52697,7 @@ client.stats.time_series.retrieve(
 <dl>
 <dd>
 
-**product_category:** `String` — Filter to one product category, for example `algo_trading_course`. Pair with `breakdown_by=product_category` to split by product category. Available on metrics that list `product_category`.
+**product_category:** `String` — Filter to one product category, for example `algo_trading_program`. Pair with `breakdown_by=product_category` to split by product category. Available on metrics that list `product_category`.
     
 </dd>
 </dl>

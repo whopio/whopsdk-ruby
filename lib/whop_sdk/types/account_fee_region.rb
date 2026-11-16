@@ -25,6 +25,7 @@ module Whop_sdk
       MY = "my"
       DO = "do"
       SV = "sv"
+      HN = "hn"
     end
   end
 end

@@ -89,6 +89,7 @@ module Whop_sdk
       CNY = "cny"
       KZT = "kzt"
       AWG = "awg"
+      HNL = "hnl"
     end
   end
 end

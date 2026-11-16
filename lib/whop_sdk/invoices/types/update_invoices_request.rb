@@ -28,6 +28,8 @@ module Whop_sdk
 
         field :recipient_emails, -> { Internal::Types::Array[String] }, optional: true, nullable: false
 
+        field :subscription_starts_at, -> { String }, optional: true, nullable: false
+
         field :time_zone, -> { String }, optional: true, nullable: false
       end
     end

@@ -11,6 +11,8 @@ module Whop_sdk
 
       field :pinned_at, -> { String }, optional: false, nullable: true
 
+      field :recap, -> { Whop_sdk::Types::LivestreamRecap }, optional: true, nullable: false
+
       field :recording_started_at, -> { String }, optional: false, nullable: true
 
       field :recording_status, -> { Whop_sdk::Types::LivestreamRecordingStatus }, optional: false, nullable: true

@@ -26912,7 +26912,7 @@ client.livestreams.list(experience_id: "experience_id")
 <dl>
 <dd>
 
-Retrieves a livestream by ID.
+Retrieves a livestream by ID. Callers with the `livestream:moderate` permission also get its `recap`: the top moments AI picked from chat, and chat activity.
 </dd>
 </dl>
 </dd>
@@ -27068,6 +27068,68 @@ Unpins a livestream's recording so it is no longer featured in the experience.
 
 ```ruby
 client.livestreams.unpin(id: "id")
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — Livestream ID, prefixed `lfeed_`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Whop_sdk::Livestreams::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.livestreams.<a href="/lib/whop_sdk/livestreams/client.rb">retrieve_viewership</a>(id:) -> Whop_sdk::Types::LivestreamViewership</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves a livestream's viewership: peak, average, and unique viewers, total watch time, viewers for each minute, and how many members joined the account during it. Counts update while the livestream is live and settle about five minutes after it ends.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.livestreams.retrieve_viewership(id: "id")
 ```
 </dd>
 </dl>

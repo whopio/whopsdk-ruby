@@ -75,7 +75,8 @@ module Whop_sdk
         end
       end
 
-      # Retrieves a livestream by ID.
+      # Retrieves a livestream by ID. Callers with the `livestream:moderate` permission also get its `recap`: the top
+      # moments AI picked from chat, and chat activity.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -187,6 +188,45 @@ module Whop_sdk
         code = response.code.to_i
         if code.between?(200, 299)
           (response.body.to_s.empty? ? nil : Whop_sdk::Types::Livestream.load(response.body))
+        else
+          error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
+          raise error_class.new(response.body, code: code)
+        end
+      end
+
+      # Retrieves a livestream's viewership: peak, average, and unique viewers, total watch time, viewers for each
+      # minute, and how many members joined the account during it. Counts update while the livestream is live and settle
+      # about five minutes after it ends.
+      #
+      # @param request_options [Hash]
+      # @param params [Hash]
+      # @option request_options [String] :base_url
+      # @option request_options [Hash{String => Object}] :additional_headers
+      # @option request_options [Hash{String => Object}] :additional_query_parameters
+      # @option request_options [Hash{String => Object}] :additional_body_parameters
+      # @option request_options [Integer] :timeout_in_seconds
+      # @option params [String] :id
+      #
+      # @example
+      #   client.livestreams.retrieve_viewership(id: "id")
+      #
+      # @return [Whop_sdk::Types::LivestreamViewership]
+      def retrieve_viewership(request_options: {}, **params)
+        params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
+        request = Whop_sdk::Internal::JSON::Request.new(
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
+          method: "GET",
+          path: "livestreams/#{URI.encode_uri_component(params[:id].to_s)}/viewership",
+          request_options: request_options
+        )
+        begin
+          response = @client.send(request)
+        rescue Net::HTTPRequestTimeout
+          raise Whop_sdk::Errors::TimeoutError
+        end
+        code = response.code.to_i
+        if code.between?(200, 299)
+          (response.body.to_s.empty? ? nil : Whop_sdk::Types::LivestreamViewership.load(response.body))
         else
           error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)

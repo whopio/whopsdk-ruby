@@ -112,11 +112,12 @@ module Whop_sdk
         end
       end
 
-      # Pins an ended livestream's recording so everyone in the experience sees it featured. Pinning it again keeps the
-      # original `pinned_at`.
+      # Pins an ended livestream's recording so everyone in the experience sees it featured, up to 3 per experience.
+      # Without `position`, a new pin goes first and an existing pin keeps its place. With `position`, the pin moves
+      # there and every pinned livestream in that experience gets a new `pinned_at` in the new order.
       #
       # @param request_options [Hash]
-      # @param params [Hash]
+      # @param params [Whop_sdk::Livestreams::Types::PinLivestreamsRequest]
       # @option request_options [String] :base_url
       # @option request_options [Hash{String => Object}] :additional_headers
       # @option request_options [Hash{String => Object}] :additional_query_parameters
@@ -130,10 +131,15 @@ module Whop_sdk
       # @return [Whop_sdk::Types::Livestream]
       def pin(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
+        request_data = Whop_sdk::Livestreams::Types::PinLivestreamsRequest.new(params).to_h
+        non_body_param_names = %w[id]
+        body = request_data.except(*non_body_param_names)
+
         request = Whop_sdk::Internal::JSON::Request.new(
           base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "POST",
           path: "livestreams/#{URI.encode_uri_component(params[:id].to_s)}/pin",
+          body: body,
           request_options: request_options
         )
         begin

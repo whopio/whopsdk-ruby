@@ -65,6 +65,8 @@ module Whop_sdk
 
       field :status, -> { Whop_sdk::Types::InvoiceStatus }, optional: false, nullable: false
 
+      field :subscription_starts_at, -> { String }, optional: false, nullable: true
+
       field :subtotal, -> { Whop_sdk::Types::Money }, optional: false, nullable: false
 
       field :tax_amount, -> { Whop_sdk::Types::Money }, optional: false, nullable: true

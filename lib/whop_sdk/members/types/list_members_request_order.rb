@@ -12,6 +12,7 @@ module Whop_sdk
         LAST_ACTIVITY_AT = "last_activity_at"
         MOST_RECENT_ACTION_AT = "most_recent_action_at"
         USD_TOTAL_SPENT = "usd_total_spent"
+        NEEDS_REPLY = "needs_reply"
       end
     end
   end

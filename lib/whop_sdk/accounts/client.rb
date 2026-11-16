@@ -172,7 +172,7 @@ module Whop_sdk
         end
       end
 
-      # Finds accounts by name among the accounts the credential can list. Support searches cover every company and
+      # Finds accounts by name among the accounts the credential can list. Support searches cover every account and
       # return only the 50 best matches.
       #
       # @param request_options [Hash]

@@ -3,7 +3,7 @@
 module Whop_sdk
   module Cards
     module Types
-      # The card's initial billing address. On a company card it also registers the assigned member as a cardholder if
+      # The card's initial billing address. On a business card it also registers the assigned member as a cardholder if
       # they are not one yet. For an individual card, region is also required.
       class CreateCardsRequestBilling < Internal::Types::Model
         field :city, -> { String }, optional: false, nullable: false

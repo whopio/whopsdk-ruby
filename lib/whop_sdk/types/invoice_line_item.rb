@@ -21,6 +21,8 @@ module Whop_sdk
 
       field :tax_amount, -> { Whop_sdk::Types::Money }, optional: false, nullable: true
 
+      field :trial_period_days, -> { Integer }, optional: false, nullable: true
+
       field :unit_amount, -> { Whop_sdk::Types::Money }, optional: false, nullable: true
 
       field :variant_id, -> { String }, optional: false, nullable: true

@@ -5,7 +5,7 @@ module Whop_sdk
     module Methods
       module Types
         # Creates a recipient payout account linked to the funding ledger as a non-default account, then saves the bank
-        # method on it. No Whop user, company, or recipient ledger is created. A valid recipient email is required.
+        # method on it. No Whop user, Whop account, or recipient ledger is created. A valid recipient email is required.
         # Recipient methods cannot be default or recurring methods and cannot use Plaid.
         class CreateMethodsRequestRecipient < Internal::Types::Model
           field :address, -> { Whop_sdk::Payouts::Methods::Types::CreateMethodsRequestRecipientAddress }, optional: true, nullable: false

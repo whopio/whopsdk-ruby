@@ -9,6 +9,7 @@ module Whop_sdk
         ETHEREUM = "Ethereum"
         SOLANA = "Solana"
         BITCOIN = "Bitcoin"
+        TRON = "Tron"
         BASE = "Base"
         BNB_SMART_CHAIN = "BNB Smart Chain"
         HYPERLIQUID = "Hyperliquid"

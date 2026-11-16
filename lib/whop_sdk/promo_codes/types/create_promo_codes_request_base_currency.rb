@@ -96,6 +96,7 @@ module Whop_sdk
         AWG = "awg"
         WHOP_USD = "whop_usd"
         XAU = "xau"
+        HNL = "hnl"
       end
     end
   end

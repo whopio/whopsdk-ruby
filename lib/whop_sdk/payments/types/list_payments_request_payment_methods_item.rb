@@ -154,6 +154,7 @@ module Whop_sdk
         PAYTO_PHONE = "payto_phone"
         PAYTO_BANK_ACCOUNT = "payto_bank_account"
         PIX = "pix"
+        PIX_AUTOMATICO = "pix_automatico"
         PLATFORM_BALANCE = "platform_balance"
         PROMPTPAY = "promptpay"
         QRIS = "qris"

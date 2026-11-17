@@ -113,6 +113,7 @@ module Whop_sdk
       ONCHAIN_INTERNAL_TRANSFER_INCOMING = "onchain_internal_transfer_incoming"
       ONCHAIN_SWAP_SOURCE = "onchain_swap_source"
       ONCHAIN_SWAP_TARGET = "onchain_swap_target"
+      SAVINGS_REVALUATION = "savings_revaluation"
       ONCHAIN_SWAP_OFFSET = "onchain_swap_offset"
       WHOP_SWAP_FEE_RECEIVED = "whop_swap_fee_received"
       SWAP_FEE = "swap_fee"

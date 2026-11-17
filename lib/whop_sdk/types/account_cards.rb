@@ -3,6 +3,8 @@
 module Whop_sdk
   module Types
     class AccountCards < Internal::Types::Model
+      field :decline_reason, -> { Whop_sdk::Types::AccountCardsDeclineReason }, optional: false, nullable: true
+
       field :kind, -> { Whop_sdk::Types::AccountCardsKind }, optional: false, nullable: true
 
       field :status, -> { Whop_sdk::Types::AccountCardsStatus }, optional: false, nullable: false

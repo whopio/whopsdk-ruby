@@ -19,6 +19,9 @@ module Whop_sdk
         EMAIL_DOMAIN = "email_domain"
         IP_ADDRESS = "ip_address"
         IP_COUNTRY = "ip_country"
+        POSTAL_CODE_CHECK = "postal_code_check"
+        ADDRESS_LINE1CHECK = "address_line1_check"
+        CVV_CHECK = "cvv_check"
       end
     end
   end

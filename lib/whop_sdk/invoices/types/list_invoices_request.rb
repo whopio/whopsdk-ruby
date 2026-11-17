@@ -20,6 +20,8 @@ module Whop_sdk
 
         field :variant_id, -> { String }, optional: true, nullable: false
 
+        field :query, -> { String }, optional: true, nullable: false
+
         field :created_after, -> { String }, optional: true, nullable: false
 
         field :created_before, -> { String }, optional: true, nullable: false

@@ -6,17 +6,14 @@ module Whop_sdk
       module PostAdUpdatedPayloadDataDeliveryStatus
         extend Whop_sdk::Internal::Types::Enum
 
-        IN_APPEAL = "in_appeal"
         REJECTED = "rejected"
         IN_REVIEW = "in_review"
         DRAFT = "draft"
         CAMPAIGN_PAUSED = "campaign_paused"
-        AD_GROUP_PAUSED = "ad_group_paused"
         PAUSED = "paused"
         PROCESSING = "processing"
         ISSUES = "issues"
         SCHEDULED = "scheduled"
-        LEARNING_LIMITED = "learning_limited"
         LEARNING = "learning"
         ACTIVE = "active"
       end

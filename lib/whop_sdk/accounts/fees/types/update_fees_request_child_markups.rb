@@ -6,6 +6,8 @@ module Whop_sdk
       module Types
         # Default markups for subaccounts. Available on accounts without a parent, even before any accounts connect.
         class UpdateFeesRequestChildMarkups < Internal::Types::Model
+          field :card_regions, -> { Internal::Types::Hash[String, Whop_sdk::Accounts::Fees::Types::UpdateFeesRequestChildMarkupsCardRegionsValue] }, optional: true, nullable: false
+
           field :card_spend, -> { Whop_sdk::Accounts::Fees::Types::UpdateFeesRequestChildMarkupsCardSpend }, optional: true, nullable: false
 
           field :crypto_swaps, -> { Whop_sdk::Accounts::Fees::Types::UpdateFeesRequestChildMarkupsCryptoSwaps }, optional: true, nullable: false

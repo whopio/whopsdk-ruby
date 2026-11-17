@@ -3,6 +3,8 @@
 module Whop_sdk
   module Types
     class AccountFeeMarkups < Internal::Types::Model
+      field :card_regions, -> { Internal::Types::Hash[String, Whop_sdk::Types::AccountFeeMarkup] }, optional: false, nullable: false
+
       field :card_spend, -> { Whop_sdk::Types::AccountFeeMarkup }, optional: false, nullable: false
 
       field :crypto_swaps, -> { Whop_sdk::Types::AccountFeeMarkup }, optional: false, nullable: false

@@ -125,6 +125,7 @@ module Whop_sdk
         LEGACY_CRYPTO_PAYMENT = "legacy_crypto_payment"
         LEGACY_PAYMENT = "legacy_payment"
         LEGACY_PAYMENT_REFUND = "legacy_payment_refund"
+        LEVELS_POINTS_ACTION = "levels_points_action"
         LEVELS_POINTS_ADS = "levels_points_ads"
         LEVELS_POINTS_BURNED = "levels_points_burned"
         LEVELS_POINTS_CARD = "levels_points_card"

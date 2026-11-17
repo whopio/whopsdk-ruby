@@ -164,6 +164,7 @@ module Whop_sdk
       LEVELS_POINTS_ADS = "levels_points_ads"
       LEVELS_POINTS_TRADING = "levels_points_trading"
       LEVELS_POINTS_PARTNER = "levels_points_partner"
+      LEVELS_POINTS_ACTION = "levels_points_action"
       LEVELS_POINTS_BURNED = "levels_points_burned"
       LEVELS_POINTS_ISSUED = "levels_points_issued"
       LEVELS_REBATE = "levels_rebate"

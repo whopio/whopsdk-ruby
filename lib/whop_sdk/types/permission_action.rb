@@ -272,6 +272,7 @@ module Whop_sdk
       WEBHOOK_RECEIVE_APP_INSTALLATIONS = "webhook_receive:app_installations"
       WEBHOOK_RECEIVE_APP_MEMBERSHIPS = "webhook_receive:app_memberships"
       WEBHOOK_RECEIVE_APP_PAYMENTS = "webhook_receive:app_payments"
+      WEBHOOK_RECEIVE_CAPITAL = "webhook_receive:capital"
       WEBHOOK_RECEIVE_CARD_APPLICATIONS = "webhook_receive:card_applications"
       WEBHOOK_RECEIVE_CARD_TRANSACTIONS = "webhook_receive:card_transactions"
       WEBHOOK_RECEIVE_CARDS = "webhook_receive:cards"

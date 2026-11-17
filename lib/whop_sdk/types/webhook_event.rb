@@ -57,6 +57,8 @@ module Whop_sdk
       DOMAIN_CREATED = "domain.created"
       DOMAIN_UPDATED = "domain.updated"
       DOMAIN_DELETED = "domain.deleted"
+      CAPITAL_CREATED = "capital.created"
+      CAPITAL_UPDATED = "capital.updated"
       PAYOUT_METHOD_CREATED = "payout_method.created"
       VERIFICATION_SUCCEEDED = "verification.succeeded"
       IDENTITY_PROFILE_APPROVED = "identity_profile.approved"

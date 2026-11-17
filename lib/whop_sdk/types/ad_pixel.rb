@@ -3,6 +3,8 @@
 module Whop_sdk
   module Types
     class AdPixel < Internal::Types::Model
+      field :account, -> { Whop_sdk::Types::StorefrontAccount }, optional: false, nullable: false
+
       field :account_id, -> { String }, optional: false, nullable: false
 
       field :created_at, -> { String }, optional: false, nullable: false

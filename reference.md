@@ -25922,6 +25922,79 @@ client.livestreams.retrieve(id: "id")
 </dl>
 </details>
 
+<details><summary><code>client.livestreams.<a href="/lib/whop_sdk/livestreams/client.rb">add_co_host</a>(id:, request) -> Whop_sdk::Types::Livestream</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Makes someone in a live livestream a co-host until it ends. Co-hosts can change chat settings, manage the stage, and moderate chat, but can't end the livestream.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.livestreams.add_co_host(
+  id: "id",
+  user_id: "user_xxxxxxxxxxxxxx"
+)
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — Livestream ID, prefixed `lfeed_`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**user_id:** `String` — User ID, prefixed `user_`. The user needs access to the livestream.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Whop_sdk::Livestreams::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.livestreams.<a href="/lib/whop_sdk/livestreams/client.rb">pin</a>(id:, request) -> Whop_sdk::Types::Livestream</code></summary>
 <dl>
 <dd>
@@ -25981,6 +26054,79 @@ client.livestreams.pin(id: "id")
 <dd>
 
 **position:** `Integer` — Zero-based index in the experience's pinned livestreams after the change. Omit it to put a new pin first or keep an existing pin in place.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Whop_sdk::Livestreams::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.livestreams.<a href="/lib/whop_sdk/livestreams/client.rb">remove_co_host</a>(id:, request) -> Whop_sdk::Types::Livestream</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Removes a co-host from a live livestream.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.livestreams.remove_co_host(
+  id: "id",
+  user_id: "user_xxxxxxxxxxxxxx"
+)
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — Livestream ID, prefixed `lfeed_`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**user_id:** `String` — User ID, prefixed `user_`.
     
 </dd>
 </dl>

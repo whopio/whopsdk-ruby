@@ -13,6 +13,7 @@ module Whop_sdk
         IN_REVIEW = "in_review"
         LEARNING = "learning"
         PROCESSING = "processing"
+        REVISE_CONTENT = "revise_content"
         ISSUES = "issues"
         SCHEDULED = "scheduled"
         COMPLETED = "completed"

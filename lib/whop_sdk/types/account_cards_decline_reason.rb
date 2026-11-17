@@ -11,6 +11,7 @@ module Whop_sdk
       COMPLIANCE = "compliance"
       FRAUD = "fraud"
       VERIFICATION_FAILED = "verification_failed"
+      UNSUPPORTED_STATE = "unsupported_state"
       OTHER = "other"
     end
   end

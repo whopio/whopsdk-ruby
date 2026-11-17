@@ -7,12 +7,8 @@ module Whop_sdk
         extend Whop_sdk::Internal::Types::Enum
 
         PAYMENT_FAILED = "payment_failed"
-        WAITING_FOR_EIN = "waiting_for_ein"
-        IN_APPEAL = "in_appeal"
         ALL_ADS_REJECTED = "all_ads_rejected"
         DRAFT = "draft"
-        NO_AD_GROUPS = "no_ad_groups"
-        NO_ADS = "no_ads"
         PAUSED = "paused"
         IN_REVIEW = "in_review"
         LEARNING = "learning"
@@ -20,7 +16,6 @@ module Whop_sdk
         ISSUES = "issues"
         SCHEDULED = "scheduled"
         COMPLETED = "completed"
-        AD_GROUPS_OFF = "ad_groups_off"
         ACTIVE = "active"
       end
     end

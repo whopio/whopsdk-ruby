@@ -132,7 +132,7 @@ module Whop_sdk
 
       # Lists the users the caller referred onto Whop, newest first by default, each with the caller's total affiliate
       # earnings from that user across all tiers. Deprecated: this list is retired and no longer appears in the API
-      # reference. It keeps responding for existing integrations and has no replacement.
+      # reference. It stops responding after 2026-11-17 and has no replacement.
       #
       # @param request_options [Hash]
       # @param params [Hash]

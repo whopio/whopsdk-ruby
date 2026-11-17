@@ -113,6 +113,52 @@ module Whop_sdk
         end
       end
 
+      # Makes someone in a live livestream a co-host until it ends. Co-hosts can change chat settings, manage the stage,
+      # and moderate chat, but can't end the livestream.
+      #
+      # @param request_options [Hash]
+      # @param params [Whop_sdk::Livestreams::Types::AddCoHostLivestreamsRequest]
+      # @option request_options [String] :base_url
+      # @option request_options [Hash{String => Object}] :additional_headers
+      # @option request_options [Hash{String => Object}] :additional_query_parameters
+      # @option request_options [Hash{String => Object}] :additional_body_parameters
+      # @option request_options [Integer] :timeout_in_seconds
+      # @option params [String] :id
+      #
+      # @example
+      #   client.livestreams.add_co_host(
+      #     id: "id",
+      #     user_id: "user_xxxxxxxxxxxxxx"
+      #   )
+      #
+      # @return [Whop_sdk::Types::Livestream]
+      def add_co_host(request_options: {}, **params)
+        params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
+        request_data = Whop_sdk::Livestreams::Types::AddCoHostLivestreamsRequest.new(params).to_h
+        non_body_param_names = %w[id]
+        body = request_data.except(*non_body_param_names)
+
+        request = Whop_sdk::Internal::JSON::Request.new(
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
+          method: "POST",
+          path: "livestreams/#{URI.encode_uri_component(params[:id].to_s)}/add_co_host",
+          body: body,
+          request_options: request_options
+        )
+        begin
+          response = @client.send(request)
+        rescue Net::HTTPRequestTimeout
+          raise Whop_sdk::Errors::TimeoutError
+        end
+        code = response.code.to_i
+        if code.between?(200, 299)
+          (response.body.to_s.empty? ? nil : Whop_sdk::Types::Livestream.load(response.body))
+        else
+          error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
+          raise error_class.new(response.body, code: code)
+        end
+      end
+
       # Pins an ended livestream's recording so everyone in the experience sees it featured, up to 3 per experience.
       # Without `position`, a new pin goes first and an existing pin keeps its place. With `position`, the pin moves
       # there and every pinned livestream in that experience gets a new `pinned_at` in the new order.
@@ -140,6 +186,51 @@ module Whop_sdk
           base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "POST",
           path: "livestreams/#{URI.encode_uri_component(params[:id].to_s)}/pin",
+          body: body,
+          request_options: request_options
+        )
+        begin
+          response = @client.send(request)
+        rescue Net::HTTPRequestTimeout
+          raise Whop_sdk::Errors::TimeoutError
+        end
+        code = response.code.to_i
+        if code.between?(200, 299)
+          (response.body.to_s.empty? ? nil : Whop_sdk::Types::Livestream.load(response.body))
+        else
+          error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
+          raise error_class.new(response.body, code: code)
+        end
+      end
+
+      # Removes a co-host from a live livestream.
+      #
+      # @param request_options [Hash]
+      # @param params [Whop_sdk::Livestreams::Types::RemoveCoHostLivestreamsRequest]
+      # @option request_options [String] :base_url
+      # @option request_options [Hash{String => Object}] :additional_headers
+      # @option request_options [Hash{String => Object}] :additional_query_parameters
+      # @option request_options [Hash{String => Object}] :additional_body_parameters
+      # @option request_options [Integer] :timeout_in_seconds
+      # @option params [String] :id
+      #
+      # @example
+      #   client.livestreams.remove_co_host(
+      #     id: "id",
+      #     user_id: "user_xxxxxxxxxxxxxx"
+      #   )
+      #
+      # @return [Whop_sdk::Types::Livestream]
+      def remove_co_host(request_options: {}, **params)
+        params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
+        request_data = Whop_sdk::Livestreams::Types::RemoveCoHostLivestreamsRequest.new(params).to_h
+        non_body_param_names = %w[id]
+        body = request_data.except(*non_body_param_names)
+
+        request = Whop_sdk::Internal::JSON::Request.new(
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
+          method: "POST",
+          path: "livestreams/#{URI.encode_uri_component(params[:id].to_s)}/remove_co_host",
           body: body,
           request_options: request_options
         )

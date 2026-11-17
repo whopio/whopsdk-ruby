@@ -35,6 +35,7 @@ module Whop_sdk
       CLOSED_ACCOUNT = "closed_account"
       ISSUER_UNAVAILABLE = "issuer_unavailable"
       INVALID_ZIP = "invalid_zip"
+      INVALID_BILLING_ADDRESS = "invalid_billing_address"
       INVALID_EXPIRY_MONTH = "invalid_expiry_month"
       INVALID_EXPIRY_YEAR = "invalid_expiry_year"
       INVALID_EXPIRY = "invalid_expiry"

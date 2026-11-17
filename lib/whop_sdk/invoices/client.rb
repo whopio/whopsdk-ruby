@@ -31,6 +31,7 @@ module Whop_sdk
       # @option params [String, nil] :member_id
       # @option params [String, nil] :product_id
       # @option params [String, nil] :variant_id
+      # @option params [String, nil] :query
       # @option params [String, nil] :created_after
       # @option params [String, nil] :created_before
       # @option params [Whop_sdk::Invoices::Types::ListInvoicesRequestOrder, nil] :order
@@ -56,6 +57,7 @@ module Whop_sdk
         query_params["member_id"] = params[:member_id] if params.key?(:member_id)
         query_params["product_id"] = params[:product_id] if params.key?(:product_id)
         query_params["variant_id"] = params[:variant_id] if params.key?(:variant_id)
+        query_params["query"] = params[:query] if params.key?(:query)
         query_params["created_after"] = params[:created_after] if params.key?(:created_after)
         query_params["created_before"] = params[:created_before] if params.key?(:created_before)
         query_params["order"] = params[:order] if params.key?(:order)

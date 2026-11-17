@@ -9,6 +9,8 @@ module Whop_sdk
 
       field :effective_rate_percentage, -> { Integer }, optional: false, nullable: true
 
+      field :estimate, -> { Whop_sdk::Types::PaymentLevelsRebateEstimate }, optional: false, nullable: true
+
       field :ineligible_reason, -> { Whop_sdk::Types::PaymentLevelsRebateIneligibleReason }, optional: false, nullable: true
 
       field :level, -> { Integer }, optional: false, nullable: true

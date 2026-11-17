@@ -3,7 +3,7 @@
 module Whop_sdk
   module Types
     class UserLevel < Internal::Types::Model
-      field :applied_level, -> { Integer }, optional: false, nullable: false
+      field :current, -> { Integer }, optional: false, nullable: false
 
       field :levels, -> { Internal::Types::Array[Whop_sdk::Types::AccountProcessingOfferLevel] }, optional: false, nullable: true
 

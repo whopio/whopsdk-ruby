@@ -35,6 +35,8 @@ module Whop_sdk
 
           field :feedback_options, -> { Internal::Types::Array[Whop_sdk::Accounts::Preferences::Types::UpdatePreferencesRequestFeedbackOptionsItem] }, optional: true, nullable: false
 
+          field :merchant_of_record, -> { Whop_sdk::Accounts::Preferences::Types::UpdatePreferencesRequestMerchantOfRecord }, optional: true, nullable: false
+
           field :preferred_settlement_currency, -> { Whop_sdk::Accounts::Preferences::Types::UpdatePreferencesRequestPreferredSettlementCurrency }, optional: true, nullable: false
 
           field :renewal_reminder_emails, -> { Internal::Types::Boolean }, optional: true, nullable: false

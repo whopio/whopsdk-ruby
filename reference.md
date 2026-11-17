@@ -28149,6 +28149,14 @@ client.messages.list(channel_id: "channel_id")
 <dl>
 <dd>
 
+**include_replying_to_message:** `Internal::Types::Boolean` — Include the full replied-to message. Nested replies are not included.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **created_after:** `String` — Return messages created strictly after this ISO 8601 timestamp.
     
 </dd>
@@ -28445,6 +28453,14 @@ client.messages.retrieve(id: "id")
 <dd>
 
 **id:** `String` — Existing public message ID.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**include_replying_to_message:** `Internal::Types::Boolean` — Include the full replied-to message. Nested replies are not included.
     
 </dd>
 </dl>

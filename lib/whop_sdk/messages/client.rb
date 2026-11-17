@@ -36,6 +36,7 @@ module Whop_sdk
       # @option params [String, nil] :replying_to_message_id
       # @option params [Boolean, nil] :pinned
       # @option params [Boolean, nil] :include_deleted
+      # @option params [Boolean, nil] :include_replying_to_message
       # @option params [String, nil] :created_after
       # @option params [String, nil] :created_before
       # @option params [String, nil] :updated_after
@@ -61,6 +62,7 @@ module Whop_sdk
         query_params["replying_to_message_id"] = params[:replying_to_message_id] if params.key?(:replying_to_message_id)
         query_params["pinned"] = params[:pinned] if params.key?(:pinned)
         query_params["include_deleted"] = params[:include_deleted] if params.key?(:include_deleted)
+        query_params["include_replying_to_message"] = params[:include_replying_to_message] if params.key?(:include_replying_to_message)
         query_params["created_after"] = params[:created_after] if params.key?(:created_after)
         query_params["created_before"] = params[:created_before] if params.key?(:created_before)
         query_params["updated_after"] = params[:updated_after] if params.key?(:updated_after)
@@ -161,6 +163,7 @@ module Whop_sdk
       # @option request_options [Hash{String => Object}] :additional_body_parameters
       # @option request_options [Integer] :timeout_in_seconds
       # @option params [String] :id
+      # @option params [Boolean, nil] :include_replying_to_message
       #
       # @example
       #   client.messages.retrieve(id: "id")
@@ -168,10 +171,14 @@ module Whop_sdk
       # @return [Whop_sdk::Types::ChatMessage]
       def retrieve(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
+        query_params = {}
+        query_params["include_replying_to_message"] = params[:include_replying_to_message] if params.key?(:include_replying_to_message)
+
         request = Whop_sdk::Internal::JSON::Request.new(
           base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "GET",
           path: "messages/#{URI.encode_uri_component(params[:id].to_s)}",
+          query: query_params,
           request_options: request_options
         )
         begin

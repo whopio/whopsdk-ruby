@@ -12,6 +12,8 @@ module Whop_sdk
 
         field :include_deleted, -> { Internal::Types::Boolean }, optional: true, nullable: false
 
+        field :include_replying_to_message, -> { Internal::Types::Boolean }, optional: true, nullable: false
+
         field :created_after, -> { String }, optional: true, nullable: false
 
         field :created_before, -> { String }, optional: true, nullable: false

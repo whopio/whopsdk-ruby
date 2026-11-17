@@ -43,6 +43,8 @@ module Whop_sdk
 
       field :reaction_counts, -> { Internal::Types::Array[Whop_sdk::Types::MessageReactionCount] }, optional: false, nullable: false
 
+      field :replying_to_message, -> { Whop_sdk::Types::ChatMessage }, optional: true, nullable: false
+
       field :replying_to_message_id, -> { String }, optional: false, nullable: true
 
       field :replying_to_user_id, -> { String }, optional: false, nullable: true

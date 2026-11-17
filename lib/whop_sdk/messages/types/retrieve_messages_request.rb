@@ -5,6 +5,8 @@ module Whop_sdk
     module Types
       class RetrieveMessagesRequest < Internal::Types::Model
         field :id, -> { String }, optional: false, nullable: false
+
+        field :include_replying_to_message, -> { Internal::Types::Boolean }, optional: true, nullable: false
       end
     end
   end

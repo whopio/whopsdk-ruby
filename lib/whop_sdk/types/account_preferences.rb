@@ -43,6 +43,8 @@ module Whop_sdk
 
       field :feedback_options, -> { Internal::Types::Array[Whop_sdk::Types::FeedbackOption] }, optional: false, nullable: false
 
+      field :merchant_of_record, -> { Whop_sdk::Types::AccountPreferencesMerchantOfRecord }, optional: false, nullable: true
+
       field :preferred_settlement_currency, -> { Whop_sdk::Types::AccountPreferencesPreferredSettlementCurrency }, optional: false, nullable: true
 
       field :preferred_settlement_currency_changeable_at, -> { String }, optional: false, nullable: true

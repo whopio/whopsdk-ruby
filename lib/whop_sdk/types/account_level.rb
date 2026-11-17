@@ -5,9 +5,9 @@ module Whop_sdk
     class AccountLevel < Internal::Types::Model
       field :account_level, -> { Integer }, optional: false, nullable: false
 
-      field :applied_level, -> { Integer }, optional: false, nullable: false
-
       field :boosted, -> { Internal::Types::Boolean }, optional: false, nullable: false
+
+      field :current, -> { Integer }, optional: false, nullable: false
 
       field :levels, -> { Internal::Types::Array[Whop_sdk::Types::AccountProcessingOfferLevel] }, optional: false, nullable: false
 

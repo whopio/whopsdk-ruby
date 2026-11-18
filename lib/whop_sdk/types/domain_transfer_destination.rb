@@ -6,6 +6,7 @@ module Whop_sdk
       extend Whop_sdk::Internal::Types::Enum
 
       INTERNAL = "internal"
+      EXTERNAL = "external"
     end
   end
 end

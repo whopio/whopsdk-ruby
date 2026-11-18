@@ -3,6 +3,8 @@
 module Whop_sdk
   module Types
     class Invoice < Internal::Types::Model
+      field :account, -> { Whop_sdk::Types::AccountSummary }, optional: false, nullable: false
+
       field :account_id, -> { String }, optional: false, nullable: false
 
       field :amount_due, -> { Whop_sdk::Types::Money }, optional: false, nullable: false

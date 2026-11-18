@@ -428,6 +428,11 @@ module Whop_sdk
       @reactions ||= Whop_sdk::Reactions::Client.new(client: @raw_client, base_url: @base_url, environment: @environment)
     end
 
+    # @return [Whop_sdk::RecommendedActions::Client]
+    def recommended_actions
+      @recommended_actions ||= Whop_sdk::RecommendedActions::Client.new(client: @raw_client, base_url: @base_url, environment: @environment)
+    end
+
     # @return [Whop_sdk::Refunds::Client]
     def refunds
       @refunds ||= Whop_sdk::Refunds::Client.new(client: @raw_client, base_url: @base_url, environment: @environment)

@@ -37723,6 +37723,311 @@ client.reactions.delete(id: "reac_xxxxxxxxxxxxxxxxxxxxxx")
 </dl>
 </details>
 
+## Recommended Actions
+<details><summary><code>client.recommended_actions.<a href="/lib/whop_sdk/recommended_actions/client.rb">list</a>() -> Whop_sdk::RecommendedActions::Types::ListRecommendedActionsResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists the actions Whop recommends for accounts with Economic Intelligence, newest first.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.recommended_actions.list
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**account_id:** `String` — Only this account's actions, prefixed `biz_`. Without it, a user gets the actions of every account they can read that has Economic Intelligence. An account credential gets its own account.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**statuses:** `Whop_sdk::RecommendedActions::Types::ListRecommendedActionsRequestStatusesItem` — Only actions in any of these statuses. Repeat the parameter to pass several.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**order:** `Whop_sdk::RecommendedActions::Types::ListRecommendedActionsRequestOrder` — Field to sort by.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**direction:** `Whop_sdk::RecommendedActions::Types::ListRecommendedActionsRequestDirection` — Sort direction.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**first:** `Integer` — Number of results to return from the start of the range.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**after:** `String` — Return results after this cursor. Use `page_info.end_cursor` from the previous response to fetch the next page.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**last:** `Integer` — Number of results to return from the end of the range.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**before:** `String` — Return results before this cursor. Use `page_info.start_cursor` from the previous response to fetch the previous page.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Whop_sdk::RecommendedActions::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.recommended_actions.<a href="/lib/whop_sdk/recommended_actions/client.rb">retrieve</a>(id:) -> Whop_sdk::Types::RecommendedAction</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves one recommended action.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.recommended_actions.retrieve(id: "reca_xxxxxxxxxxxxx")
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — Recommended action ID, prefixed `reca_`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Whop_sdk::RecommendedActions::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.recommended_actions.<a href="/lib/whop_sdk/recommended_actions/client.rb">dismiss</a>(id:) -> Whop_sdk::Types::RecommendedAction</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Dismisses a `ready` or `preparing` action, so it does not run.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.recommended_actions.dismiss(id: "reca_xxxxxxxxxxxxx")
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — Recommended action ID, prefixed `reca_`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Whop_sdk::RecommendedActions::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.recommended_actions.<a href="/lib/whop_sdk/recommended_actions/client.rb">execute</a>(id:) -> Whop_sdk::Types::RecommendedAction</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Runs a `ready` action. The caller must be a user. The caller must also have every scope that the operations in the action's `workflow` steps need. Each step is sent in order, as the caller. The response returns when the run starts. Retrieve the action to follow the `status` of each step.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.recommended_actions.execute(id: "reca_xxxxxxxxxxxxx")
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — Recommended action ID, prefixed `reca_`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Whop_sdk::RecommendedActions::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Refunds
 <details><summary><code>client.refunds.<a href="/lib/whop_sdk/refunds/client.rb">list</a>() -> Whop_sdk::Refunds::Types::ListRefundsResponse</code></summary>
 <dl>

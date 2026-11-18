@@ -29,6 +29,8 @@ module Whop_sdk
       TRANSFER_REJECTED = "transfer_rejected"
       TRANSFER_NOT_CANCELLABLE = "transfer_not_cancellable"
       DOMAIN_TRANSFER_FAILED = "domain_transfer_failed"
+      TRANSFER_OUT_LOCKED = "transfer_out_locked"
+      REGISTRAR_UNAVAILABLE = "registrar_unavailable"
       APPLE_PAY_UNVERIFIED = "apple_pay_unverified"
       PIXEL_NOT_SEEN = "pixel_not_seen"
       PIXEL_NOT_INSTALLED = "pixel_not_installed"

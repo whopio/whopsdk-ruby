@@ -7,6 +7,8 @@ module Whop_sdk
 
       field :created_at, -> { String }, optional: false, nullable: true
 
+      field :deleted_at, -> { String }, optional: false, nullable: true
+
       field :id, -> { String }, optional: false, nullable: true
 
       field :inbox_status, -> { Whop_sdk::Types::ChannelMemberInboxStatus }, optional: false, nullable: true

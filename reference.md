@@ -12412,7 +12412,7 @@ client.cashback_rules.update(id: "id")
 <dl>
 <dd>
 
-List or search the people in a channel.
+List or search the current members of a channel. Set include_deleted to true to include former members with a deleted_at timestamp.
 </dd>
 </dl>
 </dd>
@@ -12483,6 +12483,14 @@ client.channel_members.list(channel_id: "channel_id")
 <dd>
 
 **query:** `String` — Search by name or username.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**include_deleted:** `Internal::Types::Boolean` — Include former members with a deleted_at timestamp. Defaults to current members only.
     
 </dd>
 </dl>
@@ -12943,7 +12951,7 @@ client.channels.list(kind: ["private"])
 <dl>
 <dd>
 
-**include_members:** `Internal::Types::Boolean` — Include the current members of private and support channels, including you, with their public profiles.
+**include_members:** `Whop_sdk::Channels::Types::ListChannelsRequestIncludeMembers` — Members to include for private and support channels, with their public profiles. `current` includes current members. `current_and_deleted` also includes former members, marked with `deleted_at`. Omit or pass `null` to leave out members.
     
 </dd>
 </dl>
@@ -13367,7 +13375,7 @@ client.channels.update(id: "id")
 <dl>
 <dd>
 
-Accept a direct-message request.
+Accept a direct-message request or restore a hidden conversation. Your membership must not have been removed.
 </dd>
 </dl>
 </dd>

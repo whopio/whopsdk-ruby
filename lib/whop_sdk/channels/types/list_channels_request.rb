@@ -36,7 +36,7 @@ module Whop_sdk
 
         field :order, -> { Whop_sdk::Channels::Types::ListChannelsRequestOrder }, optional: true, nullable: false
 
-        field :include_members, -> { Internal::Types::Boolean }, optional: true, nullable: false
+        field :include_members, -> { Whop_sdk::Channels::Types::ListChannelsRequestIncludeMembers }, optional: true, nullable: false
 
         field :include_last_message, -> { Internal::Types::Boolean }, optional: true, nullable: false
 

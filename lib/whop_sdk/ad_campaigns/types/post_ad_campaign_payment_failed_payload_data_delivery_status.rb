@@ -7,7 +7,7 @@ module Whop_sdk
         extend Whop_sdk::Internal::Types::Enum
 
         PAYMENT_FAILED = "payment_failed"
-        ALL_ADS_REJECTED = "all_ads_rejected"
+        REJECTED = "rejected"
         DRAFT = "draft"
         PAUSED = "paused"
         IN_REVIEW = "in_review"

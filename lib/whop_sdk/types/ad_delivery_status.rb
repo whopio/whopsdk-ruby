@@ -8,7 +8,6 @@ module Whop_sdk
       REJECTED = "rejected"
       IN_REVIEW = "in_review"
       DRAFT = "draft"
-      CAMPAIGN_PAUSED = "campaign_paused"
       PAUSED = "paused"
       PROCESSING = "processing"
       REVISE_CONTENT = "revise_content"

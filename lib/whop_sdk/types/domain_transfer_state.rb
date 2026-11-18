@@ -7,6 +7,7 @@ module Whop_sdk
 
       READY = "ready"
       PENDING = "pending"
+      RELEASING = "releasing"
     end
   end
 end

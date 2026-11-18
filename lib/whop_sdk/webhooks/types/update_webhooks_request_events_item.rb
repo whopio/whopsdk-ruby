@@ -86,6 +86,7 @@ module Whop_sdk
         AD_CAMPAIGN_UPDATED = "ad_campaign.updated"
         AD_CAMPAIGN_EVENTS = "ad_campaign.events"
         AD_CAMPAIGN_DELETED = "ad_campaign.deleted"
+        AD_CAMPAIGN_CLAIM_ENDED = "ad_campaign.claim_ended"
         AD_GROUP_CREATED = "ad_group.created"
         AD_GROUP_UPDATED = "ad_group.updated"
         AD_GROUP_DELETED = "ad_group.deleted"

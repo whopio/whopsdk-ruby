@@ -12,6 +12,8 @@ module Whop_sdk
 
         field :before, -> { String }, optional: true, nullable: false
 
+        field :include_total_count, -> { Internal::Types::Boolean }, optional: true, nullable: false
+
         field :variant_id, -> { String }, optional: true, nullable: false
 
         field :account_id, -> { String }, optional: true, nullable: false

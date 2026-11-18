@@ -15,6 +15,8 @@ module Whop_sdk
         field :channel_id, -> { String }, optional: false, nullable: false
 
         field :query, -> { String }, optional: true, nullable: false
+
+        field :include_deleted, -> { Internal::Types::Boolean }, optional: true, nullable: false
       end
     end
   end

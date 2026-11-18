@@ -39,7 +39,7 @@ module Whop_sdk
       # @option params [Boolean, nil] :viewed
       # @option params [Boolean, nil] :requested
       # @option params [Whop_sdk::Channels::Types::ListChannelsRequestOrder, nil] :order
-      # @option params [Boolean, nil] :include_members
+      # @option params [Whop_sdk::Channels::Types::ListChannelsRequestIncludeMembers, nil] :include_members
       # @option params [Boolean, nil] :include_last_message
       # @option params [Whop_sdk::Channels::Types::ListChannelsRequestDirection, nil] :direction
       # @option params [Boolean, nil] :include_deleted
@@ -266,7 +266,7 @@ module Whop_sdk
         end
       end
 
-      # Accept a direct-message request.
+      # Accept a direct-message request or restore a hidden conversation. Your membership must not have been removed.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::Channels::Types::AcceptChannelsRequest]

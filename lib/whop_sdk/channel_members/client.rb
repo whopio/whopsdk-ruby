@@ -14,7 +14,8 @@ module Whop_sdk
         @environment = environment
       end
 
-      # List or search the people in a channel.
+      # List or search the current members of a channel. Set include_deleted to true to include former members with a
+      # deleted_at timestamp.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -29,6 +30,7 @@ module Whop_sdk
       # @option params [String, nil] :before
       # @option params [String] :channel_id
       # @option params [String, nil] :query
+      # @option params [Boolean, nil] :include_deleted
       #
       # @example
       #   client.channel_members.list(channel_id: "channel_id")
@@ -43,6 +45,7 @@ module Whop_sdk
         query_params["before"] = params[:before] if params.key?(:before)
         query_params["channel_id"] = params[:channel_id] if params.key?(:channel_id)
         query_params["query"] = params[:query] if params.key?(:query)
+        query_params["include_deleted"] = params[:include_deleted] if params.key?(:include_deleted)
 
         Whop_sdk::Internal::CursorItemIterator.new(
           cursor_field: :end_cursor,

@@ -47,6 +47,8 @@ module Whop_sdk
 
           field :merchant_of_record, -> { Whop_sdk::Accounts::Preferences::Types::RetrievePreferencesResponseMerchantOfRecord }, optional: false, nullable: true
 
+          field :off_session_payment_rules, -> { Internal::Types::Boolean }, optional: false, nullable: false
+
           field :preferred_settlement_currency, -> { Whop_sdk::Accounts::Preferences::Types::RetrievePreferencesResponsePreferredSettlementCurrency }, optional: false, nullable: true
 
           field :preferred_settlement_currency_changeable_at, -> { String }, optional: false, nullable: true

@@ -9,6 +9,8 @@ module Whop_sdk
 
       field :locked, -> { Internal::Types::Boolean }, optional: false, nullable: false
 
+      field :message, -> { String }, optional: false, nullable: true
+
       field :paypal_threshold_usd, -> { Integer }, optional: false, nullable: true
     end
   end

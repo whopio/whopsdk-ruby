@@ -11,6 +11,8 @@ module Whop_sdk
 
       field :buyer, -> { Whop_sdk::Types::ResolutionBuyer }, optional: false, nullable: false
 
+      field :closed_at, -> { String }, optional: false, nullable: true
+
       field :created_at, -> { String }, optional: false, nullable: false
 
       field :currency, -> { String }, optional: false, nullable: true

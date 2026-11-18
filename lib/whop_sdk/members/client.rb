@@ -33,6 +33,8 @@ module Whop_sdk
       # @option params [String, nil] :product_ids
       # @option params [String, nil] :variant_ids
       # @option params [String, nil] :promo_code_ids
+      # @option params [String, nil] :affiliate_id
+      # @option params [String, nil] :buyer_account_ids
       # @option params [String, nil] :query
       # @option params [String, nil] :created_after
       # @option params [String, nil] :created_before
@@ -49,7 +51,9 @@ module Whop_sdk
       #     user_ids: ["user_xxxxxxxxxxxxxx"],
       #     product_ids: ["prod_xxxxxxxxxxxxx"],
       #     variant_ids: ["plan_xxxxxxxxxxxxx"],
-      #     promo_code_ids: ["promo_xxxxxxxxxxxx"]
+      #     promo_code_ids: ["promo_xxxxxxxxxxxx"],
+      #     affiliate_id: "aff_xxxxxxxxxxxxxx",
+      #     buyer_account_ids: ["biz_xxxxxxxxxxxxxx"]
       #   )
       #
       # @return [Whop_sdk::Members::Types::ListMembersResponse]
@@ -65,6 +69,8 @@ module Whop_sdk
         query_params["product_ids"] = params[:product_ids] if params.key?(:product_ids)
         query_params["variant_ids"] = params[:variant_ids] if params.key?(:variant_ids)
         query_params["promo_code_ids"] = params[:promo_code_ids] if params.key?(:promo_code_ids)
+        query_params["affiliate_id"] = params[:affiliate_id] if params.key?(:affiliate_id)
+        query_params["buyer_account_ids"] = params[:buyer_account_ids] if params.key?(:buyer_account_ids)
         query_params["query"] = params[:query] if params.key?(:query)
         query_params["created_after"] = params[:created_after] if params.key?(:created_after)
         query_params["created_before"] = params[:created_before] if params.key?(:created_before)

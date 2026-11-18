@@ -7,6 +7,8 @@ module Whop_sdk
 
       field :account_id, -> { String }, optional: false, nullable: false
 
+      field :buyer_account_id, -> { String }, optional: false, nullable: true
+
       field :created_at, -> { String }, optional: false, nullable: false
 
       field :display_name, -> { String }, optional: false, nullable: false

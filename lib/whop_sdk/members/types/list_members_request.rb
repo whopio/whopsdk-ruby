@@ -22,6 +22,10 @@ module Whop_sdk
 
         field :promo_code_ids, -> { String }, optional: true, nullable: false
 
+        field :affiliate_id, -> { String }, optional: true, nullable: false
+
+        field :buyer_account_ids, -> { String }, optional: true, nullable: false
+
         field :query, -> { String }, optional: true, nullable: false
 
         field :created_after, -> { String }, optional: true, nullable: false

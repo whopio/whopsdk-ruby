@@ -80,7 +80,7 @@ module Whop_sdk
       end
 
       # Creates a payment rule. It is created `active` and applies its `action` to new payments that match all of its
-      # `conditions`.
+      # `conditions`. A rule on a bank check field applies after the bank authorizes the card.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::PaymentRules::Types::CreatePaymentRulesRequest]
@@ -131,22 +131,28 @@ module Whop_sdk
       # and returned in full on one page.
       #
       # @param request_options [Hash]
-      # @param _params [Hash]
+      # @param params [Hash]
       # @option request_options [String] :base_url
       # @option request_options [Hash{String => Object}] :additional_headers
       # @option request_options [Hash{String => Object}] :additional_query_parameters
       # @option request_options [Hash{String => Object}] :additional_body_parameters
       # @option request_options [Integer] :timeout_in_seconds
+      # @option params [String, nil] :account_id
       #
       # @example
       #   client.payment_rules.list_fields
       #
       # @return [Whop_sdk::PaymentRules::Types::ListFieldsPaymentRulesResponse]
-      def list_fields(request_options: {}, **_params)
+      def list_fields(request_options: {}, **params)
+        params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
+        query_params = {}
+        query_params["account_id"] = params[:account_id] if params.key?(:account_id)
+
         request = Whop_sdk::Internal::JSON::Request.new(
           base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "GET",
           path: "payment_rules/fields",
+          query: query_params,
           request_options: request_options
         )
         begin

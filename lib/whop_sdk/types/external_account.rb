@@ -3,8 +3,6 @@
 module Whop_sdk
   module Types
     class ExternalAccount < Internal::Types::Model
-      field :error, -> { String }, optional: false, nullable: true
-
       field :external_id, -> { String }, optional: false, nullable: true
 
       field :id, -> { String }, optional: false, nullable: false

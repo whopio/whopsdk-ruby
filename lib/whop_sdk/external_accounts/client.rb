@@ -209,7 +209,7 @@ module Whop_sdk
         end
       end
 
-      # Refreshes the state of an external account. Use it to clear an `error` that has been resolved.
+      # Deprecated. Returns the external account unchanged.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::ExternalAccounts::Types::RefreshExternalAccountsRequest]

@@ -206,8 +206,7 @@ module Whop_sdk
         end
       end
 
-      # Deprecated compatibility endpoint. Refresh external accounts with `POST /external_accounts/{id}/refresh`
-      # instead.
+      # Deprecated compatibility endpoint. Returns the social account unchanged.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::SocialAccounts::Types::RefreshSocialAccountsRequest]

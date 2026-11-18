@@ -13,6 +13,8 @@ module Whop_sdk
 
       field :pending_settlements, -> { Internal::Types::Array[Whop_sdk::Types::AccountBalanceSettlement] }, optional: false, nullable: false
 
+      field :perps, -> { String }, optional: false, nullable: false
+
       field :reserve, -> { String }, optional: false, nullable: false
     end
   end

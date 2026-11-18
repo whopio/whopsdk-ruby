@@ -52,6 +52,8 @@ module Whop_sdk
 
         field :other_industry_description, -> { String }, optional: true, nullable: false
 
+        field :payment_controls, -> { Whop_sdk::Accounts::Types::UpdateAccountsRequestPaymentControls }, optional: true, nullable: false
+
         field :privacy_policy, -> { Whop_sdk::Accounts::Types::UpdateAccountsRequestPrivacyPolicy }, optional: true, nullable: false
 
         field :product_tax_code_id, -> { String }, optional: true, nullable: false

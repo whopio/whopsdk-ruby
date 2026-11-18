@@ -99,6 +99,8 @@ module Whop_sdk
 
       field :refunded_at, -> { String }, optional: false, nullable: true
 
+      field :resolution_center_ineligible_reason, -> { Whop_sdk::Types::PaymentResolutionCenterIneligibleReason }, optional: false, nullable: true
+
       field :response_due_at, -> { String }, optional: false, nullable: true
 
       field :retryable, -> { Internal::Types::Boolean }, optional: false, nullable: false

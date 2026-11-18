@@ -19,6 +19,14 @@ module Whop_sdk
         field :created_before, -> { String }, optional: true, nullable: false
 
         field :created_after, -> { String }, optional: true, nullable: false
+
+        field :product_ids, -> { String }, optional: true, nullable: false
+
+        field :payment_id, -> { String }, optional: true, nullable: false
+
+        field :payment_methods, -> { Whop_sdk::ResolutionCenterCases::Types::SummaryResolutionCenterCasesRequestPaymentMethodsItem }, optional: true, nullable: false
+
+        field :query, -> { String }, optional: true, nullable: false
       end
     end
   end

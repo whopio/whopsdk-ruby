@@ -14,8 +14,8 @@ module Whop_sdk
         @environment = environment
       end
 
-      # Lists resolution center cases. Without `account_id` you get every case you can read — the ones you opened as a
-      # buyer and every account you are a team member of; the filters narrow that list.
+      # Lists resolution center cases. Without `account_id` you get every case you can read: cases you opened as a
+      # buyer, and cases on accounts where you are on the team. The filters narrow that list.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -37,9 +37,16 @@ module Whop_sdk
       # @option params [Whop_sdk::ResolutionCenterCases::Types::ListResolutionCenterCasesRequestOutcomeItem, nil] :outcome
       # @option params [String, nil] :created_before
       # @option params [String, nil] :created_after
+      # @option params [String, nil] :product_ids
+      # @option params [String, nil] :payment_id
+      # @option params [Whop_sdk::ResolutionCenterCases::Types::ListResolutionCenterCasesRequestPaymentMethodsItem, nil] :payment_methods
+      # @option params [String, nil] :query
       #
       # @example
-      #   client.resolution_center_cases.list
+      #   client.resolution_center_cases.list(
+      #     product_ids: ["prod_xxxxxxxxxxxxx"],
+      #     payment_id: ["pay_xxxxxxxxxxxxxx"]
+      #   )
       #
       # @return [Whop_sdk::ResolutionCenterCases::Types::ListResolutionCenterCasesResponse]
       def list(request_options: {}, **params)
@@ -58,6 +65,10 @@ module Whop_sdk
         query_params["outcome"] = params[:outcome] if params.key?(:outcome)
         query_params["created_before"] = params[:created_before] if params.key?(:created_before)
         query_params["created_after"] = params[:created_after] if params.key?(:created_after)
+        query_params["product_ids"] = params[:product_ids] if params.key?(:product_ids)
+        query_params["payment_id"] = params[:payment_id] if params.key?(:payment_id)
+        query_params["payment_methods"] = params[:payment_methods] if params.key?(:payment_methods)
+        query_params["query"] = params[:query] if params.key?(:query)
 
         Whop_sdk::Internal::CursorItemIterator.new(
           cursor_field: :end_cursor,
@@ -148,9 +159,16 @@ module Whop_sdk
       # @option params [Whop_sdk::ResolutionCenterCases::Types::SummaryResolutionCenterCasesRequestOutcomeItem, nil] :outcome
       # @option params [String, nil] :created_before
       # @option params [String, nil] :created_after
+      # @option params [String, nil] :product_ids
+      # @option params [String, nil] :payment_id
+      # @option params [Whop_sdk::ResolutionCenterCases::Types::SummaryResolutionCenterCasesRequestPaymentMethodsItem, nil] :payment_methods
+      # @option params [String, nil] :query
       #
       # @example
-      #   client.resolution_center_cases.summary
+      #   client.resolution_center_cases.summary(
+      #     product_ids: ["prod_xxxxxxxxxxxxx"],
+      #     payment_id: ["pay_xxxxxxxxxxxxxx"]
+      #   )
       #
       # @return [Whop_sdk::ResolutionCenterCases::Types::SummaryResolutionCenterCasesResponse]
       def summary(request_options: {}, **params)
@@ -164,6 +182,10 @@ module Whop_sdk
         query_params["outcome"] = params[:outcome] if params.key?(:outcome)
         query_params["created_before"] = params[:created_before] if params.key?(:created_before)
         query_params["created_after"] = params[:created_after] if params.key?(:created_after)
+        query_params["product_ids"] = params[:product_ids] if params.key?(:product_ids)
+        query_params["payment_id"] = params[:payment_id] if params.key?(:payment_id)
+        query_params["payment_methods"] = params[:payment_methods] if params.key?(:payment_methods)
+        query_params["query"] = params[:query] if params.key?(:query)
 
         request = Whop_sdk::Internal::JSON::Request.new(
           base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
@@ -506,7 +528,7 @@ module Whop_sdk
       # Withdraws (cancels) a case you opened, as the customer. Only possible while the case is still open.
       #
       # @param request_options [Hash]
-      # @param params [Hash]
+      # @param params [Whop_sdk::ResolutionCenterCases::Types::WithdrawResolutionCenterCasesRequest]
       # @option request_options [String] :base_url
       # @option request_options [Hash{String => Object}] :additional_headers
       # @option request_options [Hash{String => Object}] :additional_query_parameters
@@ -520,10 +542,15 @@ module Whop_sdk
       # @return [Whop_sdk::Types::ResolutionCenterCase]
       def withdraw(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
+        request_data = Whop_sdk::ResolutionCenterCases::Types::WithdrawResolutionCenterCasesRequest.new(params).to_h
+        non_body_param_names = %w[id]
+        body = request_data.except(*non_body_param_names)
+
         request = Whop_sdk::Internal::JSON::Request.new(
           base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "POST",
           path: "resolution_center_cases/#{URI.encode_uri_component(params[:id].to_s)}/withdraw",
+          body: body,
           request_options: request_options
         )
         begin

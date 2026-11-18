@@ -5,6 +5,8 @@ module Whop_sdk
     module Types
       class WithdrawResolutionCenterCasesRequest < Internal::Types::Model
         field :id, -> { String }, optional: false, nullable: false
+
+        field :message, -> { String }, optional: true, nullable: false
       end
     end
   end

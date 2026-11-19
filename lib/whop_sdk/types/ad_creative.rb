@@ -13,6 +13,8 @@ module Whop_sdk
 
       field :media_type, -> { String }, optional: false, nullable: true
 
+      field :source_id, -> { String }, optional: false, nullable: true
+
       field :url, -> { String }, optional: false, nullable: true
     end
   end

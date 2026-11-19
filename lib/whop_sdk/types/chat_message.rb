@@ -25,6 +25,8 @@ module Whop_sdk
 
       field :embeds, -> { Internal::Types::Array[Whop_sdk::Types::Embed] }, optional: false, nullable: false
 
+      field :external_message, -> { Whop_sdk::Types::ExternalMessageEmail }, optional: false, nullable: true
+
       field :gifs, -> { Internal::Types::Array[Whop_sdk::Types::Gif] }, optional: false, nullable: false
 
       field :id, -> { String }, optional: false, nullable: false

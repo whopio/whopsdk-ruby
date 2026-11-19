@@ -11,6 +11,7 @@ module Whop_sdk
         SEPA = "sepa"
         FPS = "fps"
         CHAPS = "chaps"
+        SWIFT = "swift"
       end
     end
   end

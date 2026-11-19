@@ -478,6 +478,11 @@ module Whop_sdk
       @stats ||= Whop_sdk::Stats::Client.new(client: @raw_client, base_url: @base_url, environment: @environment)
     end
 
+    # @return [Whop_sdk::SuspensionAppeals::Client]
+    def suspension_appeals
+      @suspension_appeals ||= Whop_sdk::SuspensionAppeals::Client.new(client: @raw_client, base_url: @base_url, environment: @environment)
+    end
+
     # @return [Whop_sdk::Swaps::Client]
     def swaps
       @swaps ||= Whop_sdk::Swaps::Client.new(client: @raw_client, base_url: @base_url, environment: @environment)

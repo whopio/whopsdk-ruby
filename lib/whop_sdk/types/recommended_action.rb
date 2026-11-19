@@ -7,6 +7,8 @@ module Whop_sdk
 
       field :created_at, -> { String }, optional: false, nullable: false
 
+      field :experiment_id, -> { String }, optional: false, nullable: true
+
       field :id, -> { String }, optional: false, nullable: false
 
       field :preview, -> { Whop_sdk::Types::RecommendedActionPreview }, optional: false, nullable: true
@@ -20,6 +22,8 @@ module Whop_sdk
       field :run_started_at, -> { String }, optional: false, nullable: true
 
       field :status, -> { Whop_sdk::Types::RecommendedActionStatus }, optional: false, nullable: false
+
+      field :target_stats, -> { Internal::Types::Array[Whop_sdk::Types::RecommendedActionStat] }, optional: false, nullable: false
 
       field :title, -> { String }, optional: false, nullable: false
 

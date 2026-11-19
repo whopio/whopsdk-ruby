@@ -114,6 +114,56 @@ module Whop_sdk
         end
       end
 
+      # Edits the arguments of a `ready` action's steps before it runs. Send the action's `workflow` back with one entry
+      # for each step, in the same order. An entry with `arguments` replaces that step's arguments. An entry without
+      # them leaves the step as it is. Only `arguments` can change. Other step fields can be sent back only with the
+      # values the action has.
+      #
+      # @param request_options [Hash]
+      # @param params [Whop_sdk::RecommendedActions::Types::UpdateRecommendedActionsRequest]
+      # @option request_options [String] :base_url
+      # @option request_options [Hash{String => Object}] :additional_headers
+      # @option request_options [Hash{String => Object}] :additional_query_parameters
+      # @option request_options [Hash{String => Object}] :additional_body_parameters
+      # @option request_options [Integer] :timeout_in_seconds
+      # @option params [String] :id
+      #
+      # @example
+      #   client.recommended_actions.update(
+      #     id: "reca_xxxxxxxxxxxxx",
+      #     workflow: {
+      #       steps: [{}]
+      #     }
+      #   )
+      #
+      # @return [Whop_sdk::Types::RecommendedAction]
+      def update(request_options: {}, **params)
+        params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
+        request_data = Whop_sdk::RecommendedActions::Types::UpdateRecommendedActionsRequest.new(params).to_h
+        non_body_param_names = %w[id]
+        body = request_data.except(*non_body_param_names)
+
+        request = Whop_sdk::Internal::JSON::Request.new(
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
+          method: "PATCH",
+          path: "recommended_actions/#{URI.encode_uri_component(params[:id].to_s)}",
+          body: body,
+          request_options: request_options
+        )
+        begin
+          response = @client.send(request)
+        rescue Net::HTTPRequestTimeout
+          raise Whop_sdk::Errors::TimeoutError
+        end
+        code = response.code.to_i
+        if code.between?(200, 299)
+          (response.body.to_s.empty? ? nil : Whop_sdk::Types::RecommendedAction.load(response.body))
+        else
+          error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
+          raise error_class.new(response.body, code: code)
+        end
+      end
+
       # Dismisses a `ready` or `preparing` action, so it does not run.
       #
       # @param request_options [Hash]

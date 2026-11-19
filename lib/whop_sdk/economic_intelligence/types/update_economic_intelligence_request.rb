@@ -8,19 +8,7 @@ module Whop_sdk
 
         field :account_id, -> { String }, optional: true, nullable: false
 
-        field :input, -> { String }, optional: true, nullable: false
-
-        field :result_id, -> { String }, optional: true, nullable: false
-
-        field :result_page, -> { Whop_sdk::EconomicIntelligence::Types::UpdateEconomicIntelligenceRequestResultPage }, optional: true, nullable: false
-
-        field :result_url, -> { String }, optional: true, nullable: false
-
-        field :sentiment, -> { Whop_sdk::EconomicIntelligence::Types::UpdateEconomicIntelligenceRequestSentiment }, optional: true, nullable: false
-
-        field :status, -> { Whop_sdk::EconomicIntelligence::Types::UpdateEconomicIntelligenceRequestStatus }, optional: true, nullable: false
-
-        field :user_feedback, -> { String }, optional: true, nullable: false
+        field :status, -> { Whop_sdk::EconomicIntelligence::Types::UpdateEconomicIntelligenceRequestStatus }, optional: false, nullable: false
       end
     end
   end

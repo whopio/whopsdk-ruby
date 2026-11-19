@@ -18452,7 +18452,7 @@ client.domains.check(id: "id")
 <dl>
 <dd>
 
-Lists an account's recommendations, newest first by default. `status: ready` is what the account can act on now. Any other listing is its history of runs. Executed recommendations and runs stay listed after Economic Intelligence turns off, but new recommendations are offered only to businesses it is written for. For visitor countries, page views, ad impressions and clicks, or payment volume over a time range, use `GET /stats/time_series/:metric`.
+Deprecated. Use `GET /recommended_actions` instead. Lists an account's recommendations, newest first by default. `status: ready` lists what the account can act on now. Any other listing is its history of runs. Executed recommendations and runs stay listed after Economic Intelligence turns off. New recommendations are offered only to businesses it is written for. For visitor countries, page views, ad impressions and clicks, or payment volume over a time range, use `GET /stats/time_series/:metric`.
 </dd>
 </dl>
 </dd>
@@ -18491,14 +18491,6 @@ client.economic_intelligence.list
 <dd>
 
 **status:** `Whop_sdk::EconomicIntelligence::Types::ListEconomicIntelligenceRequestStatus` — `ready` lists the recommendations the account can run now. A run status lists only the runs in that state. `queued`, `pending` and `superseded` are no longer listed and answer nothing.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**input:** `String` — No longer read: recommendations are written for the business as it changes. Up to 1000 characters.
     
 </dd>
 </dl>
@@ -18586,7 +18578,7 @@ client.economic_intelligence.list
 <dl>
 <dd>
 
-Updates a recommendation status, records feedback, or both. Send `sentiment` to rate it. Include `status: superseded` to retire a ready recommendation. A rating alone leaves its status unchanged. To run a recommendation yourself, send `status: running` to start. Send `status: executed` when it is carried out, or `status: incomplete` if the run ended without carrying it out. With `executed`, name what changed in `result_id` or where the run worked in `result_page`, and the result links there. Whop AI reports its own runs the same way. Send `status: acknowledged` once an executed run's result has been seen.
+Deprecated. Use `POST /recommended_actions/:id/dismiss` instead.Dismisses a ready recommendation. Send `status: superseded`. A recommendation that is already superseded stays unchanged. Other statuses and fields return a `400` that names `/api/v1/recommended_actions`.
 </dd>
 </dl>
 </dd>
@@ -18601,7 +18593,10 @@ Updates a recommendation status, records feedback, or both. Send `sentiment` to 
 <dd>
 
 ```ruby
-client.economic_intelligence.update(id: "id")
+client.economic_intelligence.update(
+  id: "id",
+  status: "superseded"
+)
 ```
 </dd>
 </dl>
@@ -18632,55 +18627,7 @@ client.economic_intelligence.update(id: "id")
 <dl>
 <dd>
 
-**input:** `String` — No longer read: recommendations are written for the business as it changes. Up to 1000 characters.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**result_id:** `String` — With `status: executed`, the ID of what the run produced or changed, and the recommendation's `result_url` becomes where to view it: an ad (`ad_`), ad group (`adgrp_`) or ad campaign (`adcamp_`), a website (`app_`), a product (`prod_`), a plan (`plan_`), a checkout link (`ch_`), a promo code (`promo_`), or an experience (`exp_`). Without `result_id` or `result_page`, `result_url` links to the resource the recommendation was about, when it names one. Send only one of `result_id`, `result_page` and `result_url`.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**result_page:** `Whop_sdk::EconomicIntelligence::Types::UpdateEconomicIntelligenceRequestResultPage` — With `status: executed`, the page where the run's result can be seen when it is not one resource, such as the checkout links list. The recommendation's `result_url` becomes that page on the account's dashboard.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**result_url:** `String` — With `status: executed`, where to view what was produced when it is outside Whop. An http or https URL. Prefer `result_id` for anything on Whop.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**sentiment:** `Whop_sdk::EconomicIntelligence::Types::UpdateEconomicIntelligenceRequestSentiment` — A signed-in user can rate a recommendation as `positive` or `negative`. Can be sent alone or together with status.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**status:** `Whop_sdk::EconomicIntelligence::Types::UpdateEconomicIntelligenceRequestStatus` — Use `running` to start a run of a ready recommendation, `executed` to record that it was carried out, `incomplete` to record that a running recommendation's run ended without carrying it out, `superseded` to reject a ready recommendation, or `acknowledged` to mark an executed run as seen; the recommendation stays `executed` and records `acknowledged_at`.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**user_feedback:** `String` — An optional explanation of the rating or rejection.
+**status:** `Whop_sdk::EconomicIntelligence::Types::UpdateEconomicIntelligenceRequestStatus` — Use `superseded` to dismiss a ready recommendation.
     
 </dd>
 </dl>

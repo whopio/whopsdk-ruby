@@ -14,11 +14,11 @@ module Whop_sdk
         @environment = environment
       end
 
-      # Lists an account's recommendations, newest first by default. `status: ready` is what the account can act on now.
-      # Any other listing is its history of runs. Executed recommendations and runs stay listed after Economic
-      # Intelligence turns off, but new recommendations are offered only to businesses it is written for. For visitor
-      # countries, page views, ad impressions and clicks, or payment volume over a time range, use `GET
-      # /stats/time_series/:metric`.
+      # Deprecated. Use `GET /recommended_actions` instead. Lists an account's recommendations, newest first by default.
+      # `status: ready` lists what the account can act on now. Any other listing is its history of runs. Executed
+      # recommendations and runs stay listed after Economic Intelligence turns off. New recommendations are offered only
+      # to businesses it is written for. For visitor countries, page views, ad impressions and clicks, or payment volume
+      # over a time range, use `GET /stats/time_series/:metric`.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -29,7 +29,6 @@ module Whop_sdk
       # @option request_options [Integer] :timeout_in_seconds
       # @option params [String, nil] :account_id
       # @option params [Whop_sdk::EconomicIntelligence::Types::ListEconomicIntelligenceRequestStatus, nil] :status
-      # @option params [String, nil] :input
       # @option params [Boolean, nil] :has_run
       # @option params [Whop_sdk::EconomicIntelligence::Types::ListEconomicIntelligenceRequestOrder, nil] :order
       # @option params [Whop_sdk::EconomicIntelligence::Types::ListEconomicIntelligenceRequestDirection, nil] :direction
@@ -47,7 +46,6 @@ module Whop_sdk
         query_params = {}
         query_params["account_id"] = params[:account_id] if params.key?(:account_id)
         query_params["status"] = params[:status] if params.key?(:status)
-        query_params["input"] = params[:input] if params.key?(:input)
         query_params["has_run"] = params[:has_run] if params.key?(:has_run)
         query_params["order"] = params[:order] if params.key?(:order)
         query_params["direction"] = params[:direction] if params.key?(:direction)
@@ -85,12 +83,9 @@ module Whop_sdk
         end
       end
 
-      # Updates a recommendation status, records feedback, or both. Send `sentiment` to rate it. Include `status:
-      # superseded` to retire a ready recommendation. A rating alone leaves its status unchanged. To run a
-      # recommendation yourself, send `status: running` to start. Send `status: executed` when it is carried out, or
-      # `status: incomplete` if the run ended without carrying it out. With `executed`, name what changed in `result_id`
-      # or where the run worked in `result_page`, and the result links there. Whop AI reports its own runs the same way.
-      # Send `status: acknowledged` once an executed run's result has been seen.
+      # Deprecated. Use `POST /recommended_actions/:id/dismiss` instead.Dismisses a ready recommendation. Send `status:
+      # superseded`. A recommendation that is already superseded stays unchanged. Other statuses and fields return a
+      # `400` that names `/api/v1/recommended_actions`.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::EconomicIntelligence::Types::UpdateEconomicIntelligenceRequest]
@@ -103,7 +98,10 @@ module Whop_sdk
       # @option params [String, nil] :account_id
       #
       # @example
-      #   client.economic_intelligence.update(id: "id")
+      #   client.economic_intelligence.update(
+      #     id: "id",
+      #     status: "superseded"
+      #   )
       #
       # @return [Whop_sdk::Types::EconomicIntelligence]
       def update(request_options: {}, **params)

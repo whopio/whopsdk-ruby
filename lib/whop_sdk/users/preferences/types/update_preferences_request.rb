@@ -9,8 +9,6 @@ module Whop_sdk
 
           field :cards_auto_top_up, -> { Internal::Types::Boolean }, optional: true, nullable: false
 
-          field :show_earnings, -> { Internal::Types::Boolean }, optional: true, nullable: false
-
           field :show_joined_whops, -> { Internal::Types::Boolean }, optional: true, nullable: false
 
           field :show_level, -> { Internal::Types::Boolean }, optional: true, nullable: false

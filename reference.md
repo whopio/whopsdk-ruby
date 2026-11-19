@@ -53568,14 +53568,6 @@ client.users.preferences.update
 <dl>
 <dd>
 
-**show_earnings:** `Internal::Types::Boolean` — Whether to show the user's earnings on their profile.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
 **show_joined_whops:** `Internal::Types::Boolean` — Whether to show the whops the user joined on their profile.
     
 </dd>

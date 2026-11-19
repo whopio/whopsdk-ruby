@@ -267,7 +267,8 @@ module Whop_sdk
       # also needs active advertiser-supplier program access. Everyone else gets a 404. Returns 403 until the caller has
       # verified their identity and added a phone number and a social account. Returns 403 when the claim would take the
       # daily budget the caller holds past the limit for their score. Returns 409 when another user holds the campaign.
-      # Changes nothing when the caller already holds it.
+      # Changes nothing when the caller already holds it. Returns 429 when the caller already claimed the campaign in
+      # the last hour: a runner can claim each campaign once an hour.
       #
       # @param request_options [Hash]
       # @param params [Hash]

@@ -34,6 +34,7 @@ module Whop_sdk
         # @option params [String, nil] :destination_currency
         # @option params [Whop_sdk::Payouts::SupportedMethods::Types::ListSupportedMethodsRequestPartyType, nil] :party_type
         # @option params [Boolean, nil] :include_individual_banks
+        # @option params [Boolean, nil] :generic_only
         # @option params [Integer, nil] :first
         # @option params [String, nil] :after
         # @option params [Integer, nil] :last
@@ -55,6 +56,7 @@ module Whop_sdk
           query_params["destination_currency"] = params[:destination_currency] if params.key?(:destination_currency)
           query_params["party_type"] = params[:party_type] if params.key?(:party_type)
           query_params["include_individual_banks"] = params[:include_individual_banks] if params.key?(:include_individual_banks)
+          query_params["generic_only"] = params[:generic_only] if params.key?(:generic_only)
           query_params["first"] = params[:first] if params.key?(:first)
           query_params["after"] = params[:after] if params.key?(:after)
           query_params["last"] = params[:last] if params.key?(:last)

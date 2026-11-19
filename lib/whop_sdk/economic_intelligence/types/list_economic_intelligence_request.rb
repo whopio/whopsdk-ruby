@@ -8,8 +8,6 @@ module Whop_sdk
 
         field :status, -> { Whop_sdk::EconomicIntelligence::Types::ListEconomicIntelligenceRequestStatus }, optional: true, nullable: false
 
-        field :input, -> { String }, optional: true, nullable: false
-
         field :has_run, -> { Internal::Types::Boolean }, optional: true, nullable: false
 
         field :order, -> { Whop_sdk::EconomicIntelligence::Types::ListEconomicIntelligenceRequestOrder }, optional: true, nullable: false

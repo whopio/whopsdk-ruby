@@ -157,6 +157,10 @@ module Whop_sdk
         field :activity, -> { Whop_sdk::Stats::Types::RetrieveStatsRequestActivity }, optional: true, nullable: false
 
         field :breakdown_limit, -> { Integer }, optional: true, nullable: false
+
+        field :account_ids, -> { String }, optional: true, nullable: false
+
+        field :runner_ids, -> { String }, optional: true, nullable: false
       end
     end
   end

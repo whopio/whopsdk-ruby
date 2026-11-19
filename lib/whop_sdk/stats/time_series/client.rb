@@ -142,6 +142,8 @@ module Whop_sdk
         # @option params [String, nil] :team_lead_id
         # @option params [Whop_sdk::Stats::TimeSeries::Types::RetrieveTimeSeriesRequestActivity, nil] :activity
         # @option params [Integer, nil] :breakdown_limit
+        # @option params [String, nil] :account_ids
+        # @option params [String, nil] :runner_ids
         #
         # @example
         #   client.stats.time_series.retrieve(
@@ -150,7 +152,9 @@ module Whop_sdk
         #     to: "to",
         #     ad_campaign_ids: ["adcamp_xxxxxxxxxxxxxx"],
         #     ad_group_ids: ["adgrp_xxxxxxxxxxxxxx"],
-        #     ad_ids: ["ad_xxxxxxxxxxxxxx"]
+        #     ad_ids: ["ad_xxxxxxxxxxxxxx"],
+        #     account_ids: ["biz_xxxxxxxxxxxxxx"],
+        #     runner_ids: ["user_xxxxxxxxxxxxxx"]
         #   )
         #
         # @return [Whop_sdk::Stats::TimeSeries::Types::RetrieveTimeSeriesResponse]
@@ -233,6 +237,8 @@ module Whop_sdk
           query_params["team_lead_id"] = params[:team_lead_id] if params.key?(:team_lead_id)
           query_params["activity"] = params[:activity] if params.key?(:activity)
           query_params["breakdown_limit"] = params[:breakdown_limit] if params.key?(:breakdown_limit)
+          query_params["account_ids"] = params[:account_ids] if params.key?(:account_ids)
+          query_params["runner_ids"] = params[:runner_ids] if params.key?(:runner_ids)
 
           request = Whop_sdk::Internal::JSON::Request.new(
             base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),

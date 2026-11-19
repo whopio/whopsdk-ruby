@@ -41345,7 +41345,9 @@ client.stats.retrieve(
   to: "to",
   ad_campaign_ids: ["adcamp_xxxxxxxxxxxxxx"],
   ad_group_ids: ["adgrp_xxxxxxxxxxxxxx"],
-  ad_ids: ["ad_xxxxxxxxxxxxxx"]
+  ad_ids: ["ad_xxxxxxxxxxxxxx"],
+  account_ids: ["biz_xxxxxxxxxxxxxx"],
+  runner_ids: ["user_xxxxxxxxxxxxxx"]
 )
 ```
 </dd>
@@ -41970,6 +41972,22 @@ client.stats.retrieve(
 <dd>
 
 **breakdown_limit:** `Integer` — With a single breakdown_by, keep the groups with the highest whole-range values, up to this many, and fold every other group into one entry named other. A rate or an average ranks its groups by the deals it divides by. The other entry is measured from the underlying rows, so a distinct count or a rate stays exact rather than being added up from groups. Available on partner metrics only.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**account_ids:** `String` — Business ids (biz_...) to scope the series to; the series sums their figures. Available on metrics that list account_ids.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**runner_ids:** `String` — Runner user ids (user_...) to scope the series to; the series sums the figures of the campaigns they hold. Available on metrics that list runner_ids.
     
 </dd>
 </dl>
@@ -51907,7 +51925,9 @@ client.stats.time_series.retrieve(
   to: "to",
   ad_campaign_ids: ["adcamp_xxxxxxxxxxxxxx"],
   ad_group_ids: ["adgrp_xxxxxxxxxxxxxx"],
-  ad_ids: ["ad_xxxxxxxxxxxxxx"]
+  ad_ids: ["ad_xxxxxxxxxxxxxx"],
+  account_ids: ["biz_xxxxxxxxxxxxxx"],
+  runner_ids: ["user_xxxxxxxxxxxxxx"]
 )
 ```
 </dd>
@@ -52532,6 +52552,22 @@ client.stats.time_series.retrieve(
 <dd>
 
 **breakdown_limit:** `Integer` — With a single breakdown_by, keep the groups with the highest whole-range values, up to this many, and fold every other group into one entry named other. A rate or an average ranks its groups by the deals it divides by. The other entry is measured from the underlying rows, so a distinct count or a rate stays exact rather than being added up from groups. Available on partner metrics only.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**account_ids:** `String` — Business ids (biz_...) to scope the series to; the series sums their figures. Available on metrics that list account_ids.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**runner_ids:** `String` — Runner user ids (user_...) to scope the series to; the series sums the figures of the campaigns they hold. Available on metrics that list runner_ids.
     
 </dd>
 </dl>

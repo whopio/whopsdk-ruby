@@ -17,6 +17,8 @@ module Whop_sdk
 
           field :cancellation_emails, -> { Internal::Types::Boolean }, optional: false, nullable: false
 
+          field :card_surcharge, -> { Whop_sdk::Types::CardSurchargePreferences }, optional: false, nullable: false
+
           field :cards_auto_top_up, -> { Internal::Types::Boolean }, optional: false, nullable: false
 
           field :cards_notifications, -> { Internal::Types::Boolean }, optional: false, nullable: false

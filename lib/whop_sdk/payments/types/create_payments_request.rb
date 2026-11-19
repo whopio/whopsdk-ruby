@@ -6,6 +6,8 @@ module Whop_sdk
       class CreatePaymentsRequest < Internal::Types::Model
         field :affiliate_code, -> { String }, optional: true, nullable: false
 
+        field :apply_surcharge, -> { Internal::Types::Boolean }, optional: true, nullable: false
+
         field :auto_capture_after_minutes, -> { Integer }, optional: true, nullable: false
 
         field :billing_address, -> { Whop_sdk::Payments::Types::CreatePaymentsRequestBillingAddress }, optional: true, nullable: false

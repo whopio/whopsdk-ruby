@@ -7,6 +7,8 @@ module Whop_sdk
 
       field :cards_auto_top_up, -> { Internal::Types::Boolean }, optional: false, nullable: false
 
+      field :show_level, -> { Internal::Types::Boolean }, optional: false, nullable: false
+
       field :terms_accepted, -> { Internal::Types::Boolean }, optional: false, nullable: false
 
       field :terms_accepted_at, -> { String }, optional: false, nullable: true

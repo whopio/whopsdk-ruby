@@ -24,6 +24,8 @@ module Whop_sdk
 
         field :id, -> { String }, optional: true, nullable: false
 
+        field :identity_document, -> { Whop_sdk::Verifications::Types::CreateVerificationsResponseIdentityDocument }, optional: true, nullable: false
+
         field :incorporation_date, -> { String }, optional: true, nullable: false
 
         field :kind, -> { Whop_sdk::Verifications::Types::CreateVerificationsResponseKind }, optional: true, nullable: false
@@ -41,6 +43,8 @@ module Whop_sdk
         field :requested_information, -> { Internal::Types::Array[Whop_sdk::Verifications::Types::CreateVerificationsResponseRequestedInformationItem] }, optional: true, nullable: false
 
         field :required_documents, -> { Internal::Types::Array[Whop_sdk::Verifications::Types::CreateVerificationsResponseRequiredDocumentsItem] }, optional: true, nullable: false
+
+        field :selfie, -> { Whop_sdk::Verifications::Types::CreateVerificationsResponseSelfie }, optional: true, nullable: false
 
         field :session_url, -> { String }, optional: true, nullable: false
 

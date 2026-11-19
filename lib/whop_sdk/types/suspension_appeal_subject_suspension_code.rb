@@ -6,8 +6,11 @@ module Whop_sdk
       extend Whop_sdk::Internal::Types::Enum
 
       FRAUDULENT_ACTIVITY = "fraudulent_activity"
+      UNAUTHORIZED_PAYMENTS = "unauthorized_payments"
+      PREVIOUS_FRAUD_SUSPENSION = "previous_fraud_suspension"
       PROHIBITED_BUSINESS_CATEGORY = "prohibited_business_category"
       UNVERIFIABLE_BUSINESS = "unverifiable_business"
+      UNVERIFIABLE_FULFILLMENT = "unverifiable_fulfillment"
       SANCTIONS = "sanctions"
       UNSUPPORTED_JURISDICTION = "unsupported_jurisdiction"
       PROHIBITED_CONTENT = "prohibited_content"

@@ -121,6 +121,8 @@ module Whop_sdk
 
       field :subtotal, -> { Whop_sdk::Types::Money }, optional: false, nullable: true
 
+      field :surcharge, -> { Whop_sdk::Types::Money }, optional: false, nullable: true
+
       field :tax_amount, -> { Whop_sdk::Types::Money }, optional: false, nullable: true
 
       field :tax_behavior, -> { Whop_sdk::Types::ReceiptTaxBehaviors }, optional: false, nullable: true

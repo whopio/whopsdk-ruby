@@ -49792,6 +49792,14 @@ client.partners.businesses.list
 <dl>
 <dd>
 
+**counted_in_network_volume:** `Internal::Types::Boolean` — When true, only the referrals that the `partner_network_volume` series count today. A referral whose window has ended is left out. Requires `referring_account_id`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **first:** `Integer` — Number of results to return from the start of the range.
     
 </dd>
@@ -51484,6 +51492,156 @@ client.stats.reports.list
 
 <dl>
 <dd>
+
+<dl>
+<dd>
+
+**request_options:** `Whop_sdk::Stats::Reports::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.stats.reports.<a href="/lib/whop_sdk/stats/reports/client.rb">partner_revenue_lines</a>() -> Whop_sdk::Stats::Reports::Types::PartnerRevenueLinesReportsResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+The revenue lines charged to the businesses that the team of a partner business referred. Each row shows the commission paid to the partner business on that line. Lines that share an income source show the whole commission of that source. A team member who is not an owner sees only the referrals of their own team. While a day of the window is still being read, `commission` and `paid` are `null` on every row. A line may be missing. The days fill within minutes, so read the report again.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.stats.reports.partner_revenue_lines(referring_account_id: "referring_account_id")
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**referring_account_id:** `String` — Partner business to report on, prefixed `biz_`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**breakdown_by:** `Whop_sdk::Stats::Reports::Types::PartnerRevenueLinesReportsRequestBreakdownBy` — `revenue_line` for one row per revenue line. Omit it for one row per window with the total commission.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**columns:** `String` — Comma-separated columns to return on each row. Defaults to `commission,paid`. `income_source` is available on `revenue_line` rows.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**windows:** `String` — Comma-separated windows of at most 366 days, at most four, in the syntax every report accepts. Each window covers whole days, through the end of its last day. A `prev:` window covers as many days and ends where the window it precedes starts. Defaults to `30d`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**time_zone:** `String` — IANA zone that the days of each window fall in. Defaults to `Etc/UTC`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**revenue_line:** `String` — Comma-separated revenue lines to keep.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**income_source:** `String` — Comma-separated income sources to keep.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**order:** `Whop_sdk::Stats::Reports::Types::PartnerRevenueLinesReportsRequestOrder` — The requested metric that ranks rows, by its value in the first window. Defaults to the first requested metric.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**direction:** `Whop_sdk::Stats::Reports::Types::PartnerRevenueLinesReportsRequestDirection` — Ranking direction. Defaults to `desc`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**convert_to:** `String` — Currency code to return money in. Defaults to `usd`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**first:** `Integer` — Number of results to return from the start of the range.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**after:** `String` — Return results after this cursor. Use `page_info.end_cursor` from the previous response to fetch the next page.
+    
+</dd>
+</dl>
 
 <dl>
 <dd>

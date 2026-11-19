@@ -19,6 +19,8 @@ module Whop_sdk
 
           field :id, -> { String }, optional: false, nullable: false
 
+          field :instant_unavailable_reason, -> { Whop_sdk::Payouts::Methods::Types::UpdateMethodsResponseInstantUnavailableReason }, optional: false, nullable: true
+
           field :institution_name, -> { String }, optional: false, nullable: true
 
           field :is_clone, -> { Internal::Types::Boolean }, optional: false, nullable: false

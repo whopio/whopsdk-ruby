@@ -8,6 +8,7 @@ module Whop_sdk
 
         CREATED_AT = "created_at"
         RUN_STARTED_AT = "run_started_at"
+        LIFT = "lift"
       end
     end
   end

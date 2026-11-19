@@ -37806,7 +37806,7 @@ client.recommended_actions.list
 <dl>
 <dd>
 
-**order:** `Whop_sdk::RecommendedActions::Types::ListRecommendedActionsRequestOrder` — Field to sort by.
+**order:** `Whop_sdk::RecommendedActions::Types::ListRecommendedActionsRequestOrder` — Field to sort by. With `lift`, the list holds only the actions whose experiment has a result. The action with the highest lift on its primary stat is first.
     
 </dd>
 </dl>

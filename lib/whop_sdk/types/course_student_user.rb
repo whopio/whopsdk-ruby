@@ -8,6 +8,8 @@ module Whop_sdk
 
       field :name, -> { String }, optional: false, nullable: true
 
+      field :profile_picture, -> { Whop_sdk::Types::CourseStudentUserProfilePicture }, optional: false, nullable: true
+
       field :username, -> { String }, optional: false, nullable: false
     end
   end

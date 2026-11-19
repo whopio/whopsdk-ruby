@@ -16,6 +16,8 @@ module Whop_sdk
 
       field :description, -> { String }, optional: false, nullable: true
 
+      field :experience, -> { Whop_sdk::Types::CourseListItemExperience }, optional: false, nullable: false
+
       field :id, -> { String }, optional: false, nullable: false
 
       field :language, -> { Whop_sdk::Types::Languages }, optional: false, nullable: false

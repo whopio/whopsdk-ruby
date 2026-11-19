@@ -28,6 +28,7 @@ module Whop_sdk
         # @option params [Whop_sdk::Partners::Businesses::Types::ListBusinessesRequestAdvanceStatus, nil] :advance_status
         # @option params [Whop_sdk::Partners::Businesses::Types::ListBusinessesRequestStatus, nil] :status
         # @option params [Boolean, nil] :has_earnings
+        # @option params [Boolean, nil] :counted_in_network_volume
         # @option params [Integer, nil] :first
         # @option params [String, nil] :after
         # @option params [Integer, nil] :last
@@ -56,6 +57,7 @@ module Whop_sdk
           query_params["advance_status"] = params[:advance_status] if params.key?(:advance_status)
           query_params["status"] = params[:status] if params.key?(:status)
           query_params["has_earnings"] = params[:has_earnings] if params.key?(:has_earnings)
+          query_params["counted_in_network_volume"] = params[:counted_in_network_volume] if params.key?(:counted_in_network_volume)
           query_params["first"] = params[:first] if params.key?(:first)
           query_params["after"] = params[:after] if params.key?(:after)
           query_params["last"] = params[:last] if params.key?(:last)

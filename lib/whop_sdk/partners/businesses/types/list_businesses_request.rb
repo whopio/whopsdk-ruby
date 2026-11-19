@@ -13,6 +13,8 @@ module Whop_sdk
 
           field :has_earnings, -> { Internal::Types::Boolean }, optional: true, nullable: false
 
+          field :counted_in_network_volume, -> { Internal::Types::Boolean }, optional: true, nullable: false
+
           field :first, -> { Integer }, optional: true, nullable: false
 
           field :after, -> { String }, optional: true, nullable: false

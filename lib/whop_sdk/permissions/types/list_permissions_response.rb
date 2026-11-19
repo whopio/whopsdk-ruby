@@ -4,7 +4,7 @@ module Whop_sdk
   module Permissions
     module Types
       class ListPermissionsResponse < Internal::Types::Model
-        field :data, -> { Internal::Types::Array[Whop_sdk::Permissions::Types::ListPermissionsResponseDataItem] }, optional: false, nullable: false
+        field :data, -> { Internal::Types::Array[Whop_sdk::Types::PermissionGrant] }, optional: false, nullable: false
       end
     end
   end

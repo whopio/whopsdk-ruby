@@ -17,6 +17,8 @@ module Whop_sdk
 
       field :is_default_for_resource, -> { Internal::Types::Boolean }, optional: false, nullable: false
 
+      field :last_used_at, -> { String }, optional: false, nullable: true
+
       field :name, -> { String }, optional: false, nullable: true
 
       field :obfuscated_secret_key, -> { String }, optional: false, nullable: false

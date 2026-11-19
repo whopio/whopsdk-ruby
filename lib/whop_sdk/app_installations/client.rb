@@ -31,10 +31,12 @@ module Whop_sdk
       # @option params [String, nil] :external_id
       # @option params [String, nil] :created_before
       # @option params [String, nil] :created_after
+      # @option params [Boolean, nil] :requesting_reauthorization
       # @option params [Integer, nil] :first
       # @option params [String, nil] :after
       # @option params [Integer, nil] :last
       # @option params [String, nil] :before
+      # @option params [Boolean, nil] :include_total_count
       # @option params [Whop_sdk::AppInstallations::Types::ListAppInstallationsRequestOrder, nil] :order
       # @option params [Whop_sdk::AppInstallations::Types::ListAppInstallationsRequestDirection, nil] :direction
       #
@@ -51,10 +53,12 @@ module Whop_sdk
         query_params["external_id"] = params[:external_id] if params.key?(:external_id)
         query_params["created_before"] = params[:created_before] if params.key?(:created_before)
         query_params["created_after"] = params[:created_after] if params.key?(:created_after)
+        query_params["requesting_reauthorization"] = params[:requesting_reauthorization] if params.key?(:requesting_reauthorization)
         query_params["first"] = params[:first] if params.key?(:first)
         query_params["after"] = params[:after] if params.key?(:after)
         query_params["last"] = params[:last] if params.key?(:last)
         query_params["before"] = params[:before] if params.key?(:before)
+        query_params["include_total_count"] = params[:include_total_count] if params.key?(:include_total_count)
         query_params["order"] = params[:order] if params.key?(:order)
         query_params["direction"] = params[:direction] if params.key?(:direction)
 

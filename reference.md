@@ -51264,6 +51264,14 @@ client.payouts.supported_methods.list
 <dl>
 <dd>
 
+**generic_only:** `Internal::Types::Boolean` — In countries that list methods by payout route, only list one generic method per route and receiving currency. Each is the method that costs least for the amount, and has `category` and `rail` set. Returns an empty list there when no generic method is available. Other countries list as without this parameter.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **first:** `Integer` — Number of results to return from the start of the range.
     
 </dd>

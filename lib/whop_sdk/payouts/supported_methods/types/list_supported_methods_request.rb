@@ -23,6 +23,8 @@ module Whop_sdk
 
           field :include_individual_banks, -> { Internal::Types::Boolean }, optional: true, nullable: false
 
+          field :generic_only, -> { Internal::Types::Boolean }, optional: true, nullable: false
+
           field :first, -> { Integer }, optional: true, nullable: false
 
           field :after, -> { String }, optional: true, nullable: false

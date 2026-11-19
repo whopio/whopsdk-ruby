@@ -5,6 +5,8 @@ module Whop_sdk
     module SupportedMethods
       module Types
         class ListSupportedMethodsResponseDataItem < Internal::Types::Model
+          field :category, -> { Whop_sdk::Payouts::SupportedMethods::Types::ListSupportedMethodsResponseDataItemCategory }, optional: false, nullable: true
+
           field :delivery_type, -> { Whop_sdk::Payouts::SupportedMethods::Types::ListSupportedMethodsResponseDataItemDeliveryType }, optional: false, nullable: false
 
           field :fee_structure, -> { Whop_sdk::Payouts::SupportedMethods::Types::ListSupportedMethodsResponseDataItemFeeStructure }, optional: false, nullable: false
@@ -20,6 +22,8 @@ module Whop_sdk
           field :parent_id, -> { String }, optional: false, nullable: true
 
           field :quotes, -> { Internal::Types::Array[Whop_sdk::Payouts::SupportedMethods::Types::ListSupportedMethodsResponseDataItemQuotesItem] }, optional: false, nullable: true
+
+          field :rail, -> { String }, optional: false, nullable: true
 
           field :required_fields, -> { Internal::Types::Array[Whop_sdk::Payouts::SupportedMethods::Types::ListSupportedMethodsResponseDataItemRequiredFieldsItem] }, optional: false, nullable: true
 

@@ -26379,10 +26379,7 @@ Starts an AI media generation job billed from the account's balance. Generation 
 <dd>
 
 ```ruby
-client.media.generate(
-  prompt: "A 9:16 product showcase of a cordless power scrubber",
-  type: "video"
-)
+client.media.generate(type: "video")
 ```
 </dd>
 </dl>
@@ -26405,6 +26402,14 @@ client.media.generate(
 <dl>
 <dd>
 
+**ad_video:** `Whop_sdk::Media::Types::GenerateMediaRequestAdVideo` — Makes a video ad: Whop writes the prompt, picks product photos, and adds a voiceover with captions. The video is 15 seconds at `720p` in 9:16. Video only. Can't be combined with `prompt`, `reference_media`, `duration_seconds` or `resolution`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **duration_seconds:** `Integer` — Video length in seconds. Video only; defaults to 5.
     
 </dd>
@@ -26413,7 +26418,7 @@ client.media.generate(
 <dl>
 <dd>
 
-**prompt:** `String` — What to generate. Up to 2,000 characters.
+**prompt:** `String` — What to generate. Up to 2,000 characters. Required unless `ad_video` is set.
     
 </dd>
 </dl>

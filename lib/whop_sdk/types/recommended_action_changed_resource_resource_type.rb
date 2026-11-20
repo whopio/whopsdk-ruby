@@ -2,7 +2,7 @@
 
 module Whop_sdk
   module Types
-    module RecommendedActionChangedResourceObject
+    module RecommendedActionChangedResourceResourceType
       extend Whop_sdk::Internal::Types::Enum
 
       VARIANT = "variant"

@@ -27,6 +27,8 @@ module Whop_sdk
 
       field :id, -> { String }, optional: false, nullable: false
 
+      field :kind, -> { Whop_sdk::Types::ExperimentKind }, optional: true, nullable: false
+
       field :metadata, -> { Internal::Types::Hash[String, String] }, optional: true, nullable: false
 
       field :name, -> { String }, optional: false, nullable: false
@@ -36,6 +38,8 @@ module Whop_sdk
       field :started_at, -> { String }, optional: true, nullable: false
 
       field :status, -> { Whop_sdk::Types::ExperimentStatus }, optional: false, nullable: false
+
+      field :target_stats, -> { Internal::Types::Array[Whop_sdk::Types::ExperimentStat] }, optional: true, nullable: false
 
       field :updated_at, -> { String }, optional: false, nullable: true
 

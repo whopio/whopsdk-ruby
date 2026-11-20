@@ -20862,7 +20862,7 @@ client.experiments.retrieve(id: "id")
 <dl>
 <dd>
 
-**id:** `String` — The experiment identifier — the `expt_` id or the flag_key handle.
+**id:** `String` — The experiment identifier, the `expt_` id or the `flag_key` handle.
     
 </dd>
 </dl>
@@ -20870,7 +20870,7 @@ client.experiments.retrieve(id: "id")
 <dl>
 <dd>
 
-**account_id:** `String` — Owning account ID. Required when id is a flag key; optional for an expt_ ID.
+**account_id:** `String` — Owning account ID. Required when `id` is a flag key, optional for an `expt_` ID.
     
 </dd>
 </dl>
@@ -20932,7 +20932,7 @@ client.experiments.update(id: "id")
 <dl>
 <dd>
 
-**id:** `String` — The experiment identifier — the `expt_` id or the flag_key handle.
+**id:** `String` — The experiment identifier, the `expt_` id or the `flag_key` handle.
     
 </dd>
 </dl>
@@ -20940,7 +20940,7 @@ client.experiments.update(id: "id")
 <dl>
 <dd>
 
-**account_id:** `String` — Owning account ID. Required when id is a flag key; optional for an expt_ ID.
+**account_id:** `String` — Owning account ID. Required when `id` is a flag key, optional for an `expt_` ID.
     
 </dd>
 </dl>
@@ -21004,7 +21004,7 @@ client.experiments.update(id: "id")
 <dl>
 <dd>
 
-Starts (or resumes) an experiment or feature flag so evaluation begins serving it. Activating a draft stamps `started_at`; resuming a paused experiment keeps the original start. Only drafts and paused experiments can be activated. Requires `experiment:manage` on the owning account. Activating needs Economic Intelligence on for the owning account: while the account's `economic_intelligence` is `false`, this returns a `403` and the experiment keeps its status. Turn it on with `PATCH /accounts/:account_id/preferences`. Creating, editing, pausing and ending an experiment don't need it.
+Starts or resumes an experiment or feature flag so evaluation begins serving it. Activating a draft sets `started_at`. Activating a paused experiment keeps the original start. Only drafts and paused experiments can be activated. Requires `experiment:manage` on the owning account. Activating needs Economic Intelligence on for the owning account. When it is off, the request returns `403` and the experiment keeps its status. Turn it on with `PATCH /accounts/:account_id/preferences`. Creating, editing, pausing, and ending an experiment without a winner do not need it.
 </dd>
 </dl>
 </dd>
@@ -21034,7 +21034,7 @@ client.experiments.activate(id: "id")
 <dl>
 <dd>
 
-**id:** `String` — The experiment identifier — the `expt_` id or the flag_key handle.
+**id:** `String` — The experiment identifier, the `expt_` id or the `flag_key` handle.
     
 </dd>
 </dl>
@@ -21042,7 +21042,7 @@ client.experiments.activate(id: "id")
 <dl>
 <dd>
 
-**account_id:** `String` — Owning account ID. Required when id is a flag key; optional for an expt_ ID.
+**account_id:** `String` — Owning account ID. Required when `id` is a flag key, optional for an `expt_` ID.
     
 </dd>
 </dl>
@@ -21074,7 +21074,7 @@ client.experiments.activate(id: "id")
 <dl>
 <dd>
 
-Concludes the experiment and records required `findings`. Pass `winning_arm` to serve the winning treatment to everyone; omit it when control won. Ended experiments cannot restart, but may be ended again to correct the winner. Requires `experiment:manage` on the owning account.
+Concludes the experiment and records required `findings`. Pass `winning_arm` to serve the winning treatment to everyone. Omit it when control won. Ended experiments cannot restart, but may be ended again to correct the winner. Requires `experiment:manage` on the owning account. Passing `winning_arm` needs Economic Intelligence on for the owning account, like activating. Ending without one does not.
 </dd>
 </dl>
 </dd>
@@ -21107,7 +21107,7 @@ client.experiments.end_(
 <dl>
 <dd>
 
-**id:** `String` — The experiment identifier — the `expt_` id or the flag_key handle.
+**id:** `String` — The experiment identifier, the `expt_` id or the `flag_key` handle.
     
 </dd>
 </dl>
@@ -21115,7 +21115,7 @@ client.experiments.end_(
 <dl>
 <dd>
 
-**account_id:** `String` — Owning account ID. Required when id is a flag key; optional for an expt_ ID.
+**account_id:** `String` — Owning account ID. Required when `id` is a flag key, optional for an `expt_` ID.
     
 </dd>
 </dl>
@@ -21193,7 +21193,7 @@ client.experiments.pause(id: "id")
 <dl>
 <dd>
 
-**id:** `String` — The experiment identifier — the `expt_` id or the flag_key handle.
+**id:** `String` — The experiment identifier, the `expt_` id or the `flag_key` handle.
     
 </dd>
 </dl>
@@ -21201,7 +21201,93 @@ client.experiments.pause(id: "id")
 <dl>
 <dd>
 
-**account_id:** `String` — Owning account ID. Required when id is a flag key; optional for an expt_ ID.
+**account_id:** `String` — Owning account ID. Required when `id` is a flag key, optional for an `expt_` ID.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Whop_sdk::Experiments::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.experiments.<a href="/lib/whop_sdk/experiments/client.rb">results</a>(id:) -> Whop_sdk::Experiments::Types::ResultsExperimentsResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns an experiment's results: one reading per target stat, with the arms it was read on. Requires `experiment:read` on the owning account, and the read scope of each target stat's metric, `stats:read` for most.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.experiments.results(id: "id")
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — The experiment identifier, the `expt_` id or the `flag_key` handle.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**account_id:** `String` — Owning account ID. Required when `id` is a flag key, optional for an `expt_` ID.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**from:** `String` — Start of the reporting window, as an ISO 8601 date or timestamp. Defaults to the experiment's start date.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**to:** `String` — End of the reporting window, as an ISO 8601 date or timestamp. Defaults to today.
     
 </dd>
 </dl>

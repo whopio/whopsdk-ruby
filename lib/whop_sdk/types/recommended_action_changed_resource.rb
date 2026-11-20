@@ -5,7 +5,7 @@ module Whop_sdk
     class RecommendedActionChangedResource < Internal::Types::Model
       field :id, -> { String }, optional: false, nullable: false
 
-      field :object, -> { Whop_sdk::Types::RecommendedActionChangedResourceObject }, optional: false, nullable: false
+      field :resource_type, -> { Whop_sdk::Types::RecommendedActionChangedResourceResourceType }, optional: false, nullable: false
     end
   end
 end

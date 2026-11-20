@@ -2002,7 +2002,7 @@ require_relative "whop_sdk/recommended_actions/types/list_recommended_actions_re
 require_relative "whop_sdk/recommended_actions/types/list_recommended_actions_response_page_info"
 require_relative "whop_sdk/types/recommended_action_status"
 require_relative "whop_sdk/types/recommended_action_type"
-require_relative "whop_sdk/types/recommended_action_changed_resource_object"
+require_relative "whop_sdk/types/recommended_action_changed_resource_resource_type"
 require_relative "whop_sdk/types/recommended_action_changed_resource"
 require_relative "whop_sdk/types/recommended_action_website_ab_test_preview"
 require_relative "whop_sdk/types/recommended_action_website_change_preview"

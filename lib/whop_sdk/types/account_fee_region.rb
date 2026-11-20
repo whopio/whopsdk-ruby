@@ -26,6 +26,8 @@ module Whop_sdk
       DO = "do"
       SV = "sv"
       HN = "hn"
+      EC = "ec"
+      PY = "py"
     end
   end
 end

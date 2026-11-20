@@ -99,6 +99,7 @@ module Whop_sdk
         EXTERNAL_ACCOUNT_CONNECTION_FEE = "external_account_connection_fee"
         EXTERNAL_CARD_LOAD_DEPOSIT = "external_card_load_deposit"
         EXTERNAL_CARD_LOAD_OFFSET = "external_card_load_offset"
+        FEE_REBATE = "fee_rebate"
         FRAUD_PREVENTION_FEE = "fraud_prevention_fee"
         FX_GAIN_LOSS = "fx_gain_loss"
         FX_MARKUP = "fx_markup"

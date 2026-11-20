@@ -13,6 +13,8 @@ module Whop_sdk
 
       field :params, -> { Internal::Types::Hash[String, String] }, optional: true, nullable: false
 
+      field :statistically_significant, -> { Internal::Types::Boolean }, optional: true, nullable: false
+
       field :value, -> { Integer }, optional: false, nullable: true
     end
   end

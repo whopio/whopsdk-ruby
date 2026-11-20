@@ -571,6 +571,11 @@ module Whop_sdk
         end
       end
 
+      # @return [Whop_sdk::AffiliateProgram::Client]
+      def affiliate_program
+        @affiliate_program ||= Whop_sdk::Accounts::AffiliateProgram::Client.new(client: @client, base_url: @base_url, environment: @environment)
+      end
+
       # @return [Whop_sdk::CustomerTracking::Client]
       def customer_tracking
         @customer_tracking ||= Whop_sdk::Accounts::CustomerTracking::Client.new(client: @client, base_url: @base_url, environment: @environment)

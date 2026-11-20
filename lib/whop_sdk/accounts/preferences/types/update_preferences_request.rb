@@ -15,6 +15,8 @@ module Whop_sdk
 
           field :ads_triple_whale_integration, -> { Whop_sdk::Accounts::Preferences::Types::UpdatePreferencesRequestAdsTripleWhaleIntegration }, optional: true, nullable: false
 
+          field :affiliate_program, -> { Whop_sdk::Accounts::Preferences::Types::UpdatePreferencesRequestAffiliateProgram }, optional: true, nullable: false
+
           field :cancellation_emails, -> { Internal::Types::Boolean }, optional: true, nullable: false
 
           field :card_surcharge, -> { Whop_sdk::Accounts::Preferences::Types::UpdatePreferencesRequestCardSurcharge }, optional: true, nullable: false

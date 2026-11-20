@@ -14,11 +14,15 @@ module Whop_sdk
 
         field :hypothesis, -> { String }, optional: true, nullable: false
 
+        field :kind, -> { Whop_sdk::Experiments::Types::CreateExperimentsRequestKind }, optional: true, nullable: false
+
         field :metadata, -> { Internal::Types::Hash[String, String] }, optional: true, nullable: false
 
         field :name, -> { String }, optional: true, nullable: false
 
         field :related_resource, -> { Whop_sdk::Types::ExperimentResourceReference }, optional: true, nullable: false
+
+        field :target_stats, -> { Internal::Types::Array[Whop_sdk::Types::ExperimentStat] }, optional: true, nullable: false
 
         field :variants, -> { Internal::Types::Array[Whop_sdk::Experiments::Types::CreateExperimentsRequestVariantsItem] }, optional: true, nullable: false
       end

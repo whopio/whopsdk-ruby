@@ -267,12 +267,12 @@ module Whop_sdk
         end
       end
 
-      # Starts (or resumes) an experiment or feature flag so evaluation begins serving it. Activating a draft stamps
-      # `started_at`; resuming a paused experiment keeps the original start. Only drafts and paused experiments can be
+      # Starts or resumes an experiment or feature flag so evaluation begins serving it. Activating a draft sets
+      # `started_at`. Activating a paused experiment keeps the original start. Only drafts and paused experiments can be
       # activated. Requires `experiment:manage` on the owning account. Activating needs Economic Intelligence on for the
-      # owning account: while the account's `economic_intelligence` is `false`, this returns a `403` and the experiment
-      # keeps its status. Turn it on with `PATCH /accounts/:account_id/preferences`. Creating, editing, pausing and
-      # ending an experiment don't need it.
+      # owning account. When it is off, the request returns `403` and the experiment keeps its status. Turn it on with
+      # `PATCH /accounts/:account_id/preferences`. Creating, editing, pausing, and ending an experiment without a winner
+      # do not need it.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::Experiments::Types::ActivateExperimentsRequest]
@@ -320,8 +320,9 @@ module Whop_sdk
       end
 
       # Concludes the experiment and records required `findings`. Pass `winning_arm` to serve the winning treatment to
-      # everyone; omit it when control won. Ended experiments cannot restart, but may be ended again to correct the
-      # winner. Requires `experiment:manage` on the owning account.
+      # everyone. Omit it when control won. Ended experiments cannot restart, but may be ended again to correct the
+      # winner. Requires `experiment:manage` on the owning account. Passing `winning_arm` needs Economic Intelligence on
+      # for the owning account, like activating. Ending without one does not.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::Experiments::Types::EndExperimentsRequest]
@@ -409,6 +410,53 @@ module Whop_sdk
         code = response.code.to_i
         if code.between?(200, 299)
           (response.body.to_s.empty? ? nil : Whop_sdk::Types::Experiment.load(response.body))
+        else
+          error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
+          raise error_class.new(response.body, code: code)
+        end
+      end
+
+      # Returns an experiment's results: one reading per target stat, with the arms it was read on. Requires
+      # `experiment:read` on the owning account, and the read scope of each target stat's metric, `stats:read` for most.
+      #
+      # @param request_options [Hash]
+      # @param params [Hash]
+      # @option request_options [String] :base_url
+      # @option request_options [Hash{String => Object}] :additional_headers
+      # @option request_options [Hash{String => Object}] :additional_query_parameters
+      # @option request_options [Hash{String => Object}] :additional_body_parameters
+      # @option request_options [Integer] :timeout_in_seconds
+      # @option params [String] :id
+      # @option params [String, nil] :account_id
+      # @option params [String, nil] :from
+      # @option params [String, nil] :to
+      #
+      # @example
+      #   client.experiments.results(id: "id")
+      #
+      # @return [Whop_sdk::Experiments::Types::ResultsExperimentsResponse]
+      def results(request_options: {}, **params)
+        params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
+        query_params = {}
+        query_params["account_id"] = params[:account_id] if params.key?(:account_id)
+        query_params["from"] = params[:from] if params.key?(:from)
+        query_params["to"] = params[:to] if params.key?(:to)
+
+        request = Whop_sdk::Internal::JSON::Request.new(
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
+          method: "GET",
+          path: "experiments/#{URI.encode_uri_component(params[:id].to_s)}/results",
+          query: query_params,
+          request_options: request_options
+        )
+        begin
+          response = @client.send(request)
+        rescue Net::HTTPRequestTimeout
+          raise Whop_sdk::Errors::TimeoutError
+        end
+        code = response.code.to_i
+        if code.between?(200, 299)
+          (response.body.to_s.empty? ? nil : Whop_sdk::Experiments::Types::ResultsExperimentsResponse.load(response.body))
         else
           error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)

@@ -29462,6 +29462,14 @@ client.notifications.badges(experience_ids: ["exp_xxxxxxxxxxxxxx"])
 <dl>
 <dd>
 
+**unread:** `Internal::Types::Boolean` — Only return badges for experiences with unread notifications.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **request_options:** `Whop_sdk::Notifications::RequestOptions` 
     
 </dd>

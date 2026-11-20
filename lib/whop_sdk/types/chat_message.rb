@@ -11,6 +11,8 @@ module Whop_sdk
 
       field :author_user_id, -> { String }, optional: false, nullable: true
 
+      field :automation, -> { Whop_sdk::Types::MessageAutomation }, optional: false, nullable: true
+
       field :channel_id, -> { String }, optional: false, nullable: false
 
       field :content, -> { String }, optional: false, nullable: true

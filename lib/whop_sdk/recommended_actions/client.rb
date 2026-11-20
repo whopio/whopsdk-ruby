@@ -117,7 +117,8 @@ module Whop_sdk
       # Edits the arguments of a `ready` action's steps before it runs. Send the action's `workflow` back with one entry
       # for each step, in the same order. An entry with `arguments` replaces that step's arguments. An entry without
       # them leaves the step as it is. Only `arguments` can change. Other step fields can be sent back only with the
-      # values the action has.
+      # values the action has. Changing the `kind` of the `createExperiment` step rewrites the steps around it:
+      # `beforeafter` publishes the change before measuring it, and `experiment` tests it on a share of visitors.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::RecommendedActions::Types::UpdateRecommendedActionsRequest]

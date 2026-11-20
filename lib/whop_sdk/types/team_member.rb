@@ -19,6 +19,8 @@ module Whop_sdk
 
       field :is_partner, -> { Internal::Types::Boolean }, optional: false, nullable: false
 
+      field :legal_name, -> { String }, optional: false, nullable: true
+
       field :reports_to_chain, -> { Internal::Types::Array[Whop_sdk::Types::TeamMemberManager] }, optional: false, nullable: true
 
       field :reports_to_id, -> { String }, optional: false, nullable: true

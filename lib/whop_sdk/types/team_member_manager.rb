@@ -5,6 +5,8 @@ module Whop_sdk
     class TeamMemberManager < Internal::Types::Model
       field :id, -> { String }, optional: false, nullable: false
 
+      field :legal_name, -> { String }, optional: false, nullable: true
+
       field :user, -> { Whop_sdk::Types::UserSummary }, optional: false, nullable: false
     end
   end

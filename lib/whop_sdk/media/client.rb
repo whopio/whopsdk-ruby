@@ -26,10 +26,7 @@ module Whop_sdk
       # @option request_options [Integer] :timeout_in_seconds
       #
       # @example
-      #   client.media.generate(
-      #     prompt: "A 9:16 product showcase of a cordless power scrubber",
-      #     type: "video"
-      #   )
+      #   client.media.generate(type: "video")
       #
       # @return [Whop_sdk::Types::MediaAsset]
       def generate(request_options: {}, **params)

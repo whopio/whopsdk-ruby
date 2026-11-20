@@ -42094,7 +42094,7 @@ client.stats.retrieve(
 <dl>
 <dd>
 
-**breakdown_limit:** `Integer` — With a single breakdown_by, keep the groups with the highest whole-range values, up to this many, and fold every other group into one entry named other. A rate or an average ranks its groups by the deals it divides by. The other entry is measured from the underlying rows, so a distinct count or a rate stays exact rather than being added up from groups. Available on partner metrics only.
+**breakdown_limit:** `Integer` — With a single breakdown_by, keep this many groups with the highest whole-range values. Every other group folds into one entry named other. A rate or an average ranks its groups by the deals it divides by. The other entry is measured from the underlying rows, so a distinct count or a rate stays exact rather than being added up from groups.
     
 </dd>
 </dl>
@@ -52746,7 +52746,7 @@ client.stats.time_series.retrieve(
 <dl>
 <dd>
 
-**breakdown_limit:** `Integer` — With a single breakdown_by, keep the groups with the highest whole-range values, up to this many, and fold every other group into one entry named other. A rate or an average ranks its groups by the deals it divides by. The other entry is measured from the underlying rows, so a distinct count or a rate stays exact rather than being added up from groups. Available on partner metrics only.
+**breakdown_limit:** `Integer` — With a single breakdown_by, keep this many groups with the highest whole-range values. Every other group folds into one entry named other. A rate or an average ranks its groups by the deals it divides by. The other entry is measured from the underlying rows, so a distinct count or a rate stays exact rather than being added up from groups.
     
 </dd>
 </dl>

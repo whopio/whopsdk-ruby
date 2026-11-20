@@ -14,6 +14,7 @@ module Whop_sdk
       PAYMENT_REFUND = "payment_refund"
       PAYMENT_REFUND_REVERSAL = "payment_refund_reversal"
       PLATFORM_BALANCE_PAYMENT = "platform_balance_payment"
+      FEE_REBATE = "fee_rebate"
       PLATFORM_BALANCE_PAYMENT_REFUND = "platform_balance_payment_refund"
       AD_SPEND_PURCHASE = "ad_spend_purchase"
       PSP_REFUND_PAYABLE = "psp_refund_payable"

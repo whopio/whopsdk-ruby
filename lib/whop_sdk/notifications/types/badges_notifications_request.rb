@@ -7,6 +7,8 @@ module Whop_sdk
         field :experience_ids, -> { String }, optional: true, nullable: false
 
         field :last_fetched_at, -> { String }, optional: true, nullable: false
+
+        field :unread, -> { Internal::Types::Boolean }, optional: true, nullable: false
       end
     end
   end

@@ -129,6 +129,7 @@ module Whop_sdk
       # @option request_options [Integer] :timeout_in_seconds
       # @option params [String, nil] :experience_ids
       # @option params [String, nil] :last_fetched_at
+      # @option params [Boolean, nil] :unread
       #
       # @example
       #   client.notifications.badges(experience_ids: ["exp_xxxxxxxxxxxxxx"])
@@ -139,6 +140,7 @@ module Whop_sdk
         query_params = {}
         query_params["experience_ids"] = params[:experience_ids] if params.key?(:experience_ids)
         query_params["last_fetched_at"] = params[:last_fetched_at] if params.key?(:last_fetched_at)
+        query_params["unread"] = params[:unread] if params.key?(:unread)
 
         request = Whop_sdk::Internal::JSON::Request.new(
           base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),

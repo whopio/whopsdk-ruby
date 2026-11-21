@@ -38,7 +38,6 @@ module Whop_sdk
       PROMO_CODES = "promo_codes"
       RESOLUTIONS = "resolutions"
       ENTRIES = "entries"
-      LEADS = "leads"
       INVOICES = "invoices"
       CANCELATION_REASONS = "cancelation_reasons"
       CHILD_COMPANIES = "child_companies"

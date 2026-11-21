@@ -20,6 +20,8 @@ module Whop_sdk
 
         field :roles, -> { Internal::Types::Array[Whop_sdk::Verifications::Types::ListVerificationsResponseDataItemOwnersItemRolesItem] }, optional: false, nullable: false
 
+        field :session_url, -> { String }, optional: false, nullable: true
+
         field :status, -> { Whop_sdk::Verifications::Types::ListVerificationsResponseDataItemOwnersItemStatus }, optional: false, nullable: false
       end
     end

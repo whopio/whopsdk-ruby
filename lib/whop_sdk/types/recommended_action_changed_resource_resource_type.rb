@@ -6,6 +6,7 @@ module Whop_sdk
       extend Whop_sdk::Internal::Types::Enum
 
       VARIANT = "variant"
+      PROMO_CODE = "promo_code"
     end
   end
 end

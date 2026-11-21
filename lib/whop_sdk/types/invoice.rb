@@ -55,6 +55,8 @@ module Whop_sdk
 
       field :payment_method_id, -> { String }, optional: false, nullable: true
 
+      field :quote_sent_at, -> { String }, optional: false, nullable: true
+
       field :recipient_emails, -> { Internal::Types::Array[String] }, optional: false, nullable: false
 
       field :scheduled_charge_at, -> { String }, optional: false, nullable: true

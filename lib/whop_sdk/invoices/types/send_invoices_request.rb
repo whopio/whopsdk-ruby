@@ -10,6 +10,10 @@ module Whop_sdk
 
         field :collection_method, -> { Whop_sdk::Invoices::Types::SendInvoicesRequestCollectionMethod }, optional: true, nullable: false
 
+        field :message, -> { String }, optional: true, nullable: false
+
+        field :send_as, -> { Whop_sdk::Invoices::Types::SendInvoicesRequestSendAs }, optional: true, nullable: false
+
         field :send_at, -> { String }, optional: true, nullable: false
       end
     end

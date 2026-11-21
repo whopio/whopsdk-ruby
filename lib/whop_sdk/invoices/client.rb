@@ -444,7 +444,12 @@ module Whop_sdk
       # `payment:charge` and emails it again, up to three emails a day including the first send. With `send_at`, the
       # draft is sent at that time instead, and cannot be edited, except its recipients, until it is sent or
       # unscheduled. Each email, reminders included, is sent separately to the customer email shown on the invoice and
-      # to each address in `recipient_emails`, so recipients never see each other's addresses.
+      # to each address in `recipient_emails`, so recipients never see each other's addresses. With `send_as` set to
+      # `quote`, the draft is emailed as a quote with a link to view it, and it stays a draft. It can still be edited,
+      # it cannot be paid, and nothing is charged. A draft sent as a quote is not issued automatically on its `due_at`.
+      # The link stops working when the invoice is paid, void, or deleted. Send the quote again after an edit. A draft
+      # can be sent as a quote up to five times a day. A quote cannot use `send_at`, `charge_at`, or
+      # `collection_method`.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::Invoices::Types::SendInvoicesRequest]

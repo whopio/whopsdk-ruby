@@ -11,6 +11,8 @@ module Whop_sdk
         field :funds_returned_at, -> { String }, optional: false, nullable: true
 
         field :message, -> { String }, optional: false, nullable: true
+
+        field :next_step, -> { Whop_sdk::Payouts::Types::PostPayoutUpdatedPayloadDataFailureNextStep }, optional: false, nullable: true
       end
     end
   end

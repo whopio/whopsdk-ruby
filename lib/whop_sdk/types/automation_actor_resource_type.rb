@@ -2,10 +2,12 @@
 
 module Whop_sdk
   module Types
-    module MemberLastActivityMessageObject
+    module AutomationActorResourceType
       extend Whop_sdk::Internal::Types::Enum
 
-      MESSAGE = "message"
+      USER = "user"
+      ACCOUNT = "account"
+      APP = "app"
     end
   end
 end

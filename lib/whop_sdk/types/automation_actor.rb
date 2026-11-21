@@ -5,7 +5,7 @@ module Whop_sdk
     class AutomationActor < Internal::Types::Model
       field :id, -> { String }, optional: false, nullable: false
 
-      field :object, -> { Whop_sdk::Types::AutomationActorObject }, optional: false, nullable: false
+      field :resource_type, -> { Whop_sdk::Types::AutomationActorResourceType }, optional: false, nullable: false
     end
   end
 end

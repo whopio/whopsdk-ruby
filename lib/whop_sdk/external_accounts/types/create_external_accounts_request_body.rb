@@ -8,13 +8,13 @@ module Whop_sdk
 
         discriminant :platform
 
-        member -> { Whop_sdk::ExternalAccounts::Types::CreateExternalAccountsRequestBodyFacebook }, key: "FACEBOOK"
+        member -> { Whop_sdk::Types::CreateAimerceExternalAccount }, key: "AIMERCE"
 
-        member -> { Whop_sdk::ExternalAccounts::Types::CreateExternalAccountsRequestBodyTiktok }, key: "TIKTOK"
+        member -> { Whop_sdk::Types::CreateFacebookExternalAccount }, key: "FACEBOOK"
 
-        member -> { Whop_sdk::ExternalAccounts::Types::CreateExternalAccountsRequestBodyKlaviyo }, key: "KLAVIYO"
+        member -> { Whop_sdk::Types::CreateKlaviyoExternalAccount }, key: "KLAVIYO"
 
-        member -> { Whop_sdk::ExternalAccounts::Types::CreateExternalAccountsRequestBodyAimerce }, key: "AIMERCE"
+        member -> { Whop_sdk::Types::CreateTiktokExternalAccount }, key: "TIKTOK"
       end
     end
   end

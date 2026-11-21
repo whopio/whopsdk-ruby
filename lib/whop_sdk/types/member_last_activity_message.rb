@@ -11,9 +11,9 @@ module Whop_sdk
 
       field :id, -> { String }, optional: false, nullable: false
 
-      field :object, -> { Whop_sdk::Types::MemberLastActivityMessageObject }, optional: false, nullable: false
-
       field :plain_content, -> { String }, optional: false, nullable: true
+
+      field :type, -> { Whop_sdk::Types::MemberLastActivityMessageType }, optional: false, nullable: false
     end
   end
 end

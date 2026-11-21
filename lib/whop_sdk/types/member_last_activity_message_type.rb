@@ -2,10 +2,10 @@
 
 module Whop_sdk
   module Types
-    module UserNotificationPreferenceObject
+    module MemberLastActivityMessageType
       extend Whop_sdk::Internal::Types::Enum
 
-      NOTIFICATION_PREFERENCE = "notification_preference"
+      MESSAGE = "message"
     end
   end
 end

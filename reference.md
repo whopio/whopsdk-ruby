@@ -16796,6 +16796,14 @@ client.deposits.create(destination: "biz_xxxxxxxxxxxxxx")
 <dl>
 <dd>
 
+**currency:** `Whop_sdk::Deposits::Types::CreateDepositsRequestCurrency` — Bank account currency to set up for the destination. A USD account is always set up. Pass `cad` once to also set up a CAD account. After that, every request returns the details of all set-up currencies.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **destination:** `String` — Account ID to fund, `biz_` or `user_`. Any business resolves without authentication; a user account resolves only for that same authenticated user.
     
 </dd>

@@ -5,6 +5,8 @@ module Whop_sdk
     class PaymentInstrument < Internal::Types::Model
       field :card, -> { Whop_sdk::Types::PaymentInstrumentCard }, optional: false, nullable: true
 
+      field :crypto, -> { Whop_sdk::Types::PaymentInstrumentCrypto }, optional: false, nullable: true
+
       field :display_name, -> { String }, optional: false, nullable: false
 
       field :icons, -> { Whop_sdk::Types::PaymentMethodIcons }, optional: false, nullable: false

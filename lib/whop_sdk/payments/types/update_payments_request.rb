@@ -6,6 +6,8 @@ module Whop_sdk
       class UpdatePaymentsRequest < Internal::Types::Model
         field :id, -> { String }, optional: false, nullable: false
 
+        field :line_items, -> { Internal::Types::Array[Whop_sdk::Payments::Types::UpdatePaymentsRequestLineItemsItem] }, optional: true, nullable: false
+
         field :return_url, -> { String }, optional: true, nullable: false
 
         field :shipping_address, -> { Whop_sdk::Payments::Types::UpdatePaymentsRequestShippingAddress }, optional: true, nullable: false

@@ -359,12 +359,15 @@ module Whop_sdk
         end
       end
 
-      # Captures the full amount of a card payment created with `capture: false`. The payment must still be in
-      # `requires_capture` before `capture_expires_at`. Partial capture, multiple captures, capturing more than the
-      # authorized amount, and tips are not supported.
+      # Captures a card payment created with `capture: false` for its `total`. The payment must still be in
+      # `requires_capture` before `capture_expires_at`. An in-person payment's total can move away from its authorized
+      # amount when its line items change after the card was authorized. Above it, Whop captures the difference where
+      # Stripe allows it for the merchant's category, and otherwise raises the authorization first, which the card can
+      # decline. Capturing more or less than the authorized amount is off by default. Contact Whop support to turn it on
+      # for your account. Multiple captures are not supported.
       #
       # @param request_options [Hash]
-      # @param params [Hash]
+      # @param params [Whop_sdk::Payments::Types::CapturePaymentsRequest]
       # @option request_options [String] :base_url
       # @option request_options [Hash{String => Object}] :additional_headers
       # @option request_options [Hash{String => Object}] :additional_query_parameters
@@ -378,10 +381,15 @@ module Whop_sdk
       # @return [Whop_sdk::Types::PaymentStatus]
       def capture(request_options: {}, **params)
         params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
+        request_data = Whop_sdk::Payments::Types::CapturePaymentsRequest.new(params).to_h
+        non_body_param_names = %w[id]
+        body = request_data.except(*non_body_param_names)
+
         request = Whop_sdk::Internal::JSON::Request.new(
           base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "POST",
           path: "payments/#{URI.encode_uri_component(params[:id].to_s)}/capture",
+          body: body,
           request_options: request_options
         )
         begin

@@ -21,6 +21,8 @@ module Whop_sdk
 
         field :personal_address, -> { Whop_sdk::Verifications::Types::UpdateVerificationsRequestBodyPersonalAddressPersonalAddress }, optional: true, nullable: false
 
+        field :phone, -> { String }, optional: true, nullable: false
+
         field :requested_information, -> { Internal::Types::Array[Whop_sdk::Verifications::Types::UpdateVerificationsRequestBodyPersonalAddressRequestedInformationItem] }, optional: true, nullable: false
 
         field :tax_identification_number, -> { String }, optional: true, nullable: false

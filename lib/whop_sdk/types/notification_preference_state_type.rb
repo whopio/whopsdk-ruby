@@ -2,7 +2,7 @@
 
 module Whop_sdk
   module Types
-    module NotificationPreferenceStateObject
+    module NotificationPreferenceStateType
       extend Whop_sdk::Internal::Types::Enum
 
       NOTIFICATION_PREFERENCE = "notification_preference"

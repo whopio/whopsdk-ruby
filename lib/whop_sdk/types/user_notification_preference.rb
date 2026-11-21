@@ -9,9 +9,9 @@ module Whop_sdk
 
       field :level, -> { Whop_sdk::Types::UserNotificationPreferenceLevel }, optional: false, nullable: false
 
-      field :object, -> { Whop_sdk::Types::UserNotificationPreferenceObject }, optional: false, nullable: false
-
       field :scope, -> { Whop_sdk::Types::NotificationPreferenceScope }, optional: false, nullable: false
+
+      field :type, -> { Whop_sdk::Types::UserNotificationPreferenceType }, optional: false, nullable: false
 
       field :updated_at, -> { String }, optional: false, nullable: false
     end

@@ -2,12 +2,12 @@
 
 module Whop_sdk
   module Types
-    # The record a result points to. Its fields depend on `object`, and every type shares basics like `title` and
+    # The record a result points to. Its fields depend on `type`, and every type shares basics like `title` and
     # `image_url`.
     class SearchRecord < Internal::Types::Model
       extend Whop_sdk::Internal::Types::Union
 
-      discriminant :object
+      discriminant :type
 
       member -> { Whop_sdk::Types::SearchRecordAccount }, key: "ACCOUNT"
 

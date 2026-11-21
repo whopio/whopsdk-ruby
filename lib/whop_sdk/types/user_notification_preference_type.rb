@@ -2,12 +2,10 @@
 
 module Whop_sdk
   module Types
-    module AutomationActorObject
+    module UserNotificationPreferenceType
       extend Whop_sdk::Internal::Types::Enum
 
-      USER = "user"
-      ACCOUNT = "account"
-      APP = "app"
+      NOTIFICATION_PREFERENCE = "notification_preference"
     end
   end
 end

@@ -3,8 +3,7 @@
 module Whop_sdk
   module Payments
     module Types
-      # A one-time line to add. A payment carries one added line per product, so a line for a product that already has
-      # one replaces it.
+      # A line to add. Each product holds one added line, so a new line for the same product replaces it.
       class UpdatePaymentsRequestLineItemsItemVariant < Internal::Types::Model
         field :initial_price, -> { Integer }, optional: false, nullable: false
 

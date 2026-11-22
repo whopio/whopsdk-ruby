@@ -67,6 +67,8 @@ module Whop_sdk
 
           field :sepa_return, -> { Whop_sdk::Accounts::Fees::Types::UpdateFeesRequestSepaReturn }, optional: true, nullable: false
 
+          field :subaccount_fee_mode, -> { Whop_sdk::Accounts::Fees::Types::UpdateFeesRequestSubaccountFeeMode }, optional: true, nullable: false
+
           field :tax_calculation, -> { Whop_sdk::Accounts::Fees::Types::UpdateFeesRequestTaxCalculation }, optional: true, nullable: false
 
           field :tax_service, -> { Whop_sdk::Accounts::Fees::Types::UpdateFeesRequestTaxService }, optional: true, nullable: false

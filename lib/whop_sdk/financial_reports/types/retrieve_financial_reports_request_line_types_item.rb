@@ -8,8 +8,11 @@ module Whop_sdk
 
         ACCOUNT_SETTLEMENT = "account_settlement"
         AD_AFFILIATE_PAYOUT_RECEIVED = "ad_affiliate_payout_received"
+        AD_BALANCE_FUNDING_RECEIPT = "ad_balance_funding_receipt"
         AD_BUDGET_RELEASE = "ad_budget_release"
         AD_CAMPAIGN_BUDGET = "ad_campaign_budget"
+        AD_FUNDING_DISBURSEMENT = "ad_funding_disbursement"
+        AD_INCOME_RECEIPT = "ad_income_receipt"
         AD_PUBLISHER_PAYOUT = "ad_publisher_payout"
         AD_PUBLISHER_PAYOUT_RECEIVED = "ad_publisher_payout_received"
         AD_SPEND_CHARGE = "ad_spend_charge"

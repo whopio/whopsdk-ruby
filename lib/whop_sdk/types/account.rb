@@ -63,6 +63,8 @@ module Whop_sdk
 
       field :logo_url, -> { String }, optional: false, nullable: true
 
+      field :merchant_of_record, -> { Whop_sdk::Types::AccountMerchantOfRecord }, optional: false, nullable: true
+
       field :metadata, -> { Internal::Types::Hash[String, Object] }, optional: false, nullable: false
 
       field :onboarding_type, -> { Whop_sdk::Types::AccountOnboardingType }, optional: false, nullable: true
@@ -116,6 +118,8 @@ module Whop_sdk
       field :show_user_directory, -> { Internal::Types::Boolean }, optional: false, nullable: false
 
       field :social_links, -> { Internal::Types::Array[Whop_sdk::Types::AccountSocialLink] }, optional: false, nullable: false
+
+      field :statement_descriptor, -> { String }, optional: false, nullable: true
 
       field :status, -> { String }, optional: false, nullable: true
 

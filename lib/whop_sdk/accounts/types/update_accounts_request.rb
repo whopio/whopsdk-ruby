@@ -76,6 +76,8 @@ module Whop_sdk
 
         field :social_links, -> { Internal::Types::Array[Internal::Types::Hash[String, Object]] }, optional: true, nullable: false
 
+        field :statement_descriptor, -> { String }, optional: true, nullable: false
+
         field :store_page_config, -> { Whop_sdk::Accounts::Types::UpdateAccountsRequestStorePageConfig }, optional: true, nullable: false
 
         field :target_audience, -> { String }, optional: true, nullable: false

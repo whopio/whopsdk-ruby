@@ -48044,6 +48044,14 @@ client.accounts.fees.update(account_id: "account_id")
 <dl>
 <dd>
 
+**subaccount_fee_mode:** `Whop_sdk::Accounts::Fees::Types::UpdateFeesRequestSubaccountFeeMode` — Changes how this account charges its subaccounts. Only an account without a parent account can set it. An account can change `inherit` to either other mode. It can change `subaccount_rates_collect_difference` to `subaccount_rates`. Whop must make other changes.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **tax_calculation:** `Whop_sdk::Accounts::Fees::Types::UpdateFeesRequestTaxCalculation` — The fields of a fee the caller may change. Only the keys sent are replaced.
     
 </dd>

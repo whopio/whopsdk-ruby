@@ -7,6 +7,7 @@ module Whop_sdk
 
       IN_APP = "in_app"
       MOBILE = "mobile"
+      EMAIL = "email"
     end
   end
 end

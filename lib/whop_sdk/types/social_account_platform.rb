@@ -17,6 +17,7 @@ module Whop_sdk
       KLAVIYO = "klaviyo"
       QUICKBOOKS = "quickbooks"
       AIMERCE = "aimerce"
+      STRIPE = "stripe"
     end
   end
 end

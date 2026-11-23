@@ -11,6 +11,7 @@ module Whop_sdk
         YOUTUBE = "youtube"
         X = "x"
         QUICKBOOKS = "quickbooks"
+        STRIPE = "stripe"
       end
     end
   end

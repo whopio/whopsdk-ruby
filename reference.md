@@ -46260,7 +46260,7 @@ Lists the waitlist signups you can see. `waitlist_entry:read` returns your own s
 <dd>
 
 ```ruby
-client.waitlist_entries.list
+client.waitlist_entries.list(product_ids: ["prod_xxxxxxxxxxxxx"])
 ```
 </dd>
 </dl>
@@ -46332,6 +46332,14 @@ client.waitlist_entries.list
 <dd>
 
 **product_id:** `String` — Only return signups for variants on this product, prefixed `prod_`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**product_ids:** `String` — Only return signups for variants on any of these products, prefixed `prod_`. Unknown IDs match nothing.
     
 </dd>
 </dl>

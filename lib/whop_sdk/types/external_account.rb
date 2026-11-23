@@ -3,6 +3,8 @@
 module Whop_sdk
   module Types
     class ExternalAccount < Internal::Types::Model
+      field :connection_status, -> { Whop_sdk::Types::ExternalAccountConnectionStatus }, optional: false, nullable: true
+
       field :external_id, -> { String }, optional: false, nullable: true
 
       field :id, -> { String }, optional: false, nullable: false

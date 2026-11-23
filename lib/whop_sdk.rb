@@ -1177,6 +1177,7 @@ require_relative "whop_sdk/external_accounts/types/list_external_accounts_reques
 require_relative "whop_sdk/external_accounts/types/list_external_accounts_request_order"
 require_relative "whop_sdk/external_accounts/types/list_external_accounts_request_direction"
 require_relative "whop_sdk/external_accounts/types/list_external_accounts_response_page_info"
+require_relative "whop_sdk/types/external_account_connection_status"
 require_relative "whop_sdk/types/external_account_platform"
 require_relative "whop_sdk/types/external_account_parent_platform"
 require_relative "whop_sdk/types/external_account_parent"

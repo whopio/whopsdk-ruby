@@ -35,6 +35,7 @@ module Whop_sdk
       # @option params [String, nil] :variant_id
       # @option params [String, nil] :account_id
       # @option params [String, nil] :product_id
+      # @option params [String, nil] :product_ids
       # @option params [String, nil] :buyer_account_id
       # @option params [Whop_sdk::WaitlistEntries::Types::ListWaitlistEntriesRequestStatus, nil] :status
       # @option params [String, nil] :query
@@ -44,7 +45,7 @@ module Whop_sdk
       # @option params [Whop_sdk::WaitlistEntries::Types::ListWaitlistEntriesRequestDirection, nil] :direction
       #
       # @example
-      #   client.waitlist_entries.list
+      #   client.waitlist_entries.list(product_ids: ["prod_xxxxxxxxxxxxx"])
       #
       # @return [Whop_sdk::WaitlistEntries::Types::ListWaitlistEntriesResponse]
       def list(request_options: {}, **params)
@@ -58,6 +59,7 @@ module Whop_sdk
         query_params["variant_id"] = params[:variant_id] if params.key?(:variant_id)
         query_params["account_id"] = params[:account_id] if params.key?(:account_id)
         query_params["product_id"] = params[:product_id] if params.key?(:product_id)
+        query_params["product_ids"] = params[:product_ids] if params.key?(:product_ids)
         query_params["buyer_account_id"] = params[:buyer_account_id] if params.key?(:buyer_account_id)
         query_params["status"] = params[:status] if params.key?(:status)
         query_params["query"] = params[:query] if params.key?(:query)

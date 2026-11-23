@@ -20,6 +20,8 @@ module Whop_sdk
 
         field :product_id, -> { String }, optional: true, nullable: false
 
+        field :product_ids, -> { String }, optional: true, nullable: false
+
         field :buyer_account_id, -> { String }, optional: true, nullable: false
 
         field :status, -> { Whop_sdk::WaitlistEntries::Types::ListWaitlistEntriesRequestStatus }, optional: true, nullable: false

@@ -15,6 +15,7 @@ module Whop_sdk
       ADD_TO_CART = "add_to_cart"
       CUSTOM = "custom"
       MESSAGING_CONVERSATION = "messaging_conversation"
+      IMPRESSIONS = "impressions"
     end
   end
 end

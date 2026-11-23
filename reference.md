@@ -46159,6 +46159,79 @@ client.verifications.update(
 </dl>
 </details>
 
+<details><summary><code>client.verifications.<a href="/lib/whop_sdk/verifications/client.rb">generate_document_url</a>(id:, request) -> Whop_sdk::Verifications::Types::GenerateDocumentURLVerificationsResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Generates a short-lived link to download one image that a person sent for an individual verification. Use the `identity_document` and `selfie` fields of the verification to know which images exist.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.verifications.generate_document_url(
+  id: "id",
+  document: "id_card_front"
+)
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — Verification profile ID, prefixed `idpf_`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**document:** `Whop_sdk::Verifications::Types::GenerateDocumentURLVerificationsRequestDocument` — Image to download. Use the side of the document type on the verification, or `selfie`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Whop_sdk::Verifications::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Waitlist Entries
 <details><summary><code>client.waitlist_entries.<a href="/lib/whop_sdk/waitlist_entries/client.rb">list</a>() -> Whop_sdk::WaitlistEntries::Types::ListWaitlistEntriesResponse</code></summary>
 <dl>

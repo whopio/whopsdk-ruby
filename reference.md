@@ -8254,7 +8254,7 @@ client.audiences.list(account_id: "account_id")
 <dl>
 <dd>
 
-Creates a custom audience from a customer list or your account's Whop People data, or a lookalike audience that reaches people similar to an existing one. Processing runs asynchronously. A custom audience returns one audience; a lookalike returns the requested similarity bands in `data`.
+Creates a custom audience from a CSV or Whop People filters, or lookalikes of an existing audience. Processing is asynchronous.
 </dd>
 </dl>
 </dd>
@@ -8300,7 +8300,7 @@ client.audiences.create(account_id: "biz_xxxxxxxxxxxxxx")
 <dl>
 <dd>
 
-**auto_refresh:** `Internal::Types::Boolean` — Filter audiences only, and set only at creation. `true` (the default) rebuilds membership from the filters twice a day. `false` keeps whoever matched at creation and never rebuilds.
+**auto_refresh:** `Internal::Types::Boolean` — People audiences only. When `true`, the default, Whop rebuilds membership twice a day. When `false`, the audience keeps the people it matched at creation. You cannot change it later.
     
 </dd>
 </dl>
@@ -8308,7 +8308,7 @@ client.audiences.create(account_id: "biz_xxxxxxxxxxxxxx")
 <dl>
 <dd>
 
-**column_mapping:** `Whop_sdk::Audiences::Types::CreateAudiencesRequestColumnMapping` — CSV audiences only. Maps supported identity fields to CSV column headers. Map at least one of `email` or `phone`.
+**column_mapping:** `Whop_sdk::Audiences::Types::CreateAudiencesRequestColumnMapping` — CSV audiences only. The CSV header for each identity field. Map `email`, `phone`, or both.
     
 </dd>
 </dl>
@@ -8316,7 +8316,7 @@ client.audiences.create(account_id: "biz_xxxxxxxxxxxxxx")
 <dl>
 <dd>
 
-**count:** `Integer` — Lookalikes only. Number of lookalike audiences to create (1–6).
+**count:** `Integer` — Lookalikes only. Number of lookalike audiences to create, from 1 to 6.
     
 </dd>
 </dl>
@@ -8324,7 +8324,7 @@ client.audiences.create(account_id: "biz_xxxxxxxxxxxxxx")
 <dl>
 <dd>
 
-**file_id:** `String` — CSV audiences only. The uploaded customer CSV — a file id (`file_...`) returned by `POST /files`.
+**file_id:** `String` — CSV audiences only. File ID of the CSV, prefixed `file_`, from `POST /files`.
     
 </dd>
 </dl>
@@ -8332,7 +8332,7 @@ client.audiences.create(account_id: "biz_xxxxxxxxxxxxxx")
 <dl>
 <dd>
 
-**filters:** `Internal::Types::Hash[String, Object]` — Filter audiences only. The People filters that define membership, keyed exactly as `GET /people` accepts them — for example `{"os": "iOS", "country": "US"}`. Activity dates `event_from` and `event_to` are inclusive and remain fixed on refresh. Use `event_within_days`, `first_seen_within_days` or `last_seen_within_days` for a rolling window. Source values are canonical source paths (`whop:<campaign>:<group>:<ad>`, `ext:<platform>:...`, `referrer:<domain>`, `direct`), exact or with a trailing `:*` wildcard.
+**filters:** `Internal::Types::Hash[String, Object]` — People audiences only. The filters that define membership, with the same keys as `GET /people`. `event_from` and `event_to` stay fixed when the audience rebuilds. For a rolling window, use `event_within_days`, `first_seen_within_days`, or `last_seen_within_days`.
     
 </dd>
 </dl>
@@ -8340,7 +8340,7 @@ client.audiences.create(account_id: "biz_xxxxxxxxxxxxxx")
 <dl>
 <dd>
 
-**name:** `String` — Audience display name. Required for custom audiences; lookalike names are generated from the source audience.
+**name:** `String` — Audience display name. Required for custom audiences. Lookalikes take their name from the source audience.
     
 </dd>
 </dl>
@@ -8348,7 +8348,7 @@ client.audiences.create(account_id: "biz_xxxxxxxxxxxxxx")
 <dl>
 <dd>
 
-**percentage:** `Integer` — Lookalikes only. Total similarity reach as a whole percent (1–20), sliced evenly across `count` — must be divisible by `count`. For example, 3 audiences at 6% creates 0–2%, 2–4%, and 4–6% bands.
+**percentage:** `Integer` — Lookalikes only. Total reach as a whole percent, from 1 to 20. It must divide evenly by `count`. For example, 3 audiences at 6% make the 0 to 2%, 2 to 4%, and 4 to 6% bands.
     
 </dd>
 </dl>
@@ -8356,7 +8356,7 @@ client.audiences.create(account_id: "biz_xxxxxxxxxxxxxx")
 <dl>
 <dd>
 
-**source_audience_id:** `String` — Lookalikes only. The ready custom audience (`adaud_`) to build from; uploaded and People audiences need at least 100 matched people.
+**source_audience_id:** `String` — Lookalikes only. The ready custom audience to build from, prefixed `adaud_`. It must have at least 100 people.
     
 </dd>
 </dl>
@@ -8364,7 +8364,7 @@ client.audiences.create(account_id: "biz_xxxxxxxxxxxxxx")
 <dl>
 <dd>
 
-**source_type:** `Whop_sdk::Audiences::Types::CreateAudiencesRequestSourceType` — Custom audience source. Inferred from `filters`, otherwise defaults to `csv_upload`. Supply only the fields for the selected source.
+**source_type:** `Whop_sdk::Audiences::Types::CreateAudiencesRequestSourceType` — Custom audience source. Defaults to `people_filter` when `filters` is set, otherwise `csv_upload`. Send only that source's fields.
     
 </dd>
 </dl>

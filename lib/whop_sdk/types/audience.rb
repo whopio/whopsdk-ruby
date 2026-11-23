@@ -21,13 +21,9 @@ module Whop_sdk
 
       field :lookalike_starting_ratio, -> { Integer }, optional: false, nullable: true
 
-      field :match_rates, -> { Internal::Types::Array[Whop_sdk::Types::AudienceMatchRate] }, optional: false, nullable: false
-
       field :matched_rows, -> { Integer }, optional: false, nullable: false
 
       field :name, -> { String }, optional: false, nullable: false
-
-      field :platform_audience_ids, -> { Internal::Types::Array[String] }, optional: false, nullable: false
 
       field :processed_rows, -> { Integer }, optional: false, nullable: false
 

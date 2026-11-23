@@ -10,6 +10,8 @@ module Whop_sdk
 
         field :control, -> { Whop_sdk::Experiments::Types::UpdateExperimentsRequestControl }, optional: true, nullable: false
 
+        field :decision_mode, -> { Whop_sdk::Experiments::Types::UpdateExperimentsRequestDecisionMode }, optional: true, nullable: false
+
         field :hypothesis, -> { String }, optional: true, nullable: false
 
         field :related_resource, -> { Whop_sdk::Types::ExperimentResourceReference }, optional: true, nullable: false

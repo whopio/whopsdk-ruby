@@ -17,6 +17,8 @@ module Whop_sdk
 
       field :created_by, -> { String }, optional: true, nullable: false
 
+      field :decision_mode, -> { Whop_sdk::Types::ExperimentDecisionMode }, optional: true, nullable: false
+
       field :ended_at, -> { String }, optional: true, nullable: false
 
       field :findings, -> { String }, optional: true, nullable: false

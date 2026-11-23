@@ -22,6 +22,8 @@ module Whop_sdk
 
         field :metadata, -> { Internal::Types::Hash[String, Object] }, optional: false, nullable: false
 
+        field :mid_market_rate, -> { String }, optional: false, nullable: true
+
         field :object, -> { Whop_sdk::Swaps::Types::CreateQuoteSwapsResponseObject }, optional: false, nullable: false
 
         field :rate, -> { String }, optional: false, nullable: false

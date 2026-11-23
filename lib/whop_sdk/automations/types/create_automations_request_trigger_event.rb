@@ -10,6 +10,7 @@ module Whop_sdk
         PAYMENT_FAILED = "payment.failed"
         MEMBERSHIP_ACTIVATED = "membership.activated"
         MEMBERSHIP_TRIAL_ENDING_SOON = "membership.trial_ending_soon"
+        MEMBERSHIP_CANCEL_AT_PERIOD_END_CHANGED = "membership.cancel_at_period_end_changed"
         MEMBER_CREATED = "member.created"
         INVOICE_CREATED = "invoice.created"
         INVOICE_PAID = "invoice.paid"

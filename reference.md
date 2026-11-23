@@ -20674,6 +20674,14 @@ client.experiments.create(
 <dl>
 <dd>
 
+**decision_mode:** `Whop_sdk::Experiments::Types::CreateExperimentsRequestDecisionMode` — How the experiment is decided. `autopilot` ends it as soon as a result is outside the margin of error, shipping the arm that won or keeping control if it lost. If its window passes with no clear result, `autopilot` keeps control. `require_approval` leaves every arm serving for the owner to end. Omit to leave it to the owner. Not accepted on feature flags.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **flag_key:** `String` — Developer-chosen handle referenced from code, used in evaluation and results calls. Interchangeable with the returned `expt_` id anywhere the API takes an experiment identifier.
     
 </dd>
@@ -20981,6 +20989,14 @@ client.experiments.update(id: "id")
 <dd>
 
 **control:** `Whop_sdk::Experiments::Types::UpdateExperimentsRequestControl` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**decision_mode:** `Whop_sdk::Experiments::Types::UpdateExperimentsRequestDecisionMode` — How the experiment is decided. `autopilot` ends it as soon as a result is outside the margin of error, shipping the arm that won or keeping control if it lost. If its window passes with no clear result, `autopilot` keeps control. `require_approval` leaves every arm serving for the owner to end. Send `null` to leave it to the owner. Not accepted on feature flags. Omit to leave unchanged.
     
 </dd>
 </dl>

@@ -3,6 +3,8 @@
 module Whop_sdk
   module Types
     class User < Internal::Types::Model
+      field :badges, -> { Internal::Types::Array[Whop_sdk::Types::UserBadge] }, optional: false, nullable: false
+
       field :balance, -> { Whop_sdk::Types::UserBalance }, optional: false, nullable: true
 
       field :balance_history, -> { Whop_sdk::Types::UserBalanceHistory }, optional: false, nullable: true

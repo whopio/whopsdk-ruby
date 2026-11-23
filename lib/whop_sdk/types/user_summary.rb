@@ -3,6 +3,8 @@
 module Whop_sdk
   module Types
     class UserSummary < Internal::Types::Model
+      field :badges, -> { Internal::Types::Array[Whop_sdk::Types::UserBadge] }, optional: false, nullable: false
+
       field :id, -> { String }, optional: false, nullable: false
 
       field :name, -> { String }, optional: false, nullable: true

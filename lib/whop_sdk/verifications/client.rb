@@ -222,8 +222,8 @@ module Whop_sdk
         end
       end
 
-      # Generates a short-lived link to download one image that a person sent for an individual verification. Use the
-      # `identity_document` and `selfie` fields of the verification to know which images exist.
+      # Generates a short-lived link to download one image that a person sent for an individual verification. Ask for
+      # `front`, `back`, or `selfie`. The link always downloads the document that passed the check, whatever its type.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::Verifications::Types::GenerateDocumentURLVerificationsRequest]
@@ -237,7 +237,7 @@ module Whop_sdk
       # @example
       #   client.verifications.generate_document_url(
       #     id: "id",
-      #     document: "id_card_front"
+      #     document: "front"
       #   )
       #
       # @return [Whop_sdk::Verifications::Types::GenerateDocumentURLVerificationsResponse]

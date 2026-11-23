@@ -260,8 +260,8 @@ module Whop_sdk
       end
 
       # Starts copying an ad group and returns the copies in `duplicating` status. Poll each returned ad group until it
-      # leaves `duplicating`: it then takes the source's `active` or `paused` status, or, if the copy could not be
-      # completed, is deleted and returns 404.
+      # leaves `duplicating`. A copy then takes the source's `active` or `paused` status. A copy that could not be
+      # completed is deleted and returns 404. An ad group with a lifetime budget can't be duplicated.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::AdGroups::Types::DuplicateAdGroupsRequest]

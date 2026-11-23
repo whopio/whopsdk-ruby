@@ -1941,7 +1941,7 @@ client.ad_campaigns.create(
 <dl>
 <dd>
 
-**budget_type:** `Whop_sdk::AdCampaigns::Types::CreateAdCampaignsRequestBudgetType` — Whether the budget is spent per day (`daily`) or over the campaign's full run (`lifetime`). Defaults to `daily`.
+**budget_type:** `Whop_sdk::AdCampaigns::Types::CreateAdCampaignsRequestBudgetType` — Deprecated: lifetime budgets have ended. Every new campaign has a daily budget. `lifetime` returns a `400`.
     
 </dd>
 </dl>
@@ -2223,7 +2223,7 @@ client.ad_campaigns.update(id: "id")
 <dl>
 <dd>
 
-**budget_amount:** `Integer` — The campaign budget in USD, which is what it is stored and billed in. Interpreted as daily or lifetime per the campaign's budget type, including a budget_type sent in the same request.
+**budget_amount:** `Integer` — The campaign budget in USD, which is what it is stored and billed in. Spent per day, or over the campaign's full run when its `budget_type` is `lifetime`.
     
 </dd>
 </dl>
@@ -2247,7 +2247,7 @@ client.ad_campaigns.update(id: "id")
 <dl>
 <dd>
 
-**budget_type:** `Whop_sdk::AdCampaigns::Types::UpdateAdCampaignsRequestBudgetType` — Whether `budget_amount` is spent per day (`daily`) or over the campaign's full run (`lifetime`). Only changeable while the campaign is a draft; send budget_amount in the same request so the amount lands on the new type.
+**budget_type:** `Whop_sdk::AdCampaigns::Types::UpdateAdCampaignsRequestBudgetType` — Deprecated: lifetime budgets have ended. A draft campaign with a lifetime budget can switch to `daily`. Send `budget_amount` in the same request. A switch to `lifetime` returns a `400`.
     
 </dd>
 </dl>
@@ -2397,7 +2397,7 @@ client.ad_campaigns.claim(id: "id")
 <dl>
 <dd>
 
-Creates copies of the campaign in `duplicating` status and returns them; each copy transitions to `draft` once duplication completes. Poll each returned campaign until it leaves `duplicating` — a copy that could not be completed is deleted and returns 404.
+Creates copies of the campaign in `duplicating` status and returns them. Each copy moves to `draft` when duplication completes. Poll each returned campaign until it leaves `duplicating`. A copy that could not be completed is deleted and returns 404. A campaign with a lifetime budget, or with an ad group on one, can't be duplicated.
 </dd>
 </dl>
 </dd>
@@ -2852,7 +2852,7 @@ client.ad_groups.create(ad_campaign_id: "adcamp_xxxxxxxxxxxxxx")
 <dl>
 <dd>
 
-**budget_type:** `Whop_sdk::AdGroups::Types::CreateAdGroupsRequestBudgetType` — Whether budget_amount is spent per day (`daily`) or over the ad group's full run (`lifetime`).
+**budget_type:** `Whop_sdk::AdGroups::Types::CreateAdGroupsRequestBudgetType` — Deprecated: lifetime budgets have ended. Leave this out, or send `daily`. `lifetime` returns a `400` unless the ad group already has a lifetime budget.
     
 </dd>
 </dl>
@@ -2868,7 +2868,7 @@ client.ad_groups.create(ad_campaign_id: "adcamp_xxxxxxxxxxxxxx")
 <dl>
 <dd>
 
-**delivery_schedule:** `Whop_sdk::AdGroups::Types::CreateAdGroupsRequestDeliverySchedule` — Hours the ad group delivers in each week, keyed by day. Each window runs from `start` to `end` on the hour, with `24:00` for midnight, and a day's windows can't overlap or touch. A day that's empty or left out doesn't deliver. Replaces the whole schedule; `null` delivers at every hour. Some platforms need a lifetime `budget_type` for a schedule, on the ad group or on its campaign when the campaign holds the budget.
+**delivery_schedule:** `Whop_sdk::AdGroups::Types::CreateAdGroupsRequestDeliverySchedule` — Hours the ad group delivers in each week, keyed by day. Each window runs from `start` to `end` on the hour, with `24:00` for midnight. A day's windows can't overlap or touch. A day that's empty or left out doesn't deliver. The schedule is replaced as a whole. `null` delivers at every hour. A schedule needs a lifetime budget on the ad group, or on its campaign when the campaign holds the budget. Only ad groups and campaigns that already have one can use it.
     
 </dd>
 </dl>
@@ -3206,7 +3206,7 @@ client.ad_groups.update(id: "id")
 <dl>
 <dd>
 
-**budget_type:** `Whop_sdk::AdGroups::Types::UpdateAdGroupsRequestBudgetType` — Whether budget_amount is spent per day (`daily`) or over the ad group's full run (`lifetime`).
+**budget_type:** `Whop_sdk::AdGroups::Types::UpdateAdGroupsRequestBudgetType` — Deprecated: lifetime budgets have ended. Leave this out, or send `daily`. `lifetime` returns a `400` unless the ad group already has a lifetime budget.
     
 </dd>
 </dl>
@@ -3222,7 +3222,7 @@ client.ad_groups.update(id: "id")
 <dl>
 <dd>
 
-**delivery_schedule:** `Whop_sdk::AdGroups::Types::UpdateAdGroupsRequestDeliverySchedule` — Hours the ad group delivers in each week, keyed by day. Each window runs from `start` to `end` on the hour, with `24:00` for midnight, and a day's windows can't overlap or touch. A day that's empty or left out doesn't deliver. Replaces the whole schedule; `null` delivers at every hour. Some platforms need a lifetime `budget_type` for a schedule, on the ad group or on its campaign when the campaign holds the budget.
+**delivery_schedule:** `Whop_sdk::AdGroups::Types::UpdateAdGroupsRequestDeliverySchedule` — Hours the ad group delivers in each week, keyed by day. Each window runs from `start` to `end` on the hour, with `24:00` for midnight. A day's windows can't overlap or touch. A day that's empty or left out doesn't deliver. The schedule is replaced as a whole. `null` delivers at every hour. A schedule needs a lifetime budget on the ad group, or on its campaign when the campaign holds the budget. Only ad groups and campaigns that already have one can use it.
     
 </dd>
 </dl>
@@ -3334,7 +3334,7 @@ client.ad_groups.update(id: "id")
 <dl>
 <dd>
 
-Starts copying an ad group and returns the copies in `duplicating` status. Poll each returned ad group until it leaves `duplicating`: it then takes the source's `active` or `paused` status, or, if the copy could not be completed, is deleted and returns 404.
+Starts copying an ad group and returns the copies in `duplicating` status. Poll each returned ad group until it leaves `duplicating`. A copy then takes the source's `active` or `paused` status. A copy that could not be completed is deleted and returns 404. An ad group with a lifetime budget can't be duplicated.
 </dd>
 </dl>
 </dd>

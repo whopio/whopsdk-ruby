@@ -27,6 +27,8 @@ module Whop_sdk
 
       field :object, -> { String }, optional: false, nullable: false
 
+      field :optimized_url, -> { String }, optional: false, nullable: true
+
       field :removed_by_moderation, -> { Internal::Types::Boolean }, optional: false, nullable: false
 
       field :size, -> { Integer }, optional: false, nullable: true

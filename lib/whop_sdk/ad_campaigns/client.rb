@@ -304,9 +304,10 @@ module Whop_sdk
         end
       end
 
-      # Creates copies of the campaign in `duplicating` status and returns them; each copy transitions to `draft` once
-      # duplication completes. Poll each returned campaign until it leaves `duplicating` — a copy that could not be
-      # completed is deleted and returns 404.
+      # Creates copies of the campaign in `duplicating` status and returns them. Each copy moves to `draft` when
+      # duplication completes. Poll each returned campaign until it leaves `duplicating`. A copy that could not be
+      # completed is deleted and returns 404. A campaign with a lifetime budget, or with an ad group on one, can't be
+      # duplicated.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::AdCampaigns::Types::DuplicateAdCampaignsRequest]

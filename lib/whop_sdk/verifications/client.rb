@@ -221,6 +221,52 @@ module Whop_sdk
           raise error_class.new(response.body, code: code)
         end
       end
+
+      # Generates a short-lived link to download one image that a person sent for an individual verification. Use the
+      # `identity_document` and `selfie` fields of the verification to know which images exist.
+      #
+      # @param request_options [Hash]
+      # @param params [Whop_sdk::Verifications::Types::GenerateDocumentURLVerificationsRequest]
+      # @option request_options [String] :base_url
+      # @option request_options [Hash{String => Object}] :additional_headers
+      # @option request_options [Hash{String => Object}] :additional_query_parameters
+      # @option request_options [Hash{String => Object}] :additional_body_parameters
+      # @option request_options [Integer] :timeout_in_seconds
+      # @option params [String] :id
+      #
+      # @example
+      #   client.verifications.generate_document_url(
+      #     id: "id",
+      #     document: "id_card_front"
+      #   )
+      #
+      # @return [Whop_sdk::Verifications::Types::GenerateDocumentURLVerificationsResponse]
+      def generate_document_url(request_options: {}, **params)
+        params = Whop_sdk::Internal::Types::Utils.normalize_keys(params)
+        request_data = Whop_sdk::Verifications::Types::GenerateDocumentURLVerificationsRequest.new(params).to_h
+        non_body_param_names = %w[id]
+        body = request_data.except(*non_body_param_names)
+
+        request = Whop_sdk::Internal::JSON::Request.new(
+          base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
+          method: "POST",
+          path: "verifications/#{URI.encode_uri_component(params[:id].to_s)}/generate_document_url",
+          body: body,
+          request_options: request_options
+        )
+        begin
+          response = @client.send(request)
+        rescue Net::HTTPRequestTimeout
+          raise Whop_sdk::Errors::TimeoutError
+        end
+        code = response.code.to_i
+        if code.between?(200, 299)
+          (response.body.to_s.empty? ? nil : Whop_sdk::Verifications::Types::GenerateDocumentURLVerificationsResponse.load(response.body))
+        else
+          error_class = Whop_sdk::Errors::ResponseError.subclass_for_code(code)
+          raise error_class.new(response.body, code: code)
+        end
+      end
     end
   end
 end

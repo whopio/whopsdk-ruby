@@ -77,6 +77,7 @@ module Whop_sdk
         # @option params [String, nil] :convert_to
         # @option params [Integer, nil] :first
         # @option params [String, nil] :after
+        # @option params [Whop_sdk::Stats::Reports::Types::PartnerRevenueLinesReportsRequestMode, nil] :mode
         #
         # @example
         #   client.stats.reports.partner_revenue_lines(referring_account_id: "referring_account_id")
@@ -97,6 +98,7 @@ module Whop_sdk
           query_params["convert_to"] = params[:convert_to] if params.key?(:convert_to)
           query_params["first"] = params[:first] if params.key?(:first)
           query_params["after"] = params[:after] if params.key?(:after)
+          query_params["mode"] = params[:mode] if params.key?(:mode)
 
           request = Whop_sdk::Internal::JSON::Request.new(
             base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
@@ -146,6 +148,7 @@ module Whop_sdk
         # @option params [String, nil] :blueprint
         # @option params [Integer, nil] :first
         # @option params [String, nil] :after
+        # @option params [Whop_sdk::Stats::Reports::Types::PlatformTrendsReportsRequestMode, nil] :mode
         #
         # @example
         #   client.stats.reports.platform_trends
@@ -169,6 +172,7 @@ module Whop_sdk
           query_params["blueprint"] = params[:blueprint] if params.key?(:blueprint)
           query_params["first"] = params[:first] if params.key?(:first)
           query_params["after"] = params[:after] if params.key?(:after)
+          query_params["mode"] = params[:mode] if params.key?(:mode)
 
           request = Whop_sdk::Internal::JSON::Request.new(
             base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),

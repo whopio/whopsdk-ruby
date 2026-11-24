@@ -42238,6 +42238,14 @@ client.stats.retrieve(
 <dl>
 <dd>
 
+**mode:** `Whop_sdk::Stats::Types::RetrieveStatsRequestMode` — Whose figures the metric reads, one of the modes the metric lists. `global` reads all of Whop and takes no account_id. Without it, the metric reads the account or user named.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **account_ids:** `String` — Business ids (biz_...) to scope the series to. The series sums their figures. On a metric that lists account as a breakdown, it replaces account_id and takes at most 50 ids. On such a metric, breakdown_by=account returns an entry for each id. Available on metrics that list account_ids.
     
 </dd>
@@ -52079,6 +52087,14 @@ client.stats.reports.partner_revenue_lines(referring_account_id: "referring_acco
 <dl>
 <dd>
 
+**mode:** `Whop_sdk::Stats::Reports::Types::PartnerRevenueLinesReportsRequestMode` — Whose figures the report reads, one of the modes the report has. `global` reads all of Whop with nothing left out.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **request_options:** `Whop_sdk::Stats::Reports::RequestOptions` 
     
 </dd>
@@ -52246,6 +52262,14 @@ client.stats.reports.platform_trends
 <dd>
 
 **after:** `String` — Return results after this cursor. Use `page_info.end_cursor` from the previous response to fetch the next page.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**mode:** `Whop_sdk::Stats::Reports::Types::PlatformTrendsReportsRequestMode` — Whose figures the report reads, one of the modes the report has. `global` reads all of Whop with nothing left out.
     
 </dd>
 </dl>
@@ -52980,6 +53004,14 @@ client.stats.time_series.retrieve(
 <dd>
 
 **breakdown_limit:** `Integer` — With a single breakdown_by, keep this many groups with the highest whole-range values. Every other group folds into one entry named other. A rate or an average ranks its groups by the deals it divides by. The other entry is measured from the underlying rows, so a distinct count or a rate stays exact rather than being added up from groups.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**mode:** `Whop_sdk::Stats::TimeSeries::Types::RetrieveTimeSeriesRequestMode` — Whose figures the metric reads, one of the modes the metric lists. `global` reads all of Whop and takes no account_id. Without it, the metric reads the account or user named.
     
 </dd>
 </dl>

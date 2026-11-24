@@ -137,6 +137,7 @@ module Whop_sdk
       # @option params [String, nil] :team_lead_id
       # @option params [Whop_sdk::Stats::Types::RetrieveStatsRequestActivity, nil] :activity
       # @option params [Integer, nil] :breakdown_limit
+      # @option params [Whop_sdk::Stats::Types::RetrieveStatsRequestMode, nil] :mode
       # @option params [String, nil] :account_ids
       # @option params [String, nil] :runner_ids
       #
@@ -232,6 +233,7 @@ module Whop_sdk
         query_params["team_lead_id"] = params[:team_lead_id] if params.key?(:team_lead_id)
         query_params["activity"] = params[:activity] if params.key?(:activity)
         query_params["breakdown_limit"] = params[:breakdown_limit] if params.key?(:breakdown_limit)
+        query_params["mode"] = params[:mode] if params.key?(:mode)
         query_params["account_ids"] = params[:account_ids] if params.key?(:account_ids)
         query_params["runner_ids"] = params[:runner_ids] if params.key?(:runner_ids)
 

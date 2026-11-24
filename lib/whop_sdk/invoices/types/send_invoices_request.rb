@@ -12,6 +12,8 @@ module Whop_sdk
 
         field :message, -> { String }, optional: true, nullable: false
 
+        field :quote_deposit_amount, -> { Integer }, optional: true, nullable: false
+
         field :quote_deposit_percentage, -> { Integer }, optional: true, nullable: false
 
         field :send_as, -> { Whop_sdk::Invoices::Types::SendInvoicesRequestSendAs }, optional: true, nullable: false

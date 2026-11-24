@@ -2,11 +2,15 @@
 
 module Whop_sdk
   module Types
-    # Source of this ledger activity. Platform markup fees use object platform_fee and the ledger activity ID.
+    # Source of this ledger activity. Platform markup fees use object platform_fee and the ledger activity ID. Treasury
+    # pay-ins use object `crypto_offramp` and an ID prefixed `cofr_`. With `include_resource=false`, a treasury pay-in's
+    # source and a deposit's `bank_deposit_id` can be null.
     class LedgerActivitySource < Internal::Types::Model
       field :account_id, -> { String }, optional: true, nullable: false
 
       field :amount_float, -> { Integer }, optional: true, nullable: false
+
+      field :bank_deposit_id, -> { String }, optional: true, nullable: false
 
       field :card_brand, -> { String }, optional: true, nullable: false
 

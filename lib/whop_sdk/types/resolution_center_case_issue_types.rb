@@ -10,6 +10,7 @@ module Whop_sdk
       SIGNIFICANTLY_NOT_AS_DESCRIBED = "significantly_not_as_described"
       UNAUTHORIZED_TRANSACTION = "unauthorized_transaction"
       PRODUCT_UNACCEPTABLE = "product_unacceptable"
+      CREDIT_NOT_PROCESSED = "credit_not_processed"
     end
   end
 end

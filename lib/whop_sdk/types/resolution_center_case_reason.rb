@@ -10,6 +10,7 @@ module Whop_sdk
       NOT_AS_DESCRIBED = "not_as_described"
       PRODUCT_UNACCEPTABLE = "product_unacceptable"
       SUBSCRIPTION_CANCELED = "subscription_canceled"
+      CREDIT_NOT_PROCESSED = "credit_not_processed"
     end
   end
 end

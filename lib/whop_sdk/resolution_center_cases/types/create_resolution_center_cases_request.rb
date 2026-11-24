@@ -4,6 +4,8 @@ module Whop_sdk
   module ResolutionCenterCases
     module Types
       class CreateResolutionCenterCasesRequest < Internal::Types::Model
+        field :answers, -> { Internal::Types::Array[Whop_sdk::ResolutionCenterCases::Types::CreateResolutionCenterCasesRequestAnswersItem] }, optional: true, nullable: false
+
         field :attachments, -> { Internal::Types::Array[Whop_sdk::ResolutionCenterCases::Types::CreateResolutionCenterCasesRequestAttachmentsItem] }, optional: true, nullable: false
 
         field :message, -> { String }, optional: false, nullable: false

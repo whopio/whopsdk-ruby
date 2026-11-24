@@ -42246,7 +42246,7 @@ client.stats.retrieve(
 <dl>
 <dd>
 
-**account_ids:** `String` — Business ids (biz_...) to scope the series to. The series sums their figures. On a metric that lists account as a breakdown, it replaces account_id and takes at most 50 ids. On such a metric, breakdown_by=account returns an entry for each id. Available on metrics that list account_ids.
+**account_ids:** `String` — Business ids (biz_...) to scope the series to. The series sums their figures. On a metric that lists account as a breakdown, it replaces account_id and takes at most 50 ids. On such a metric, breakdown_by=account returns an entry for each id. Available on metrics that list account_ids. With a mode other than `owner`, `global` and `public`, it is used with account_id. It keeps only these accounts inside the mode. An account that is not inside the mode adds nothing. It cannot be combined with `global` or `public`.
     
 </dd>
 </dl>
@@ -53019,7 +53019,7 @@ client.stats.time_series.retrieve(
 <dl>
 <dd>
 
-**account_ids:** `String` — Business ids (biz_...) to scope the series to. The series sums their figures. On a metric that lists account as a breakdown, it replaces account_id and takes at most 50 ids. On such a metric, breakdown_by=account returns an entry for each id. Available on metrics that list account_ids.
+**account_ids:** `String` — Business ids (biz_...) to scope the series to. The series sums their figures. On a metric that lists account as a breakdown, it replaces account_id and takes at most 50 ids. On such a metric, breakdown_by=account returns an entry for each id. Available on metrics that list account_ids. With a mode other than `owner`, `global` and `public`, it is used with account_id. It keeps only these accounts inside the mode. An account that is not inside the mode adds nothing. It cannot be combined with `global` or `public`.
     
 </dd>
 </dl>

@@ -8,7 +8,7 @@ module Whop_sdk
           extend Whop_sdk::Internal::Types::Enum
 
           GLOBAL = "global"
-          TRENDS = "trends"
+          PUBLIC = "public"
         end
       end
     end

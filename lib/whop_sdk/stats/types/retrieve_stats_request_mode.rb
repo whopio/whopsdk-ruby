@@ -8,7 +8,7 @@ module Whop_sdk
 
         GLOBAL = "global"
         OWNER = "owner"
-        TRENDS = "trends"
+        PUBLIC = "public"
       end
     end
   end

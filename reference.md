@@ -11645,7 +11645,7 @@ client.cards.list
 <dl>
 <dd>
 
-**account_id:** `String` — The owning account ID (a biz_ identifier). Provide this or user_id.
+**account_id:** `String` — The owning account ID: a biz_ identifier for a business, or a user_ identifier for a personal account. Provide this or user_id.
     
 </dd>
 </dl>
@@ -11715,7 +11715,7 @@ client.cards.create
 <dl>
 <dd>
 
-**account_id:** `String` — The owning account ID (a biz_ identifier). Provide this or user_id.
+**account_id:** `String` — The owning account ID: a biz_ identifier for a business, or a user_ identifier for a personal account. Provide this or user_id.
     
 </dd>
 </dl>
@@ -11857,7 +11857,7 @@ client.cards.retrieve(id: "id")
 <dl>
 <dd>
 
-**account_id:** `String` — The owning account ID (a biz_ identifier). Provide this or user_id.
+**account_id:** `String` — The owning account ID: a biz_ identifier for a business, or a user_ identifier for a personal account. Provide this or user_id.
     
 </dd>
 </dl>
@@ -11935,7 +11935,7 @@ client.cards.update(id: "id")
 <dl>
 <dd>
 
-**account_id:** `String` — The owning account ID (a biz_ identifier). Provide this or user_id.
+**account_id:** `String` — The owning account ID: a biz_ identifier for a business, or a user_ identifier for a personal account. Provide this or user_id.
     
 </dd>
 </dl>

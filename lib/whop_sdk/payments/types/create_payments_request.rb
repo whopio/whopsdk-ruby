@@ -16,6 +16,8 @@ module Whop_sdk
 
         field :confirmation_token, -> { String }, optional: true, nullable: false
 
+        field :discount, -> { Whop_sdk::Types::PaymentRegisterDiscount }, optional: true, nullable: false
+
         field :email, -> { String }, optional: true, nullable: false
 
         field :ip_address, -> { String }, optional: true, nullable: false

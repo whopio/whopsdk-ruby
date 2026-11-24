@@ -61,6 +61,10 @@ module Whop_sdk
 
       field :quote_amount_remaining, -> { Whop_sdk::Types::Money }, optional: false, nullable: true
 
+      field :quote_deposit_amount, -> { Whop_sdk::Types::Money }, optional: false, nullable: true
+
+      field :quote_deposit_percentage, -> { Integer }, optional: false, nullable: true
+
       field :quote_invoice_ids, -> { Internal::Types::Array[String] }, optional: false, nullable: false
 
       field :quote_payment_url, -> { String }, optional: false, nullable: true

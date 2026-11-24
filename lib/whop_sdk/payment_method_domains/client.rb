@@ -15,7 +15,7 @@ module Whop_sdk
       end
 
       # Lists the payment method domains registered for your account and its subaccounts. Deprecated: list domains with
-      # `GET /domains` and the `apple_pay` filter instead.
+      # `GET /domains` and the `apple_pay` filter instead. Stops responding after 2026-12-23.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -90,7 +90,7 @@ module Whop_sdk
       # provider fetched the domain-association file (for Apple Pay,
       # `/.well-known/apple-developer-merchantid-domain-association`), or `pending` when it could not: host the file,
       # then retry with `POST /payment_method_domains/:id/verify`. Deprecated: add Apple Pay with `POST /domains` and
-      # `apple_pay: {}` instead.
+      # `apple_pay: {}` instead. Stops responding after 2026-12-23.
       #
       # @param request_options [Hash]
       # @param params [Whop_sdk::PaymentMethodDomains::Types::CreatePaymentMethodDomainsRequest]
@@ -128,7 +128,7 @@ module Whop_sdk
       end
 
       # Retrieves a payment method domain to check its verification status. Deprecated: retrieve the domain with `GET
-      # /domains/{id}` instead, using the same ID.
+      # /domains/{id}` instead, using the same ID. Stops responding after 2026-12-23.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -206,7 +206,7 @@ module Whop_sdk
 
       # Re-attempts provider verification of a pending domain once the association file is hosted. Fails with a
       # `bad_request` explaining what to fix; verifying an already `verified` domain is a no-op. Deprecated: check the
-      # domain with `POST /domains/{id}/check` instead.
+      # domain with `POST /domains/{id}/check` instead. Stops responding after 2026-12-23.
       #
       # @param request_options [Hash]
       # @param params [Hash]

@@ -26,6 +26,8 @@ module Whop_sdk
 
         field :title, -> { String }, optional: true, nullable: false
 
+        field :verification_ids, -> { Internal::Types::Array[String] }, optional: true, nullable: false
+
         field :website, -> { String }, optional: true, nullable: false
       end
     end

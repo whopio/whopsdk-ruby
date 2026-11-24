@@ -159,6 +159,8 @@ module Whop_sdk
 
           field :breakdown_limit, -> { Integer }, optional: true, nullable: false
 
+          field :mode, -> { Whop_sdk::Stats::TimeSeries::Types::RetrieveTimeSeriesRequestMode }, optional: true, nullable: false
+
           field :account_ids, -> { String }, optional: true, nullable: false
 
           field :runner_ids, -> { String }, optional: true, nullable: false

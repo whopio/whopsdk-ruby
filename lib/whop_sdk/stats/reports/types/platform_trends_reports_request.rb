@@ -34,6 +34,8 @@ module Whop_sdk
           field :first, -> { Integer }, optional: true, nullable: false
 
           field :after, -> { String }, optional: true, nullable: false
+
+          field :mode, -> { Whop_sdk::Stats::Reports::Types::PlatformTrendsReportsRequestMode }, optional: true, nullable: false
         end
       end
     end

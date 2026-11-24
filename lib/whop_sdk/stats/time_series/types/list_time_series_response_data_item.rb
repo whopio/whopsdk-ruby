@@ -11,6 +11,8 @@ module Whop_sdk
 
           field :key, -> { String }, optional: false, nullable: false
 
+          field :modes, -> { Internal::Types::Array[String] }, optional: true, nullable: false
+
           field :name, -> { String }, optional: false, nullable: false
 
           field :properties, -> { Internal::Types::Array[String] }, optional: false, nullable: false

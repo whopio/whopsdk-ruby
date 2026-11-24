@@ -243,6 +243,7 @@ module Whop_sdk
         PSP_DISPUTE_FEE = "psp_dispute_fee"
         PSP_DISPUTE_MANAGEMENT_FEE = "psp_dispute_management_fee"
         PSP_DISPUTE_PAYABLE = "psp_dispute_payable"
+        PSP_ERROR_LOSS = "psp_error_loss"
         PSP_EXTERNAL_ACCOUNT_CONNECTION_FEE = "psp_external_account_connection_fee"
         PSP_FIXED_FEE = "psp_fixed_fee"
         PSP_FX_ADJUSTMENT = "psp_fx_adjustment"

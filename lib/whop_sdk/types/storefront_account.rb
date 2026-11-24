@@ -3,6 +3,8 @@
 module Whop_sdk
   module Types
     class StorefrontAccount < Internal::Types::Model
+      field :banner_image_url, -> { String }, optional: false, nullable: true
+
       field :id, -> { String }, optional: false, nullable: false
 
       field :logo_url, -> { String }, optional: false, nullable: true

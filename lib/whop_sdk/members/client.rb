@@ -35,6 +35,7 @@ module Whop_sdk
       # @option params [String, nil] :promo_code_ids
       # @option params [String, nil] :affiliate_id
       # @option params [String, nil] :buyer_account_ids
+      # @option params [String, nil] :metadata
       # @option params [String, nil] :query
       # @option params [String, nil] :created_after
       # @option params [String, nil] :created_before
@@ -71,6 +72,7 @@ module Whop_sdk
         query_params["promo_code_ids"] = params[:promo_code_ids] if params.key?(:promo_code_ids)
         query_params["affiliate_id"] = params[:affiliate_id] if params.key?(:affiliate_id)
         query_params["buyer_account_ids"] = params[:buyer_account_ids] if params.key?(:buyer_account_ids)
+        query_params["metadata"] = params[:metadata] if params.key?(:metadata)
         query_params["query"] = params[:query] if params.key?(:query)
         query_params["created_after"] = params[:created_after] if params.key?(:created_after)
         query_params["created_before"] = params[:created_before] if params.key?(:created_before)

@@ -26,6 +26,8 @@ module Whop_sdk
 
         field :buyer_account_ids, -> { String }, optional: true, nullable: false
 
+        field :metadata, -> { String }, optional: true, nullable: false
+
         field :query, -> { String }, optional: true, nullable: false
 
         field :created_after, -> { String }, optional: true, nullable: false

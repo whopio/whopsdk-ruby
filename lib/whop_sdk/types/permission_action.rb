@@ -241,6 +241,7 @@ module Whop_sdk
       SOCIAL_ACCOUNT_DELETE = "social_account:delete"
       SOCIAL_ACCOUNT_READ = "social_account:read"
       SOCIAL_LINK_UPDATE = "social_link:update"
+      SOCIAL_MENTION_READ = "social_mention:read"
       STATS_READ = "stats:read"
       SUPPORT_CHAT_CREATE = "support_chat:create"
       SUPPORT_CHAT_MESSAGE_CREATE = "support_chat:message:create"

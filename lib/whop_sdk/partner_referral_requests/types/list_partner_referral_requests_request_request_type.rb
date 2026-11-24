@@ -9,6 +9,7 @@ module Whop_sdk
         MANUAL = "manual"
         OWNERSHIP_TRANSFER = "ownership_transfer"
         LINK = "link"
+        LEAD = "lead"
       end
     end
   end

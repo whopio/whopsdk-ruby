@@ -125,7 +125,7 @@ module Whop_sdk
       # @option request_options [Integer] :timeout_in_seconds
       #
       # @example
-      #   client.members.create(email: "jane@example.com")
+      #   client.members.create(email: "dana@shinetime.example")
       #
       # @return [Whop_sdk::Types::Member]
       def create(request_options: {}, **params)

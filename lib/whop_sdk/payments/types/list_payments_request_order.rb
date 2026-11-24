@@ -9,6 +9,10 @@ module Whop_sdk
         CREATED_AT = "created_at"
         PAID_AT = "paid_at"
         AMOUNT = "amount"
+        STATUS = "status"
+        PRODUCT = "product"
+        PLAN = "plan"
+        METHOD = "method"
       end
     end
   end

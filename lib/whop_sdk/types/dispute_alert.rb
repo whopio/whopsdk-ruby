@@ -11,8 +11,6 @@ module Whop_sdk
 
       field :card_brand, -> { String }, optional: false, nullable: true
 
-      field :category, -> { Whop_sdk::Types::DisputeAlertCategory }, optional: false, nullable: true
-
       field :created_at, -> { String }, optional: false, nullable: false
 
       field :currency, -> { String }, optional: false, nullable: false
@@ -28,6 +26,8 @@ module Whop_sdk
       field :payment_id, -> { String }, optional: false, nullable: true
 
       field :product_id, -> { String }, optional: false, nullable: true
+
+      field :reason, -> { Whop_sdk::Types::DisputeAlertReason }, optional: false, nullable: true
 
       field :reported_at, -> { String }, optional: false, nullable: false
 

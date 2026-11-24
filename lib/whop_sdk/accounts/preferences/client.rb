@@ -66,7 +66,7 @@ module Whop_sdk
         # - `payment:dispute`: `dispute_fighter_enabled`.
         # - `company:update`: `economic_intelligence_duration_key`, `economic_intelligence_auto_renew`,
         # `review_request_emails`, `cancellation_emails`, `renewal_reminder_emails`, `failed_payment_emails`,
-        # `subaccount_notifications`, `subaccount_team_view_only`, `card_surcharge`.
+        # `subaccount_notifications`, `subaccount_team_view_only`, `card_surcharge`, `apple_iap_fee_payer`.
         # - `company:manage_checkout`: `feedback_options`, `customer_tracking`.
         # - `affiliate:update`: `affiliate_program`.
         #

@@ -17,6 +17,8 @@ module Whop_sdk
 
           field :affiliate_program, -> { Whop_sdk::Accounts::Preferences::Types::UpdatePreferencesRequestAffiliateProgram }, optional: true, nullable: false
 
+          field :apple_iap_fee_payer, -> { Whop_sdk::Accounts::Preferences::Types::UpdatePreferencesRequestAppleIapFeePayer }, optional: true, nullable: false
+
           field :cancellation_emails, -> { Internal::Types::Boolean }, optional: true, nullable: false
 
           field :card_surcharge, -> { Whop_sdk::Accounts::Preferences::Types::UpdatePreferencesRequestCardSurcharge }, optional: true, nullable: false

@@ -26877,7 +26877,7 @@ Adds a person to an account as a member. If the person is already a member of th
 <dd>
 
 ```ruby
-client.members.create(email: "jane@example.com")
+client.members.create(email: "dana@shinetime.example")
 ```
 </dd>
 </dl>

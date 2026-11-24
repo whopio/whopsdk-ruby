@@ -31,6 +31,8 @@ module Whop_sdk
 
       field :invoice_prefix, -> { String }, optional: false, nullable: true
 
+      field :issued_at, -> { String }, optional: false, nullable: true
+
       field :line_items, -> { Internal::Types::Array[Whop_sdk::Types::InvoiceLineItem] }, optional: false, nullable: false
 
       field :mailing_address_id, -> { String }, optional: false, nullable: true

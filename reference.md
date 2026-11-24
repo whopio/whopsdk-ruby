@@ -33018,7 +33018,7 @@ client.payments.update(id: "id")
 <dl>
 <dd>
 
-**line_items:** `Internal::Types::Array[Whop_sdk::Payments::Types::UpdatePaymentsRequestLineItemsItem]` — Off by default. Whop support must turn it on for your account. Replaces an in-person payment's line items after the card is read. On an open payment, update within 30 seconds of the card read, before the reader confirms it. On a `capture: false` payment, update before you capture it for the new `total`. Send every purchased line back by `id`. Added lines can be kept by `id`, added with `variant`, or removed by leaving them out. Added lines aren't taxed.
+**line_items:** `Internal::Types::Array[Whop_sdk::Payments::Types::UpdatePaymentsRequestLineItemsItem]` — Only for a `card_present` payment taken in the US in USD. Replaces an in-person payment's line items after the card is read. On an open payment, update within 30 seconds of the card read, before the reader confirms it. On a `capture: false` payment, update before you capture it for the new `total`. Send every purchased line back by `id`. Added lines can be kept by `id`, added with `variant`, or removed by leaving them out. Added lines aren't taxed.
     
 </dd>
 </dl>
@@ -33104,7 +33104,7 @@ client.payments.capture(id: "id")
 <dl>
 <dd>
 
-**amount:** `Integer` — The amount to capture, in the payment's currency. It must equal the payment's `total`, and defaults to it. The total moves away from the authorized amount when its line items change after the card was authorized. Capturing more or less than the authorized amount is off by default. Contact Whop support to turn it on for your account.
+**amount:** `Integer` — The amount to capture, in the payment's currency. It must equal the payment's `total`, and defaults to it. The total moves away from the authorized amount only when a `card_present` payment's line items change after the card was authorized.
     
 </dd>
 </dl>
@@ -42238,7 +42238,7 @@ client.stats.retrieve(
 <dl>
 <dd>
 
-**mode:** `Whop_sdk::Stats::Types::RetrieveStatsRequestMode` — Whose figures the metric reads, one of the modes the metric lists. `global` reads all of Whop and takes no account_id. Without it, the metric reads the account or user named.
+**mode:** `Whop_sdk::Stats::Types::RetrieveStatsRequestMode` — Whose figures the metric reads, one of the modes the metric lists. `global` reads all of Whop and takes no account_id. `public` reads the figures of Whop that are shown in public, and takes no account_id. Without it, the metric reads the account or user named.
     
 </dd>
 </dl>
@@ -53011,7 +53011,7 @@ client.stats.time_series.retrieve(
 <dl>
 <dd>
 
-**mode:** `Whop_sdk::Stats::TimeSeries::Types::RetrieveTimeSeriesRequestMode` — Whose figures the metric reads, one of the modes the metric lists. `global` reads all of Whop and takes no account_id. Without it, the metric reads the account or user named.
+**mode:** `Whop_sdk::Stats::TimeSeries::Types::RetrieveTimeSeriesRequestMode` — Whose figures the metric reads, one of the modes the metric lists. `global` reads all of Whop and takes no account_id. `public` reads the figures of Whop that are shown in public, and takes no account_id. Without it, the metric reads the account or user named.
     
 </dd>
 </dl>

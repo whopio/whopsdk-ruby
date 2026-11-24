@@ -1477,6 +1477,8 @@ require_relative "whop_sdk/partner_referral_requests/types/list_partner_referral
 require_relative "whop_sdk/partner_referral_requests/types/list_partner_referral_requests_response_page_info"
 require_relative "whop_sdk/types/partner_referral_request_request_type"
 require_relative "whop_sdk/types/partner_referral_request_status"
+require_relative "whop_sdk/types/partner_referral_request_status_reason"
+require_relative "whop_sdk/types/partner_referral_request_lead"
 require_relative "whop_sdk/types/partner_referral_reward_bot_qualification_type"
 require_relative "whop_sdk/types/partner_referral_reward_recipient"
 require_relative "whop_sdk/types/partner_referral_reward"

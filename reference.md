@@ -29750,7 +29750,7 @@ client.partner_referral_requests.list
 <dl>
 <dd>
 
-**referring_account_id:** `String` — Only the referral links created for memberships on this business's team, prefixed `biz_`. Needs read access to the business: its owner sees every member's links, a manager the links of the people reporting to them, and other members only their own.
+**referring_account_id:** `String` — Only the referral links created for memberships on this business's team, prefixed `biz_`. Needs read access to the business: its owner sees every member's links, a manager the links of the people reporting to them, and other members only their own. With `request_type=lead`, it lists your lead offers that count toward this team, plus your personal lead offers.
     
 </dd>
 </dl>

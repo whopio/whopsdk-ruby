@@ -11,7 +11,11 @@ module Whop_sdk
 
       field :created_at, -> { String }, optional: false, nullable: false
 
+      field :expires_at, -> { String }, optional: false, nullable: true
+
       field :id, -> { String }, optional: false, nullable: false
+
+      field :lead, -> { Whop_sdk::Types::PartnerReferralRequestLead }, optional: false, nullable: true
 
       field :max_redemptions, -> { Integer }, optional: false, nullable: true
 
@@ -26,6 +30,8 @@ module Whop_sdk
       field :rewards, -> { Internal::Types::Array[Whop_sdk::Types::PartnerReferralReward] }, optional: false, nullable: false
 
       field :status, -> { Whop_sdk::Types::PartnerReferralRequestStatus }, optional: false, nullable: true
+
+      field :status_reason, -> { Whop_sdk::Types::PartnerReferralRequestStatusReason }, optional: false, nullable: true
 
       field :updated_at, -> { String }, optional: false, nullable: false
 

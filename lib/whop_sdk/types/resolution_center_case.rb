@@ -7,6 +7,8 @@ module Whop_sdk
 
       field :amount, -> { Integer }, optional: false, nullable: false
 
+      field :answers, -> { Internal::Types::Array[Whop_sdk::Types::ResolutionCenterCaseAnswer] }, optional: false, nullable: false
+
       field :available_actions, -> { Internal::Types::Array[Whop_sdk::Types::ResolutionCenterCaseAvailableActionsItem] }, optional: false, nullable: false
 
       field :buyer, -> { Whop_sdk::Types::ResolutionBuyer }, optional: false, nullable: false

@@ -6,6 +6,8 @@ module Whop_sdk
       # How many of the matching cases were opened for each reason. Every reason is present, including those with a
       # count of zero.
       class SummaryResolutionCenterCasesResponseGroupsReason < Internal::Types::Model
+        field :credit_not_processed, -> { Integer }, optional: false, nullable: false
+
         field :fraudulent, -> { Integer }, optional: false, nullable: false
 
         field :not_as_described, -> { Integer }, optional: false, nullable: false

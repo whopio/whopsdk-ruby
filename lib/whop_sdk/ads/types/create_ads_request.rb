@@ -4,6 +4,8 @@ module Whop_sdk
   module Ads
     module Types
       class CreateAdsRequest < Internal::Types::Model
+        field :account_id, -> { String }, optional: true, nullable: false
+
         field :ad_group, -> { Internal::Types::Hash[String, Object] }, optional: true, nullable: false
 
         field :ad_group_id, -> { String }, optional: true, nullable: false

@@ -243,6 +243,7 @@ module Whop_sdk
       PAYMENT_UNRECONCILED_CLEARING = "payment_unreconciled_clearing"
       PAYMENT_UNRECONCILED_REVERSAL = "payment_unreconciled_reversal"
       SETTLEMENT_SHORTFALL_LOSS = "settlement_shortfall_loss"
+      PSP_ERROR_LOSS = "psp_error_loss"
       FX_SETTLEMENT_GAIN_LOSS = "fx_settlement_gain_loss"
       SETTLEMENT_ROUNDING_VARIANCE = "settlement_rounding_variance"
       PSP_PAYOUT_SETTLEMENT = "psp_payout_settlement"

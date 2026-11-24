@@ -29,6 +29,8 @@ module Whop_sdk
 
       field :suspension_explanation, -> { String }, optional: false, nullable: true
 
+      field :suspension_explanation_markdown, -> { String }, optional: false, nullable: true
+
       field :suspension_reason, -> { String }, optional: false, nullable: true
     end
   end

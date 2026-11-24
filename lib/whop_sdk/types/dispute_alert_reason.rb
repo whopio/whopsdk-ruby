@@ -2,7 +2,7 @@
 
 module Whop_sdk
   module Types
-    module DisputeAlertCategory
+    module DisputeAlertReason
       extend Whop_sdk::Internal::Types::Enum
 
       FRAUD = "fraud"

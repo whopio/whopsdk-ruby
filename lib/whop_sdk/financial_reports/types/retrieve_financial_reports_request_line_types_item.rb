@@ -124,6 +124,8 @@ module Whop_sdk
         PLATFORM_CREDITS_PAYMENT = "platform_credits_payment"
         PLATFORM_CREDITS_PAYMENT_REFUND = "platform_credits_payment_refund"
         PLATFORM_EARNING = "platform_earning"
+        PLATFORM_INTERCHANGE_SHARE = "platform_interchange_share"
+        PLATFORM_INTERCHANGE_SHARE_REVERSAL = "platform_interchange_share_reversal"
         PLATFORM_MARKUP_FEE = "platform_markup_fee"
         PLATFORM_MARKUP_FEE_PAYOUT = "platform_markup_fee_payout"
         PROMO_REVERSAL = "promo_reversal"

@@ -8,6 +8,8 @@ module Whop_sdk
 
         field :ad_group, -> { Whop_sdk::Types::AdEntityReference }, optional: false, nullable: false
 
+        field :appeal_available_at, -> { String }, optional: false, nullable: true
+
         field :call_to_action, -> { Whop_sdk::Ads::Types::PostAdUpdatedPayloadDataCallToAction }, optional: false, nullable: true
 
         field :content_review, -> { Whop_sdk::Types::AdContentReview }, optional: false, nullable: false

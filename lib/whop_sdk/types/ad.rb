@@ -11,6 +11,8 @@ module Whop_sdk
 
       field :added_to_carts, -> { Integer }, optional: false, nullable: false
 
+      field :appeal_available_at, -> { String }, optional: false, nullable: true
+
       field :call_to_action, -> { Whop_sdk::Types::AdCallToAction }, optional: false, nullable: true
 
       field :click_through_rate, -> { Integer }, optional: false, nullable: false

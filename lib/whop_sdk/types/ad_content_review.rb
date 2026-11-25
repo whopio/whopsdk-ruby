@@ -3,6 +3,8 @@
 module Whop_sdk
   module Types
     class AdContentReview < Internal::Types::Model
+      field :blocked_by_website, -> { Internal::Types::Boolean }, optional: false, nullable: false
+
       field :status, -> { Whop_sdk::Types::AdContentReviewStatus }, optional: false, nullable: false
 
       field :tags, -> { Internal::Types::Array[Whop_sdk::Types::AdContentReviewTag] }, optional: false, nullable: false

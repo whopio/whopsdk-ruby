@@ -4336,6 +4336,79 @@ client.ads.update(id: "id")
 </dl>
 </details>
 
+<details><summary><code>client.ads.<a href="/lib/whop_sdk/ads/client.rb">appeal</a>(id:, request) -> Whop_sdk::Types::Ad</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Asks Whop to review the ad again. A `website` appeal reviews the ad against its website as it is now. It only applies to an ad held back for something found on its website. An ad can be appealed once an hour.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.ads.appeal(
+  id: "id",
+  type: "website"
+)
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — The ad ID.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**type:** `Whop_sdk::Ads::Types::AppealAdsRequestType` — How to review the ad again. `website` reviews it against its website as it is now.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Whop_sdk::Ads::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.ads.<a href="/lib/whop_sdk/ads/client.rb">duplicate</a>(id:, request) -> Whop_sdk::Ads::Types::DuplicateAdsResponse</code></summary>
 <dl>
 <dd>

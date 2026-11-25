@@ -8,6 +8,7 @@ module Whop_sdk
 
         CREATED_AT = "created_at"
         FLAG_KEY = "flag_key"
+        LIFT = "lift"
       end
     end
   end

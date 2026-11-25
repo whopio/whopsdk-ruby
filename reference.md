@@ -20666,7 +20666,7 @@ client.experiments.list
 <dl>
 <dd>
 
-**order:** `Whop_sdk::Experiments::Types::ListExperimentsRequestOrder` — The field to sort experiments by.
+**order:** `Whop_sdk::Experiments::Types::ListExperimentsRequestOrder` — The field to sort experiments by. `lift` puts the experiment whose primary measure moved the most first. With `account_id=global` it is the only order allowed.
     
 </dd>
 </dl>

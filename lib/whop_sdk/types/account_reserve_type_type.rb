@@ -10,6 +10,7 @@ module Whop_sdk
       SEQURA = "sequra"
       FRAUD_HOLD = "fraud_hold"
       PRESHIPMENT_HOLD = "preshipment_hold"
+      SUBACCOUNT_NEGATIVE_BALANCES = "subaccount_negative_balances"
     end
   end
 end

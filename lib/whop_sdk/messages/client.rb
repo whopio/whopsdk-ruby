@@ -126,7 +126,7 @@ module Whop_sdk
       # @example
       #   client.messages.create(
       #     channel_id: "feed_xxxxxxxxxxxxxxxxxxxxxx",
-      #     content: "New **message**"
+      #     content: "Your **ceramic coating** is booked for Tuesday."
       #   )
       #
       # @return [Whop_sdk::Types::ChatMessage]

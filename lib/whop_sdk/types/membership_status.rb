@@ -12,6 +12,7 @@ module Whop_sdk
       CANCELED = "canceled"
       EXPIRED = "expired"
       UNRESOLVED = "unresolved"
+      SCHEDULED = "scheduled"
       DRAFTED = "drafted"
       CANCELING = "canceling"
     end

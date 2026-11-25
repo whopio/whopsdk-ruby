@@ -8,6 +8,7 @@ module Whop_sdk
 
         ACTIVE = "active"
         TRIALING = "trialing"
+        SCHEDULED = "scheduled"
         PAST_DUE = "past_due"
         COMPLETED = "completed"
         CANCELED = "canceled"

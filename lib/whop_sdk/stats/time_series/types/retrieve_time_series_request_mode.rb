@@ -9,6 +9,7 @@ module Whop_sdk
 
           GLOBAL = "global"
           OWNER = "owner"
+          PARTNERS = "partners"
           PLATFORMS = "platforms"
           PUBLIC = "public"
         end

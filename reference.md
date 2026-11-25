@@ -14985,7 +14985,7 @@ client.course_chapters.create(course_id: "cors_xxxxxxxxxxxxx")
 <dl>
 <dd>
 
-**course_id:** `String` — The unique identifier of the course to create the chapter in (e.g., "course_XXXXX").
+**course_id:** `String` — The unique identifier of the course to create the chapter in (for example, "cors_XXXXX").
     
 </dd>
 </dl>
@@ -15759,7 +15759,7 @@ client.course_lessons.delete(id: "lesn_xxxxxxxxxxxxx")
 <dl>
 <dd>
 
-**id:** `String` — The unique identifier of the lesson to delete (e.g., "les_XXXXX").
+**id:** `String` — The unique identifier of the lesson to delete (for example, "lesn_XXXXX").
     
 </dd>
 </dl>
@@ -15824,7 +15824,7 @@ client.course_lessons.update(id: "lesn_xxxxxxxxxxxxx")
 <dl>
 <dd>
 
-**id:** `String` — The unique identifier of the lesson to update (e.g., "les_XXXXX").
+**id:** `String` — The unique identifier of the lesson to update (for example, "lesn_XXXXX").
     
 </dd>
 </dl>
@@ -15998,7 +15998,7 @@ client.course_lessons.mark_as_completed(lesson_id: "lesson_id")
 <dl>
 <dd>
 
-**lesson_id:** `String` — The unique identifier of the lesson to mark as completed (e.g., "les_XXXXX").
+**lesson_id:** `String` — The unique identifier of the lesson to mark as completed (for example, "lesn_XXXXX").
     
 </dd>
 </dl>
@@ -16060,7 +16060,7 @@ client.course_lessons.start(lesson_id: "lesson_id")
 <dl>
 <dd>
 
-**lesson_id:** `String` — The unique identifier of the lesson the user is starting (e.g., "les_XXXXX").
+**lesson_id:** `String` — The unique identifier of the lesson the user is starting (for example, "lesn_XXXXX").
     
 </dd>
 </dl>
@@ -16127,7 +16127,7 @@ client.course_lessons.submit_assessment(
 <dl>
 <dd>
 
-**lesson_id:** `String` — The unique identifier of the quiz or knowledge check lesson to submit answers for (e.g., "les_XXXXX").
+**lesson_id:** `String` — The unique identifier of the quiz or knowledge check lesson to submit answers for (for example, "lesn_XXXXX").
     
 </dd>
 </dl>
@@ -16677,7 +16677,7 @@ client.courses.delete(id: "cors_xxxxxxxxxxxxx")
 <dl>
 <dd>
 
-**id:** `String` — The unique identifier of the course to delete (e.g., "course_XXXXX").
+**id:** `String` — The unique identifier of the course to delete (for example, "cors_XXXXX").
     
 </dd>
 </dl>
@@ -16742,7 +16742,7 @@ client.courses.update(id: "cors_xxxxxxxxxxxxx")
 <dl>
 <dd>
 
-**id:** `String` — The unique identifier of the course to update (e.g., "course_XXXXX").
+**id:** `String` — The unique identifier of the course to update (for example, "cors_XXXXX").
     
 </dd>
 </dl>
@@ -37309,7 +37309,7 @@ client.promo_codes.create(
 <dl>
 <dd>
 
-**amount_off:** `Integer` 
+**amount_off:** `Integer` — The discount. For `percentage`, a whole percent from 0.01 to 100 (25 means 25% off). Responses return it as a fraction, 0.25. For `flat_amount`, an amount in `base_currency` units, such as dollars (5 means $5.00).
     
 </dd>
 </dl>
@@ -37333,7 +37333,7 @@ client.promo_codes.create(
 <dl>
 <dd>
 
-**code:** `String` 
+**code:** `String` — The code customers enter at checkout. Stored lowercase.
     
 </dd>
 </dl>
@@ -37381,7 +37381,7 @@ client.promo_codes.create(
 <dl>
 <dd>
 
-**promo_duration_months:** `Integer` 
+**promo_duration_months:** `Integer` — How many billing cycles the discount applies to: 0 for every payment, 1 for the first payment only, N to cover the first N payments.
     
 </dd>
 </dl>
@@ -37397,7 +37397,7 @@ client.promo_codes.create(
 <dl>
 <dd>
 
-**stock:** `Integer` 
+**stock:** `Integer` — How many times the code can be used. Required unless `unlimited_stock` is true.
     
 </dd>
 </dl>
@@ -37405,7 +37405,7 @@ client.promo_codes.create(
 <dl>
 <dd>
 
-**unlimited_stock:** `Internal::Types::Boolean` 
+**unlimited_stock:** `Internal::Types::Boolean` — Allow unlimited uses. When false or omitted, `stock` is required.
     
 </dd>
 </dl>
@@ -45229,7 +45229,7 @@ client.variants.create
 <dl>
 <dd>
 
-**custom_fields:** `Internal::Types::Array[Whop_sdk::Variants::Types::CreateVariantsRequestCustomFieldsItem]` — An array of custom field definitions to collect from customers at checkout. Omitting this field clears existing custom fields.
+**custom_fields:** `Internal::Types::Array[Whop_sdk::Variants::Types::CreateVariantsRequestCustomFieldsItem]` — An array of custom field definitions to collect from customers at checkout. On update, omitting this field leaves existing custom fields unchanged. Send an empty array to clear them.
     
 </dd>
 </dl>
@@ -45676,7 +45676,7 @@ client.variants.update(id: "id")
 <dl>
 <dd>
 
-**custom_fields:** `Internal::Types::Array[Whop_sdk::Variants::Types::UpdateVariantsRequestCustomFieldsItem]` — An array of custom field definitions to collect from customers at checkout. Omitting this field clears existing custom fields.
+**custom_fields:** `Internal::Types::Array[Whop_sdk::Variants::Types::UpdateVariantsRequestCustomFieldsItem]` — An array of custom field definitions to collect from customers at checkout. On update, omitting this field leaves existing custom fields unchanged. Send an empty array to clear them.
     
 </dd>
 </dl>

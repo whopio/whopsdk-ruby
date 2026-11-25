@@ -9,6 +9,10 @@ module Whop_sdk
 
       field :joined_at, -> { String }, optional: false, nullable: true
 
+      field :lead_slot_limit, -> { Integer }, optional: false, nullable: false
+
+      field :lead_slots_used, -> { Integer }, optional: false, nullable: false
+
       field :payout_rates, -> { Internal::Types::Array[Whop_sdk::Types::PartnerPayoutTier] }, optional: false, nullable: false
 
       field :referred_businesses_count, -> { Integer }, optional: false, nullable: false

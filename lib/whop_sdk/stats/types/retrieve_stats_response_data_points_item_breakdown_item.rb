@@ -4,6 +4,8 @@ module Whop_sdk
   module Stats
     module Types
       class RetrieveStatsResponseDataPointsItemBreakdownItem < Internal::Types::Model
+        field :label, -> { String }, optional: true, nullable: false
+
         field :name, -> { String }, optional: false, nullable: false
 
         field :steps, -> { Internal::Types::Array[Whop_sdk::Types::FunnelStepResult] }, optional: true, nullable: false

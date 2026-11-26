@@ -10,6 +10,8 @@ module Whop_sdk
 
         field :buyer_fee_percentage, -> { Integer }, optional: true, nullable: false
 
+        field :charge_at_subscription_start, -> { Internal::Types::Boolean }, optional: true, nullable: false
+
         field :customer_name, -> { String }, optional: true, nullable: false
 
         field :due_at, -> { String }, optional: true, nullable: false

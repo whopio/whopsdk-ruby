@@ -52,6 +52,8 @@ module Whop_sdk
 
         field :stock, -> { Integer }, optional: true, nullable: false
 
+        field :stock_adjustment, -> { Integer }, optional: true, nullable: false
+
         field :strike_through_initial_price, -> { Integer }, optional: true, nullable: false
 
         field :strike_through_renewal_price, -> { Integer }, optional: true, nullable: false

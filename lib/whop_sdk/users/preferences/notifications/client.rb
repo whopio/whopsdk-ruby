@@ -32,6 +32,7 @@ module Whop_sdk
           #
           # @example
           #   client.users.preferences.notifications.set(preferences: [{
+          #     level: nil,
           #     scope: {}
           #   }])
           #

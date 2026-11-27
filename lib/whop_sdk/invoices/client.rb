@@ -112,7 +112,7 @@ module Whop_sdk
       # @example
       #   client.invoices.create(
       #     account_id: "biz_xxxxxxxxxxxxxx",
-      #     items: []
+      #     items: [{}]
       #   )
       #
       # @return [Whop_sdk::Types::Invoice]

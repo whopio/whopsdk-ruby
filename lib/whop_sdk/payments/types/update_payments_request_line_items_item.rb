@@ -4,9 +4,9 @@ module Whop_sdk
   module Payments
     module Types
       class UpdatePaymentsRequestLineItemsItem < Internal::Types::Model
-        extend Whop_sdk::Internal::Types::Union
+        field :id, -> { String }, optional: true, nullable: false
 
-        member -> { Object }
+        field :variant, -> { Whop_sdk::Payments::Types::UpdatePaymentsRequestLineItemsItemVariant }, optional: true, nullable: false
       end
     end
   end

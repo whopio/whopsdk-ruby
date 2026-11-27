@@ -4,9 +4,13 @@ module Whop_sdk
   module Payments
     module Types
       class CreatePaymentsRequestLineItemsItem < Internal::Types::Model
-        extend Whop_sdk::Internal::Types::Union
+        field :discount, -> { Whop_sdk::Types::PaymentRegisterDiscount }, optional: true, nullable: false
 
-        member -> { Object }
+        field :quantity, -> { Integer }, optional: true, nullable: false
+
+        field :variant, -> { Whop_sdk::Payments::Types::CreatePaymentsRequestLineItemsItemVariant }, optional: true, nullable: false
+
+        field :variant_id, -> { String }, optional: true, nullable: false
       end
     end
   end

@@ -113,7 +113,7 @@ module Whop_sdk
       # available only to accounts enabled for membership invitations.
       #
       # @param request_options [Hash]
-      # @param params [Whop_sdk::Memberships::Types::InviteMembershipsRequestBody]
+      # @param params [Whop_sdk::Memberships::Types::InviteMembershipsRequest]
       # @option request_options [String] :base_url
       # @option request_options [Hash{String => Object}] :additional_headers
       # @option request_options [Hash{String => Object}] :additional_query_parameters
@@ -121,10 +121,7 @@ module Whop_sdk
       # @option request_options [Integer] :timeout_in_seconds
       #
       # @example
-      #   client.memberships.invite(
-      #     user_id: "user_xxxxxxxxxxxxxx",
-      #     variant_id: "plan_xxxxxxxxxxxxxx"
-      #   )
+      #   client.memberships.invite(variant_id: "plan_xxxxxxxxxxxxxx")
       #
       # @return [Whop_sdk::Memberships::Types::InviteMembershipsResponse]
       def invite(request_options: {}, **params)
@@ -133,7 +130,7 @@ module Whop_sdk
           base_url: request_options[:base_url] || @base_url || @environment&.dig(:api),
           method: "POST",
           path: "memberships/invite",
-          body: Whop_sdk::Memberships::Types::InviteMembershipsRequestBody.new(params).to_h,
+          body: Whop_sdk::Memberships::Types::InviteMembershipsRequest.new(params).to_h,
           request_options: request_options
         )
         begin

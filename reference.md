@@ -24956,7 +24956,7 @@ Creates a draft invoice backed by a receipt, with saved items, quantities, price
 ```ruby
 client.invoices.create(
   account_id: "biz_xxxxxxxxxxxxxx",
-  items: []
+  items: [{}]
 )
 ```
 </dd>
@@ -27485,10 +27485,7 @@ Emails one recipient an invitation to a free variant's membership. The invitatio
 <dd>
 
 ```ruby
-client.memberships.invite(
-  user_id: "user_xxxxxxxxxxxxxx",
-  variant_id: "plan_xxxxxxxxxxxxxx"
-)
+client.memberships.invite(variant_id: "plan_xxxxxxxxxxxxxx")
 ```
 </dd>
 </dl>
@@ -27503,7 +27500,23 @@ client.memberships.invite(
 <dl>
 <dd>
 
-**request:** `Whop_sdk::Memberships::Types::InviteMembershipsRequestBody` 
+**email:** `String` — Recipient email address. Pass exactly one of `user_id` or `email`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**user_id:** `String` — Recipient user ID, prefixed `user_`. Pass exactly one of `user_id` or `email`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**variant_id:** `String` — Free variant whose membership the recipient is invited to, prefixed `plan_`.
     
 </dd>
 </dl>
@@ -54260,6 +54273,7 @@ Sets the authenticated user's notification preferences, each addressed by `scope
 
 ```ruby
 client.users.preferences.notifications.set(preferences: [{
+  level: nil,
   scope: {}
 }])
 ```

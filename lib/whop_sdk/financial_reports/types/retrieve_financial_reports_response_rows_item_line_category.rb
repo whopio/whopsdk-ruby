@@ -184,6 +184,8 @@ module Whop_sdk
         PAYMENT_REVSHARE = "payment_revshare"
         PAYMENT_REVSHARE_PAYOUT = "payment_revshare_payout"
         PAYMENT_REVSHARE_REFUND = "payment_revshare_refund"
+        PAYMENT_REVSHARE_REINSTATED = "payment_revshare_reinstated"
+        PAYMENT_REVSHARE_REINSTATED_PAYOUT = "payment_revshare_reinstated_payout"
         PAYMENT_REVSHARE_REVERSAL = "payment_revshare_reversal"
         PAYMENT_UNRECONCILED_CLEARING = "payment_unreconciled_clearing"
         PAYMENT_UNRECONCILED_REVERSAL = "payment_unreconciled_reversal"

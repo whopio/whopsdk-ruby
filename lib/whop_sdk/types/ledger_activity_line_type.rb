@@ -198,6 +198,8 @@ module Whop_sdk
       PAYMENT_REVSHARE_PAYOUT = "payment_revshare_payout"
       PAYMENT_REVSHARE_REVERSAL = "payment_revshare_reversal"
       PAYMENT_REVSHARE_REFUND = "payment_revshare_refund"
+      PAYMENT_REVSHARE_REINSTATED = "payment_revshare_reinstated"
+      PAYMENT_REVSHARE_REINSTATED_PAYOUT = "payment_revshare_reinstated_payout"
       PAYMENT_REFERRAL = "payment_referral"
       PAYMENT_REFERRAL_PAYABLE = "payment_referral_payable"
       PAYMENT_REFERRAL_REVERSAL = "payment_referral_reversal"

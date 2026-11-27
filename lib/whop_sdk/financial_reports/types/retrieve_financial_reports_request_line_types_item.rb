@@ -112,6 +112,8 @@ module Whop_sdk
         PAYMENT_REVSHARE = "payment_revshare"
         PAYMENT_REVSHARE_PAYOUT = "payment_revshare_payout"
         PAYMENT_REVSHARE_REFUND = "payment_revshare_refund"
+        PAYMENT_REVSHARE_REINSTATED = "payment_revshare_reinstated"
+        PAYMENT_REVSHARE_REINSTATED_PAYOUT = "payment_revshare_reinstated_payout"
         PAYMENT_REVSHARE_REVERSAL = "payment_revshare_reversal"
         PAYOUT_FEE = "payout_fee"
         PLATFORM_AFFILIATE_PAYMENT = "platform_affiliate_payment"

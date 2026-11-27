@@ -1,0 +1,12 @@
+[
+  {
+    "resource": [
+      "stats",
+      "time_series"
+    ],
+    "read": "retrieve",
+    "watch": "watch",
+    "wait_for": "wait_for",
+    "answer": "Whop_sdk::Stats::TimeSeries::Types::RetrieveTimeSeriesResponse"
+  }
+]

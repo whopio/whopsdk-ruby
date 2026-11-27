@@ -24,6 +24,12 @@ module WhopSDK
       # (`cacheMaxAge: 12 * 60 * 60 * 1000, cooldownDuration: 30_000`).
       JWKS_CACHE_MAX_AGE_SECONDS = 12 * 60 * 60
       JWKS_COOLDOWN_SECONDS = 30
+      # How long past the freshness window keys may still verify while a refresh fails: long enough to
+      # ride out an outage of the endpoint, short enough that a revoked key stops verifying within an
+      # hour, whoever keeps the endpoint unreachable. Past it, verification fails closed.
+      JWKS_STALE_GRACE_SECONDS = 60 * 60
+      # The fetch runs under the lock every verifier shares, so a hung endpoint must not hold it long.
+      JWKS_FETCH_TIMEOUT_SECONDS = 10
 
       # User token payload structure
       class UserTokenPayload
@@ -42,10 +48,11 @@ module WhopSDK
       # Thread-safe, TTL-bounded remote JWKS cache with cooldown-gated
       # refresh on kid miss.
       class RemoteJwks
-        def initialize(url, cache_max_age_seconds:, cooldown_seconds:)
+        def initialize(url, cache_max_age_seconds:, cooldown_seconds:, stale_grace_seconds:)
           @url = url
           @cache_max_age_seconds = cache_max_age_seconds
           @cooldown_seconds = cooldown_seconds
+          @stale_grace_seconds = stale_grace_seconds
           @mutex = Mutex.new
           @jwk_set = nil
           @fetched_at = nil
@@ -54,28 +61,45 @@ module WhopSDK
 
         # Returns the current JWK::Set, fetching or refreshing as needed.
         # When `force_refresh` is true, bypass the freshness window but
-        # still honor the refetch cooldown.
+        # still honor the refetch cooldown. A failed refresh keeps the keys
+        # it had for at most the stale grace past the freshness window, and
+        # every refetch after a failure waits out the cooldown.
         def jwk_set(force_refresh: false)
           @mutex.synchronize do
             now = monotonic_now
-            cache_stale = @jwk_set.nil? || @fetched_at.nil? ||
-                          (now - @fetched_at) > @cache_max_age_seconds
+            cache_stale = @fetched_at.nil? || (now - @fetched_at) > @cache_max_age_seconds
             cooldown_elapsed = @last_refresh_attempt_at.nil? ||
                                (now - @last_refresh_attempt_at) > @cooldown_seconds
 
-            refresh_now = @jwk_set.nil? || cache_stale ||
-                          (force_refresh && cooldown_elapsed)
+            if (cache_stale || force_refresh) && cooldown_elapsed
+              begin
+                fetch!
+              rescue StandardError
+                raise unless usable?(now)
+              end
+            end
+            raise StandardError, "No usable JWKS from #{@url}: its last fetch failed, and it is retried after #{@cooldown_seconds}s" unless usable?(now)
 
-            fetch! if refresh_now
             @jwk_set
           end
         end
 
         private
 
+        def usable?(now)
+          !@jwk_set.nil? && (now - @fetched_at) <= @cache_max_age_seconds + @stale_grace_seconds
+        end
+
         def fetch!
           @last_refresh_attempt_at = monotonic_now
-          response = Net::HTTP.get_response(URI(@url))
+          uri = URI(@url)
+          response = Net::HTTP.start(
+            uri.host,
+            uri.port,
+            use_ssl: uri.scheme == "https",
+            open_timeout: JWKS_FETCH_TIMEOUT_SECONDS,
+            read_timeout: JWKS_FETCH_TIMEOUT_SECONDS
+          ) { |http| http.request(Net::HTTP::Get.new(uri)) }
 
           raise StandardError, "Failed to fetch JWKS from #{@url} (HTTP #{response.code})" unless response.is_a?(Net::HTTPSuccess)
 
@@ -100,7 +124,8 @@ module WhopSDK
           @jwks_cache[url] ||= RemoteJwks.new(
             url,
             cache_max_age_seconds: JWKS_CACHE_MAX_AGE_SECONDS,
-            cooldown_seconds: JWKS_COOLDOWN_SECONDS
+            cooldown_seconds: JWKS_COOLDOWN_SECONDS,
+            stale_grace_seconds: JWKS_STALE_GRACE_SECONDS
           )
         end
       end
@@ -122,9 +147,8 @@ module WhopSDK
         when String
           token_or_headers
         when Hash
-          token_or_headers[header_name] ||
-            token_or_headers[header_name.downcase] ||
-            token_or_headers[header_name.upcase]
+          wanted = header_name.downcase
+          token_or_headers.find { |name, _| name.to_s.downcase == wanted }&.last
         end
       end
 

@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require_relative "lib/whop_sdk/version"
 require_relative "custom.gemspec"
 
 # NOTE: A handful of these fields are required as part of the Ruby specification.
@@ -8,7 +7,7 @@ require_relative "custom.gemspec"
 Gem::Specification.new do |spec|
   spec.name = "whop_sdk"
   spec.authors = ["Whop_sdk"]
-  spec.version = Whop_sdk::VERSION
+  spec.version = "2.8.1"
   spec.summary = "Ruby client library for the Whop_sdk API"
   spec.description = "The Whop_sdk Ruby library provides convenient access to the Whop_sdk API from Ruby."
   spec.required_ruby_version = ">= 3.3.0"

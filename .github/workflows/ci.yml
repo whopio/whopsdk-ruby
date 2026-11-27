@@ -1,11 +1,9 @@
 name: CI
 
-# Hand-written and listed in .fernignore. The Fern Ruby generator's own ci.yml carries a
-# tag-triggered `publish` job that runs `bundle install` in a job holding `id-token: write`
-# and then `gem push` — a second, unreviewed publish path that would also fire on the tag
-# publish-main.yml creates. Ruby is the only Fern language whose generated ci.yml does
-# that; the TypeScript and Python repos' generated ci.yml are compile+test only. This file
-# is that ci.yml with the publish job removed.
+# whop-monorepo's SDK pipeline builds this repo and writes this file (sdks/ruby/overlay there). It
+# takes the place of the ci.yml the Fern Ruby generator writes, which carries a tag-triggered
+# `publish` job: `bundle install` in a job holding `id-token: write`, then `gem push`. That would be
+# a second publish path beside publish-main.yml, and the tag its release job cuts would fire it.
 
 on:
   push:
@@ -23,7 +21,9 @@ env:
   RUBY_VERSION: "3.3"
 
 jobs:
-  lint:
+  # Everything the CI runs is bin/ci, which whop-monorepo's SDK pipeline also runs over every build
+  # before delivering it.
+  ci:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -35,78 +35,5 @@ jobs:
           ruby-version: ${{ env.RUBY_VERSION }}
           bundler-cache: false
 
-      - run: bundle install
-
-      # scripts/lint is the pre-Fern tree's entry point (rubocop + steep + sorbet) and is
-      # pruned by the cutover; the Fern tree lints with rubocop alone.
-      - name: Lint
-        run: |
-          set -euo pipefail
-          if [ -x ./scripts/lint ]; then
-            ./scripts/lint
-          else
-            bundle exec rubocop
-          fi
-
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          persist-credentials: false
-
-      - uses: ruby/setup-ruby@95ef2b042f9d7a56d8268cba8559e2842e2ad01b # v1.321.0
-        with:
-          ruby-version: ${{ env.RUBY_VERSION }}
-          bundler-cache: false
-
-      - run: bundle install
-
-      - name: Check the hand-written helpers survived generation
-        env:
-          # name | entrypoint method | requirePaths entry | gem the helper requires at load, or empty for the standard library
-          HELPERS: |
-            WhopSDK::Helpers::VerifyUserToken|verify_user_token!|helpers/verify_user_token|jwt
-            WhopSDK::Helpers::VerifyWebhook|unwrap|helpers/verify_webhook|standardwebhooks
-            WhopSDK::Helpers::Oidc|access_token|helpers/oidc|
-          GENERATOR_CONFIG: the ruby config in whop-monorepo sdks/fern/generators.yml
-        run: |
-          set -euo pipefail
-          failures=0
-
-          fail() {
-            echo "::error::$*"
-            failures=$((failures + 1))
-          }
-
-          while IFS='|' read -r constant method require_path gem; do
-            [ -n "$constant" ] || continue
-            helper="lib/whop_sdk/${require_path}.rb"
-
-            if [ -f "$helper" ]; then
-              echo "ok: ${helper} is present"
-            else
-              fail "${helper} is gone. .fernignore lists lib/whop_sdk/helpers; if a regeneration removed it anyway, restore it before merging."
-            fi
-
-            if out=$(bundle exec ruby -Ilib -e "require \"whop_sdk\"; ${constant}.method(:${method})" 2>&1); then
-              echo "ok: require \"whop_sdk\" reaches ${constant}"
-            else
-              printf '%s\n' "$out"
-              fail "require \"whop_sdk\" no longer reaches ${constant}. lib/whop_sdk.rb is generated, so .fernignore does not preserve its require_relative: add ${require_path} to requirePaths in ${GENERATOR_CONFIG}."
-            fi
-
-            [ -n "$gem" ] || continue
-
-            if out=$(bundle exec ruby -e "dep = Gem::Specification.load(\"whop_sdk.gemspec\").dependencies.find { _1.name == \"${gem}\" }; abort(\"whop_sdk.gemspec declares no ${gem} dependency\") if dep.nil?; puts dep" 2>&1); then
-              printf '%s\n' "$out"
-            else
-              printf '%s\n' "$out"
-              fail "whop_sdk.gemspec no longer declares ${gem}. ${constant} requires ${gem} at load, so re-emitting the require without the dependency makes require \"whop_sdk\" raise LoadError for every caller: set extraDependencies: {${gem}: <constraint>} in ${GENERATOR_CONFIG}."
-            fi
-          done <<< "$HELPERS"
-
-          [ "$failures" -eq 0 ]
-
-      - name: Test
-        run: bundle exec rake test
+      - name: CI
+        run: bash bin/ci

@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# whopsdk-ruby's CI: .github/workflows/ci.yml runs it, and so does whop-monorepo's SDK pipeline over
+# every build it delivers.
+set -euo pipefail
+cd "$(dirname "$0")/.."
+
+bundle install
+bundle exec rubocop
+bundle exec rake test

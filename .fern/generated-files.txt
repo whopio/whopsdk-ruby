@@ -1,7 +1,6 @@
 .fern/metadata.json
 .gitignore
 .rubocop.yml
-CONTRIBUTING.md
 Gemfile
 Gemfile.custom
 Rakefile
